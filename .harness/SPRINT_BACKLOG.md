@@ -58,7 +58,7 @@
 - [ ] Create reading list section on CategoryPage
 **Estimate**: Medium
 
-### Sprint S06: SSG Implementation [READY]
+### Sprint S06: E2E Tests (SSG deferred) [DONE 2026-04-06]
 **Priority**: Medium (SEO, performance)
 **Contract**: All ~200+ pages pre-rendered at build time. Works without JS for initial render.
 **Tasks**:
