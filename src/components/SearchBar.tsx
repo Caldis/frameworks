@@ -5,7 +5,7 @@ import styles from './SearchBar.module.css'
 interface SearchBarProps {
   value: string
   onChange: (value: string) => void
-  inputRef?: React.RefObject<HTMLInputElement>
+  inputRef?: React.RefObject<HTMLInputElement | null>
 }
 
 export default function SearchBar({ value, onChange, inputRef }: SearchBarProps) {
