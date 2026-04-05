@@ -2,6 +2,9 @@ export type CategoryKey = 'thinking' | 'architecture' | 'coding' | 'quality' | '
 export type VizType = 'matrix' | 'flow' | 'pyramid' | 'cycle' | 'venn' | 'radar' | 'tree' | 'timeline'
 
 export type Complexity = 'beginner' | 'intermediate' | 'advanced'
+export type AbstractionLevel = 'code' | 'component' | 'system' | 'organization'
+export type MaturityRing = 'foundational' | 'established' | 'emerging' | 'experimental'
+export type QualityConcern = 'reliability' | 'security' | 'performance' | 'maintainability' | 'scalability' | 'usability' | 'testability' | 'observability' | 'portability'
 
 export interface Framework {
   id: number
@@ -39,6 +42,11 @@ export interface Framework {
   when_not_to_use: string[]
   when_not_to_use_zh: string[]
   adopters: string[]
+
+  // Multi-dimensional taxonomy (S04)
+  abstraction_level: AbstractionLevel
+  quality_concerns: QualityConcern[]
+  maturity_ring: MaturityRing
 }
 
 export interface Category {

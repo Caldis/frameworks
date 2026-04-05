@@ -23,8 +23,19 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
-    "related": ["team-topologies", "conways-law", "amazon-two-pizza-teams", "inverse-conway-maneuver"],
-    "tags": ["team-structure", "autonomy", "scaling", "agile", "spotify"],
+    "related": [
+      "team-topologies",
+      "conways-law",
+      "amazon-two-pizza-teams",
+      "inverse-conway-maneuver"
+    ],
+    "tags": [
+      "team-structure",
+      "autonomy",
+      "scaling",
+      "agile",
+      "spotify"
+    ],
     "origin_author": "Henrik Kniberg & Anders Ivarsson, 2012",
     "origin_source": "Scaling Agile @ Spotify (Kniberg & Ivarsson, 2012 whitepaper); referenced in Team Topologies (Skelton & Pais, 2019)",
     "origin_source_zh": "《Spotify 的规模化敏捷》（Kniberg & Ivarsson，2012 白皮书）；在《团队拓扑》（Skelton & Pais，2019）中有引用",
@@ -56,18 +67,48 @@
       "对齐与自主的平衡：该模型显式地平衡组织对齐（构建什么）与小队自主（如何构建）"
     ],
     "timeline": [
-      ["2012", "Henrik Kniberg and Anders Ivarsson publish the 'Scaling Agile @ Spotify' whitepaper describing squads, tribes, chapters, and guilds"],
-      ["2014", "Spotify releases a companion video series that popularizes the model across the industry"],
-      ["2016", "ING Bank publicly adopts a Spotify-inspired structure during its agile transformation, sparking enterprise adoption"],
-      ["2019", "Skelton and Pais critique cargo-culting of the model in Team Topologies, emphasizing that Spotify's own structure evolved beyond the original paper"],
-      ["2022", "Jeremiah Lee publishes 'Spotify's Failed Squad Goals', prompting reassessment of blind adoption"]
+      [
+        "2012",
+        "Henrik Kniberg and Anders Ivarsson publish the 'Scaling Agile @ Spotify' whitepaper describing squads, tribes, chapters, and guilds"
+      ],
+      [
+        "2014",
+        "Spotify releases a companion video series that popularizes the model across the industry"
+      ],
+      [
+        "2016",
+        "ING Bank publicly adopts a Spotify-inspired structure during its agile transformation, sparking enterprise adoption"
+      ],
+      [
+        "2019",
+        "Skelton and Pais critique cargo-culting of the model in Team Topologies, emphasizing that Spotify's own structure evolved beyond the original paper"
+      ],
+      [
+        "2022",
+        "Jeremiah Lee publishes 'Spotify's Failed Squad Goals', prompting reassessment of blind adoption"
+      ]
     ],
     "timeline_zh": [
-      ["2012", "Henrik Kniberg 和 Anders Ivarsson 发表《Spotify 的规模化敏捷》白皮书，描述小队、部落、分会和公会结构"],
-      ["2014", "Spotify 发布配套视频系列，使该模型在业界广泛传播"],
-      ["2016", "ING 银行在敏捷转型中公开采用受 Spotify 启发的结构，引发企业级采纳浪潮"],
-      ["2019", "Skelton 和 Pais 在《团队拓扑》中批评对该模型的「货物崇拜」式照搬，强调 Spotify 自身结构已超越原始论文"],
-      ["2022", "Jeremiah Lee 发表《Spotify 失败的小队目标》，促使业界重新审视盲目采纳"]
+      [
+        "2012",
+        "Henrik Kniberg 和 Anders Ivarsson 发表《Spotify 的规模化敏捷》白皮书，描述小队、部落、分会和公会结构"
+      ],
+      [
+        "2014",
+        "Spotify 发布配套视频系列，使该模型在业界广泛传播"
+      ],
+      [
+        "2016",
+        "ING 银行在敏捷转型中公开采用受 Spotify 启发的结构，引发企业级采纳浪潮"
+      ],
+      [
+        "2019",
+        "Skelton 和 Pais 在《团队拓扑》中批评对该模型的「货物崇拜」式照搬，强调 Spotify 自身结构已超越原始论文"
+      ],
+      [
+        "2022",
+        "Jeremiah Lee 发表《Spotify 失败的小队目标》，促使业界重新审视盲目采纳"
+      ]
     ],
     "dos": [
       "Adapt the model to your organization's culture rather than copying it verbatim from the whitepaper",
@@ -108,7 +149,19 @@
       "工程文化尚不成熟的组织——该模型假设存在高度信任和心理安全感",
       "代码库深度耦合的团队，无法实现小队对独立部署的真正自主"
     ],
-    "adopters": ["Spotify", "ING Bank", "Zalando", "Gilt", "Elsevier"]
+    "adopters": [
+      "Spotify",
+      "ING Bank",
+      "Zalando",
+      "Gilt",
+      "Elsevier"
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "maintainability",
+      "usability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 142,
@@ -134,8 +187,19 @@
     ],
     "ai_relevant": false,
     "viz_type": "grid",
-    "related": ["conways-law", "team-topologies", "spotify-model", "inverse-conway-maneuver"],
-    "tags": ["team-size", "autonomy", "ownership", "microservices", "amazon"],
+    "related": [
+      "conways-law",
+      "team-topologies",
+      "spotify-model",
+      "inverse-conway-maneuver"
+    ],
+    "tags": [
+      "team-size",
+      "autonomy",
+      "ownership",
+      "microservices",
+      "amazon"
+    ],
     "origin_author": "Jeff Bezos, ~2002",
     "origin_source": "Internal Amazon mandate; described in The Everything Store (Brad Stone, 2013) and referenced in Accelerate (Forsgren, Humble & Kim, 2018)",
     "origin_source_zh": "亚马逊内部指令；在《一网打尽》（Brad Stone，2013）中有描述，在《加速》（Forsgren、Humble & Kim，2018）中有引用",
@@ -167,18 +231,48 @@
       "API 即契约：团队通过定义明确的服务接口通信，减少面对面协调的需要"
     ],
     "timeline": [
-      ["2002", "Jeff Bezos issues the famous API mandate and two-pizza team rule at Amazon, forcing all teams to communicate only through service interfaces"],
-      ["2006", "Amazon Web Services launches, itself built by two-pizza teams, validating the organizational model at scale"],
-      ["2013", "Brad Stone documents the two-pizza rule in The Everything Store, bringing it mainstream"],
-      ["2018", "Forsgren, Humble and Kim cite small, autonomous teams as a key predictor of high software delivery performance in Accelerate"],
-      ["2020", "The pattern becomes standard practice in cloud-native organizations, reinforced by the microservices movement"]
+      [
+        "2002",
+        "Jeff Bezos issues the famous API mandate and two-pizza team rule at Amazon, forcing all teams to communicate only through service interfaces"
+      ],
+      [
+        "2006",
+        "Amazon Web Services launches, itself built by two-pizza teams, validating the organizational model at scale"
+      ],
+      [
+        "2013",
+        "Brad Stone documents the two-pizza rule in The Everything Store, bringing it mainstream"
+      ],
+      [
+        "2018",
+        "Forsgren, Humble and Kim cite small, autonomous teams as a key predictor of high software delivery performance in Accelerate"
+      ],
+      [
+        "2020",
+        "The pattern becomes standard practice in cloud-native organizations, reinforced by the microservices movement"
+      ]
     ],
     "timeline_zh": [
-      ["2002", "Jeff Bezos 在亚马逊发布著名的 API 指令和两个披萨团队规则，强制所有团队只通过服务接口通信"],
-      ["2006", "AWS 发布，其自身就由两个披萨团队构建，在规模上验证了该组织模型"],
-      ["2013", "Brad Stone 在《一网打尽》中记录了两个披萨规则，使其进入主流视野"],
-      ["2018", "Forsgren、Humble 和 Kim 在《加速》中将小型自治团队列为高软件交付绩效的关键预测因子"],
-      ["2020", "该模式在云原生组织中成为标准实践，受微服务运动强化"]
+      [
+        "2002",
+        "Jeff Bezos 在亚马逊发布著名的 API 指令和两个披萨团队规则，强制所有团队只通过服务接口通信"
+      ],
+      [
+        "2006",
+        "AWS 发布，其自身就由两个披萨团队构建，在规模上验证了该组织模型"
+      ],
+      [
+        "2013",
+        "Brad Stone 在《一网打尽》中记录了两个披萨规则，使其进入主流视野"
+      ],
+      [
+        "2018",
+        "Forsgren、Humble 和 Kim 在《加速》中将小型自治团队列为高软件交付绩效的关键预测因子"
+      ],
+      [
+        "2020",
+        "该模式在云原生组织中成为标准实践，受微服务运动强化"
+      ]
     ],
     "dos": [
       "Ensure each team has the full-stack capability to deliver independently without waiting on other teams",
@@ -219,7 +313,19 @@
       "以研究为主的环境，探索性工作需要流动的跨领域协作",
       "共享领域专业知识至关重要的场景，拆分到多个团队会稀释知识"
     ],
-    "adopters": ["Amazon", "Netflix", "Google", "Uber", "Twilio"]
+    "adopters": [
+      "Amazon",
+      "Netflix",
+      "Google",
+      "Uber",
+      "Twilio"
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "maintainability",
+      "scalability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 143,
@@ -245,8 +351,19 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["platform-engineering", "conways-law", "team-topologies", "amazon-two-pizza-teams"],
-    "tags": ["collaboration", "open-source", "code-reuse", "inner-source", "culture"],
+    "related": [
+      "platform-engineering",
+      "conways-law",
+      "team-topologies",
+      "amazon-two-pizza-teams"
+    ],
+    "tags": [
+      "collaboration",
+      "open-source",
+      "code-reuse",
+      "inner-source",
+      "culture"
+    ],
     "origin_author": "Tim O'Reilly, 2000; formalized by PayPal (Danese Cooper, ~2014)",
     "origin_source": "InnerSource Commons Foundation; referenced in Accelerate (Forsgren, Humble & Kim, 2018) and Team Topologies (Skelton & Pais, 2019)",
     "origin_source_zh": "InnerSource Commons 基金会；在《加速》（Forsgren、Humble & Kim，2018）和《团队拓扑》（Skelton & Pais，2019）中有引用",
@@ -278,18 +395,48 @@
       "社区优先于层级：通过代码评审和技术优势做出决策，而非依赖组织汇报关系"
     ],
     "timeline": [
-      ["2000", "Tim O'Reilly coins the term 'inner source' to describe applying open-source practices inside corporations"],
-      ["2014", "Danese Cooper formalizes inner-source practices at PayPal and begins advocating across the industry"],
-      ["2015", "InnerSource Commons community launches, providing patterns, maturity models, and case studies"],
-      ["2018", "Microsoft reports thousands of inner-source repositories across the company, crediting DevOps acceleration"],
-      ["2023", "AI-assisted code review tools (GitHub Copilot for PRs) lower the friction of cross-team contributions further"]
+      [
+        "2000",
+        "Tim O'Reilly coins the term 'inner source' to describe applying open-source practices inside corporations"
+      ],
+      [
+        "2014",
+        "Danese Cooper formalizes inner-source practices at PayPal and begins advocating across the industry"
+      ],
+      [
+        "2015",
+        "InnerSource Commons community launches, providing patterns, maturity models, and case studies"
+      ],
+      [
+        "2018",
+        "Microsoft reports thousands of inner-source repositories across the company, crediting DevOps acceleration"
+      ],
+      [
+        "2023",
+        "AI-assisted code review tools (GitHub Copilot for PRs) lower the friction of cross-team contributions further"
+      ]
     ],
     "timeline_zh": [
-      ["2000", "Tim O'Reilly 创造「内部开源」一词，描述在企业内部应用开源实践"],
-      ["2014", "Danese Cooper 在 PayPal 正式化内部开源实践，并开始在业界推广"],
-      ["2015", "InnerSource Commons 社区成立，提供模式、成熟度模型和案例研究"],
-      ["2018", "Microsoft 报告公司内部有数千个内部开源仓库，并归功于 DevOps 加速"],
-      ["2023", "AI 辅助代码评审工具（如 GitHub Copilot for PRs）进一步降低跨团队贡献的摩擦"]
+      [
+        "2000",
+        "Tim O'Reilly 创造「内部开源」一词，描述在企业内部应用开源实践"
+      ],
+      [
+        "2014",
+        "Danese Cooper 在 PayPal 正式化内部开源实践，并开始在业界推广"
+      ],
+      [
+        "2015",
+        "InnerSource Commons 社区成立，提供模式、成熟度模型和案例研究"
+      ],
+      [
+        "2018",
+        "Microsoft 报告公司内部有数千个内部开源仓库，并归功于 DevOps 加速"
+      ],
+      [
+        "2023",
+        "AI 辅助代码评审工具（如 GitHub Copilot for PRs）进一步降低跨团队贡献的摩擦"
+      ]
     ],
     "dos": [
       "Invest in excellent documentation and onboarding guides for each inner-source project to reduce contributor friction",
@@ -330,7 +477,19 @@
       "拥有安全关键代码的团队，需要限制访问权限，无法对广泛的内部受众开放",
       "缺乏支持分布式贡献所需的基础 DevOps 成熟度（CI/CD、代码评审工具）的环境"
     ],
-    "adopters": ["Microsoft", "PayPal", "Bloomberg", "Bosch", "SAP"]
+    "adopters": [
+      "Microsoft",
+      "PayPal",
+      "Bloomberg",
+      "Bosch",
+      "SAP"
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "maintainability",
+      "usability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 144,
@@ -356,8 +515,19 @@
     ],
     "ai_relevant": true,
     "viz_type": "layer",
-    "related": ["team-topologies", "inner-source", "developer-experience-framework", "amazon-two-pizza-teams"],
-    "tags": ["platform", "developer-experience", "self-service", "internal-tools", "golden-path"],
+    "related": [
+      "team-topologies",
+      "inner-source",
+      "developer-experience-framework",
+      "amazon-two-pizza-teams"
+    ],
+    "tags": [
+      "platform",
+      "developer-experience",
+      "self-service",
+      "internal-tools",
+      "golden-path"
+    ],
     "origin_author": "Evan Bottcher (ThoughtWorks), ~2018; formalized in Team Topologies (Skelton & Pais, 2019)",
     "origin_source": "Team Topologies (Skelton & Pais, 2019); CNCF Platform Engineering Maturity Model (2023)",
     "origin_source_zh": "《团队拓扑》（Skelton & Pais，2019）；CNCF 平台工程成熟度模型（2023）",
@@ -389,18 +559,48 @@
       "认知负荷降低：平台成功的首要衡量标准是它为面向价值流团队减少了多少心智负担，正如《团队拓扑》中所定义的"
     ],
     "timeline": [
-      ["2018", "Evan Bottcher's 'What I Talk About When I Talk About Platforms' article defines the internal platform as a product concept"],
-      ["2019", "Skelton and Pais formalize the platform team as one of four fundamental team types in Team Topologies"],
-      ["2022", "Gartner names platform engineering a top strategic technology trend, predicting 80% of organizations will adopt it by 2026"],
-      ["2023", "CNCF publishes the Platform Engineering Maturity Model; PlatformCon attracts 20,000+ attendees"],
-      ["2024", "Backstage (Spotify), Port, and Humanitec emerge as leading internal developer portal frameworks"]
+      [
+        "2018",
+        "Evan Bottcher's 'What I Talk About When I Talk About Platforms' article defines the internal platform as a product concept"
+      ],
+      [
+        "2019",
+        "Skelton and Pais formalize the platform team as one of four fundamental team types in Team Topologies"
+      ],
+      [
+        "2022",
+        "Gartner names platform engineering a top strategic technology trend, predicting 80% of organizations will adopt it by 2026"
+      ],
+      [
+        "2023",
+        "CNCF publishes the Platform Engineering Maturity Model; PlatformCon attracts 20,000+ attendees"
+      ],
+      [
+        "2024",
+        "Backstage (Spotify), Port, and Humanitec emerge as leading internal developer portal frameworks"
+      ]
     ],
     "timeline_zh": [
-      ["2018", "Evan Bottcher 的文章《当我谈论平台时我在谈论什么》定义了内部平台即产品的概念"],
-      ["2019", "Skelton 和 Pais 在《团队拓扑》中将平台团队正式确立为四种基本团队类型之一"],
-      ["2022", "Gartner 将平台工程列为顶级战略技术趋势，预测到 2026 年 80% 的组织将采纳"],
-      ["2023", "CNCF 发布平台工程成熟度模型；PlatformCon 吸引超过 20,000 名参与者"],
-      ["2024", "Backstage（Spotify）、Port 和 Humanitec 成为领先的内部开发者门户框架"]
+      [
+        "2018",
+        "Evan Bottcher 的文章《当我谈论平台时我在谈论什么》定义了内部平台即产品的概念"
+      ],
+      [
+        "2019",
+        "Skelton 和 Pais 在《团队拓扑》中将平台团队正式确立为四种基本团队类型之一"
+      ],
+      [
+        "2022",
+        "Gartner 将平台工程列为顶级战略技术趋势，预测到 2026 年 80% 的组织将采纳"
+      ],
+      [
+        "2023",
+        "CNCF 发布平台工程成熟度模型；PlatformCon 吸引超过 20,000 名参与者"
+      ],
+      [
+        "2024",
+        "Backstage（Spotify）、Port 和 Humanitec 成为领先的内部开发者门户框架"
+      ]
     ],
     "dos": [
       "Treat internal developers as real customers: conduct user interviews, track NPS, and maintain a public roadmap",
@@ -441,7 +641,20 @@
       "各团队技术栈差异极大且抗拒标准化的环境",
       "缺乏高管对内部工具持续投资支持的组织"
     ],
-    "adopters": ["Spotify", "Netflix", "Zalando", "Mercado Libre", "Deutsche Telekom"]
+    "adopters": [
+      "Spotify",
+      "Netflix",
+      "Zalando",
+      "Mercado Libre",
+      "Deutsche Telekom"
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "maintainability",
+      "usability",
+      "scalability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 145,
@@ -467,8 +680,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "ladder",
-    "related": ["developer-experience-framework", "blameless-postmortems", "team-topologies"],
-    "tags": ["career", "growth", "engineering-levels", "management", "retention"],
+    "related": [
+      "developer-experience-framework",
+      "blameless-postmortems",
+      "team-topologies"
+    ],
+    "tags": [
+      "career",
+      "growth",
+      "engineering-levels",
+      "management",
+      "retention"
+    ],
     "origin_author": "Multiple origins; notably Rent the Runway (Camille Fournier, ~2015) and early frameworks at Google and Facebook",
     "origin_source": "The Manager's Path (Camille Fournier, 2017); referenced in Accelerate (Forsgren, Humble & Kim, 2018) and An Elegant Puzzle (Will Larson, 2019)",
     "origin_source_zh": "《管理之路》（Camille Fournier，2017）；在《加速》（Forsgren、Humble & Kim，2018）和《优雅的谜题》（Will Larson，2019）中有引用",
@@ -500,18 +723,48 @@
       "反彼得原理：清晰的期望有助于判断某人是否在当前级别有效工作，防止因晋升导致能力不胜任"
     ],
     "timeline": [
-      ["2005", "Google publishes early internal engineering level definitions (L3-L10) that become a widely copied template"],
-      ["2013", "Rent the Runway publishes one of the first public engineering ladders, later expanded by Camille Fournier"],
-      ["2017", "Camille Fournier's The Manager's Path provides comprehensive guidance on engineering levels and management tracks"],
-      ["2019", "Will Larson's An Elegant Puzzle addresses ladder design as a systems problem and popularizes calibration practices"],
-      ["2023", "Companies like Dropbox and CircleCI publish open-source career frameworks, creating industry-wide standardization"]
+      [
+        "2005",
+        "Google publishes early internal engineering level definitions (L3-L10) that become a widely copied template"
+      ],
+      [
+        "2013",
+        "Rent the Runway publishes one of the first public engineering ladders, later expanded by Camille Fournier"
+      ],
+      [
+        "2017",
+        "Camille Fournier's The Manager's Path provides comprehensive guidance on engineering levels and management tracks"
+      ],
+      [
+        "2019",
+        "Will Larson's An Elegant Puzzle addresses ladder design as a systems problem and popularizes calibration practices"
+      ],
+      [
+        "2023",
+        "Companies like Dropbox and CircleCI publish open-source career frameworks, creating industry-wide standardization"
+      ]
     ],
     "timeline_zh": [
-      ["2005", "Google 发布早期内部工程级别定义（L3-L10），成为广泛复制的模板"],
-      ["2013", "Rent the Runway 发布首批公开工程阶梯之一，后由 Camille Fournier 扩展"],
-      ["2017", "Camille Fournier 的《管理之路》提供了关于工程级别和管理轨道的全面指导"],
-      ["2019", "Will Larson 的《优雅的谜题》将阶梯设计视为系统问题，并推广了校准实践"],
-      ["2023", "Dropbox 和 CircleCI 等公司发布开源职业框架，推动行业范围的标准化"]
+      [
+        "2005",
+        "Google 发布早期内部工程级别定义（L3-L10），成为广泛复制的模板"
+      ],
+      [
+        "2013",
+        "Rent the Runway 发布首批公开工程阶梯之一，后由 Camille Fournier 扩展"
+      ],
+      [
+        "2017",
+        "Camille Fournier 的《管理之路》提供了关于工程级别和管理轨道的全面指导"
+      ],
+      [
+        "2019",
+        "Will Larson 的《优雅的谜题》将阶梯设计视为系统问题，并推广了校准实践"
+      ],
+      [
+        "2023",
+        "Dropbox 和 CircleCI 等公司发布开源职业框架，推动行业范围的标准化"
+      ]
     ],
     "dos": [
       "Make the ladder public within the organization so every engineer can self-assess and understand expectations",
@@ -552,7 +805,19 @@
       "强烈偏好扁平层级并抵制任何形式的级别差异化的文化",
       "临时项目团队或咨询公司，组织内的长期职业成长不是主要关切"
     ],
-    "adopters": ["Google", "Meta", "Rent the Runway", "Dropbox", "Spotify"]
+    "adopters": [
+      "Google",
+      "Meta",
+      "Rent the Runway",
+      "Dropbox",
+      "Spotify"
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "maintainability",
+      "usability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 146,
@@ -578,8 +843,19 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
-    "related": ["technical-debt-management-framework", "developer-experience-framework", "team-topologies"],
-    "tags": ["incidents", "learning", "culture", "postmortem", "resilience", "SRE"],
+    "related": [
+      "technical-debt-management-framework",
+      "developer-experience-framework",
+      "team-topologies"
+    ],
+    "tags": [
+      "incidents",
+      "learning",
+      "culture",
+      "postmortem",
+      "resilience",
+      "SRE"
+    ],
     "origin_author": "John Allspaw, 2012; rooted in Sidney Dekker's Just Culture and safety science",
     "origin_source": "Etsy's engineering blog (Allspaw, 2012); Site Reliability Engineering (Beyer et al., 2016); referenced in Accelerate (Forsgren, Humble & Kim, 2018)",
     "origin_source_zh": "Etsy 工程博客（Allspaw，2012）；《SRE：Google 运维解密》（Beyer 等，2016）；在《加速》（Forsgren、Humble & Kim，2018）中有引用",
@@ -611,18 +887,48 @@
       "组织记忆：已发布的事后复盘成为可搜索的知识库，防止组织对过去事故的记忆遗失"
     ],
     "timeline": [
-      ["2004", "Sidney Dekker publishes 'Just Culture' in aviation safety, establishing the theoretical foundation for blame-free incident analysis"],
-      ["2012", "John Allspaw publishes 'Blameless PostMortems and a Just Culture' on the Etsy engineering blog, adapting safety science to software"],
-      ["2014", "PagerDuty open-sources their incident response and postmortem documentation, establishing industry templates"],
-      ["2016", "Google's SRE book dedicates a chapter to postmortem culture, making blamelessness a mainstream SRE practice"],
-      ["2018", "Forsgren, Humble and Kim identify a generative (blame-free) culture as a key predictor of high-performing teams in Accelerate"]
+      [
+        "2004",
+        "Sidney Dekker publishes 'Just Culture' in aviation safety, establishing the theoretical foundation for blame-free incident analysis"
+      ],
+      [
+        "2012",
+        "John Allspaw publishes 'Blameless PostMortems and a Just Culture' on the Etsy engineering blog, adapting safety science to software"
+      ],
+      [
+        "2014",
+        "PagerDuty open-sources their incident response and postmortem documentation, establishing industry templates"
+      ],
+      [
+        "2016",
+        "Google's SRE book dedicates a chapter to postmortem culture, making blamelessness a mainstream SRE practice"
+      ],
+      [
+        "2018",
+        "Forsgren, Humble and Kim identify a generative (blame-free) culture as a key predictor of high-performing teams in Accelerate"
+      ]
     ],
     "timeline_zh": [
-      ["2004", "Sidney Dekker 发表航空安全领域的「公正文化」理论，为无指责事故分析奠定理论基础"],
-      ["2012", "John Allspaw 在 Etsy 工程博客发表《无指责事后复盘与公正文化》，将安全科学引入软件领域"],
-      ["2014", "PagerDuty 开源其事故响应和事后复盘文档，建立行业模板"],
-      ["2016", "Google 的 SRE 书籍专设一章讨论事后复盘文化，使无指责成为主流 SRE 实践"],
-      ["2018", "Forsgren、Humble 和 Kim 在《加速》中将生成型（无指责）文化确定为高绩效团队的关键预测因子"]
+      [
+        "2004",
+        "Sidney Dekker 发表航空安全领域的「公正文化」理论，为无指责事故分析奠定理论基础"
+      ],
+      [
+        "2012",
+        "John Allspaw 在 Etsy 工程博客发表《无指责事后复盘与公正文化》，将安全科学引入软件领域"
+      ],
+      [
+        "2014",
+        "PagerDuty 开源其事故响应和事后复盘文档，建立行业模板"
+      ],
+      [
+        "2016",
+        "Google 的 SRE 书籍专设一章讨论事后复盘文化，使无指责成为主流 SRE 实践"
+      ],
+      [
+        "2018",
+        "Forsgren、Humble 和 Kim 在《加速》中将生成型（无指责）文化确定为高绩效团队的关键预测因子"
+      ]
     ],
     "dos": [
       "Facilitate the postmortem with a neutral party who was not directly involved in the incident",
@@ -663,7 +969,19 @@
       "不值得正式事后复盘流程开销的琐碎问题（改用轻量级回顾替代）",
       "法规合规要求将根因正式归因于特定个人或角色的场景"
     ],
-    "adopters": ["Etsy", "Google", "PagerDuty", "Netflix", "Atlassian"]
+    "adopters": [
+      "Etsy",
+      "Google",
+      "PagerDuty",
+      "Netflix",
+      "Atlassian"
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "reliability",
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 147,
@@ -689,8 +1007,19 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
-    "related": ["conways-law", "technical-debt-management-framework", "team-topologies", "continuous-architecture"],
-    "tags": ["governance", "architecture", "review-board", "ADR", "decision-making"],
+    "related": [
+      "conways-law",
+      "technical-debt-management-framework",
+      "team-topologies",
+      "continuous-architecture"
+    ],
+    "tags": [
+      "governance",
+      "architecture",
+      "review-board",
+      "ADR",
+      "decision-making"
+    ],
     "origin_author": "Enterprise architecture tradition; modernized by ThoughtWorks Technology Radar approach (~2010)",
     "origin_source": "Software Architecture in Practice (Bass, Clements & Kazman, 3rd ed., 2012); referenced in Fundamentals of Software Architecture (Richards & Ford, 2020)",
     "origin_source_zh": "《软件架构实践》（Bass、Clements & Kazman，第三版，2012）；在《软件架构基础》（Richards & Ford，2020）中有引用",
@@ -722,18 +1051,48 @@
       "组织记忆：已发布的 ADR 创建了架构决策理由的可搜索历史，防止重复讨论"
     ],
     "timeline": [
-      ["1995", "The Zachman Framework and TOGAF establish formal enterprise architecture governance including review boards"],
-      ["2010", "ThoughtWorks Technology Radar introduces a lightweight, collaborative approach to architectural governance"],
-      ["2011", "Michael Nygard proposes Architecture Decision Records as a lightweight alternative to heavy governance documents"],
-      ["2019", "Team Topologies advocates for enabling teams (including architecture guidance) rather than traditional gatekeeping ARBs"],
-      ["2023", "Organizations adopt async ARB reviews via ADRs in GitHub/GitLab, reducing meeting overhead while maintaining governance"]
+      [
+        "1995",
+        "The Zachman Framework and TOGAF establish formal enterprise architecture governance including review boards"
+      ],
+      [
+        "2010",
+        "ThoughtWorks Technology Radar introduces a lightweight, collaborative approach to architectural governance"
+      ],
+      [
+        "2011",
+        "Michael Nygard proposes Architecture Decision Records as a lightweight alternative to heavy governance documents"
+      ],
+      [
+        "2019",
+        "Team Topologies advocates for enabling teams (including architecture guidance) rather than traditional gatekeeping ARBs"
+      ],
+      [
+        "2023",
+        "Organizations adopt async ARB reviews via ADRs in GitHub/GitLab, reducing meeting overhead while maintaining governance"
+      ]
     ],
     "timeline_zh": [
-      ["1995", "Zachman 框架和 TOGAF 建立正式的企业架构治理（包括评审委员会）"],
-      ["2010", "ThoughtWorks 技术雷达引入轻量级协作式架构治理方法"],
-      ["2011", "Michael Nygard 提出架构决策记录作为重量级治理文档的轻量替代"],
-      ["2019", "《团队拓扑》倡导赋能团队（包括架构指导）而非传统关卡式 ARB"],
-      ["2023", "组织通过 GitHub/GitLab 中的 ADR 进行异步 ARB 评审，减少会议开销同时保持治理"]
+      [
+        "1995",
+        "Zachman 框架和 TOGAF 建立正式的企业架构治理（包括评审委员会）"
+      ],
+      [
+        "2010",
+        "ThoughtWorks 技术雷达引入轻量级协作式架构治理方法"
+      ],
+      [
+        "2011",
+        "Michael Nygard 提出架构决策记录作为重量级治理文档的轻量替代"
+      ],
+      [
+        "2019",
+        "《团队拓扑》倡导赋能团队（包括架构指导）而非传统关卡式 ARB"
+      ],
+      [
+        "2023",
+        "组织通过 GitHub/GitLab 中的 ADR 进行异步 ARB 评审，减少会议开销同时保持治理"
+      ]
     ],
     "dos": [
       "Keep the review process lightweight — a one-page ADR template is better than a 30-slide architecture deck",
@@ -774,7 +1133,19 @@
       "使用单一技术栈的组织，架构决策本身就受到固有约束",
       "实践极限编程、采用浮现式架构的团队，不适合前置的架构规划"
     ],
-    "adopters": ["Spotify", "Google", "ThoughtWorks", "Capital One", "Zalando"]
+    "adopters": [
+      "Spotify",
+      "Google",
+      "ThoughtWorks",
+      "Capital One",
+      "Zalando"
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "maintainability",
+      "reliability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 148,
@@ -800,8 +1171,19 @@
     ],
     "ai_relevant": true,
     "viz_type": "quadrant",
-    "related": ["technical-debt-quadrant", "blameless-postmortems", "architecture-review-board", "continuous-architecture"],
-    "tags": ["technical-debt", "sustainability", "prioritization", "engineering-excellence", "maintenance"],
+    "related": [
+      "technical-debt-quadrant",
+      "blameless-postmortems",
+      "architecture-review-board",
+      "continuous-architecture"
+    ],
+    "tags": [
+      "technical-debt",
+      "sustainability",
+      "prioritization",
+      "engineering-excellence",
+      "maintenance"
+    ],
     "origin_author": "Ward Cunningham, 1992 (debt metaphor); Martin Fowler, 2009 (Technical Debt Quadrant)",
     "origin_source": "Technical Debt Quadrant (Fowler, 2009); The Mythical Man-Month (Brooks, 1975, on system entropy); Accelerate (Forsgren, Humble & Kim, 2018)",
     "origin_source_zh": "技术债务象限（Fowler，2009）；《人月神话》（Brooks，1975，关于系统熵增）；《加速》（Forsgren、Humble & Kim，2018）",
@@ -833,18 +1215,48 @@
       "布鲁克斯的系统熵增定律：如《人月神话》所述，没有积极维护，软件系统会趋向日益增加的无序和降低的概念完整性"
     ],
     "timeline": [
-      ["1975", "Fred Brooks describes system entropy and the tendency of software to degrade over time in The Mythical Man-Month"],
-      ["1992", "Ward Cunningham coins the 'technical debt' metaphor at OOPSLA to explain why refactoring is an investment, not a cost"],
-      ["2009", "Martin Fowler publishes the Technical Debt Quadrant, providing a framework for categorizing different types of debt"],
-      ["2018", "Accelerate research demonstrates that teams with low technical debt deploy 46x more frequently with 7x lower change failure rate"],
-      ["2023", "AI-assisted debt identification tools (SonarQube AI, CodeScene) automate detection and prioritization of technical debt"]
+      [
+        "1975",
+        "Fred Brooks describes system entropy and the tendency of software to degrade over time in The Mythical Man-Month"
+      ],
+      [
+        "1992",
+        "Ward Cunningham coins the 'technical debt' metaphor at OOPSLA to explain why refactoring is an investment, not a cost"
+      ],
+      [
+        "2009",
+        "Martin Fowler publishes the Technical Debt Quadrant, providing a framework for categorizing different types of debt"
+      ],
+      [
+        "2018",
+        "Accelerate research demonstrates that teams with low technical debt deploy 46x more frequently with 7x lower change failure rate"
+      ],
+      [
+        "2023",
+        "AI-assisted debt identification tools (SonarQube AI, CodeScene) automate detection and prioritization of technical debt"
+      ]
     ],
     "timeline_zh": [
-      ["1975", "Fred Brooks 在《人月神话》中描述系统熵增和软件随时间退化的趋势"],
-      ["1992", "Ward Cunningham 在 OOPSLA 上创造「技术债务」隐喻，解释为什么重构是投资而非成本"],
-      ["2009", "Martin Fowler 发表技术债务象限，提供对不同类型债务进行分类的框架"],
-      ["2018", "《加速》的研究表明低技术债务的团队部署频率高 46 倍，变更失败率低 7 倍"],
-      ["2023", "AI 辅助的债务识别工具（SonarQube AI、CodeScene）自动化技术债务的检测和优先排序"]
+      [
+        "1975",
+        "Fred Brooks 在《人月神话》中描述系统熵增和软件随时间退化的趋势"
+      ],
+      [
+        "1992",
+        "Ward Cunningham 在 OOPSLA 上创造「技术债务」隐喻，解释为什么重构是投资而非成本"
+      ],
+      [
+        "2009",
+        "Martin Fowler 发表技术债务象限，提供对不同类型债务进行分类的框架"
+      ],
+      [
+        "2018",
+        "《加速》的研究表明低技术债务的团队部署频率高 46 倍，变更失败率低 7 倍"
+      ],
+      [
+        "2023",
+        "AI 辅助的债务识别工具（SonarQube AI、CodeScene）自动化技术债务的检测和优先排序"
+      ]
     ],
     "dos": [
       "Make tech debt visible to product stakeholders using business impact metrics (incidents caused, features delayed), not just engineering jargon",
@@ -885,7 +1297,18 @@
       "已在实践持续重构（如 TDD 配合积极重构）的团队，债务很少累积",
       "系统已计划退役——为即将被替换的系统偿还债务是浪费"
     ],
-    "adopters": ["Spotify", "Google", "Shopify", "Atlassian", "ThoughtWorks"]
+    "adopters": [
+      "Spotify",
+      "Google",
+      "Shopify",
+      "Atlassian",
+      "ThoughtWorks"
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 149,
@@ -911,8 +1334,19 @@
     ],
     "ai_relevant": true,
     "viz_type": "radar",
-    "related": ["platform-engineering", "engineering-ladder", "technical-debt-management-framework", "team-topologies"],
-    "tags": ["developer-experience", "productivity", "cognitive-load", "flow-state", "feedback-loops"],
+    "related": [
+      "platform-engineering",
+      "engineering-ladder",
+      "technical-debt-management-framework",
+      "team-topologies"
+    ],
+    "tags": [
+      "developer-experience",
+      "productivity",
+      "cognitive-load",
+      "flow-state",
+      "feedback-loops"
+    ],
     "origin_author": "Nicole Forsgren, Margaret-Anne Storey & Chandra Maddila, 2023",
     "origin_source": "DevEx: What Actually Drives Productivity (Forsgren, Storey & Maddila, ACM Queue, 2023); builds on Accelerate (Forsgren, Humble & Kim, 2018) and SPACE framework (2021)",
     "origin_source_zh": "《DevEx：究竟什么驱动生产力》（Forsgren、Storey & Maddila，ACM Queue，2023）；建立在《加速》（Forsgren、Humble & Kim，2018）和 SPACE 框架（2021）之上",
@@ -944,18 +1378,48 @@
       "开发者生产力≠产出：该框架明确拒绝将代码行数或 PR 数量作为生产力衡量标准，转而关注支撑优质工作的条件"
     ],
     "timeline": [
-      ["2018", "Forsgren, Humble and Kim publish Accelerate, establishing DORA metrics as the standard for measuring software delivery performance"],
-      ["2021", "The SPACE framework (Forsgren et al.) expands beyond DORA to include satisfaction, well-being, and collaboration dimensions"],
-      ["2023", "Forsgren, Storey and Maddila publish the DevEx framework in ACM Queue, distilling developer productivity into three actionable dimensions"],
-      ["2024", "Major tech companies (LinkedIn, Spotify, Uber) publicly adopt DevEx frameworks and share their measurement approaches"],
-      ["2025", "AI-powered DevEx tools emerge: predictive build optimization, automated toil detection, and intelligent code review routing"]
+      [
+        "2018",
+        "Forsgren, Humble and Kim publish Accelerate, establishing DORA metrics as the standard for measuring software delivery performance"
+      ],
+      [
+        "2021",
+        "The SPACE framework (Forsgren et al.) expands beyond DORA to include satisfaction, well-being, and collaboration dimensions"
+      ],
+      [
+        "2023",
+        "Forsgren, Storey and Maddila publish the DevEx framework in ACM Queue, distilling developer productivity into three actionable dimensions"
+      ],
+      [
+        "2024",
+        "Major tech companies (LinkedIn, Spotify, Uber) publicly adopt DevEx frameworks and share their measurement approaches"
+      ],
+      [
+        "2025",
+        "AI-powered DevEx tools emerge: predictive build optimization, automated toil detection, and intelligent code review routing"
+      ]
     ],
     "timeline_zh": [
-      ["2018", "Forsgren、Humble 和 Kim 发表《加速》，将 DORA 指标确立为衡量软件交付绩效的标准"],
-      ["2021", "SPACE 框架（Forsgren 等）超越 DORA，纳入满意度、幸福感和协作维度"],
-      ["2023", "Forsgren、Storey 和 Maddila 在 ACM Queue 发表 DevEx 框架，将开发者生产力提炼为三个可执行维度"],
-      ["2024", "主要科技公司（LinkedIn、Spotify、Uber）公开采纳 DevEx 框架并分享其衡量方法"],
-      ["2025", "AI 驱动的 DevEx 工具涌现：预测性构建优化、自动化苦差事检测和智能代码评审分配"]
+      [
+        "2018",
+        "Forsgren、Humble 和 Kim 发表《加速》，将 DORA 指标确立为衡量软件交付绩效的标准"
+      ],
+      [
+        "2021",
+        "SPACE 框架（Forsgren 等）超越 DORA，纳入满意度、幸福感和协作维度"
+      ],
+      [
+        "2023",
+        "Forsgren、Storey 和 Maddila 在 ACM Queue 发表 DevEx 框架，将开发者生产力提炼为三个可执行维度"
+      ],
+      [
+        "2024",
+        "主要科技公司（LinkedIn、Spotify、Uber）公开采纳 DevEx 框架并分享其衡量方法"
+      ],
+      [
+        "2025",
+        "AI 驱动的 DevEx 工具涌现：预测性构建优化、自动化苦差事检测和智能代码评审分配"
+      ]
     ],
     "dos": [
       "Measure all three dimensions (feedback loops, cognitive load, flow state) — optimizing one while ignoring others gives an incomplete picture",
@@ -996,7 +1460,19 @@
       "主要瓶颈是产品方向而非工程摩擦的场景——DevEx 无法修复战略问题",
       "正在处理关键生产问题的危机模式团队——先稳定运营再优化开发者体验"
     ],
-    "adopters": ["LinkedIn", "Spotify", "Uber", "Microsoft", "Shopify"]
+    "adopters": [
+      "LinkedIn",
+      "Spotify",
+      "Uber",
+      "Microsoft",
+      "Shopify"
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "usability",
+      "maintainability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 150,
@@ -1022,8 +1498,19 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["team-topologies", "blameless-postmortems", "spotify-model", "engineering-ladder"],
-    "tags": ["collaboration", "pair-programming", "mob-programming", "ensemble", "knowledge-sharing"],
+    "related": [
+      "team-topologies",
+      "blameless-postmortems",
+      "spotify-model",
+      "engineering-ladder"
+    ],
+    "tags": [
+      "collaboration",
+      "pair-programming",
+      "mob-programming",
+      "ensemble",
+      "knowledge-sharing"
+    ],
     "origin_author": "Woody Zuill, ~2012",
     "origin_source": "Mob Programming: A Whole Team Approach (Woody Zuill, 2014 Agile conference); informed by The Mythical Man-Month (Brooks, 1975) communication models",
     "origin_source_zh": "《群体编程：整个团队的方法》（Woody Zuill，2014 敏捷大会）；受《人月神话》（Brooks，1975）的沟通模型启发",
@@ -1055,18 +1542,48 @@
       "布鲁克斯的沟通洞察：群体编程反转了布鲁克斯定律——n*(n-1)/2 条通信通道带来的开销被单一共享上下文所消除，杜绝了沟通不畅"
     ],
     "timeline": [
-      ["1975", "Fred Brooks identifies communication overhead as the dominant cost of adding people to a team in The Mythical Man-Month"],
-      ["1999", "Kent Beck formalizes pair programming as a core practice of Extreme Programming"],
-      ["2012", "Woody Zuill discovers mob programming at Hunter Industries when his team naturally starts working together at one screen"],
-      ["2014", "Zuill presents 'Mob Programming: A Whole Team Approach' at the Agile conference, introducing the practice to the wider community"],
-      ["2020", "Remote mob/ensemble programming surges during COVID-19, enabled by tools like VS Code Live Share, Tuple, and mob.sh"]
+      [
+        "1975",
+        "Fred Brooks identifies communication overhead as the dominant cost of adding people to a team in The Mythical Man-Month"
+      ],
+      [
+        "1999",
+        "Kent Beck formalizes pair programming as a core practice of Extreme Programming"
+      ],
+      [
+        "2012",
+        "Woody Zuill discovers mob programming at Hunter Industries when his team naturally starts working together at one screen"
+      ],
+      [
+        "2014",
+        "Zuill presents 'Mob Programming: A Whole Team Approach' at the Agile conference, introducing the practice to the wider community"
+      ],
+      [
+        "2020",
+        "Remote mob/ensemble programming surges during COVID-19, enabled by tools like VS Code Live Share, Tuple, and mob.sh"
+      ]
     ],
     "timeline_zh": [
-      ["1975", "Fred Brooks 在《人月神话》中将沟通开销确定为向团队添加人员的主要成本"],
-      ["1999", "Kent Beck 将结对编程正式确立为极限编程的核心实践"],
-      ["2012", "Woody Zuill 在 Hunter Industries 发现群体编程，当时他的团队自然而然地开始在一个屏幕前一起工作"],
-      ["2014", "Zuill 在敏捷大会上发表《群体编程：整个团队的方法》，将该实践介绍给更广泛的社区"],
-      ["2020", "远程群体/集合编程在 COVID-19 期间激增，得益于 VS Code Live Share、Tuple 和 mob.sh 等工具"]
+      [
+        "1975",
+        "Fred Brooks 在《人月神话》中将沟通开销确定为向团队添加人员的主要成本"
+      ],
+      [
+        "1999",
+        "Kent Beck 将结对编程正式确立为极限编程的核心实践"
+      ],
+      [
+        "2012",
+        "Woody Zuill 在 Hunter Industries 发现群体编程，当时他的团队自然而然地开始在一个屏幕前一起工作"
+      ],
+      [
+        "2014",
+        "Zuill 在敏捷大会上发表《群体编程：整个团队的方法》，将该实践介绍给更广泛的社区"
+      ],
+      [
+        "2020",
+        "远程群体/集合编程在 COVID-19 期间激增，得益于 VS Code Live Share、Tuple 和 mob.sh 等工具"
+      ]
     ],
     "dos": [
       "Keep rotation intervals short (10-15 minutes) to maintain energy and prevent the Driver from zoning out",
@@ -1107,6 +1624,18 @@
       "没有可靠低延迟屏幕共享工具的远程团队——网络延迟使驾驶员体验令人沮丧",
       "不受益于实时协作的高度独立任务（如文档编写、数据录入、配置）"
     ],
-    "adopters": ["Hunter Industries", "Cucumber", "Shopify", "Unruly Media", "LEGO"]
+    "adopters": [
+      "Hunter Industries",
+      "Cucumber",
+      "Shopify",
+      "Unruly Media",
+      "LEGO"
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "maintainability",
+      "usability"
+    ],
+    "maturity_ring": "established"
   }
 ]

@@ -1,0 +1,36 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #999;
+  letter-spacing: 0.5px;
+  min-width: 70px;
+}
+
+.pill {
+  padding: 3px 10px;
+  border-radius: 16px;
+  font-size: 11px;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+  color: var(--text);
+}
+
+.pill:hover {
+  border-color: #999;
+}
+
+.pillActive {
+  background: #f0ebe5;
+  border-color: #d4cdc4;
+  font-weight: 500;
+}

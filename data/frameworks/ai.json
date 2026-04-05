@@ -154,7 +154,12 @@
       "OpenAI (Assistants API)",
       "Google DeepMind",
       "Microsoft Semantic Kernel"
-    ]
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 88,
@@ -311,7 +316,13 @@
       "Perplexity AI",
       "Databricks",
       "Elastic"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "performance"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 89,
@@ -467,7 +478,13 @@
       "LangGraph (LangChain)",
       "ChatDev (Tsinghua)",
       "Camel-AI"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "scalability",
+      "reliability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 90,
@@ -623,7 +640,13 @@
       "Waymo",
       "Tesla",
       "Amazon Mechanical Turk / SageMaker Ground Truth"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "security"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 91,
@@ -779,7 +802,13 @@
       "DSPy (Stanford)",
       "OpenAI",
       "Dust.tt"
-    ]
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability",
+      "maintainability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 92,
@@ -935,7 +964,13 @@
       "Cursor",
       "Google (Gemini Code Assist)",
       "Amazon (CodeWhisperer / Q Developer)"
-    ]
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "usability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 93,
@@ -1092,7 +1127,13 @@
       "Microsoft (Azure AI Content Safety)",
       "Anthropic",
       "OpenAI (Moderation API)"
-    ]
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "security",
+      "reliability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 94,
@@ -1248,7 +1289,13 @@
       "LangChain",
       "Google (Gemini)",
       "Cohere"
-    ]
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "performance",
+      "reliability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 95,
@@ -1404,7 +1451,13 @@
       "Google (Gemini Function Calling)",
       "LangChain",
       "Vercel AI SDK"
-    ]
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability",
+      "usability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 96,
@@ -1560,7 +1613,13 @@
       "Anthropic (MCP)",
       "Twilio",
       "Salesforce"
-    ]
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "usability",
+      "maintainability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 97,
@@ -1716,7 +1775,13 @@
       "Datadog",
       "Netflix (auto-remediation in Spinnaker)",
       "Amazon (AWS Systems Manager)"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "observability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 98,
@@ -1873,7 +1938,13 @@
       "Helicone",
       "Braintrust",
       "Weights & Biases"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "observability",
+      "reliability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 99,
@@ -2030,7 +2101,13 @@
       "Anthropic",
       "Meta AI",
       "IBM (AI Fairness 360)"
-    ]
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "security",
+      "reliability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 100,
@@ -2186,7 +2263,13 @@
       "e2b.dev (Agent Protocol)",
       "Microsoft (AutoGen)",
       "Fetch.ai"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "scalability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 191,
@@ -2342,7 +2425,13 @@
       "Cognition (Devin)",
       "LangChain",
       "Microsoft (AutoGen)"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "scalability"
+    ],
+    "maturity_ring": "experimental"
   },
   {
     "id": 192,
@@ -2372,7 +2461,7 @@
       "tool-use-design-pattern",
       "react-framework",
       "agentic-workflow-patterns",
-      "agent-communication-protocols"
+      "agent-communication-protocol"
     ],
     "tags": [
       "mcp",
@@ -2498,7 +2587,13 @@
       "Sourcegraph",
       "Replit",
       "Zed"
-    ]
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "usability",
+      "maintainability"
+    ],
+    "maturity_ring": "experimental"
   },
   {
     "id": 193,
@@ -2526,9 +2621,8 @@
     "viz_type": "flow",
     "related": [
       "rag-architecture",
-      "fine-tuning-strategies",
       "prompt-chaining",
-      "evaluation-driven-development"
+      "llm-evaluation-framework"
     ],
     "tags": [
       "raft",
@@ -2654,7 +2748,13 @@
       "Anyscale",
       "Databricks",
       "Together AI"
-    ]
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "performance",
+      "reliability"
+    ],
+    "maturity_ring": "experimental"
   },
   {
     "id": 194,
@@ -2681,10 +2781,10 @@
     "ai_relevant": true,
     "viz_type": "pyramid",
     "related": [
-      "responsible-ai-framework",
-      "llm-security-framework",
-      "evaluation-driven-development",
-      "human-in-the-loop-ml"
+      "responsible-ai-design",
+      "guardrails-framework",
+      "llm-evaluation-framework",
+      "human-in-the-loop"
     ],
     "tags": [
       "ai-safety",
@@ -2810,6 +2910,12 @@
       "Google DeepMind",
       "Microsoft",
       "Guardrails AI"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "security",
+      "reliability"
+    ],
+    "maturity_ring": "emerging"
   }
 ]

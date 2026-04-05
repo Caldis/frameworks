@@ -62,6 +62,28 @@ export interface LocaleStrings {
   complexityAdvanced: string
   originBy: string
 
+  // Multi-dimensional filters
+  filterAbstraction: string
+  filterQuality: string
+  filterMaturity: string
+  abstractionCode: string
+  abstractionComponent: string
+  abstractionSystem: string
+  abstractionOrganization: string
+  maturityFoundational: string
+  maturityEstablished: string
+  maturityEmerging: string
+  maturityExperimental: string
+  qualityReliability: string
+  qualitySecurity: string
+  qualityPerformance: string
+  qualityMaintainability: string
+  qualityScalability: string
+  qualityUsability: string
+  qualityTestability: string
+  qualityObservability: string
+  qualityPortability: string
+
   // Misc
   noResults: string  // uses {query} placeholder
   ai: string

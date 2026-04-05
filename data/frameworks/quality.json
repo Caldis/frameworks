@@ -23,8 +23,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "pyramid",
-    "related": ["testing-trophy", "tdd", "property-based-testing"],
-    "tags": ["testing", "test-pyramid", "unit-tests", "integration-tests", "e2e"],
+    "related": [
+      "testing-trophy",
+      "tdd",
+      "property-based-testing"
+    ],
+    "tags": [
+      "testing",
+      "test-pyramid",
+      "unit-tests",
+      "integration-tests",
+      "e2e"
+    ],
     "origin_author": "Mike Cohn, 2009",
     "origin_source": "Succeeding with Agile: Software Development Using Scrum",
     "origin_source_zh": "《Scrum敏捷软件开发》",
@@ -56,18 +66,48 @@
       "成本-速度权衡：层级越高的测试提供更高信心，但更慢、更贵且更脆弱"
     ],
     "timeline": [
-      ["2003", "Mike Cohn begins advocating layered test strategies in agile teams"],
-      ["2009", "Cohn publishes the Test Pyramid in 'Succeeding with Agile'"],
-      ["2012", "Martin Fowler popularizes the concept with his influential blog post 'TestPyramid'"],
-      ["2018", "Ham Vocke writes the comprehensive 'Practical Test Pyramid' guide on martinfowler.com"],
-      ["2020", "Test Pyramid becomes the de facto mental model taught in most testing courses"]
+      [
+        "2003",
+        "Mike Cohn begins advocating layered test strategies in agile teams"
+      ],
+      [
+        "2009",
+        "Cohn publishes the Test Pyramid in 'Succeeding with Agile'"
+      ],
+      [
+        "2012",
+        "Martin Fowler popularizes the concept with his influential blog post 'TestPyramid'"
+      ],
+      [
+        "2018",
+        "Ham Vocke writes the comprehensive 'Practical Test Pyramid' guide on martinfowler.com"
+      ],
+      [
+        "2020",
+        "Test Pyramid becomes the de facto mental model taught in most testing courses"
+      ]
     ],
     "timeline_zh": [
-      ["2003", "Mike Cohn开始在敏捷团队中倡导分层测试策略"],
-      ["2009", "Cohn在《Scrum敏捷软件开发》中发表测试金字塔"],
-      ["2012", "Martin Fowler通过其影响力博客文章'TestPyramid'普及了这一概念"],
-      ["2018", "Ham Vocke在martinfowler.com上撰写了全面的「实用测试金字塔」指南"],
-      ["2020", "测试金字塔成为大多数测试课程中教授的事实标准心智模型"]
+      [
+        "2003",
+        "Mike Cohn开始在敏捷团队中倡导分层测试策略"
+      ],
+      [
+        "2009",
+        "Cohn在《Scrum敏捷软件开发》中发表测试金字塔"
+      ],
+      [
+        "2012",
+        "Martin Fowler通过其影响力博客文章'TestPyramid'普及了这一概念"
+      ],
+      [
+        "2018",
+        "Ham Vocke在martinfowler.com上撰写了全面的「实用测试金字塔」指南"
+      ],
+      [
+        "2020",
+        "测试金字塔成为大多数测试课程中教授的事实标准心智模型"
+      ]
     ],
     "dos": [
       "Do keep unit tests fast (under 10ms each) because slow unit tests discourage frequent runs",
@@ -106,7 +146,19 @@
       "业务逻辑极少的简单CRUD应用，集成测试能提供更多价值",
       "探索性原型阶段，测试很快就会被重写"
     ],
-    "adopters": ["Google", "Microsoft", "Spotify", "Atlassian", "ThoughtWorks"]
+    "adopters": [
+      "Google",
+      "Microsoft",
+      "Spotify",
+      "Atlassian",
+      "ThoughtWorks"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "testability",
+      "reliability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 45,
@@ -132,8 +184,17 @@
     ],
     "ai_relevant": false,
     "viz_type": "pyramid",
-    "related": ["test-pyramid", "tdd", "contract-testing"],
-    "tags": ["testing", "integration-tests", "static-analysis", "test-strategy"],
+    "related": [
+      "test-pyramid",
+      "tdd",
+      "contract-testing"
+    ],
+    "tags": [
+      "testing",
+      "integration-tests",
+      "static-analysis",
+      "test-strategy"
+    ],
     "origin_author": "Kent C. Dodds, 2018",
     "origin_source": "The Testing Trophy and Testing Classifications (blog post)",
     "origin_source_zh": "《测试奖杯与测试分类》（博客文章）",
@@ -165,18 +226,48 @@
       "编写测试，不要太多，主要写集成测试：Kent C. Dodds总结该方法的指导原则"
     ],
     "timeline": [
-      ["2017", "Kent C. Dodds develops the Testing Library family (DOM Testing Library, React Testing Library)"],
-      ["2018", "Dodds publishes 'The Testing Trophy and Testing Classifications' blog post coining the term"],
-      ["2019", "React Testing Library overtakes Enzyme as the most popular React testing tool"],
-      ["2020", "Testing Trophy gains widespread adoption in the frontend community"],
-      ["2023", "The philosophy influences testing approaches across Vue, Svelte, and other framework ecosystems"]
+      [
+        "2017",
+        "Kent C. Dodds develops the Testing Library family (DOM Testing Library, React Testing Library)"
+      ],
+      [
+        "2018",
+        "Dodds publishes 'The Testing Trophy and Testing Classifications' blog post coining the term"
+      ],
+      [
+        "2019",
+        "React Testing Library overtakes Enzyme as the most popular React testing tool"
+      ],
+      [
+        "2020",
+        "Testing Trophy gains widespread adoption in the frontend community"
+      ],
+      [
+        "2023",
+        "The philosophy influences testing approaches across Vue, Svelte, and other framework ecosystems"
+      ]
     ],
     "timeline_zh": [
-      ["2017", "Kent C. Dodds开发了Testing Library系列工具（DOM Testing Library、React Testing Library）"],
-      ["2018", "Dodds发表「测试奖杯与测试分类」博客文章，首创该术语"],
-      ["2019", "React Testing Library超越Enzyme成为最流行的React测试工具"],
-      ["2020", "测试奖杯模型在前端社区获得广泛采用"],
-      ["2023", "该理念影响了Vue、Svelte等框架生态系统的测试方法"]
+      [
+        "2017",
+        "Kent C. Dodds开发了Testing Library系列工具（DOM Testing Library、React Testing Library）"
+      ],
+      [
+        "2018",
+        "Dodds发表「测试奖杯与测试分类」博客文章，首创该术语"
+      ],
+      [
+        "2019",
+        "React Testing Library超越Enzyme成为最流行的React测试工具"
+      ],
+      [
+        "2020",
+        "测试奖杯模型在前端社区获得广泛采用"
+      ],
+      [
+        "2023",
+        "该理念影响了Vue、Svelte等框架生态系统的测试方法"
+      ]
     ],
     "dos": [
       "Do test components the way users interact with them because implementation-detail tests break on refactors",
@@ -215,7 +306,19 @@
       "没有静态类型的项目，奖杯的基础层实际上是缺失的",
       "集成测试环境成本高昂的系统，单元测试更具成本效益"
     ],
-    "adopters": ["PayPal", "Shopify", "Vercel", "Netflix", "GitHub"]
+    "adopters": [
+      "PayPal",
+      "Shopify",
+      "Vercel",
+      "Netflix",
+      "GitHub"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "testability",
+      "reliability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 46,
@@ -241,8 +344,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
-    "related": ["test-pyramid", "bdd", "clean-code-principles"],
-    "tags": ["tdd", "red-green-refactor", "test-first", "design", "feedback"],
+    "related": [
+      "test-pyramid",
+      "bdd",
+      "clean-code-principles"
+    ],
+    "tags": [
+      "tdd",
+      "red-green-refactor",
+      "test-first",
+      "design",
+      "feedback"
+    ],
     "origin_author": "Kent Beck, 1999",
     "origin_source": "Extreme Programming Explained: Embrace Change",
     "origin_source_zh": "《解析极限编程：拥抱变化》",
@@ -274,18 +387,48 @@
       "三角测量：使用多个测试用例驱动通用解决方案，而非硬编码"
     ],
     "timeline": [
-      ["1999", "Kent Beck introduces TDD as a core practice of Extreme Programming"],
-      ["2002", "Beck publishes 'Test-Driven Development: By Example' as a standalone guide"],
-      ["2005", "TDD becomes a mainstream practice adopted by agile teams worldwide"],
-      ["2014", "David Heinemeier Hansson sparks the 'TDD is Dead' debate, leading to deeper community discussion"],
-      ["2020", "TDD experiences resurgence with AI-assisted coding, as tests serve as specifications for code generation"]
+      [
+        "1999",
+        "Kent Beck introduces TDD as a core practice of Extreme Programming"
+      ],
+      [
+        "2002",
+        "Beck publishes 'Test-Driven Development: By Example' as a standalone guide"
+      ],
+      [
+        "2005",
+        "TDD becomes a mainstream practice adopted by agile teams worldwide"
+      ],
+      [
+        "2014",
+        "David Heinemeier Hansson sparks the 'TDD is Dead' debate, leading to deeper community discussion"
+      ],
+      [
+        "2020",
+        "TDD experiences resurgence with AI-assisted coding, as tests serve as specifications for code generation"
+      ]
     ],
     "timeline_zh": [
-      ["1999", "Kent Beck将TDD作为极限编程的核心实践引入"],
-      ["2002", "Beck出版《测试驱动开发：实战与模式解析》作为独立指南"],
-      ["2005", "TDD成为全球敏捷团队广泛采用的主流实践"],
-      ["2014", "David Heinemeier Hansson发起'TDD已死'辩论，引发社区深入讨论"],
-      ["2020", "随着AI辅助编码兴起，TDD迎来复兴，测试充当代码生成的规格说明"]
+      [
+        "1999",
+        "Kent Beck将TDD作为极限编程的核心实践引入"
+      ],
+      [
+        "2002",
+        "Beck出版《测试驱动开发：实战与模式解析》作为独立指南"
+      ],
+      [
+        "2005",
+        "TDD成为全球敏捷团队广泛采用的主流实践"
+      ],
+      [
+        "2014",
+        "David Heinemeier Hansson发起'TDD已死'辩论，引发社区深入讨论"
+      ],
+      [
+        "2020",
+        "随着AI辅助编码兴起，TDD迎来复兴，测试充当代码生成的规格说明"
+      ]
     ],
     "dos": [
       "Do write the test before the production code because the test-first discipline drives better design",
@@ -324,7 +467,19 @@
       "视觉效果主观且难以断言的探索性UI设计",
       "确定性单元测试困难的高并发或分布式系统"
     ],
-    "adopters": ["Pivotal Labs", "ThoughtWorks", "8th Light", "Industrial Logic", "Spotify"]
+    "adopters": [
+      "Pivotal Labs",
+      "ThoughtWorks",
+      "8th Light",
+      "Industrial Logic",
+      "Spotify"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "testability",
+      "maintainability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 47,
@@ -350,8 +505,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
-    "related": ["tdd", "test-pyramid", "domain-driven-design"],
-    "tags": ["bdd", "gherkin", "given-when-then", "living-documentation", "collaboration"],
+    "related": [
+      "tdd",
+      "test-pyramid",
+      "domain-driven-design"
+    ],
+    "tags": [
+      "bdd",
+      "gherkin",
+      "given-when-then",
+      "living-documentation",
+      "collaboration"
+    ],
     "origin_author": "Dan North, 2006",
     "origin_source": "Introducing BDD (blog post on dannorth.net)",
     "origin_source_zh": "《BDD介绍》（dannorth.net博客文章）",
@@ -383,18 +548,48 @@
       "通用语言：在场景、代码和干系人对话中使用相同的领域术语"
     ],
     "timeline": [
-      ["2003", "Dan North begins exploring alternatives to TDD terminology to improve communication"],
-      ["2006", "North publishes 'Introducing BDD' establishing the Given-When-Then format"],
-      ["2008", "Cucumber is released by Aslak Hellesoy, making BDD automation practical in Ruby"],
-      ["2012", "SpecFlow brings BDD to .NET; Behave brings it to Python; BDD goes cross-platform"],
-      ["2015", "Example Mapping technique by Matt Wynne formalizes the BDD discovery workshop process"]
+      [
+        "2003",
+        "Dan North begins exploring alternatives to TDD terminology to improve communication"
+      ],
+      [
+        "2006",
+        "North publishes 'Introducing BDD' establishing the Given-When-Then format"
+      ],
+      [
+        "2008",
+        "Cucumber is released by Aslak Hellesoy, making BDD automation practical in Ruby"
+      ],
+      [
+        "2012",
+        "SpecFlow brings BDD to .NET; Behave brings it to Python; BDD goes cross-platform"
+      ],
+      [
+        "2015",
+        "Example Mapping technique by Matt Wynne formalizes the BDD discovery workshop process"
+      ]
     ],
     "timeline_zh": [
-      ["2003", "Dan North开始探索TDD术语的替代方案以改善沟通"],
-      ["2006", "North发表「BDD介绍」，确立Given-When-Then格式"],
-      ["2008", "Aslak Hellesoy发布Cucumber，使BDD自动化在Ruby中变得实用"],
-      ["2012", "SpecFlow将BDD带入.NET；Behave将其带入Python；BDD走向跨平台"],
-      ["2015", "Matt Wynne的示例映射技术正式化了BDD发现工作坊流程"]
+      [
+        "2003",
+        "Dan North开始探索TDD术语的替代方案以改善沟通"
+      ],
+      [
+        "2006",
+        "North发表「BDD介绍」，确立Given-When-Then格式"
+      ],
+      [
+        "2008",
+        "Aslak Hellesoy发布Cucumber，使BDD自动化在Ruby中变得实用"
+      ],
+      [
+        "2012",
+        "SpecFlow将BDD带入.NET；Behave将其带入Python；BDD走向跨平台"
+      ],
+      [
+        "2015",
+        "Matt Wynne的示例映射技术正式化了BDD发现工作坊流程"
+      ]
     ],
     "dos": [
       "Do involve the whole team in writing scenarios because BDD is a collaboration tool, not just a testing tool",
@@ -433,7 +628,19 @@
       "没有面向业务行为的纯技术基础设施项目",
       "规格变化太快以至于Gherkin跟不上的快速原型阶段"
     ],
-    "adopters": ["GOV.UK", "BBC", "Booking.com", "Ryanair", "Commonwealth Bank of Australia"]
+    "adopters": [
+      "GOV.UK",
+      "BBC",
+      "Booking.com",
+      "Ryanair",
+      "Commonwealth Bank of Australia"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "testability",
+      "usability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 48,
@@ -459,8 +666,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "radar",
-    "related": ["tdd", "design-by-contract", "functional-core-imperative-shell"],
-    "tags": ["property-testing", "fuzzing", "generators", "invariants", "quickcheck"],
+    "related": [
+      "tdd",
+      "design-by-contract",
+      "functional-core-imperative-shell"
+    ],
+    "tags": [
+      "property-testing",
+      "fuzzing",
+      "generators",
+      "invariants",
+      "quickcheck"
+    ],
     "origin_author": "Koen Claessen & John Hughes, 2000",
     "origin_source": "QuickCheck: A Lightweight Tool for Random Testing of Haskell Programs (ICFP 2000)",
     "origin_source_zh": "《QuickCheck：一种轻量级的Haskell程序随机测试工具》（ICFP 2000）",
@@ -492,18 +709,48 @@
       "反例：框架找到的违反所述属性的具体输入"
     ],
     "timeline": [
-      ["1999", "Koen Claessen and John Hughes develop QuickCheck at Chalmers University"],
-      ["2000", "QuickCheck paper published at ICFP, introducing property-based testing to the functional programming community"],
-      ["2006", "Quviq founded by John Hughes to commercialize QuickCheck for Erlang in industrial settings"],
-      ["2016", "Hypothesis for Python by David MacIver brings PBT to mainstream imperative languages"],
-      ["2018", "fast-check for JavaScript/TypeScript gains popularity, making PBT accessible to web developers"]
+      [
+        "1999",
+        "Koen Claessen and John Hughes develop QuickCheck at Chalmers University"
+      ],
+      [
+        "2000",
+        "QuickCheck paper published at ICFP, introducing property-based testing to the functional programming community"
+      ],
+      [
+        "2006",
+        "Quviq founded by John Hughes to commercialize QuickCheck for Erlang in industrial settings"
+      ],
+      [
+        "2016",
+        "Hypothesis for Python by David MacIver brings PBT to mainstream imperative languages"
+      ],
+      [
+        "2018",
+        "fast-check for JavaScript/TypeScript gains popularity, making PBT accessible to web developers"
+      ]
     ],
     "timeline_zh": [
-      ["1999", "Koen Claessen和John Hughes在查尔姆斯理工大学开发QuickCheck"],
-      ["2000", "QuickCheck论文在ICFP发表，将基于属性的测试引入函数式编程社区"],
-      ["2006", "John Hughes创立Quviq公司，将QuickCheck商业化应用于Erlang工业场景"],
-      ["2016", "David MacIver开发的Python版Hypothesis将PBT带入主流命令式语言"],
-      ["2018", "JavaScript/TypeScript的fast-check库流行，使PBT对Web开发者可及"]
+      [
+        "1999",
+        "Koen Claessen和John Hughes在查尔姆斯理工大学开发QuickCheck"
+      ],
+      [
+        "2000",
+        "QuickCheck论文在ICFP发表，将基于属性的测试引入函数式编程社区"
+      ],
+      [
+        "2006",
+        "John Hughes创立Quviq公司，将QuickCheck商业化应用于Erlang工业场景"
+      ],
+      [
+        "2016",
+        "David MacIver开发的Python版Hypothesis将PBT带入主流命令式语言"
+      ],
+      [
+        "2018",
+        "JavaScript/TypeScript的fast-check库流行，使PBT对Web开发者可及"
+      ]
     ],
     "dos": [
       "Do start with simple round-trip properties because they are easy to understand and highly effective",
@@ -542,7 +789,19 @@
       "视觉正确性无法用代数属性表达的UI布局测试",
       "属性本身尚未被理解的探索性原型"
     ],
-    "adopters": ["Volvo", "Ericsson", "Spotify", "Jet.com", "Jane Street"]
+    "adopters": [
+      "Volvo",
+      "Ericsson",
+      "Spotify",
+      "Jet.com",
+      "Jane Street"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "testability",
+      "reliability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 49,
@@ -568,8 +827,17 @@
     ],
     "ai_relevant": false,
     "viz_type": "cycle",
-    "related": ["circuit-breaker-pattern", "bulkhead-pattern", "sli-slo-sla"],
-    "tags": ["chaos-engineering", "resilience", "fault-injection", "reliability"],
+    "related": [
+      "circuit-breaker-pattern",
+      "bulkhead-pattern",
+      "sli-slo-sla"
+    ],
+    "tags": [
+      "chaos-engineering",
+      "resilience",
+      "fault-injection",
+      "reliability"
+    ],
     "origin_author": "Netflix, 2011",
     "origin_source": "Netflix Tech Blog: The Netflix Simian Army",
     "origin_source_zh": "Netflix技术博客：《Netflix猴子军团》",
@@ -601,18 +869,48 @@
       "故障注入：在运行系统中故意引入延迟、错误或资源约束等故障"
     ],
     "timeline": [
-      ["2010", "Netflix creates Chaos Monkey to randomly terminate EC2 instances in production"],
-      ["2011", "Netflix publishes the Simian Army blog post, formalizing chaos engineering practices"],
-      ["2014", "Netflix releases Chaos Monkey as open source and formalizes the discipline internally"],
-      ["2017", "Casey Rosenthal and Nora Jones publish 'Chaos Engineering' (O'Reilly), establishing it as a field"],
-      ["2019", "Gremlin, LitmusChaos, and Chaos Mesh emerge as commercial and open-source chaos platforms"]
+      [
+        "2010",
+        "Netflix creates Chaos Monkey to randomly terminate EC2 instances in production"
+      ],
+      [
+        "2011",
+        "Netflix publishes the Simian Army blog post, formalizing chaos engineering practices"
+      ],
+      [
+        "2014",
+        "Netflix releases Chaos Monkey as open source and formalizes the discipline internally"
+      ],
+      [
+        "2017",
+        "Casey Rosenthal and Nora Jones publish 'Chaos Engineering' (O'Reilly), establishing it as a field"
+      ],
+      [
+        "2019",
+        "Gremlin, LitmusChaos, and Chaos Mesh emerge as commercial and open-source chaos platforms"
+      ]
     ],
     "timeline_zh": [
-      ["2010", "Netflix创建Chaos Monkey在生产环境中随机终止EC2实例"],
-      ["2011", "Netflix发表猴子军团博客文章，正式化混沌工程实践"],
-      ["2014", "Netflix将Chaos Monkey开源并在内部正式化该学科"],
-      ["2017", "Casey Rosenthal和Nora Jones出版《混沌工程》（O'Reilly），将其确立为一个领域"],
-      ["2019", "Gremlin、LitmusChaos和Chaos Mesh作为商业和开源混沌平台涌现"]
+      [
+        "2010",
+        "Netflix创建Chaos Monkey在生产环境中随机终止EC2实例"
+      ],
+      [
+        "2011",
+        "Netflix发表猴子军团博客文章，正式化混沌工程实践"
+      ],
+      [
+        "2014",
+        "Netflix将Chaos Monkey开源并在内部正式化该学科"
+      ],
+      [
+        "2017",
+        "Casey Rosenthal和Nora Jones出版《混沌工程》（O'Reilly），将其确立为一个领域"
+      ],
+      [
+        "2019",
+        "Gremlin、LitmusChaos和Chaos Mesh作为商业和开源混沌平台涌现"
+      ]
     ],
     "dos": [
       "Do start with small blast radius experiments because production chaos must be safe and controlled",
@@ -651,7 +949,18 @@
       "正常运行时间比韧性验证更重要的早期创业公司",
       "没有冗余且任何故障都会导致全面宕机的单体系统"
     ],
-    "adopters": ["Netflix", "Amazon", "Google", "Microsoft", "Slack"]
+    "adopters": [
+      "Netflix",
+      "Amazon",
+      "Google",
+      "Microsoft",
+      "Slack"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 50,
@@ -677,8 +986,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["bulkhead-pattern", "chaos-engineering", "saga-pattern"],
-    "tags": ["circuit-breaker", "resilience", "fault-tolerance", "cascading-failure", "fallback"],
+    "related": [
+      "bulkhead-pattern",
+      "chaos-engineering",
+      "saga-pattern"
+    ],
+    "tags": [
+      "circuit-breaker",
+      "resilience",
+      "fault-tolerance",
+      "cascading-failure",
+      "fallback"
+    ],
     "origin_author": "Michael Nygard, 2007",
     "origin_source": "Release It! Design and Deploy Production-Ready Software",
     "origin_source_zh": "《发布！软件的设计与部署》",
@@ -710,18 +1029,48 @@
       "失败阈值：在时间窗口内触发熔断器打开的失败次数或失败率"
     ],
     "timeline": [
-      ["2007", "Michael Nygard describes the Circuit Breaker pattern in 'Release It!'"],
-      ["2012", "Netflix releases Hystrix, making circuit breakers a standard microservice pattern"],
-      ["2014", "Martin Fowler publishes a detailed circuit breaker blog post popularizing the pattern"],
-      ["2018", "Resilience4j emerges as the lightweight successor to Hystrix for Java applications"],
-      ["2020", "Circuit breakers become built-in features of service mesh platforms like Istio and Linkerd"]
+      [
+        "2007",
+        "Michael Nygard describes the Circuit Breaker pattern in 'Release It!'"
+      ],
+      [
+        "2012",
+        "Netflix releases Hystrix, making circuit breakers a standard microservice pattern"
+      ],
+      [
+        "2014",
+        "Martin Fowler publishes a detailed circuit breaker blog post popularizing the pattern"
+      ],
+      [
+        "2018",
+        "Resilience4j emerges as the lightweight successor to Hystrix for Java applications"
+      ],
+      [
+        "2020",
+        "Circuit breakers become built-in features of service mesh platforms like Istio and Linkerd"
+      ]
     ],
     "timeline_zh": [
-      ["2007", "Michael Nygard在《发布！》中描述了熔断器模式"],
-      ["2012", "Netflix发布Hystrix，使熔断器成为标准微服务模式"],
-      ["2014", "Martin Fowler发表详细的熔断器博客文章，普及了该模式"],
-      ["2018", "Resilience4j作为Hystrix的轻量级继任者出现，用于Java应用"],
-      ["2020", "熔断器成为Istio和Linkerd等服务网格平台的内置功能"]
+      [
+        "2007",
+        "Michael Nygard在《发布！》中描述了熔断器模式"
+      ],
+      [
+        "2012",
+        "Netflix发布Hystrix，使熔断器成为标准微服务模式"
+      ],
+      [
+        "2014",
+        "Martin Fowler发表详细的熔断器博客文章，普及了该模式"
+      ],
+      [
+        "2018",
+        "Resilience4j作为Hystrix的轻量级继任者出现，用于Java应用"
+      ],
+      [
+        "2020",
+        "熔断器成为Istio和Linkerd等服务网格平台的内置功能"
+      ]
     ],
     "dos": [
       "Do configure different thresholds per dependency because each downstream has different failure characteristics",
@@ -760,7 +1109,18 @@
       "失败不会阻塞调用者的即发即忘消息系统",
       "使用退避重试比快速失败更合适的批处理系统"
     ],
-    "adopters": ["Netflix", "Amazon", "Uber", "Alibaba", "Capital One"]
+    "adopters": [
+      "Netflix",
+      "Amazon",
+      "Uber",
+      "Alibaba",
+      "Capital One"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 51,
@@ -786,8 +1146,17 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
-    "related": ["circuit-breaker-pattern", "chaos-engineering", "cell-based-architecture"],
-    "tags": ["bulkhead", "isolation", "resilience", "resource-partitioning"],
+    "related": [
+      "circuit-breaker-pattern",
+      "chaos-engineering",
+      "cell-based-architecture"
+    ],
+    "tags": [
+      "bulkhead",
+      "isolation",
+      "resilience",
+      "resource-partitioning"
+    ],
     "origin_author": "Michael Nygard, 2007",
     "origin_source": "Release It! Design and Deploy Production-Ready Software",
     "origin_source_zh": "《发布！软件的设计与部署》",
@@ -819,18 +1188,48 @@
       "优雅降级：即使非关键分区过载也能继续服务关键功能"
     ],
     "timeline": [
-      ["2007", "Michael Nygard introduces the Bulkhead pattern in 'Release It!' inspired by ship compartmentalization"],
-      ["2012", "Netflix Hystrix implements thread pool isolation as a core bulkhead mechanism"],
-      ["2016", "Kubernetes resource limits and requests enable infrastructure-level bulkheading"],
-      ["2018", "Resilience4j provides lightweight bulkhead implementations for Java microservices"],
-      ["2021", "AWS Cell-based Architecture formalizes bulkheading at the infrastructure level for hyperscale systems"]
+      [
+        "2007",
+        "Michael Nygard introduces the Bulkhead pattern in 'Release It!' inspired by ship compartmentalization"
+      ],
+      [
+        "2012",
+        "Netflix Hystrix implements thread pool isolation as a core bulkhead mechanism"
+      ],
+      [
+        "2016",
+        "Kubernetes resource limits and requests enable infrastructure-level bulkheading"
+      ],
+      [
+        "2018",
+        "Resilience4j provides lightweight bulkhead implementations for Java microservices"
+      ],
+      [
+        "2021",
+        "AWS Cell-based Architecture formalizes bulkheading at the infrastructure level for hyperscale systems"
+      ]
     ],
     "timeline_zh": [
-      ["2007", "Michael Nygard在《发布！》中受船舶隔舱启发引入舱壁模式"],
-      ["2012", "Netflix Hystrix实现线程池隔离作为核心舱壁机制"],
-      ["2016", "Kubernetes的资源限制和请求实现了基础设施级的舱壁隔离"],
-      ["2018", "Resilience4j为Java微服务提供轻量级舱壁实现"],
-      ["2021", "AWS蜂窝架构在基础设施层面正式化了超大规模系统的舱壁隔离"]
+      [
+        "2007",
+        "Michael Nygard在《发布！》中受船舶隔舱启发引入舱壁模式"
+      ],
+      [
+        "2012",
+        "Netflix Hystrix实现线程池隔离作为核心舱壁机制"
+      ],
+      [
+        "2016",
+        "Kubernetes的资源限制和请求实现了基础设施级的舱壁隔离"
+      ],
+      [
+        "2018",
+        "Resilience4j为Java微服务提供轻量级舱壁实现"
+      ],
+      [
+        "2021",
+        "AWS蜂窝架构在基础设施层面正式化了超大规模系统的舱壁隔离"
+      ]
     ],
     "dos": [
       "Do size bulkheads based on measured traffic patterns because under-provisioned partitions cause unnecessary rejections",
@@ -869,7 +1268,18 @@
       "不太可能发生资源争用的低流量系统",
       "通过每次调用独立容器天然隔离的无状态Serverless函数"
     ],
-    "adopters": ["Amazon", "Netflix", "Microsoft Azure", "Alibaba Cloud", "Uber"]
+    "adopters": [
+      "Amazon",
+      "Netflix",
+      "Microsoft Azure",
+      "Alibaba Cloud",
+      "Uber"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 52,
@@ -895,8 +1305,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
-    "related": ["red-method", "four-golden-signals", "sli-slo-sla"],
-    "tags": ["use-method", "utilization", "saturation", "errors", "performance"],
+    "related": [
+      "red-method",
+      "four-golden-signals",
+      "sli-slo-sla"
+    ],
+    "tags": [
+      "use-method",
+      "utilization",
+      "saturation",
+      "errors",
+      "performance"
+    ],
     "origin_author": "Brendan Gregg, 2012",
     "origin_source": "The USE Method (brendangregg.com blog post)",
     "origin_source_zh": "《USE方法》（brendangregg.com博客文章）",
@@ -928,18 +1348,48 @@
       "功能框图：系统组件及其资源的可视化映射，用于指导USE分析"
     ],
     "timeline": [
-      ["2012", "Brendan Gregg publishes 'The USE Method' blog post while working at Joyent"],
-      ["2013", "Gregg publishes 'Systems Performance: Enterprise and the Cloud' expanding on the method"],
-      ["2014", "USE Method becomes a standard troubleshooting methodology taught at performance engineering conferences"],
-      ["2017", "Netflix adopts USE Method as part of their standard performance analysis workflow"],
-      ["2020", "Gregg publishes the second edition of 'Systems Performance' with updated USE Method guidance for cloud-native systems"]
+      [
+        "2012",
+        "Brendan Gregg publishes 'The USE Method' blog post while working at Joyent"
+      ],
+      [
+        "2013",
+        "Gregg publishes 'Systems Performance: Enterprise and the Cloud' expanding on the method"
+      ],
+      [
+        "2014",
+        "USE Method becomes a standard troubleshooting methodology taught at performance engineering conferences"
+      ],
+      [
+        "2017",
+        "Netflix adopts USE Method as part of their standard performance analysis workflow"
+      ],
+      [
+        "2020",
+        "Gregg publishes the second edition of 'Systems Performance' with updated USE Method guidance for cloud-native systems"
+      ]
     ],
     "timeline_zh": [
-      ["2012", "Brendan Gregg在Joyent工作时发表「USE方法」博客文章"],
-      ["2013", "Gregg出版《系统性能：企业与云》一书，扩展了该方法"],
-      ["2014", "USE方法成为性能工程会议上教授的标准故障排除方法论"],
-      ["2017", "Netflix将USE方法纳入其标准性能分析工作流"],
-      ["2020", "Gregg出版《系统性能》第二版，包含针对云原生系统的更新USE方法指南"]
+      [
+        "2012",
+        "Brendan Gregg在Joyent工作时发表「USE方法」博客文章"
+      ],
+      [
+        "2013",
+        "Gregg出版《系统性能：企业与云》一书，扩展了该方法"
+      ],
+      [
+        "2014",
+        "USE方法成为性能工程会议上教授的标准故障排除方法论"
+      ],
+      [
+        "2017",
+        "Netflix将USE方法纳入其标准性能分析工作流"
+      ],
+      [
+        "2020",
+        "Gregg出版《系统性能》第二版，包含针对云原生系统的更新USE方法指南"
+      ]
     ],
     "dos": [
       "Do create a complete resource checklist before starting because missing a resource means missing a potential bottleneck",
@@ -978,7 +1428,19 @@
       "延迟和错误率比资源利用率更重要的用户体验监控",
       "底层资源对运维人员透明的Serverless架构"
     ],
-    "adopters": ["Netflix", "Facebook", "LinkedIn", "Joyent", "Cloudflare"]
+    "adopters": [
+      "Netflix",
+      "Facebook",
+      "LinkedIn",
+      "Joyent",
+      "Cloudflare"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "observability",
+      "performance"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 53,
@@ -1004,8 +1466,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "radar",
-    "related": ["use-method", "four-golden-signals", "dora-metrics"],
-    "tags": ["red-method", "request-rate", "error-rate", "duration", "monitoring"],
+    "related": [
+      "use-method",
+      "four-golden-signals",
+      "dora-metrics"
+    ],
+    "tags": [
+      "red-method",
+      "request-rate",
+      "error-rate",
+      "duration",
+      "monitoring"
+    ],
     "origin_author": "Tom Wilkie, 2018",
     "origin_source": "The RED Method: How to Instrument Your Services (Grafana Labs blog/talk)",
     "origin_source_zh": "《RED方法：如何为你的服务埋点》（Grafana Labs博客/演讲）",
@@ -1037,18 +1509,48 @@
       "百分位延迟：使用百分位数而非平均值来暴露尾延迟和最差用户体验"
     ],
     "timeline": [
-      ["2015", "Tom Wilkie begins developing the RED Method at Weaveworks based on experience with microservices monitoring"],
-      ["2018", "Wilkie formally presents the RED Method at KubeCon and in the Grafana Labs blog"],
-      ["2019", "RED becomes a standard monitoring methodology in the Kubernetes and cloud-native community"],
-      ["2020", "Grafana, Datadog, and New Relic build RED-aligned dashboard templates into their platforms"],
-      ["2022", "RED Method is widely taught alongside USE and Golden Signals in SRE training programs"]
+      [
+        "2015",
+        "Tom Wilkie begins developing the RED Method at Weaveworks based on experience with microservices monitoring"
+      ],
+      [
+        "2018",
+        "Wilkie formally presents the RED Method at KubeCon and in the Grafana Labs blog"
+      ],
+      [
+        "2019",
+        "RED becomes a standard monitoring methodology in the Kubernetes and cloud-native community"
+      ],
+      [
+        "2020",
+        "Grafana, Datadog, and New Relic build RED-aligned dashboard templates into their platforms"
+      ],
+      [
+        "2022",
+        "RED Method is widely taught alongside USE and Golden Signals in SRE training programs"
+      ]
     ],
     "timeline_zh": [
-      ["2015", "Tom Wilkie在Weaveworks根据微服务监控经验开始开发RED方法"],
-      ["2018", "Wilkie在KubeCon和Grafana Labs博客上正式发表RED方法"],
-      ["2019", "RED成为Kubernetes和云原生社区的标准监控方法论"],
-      ["2020", "Grafana、Datadog和New Relic将RED对齐的仪表盘模板内置于其平台"],
-      ["2022", "RED方法在SRE培训项目中与USE和黄金信号并列广泛教授"]
+      [
+        "2015",
+        "Tom Wilkie在Weaveworks根据微服务监控经验开始开发RED方法"
+      ],
+      [
+        "2018",
+        "Wilkie在KubeCon和Grafana Labs博客上正式发表RED方法"
+      ],
+      [
+        "2019",
+        "RED成为Kubernetes和云原生社区的标准监控方法论"
+      ],
+      [
+        "2020",
+        "Grafana、Datadog和New Relic将RED对齐的仪表盘模板内置于其平台"
+      ],
+      [
+        "2022",
+        "RED方法在SRE培训项目中与USE和黄金信号并列广泛教授"
+      ]
     ],
     "dos": [
       "Do track latency distributions (percentiles) because averages hide tail latency affecting real users",
@@ -1087,7 +1589,19 @@
       "不遵循请求-响应模式的批处理或流处理系统",
       "磁盘和内存指标比请求级信号更相关的存储系统"
     ],
-    "adopters": ["Grafana Labs", "Weaveworks", "Google", "Shopify", "Cloudflare"]
+    "adopters": [
+      "Grafana Labs",
+      "Weaveworks",
+      "Google",
+      "Shopify",
+      "Cloudflare"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "observability",
+      "performance"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 54,
@@ -1113,8 +1627,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "radar",
-    "related": ["red-method", "use-method", "sli-slo-sla"],
-    "tags": ["golden-signals", "latency", "traffic", "errors", "saturation"],
+    "related": [
+      "red-method",
+      "use-method",
+      "sli-slo-sla"
+    ],
+    "tags": [
+      "golden-signals",
+      "latency",
+      "traffic",
+      "errors",
+      "saturation"
+    ],
     "origin_author": "Google SRE Team, 2016",
     "origin_source": "Site Reliability Engineering: How Google Runs Production Systems (O'Reilly)",
     "origin_source_zh": "《SRE：Google运维解密》（O'Reilly）",
@@ -1146,18 +1670,48 @@
       "信号关联：同时分析四个信号以区分负载、代码和基础设施问题"
     ],
     "timeline": [
-      ["2003", "Google's internal SRE practices begin crystallizing around key monitoring signals"],
-      ["2016", "Google publishes the SRE book featuring the Four Golden Signals as Chapter 6"],
-      ["2017", "The SRE Workbook provides detailed implementation guidance for golden signals"],
-      ["2019", "Major observability platforms (Datadog, New Relic, Grafana) build golden signals templates"],
-      ["2022", "Four Golden Signals becomes the most widely cited monitoring framework in the industry"]
+      [
+        "2003",
+        "Google's internal SRE practices begin crystallizing around key monitoring signals"
+      ],
+      [
+        "2016",
+        "Google publishes the SRE book featuring the Four Golden Signals as Chapter 6"
+      ],
+      [
+        "2017",
+        "The SRE Workbook provides detailed implementation guidance for golden signals"
+      ],
+      [
+        "2019",
+        "Major observability platforms (Datadog, New Relic, Grafana) build golden signals templates"
+      ],
+      [
+        "2022",
+        "Four Golden Signals becomes the most widely cited monitoring framework in the industry"
+      ]
     ],
     "timeline_zh": [
-      ["2003", "Google的内部SRE实践开始围绕关键监控信号固化"],
-      ["2016", "Google出版SRE书籍，在第6章介绍四大黄金信号"],
-      ["2017", "SRE工作手册为黄金信号提供了详细的实施指南"],
-      ["2019", "主要可观测性平台（Datadog、New Relic、Grafana）构建黄金信号模板"],
-      ["2022", "四大黄金信号成为业界引用最广泛的监控框架"]
+      [
+        "2003",
+        "Google的内部SRE实践开始围绕关键监控信号固化"
+      ],
+      [
+        "2016",
+        "Google出版SRE书籍，在第6章介绍四大黄金信号"
+      ],
+      [
+        "2017",
+        "SRE工作手册为黄金信号提供了详细的实施指南"
+      ],
+      [
+        "2019",
+        "主要可观测性平台（Datadog、New Relic、Grafana）构建黄金信号模板"
+      ],
+      [
+        "2022",
+        "四大黄金信号成为业界引用最广泛的监控框架"
+      ]
     ],
     "dos": [
       "Do separate latency for successful and failed requests because failed requests can be artificially fast",
@@ -1196,7 +1750,19 @@
       "Web Vitals和用户体验指标更合适的客户端性能监控",
       "面向请求的信号不适用的离线批处理"
     ],
-    "adopters": ["Google", "Dropbox", "Twitter", "Uber", "Stripe"]
+    "adopters": [
+      "Google",
+      "Dropbox",
+      "Twitter",
+      "Uber",
+      "Stripe"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "observability",
+      "reliability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 55,
@@ -1222,8 +1788,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "radar",
-    "related": ["ai-output-verification", "prompt-testing", "ai-observability-framework"],
-    "tags": ["llm-eval", "benchmarks", "quality-metrics", "automated-evaluation", "ai"],
+    "related": [
+      "ai-output-verification",
+      "prompt-testing",
+      "ai-observability-framework"
+    ],
+    "tags": [
+      "llm-eval",
+      "benchmarks",
+      "quality-metrics",
+      "automated-evaluation",
+      "ai"
+    ],
     "origin_author": "OpenAI / Anthropic / Google, 2023",
     "origin_source": "HELM: Holistic Evaluation of Language Models (Stanford CRFM, 2022) and industry eval frameworks",
     "origin_source_zh": "《HELM：语言模型整体评估》（斯坦福CRFM，2022）及行业评估框架",
@@ -1255,18 +1831,48 @@
       "回归测试：在每次变更时运行评估以在部署前检测质量退化"
     ],
     "timeline": [
-      ["2020", "OpenAI introduces early evaluation benchmarks for GPT-3 measuring accuracy across tasks"],
-      ["2022", "Stanford CRFM releases HELM providing holistic multi-metric evaluation of language models"],
-      ["2023", "Braintrust, Langsmith, and Promptfoo emerge as dedicated LLM evaluation platforms"],
-      ["2024", "LLM-as-Judge becomes the dominant evaluation pattern, validated by research from Anthropic and Google"],
-      ["2025", "Evaluation frameworks mature to include multi-turn agent evaluation and tool-use correctness"]
+      [
+        "2020",
+        "OpenAI introduces early evaluation benchmarks for GPT-3 measuring accuracy across tasks"
+      ],
+      [
+        "2022",
+        "Stanford CRFM releases HELM providing holistic multi-metric evaluation of language models"
+      ],
+      [
+        "2023",
+        "Braintrust, Langsmith, and Promptfoo emerge as dedicated LLM evaluation platforms"
+      ],
+      [
+        "2024",
+        "LLM-as-Judge becomes the dominant evaluation pattern, validated by research from Anthropic and Google"
+      ],
+      [
+        "2025",
+        "Evaluation frameworks mature to include multi-turn agent evaluation and tool-use correctness"
+      ]
     ],
     "timeline_zh": [
-      ["2020", "OpenAI为GPT-3引入早期评估基准，衡量跨任务准确性"],
-      ["2022", "斯坦福CRFM发布HELM，提供语言模型的整体多指标评估"],
-      ["2023", "Braintrust、Langsmith和Promptfoo作为专用LLM评估平台涌现"],
-      ["2024", "LLM作为裁判成为主导评估模式，经Anthropic和Google研究验证"],
-      ["2025", "评估框架成熟到包含多轮智能体评估和工具使用正确性"]
+      [
+        "2020",
+        "OpenAI为GPT-3引入早期评估基准，衡量跨任务准确性"
+      ],
+      [
+        "2022",
+        "斯坦福CRFM发布HELM，提供语言模型的整体多指标评估"
+      ],
+      [
+        "2023",
+        "Braintrust、Langsmith和Promptfoo作为专用LLM评估平台涌现"
+      ],
+      [
+        "2024",
+        "LLM作为裁判成为主导评估模式，经Anthropic和Google研究验证"
+      ],
+      [
+        "2025",
+        "评估框架成熟到包含多轮智能体评估和工具使用正确性"
+      ]
     ],
     "dos": [
       "Do build diverse golden datasets because biased test sets produce misleading evaluation scores",
@@ -1305,7 +1911,19 @@
       "LLM的一次性探索使用，系统评估增加开销但无持续价值",
       "评估标准本身尚未定义的早期原型阶段"
     ],
-    "adopters": ["Anthropic", "OpenAI", "Google DeepMind", "Microsoft", "Braintrust"]
+    "adopters": [
+      "Anthropic",
+      "OpenAI",
+      "Google DeepMind",
+      "Microsoft",
+      "Braintrust"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "testability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 56,
@@ -1331,8 +1949,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["llm-evaluation-framework", "guardrails-framework", "prompt-testing"],
-    "tags": ["verification", "hallucination-detection", "safety", "grounding", "ai"],
+    "related": [
+      "llm-evaluation-framework",
+      "guardrails-framework",
+      "prompt-testing"
+    ],
+    "tags": [
+      "verification",
+      "hallucination-detection",
+      "safety",
+      "grounding",
+      "ai"
+    ],
     "origin_author": "Guardrails AI / NeMo Guardrails (NVIDIA), 2023",
     "origin_source": "Guardrails AI framework and NVIDIA NeMo Guardrails documentation",
     "origin_source_zh": "Guardrails AI框架及NVIDIA NeMo Guardrails文档",
@@ -1364,18 +1992,48 @@
       "人在回路中：将输出样本路由给人工审阅者以进行质量保证和模型改进"
     ],
     "timeline": [
-      ["2022", "Hallucination detection emerges as a critical research area as LLMs deploy widely in production"],
-      ["2023", "Guardrails AI releases open-source framework for validating LLM outputs with programmable rules"],
-      ["2023", "NVIDIA releases NeMo Guardrails for controlling LLM conversational behavior and output safety"],
-      ["2024", "Major cloud providers (AWS Bedrock, Azure AI) build output verification into their managed LLM services"],
-      ["2025", "Multi-layer verification becomes standard practice with schema, grounding, safety, and human checks in pipeline"]
+      [
+        "2022",
+        "Hallucination detection emerges as a critical research area as LLMs deploy widely in production"
+      ],
+      [
+        "2023",
+        "Guardrails AI releases open-source framework for validating LLM outputs with programmable rules"
+      ],
+      [
+        "2023",
+        "NVIDIA releases NeMo Guardrails for controlling LLM conversational behavior and output safety"
+      ],
+      [
+        "2024",
+        "Major cloud providers (AWS Bedrock, Azure AI) build output verification into their managed LLM services"
+      ],
+      [
+        "2025",
+        "Multi-layer verification becomes standard practice with schema, grounding, safety, and human checks in pipeline"
+      ]
     ],
     "timeline_zh": [
-      ["2022", "随着LLM广泛部署到生产环境，幻觉检测成为关键研究领域"],
-      ["2023", "Guardrails AI发布开源框架，用可编程规则验证LLM输出"],
-      ["2023", "NVIDIA发布NeMo Guardrails用于控制LLM对话行为和输出安全"],
-      ["2024", "主要云提供商（AWS Bedrock、Azure AI）将输出验证内置到其托管LLM服务中"],
-      ["2025", "多层验证成为标准实践，在管道中包含模式、依据、安全和人工检查"]
+      [
+        "2022",
+        "随着LLM广泛部署到生产环境，幻觉检测成为关键研究领域"
+      ],
+      [
+        "2023",
+        "Guardrails AI发布开源框架，用可编程规则验证LLM输出"
+      ],
+      [
+        "2023",
+        "NVIDIA发布NeMo Guardrails用于控制LLM对话行为和输出安全"
+      ],
+      [
+        "2024",
+        "主要云提供商（AWS Bedrock、Azure AI）将输出验证内置到其托管LLM服务中"
+      ],
+      [
+        "2025",
+        "多层验证成为标准实践，在管道中包含模式、依据、安全和人工检查"
+      ]
     ],
     "dos": [
       "Do implement verification as a pipeline with multiple independent layers because no single check catches everything",
@@ -1414,7 +2072,19 @@
       "偶尔出错成本低且已内置人工审查的内部开发工具",
       "验证开销不合理的原型或演示环境"
     ],
-    "adopters": ["Microsoft", "Google", "Anthropic", "Amazon", "Salesforce"]
+    "adopters": [
+      "Microsoft",
+      "Google",
+      "Anthropic",
+      "Amazon",
+      "Salesforce"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "security"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 57,
@@ -1440,8 +2110,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["circuit-breaker-pattern", "agent-deployment-patterns", "chaos-engineering"],
-    "tags": ["agent-reliability", "bounded-execution", "idempotency", "checkpointing", "ai"],
+    "related": [
+      "circuit-breaker-pattern",
+      "agent-deployment-patterns",
+      "chaos-engineering"
+    ],
+    "tags": [
+      "agent-reliability",
+      "bounded-execution",
+      "idempotency",
+      "checkpointing",
+      "ai"
+    ],
     "origin_author": "Anthropic / LangChain / OpenAI, 2023",
     "origin_source": "Building Reliable AI Agents (industry practices from Anthropic, LangChain, and OpenAI documentation)",
     "origin_source_zh": "《构建可靠AI智能体》（来自Anthropic、LangChain和OpenAI文档的行业实践）",
@@ -1473,18 +2153,48 @@
       "循环检测：监控指示智能体陷入无效循环的重复行为"
     ],
     "timeline": [
-      ["2022", "Early LLM agents (AutoGPT, BabyAGI) demonstrate both potential and reliability challenges of autonomous AI"],
-      ["2023", "LangChain and LlamaIndex formalize agent architectures with tool use, planning, and memory patterns"],
-      ["2024", "Anthropic publishes best practices for building reliable Claude-based agents with bounded execution"],
-      ["2024", "OpenAI Assistants API and function calling introduce structured tool use with built-in safety mechanisms"],
-      ["2025", "Agent reliability patterns mature into production-grade frameworks with observability, cost controls, and human escalation"]
+      [
+        "2022",
+        "Early LLM agents (AutoGPT, BabyAGI) demonstrate both potential and reliability challenges of autonomous AI"
+      ],
+      [
+        "2023",
+        "LangChain and LlamaIndex formalize agent architectures with tool use, planning, and memory patterns"
+      ],
+      [
+        "2024",
+        "Anthropic publishes best practices for building reliable Claude-based agents with bounded execution"
+      ],
+      [
+        "2024",
+        "OpenAI Assistants API and function calling introduce structured tool use with built-in safety mechanisms"
+      ],
+      [
+        "2025",
+        "Agent reliability patterns mature into production-grade frameworks with observability, cost controls, and human escalation"
+      ]
     ],
     "timeline_zh": [
-      ["2022", "早期LLM智能体（AutoGPT、BabyAGI）展示了自主AI的潜力和可靠性挑战"],
-      ["2023", "LangChain和LlamaIndex正式化了包含工具使用、规划和记忆模式的智能体架构"],
-      ["2024", "Anthropic发布构建可靠Claude智能体的最佳实践，包含有界执行"],
-      ["2024", "OpenAI Assistants API和函数调用引入了带内置安全机制的结构化工具使用"],
-      ["2025", "智能体可靠性模式成熟为生产级框架，包含可观测性、成本控制和人工升级"]
+      [
+        "2022",
+        "早期LLM智能体（AutoGPT、BabyAGI）展示了自主AI的潜力和可靠性挑战"
+      ],
+      [
+        "2023",
+        "LangChain和LlamaIndex正式化了包含工具使用、规划和记忆模式的智能体架构"
+      ],
+      [
+        "2024",
+        "Anthropic发布构建可靠Claude智能体的最佳实践，包含有界执行"
+      ],
+      [
+        "2024",
+        "OpenAI Assistants API和函数调用引入了带内置安全机制的结构化工具使用"
+      ],
+      [
+        "2025",
+        "智能体可靠性模式成熟为生产级框架，包含可观测性、成本控制和人工升级"
+      ]
     ],
     "dos": [
       "Do set hard budget limits (steps, tokens, time) because unconstrained agents will eventually enter infinite loops",
@@ -1523,7 +2233,18 @@
       "每个智能体动作都需要审批的完全监督人在回路工作流",
       "失败可重试且无实时可靠性顾虑的离线批量推理"
     ],
-    "adopters": ["Anthropic", "OpenAI", "Google DeepMind", "LangChain", "Replit"]
+    "adopters": [
+      "Anthropic",
+      "OpenAI",
+      "Google DeepMind",
+      "LangChain",
+      "Replit"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 58,
@@ -1549,8 +2270,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
-    "related": ["llm-evaluation-framework", "ai-output-verification", "prompt-engineering-patterns"],
-    "tags": ["prompt-testing", "regression", "ci-cd", "evaluation", "ai"],
+    "related": [
+      "llm-evaluation-framework",
+      "ai-output-verification",
+      "prompt-engineering-patterns"
+    ],
+    "tags": [
+      "prompt-testing",
+      "regression",
+      "ci-cd",
+      "evaluation",
+      "ai"
+    ],
     "origin_author": "Promptfoo (Ian Webster), 2023",
     "origin_source": "Promptfoo: Test Your LLM App (open-source project and documentation)",
     "origin_source_zh": "《Promptfoo：测试你的LLM应用》（开源项目及文档）",
@@ -1582,18 +2313,48 @@
       "A/B评估：将两个提示词版本对同一测试用例进行比较以衡量相对改进"
     ],
     "timeline": [
-      ["2022", "Early prompt engineering practitioners begin manually testing prompts with spreadsheets and scripts"],
-      ["2023", "Promptfoo releases as an open-source CLI tool for systematic prompt evaluation and comparison"],
-      ["2023", "Langsmith and Braintrust launch cloud platforms for prompt testing with built-in analytics"],
-      ["2024", "Prompt testing integrates into standard CI/CD pipelines alongside traditional software tests"],
-      ["2025", "Prompt testing tools mature to support multi-turn agent evaluation and model-agnostic testing"]
+      [
+        "2022",
+        "Early prompt engineering practitioners begin manually testing prompts with spreadsheets and scripts"
+      ],
+      [
+        "2023",
+        "Promptfoo releases as an open-source CLI tool for systematic prompt evaluation and comparison"
+      ],
+      [
+        "2023",
+        "Langsmith and Braintrust launch cloud platforms for prompt testing with built-in analytics"
+      ],
+      [
+        "2024",
+        "Prompt testing integrates into standard CI/CD pipelines alongside traditional software tests"
+      ],
+      [
+        "2025",
+        "Prompt testing tools mature to support multi-turn agent evaluation and model-agnostic testing"
+      ]
     ],
     "timeline_zh": [
-      ["2022", "早期提示词工程实践者开始用电子表格和脚本手动测试提示词"],
-      ["2023", "Promptfoo作为用于系统化提示词评估和比较的开源CLI工具发布"],
-      ["2023", "Langsmith和Braintrust推出带内置分析的提示词测试云平台"],
-      ["2024", "提示词测试与传统软件测试一起集成到标准CI/CD管道中"],
-      ["2025", "提示词测试工具成熟到支持多轮智能体评估和模型无关测试"]
+      [
+        "2022",
+        "早期提示词工程实践者开始用电子表格和脚本手动测试提示词"
+      ],
+      [
+        "2023",
+        "Promptfoo作为用于系统化提示词评估和比较的开源CLI工具发布"
+      ],
+      [
+        "2023",
+        "Langsmith和Braintrust推出带内置分析的提示词测试云平台"
+      ],
+      [
+        "2024",
+        "提示词测试与传统软件测试一起集成到标准CI/CD管道中"
+      ],
+      [
+        "2025",
+        "提示词测试工具成熟到支持多轮智能体评估和模型无关测试"
+      ]
     ],
     "dos": [
       "Do version prompts alongside their tests because untested prompt changes are the leading cause of LLM regressions",
@@ -1632,7 +2393,19 @@
       "输出变异性是期望的且正确性是主观的创意应用",
       "提示词变化极快以至于维护测试适得其反的早期实验"
     ],
-    "adopters": ["Shopify", "Vercel", "Notion", "Stripe", "GitHub Copilot"]
+    "adopters": [
+      "Shopify",
+      "Vercel",
+      "Notion",
+      "Stripe",
+      "GitHub Copilot"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "testability",
+      "reliability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 178,
@@ -1658,8 +2431,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
-    "related": ["test-pyramid", "tdd", "property-based-testing"],
-    "tags": ["testing", "mutation-testing", "test-quality", "code-coverage", "quality-gate"],
+    "related": [
+      "test-pyramid",
+      "tdd",
+      "property-based-testing"
+    ],
+    "tags": [
+      "testing",
+      "mutation-testing",
+      "test-quality",
+      "code-coverage",
+      "quality-gate"
+    ],
     "origin_author": "Richard Lipton, 1971",
     "origin_source": "Release It! Design and Deploy Production-Ready Software (Nygard, 2018)",
     "origin_source_zh": "《发布！设计与部署生产就绪软件》（Nygard，2018）",
@@ -1691,18 +2474,48 @@
       "等价变异体：产生与原始代码相同行为的变异体，无法被杀死，必须从评分中排除"
     ],
     "timeline": [
-      ["1971", "Richard Lipton proposes mutation analysis as a theoretical framework for evaluating test adequacy"],
-      ["1980", "DeMillo, Lipton, and Sayward publish foundational paper establishing mutation testing as a practical technique"],
-      ["2010", "PIT (Pitest) launches for Java, making mutation testing practical for real-world projects"],
-      ["2017", "Stryker Mutator releases for JavaScript/TypeScript, bringing mutation testing to the frontend ecosystem"],
-      ["2019", "Mutation testing gains mainstream attention as CI tooling matures and execution speed improves dramatically"]
+      [
+        "1971",
+        "Richard Lipton proposes mutation analysis as a theoretical framework for evaluating test adequacy"
+      ],
+      [
+        "1980",
+        "DeMillo, Lipton, and Sayward publish foundational paper establishing mutation testing as a practical technique"
+      ],
+      [
+        "2010",
+        "PIT (Pitest) launches for Java, making mutation testing practical for real-world projects"
+      ],
+      [
+        "2017",
+        "Stryker Mutator releases for JavaScript/TypeScript, bringing mutation testing to the frontend ecosystem"
+      ],
+      [
+        "2019",
+        "Mutation testing gains mainstream attention as CI tooling matures and execution speed improves dramatically"
+      ]
     ],
     "timeline_zh": [
-      ["1971", "Richard Lipton提出变异分析作为评估测试充分性的理论框架"],
-      ["1980", "DeMillo、Lipton和Sayward发表奠基性论文，将变异测试确立为实用技术"],
-      ["2010", "PIT（Pitest）为Java推出，使变异测试在实际项目中变得可行"],
-      ["2017", "Stryker Mutator为JavaScript/TypeScript发布，将变异测试带入前端生态"],
-      ["2019", "随着CI工具成熟和执行速度大幅提升，变异测试获得主流关注"]
+      [
+        "1971",
+        "Richard Lipton提出变异分析作为评估测试充分性的理论框架"
+      ],
+      [
+        "1980",
+        "DeMillo、Lipton和Sayward发表奠基性论文，将变异测试确立为实用技术"
+      ],
+      [
+        "2010",
+        "PIT（Pitest）为Java推出，使变异测试在实际项目中变得可行"
+      ],
+      [
+        "2017",
+        "Stryker Mutator为JavaScript/TypeScript发布，将变异测试带入前端生态"
+      ],
+      [
+        "2019",
+        "随着CI工具成熟和执行速度大幅提升，变异测试获得主流关注"
+      ]
     ],
     "dos": [
       "Do start with critical business logic modules because mutation testing on the entire codebase can be prohibitively slow",
@@ -1741,7 +2554,18 @@
       "现有测试极少的遗留代码库，编写基本测试应优先于变异分析",
       "对性能敏感的CI管道，变异测试开销会不可接受地延迟反馈循环"
     ],
-    "adopters": ["Netflix", "Airbnb", "ING Bank", "Sky", "Info Support"]
+    "adopters": [
+      "Netflix",
+      "Airbnb",
+      "ING Bank",
+      "Sky",
+      "Info Support"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "testability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 179,
@@ -1767,8 +2591,17 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["test-pyramid", "visual-regression-testing", "mutation-testing"],
-    "tags": ["testing", "snapshot-testing", "regression", "ui-testing", "baseline"],
+    "related": [
+      "test-pyramid",
+      "mutation-testing"
+    ],
+    "tags": [
+      "testing",
+      "snapshot-testing",
+      "regression",
+      "ui-testing",
+      "baseline"
+    ],
     "origin_author": "Jest team at Facebook, 2016",
     "origin_source": "Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation (Humble & Farley, 2010)",
     "origin_source_zh": "《持续交付：通过构建、测试和部署自动化可靠发布软件》（Humble & Farley，2010）",
@@ -1800,18 +2633,48 @@
       "快照膨胀：大型或孤立快照文件的累积，减慢测试速度并模糊有意义的差异"
     ],
     "timeline": [
-      ["2010", "Humble and Farley advocate baseline comparison strategies for deployment validation in Continuous Delivery"],
-      ["2016", "Jest introduces built-in snapshot testing for React components, popularizing the technique widely"],
-      ["2018", "Snapshot testing extends beyond UI to API contracts, configuration files, and data serialization"],
-      ["2020", "Inline snapshots gain adoption, reducing file sprawl and improving test readability"],
-      ["2023", "Snapshot testing adapts to AI-generated content, capturing LLM output baselines for regression detection"]
+      [
+        "2010",
+        "Humble and Farley advocate baseline comparison strategies for deployment validation in Continuous Delivery"
+      ],
+      [
+        "2016",
+        "Jest introduces built-in snapshot testing for React components, popularizing the technique widely"
+      ],
+      [
+        "2018",
+        "Snapshot testing extends beyond UI to API contracts, configuration files, and data serialization"
+      ],
+      [
+        "2020",
+        "Inline snapshots gain adoption, reducing file sprawl and improving test readability"
+      ],
+      [
+        "2023",
+        "Snapshot testing adapts to AI-generated content, capturing LLM output baselines for regression detection"
+      ]
     ],
     "timeline_zh": [
-      ["2010", "Humble和Farley在《持续交付》中倡导基线比较策略用于部署验证"],
-      ["2016", "Jest为React组件引入内置快照测试，广泛普及了该技术"],
-      ["2018", "快照测试从UI扩展到API契约、配置文件和数据序列化"],
-      ["2020", "内联快照获得采用，减少文件蔓延并提高测试可读性"],
-      ["2023", "快照测试适应AI生成内容，捕获LLM输出基线以进行回归检测"]
+      [
+        "2010",
+        "Humble和Farley在《持续交付》中倡导基线比较策略用于部署验证"
+      ],
+      [
+        "2016",
+        "Jest为React组件引入内置快照测试，广泛普及了该技术"
+      ],
+      [
+        "2018",
+        "快照测试从UI扩展到API契约、配置文件和数据序列化"
+      ],
+      [
+        "2020",
+        "内联快照获得采用，减少文件蔓延并提高测试可读性"
+      ],
+      [
+        "2023",
+        "快照测试适应AI生成内容，捕获LLM输出基线以进行回归检测"
+      ]
     ],
     "dos": [
       "Do review snapshot diffs with the same rigor as code changes because unreviewed snapshot updates hide regressions",
@@ -1850,7 +2713,18 @@
       "复杂的有状态交互，行为比输出结构更重要，快照差异具有误导性",
       "UI和数据格式快速变化的早期原型阶段，快照维护造成拖累"
     ],
-    "adopters": ["Facebook", "Airbnb", "Shopify", "Stripe", "Vercel"]
+    "adopters": [
+      "Facebook",
+      "Airbnb",
+      "Shopify",
+      "Stripe",
+      "Vercel"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "testability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 180,
@@ -1876,8 +2750,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
-    "related": ["chaos-engineering", "capacity-planning", "circuit-breaker"],
-    "tags": ["testing", "load-testing", "performance", "stress-testing", "soak-testing"],
+    "related": [
+      "chaos-engineering",
+      "sli-slo-sla",
+      "circuit-breaker-pattern"
+    ],
+    "tags": [
+      "testing",
+      "load-testing",
+      "performance",
+      "stress-testing",
+      "soak-testing"
+    ],
     "origin_author": "Michael Nygard, 2007",
     "origin_source": "Release It! Design and Deploy Production-Ready Software (Nygard, 2018)",
     "origin_source_zh": "《发布！设计与部署生产就绪软件》（Nygard，2018）",
@@ -1909,18 +2793,48 @@
       "思考时间：测试脚本中用户操作之间的真实停顿，防止人为的并发膨胀"
     ],
     "timeline": [
-      ["2007", "Nygard's Release It! establishes load testing as essential for production-ready software"],
-      ["2011", "Apache JMeter becomes the dominant open-source load testing tool for enterprise applications"],
-      ["2014", "Gatling introduces code-based load test scripting with detailed HTML reports and Scala DSL"],
-      ["2017", "k6 launches with a developer-friendly JavaScript API, making load tests feel like writing unit tests"],
-      ["2021", "Cloud-native load testing tools integrate with Kubernetes and serverless, enabling distributed test execution at scale"]
+      [
+        "2007",
+        "Nygard's Release It! establishes load testing as essential for production-ready software"
+      ],
+      [
+        "2011",
+        "Apache JMeter becomes the dominant open-source load testing tool for enterprise applications"
+      ],
+      [
+        "2014",
+        "Gatling introduces code-based load test scripting with detailed HTML reports and Scala DSL"
+      ],
+      [
+        "2017",
+        "k6 launches with a developer-friendly JavaScript API, making load tests feel like writing unit tests"
+      ],
+      [
+        "2021",
+        "Cloud-native load testing tools integrate with Kubernetes and serverless, enabling distributed test execution at scale"
+      ]
     ],
     "timeline_zh": [
-      ["2007", "Nygard的《发布！》将负载测试确立为生产就绪软件的必需"],
-      ["2011", "Apache JMeter成为企业应用最主要的开源负载测试工具"],
-      ["2014", "Gatling引入基于代码的负载测试脚本，提供详细的HTML报告和Scala DSL"],
-      ["2017", "k6以开发者友好的JavaScript API推出，使负载测试感觉像编写单元测试"],
-      ["2021", "云原生负载测试工具与Kubernetes和无服务器集成，实现大规模分布式测试执行"]
+      [
+        "2007",
+        "Nygard的《发布！》将负载测试确立为生产就绪软件的必需"
+      ],
+      [
+        "2011",
+        "Apache JMeter成为企业应用最主要的开源负载测试工具"
+      ],
+      [
+        "2014",
+        "Gatling引入基于代码的负载测试脚本，提供详细的HTML报告和Scala DSL"
+      ],
+      [
+        "2017",
+        "k6以开发者友好的JavaScript API推出，使负载测试感觉像编写单元测试"
+      ],
+      [
+        "2021",
+        "云原生负载测试工具与Kubernetes和无服务器集成，实现大规模分布式测试执行"
+      ]
     ],
     "dos": [
       "Do use production-like data volumes because testing against empty databases produces dangerously optimistic results",
@@ -1959,7 +2873,19 @@
       "功能正确性是主要风险且性能优化为时过早的早期MVP",
       "具有固定工作负载的批处理系统，吞吐量本质上是有界且可预测的"
     ],
-    "adopters": ["Amazon", "Google", "Netflix", "Uber", "Cloudflare"]
+    "adopters": [
+      "Amazon",
+      "Google",
+      "Netflix",
+      "Uber",
+      "Cloudflare"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "performance"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 181,
@@ -1985,8 +2911,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["circuit-breaker", "bulkhead-pattern", "chaos-engineering"],
-    "tags": ["resilience", "error-handling", "retry", "fallback", "dead-letter-queue"],
+    "related": [
+      "circuit-breaker-pattern",
+      "bulkhead-pattern",
+      "chaos-engineering"
+    ],
+    "tags": [
+      "resilience",
+      "error-handling",
+      "retry",
+      "fallback",
+      "dead-letter-queue"
+    ],
     "origin_author": "Michael Nygard, 2007",
     "origin_source": "Release It! Design and Deploy Production-Ready Software (Nygard, 2018)",
     "origin_source_zh": "《发布！设计与部署生产就绪软件》（Nygard，2018）",
@@ -2018,18 +2954,48 @@
       "幂等性：设计操作使重试产生相同结果，防止重试逻辑产生重复副作用"
     ],
     "timeline": [
-      ["2003", "Enterprise Integration Patterns formalizes dead letter channel as a messaging pattern for undeliverable messages"],
-      ["2007", "Nygard's Release It! establishes fail-fast and stability patterns as essential for production systems"],
-      ["2012", "Netflix open-sources Hystrix, popularizing retry, fallback, and circuit breaker patterns in microservices"],
-      ["2018", "Nygard's Release It! second edition expands error handling patterns with cloud-native and container-era practices"],
-      ["2022", "Resilience libraries like Polly (.NET), Resilience4j (Java), and cockatiel (Node) become standard dependencies in production services"]
+      [
+        "2003",
+        "Enterprise Integration Patterns formalizes dead letter channel as a messaging pattern for undeliverable messages"
+      ],
+      [
+        "2007",
+        "Nygard's Release It! establishes fail-fast and stability patterns as essential for production systems"
+      ],
+      [
+        "2012",
+        "Netflix open-sources Hystrix, popularizing retry, fallback, and circuit breaker patterns in microservices"
+      ],
+      [
+        "2018",
+        "Nygard's Release It! second edition expands error handling patterns with cloud-native and container-era practices"
+      ],
+      [
+        "2022",
+        "Resilience libraries like Polly (.NET), Resilience4j (Java), and cockatiel (Node) become standard dependencies in production services"
+      ]
     ],
     "timeline_zh": [
-      ["2003", "《企业集成模式》将死信通道正式确立为不可送达消息的消息传递模式"],
-      ["2007", "Nygard的《发布！》将快速失败和稳定性模式确立为生产系统的必需"],
-      ["2012", "Netflix开源Hystrix，在微服务中普及重试、回退和断路器模式"],
-      ["2018", "Nygard的《发布！》第二版扩展了错误处理模式，加入云原生和容器时代的实践"],
-      ["2022", "Polly（.NET）、Resilience4j（Java）和cockatiel（Node）等弹性库成为生产服务的标准依赖"]
+      [
+        "2003",
+        "《企业集成模式》将死信通道正式确立为不可送达消息的消息传递模式"
+      ],
+      [
+        "2007",
+        "Nygard的《发布！》将快速失败和稳定性模式确立为生产系统的必需"
+      ],
+      [
+        "2012",
+        "Netflix开源Hystrix，在微服务中普及重试、回退和断路器模式"
+      ],
+      [
+        "2018",
+        "Nygard的《发布！》第二版扩展了错误处理模式，加入云原生和容器时代的实践"
+      ],
+      [
+        "2022",
+        "Polly（.NET）、Resilience4j（Java）和cockatiel（Node）等弹性库成为生产服务的标准依赖"
+      ]
     ],
     "dos": [
       "Do classify errors as transient or permanent at the point of occurrence because the correct handling strategy depends entirely on this distinction",
@@ -2068,7 +3034,18 @@
       "无状态纯函数，错误是返回值，传统异常处理增加不必要的复杂性",
       "早期原型阶段的系统，弹性工程为时过早且减慢迭代速度"
     ],
-    "adopters": ["Uber", "Netflix", "Stripe", "Amazon", "LinkedIn"]
+    "adopters": [
+      "Uber",
+      "Netflix",
+      "Stripe",
+      "Amazon",
+      "LinkedIn"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 182,
@@ -2094,8 +3071,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["sre-error-budgets", "chaos-engineering", "twelve-factor-app"],
-    "tags": ["observability", "monitoring", "logging", "tracing", "sre"],
+    "related": [
+      "error-budget-policy",
+      "chaos-engineering",
+      "twelve-factor-app"
+    ],
+    "tags": [
+      "observability",
+      "monitoring",
+      "logging",
+      "tracing",
+      "sre"
+    ],
     "origin_author": "Charity Majors, 2018",
     "origin_source": "Release It! Design and Deploy Production-Ready Software (Nygard, 2018); Continuous Delivery (Humble & Farley, 2010)",
     "origin_source_zh": "《发布！设计与部署生产就绪软件》（Nygard，2018）；《持续交付》（Humble & Farley，2010）",
@@ -2127,18 +3114,48 @@
       "高基数：能够按任意维度组合（用户ID、请求ID、特性标志）查询遥测数据以调试唯一问题"
     ],
     "timeline": [
-      ["2010", "Humble and Farley emphasize monitoring and feedback loops as essential to continuous delivery pipelines"],
-      ["2015", "Google publishes the SRE book, codifying SLIs, SLOs, and error budgets as industry standards"],
-      ["2018", "Charity Majors coins 'observability-driven development' and advocates designing for debuggability from the start"],
-      ["2019", "OpenTelemetry launches as a unified standard for traces, metrics, and logs, merging OpenTracing and OpenCensus"],
-      ["2023", "Observability platforms integrate AI-powered anomaly detection, reducing alert fatigue and accelerating root cause analysis"]
+      [
+        "2010",
+        "Humble and Farley emphasize monitoring and feedback loops as essential to continuous delivery pipelines"
+      ],
+      [
+        "2015",
+        "Google publishes the SRE book, codifying SLIs, SLOs, and error budgets as industry standards"
+      ],
+      [
+        "2018",
+        "Charity Majors coins 'observability-driven development' and advocates designing for debuggability from the start"
+      ],
+      [
+        "2019",
+        "OpenTelemetry launches as a unified standard for traces, metrics, and logs, merging OpenTracing and OpenCensus"
+      ],
+      [
+        "2023",
+        "Observability platforms integrate AI-powered anomaly detection, reducing alert fatigue and accelerating root cause analysis"
+      ]
     ],
     "timeline_zh": [
-      ["2010", "Humble和Farley强调监控和反馈循环是持续交付管道的必需"],
-      ["2015", "Google发布SRE书籍，将SLI、SLO和错误预算编纂为行业标准"],
-      ["2018", "Charity Majors提出'可观测性驱动开发'，倡导从一开始就为可调试性设计"],
-      ["2019", "OpenTelemetry作为追踪、指标和日志的统一标准推出，合并了OpenTracing和OpenCensus"],
-      ["2023", "可观测性平台集成AI驱动的异常检测，减少告警疲劳并加速根因分析"]
+      [
+        "2010",
+        "Humble和Farley强调监控和反馈循环是持续交付管道的必需"
+      ],
+      [
+        "2015",
+        "Google发布SRE书籍，将SLI、SLO和错误预算编纂为行业标准"
+      ],
+      [
+        "2018",
+        "Charity Majors提出'可观测性驱动开发'，倡导从一开始就为可调试性设计"
+      ],
+      [
+        "2019",
+        "OpenTelemetry作为追踪、指标和日志的统一标准推出，合并了OpenTracing和OpenCensus"
+      ],
+      [
+        "2023",
+        "可观测性平台集成AI驱动的异常检测，减少告警疲劳并加速根因分析"
+      ]
     ],
     "dos": [
       "Do instrument code during development because retrofitting observability into running systems is 10x more expensive and error-prone",
@@ -2177,6 +3194,18 @@
       "短期脚本或批处理作业，执行是确定性的，调试依赖输入输出验证",
       "非常早期的原型，运维关注点不相关，交付速度是唯一优先级"
     ],
-    "adopters": ["Honeycomb", "Google", "Slack", "GitHub", "Lightstep"]
+    "adopters": [
+      "Honeycomb",
+      "Google",
+      "Slack",
+      "GitHub",
+      "Lightstep"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "observability",
+      "reliability"
+    ],
+    "maturity_ring": "emerging"
   }
 ]

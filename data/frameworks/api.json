@@ -23,8 +23,17 @@
     ],
     "ai_relevant": true,
     "viz_type": "matrix",
-    "related": ["bff-pattern", "api-gateway-pattern", "openapi-specification"],
-    "tags": ["graphql", "schema", "type-system", "query-language"],
+    "related": [
+      "bff-pattern",
+      "api-gateway-pattern",
+      "openapi-specification"
+    ],
+    "tags": [
+      "graphql",
+      "schema",
+      "type-system",
+      "query-language"
+    ],
     "origin_author": "Lee Byron, Dan Schafer, Nick Schrock / Facebook, 2015",
     "origin_source": "GraphQL specification (spec.graphql.org); referenced in API Design Patterns (JJ Geewax, 2021, Ch. 1)",
     "origin_source_zh": "GraphQL规范（spec.graphql.org）；参见《API设计模式》（JJ Geewax，2021，第1章）",
@@ -56,18 +65,48 @@
       "模式优先设计：模式作为前后端团队之间的契约，支持并行开发"
     ],
     "timeline": [
-      ["2012", "Facebook internally develops GraphQL to solve mobile newsfeed data fetching challenges"],
-      ["2015", "Facebook open-sources GraphQL specification and reference implementation (graphql-js)"],
-      ["2016", "GitHub launches its public GraphQL API (v4), validating GraphQL for large-scale production use"],
-      ["2018", "Apollo Federation introduced, enabling GraphQL composition across microservices"],
-      ["2021", "GraphQL becomes an industry standard; The GraphQL Foundation under Linux Foundation stewards the spec"]
+      [
+        "2012",
+        "Facebook internally develops GraphQL to solve mobile newsfeed data fetching challenges"
+      ],
+      [
+        "2015",
+        "Facebook open-sources GraphQL specification and reference implementation (graphql-js)"
+      ],
+      [
+        "2016",
+        "GitHub launches its public GraphQL API (v4), validating GraphQL for large-scale production use"
+      ],
+      [
+        "2018",
+        "Apollo Federation introduced, enabling GraphQL composition across microservices"
+      ],
+      [
+        "2021",
+        "GraphQL becomes an industry standard; The GraphQL Foundation under Linux Foundation stewards the spec"
+      ]
     ],
     "timeline_zh": [
-      ["2012", "Facebook内部开发GraphQL以解决移动端新闻流数据获取挑战"],
-      ["2015", "Facebook开源GraphQL规范和参考实现（graphql-js）"],
-      ["2016", "GitHub推出公共GraphQL API（v4），验证了GraphQL在大规模生产中的可行性"],
-      ["2018", "Apollo Federation发布，支持跨微服务的GraphQL组合"],
-      ["2021", "GraphQL成为行业标准；Linux基金会下的GraphQL基金会负责规范管理"]
+      [
+        "2012",
+        "Facebook内部开发GraphQL以解决移动端新闻流数据获取挑战"
+      ],
+      [
+        "2015",
+        "Facebook开源GraphQL规范和参考实现（graphql-js）"
+      ],
+      [
+        "2016",
+        "GitHub推出公共GraphQL API（v4），验证了GraphQL在大规模生产中的可行性"
+      ],
+      [
+        "2018",
+        "Apollo Federation发布，支持跨微服务的GraphQL组合"
+      ],
+      [
+        "2021",
+        "GraphQL成为行业标准；Linux基金会下的GraphQL基金会负责规范管理"
+      ]
     ],
     "dos": [
       "Do design types around business domain concepts rather than database tables because it decouples the API from storage implementation",
@@ -108,7 +147,20 @@
       "HTTP层缓存（CDN、反向代理）至关重要的公共API，因为GraphQL POST请求绕过标准HTTP缓存",
       "前后端协作成熟度不足的团队，模式协商会成为瓶颈"
     ],
-    "adopters": ["GitHub", "Shopify", "Facebook", "Twitter", "Airbnb"]
+    "adopters": [
+      "GitHub",
+      "Shopify",
+      "Facebook",
+      "Twitter",
+      "Airbnb"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "usability",
+      "maintainability",
+      "performance"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 132,
@@ -134,8 +186,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["api-gateway-pattern", "consumer-driven-contracts", "asyncapi"],
-    "tags": ["grpc", "protobuf", "rpc", "http2", "binary-serialization"],
+    "related": [
+      "api-gateway-pattern",
+      "consumer-driven-contracts",
+      "asyncapi"
+    ],
+    "tags": [
+      "grpc",
+      "protobuf",
+      "rpc",
+      "http2",
+      "binary-serialization"
+    ],
     "origin_author": "Google, 2015 (built on internal Stubby RPC framework)",
     "origin_source": "gRPC: A High-Performance Open-Source Universal RPC Framework (grpc.io); referenced in Building Microservices (Sam Newman, 2nd ed., 2021, Ch. 4)",
     "origin_source_zh": "《gRPC：高性能开源通用RPC框架》（grpc.io）；参见《构建微服务》（Sam Newman，第2版，2021，第4章）",
@@ -167,18 +229,48 @@
       "截止时间与取消：内置的超时和取消信号在整个调用链中传播，防止分布式系统中的资源泄漏"
     ],
     "timeline": [
-      ["2001", "Google internally develops Stubby, the precursor to gRPC, for inter-datacenter communication"],
-      ["2015", "Google open-sources gRPC 1.0 with support for 10+ programming languages"],
-      ["2017", "gRPC becomes a Cloud Native Computing Foundation (CNCF) incubating project"],
-      ["2019", "gRPC-Web enables browser clients to call gRPC services via an Envoy proxy translation layer"],
-      ["2023", "gRPC adoption surges in AI/ML inference pipelines for low-latency model serving (e.g., TensorFlow Serving, Triton)"]
+      [
+        "2001",
+        "Google internally develops Stubby, the precursor to gRPC, for inter-datacenter communication"
+      ],
+      [
+        "2015",
+        "Google open-sources gRPC 1.0 with support for 10+ programming languages"
+      ],
+      [
+        "2017",
+        "gRPC becomes a Cloud Native Computing Foundation (CNCF) incubating project"
+      ],
+      [
+        "2019",
+        "gRPC-Web enables browser clients to call gRPC services via an Envoy proxy translation layer"
+      ],
+      [
+        "2023",
+        "gRPC adoption surges in AI/ML inference pipelines for low-latency model serving (e.g., TensorFlow Serving, Triton)"
+      ]
     ],
     "timeline_zh": [
-      ["2001", "Google内部开发Stubby——gRPC的前身，用于跨数据中心通信"],
-      ["2015", "Google开源gRPC 1.0，支持10多种编程语言"],
-      ["2017", "gRPC成为云原生计算基金会（CNCF）孵化项目"],
-      ["2019", "gRPC-Web使浏览器客户端能通过Envoy代理转换层调用gRPC服务"],
-      ["2023", "gRPC在AI/ML推理管线中的采用激增，用于低延迟模型服务（如TensorFlow Serving、Triton）"]
+      [
+        "2001",
+        "Google内部开发Stubby——gRPC的前身，用于跨数据中心通信"
+      ],
+      [
+        "2015",
+        "Google开源gRPC 1.0，支持10多种编程语言"
+      ],
+      [
+        "2017",
+        "gRPC成为云原生计算基金会（CNCF）孵化项目"
+      ],
+      [
+        "2019",
+        "gRPC-Web使浏览器客户端能通过Envoy代理转换层调用gRPC服务"
+      ],
+      [
+        "2023",
+        "gRPC在AI/ML推理管线中的采用激增，用于低延迟模型服务（如TensorFlow Serving、Triton）"
+      ]
     ],
     "dos": [
       "Do use proto3 syntax and follow the Protocol Buffer style guide because consistent naming and conventions simplify cross-team collaboration",
@@ -219,7 +311,20 @@
       "防火墙或代理基础设施不支持HTTP/2的环境",
       "不需要多语言服务的团队，REST加OpenAPI已提供足够的契约保障"
     ],
-    "adopters": ["Google", "Netflix", "Square", "Cisco", "CoreOS"]
+    "adopters": [
+      "Google",
+      "Netflix",
+      "Square",
+      "Cisco",
+      "CoreOS"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "performance",
+      "scalability",
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 133,
@@ -245,8 +350,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["bff-pattern", "api-rate-limiting-throttling", "graphql-schema-design"],
-    "tags": ["gateway", "routing", "aggregation", "microservices", "security"],
+    "related": [
+      "bff-pattern",
+      "api-rate-limiting-throttling",
+      "graphql-schema-design"
+    ],
+    "tags": [
+      "gateway",
+      "routing",
+      "aggregation",
+      "microservices",
+      "security"
+    ],
     "origin_author": "Microservices community, formalized by Chris Richardson (~2015)",
     "origin_source": "Building Microservices (Sam Newman, 2nd ed., 2021, Ch. 7); API Design Patterns (JJ Geewax, 2021, Ch. 2)",
     "origin_source_zh": "《构建微服务》（Sam Newman，第2版，2021，第7章）；《API设计模式》（JJ Geewax，2021，第2章）",
@@ -278,18 +393,48 @@
       "协议转换：网关在外部协议（HTTP/REST）和内部协议（gRPC、WebSocket、消息队列）之间进行转换"
     ],
     "timeline": [
-      ["2013", "Netflix Zuul emerges as one of the first dedicated API gateways for microservices"],
-      ["2015", "AWS API Gateway launches as a managed service, popularizing the gateway-as-a-service model"],
-      ["2017", "Kong (built on Nginx/OpenResty) becomes the dominant open-source API gateway"],
-      ["2019", "Envoy-based gateways (Ambassador, Gloo) bring Kubernetes-native API gateway capabilities"],
-      ["2022", "Gateway API specification in Kubernetes standardizes gateway configuration as a portable Kubernetes resource"]
+      [
+        "2013",
+        "Netflix Zuul emerges as one of the first dedicated API gateways for microservices"
+      ],
+      [
+        "2015",
+        "AWS API Gateway launches as a managed service, popularizing the gateway-as-a-service model"
+      ],
+      [
+        "2017",
+        "Kong (built on Nginx/OpenResty) becomes the dominant open-source API gateway"
+      ],
+      [
+        "2019",
+        "Envoy-based gateways (Ambassador, Gloo) bring Kubernetes-native API gateway capabilities"
+      ],
+      [
+        "2022",
+        "Gateway API specification in Kubernetes standardizes gateway configuration as a portable Kubernetes resource"
+      ]
     ],
     "timeline_zh": [
-      ["2013", "Netflix Zuul作为首批专用微服务API网关之一出现"],
-      ["2015", "AWS API Gateway作为托管服务推出，普及了网关即服务模式"],
-      ["2017", "Kong（基于Nginx/OpenResty构建）成为主流开源API网关"],
-      ["2019", "基于Envoy的网关（Ambassador、Gloo）带来Kubernetes原生API网关能力"],
-      ["2022", "Kubernetes中的Gateway API规范将网关配置标准化为可移植的Kubernetes资源"]
+      [
+        "2013",
+        "Netflix Zuul作为首批专用微服务API网关之一出现"
+      ],
+      [
+        "2015",
+        "AWS API Gateway作为托管服务推出，普及了网关即服务模式"
+      ],
+      [
+        "2017",
+        "Kong（基于Nginx/OpenResty构建）成为主流开源API网关"
+      ],
+      [
+        "2019",
+        "基于Envoy的网关（Ambassador、Gloo）带来Kubernetes原生API网关能力"
+      ],
+      [
+        "2022",
+        "Kubernetes中的Gateway API规范将网关配置标准化为可移植的Kubernetes资源"
+      ]
     ],
     "dos": [
       "Do keep the gateway stateless and thin because a fat gateway with business logic becomes a distributed monolith",
@@ -330,7 +475,20 @@
       "对延迟极度敏感的路径，即使多一跳网络延迟也不可接受",
       "服务数少于五个的小团队，维护网关的运维成本超过其收益"
     ],
-    "adopters": ["Netflix", "Amazon", "Uber", "Alibaba", "Stripe"]
+    "adopters": [
+      "Netflix",
+      "Amazon",
+      "Uber",
+      "Alibaba",
+      "Stripe"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "scalability",
+      "security",
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 134,
@@ -356,8 +514,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
-    "related": ["api-gateway-pattern", "graphql-schema-design", "grpc-protocol-buffers"],
-    "tags": ["bff", "frontend", "microservices", "aggregation", "client-specific"],
+    "related": [
+      "api-gateway-pattern",
+      "graphql-schema-design",
+      "grpc-protocol-buffers"
+    ],
+    "tags": [
+      "bff",
+      "frontend",
+      "microservices",
+      "aggregation",
+      "client-specific"
+    ],
     "origin_author": "Sam Newman / ThoughtWorks, 2015",
     "origin_source": "Building Microservices (Sam Newman, 1st ed., 2015, Ch. 4; 2nd ed., 2021, Ch. 7)",
     "origin_source_zh": "《构建微服务》（Sam Newman，第1版，2015，第4章；第2版，2021，第7章）",
@@ -389,18 +557,48 @@
       "独立部署：每个BFF可以独立部署、扩缩和版本管理，不影响其他客户端渠道"
     ],
     "timeline": [
-      ["2015", "Sam Newman coins the BFF pattern in Building Microservices, drawing on ThoughtWorks project experience"],
-      ["2016", "SoundCloud publishes a detailed case study of their BFF adoption for mobile and web clients"],
-      ["2018", "BFF pattern combined with GraphQL emerges as a popular hybrid architecture at companies like Airbnb"],
-      ["2020", "Next.js API routes and Remix loaders popularize BFF-like patterns in the JavaScript full-stack ecosystem"],
-      ["2023", "BFF pattern adapted for AI applications, with dedicated BFFs serving chat interfaces, voice assistants, and API consumers"]
+      [
+        "2015",
+        "Sam Newman coins the BFF pattern in Building Microservices, drawing on ThoughtWorks project experience"
+      ],
+      [
+        "2016",
+        "SoundCloud publishes a detailed case study of their BFF adoption for mobile and web clients"
+      ],
+      [
+        "2018",
+        "BFF pattern combined with GraphQL emerges as a popular hybrid architecture at companies like Airbnb"
+      ],
+      [
+        "2020",
+        "Next.js API routes and Remix loaders popularize BFF-like patterns in the JavaScript full-stack ecosystem"
+      ],
+      [
+        "2023",
+        "BFF pattern adapted for AI applications, with dedicated BFFs serving chat interfaces, voice assistants, and API consumers"
+      ]
     ],
     "timeline_zh": [
-      ["2015", "Sam Newman在《构建微服务》中提出BFF模式，源于ThoughtWorks项目经验"],
-      ["2016", "SoundCloud发布其移动端和Web客户端BFF采用的详细案例研究"],
-      ["2018", "BFF模式与GraphQL的结合作为流行的混合架构出现在Airbnb等公司"],
-      ["2020", "Next.js API路由和Remix加载器在JavaScript全栈生态中普及类BFF模式"],
-      ["2023", "BFF模式被改造用于AI应用，专用BFF服务于聊天界面、语音助手和API消费者"]
+      [
+        "2015",
+        "Sam Newman在《构建微服务》中提出BFF模式，源于ThoughtWorks项目经验"
+      ],
+      [
+        "2016",
+        "SoundCloud发布其移动端和Web客户端BFF采用的详细案例研究"
+      ],
+      [
+        "2018",
+        "BFF模式与GraphQL的结合作为流行的混合架构出现在Airbnb等公司"
+      ],
+      [
+        "2020",
+        "Next.js API路由和Remix加载器在JavaScript全栈生态中普及类BFF模式"
+      ],
+      [
+        "2023",
+        "BFF模式被改造用于AI应用，专用BFF服务于聊天界面、语音助手和API消费者"
+      ]
     ],
     "dos": [
       "Do let the frontend team own the BFF because they best understand the client's data needs and can iterate without backend team dependencies",
@@ -441,7 +639,19 @@
       "当部署和监控额外服务的开销超过获得的灵活性时",
       "当下游服务已提供设计良好的、对客户端友好的API且不需要聚合时"
     ],
-    "adopters": ["SoundCloud", "Airbnb", "Spotify", "Netflix", "REA Group"]
+    "adopters": [
+      "SoundCloud",
+      "Airbnb",
+      "Spotify",
+      "Netflix",
+      "REA Group"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "usability",
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 135,
@@ -467,8 +677,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
-    "related": ["openapi-specification", "api-gateway-pattern", "grpc-protocol-buffers"],
-    "tags": ["contracts", "testing", "consumer-driven", "pact", "compatibility"],
+    "related": [
+      "openapi-specification",
+      "api-gateway-pattern",
+      "grpc-protocol-buffers"
+    ],
+    "tags": [
+      "contracts",
+      "testing",
+      "consumer-driven",
+      "pact",
+      "compatibility"
+    ],
     "origin_author": "Ian Robinson, 2006; tooling popularized by Pact (2013, DiUS/Beth Skurrie)",
     "origin_source": "Consumer-Driven Contracts: A Service Evolution Pattern (Ian Robinson, 2006); Building Microservices (Sam Newman, 2nd ed., 2021, Ch. 6)",
     "origin_source_zh": "《消费者驱动契约：服务演进模式》（Ian Robinson，2006）；《构建微服务》（Sam Newman，第2版，2021，第6章）",
@@ -500,18 +720,48 @@
       "Postel定律实践：提供者在接受时宽松、在产出时严格，以实际消费者使用而非假设使用为指导"
     ],
     "timeline": [
-      ["2006", "Ian Robinson publishes the seminal paper 'Consumer-Driven Contracts: A Service Evolution Pattern'"],
-      ["2013", "Pact framework created at DiUS (Australia), becoming the de facto tool for consumer-driven contract testing"],
-      ["2016", "Pact Broker released, enabling centralized contract storage and cross-service compatibility verification"],
-      ["2018", "Spring Cloud Contract provides JVM-native consumer-driven contract testing for Spring Boot microservices"],
-      ["2021", "PactFlow (commercial SaaS) and Pact v4 specification unify HTTP, messaging, and plugin-based contract types"]
+      [
+        "2006",
+        "Ian Robinson publishes the seminal paper 'Consumer-Driven Contracts: A Service Evolution Pattern'"
+      ],
+      [
+        "2013",
+        "Pact framework created at DiUS (Australia), becoming the de facto tool for consumer-driven contract testing"
+      ],
+      [
+        "2016",
+        "Pact Broker released, enabling centralized contract storage and cross-service compatibility verification"
+      ],
+      [
+        "2018",
+        "Spring Cloud Contract provides JVM-native consumer-driven contract testing for Spring Boot microservices"
+      ],
+      [
+        "2021",
+        "PactFlow (commercial SaaS) and Pact v4 specification unify HTTP, messaging, and plugin-based contract types"
+      ]
     ],
     "timeline_zh": [
-      ["2006", "Ian Robinson发表开创性论文「消费者驱动契约：服务演进模式」"],
-      ["2013", "Pact框架在DiUS（澳大利亚）创建，成为消费者驱动契约测试的事实标准工具"],
-      ["2016", "Pact Broker发布，支持集中化契约存储和跨服务兼容性验证"],
-      ["2018", "Spring Cloud Contract为Spring Boot微服务提供JVM原生的消费者驱动契约测试"],
-      ["2021", "PactFlow（商业SaaS）和Pact v4规范统一了HTTP、消息和基于插件的契约类型"]
+      [
+        "2006",
+        "Ian Robinson发表开创性论文「消费者驱动契约：服务演进模式」"
+      ],
+      [
+        "2013",
+        "Pact框架在DiUS（澳大利亚）创建，成为消费者驱动契约测试的事实标准工具"
+      ],
+      [
+        "2016",
+        "Pact Broker发布，支持集中化契约存储和跨服务兼容性验证"
+      ],
+      [
+        "2018",
+        "Spring Cloud Contract为Spring Boot微服务提供JVM原生的消费者驱动契约测试"
+      ],
+      [
+        "2021",
+        "PactFlow（商业SaaS）和Pact v4规范统一了HTTP、消息和基于插件的契约类型"
+      ]
     ],
     "dos": [
       "Do write contracts from the consumer's perspective, specifying only what the consumer actually uses, because over-specifying creates false coupling",
@@ -552,7 +802,19 @@
       "每个提供者只有一个消费者时，直接集成测试更简单且同样有效",
       "第三方API，你无法影响提供者的实现且无法共享契约"
     ],
-    "adopters": ["Atlassian", "ING Bank", "DiUS", "Spotify", "REA Group"]
+    "adopters": [
+      "Atlassian",
+      "ING Bank",
+      "DiUS",
+      "Spotify",
+      "REA Group"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "testability",
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 136,
@@ -578,8 +840,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "matrix",
-    "related": ["consumer-driven-contracts", "asyncapi", "hateoas"],
-    "tags": ["openapi", "swagger", "specification", "documentation", "code-generation"],
+    "related": [
+      "consumer-driven-contracts",
+      "asyncapi",
+      "hateoas"
+    ],
+    "tags": [
+      "openapi",
+      "swagger",
+      "specification",
+      "documentation",
+      "code-generation"
+    ],
     "origin_author": "Tony Tam / Swagger (2011); donated to OpenAPI Initiative / Linux Foundation (2015)",
     "origin_source": "OpenAPI Specification (spec.openapis.org); RESTful Web APIs (Leonard Richardson & Mike Amundsen, 2013, Ch. 9)",
     "origin_source_zh": "OpenAPI规范（spec.openapis.org）；《RESTful Web API》（Leonard Richardson & Mike Amundsen，2013，第9章）",
@@ -611,18 +883,48 @@
       "Lint与治理：规则集（如Spectral）在组织内所有API规范中强制执行命名约定、分页标准和错误格式"
     ],
     "timeline": [
-      ["2011", "Tony Tam creates Swagger specification and tooling for REST API documentation at Wordnik"],
-      ["2015", "Swagger specification donated to the OpenAPI Initiative under the Linux Foundation, renamed to OpenAPI Specification 2.0"],
-      ["2017", "OpenAPI 3.0 released with major improvements: components, links, callbacks, and multiple server support"],
-      ["2021", "OpenAPI 3.1 aligns fully with JSON Schema 2020-12, enabling complete schema compatibility"],
-      ["2024", "OpenAPI 3.1 becomes the dominant API specification format; AI coding assistants use OpenAPI specs for tool/function calling"]
+      [
+        "2011",
+        "Tony Tam creates Swagger specification and tooling for REST API documentation at Wordnik"
+      ],
+      [
+        "2015",
+        "Swagger specification donated to the OpenAPI Initiative under the Linux Foundation, renamed to OpenAPI Specification 2.0"
+      ],
+      [
+        "2017",
+        "OpenAPI 3.0 released with major improvements: components, links, callbacks, and multiple server support"
+      ],
+      [
+        "2021",
+        "OpenAPI 3.1 aligns fully with JSON Schema 2020-12, enabling complete schema compatibility"
+      ],
+      [
+        "2024",
+        "OpenAPI 3.1 becomes the dominant API specification format; AI coding assistants use OpenAPI specs for tool/function calling"
+      ]
     ],
     "timeline_zh": [
-      ["2011", "Tony Tam在Wordnik创建Swagger规范和工具用于REST API文档"],
-      ["2015", "Swagger规范捐赠给Linux基金会下的OpenAPI倡议，更名为OpenAPI规范2.0"],
-      ["2017", "OpenAPI 3.0发布，带来重大改进：组件、链接、回调和多服务器支持"],
-      ["2021", "OpenAPI 3.1与JSON Schema 2020-12完全对齐，实现完整的模式兼容性"],
-      ["2024", "OpenAPI 3.1成为主流API规范格式；AI编码助手使用OpenAPI规范进行工具/函数调用"]
+      [
+        "2011",
+        "Tony Tam在Wordnik创建Swagger规范和工具用于REST API文档"
+      ],
+      [
+        "2015",
+        "Swagger规范捐赠给Linux基金会下的OpenAPI倡议，更名为OpenAPI规范2.0"
+      ],
+      [
+        "2017",
+        "OpenAPI 3.0发布，带来重大改进：组件、链接、回调和多服务器支持"
+      ],
+      [
+        "2021",
+        "OpenAPI 3.1与JSON Schema 2020-12完全对齐，实现完整的模式兼容性"
+      ],
+      [
+        "2024",
+        "OpenAPI 3.1成为主流API规范格式；AI编码助手使用OpenAPI规范进行工具/函数调用"
+      ]
     ],
     "dos": [
       "Do adopt a design-first workflow where the OpenAPI spec is written and reviewed before any code because it catches API design issues before implementation",
@@ -663,7 +965,19 @@
       "内部gRPC服务，Protocol Buffer定义已作为机器可读契约",
       "每天变更多次的极端实验性API，规范维护开销超过其收益"
     ],
-    "adopters": ["Stripe", "Twilio", "GitHub", "Microsoft", "Google"]
+    "adopters": [
+      "Stripe",
+      "Twilio",
+      "GitHub",
+      "Microsoft",
+      "Google"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "usability",
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 137,
@@ -689,8 +1003,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["asyncapi", "api-rate-limiting-throttling", "api-gateway-pattern"],
-    "tags": ["webhook", "event-driven", "callback", "integration", "push"],
+    "related": [
+      "asyncapi",
+      "api-rate-limiting-throttling",
+      "api-gateway-pattern"
+    ],
+    "tags": [
+      "webhook",
+      "event-driven",
+      "callback",
+      "integration",
+      "push"
+    ],
     "origin_author": "Jeff Lindsay, 2007 (coined the term); pattern predates the name in early HTTP callback systems",
     "origin_source": "RESTful Web APIs (Leonard Richardson & Mike Amundsen, 2013, Ch. 11); API Design Patterns (JJ Geewax, 2021, Ch. 15)",
     "origin_source_zh": "《RESTful Web API》（Leonard Richardson & Mike Amundsen，2013，第11章）；《API设计模式》（JJ Geewax，2021，第15章）",
@@ -722,18 +1046,48 @@
       "订阅管理：自助服务API，用于注册、更新和停用webhook订阅，支持事件类型过滤"
     ],
     "timeline": [
-      ["2007", "Jeff Lindsay coins the term 'webhooks' and advocates for web callbacks as a lightweight integration mechanism"],
-      ["2012", "GitHub, Stripe, and Twilio popularize webhooks as a standard feature of developer platforms"],
-      ["2018", "Standard Webhooks initiative begins, proposing conventions for signatures, retries, and payload formats"],
-      ["2020", "Svix and other webhook-as-a-service platforms emerge, abstracting delivery infrastructure for SaaS providers"],
-      ["2024", "Webhooks become the primary integration mechanism for AI agent platforms, enabling tool-use callbacks and event-driven AI workflows"]
+      [
+        "2007",
+        "Jeff Lindsay coins the term 'webhooks' and advocates for web callbacks as a lightweight integration mechanism"
+      ],
+      [
+        "2012",
+        "GitHub, Stripe, and Twilio popularize webhooks as a standard feature of developer platforms"
+      ],
+      [
+        "2018",
+        "Standard Webhooks initiative begins, proposing conventions for signatures, retries, and payload formats"
+      ],
+      [
+        "2020",
+        "Svix and other webhook-as-a-service platforms emerge, abstracting delivery infrastructure for SaaS providers"
+      ],
+      [
+        "2024",
+        "Webhooks become the primary integration mechanism for AI agent platforms, enabling tool-use callbacks and event-driven AI workflows"
+      ]
     ],
     "timeline_zh": [
-      ["2007", "Jeff Lindsay创造「webhooks」一词，倡导Web回调作为轻量级集成机制"],
-      ["2012", "GitHub、Stripe和Twilio将webhook普及为开发者平台的标准功能"],
-      ["2018", "Standard Webhooks倡议启动，提出签名、重试和负载格式的约定"],
-      ["2020", "Svix等webhook即服务平台出现，为SaaS提供者抽象投递基础设施"],
-      ["2024", "Webhook成为AI代理平台的主要集成机制，支持工具使用回调和事件驱动的AI工作流"]
+      [
+        "2007",
+        "Jeff Lindsay创造「webhooks」一词，倡导Web回调作为轻量级集成机制"
+      ],
+      [
+        "2012",
+        "GitHub、Stripe和Twilio将webhook普及为开发者平台的标准功能"
+      ],
+      [
+        "2018",
+        "Standard Webhooks倡议启动，提出签名、重试和负载格式的约定"
+      ],
+      [
+        "2020",
+        "Svix等webhook即服务平台出现，为SaaS提供者抽象投递基础设施"
+      ],
+      [
+        "2024",
+        "Webhook成为AI代理平台的主要集成机制，支持工具使用回调和事件驱动的AI工作流"
+      ]
     ],
     "dos": [
       "Do sign every webhook payload with HMAC and document the verification process because unsigned webhooks are trivially spoofable",
@@ -774,7 +1128,19 @@
       "当事件量极高且消费者无法承受吞吐量时，需要消息队列替代",
       "当需要双向通信时，因为webhook是单向推送"
     ],
-    "adopters": ["Stripe", "GitHub", "Twilio", "Shopify", "Slack"]
+    "adopters": [
+      "Stripe",
+      "GitHub",
+      "Twilio",
+      "Shopify",
+      "Slack"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "scalability",
+      "usability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 138,
@@ -800,8 +1166,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["api-gateway-pattern", "webhook-pattern", "openapi-specification"],
-    "tags": ["rate-limiting", "throttling", "protection", "quota", "resilience"],
+    "related": [
+      "api-gateway-pattern",
+      "webhook-pattern",
+      "openapi-specification"
+    ],
+    "tags": [
+      "rate-limiting",
+      "throttling",
+      "protection",
+      "quota",
+      "resilience"
+    ],
     "origin_author": "Web infrastructure community; formalized in IETF RFC 6585 (2012, HTTP 429 status code)",
     "origin_source": "API Design Patterns (JJ Geewax, 2021, Ch. 17); RESTful Web APIs (Leonard Richardson & Mike Amundsen, 2013, Ch. 11)",
     "origin_source_zh": "《API设计模式》（JJ Geewax，2021，第17章）；《RESTful Web API》（Leonard Richardson & Mike Amundsen，2013，第11章）",
@@ -833,18 +1209,48 @@
       "配额头部：X-RateLimit-Limit、X-RateLimit-Remaining、X-RateLimit-Reset和Retry-After头部向消费者透明传达限流状态"
     ],
     "timeline": [
-      ["2008", "Twitter API introduces rate limiting as one of the first major public APIs to enforce per-client quotas"],
-      ["2012", "IETF publishes RFC 6585 standardizing HTTP 429 Too Many Requests status code"],
-      ["2015", "API gateway products (Kong, AWS API Gateway) include built-in rate limiting as a core feature"],
-      ["2019", "IETF draft for RateLimit header fields standardizes X-RateLimit-* headers across implementations"],
-      ["2023", "AI API providers (OpenAI, Anthropic) make sophisticated rate limiting central to usage-based pricing models"]
+      [
+        "2008",
+        "Twitter API introduces rate limiting as one of the first major public APIs to enforce per-client quotas"
+      ],
+      [
+        "2012",
+        "IETF publishes RFC 6585 standardizing HTTP 429 Too Many Requests status code"
+      ],
+      [
+        "2015",
+        "API gateway products (Kong, AWS API Gateway) include built-in rate limiting as a core feature"
+      ],
+      [
+        "2019",
+        "IETF draft for RateLimit header fields standardizes X-RateLimit-* headers across implementations"
+      ],
+      [
+        "2023",
+        "AI API providers (OpenAI, Anthropic) make sophisticated rate limiting central to usage-based pricing models"
+      ]
     ],
     "timeline_zh": [
-      ["2008", "Twitter API引入限流，成为最早执行每客户端配额的主要公共API之一"],
-      ["2012", "IETF发布RFC 6585，标准化HTTP 429请求过多状态码"],
-      ["2015", "API网关产品（Kong、AWS API Gateway）将内置限流作为核心功能"],
-      ["2019", "IETF关于RateLimit头部字段的草案在各实现间标准化X-RateLimit-*头部"],
-      ["2023", "AI API提供商（OpenAI、Anthropic）将精细化限流作为基于使用量定价模型的核心"]
+      [
+        "2008",
+        "Twitter API引入限流，成为最早执行每客户端配额的主要公共API之一"
+      ],
+      [
+        "2012",
+        "IETF发布RFC 6585，标准化HTTP 429请求过多状态码"
+      ],
+      [
+        "2015",
+        "API网关产品（Kong、AWS API Gateway）将内置限流作为核心功能"
+      ],
+      [
+        "2019",
+        "IETF关于RateLimit头部字段的草案在各实现间标准化X-RateLimit-*头部"
+      ],
+      [
+        "2023",
+        "AI API提供商（OpenAI、Anthropic）将精细化限流作为基于使用量定价模型的核心"
+      ]
     ],
     "dos": [
       "Do return informative 429 responses with Retry-After and rate limit headers because clients need to implement backoff logic based on concrete values",
@@ -885,7 +1291,20 @@
       "实时流式API（WebSocket、SSE），基于连接的限制比基于请求的限制更相关",
       "只有少量已知消费者的早期内部API，限流增加了不必要的运维复杂性"
     ],
-    "adopters": ["GitHub", "Twitter", "Stripe", "OpenAI", "Cloudflare"]
+    "adopters": [
+      "GitHub",
+      "Twitter",
+      "Stripe",
+      "OpenAI",
+      "Cloudflare"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability",
+      "scalability",
+      "security"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 139,
@@ -911,8 +1330,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["openapi-specification", "graphql-schema-design", "consumer-driven-contracts"],
-    "tags": ["hateoas", "hypermedia", "rest", "links", "discoverability"],
+    "related": [
+      "openapi-specification",
+      "graphql-schema-design",
+      "consumer-driven-contracts"
+    ],
+    "tags": [
+      "hateoas",
+      "hypermedia",
+      "rest",
+      "links",
+      "discoverability"
+    ],
     "origin_author": "Roy Fielding, 2000 (as a constraint of REST in his doctoral dissertation)",
     "origin_source": "Architectural Styles and the Design of Network-based Software Architectures (Roy Fielding, 2000, Ch. 5); RESTful Web APIs (Leonard Richardson & Mike Amundsen, 2013, Ch. 4-5)",
     "origin_source_zh": "《架构风格与基于网络的软件架构设计》（Roy Fielding，2000，第5章）；《RESTful Web API》（Leonard Richardson & Mike Amundsen，2013，第4-5章）",
@@ -944,18 +1373,48 @@
       "成熟度第3级：在Richardson的REST成熟度模型中，HATEOAS代表REST合规的最高级别，超越资源和HTTP动词"
     ],
     "timeline": [
-      ["2000", "Roy Fielding defines HATEOAS as a core constraint of REST in his doctoral dissertation at UC Irvine"],
-      ["2008", "Leonard Richardson proposes the REST Maturity Model with HATEOAS as Level 3 (the highest level)"],
-      ["2012", "HAL (Hypertext Application Language) specification by Mike Kelly provides a practical JSON hypermedia format"],
-      ["2015", "JSON:API specification reaches 1.0, offering an opinionated standard for REST APIs with relationship links"],
-      ["2024", "HATEOAS principles influence AI agent tool discovery, where LLMs navigate APIs by following hypermedia links"]
+      [
+        "2000",
+        "Roy Fielding defines HATEOAS as a core constraint of REST in his doctoral dissertation at UC Irvine"
+      ],
+      [
+        "2008",
+        "Leonard Richardson proposes the REST Maturity Model with HATEOAS as Level 3 (the highest level)"
+      ],
+      [
+        "2012",
+        "HAL (Hypertext Application Language) specification by Mike Kelly provides a practical JSON hypermedia format"
+      ],
+      [
+        "2015",
+        "JSON:API specification reaches 1.0, offering an opinionated standard for REST APIs with relationship links"
+      ],
+      [
+        "2024",
+        "HATEOAS principles influence AI agent tool discovery, where LLMs navigate APIs by following hypermedia links"
+      ]
     ],
     "timeline_zh": [
-      ["2000", "Roy Fielding在其加州大学尔湾分校博士论文中定义HATEOAS为REST的核心约束"],
-      ["2008", "Leonard Richardson提出REST成熟度模型，HATEOAS为第3级（最高级别）"],
-      ["2012", "Mike Kelly的HAL（超文本应用语言）规范提供了实用的JSON超媒体格式"],
-      ["2015", "JSON:API规范达到1.0版本，为带关系链接的REST API提供了一种有主见的标准"],
-      ["2024", "HATEOAS原则影响AI代理工具发现，LLM通过跟随超媒体链接来导航API"]
+      [
+        "2000",
+        "Roy Fielding在其加州大学尔湾分校博士论文中定义HATEOAS为REST的核心约束"
+      ],
+      [
+        "2008",
+        "Leonard Richardson提出REST成熟度模型，HATEOAS为第3级（最高级别）"
+      ],
+      [
+        "2012",
+        "Mike Kelly的HAL（超文本应用语言）规范提供了实用的JSON超媒体格式"
+      ],
+      [
+        "2015",
+        "JSON:API规范达到1.0版本，为带关系链接的REST API提供了一种有主见的标准"
+      ],
+      [
+        "2024",
+        "HATEOAS原则影响AI代理工具发现，LLM通过跟随超媒体链接来导航API"
+      ]
     ],
     "dos": [
       "Do include a 'self' link in every resource representation because it provides an unambiguous canonical URL for each resource",
@@ -996,7 +1455,19 @@
       "具有扁平资源结构的简单CRUD API，超媒体导航相比文档化的URL模式不增加价值",
       "移动端或带宽受限的客户端，链接增加的额外负载大小会降低性能"
     ],
-    "adopters": ["PayPal", "Amazon", "GitHub", "Spring HATEOAS", "FoxyCart"]
+    "adopters": [
+      "PayPal",
+      "Amazon",
+      "GitHub",
+      "Spring HATEOAS",
+      "FoxyCart"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "usability",
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 140,
@@ -1022,8 +1493,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["webhook-pattern", "openapi-specification", "grpc-protocol-buffers"],
-    "tags": ["asyncapi", "event-driven", "specification", "messaging", "async"],
+    "related": [
+      "webhook-pattern",
+      "openapi-specification",
+      "grpc-protocol-buffers"
+    ],
+    "tags": [
+      "asyncapi",
+      "event-driven",
+      "specification",
+      "messaging",
+      "async"
+    ],
     "origin_author": "Fran Mendez, 2017",
     "origin_source": "AsyncAPI Specification (asyncapi.com); conceptually extends patterns in Building Microservices (Sam Newman, 2nd ed., 2021, Ch. 4)",
     "origin_source_zh": "AsyncAPI规范（asyncapi.com）；概念上扩展了《构建微服务》（Sam Newman，第2版，2021，第4章）中的模式",
@@ -1055,18 +1536,48 @@
       "代码生成：AsyncAPI Generator从规范生成文档、客户端/服务端代码和模拟代理，类似于REST的OpenAPI工具"
     ],
     "timeline": [
-      ["2017", "Fran Mendez creates AsyncAPI 1.0 to fill the gap of standardized event-driven API documentation"],
-      ["2019", "AsyncAPI 2.0 released with protocol bindings, multiple server support, and improved message schemas"],
-      ["2021", "AsyncAPI Initiative joins the Linux Foundation, gaining industry-wide governance and backing"],
-      ["2023", "AsyncAPI 3.0 released with major redesign: operations decoupled from channels, reply patterns, and improved reusability"],
-      ["2025", "AsyncAPI adoption grows in AI event pipelines for documenting LLM streaming, agent communication, and model inference events"]
+      [
+        "2017",
+        "Fran Mendez creates AsyncAPI 1.0 to fill the gap of standardized event-driven API documentation"
+      ],
+      [
+        "2019",
+        "AsyncAPI 2.0 released with protocol bindings, multiple server support, and improved message schemas"
+      ],
+      [
+        "2021",
+        "AsyncAPI Initiative joins the Linux Foundation, gaining industry-wide governance and backing"
+      ],
+      [
+        "2023",
+        "AsyncAPI 3.0 released with major redesign: operations decoupled from channels, reply patterns, and improved reusability"
+      ],
+      [
+        "2025",
+        "AsyncAPI adoption grows in AI event pipelines for documenting LLM streaming, agent communication, and model inference events"
+      ]
     ],
     "timeline_zh": [
-      ["2017", "Fran Mendez创建AsyncAPI 1.0，填补标准化事件驱动API文档的空白"],
-      ["2019", "AsyncAPI 2.0发布，带来协议绑定、多服务器支持和改进的消息模式"],
-      ["2021", "AsyncAPI倡议加入Linux基金会，获得全行业治理和支持"],
-      ["2023", "AsyncAPI 3.0发布，进行重大重设计：操作与通道解耦、回复模式和改进的可复用性"],
-      ["2025", "AsyncAPI在AI事件管线中的采用增长，用于文档化LLM流式传输、代理通信和模型推理事件"]
+      [
+        "2017",
+        "Fran Mendez创建AsyncAPI 1.0，填补标准化事件驱动API文档的空白"
+      ],
+      [
+        "2019",
+        "AsyncAPI 2.0发布，带来协议绑定、多服务器支持和改进的消息模式"
+      ],
+      [
+        "2021",
+        "AsyncAPI倡议加入Linux基金会，获得全行业治理和支持"
+      ],
+      [
+        "2023",
+        "AsyncAPI 3.0发布，进行重大重设计：操作与通道解耦、回复模式和改进的可复用性"
+      ],
+      [
+        "2025",
+        "AsyncAPI在AI事件管线中的采用增长，用于文档化LLM流式传输、代理通信和模型推理事件"
+      ]
     ],
     "dos": [
       "Do adopt a spec-first approach where the AsyncAPI document is written before implementing producers and consumers because it serves as the team contract",
@@ -1107,6 +1618,18 @@
       "只有单个生产者和消费者的内部服务，直接模式共享更简单",
       "早期原型阶段，事件模式变化太快，维护规范反而产生摩擦"
     ],
-    "adopters": ["Slack", "Adidas", "SAP", "Salesforce", "eBay"]
+    "adopters": [
+      "Slack",
+      "Adidas",
+      "SAP",
+      "Salesforce",
+      "eBay"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "usability",
+      "maintainability"
+    ],
+    "maturity_ring": "emerging"
   }
 ]

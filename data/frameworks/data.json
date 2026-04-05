@@ -23,8 +23,19 @@
     ],
     "ai_relevant": true,
     "viz_type": "matrix",
-    "related": ["domain-driven-design", "microservices-decomposition", "team-topologies", "polyglot-persistence"],
-    "tags": ["data-mesh", "decentralization", "data-products", "domain-ownership", "governance"],
+    "related": [
+      "domain-driven-design",
+      "microservices-decomposition",
+      "team-topologies",
+      "polyglot-persistence"
+    ],
+    "tags": [
+      "data-mesh",
+      "decentralization",
+      "data-products",
+      "domain-ownership",
+      "governance"
+    ],
     "origin_author": "Zhamak Dehghani, 2019",
     "origin_source": "Data Mesh: Delivering Data-Driven Value at Scale (O'Reilly, 2022)",
     "origin_source_zh": "《数据网格：大规模交付数据驱动价值》（O'Reilly，2022）",
@@ -54,16 +65,40 @@
       "联邦式计算治理：通过自动化和平台能力而非集中式守门人来执行全局策略"
     ],
     "timeline": [
-      ["2019", "Zhamak Dehghani publishes 'How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh' at ThoughtWorks"],
-      ["2020", "Data Mesh gains rapid industry adoption; ThoughtWorks Technology Radar features it as a key trend"],
-      ["2022", "Dehghani publishes the definitive O'Reilly book 'Data Mesh' formalizing the four principles"],
-      ["2023", "Major cloud vendors (AWS, GCP, Azure) release data mesh reference architectures and tooling"]
+      [
+        "2019",
+        "Zhamak Dehghani publishes 'How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh' at ThoughtWorks"
+      ],
+      [
+        "2020",
+        "Data Mesh gains rapid industry adoption; ThoughtWorks Technology Radar features it as a key trend"
+      ],
+      [
+        "2022",
+        "Dehghani publishes the definitive O'Reilly book 'Data Mesh' formalizing the four principles"
+      ],
+      [
+        "2023",
+        "Major cloud vendors (AWS, GCP, Azure) release data mesh reference architectures and tooling"
+      ]
     ],
     "timeline_zh": [
-      ["2019", "Zhamak Dehghani 在 ThoughtWorks 发表「如何从单体数据湖走向分布式数据网格」"],
-      ["2020", "数据网格获得行业快速采纳；ThoughtWorks 技术雷达将其列为关键趋势"],
-      ["2022", "Dehghani 出版 O'Reilly 权威著作《数据网格》，正式化四大原则"],
-      ["2023", "主要云厂商（AWS、GCP、Azure）发布数据网格参考架构和工具"]
+      [
+        "2019",
+        "Zhamak Dehghani 在 ThoughtWorks 发表「如何从单体数据湖走向分布式数据网格」"
+      ],
+      [
+        "2020",
+        "数据网格获得行业快速采纳；ThoughtWorks 技术雷达将其列为关键趋势"
+      ],
+      [
+        "2022",
+        "Dehghani 出版 O'Reilly 权威著作《数据网格》，正式化四大原则"
+      ],
+      [
+        "2023",
+        "主要云厂商（AWS、GCP、Azure）发布数据网格参考架构和工具"
+      ]
     ],
     "dos": [
       "Do align data product boundaries with business domain boundaries because misalignment creates confusion about ownership",
@@ -104,7 +139,19 @@
       "当数据量和团队数量足够小、中心化数据团队未成为瓶颈时",
       "法律要求集中控制的高度监管环境"
     ],
-    "adopters": ["Zalando", "JPMorgan Chase", "Netflix", "Intuit", "ThoughtWorks"]
+    "adopters": [
+      "Zalando",
+      "JPMorgan Chase",
+      "Netflix",
+      "Intuit",
+      "ThoughtWorks"
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "scalability",
+      "maintainability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 102,
@@ -130,8 +177,17 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
-    "related": ["kappa-architecture", "stream-processing-patterns", "cap-theorem"],
-    "tags": ["big-data", "batch-processing", "stream-processing", "lambda"],
+    "related": [
+      "kappa-architecture",
+      "stream-processing-patterns",
+      "cap-theorem"
+    ],
+    "tags": [
+      "big-data",
+      "batch-processing",
+      "stream-processing",
+      "lambda"
+    ],
     "origin_author": "Nathan Marz, 2011",
     "origin_source": "Big Data: Principles and Best Practices of Scalable Real-Time Data Systems (Manning, 2015)",
     "origin_source_zh": "《大数据：可扩展实时数据系统的原理与最佳实践》（Manning，2015）",
@@ -161,16 +217,40 @@
       "服务层：合并批处理层和速度层的输出，以兼顾完整性和时效性来响应查询"
     ],
     "timeline": [
-      ["2011", "Nathan Marz introduces the Lambda Architecture concept based on his work at Twitter with Apache Storm"],
-      ["2013", "Lambda Architecture gains wide adoption as Hadoop ecosystem matures and real-time needs grow"],
-      ["2014", "Jay Kreps publishes 'Questioning the Lambda Architecture' proposing Kappa as a simpler alternative"],
-      ["2015", "Marz and Warren publish 'Big Data' (Manning), the definitive reference for Lambda Architecture"]
+      [
+        "2011",
+        "Nathan Marz introduces the Lambda Architecture concept based on his work at Twitter with Apache Storm"
+      ],
+      [
+        "2013",
+        "Lambda Architecture gains wide adoption as Hadoop ecosystem matures and real-time needs grow"
+      ],
+      [
+        "2014",
+        "Jay Kreps publishes 'Questioning the Lambda Architecture' proposing Kappa as a simpler alternative"
+      ],
+      [
+        "2015",
+        "Marz and Warren publish 'Big Data' (Manning), the definitive reference for Lambda Architecture"
+      ]
     ],
     "timeline_zh": [
-      ["2011", "Nathan Marz 基于在Twitter使用Apache Storm的经验提出Lambda架构概念"],
-      ["2013", "随着Hadoop生态系统成熟和实时需求增长，Lambda架构获得广泛采纳"],
-      ["2014", "Jay Kreps 发表「质疑Lambda架构」，提出Kappa作为更简单的替代方案"],
-      ["2015", "Marz和Warren出版《大数据》（Manning），成为Lambda架构的权威参考"]
+      [
+        "2011",
+        "Nathan Marz 基于在Twitter使用Apache Storm的经验提出Lambda架构概念"
+      ],
+      [
+        "2013",
+        "随着Hadoop生态系统成熟和实时需求增长，Lambda架构获得广泛采纳"
+      ],
+      [
+        "2014",
+        "Jay Kreps 发表「质疑Lambda架构」，提出Kappa作为更简单的替代方案"
+      ],
+      [
+        "2015",
+        "Marz和Warren出版《大数据》（Manning），成为Lambda架构的权威参考"
+      ]
     ],
     "dos": [
       "Do keep the master dataset immutable and append-only because it enables full recomputation and error correction",
@@ -211,7 +291,20 @@
       "当团队缺乏维护同步批处理和速度层逻辑的专业知识时",
       "当数据量足够小，简单数据库加增量更新即可满足时"
     ],
-    "adopters": ["Twitter", "LinkedIn", "Yahoo", "Netflix", "Airbnb"]
+    "adopters": [
+      "Twitter",
+      "LinkedIn",
+      "Yahoo",
+      "Netflix",
+      "Airbnb"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "scalability",
+      "performance",
+      "reliability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 103,
@@ -237,8 +330,19 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
-    "related": ["lambda-architecture", "eda", "change-data-capture", "stream-processing-patterns"],
-    "tags": ["streaming", "kappa", "event-log", "real-time", "simplicity"],
+    "related": [
+      "lambda-architecture",
+      "eda",
+      "change-data-capture",
+      "stream-processing-patterns"
+    ],
+    "tags": [
+      "streaming",
+      "kappa",
+      "event-log",
+      "real-time",
+      "simplicity"
+    ],
     "origin_author": "Jay Kreps, 2014",
     "origin_source": "Questioning the Lambda Architecture (O'Reilly blog post, 2014)",
     "origin_source_zh": "「质疑Lambda架构」（O'Reilly博客文章，2014）",
@@ -268,16 +372,40 @@
       "物化视图：流处理结果写入为特定查询模式优化的专用服务存储"
     ],
     "timeline": [
-      ["2011", "Apache Kafka created at LinkedIn establishes the durable replayable log as a core infrastructure primitive"],
-      ["2014", "Jay Kreps publishes 'Questioning the Lambda Architecture' proposing Kappa as a simpler alternative"],
-      ["2017", "Apache Flink matures with exactly-once semantics, making Kappa viable for mission-critical workloads"],
-      ["2020", "Kappa Architecture becomes the default pattern for cloud-native streaming platforms like Confluent and Amazon Kinesis"]
+      [
+        "2011",
+        "Apache Kafka created at LinkedIn establishes the durable replayable log as a core infrastructure primitive"
+      ],
+      [
+        "2014",
+        "Jay Kreps publishes 'Questioning the Lambda Architecture' proposing Kappa as a simpler alternative"
+      ],
+      [
+        "2017",
+        "Apache Flink matures with exactly-once semantics, making Kappa viable for mission-critical workloads"
+      ],
+      [
+        "2020",
+        "Kappa Architecture becomes the default pattern for cloud-native streaming platforms like Confluent and Amazon Kinesis"
+      ]
     ],
     "timeline_zh": [
-      ["2011", "LinkedIn创建的Apache Kafka将持久可重放日志确立为核心基础设施原语"],
-      ["2014", "Jay Kreps发表「质疑Lambda架构」，提出Kappa作为更简单的替代方案"],
-      ["2017", "Apache Flink成熟并支持精确一次语义，使Kappa适用于关键任务工作负载"],
-      ["2020", "Kappa架构成为Confluent和Amazon Kinesis等云原生流平台的默认模式"]
+      [
+        "2011",
+        "LinkedIn创建的Apache Kafka将持久可重放日志确立为核心基础设施原语"
+      ],
+      [
+        "2014",
+        "Jay Kreps发表「质疑Lambda架构」，提出Kappa作为更简单的替代方案"
+      ],
+      [
+        "2017",
+        "Apache Flink成熟并支持精确一次语义，使Kappa适用于关键任务工作负载"
+      ],
+      [
+        "2020",
+        "Kappa架构成为Confluent和Amazon Kinesis等云原生流平台的默认模式"
+      ]
     ],
     "dos": [
       "Do size your event log retention to cover the longest reprocessing window you anticipate because insufficient retention breaks the replay mechanism",
@@ -318,7 +446,20 @@
       "当现有批处理基础设施成熟且团队缺乏流处理专业知识时",
       "当监管要求从源系统定期全量重算而非日志重放时"
     ],
-    "adopters": ["LinkedIn", "Confluent", "Uber", "The New York Times", "Wix"]
+    "adopters": [
+      "LinkedIn",
+      "Confluent",
+      "Uber",
+      "The New York Times",
+      "Wix"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "scalability",
+      "maintainability",
+      "performance"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 104,
@@ -344,8 +485,19 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["kappa-architecture", "lambda-architecture", "eda", "change-data-capture"],
-    "tags": ["streaming", "windowing", "exactly-once", "joins", "watermarks"],
+    "related": [
+      "kappa-architecture",
+      "lambda-architecture",
+      "eda",
+      "change-data-capture"
+    ],
+    "tags": [
+      "streaming",
+      "windowing",
+      "exactly-once",
+      "joins",
+      "watermarks"
+    ],
     "origin_author": "Jay Kreps / Martin Kleppmann, 2014-2017",
     "origin_source": "Designing Data-Intensive Applications, Chapter 11: Stream Processing (O'Reilly, 2017)",
     "origin_source_zh": "《设计数据密集型应用》第11章：流处理（O'Reilly，2017）",
@@ -375,16 +527,40 @@
       "流连接：基于键和时间约束组合两个或多个流，包括流-流窗口连接和流-表丰富连接"
     ],
     "timeline": [
-      ["2011", "Apache Storm pioneers distributed real-time stream processing with at-least-once guarantees"],
-      ["2014", "Apache Flink introduces event-time processing, watermarks, and exactly-once state consistency"],
-      ["2017", "Kleppmann's 'Designing Data-Intensive Applications' codifies stream processing patterns as foundational knowledge"],
-      ["2019", "Kafka Streams and Apache Beam mature as portable stream processing APIs abstracting execution engines"]
+      [
+        "2011",
+        "Apache Storm pioneers distributed real-time stream processing with at-least-once guarantees"
+      ],
+      [
+        "2014",
+        "Apache Flink introduces event-time processing, watermarks, and exactly-once state consistency"
+      ],
+      [
+        "2017",
+        "Kleppmann's 'Designing Data-Intensive Applications' codifies stream processing patterns as foundational knowledge"
+      ],
+      [
+        "2019",
+        "Kafka Streams and Apache Beam mature as portable stream processing APIs abstracting execution engines"
+      ]
     ],
     "timeline_zh": [
-      ["2011", "Apache Storm以至少一次保证开创分布式实时流处理"],
-      ["2014", "Apache Flink引入事件时间处理、水印和精确一次状态一致性"],
-      ["2017", "Kleppmann的《设计数据密集型应用》将流处理模式编纂为基础知识"],
-      ["2019", "Kafka Streams和Apache Beam作为抽象执行引擎的可移植流处理API走向成熟"]
+      [
+        "2011",
+        "Apache Storm以至少一次保证开创分布式实时流处理"
+      ],
+      [
+        "2014",
+        "Apache Flink引入事件时间处理、水印和精确一次状态一致性"
+      ],
+      [
+        "2017",
+        "Kleppmann的《设计数据密集型应用》将流处理模式编纂为基础知识"
+      ],
+      [
+        "2019",
+        "Kafka Streams和Apache Beam作为抽象执行引擎的可移植流处理API走向成熟"
+      ]
     ],
     "dos": [
       "Do choose event-time semantics over processing-time when correctness matters because processing-time windows produce non-deterministic results",
@@ -425,7 +601,20 @@
       "当团队缺乏分布式流处理专业知识且学习曲线过陡时",
       "当数据源不提供事件时间戳且无法建立事件时间语义时"
     ],
-    "adopters": ["Uber", "Alibaba", "Netflix", "Spotify", "ING Bank"]
+    "adopters": [
+      "Uber",
+      "Alibaba",
+      "Netflix",
+      "Spotify",
+      "ING Bank"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "performance",
+      "scalability",
+      "reliability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 105,
@@ -451,8 +640,19 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["kappa-architecture", "stream-processing-patterns", "saga-pattern", "eda"],
-    "tags": ["cdc", "replication", "event-streams", "debezium", "database"],
+    "related": [
+      "kappa-architecture",
+      "stream-processing-patterns",
+      "saga-pattern",
+      "eda"
+    ],
+    "tags": [
+      "cdc",
+      "replication",
+      "event-streams",
+      "debezium",
+      "database"
+    ],
     "origin_author": "Database community / Popularized by Debezium (Red Hat), 2015",
     "origin_source": "Designing Data-Intensive Applications, Chapter 11: Stream Processing (O'Reilly, 2017)",
     "origin_source_zh": "《设计数据密集型应用》第11章：流处理（O'Reilly，2017）",
@@ -482,16 +682,40 @@
       "快照加流式：先对现有数据执行全量快照，然后切换到流式增量变更"
     ],
     "timeline": [
-      ["2012", "LinkedIn develops Databus, one of the first open-source CDC systems for Oracle and MySQL"],
-      ["2015", "Debezium project launches at Red Hat, providing log-based CDC connectors for Kafka Connect"],
-      ["2017", "Kleppmann's 'Designing Data-Intensive Applications' establishes CDC as a core data architecture pattern"],
-      ["2021", "CDC becomes a standard feature in cloud databases (AWS DMS, Azure CDC, GCP Datastream)"]
+      [
+        "2012",
+        "LinkedIn develops Databus, one of the first open-source CDC systems for Oracle and MySQL"
+      ],
+      [
+        "2015",
+        "Debezium project launches at Red Hat, providing log-based CDC connectors for Kafka Connect"
+      ],
+      [
+        "2017",
+        "Kleppmann's 'Designing Data-Intensive Applications' establishes CDC as a core data architecture pattern"
+      ],
+      [
+        "2021",
+        "CDC becomes a standard feature in cloud databases (AWS DMS, Azure CDC, GCP Datastream)"
+      ]
     ],
     "timeline_zh": [
-      ["2012", "LinkedIn开发Databus，首批支持Oracle和MySQL的开源CDC系统之一"],
-      ["2015", "Debezium项目在Red Hat启动，为Kafka Connect提供基于日志的CDC连接器"],
-      ["2017", "Kleppmann的《设计数据密集型应用》将CDC确立为核心数据架构模式"],
-      ["2021", "CDC成为云数据库标准特性（AWS DMS、Azure CDC、GCP Datastream）"]
+      [
+        "2012",
+        "LinkedIn开发Databus，首批支持Oracle和MySQL的开源CDC系统之一"
+      ],
+      [
+        "2015",
+        "Debezium项目在Red Hat启动，为Kafka Connect提供基于日志的CDC连接器"
+      ],
+      [
+        "2017",
+        "Kleppmann的《设计数据密集型应用》将CDC确立为核心数据架构模式"
+      ],
+      [
+        "2021",
+        "CDC成为云数据库标准特性（AWS DMS、Azure CDC、GCP Datastream）"
+      ]
     ],
     "dos": [
       "Do use log-based CDC over trigger-based or polling approaches because log reading has minimal impact on source database performance",
@@ -532,7 +756,19 @@
       "当目标系统可以直接查询源数据库而无需单独副本时",
       "当合规规则因敏感数据暴露问题而禁止读取数据库事务日志时"
     ],
-    "adopters": ["Shopify", "Airbnb", "Zalando", "WePay", "Convoy"]
+    "adopters": [
+      "Shopify",
+      "Airbnb",
+      "Zalando",
+      "WePay",
+      "Convoy"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "scalability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 106,
@@ -558,8 +794,19 @@
     ],
     "ai_relevant": true,
     "viz_type": "pyramid",
-    "related": ["star-schema", "data-mesh", "data-vault-2", "feature-store-pattern"],
-    "tags": ["lakehouse", "delta-lake", "iceberg", "unified-analytics", "data-warehouse"],
+    "related": [
+      "star-schema",
+      "data-mesh",
+      "data-vault-2",
+      "feature-store-pattern"
+    ],
+    "tags": [
+      "lakehouse",
+      "delta-lake",
+      "iceberg",
+      "unified-analytics",
+      "data-warehouse"
+    ],
     "origin_author": "Databricks (Armbrust, Ghodsi, Zaharia et al.), 2020",
     "origin_source": "Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics (CIDR 2021)",
     "origin_source_zh": "《湖仓：统一数据仓库与高级分析的新一代开放平台》（CIDR 2021）",
@@ -589,16 +836,40 @@
       "统一治理：单一目录和权限模型治理对相同物理数据的分析和ML访问"
     ],
     "timeline": [
-      ["2017", "Databricks releases Delta Lake as an open-source transactional storage layer on Apache Spark"],
-      ["2020", "Databricks publishes the 'Lakehouse' vision paper unifying lake and warehouse paradigms"],
-      ["2021", "Apache Iceberg gains momentum as a vendor-neutral alternative; Netflix, Apple, and LinkedIn adopt it"],
-      ["2023", "Major cloud vendors offer managed lakehouse services; open table format wars drive rapid innovation"]
+      [
+        "2017",
+        "Databricks releases Delta Lake as an open-source transactional storage layer on Apache Spark"
+      ],
+      [
+        "2020",
+        "Databricks publishes the 'Lakehouse' vision paper unifying lake and warehouse paradigms"
+      ],
+      [
+        "2021",
+        "Apache Iceberg gains momentum as a vendor-neutral alternative; Netflix, Apple, and LinkedIn adopt it"
+      ],
+      [
+        "2023",
+        "Major cloud vendors offer managed lakehouse services; open table format wars drive rapid innovation"
+      ]
     ],
     "timeline_zh": [
-      ["2017", "Databricks在Apache Spark上发布开源事务存储层Delta Lake"],
-      ["2020", "Databricks发表「湖仓」愿景论文，统一数据湖和仓库范式"],
-      ["2021", "Apache Iceberg作为供应商中立替代方案获得动力；Netflix、Apple和LinkedIn采纳"],
-      ["2023", "主要云厂商提供托管湖仓服务；开放表格式竞争推动快速创新"]
+      [
+        "2017",
+        "Databricks在Apache Spark上发布开源事务存储层Delta Lake"
+      ],
+      [
+        "2020",
+        "Databricks发表「湖仓」愿景论文，统一数据湖和仓库范式"
+      ],
+      [
+        "2021",
+        "Apache Iceberg作为供应商中立替代方案获得动力；Netflix、Apple和LinkedIn采纳"
+      ],
+      [
+        "2023",
+        "主要云厂商提供托管湖仓服务；开放表格式竞争推动快速创新"
+      ]
     ],
     "dos": [
       "Do choose an open table format (Iceberg, Delta, Hudi) to avoid vendor lock-in because the format is the foundation of your lakehouse",
@@ -639,7 +910,20 @@
       "当需要亚秒级实时查询延迟且专用OLAP数据库优于湖仓查询引擎时",
       "当组织成熟度不足以支撑分别管理对象存储、表格式和计算引擎的运维开销时"
     ],
-    "adopters": ["Databricks", "Netflix", "Apple", "CERN", "Comcast"]
+    "adopters": [
+      "Databricks",
+      "Netflix",
+      "Apple",
+      "CERN",
+      "Comcast"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "scalability",
+      "performance",
+      "maintainability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 107,
@@ -665,8 +949,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "tree",
-    "related": ["data-vault-2", "data-lakehouse", "polyglot-persistence"],
-    "tags": ["dimensional-modeling", "star-schema", "kimball", "analytics", "data-warehouse"],
+    "related": [
+      "data-vault-2",
+      "data-lakehouse",
+      "polyglot-persistence"
+    ],
+    "tags": [
+      "dimensional-modeling",
+      "star-schema",
+      "kimball",
+      "analytics",
+      "data-warehouse"
+    ],
     "origin_author": "Ralph Kimball, 1996",
     "origin_source": "The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling (Wiley, 1996; 3rd edition 2013)",
     "origin_source_zh": "《数据仓库工具箱：维度建模权威指南》（Wiley，1996；第三版2013）",
@@ -696,16 +990,40 @@
       "缓慢变化维度：追踪维度属性随时间变化的策略（类型1、2、3），同时保持历史准确性"
     ],
     "timeline": [
-      ["1996", "Ralph Kimball publishes 'The Data Warehouse Toolkit' establishing dimensional modeling as the standard approach"],
-      ["2002", "Kimball and Ross release 'The Data Warehouse ETL Toolkit' formalizing star schema loading patterns"],
-      ["2013", "Third edition of 'The Data Warehouse Toolkit' updates techniques for modern columnar databases and cloud platforms"],
-      ["2020", "Star schema remains the dominant BI modeling pattern even as lakehouse architectures emerge"]
+      [
+        "1996",
+        "Ralph Kimball publishes 'The Data Warehouse Toolkit' establishing dimensional modeling as the standard approach"
+      ],
+      [
+        "2002",
+        "Kimball and Ross release 'The Data Warehouse ETL Toolkit' formalizing star schema loading patterns"
+      ],
+      [
+        "2013",
+        "Third edition of 'The Data Warehouse Toolkit' updates techniques for modern columnar databases and cloud platforms"
+      ],
+      [
+        "2020",
+        "Star schema remains the dominant BI modeling pattern even as lakehouse architectures emerge"
+      ]
     ],
     "timeline_zh": [
-      ["1996", "Ralph Kimball出版《数据仓库工具箱》，确立维度建模为标准方法"],
-      ["2002", "Kimball和Ross发布《数据仓库ETL工具箱》，正式化星型模式加载模式"],
-      ["2013", "《数据仓库工具箱》第三版为现代列式数据库和云平台更新技术"],
-      ["2020", "即使湖仓架构兴起，星型模式仍是主导的BI建模模式"]
+      [
+        "1996",
+        "Ralph Kimball出版《数据仓库工具箱》，确立维度建模为标准方法"
+      ],
+      [
+        "2002",
+        "Kimball和Ross发布《数据仓库ETL工具箱》，正式化星型模式加载模式"
+      ],
+      [
+        "2013",
+        "《数据仓库工具箱》第三版为现代列式数据库和云平台更新技术"
+      ],
+      [
+        "2020",
+        "即使湖仓架构兴起，星型模式仍是主导的BI建模模式"
+      ]
     ],
     "dos": [
       "Do declare the grain of every fact table explicitly because ambiguous grain leads to incorrect aggregations and double-counting",
@@ -746,7 +1064,19 @@
       "当需要模式灵活性且数据结构频繁变化时（考虑读时模式方法）",
       "当需要实时流分析且预聚合物化视图更合适时"
     ],
-    "adopters": ["Walmart", "Amazon", "Target", "Netflix", "Airbnb"]
+    "adopters": [
+      "Walmart",
+      "Amazon",
+      "Target",
+      "Netflix",
+      "Airbnb"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "performance",
+      "usability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 108,
@@ -772,8 +1102,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "tree",
-    "related": ["star-schema", "data-lakehouse", "data-mesh", "database-migration-patterns"],
-    "tags": ["data-vault", "agile-warehouse", "auditability", "hub-link-satellite"],
+    "related": [
+      "star-schema",
+      "data-lakehouse",
+      "data-mesh",
+      "database-migration-patterns"
+    ],
+    "tags": [
+      "data-vault",
+      "agile-warehouse",
+      "auditability",
+      "hub-link-satellite"
+    ],
     "origin_author": "Dan Linstedt, 2000 (formalized as 2.0 in 2013)",
     "origin_source": "Building a Scalable Data Warehouse with Data Vault 2.0 (Morgan Kaufmann, 2015)",
     "origin_source_zh": "《使用Data Vault 2.0构建可扩展数据仓库》（Morgan Kaufmann，2015）",
@@ -803,16 +1143,40 @@
       "仅插入加载：原始库中所有数据仅追加，不更新或删除，确保完整的可审计性和可重现性"
     ],
     "timeline": [
-      ["2000", "Dan Linstedt introduces the original Data Vault modeling methodology"],
-      ["2013", "Data Vault 2.0 formalized with hash keys, pattern-based loading, and NoSQL support"],
-      ["2015", "Linstedt publishes 'Building a Scalable Data Warehouse with Data Vault 2.0' as the definitive guide"],
-      ["2020", "Data Vault 2.0 gains renewed interest as cloud data warehouses (Snowflake, BigQuery) make its patterns more performant"]
+      [
+        "2000",
+        "Dan Linstedt introduces the original Data Vault modeling methodology"
+      ],
+      [
+        "2013",
+        "Data Vault 2.0 formalized with hash keys, pattern-based loading, and NoSQL support"
+      ],
+      [
+        "2015",
+        "Linstedt publishes 'Building a Scalable Data Warehouse with Data Vault 2.0' as the definitive guide"
+      ],
+      [
+        "2020",
+        "Data Vault 2.0 gains renewed interest as cloud data warehouses (Snowflake, BigQuery) make its patterns more performant"
+      ]
     ],
     "timeline_zh": [
-      ["2000", "Dan Linstedt引入最初的Data Vault建模方法论"],
-      ["2013", "Data Vault 2.0通过哈希键、基于模式的加载和NoSQL支持正式化"],
-      ["2015", "Linstedt出版《使用Data Vault 2.0构建可扩展数据仓库》作为权威指南"],
-      ["2020", "随着云数据仓库（Snowflake、BigQuery）提升其模式性能，Data Vault 2.0获得新的关注"]
+      [
+        "2000",
+        "Dan Linstedt引入最初的Data Vault建模方法论"
+      ],
+      [
+        "2013",
+        "Data Vault 2.0通过哈希键、基于模式的加载和NoSQL支持正式化"
+      ],
+      [
+        "2015",
+        "Linstedt出版《使用Data Vault 2.0构建可扩展数据仓库》作为权威指南"
+      ],
+      [
+        "2020",
+        "随着云数据仓库（Snowflake、BigQuery）提升其模式性能，Data Vault 2.0获得新的关注"
+      ]
     ],
     "dos": [
       "Do use hash keys for hub and link primary keys because they enable parallel loading and deterministic key generation across distributed systems",
@@ -853,7 +1217,20 @@
       "当实时分析是主要用例且多层架构增加不可接受的延迟时",
       "当数据量较小且从源直接加载的简单星型模式即可满足时"
     ],
-    "adopters": ["ING Bank", "Pfizer", "USAA", "DirectTV", "Department of Defense (US)"]
+    "adopters": [
+      "ING Bank",
+      "Pfizer",
+      "USAA",
+      "DirectTV",
+      "Department of Defense (US)"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "scalability",
+      "maintainability",
+      "reliability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 109,
@@ -879,8 +1256,19 @@
     ],
     "ai_relevant": true,
     "viz_type": "matrix",
-    "related": ["microservices-decomposition", "data-mesh", "cap-theorem", "change-data-capture"],
-    "tags": ["polyglot", "database", "persistence", "microservices", "data-access"],
+    "related": [
+      "microservices-decomposition",
+      "data-mesh",
+      "cap-theorem",
+      "change-data-capture"
+    ],
+    "tags": [
+      "polyglot",
+      "database",
+      "persistence",
+      "microservices",
+      "data-access"
+    ],
     "origin_author": "Martin Fowler / Pramod Sadalage, 2011",
     "origin_source": "Polyglot Persistence (martinfowler.com blog, 2011); NoSQL Distilled (Addison-Wesley, 2012)",
     "origin_source_zh": "「多语言持久化」（martinfowler.com博客，2011）；《NoSQL精粹》（Addison-Wesley，2012）",
@@ -910,16 +1298,40 @@
       "运维复杂性权衡：以管理多种数据库技术、备份策略和运维手册的成本换取性能和建模优势"
     ],
     "timeline": [
-      ["2009", "NoSQL movement gains momentum with MongoDB, Cassandra, and Redis challenging relational database hegemony"],
-      ["2011", "Martin Fowler coins 'Polyglot Persistence' and publishes the influential blog post on choosing databases per use case"],
-      ["2012", "Fowler and Sadalage publish 'NoSQL Distilled' providing a systematic framework for database technology selection"],
-      ["2018", "Managed cloud database services (DynamoDB, CosmosDB, Cloud Spanner) lower the operational barrier to polyglot persistence"]
+      [
+        "2009",
+        "NoSQL movement gains momentum with MongoDB, Cassandra, and Redis challenging relational database hegemony"
+      ],
+      [
+        "2011",
+        "Martin Fowler coins 'Polyglot Persistence' and publishes the influential blog post on choosing databases per use case"
+      ],
+      [
+        "2012",
+        "Fowler and Sadalage publish 'NoSQL Distilled' providing a systematic framework for database technology selection"
+      ],
+      [
+        "2018",
+        "Managed cloud database services (DynamoDB, CosmosDB, Cloud Spanner) lower the operational barrier to polyglot persistence"
+      ]
     ],
     "timeline_zh": [
-      ["2009", "NoSQL运动随MongoDB、Cassandra和Redis挑战关系数据库霸权而获得动力"],
-      ["2011", "Martin Fowler创造「多语言持久化」术语并发表按用例选择数据库的有影响力博客文章"],
-      ["2012", "Fowler和Sadalage出版《NoSQL精粹》，提供数据库技术选择的系统框架"],
-      ["2018", "托管云数据库服务（DynamoDB、CosmosDB、Cloud Spanner）降低了多语言持久化的运维门槛"]
+      [
+        "2009",
+        "NoSQL运动随MongoDB、Cassandra和Redis挑战关系数据库霸权而获得动力"
+      ],
+      [
+        "2011",
+        "Martin Fowler创造「多语言持久化」术语并发表按用例选择数据库的有影响力博客文章"
+      ],
+      [
+        "2012",
+        "Fowler和Sadalage出版《NoSQL精粹》，提供数据库技术选择的系统框架"
+      ],
+      [
+        "2018",
+        "托管云数据库服务（DynamoDB、CosmosDB、Cloud Spanner）降低了多语言持久化的运维门槛"
+      ]
     ],
     "dos": [
       "Do choose databases based on data access patterns, not technology hype because the wrong database for a workload creates more problems than it solves",
@@ -960,7 +1372,19 @@
       "当需要跨所有数据的强事务一致性且分布式事务过于复杂时",
       "当监管要求为所有组织数据使用单一可审计的数据存储时"
     ],
-    "adopters": ["Netflix", "Amazon", "Spotify", "LinkedIn", "eBay"]
+    "adopters": [
+      "Netflix",
+      "Amazon",
+      "Spotify",
+      "LinkedIn",
+      "eBay"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "performance",
+      "scalability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 110,
@@ -986,8 +1410,19 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["mlops", "data-lakehouse", "data-mesh", "stream-processing-patterns"],
-    "tags": ["feature-store", "ml-features", "training-serving", "mlops", "data-management"],
+    "related": [
+      "mlops",
+      "data-lakehouse",
+      "data-mesh",
+      "stream-processing-patterns"
+    ],
+    "tags": [
+      "feature-store",
+      "ml-features",
+      "training-serving",
+      "mlops",
+      "data-management"
+    ],
     "origin_author": "Uber Michelangelo team (Hermann, Del Balso et al.), 2017",
     "origin_source": "Meet Michelangelo: Uber's Machine Learning Platform (Uber Engineering Blog, 2017)",
     "origin_source_zh": "「认识Michelangelo：Uber的机器学习平台」（Uber工程博客，2017）",
@@ -1017,16 +1452,40 @@
       "时间点正确性：训练数据集的特征按事件时间戳计算，防止数据泄露并确保时间有效性"
     ],
     "timeline": [
-      ["2017", "Uber introduces Michelangelo with the first production-scale feature store for ML feature management"],
-      ["2019", "Feast (Google/Gojek) launches as the first open-source feature store; Hopsworks and Tecton follow"],
-      ["2021", "Feature stores become a standard component in ML platforms; AWS SageMaker and Databricks add feature store services"],
-      ["2023", "Feature stores evolve to support real-time features, streaming transformations, and LLM embedding management"]
+      [
+        "2017",
+        "Uber introduces Michelangelo with the first production-scale feature store for ML feature management"
+      ],
+      [
+        "2019",
+        "Feast (Google/Gojek) launches as the first open-source feature store; Hopsworks and Tecton follow"
+      ],
+      [
+        "2021",
+        "Feature stores become a standard component in ML platforms; AWS SageMaker and Databricks add feature store services"
+      ],
+      [
+        "2023",
+        "Feature stores evolve to support real-time features, streaming transformations, and LLM embedding management"
+      ]
     ],
     "timeline_zh": [
-      ["2017", "Uber推出Michelangelo，首个生产规模的ML特征管理特征存储"],
-      ["2019", "Feast（Google/Gojek）作为首个开源特征存储发布；Hopsworks和Tecton紧随其后"],
-      ["2021", "特征存储成为ML平台的标准组件；AWS SageMaker和Databricks添加特征存储服务"],
-      ["2023", "特征存储演进以支持实时特征、流式转换和LLM嵌入管理"]
+      [
+        "2017",
+        "Uber推出Michelangelo，首个生产规模的ML特征管理特征存储"
+      ],
+      [
+        "2019",
+        "Feast（Google/Gojek）作为首个开源特征存储发布；Hopsworks和Tecton紧随其后"
+      ],
+      [
+        "2021",
+        "特征存储成为ML平台的标准组件；AWS SageMaker和Databricks添加特征存储服务"
+      ],
+      [
+        "2023",
+        "特征存储演进以支持实时特征、流式转换和LLM嵌入管理"
+      ]
     ],
     "dos": [
       "Do enforce point-in-time correctness when generating training datasets because temporal data leakage silently corrupts model quality",
@@ -1067,6 +1526,19 @@
       "当组织处于ML早期采纳阶段且通过版本控制脚本的简单特征管理即可满足时",
       "当模型不需要实时服务且使用离线特征的批量预测满足所有要求时"
     ],
-    "adopters": ["Uber", "Airbnb", "Spotify", "Doordash", "Gojek"]
+    "adopters": [
+      "Uber",
+      "Airbnb",
+      "Spotify",
+      "Doordash",
+      "Gojek"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "scalability",
+      "maintainability"
+    ],
+    "maturity_ring": "emerging"
   }
 ]

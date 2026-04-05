@@ -98,6 +98,28 @@
   color: var(--bg);
 }
 
+.advancedFilters {
+  border-top: 1px solid var(--border);
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filterToggle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #999;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.filterToggle:hover {
+  color: var(--text);
+}
+
 .empty {
   text-align: center;
   padding: 64px 16px;

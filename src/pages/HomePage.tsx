@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useMemo, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import type { CategoryKey, Framework } from '../types'
 import { getAllFrameworks, getFrameworksByCategory, getRelatedFrameworks } from '../data/loader'
@@ -9,6 +9,7 @@ import { useKeyboard } from '../hooks/useKeyboard'
 import { useI18n } from '../i18n'
 import SearchBar from '../components/SearchBar'
 import CategoryFilter from '../components/CategoryFilter'
+import DimensionFilter from '../components/DimensionFilter'
 import Favorites from '../components/Favorites'
 import CardGrid from '../components/CardGrid'
 import Modal from '../components/Modal'
@@ -18,15 +19,58 @@ export default function HomePage() {
   const { t } = useI18n()
   const [activeCategory, setActiveCategory] = useState<CategoryKey | null>(null)
   const [modalIndex, setModalIndex] = useState<number | null>(null)
+  const [showAdvanced, setShowAdvanced] = useState(false)
+  const [absFilter, setAbsFilter] = useState<string[]>([])
+  const [matFilter, setMatFilter] = useState<string[]>([])
+  const [qualFilter, setQualFilter] = useState<string[]>([])
   const searchRef = useRef<HTMLInputElement>(null)
+
+  // Dimension filter options
+  const abstractionOptions = useMemo(() => [
+    { key: 'code', label: t.abstractionCode },
+    { key: 'component', label: t.abstractionComponent },
+    { key: 'system', label: t.abstractionSystem },
+    { key: 'organization', label: t.abstractionOrganization },
+  ], [t])
+
+  const maturityOptions = useMemo(() => [
+    { key: 'foundational', label: t.maturityFoundational },
+    { key: 'established', label: t.maturityEstablished },
+    { key: 'emerging', label: t.maturityEmerging },
+    { key: 'experimental', label: t.maturityExperimental },
+  ], [t])
+
+  const qualityOptions = useMemo(() => [
+    { key: 'reliability', label: t.qualityReliability },
+    { key: 'security', label: t.qualitySecurity },
+    { key: 'performance', label: t.qualityPerformance },
+    { key: 'maintainability', label: t.qualityMaintainability },
+    { key: 'scalability', label: t.qualityScalability },
+    { key: 'usability', label: t.qualityUsability },
+    { key: 'testability', label: t.qualityTestability },
+    { key: 'observability', label: t.qualityObservability },
+    { key: 'portability', label: t.qualityPortability },
+  ], [t])
 
   // Get frameworks by category
   const byCategory = activeCategory
     ? getFrameworksByCategory(activeCategory)
     : getAllFrameworks()
 
-  // Search within category
-  const { query, setQuery, filtered } = useSearch(byCategory)
+  // Filter chain: category -> abstraction -> maturity -> quality
+  const dimensionFiltered = useMemo(() => {
+    let result = byCategory
+    if (absFilter.length > 0)
+      result = result.filter(f => absFilter.includes(f.abstraction_level ?? ''))
+    if (matFilter.length > 0)
+      result = result.filter(f => matFilter.includes(f.maturity_ring ?? ''))
+    if (qualFilter.length > 0)
+      result = result.filter(f => f.quality_concerns?.some(q => qualFilter.includes(q)) ?? false)
+    return result
+  }, [byCategory, absFilter, matFilter, qualFilter])
+
+  // Search within filtered results
+  const { query, setQuery, filtered } = useSearch(dimensionFiltered)
 
   // Favorites
   const { favorites, toggleFavorite } = useFavorites()
@@ -104,9 +148,37 @@ export default function HomePage() {
         <span className={styles.count}>
           {t.showingXofY.replace('{shown}', String(filtered.length)).replace('{total}', String(allFrameworks.length))}
         </span>
+        <button
+          className={styles.filterToggle}
+          onClick={() => setShowAdvanced(prev => !prev)}
+        >
+          Filters {showAdvanced ? '\u25b4' : '\u25be'}
+        </button>
         <Link to="/map" className={styles.mapLink}>
           {t.map}
         </Link>
+        {showAdvanced && (
+          <div className={styles.advancedFilters}>
+            <DimensionFilter
+              label={t.filterAbstraction}
+              options={abstractionOptions}
+              active={absFilter}
+              onChange={setAbsFilter}
+            />
+            <DimensionFilter
+              label={t.filterMaturity}
+              options={maturityOptions}
+              active={matFilter}
+              onChange={setMatFilter}
+            />
+            <DimensionFilter
+              label={t.filterQuality}
+              options={qualityOptions}
+              active={qualFilter}
+              onChange={setQualFilter}
+            />
+          </div>
+        )}
       </div>
 
       {/* Favorites section */}

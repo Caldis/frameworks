@@ -23,8 +23,17 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
-    "related": ["cap-theorem", "leader-election", "two-phase-commit"],
-    "tags": ["consensus", "replication", "fault-tolerance", "distributed-state"],
+    "related": [
+      "cap-theorem",
+      "leader-election",
+      "two-phase-commit"
+    ],
+    "tags": [
+      "consensus",
+      "replication",
+      "fault-tolerance",
+      "distributed-state"
+    ],
     "origin_author": "Leslie Lamport (Paxos, 1998); Diego Ongaro & John Ousterhout (Raft, 2014)",
     "origin_source": "The Part-Time Parliament (ACM TOCS 1998); In Search of an Understandable Consensus Algorithm (USENIX ATC 2014); Kleppmann, Designing Data-Intensive Applications, Ch. 9",
     "origin_source_zh": "《兼职议会》（ACM TOCS 1998）；《寻找一种可理解的共识算法》（USENIX ATC 2014）；Kleppmann《数据密集型应用系统设计》第9章",
@@ -56,18 +65,48 @@
       "活性：只要多数节点可达且能通信，系统最终会选出领导者并继续处理请求"
     ],
     "timeline": [
-      ["1989", "Leslie Lamport writes the original Paxos paper using the metaphor of a Greek parliament"],
-      ["1998", "The Part-Time Parliament is finally published in ACM Transactions on Computer Systems"],
-      ["2001", "Lamport publishes Paxos Made Simple to make the algorithm more accessible"],
-      ["2014", "Diego Ongaro and John Ousterhout publish Raft as a more understandable alternative to Paxos"],
-      ["2017", "Kleppmann's DDIA synthesizes consensus protocols in the context of modern data systems"]
+      [
+        "1989",
+        "Leslie Lamport writes the original Paxos paper using the metaphor of a Greek parliament"
+      ],
+      [
+        "1998",
+        "The Part-Time Parliament is finally published in ACM Transactions on Computer Systems"
+      ],
+      [
+        "2001",
+        "Lamport publishes Paxos Made Simple to make the algorithm more accessible"
+      ],
+      [
+        "2014",
+        "Diego Ongaro and John Ousterhout publish Raft as a more understandable alternative to Paxos"
+      ],
+      [
+        "2017",
+        "Kleppmann's DDIA synthesizes consensus protocols in the context of modern data systems"
+      ]
     ],
     "timeline_zh": [
-      ["1989", "Leslie Lamport使用希腊议会的比喻撰写了最初的Paxos论文"],
-      ["1998", "《兼职议会》最终发表在ACM计算机系统汇刊上"],
-      ["2001", "Lamport发表《Paxos Made Simple》使算法更易理解"],
-      ["2014", "Diego Ongaro和John Ousterhout发表Raft作为比Paxos更易理解的替代方案"],
-      ["2017", "Kleppmann的《数据密集型应用系统设计》在现代数据系统背景下综合介绍共识协议"]
+      [
+        "1989",
+        "Leslie Lamport使用希腊议会的比喻撰写了最初的Paxos论文"
+      ],
+      [
+        "1998",
+        "《兼职议会》最终发表在ACM计算机系统汇刊上"
+      ],
+      [
+        "2001",
+        "Lamport发表《Paxos Made Simple》使算法更易理解"
+      ],
+      [
+        "2014",
+        "Diego Ongaro和John Ousterhout发表Raft作为比Paxos更易理解的替代方案"
+      ],
+      [
+        "2017",
+        "Kleppmann的《数据密集型应用系统设计》在现代数据系统背景下综合介绍共识协议"
+      ]
     ],
     "dos": [
       "Do deploy an odd number of nodes (3, 5, 7) because even numbers increase the chance of split votes without improving fault tolerance",
@@ -106,7 +145,19 @@
       "没有复制需求的单节点或嵌入式系统",
       "网络分区期间可用性比一致性更重要的系统，应改用AP设计"
     ],
-    "adopters": ["etcd/Kubernetes", "CockroachDB", "TiKV/TiDB", "Consul (HashiCorp)", "Apache ZooKeeper (ZAB)"]
+    "adopters": [
+      "etcd/Kubernetes",
+      "CockroachDB",
+      "TiKV/TiDB",
+      "Consul (HashiCorp)",
+      "Apache ZooKeeper (ZAB)"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "scalability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 122,
@@ -132,8 +183,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
-    "related": ["cap-theorem", "consensus-protocols", "cqrs-pattern", "saga-pattern"],
-    "tags": ["consistency", "availability", "replication", "conflict-resolution"],
+    "related": [
+      "cap-theorem",
+      "consensus-protocols",
+      "cqrs-pattern",
+      "saga-pattern"
+    ],
+    "tags": [
+      "consistency",
+      "availability",
+      "replication",
+      "conflict-resolution"
+    ],
     "origin_author": "Werner Vogels, 2008",
     "origin_source": "Eventually Consistent (ACM Queue, 2008); Kleppmann, Designing Data-Intensive Applications, Ch. 5 & 9; Vogels, Amazon's Dynamo paper (SOSP 2007)",
     "origin_source_zh": "《最终一致性》（ACM Queue 2008）；Kleppmann《数据密集型应用系统设计》第5章和第9章；Vogels，Amazon Dynamo论文（SOSP 2007）",
@@ -165,18 +226,48 @@
       "可调一致性：Cassandra等系统允许按查询设置一致性级别（ONE、QUORUM、ALL），逐操作平衡延迟与一致性"
     ],
     "timeline": [
-      ["1978", "Lamport defines happens-before relation, laying groundwork for reasoning about consistency in distributed systems"],
-      ["2007", "Amazon publishes the Dynamo paper at SOSP, demonstrating eventual consistency at massive scale with sloppy quorums"],
-      ["2008", "Werner Vogels publishes 'Eventually Consistent' in ACM Queue, formalizing the consistency spectrum"],
-      ["2011", "CRDTs (Conflict-free Replicated Data Types) formalized by Shapiro et al., enabling automatic conflict resolution"],
-      ["2017", "Kleppmann's DDIA provides a comprehensive synthesis of consistency models and their trade-offs for practitioners"]
+      [
+        "1978",
+        "Lamport defines happens-before relation, laying groundwork for reasoning about consistency in distributed systems"
+      ],
+      [
+        "2007",
+        "Amazon publishes the Dynamo paper at SOSP, demonstrating eventual consistency at massive scale with sloppy quorums"
+      ],
+      [
+        "2008",
+        "Werner Vogels publishes 'Eventually Consistent' in ACM Queue, formalizing the consistency spectrum"
+      ],
+      [
+        "2011",
+        "CRDTs (Conflict-free Replicated Data Types) formalized by Shapiro et al., enabling automatic conflict resolution"
+      ],
+      [
+        "2017",
+        "Kleppmann's DDIA provides a comprehensive synthesis of consistency models and their trade-offs for practitioners"
+      ]
     ],
     "timeline_zh": [
-      ["1978", "Lamport定义先发生关系，奠定分布式系统中推理一致性的基础"],
-      ["2007", "Amazon在SOSP发表Dynamo论文，展示使用松散法定人数实现大规模最终一致性"],
-      ["2008", "Werner Vogels在ACM Queue发表「最终一致性」，形式化一致性谱系"],
-      ["2011", "Shapiro等人形式化CRDT（无冲突复制数据类型），实现自动冲突解决"],
-      ["2017", "Kleppmann的《数据密集型应用系统设计》为从业者综合介绍一致性模型及其权衡"]
+      [
+        "1978",
+        "Lamport定义先发生关系，奠定分布式系统中推理一致性的基础"
+      ],
+      [
+        "2007",
+        "Amazon在SOSP发表Dynamo论文，展示使用松散法定人数实现大规模最终一致性"
+      ],
+      [
+        "2008",
+        "Werner Vogels在ACM Queue发表「最终一致性」，形式化一致性谱系"
+      ],
+      [
+        "2011",
+        "Shapiro等人形式化CRDT（无冲突复制数据类型），实现自动冲突解决"
+      ],
+      [
+        "2017",
+        "Kleppmann的《数据密集型应用系统设计》为从业者综合介绍一致性模型及其权衡"
+      ]
     ],
     "dos": [
       "Do classify each piece of data by its consistency requirements because treating all data as eventually consistent leads to subtle correctness bugs",
@@ -215,7 +306,20 @@
       "过期读取可能导致脑裂场景的分布式锁或领导者选举",
       "法规合规要求强一致性且每个状态转换都需要审计记录的系统"
     ],
-    "adopters": ["Amazon DynamoDB", "Apache Cassandra", "Riak", "CouchDB", "Voldemort"]
+    "adopters": [
+      "Amazon DynamoDB",
+      "Apache Cassandra",
+      "Riak",
+      "CouchDB",
+      "Voldemort"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "scalability",
+      "performance",
+      "reliability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 123,
@@ -241,8 +345,17 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["circuit-breaker-pattern", "bulkhead-pattern", "reactive-extensions"],
-    "tags": ["flow-control", "resilience", "async", "streaming"],
+    "related": [
+      "circuit-breaker-pattern",
+      "bulkhead-pattern",
+      "reactive-extensions"
+    ],
+    "tags": [
+      "flow-control",
+      "resilience",
+      "async",
+      "streaming"
+    ],
     "origin_author": "Concept from networking (TCP flow control); formalized in Reactive Streams (2013-2015)",
     "origin_source": "Reactive Streams Specification (2015); Nygard, Release It!, Ch. 5; Kleppmann, Designing Data-Intensive Applications, Ch. 11",
     "origin_source_zh": "Reactive Streams规范（2015）；Nygard《Release It!》第5章；Kleppmann《数据密集型应用系统设计》第11章",
@@ -274,18 +387,48 @@
       "Reactive Streams协议：定义Publisher、Subscriber、Subscription和Processor接口的标准（JDK 9中采纳为java.util.concurrent.Flow），支持非阻塞需求信号"
     ],
     "timeline": [
-      ["1988", "Van Jacobson designs TCP congestion control with window-based flow control, a foundational backpressure mechanism"],
-      ["2013", "Engineers from Netflix, Pivotal, Lightbend, and Red Hat begin the Reactive Streams initiative"],
-      ["2015", "Reactive Streams 1.0 specification published, defining the Publisher-Subscriber contract with demand signaling"],
-      ["2017", "JDK 9 adopts Reactive Streams as java.util.concurrent.Flow, bringing backpressure to the Java standard library"],
-      ["2018", "Nygard's Release It! second edition covers backpressure as a core stability pattern for production systems"]
+      [
+        "1988",
+        "Van Jacobson designs TCP congestion control with window-based flow control, a foundational backpressure mechanism"
+      ],
+      [
+        "2013",
+        "Engineers from Netflix, Pivotal, Lightbend, and Red Hat begin the Reactive Streams initiative"
+      ],
+      [
+        "2015",
+        "Reactive Streams 1.0 specification published, defining the Publisher-Subscriber contract with demand signaling"
+      ],
+      [
+        "2017",
+        "JDK 9 adopts Reactive Streams as java.util.concurrent.Flow, bringing backpressure to the Java standard library"
+      ],
+      [
+        "2018",
+        "Nygard's Release It! second edition covers backpressure as a core stability pattern for production systems"
+      ]
     ],
     "timeline_zh": [
-      ["1988", "Van Jacobson设计TCP拥塞控制及基于窗口的流控，奠定了背压机制的基础"],
-      ["2013", "Netflix、Pivotal、Lightbend和Red Hat的工程师发起Reactive Streams倡议"],
-      ["2015", "Reactive Streams 1.0规范发布，定义带需求信号的Publisher-Subscriber契约"],
-      ["2017", "JDK 9将Reactive Streams采纳为java.util.concurrent.Flow，将背压引入Java标准库"],
-      ["2018", "Nygard《Release It!》第二版将背压作为生产系统核心稳定性模式进行介绍"]
+      [
+        "1988",
+        "Van Jacobson设计TCP拥塞控制及基于窗口的流控，奠定了背压机制的基础"
+      ],
+      [
+        "2013",
+        "Netflix、Pivotal、Lightbend和Red Hat的工程师发起Reactive Streams倡议"
+      ],
+      [
+        "2015",
+        "Reactive Streams 1.0规范发布，定义带需求信号的Publisher-Subscriber契约"
+      ],
+      [
+        "2017",
+        "JDK 9将Reactive Streams采纳为java.util.concurrent.Flow，将背压引入Java标准库"
+      ],
+      [
+        "2018",
+        "Nygard《Release It!》第二版将背压作为生产系统核心稳定性模式进行介绍"
+      ]
     ],
     "dos": [
       "Do propagate backpressure end-to-end through every stage because a single unbounded buffer creates a hidden failure point",
@@ -324,7 +467,19 @@
       "同步阻塞自然节流调用者的简单请求-响应API",
       "整个数据集预先已知且可以静态分区的批处理系统"
     ],
-    "adopters": ["Netflix (RxJava)", "Akka Streams (Lightbend)", "Project Reactor (Spring)", "Apache Flink", "Apache Kafka (consumer fetch)"]
+    "adopters": [
+      "Netflix (RxJava)",
+      "Akka Streams (Lightbend)",
+      "Project Reactor (Spring)",
+      "Apache Flink",
+      "Apache Kafka (consumer fetch)"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability",
+      "performance"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 124,
@@ -350,8 +505,17 @@
     ],
     "ai_relevant": true,
     "viz_type": "tree",
-    "related": ["service-mesh-pattern", "hexagonal-architecture", "bulkhead-pattern"],
-    "tags": ["infrastructure", "proxy", "microservices", "cross-cutting-concerns"],
+    "related": [
+      "service-mesh-pattern",
+      "hexagonal-architecture",
+      "bulkhead-pattern"
+    ],
+    "tags": [
+      "infrastructure",
+      "proxy",
+      "microservices",
+      "cross-cutting-concerns"
+    ],
     "origin_author": "Microsoft Azure Architecture Center (formalized 2016); popularized by Envoy/Istio (2016-2017)",
     "origin_source": "Newman, Building Microservices, Ch. 8 (2nd ed., 2021); Nygard, Release It!, Ch. 17; Burns, Designing Distributed Systems (O'Reilly, 2018)",
     "origin_source_zh": "Newman《构建微服务》第8章（第二版，2021）；Nygard《Release It!》第17章；Burns《设计分布式系统》（O'Reilly，2018）",
@@ -383,18 +547,48 @@
       "控制平面/数据平面分离：集中式控制平面向分布式边车数据平面推送配置，实现全舰队策略变更"
     ],
     "timeline": [
-      ["2013", "Netflix's Prana sidecar provides service discovery and health checking for non-JVM services in the Netflix OSS ecosystem"],
-      ["2016", "Lyft open-sources Envoy, a high-performance L7 proxy designed from the ground up as a sidecar for microservices"],
-      ["2017", "Istio launches using Envoy as its sidecar data plane, popularizing the sidecar pattern for service mesh architectures"],
-      ["2021", "Newman's Building Microservices 2nd edition dedicates coverage to the sidecar pattern as a standard microservices infrastructure approach"],
-      ["2023", "Ambient mesh architectures emerge (Istio ambient mode) exploring per-node proxies as an alternative to per-pod sidecars"]
+      [
+        "2013",
+        "Netflix's Prana sidecar provides service discovery and health checking for non-JVM services in the Netflix OSS ecosystem"
+      ],
+      [
+        "2016",
+        "Lyft open-sources Envoy, a high-performance L7 proxy designed from the ground up as a sidecar for microservices"
+      ],
+      [
+        "2017",
+        "Istio launches using Envoy as its sidecar data plane, popularizing the sidecar pattern for service mesh architectures"
+      ],
+      [
+        "2021",
+        "Newman's Building Microservices 2nd edition dedicates coverage to the sidecar pattern as a standard microservices infrastructure approach"
+      ],
+      [
+        "2023",
+        "Ambient mesh architectures emerge (Istio ambient mode) exploring per-node proxies as an alternative to per-pod sidecars"
+      ]
     ],
     "timeline_zh": [
-      ["2013", "Netflix的Prana边车为Netflix OSS生态中的非JVM服务提供服务发现和健康检查"],
-      ["2016", "Lyft开源Envoy，一个从零设计为微服务边车的高性能L7代理"],
-      ["2017", "Istio使用Envoy作为边车数据平面发布，推动边车模式在服务网格架构中的普及"],
-      ["2021", "Newman《构建微服务》第二版将边车模式作为标准微服务基础设施方法进行专门介绍"],
-      ["2023", "环境网格架构出现（Istio ambient模式），探索每节点代理作为每Pod边车的替代方案"]
+      [
+        "2013",
+        "Netflix的Prana边车为Netflix OSS生态中的非JVM服务提供服务发现和健康检查"
+      ],
+      [
+        "2016",
+        "Lyft开源Envoy，一个从零设计为微服务边车的高性能L7代理"
+      ],
+      [
+        "2017",
+        "Istio使用Envoy作为边车数据平面发布，推动边车模式在服务网格架构中的普及"
+      ],
+      [
+        "2021",
+        "Newman《构建微服务》第二版将边车模式作为标准微服务基础设施方法进行专门介绍"
+      ],
+      [
+        "2023",
+        "环境网格架构出现（Istio ambient模式），探索每节点代理作为每Pod边车的替代方案"
+      ]
     ],
     "dos": [
       "Do keep the sidecar lightweight and single-purpose because a bloated sidecar adds latency and resource overhead to every pod",
@@ -433,7 +627,19 @@
       "即使本地代理的亚毫秒级开销也不可接受的极端延迟敏感路径",
       "只有少量服务的小型部署，管理边车的运维复杂性超过其收益"
     ],
-    "adopters": ["Lyft (Envoy)", "Google (Istio)", "Airbnb", "Stripe", "Shopify"]
+    "adopters": [
+      "Lyft (Envoy)",
+      "Google (Istio)",
+      "Airbnb",
+      "Stripe",
+      "Shopify"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "maintainability",
+      "scalability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 125,
@@ -459,8 +665,17 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
-    "related": ["consensus-protocols", "cap-theorem", "two-phase-commit"],
-    "tags": ["coordination", "fault-tolerance", "leadership", "distributed-locking"],
+    "related": [
+      "consensus-protocols",
+      "cap-theorem",
+      "two-phase-commit"
+    ],
+    "tags": [
+      "coordination",
+      "fault-tolerance",
+      "leadership",
+      "distributed-locking"
+    ],
     "origin_author": "Garcia-Molina (Bully algorithm, 1982); Lamport (Paxos-based election, 1998)",
     "origin_source": "Elections in a Distributed Computing System (IEEE, 1982); Kleppmann, Designing Data-Intensive Applications, Ch. 8 & 9; Nygard, Release It!, Ch. 12",
     "origin_source_zh": "《分布式计算系统中的选举》（IEEE，1982）；Kleppmann《数据密集型应用系统设计》第8章和第9章；Nygard《Release It!》第12章",
@@ -492,18 +707,48 @@
       "领导者活性检测：心跳间隔和超时阈值，在快速故障检测与临时网络抖动引起的误报之间取得平衡"
     ],
     "timeline": [
-      ["1982", "Hector Garcia-Molina publishes the Bully algorithm and Ring algorithm for leader election in distributed systems"],
-      ["1998", "Lamport's Paxos provides a consensus-based foundation for leader election in asynchronous systems"],
-      ["2010", "Apache ZooKeeper's ephemeral nodes and sequential znodes become the de facto leader election primitive in the Hadoop ecosystem"],
-      ["2014", "Raft formalizes leader election as an explicit sub-protocol with randomized timeouts for simplicity"],
-      ["2017", "Kleppmann's DDIA warns about the dangers of leader election without fencing tokens, citing real-world split-brain incidents"]
+      [
+        "1982",
+        "Hector Garcia-Molina publishes the Bully algorithm and Ring algorithm for leader election in distributed systems"
+      ],
+      [
+        "1998",
+        "Lamport's Paxos provides a consensus-based foundation for leader election in asynchronous systems"
+      ],
+      [
+        "2010",
+        "Apache ZooKeeper's ephemeral nodes and sequential znodes become the de facto leader election primitive in the Hadoop ecosystem"
+      ],
+      [
+        "2014",
+        "Raft formalizes leader election as an explicit sub-protocol with randomized timeouts for simplicity"
+      ],
+      [
+        "2017",
+        "Kleppmann's DDIA warns about the dangers of leader election without fencing tokens, citing real-world split-brain incidents"
+      ]
     ],
     "timeline_zh": [
-      ["1982", "Hector Garcia-Molina发表分布式系统中领导者选举的霸道算法和环形算法"],
-      ["1998", "Lamport的Paxos为异步系统中的领导者选举提供基于共识的基础"],
-      ["2010", "Apache ZooKeeper的临时节点和顺序znode成为Hadoop生态中事实上的领导者选举原语"],
-      ["2014", "Raft将领导者选举形式化为带随机超时的显式子协议，追求简洁性"],
-      ["2017", "Kleppmann的《数据密集型应用系统设计》警告不使用防护令牌进行领导者选举的危险，引用真实的脑裂事故"]
+      [
+        "1982",
+        "Hector Garcia-Molina发表分布式系统中领导者选举的霸道算法和环形算法"
+      ],
+      [
+        "1998",
+        "Lamport的Paxos为异步系统中的领导者选举提供基于共识的基础"
+      ],
+      [
+        "2010",
+        "Apache ZooKeeper的临时节点和顺序znode成为Hadoop生态中事实上的领导者选举原语"
+      ],
+      [
+        "2014",
+        "Raft将领导者选举形式化为带随机超时的显式子协议，追求简洁性"
+      ],
+      [
+        "2017",
+        "Kleppmann的《数据密集型应用系统设计》警告不使用防护令牌进行领导者选举的危险，引用真实的脑裂事故"
+      ]
     ],
     "dos": [
       "Do use fencing tokens for all leader-gated operations because a network-partitioned former leader may not know it has been replaced",
@@ -542,7 +787,19 @@
       "设计为对称参与的点对点系统，引入领导者会增加不必要的集中化",
       "短暂的重复处理可接受且成本低于领导者选举复杂性的系统"
     ],
-    "adopters": ["Apache Kafka (KRaft)", "Apache ZooKeeper", "etcd", "Redis Sentinel", "Elasticsearch"]
+    "adopters": [
+      "Apache Kafka (KRaft)",
+      "Apache ZooKeeper",
+      "etcd",
+      "Redis Sentinel",
+      "Elasticsearch"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "scalability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 126,
@@ -568,8 +825,17 @@
     ],
     "ai_relevant": false,
     "viz_type": "cycle",
-    "related": ["sharding-strategies", "gossip-protocol", "cap-theorem"],
-    "tags": ["partitioning", "load-balancing", "hashing", "scalability"],
+    "related": [
+      "sharding-strategies",
+      "gossip-protocol",
+      "cap-theorem"
+    ],
+    "tags": [
+      "partitioning",
+      "load-balancing",
+      "hashing",
+      "scalability"
+    ],
     "origin_author": "David Karger, Eric Lehman, Tom Leighton, et al., 1997",
     "origin_source": "Consistent Hashing and Random Trees (ACM STOC 1997); Kleppmann, Designing Data-Intensive Applications, Ch. 6; Dynamo: Amazon's Highly Available Key-Value Store (SOSP 2007)",
     "origin_source_zh": "《一致性哈希与随机树》（ACM STOC 1997）；Kleppmann《数据密集型应用系统设计》第6章；《Dynamo：Amazon高可用键值存储》（SOSP 2007）",
@@ -601,18 +867,48 @@
       "有界负载扩展：Google 2017年的改进，将任意节点的最大负载限制在平均值的(1+epsilon)倍以内，防止热点"
     ],
     "timeline": [
-      ["1997", "Karger et al. publish Consistent Hashing and Random Trees at ACM STOC, originally motivated by web caching"],
-      ["2007", "Amazon's Dynamo paper uses consistent hashing with virtual nodes for its distributed key-value store"],
-      ["2008", "Apache Cassandra adopts consistent hashing as its data partitioning strategy, following the Dynamo design"],
-      ["2014", "Consistent hashing becomes standard in memcached clients (libmemcached, ketama) for distributed cache clusters"],
-      ["2017", "Google publishes Consistent Hashing with Bounded Loads, addressing the load imbalance problem in practical deployments"]
+      [
+        "1997",
+        "Karger et al. publish Consistent Hashing and Random Trees at ACM STOC, originally motivated by web caching"
+      ],
+      [
+        "2007",
+        "Amazon's Dynamo paper uses consistent hashing with virtual nodes for its distributed key-value store"
+      ],
+      [
+        "2008",
+        "Apache Cassandra adopts consistent hashing as its data partitioning strategy, following the Dynamo design"
+      ],
+      [
+        "2014",
+        "Consistent hashing becomes standard in memcached clients (libmemcached, ketama) for distributed cache clusters"
+      ],
+      [
+        "2017",
+        "Google publishes Consistent Hashing with Bounded Loads, addressing the load imbalance problem in practical deployments"
+      ]
     ],
     "timeline_zh": [
-      ["1997", "Karger等人在ACM STOC发表《一致性哈希与随机树》，最初动机来自Web缓存"],
-      ["2007", "Amazon的Dynamo论文使用带虚拟节点的一致性哈希作为分布式键值存储的分区策略"],
-      ["2008", "Apache Cassandra采用一致性哈希作为数据分区策略，遵循Dynamo设计"],
-      ["2014", "一致性哈希成为memcached客户端（libmemcached、ketama）在分布式缓存集群中的标准"],
-      ["2017", "Google发表「有界负载的一致性哈希」，解决实际部署中的负载不均衡问题"]
+      [
+        "1997",
+        "Karger等人在ACM STOC发表《一致性哈希与随机树》，最初动机来自Web缓存"
+      ],
+      [
+        "2007",
+        "Amazon的Dynamo论文使用带虚拟节点的一致性哈希作为分布式键值存储的分区策略"
+      ],
+      [
+        "2008",
+        "Apache Cassandra采用一致性哈希作为数据分区策略，遵循Dynamo设计"
+      ],
+      [
+        "2014",
+        "一致性哈希成为memcached客户端（libmemcached、ketama）在分布式缓存集群中的标准"
+      ],
+      [
+        "2017",
+        "Google发表「有界负载的一致性哈希」，解决实际部署中的负载不均衡问题"
+      ]
     ],
     "dos": [
       "Do use a sufficient number of virtual nodes per physical node (100+) because too few virtual nodes leads to uneven key distribution",
@@ -651,7 +947,19 @@
       "需要严格排序或范围查询的工作负载，基于哈希的分区会将相关键分散到不同节点",
       "单节点系统或有专用分区协调器可以使用更复杂放置算法的系统"
     ],
-    "adopters": ["Akamai", "Apache Cassandra", "Amazon DynamoDB", "Memcached (ketama)", "Riak"]
+    "adopters": [
+      "Akamai",
+      "Apache Cassandra",
+      "Amazon DynamoDB",
+      "Memcached (ketama)",
+      "Riak"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "scalability",
+      "performance"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 127,
@@ -677,8 +985,17 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
-    "related": ["consistent-hashing", "eventual-consistency", "leader-election"],
-    "tags": ["membership", "failure-detection", "decentralized", "epidemic"],
+    "related": [
+      "consistent-hashing",
+      "eventual-consistency",
+      "leader-election"
+    ],
+    "tags": [
+      "membership",
+      "failure-detection",
+      "decentralized",
+      "epidemic"
+    ],
     "origin_author": "Alan Demers, Dan Greene, Carl Hauser, et al. (Xerox PARC, 1987)",
     "origin_source": "Epidemic Algorithms for Replicated Database Maintenance (ACM PODC 1987); Kleppmann, Designing Data-Intensive Applications, Ch. 5; van Renesse et al., Efficient Reconciliation and Flow Control for Anti-Entropy Protocols (2008)",
     "origin_source_zh": "《复制数据库维护的流行病算法》（ACM PODC 1987）；Kleppmann《数据密集型应用系统设计》第5章；van Renesse等《反熵协议的高效协调与流控》（2008）",
@@ -710,18 +1027,48 @@
       "反熵：补充机制，节点定期进行完整的状态协调（使用Merkle树）以修复gossip遗漏的任何不一致"
     ],
     "timeline": [
-      ["1987", "Demers et al. at Xerox PARC publish Epidemic Algorithms for Replicated Database Maintenance"],
-      ["2002", "Das, Gupta, and Muthukrishnan introduce SWIM, a gossip-based membership protocol used in many modern systems"],
-      ["2007", "Amazon's Dynamo paper describes using gossip for membership and failure detection in production"],
-      ["2012", "HashiCorp's Serf and later Consul adopt SWIM-based gossip (memberlist library) for cluster membership"],
-      ["2017", "Kleppmann's DDIA contextualizes gossip protocols within the broader landscape of distributed systems primitives"]
+      [
+        "1987",
+        "Demers et al. at Xerox PARC publish Epidemic Algorithms for Replicated Database Maintenance"
+      ],
+      [
+        "2002",
+        "Das, Gupta, and Muthukrishnan introduce SWIM, a gossip-based membership protocol used in many modern systems"
+      ],
+      [
+        "2007",
+        "Amazon's Dynamo paper describes using gossip for membership and failure detection in production"
+      ],
+      [
+        "2012",
+        "HashiCorp's Serf and later Consul adopt SWIM-based gossip (memberlist library) for cluster membership"
+      ],
+      [
+        "2017",
+        "Kleppmann's DDIA contextualizes gossip protocols within the broader landscape of distributed systems primitives"
+      ]
     ],
     "timeline_zh": [
-      ["1987", "Xerox PARC的Demers等人发表「复制数据库维护的流行病算法」"],
-      ["2002", "Das、Gupta和Muthukrishnan提出SWIM，一种被许多现代系统使用的基于gossip的成员协议"],
-      ["2007", "Amazon的Dynamo论文描述在生产环境中使用gossip进行成员管理和故障检测"],
-      ["2012", "HashiCorp的Serf和后来的Consul采用基于SWIM的gossip（memberlist库）进行集群成员管理"],
-      ["2017", "Kleppmann的《数据密集型应用系统设计》将gossip协议置于分布式系统原语的更广阔背景中进行介绍"]
+      [
+        "1987",
+        "Xerox PARC的Demers等人发表「复制数据库维护的流行病算法」"
+      ],
+      [
+        "2002",
+        "Das、Gupta和Muthukrishnan提出SWIM，一种被许多现代系统使用的基于gossip的成员协议"
+      ],
+      [
+        "2007",
+        "Amazon的Dynamo论文描述在生产环境中使用gossip进行成员管理和故障检测"
+      ],
+      [
+        "2012",
+        "HashiCorp的Serf和后来的Consul采用基于SWIM的gossip（memberlist库）进行集群成员管理"
+      ],
+      [
+        "2017",
+        "Kleppmann的《数据密集型应用系统设计》将gossip协议置于分布式系统原语的更广阔背景中进行介绍"
+      ]
     ],
     "dos": [
       "Do tune the gossip interval and fanout based on cluster size because defaults optimized for 10 nodes may not work for 10,000 nodes",
@@ -760,7 +1107,19 @@
       "小型集群（少于5个节点），集中式成员服务更简单且同样可靠",
       "当传播延迟必须有界和确定性时，因为gossip的收敛是概率性的"
     ],
-    "adopters": ["Apache Cassandra", "HashiCorp Consul", "Amazon DynamoDB", "ScyllaDB", "Redis Cluster"]
+    "adopters": [
+      "Apache Cassandra",
+      "HashiCorp Consul",
+      "Amazon DynamoDB",
+      "ScyllaDB",
+      "Redis Cluster"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "scalability",
+      "reliability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 128,
@@ -786,8 +1145,17 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
-    "related": ["saga-pattern", "eventual-consistency", "consensus-protocols"],
-    "tags": ["transactions", "atomicity", "coordination", "distributed-databases"],
+    "related": [
+      "saga-pattern",
+      "eventual-consistency",
+      "consensus-protocols"
+    ],
+    "tags": [
+      "transactions",
+      "atomicity",
+      "coordination",
+      "distributed-databases"
+    ],
     "origin_author": "Jim Gray, 1978",
     "origin_source": "Notes on Data Base Operating Systems (1978); Kleppmann, Designing Data-Intensive Applications, Ch. 9; Bernstein, Hadzilacos, Goodman, Concurrency Control and Recovery in Database Systems (1987)",
     "origin_source_zh": "《数据库操作系统笔记》（1978）；Kleppmann《数据密集型应用系统设计》第9章；Bernstein、Hadzilacos、Goodman《数据库系统中的并发控制与恢复》（1987）",
@@ -819,18 +1187,48 @@
       "XA标准：X/Open DTP模型，定义了2PC接口（xa_prepare、xa_commit、xa_rollback），用于事务管理器和资源管理器之间的互操作"
     ],
     "timeline": [
-      ["1978", "Jim Gray describes the two-phase commit protocol in Notes on Data Base Operating Systems"],
-      ["1987", "Bernstein, Hadzilacos, and Goodman formalize 2PC theory in Concurrency Control and Recovery in Database Systems"],
-      ["1991", "X/Open publishes the XA specification standardizing the 2PC interface for distributed transactions"],
-      ["2007", "Pat Helland's Life Beyond Distributed Transactions argues for moving away from 2PC toward compensating transactions"],
-      ["2017", "Kleppmann's DDIA critically examines 2PC's blocking nature and advocates for alternatives like sagas in most microservice architectures"]
+      [
+        "1978",
+        "Jim Gray describes the two-phase commit protocol in Notes on Data Base Operating Systems"
+      ],
+      [
+        "1987",
+        "Bernstein, Hadzilacos, and Goodman formalize 2PC theory in Concurrency Control and Recovery in Database Systems"
+      ],
+      [
+        "1991",
+        "X/Open publishes the XA specification standardizing the 2PC interface for distributed transactions"
+      ],
+      [
+        "2007",
+        "Pat Helland's Life Beyond Distributed Transactions argues for moving away from 2PC toward compensating transactions"
+      ],
+      [
+        "2017",
+        "Kleppmann's DDIA critically examines 2PC's blocking nature and advocates for alternatives like sagas in most microservice architectures"
+      ]
     ],
     "timeline_zh": [
-      ["1978", "Jim Gray在《数据库操作系统笔记》中描述两阶段提交协议"],
-      ["1987", "Bernstein、Hadzilacos和Goodman在《数据库系统中的并发控制与恢复》中形式化2PC理论"],
-      ["1991", "X/Open发布XA规范，标准化分布式事务的2PC接口"],
-      ["2007", "Pat Helland的「分布式事务之外的生活」主张从2PC转向补偿事务"],
-      ["2017", "Kleppmann的《数据密集型应用系统设计》批判性地审视2PC的阻塞特性，在大多数微服务架构中倡导saga等替代方案"]
+      [
+        "1978",
+        "Jim Gray在《数据库操作系统笔记》中描述两阶段提交协议"
+      ],
+      [
+        "1987",
+        "Bernstein、Hadzilacos和Goodman在《数据库系统中的并发控制与恢复》中形式化2PC理论"
+      ],
+      [
+        "1991",
+        "X/Open发布XA规范，标准化分布式事务的2PC接口"
+      ],
+      [
+        "2007",
+        "Pat Helland的「分布式事务之外的生活」主张从2PC转向补偿事务"
+      ],
+      [
+        "2017",
+        "Kleppmann的《数据密集型应用系统设计》批判性地审视2PC的阻塞特性，在大多数微服务架构中倡导saga等替代方案"
+      ]
     ],
     "dos": [
       "Do keep the prepare-to-commit window as short as possible because participants hold locks during this entire period, blocking other transactions",
@@ -869,7 +1267,19 @@
       "准备阶段的锁竞争会产生不可接受的性能瓶颈的高吞吐系统",
       "跨越多个组织或信任边界、没有单一协调者能被所有方信任的系统"
     ],
-    "adopters": ["Google Spanner", "PostgreSQL (prepared transactions)", "Oracle Database (XA)", "MySQL (XA)", "Microsoft SQL Server (MSDTC)"]
+    "adopters": [
+      "Google Spanner",
+      "PostgreSQL (prepared transactions)",
+      "Oracle Database (XA)",
+      "MySQL (XA)",
+      "Microsoft SQL Server (MSDTC)"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "scalability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 129,
@@ -895,8 +1305,17 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
-    "related": ["consistent-hashing", "cap-theorem", "eventual-consistency"],
-    "tags": ["partitioning", "scalability", "databases", "horizontal-scaling"],
+    "related": [
+      "consistent-hashing",
+      "cap-theorem",
+      "eventual-consistency"
+    ],
+    "tags": [
+      "partitioning",
+      "scalability",
+      "databases",
+      "horizontal-scaling"
+    ],
     "origin_author": "Concept from database research (1980s-1990s); formalized in modern context by Kleppmann (2017)",
     "origin_source": "Kleppmann, Designing Data-Intensive Applications, Ch. 6; Newman, Building Microservices, Ch. 4 (2nd ed., 2021); Sadalage & Fowler, NoSQL Distilled (2012)",
     "origin_source_zh": "Kleppmann《数据密集型应用系统设计》第6章；Newman《构建微服务》第4章（第二版，2021）；Sadalage和Fowler《NoSQL精粹》（2012）",
@@ -928,18 +1347,48 @@
       "分片重新平衡：在添加或移除节点时重新分配数据到分片的过程，必须使用逻辑分片或双写迁移等技术在不停机的情况下完成"
     ],
     "timeline": [
-      ["1986", "DeWitt and Gray publish papers on parallel database systems with horizontal partitioning strategies"],
-      ["2007", "Amazon's Dynamo and Google's Bigtable papers demonstrate sharding at web scale, influencing the NoSQL movement"],
-      ["2010", "MongoDB introduces auto-sharding, making hash-based and range-based sharding accessible to application developers"],
-      ["2017", "Kleppmann's DDIA provides the definitive practitioner guide to partitioning strategies and their trade-offs"],
-      ["2020", "Vitess (YouTube's MySQL sharding middleware) becomes a CNCF graduated project, proving sharding remains essential at scale"]
+      [
+        "1986",
+        "DeWitt and Gray publish papers on parallel database systems with horizontal partitioning strategies"
+      ],
+      [
+        "2007",
+        "Amazon's Dynamo and Google's Bigtable papers demonstrate sharding at web scale, influencing the NoSQL movement"
+      ],
+      [
+        "2010",
+        "MongoDB introduces auto-sharding, making hash-based and range-based sharding accessible to application developers"
+      ],
+      [
+        "2017",
+        "Kleppmann's DDIA provides the definitive practitioner guide to partitioning strategies and their trade-offs"
+      ],
+      [
+        "2020",
+        "Vitess (YouTube's MySQL sharding middleware) becomes a CNCF graduated project, proving sharding remains essential at scale"
+      ]
     ],
     "timeline_zh": [
-      ["1986", "DeWitt和Gray发表关于并行数据库系统水平分区策略的论文"],
-      ["2007", "Amazon的Dynamo和Google的Bigtable论文展示Web级别的分片，影响了NoSQL运动"],
-      ["2010", "MongoDB引入自动分片，使应用开发者能够使用基于哈希和基于范围的分片"],
-      ["2017", "Kleppmann的《数据密集型应用系统设计》提供分区策略及其权衡的权威实践者指南"],
-      ["2020", "Vitess（YouTube的MySQL分片中间件）成为CNCF毕业项目，证明分片在大规模下仍然不可或缺"]
+      [
+        "1986",
+        "DeWitt和Gray发表关于并行数据库系统水平分区策略的论文"
+      ],
+      [
+        "2007",
+        "Amazon的Dynamo和Google的Bigtable论文展示Web级别的分片，影响了NoSQL运动"
+      ],
+      [
+        "2010",
+        "MongoDB引入自动分片，使应用开发者能够使用基于哈希和基于范围的分片"
+      ],
+      [
+        "2017",
+        "Kleppmann的《数据密集型应用系统设计》提供分区策略及其权衡的权威实践者指南"
+      ],
+      [
+        "2020",
+        "Vitess（YouTube的MySQL分片中间件）成为CNCF毕业项目，证明分片在大规模下仍然不可或缺"
+      ]
     ],
     "dos": [
       "Do choose a shard key with high cardinality and uniform distribution because low-cardinality keys create unbalanceable hot shards",
@@ -978,7 +1427,19 @@
       "以跨实体分析查询为主的工作负载，分片将需要持续的分散-聚合操作",
       "数据模型仍在演进的早期产品，过早分片会锁定次优的分区方案"
     ],
-    "adopters": ["Slack", "Pinterest", "Vitess/YouTube", "Instagram", "MongoDB Atlas"]
+    "adopters": [
+      "Slack",
+      "Pinterest",
+      "Vitess/YouTube",
+      "Instagram",
+      "MongoDB Atlas"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "scalability",
+      "performance"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 130,
@@ -1004,8 +1465,17 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["saga-pattern", "eventual-consistency", "two-phase-commit"],
-    "tags": ["reliability", "retries", "deduplication", "at-least-once"],
+    "related": [
+      "saga-pattern",
+      "eventual-consistency",
+      "two-phase-commit"
+    ],
+    "tags": [
+      "reliability",
+      "retries",
+      "deduplication",
+      "at-least-once"
+    ],
     "origin_author": "Concept from mathematics and HTTP specification (RFC 7231); applied to distributed systems by Helland (2012) and Kleppmann (2017)",
     "origin_source": "Kleppmann, Designing Data-Intensive Applications, Ch. 11; Nygard, Release It!, Ch. 5; Helland, Idempotence Is Not a Medical Condition (ACM Queue, 2012)",
     "origin_source_zh": "Kleppmann《数据密集型应用系统设计》第11章；Nygard《Release It!》第5章；Helland「幂等性不是一种疾病」（ACM Queue，2012）",
@@ -1037,18 +1507,48 @@
       "副作用隔离：外部副作用（发送邮件、调用第三方API）必须单独保护，因为幂等存储只保护本地状态变更"
     ],
     "timeline": [
-      ["1999", "HTTP/1.1 (RFC 2616) formalizes idempotency for PUT and DELETE methods, establishing the concept in web API design"],
-      ["2007", "Amazon's Dynamo paper discusses idempotent operations as a requirement for safe retries in eventually consistent systems"],
-      ["2012", "Pat Helland publishes Idempotence Is Not a Medical Condition in ACM Queue, advocating for idempotent API design"],
-      ["2016", "Stripe introduces the Idempotency-Key header for payment APIs, setting an industry standard for financial API design"],
-      ["2017", "Kleppmann's DDIA discusses idempotency in the context of stream processing and exactly-once semantics"]
+      [
+        "1999",
+        "HTTP/1.1 (RFC 2616) formalizes idempotency for PUT and DELETE methods, establishing the concept in web API design"
+      ],
+      [
+        "2007",
+        "Amazon's Dynamo paper discusses idempotent operations as a requirement for safe retries in eventually consistent systems"
+      ],
+      [
+        "2012",
+        "Pat Helland publishes Idempotence Is Not a Medical Condition in ACM Queue, advocating for idempotent API design"
+      ],
+      [
+        "2016",
+        "Stripe introduces the Idempotency-Key header for payment APIs, setting an industry standard for financial API design"
+      ],
+      [
+        "2017",
+        "Kleppmann's DDIA discusses idempotency in the context of stream processing and exactly-once semantics"
+      ]
     ],
     "timeline_zh": [
-      ["1999", "HTTP/1.1（RFC 2616）为PUT和DELETE方法形式化幂等性，在Web API设计中确立该概念"],
-      ["2007", "Amazon的Dynamo论文讨论幂等操作作为最终一致系统中安全重试的需求"],
-      ["2012", "Pat Helland在ACM Queue发表「幂等性不是一种疾病」，倡导幂等API设计"],
-      ["2016", "Stripe为支付API引入Idempotency-Key头部，为金融API设计树立行业标准"],
-      ["2017", "Kleppmann的《数据密集型应用系统设计》在流处理和恰好一次语义的背景下讨论幂等性"]
+      [
+        "1999",
+        "HTTP/1.1（RFC 2616）为PUT和DELETE方法形式化幂等性，在Web API设计中确立该概念"
+      ],
+      [
+        "2007",
+        "Amazon的Dynamo论文讨论幂等操作作为最终一致系统中安全重试的需求"
+      ],
+      [
+        "2012",
+        "Pat Helland在ACM Queue发表「幂等性不是一种疾病」，倡导幂等API设计"
+      ],
+      [
+        "2016",
+        "Stripe为支付API引入Idempotency-Key头部，为金融API设计树立行业标准"
+      ],
+      [
+        "2017",
+        "Kleppmann的《数据密集型应用系统设计》在流处理和恰好一次语义的背景下讨论幂等性"
+      ]
     ],
     "dos": [
       "Do store the idempotency key and result in the same atomic transaction as the business operation because separate stores can become inconsistent after crashes",
@@ -1087,6 +1587,18 @@
       "偶尔重复可接受且去重开销不值得的即发即忘遥测数据摄入",
       "单一事务边界内的内部服务调用，数据库已提供原子性保证"
     ],
-    "adopters": ["Stripe", "PayPal", "Shopify", "Square", "AWS (SQS deduplication)"]
+    "adopters": [
+      "Stripe",
+      "PayPal",
+      "Shopify",
+      "Square",
+      "AWS (SQS deduplication)"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability",
+      "maintainability"
+    ],
+    "maturity_ring": "foundational"
   }
 ]

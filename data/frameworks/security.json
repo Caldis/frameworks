@@ -66,18 +66,48 @@
       "缓解映射：将每个已识别威胁关联到一个或多个具体安全控制措施"
     ],
     "timeline": [
-      ["1999", "Loren Kohnfelder and Praerit Garg propose the STRIDE model internally at Microsoft"],
-      ["2002", "Microsoft integrates STRIDE into the Security Development Lifecycle (SDL)"],
-      ["2006", "Microsoft releases the free Threat Modeling Tool based on STRIDE methodology"],
-      ["2014", "Adam Shostack publishes「Threat Modeling: Designing for Security」, establishing industry best practices"],
-      ["2020", "OWASP Threat Modeling Playbook and community-driven tooling expand STRIDE beyond Microsoft ecosystems"]
+      [
+        "1999",
+        "Loren Kohnfelder and Praerit Garg propose the STRIDE model internally at Microsoft"
+      ],
+      [
+        "2002",
+        "Microsoft integrates STRIDE into the Security Development Lifecycle (SDL)"
+      ],
+      [
+        "2006",
+        "Microsoft releases the free Threat Modeling Tool based on STRIDE methodology"
+      ],
+      [
+        "2014",
+        "Adam Shostack publishes「Threat Modeling: Designing for Security」, establishing industry best practices"
+      ],
+      [
+        "2020",
+        "OWASP Threat Modeling Playbook and community-driven tooling expand STRIDE beyond Microsoft ecosystems"
+      ]
     ],
     "timeline_zh": [
-      ["1999", "Loren Kohnfelder 和 Praerit Garg 在微软内部提出 STRIDE 模型"],
-      ["2002", "微软将 STRIDE 集成到安全开发生命周期（SDL）中"],
-      ["2006", "微软发布基于 STRIDE 方法论的免费威胁建模工具"],
-      ["2014", "Adam Shostack 出版「Threat Modeling: Designing for Security」，确立行业最佳实践"],
-      ["2020", "OWASP 威胁建模手册和社区驱动工具将 STRIDE 推广到微软生态之外"]
+      [
+        "1999",
+        "Loren Kohnfelder 和 Praerit Garg 在微软内部提出 STRIDE 模型"
+      ],
+      [
+        "2002",
+        "微软将 STRIDE 集成到安全开发生命周期（SDL）中"
+      ],
+      [
+        "2006",
+        "微软发布基于 STRIDE 方法论的免费威胁建模工具"
+      ],
+      [
+        "2014",
+        "Adam Shostack 出版「Threat Modeling: Designing for Security」，确立行业最佳实践"
+      ],
+      [
+        "2020",
+        "OWASP 威胁建模手册和社区驱动工具将 STRIDE 推广到微软生态之外"
+      ]
     ],
     "dos": [
       "Start threat modeling early in design — retrofitting is far more expensive than proactive analysis",
@@ -124,7 +154,13 @@
       "OWASP",
       "Intel",
       "SAFECode"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "security",
+      "reliability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 112,
@@ -193,18 +229,48 @@
       "持续验证：在会话期间持续评估信任，而非仅在初始认证时验证"
     ],
     "timeline": [
-      ["2010", "John Kindervag publishes the Zero Trust model at Forrester Research"],
-      ["2014", "Google publishes BeyondCorp papers, validating Zero Trust at massive scale"],
-      ["2020-08", "NIST releases SP 800-207「Zero Trust Architecture」as the definitive reference standard"],
-      ["2021-05", "US Executive Order 14028 mandates federal agencies adopt Zero Trust architecture"],
-      ["2023", "Major cloud providers (Azure AD Conditional Access, Google BeyondCorp Enterprise, AWS Verified Access) offer native Zero Trust products"]
+      [
+        "2010",
+        "John Kindervag publishes the Zero Trust model at Forrester Research"
+      ],
+      [
+        "2014",
+        "Google publishes BeyondCorp papers, validating Zero Trust at massive scale"
+      ],
+      [
+        "2020-08",
+        "NIST releases SP 800-207「Zero Trust Architecture」as the definitive reference standard"
+      ],
+      [
+        "2021-05",
+        "US Executive Order 14028 mandates federal agencies adopt Zero Trust architecture"
+      ],
+      [
+        "2023",
+        "Major cloud providers (Azure AD Conditional Access, Google BeyondCorp Enterprise, AWS Verified Access) offer native Zero Trust products"
+      ]
     ],
     "timeline_zh": [
-      ["2010", "John Kindervag 在 Forrester Research 发布零信任模型"],
-      ["2014", "Google 发布 BeyondCorp 论文，在超大规模中验证零信任"],
-      ["2020-08", "NIST 发布 SP 800-207「零信任架构」作为权威参考标准"],
-      ["2021-05", "美国第 14028 号行政令要求联邦机构采用零信任架构"],
-      ["2023", "主要云厂商（Azure AD 条件访问、Google BeyondCorp Enterprise、AWS Verified Access）推出原生零信任产品"]
+      [
+        "2010",
+        "John Kindervag 在 Forrester Research 发布零信任模型"
+      ],
+      [
+        "2014",
+        "Google 发布 BeyondCorp 论文，在超大规模中验证零信任"
+      ],
+      [
+        "2020-08",
+        "NIST 发布 SP 800-207「零信任架构」作为权威参考标准"
+      ],
+      [
+        "2021-05",
+        "美国第 14028 号行政令要求联邦机构采用零信任架构"
+      ],
+      [
+        "2023",
+        "主要云厂商（Azure AD 条件访问、Google BeyondCorp Enterprise、AWS Verified Access）推出原生零信任产品"
+      ]
     ],
     "dos": [
       "Start with your most critical protect surfaces rather than attempting a full network transformation at once",
@@ -251,7 +317,13 @@
       "Cloudflare (Cloudflare Access)",
       "Zscaler",
       "US Federal Government (per EO 14028)"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "security",
+      "reliability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 113,
@@ -321,18 +393,48 @@
       "作用域：限制访问令牌操作范围的命名权限，在 API 层面实现最小权限原则"
     ],
     "timeline": [
-      ["2007", "OAuth 1.0 published as an informal community specification for delegated authorization"],
-      ["2012-10", "OAuth 2.0 (RFC 6749) published by IETF, simplifying the protocol and supporting multiple grant types"],
-      ["2014-02", "OpenID Connect Core 1.0 ratified, adding an identity layer on top of OAuth 2.0"],
-      ["2020", "OAuth 2.1 draft consolidates best practices, deprecating implicit grant and recommending PKCE for all clients"],
-      ["2023", "Rich Authorization Requests (RAR, RFC 9396) extends OAuth with fine-grained, structured authorization"]
+      [
+        "2007",
+        "OAuth 1.0 published as an informal community specification for delegated authorization"
+      ],
+      [
+        "2012-10",
+        "OAuth 2.0 (RFC 6749) published by IETF, simplifying the protocol and supporting multiple grant types"
+      ],
+      [
+        "2014-02",
+        "OpenID Connect Core 1.0 ratified, adding an identity layer on top of OAuth 2.0"
+      ],
+      [
+        "2020",
+        "OAuth 2.1 draft consolidates best practices, deprecating implicit grant and recommending PKCE for all clients"
+      ],
+      [
+        "2023",
+        "Rich Authorization Requests (RAR, RFC 9396) extends OAuth with fine-grained, structured authorization"
+      ]
     ],
     "timeline_zh": [
-      ["2007", "OAuth 1.0 作为委托授权的非正式社区规范发布"],
-      ["2012-10", "OAuth 2.0（RFC 6749）由 IETF 发布，简化协议并支持多种授权类型"],
-      ["2014-02", "OpenID Connect Core 1.0 批准，在 OAuth 2.0 之上添加身份层"],
-      ["2020", "OAuth 2.1 草案整合最佳实践，弃用隐式授权并建议所有客户端使用 PKCE"],
-      ["2023", "富授权请求（RAR, RFC 9396）扩展 OAuth，支持细粒度结构化授权"]
+      [
+        "2007",
+        "OAuth 1.0 作为委托授权的非正式社区规范发布"
+      ],
+      [
+        "2012-10",
+        "OAuth 2.0（RFC 6749）由 IETF 发布，简化协议并支持多种授权类型"
+      ],
+      [
+        "2014-02",
+        "OpenID Connect Core 1.0 批准，在 OAuth 2.0 之上添加身份层"
+      ],
+      [
+        "2020",
+        "OAuth 2.1 草案整合最佳实践，弃用隐式授权并建议所有客户端使用 PKCE"
+      ],
+      [
+        "2023",
+        "富授权请求（RAR, RFC 9396）扩展 OAuth，支持细粒度结构化授权"
+      ]
     ],
     "dos": [
       "Always use PKCE (Proof Key for Code Exchange) for public clients — it prevents authorization code interception attacks",
@@ -379,7 +481,13 @@
       "Okta / Auth0",
       "GitHub",
       "Salesforce"
-    ]
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "security",
+      "usability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 114,
@@ -448,18 +556,48 @@
       "安全监控：在每一层持续观察，检测异常并触发事件响应"
     ],
     "timeline": [
-      ["1990s", "NSA Information Assurance Technical Framework (IATF) formalizes Defense in Depth for IT systems"],
-      ["2005", "NIST SP 800-53 Rev 1 codifies layered security controls as a federal standard"],
-      ["2013", "Target breach (HVAC vendor to POS) becomes a textbook case of insufficient defense in depth"],
-      ["2017", "NIST Cybersecurity Framework v1.1 reinforces layered controls across Identify, Protect, Detect, Respond, Recover"],
-      ["2023", "Cloud-native defense in depth evolves with service mesh policies, eBPF-based monitoring, and runtime security"]
+      [
+        "1990s",
+        "NSA Information Assurance Technical Framework (IATF) formalizes Defense in Depth for IT systems"
+      ],
+      [
+        "2005",
+        "NIST SP 800-53 Rev 1 codifies layered security controls as a federal standard"
+      ],
+      [
+        "2013",
+        "Target breach (HVAC vendor to POS) becomes a textbook case of insufficient defense in depth"
+      ],
+      [
+        "2017",
+        "NIST Cybersecurity Framework v1.1 reinforces layered controls across Identify, Protect, Detect, Respond, Recover"
+      ],
+      [
+        "2023",
+        "Cloud-native defense in depth evolves with service mesh policies, eBPF-based monitoring, and runtime security"
+      ]
     ],
     "timeline_zh": [
-      ["1990s", "NSA 信息保障技术框架（IATF）将纵深防御正式化用于 IT 系统"],
-      ["2005", "NIST SP 800-53 Rev 1 将分层安全控制编入联邦标准"],
-      ["2013", "Target 数据泄露（从 HVAC 供应商到 POS）成为纵深防御不足的教科书案例"],
-      ["2017", "NIST 网络安全框架 v1.1 在识别、保护、检测、响应、恢复各功能中加强分层控制"],
-      ["2023", "云原生纵深防御随服务网格策略、基于 eBPF 的监控和运行时安全而演进"]
+      [
+        "1990s",
+        "NSA 信息保障技术框架（IATF）将纵深防御正式化用于 IT 系统"
+      ],
+      [
+        "2005",
+        "NIST SP 800-53 Rev 1 将分层安全控制编入联邦标准"
+      ],
+      [
+        "2013",
+        "Target 数据泄露（从 HVAC 供应商到 POS）成为纵深防御不足的教科书案例"
+      ],
+      [
+        "2017",
+        "NIST 网络安全框架 v1.1 在识别、保护、检测、响应、恢复各功能中加强分层控制"
+      ],
+      [
+        "2023",
+        "云原生纵深防御随服务网格策略、基于 eBPF 的监控和运行时安全而演进"
+      ]
     ],
     "dos": [
       "Ensure each layer provides independent value — if removing one layer doesn't change your risk posture, it's redundant not defense in depth",
@@ -506,7 +644,13 @@
       "AWS (shared responsibility model)",
       "JPMorgan Chase",
       "Cloudflare"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "security",
+      "reliability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 115,
@@ -576,18 +720,48 @@
       "默认隐私：最严格的隐私设置自动生效，无需用户主动操作"
     ],
     "timeline": [
-      ["1995", "EU Data Protection Directive 95/46/EC introduces data protection by design concepts"],
-      ["2009", "Ann Cavoukian publishes the 7 Foundational Principles of Privacy by Design"],
-      ["2010", "International Conference of Data Protection Authorities unanimously adopts PbD as a global standard"],
-      ["2018-05", "GDPR takes effect with Article 25 making data protection by design and by default a legal requirement"],
-      ["2023", "Privacy-enhancing computation (federated learning, secure multi-party computation) goes mainstream in enterprise AI"]
+      [
+        "1995",
+        "EU Data Protection Directive 95/46/EC introduces data protection by design concepts"
+      ],
+      [
+        "2009",
+        "Ann Cavoukian publishes the 7 Foundational Principles of Privacy by Design"
+      ],
+      [
+        "2010",
+        "International Conference of Data Protection Authorities unanimously adopts PbD as a global standard"
+      ],
+      [
+        "2018-05",
+        "GDPR takes effect with Article 25 making data protection by design and by default a legal requirement"
+      ],
+      [
+        "2023",
+        "Privacy-enhancing computation (federated learning, secure multi-party computation) goes mainstream in enterprise AI"
+      ]
     ],
     "timeline_zh": [
-      ["1995", "欧盟数据保护指令 95/46/EC 引入设计即数据保护的概念"],
-      ["2009", "Ann Cavoukian 发布隐私设计的七项基础原则"],
-      ["2010", "国际数据保护机构大会一致通过 PbD 作为全球标准"],
-      ["2018-05", "GDPR 生效，第 25 条将设计和默认的数据保护作为法律要求"],
-      ["2023", "隐私增强计算（联邦学习、安全多方计算）在企业 AI 中成为主流"]
+      [
+        "1995",
+        "欧盟数据保护指令 95/46/EC 引入设计即数据保护的概念"
+      ],
+      [
+        "2009",
+        "Ann Cavoukian 发布隐私设计的七项基础原则"
+      ],
+      [
+        "2010",
+        "国际数据保护机构大会一致通过 PbD 作为全球标准"
+      ],
+      [
+        "2018-05",
+        "GDPR 生效，第 25 条将设计和默认的数据保护作为法律要求"
+      ],
+      [
+        "2023",
+        "隐私增强计算（联邦学习、安全多方计算）在企业 AI 中成为主流"
+      ]
     ],
     "dos": [
       "Conduct privacy impact assessments before collecting any new category of personal data",
@@ -634,7 +808,13 @@
       "Google (Privacy Sandbox)",
       "European Union (GDPR mandate)",
       "Brave Browser"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "security",
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 116,
@@ -703,18 +883,48 @@
       "软件和数据完整性故障：不验证完整性的代码和基础设施——包括不安全的 CI/CD 管道和未签名的更新"
     ],
     "timeline": [
-      ["2003", "First OWASP Top 10 published, establishing injection and XSS as dominant web risks"],
-      ["2010", "OWASP Top 10 — 2010 edition adds insecure cryptographic storage and insufficient transport layer protection"],
-      ["2017", "OWASP Top 10 — 2017 edition introduces XML External Entities (XXE) and insecure deserialization"],
-      ["2021", "OWASP Top 10 — 2021 edition restructures categories: Broken Access Control rises to #1; new categories include SSRF and Software Integrity Failures"],
-      ["2023", "OWASP releases the Top 10 for LLM Applications, extending the framework to AI security risks"]
+      [
+        "2003",
+        "First OWASP Top 10 published, establishing injection and XSS as dominant web risks"
+      ],
+      [
+        "2010",
+        "OWASP Top 10 — 2010 edition adds insecure cryptographic storage and insufficient transport layer protection"
+      ],
+      [
+        "2017",
+        "OWASP Top 10 — 2017 edition introduces XML External Entities (XXE) and insecure deserialization"
+      ],
+      [
+        "2021",
+        "OWASP Top 10 — 2021 edition restructures categories: Broken Access Control rises to #1; new categories include SSRF and Software Integrity Failures"
+      ],
+      [
+        "2023",
+        "OWASP releases the Top 10 for LLM Applications, extending the framework to AI security risks"
+      ]
     ],
     "timeline_zh": [
-      ["2003", "首版 OWASP Top 10 发布，将注入和 XSS 确立为主要 Web 风险"],
-      ["2010", "OWASP Top 10 — 2010 版新增不安全加密存储和不充分传输层保护"],
-      ["2017", "OWASP Top 10 — 2017 版引入 XML 外部实体（XXE）和不安全反序列化"],
-      ["2021", "OWASP Top 10 — 2021 版重构类别：访问控制失效升至第一；新增 SSRF 和软件完整性故障"],
-      ["2023", "OWASP 发布 LLM 应用 Top 10，将框架扩展到 AI 安全风险"]
+      [
+        "2003",
+        "首版 OWASP Top 10 发布，将注入和 XSS 确立为主要 Web 风险"
+      ],
+      [
+        "2010",
+        "OWASP Top 10 — 2010 版新增不安全加密存储和不充分传输层保护"
+      ],
+      [
+        "2017",
+        "OWASP Top 10 — 2017 版引入 XML 外部实体（XXE）和不安全反序列化"
+      ],
+      [
+        "2021",
+        "OWASP Top 10 — 2021 版重构类别：访问控制失效升至第一；新增 SSRF 和软件完整性故障"
+      ],
+      [
+        "2023",
+        "OWASP 发布 LLM 应用 Top 10，将框架扩展到 AI 安全风险"
+      ]
     ],
     "dos": [
       "Automate OWASP Top 10 checks with SAST/DAST tools integrated into CI/CD pipelines",
@@ -761,7 +971,12 @@
       "US DoD",
       "GitHub (CodeQL rules mapped to OWASP)",
       "Snyk"
-    ]
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "security"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 117,
@@ -831,18 +1046,48 @@
       "爆炸半径：被入侵主体可造成的损害范围，与其被授予的权限直接成正比"
     ],
     "timeline": [
-      ["1975", "Saltzer and Schroeder define the principle of least privilege in their seminal IEEE paper"],
-      ["2004", "Windows XP SP2 introduces User Account Control concepts, applying least privilege to desktop users"],
-      ["2011", "AWS IAM launches with fine-grained policy-based access control, making least privilege practical in the cloud"],
-      ["2019", "Cloud providers introduce IAM Access Analyzer (AWS) and similar tools to detect over-privileged identities"],
-      ["2023", "Just-in-time access platforms (CyberArk, BeyondTrust, HashiCorp Boundary) become standard in enterprise security stacks"]
+      [
+        "1975",
+        "Saltzer and Schroeder define the principle of least privilege in their seminal IEEE paper"
+      ],
+      [
+        "2004",
+        "Windows XP SP2 introduces User Account Control concepts, applying least privilege to desktop users"
+      ],
+      [
+        "2011",
+        "AWS IAM launches with fine-grained policy-based access control, making least privilege practical in the cloud"
+      ],
+      [
+        "2019",
+        "Cloud providers introduce IAM Access Analyzer (AWS) and similar tools to detect over-privileged identities"
+      ],
+      [
+        "2023",
+        "Just-in-time access platforms (CyberArk, BeyondTrust, HashiCorp Boundary) become standard in enterprise security stacks"
+      ]
     ],
     "timeline_zh": [
-      ["1975", "Saltzer 和 Schroeder 在开创性 IEEE 论文中定义最小权限原则"],
-      ["2004", "Windows XP SP2 引入用户账户控制概念，将最小权限应用于桌面用户"],
-      ["2011", "AWS IAM 推出细粒度基于策略的访问控制，使最小权限在云端变得实用"],
-      ["2019", "云厂商推出 IAM Access Analyzer（AWS）等工具检测过度授权的身份"],
-      ["2023", "即时访问平台（CyberArk、BeyondTrust、HashiCorp Boundary）成为企业安全栈的标配"]
+      [
+        "1975",
+        "Saltzer 和 Schroeder 在开创性 IEEE 论文中定义最小权限原则"
+      ],
+      [
+        "2004",
+        "Windows XP SP2 引入用户账户控制概念，将最小权限应用于桌面用户"
+      ],
+      [
+        "2011",
+        "AWS IAM 推出细粒度基于策略的访问控制，使最小权限在云端变得实用"
+      ],
+      [
+        "2019",
+        "云厂商推出 IAM Access Analyzer（AWS）等工具检测过度授权的身份"
+      ],
+      [
+        "2023",
+        "即时访问平台（CyberArk、BeyondTrust、HashiCorp Boundary）成为企业安全栈的标配"
+      ]
     ],
     "dos": [
       "Default to deny-all and explicitly grant only needed permissions — whitelisting over blacklisting",
@@ -889,7 +1134,13 @@
       "Microsoft (Azure AD PIM)",
       "HashiCorp (Vault, Boundary)",
       "CyberArk"
-    ]
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "security",
+      "reliability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 118,
@@ -958,18 +1209,48 @@
       "左移：将安全活动（威胁建模、SAST、代码审查）前移到修复成本最低的 SDLC 早期"
     ],
     "timeline": [
-      ["2004", "Microsoft launches the Security Development Lifecycle (SDL) after the Trustworthy Computing memo"],
-      ["2008", "Gary McGraw publishes「Software Security: Building Security In」, establishing the building security in movement"],
-      ["2016", "DevSecOps movement formalizes security integration into CI/CD pipelines with automated tooling"],
-      ["2019", "Johnsson, Deogun & Sawano publish「Secure by Design」, introducing domain-driven security patterns"],
-      ["2022", "CISA launches the Secure by Design initiative, urging software vendors to take responsibility for product security"]
+      [
+        "2004",
+        "Microsoft launches the Security Development Lifecycle (SDL) after the Trustworthy Computing memo"
+      ],
+      [
+        "2008",
+        "Gary McGraw publishes「Software Security: Building Security In」, establishing the building security in movement"
+      ],
+      [
+        "2016",
+        "DevSecOps movement formalizes security integration into CI/CD pipelines with automated tooling"
+      ],
+      [
+        "2019",
+        "Johnsson, Deogun & Sawano publish「Secure by Design」, introducing domain-driven security patterns"
+      ],
+      [
+        "2022",
+        "CISA launches the Secure by Design initiative, urging software vendors to take responsibility for product security"
+      ]
     ],
     "timeline_zh": [
-      ["2004", "微软在「可信计算」备忘录后启动安全开发生命周期（SDL）"],
-      ["2008", "Gary McGraw 出版「Software Security: Building Security In」，建立内建安全运动"],
-      ["2016", "DevSecOps 运动通过自动化工具将安全集成正式化到 CI/CD 管道中"],
-      ["2019", "Johnsson、Deogun 和 Sawano 出版「Secure by Design」，引入领域驱动安全模式"],
-      ["2022", "CISA 发起 Secure by Design 倡议，敦促软件供应商对产品安全负责"]
+      [
+        "2004",
+        "微软在「可信计算」备忘录后启动安全开发生命周期（SDL）"
+      ],
+      [
+        "2008",
+        "Gary McGraw 出版「Software Security: Building Security In」，建立内建安全运动"
+      ],
+      [
+        "2016",
+        "DevSecOps 运动通过自动化工具将安全集成正式化到 CI/CD 管道中"
+      ],
+      [
+        "2019",
+        "Johnsson、Deogun 和 Sawano 出版「Secure by Design」，引入领域驱动安全模式"
+      ],
+      [
+        "2022",
+        "CISA 发起 Secure by Design 倡议，敦促软件供应商对产品安全负责"
+      ]
     ],
     "dos": [
       "Use strong type systems and domain primitives to encode security invariants — let the compiler catch violations",
@@ -1016,7 +1297,13 @@
       "CISA (Secure by Design initiative)",
       "SAFECode",
       "Cisco (Cisco Secure Development Lifecycle)"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "security",
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 119,
@@ -1086,18 +1373,48 @@
       "Sigstore：提供无密钥签名、透明日志（Rekor）和证书颁发机构（Fulcio）的开源制品证明项目"
     ],
     "timeline": [
-      ["2020-12", "SolarWinds supply chain attack compromises 18,000 organizations, catalyzing industry focus on build integrity"],
-      ["2021-05", "US Executive Order 14028 mandates SBOM and secure software supply chain practices for federal suppliers"],
-      ["2021-06", "Google open-sources the SLSA framework (v0.1) defining four levels of supply chain integrity"],
-      ["2022-10", "Sigstore reaches general availability, providing free keyless signing for open-source artifacts"],
-      ["2024-03", "xz-utils backdoor (CVE-2024-3094) demonstrates social engineering risks in open-source supply chains; SLSA L3+ would have mitigated it"]
+      [
+        "2020-12",
+        "SolarWinds supply chain attack compromises 18,000 organizations, catalyzing industry focus on build integrity"
+      ],
+      [
+        "2021-05",
+        "US Executive Order 14028 mandates SBOM and secure software supply chain practices for federal suppliers"
+      ],
+      [
+        "2021-06",
+        "Google open-sources the SLSA framework (v0.1) defining four levels of supply chain integrity"
+      ],
+      [
+        "2022-10",
+        "Sigstore reaches general availability, providing free keyless signing for open-source artifacts"
+      ],
+      [
+        "2024-03",
+        "xz-utils backdoor (CVE-2024-3094) demonstrates social engineering risks in open-source supply chains; SLSA L3+ would have mitigated it"
+      ]
     ],
     "timeline_zh": [
-      ["2020-12", "SolarWinds 供应链攻击危及 18,000 个组织，催化行业对构建完整性的关注"],
-      ["2021-05", "美国第 14028 号行政令要求联邦供应商实施 SBOM 和安全软件供应链实践"],
-      ["2021-06", "Google 开源 SLSA 框架（v0.1），定义四个供应链完整性级别"],
-      ["2022-10", "Sigstore 正式发布，为开源制品提供免费无密钥签名"],
-      ["2024-03", "xz-utils 后门（CVE-2024-3094）展示开源供应链中的社会工程风险；SLSA L3+ 可以缓解该攻击"]
+      [
+        "2020-12",
+        "SolarWinds 供应链攻击危及 18,000 个组织，催化行业对构建完整性的关注"
+      ],
+      [
+        "2021-05",
+        "美国第 14028 号行政令要求联邦供应商实施 SBOM 和安全软件供应链实践"
+      ],
+      [
+        "2021-06",
+        "Google 开源 SLSA 框架（v0.1），定义四个供应链完整性级别"
+      ],
+      [
+        "2022-10",
+        "Sigstore 正式发布，为开源制品提供免费无密钥签名"
+      ],
+      [
+        "2024-03",
+        "xz-utils 后门（CVE-2024-3094）展示开源供应链中的社会工程风险；SLSA L3+ 可以缓解该攻击"
+      ]
     ],
     "dos": [
       "Start with SLSA Level 1 (documented build process) and progress incrementally — perfection is not required to gain value",
@@ -1144,7 +1461,13 @@
       "npm (provenance for packages)",
       "Kubernetes (SLSA L3 for releases)",
       "OpenSSF / Linux Foundation"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "security",
+      "reliability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 120,
@@ -1214,18 +1537,48 @@
       "密封存储：加密到特定 TEE 身份的数据，仅该飞地（或授权继任者）可解密"
     ],
     "timeline": [
-      ["2015", "Intel launches SGX (Software Guard Extensions) in 6th-gen Core processors, introducing user-space enclaves"],
-      ["2019", "Confidential Computing Consortium founded under the Linux Foundation by Intel, Microsoft, Google, Arm, and others"],
-      ["2020", "AMD SEV-SNP (Secure Nested Paging) adds strong VM-level isolation, making confidential VMs practical"],
-      ["2022", "Azure, GCP, and AWS launch confidential VM offerings based on AMD SEV-SNP and Intel TDX"],
-      ["2024", "Arm CCA (Confidential Compute Architecture) extends confidential computing to mobile and edge devices; NVIDIA H100 adds GPU TEE support"]
+      [
+        "2015",
+        "Intel launches SGX (Software Guard Extensions) in 6th-gen Core processors, introducing user-space enclaves"
+      ],
+      [
+        "2019",
+        "Confidential Computing Consortium founded under the Linux Foundation by Intel, Microsoft, Google, Arm, and others"
+      ],
+      [
+        "2020",
+        "AMD SEV-SNP (Secure Nested Paging) adds strong VM-level isolation, making confidential VMs practical"
+      ],
+      [
+        "2022",
+        "Azure, GCP, and AWS launch confidential VM offerings based on AMD SEV-SNP and Intel TDX"
+      ],
+      [
+        "2024",
+        "Arm CCA (Confidential Compute Architecture) extends confidential computing to mobile and edge devices; NVIDIA H100 adds GPU TEE support"
+      ]
     ],
     "timeline_zh": [
-      ["2015", "Intel 在第六代 Core 处理器中推出 SGX（软件保护扩展），引入用户态飞地"],
-      ["2019", "机密计算联盟在 Linux 基金会下由 Intel、Microsoft、Google、Arm 等发起成立"],
-      ["2020", "AMD SEV-SNP（安全嵌套分页）添加强 VM 级隔离，使机密虚拟机切实可行"],
-      ["2022", "Azure、GCP 和 AWS 推出基于 AMD SEV-SNP 和 Intel TDX 的机密 VM 产品"],
-      ["2024", "Arm CCA（机密计算架构）将机密计算扩展到移动和边缘设备；NVIDIA H100 添加 GPU TEE 支持"]
+      [
+        "2015",
+        "Intel 在第六代 Core 处理器中推出 SGX（软件保护扩展），引入用户态飞地"
+      ],
+      [
+        "2019",
+        "机密计算联盟在 Linux 基金会下由 Intel、Microsoft、Google、Arm 等发起成立"
+      ],
+      [
+        "2020",
+        "AMD SEV-SNP（安全嵌套分页）添加强 VM 级隔离，使机密虚拟机切实可行"
+      ],
+      [
+        "2022",
+        "Azure、GCP 和 AWS 推出基于 AMD SEV-SNP 和 Intel TDX 的机密 VM 产品"
+      ],
+      [
+        "2024",
+        "Arm CCA（机密计算架构）将机密计算扩展到移动和边缘设备；NVIDIA H100 添加 GPU TEE 支持"
+      ]
     ],
     "dos": [
       "Always verify remote attestation before sending sensitive data to a TEE — attestation is the foundation of trust",
@@ -1272,6 +1625,11 @@
       "Google Cloud (Confidential VMs and GKE Nodes)",
       "Fortanix",
       "Anjuna Security"
-    ]
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "security"
+    ],
+    "maturity_ring": "emerging"
   }
 ]

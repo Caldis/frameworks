@@ -23,8 +23,17 @@
     ],
     "ai_relevant": false,
     "viz_type": "pyramid",
-    "related": ["clean-code-principles", "grasp-patterns", "dependency-injection"],
-    "tags": ["solid", "oop", "design-principles", "maintainability"],
+    "related": [
+      "clean-code-principles",
+      "grasp-patterns",
+      "dependency-injection"
+    ],
+    "tags": [
+      "solid",
+      "oop",
+      "design-principles",
+      "maintainability"
+    ],
     "origin_author": "Robert C. Martin, 2000",
     "origin_source": "Design Principles and Design Patterns",
     "origin_source_zh": "《设计原则与设计模式》",
@@ -56,16 +65,40 @@
       "依赖倒置原则：高层模块应依赖抽象，而非低层具体实现"
     ],
     "timeline": [
-      ["1988", "Barbara Liskov formally defines the Liskov Substitution Principle"],
-      ["2000", "Robert C. Martin publishes 'Design Principles and Design Patterns' introducing SOLID as a set"],
-      ["2003", "Martin's 'Agile Software Development' book popularizes SOLID in the agile community"],
-      ["2009", "Michael Feathers coins the SOLID acronym, making the principles easier to remember and teach"]
+      [
+        "1988",
+        "Barbara Liskov formally defines the Liskov Substitution Principle"
+      ],
+      [
+        "2000",
+        "Robert C. Martin publishes 'Design Principles and Design Patterns' introducing SOLID as a set"
+      ],
+      [
+        "2003",
+        "Martin's 'Agile Software Development' book popularizes SOLID in the agile community"
+      ],
+      [
+        "2009",
+        "Michael Feathers coins the SOLID acronym, making the principles easier to remember and teach"
+      ]
     ],
     "timeline_zh": [
-      ["1988", "Barbara Liskov 正式定义里氏替换原则"],
-      ["2000", "Robert C. Martin 发表《设计原则与设计模式》，首次将 SOLID 作为一组原则提出"],
-      ["2003", "Martin 的《敏捷软件开发》一书在敏捷社区中推广了 SOLID"],
-      ["2009", "Michael Feathers 创造了 SOLID 缩写，使这些原则更易于记忆和传授"]
+      [
+        "1988",
+        "Barbara Liskov 正式定义里氏替换原则"
+      ],
+      [
+        "2000",
+        "Robert C. Martin 发表《设计原则与设计模式》，首次将 SOLID 作为一组原则提出"
+      ],
+      [
+        "2003",
+        "Martin 的《敏捷软件开发》一书在敏捷社区中推广了 SOLID"
+      ],
+      [
+        "2009",
+        "Michael Feathers 创造了 SOLID 缩写，使这些原则更易于记忆和传授"
+      ]
     ],
     "dos": [
       "Do favor composition over inheritance because it naturally aligns with SRP and reduces tight coupling",
@@ -106,7 +139,18 @@
       "性能关键的内层循环，抽象层会带来不可接受的开销",
       "函数式编程代码库，SOLID 的面向对象假设不适用"
     ],
-    "adopters": ["Microsoft", "Google", "Spotify", "Thoughtworks", "JetBrains"]
+    "adopters": [
+      "Microsoft",
+      "Google",
+      "Spotify",
+      "Thoughtworks",
+      "JetBrains"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 30,
@@ -132,8 +176,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
-    "related": ["solid-principles", "gof-design-patterns", "clean-code-principles"],
-    "tags": ["grasp", "responsibility-assignment", "oop", "coupling", "cohesion"],
+    "related": [
+      "solid-principles",
+      "gof-design-patterns",
+      "clean-code-principles"
+    ],
+    "tags": [
+      "grasp",
+      "responsibility-assignment",
+      "oop",
+      "coupling",
+      "cohesion"
+    ],
     "origin_author": "Craig Larman, 2004",
     "origin_source": "Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design and Iterative Development",
     "origin_source_zh": "《UML和模式应用：面向对象分析与设计及迭代开发导论》",
@@ -165,16 +219,40 @@
       "控制器：将系统事件处理职责分配给协调用例的非 UI 对象"
     ],
     "timeline": [
-      ["2001", "Craig Larman introduces GRASP in the first edition of 'Applying UML and Patterns'"],
-      ["2004", "Third edition of the book consolidates all nine patterns and becomes a university textbook standard"],
-      ["2010", "GRASP gains renewed interest as complement to SOLID in enterprise Java and C# communities"],
-      ["2015", "GRASP patterns are adapted for microservice responsibility assignment in distributed systems literature"]
+      [
+        "2001",
+        "Craig Larman introduces GRASP in the first edition of 'Applying UML and Patterns'"
+      ],
+      [
+        "2004",
+        "Third edition of the book consolidates all nine patterns and becomes a university textbook standard"
+      ],
+      [
+        "2010",
+        "GRASP gains renewed interest as complement to SOLID in enterprise Java and C# communities"
+      ],
+      [
+        "2015",
+        "GRASP patterns are adapted for microservice responsibility assignment in distributed systems literature"
+      ]
     ],
     "timeline_zh": [
-      ["2001", "Craig Larman 在《UML和模式应用》第一版中引入 GRASP"],
-      ["2004", "第三版整合了全部九种模式，成为高校教材标准"],
-      ["2010", "GRASP 在企业级 Java 和 C# 社区中作为 SOLID 的补充再次受到关注"],
-      ["2015", "GRASP 模式被改编用于分布式系统文献中的微服务职责分配"]
+      [
+        "2001",
+        "Craig Larman 在《UML和模式应用》第一版中引入 GRASP"
+      ],
+      [
+        "2004",
+        "第三版整合了全部九种模式，成为高校教材标准"
+      ],
+      [
+        "2010",
+        "GRASP 在企业级 Java 和 C# 社区中作为 SOLID 的补充再次受到关注"
+      ],
+      [
+        "2015",
+        "GRASP 模式被改编用于分布式系统文献中的微服务职责分配"
+      ]
     ],
     "dos": [
       "Do start with Information Expert when unsure where to place a method because it naturally reduces coupling",
@@ -215,7 +293,18 @@
       "以数据为中心的 CRUD 应用，贫血模型配合服务层是刻意的选择",
       "仅有少数几个类的极小项目，正式模式的开销没有必要"
     ],
-    "adopters": ["Ericsson", "SAP", "Oracle", "Siemens", "IBM"]
+    "adopters": [
+      "Ericsson",
+      "SAP",
+      "Oracle",
+      "Siemens",
+      "IBM"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 31,
@@ -241,8 +330,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "tree",
-    "related": ["solid-principles", "grasp-patterns", "hexagonal-architecture"],
-    "tags": ["design-patterns", "gof", "creational", "structural", "behavioral"],
+    "related": [
+      "solid-principles",
+      "grasp-patterns",
+      "hexagonal-architecture"
+    ],
+    "tags": [
+      "design-patterns",
+      "gof",
+      "creational",
+      "structural",
+      "behavioral"
+    ],
     "origin_author": "Gang of Four (Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides), 1994",
     "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
     "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
@@ -274,16 +373,40 @@
       "优先使用组合而非继承：通过组合对象来装配行为，而非扩展类继承层次"
     ],
     "timeline": [
-      ["1987", "Ward Cunningham and Kent Beck begin cataloging Smalltalk design patterns inspired by Christopher Alexander's architectural patterns"],
-      ["1994", "The 'Gang of Four' publish 'Design Patterns', establishing 23 canonical patterns"],
-      ["2004", "Joshua Kerievsky publishes 'Refactoring to Patterns', bridging the gap between patterns and refactoring"],
-      ["2014", "Modern language features (lambdas, generics) reduce boilerplate, leading to simpler pattern implementations"]
+      [
+        "1987",
+        "Ward Cunningham and Kent Beck begin cataloging Smalltalk design patterns inspired by Christopher Alexander's architectural patterns"
+      ],
+      [
+        "1994",
+        "The 'Gang of Four' publish 'Design Patterns', establishing 23 canonical patterns"
+      ],
+      [
+        "2004",
+        "Joshua Kerievsky publishes 'Refactoring to Patterns', bridging the gap between patterns and refactoring"
+      ],
+      [
+        "2014",
+        "Modern language features (lambdas, generics) reduce boilerplate, leading to simpler pattern implementations"
+      ]
     ],
     "timeline_zh": [
-      ["1987", "Ward Cunningham 和 Kent Beck 受 Christopher Alexander 建筑模式启发，开始编目 Smalltalk 设计模式"],
-      ["1994", "「四人帮」出版《设计模式》，确立 23 种经典模式"],
-      ["2004", "Joshua Kerievsky 出版《重构与模式》，架起了模式与重构之间的桥梁"],
-      ["2014", "现代语言特性（lambda、泛型）减少了模板代码，使模式实现更加简洁"]
+      [
+        "1987",
+        "Ward Cunningham 和 Kent Beck 受 Christopher Alexander 建筑模式启发，开始编目 Smalltalk 设计模式"
+      ],
+      [
+        "1994",
+        "「四人帮」出版《设计模式》，确立 23 种经典模式"
+      ],
+      [
+        "2004",
+        "Joshua Kerievsky 出版《重构与模式》，架起了模式与重构之间的桥梁"
+      ],
+      [
+        "2014",
+        "现代语言特性（lambda、泛型）减少了模板代码，使模式实现更加简洁"
+      ]
     ],
     "dos": [
       "Do learn the intent of each pattern before memorizing its structure because understanding the 'why' prevents misapplication",
@@ -324,7 +447,18 @@
       "一次性脚本或自动化任务，设计持久性无关紧要",
       "早期原型阶段，过早应用模式会拖慢探索速度"
     ],
-    "adopters": ["Netflix", "Amazon", "Google", "Microsoft", "Apple"]
+    "adopters": [
+      "Netflix",
+      "Amazon",
+      "Google",
+      "Microsoft",
+      "Apple"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 32,
@@ -350,8 +484,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "pyramid",
-    "related": ["solid-principles", "conventional-comments", "grasp-patterns"],
-    "tags": ["clean-code", "readability", "naming", "refactoring", "simplicity"],
+    "related": [
+      "solid-principles",
+      "conventional-comments",
+      "grasp-patterns"
+    ],
+    "tags": [
+      "clean-code",
+      "readability",
+      "naming",
+      "refactoring",
+      "simplicity"
+    ],
     "origin_author": "Robert C. Martin, 2008",
     "origin_source": "Clean Code: A Handbook of Agile Software Craftsmanship",
     "origin_source_zh": "《代码整洁之道》",
@@ -383,16 +527,40 @@
       "注释是最后手段：写得好的代码应该是自解释的；注释应解释「为什么」而非「做什么」"
     ],
     "timeline": [
-      ["1999", "The Pragmatic Programmer by Hunt and Thomas introduces DRY and related code quality ideas"],
-      ["2008", "Robert C. Martin publishes 'Clean Code', codifying readability-first principles"],
-      ["2011", "Martin follows up with 'The Clean Coder', extending principles to professional conduct"],
-      ["2017", "Clean Code ideas merge with modern practices like pull request reviews and automated linting"]
+      [
+        "1999",
+        "The Pragmatic Programmer by Hunt and Thomas introduces DRY and related code quality ideas"
+      ],
+      [
+        "2008",
+        "Robert C. Martin publishes 'Clean Code', codifying readability-first principles"
+      ],
+      [
+        "2011",
+        "Martin follows up with 'The Clean Coder', extending principles to professional conduct"
+      ],
+      [
+        "2017",
+        "Clean Code ideas merge with modern practices like pull request reviews and automated linting"
+      ]
     ],
     "timeline_zh": [
-      ["1999", "Hunt 和 Thomas 的《程序员修炼之道》引入 DRY 及相关代码质量理念"],
-      ["2008", "Robert C. Martin 出版《代码整洁之道》，将可读性优先的原则系统化"],
-      ["2011", "Martin 出版后续作品《程序员的职业素养》，将原则扩展到职业行为"],
-      ["2017", "整洁代码理念与拉取请求评审和自动化 lint 等现代实践融合"]
+      [
+        "1999",
+        "Hunt 和 Thomas 的《程序员修炼之道》引入 DRY 及相关代码质量理念"
+      ],
+      [
+        "2008",
+        "Robert C. Martin 出版《代码整洁之道》，将可读性优先的原则系统化"
+      ],
+      [
+        "2011",
+        "Martin 出版后续作品《程序员的职业素养》，将原则扩展到职业行为"
+      ],
+      [
+        "2017",
+        "整洁代码理念与拉取请求评审和自动化 lint 等现代实践融合"
+      ]
     ],
     "dos": [
       "Do choose descriptive names even if they are longer because clarity beats brevity",
@@ -433,7 +601,18 @@
       "性能关键的热路径，微优化需要牺牲代码可读性",
       "探索性数据分析笔记本，迭代速度优先于代码结构"
     ],
-    "adopters": ["Basecamp", "Pivotal Labs", "Thoughtworks", "Shopify", "GitHub"]
+    "adopters": [
+      "Basecamp",
+      "Pivotal Labs",
+      "Thoughtworks",
+      "Shopify",
+      "GitHub"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 33,
@@ -459,8 +638,19 @@
     ],
     "ai_relevant": false,
     "viz_type": "tree",
-    "related": ["domain-driven-design", "event-sourcing-pattern", "cqrs-pattern", "hexagonal-architecture"],
-    "tags": ["ddd", "entities", "value-objects", "aggregates", "domain-events"],
+    "related": [
+      "domain-driven-design",
+      "event-sourcing-pattern",
+      "cqrs-pattern",
+      "hexagonal-architecture"
+    ],
+    "tags": [
+      "ddd",
+      "entities",
+      "value-objects",
+      "aggregates",
+      "domain-events"
+    ],
     "origin_author": "Eric Evans, 2003",
     "origin_source": "Domain-Driven Design: Tackling Complexity in the Heart of Software",
     "origin_source_zh": "《领域驱动设计：软件核心复杂性应对之道》",
@@ -492,16 +682,40 @@
       "仓储：在领域层和数据映射层之间的抽象中介，提供类集合式的聚合访问"
     ],
     "timeline": [
-      ["2003", "Eric Evans publishes 'Domain-Driven Design', introducing tactical and strategic patterns"],
-      ["2013", "Vaughn Vernon publishes 'Implementing Domain-Driven Design', providing practical implementation guidance"],
-      ["2016", "DDD tactical patterns gain traction in microservice architectures as natural aggregate-to-service mapping"],
-      ["2019", "Event-sourced aggregates become mainstream with tools like EventStoreDB and Axon Framework"]
+      [
+        "2003",
+        "Eric Evans publishes 'Domain-Driven Design', introducing tactical and strategic patterns"
+      ],
+      [
+        "2013",
+        "Vaughn Vernon publishes 'Implementing Domain-Driven Design', providing practical implementation guidance"
+      ],
+      [
+        "2016",
+        "DDD tactical patterns gain traction in microservice architectures as natural aggregate-to-service mapping"
+      ],
+      [
+        "2019",
+        "Event-sourced aggregates become mainstream with tools like EventStoreDB and Axon Framework"
+      ]
     ],
     "timeline_zh": [
-      ["2003", "Eric Evans 出版《领域驱动设计》，引入战术和战略模式"],
-      ["2013", "Vaughn Vernon 出版《实现领域驱动设计》，提供实践性实施指导"],
-      ["2016", "DDD 战术模式在微服务架构中获得广泛应用，聚合自然映射到服务"],
-      ["2019", "事件溯源聚合随着 EventStoreDB 和 Axon Framework 等工具成为主流"]
+      [
+        "2003",
+        "Eric Evans 出版《领域驱动设计》，引入战术和战略模式"
+      ],
+      [
+        "2013",
+        "Vaughn Vernon 出版《实现领域驱动设计》，提供实践性实施指导"
+      ],
+      [
+        "2016",
+        "DDD 战术模式在微服务架构中获得广泛应用，聚合自然映射到服务"
+      ],
+      [
+        "2019",
+        "事件溯源聚合随着 EventStoreDB 和 Axon Framework 等工具成为主流"
+      ]
     ],
     "dos": [
       "Do keep aggregates small because large aggregates create contention and performance problems",
@@ -542,7 +756,18 @@
       "不熟悉 DDD 的团队，会误用模式并造成意外复杂性",
       "以读为主的报表系统，查询优化模型更合适"
     ],
-    "adopters": ["Zalando", "SoundCloud", "Klarna", "Just Eat Takeaway", "Vrbo"]
+    "adopters": [
+      "Zalando",
+      "SoundCloud",
+      "Klarna",
+      "Just Eat Takeaway",
+      "Vrbo"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 34,
@@ -568,8 +793,19 @@
     ],
     "ai_relevant": true,
     "viz_type": "venn",
-    "related": ["solid-principles", "dependency-injection", "ddd-tactical-patterns", "clean-code-principles"],
-    "tags": ["hexagonal", "ports-adapters", "clean-architecture", "isolation", "testability"],
+    "related": [
+      "solid-principles",
+      "dependency-injection",
+      "ddd-tactical-patterns",
+      "clean-code-principles"
+    ],
+    "tags": [
+      "hexagonal",
+      "ports-adapters",
+      "clean-architecture",
+      "isolation",
+      "testability"
+    ],
     "origin_author": "Alistair Cockburn, 2005",
     "origin_source": "Hexagonal Architecture (Ports and Adapters)",
     "origin_source_zh": "《六边形架构（端口与适配器）》",
@@ -601,16 +837,40 @@
       "依赖规则：依赖方向始终指向内部——适配器依赖端口，绝不反过来"
     ],
     "timeline": [
-      ["2005", "Alistair Cockburn publishes the Hexagonal Architecture pattern on his wiki"],
-      ["2008", "Jeffrey Palermo introduces Onion Architecture, a close variant with explicit layer rings"],
-      ["2012", "Robert C. Martin presents Clean Architecture, synthesizing hexagonal, onion, and DCI ideas"],
-      ["2017", "Netflix and Spotify publicly share their hexagonal architecture implementations for microservices"]
+      [
+        "2005",
+        "Alistair Cockburn publishes the Hexagonal Architecture pattern on his wiki"
+      ],
+      [
+        "2008",
+        "Jeffrey Palermo introduces Onion Architecture, a close variant with explicit layer rings"
+      ],
+      [
+        "2012",
+        "Robert C. Martin presents Clean Architecture, synthesizing hexagonal, onion, and DCI ideas"
+      ],
+      [
+        "2017",
+        "Netflix and Spotify publicly share their hexagonal architecture implementations for microservices"
+      ]
     ],
     "timeline_zh": [
-      ["2005", "Alistair Cockburn 在其 wiki 上发布六边形架构模式"],
-      ["2008", "Jeffrey Palermo 提出洋葱架构，一种具有显式分层环的近似变体"],
-      ["2012", "Robert C. Martin 提出整洁架构，综合了六边形、洋葱和 DCI 的思想"],
-      ["2017", "Netflix 和 Spotify 公开分享了他们微服务的六边形架构实现"]
+      [
+        "2005",
+        "Alistair Cockburn 在其 wiki 上发布六边形架构模式"
+      ],
+      [
+        "2008",
+        "Jeffrey Palermo 提出洋葱架构，一种具有显式分层环的近似变体"
+      ],
+      [
+        "2012",
+        "Robert C. Martin 提出整洁架构，综合了六边形、洋葱和 DCI 的思想"
+      ],
+      [
+        "2017",
+        "Netflix 和 Spotify 公开分享了他们微服务的六边形架构实现"
+      ]
     ],
     "dos": [
       "Do define ports as interfaces in the domain layer because they represent domain needs, not infrastructure capabilities",
@@ -651,7 +911,19 @@
       "缺乏依赖注入和基于接口设计经验的团队",
       "端口/适配器间接层引入不可接受延迟的性能关键系统"
     ],
-    "adopters": ["Netflix", "Spotify", "Mercado Libre", "BBVA", "Thoughtworks"]
+    "adopters": [
+      "Netflix",
+      "Spotify",
+      "Mercado Libre",
+      "BBVA",
+      "Thoughtworks"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "testability",
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 35,
@@ -677,8 +949,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "venn",
-    "related": ["hexagonal-architecture", "clean-code-principles", "property-based-testing"],
-    "tags": ["functional-programming", "pure-functions", "side-effects", "testability", "architecture"],
+    "related": [
+      "hexagonal-architecture",
+      "clean-code-principles",
+      "property-based-testing"
+    ],
+    "tags": [
+      "functional-programming",
+      "pure-functions",
+      "side-effects",
+      "testability",
+      "architecture"
+    ],
     "origin_author": "Gary Bernhardt, 2012",
     "origin_source": "Boundaries (talk at RubyConf and Destroy All Software screencasts)",
     "origin_source_zh": "《Boundaries》（RubyConf 演讲及 Destroy All Software 系列视频）",
@@ -710,16 +992,40 @@
       "将副作用推向边缘：将所有副作用代码尽可能推向外层，保持核心纯净"
     ],
     "timeline": [
-      ["2012", "Gary Bernhardt presents 'Boundaries' at RubyConf, articulating the Functional Core / Imperative Shell pattern"],
-      ["2013", "The pattern gains traction in the Ruby and Elixir communities through Destroy All Software screencasts"],
-      ["2016", "Redux architecture in React popularizes a similar pattern: pure reducers (core) with side-effect middleware (shell)"],
-      ["2020", "The pattern becomes standard in serverless architectures where pure business logic is separated from handler wiring"]
+      [
+        "2012",
+        "Gary Bernhardt presents 'Boundaries' at RubyConf, articulating the Functional Core / Imperative Shell pattern"
+      ],
+      [
+        "2013",
+        "The pattern gains traction in the Ruby and Elixir communities through Destroy All Software screencasts"
+      ],
+      [
+        "2016",
+        "Redux architecture in React popularizes a similar pattern: pure reducers (core) with side-effect middleware (shell)"
+      ],
+      [
+        "2020",
+        "The pattern becomes standard in serverless architectures where pure business logic is separated from handler wiring"
+      ]
     ],
     "timeline_zh": [
-      ["2012", "Gary Bernhardt 在 RubyConf 发表《Boundaries》演讲，阐述函数式核心/命令式外壳模式"],
-      ["2013", "该模式通过 Destroy All Software 系列视频在 Ruby 和 Elixir 社区中获得关注"],
-      ["2016", "React 中的 Redux 架构推广了类似模式：纯 reducer（核心）配合副作用中间件（外壳）"],
-      ["2020", "该模式成为无服务器架构的标准做法，纯业务逻辑与处理程序装配分离"]
+      [
+        "2012",
+        "Gary Bernhardt 在 RubyConf 发表《Boundaries》演讲，阐述函数式核心/命令式外壳模式"
+      ],
+      [
+        "2013",
+        "该模式通过 Destroy All Software 系列视频在 Ruby 和 Elixir 社区中获得关注"
+      ],
+      [
+        "2016",
+        "React 中的 Redux 架构推广了类似模式：纯 reducer（核心）配合副作用中间件（外壳）"
+      ],
+      [
+        "2020",
+        "该模式成为无服务器架构的标准做法，纯业务逻辑与处理程序装配分离"
+      ]
     ],
     "dos": [
       "Do pass all needed data as function arguments because implicit state access breaks purity",
@@ -760,7 +1066,19 @@
       "提取纯函数需要大规模重写的遗留代码库",
       "数据拷贝开销影响延迟要求的实时系统"
     ],
-    "adopters": ["Shopify", "Stripe", "GitHub", "Jane Street", "Nubank"]
+    "adopters": [
+      "Shopify",
+      "Stripe",
+      "GitHub",
+      "Jane Street",
+      "Nubank"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "testability",
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 36,
@@ -786,8 +1104,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
-    "related": ["eda", "actor-model", "functional-core-imperative-shell"],
-    "tags": ["reactive", "observables", "streams", "async", "operators"],
+    "related": [
+      "eda",
+      "actor-model",
+      "functional-core-imperative-shell"
+    ],
+    "tags": [
+      "reactive",
+      "observables",
+      "streams",
+      "async",
+      "operators"
+    ],
     "origin_author": "Erik Meijer, 2009",
     "origin_source": "Reactive Extensions for .NET (Rx.NET), Microsoft DevLabs",
     "origin_source_zh": "《.NET 响应式扩展（Rx.NET）》，微软开发实验室",
@@ -819,16 +1147,40 @@
       "背压：处理 Observable 产生元素速度快于 Observer 消费速度的机制"
     ],
     "timeline": [
-      ["2009", "Erik Meijer and team release Rx.NET at Microsoft, introducing the Observable/Observer pattern for async streams"],
-      ["2013", "RxJava is released by Netflix for JVM-based reactive programming in their microservice architecture"],
-      ["2015", "The Reactive Streams specification is published, standardizing backpressure across libraries"],
-      ["2018", "RxJS becomes integral to Angular framework, bringing Rx to mainstream frontend development"]
+      [
+        "2009",
+        "Erik Meijer and team release Rx.NET at Microsoft, introducing the Observable/Observer pattern for async streams"
+      ],
+      [
+        "2013",
+        "RxJava is released by Netflix for JVM-based reactive programming in their microservice architecture"
+      ],
+      [
+        "2015",
+        "The Reactive Streams specification is published, standardizing backpressure across libraries"
+      ],
+      [
+        "2018",
+        "RxJS becomes integral to Angular framework, bringing Rx to mainstream frontend development"
+      ]
     ],
     "timeline_zh": [
-      ["2009", "Erik Meijer 团队在微软发布 Rx.NET，引入用于异步流的 Observable/Observer 模式"],
-      ["2013", "Netflix 发布 RxJava，用于其微服务架构中的 JVM 响应式编程"],
-      ["2015", "Reactive Streams 规范发布，在各库间标准化背压处理"],
-      ["2018", "RxJS 成为 Angular 框架的核心组件，将 Rx 带入主流前端开发"]
+      [
+        "2009",
+        "Erik Meijer 团队在微软发布 Rx.NET，引入用于异步流的 Observable/Observer 模式"
+      ],
+      [
+        "2013",
+        "Netflix 发布 RxJava，用于其微服务架构中的 JVM 响应式编程"
+      ],
+      [
+        "2015",
+        "Reactive Streams 规范发布，在各库间标准化背压处理"
+      ],
+      [
+        "2018",
+        "RxJS 成为 Angular 框架的核心组件，将 Rx 带入主流前端开发"
+      ]
     ],
     "dos": [
       "Do use marble diagrams for documentation and testing because they visually clarify complex timing behavior",
@@ -869,7 +1221,19 @@
       "异步操作极少的应用，Rx 会增加不必要的复杂性",
       "基于拉取的迭代比基于推送的流更合适的批处理系统"
     ],
-    "adopters": ["Netflix", "Microsoft", "Google (Angular)", "Trello", "SoundCloud"]
+    "adopters": [
+      "Netflix",
+      "Microsoft",
+      "Google (Angular)",
+      "Trello",
+      "SoundCloud"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "performance",
+      "scalability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 37,
@@ -895,8 +1259,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "pyramid",
-    "related": ["api-versioning-strategies", "contract-testing", "ai-first-api-design"],
-    "tags": ["rest", "api-design", "maturity-model", "hateoas", "http"],
+    "related": [
+      "api-versioning-strategies",
+      "contract-testing",
+      "ai-first-api-design"
+    ],
+    "tags": [
+      "rest",
+      "api-design",
+      "maturity-model",
+      "hateoas",
+      "http"
+    ],
     "origin_author": "Leonard Richardson, 2008",
     "origin_source": "Justice Will Take Us Millions of Intricate Moves (QCon talk, later popularized by Martin Fowler)",
     "origin_source_zh": "QCon 演讲，后由 Martin Fowler 撰文推广",
@@ -928,16 +1302,40 @@
       "渐进增强：每一级在前一级基础上构建，大多数实用 API 以第 2 级为目标"
     ],
     "timeline": [
-      ["2000", "Roy Fielding defines REST in his doctoral dissertation at UC Irvine"],
-      ["2008", "Leonard Richardson presents the maturity model at QCon San Francisco"],
-      ["2010", "Martin Fowler publishes his influential blog post explaining the Richardson Maturity Model"],
-      ["2015", "Level 2 REST becomes the de facto standard for public APIs; Level 3 HATEOAS remains niche"]
+      [
+        "2000",
+        "Roy Fielding defines REST in his doctoral dissertation at UC Irvine"
+      ],
+      [
+        "2008",
+        "Leonard Richardson presents the maturity model at QCon San Francisco"
+      ],
+      [
+        "2010",
+        "Martin Fowler publishes his influential blog post explaining the Richardson Maturity Model"
+      ],
+      [
+        "2015",
+        "Level 2 REST becomes the de facto standard for public APIs; Level 3 HATEOAS remains niche"
+      ]
     ],
     "timeline_zh": [
-      ["2000", "Roy Fielding 在加州大学尔湾分校的博士论文中定义 REST"],
-      ["2008", "Leonard Richardson 在 QCon 旧金山大会上提出成熟度模型"],
-      ["2010", "Martin Fowler 发表有影响力的博客文章阐述 Richardson 成熟度模型"],
-      ["2015", "第 2 级 REST 成为公共 API 的事实标准；第 3 级 HATEOAS 仍属小众"]
+      [
+        "2000",
+        "Roy Fielding 在加州大学尔湾分校的博士论文中定义 REST"
+      ],
+      [
+        "2008",
+        "Leonard Richardson 在 QCon 旧金山大会上提出成熟度模型"
+      ],
+      [
+        "2010",
+        "Martin Fowler 发表有影响力的博客文章阐述 Richardson 成熟度模型"
+      ],
+      [
+        "2015",
+        "第 2 级 REST 成为公共 API 的事实标准；第 3 级 HATEOAS 仍属小众"
+      ]
     ],
     "dos": [
       "Do use proper HTTP status codes because they convey semantics that clients and proxies understand",
@@ -978,7 +1376,19 @@
       "HTTP 开销不可接受的高性能二进制协议",
       "GraphQL 优先架构，查询语言取代了 REST 资源建模"
     ],
-    "adopters": ["GitHub", "Stripe", "Twilio", "PayPal", "Atlassian"]
+    "adopters": [
+      "GitHub",
+      "Stripe",
+      "Twilio",
+      "PayPal",
+      "Atlassian"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "maintainability",
+      "usability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 38,
@@ -1004,8 +1414,19 @@
     ],
     "ai_relevant": false,
     "viz_type": "timeline",
-    "related": ["cqrs-pattern", "eda", "ddd-tactical-patterns", "domain-driven-design"],
-    "tags": ["event-sourcing", "immutable", "append-only", "replay", "audit-trail"],
+    "related": [
+      "cqrs-pattern",
+      "eda",
+      "ddd-tactical-patterns",
+      "domain-driven-design"
+    ],
+    "tags": [
+      "event-sourcing",
+      "immutable",
+      "append-only",
+      "replay",
+      "audit-trail"
+    ],
     "origin_author": "Greg Young, 2005",
     "origin_source": "CQRS and Event Sourcing (series of conference talks and papers)",
     "origin_source_zh": "《CQRS 与事件溯源》（系列会议演讲和论文）",
@@ -1037,16 +1458,40 @@
       "时态查询：通过回放到某一时刻的事件来重建系统在任意时间点的状态的能力"
     ],
     "timeline": [
-      ["2005", "Greg Young begins advocating event sourcing alongside CQRS in DDD community talks"],
-      ["2010", "EventStore (now EventStoreDB) is released as a purpose-built event sourcing database"],
-      ["2014", "Martin Fowler publishes his event sourcing overview, bringing the pattern to mainstream attention"],
-      ["2018", "Apache Kafka becomes widely adopted as an event store backbone in microservice architectures"]
+      [
+        "2005",
+        "Greg Young begins advocating event sourcing alongside CQRS in DDD community talks"
+      ],
+      [
+        "2010",
+        "EventStore (now EventStoreDB) is released as a purpose-built event sourcing database"
+      ],
+      [
+        "2014",
+        "Martin Fowler publishes his event sourcing overview, bringing the pattern to mainstream attention"
+      ],
+      [
+        "2018",
+        "Apache Kafka becomes widely adopted as an event store backbone in microservice architectures"
+      ]
     ],
     "timeline_zh": [
-      ["2005", "Greg Young 在 DDD 社区演讲中开始倡导事件溯源与 CQRS"],
-      ["2010", "EventStore（现 EventStoreDB）作为专门构建的事件溯源数据库发布"],
-      ["2014", "Martin Fowler 发表事件溯源概述文章，将该模式带入主流视野"],
-      ["2018", "Apache Kafka 被广泛采用为微服务架构中的事件存储骨干"]
+      [
+        "2005",
+        "Greg Young 在 DDD 社区演讲中开始倡导事件溯源与 CQRS"
+      ],
+      [
+        "2010",
+        "EventStore（现 EventStoreDB）作为专门构建的事件溯源数据库发布"
+      ],
+      [
+        "2014",
+        "Martin Fowler 发表事件溯源概述文章，将该模式带入主流视野"
+      ],
+      [
+        "2018",
+        "Apache Kafka 被广泛采用为微服务架构中的事件存储骨干"
+      ]
     ],
     "dos": [
       "Do design events as immutable facts about what happened because they are the source of truth",
@@ -1087,7 +1532,19 @@
       "没有事件驱动架构经验、难以应对最终一致性的团队",
       "法规要求数据删除（被遗忘权）与不可变日志不兼容的领域"
     ],
-    "adopters": ["LMAX Exchange", "Walmart", "Capital One", "Jet.com", "EventStore Ltd"]
+    "adopters": [
+      "LMAX Exchange",
+      "Walmart",
+      "Capital One",
+      "Jet.com",
+      "EventStore Ltd"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability",
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 39,
@@ -1113,8 +1570,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
-    "related": ["prompt-chaining", "tool-use-design-pattern", "llm-system-design-patterns"],
-    "tags": ["prompt-engineering", "few-shot", "chain-of-thought", "llm", "ai"],
+    "related": [
+      "prompt-chaining",
+      "tool-use-design-pattern",
+      "llm-system-design-patterns"
+    ],
+    "tags": [
+      "prompt-engineering",
+      "few-shot",
+      "chain-of-thought",
+      "llm",
+      "ai"
+    ],
     "origin_author": "Jason Wei, Xuezhi Wang et al. (Google Brain), 2022",
     "origin_source": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (NeurIPS 2022)",
     "origin_source_zh": "《思维链提示激发大语言模型推理能力》（NeurIPS 2022）",
@@ -1146,16 +1613,40 @@
       "提示版本控制：将提示作为代码产物进行版本控制、测试和迭代改进"
     ],
     "timeline": [
-      ["2020", "GPT-3 release demonstrates that prompt design significantly affects output quality, launching the field"],
-      ["2022", "Google Brain publishes the Chain-of-Thought paper, showing step-by-step prompting improves reasoning"],
-      ["2023", "OpenAI introduces function calling and structured outputs, formalizing prompt-to-code integration patterns"],
-      ["2024", "Anthropic, Google, and OpenAI publish prompt engineering guides; the discipline becomes standard practice"]
+      [
+        "2020",
+        "GPT-3 release demonstrates that prompt design significantly affects output quality, launching the field"
+      ],
+      [
+        "2022",
+        "Google Brain publishes the Chain-of-Thought paper, showing step-by-step prompting improves reasoning"
+      ],
+      [
+        "2023",
+        "OpenAI introduces function calling and structured outputs, formalizing prompt-to-code integration patterns"
+      ],
+      [
+        "2024",
+        "Anthropic, Google, and OpenAI publish prompt engineering guides; the discipline becomes standard practice"
+      ]
     ],
     "timeline_zh": [
-      ["2020", "GPT-3 发布证明提示设计显著影响输出质量，开创了该领域"],
-      ["2022", "Google Brain 发表思维链论文，证明逐步提示能改善推理能力"],
-      ["2023", "OpenAI 推出函数调用和结构化输出，正式化了提示到代码的集成模式"],
-      ["2024", "Anthropic、Google 和 OpenAI 发布提示工程指南；该学科成为标准实践"]
+      [
+        "2020",
+        "GPT-3 发布证明提示设计显著影响输出质量，开创了该领域"
+      ],
+      [
+        "2022",
+        "Google Brain 发表思维链论文，证明逐步提示能改善推理能力"
+      ],
+      [
+        "2023",
+        "OpenAI 推出函数调用和结构化输出，正式化了提示到代码的集成模式"
+      ],
+      [
+        "2024",
+        "Anthropic、Google 和 OpenAI 发布提示工程指南；该学科成为标准实践"
+      ]
     ],
     "dos": [
       "Do be explicit about output format and constraints because ambiguity leads to unpredictable responses",
@@ -1196,7 +1687,19 @@
       "用传统代码实现更可靠的简单规则逻辑",
       "LLM 推理的延迟和成本难以承受的应用"
     ],
-    "adopters": ["Notion", "GitHub (Copilot)", "Anthropic", "OpenAI", "Vercel (v0)"]
+    "adopters": [
+      "Notion",
+      "GitHub (Copilot)",
+      "Anthropic",
+      "OpenAI",
+      "Vercel (v0)"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "usability",
+      "reliability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 40,
@@ -1222,8 +1725,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
-    "related": ["react-framework", "prompt-engineering-patterns", "prompt-chaining"],
-    "tags": ["tool-use", "react", "agents", "function-calling", "reasoning"],
+    "related": [
+      "react-framework",
+      "prompt-engineering-patterns",
+      "prompt-chaining"
+    ],
+    "tags": [
+      "tool-use",
+      "react",
+      "agents",
+      "function-calling",
+      "reasoning"
+    ],
     "origin_author": "Shunyu Yao, Jeffrey Zhao et al. (Princeton/Google Brain), 2022",
     "origin_source": "ReAct: Synergizing Reasoning and Acting in Language Models (ICLR 2023)",
     "origin_source_zh": "《ReAct：在语言模型中协同推理与行动》（ICLR 2023）",
@@ -1255,16 +1768,40 @@
       "接地：使用工具输出将 LLM 响应锚定在真实数据上，减少幻觉"
     ],
     "timeline": [
-      ["2022", "Yao et al. publish the ReAct paper, formalizing the reasoning-action loop for LLMs"],
-      ["2023", "OpenAI launches function calling API; Anthropic introduces tool use in Claude, making ReAct mainstream"],
-      ["2024", "LangChain, LlamaIndex, and Anthropic's Agent SDK standardize tool-use abstractions for production agents"],
-      ["2025", "Multi-agent tool-use frameworks emerge with Claude Code and OpenAI Codex agents as prominent examples"]
+      [
+        "2022",
+        "Yao et al. publish the ReAct paper, formalizing the reasoning-action loop for LLMs"
+      ],
+      [
+        "2023",
+        "OpenAI launches function calling API; Anthropic introduces tool use in Claude, making ReAct mainstream"
+      ],
+      [
+        "2024",
+        "LangChain, LlamaIndex, and Anthropic's Agent SDK standardize tool-use abstractions for production agents"
+      ],
+      [
+        "2025",
+        "Multi-agent tool-use frameworks emerge with Claude Code and OpenAI Codex agents as prominent examples"
+      ]
     ],
     "timeline_zh": [
-      ["2022", "Yao 等人发表 ReAct 论文，正式定义了 LLM 的推理-行动循环"],
-      ["2023", "OpenAI 推出函数调用 API；Anthropic 在 Claude 中引入工具使用，使 ReAct 成为主流"],
-      ["2024", "LangChain、LlamaIndex 和 Anthropic 的 Agent SDK 标准化了生产级代理的工具使用抽象"],
-      ["2025", "多代理工具使用框架涌现，Claude Code 和 OpenAI Codex 代理是突出代表"]
+      [
+        "2022",
+        "Yao 等人发表 ReAct 论文，正式定义了 LLM 的推理-行动循环"
+      ],
+      [
+        "2023",
+        "OpenAI 推出函数调用 API；Anthropic 在 Claude 中引入工具使用，使 ReAct 成为主流"
+      ],
+      [
+        "2024",
+        "LangChain、LlamaIndex 和 Anthropic 的 Agent SDK 标准化了生产级代理的工具使用抽象"
+      ],
+      [
+        "2025",
+        "多代理工具使用框架涌现，Claude Code 和 OpenAI Codex 代理是突出代表"
+      ]
     ],
     "dos": [
       "Do define tool schemas precisely because vague descriptions lead to incorrect tool selection",
@@ -1305,7 +1842,18 @@
       "步骤序列固定已知、传统管道更可靠的任务",
       "工具执行成本（API 调用、计算）过高的环境"
     ],
-    "adopters": ["Anthropic (Claude Code)", "OpenAI (ChatGPT Plugins)", "Google (Gemini)", "LangChain", "Microsoft (Copilot)"]
+    "adopters": [
+      "Anthropic (Claude Code)",
+      "OpenAI (ChatGPT Plugins)",
+      "Google (Gemini)",
+      "LangChain",
+      "Microsoft (Copilot)"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 41,
@@ -1331,8 +1879,17 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
-    "related": ["clean-code-principles", "ai-pair-programming", "semantic-versioning"],
-    "tags": ["code-review", "comments", "collaboration", "conventions"],
+    "related": [
+      "clean-code-principles",
+      "ai-pair-programming",
+      "semantic-versioning"
+    ],
+    "tags": [
+      "code-review",
+      "comments",
+      "collaboration",
+      "conventions"
+    ],
     "origin_author": "Paul Slaughter, 2020",
     "origin_source": "conventionalcomments.org",
     "origin_source_zh": "conventionalcomments.org 网站",
@@ -1364,16 +1921,40 @@
       "可度量性：有标签的评论可以被聚合分析，追踪评审模式和团队健康度"
     ],
     "timeline": [
-      ["2020", "Paul Slaughter publishes conventionalcomments.org, formalizing the labeling system"],
-      ["2021", "GitLab adopts Conventional Comments as part of their internal code review guidelines"],
-      ["2022", "Browser extensions and IDE plugins emerge to autocomplete Conventional Comments labels"],
-      ["2024", "AI code review tools (GitHub Copilot, CodeRabbit) integrate conventional comment labels into automated reviews"]
+      [
+        "2020",
+        "Paul Slaughter publishes conventionalcomments.org, formalizing the labeling system"
+      ],
+      [
+        "2021",
+        "GitLab adopts Conventional Comments as part of their internal code review guidelines"
+      ],
+      [
+        "2022",
+        "Browser extensions and IDE plugins emerge to autocomplete Conventional Comments labels"
+      ],
+      [
+        "2024",
+        "AI code review tools (GitHub Copilot, CodeRabbit) integrate conventional comment labels into automated reviews"
+      ]
     ],
     "timeline_zh": [
-      ["2020", "Paul Slaughter 发布 conventionalcomments.org，正式化标签体系"],
-      ["2021", "GitLab 将约定式评论纳入其内部代码评审指南"],
-      ["2022", "浏览器扩展和 IDE 插件出现，支持约定式评论标签的自动补全"],
-      ["2024", "AI 代码评审工具（GitHub Copilot、CodeRabbit）在自动化评审中集成约定式评论标签"]
+      [
+        "2020",
+        "Paul Slaughter 发布 conventionalcomments.org，正式化标签体系"
+      ],
+      [
+        "2021",
+        "GitLab 将约定式评论纳入其内部代码评审指南"
+      ],
+      [
+        "2022",
+        "浏览器扩展和 IDE 插件出现，支持约定式评论标签的自动补全"
+      ],
+      [
+        "2024",
+        "AI 代码评审工具（GitHub Copilot、CodeRabbit）在自动化评审中集成约定式评论标签"
+      ]
     ],
     "dos": [
       "Do always include a label prefix because it immediately communicates the nature of the feedback",
@@ -1414,7 +1995,18 @@
       "非正式沟通已足够且不需要额外开销的极小团队",
       "结构化 linter 输出替代人工评论的自动化 CI 反馈"
     ],
-    "adopters": ["GitLab", "Shopify", "HashiCorp", "DigitalOcean", "Sourcegraph"]
+    "adopters": [
+      "GitLab",
+      "Shopify",
+      "HashiCorp",
+      "DigitalOcean",
+      "Sourcegraph"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 42,
@@ -1440,8 +2032,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "timeline",
-    "related": ["api-versioning-strategies", "contract-testing", "conventional-comments"],
-    "tags": ["versioning", "semver", "api", "changelog", "release-management"],
+    "related": [
+      "api-versioning-strategies",
+      "contract-testing",
+      "conventional-comments"
+    ],
+    "tags": [
+      "versioning",
+      "semver",
+      "api",
+      "changelog",
+      "release-management"
+    ],
     "origin_author": "Tom Preston-Werner, 2011",
     "origin_source": "Semantic Versioning 2.0.0 (semver.org)",
     "origin_source_zh": "《语义化版本 2.0.0》（semver.org）",
@@ -1473,16 +2075,40 @@
       "公共 API 契约：版本号所保护的显式定义的表面（函数、类型、端点）"
     ],
     "timeline": [
-      ["2009", "Tom Preston-Werner drafts the first version of the SemVer specification"],
-      ["2011", "Semantic Versioning 2.0.0 is published at semver.org, becoming the widely adopted standard"],
-      ["2015", "Conventional Commits specification emerges, enabling automated SemVer bumps from commit messages"],
-      ["2017", "semantic-release and similar tools automate the entire version-bump-publish pipeline in CI/CD"]
+      [
+        "2009",
+        "Tom Preston-Werner drafts the first version of the SemVer specification"
+      ],
+      [
+        "2011",
+        "Semantic Versioning 2.0.0 is published at semver.org, becoming the widely adopted standard"
+      ],
+      [
+        "2015",
+        "Conventional Commits specification emerges, enabling automated SemVer bumps from commit messages"
+      ],
+      [
+        "2017",
+        "semantic-release and similar tools automate the entire version-bump-publish pipeline in CI/CD"
+      ]
     ],
     "timeline_zh": [
-      ["2009", "Tom Preston-Werner 起草了 SemVer 规范的第一个版本"],
-      ["2011", "语义化版本 2.0.0 在 semver.org 发布，成为被广泛采用的标准"],
-      ["2015", "Conventional Commits 规范出现，使从提交消息自动化 SemVer 版本升级成为可能"],
-      ["2017", "semantic-release 等工具在 CI/CD 中自动化了整个版本升级-发布管道"]
+      [
+        "2009",
+        "Tom Preston-Werner 起草了 SemVer 规范的第一个版本"
+      ],
+      [
+        "2011",
+        "语义化版本 2.0.0 在 semver.org 发布，成为被广泛采用的标准"
+      ],
+      [
+        "2015",
+        "Conventional Commits 规范出现，使从提交消息自动化 SemVer 版本升级成为可能"
+      ],
+      [
+        "2017",
+        "semantic-release 等工具在 CI/CD 中自动化了整个版本升级-发布管道"
+      ]
     ],
     "dos": [
       "Do define your public API explicitly because unclear API boundaries lead to accidental breaking changes",
@@ -1523,7 +2149,19 @@
       "总是一起发布且共享单一版本号的 monorepo 包",
       "用于品牌而非技术兼容性目的的市场营销或产品版本号"
     ],
-    "adopters": ["npm", "Rust (Cargo)", "Go modules", "Maven Central", "PyPI"]
+    "adopters": [
+      "npm",
+      "Rust (Cargo)",
+      "Go modules",
+      "Maven Central",
+      "PyPI"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "reliability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 43,
@@ -1549,8 +2187,19 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
-    "related": ["semantic-versioning", "api-versioning-strategies", "richardson-maturity-model", "design-by-contract"],
-    "tags": ["contract-testing", "pact", "consumer-driven", "api-compatibility", "microservices"],
+    "related": [
+      "semantic-versioning",
+      "api-versioning-strategies",
+      "richardson-maturity-model",
+      "design-by-contract"
+    ],
+    "tags": [
+      "contract-testing",
+      "pact",
+      "consumer-driven",
+      "api-compatibility",
+      "microservices"
+    ],
     "origin_author": "Ian Robinson, Martin Fowler, 2006",
     "origin_source": "Consumer-Driven Contracts: A Service Evolution Pattern (Martin Fowler's blog)",
     "origin_source_zh": "《消费者驱动的契约：一种服务演进模式》（Martin Fowler 博客）",
@@ -1582,16 +2231,40 @@
       "消费者驱动：消费者定义 API 契约，提供者必须满足这些需求的理念"
     ],
     "timeline": [
-      ["2006", "Ian Robinson publishes 'Consumer-Driven Contracts' on Martin Fowler's blog"],
-      ["2013", "Pact, the first consumer-driven contract testing framework, is created by REA Group in Australia"],
-      ["2016", "Spring Cloud Contract is released, bringing contract testing to the Spring/Java ecosystem"],
-      ["2020", "Pactflow (commercial Pact Broker) launches, making enterprise-grade contract testing accessible"]
+      [
+        "2006",
+        "Ian Robinson publishes 'Consumer-Driven Contracts' on Martin Fowler's blog"
+      ],
+      [
+        "2013",
+        "Pact, the first consumer-driven contract testing framework, is created by REA Group in Australia"
+      ],
+      [
+        "2016",
+        "Spring Cloud Contract is released, bringing contract testing to the Spring/Java ecosystem"
+      ],
+      [
+        "2020",
+        "Pactflow (commercial Pact Broker) launches, making enterprise-grade contract testing accessible"
+      ]
     ],
     "timeline_zh": [
-      ["2006", "Ian Robinson 在 Martin Fowler 博客上发表《消费者驱动的契约》"],
-      ["2013", "第一个消费者驱动契约测试框架 Pact 由澳大利亚 REA Group 创建"],
-      ["2016", "Spring Cloud Contract 发布，将契约测试带入 Spring/Java 生态系统"],
-      ["2020", "Pactflow（商业 Pact Broker）推出，使企业级契约测试变得易于采用"]
+      [
+        "2006",
+        "Ian Robinson 在 Martin Fowler 博客上发表《消费者驱动的契约》"
+      ],
+      [
+        "2013",
+        "第一个消费者驱动契约测试框架 Pact 由澳大利亚 REA Group 创建"
+      ],
+      [
+        "2016",
+        "Spring Cloud Contract 发布，将契约测试带入 Spring/Java 生态系统"
+      ],
+      [
+        "2020",
+        "Pactflow（商业 Pact Broker）推出，使企业级契约测试变得易于采用"
+      ]
     ],
     "dos": [
       "Do write contracts from the consumer's perspective because they define the actual usage patterns",
@@ -1632,7 +2305,19 @@
       "没有 CI/CD 管道来自动化契约验证的团队",
       "API 快速变化、契约会不断被破坏的原型开发阶段"
     ],
-    "adopters": ["Atlassian", "REA Group", "ING Bank", "Booking.com", "SEEK"]
+    "adopters": [
+      "Atlassian",
+      "REA Group",
+      "ING Bank",
+      "Booking.com",
+      "SEEK"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability",
+      "testability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 173,
@@ -1658,8 +2343,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
-    "related": ["strangler-fig-pattern", "branch-by-abstraction", "sprout-method", "design-by-contract"],
-    "tags": ["refactoring", "legacy-code", "incremental-replacement", "strangler-fig", "migration"],
+    "related": [
+      "strangler-fig-pattern",
+      "branch-by-abstraction",
+      "design-by-contract"
+    ],
+    "tags": [
+      "refactoring",
+      "legacy-code",
+      "incremental-replacement",
+      "strangler-fig",
+      "migration"
+    ],
     "origin_author": "Martin Fowler, 2004; Michael Feathers, 2004",
     "origin_source": "Refactoring (Fowler, 2018); Working Effectively with Legacy Code (Feathers, 2004)",
     "origin_source_zh": "《重构》（Fowler，2018）；《修改代码的艺术》（Feathers，2004）",
@@ -1691,16 +2386,40 @@
       "遗留模块退役：在所有流量都已在新实现上验证后移除旧代码的最终步骤"
     ],
     "timeline": [
-      ["2004", "Martin Fowler publishes the Strangler Fig Application article, describing system-level incremental migration"],
-      ["2004", "Michael Feathers publishes 'Working Effectively with Legacy Code', providing code-level techniques for wrapping and replacing legacy modules"],
-      ["2010", "The technique gains traction in large-scale enterprise refactoring projects at companies like ThoughtWorks"],
-      ["2018", "Fowler's second edition of 'Refactoring' formalizes incremental code-level replacement patterns"]
+      [
+        "2004",
+        "Martin Fowler publishes the Strangler Fig Application article, describing system-level incremental migration"
+      ],
+      [
+        "2004",
+        "Michael Feathers publishes 'Working Effectively with Legacy Code', providing code-level techniques for wrapping and replacing legacy modules"
+      ],
+      [
+        "2010",
+        "The technique gains traction in large-scale enterprise refactoring projects at companies like ThoughtWorks"
+      ],
+      [
+        "2018",
+        "Fowler's second edition of 'Refactoring' formalizes incremental code-level replacement patterns"
+      ]
     ],
     "timeline_zh": [
-      ["2004", "Martin Fowler 发表绞杀者无花果应用文章，描述系统级渐进式迁移"],
-      ["2004", "Michael Feathers 出版《修改代码的艺术》，提供包装和替换遗留模块的代码级技术"],
-      ["2010", "该技术在 ThoughtWorks 等公司的大规模企业重构项目中获得广泛采用"],
-      ["2018", "Fowler 的《重构》第二版正式化了渐进式代码级替换模式"]
+      [
+        "2004",
+        "Martin Fowler 发表绞杀者无花果应用文章，描述系统级渐进式迁移"
+      ],
+      [
+        "2004",
+        "Michael Feathers 出版《修改代码的艺术》，提供包装和替换遗留模块的代码级技术"
+      ],
+      [
+        "2010",
+        "该技术在 ThoughtWorks 等公司的大规模企业重构项目中获得广泛采用"
+      ],
+      [
+        "2018",
+        "Fowler 的《重构》第二版正式化了渐进式代码级替换模式"
+      ]
     ],
     "dos": [
       "Do write characterization tests before touching legacy code because they are your safety net against behavioral regressions",
@@ -1741,7 +2460,18 @@
       "原型或一次性代码，长期可维护性无关紧要",
       "遗留模块没有可观察的副作用且可以独立进行单元测试的情况"
     ],
-    "adopters": ["GitHub", "ThoughtWorks", "Shopify", "Stripe", "SoundCloud"]
+    "adopters": [
+      "GitHub",
+      "ThoughtWorks",
+      "Shopify",
+      "Stripe",
+      "SoundCloud"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 174,
@@ -1767,8 +2497,19 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
-    "related": ["strangler-fig-at-code-level", "branch-by-abstraction", "trunk-based-development", "clean-code-principles"],
-    "tags": ["feature-toggles", "feature-flags", "branching-in-code", "conditional-logic", "trunk-based"],
+    "related": [
+      "strangler-fig-at-code-level",
+      "branch-by-abstraction",
+      "feature-branch-strategy",
+      "clean-code-principles"
+    ],
+    "tags": [
+      "feature-toggles",
+      "feature-flags",
+      "branching-in-code",
+      "conditional-logic",
+      "trunk-based"
+    ],
     "origin_author": "Martin Fowler, 2010; Pete Hodgson, 2017",
     "origin_source": "Refactoring (Fowler, 2018); Feature Toggles (Pete Hodgson, martinfowler.com)",
     "origin_source_zh": "《重构》（Fowler，2018）；《功能开关》（Pete Hodgson，martinfowler.com）",
@@ -1800,16 +2541,40 @@
       "开关债务：过期开关及其条件分支未被清理时累积的技术债务"
     ],
     "timeline": [
-      ["2010", "Martin Fowler publishes 'FeatureToggle' on his blog, defining the core concept of branching in code"],
-      ["2013", "Release toggles become standard practice in continuous delivery pipelines at companies like Flickr and Etsy"],
-      ["2017", "Pete Hodgson publishes a comprehensive taxonomy of feature toggle types on martinfowler.com"],
-      ["2020", "Feature flag platforms like LaunchDarkly and Unleash achieve widespread adoption, making toggle management a first-class concern"]
+      [
+        "2010",
+        "Martin Fowler publishes 'FeatureToggle' on his blog, defining the core concept of branching in code"
+      ],
+      [
+        "2013",
+        "Release toggles become standard practice in continuous delivery pipelines at companies like Flickr and Etsy"
+      ],
+      [
+        "2017",
+        "Pete Hodgson publishes a comprehensive taxonomy of feature toggle types on martinfowler.com"
+      ],
+      [
+        "2020",
+        "Feature flag platforms like LaunchDarkly and Unleash achieve widespread adoption, making toggle management a first-class concern"
+      ]
     ],
     "timeline_zh": [
-      ["2010", "Martin Fowler 在其博客上发表《FeatureToggle》，定义了代码中分支的核心概念"],
-      ["2013", "发布开关在 Flickr 和 Etsy 等公司的持续交付管道中成为标准实践"],
-      ["2017", "Pete Hodgson 在 martinfowler.com 上发表了功能开关类型的全面分类"],
-      ["2020", "LaunchDarkly 和 Unleash 等功能标志平台获得广泛采用，使开关管理成为一等关注点"]
+      [
+        "2010",
+        "Martin Fowler 在其博客上发表《FeatureToggle》，定义了代码中分支的核心概念"
+      ],
+      [
+        "2013",
+        "发布开关在 Flickr 和 Etsy 等公司的持续交付管道中成为标准实践"
+      ],
+      [
+        "2017",
+        "Pete Hodgson 在 martinfowler.com 上发表了功能开关类型的全面分类"
+      ],
+      [
+        "2020",
+        "LaunchDarkly 和 Unleash 等功能标志平台获得广泛采用，使开关管理成为一等关注点"
+      ]
     ],
     "dos": [
       "Do place toggle points at the highest level possible because deeply nested toggles make code harder to reason about",
@@ -1850,7 +2615,18 @@
       "即使简单条件检查也会带来不可接受开销的性能关键热路径",
       "缺乏清理过期开关纪律的团队，因为开关债务会降低代码库质量"
     ],
-    "adopters": ["Etsy", "Netflix", "Facebook", "Google", "LaunchDarkly"]
+    "adopters": [
+      "Etsy",
+      "Netflix",
+      "Facebook",
+      "Google",
+      "LaunchDarkly"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 175,
@@ -1876,8 +2652,19 @@
     ],
     "ai_relevant": false,
     "viz_type": "quadrant",
-    "related": ["functional-core-imperative-shell", "solid-principles", "clean-code-principles", "defensive-programming"],
-    "tags": ["immutability", "functional-programming", "concurrency", "data-structures", "thread-safety"],
+    "related": [
+      "functional-core-imperative-shell",
+      "solid-principles",
+      "clean-code-principles",
+      "error-handling-patterns"
+    ],
+    "tags": [
+      "immutability",
+      "functional-programming",
+      "concurrency",
+      "data-structures",
+      "thread-safety"
+    ],
     "origin_author": "John Ousterhout, 2018; Rich Hickey, 2007",
     "origin_source": "A Philosophy of Software Design (Ousterhout, 2018); Refactoring (Fowler, 2018)",
     "origin_source_zh": "《软件设计的哲学》（Ousterhout，2018）；《重构》（Fowler，2018）",
@@ -1909,16 +2696,40 @@
       "可变边界：系统中包含变更的薄外层（I/O、数据库、UI），保持核心逻辑无副作用"
     ],
     "timeline": [
-      ["1966", "Immutable data concepts emerge in early Lisp programming with cons cells and persistent lists"],
-      ["2007", "Rich Hickey creates Clojure, bringing persistent immutable data structures to the JVM mainstream"],
-      ["2015", "Facebook releases Immutable.js, popularizing persistent data structures in JavaScript"],
-      ["2018", "Ousterhout's 'A Philosophy of Software Design' advocates reducing complexity through immutability and deep modules"]
+      [
+        "1966",
+        "Immutable data concepts emerge in early Lisp programming with cons cells and persistent lists"
+      ],
+      [
+        "2007",
+        "Rich Hickey creates Clojure, bringing persistent immutable data structures to the JVM mainstream"
+      ],
+      [
+        "2015",
+        "Facebook releases Immutable.js, popularizing persistent data structures in JavaScript"
+      ],
+      [
+        "2018",
+        "Ousterhout's 'A Philosophy of Software Design' advocates reducing complexity through immutability and deep modules"
+      ]
     ],
     "timeline_zh": [
-      ["1966", "不可变数据概念在早期 Lisp 编程中随 cons 单元和持久列表出现"],
-      ["2007", "Rich Hickey 创建 Clojure，将持久不可变数据结构带入 JVM 主流"],
-      ["2015", "Facebook 发布 Immutable.js，在 JavaScript 中推广持久化数据结构"],
-      ["2018", "Ousterhout 的《软件设计的哲学》倡导通过不可变性和深模块减少复杂性"]
+      [
+        "1966",
+        "不可变数据概念在早期 Lisp 编程中随 cons 单元和持久列表出现"
+      ],
+      [
+        "2007",
+        "Rich Hickey 创建 Clojure，将持久不可变数据结构带入 JVM 主流"
+      ],
+      [
+        "2015",
+        "Facebook 发布 Immutable.js，在 JavaScript 中推广持久化数据结构"
+      ],
+      [
+        "2018",
+        "Ousterhout 的《软件设计的哲学》倡导通过不可变性和深模块减少复杂性"
+      ]
     ],
     "dos": [
       "Do default to immutable declarations in every language you work in because mutable state should be a conscious choice, not the default",
@@ -1959,7 +2770,19 @@
       "深度围绕可变状态构建的遗留代码库，引入不可变性需要完全重写",
       "不可变模式的开销不会带来有意义收益的简单 CRUD 应用"
     ],
-    "adopters": ["Walmart Labs", "Facebook", "Netflix", "Airbnb", "Nubank"]
+    "adopters": [
+      "Walmart Labs",
+      "Facebook",
+      "Netflix",
+      "Airbnb",
+      "Nubank"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "reliability",
+      "maintainability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 176,
@@ -1985,8 +2808,19 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
-    "related": ["design-by-contract", "clean-code-principles", "solid-principles", "defensive-programming"],
-    "tags": ["null-object", "design-pattern", "defensive-programming", "null-safety", "polymorphism"],
+    "related": [
+      "design-by-contract",
+      "clean-code-principles",
+      "solid-principles",
+      "error-handling-patterns"
+    ],
+    "tags": [
+      "null-object",
+      "design-pattern",
+      "defensive-programming",
+      "null-safety",
+      "polymorphism"
+    ],
     "origin_author": "Bobby Woolf, 1998; Martin Fowler, 2018",
     "origin_source": "Refactoring (Fowler, 2018); Working Effectively with Legacy Code (Feathers, 2004)",
     "origin_source_zh": "《重构》（Fowler，2018）；《修改代码的艺术》（Feathers，2004）",
@@ -2018,16 +2852,40 @@
       "哨兵值消除：用传达意图并防止错误的类型化对象替换魔术空值"
     ],
     "timeline": [
-      ["1998", "Bobby Woolf presents the Null Object Pattern at PLoP (Pattern Languages of Programs) conference"],
-      ["2004", "Michael Feathers describes using Null Objects to break dependencies in legacy code in 'Working Effectively with Legacy Code'"],
-      ["2018", "Martin Fowler includes 'Introduce Special Case' (a generalization of Null Object) as a key refactoring in 'Refactoring' second edition"],
-      ["2020", "Modern languages like Kotlin, Swift, and Rust reduce the need for Null Object via built-in null safety (Option/Optional types)"]
+      [
+        "1998",
+        "Bobby Woolf presents the Null Object Pattern at PLoP (Pattern Languages of Programs) conference"
+      ],
+      [
+        "2004",
+        "Michael Feathers describes using Null Objects to break dependencies in legacy code in 'Working Effectively with Legacy Code'"
+      ],
+      [
+        "2018",
+        "Martin Fowler includes 'Introduce Special Case' (a generalization of Null Object) as a key refactoring in 'Refactoring' second edition"
+      ],
+      [
+        "2020",
+        "Modern languages like Kotlin, Swift, and Rust reduce the need for Null Object via built-in null safety (Option/Optional types)"
+      ]
     ],
     "timeline_zh": [
-      ["1998", "Bobby Woolf 在 PLoP（程序模式语言）会议上提出空对象模式"],
-      ["2004", "Michael Feathers 在《修改代码的艺术》中描述了使用空对象来打破遗留代码中的依赖"],
-      ["2018", "Martin Fowler 在《重构》第二版中将「引入特殊情况」（空对象的泛化）作为关键重构手法"],
-      ["2020", "Kotlin、Swift 和 Rust 等现代语言通过内置空安全（Option/Optional 类型）减少了对空对象的需求"]
+      [
+        "1998",
+        "Bobby Woolf 在 PLoP（程序模式语言）会议上提出空对象模式"
+      ],
+      [
+        "2004",
+        "Michael Feathers 在《修改代码的艺术》中描述了使用空对象来打破遗留代码中的依赖"
+      ],
+      [
+        "2018",
+        "Martin Fowler 在《重构》第二版中将「引入特殊情况」（空对象的泛化）作为关键重构手法"
+      ],
+      [
+        "2020",
+        "Kotlin、Swift 和 Rust 等现代语言通过内置空安全（Option/Optional 类型）减少了对空对象的需求"
+      ]
     ],
     "dos": [
       "Do make the Null Object implement the same interface as the real object because polymorphism is what makes the pattern work",
@@ -2068,7 +2926,19 @@
       "简单脚本或小程序，几处空值检查比引入新类更清晰",
       "值的缺失具有必须明确处理的不同业务含义的情况"
     ],
-    "adopters": ["JetBrains", "Google (Guava)", "Apache Commons", "Spring Framework", "Eclipse Foundation"]
+    "adopters": [
+      "JetBrains",
+      "Google (Guava)",
+      "Apache Commons",
+      "Spring Framework",
+      "Eclipse Foundation"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "reliability",
+      "maintainability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 177,
@@ -2094,8 +2964,19 @@
     ],
     "ai_relevant": false,
     "viz_type": "pyramid",
-    "related": ["design-by-contract", "domain-driven-design", "clean-code-principles", "immutability-pattern"],
-    "tags": ["type-system", "type-safety", "domain-modeling", "compile-time-safety", "make-illegal-states-unrepresentable"],
+    "related": [
+      "design-by-contract",
+      "domain-driven-design",
+      "clean-code-principles",
+      "immutability-pattern"
+    ],
+    "tags": [
+      "type-system",
+      "type-safety",
+      "domain-modeling",
+      "compile-time-safety",
+      "make-illegal-states-unrepresentable"
+    ],
     "origin_author": "John Ousterhout, 2018; Scott Wlaschin, 2018",
     "origin_source": "A Philosophy of Software Design (Ousterhout, 2018); Refactoring (Fowler, 2018)",
     "origin_source_zh": "《软件设计的哲学》（Ousterhout，2018）；《重构》（Fowler，2018）",
@@ -2127,16 +3008,40 @@
       "类型状态模式：将对象生命周期状态编码为不同类型，使操作仅在有效状态下可用"
     ],
     "timeline": [
-      ["1999", "Cardelli and Wegner's type theory foundations influence the idea that types can encode semantic constraints"],
-      ["2013", "Yaron Minsky coins 'Make Illegal States Unrepresentable' in the OCaml community, crystallizing the philosophy"],
-      ["2018", "Ousterhout's 'A Philosophy of Software Design' emphasizes using deep interfaces and rich types to reduce complexity"],
-      ["2021", "TypeScript 4.1+ template literal types and Rust's type-state pattern bring type-driven design to mainstream languages"]
+      [
+        "1999",
+        "Cardelli and Wegner's type theory foundations influence the idea that types can encode semantic constraints"
+      ],
+      [
+        "2013",
+        "Yaron Minsky coins 'Make Illegal States Unrepresentable' in the OCaml community, crystallizing the philosophy"
+      ],
+      [
+        "2018",
+        "Ousterhout's 'A Philosophy of Software Design' emphasizes using deep interfaces and rich types to reduce complexity"
+      ],
+      [
+        "2021",
+        "TypeScript 4.1+ template literal types and Rust's type-state pattern bring type-driven design to mainstream languages"
+      ]
     ],
     "timeline_zh": [
-      ["1999", "Cardelli 和 Wegner 的类型理论基础影响了类型可以编码语义约束的思想"],
-      ["2013", "Yaron Minsky 在 OCaml 社区中提出「使非法状态不可表示」，将该理念结晶化"],
-      ["2018", "Ousterhout 的《软件设计的哲学》强调使用深接口和丰富类型来减少复杂性"],
-      ["2021", "TypeScript 4.1+ 模板字面量类型和 Rust 的类型状态模式将类型驱动设计带入主流语言"]
+      [
+        "1999",
+        "Cardelli 和 Wegner 的类型理论基础影响了类型可以编码语义约束的思想"
+      ],
+      [
+        "2013",
+        "Yaron Minsky 在 OCaml 社区中提出「使非法状态不可表示」，将该理念结晶化"
+      ],
+      [
+        "2018",
+        "Ousterhout 的《软件设计的哲学》强调使用深接口和丰富类型来减少复杂性"
+      ],
+      [
+        "2021",
+        "TypeScript 4.1+ 模板字面量类型和 Rust 的类型状态模式将类型驱动设计带入主流语言"
+      ]
     ],
     "dos": [
       "Do wrap primitives in domain types because a CustomerId should never be accidentally used as an OrderId",
@@ -2177,6 +3082,18 @@
       "自定义类型的开销超过收益的小脚本或一次性工具",
       "高级类型系统经验有限、学习曲线会拖慢交付的团队"
     ],
-    "adopters": ["Jane Street", "Meta (Flow/Hack)", "Microsoft (TypeScript)", "Jet.com (F#)", "Mozilla (Rust)"]
+    "adopters": [
+      "Jane Street",
+      "Meta (Flow/Hack)",
+      "Microsoft (TypeScript)",
+      "Jet.com (F#)",
+      "Mozilla (Rust)"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "reliability",
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   }
 ]

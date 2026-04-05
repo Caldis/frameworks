@@ -153,7 +153,12 @@
       "Shopify",
       "GOV.UK",
       "Amazon"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 74,
@@ -309,7 +314,12 @@
       "Google",
       "ThoughtWorks",
       "Atlassian"
-    ]
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 75,
@@ -465,7 +475,12 @@
       "Intercom",
       "Shopify",
       "SoundCloud"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 76,
@@ -621,7 +636,12 @@
       "Atlassian",
       "Pivotal Labs",
       "Etsy"
-    ]
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 77,
@@ -777,7 +797,13 @@
       "Zalando",
       "Intuit",
       "N26"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "maintainability",
+      "reliability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 78,
@@ -933,7 +959,12 @@
       "Spotify",
       "Netflix",
       "ThoughtWorks"
-    ]
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "maintainability"
+    ],
+    "maturity_ring": "foundational"
   },
   {
     "id": 79,
@@ -1089,7 +1120,13 @@
       "Spotify",
       "Zalando",
       "Sky UK"
-    ]
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "maintainability",
+      "scalability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 80,
@@ -1245,7 +1282,13 @@
       "uSwitch",
       "Nationwide Building Society",
       "Condé Nast"
-    ]
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "maintainability",
+      "scalability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 81,
@@ -1401,7 +1444,13 @@
       "Stripe",
       "Airbnb",
       "SoundCloud"
-    ]
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability",
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 82,
@@ -1557,7 +1606,13 @@
       "GitHub",
       "Salesforce",
       "Google Cloud"
-    ]
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "maintainability",
+      "reliability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 83,
@@ -1713,7 +1768,12 @@
       "Shopify",
       "Sourcegraph",
       "Uber"
-    ]
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 84,
@@ -1869,7 +1929,12 @@
       "Netflix",
       "ING Bank",
       "ThoughtWorks"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 85,
@@ -2025,7 +2090,13 @@
       "Google DeepMind",
       "Microsoft",
       "Replit"
-    ]
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "scalability"
+    ],
+    "maturity_ring": "emerging"
   },
   {
     "id": 86,
@@ -2181,7 +2252,12 @@
       "Spotify",
       "King (Candy Crush)",
       "Klarna"
-    ]
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 187,
@@ -2210,8 +2286,8 @@
     "related": [
       "strangler-fig-pattern",
       "branch-by-abstraction",
-      "continuous-integration",
-      "expand-contract-pattern"
+      "gitops",
+      "api-versioning-strategies"
     ],
     "tags": [
       "database",
@@ -2336,7 +2412,13 @@
       "Shopify",
       "GitHub",
       "Stripe"
-    ]
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "maintainability",
+      "reliability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 188,
@@ -2363,8 +2445,7 @@
     "ai_relevant": false,
     "viz_type": "flow",
     "related": [
-      "continuous-integration",
-      "trunk-based-development",
+      "gitops",
       "feature-flags",
       "branch-by-abstraction"
     ],
@@ -2492,7 +2573,12 @@
       "GitHub",
       "Microsoft",
       "Atlassian"
-    ]
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 189,
@@ -2519,9 +2605,8 @@
     "ai_relevant": true,
     "viz_type": "flow",
     "related": [
-      "api-versioning",
+      "api-versioning-strategies",
       "strangler-fig-pattern",
-      "expand-contract-pattern",
       "semantic-versioning"
     ],
     "tags": [
@@ -2648,7 +2733,12 @@
       "Twilio",
       "GitHub",
       "AWS"
-    ]
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "maintainability"
+    ],
+    "maturity_ring": "established"
   },
   {
     "id": 190,
@@ -2675,10 +2765,10 @@
     "ai_relevant": true,
     "viz_type": "cycle",
     "related": [
-      "behavior-driven-development",
+      "bdd",
       "domain-driven-design",
-      "continuous-integration",
-      "api-documentation"
+      "gitops",
+      "openapi-specification"
     ],
     "tags": [
       "documentation",
@@ -2804,6 +2894,12 @@
       "ThoughtWorks",
       "GOV.UK",
       "Zalando"
-    ]
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "testability"
+    ],
+    "maturity_ring": "established"
   }
 ]
