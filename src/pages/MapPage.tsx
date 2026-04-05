@@ -4,7 +4,7 @@ import * as d3 from 'd3'
 import { getAllFrameworks } from '../data/loader'
 import { categories, getCategoryByKey } from '../data/categories'
 import { useI18n } from '../i18n'
-import type { Framework, CategoryKey } from '../types'
+import type { CategoryKey } from '../types'
 import styles from './MapPage.module.css'
 
 interface SimNode extends d3.SimulationNodeDatum {
@@ -15,6 +15,8 @@ interface SimNode extends d3.SimulationNodeDatum {
   desc_zh: string
   category: CategoryKey
   related: string[]
+  id: number
+  ai_relevant: boolean
 }
 
 interface SimLink extends d3.SimulationLinkDatum<SimNode> {
@@ -91,6 +93,8 @@ export default function MapPage() {
       desc_zh: f.desc_zh,
       category: f.category,
       related: f.related,
+      id: f.id,
+      ai_relevant: f.ai_relevant,
     }))
 
     const nodeMap = new Map(nodes.map(n => [n.slug, n]))
@@ -103,26 +107,106 @@ export default function MapPage() {
       })
     })
 
+    // Layout margins for axis labels
+    const margin = { top: 20, right: 20, bottom: 40, left: 36 }
+    const innerWidth = width - margin.left - margin.right
+    const innerHeight = height - margin.top - margin.bottom
+    const colWidth = innerWidth / categories.length
+
+    // Build a map from category key to column index
+    const categoryOrder: CategoryKey[] = ['thinking', 'architecture', 'coding', 'quality', 'deployment', 'evolution', 'ai']
+    const catIndex = new Map<CategoryKey, number>(categoryOrder.map((k, i) => [k, i]))
+
+    // Compute target X for each category (center of its column)
+    const catTargetX = (cat: CategoryKey) => margin.left + (catIndex.get(cat)! + 0.5) * colWidth
+
+    // Compute complexity rank for Y positioning
+    // Group nodes by category, sort by id within category, then assign a normalized Y
+    const nodesByCategory = new Map<CategoryKey, SimNode[]>()
+    for (const n of nodes) {
+      if (!nodesByCategory.has(n.category)) nodesByCategory.set(n.category, [])
+      nodesByCategory.get(n.category)!.push(n)
+    }
+    // Sort each group: more connections + ai_relevant + higher id = more complex = toward top
+    for (const [, group] of nodesByCategory) {
+      group.sort((a, b) => {
+        const scoreA = a.id + a.related.length * 2 + (a.ai_relevant ? 3 : 0)
+        const scoreB = b.id + b.related.length * 2 + (b.ai_relevant ? 3 : 0)
+        return scoreA - scoreB
+      })
+    }
+    // Assign target Y: bottom = fundamental (high Y value), top = advanced (low Y value)
+    const complexityTargetY = (node: SimNode) => {
+      const group = nodesByCategory.get(node.category)!
+      const idx = group.indexOf(node)
+      const ratio = group.length > 1 ? idx / (group.length - 1) : 0.5
+      // ratio 0 = simplest (bottom), 1 = most complex (top)
+      // Map to Y: bottom of inner area to top
+      return margin.top + innerHeight * (1 - ratio)
+    }
+
     const svg = d3.select(svgEl)
       .attr('width', width)
       .attr('height', height)
 
-    // Zoom container
+    // Static background layer (not affected by zoom)
+    const bgLayer = svg.append('g').attr('class', 'bg-layer')
+
+    // Draw vertical dividers between category zones
+    for (let i = 1; i < categories.length; i++) {
+      const x = margin.left + i * colWidth
+      bgLayer.append('line')
+        .attr('x1', x)
+        .attr('y1', margin.top)
+        .attr('x2', x)
+        .attr('y2', margin.top + innerHeight)
+        .attr('stroke', '#eee')
+        .attr('stroke-width', 1)
+        .attr('stroke-dasharray', '4,4')
+    }
+
+    // Draw X-axis labels (category names at bottom)
+    categoryOrder.forEach((catKey, i) => {
+      const cat = getCategoryByKey(catKey)
+      if (!cat) return
+      bgLayer.append('text')
+        .attr('x', margin.left + (i + 0.5) * colWidth)
+        .attr('y', height - 8)
+        .attr('text-anchor', 'middle')
+        .attr('font-size', 11)
+        .attr('font-family', 'monospace')
+        .attr('fill', cat.colorText)
+        .text(localized(cat, 'name'))
+    })
+
+    // Draw Y-axis label (vertical text along left edge)
+    bgLayer.append('text')
+      .attr('transform', `translate(12, ${margin.top + innerHeight / 2}) rotate(-90)`)
+      .attr('text-anchor', 'middle')
+      .attr('font-size', 11)
+      .attr('font-family', 'monospace')
+      .attr('fill', '#bbb')
+      .text(`${t.mapAxisFundamental} → ${t.mapAxisAdvanced}`)
+
+    // Zoom container (for nodes and links)
     const g = svg.append('g')
 
     const zoom = d3.zoom<SVGSVGElement, unknown>()
       .scaleExtent([0.3, 4])
       .on('zoom', (event) => {
         g.attr('transform', event.transform)
+        // Also transform background layer so axes stay aligned with nodes
+        bgLayer.attr('transform', event.transform)
       })
 
     svg.call(zoom)
 
-    // Simulation
+    // Simulation with category-based X and complexity-based Y
     const simulation = d3.forceSimulation<SimNode>(nodes)
       .force('link', d3.forceLink<SimNode, SimLink>(links).id(d => d.slug).distance(80))
       .force('charge', d3.forceManyBody().strength(-120))
-      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('x', d3.forceX<SimNode>(d => catTargetX(d.category)).strength(0.4))
+      .force('y', d3.forceY<SimNode>(d => complexityTargetY(d)).strength(0.15))
       .force('collision', d3.forceCollide().radius(18))
 
     // Links
@@ -282,7 +366,7 @@ export default function MapPage() {
     return () => {
       simulation.stop()
     }
-  }, [navigate, localized])
+  }, [navigate, localized, t])
 
   return (
     <div className={styles.page}>

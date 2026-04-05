@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import type { Framework } from '../types'
 import { getCategoryByKey } from '../data/categories'
 import { useI18n } from '../i18n'
+import FrameworkViz from './FrameworkViz'
 import StepsList from './StepsList'
 import RelatedFrameworks from './RelatedFrameworks'
 import styles from './Modal.module.css'
@@ -92,7 +93,7 @@ export default function Modal({
             )}
           </div>
           <div className={styles.vizPlaceholder}>
-            <span>{framework.viz_type}</span>
+            <FrameworkViz type={framework.viz_type} size={300} animate labels={steps} />
           </div>
           <p className={styles.desc}>{localized(framework, 'desc')}</p>
           <StepsList steps={steps} />

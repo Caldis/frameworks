@@ -70,7 +70,7 @@ export default function FrameworkPage() {
 
       {/* SVG Visualization */}
       <div className={styles.viz}>
-        <FrameworkViz type={framework.viz_type} size={300} animate />
+        <FrameworkViz type={framework.viz_type} size={300} animate labels={steps} />
       </div>
 
       {/* Description */}

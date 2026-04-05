@@ -9,7 +9,7 @@ export default function Layout() {
   return (
     <div className={styles.layout}>
       <header className={styles.header}>
-        <Link to="/" className={styles.domainBadge}>sdframe</Link>
+        <Link to="/" className={styles.domainBadge}>SDFrame</Link>
         <LanguageSwitcher />
       </header>
       <main className={styles.main}>
