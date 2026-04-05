@@ -2,7 +2,7 @@
 
 100 Software Design Frameworks — a curated collection for engineers, architects, and AI agents.
 
-**[Live Site](https://caldis.github.io/frameworks/)** | **Inspired by [pmframe.works](https://pmframe.works/)**
+**[Live Site](http://sdframe.caldis.me/)** | **Inspired by [pmframe.works](https://pmframe.works/)**
 
 ## Overview
 

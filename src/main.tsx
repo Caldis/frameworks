@@ -8,7 +8,7 @@ import './styles/globals.css'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <I18nProvider>
-      <BrowserRouter basename="/frameworks">
+      <BrowserRouter>
         <App />
       </BrowserRouter>
     </I18nProvider>
