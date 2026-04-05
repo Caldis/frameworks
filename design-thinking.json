@@ -1,0 +1,324 @@
+[
+  {
+    "name": "Design Thinking (IDEO/Stanford d.school)",
+    "name_zh": "设计思维（IDEO/斯坦福模型）",
+    "slug": "design-thinking-ideo",
+    "desc": "Human-centered 5-stage empathy-to-test design process",
+    "desc_zh": "以人为本的五阶段从共情到测试的设计流程",
+    "steps": [
+      "Empathize: conduct user interviews, observations, and contextual inquiry to build deep user understanding",
+      "Define: synthesize research into a problem statement (Point of View) and 'How Might We' questions",
+      "Ideate: run divergent brainstorming sessions to generate a wide range of solution ideas without judgment",
+      "Prototype: build low-fidelity tangible representations of your top ideas to make them testable",
+      "Test: put prototypes in front of real users, observe reactions, gather feedback, and iterate"
+    ],
+    "steps_zh": [
+      "共情：通过用户访谈、观察和情境调研，建立对用户的深度理解",
+      "定义：将研究成果综合为问题陈述（POV）和「我们如何能……」式问题",
+      "构思：开展发散式头脑风暴，不加评判地产生大量解决方案创意",
+      "原型：为最优创意构建低保真有形原型，使其可被测试验证",
+      "测试：将原型呈现给真实用户，观察反应，收集反馈并迭代改进"
+    ],
+    "ai_relevant": true,
+    "viz_type": "cycle"
+  },
+  {
+    "name": "Domain-Driven Design (DDD)",
+    "name_zh": "领域驱动设计",
+    "slug": "domain-driven-design",
+    "desc": "Model software around core business domain language and logic",
+    "desc_zh": "围绕核心业务领域语言与逻辑构建软件模型",
+    "steps": [
+      "Knowledge Crunching: collaborate with domain experts to extract and refine the core domain model through iterative conversation",
+      "Define the Ubiquitous Language: establish a shared, precise vocabulary used consistently in code, docs, and team discussion",
+      "Identify Bounded Contexts: draw explicit boundaries around each subdomain where a particular model applies without ambiguity",
+      "Model the Core Domain: design entities, value objects, aggregates, and domain events that reflect real business rules",
+      "Map Context Relationships: define integration patterns (Anti-Corruption Layer, Shared Kernel, Open Host) between bounded contexts"
+    ],
+    "steps_zh": [
+      "知识提炼：与领域专家协作，通过反复对话提取并精化核心领域模型",
+      "定义统一语言：建立在代码、文档和团队讨论中统一使用的精确词汇表",
+      "识别限界上下文：为每个子领域划定明确边界，确保模型在边界内无歧义",
+      "建模核心领域：设计能够反映真实业务规则的实体、值对象、聚合与领域事件",
+      "映射上下文关系：定义限界上下文之间的集成模式（防腐层、共享内核、开放主机等）"
+    ],
+    "ai_relevant": true,
+    "viz_type": "venn"
+  },
+  {
+    "name": "Systems Thinking",
+    "name_zh": "系统思维",
+    "slug": "systems-thinking",
+    "desc": "Analyze software as interconnected feedback loops, not parts",
+    "desc_zh": "将软件视为相互关联的反馈回路而非孤立部件进行分析",
+    "steps": [
+      "Identify the System Boundary: define what is inside vs. outside the system and where key interfaces lie",
+      "Map Stocks and Flows: identify accumulations (data stores, queues, state) and the flows that increase or decrease them",
+      "Trace Feedback Loops: find reinforcing loops (growth/decay) and balancing loops (stabilization) within the system",
+      "Identify Leverage Points: locate places in the system where small changes produce large, lasting effects",
+      "Simulate and Validate: build causal loop diagrams or simple simulations to test mental models against observed behavior"
+    ],
+    "steps_zh": [
+      "界定系统边界：明确系统内外的范围以及关键接口所在位置",
+      "绘制存量与流量：识别系统中的积累要素（数据存储、队列、状态）及其增减流量",
+      "追踪反馈回路：发现系统内的增强回路（增长/衰减）和调节回路（稳定化）",
+      "识别杠杆点：找到系统中以小改动产生持久大影响的关键位置",
+      "模拟与验证：构建因果回路图或简单仿真，对照观察行为检验心智模型"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow"
+  },
+  {
+    "name": "Jobs-to-Be-Done (JTBD)",
+    "name_zh": "待完成任务理论",
+    "slug": "jobs-to-be-done",
+    "desc": "Frame user needs as functional, social, emotional 'jobs'",
+    "desc_zh": "将用户需求框架化为功能性、社会性、情感性「任务」",
+    "steps": [
+      "Identify the Job: define the core progress the user is trying to make in a specific circumstance (not the feature they want)",
+      "Unpack Job Dimensions: separate the functional job (task), emotional job (feeling), and social job (perception by others)",
+      "Write Job Statements: craft statements in the form 'When [situation], I want to [motivation], so I can [outcome]'",
+      "Discover Struggling Moments: find where and why users struggle to get the job done with existing solutions",
+      "Map Solution Fit: design or evaluate features by how well they help users hire your software to complete each job"
+    ],
+    "steps_zh": [
+      "识别任务：定义用户在特定情境下试图实现的核心进展（而非他们想要的功能）",
+      "拆解任务维度：区分功能性任务（要做什么）、情感性任务（感受如何）和社会性任务（他人如何看待）",
+      "撰写任务陈述：采用「当[情境]时，我想要[动机]，以便[结果]」的格式撰写陈述",
+      "发现挣扎时刻：找出用户在完成任务时与现有方案的挣扎点及其原因",
+      "映射方案契合度：通过功能帮助用户「雇佣」软件完成任务的程度来设计或评估功能"
+    ],
+    "ai_relevant": false,
+    "viz_type": "matrix"
+  },
+  {
+    "name": "First Principles Thinking",
+    "name_zh": "第一性原理思维",
+    "slug": "first-principles-thinking",
+    "desc": "Decompose problems to foundational truths, then rebuild up",
+    "desc_zh": "将问题分解至基本真理，再从底层重新构建解决方案",
+    "steps": [
+      "Question Assumptions: list every assumption baked into the current approach and mark which ones are truly constraints vs. conventions",
+      "Decompose to Fundamentals: keep asking 'why?' and 'what is actually required?' until you reach irreducible physical or logical facts",
+      "Enumerate Constraints: distinguish hard constraints (physics, math, regulation) from soft constraints (habit, legacy, preference)",
+      "Reconstruct from Scratch: design the solution using only the fundamental truths, ignoring prior art and existing patterns",
+      "Validate and Benchmark: compare your reconstructed design against the original to quantify improvement and identify overlooked factors"
+    ],
+    "steps_zh": [
+      "质疑假设：列出当前方案中内嵌的所有假设，并区分哪些是真正的约束，哪些只是惯例",
+      "分解至基本要素：持续追问「为什么」和「真正需要什么」，直至抵达不可再分的物理或逻辑事实",
+      "枚举约束条件：区分硬约束（物理、数学、法规）与软约束（习惯、遗留、偏好）",
+      "从零重新构建：仅利用基本事实设计解决方案，忽略现有的模式和先例",
+      "验证与对标：将重构设计与原方案对比，量化改进幅度并识别被忽视的因素"
+    ],
+    "ai_relevant": false,
+    "viz_type": "pyramid"
+  },
+  {
+    "name": "Design by Contract (DbC)",
+    "name_zh": "契约式设计",
+    "slug": "design-by-contract",
+    "desc": "Define explicit preconditions, postconditions, invariants per unit",
+    "desc_zh": "为每个软件单元定义明确的前置条件、后置条件与不变式",
+    "steps": [
+      "Define Preconditions: specify what callers must guarantee to be true before invoking each function or service",
+      "Define Postconditions: specify what the function or service guarantees to be true upon successful completion",
+      "Define Class Invariants: state properties that must hold for every object or module in any observable state",
+      "Encode Contracts in Code: express contracts as assertions, type annotations, or formal specs (e.g., OpenAPI, type guards)",
+      "Enforce at Runtime and Test Time: run contract checks in development; use property-based tests to fuzz contract boundaries"
+    ],
+    "steps_zh": [
+      "定义前置条件：明确调用者在调用每个函数或服务前必须保证为真的条件",
+      "定义后置条件：明确函数或服务在成功完成后保证为真的条件",
+      "定义类不变式：声明对象或模块在任何可观测状态下都必须成立的属性",
+      "在代码中编码契约：通过断言、类型注解或形式规范（如OpenAPI、类型守卫）表达契约",
+      "在运行时和测试时强制执行：开发中运行契约检查；使用基于属性的测试对契约边界进行模糊测试"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow"
+  },
+  {
+    "name": "Cynefin Framework",
+    "name_zh": "库内文框架",
+    "slug": "cynefin-framework",
+    "desc": "Categorize problems into Simple, Complicated, Complex, Chaotic",
+    "desc_zh": "将问题归类为简单、繁杂、复杂、混沌四个领域以选择对策",
+    "steps": [
+      "Categorize the Problem Domain: assess whether the situation is Simple (known), Complicated (expert-solvable), Complex (emergent), or Chaotic (novel/crisis)",
+      "Select the Response Pattern: apply best practice (Simple), good practice with analysis (Complicated), or probe-sense-respond (Complex)",
+      "Handle Disorder: if the domain is unclear, break the problem into smaller parts and classify each part separately",
+      "Manage Domain Transitions: watch for situations moving between domains (e.g., a Complex system becoming Chaotic under load)",
+      "Document Domain Reasoning: record why a problem was classified in a domain to inform future architectural decisions"
+    ],
+    "steps_zh": [
+      "归类问题领域：判断当前情况属于简单（已知）、繁杂（专家可解）、复杂（涌现）还是混沌（新颖/危机）",
+      "选择响应模式：简单领域用最佳实践，繁杂领域用专家分析，复杂领域用探测-感知-响应",
+      "处理无序状态：若领域不明确，将问题拆分为更小部分并分别归类",
+      "管理领域转换：监控问题在领域间的迁移（如复杂系统在负载下转变为混沌）",
+      "记录领域推理：记录问题被归类到某领域的原因，以指导未来的架构决策"
+    ],
+    "ai_relevant": false,
+    "viz_type": "matrix"
+  },
+  {
+    "name": "Wardley Mapping",
+    "name_zh": "沃德利地图",
+    "slug": "wardley-mapping",
+    "desc": "Visualize value chains by evolution stage to drive strategy",
+    "desc_zh": "按演化阶段可视化价值链，以驱动技术与商业战略决策",
+    "steps": [
+      "Anchor on User Need: place the user at the top and define the visible capability they need (the 'anchor')",
+      "Build the Value Chain: map all components your system needs to deliver that capability, from user-facing to infrastructure",
+      "Position by Evolution: place each component on the x-axis from Genesis → Custom → Product → Commodity based on its maturity",
+      "Identify Strategic Moves: spot components that are over-engineered (custom when commodity exists) or under-invested",
+      "Apply Climatic Patterns: use known evolution patterns (e.g., componentization, inertia, co-evolution) to anticipate change"
+    ],
+    "steps_zh": [
+      "锚定用户需求：将用户置于顶部，定义其所需的可见能力（「锚点」）",
+      "构建价值链：绘制系统交付该能力所需的所有组件，从面向用户到基础设施",
+      "按演化阶段定位：根据成熟度将每个组件放置在X轴上（初创→定制→产品→商品）",
+      "识别战略举措：发现过度工程化（已有商品化方案却仍定制）或投资不足的组件",
+      "应用气候模式：利用已知演化规律（如组件化、惯性、协同演化）预判变化趋势"
+    ],
+    "ai_relevant": false,
+    "viz_type": "matrix"
+  },
+  {
+    "name": "Problem Framing (How-Now-Wow Matrix)",
+    "name_zh": "问题框架化（如何-现在-哇矩阵）",
+    "slug": "problem-framing-how-now-wow",
+    "desc": "Frame and prioritize ideas by feasibility and originality axes",
+    "desc_zh": "通过可行性与原创性两轴框架化并优先排序设计创意",
+    "steps": [
+      "State the Challenge: write a clear, bounded challenge statement that frames the problem space without presupposing solutions",
+      "Generate Ideas Freely: brainstorm solutions without filtering, aiming for high quantity across all feasibility and originality levels",
+      "Place on the Matrix: map each idea onto a 2x2 grid of Originality (low/high) vs. Feasibility (low/high)",
+      "Classify Quadrants: label ideas as 'Now' (easy/common), 'How' (novel/hard), 'Wow' (novel/feasible), or 'Discard' (easy/common)",
+      "Prioritize 'Wow' Ideas: select 'Wow' quadrant ideas for prototyping and validate 'How' ideas for future investment"
+    ],
+    "steps_zh": [
+      "陈述挑战：撰写清晰、有边界的挑战陈述，框定问题空间而不预设解决方案",
+      "自由生成创意：不加筛选地头脑风暴，在所有可行性和原创性层面追求数量",
+      "放置到矩阵中：将每个创意映射到原创性（低/高）与可行性（低/高）的2×2方格中",
+      "分类各象限：将创意标记为「现在」（易/普通）、「如何」（新颖/难）、「哇」（新颖/可行）或「丢弃」",
+      "优先选择「哇」类创意：选取「哇」象限的创意进行原型验证，评估「如何」类创意的未来投资价值"
+    ],
+    "ai_relevant": false,
+    "viz_type": "matrix"
+  },
+  {
+    "name": "Six Thinking Hats",
+    "name_zh": "六顶思考帽",
+    "slug": "six-thinking-hats",
+    "desc": "Parallel thinking method using 6 cognitive perspective modes",
+    "desc_zh": "采用六种认知视角模式的平行思维决策方法",
+    "steps": [
+      "Set the Focus Question: define the decision or design problem that all participants will examine together",
+      "White Hat (Data): present all known facts, data, and information gaps without interpretation",
+      "Red Hat (Emotion) + Black Hat (Caution) + Yellow Hat (Optimism): surface gut reactions, risks, and benefits in dedicated turns",
+      "Green Hat (Creativity): generate alternative ideas and creative possibilities without criticism",
+      "Blue Hat (Process): synthesize all perspectives, identify consensus, and define next actions"
+    ],
+    "steps_zh": [
+      "设定焦点问题：定义所有参与者将共同检视的决策或设计问题",
+      "白帽（数据）：不加诠释地呈现所有已知事实、数据和信息缺口",
+      "红帽（情感）+黑帽（谨慎）+黄帽（乐观）：在专项轮次中分别表达直觉反应、风险与收益",
+      "绿帽（创意）：在无批判氛围下生成替代创意与创造性可能性",
+      "蓝帽（流程）：综合所有视角，识别共识，定义后续行动"
+    ],
+    "ai_relevant": false,
+    "viz_type": "radar"
+  },
+  {
+    "name": "Analogical Thinking",
+    "name_zh": "类比思维",
+    "slug": "analogical-thinking",
+    "desc": "Transfer structural solutions from source domains to software",
+    "desc_zh": "将源领域的结构性解决方案迁移到软件设计问题中",
+    "steps": [
+      "Abstract the Problem Structure: strip away domain-specific details to reveal the underlying relational pattern of the problem",
+      "Identify Source Domains: brainstorm non-software domains (biology, logistics, city planning, etc.) that exhibit similar structural patterns",
+      "Extract the Structural Mapping: articulate the precise correspondence between source domain elements and target software elements",
+      "Adapt the Solution: translate the source domain's solution mechanism into software constructs, adjusting for domain differences",
+      "Validate the Analogy: test where the analogy breaks down and ensure those gaps are addressed in the final design"
+    ],
+    "steps_zh": [
+      "抽象问题结构：剥离领域特定细节，揭示问题的底层关系模式",
+      "识别源领域：在非软件领域（生物学、物流、城市规划等）中寻找具有相似结构模式的案例",
+      "提取结构映射：清晰阐明源领域元素与目标软件元素之间的精确对应关系",
+      "改造解决方案：将源领域的解决机制转化为软件构件，并针对领域差异进行调整",
+      "验证类比有效性：测试类比在何处失效，确保最终设计中这些缺口已被充分处理"
+    ],
+    "ai_relevant": false,
+    "viz_type": "venn"
+  },
+  {
+    "name": "Human-AI Interaction Design (HAI)",
+    "name_zh": "人机交互设计（AI时代）",
+    "slug": "human-ai-interaction-design",
+    "desc": "Design AI-augmented workflows balancing autonomy and control",
+    "desc_zh": "设计平衡自主性与控制权的AI增强型工作流程",
+    "steps": [
+      "Define the Human-AI Task Split: identify which subtasks the AI handles autonomously, which require human oversight, and which are collaborative",
+      "Design Explainability Touchpoints: specify where and how the AI must surface its reasoning, confidence, and uncertainty to users",
+      "Model Trust Calibration: design mechanisms for users to build appropriate trust — neither over-relying on nor under-using AI output",
+      "Handle AI Failure Modes: design graceful degradation paths for hallucination, low-confidence output, and distribution shift scenarios",
+      "Iterate with Human-in-the-Loop Feedback: build feedback collection into the UX to continuously improve AI behavior from real usage"
+    ],
+    "steps_zh": [
+      "定义人机任务分工：识别哪些子任务由AI自主处理、哪些需要人类监督、哪些是协作完成",
+      "设计可解释性触点：规定AI在何处以何种方式向用户呈现其推理过程、置信度和不确定性",
+      "建模信任校准：设计帮助用户建立适度信任的机制——既不过度依赖也不低估AI输出",
+      "处理AI失效模式：为幻觉、低置信度输出和分布偏移场景设计优雅降级路径",
+      "通过人在环路反馈迭代：将反馈收集内嵌于用户体验，从真实使用中持续改善AI行为"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow"
+  },
+  {
+    "name": "Agent-Oriented Design Thinking",
+    "name_zh": "智能体导向设计思维",
+    "slug": "agent-oriented-design-thinking",
+    "desc": "Design multi-agent systems around roles, goals, and environments",
+    "desc_zh": "围绕角色、目标与环境设计多智能体系统的思维框架",
+    "steps": [
+      "Define Agent Roles and Goals: specify each agent's purpose, objectives, and the scope of its autonomous decision-making authority",
+      "Model the Environment: describe the state space agents perceive, including data sources, APIs, tools, and world state representations",
+      "Design Agent Communication Protocols: define how agents share observations, delegate tasks, negotiate, and resolve conflicts",
+      "Plan for Emergent Behavior: identify potential unintended interactions between agents and design containment or correction mechanisms",
+      "Establish Evaluation Criteria: define measurable success metrics for individual agent behavior and overall system outcomes"
+    ],
+    "steps_zh": [
+      "定义智能体角色与目标：明确每个智能体的用途、目标以及其自主决策权的范围",
+      "建模环境：描述智能体感知的状态空间，包括数据源、API、工具和世界状态表示",
+      "设计智能体通信协议：定义智能体如何共享观察、委托任务、协商并解决冲突",
+      "规划涌现行为：识别智能体间潜在的非预期交互，并设计遏制或修正机制",
+      "建立评估标准：定义可量化的成功指标，覆盖个体智能体行为和整体系统结果"
+    ],
+    "ai_relevant": true,
+    "viz_type": "tree"
+  },
+  {
+    "name": "Trade-off Sliders Model",
+    "name_zh": "权衡滑块模型",
+    "slug": "trade-off-sliders",
+    "desc": "Make design trade-offs explicit by ranking competing qualities",
+    "desc_zh": "通过排列相互竞争的质量属性，将设计权衡显式化",
+    "steps": [
+      "Enumerate Quality Attributes: list all relevant system qualities (performance, security, maintainability, cost, scalability, etc.) for the project",
+      "Force-Rank the Attributes: have key stakeholders independently rank qualities from most to least critical, then consolidate into a shared ranking",
+      "Set Slider Positions: assign a relative priority score (1-5) to each attribute, explicitly acknowledging what is sacrificed at each end",
+      "Apply to Design Decisions: when facing a design choice, evaluate each option against the slider positions to find the best-fit solution",
+      "Revisit Periodically: re-run the sliders exercise at major milestones to reflect evolved business priorities and technical context"
+    ],
+    "steps_zh": [
+      "枚举质量属性：列出项目所有相关的系统质量（性能、安全、可维护性、成本、可扩展性等）",
+      "强制排序属性：让关键干系人独立排序质量属性（最重要到最次要），再整合为共识排序",
+      "设定滑块位置：为每个属性赋予相对优先级分值（1-5），明确标注每端所牺牲的内容",
+      "应用于设计决策：面对设计选择时，根据滑块位置评估每个方案以找到最优契合方案",
+      "定期重新审视：在重要里程碑重新进行滑块练习，以反映业务优先级和技术背景的演变"
+    ],
+    "ai_relevant": false,
+    "viz_type": "radar"
+  }
+]

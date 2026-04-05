@@ -1,0 +1,324 @@
+[
+  {
+    "name": "Strangler Fig Pattern",
+    "name_zh": "绞杀榕模式",
+    "slug": "strangler-fig-pattern",
+    "desc": "Incrementally replace a legacy system by routing traffic to new modules",
+    "desc_zh": "通过逐步将流量路由至新模块，渐进式替换遗留系统",
+    "steps": [
+      "Identify the legacy system boundary and map all entry points (APIs, events, UI routes)",
+      "Build a facade or proxy layer that intercepts all requests to the legacy system",
+      "Incrementally implement new functionality behind the facade, feature by feature",
+      "Redirect traffic from the facade to the new implementation one slice at a time",
+      "Retire legacy code once all traffic has been migrated and verified stable"
+    ],
+    "steps_zh": [
+      "识别遗留系统边界，映射所有入口点（API、事件、UI 路由）",
+      "构建外观层或代理层，拦截所有流向遗留系统的请求",
+      "在外观层后面逐项功能地增量实现新功能",
+      "逐片将流量从外观层重定向至新实现",
+      "所有流量迁移并验证稳定后，退役遗留代码"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow"
+  },
+  {
+    "name": "Branch by Abstraction",
+    "name_zh": "抽象分支法",
+    "slug": "branch-by-abstraction",
+    "desc": "Replace a component in-place via an abstraction layer without feature branches",
+    "desc_zh": "通过抽象层原地替换组件，无需功能分支",
+    "steps": [
+      "Introduce an abstraction (interface or adapter) over the component to be replaced",
+      "Make all callers depend on the abstraction rather than the concrete implementation",
+      "Build the new implementation behind the same abstraction, deploying it to production dark",
+      "Toggle traffic gradually from the old implementation to the new one using feature flags",
+      "Remove the old implementation and the abstraction layer once migration is complete"
+    ],
+    "steps_zh": [
+      "在待替换组件上引入抽象层（接口或适配器）",
+      "使所有调用方依赖抽象而非具体实现",
+      "在相同抽象后构建新实现，以暗部署方式发布到生产环境",
+      "使用功能开关将流量从旧实现逐步切换至新实现",
+      "迁移完成后移除旧实现与抽象层"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow"
+  },
+  {
+    "name": "Parallel Run",
+    "name_zh": "并行运行模式",
+    "slug": "parallel-run",
+    "desc": "Run old and new implementations simultaneously and compare outputs for safety",
+    "desc_zh": "同时运行新旧实现并对比输出，确保迁移安全性",
+    "steps": [
+      "Deploy both the legacy and new implementations into the same production environment",
+      "Route all live requests to both systems simultaneously without exposing new results to users",
+      "Capture and compare outputs from both systems, logging all discrepancies",
+      "Investigate and resolve every discrepancy until the new system output matches the legacy",
+      "Decommission the legacy system and promote the new implementation as the sole handler"
+    ],
+    "steps_zh": [
+      "将遗留系统与新实现同时部署到同一生产环境",
+      "将所有线上请求同时路由至两个系统，不向用户暴露新结果",
+      "捕获并比对两系统的输出，记录所有差异",
+      "排查并修复每一处差异，直到新系统输出与遗留系统一致",
+      "下线遗留系统，将新实现晋升为唯一处理方"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow"
+  },
+  {
+    "name": "Technical Debt Quadrant",
+    "name_zh": "技术债务象限",
+    "slug": "technical-debt-quadrant",
+    "desc": "Classify tech debt by deliberate/inadvertent and reckless/prudent axes",
+    "desc_zh": "按有意/无意与鲁莽/谨慎两轴对技术债务分类",
+    "steps": [
+      "Audit the codebase and collect all known shortcuts, workarounds, and design smells",
+      "Classify each item on two axes: deliberate vs. inadvertent and reckless vs. prudent",
+      "Prioritize reckless-inadvertent debt for immediate remediation as it carries highest risk",
+      "Schedule prudent-deliberate debt paydown as part of regular sprint capacity allocation",
+      "Document decisions to take on deliberate debt with explicit repayment plans and owners"
+    ],
+    "steps_zh": [
+      "审计代码库，收集所有已知的快捷方式、变通方案和设计异味",
+      "按两轴对每项进行分类：有意 vs. 无意，鲁莽 vs. 谨慎",
+      "优先修复「鲁莽-无意」象限的债务，因其风险最高",
+      "将「谨慎-有意」债务的偿还纳入常规迭代容量规划",
+      "记录主动承担技术债务的决策，明确偿还计划与负责人"
+    ],
+    "ai_relevant": false,
+    "viz_type": "matrix"
+  },
+  {
+    "name": "Architectural Fitness Functions",
+    "name_zh": "架构适应度函数",
+    "slug": "architectural-fitness-functions",
+    "desc": "Automated tests that continuously verify architectural characteristics stay intact",
+    "desc_zh": "通过自动化测试持续验证架构特性保持完整",
+    "steps": [
+      "Identify the critical architectural characteristics to protect (coupling, latency, security)",
+      "Define measurable thresholds for each characteristic (e.g., max cyclic dependencies = 0)",
+      "Implement automated tests or tools (ArchUnit, chaos experiments, load tests) per characteristic",
+      "Integrate fitness function checks into the CI/CD pipeline as mandatory quality gates",
+      "Review and evolve the fitness function suite as architectural priorities shift over time"
+    ],
+    "steps_zh": [
+      "确定需要保护的关键架构特性（耦合度、延迟、安全性等）",
+      "为每项特性定义可量化阈值（如：最大循环依赖数 = 0）",
+      "针对每项特性实现自动化测试或工具（ArchUnit、混沌实验、负载测试）",
+      "将适应度函数检查集成到 CI/CD 流水线作为强制质量门禁",
+      "随架构优先级的变化，持续审视和演进适应度函数套件"
+    ],
+    "ai_relevant": true,
+    "viz_type": "radar"
+  },
+  {
+    "name": "Conway's Law",
+    "name_zh": "康威定律",
+    "slug": "conways-law",
+    "desc": "Systems mirror the communication structure of the organizations that build them",
+    "desc_zh": "系统的结构反映构建它的组织的沟通结构",
+    "steps": [
+      "Map current team communication patterns and organizational boundaries explicitly",
+      "Audit the existing system architecture and identify how it mirrors team boundaries",
+      "Detect misalignments where architecture crosses team lines, causing friction and bottlenecks",
+      "Use the law prescriptively: redesign team structures to match the desired target architecture",
+      "Iterate on both org design and system design together, treating them as co-evolving artifacts"
+    ],
+    "steps_zh": [
+      "明确梳理当前团队沟通模式和组织边界",
+      "审计现有系统架构，识别其如何映射团队边界",
+      "检测架构跨越团队边界导致摩擦和瓶颈的错位之处",
+      "将该定律用于规范性指导：重新设计团队结构以匹配目标架构",
+      "将组织设计与系统设计作为协同演进的制品，一并持续迭代"
+    ],
+    "ai_relevant": false,
+    "viz_type": "venn"
+  },
+  {
+    "name": "Inverse Conway Maneuver",
+    "name_zh": "逆康威策略",
+    "slug": "inverse-conway-maneuver",
+    "desc": "Deliberately restructure teams to produce the desired system architecture",
+    "desc_zh": "主动重组团队结构，以引导产出期望的系统架构",
+    "steps": [
+      "Define the target software architecture (e.g., bounded microservices, platform layers)",
+      "Model teams around the desired architecture boundaries before writing any new code",
+      "Establish clear team APIs: explicit ownership, stable interfaces, and interaction modes",
+      "Spin up new teams or reorganize existing ones to align with the architecture blueprint",
+      "Monitor whether the emerging code structure matches the intended architecture over 2–3 quarters"
+    ],
+    "steps_zh": [
+      "定义目标软件架构（如：有界微服务、平台层次）",
+      "在编写任何新代码之前，围绕期望的架构边界进行团队建模",
+      "建立清晰的团队 API：明确所有权、稳定接口和交互模式",
+      "新建团队或重组现有团队，使其与架构蓝图对齐",
+      "在 2-3 个季度内监控涌现的代码结构是否符合预期架构"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow"
+  },
+  {
+    "name": "Team Topologies",
+    "name_zh": "团队拓扑",
+    "slug": "team-topologies",
+    "desc": "Four team types and three interaction modes for fast, sustainable software delivery",
+    "desc_zh": "通过四种团队类型与三种交互模式实现快速可持续的软件交付",
+    "steps": [
+      "Classify all existing teams into the four types: Stream-aligned, Platform, Enabling, Complicated-subsystem",
+      "Identify current interaction modes: Collaboration, X-as-a-Service, or Facilitating",
+      "Detect anti-patterns such as overloaded stream-aligned teams or absent platform teams",
+      "Redesign team interactions to minimize cognitive load and maximize flow for stream-aligned teams",
+      "Set trigger conditions (team size, cognitive load signals) for evolving team topology over time"
+    ],
+    "steps_zh": [
+      "将现有团队分类为四种类型：流式对齐团队、平台团队、赋能团队、复杂子系统团队",
+      "识别当前交互模式：协作、X即服务或促进",
+      "检测反模式，如过载的流式对齐团队或缺失的平台团队",
+      "重新设计团队交互方式，最小化认知负荷，最大化流式对齐团队的交付流",
+      "设定触发条件（团队规模、认知负荷信号），驱动团队拓扑随时间持续演进"
+    ],
+    "ai_relevant": false,
+    "viz_type": "tree"
+  },
+  {
+    "name": "Database Migration Patterns",
+    "name_zh": "数据库迁移模式",
+    "slug": "database-migration-patterns",
+    "desc": "Safe techniques for evolving database schemas without downtime or data loss",
+    "desc_zh": "无停机、无数据丢失地演进数据库模式的安全技术集合",
+    "steps": [
+      "Version-control all schema changes as incremental migration scripts (Flyway, Liquibase)",
+      "Apply expand-contract: add new columns/tables first, migrate data, then remove old structures",
+      "Use backward-compatible migrations so old and new application code can run simultaneously",
+      "Test migrations in a production-equivalent staging environment before applying to production",
+      "Automate rollback scripts for every migration and validate them in CI before merging"
+    ],
+    "steps_zh": [
+      "将所有模式变更以增量迁移脚本形式纳入版本控制（Flyway、Liquibase）",
+      "应用扩展-收缩模式：先新增列/表，迁移数据，再删除旧结构",
+      "保持向后兼容的迁移，使新旧应用代码可同时运行",
+      "在等同于生产环境的预发布环境中测试迁移，再应用至生产",
+      "为每次迁移自动化回滚脚本，并在合并前通过 CI 验证"
+    ],
+    "ai_relevant": false,
+    "viz_type": "timeline"
+  },
+  {
+    "name": "API Versioning Strategies",
+    "name_zh": "API 版本管理策略",
+    "slug": "api-versioning-strategies",
+    "desc": "Structured approaches to evolving APIs without breaking existing consumers",
+    "desc_zh": "不破坏现有消费者的情况下有序演进 API 的策略体系",
+    "steps": [
+      "Choose a versioning scheme: URI path (/v2/), header (Accept-Version), or query parameter",
+      "Define and enforce a backward-compatibility contract: additive changes only within a version",
+      "Publish a deprecation policy specifying minimum support window before a version is retired",
+      "Maintain a changelog and migration guide for each version transition",
+      "Use API gateways or consumer-driven contract tests (Pact) to validate compatibility continuously"
+    ],
+    "steps_zh": [
+      "选择版本控制方案：URI 路径（/v2/）、请求头（Accept-Version）或查询参数",
+      "定义并执行向后兼容契约：同一版本内仅允许追加式变更",
+      "发布弃用策略，明确版本退役前的最短支持窗口期",
+      "为每次版本迁移维护变更日志和迁移指南",
+      "使用 API 网关或消费者驱动契约测试（Pact）持续验证兼容性"
+    ],
+    "ai_relevant": true,
+    "viz_type": "timeline"
+  },
+  {
+    "name": "AI-Assisted Refactoring",
+    "name_zh": "AI 辅助重构",
+    "slug": "ai-assisted-refactoring",
+    "desc": "Use LLMs to identify, plan, and execute code refactoring at scale",
+    "desc_zh": "利用大语言模型规模化识别、规划和执行代码重构",
+    "steps": [
+      "Feed the target codebase to an LLM and prompt it to identify code smells, duplication, and anti-patterns",
+      "Generate a prioritized refactoring backlog with risk assessments and estimated effort from LLM output",
+      "Use LLM-generated diffs or code completions for each refactoring task, reviewed by engineers",
+      "Run the full test suite and fitness functions after each AI-generated change to catch regressions",
+      "Track refactoring velocity and code quality metrics over time to measure AI-assistance ROI"
+    ],
+    "steps_zh": [
+      "将目标代码库输入 LLM，提示其识别代码异味、重复和反模式",
+      "根据 LLM 输出，生成带有风险评估和工作量估算的优先级重构待办清单",
+      "使用 LLM 生成的差异或代码补全完成每项重构任务，并由工程师审查",
+      "每次 AI 生成变更后运行完整测试套件和适应度函数，捕捉回归问题",
+      "持续追踪重构速度和代码质量指标，量化 AI 辅助的投入产出比"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow"
+  },
+  {
+    "name": "Continuous Architecture",
+    "name_zh": "持续架构",
+    "slug": "continuous-architecture",
+    "desc": "Evolve architecture incrementally in sync with delivery rather than big up-front design",
+    "desc_zh": "与交付节奏同步地增量演进架构，取代前期大设计",
+    "steps": [
+      "Establish lightweight Architecture Decision Records (ADRs) to capture decisions as they are made",
+      "Embed architectural reviews as a routine part of sprint planning and retrospectives",
+      "Define architectural runways: maintain just-enough design ahead of the development queue",
+      "Use fitness functions to monitor whether the live system still matches architectural intent",
+      "Revisit and update ADRs when new information, scale demands, or AI capabilities shift priorities"
+    ],
+    "steps_zh": [
+      "建立轻量级架构决策记录（ADR），在决策作出时即时捕获",
+      "将架构评审作为迭代计划和回顾会议的常规环节",
+      "定义架构跑道：在开发队列前方维持恰到好处的设计储备",
+      "使用适应度函数监控线上系统是否仍与架构意图保持一致",
+      "当新信息、规模需求或 AI 能力改变优先级时，及时重审和更新 ADR"
+    ],
+    "ai_relevant": true,
+    "viz_type": "cycle"
+  },
+  {
+    "name": "Evolutionary Agent Systems",
+    "name_zh": "演进式智能体系统",
+    "slug": "evolutionary-agent-systems",
+    "desc": "Iteratively evolve AI agent architectures using feedback, eval, and capability staging",
+    "desc_zh": "通过反馈、评估和能力分级持续迭代演进 AI 智能体架构",
+    "steps": [
+      "Define agent capability tiers and establish eval suites that benchmark each capability level",
+      "Deploy agents in a shadow or canary mode, collecting traces, errors, and human feedback",
+      "Use evals and failure analysis to identify the next highest-value capability to add or fix",
+      "Introduce new tools, memory stores, or orchestration patterns behind feature flags",
+      "Promote changes incrementally using A/B testing on agent outputs, retiring deprecated behaviors"
+    ],
+    "steps_zh": [
+      "定义智能体能力层级，并建立对每个能力层级进行基准测试的评估套件",
+      "以影子模式或金丝雀模式部署智能体，收集调用链、错误和人工反馈",
+      "使用评估结果和失败分析，确定下一个最高价值的待新增或待修复能力",
+      "在功能开关后引入新工具、记忆存储或编排模式",
+      "通过对智能体输出进行 A/B 测试，增量晋升变更，退役已弃用的行为"
+    ],
+    "ai_relevant": true,
+    "viz_type": "cycle"
+  },
+  {
+    "name": "Mikado Method",
+    "name_zh": "米卡多方法",
+    "slug": "mikado-method",
+    "desc": "Visualize and untangle large refactorings as a dependency graph of small safe steps",
+    "desc_zh": "将大型重构可视化为依赖图，分解为一系列小而安全的步骤",
+    "steps": [
+      "State the refactoring goal as a single root node and attempt it naively in the codebase",
+      "When compilation or tests break, record each blocker as a child node in the Mikado Graph",
+      "Revert all changes and recurse: attempt each leaf node (blocker) the same way",
+      "Continue building the graph until all leaves are independently achievable without breakage",
+      "Implement leaves first, working bottom-up through the graph until the root goal is achieved"
+    ],
+    "steps_zh": [
+      "将重构目标设为单一根节点，在代码库中直接尝试实现",
+      "当编译或测试失败时，将每个阻塞点记录为米卡多图中的子节点",
+      "回滚所有变更并递归：用同样方式尝试每个叶节点（阻塞项）",
+      "持续构建依赖图，直到所有叶节点均可独立完成而不引发问题",
+      "从叶节点开始实现，自底向上逐步完成，直至达成根节点目标"
+    ],
+    "ai_relevant": false,
+    "viz_type": "tree"
+  }
+]

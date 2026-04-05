@@ -1,0 +1,324 @@
+[
+  {
+    "name": "Architecture Decision Records (ADR)",
+    "name_zh": "架构决策记录",
+    "slug": "adr",
+    "desc": "Lightweight docs capturing context and rationale for decisions",
+    "desc_zh": "轻量级文档，记录架构决策的背景与理由",
+    "steps": [
+      "Identify the architectural decision that needs to be made and create a new ADR file with a sequential number and short title",
+      "Document the context: describe the forces at play, constraints, and the problem being addressed",
+      "List all options considered with their pros and cons, including the status (proposed, accepted, deprecated)",
+      "Record the decision made, the rationale behind it, and which option was chosen",
+      "Capture consequences: expected outcomes, trade-offs accepted, and follow-up actions or future ADRs triggered"
+    ],
+    "steps_zh": [
+      "确定需要记录的架构决策，创建带有序号和简短标题的新ADR文件",
+      "记录上下文：描述当前的约束条件、驱动力和需要解决的问题",
+      "列出所有考虑过的方案及各自的优缺点，标注当前状态（建议中/已接受/已废弃）",
+      "记录最终决策、决策理由以及选择该方案的依据",
+      "记录后果：预期结果、已接受的权衡取舍，以及后续行动或触发的新ADR"
+    ],
+    "ai_relevant": true,
+    "viz_type": "timeline"
+  },
+  {
+    "name": "Architecture Tradeoff Analysis Method (ATAM)",
+    "name_zh": "架构权衡分析法",
+    "slug": "atam",
+    "desc": "Structured method to evaluate architecture against quality goals",
+    "desc_zh": "系统评估架构对质量目标的结构化分析方法",
+    "steps": [
+      "Present the ATAM process and collect business drivers, key architectural goals, and stakeholder concerns",
+      "Have the architect present the architecture using multiple views (module, runtime, deployment)",
+      "Identify architectural approaches and map them to quality attribute utility tree scenarios",
+      "Analyze each approach for sensitivity points, trade-off points, and risks vs. non-risks",
+      "Prioritize scenarios and risks, produce a findings report with sensitivity and trade-off point summaries"
+    ],
+    "steps_zh": [
+      "介绍ATAM流程，收集业务驱动因素、关键架构目标和利益相关者关切",
+      "由架构师使用多个视图（模块、运行时、部署）呈现架构",
+      "识别架构方法，将其映射到质量属性效用树场景",
+      "分析每种方法的敏感点、权衡点以及风险与非风险项",
+      "对场景和风险进行优先级排序，生成包含敏感点和权衡点摘要的分析报告"
+    ],
+    "ai_relevant": false,
+    "viz_type": "radar"
+  },
+  {
+    "name": "CAP Theorem",
+    "name_zh": "CAP定理",
+    "slug": "cap-theorem",
+    "desc": "Distributed systems can guarantee only 2 of 3: C, A, P",
+    "desc_zh": "分布式系统只能同时保证一致性、可用性、分区容错性中的两个",
+    "steps": [
+      "Identify the distributed system's core requirements: what data consistency guarantees are needed by clients",
+      "Determine realistic network partition scenarios and their likelihood in your deployment environment",
+      "Choose the CP or AP trade-off: decide whether consistency or availability is sacrificed during partition events",
+      "Select data stores, protocols, and replication strategies that implement the chosen trade-off (e.g., etcd for CP, Cassandra for AP)",
+      "Design compensating mechanisms: conflict resolution, eventual consistency patterns, or client retry logic to handle the chosen trade-off"
+    ],
+    "steps_zh": [
+      "明确分布式系统的核心需求：客户端需要什么级别的数据一致性保证",
+      "评估网络分区的实际场景及其在当前部署环境中的发生概率",
+      "选择CP或AP权衡：决定在分区事件发生时牺牲一致性还是可用性",
+      "选择实现该权衡的数据存储、协议和复制策略（如CP选etcd，AP选Cassandra）",
+      "设计补偿机制：冲突解决、最终一致性模式或客户端重试逻辑来应对所选权衡"
+    ],
+    "ai_relevant": false,
+    "viz_type": "venn"
+  },
+  {
+    "name": "C4 Model",
+    "name_zh": "C4模型",
+    "slug": "c4-model",
+    "desc": "Four-level hierarchy for visualizing software architecture",
+    "desc_zh": "用于可视化软件架构的四层次模型",
+    "steps": [
+      "Draw a Context diagram: show the system as a box, its users, and external systems it interacts with",
+      "Drill into a Container diagram: decompose the system into containers (apps, services, databases) with technology choices",
+      "Create Component diagrams for key containers: show the internal components and how they collaborate",
+      "Optionally add Code-level diagrams (UML class diagrams) for the most critical components",
+      "Embed diagrams in documentation and ADRs; keep them as living artifacts updated with each architecture change"
+    ],
+    "steps_zh": [
+      "绘制上下文图：将系统表示为方框，展示其用户和交互的外部系统",
+      "深入绘制容器图：将系统分解为容器（应用、服务、数据库）并标注技术选型",
+      "为关键容器创建组件图：展示内部组件及其协作关系",
+      "可选地为最关键组件添加代码层级图（UML类图）",
+      "将图表嵌入文档和ADR，作为随每次架构变更持续更新的活文档"
+    ],
+    "ai_relevant": true,
+    "viz_type": "tree"
+  },
+  {
+    "name": "Domain-Driven Design (DDD)",
+    "name_zh": "领域驱动设计",
+    "slug": "ddd",
+    "desc": "Model complex software around the core business domain",
+    "desc_zh": "围绕核心业务领域对复杂软件进行建模",
+    "steps": [
+      "Conduct Event Storming or domain workshops with domain experts to surface key domain events and processes",
+      "Identify Bounded Contexts: logical boundaries within which a domain model applies consistently",
+      "Define Aggregates, Entities, Value Objects, and Domain Events within each bounded context",
+      "Map Context relationships using a Context Map: shared kernel, customer-supplier, conformist, anti-corruption layer",
+      "Align team ownership and microservice/module boundaries with bounded contexts to reduce coupling"
+    ],
+    "steps_zh": [
+      "与领域专家开展事件风暴或领域工作坊，挖掘关键领域事件和业务流程",
+      "识别限界上下文：领域模型一致适用的逻辑边界",
+      "在每个限界上下文内定义聚合、实体、值对象和领域事件",
+      "使用上下文映射图描述上下文间关系：共享内核、客户-供应商、遵奉者、防腐层",
+      "将团队所有权和微服务/模块边界与限界上下文对齐，以减少耦合"
+    ],
+    "ai_relevant": false,
+    "viz_type": "venn"
+  },
+  {
+    "name": "Event-Driven Architecture (EDA)",
+    "name_zh": "事件驱动架构",
+    "slug": "eda",
+    "desc": "Systems communicate via asynchronous events for loose coupling",
+    "desc_zh": "系统通过异步事件通信，实现松耦合",
+    "steps": [
+      "Identify domain events: meaningful state changes that other parts of the system need to react to",
+      "Design event schemas with versioning strategy; choose event broker (Kafka, RabbitMQ, EventBridge)",
+      "Implement event producers that publish events on state change and consumers that subscribe to relevant topics",
+      "Define event choreography vs. orchestration: decide where coordination logic lives (in events vs. a central saga)",
+      "Establish observability: event tracing, dead-letter queues, idempotency keys, and replay capabilities for resilience"
+    ],
+    "steps_zh": [
+      "识别领域事件：系统其他部分需要响应的有意义的状态变更",
+      "设计带有版本策略的事件模式；选择事件代理（Kafka、RabbitMQ、EventBridge）",
+      "实现在状态变更时发布事件的生产者和订阅相关主题的消费者",
+      "定义事件编排与事件协调：决定协调逻辑的归属（事件本身还是中央Saga）",
+      "建立可观测性：事件追踪、死信队列、幂等键和回放能力以保障弹性"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow"
+  },
+  {
+    "name": "Microservices Decomposition Patterns",
+    "name_zh": "微服务分解模式",
+    "slug": "microservices-decomposition",
+    "desc": "Strategies to split monoliths into focused, independent services",
+    "desc_zh": "将单体应用拆分为职责明确的独立服务的策略集合",
+    "steps": [
+      "Analyze the monolith using domain analysis or dependency graphs to identify natural seams and hot spots",
+      "Apply decomposition strategy: Decompose by Business Capability, Subdomain, or Strangler Fig for incremental migration",
+      "Define service APIs and contracts first (API-first), then extract service logic and its data store",
+      "Implement inter-service communication: synchronous REST/gRPC or asynchronous messaging based on coupling tolerance",
+      "Validate each extracted service with independent deployment, monitoring, and rollback before continuing extraction"
+    ],
+    "steps_zh": [
+      "使用领域分析或依赖关系图分析单体应用，识别自然接缝和热点",
+      "应用分解策略：按业务能力、子域或绞杀者模式进行增量迁移",
+      "先定义服务API和契约（API优先），再提取服务逻辑及其数据存储",
+      "根据耦合容忍度选择服务间通信方式：同步REST/gRPC或异步消息",
+      "对每个提取的服务进行独立部署、监控和回滚验证，再继续后续提取"
+    ],
+    "ai_relevant": false,
+    "viz_type": "tree"
+  },
+  {
+    "name": "Twelve-Factor App",
+    "name_zh": "十二要素应用",
+    "slug": "twelve-factor-app",
+    "desc": "12 principles for building scalable, maintainable cloud services",
+    "desc_zh": "构建可扩展、可维护云服务的12条原则",
+    "steps": [
+      "Audit the codebase: one codebase in version control, with all dependencies explicitly declared and isolated",
+      "Externalize all configuration into environment variables; never commit secrets or environment-specific config to code",
+      "Treat backing services (databases, queues, caches) as attached resources swappable via config",
+      "Enforce strict separation of build, release, and run stages; build once, deploy the artifact to many environments",
+      "Design for disposability and horizontal scale: stateless processes, fast startup, graceful shutdown, dev/prod parity"
+    ],
+    "steps_zh": [
+      "审计代码库：单一代码库纳入版本控制，所有依赖显式声明并隔离",
+      "将所有配置外部化为环境变量；不将密钥或环境特定配置提交到代码",
+      "将后端服务（数据库、队列、缓存）视为可通过配置替换的附加资源",
+      "严格分离构建、发布和运行阶段；一次构建，将制品部署到多个环境",
+      "为可处置性和水平扩展而设计：无状态进程、快速启动、优雅关闭、开发与生产环境对等"
+    ],
+    "ai_relevant": false,
+    "viz_type": "pyramid"
+  },
+  {
+    "name": "TOGAF Architecture Development Method (ADM)",
+    "name_zh": "TOGAF架构开发方法",
+    "slug": "togaf-adm",
+    "desc": "Iterative enterprise architecture lifecycle with defined phases",
+    "desc_zh": "具有明确阶段的迭代式企业架构生命周期方法",
+    "steps": [
+      "Establish Architecture Vision: define scope, stakeholders, constraints, and high-level target architecture statement",
+      "Develop Business, Information Systems (Data + Application), and Technology Architecture baselines and targets",
+      "Perform gap analysis between baseline and target for each domain; identify work packages",
+      "Create Migration Plan: prioritize work packages, define transition architectures, and roadmap sequencing",
+      "Govern implementation: establish Architecture Board oversight, compliance reviews, and update the Architecture Repository"
+    ],
+    "steps_zh": [
+      "建立架构愿景：定义范围、利益相关者、约束条件和高层次目标架构声明",
+      "开发业务架构、信息系统架构（数据+应用）和技术架构的基线与目标",
+      "对每个领域进行基线与目标的差距分析；识别工作包",
+      "制定迁移计划：对工作包排定优先级，定义过渡架构和路线图顺序",
+      "治理实施：建立架构委员会监督、合规审查，并更新架构知识库"
+    ],
+    "ai_relevant": false,
+    "viz_type": "cycle"
+  },
+  {
+    "name": "Quality Attribute Workshop (QAW)",
+    "name_zh": "质量属性工作坊",
+    "slug": "qaw",
+    "desc": "Elicit and prioritize quality attribute requirements collaboratively",
+    "desc_zh": "协作式挖掘并优先排序质量属性需求",
+    "steps": [
+      "Identify and invite key stakeholders representing business, operations, security, and development perspectives",
+      "Present the system mission and business context; allow stakeholders to brainstorm quality attribute concerns freely",
+      "Structure concerns into quality attribute scenarios using the SEI scenario template (stimulus, environment, response, measure)",
+      "Prioritize scenarios using voting or weighted ranking; group into utility tree categories (performance, security, etc.)",
+      "Produce a ranked Quality Attribute Scenario backlog to drive architecture decisions and evaluation sessions"
+    ],
+    "steps_zh": [
+      "识别并邀请代表业务、运营、安全和开发视角的关键利益相关者",
+      "介绍系统使命和业务背景；允许利益相关者自由头脑风暴质量属性关切",
+      "使用SEI场景模板（刺激、环境、响应、度量）将关切结构化为质量属性场景",
+      "使用投票或加权排名对场景进行优先级排序；按效用树分类（性能、安全等）",
+      "生成有优先级的质量属性场景待办列表，用于驱动架构决策和评估会议"
+    ],
+    "ai_relevant": false,
+    "viz_type": "radar"
+  },
+  {
+    "name": "Strangler Fig Pattern",
+    "name_zh": "绞杀者模式",
+    "slug": "strangler-fig",
+    "desc": "Incrementally replace legacy systems by routing traffic to new services",
+    "desc_zh": "通过将流量路由到新服务来增量替换遗留系统",
+    "steps": [
+      "Identify the first vertical slice of functionality to migrate: choose by business value, risk, or team capacity",
+      "Set up a routing facade (API Gateway or reverse proxy) in front of the legacy system to intercept all traffic",
+      "Build the new service implementing the selected slice; run it in parallel with the legacy equivalent",
+      "Gradually shift traffic via the facade from legacy to new service using feature flags or percentage routing",
+      "Decommission the legacy component once the new service handles 100% of traffic; repeat for next slice"
+    ],
+    "steps_zh": [
+      "识别第一个要迁移的垂直功能切片：按业务价值、风险或团队能力选择",
+      "在遗留系统前设置路由门面（API网关或反向代理）以拦截所有流量",
+      "构建实现所选切片的新服务；与遗留服务并行运行",
+      "通过门面使用功能标志或百分比路由逐步将流量从遗留系统切换到新服务",
+      "一旦新服务处理100%流量，停用遗留组件；对下一个切片重复此过程"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow"
+  },
+  {
+    "name": "ReAct Agent Architecture",
+    "name_zh": "ReAct智能体架构",
+    "slug": "react-agent-architecture",
+    "desc": "LLM agents interleave reasoning and acting in iterative loops",
+    "desc_zh": "LLM智能体在迭代循环中交替进行推理与行动",
+    "steps": [
+      "Define the agent's task scope, available tools (functions/APIs), and the termination condition for the reasoning loop",
+      "Implement the Thought step: prompt the LLM to reason about current state and determine the next action to take",
+      "Implement the Act step: execute the chosen tool/action and capture the observation (tool output or environment feedback)",
+      "Feed the observation back into the LLM context and repeat Thought-Act cycles until the termination condition is met",
+      "Add guardrails: max iteration limits, error handling for failed tool calls, and logging of full reasoning traces for debugging"
+    ],
+    "steps_zh": [
+      "定义智能体的任务范围、可用工具（函数/API）以及推理循环的终止条件",
+      "实现思考步骤：提示LLM对当前状态进行推理并决定下一步行动",
+      "实现行动步骤：执行所选工具/动作并捕获观察结果（工具输出或环境反馈）",
+      "将观察结果反馈到LLM上下文中，重复思考-行动循环直至满足终止条件",
+      "添加防护措施：最大迭代次数限制、失败工具调用的错误处理，以及完整推理链路的日志记录用于调试"
+    ],
+    "ai_relevant": true,
+    "viz_type": "cycle"
+  },
+  {
+    "name": "Multi-Agent Orchestration Patterns",
+    "name_zh": "多智能体编排模式",
+    "slug": "multi-agent-orchestration",
+    "desc": "Patterns for coordinating multiple AI agents toward a shared goal",
+    "desc_zh": "协调多个AI智能体朝共同目标协作的架构模式",
+    "steps": [
+      "Decompose the overall task into subtasks and select an orchestration topology: hierarchical (orchestrator-worker), peer-to-peer, or pipeline",
+      "Assign roles and capabilities to each agent; define which agent owns state, coordinates handoffs, and resolves conflicts",
+      "Design the inter-agent communication protocol: shared memory, message passing, or a blackboard/shared context store",
+      "Implement coordination mechanisms: task assignment, result aggregation, consensus voting, or critic-reviser loops",
+      "Evaluate the system for coherence, loop detection, and failure recovery; instrument with tracing to observe agent interactions"
+    ],
+    "steps_zh": [
+      "将整体任务分解为子任务，选择编排拓扑：层次型（编排者-工作者）、点对点或流水线",
+      "为每个智能体分配角色和能力；定义哪个智能体负责状态管理、协调交接和解决冲突",
+      "设计智能体间通信协议：共享内存、消息传递或黑板/共享上下文存储",
+      "实现协调机制：任务分配、结果聚合、共识投票或批评者-修订者循环",
+      "评估系统的一致性、循环检测和故障恢复；通过追踪工具观察智能体交互"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow"
+  },
+  {
+    "name": "LLM System Design Patterns",
+    "name_zh": "LLM系统设计模式",
+    "slug": "llm-system-design-patterns",
+    "desc": "Architectural patterns for production LLM-powered applications",
+    "desc_zh": "面向生产环境的LLM驱动应用架构模式集合",
+    "steps": [
+      "Select the primary integration pattern: RAG (retrieval-augmented), fine-tuned model, prompt chaining, or tool-use agent",
+      "Design the prompt management layer: prompt templates, versioning, A/B testing infrastructure, and injection of context",
+      "Choose memory and state architecture: in-context window, external vector store, structured DB, or episodic memory",
+      "Define latency, cost, and quality trade-offs; implement routing to smaller/faster models for simpler sub-tasks",
+      "Build evaluation infrastructure: automated evals, hallucination detection, guardrails, and human feedback loops for continuous improvement"
+    ],
+    "steps_zh": [
+      "选择主要集成模式：RAG（检索增强生成）、微调模型、提示链或工具调用智能体",
+      "设计提示管理层：提示模板、版本控制、A/B测试基础设施以及上下文注入",
+      "选择记忆与状态架构：上下文窗口内、外部向量存储、结构化数据库或情节记忆",
+      "定义延迟、成本和质量权衡；实现路由机制将简单子任务转发给更小更快的模型",
+      "构建评估基础设施：自动化评测、幻觉检测、安全护栏和人类反馈循环以持续改进"
+    ],
+    "ai_relevant": true,
+    "viz_type": "matrix"
+  }
+]

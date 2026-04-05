@@ -1,0 +1,324 @@
+[
+  {
+    "name": "ReAct Framework",
+    "name_zh": "ReAct 推理-行动框架",
+    "slug": "react-framework",
+    "desc": "Interleave reasoning traces and actions in LLM agents",
+    "desc_zh": "在大模型代理中交织推理轨迹与动作执行",
+    "steps": [
+      "Define the agent's task scope and available tool set (APIs, search, code exec)",
+      "Instrument the LLM prompt to emit Thought / Action / Observation traces",
+      "Execute each Action against real tools and feed Observation back into context",
+      "Repeat the Thought-Action-Observation loop until the stopping condition is met",
+      "Evaluate trace quality and prune or summarize long reasoning chains for efficiency"
+    ],
+    "steps_zh": [
+      "定义代理任务范围及可用工具集（API、搜索、代码执行等）",
+      "在提示词中要求模型输出 Thought / Action / Observation 三段式轨迹",
+      "将每个 Action 发送至真实工具并将 Observation 回写入上下文",
+      "循环执行推理-行动-观察，直至达到终止条件",
+      "评估轨迹质量，裁剪或摘要过长推理链以降低成本"
+    ],
+    "ai_relevant": true,
+    "viz_type": "cycle"
+  },
+  {
+    "name": "RAG Architecture",
+    "name_zh": "检索增强生成架构",
+    "slug": "rag-architecture",
+    "desc": "Ground LLM responses with retrieved external knowledge",
+    "desc_zh": "通过检索外部知识为大模型响应提供事实依据",
+    "steps": [
+      "Chunk, embed, and index domain documents into a vector store",
+      "At query time, embed the user question and retrieve top-K relevant chunks",
+      "Construct a prompt that injects retrieved context before the question",
+      "Generate the answer with the LLM, citing source chunks for traceability",
+      "Evaluate retrieval recall and generation faithfulness; iterate on chunking strategy"
+    ],
+    "steps_zh": [
+      "对领域文档进行分块、向量化并写入向量数据库",
+      "查询时将用户问题向量化，检索 Top-K 相关片段",
+      "构建提示词，将检索内容注入问题前作为上下文",
+      "由大模型生成答案并引用来源片段以确保可溯源",
+      "评估检索召回率与生成忠实度，迭代优化分块策略"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow"
+  },
+  {
+    "name": "Multi-Agent Orchestration Pattern",
+    "name_zh": "多代理编排模式",
+    "slug": "multi-agent-orchestration",
+    "desc": "Coordinate specialized AI agents via an orchestrator layer",
+    "desc_zh": "通过编排层协调多个专职 AI 代理协同工作",
+    "steps": [
+      "Decompose the overall task into sub-tasks with clear input/output contracts",
+      "Assign each sub-task to a specialized agent with the appropriate model and tools",
+      "Implement an orchestrator agent that routes tasks and aggregates results",
+      "Define inter-agent communication schemas (structured JSON messages or function calls)",
+      "Add circuit-breakers and fallback paths to handle agent failures gracefully"
+    ],
+    "steps_zh": [
+      "将整体任务分解为具有明确输入输出契约的子任务",
+      "为每个子任务指定配备合适模型与工具的专职代理",
+      "实现负责任务路由和结果聚合的编排代理",
+      "定义代理间通信模式（结构化 JSON 消息或函数调用）",
+      "添加熔断器与降级路径以优雅处理代理故障"
+    ],
+    "ai_relevant": true,
+    "viz_type": "tree"
+  },
+  {
+    "name": "Human-in-the-Loop Design",
+    "name_zh": "人机协同回路设计",
+    "slug": "human-in-the-loop",
+    "desc": "Insert human checkpoints into automated AI workflows",
+    "desc_zh": "在自动化 AI 工作流中插入人工审核节点",
+    "steps": [
+      "Map the workflow and identify high-risk or high-uncertainty decision points",
+      "Define escalation criteria that trigger human review (confidence threshold, risk score)",
+      "Design low-friction review UIs that surface AI reasoning alongside the decision",
+      "Capture human feedback as labeled training signal for continuous model improvement",
+      "Instrument approval latency and human override rates to tune automation thresholds"
+    ],
+    "steps_zh": [
+      "梳理工作流，识别高风险或高不确定性的决策节点",
+      "定义触发人工审核的升级条件（置信度阈值、风险评分）",
+      "设计低摩擦的审核界面，将 AI 推理过程与决策并排呈现",
+      "将人工反馈作为标注训练信号用于持续模型优化",
+      "监控审批延迟与人工覆盖率，动态调整自动化阈值"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow"
+  },
+  {
+    "name": "Prompt Chaining Pattern",
+    "name_zh": "提示词链模式",
+    "slug": "prompt-chaining",
+    "desc": "Decompose complex tasks into sequential prompt stages",
+    "desc_zh": "将复杂任务分解为顺序执行的提示词阶段",
+    "steps": [
+      "Break the end-to-end task into discrete, independently testable prompt stages",
+      "Define the output schema of each stage as the typed input of the next",
+      "Validate and sanitize intermediate outputs before passing them downstream",
+      "Add a gating step that checks quality criteria before continuing the chain",
+      "Log each stage's input/output pair for debugging and prompt regression testing"
+    ],
+    "steps_zh": [
+      "将端到端任务拆分为独立可测试的离散提示词阶段",
+      "将每个阶段的输出模式定义为下一阶段的类型化输入",
+      "在传递给下游前对中间输出进行验证和清洗",
+      "添加质量门控步骤，满足标准后再继续执行链路",
+      "记录每个阶段的输入输出对，用于调试与提示词回归测试"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow"
+  },
+  {
+    "name": "AI Pair Programming Model",
+    "name_zh": "AI 结对编程模型",
+    "slug": "ai-pair-programming",
+    "desc": "Structure developer and AI collaboration in the coding loop",
+    "desc_zh": "在编码循环中结构化人类开发者与 AI 的协作方式",
+    "steps": [
+      "Establish role division: human owns intent and review; AI owns synthesis and drafting",
+      "Use intent-first prompting — describe what, why, and constraints before asking for code",
+      "Review AI output for correctness, security, and style before accepting each chunk",
+      "Feed failing tests or error messages back to the AI as grounding for refinement",
+      "Reflect at session end: categorize AI contributions and identify skill gaps to address"
+    ],
+    "steps_zh": [
+      "明确角色分工：人类负责意图与审查，AI 负责合成与起草",
+      "使用意图优先提示——在请求代码前先描述目标、原因和约束",
+      "在接受每段代码前审查 AI 输出的正确性、安全性和风格",
+      "将失败测试或错误信息反馈给 AI 作为细化的依据",
+      "在会话结束时复盘：归类 AI 贡献并识别需补足的技能差距"
+    ],
+    "ai_relevant": true,
+    "viz_type": "cycle"
+  },
+  {
+    "name": "Guardrails Framework",
+    "name_zh": "AI 护栏框架",
+    "slug": "guardrails-framework",
+    "desc": "Enforce input/output constraints on LLM-powered systems",
+    "desc_zh": "对大模型驱动系统强制执行输入输出约束",
+    "steps": [
+      "Enumerate risk categories relevant to the application (PII, toxicity, hallucination, injection)",
+      "Implement input validators that reject or rewrite unsafe or malformed prompts",
+      "Add output validators that check factual grounding, format compliance, and policy rules",
+      "Route policy violations to fallback responses or human escalation queues",
+      "Collect violation logs and retrain or tune guardrail classifiers on production data"
+    ],
+    "steps_zh": [
+      "列举应用相关的风险类别（个人信息、有害内容、幻觉、注入攻击）",
+      "实现输入验证器，拒绝或改写不安全或格式错误的提示词",
+      "添加输出验证器，检查事实依据、格式合规性和策略规则",
+      "将策略违规路由至降级响应或人工升级队列",
+      "收集违规日志并在生产数据上重新训练或调整护栏分类器"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow"
+  },
+  {
+    "name": "Context Window Management Pattern",
+    "name_zh": "上下文窗口管理模式",
+    "slug": "context-window-management",
+    "desc": "Strategically manage LLM context to maximize coherence",
+    "desc_zh": "战略性管理大模型上下文以最大化对话连贯性",
+    "steps": [
+      "Profile token usage across system prompt, history, retrieved context, and output budget",
+      "Implement a sliding-window or summary-compression strategy for long conversation history",
+      "Assign priority tiers to context segments (system > recent turns > retrieved > background)",
+      "Prune low-priority segments first when approaching the token limit",
+      "Benchmark coherence and task performance across window sizes to calibrate the strategy"
+    ],
+    "steps_zh": [
+      "分析系统提示词、历史记录、检索上下文和输出预算各自的 Token 占用",
+      "对长对话历史实现滑动窗口或摘要压缩策略",
+      "为上下文片段分配优先级层级（系统 > 近期轮次 > 检索内容 > 背景知识）",
+      "接近 Token 上限时优先裁剪低优先级片段",
+      "在不同窗口大小下基准测试连贯性和任务性能以校准策略"
+    ],
+    "ai_relevant": true,
+    "viz_type": "pyramid"
+  },
+  {
+    "name": "Tool-Use Design Pattern",
+    "name_zh": "工具使用设计模式",
+    "slug": "tool-use-design-pattern",
+    "desc": "Design agent-callable tools with reliable interfaces",
+    "desc_zh": "为 AI 代理设计可靠可调用的工具接口",
+    "steps": [
+      "Define each tool as a typed function with a machine-readable JSON Schema description",
+      "Write tool descriptions from the model's perspective — emphasize when to use and not use",
+      "Implement idempotent tool handlers with deterministic error messages the model can act on",
+      "Add a tool-selection evaluation harness to measure call accuracy on representative queries",
+      "Version and deprecate tools explicitly, updating descriptions to guide migration"
+    ],
+    "steps_zh": [
+      "将每个工具定义为带有机器可读 JSON Schema 描述的类型化函数",
+      "从模型视角撰写工具描述——强调何时使用以及何时不应使用",
+      "实现幂等的工具处理器，返回模型可据此行动的确定性错误信息",
+      "构建工具选择评估框架，在代表性查询上度量调用准确率",
+      "显式对工具进行版本管理和废弃标注，更新描述以引导迁移"
+    ],
+    "ai_relevant": true,
+    "viz_type": "tree"
+  },
+  {
+    "name": "AI-First API Design",
+    "name_zh": "AI 优先 API 设计",
+    "slug": "ai-first-api-design",
+    "desc": "Design APIs optimized for consumption by AI agents",
+    "desc_zh": "面向 AI 代理消费优化设计 API 接口",
+    "steps": [
+      "Expose semantic resource names and self-describing endpoints (OpenAPI + rich descriptions)",
+      "Return structured, schema-validated JSON responses that avoid ambiguous free-text fields",
+      "Provide bulk and idempotent operations to reduce agent round-trips and retries",
+      "Embed task-relevant metadata (next actions, related resources) in responses as hints",
+      "Publish a machine-readable capability manifest so agents can discover and compose APIs"
+    ],
+    "steps_zh": [
+      "暴露语义化资源名称和自描述端点（OpenAPI + 丰富描述）",
+      "返回模式验证的结构化 JSON，避免歧义自由文本字段",
+      "提供批量操作和幂等操作以减少代理往返请求和重试",
+      "在响应中嵌入任务相关元数据（后续动作、关联资源）作为提示",
+      "发布机器可读的能力清单，使代理能够发现和组合 API"
+    ],
+    "ai_relevant": true,
+    "viz_type": "matrix"
+  },
+  {
+    "name": "Self-Healing Systems Pattern",
+    "name_zh": "自愈系统模式",
+    "slug": "self-healing-systems",
+    "desc": "Use AI agents to detect, diagnose, and remediate failures",
+    "desc_zh": "利用 AI 代理自动检测、诊断并修复系统故障",
+    "steps": [
+      "Instrument the system with rich structured logs, metrics, and health-check endpoints",
+      "Deploy a monitoring agent that correlates signals and classifies failure modes",
+      "Maintain a runbook knowledge base the agent uses to select remediation actions",
+      "Execute low-risk remediations automatically; escalate high-risk ones for human approval",
+      "Record every incident-action-outcome triple to continuously improve the runbook"
+    ],
+    "steps_zh": [
+      "为系统配备丰富的结构化日志、指标和健康检查端点",
+      "部署监控代理，关联信号并分类故障模式",
+      "维护运维手册知识库供代理选择修复动作",
+      "自动执行低风险修复操作；将高风险操作升级至人工审批",
+      "记录每次故障-动作-结果三元组，持续完善运维手册"
+    ],
+    "ai_relevant": true,
+    "viz_type": "cycle"
+  },
+  {
+    "name": "AI Observability Framework",
+    "name_zh": "AI 系统可观测性框架",
+    "slug": "ai-observability-framework",
+    "desc": "Trace, monitor, and explain LLM system behavior in prod",
+    "desc_zh": "在生产环境中追踪、监控并解释大模型系统行为",
+    "steps": [
+      "Instrument every LLM call with trace IDs linking prompt, model version, and raw output",
+      "Collect latency, token cost, and quality metrics per call and aggregate into dashboards",
+      "Implement an LLM-as-judge evaluator that scores output quality on sampled traffic",
+      "Set up drift alerts when quality or distribution metrics deviate from baseline",
+      "Store prompt-response pairs in an evaluation dataset for offline regression testing"
+    ],
+    "steps_zh": [
+      "为每次大模型调用打上关联提示词、模型版本和原始输出的追踪 ID",
+      "收集每次调用的延迟、Token 成本和质量指标并汇总至仪表盘",
+      "实现 LLM-as-Judge 评估器，对采样流量的输出质量打分",
+      "当质量或分布指标偏离基线时触发漂移告警",
+      "将提示词-响应对存入评估数据集，用于离线回归测试"
+    ],
+    "ai_relevant": true,
+    "viz_type": "radar"
+  },
+  {
+    "name": "Responsible AI Design Framework",
+    "name_zh": "负责任 AI 设计框架",
+    "slug": "responsible-ai-design",
+    "desc": "Embed fairness, safety, and accountability in AI systems",
+    "desc_zh": "在 AI 系统中内嵌公平性、安全性与问责机制",
+    "steps": [
+      "Conduct an AI impact assessment covering bias, privacy, autonomy, and misuse vectors",
+      "Define measurable fairness metrics and test across demographic and use-case slices",
+      "Implement transparency features: model cards, decision explanations, confidence scores",
+      "Establish an accountability chain mapping each AI decision to a responsible human owner",
+      "Run red-team adversarial exercises and publish a responsible-use policy for the system"
+    ],
+    "steps_zh": [
+      "开展 AI 影响评估，覆盖偏见、隐私、自主性和滥用向量",
+      "定义可量化的公平性指标，在人群和用例切片上进行测试",
+      "实现透明度特性：模型卡、决策解释、置信度分数",
+      "建立问责链，将每项 AI 决策映射到负责任的人类负责人",
+      "开展红队对抗演练，并发布系统的负责任使用政策"
+    ],
+    "ai_relevant": true,
+    "viz_type": "radar"
+  },
+  {
+    "name": "Agent Communication Protocol",
+    "name_zh": "代理通信协议模式",
+    "slug": "agent-communication-protocol",
+    "desc": "Standardize message contracts between autonomous AI agents",
+    "desc_zh": "标准化自主 AI 代理之间的消息契约",
+    "steps": [
+      "Define a canonical message envelope: sender, receiver, intent, payload, correlation ID",
+      "Adopt or implement a shared registry where agents advertise their capabilities and schemas",
+      "Use async message queues for decoupled agent communication to avoid tight coupling",
+      "Implement acknowledgment and retry semantics with idempotency keys for reliability",
+      "Version all message schemas and enforce backward-compatibility rules as agents evolve"
+    ],
+    "steps_zh": [
+      "定义规范消息信封：发送方、接收方、意图、载荷、关联 ID",
+      "采用或实现共享注册中心，供代理广播自身能力和消息模式",
+      "使用异步消息队列进行松耦合的代理通信，避免强依赖",
+      "实现带有幂等键的确认与重试语义以保障可靠性",
+      "对所有消息模式进行版本管理，并在代理演进时强制向后兼容"
+    ],
+    "ai_relevant": true,
+    "viz_type": "matrix"
+  }
+]
