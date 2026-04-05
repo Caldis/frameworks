@@ -49,15 +49,40 @@
   margin-top: 64px;
 }
 
-.domainName {
-  font-family: var(--font-mono);
-  font-size: 13px;
+.footerLeft {
+  font-family: var(--font-serif);
+  font-size: 14px;
   color: #999;
 }
 
-.copyright {
-  font-size: 12px;
-  color: #bbb;
+.footerRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.footerLink {
+  color: #999;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s;
+}
+
+.footerLink:hover {
+  color: var(--text);
+}
+
+.githubIcon {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.separator {
+  color: #ddd;
 }
 
 @media (max-width: 600px) {

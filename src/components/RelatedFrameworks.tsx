@@ -18,7 +18,8 @@ export default function RelatedFrameworks({ frameworks }: RelatedFrameworksProps
             to={`/frameworks/${fw.slug}`}
             className={styles.card}
           >
-            <div className={styles.name}>{fw.name}</div>
+            <div className={styles.nameEn}>{fw.name}</div>
+            <div className={styles.nameZh}>{fw.name_zh}</div>
             {category && (
               <span
                 className={styles.pill}
@@ -30,7 +31,8 @@ export default function RelatedFrameworks({ frameworks }: RelatedFrameworksProps
                 {category.name}
               </span>
             )}
-            <div className={styles.desc}>{fw.desc}</div>
+            <div className={styles.descEn}>{fw.desc}</div>
+            <div className={styles.descZh}>{fw.desc_zh}</div>
           </Link>
         )
       })}

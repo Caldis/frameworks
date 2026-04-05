@@ -36,7 +36,8 @@ export default function FrameworkCard({
         {isFavorite ? '★' : '☆'}
       </button>
 
-      <div className={styles.name}>{framework.name}</div>
+      <div className={styles.nameEn}>{framework.name}</div>
+      <div className={styles.nameZh}>{framework.name_zh}</div>
 
       <div className={styles.tagRow}>
         {category && (
@@ -55,7 +56,8 @@ export default function FrameworkCard({
         )}
       </div>
 
-      <div className={styles.desc}>{framework.desc}</div>
+      <div className={styles.descEn}>{framework.desc}</div>
+      <div className={styles.descZh}>{framework.desc_zh}</div>
     </div>
   )
 }
