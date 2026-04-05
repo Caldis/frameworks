@@ -24,7 +24,7 @@ export const en: LocaleStrings = {
   aiRelevantCount: '{count} AI-relevant',
   aiAcrossCategories: 'AI Across All Categories',
   mapTitle: 'Framework Relationship Map',
-  footerTitle: 'SDFrame.works',
+  footerTitle: 'sdframe',
   builtBy: 'Built by Caldis',
   source: 'Source',
   inspiredBy: 'Inspired by PMFrame.works',
