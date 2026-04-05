@@ -1,8 +1,10 @@
 [
   {
+    "id": 15,
     "name": "Architecture Decision Records (ADR)",
     "name_zh": "架构决策记录",
     "slug": "adr",
+    "category": "architecture",
     "desc": "Lightweight docs capturing context and rationale for decisions",
     "desc_zh": "轻量级文档，记录架构决策的背景与理由",
     "steps": [
@@ -20,12 +22,16 @@
       "记录后果：预期结果、已接受的权衡取舍，以及后续行动或触发的新ADR"
     ],
     "ai_relevant": true,
-    "viz_type": "timeline"
+    "viz_type": "timeline",
+    "related": ["continuous-architecture", "atam", "c4-model"],
+    "tags": ["documentation", "decisions", "rationale", "governance"]
   },
   {
+    "id": 16,
     "name": "Architecture Tradeoff Analysis Method (ATAM)",
     "name_zh": "架构权衡分析法",
     "slug": "atam",
+    "category": "architecture",
     "desc": "Structured method to evaluate architecture against quality goals",
     "desc_zh": "系统评估架构对质量目标的结构化分析方法",
     "steps": [
@@ -43,12 +49,16 @@
       "对场景和风险进行优先级排序，生成包含敏感点和权衡点摘要的分析报告"
     ],
     "ai_relevant": false,
-    "viz_type": "radar"
+    "viz_type": "radar",
+    "related": ["qaw", "trade-off-sliders", "adr"],
+    "tags": ["evaluation", "trade-offs", "quality-attributes", "stakeholders"]
   },
   {
+    "id": 17,
     "name": "CAP Theorem",
     "name_zh": "CAP定理",
     "slug": "cap-theorem",
+    "category": "architecture",
     "desc": "Distributed systems can guarantee only 2 of 3: C, A, P",
     "desc_zh": "分布式系统只能同时保证一致性、可用性、分区容错性中的两个",
     "steps": [
@@ -66,12 +76,16 @@
       "设计补偿机制：冲突解决、最终一致性模式或客户端重试逻辑来应对所选权衡"
     ],
     "ai_relevant": false,
-    "viz_type": "venn"
+    "viz_type": "venn",
+    "related": ["cqrs-pattern", "saga-pattern", "eda"],
+    "tags": ["distributed-systems", "consistency", "availability", "partition-tolerance"]
   },
   {
+    "id": 18,
     "name": "C4 Model",
     "name_zh": "C4模型",
     "slug": "c4-model",
+    "category": "architecture",
     "desc": "Four-level hierarchy for visualizing software architecture",
     "desc_zh": "用于可视化软件架构的四层次模型",
     "steps": [
@@ -89,35 +103,43 @@
       "将图表嵌入文档和ADR，作为随每次架构变更持续更新的活文档"
     ],
     "ai_relevant": true,
-    "viz_type": "tree"
+    "viz_type": "tree",
+    "related": ["adr", "togaf-adm", "microservices-decomposition"],
+    "tags": ["visualization", "diagrams", "architecture-views", "documentation"]
   },
   {
-    "name": "Domain-Driven Design (DDD)",
-    "name_zh": "领域驱动设计",
-    "slug": "ddd",
-    "desc": "Model complex software around the core business domain",
-    "desc_zh": "围绕核心业务领域对复杂软件进行建模",
+    "id": 19,
+    "name": "CQRS Pattern",
+    "name_zh": "命令查询职责分离模式",
+    "slug": "cqrs-pattern",
+    "category": "architecture",
+    "desc": "Separate read/write models for optimized scalability",
+    "desc_zh": "分离读写模型以实现优化的可扩展性",
     "steps": [
-      "Conduct Event Storming or domain workshops with domain experts to surface key domain events and processes",
-      "Identify Bounded Contexts: logical boundaries within which a domain model applies consistently",
-      "Define Aggregates, Entities, Value Objects, and Domain Events within each bounded context",
-      "Map Context relationships using a Context Map: shared kernel, customer-supplier, conformist, anti-corruption layer",
-      "Align team ownership and microservice/module boundaries with bounded contexts to reduce coupling"
+      "Identify domains where read and write workloads have fundamentally different performance, scaling, or consistency requirements",
+      "Design the Command model: create a write-optimized domain model that enforces invariants and emits domain events on state changes",
+      "Design the Query model: build read-optimized projections (denormalized views, materialized tables) tailored to specific query patterns",
+      "Connect models via events: use domain events or a message bus to asynchronously update read projections when the write model changes",
+      "Handle eventual consistency: implement strategies for stale-read tolerance in the UI, version stamps, and read-your-own-writes where needed"
     ],
     "steps_zh": [
-      "与领域专家开展事件风暴或领域工作坊，挖掘关键领域事件和业务流程",
-      "识别限界上下文：领域模型一致适用的逻辑边界",
-      "在每个限界上下文内定义聚合、实体、值对象和领域事件",
-      "使用上下文映射图描述上下文间关系：共享内核、客户-供应商、遵奉者、防腐层",
-      "将团队所有权和微服务/模块边界与限界上下文对齐，以减少耦合"
+      "识别读写负载在性能、扩展或一致性需求上有本质差异的领域",
+      "设计命令模型：创建写优化的领域模型，强制执行不变式并在状态变更时发出领域事件",
+      "设计查询模型：构建针对特定查询模式优化的读视图（非规范化视图、物化表）",
+      "通过事件连接模型：使用领域事件或消息总线在写模型变更时异步更新读投影",
+      "处理最终一致性：为UI中的陈旧读取容忍度、版本戳和必要时的读己之写实现策略"
     ],
     "ai_relevant": false,
-    "viz_type": "venn"
+    "viz_type": "flow",
+    "related": ["event-sourcing-pattern", "eda", "domain-driven-design", "saga-pattern"],
+    "tags": ["cqrs", "read-write-separation", "scalability", "event-driven"]
   },
   {
+    "id": 20,
     "name": "Event-Driven Architecture (EDA)",
     "name_zh": "事件驱动架构",
     "slug": "eda",
+    "category": "architecture",
     "desc": "Systems communicate via asynchronous events for loose coupling",
     "desc_zh": "系统通过异步事件通信，实现松耦合",
     "steps": [
@@ -135,12 +157,16 @@
       "建立可观测性：事件追踪、死信队列、幂等键和回放能力以保障弹性"
     ],
     "ai_relevant": true,
-    "viz_type": "flow"
+    "viz_type": "flow",
+    "related": ["cqrs-pattern", "event-sourcing-pattern", "saga-pattern", "microservices-decomposition"],
+    "tags": ["events", "async", "messaging", "loose-coupling", "choreography"]
   },
   {
+    "id": 21,
     "name": "Microservices Decomposition Patterns",
     "name_zh": "微服务分解模式",
     "slug": "microservices-decomposition",
+    "category": "architecture",
     "desc": "Strategies to split monoliths into focused, independent services",
     "desc_zh": "将单体应用拆分为职责明确的独立服务的策略集合",
     "steps": [
@@ -158,35 +184,43 @@
       "对每个提取的服务进行独立部署、监控和回滚验证，再继续后续提取"
     ],
     "ai_relevant": false,
-    "viz_type": "tree"
+    "viz_type": "tree",
+    "related": ["domain-driven-design", "eda", "service-mesh-pattern", "strangler-fig-pattern"],
+    "tags": ["microservices", "decomposition", "monolith", "service-boundaries"]
   },
   {
-    "name": "Twelve-Factor App",
-    "name_zh": "十二要素应用",
-    "slug": "twelve-factor-app",
-    "desc": "12 principles for building scalable, maintainable cloud services",
-    "desc_zh": "构建可扩展、可维护云服务的12条原则",
+    "id": 22,
+    "name": "Saga Pattern",
+    "name_zh": "Saga 模式",
+    "slug": "saga-pattern",
+    "category": "architecture",
+    "desc": "Manage distributed transactions via compensating actions",
+    "desc_zh": "通过补偿动作管理分布式事务，保障跨服务数据一致性",
     "steps": [
-      "Audit the codebase: one codebase in version control, with all dependencies explicitly declared and isolated",
-      "Externalize all configuration into environment variables; never commit secrets or environment-specific config to code",
-      "Treat backing services (databases, queues, caches) as attached resources swappable via config",
-      "Enforce strict separation of build, release, and run stages; build once, deploy the artifact to many environments",
-      "Design for disposability and horizontal scale: stateless processes, fast startup, graceful shutdown, dev/prod parity"
+      "Identify the distributed transaction: map all services involved and the sequence of local transactions each must perform",
+      "Choose orchestration vs. choreography: use a central saga orchestrator for complex flows, or event-driven choreography for simpler chains",
+      "Define compensating actions: for each step, implement a reverse operation that undoes the effect if a later step fails",
+      "Implement idempotency: ensure each step and its compensation can be safely retried without side effects using idempotency keys",
+      "Add observability and timeout handling: track saga state transitions, set step timeouts, and alert on stuck or failed sagas for manual resolution"
     ],
     "steps_zh": [
-      "审计代码库：单一代码库纳入版本控制，所有依赖显式声明并隔离",
-      "将所有配置外部化为环境变量；不将密钥或环境特定配置提交到代码",
-      "将后端服务（数据库、队列、缓存）视为可通过配置替换的附加资源",
-      "严格分离构建、发布和运行阶段；一次构建，将制品部署到多个环境",
-      "为可处置性和水平扩展而设计：无状态进程、快速启动、优雅关闭、开发与生产环境对等"
+      "识别分布式事务：映射所有涉及的服务以及每个服务必须执行的本地事务序列",
+      "选择编排与协调模式：复杂流程使用中央Saga编排器，简单链路使用事件驱动的协调模式",
+      "定义补偿动作：为每个步骤实现反向操作，在后续步骤失败时撤销该步骤的效果",
+      "实现幂等性：使用幂等键确保每个步骤及其补偿操作可安全重试而无副作用",
+      "添加可观测性和超时处理：追踪Saga状态转换，设置步骤超时，对卡住或失败的Saga发出告警以便人工处理"
     ],
     "ai_relevant": false,
-    "viz_type": "pyramid"
+    "viz_type": "flow",
+    "related": ["eda", "cqrs-pattern", "circuit-breaker-pattern", "microservices-decomposition"],
+    "tags": ["distributed-transactions", "compensation", "orchestration", "choreography", "consistency"]
   },
   {
+    "id": 23,
     "name": "TOGAF Architecture Development Method (ADM)",
     "name_zh": "TOGAF架构开发方法",
     "slug": "togaf-adm",
+    "category": "architecture",
     "desc": "Iterative enterprise architecture lifecycle with defined phases",
     "desc_zh": "具有明确阶段的迭代式企业架构生命周期方法",
     "steps": [
@@ -204,12 +238,16 @@
       "治理实施：建立架构委员会监督、合规审查，并更新架构知识库"
     ],
     "ai_relevant": false,
-    "viz_type": "cycle"
+    "viz_type": "cycle",
+    "related": ["c4-model", "adr", "wardley-mapping"],
+    "tags": ["enterprise-architecture", "governance", "lifecycle", "methodology"]
   },
   {
+    "id": 24,
     "name": "Quality Attribute Workshop (QAW)",
     "name_zh": "质量属性工作坊",
     "slug": "qaw",
+    "category": "architecture",
     "desc": "Elicit and prioritize quality attribute requirements collaboratively",
     "desc_zh": "协作式挖掘并优先排序质量属性需求",
     "steps": [
@@ -227,81 +265,97 @@
       "生成有优先级的质量属性场景待办列表，用于驱动架构决策和评估会议"
     ],
     "ai_relevant": false,
-    "viz_type": "radar"
+    "viz_type": "radar",
+    "related": ["atam", "trade-off-sliders", "four-golden-signals"],
+    "tags": ["quality-attributes", "workshop", "stakeholders", "requirements"]
   },
   {
-    "name": "Strangler Fig Pattern",
-    "name_zh": "绞杀者模式",
-    "slug": "strangler-fig",
-    "desc": "Incrementally replace legacy systems by routing traffic to new services",
-    "desc_zh": "通过将流量路由到新服务来增量替换遗留系统",
+    "id": 25,
+    "name": "Actor Model",
+    "name_zh": "Actor 模型",
+    "slug": "actor-model",
+    "category": "architecture",
+    "desc": "Concurrent computation using message-passing actors",
+    "desc_zh": "通过消息传递的 Actor 实现并发计算模型",
     "steps": [
-      "Identify the first vertical slice of functionality to migrate: choose by business value, risk, or team capacity",
-      "Set up a routing facade (API Gateway or reverse proxy) in front of the legacy system to intercept all traffic",
-      "Build the new service implementing the selected slice; run it in parallel with the legacy equivalent",
-      "Gradually shift traffic via the facade from legacy to new service using feature flags or percentage routing",
-      "Decommission the legacy component once the new service handles 100% of traffic; repeat for next slice"
+      "Identify concurrency boundaries: map system components that need to operate independently and communicate asynchronously",
+      "Design actors: define each actor's state, behavior, and the set of messages it can receive and send",
+      "Implement message passing: use an actor framework (Akka, Orleans, Erlang/OTP) to handle mailboxes, scheduling, and delivery guarantees",
+      "Design supervision hierarchies: define parent-child relationships where supervisors decide restart, stop, or escalate strategies on child failure",
+      "Test for message ordering and deadlocks: verify that the system handles out-of-order delivery, mailbox overflow, and actor lifecycle correctly"
     ],
     "steps_zh": [
-      "识别第一个要迁移的垂直功能切片：按业务价值、风险或团队能力选择",
-      "在遗留系统前设置路由门面（API网关或反向代理）以拦截所有流量",
-      "构建实现所选切片的新服务；与遗留服务并行运行",
-      "通过门面使用功能标志或百分比路由逐步将流量从遗留系统切换到新服务",
-      "一旦新服务处理100%流量，停用遗留组件；对下一个切片重复此过程"
+      "识别并发边界：映射需要独立运行并异步通信的系统组件",
+      "设计Actor：定义每个Actor的状态、行为以及可接收和发送的消息集合",
+      "实现消息传递：使用Actor框架（Akka、Orleans、Erlang/OTP）处理邮箱、调度和投递保证",
+      "设计监督层级：定义父子关系，由监督者决定子Actor失败时的重启、停止或升级策略",
+      "测试消息顺序和死锁：验证系统正确处理乱序投递、邮箱溢出和Actor生命周期"
     ],
     "ai_relevant": false,
-    "viz_type": "flow"
+    "viz_type": "tree",
+    "related": ["eda", "reactive-extensions", "agent-communication-protocol"],
+    "tags": ["concurrency", "message-passing", "actors", "fault-tolerance", "distributed"]
   },
   {
-    "name": "ReAct Agent Architecture",
-    "name_zh": "ReAct智能体架构",
-    "slug": "react-agent-architecture",
-    "desc": "LLM agents interleave reasoning and acting in iterative loops",
-    "desc_zh": "LLM智能体在迭代循环中交替进行推理与行动",
+    "id": 26,
+    "name": "Dependency Injection",
+    "name_zh": "依赖注入",
+    "slug": "dependency-injection",
+    "category": "architecture",
+    "desc": "Invert control flow by injecting dependencies externally",
+    "desc_zh": "通过外部注入依赖来反转控制流，降低模块耦合度",
     "steps": [
-      "Define the agent's task scope, available tools (functions/APIs), and the termination condition for the reasoning loop",
-      "Implement the Thought step: prompt the LLM to reason about current state and determine the next action to take",
-      "Implement the Act step: execute the chosen tool/action and capture the observation (tool output or environment feedback)",
-      "Feed the observation back into the LLM context and repeat Thought-Act cycles until the termination condition is met",
-      "Add guardrails: max iteration limits, error handling for failed tool calls, and logging of full reasoning traces for debugging"
+      "Identify tight couplings: find classes or modules that directly instantiate their dependencies, making them hard to test and swap",
+      "Extract interfaces: define abstractions (interfaces or protocols) for each dependency so consumers depend on contracts, not implementations",
+      "Configure a DI container or use constructor injection to wire dependencies at application startup or composition root",
+      "Manage object lifetimes: decide scoping for each dependency — singleton, scoped (per-request), or transient (per-use)",
+      "Validate the dependency graph: use the container's diagnostic tools or tests to detect circular dependencies, missing registrations, and captive dependencies"
     ],
     "steps_zh": [
-      "定义智能体的任务范围、可用工具（函数/API）以及推理循环的终止条件",
-      "实现思考步骤：提示LLM对当前状态进行推理并决定下一步行动",
-      "实现行动步骤：执行所选工具/动作并捕获观察结果（工具输出或环境反馈）",
-      "将观察结果反馈到LLM上下文中，重复思考-行动循环直至满足终止条件",
-      "添加防护措施：最大迭代次数限制、失败工具调用的错误处理，以及完整推理链路的日志记录用于调试"
+      "识别紧耦合：找到直接实例化其依赖的类或模块，这使得它们难以测试和替换",
+      "提取接口：为每个依赖定义抽象（接口或协议），使消费方依赖契约而非实现",
+      "配置DI容器或使用构造函数注入，在应用启动时或组合根处装配依赖",
+      "管理对象生命周期：为每个依赖决定作用域——单例、作用域（每请求）或瞬态（每次使用）",
+      "验证依赖图：使用容器的诊断工具或测试检测循环依赖、缺失注册和捕获依赖"
     ],
-    "ai_relevant": true,
-    "viz_type": "cycle"
+    "ai_relevant": false,
+    "viz_type": "tree",
+    "related": ["solid-principles", "hexagonal-architecture", "clean-code-principles"],
+    "tags": ["dependency-injection", "inversion-of-control", "decoupling", "testability"]
   },
   {
-    "name": "Multi-Agent Orchestration Patterns",
-    "name_zh": "多智能体编排模式",
-    "slug": "multi-agent-orchestration",
-    "desc": "Patterns for coordinating multiple AI agents toward a shared goal",
-    "desc_zh": "协调多个AI智能体朝共同目标协作的架构模式",
+    "id": 27,
+    "name": "Service Mesh Pattern",
+    "name_zh": "服务网格模式",
+    "slug": "service-mesh-pattern",
+    "category": "architecture",
+    "desc": "Dedicated infrastructure for service-to-service communication",
+    "desc_zh": "为服务间通信提供专用基础设施层的架构模式",
     "steps": [
-      "Decompose the overall task into subtasks and select an orchestration topology: hierarchical (orchestrator-worker), peer-to-peer, or pipeline",
-      "Assign roles and capabilities to each agent; define which agent owns state, coordinates handoffs, and resolves conflicts",
-      "Design the inter-agent communication protocol: shared memory, message passing, or a blackboard/shared context store",
-      "Implement coordination mechanisms: task assignment, result aggregation, consensus voting, or critic-reviser loops",
-      "Evaluate the system for coherence, loop detection, and failure recovery; instrument with tracing to observe agent interactions"
+      "Assess readiness: evaluate whether your microservices count, operational complexity, and team maturity justify a service mesh investment",
+      "Select a mesh implementation: compare options (Istio, Linkerd, Consul Connect) based on feature set, resource overhead, and ecosystem fit",
+      "Deploy sidecar proxies: inject a proxy (e.g., Envoy) alongside each service instance to intercept all inbound and outbound traffic transparently",
+      "Configure traffic policies: set up mutual TLS, retry budgets, circuit breaking, rate limiting, and traffic splitting rules via the mesh control plane",
+      "Establish observability: leverage the mesh's built-in distributed tracing, metrics collection, and access logging for end-to-end service visibility"
     ],
     "steps_zh": [
-      "将整体任务分解为子任务，选择编排拓扑：层次型（编排者-工作者）、点对点或流水线",
-      "为每个智能体分配角色和能力；定义哪个智能体负责状态管理、协调交接和解决冲突",
-      "设计智能体间通信协议：共享内存、消息传递或黑板/共享上下文存储",
-      "实现协调机制：任务分配、结果聚合、共识投票或批评者-修订者循环",
-      "评估系统的一致性、循环检测和故障恢复；通过追踪工具观察智能体交互"
+      "评估就绪度：评估微服务数量、运维复杂度和团队成熟度是否足以证明服务网格的投入",
+      "选择网格实现：根据功能集、资源开销和生态契合度比较选项（Istio、Linkerd、Consul Connect）",
+      "部署边车代理：在每个服务实例旁注入代理（如Envoy），透明拦截所有入站和出站流量",
+      "配置流量策略：通过网格控制面设置双向TLS、重试预算、熔断、限流和流量分割规则",
+      "建立可观测性：利用网格内置的分布式追踪、指标采集和访问日志实现端到端服务可见性"
     ],
-    "ai_relevant": true,
-    "viz_type": "flow"
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": ["microservices-decomposition", "circuit-breaker-pattern", "infrastructure-as-code"],
+    "tags": ["service-mesh", "sidecar", "traffic-management", "observability", "mTLS"]
   },
   {
+    "id": 28,
     "name": "LLM System Design Patterns",
     "name_zh": "LLM系统设计模式",
     "slug": "llm-system-design-patterns",
+    "category": "architecture",
     "desc": "Architectural patterns for production LLM-powered applications",
     "desc_zh": "面向生产环境的LLM驱动应用架构模式集合",
     "steps": [
@@ -319,6 +373,8 @@
       "构建评估基础设施：自动化评测、幻觉检测、安全护栏和人类反馈循环以持续改进"
     ],
     "ai_relevant": true,
-    "viz_type": "matrix"
+    "viz_type": "matrix",
+    "related": ["rag-architecture", "react-framework", "prompt-chaining", "guardrails-framework"],
+    "tags": ["llm", "ai-architecture", "rag", "prompt-engineering", "production"]
   }
 ]

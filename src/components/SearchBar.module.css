@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: white;
+  max-width: 320px;
+  transition: border-color 0.15s;
+}
+
+.container:focus-within {
+  border-color: #999;
+}
+
+.icon {
+  font-size: 14px;
+  color: #999;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  background: transparent;
+  color: var(--text);
+}
+
+.shortcut {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #bbb;
+  background: var(--surface);
+  padding: 2px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}

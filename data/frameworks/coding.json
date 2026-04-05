@@ -1,0 +1,407 @@
+[
+  {
+    "id": 29,
+    "name": "SOLID Principles",
+    "name_zh": "SOLID 原则",
+    "slug": "solid-principles",
+    "category": "coding",
+    "desc": "Five OOP design principles for maintainable, flexible code",
+    "desc_zh": "面向对象设计的五大原则，打造可维护、灵活的代码",
+    "steps": [
+      "Single Responsibility: ensure each class or module has exactly one reason to change by isolating concerns into separate units",
+      "Open/Closed: design modules that are open for extension (via interfaces, plugins) but closed for modification of existing code",
+      "Liskov Substitution: verify that subtypes can replace their base types without altering the correctness of the program",
+      "Interface Segregation: split large interfaces into smaller, client-specific ones so implementers are not forced to depend on unused methods",
+      "Dependency Inversion: depend on abstractions rather than concrete implementations; inject dependencies through constructors or configuration"
+    ],
+    "steps_zh": [
+      "单一职责：确保每个类或模块只有一个变更原因，将关注点隔离到独立单元中",
+      "开闭原则：设计对扩展开放（通过接口、插件）但对现有代码修改封闭的模块",
+      "里氏替换：验证子类型可以替换其基类型而不改变程序的正确性",
+      "接口隔离：将大接口拆分为更小的客户端专用接口，避免实现者依赖未使用的方法",
+      "依赖倒置：依赖抽象而非具体实现；通过构造函数或配置注入依赖"
+    ],
+    "ai_relevant": false,
+    "viz_type": "pyramid",
+    "related": ["clean-code-principles", "grasp-patterns", "dependency-injection"],
+    "tags": ["solid", "oop", "design-principles", "maintainability"]
+  },
+  {
+    "id": 30,
+    "name": "GRASP Patterns",
+    "name_zh": "GRASP 模式",
+    "slug": "grasp-patterns",
+    "category": "coding",
+    "desc": "Nine patterns for assigning responsibility to classes properly",
+    "desc_zh": "九种将职责正确分配给类的通用模式",
+    "steps": [
+      "Apply Information Expert: assign each responsibility to the class that has the information necessary to fulfill it",
+      "Use Creator pattern: give class B the responsibility to create class A if B contains, aggregates, or closely uses A",
+      "Enforce Low Coupling and High Cohesion: minimize dependencies between classes while keeping related behaviors together",
+      "Apply Controller: assign system event handling to a use-case controller or facade that delegates to domain objects",
+      "Use Polymorphism and Indirection: handle variation through polymorphic dispatch and introduce intermediary objects to reduce direct coupling"
+    ],
+    "steps_zh": [
+      "应用信息专家：将每个职责分配给拥有完成该职责所需信息的类",
+      "使用创建者模式：如果类B包含、聚合或密切使用类A，则由B负责创建A",
+      "强制低耦合与高内聚：最小化类间依赖，同时将相关行为保持在一起",
+      "应用控制器：将系统事件处理分配给用例控制器或门面，再委托给领域对象",
+      "使用多态与间接：通过多态分派处理变化，引入中介对象减少直接耦合"
+    ],
+    "ai_relevant": false,
+    "viz_type": "matrix",
+    "related": ["solid-principles", "gof-design-patterns", "clean-code-principles"],
+    "tags": ["grasp", "responsibility-assignment", "oop", "coupling", "cohesion"]
+  },
+  {
+    "id": 31,
+    "name": "GoF Design Patterns",
+    "name_zh": "GoF 设计模式",
+    "slug": "gof-design-patterns",
+    "category": "coding",
+    "desc": "23 classic creational, structural, behavioral design patterns",
+    "desc_zh": "23种经典的创建型、结构型、行为型设计模式",
+    "steps": [
+      "Identify the design problem category: is it about object creation (Creational), composition (Structural), or interaction (Behavioral)?",
+      "Select candidate patterns: match the problem to patterns like Factory, Strategy, Observer, Decorator, or Adapter based on the forces at play",
+      "Study the pattern's structure: understand participants (classes/interfaces), collaborations, and the consequences (trade-offs) of the pattern",
+      "Implement with modern idioms: adapt the classic pattern to your language's features (closures, generics, protocols) rather than copying Java-era UML",
+      "Document pattern usage: record in code comments or ADRs why the pattern was chosen and what alternatives were considered"
+    ],
+    "steps_zh": [
+      "识别设计问题类别：是关于对象创建（创建型）、组合（结构型）还是交互（行为型）？",
+      "选择候选模式：根据问题中的力量将其匹配到工厂、策略、观察者、装饰器或适配器等模式",
+      "研究模式结构：理解参与者（类/接口）、协作方式以及模式的后果（权衡）",
+      "用现代惯用法实现：将经典模式适配到你的语言特性（闭包、泛型、协议），而非照搬Java时代的UML",
+      "记录模式使用：在代码注释或ADR中记录选择该模式的原因及考虑过的替代方案"
+    ],
+    "ai_relevant": false,
+    "viz_type": "tree",
+    "related": ["solid-principles", "grasp-patterns", "hexagonal-architecture"],
+    "tags": ["design-patterns", "gof", "creational", "structural", "behavioral"]
+  },
+  {
+    "id": 32,
+    "name": "Clean Code Principles",
+    "name_zh": "整洁代码原则",
+    "slug": "clean-code-principles",
+    "category": "coding",
+    "desc": "Write readable, simple, expressive code that minimizes surprise",
+    "desc_zh": "编写可读、简洁、表达力强且最小化意外的代码",
+    "steps": [
+      "Name with intent: choose variable, function, and class names that reveal purpose; avoid abbreviations and misleading names",
+      "Keep functions small and focused: each function should do one thing, have few parameters, and operate at a single level of abstraction",
+      "Eliminate duplication: extract shared logic into well-named helper functions; apply the DRY principle without over-abstracting",
+      "Write self-documenting code: structure code so it reads like prose; use comments only for 'why' not 'what'",
+      "Refactor continuously: apply the Boy Scout Rule — leave code cleaner than you found it with each commit"
+    ],
+    "steps_zh": [
+      "意图命名：选择能揭示目的的变量、函数和类名；避免缩写和误导性名称",
+      "保持函数小而专注：每个函数只做一件事，参数少，在单一抽象层级上操作",
+      "消除重复：将共享逻辑提取到命名良好的辅助函数中；在不过度抽象的前提下应用DRY原则",
+      "编写自文档化代码：组织代码使其如散文般可读；注释只用于解释「为什么」而非「做什么」",
+      "持续重构：应用童子军规则——每次提交都让代码比发现时更整洁"
+    ],
+    "ai_relevant": false,
+    "viz_type": "pyramid",
+    "related": ["solid-principles", "conventional-comments", "grasp-patterns"],
+    "tags": ["clean-code", "readability", "naming", "refactoring", "simplicity"]
+  },
+  {
+    "id": 33,
+    "name": "DDD Tactical Patterns",
+    "name_zh": "DDD 战术模式",
+    "slug": "ddd-tactical-patterns",
+    "category": "coding",
+    "desc": "Implementation building blocks: entities, value objects, aggregates",
+    "desc_zh": "领域驱动设计的实现构建块：实体、值对象、聚合",
+    "steps": [
+      "Define Entities: identify objects with unique identity that persists across state changes; implement equality by identity, not attributes",
+      "Design Value Objects: model concepts defined solely by their attributes (Money, Address); make them immutable and enforce equality by value",
+      "Establish Aggregates: group related entities and value objects under an aggregate root that enforces consistency boundaries and invariants",
+      "Implement Domain Events: capture meaningful state changes as event objects that can be published to other bounded contexts or projections",
+      "Use Repositories and Factories: encapsulate persistence behind repository interfaces and complex object creation behind factory methods"
+    ],
+    "steps_zh": [
+      "定义实体：识别具有跨状态变更持续存在的唯一标识的对象；按标识而非属性实现相等性",
+      "设计值对象：对仅由属性定义的概念建模（金额、地址）；使其不可变，按值实现相等性",
+      "建立聚合：将相关实体和值对象组织在聚合根下，由聚合根强制一致性边界和不变式",
+      "实现领域事件：将有意义的状态变更捕获为事件对象，可发布到其他限界上下文或投影",
+      "使用仓储与工厂：将持久化封装在仓储接口后，将复杂对象创建封装在工厂方法后"
+    ],
+    "ai_relevant": false,
+    "viz_type": "tree",
+    "related": ["domain-driven-design", "event-sourcing-pattern", "cqrs-pattern", "hexagonal-architecture"],
+    "tags": ["ddd", "entities", "value-objects", "aggregates", "domain-events"]
+  },
+  {
+    "id": 34,
+    "name": "Hexagonal Architecture",
+    "name_zh": "六边形架构",
+    "slug": "hexagonal-architecture",
+    "category": "coding",
+    "desc": "Isolate core logic from external concerns via ports and adapters",
+    "desc_zh": "通过端口与适配器将核心逻辑与外部关注点隔离",
+    "steps": [
+      "Define the Domain Core: implement pure business logic with no dependencies on frameworks, databases, or external services",
+      "Design Ports: create inbound ports (use case interfaces the outside world calls) and outbound ports (interfaces the domain needs from the outside)",
+      "Implement Adapters: build concrete adapters for each port — REST controllers for inbound, repository implementations for outbound",
+      "Wire at the Composition Root: connect adapters to ports via dependency injection at application startup, keeping the domain ignorant of infrastructure",
+      "Test at each layer: unit-test the domain through ports with in-memory adapters; integration-test adapters against real infrastructure"
+    ],
+    "steps_zh": [
+      "定义领域核心：实现不依赖框架、数据库或外部服务的纯业务逻辑",
+      "设计端口：创建入站端口（外部世界调用的用例接口）和出站端口（领域需要的外部接口）",
+      "实现适配器：为每个端口构建具体适配器——入站用REST控制器，出站用仓储实现",
+      "在组合根装配：在应用启动时通过依赖注入连接适配器与端口，保持领域对基础设施无感知",
+      "分层测试：通过端口使用内存适配器对领域进行单元测试；对适配器进行集成测试"
+    ],
+    "ai_relevant": true,
+    "viz_type": "venn",
+    "related": ["solid-principles", "dependency-injection", "ddd-tactical-patterns", "clean-code-principles"],
+    "tags": ["hexagonal", "ports-adapters", "clean-architecture", "isolation", "testability"]
+  },
+  {
+    "id": 35,
+    "name": "Functional Core / Imperative Shell",
+    "name_zh": "函数式核心 / 命令式外壳",
+    "slug": "functional-core-imperative-shell",
+    "category": "coding",
+    "desc": "Pure logic in the center, side effects only at the boundaries",
+    "desc_zh": "纯逻辑居于核心，副作用仅存在于边界层",
+    "steps": [
+      "Identify side effects: catalog all I/O, database calls, network requests, and mutations in the current codebase",
+      "Extract pure functions: move all decision-making and transformation logic into pure functions with no side effects",
+      "Design the imperative shell: create a thin outer layer that reads input, calls the pure core, and writes output",
+      "Pass data, not dependencies: the pure core receives plain data and returns plain data — no injected services or callbacks",
+      "Test the core exhaustively: unit-test pure functions with simple input/output assertions; integration-test only the shell"
+    ],
+    "steps_zh": [
+      "识别副作用：编目当前代码库中所有I/O、数据库调用、网络请求和状态变更",
+      "提取纯函数：将所有决策和转换逻辑移入无副作用的纯函数中",
+      "设计命令式外壳：创建薄外层，负责读取输入、调用纯核心并写出结果",
+      "传递数据而非依赖：纯核心接收普通数据并返回普通数据——不注入服务或回调",
+      "穷尽测试核心：用简单的输入输出断言对纯函数做单元测试；仅对外壳做集成测试"
+    ],
+    "ai_relevant": false,
+    "viz_type": "venn",
+    "related": ["hexagonal-architecture", "clean-code-principles", "property-based-testing"],
+    "tags": ["functional-programming", "pure-functions", "side-effects", "testability", "architecture"]
+  },
+  {
+    "id": 36,
+    "name": "Reactive Extensions (Rx)",
+    "name_zh": "响应式扩展（Rx）",
+    "slug": "reactive-extensions",
+    "category": "coding",
+    "desc": "Compose async event streams with observable sequences and operators",
+    "desc_zh": "通过可观察序列和操作符组合异步事件流",
+    "steps": [
+      "Model data as streams: represent events, user actions, and async results as Observable sequences rather than callbacks or promises",
+      "Apply operators: use map, filter, merge, switchMap, debounce, and other operators to transform and combine streams declaratively",
+      "Manage subscriptions: subscribe to observables at the UI or service boundary and unsubscribe on component destruction to prevent memory leaks",
+      "Handle errors in the stream: use catchError, retry, and fallback operators to build resilient pipelines without try/catch nesting",
+      "Test with marble diagrams: use virtual time schedulers and marble syntax to write deterministic tests for complex async flows"
+    ],
+    "steps_zh": [
+      "将数据建模为流：将事件、用户动作和异步结果表示为Observable序列，而非回调或Promise",
+      "应用操作符：使用map、filter、merge、switchMap、debounce等操作符声明式地转换和组合流",
+      "管理订阅：在UI或服务边界订阅Observable，在组件销毁时取消订阅以防止内存泄漏",
+      "在流中处理错误：使用catchError、retry和降级操作符构建弹性管道，避免try/catch嵌套",
+      "用弹珠图测试：使用虚拟时间调度器和弹珠语法为复杂异步流编写确定性测试"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": ["eda", "actor-model", "functional-core-imperative-shell"],
+    "tags": ["reactive", "observables", "streams", "async", "operators"]
+  },
+  {
+    "id": 37,
+    "name": "Richardson Maturity Model",
+    "name_zh": "Richardson 成熟度模型",
+    "slug": "richardson-maturity-model",
+    "category": "coding",
+    "desc": "Four levels of REST API maturity from RPC to hypermedia",
+    "desc_zh": "REST API 从 RPC 到超媒体的四级成熟度模型",
+    "steps": [
+      "Assess current level: determine if the API is at Level 0 (single URI, single verb), Level 1 (resources), Level 2 (HTTP verbs), or Level 3 (hypermedia)",
+      "Introduce proper resources (Level 1): model each domain concept as a unique URI (e.g., /orders/123) instead of action-based endpoints",
+      "Use HTTP verbs correctly (Level 2): map CRUD operations to GET, POST, PUT, DELETE with proper status codes and idempotency semantics",
+      "Add hypermedia controls (Level 3): include links in responses (HATEOAS) so clients discover available actions dynamically",
+      "Validate with consumer tests: use contract tests to ensure API responses match the expected level of maturity and remain backward-compatible"
+    ],
+    "steps_zh": [
+      "评估当前级别：判断API处于0级（单URI单动词）、1级（资源）、2级（HTTP动词）还是3级（超媒体）",
+      "引入合理资源（1级）：将每个领域概念建模为唯一URI（如/orders/123），而非基于动作的端点",
+      "正确使用HTTP动词（2级）：将CRUD操作映射到GET、POST、PUT、DELETE，配合正确的状态码和幂等语义",
+      "添加超媒体控制（3级）：在响应中包含链接（HATEOAS），使客户端动态发现可用操作",
+      "通过消费者测试验证：使用契约测试确保API响应符合预期的成熟度级别并保持向后兼容"
+    ],
+    "ai_relevant": false,
+    "viz_type": "pyramid",
+    "related": ["api-versioning-strategies", "contract-testing", "ai-first-api-design"],
+    "tags": ["rest", "api-design", "maturity-model", "hateoas", "http"]
+  },
+  {
+    "id": 38,
+    "name": "Event Sourcing Pattern",
+    "name_zh": "事件溯源模式",
+    "slug": "event-sourcing-pattern",
+    "category": "coding",
+    "desc": "Persist state as an immutable append-only sequence of events",
+    "desc_zh": "将状态持久化为不可变的追加事件序列而非当前快照",
+    "steps": [
+      "Model domain events: define immutable event types that capture every meaningful state change (OrderPlaced, ItemShipped, PaymentReceived)",
+      "Build the event store: implement an append-only log (EventStoreDB, Kafka, or custom) that stores events with sequence numbers and metadata",
+      "Reconstruct state by replay: load an entity's current state by replaying its event stream from the beginning or from a snapshot",
+      "Create projections: build read-optimized views by subscribing to the event stream and materializing data into query-friendly shapes",
+      "Implement snapshotting: periodically save aggregate state snapshots to avoid replaying the full event history for long-lived entities"
+    ],
+    "steps_zh": [
+      "建模领域事件：定义不可变的事件类型，捕获每个有意义的状态变更（订单创建、物品发货、收款完成）",
+      "构建事件存储：实现追加式日志（EventStoreDB、Kafka或自定义），存储带序列号和元数据的事件",
+      "通过回放重建状态：从头或从快照开始回放实体的事件流以加载其当前状态",
+      "创建投影：通过订阅事件流并将数据物化为查询友好的形态来构建读优化视图",
+      "实现快照：定期保存聚合状态快照，避免对长期存活的实体回放完整事件历史"
+    ],
+    "ai_relevant": false,
+    "viz_type": "timeline",
+    "related": ["cqrs-pattern", "eda", "ddd-tactical-patterns", "domain-driven-design"],
+    "tags": ["event-sourcing", "immutable", "append-only", "replay", "audit-trail"]
+  },
+  {
+    "id": 39,
+    "name": "Prompt Engineering Patterns",
+    "name_zh": "提示工程模式",
+    "slug": "prompt-engineering-patterns",
+    "category": "coding",
+    "desc": "Structured techniques for crafting effective LLM prompts",
+    "desc_zh": "构建高效大模型提示词的结构化技术模式集合",
+    "steps": [
+      "Define the persona and context: set a clear system prompt that establishes the AI's role, expertise level, and behavioral constraints",
+      "Use structured output formats: specify JSON schemas, markdown templates, or typed response formats to get parseable, consistent results",
+      "Apply few-shot examples: include 2-5 representative input-output examples that demonstrate the desired quality, style, and edge cases",
+      "Add chain-of-thought instructions: prompt the model to reason step-by-step before producing a final answer to improve accuracy on complex tasks",
+      "Iterate and evaluate: A/B test prompt variants against a golden dataset; track quality metrics and version prompts like code"
+    ],
+    "steps_zh": [
+      "定义角色与上下文：设定清晰的系统提示词，建立AI的角色、专业水平和行为约束",
+      "使用结构化输出格式：指定JSON Schema、Markdown模板或类型化响应格式以获得可解析、一致的结果",
+      "应用少样本示例：包含2-5个代表性输入输出示例，展示期望的质量、风格和边界情况",
+      "添加思维链指令：提示模型在给出最终答案前逐步推理，以提高复杂任务的准确性",
+      "迭代与评估：对比测试提示词变体与黄金数据集；追踪质量指标，像管理代码一样管理提示词版本"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": ["prompt-chaining", "tool-use-design-pattern", "llm-system-design-patterns"],
+    "tags": ["prompt-engineering", "few-shot", "chain-of-thought", "llm", "ai"]
+  },
+  {
+    "id": 40,
+    "name": "Tool-Use / ReAct Pattern",
+    "name_zh": "工具使用 / ReAct 模式",
+    "slug": "tool-use-react-pattern",
+    "category": "coding",
+    "desc": "Enable LLM agents to call external tools in reasoning loops",
+    "desc_zh": "使大模型代理能在推理循环中调用外部工具",
+    "steps": [
+      "Define the tool inventory: catalog each available tool with a typed JSON Schema signature, description, and usage examples",
+      "Implement the reasoning loop: prompt the LLM to think about which tool to call, execute the call, observe the result, and decide next steps",
+      "Build robust tool handlers: make each tool idempotent, return structured responses with clear error messages, and enforce timeouts",
+      "Add selection guardrails: constrain which tools are available per context and validate tool-call arguments before execution",
+      "Evaluate tool-use accuracy: build a benchmark of representative tasks and measure tool selection precision, recall, and end-to-end task success"
+    ],
+    "steps_zh": [
+      "定义工具清单：编目每个可用工具及其类型化JSON Schema签名、描述和使用示例",
+      "实现推理循环：提示LLM思考调用哪个工具，执行调用，观察结果，并决定下一步",
+      "构建健壮的工具处理器：使每个工具幂等，返回结构化响应和清晰的错误信息，并强制执行超时",
+      "添加选择护栏：限制每个上下文可用的工具，在执行前验证工具调用参数",
+      "评估工具使用准确率：构建代表性任务基准，度量工具选择的精确率、召回率和端到端任务成功率"
+    ],
+    "ai_relevant": true,
+    "viz_type": "cycle",
+    "related": ["react-framework", "prompt-engineering-patterns", "prompt-chaining"],
+    "tags": ["tool-use", "react", "agents", "function-calling", "reasoning"]
+  },
+  {
+    "id": 41,
+    "name": "Conventional Comments",
+    "name_zh": "约定式评论",
+    "slug": "conventional-comments",
+    "category": "coding",
+    "desc": "Prefixed code review comments for clarity and actionability",
+    "desc_zh": "带前缀的代码评审注释，提升清晰度与可操作性",
+    "steps": [
+      "Learn the label taxonomy: use prefixes like suggestion:, issue:, question:, praise:, nitpick:, thought: to categorize each comment",
+      "Add decorators for urgency: append (blocking) or (non-blocking) to signal whether the comment must be resolved before merge",
+      "Write the comment body: after the label, provide a clear explanation of what and why, with a suggested fix when possible",
+      "Adopt team-wide: add Conventional Comments guidelines to the team's contributing guide and code review checklist",
+      "Measure review quality: track resolution rates per label type and use feedback to improve review culture over time"
+    ],
+    "steps_zh": [
+      "学习标签分类法：使用suggestion:、issue:、question:、praise:、nitpick:、thought:等前缀对每条评论分类",
+      "添加紧急度修饰：附加(blocking)或(non-blocking)以标识该评论是否必须在合并前解决",
+      "撰写评论正文：在标签后提供清晰的解释（什么和为什么），尽可能附上建议的修复方案",
+      "全团队采纳：将约定式评论指南添加到团队贡献指南和代码评审清单中",
+      "衡量评审质量：追踪各标签类型的解决率，利用反馈持续改善评审文化"
+    ],
+    "ai_relevant": false,
+    "viz_type": "matrix",
+    "related": ["clean-code-principles", "ai-pair-programming", "semantic-versioning"],
+    "tags": ["code-review", "comments", "collaboration", "conventions"]
+  },
+  {
+    "id": 42,
+    "name": "Semantic Versioning (SemVer)",
+    "name_zh": "语义化版本控制",
+    "slug": "semantic-versioning",
+    "category": "coding",
+    "desc": "Version APIs and libraries with MAJOR.MINOR.PATCH semantics",
+    "desc_zh": "使用主版本.次版本.补丁版本语义对API和库进行版本控制",
+    "steps": [
+      "Understand the contract: MAJOR for breaking changes, MINOR for backward-compatible features, PATCH for backward-compatible bug fixes",
+      "Define your public API surface: explicitly document which interfaces, endpoints, or exports constitute the versioned contract",
+      "Automate version bumps: use commit message conventions (Conventional Commits) and tools (semantic-release) to compute the next version",
+      "Communicate changes: maintain a CHANGELOG that maps each version to its features, fixes, and breaking changes with migration guides",
+      "Enforce in CI: validate that breaking changes trigger MAJOR bumps; use contract tests to detect unintentional API surface changes"
+    ],
+    "steps_zh": [
+      "理解契约：MAJOR用于破坏性变更，MINOR用于向后兼容的新功能，PATCH用于向后兼容的缺陷修复",
+      "定义公共API面：明确记录哪些接口、端点或导出构成版本化契约",
+      "自动化版本升级：使用提交消息约定（Conventional Commits）和工具（semantic-release）计算下一个版本",
+      "传达变更：维护CHANGELOG，将每个版本映射到其功能、修复和破坏性变更，附带迁移指南",
+      "在CI中强制执行：验证破坏性变更触发MAJOR升级；使用契约测试检测非预期的API面变更"
+    ],
+    "ai_relevant": false,
+    "viz_type": "timeline",
+    "related": ["api-versioning-strategies", "contract-testing", "conventional-comments"],
+    "tags": ["versioning", "semver", "api", "changelog", "release-management"]
+  },
+  {
+    "id": 43,
+    "name": "Contract Testing",
+    "name_zh": "契约测试",
+    "slug": "contract-testing",
+    "category": "coding",
+    "desc": "Verify service interactions via shared consumer-provider contracts",
+    "desc_zh": "通过共享的消费者-提供者契约验证服务间交互的正确性",
+    "steps": [
+      "Define consumer expectations: in each consumer service, write contract tests that describe the exact requests it makes and responses it expects",
+      "Publish contracts to a broker: use a tool like Pact or Spring Cloud Contract to share consumer contracts with the provider team via a central broker",
+      "Verify on the provider side: run the published contracts against the actual provider implementation to confirm it satisfies all consumer expectations",
+      "Integrate into CI/CD: run contract verification on both consumer and provider pipelines; block deployment if contracts are broken",
+      "Evolve contracts safely: use the broker's compatibility matrix (can-i-deploy) to verify that all deployed versions are mutually compatible before release"
+    ],
+    "steps_zh": [
+      "定义消费者期望：在每个消费者服务中编写契约测试，描述其发出的精确请求和期望的响应",
+      "将契约发布到代理：使用Pact或Spring Cloud Contract等工具通过中央代理与提供者团队共享消费者契约",
+      "在提供者端验证：针对提供者的实际实现运行已发布的契约，确认其满足所有消费者期望",
+      "集成到CI/CD：在消费者和提供者的流水线中运行契约验证；契约被破坏时阻止部署",
+      "安全演进契约：使用代理的兼容性矩阵（can-i-deploy）在发布前验证所有已部署版本的互兼容性"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": ["semantic-versioning", "api-versioning-strategies", "richardson-maturity-model", "design-by-contract"],
+    "tags": ["contract-testing", "pact", "consumer-driven", "api-compatibility", "microservices"]
+  }
+]

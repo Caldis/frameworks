@@ -1,0 +1,33 @@
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.number {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #999;
+  flex-shrink: 0;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 1.5;
+  cursor: default;
+  transition: opacity 0.15s;
+}

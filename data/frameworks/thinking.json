@@ -1,8 +1,10 @@
 [
   {
+    "id": 1,
     "name": "Design Thinking (IDEO/Stanford d.school)",
     "name_zh": "设计思维（IDEO/斯坦福模型）",
     "slug": "design-thinking-ideo",
+    "category": "thinking",
     "desc": "Human-centered 5-stage empathy-to-test design process",
     "desc_zh": "以人为本的五阶段从共情到测试的设计流程",
     "steps": [
@@ -20,12 +22,16 @@
       "测试：将原型呈现给真实用户，观察反应，收集反馈并迭代改进"
     ],
     "ai_relevant": true,
-    "viz_type": "cycle"
+    "viz_type": "cycle",
+    "related": ["jobs-to-be-done", "problem-framing-how-now-wow", "human-ai-interaction-design"],
+    "tags": ["design", "empathy", "user-centered", "prototyping", "iteration"]
   },
   {
+    "id": 2,
     "name": "Domain-Driven Design (DDD)",
     "name_zh": "领域驱动设计",
     "slug": "domain-driven-design",
+    "category": "thinking",
     "desc": "Model software around core business domain language and logic",
     "desc_zh": "围绕核心业务领域语言与逻辑构建软件模型",
     "steps": [
@@ -43,12 +49,16 @@
       "映射上下文关系：定义限界上下文之间的集成模式（防腐层、共享内核、开放主机等）"
     ],
     "ai_relevant": true,
-    "viz_type": "venn"
+    "viz_type": "venn",
+    "related": ["ddd-tactical-patterns", "cqrs-pattern", "event-sourcing-pattern"],
+    "tags": ["domain-modeling", "bounded-context", "ubiquitous-language", "strategic-design"]
   },
   {
+    "id": 3,
     "name": "Systems Thinking",
     "name_zh": "系统思维",
     "slug": "systems-thinking",
+    "category": "thinking",
     "desc": "Analyze software as interconnected feedback loops, not parts",
     "desc_zh": "将软件视为相互关联的反馈回路而非孤立部件进行分析",
     "steps": [
@@ -66,12 +76,16 @@
       "模拟与验证：构建因果回路图或简单仿真，对照观察行为检验心智模型"
     ],
     "ai_relevant": true,
-    "viz_type": "flow"
+    "viz_type": "flow",
+    "related": ["cynefin-framework", "wardley-mapping", "conways-law"],
+    "tags": ["systems", "feedback-loops", "leverage-points", "holistic-analysis"]
   },
   {
+    "id": 4,
     "name": "Jobs-to-Be-Done (JTBD)",
     "name_zh": "待完成任务理论",
     "slug": "jobs-to-be-done",
+    "category": "thinking",
     "desc": "Frame user needs as functional, social, emotional 'jobs'",
     "desc_zh": "将用户需求框架化为功能性、社会性、情感性「任务」",
     "steps": [
@@ -89,12 +103,16 @@
       "映射方案契合度：通过功能帮助用户「雇佣」软件完成任务的程度来设计或评估功能"
     ],
     "ai_relevant": false,
-    "viz_type": "matrix"
+    "viz_type": "matrix",
+    "related": ["design-thinking-ideo", "problem-framing-how-now-wow"],
+    "tags": ["user-needs", "product-strategy", "innovation", "customer-research"]
   },
   {
+    "id": 5,
     "name": "First Principles Thinking",
     "name_zh": "第一性原理思维",
     "slug": "first-principles-thinking",
+    "category": "thinking",
     "desc": "Decompose problems to foundational truths, then rebuild up",
     "desc_zh": "将问题分解至基本真理，再从底层重新构建解决方案",
     "steps": [
@@ -112,12 +130,16 @@
       "验证与对标：将重构设计与原方案对比，量化改进幅度并识别被忽视的因素"
     ],
     "ai_relevant": false,
-    "viz_type": "pyramid"
+    "viz_type": "pyramid",
+    "related": ["analogical-thinking", "six-thinking-hats"],
+    "tags": ["reasoning", "decomposition", "fundamentals", "innovation"]
   },
   {
+    "id": 6,
     "name": "Design by Contract (DbC)",
     "name_zh": "契约式设计",
     "slug": "design-by-contract",
+    "category": "thinking",
     "desc": "Define explicit preconditions, postconditions, invariants per unit",
     "desc_zh": "为每个软件单元定义明确的前置条件、后置条件与不变式",
     "steps": [
@@ -135,12 +157,16 @@
       "在运行时和测试时强制执行：开发中运行契约检查；使用基于属性的测试对契约边界进行模糊测试"
     ],
     "ai_relevant": false,
-    "viz_type": "flow"
+    "viz_type": "flow",
+    "related": ["property-based-testing", "contract-testing", "clean-code-principles"],
+    "tags": ["contracts", "preconditions", "postconditions", "invariants", "correctness"]
   },
   {
+    "id": 7,
     "name": "Cynefin Framework",
     "name_zh": "库内文框架",
     "slug": "cynefin-framework",
+    "category": "thinking",
     "desc": "Categorize problems into Simple, Complicated, Complex, Chaotic",
     "desc_zh": "将问题归类为简单、繁杂、复杂、混沌四个领域以选择对策",
     "steps": [
@@ -158,12 +184,16 @@
       "记录领域推理：记录问题被归类到某领域的原因，以指导未来的架构决策"
     ],
     "ai_relevant": false,
-    "viz_type": "matrix"
+    "viz_type": "matrix",
+    "related": ["systems-thinking", "trade-off-sliders", "wardley-mapping"],
+    "tags": ["decision-making", "complexity", "problem-classification", "sense-making"]
   },
   {
+    "id": 8,
     "name": "Wardley Mapping",
     "name_zh": "沃德利地图",
     "slug": "wardley-mapping",
+    "category": "thinking",
     "desc": "Visualize value chains by evolution stage to drive strategy",
     "desc_zh": "按演化阶段可视化价值链，以驱动技术与商业战略决策",
     "steps": [
@@ -181,12 +211,16 @@
       "应用气候模式：利用已知演化规律（如组件化、惯性、协同演化）预判变化趋势"
     ],
     "ai_relevant": false,
-    "viz_type": "matrix"
+    "viz_type": "matrix",
+    "related": ["cynefin-framework", "systems-thinking", "trade-off-sliders"],
+    "tags": ["strategy", "value-chain", "evolution", "mapping", "technology-decisions"]
   },
   {
+    "id": 9,
     "name": "Problem Framing (How-Now-Wow Matrix)",
     "name_zh": "问题框架化（如何-现在-哇矩阵）",
     "slug": "problem-framing-how-now-wow",
+    "category": "thinking",
     "desc": "Frame and prioritize ideas by feasibility and originality axes",
     "desc_zh": "通过可行性与原创性两轴框架化并优先排序设计创意",
     "steps": [
@@ -204,12 +238,16 @@
       "优先选择「哇」类创意：选取「哇」象限的创意进行原型验证，评估「如何」类创意的未来投资价值"
     ],
     "ai_relevant": false,
-    "viz_type": "matrix"
+    "viz_type": "matrix",
+    "related": ["design-thinking-ideo", "six-thinking-hats", "jobs-to-be-done"],
+    "tags": ["ideation", "prioritization", "feasibility", "creativity"]
   },
   {
+    "id": 10,
     "name": "Six Thinking Hats",
     "name_zh": "六顶思考帽",
     "slug": "six-thinking-hats",
+    "category": "thinking",
     "desc": "Parallel thinking method using 6 cognitive perspective modes",
     "desc_zh": "采用六种认知视角模式的平行思维决策方法",
     "steps": [
@@ -227,12 +265,16 @@
       "蓝帽（流程）：综合所有视角，识别共识，定义后续行动"
     ],
     "ai_relevant": false,
-    "viz_type": "radar"
+    "viz_type": "radar",
+    "related": ["problem-framing-how-now-wow", "first-principles-thinking", "trade-off-sliders"],
+    "tags": ["decision-making", "perspectives", "collaboration", "parallel-thinking"]
   },
   {
+    "id": 11,
     "name": "Analogical Thinking",
     "name_zh": "类比思维",
     "slug": "analogical-thinking",
+    "category": "thinking",
     "desc": "Transfer structural solutions from source domains to software",
     "desc_zh": "将源领域的结构性解决方案迁移到软件设计问题中",
     "steps": [
@@ -250,12 +292,16 @@
       "验证类比有效性：测试类比在何处失效，确保最终设计中这些缺口已被充分处理"
     ],
     "ai_relevant": false,
-    "viz_type": "venn"
+    "viz_type": "venn",
+    "related": ["first-principles-thinking", "design-thinking-ideo", "gof-design-patterns"],
+    "tags": ["analogy", "cross-domain", "pattern-transfer", "creative-thinking"]
   },
   {
+    "id": 12,
     "name": "Human-AI Interaction Design (HAI)",
     "name_zh": "人机交互设计（AI时代）",
     "slug": "human-ai-interaction-design",
+    "category": "thinking",
     "desc": "Design AI-augmented workflows balancing autonomy and control",
     "desc_zh": "设计平衡自主性与控制权的AI增强型工作流程",
     "steps": [
@@ -273,12 +319,16 @@
       "通过人在环路反馈迭代：将反馈收集内嵌于用户体验，从真实使用中持续改善AI行为"
     ],
     "ai_relevant": true,
-    "viz_type": "flow"
+    "viz_type": "flow",
+    "related": ["human-in-the-loop", "ai-pair-programming", "responsible-ai-design"],
+    "tags": ["human-ai", "trust", "explainability", "interaction-design", "autonomy"]
   },
   {
+    "id": 13,
     "name": "Agent-Oriented Design Thinking",
     "name_zh": "智能体导向设计思维",
     "slug": "agent-oriented-design-thinking",
+    "category": "thinking",
     "desc": "Design multi-agent systems around roles, goals, and environments",
     "desc_zh": "围绕角色、目标与环境设计多智能体系统的思维框架",
     "steps": [
@@ -296,12 +346,16 @@
       "建立评估标准：定义可量化的成功指标，覆盖个体智能体行为和整体系统结果"
     ],
     "ai_relevant": true,
-    "viz_type": "tree"
+    "viz_type": "tree",
+    "related": ["multi-agent-orchestration-pattern", "agent-communication-protocol", "react-framework"],
+    "tags": ["agents", "multi-agent", "roles", "goals", "emergent-behavior"]
   },
   {
+    "id": 14,
     "name": "Trade-off Sliders Model",
     "name_zh": "权衡滑块模型",
     "slug": "trade-off-sliders",
+    "category": "thinking",
     "desc": "Make design trade-offs explicit by ranking competing qualities",
     "desc_zh": "通过排列相互竞争的质量属性，将设计权衡显式化",
     "steps": [
@@ -319,6 +373,8 @@
       "定期重新审视：在重要里程碑重新进行滑块练习，以反映业务优先级和技术背景的演变"
     ],
     "ai_relevant": false,
-    "viz_type": "radar"
+    "viz_type": "radar",
+    "related": ["atam", "qaw", "cynefin-framework"],
+    "tags": ["trade-offs", "quality-attributes", "prioritization", "stakeholder-alignment"]
   }
 ]

@@ -1,0 +1,407 @@
+[
+  {
+    "id": 44,
+    "name": "Test Pyramid",
+    "name_zh": "测试金字塔",
+    "slug": "test-pyramid",
+    "category": "quality",
+    "desc": "Balance unit, integration, and E2E tests by cost and speed",
+    "desc_zh": "按成本与速度平衡单元测试、集成测试和端到端测试",
+    "steps": [
+      "Build a wide base of unit tests: fast, isolated tests covering business logic, pure functions, and edge cases with high coverage",
+      "Add a middle layer of integration tests: verify that modules, services, and databases work together correctly at boundaries",
+      "Write a thin top layer of E2E tests: cover critical user journeys only, accepting slower execution and higher maintenance cost",
+      "Enforce the pyramid shape in CI: set coverage gates per layer and fail builds when the ratio inverts (too many E2E, too few unit)",
+      "Review and rebalance quarterly: analyze flaky tests, slow suites, and coverage gaps to maintain the pyramid's health over time"
+    ],
+    "steps_zh": [
+      "构建宽广的单元测试基础：快速、隔离的测试覆盖业务逻辑、纯函数和边界情况",
+      "添加中间层集成测试：验证模块、服务和数据库在边界处正确协作",
+      "编写薄顶层端到端测试：仅覆盖关键用户旅程，接受较慢的执行速度和较高的维护成本",
+      "在CI中强制金字塔形状：为每层设置覆盖率门槛，比例倒置时构建失败",
+      "季度审查与再平衡：分析不稳定测试、慢速套件和覆盖盲区，维持金字塔长期健康"
+    ],
+    "ai_relevant": true,
+    "viz_type": "pyramid",
+    "related": ["testing-trophy", "tdd", "property-based-testing"],
+    "tags": ["testing", "test-pyramid", "unit-tests", "integration-tests", "e2e"]
+  },
+  {
+    "id": 45,
+    "name": "Testing Trophy",
+    "name_zh": "测试奖杯模型",
+    "slug": "testing-trophy",
+    "category": "quality",
+    "desc": "Emphasize integration tests as the highest-ROI testing layer",
+    "desc_zh": "强调集成测试作为投资回报率最高的测试层级",
+    "steps": [
+      "Start with static analysis: use TypeScript, ESLint, and formatters as the wide base of the trophy to catch errors before runtime",
+      "Invest heavily in integration tests: test real component interactions, API calls, and database queries — the trophy's widest bulge",
+      "Write focused unit tests: cover complex algorithms and pure utility functions, but don't unit-test simple wiring or framework glue",
+      "Add a small cap of E2E tests: cover only the most critical happy paths and smoke tests with tools like Playwright or Cypress",
+      "Optimize for confidence per test dollar: measure defect escape rate per layer and shift investment toward the layer catching the most bugs"
+    ],
+    "steps_zh": [
+      "从静态分析开始：使用TypeScript、ESLint和格式化工具作为奖杯的宽基座，在运行前捕获错误",
+      "大量投入集成测试：测试真实的组件交互、API调用和数据库查询——奖杯最宽的部分",
+      "编写聚焦的单元测试：覆盖复杂算法和纯工具函数，但不对简单装配或框架胶水做单元测试",
+      "添加少量端到端测试：仅用Playwright或Cypress覆盖最关键的正向路径和冒烟测试",
+      "优化每测试美元的置信度：衡量每层的缺陷逃逸率，将投入转向捕获最多bug的层级"
+    ],
+    "ai_relevant": false,
+    "viz_type": "pyramid",
+    "related": ["test-pyramid", "tdd", "contract-testing"],
+    "tags": ["testing", "integration-tests", "static-analysis", "test-strategy"]
+  },
+  {
+    "id": 46,
+    "name": "Test-Driven Development (TDD)",
+    "name_zh": "测试驱动开发",
+    "slug": "tdd",
+    "category": "quality",
+    "desc": "Write failing tests first, then code to pass, then refactor",
+    "desc_zh": "先写失败测试，再编写代码使之通过，最后重构",
+    "steps": [
+      "Red: write a small, focused test that describes the next behavior increment; run it and confirm it fails for the right reason",
+      "Green: write the minimum amount of production code needed to make the failing test pass — no more, no less",
+      "Refactor: improve the code's structure, naming, and duplication while keeping all tests green; apply clean code principles",
+      "Repeat the cycle: pick the next simplest behavior, write a failing test, make it pass, and refactor — in cycles of 1-5 minutes",
+      "Build a regression suite: as TDD cycles accumulate, the test suite becomes a living specification and safety net for future changes"
+    ],
+    "steps_zh": [
+      "红灯：编写一个小而专注的测试描述下一个行为增量；运行并确认它因正确的原因失败",
+      "绿灯：编写刚好使失败测试通过所需的最少生产代码——不多不少",
+      "重构：在保持所有测试通过的前提下改善代码结构、命名和重复；应用整洁代码原则",
+      "重复循环：选择下一个最简单的行为，编写失败测试，使其通过并重构——以1-5分钟为周期",
+      "构建回归套件：随TDD周期累积，测试套件成为活的规格说明和未来变更的安全网"
+    ],
+    "ai_relevant": true,
+    "viz_type": "cycle",
+    "related": ["test-pyramid", "bdd", "clean-code-principles"],
+    "tags": ["tdd", "red-green-refactor", "test-first", "design", "feedback"]
+  },
+  {
+    "id": 47,
+    "name": "Behavior-Driven Development (BDD)",
+    "name_zh": "行为驱动开发",
+    "slug": "bdd",
+    "category": "quality",
+    "desc": "Specify behavior in Given-When-Then shared by all stakeholders",
+    "desc_zh": "用 Given-When-Then 格式描述行为，所有干系人共享理解",
+    "steps": [
+      "Discovery workshop: collaborate with product, QA, and dev to discover scenarios using Example Mapping (rules, examples, questions)",
+      "Write scenarios in Gherkin: express each behavior as Given [context], When [action], Then [outcome] in a .feature file",
+      "Automate step definitions: implement the Given/When/Then steps in code that drives the system under test (Cucumber, SpecFlow, Behave)",
+      "Run as living documentation: execute BDD scenarios in CI and publish results as human-readable reports that serve as up-to-date specs",
+      "Refine continuously: review scenarios in sprint planning, prune obsolete ones, and add new scenarios for newly discovered edge cases"
+    ],
+    "steps_zh": [
+      "发现工作坊：与产品、QA和开发协作，使用示例映射（规则、示例、问题）发现场景",
+      "用Gherkin编写场景：将每个行为表达为Given [上下文]、When [动作]、Then [结果]，保存在.feature文件中",
+      "自动化步骤定义：用代码实现Given/When/Then步骤以驱动被测系统（Cucumber、SpecFlow、Behave）",
+      "作为活文档运行：在CI中执行BDD场景并发布人类可读的报告，作为始终最新的规格说明",
+      "持续精化：在迭代计划中评审场景，修剪过时场景，为新发现的边界情况添加新场景"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": ["tdd", "test-pyramid", "domain-driven-design"],
+    "tags": ["bdd", "gherkin", "given-when-then", "living-documentation", "collaboration"]
+  },
+  {
+    "id": 48,
+    "name": "Property-Based Testing",
+    "name_zh": "基于属性的测试",
+    "slug": "property-based-testing",
+    "category": "quality",
+    "desc": "Test invariant properties with auto-generated random inputs",
+    "desc_zh": "使用自动生成的随机输入测试不变性质",
+    "steps": [
+      "Identify properties: define universal truths about your code (e.g., encode then decode returns original, sort output is always ordered)",
+      "Write generators: create or compose data generators that produce valid random inputs covering edge cases (empty, huge, special chars)",
+      "Express the property: write a test that asserts the property holds for all generated inputs using a PBT library (fast-check, Hypothesis, QuickCheck)",
+      "Analyze shrunk failures: when a property fails, the framework automatically shrinks the input to the minimal failing case for easy debugging",
+      "Combine with example tests: use PBT for invariants and boundary exploration; keep example-based tests for specific documented behaviors"
+    ],
+    "steps_zh": [
+      "识别属性：定义代码的普遍真理（如编码后解码返回原始值，排序输出总是有序的）",
+      "编写生成器：创建或组合数据生成器，产生覆盖边界情况的有效随机输入（空值、极大值、特殊字符）",
+      "表达属性：使用PBT库（fast-check、Hypothesis、QuickCheck）编写断言属性对所有生成输入成立的测试",
+      "分析收缩的失败用例：属性失败时，框架自动将输入收缩至最小失败用例以便调试",
+      "与示例测试结合：对不变式和边界探索使用PBT；对特定文档化行为保留基于示例的测试"
+    ],
+    "ai_relevant": true,
+    "viz_type": "radar",
+    "related": ["tdd", "design-by-contract", "functional-core-imperative-shell"],
+    "tags": ["property-testing", "fuzzing", "generators", "invariants", "quickcheck"]
+  },
+  {
+    "id": 49,
+    "name": "Chaos Engineering",
+    "name_zh": "混沌工程",
+    "slug": "chaos-engineering",
+    "category": "quality",
+    "desc": "Inject controlled failures to build confidence in system resilience",
+    "desc_zh": "注入受控故障以增强对系统韧性的信心",
+    "steps": [
+      "Define steady state: establish measurable indicators of normal system behavior (latency p99, error rate, throughput) as your baseline",
+      "Hypothesize impact: predict what will happen when a specific failure is injected (e.g., 'losing one AZ won't increase error rate above 0.1%')",
+      "Design the experiment: choose the failure mode (network partition, pod kill, CPU spike, dependency latency) and the blast radius",
+      "Run in production: execute the experiment during business hours with automatic abort conditions if steady state degrades beyond thresholds",
+      "Learn and harden: analyze results, fix discovered weaknesses, update runbooks, and repeat experiments to verify fixes"
+    ],
+    "steps_zh": [
+      "定义稳态：建立正常系统行为的可衡量指标（p99延迟、错误率、吞吐量）作为基线",
+      "假设影响：预测注入特定故障后的结果（如「丢失一个可用区不会使错误率超过0.1%」）",
+      "设计实验：选择故障模式（网络分区、Pod终止、CPU峰值、依赖延迟）和影响范围",
+      "在生产环境运行：在业务时间执行实验，设置稳态超出阈值时自动中止的条件",
+      "学习与加固：分析结果，修复发现的弱点，更新运维手册，重复实验验证修复效果"
+    ],
+    "ai_relevant": false,
+    "viz_type": "cycle",
+    "related": ["circuit-breaker-pattern", "bulkhead-pattern", "sli-slo-sla"],
+    "tags": ["chaos-engineering", "resilience", "fault-injection", "reliability"]
+  },
+  {
+    "id": 50,
+    "name": "Circuit Breaker Pattern",
+    "name_zh": "熔断器模式",
+    "slug": "circuit-breaker-pattern",
+    "category": "quality",
+    "desc": "Prevent cascading failures by short-circuiting failing calls",
+    "desc_zh": "通过短路失败调用防止级联故障扩散",
+    "steps": [
+      "Wrap remote calls: place a circuit breaker around each external dependency call (HTTP, database, third-party API)",
+      "Configure thresholds: set failure count or failure rate thresholds that trigger the circuit to open (e.g., 5 failures in 10 seconds)",
+      "Implement the three states: Closed (normal), Open (fail-fast with fallback), Half-Open (allow a probe request to test recovery)",
+      "Design fallback responses: return cached data, default values, or degraded functionality when the circuit is open",
+      "Monitor and alert: track circuit state transitions, open duration, and fallback invocation rates in dashboards and alerting systems"
+    ],
+    "steps_zh": [
+      "包裹远程调用：为每个外部依赖调用（HTTP、数据库、第三方API）放置熔断器",
+      "配置阈值：设置触发熔断器打开的失败计数或失败率阈值（如10秒内5次失败）",
+      "实现三种状态：关闭（正常）、打开（快速失败并降级）、半开（允许探测请求测试恢复）",
+      "设计降级响应：在熔断器打开时返回缓存数据、默认值或降级功能",
+      "监控与告警：在仪表盘和告警系统中追踪熔断器状态转换、打开持续时间和降级调用率"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": ["bulkhead-pattern", "chaos-engineering", "saga-pattern"],
+    "tags": ["circuit-breaker", "resilience", "fault-tolerance", "cascading-failure", "fallback"]
+  },
+  {
+    "id": 51,
+    "name": "Bulkhead Pattern",
+    "name_zh": "舱壁模式",
+    "slug": "bulkhead-pattern",
+    "category": "quality",
+    "desc": "Isolate components so a failure in one doesn't sink the whole system",
+    "desc_zh": "隔离组件使某一部分的故障不会导致整个系统崩溃",
+    "steps": [
+      "Identify failure domains: map all external dependencies and internal components that could fail independently",
+      "Partition resources: allocate dedicated thread pools, connection pools, or compute instances per dependency or feature",
+      "Set limits per partition: configure max concurrent requests, queue depths, and timeouts for each bulkhead compartment",
+      "Implement rejection policies: define what happens when a bulkhead is full — reject immediately, queue with bounded wait, or shed load",
+      "Monitor compartment health: track utilization, rejection rates, and queue depth per bulkhead to detect and right-size compartments"
+    ],
+    "steps_zh": [
+      "识别故障域：映射所有可能独立失败的外部依赖和内部组件",
+      "分区资源：为每个依赖或功能分配专用的线程池、连接池或计算实例",
+      "为每个分区设限：配置每个舱壁隔间的最大并发请求数、队列深度和超时时间",
+      "实现拒绝策略：定义舱壁满时的处理方式——立即拒绝、有界等待排队或负载丢弃",
+      "监控隔间健康：追踪每个舱壁的利用率、拒绝率和队列深度以检测并调整隔间大小"
+    ],
+    "ai_relevant": false,
+    "viz_type": "matrix",
+    "related": ["circuit-breaker-pattern", "chaos-engineering", "cell-based-architecture"],
+    "tags": ["bulkhead", "isolation", "resilience", "resource-partitioning"]
+  },
+  {
+    "id": 52,
+    "name": "USE Method",
+    "name_zh": "USE 方法",
+    "slug": "use-method",
+    "category": "quality",
+    "desc": "Check Utilization, Saturation, Errors for every resource",
+    "desc_zh": "对每项资源检查利用率、饱和度和错误率",
+    "steps": [
+      "Enumerate all resources: list every hardware and software resource (CPU, memory, disk, network, thread pools, connection pools)",
+      "For each resource, measure Utilization: the percentage of time or capacity the resource is actively busy serving work",
+      "Measure Saturation: the degree to which extra work is queued or waiting because the resource is at capacity",
+      "Measure Errors: count error events related to each resource (disk I/O errors, network timeouts, OOM kills, connection refused)",
+      "Iterate systematically: work through the full resource list using USE for each; this methodical sweep avoids overlooking bottlenecks"
+    ],
+    "steps_zh": [
+      "枚举所有资源：列出每项硬件和软件资源（CPU、内存、磁盘、网络、线程池、连接池）",
+      "对每项资源测量利用率：资源积极忙于服务工作的时间或容量百分比",
+      "测量饱和度：因资源达到容量上限而有额外工作排队或等待的程度",
+      "测量错误：统计每项资源相关的错误事件（磁盘I/O错误、网络超时、OOM终止、连接拒绝）",
+      "系统化迭代：对完整资源列表逐一使用USE方法；这种系统性扫描避免遗漏瓶颈"
+    ],
+    "ai_relevant": false,
+    "viz_type": "matrix",
+    "related": ["red-method", "four-golden-signals", "sli-slo-sla"],
+    "tags": ["use-method", "utilization", "saturation", "errors", "performance"]
+  },
+  {
+    "id": 53,
+    "name": "RED Method",
+    "name_zh": "RED 方法",
+    "slug": "red-method",
+    "category": "quality",
+    "desc": "Monitor Request rate, Error rate, Duration for each service",
+    "desc_zh": "对每个服务监控请求率、错误率和持续时间",
+    "steps": [
+      "Identify all services: list every microservice, API endpoint, and background worker that handles requests",
+      "Measure Rate: instrument each service to emit requests-per-second metrics broken down by endpoint and status code",
+      "Measure Errors: track the number and percentage of requests that result in errors (5xx, timeouts, business errors)",
+      "Measure Duration: capture request latency distributions (p50, p95, p99) to understand both typical and tail performance",
+      "Build dashboards and alerts: create per-service RED dashboards; set alerts on error rate spikes and latency degradation"
+    ],
+    "steps_zh": [
+      "识别所有服务：列出每个处理请求的微服务、API端点和后台工作器",
+      "测量速率：为每个服务埋点，按端点和状态码分类发出每秒请求数指标",
+      "测量错误：追踪导致错误的请求数量和百分比（5xx、超时、业务错误）",
+      "测量持续时间：捕获请求延迟分布（p50、p95、p99）以理解典型和尾部性能",
+      "构建仪表盘和告警：创建每服务RED仪表盘；对错误率飙升和延迟劣化设置告警"
+    ],
+    "ai_relevant": false,
+    "viz_type": "radar",
+    "related": ["use-method", "four-golden-signals", "dora-metrics"],
+    "tags": ["red-method", "request-rate", "error-rate", "duration", "monitoring"]
+  },
+  {
+    "id": 54,
+    "name": "Four Golden Signals",
+    "name_zh": "四大黄金信号",
+    "slug": "four-golden-signals",
+    "category": "quality",
+    "desc": "Monitor Latency, Traffic, Errors, Saturation for any service",
+    "desc_zh": "对任何服务监控延迟、流量、错误率和饱和度",
+    "steps": [
+      "Instrument Latency: measure the time it takes to serve a request, separating successful and failed request latencies",
+      "Track Traffic: measure the demand on your system — requests per second, transactions per minute, or messages consumed",
+      "Monitor Errors: count the rate of requests that fail, distinguishing explicit errors (500s) from implicit ones (wrong content, slow responses)",
+      "Measure Saturation: track how close the service is to capacity — CPU usage, memory pressure, queue depths, thread pool exhaustion",
+      "Correlate signals: build dashboards that show all four signals together so you can quickly identify whether an issue is load, code, or resource-related"
+    ],
+    "steps_zh": [
+      "埋点延迟：测量服务请求的处理时间，区分成功请求和失败请求的延迟",
+      "追踪流量：衡量系统承受的需求——每秒请求数、每分钟事务数或消费的消息数",
+      "监控错误：统计失败请求的速率，区分显式错误（500）和隐式错误（内容错误、响应过慢）",
+      "测量饱和度：追踪服务距离容量上限的距离——CPU使用率、内存压力、队列深度、线程池耗尽",
+      "关联信号：构建同时展示四个信号的仪表盘，以快速判断问题源于负载、代码还是资源"
+    ],
+    "ai_relevant": false,
+    "viz_type": "radar",
+    "related": ["red-method", "use-method", "sli-slo-sla"],
+    "tags": ["golden-signals", "latency", "traffic", "errors", "saturation"]
+  },
+  {
+    "id": 55,
+    "name": "LLM Evaluation Framework",
+    "name_zh": "大模型评估框架",
+    "slug": "llm-evaluation-framework",
+    "category": "quality",
+    "desc": "Systematically evaluate LLM output quality and reliability",
+    "desc_zh": "系统化评估大语言模型输出的质量与可靠性",
+    "steps": [
+      "Build golden datasets: curate labeled examples with expected outputs covering core use cases, edge cases, and known failure modes",
+      "Define quality dimensions: establish metrics for accuracy, relevance, faithfulness (no hallucination), format compliance, and safety",
+      "Implement automated evaluators: use LLM-as-judge, embedding similarity, regex validators, and custom rubrics to score each dimension",
+      "Run regression suites: execute evaluations automatically on every prompt change, model upgrade, or RAG pipeline modification",
+      "Analyze and iterate: review score trends, investigate regressions, and use failure analysis to drive prompt, retrieval, or model improvements"
+    ],
+    "steps_zh": [
+      "构建黄金数据集：整理覆盖核心用例、边界情况和已知故障模式的标注示例及期望输出",
+      "定义质量维度：建立准确性、相关性、忠实度（无幻觉）、格式合规性和安全性的指标",
+      "实现自动化评估器：使用LLM作为裁判、嵌入相似度、正则验证器和自定义评分准则对每个维度打分",
+      "运行回归套件：在每次提示词变更、模型升级或RAG管道修改时自动执行评估",
+      "分析与迭代：审查分数趋势，调查回归问题，利用失败分析驱动提示词、检索或模型改进"
+    ],
+    "ai_relevant": true,
+    "viz_type": "radar",
+    "related": ["ai-output-verification", "prompt-testing", "ai-observability-framework"],
+    "tags": ["llm-eval", "benchmarks", "quality-metrics", "automated-evaluation", "ai"]
+  },
+  {
+    "id": 56,
+    "name": "AI Output Verification",
+    "name_zh": "AI 输出验证",
+    "slug": "ai-output-verification",
+    "category": "quality",
+    "desc": "Multi-layer checks ensuring AI-generated content is trustworthy",
+    "desc_zh": "多层检查确保AI生成内容的可信度与正确性",
+    "steps": [
+      "Schema validation: verify that AI output conforms to the expected structure (JSON schema, type checks, required fields)",
+      "Factual grounding check: cross-reference generated claims against retrieved source documents or knowledge bases",
+      "Consistency verification: compare the output against the input constraints and previously generated outputs for logical coherence",
+      "Safety and policy filtering: run the output through toxicity classifiers, PII detectors, and domain-specific policy rules",
+      "Human spot-check sampling: randomly route a percentage of outputs to human reviewers and use disagreements to improve automated checks"
+    ],
+    "steps_zh": [
+      "模式验证：验证AI输出符合预期结构（JSON Schema、类型检查、必填字段）",
+      "事实依据检查：将生成的声明与检索的源文档或知识库交叉参照",
+      "一致性验证：将输出与输入约束和先前生成的输出进行对比，检查逻辑连贯性",
+      "安全与策略过滤：通过毒性分类器、PII检测器和领域特定策略规则过滤输出",
+      "人工抽查：随机将一定比例的输出路由给人工审阅者，利用分歧改进自动化检查"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": ["llm-evaluation-framework", "guardrails-framework", "prompt-testing"],
+    "tags": ["verification", "hallucination-detection", "safety", "grounding", "ai"]
+  },
+  {
+    "id": 57,
+    "name": "Agent Reliability Patterns",
+    "name_zh": "智能体可靠性模式",
+    "slug": "agent-reliability-patterns",
+    "category": "quality",
+    "desc": "Patterns ensuring AI agents behave predictably in production",
+    "desc_zh": "确保AI智能体在生产环境中行为可预测的模式集合",
+    "steps": [
+      "Implement bounded execution: set max step limits, wall-clock timeouts, and token budgets to prevent runaway agent loops",
+      "Add checkpoint and resume: persist agent state at key decision points so failed runs can be retried from the last checkpoint",
+      "Design deterministic fallbacks: when an agent step fails or times out, fall back to a simpler strategy or escalate to a human",
+      "Use idempotent tool calls: ensure all tools the agent invokes can be safely retried, with deduplication keys preventing duplicate side effects",
+      "Monitor agent behavior: track step counts, tool call success rates, loop detection, and cost per task to identify reliability regressions"
+    ],
+    "steps_zh": [
+      "实现有界执行：设置最大步数限制、挂钟超时和Token预算以防止智能体失控循环",
+      "添加检查点与恢复：在关键决策点持久化智能体状态，使失败的运行可从最后检查点重试",
+      "设计确定性降级：当智能体步骤失败或超时时，降级到更简单的策略或升级给人类处理",
+      "使用幂等工具调用：确保智能体调用的所有工具可安全重试，用去重键防止重复副作用",
+      "监控智能体行为：追踪步数、工具调用成功率、循环检测和每任务成本以识别可靠性回归"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": ["circuit-breaker-pattern", "agent-deployment-patterns", "chaos-engineering"],
+    "tags": ["agent-reliability", "bounded-execution", "idempotency", "checkpointing", "ai"]
+  },
+  {
+    "id": 58,
+    "name": "Prompt Testing",
+    "name_zh": "提示词测试",
+    "slug": "prompt-testing",
+    "category": "quality",
+    "desc": "Automated regression testing for LLM prompt changes",
+    "desc_zh": "对大模型提示词变更进行自动化回归测试",
+    "steps": [
+      "Build a test suite: create a collection of input-expected output pairs that cover normal cases, edge cases, and known failure modes",
+      "Define assertions: use exact match, contains, regex, semantic similarity, or LLM-as-judge to verify each output meets expectations",
+      "Version prompts as code: store prompts in version control alongside their test suites so every change is tracked and reviewable",
+      "Run in CI: execute prompt tests on every PR that modifies prompts; fail the build if quality scores drop below thresholds",
+      "Track quality over time: log evaluation scores per prompt version to detect gradual drift and enable data-driven prompt optimization"
+    ],
+    "steps_zh": [
+      "构建测试套件：创建覆盖正常情况、边界情况和已知故障模式的输入-期望输出对集合",
+      "定义断言：使用精确匹配、包含、正则、语义相似度或LLM作为裁判来验证每个输出是否符合预期",
+      "将提示词作为代码版本化：将提示词及其测试套件存入版本控制，使每次变更可追踪和审查",
+      "在CI中运行：对每个修改提示词的PR执行提示词测试；质量分数低于阈值时构建失败",
+      "追踪质量趋势：记录每个提示词版本的评估分数以检测渐进漂移，实现数据驱动的提示词优化"
+    ],
+    "ai_relevant": true,
+    "viz_type": "cycle",
+    "related": ["llm-evaluation-framework", "ai-output-verification", "prompt-engineering-patterns"],
+    "tags": ["prompt-testing", "regression", "ci-cd", "evaluation", "ai"]
+  }
+]

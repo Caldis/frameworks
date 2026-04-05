@@ -1,0 +1,47 @@
+.row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+}
+
+.card {
+  flex: 1;
+  min-width: 140px;
+  max-width: 200px;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--surface);
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.card:hover {
+  background: var(--border);
+}
+
+.name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.pill {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  padding: 2px 8px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.desc {
+  font-size: 11.5px;
+  color: #888;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

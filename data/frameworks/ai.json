@@ -1,8 +1,10 @@
 [
   {
+    "id": 87,
     "name": "ReAct Framework",
     "name_zh": "ReAct 推理-行动框架",
     "slug": "react-framework",
+    "category": "ai",
     "desc": "Interleave reasoning traces and actions in LLM agents",
     "desc_zh": "在大模型代理中交织推理轨迹与动作执行",
     "steps": [
@@ -20,12 +22,16 @@
       "评估轨迹质量，裁剪或摘要过长推理链以降低成本"
     ],
     "ai_relevant": true,
-    "viz_type": "cycle"
+    "viz_type": "cycle",
+    "related": ["tool-use-design-pattern", "prompt-chaining", "multi-agent-orchestration-pattern"],
+    "tags": ["react", "reasoning", "agents", "llm", "tool-use"]
   },
   {
+    "id": 88,
     "name": "RAG Architecture",
     "name_zh": "检索增强生成架构",
     "slug": "rag-architecture",
+    "category": "ai",
     "desc": "Ground LLM responses with retrieved external knowledge",
     "desc_zh": "通过检索外部知识为大模型响应提供事实依据",
     "steps": [
@@ -43,12 +49,16 @@
       "评估检索召回率与生成忠实度，迭代优化分块策略"
     ],
     "ai_relevant": true,
-    "viz_type": "flow"
+    "viz_type": "flow",
+    "related": ["llm-system-design-patterns", "context-window-management", "ai-observability-framework"],
+    "tags": ["rag", "retrieval", "vector-store", "grounding", "knowledge"]
   },
   {
+    "id": 89,
     "name": "Multi-Agent Orchestration Pattern",
     "name_zh": "多代理编排模式",
-    "slug": "multi-agent-orchestration",
+    "slug": "multi-agent-orchestration-pattern",
+    "category": "ai",
     "desc": "Coordinate specialized AI agents via an orchestrator layer",
     "desc_zh": "通过编排层协调多个专职 AI 代理协同工作",
     "steps": [
@@ -66,12 +76,16 @@
       "添加熔断器与降级路径以优雅处理代理故障"
     ],
     "ai_relevant": true,
-    "viz_type": "tree"
+    "viz_type": "tree",
+    "related": ["react-framework", "agent-communication-protocol", "agent-oriented-design-thinking"],
+    "tags": ["multi-agent", "orchestration", "coordination", "task-decomposition"]
   },
   {
+    "id": 90,
     "name": "Human-in-the-Loop Design",
     "name_zh": "人机协同回路设计",
     "slug": "human-in-the-loop",
+    "category": "ai",
     "desc": "Insert human checkpoints into automated AI workflows",
     "desc_zh": "在自动化 AI 工作流中插入人工审核节点",
     "steps": [
@@ -89,12 +103,16 @@
       "监控审批延迟与人工覆盖率，动态调整自动化阈值"
     ],
     "ai_relevant": true,
-    "viz_type": "flow"
+    "viz_type": "flow",
+    "related": ["human-ai-interaction-design", "guardrails-framework", "responsible-ai-design"],
+    "tags": ["human-in-the-loop", "oversight", "escalation", "feedback"]
   },
   {
+    "id": 91,
     "name": "Prompt Chaining Pattern",
     "name_zh": "提示词链模式",
     "slug": "prompt-chaining",
+    "category": "ai",
     "desc": "Decompose complex tasks into sequential prompt stages",
     "desc_zh": "将复杂任务分解为顺序执行的提示词阶段",
     "steps": [
@@ -112,17 +130,21 @@
       "记录每个阶段的输入输出对，用于调试与提示词回归测试"
     ],
     "ai_relevant": true,
-    "viz_type": "flow"
+    "viz_type": "flow",
+    "related": ["react-framework", "prompt-engineering-patterns", "guardrails-framework"],
+    "tags": ["prompt-chaining", "pipeline", "decomposition", "sequential"]
   },
   {
+    "id": 92,
     "name": "AI Pair Programming Model",
     "name_zh": "AI 结对编程模型",
     "slug": "ai-pair-programming",
+    "category": "ai",
     "desc": "Structure developer and AI collaboration in the coding loop",
     "desc_zh": "在编码循环中结构化人类开发者与 AI 的协作方式",
     "steps": [
       "Establish role division: human owns intent and review; AI owns synthesis and drafting",
-      "Use intent-first prompting — describe what, why, and constraints before asking for code",
+      "Use intent-first prompting - describe what, why, and constraints before asking for code",
       "Review AI output for correctness, security, and style before accepting each chunk",
       "Feed failing tests or error messages back to the AI as grounding for refinement",
       "Reflect at session end: categorize AI contributions and identify skill gaps to address"
@@ -135,12 +157,16 @@
       "在会话结束时复盘：归类 AI 贡献并识别需补足的技能差距"
     ],
     "ai_relevant": true,
-    "viz_type": "cycle"
+    "viz_type": "cycle",
+    "related": ["human-ai-interaction-design", "ai-assisted-refactoring", "conventional-comments"],
+    "tags": ["pair-programming", "ai-collaboration", "coding", "developer-tools"]
   },
   {
+    "id": 93,
     "name": "Guardrails Framework",
     "name_zh": "AI 护栏框架",
     "slug": "guardrails-framework",
+    "category": "ai",
     "desc": "Enforce input/output constraints on LLM-powered systems",
     "desc_zh": "对大模型驱动系统强制执行输入输出约束",
     "steps": [
@@ -158,12 +184,16 @@
       "收集违规日志并在生产数据上重新训练或调整护栏分类器"
     ],
     "ai_relevant": true,
-    "viz_type": "flow"
+    "viz_type": "flow",
+    "related": ["responsible-ai-design", "ai-output-verification", "human-in-the-loop"],
+    "tags": ["guardrails", "safety", "validation", "constraints", "policy"]
   },
   {
+    "id": 94,
     "name": "Context Window Management Pattern",
     "name_zh": "上下文窗口管理模式",
     "slug": "context-window-management",
+    "category": "ai",
     "desc": "Strategically manage LLM context to maximize coherence",
     "desc_zh": "战略性管理大模型上下文以最大化对话连贯性",
     "steps": [
@@ -181,17 +211,21 @@
       "在不同窗口大小下基准测试连贯性和任务性能以校准策略"
     ],
     "ai_relevant": true,
-    "viz_type": "pyramid"
+    "viz_type": "pyramid",
+    "related": ["rag-architecture", "prompt-chaining", "llm-system-design-patterns"],
+    "tags": ["context-window", "token-management", "compression", "memory"]
   },
   {
+    "id": 95,
     "name": "Tool-Use Design Pattern",
     "name_zh": "工具使用设计模式",
     "slug": "tool-use-design-pattern",
+    "category": "ai",
     "desc": "Design agent-callable tools with reliable interfaces",
     "desc_zh": "为 AI 代理设计可靠可调用的工具接口",
     "steps": [
       "Define each tool as a typed function with a machine-readable JSON Schema description",
-      "Write tool descriptions from the model's perspective — emphasize when to use and not use",
+      "Write tool descriptions from the model's perspective - emphasize when to use and not use",
       "Implement idempotent tool handlers with deterministic error messages the model can act on",
       "Add a tool-selection evaluation harness to measure call accuracy on representative queries",
       "Version and deprecate tools explicitly, updating descriptions to guide migration"
@@ -204,12 +238,16 @@
       "显式对工具进行版本管理和废弃标注，更新描述以引导迁移"
     ],
     "ai_relevant": true,
-    "viz_type": "tree"
+    "viz_type": "tree",
+    "related": ["react-framework", "ai-first-api-design", "tool-use-react-pattern"],
+    "tags": ["tool-use", "function-calling", "api-design", "agent-tools"]
   },
   {
+    "id": 96,
     "name": "AI-First API Design",
     "name_zh": "AI 优先 API 设计",
     "slug": "ai-first-api-design",
+    "category": "ai",
     "desc": "Design APIs optimized for consumption by AI agents",
     "desc_zh": "面向 AI 代理消费优化设计 API 接口",
     "steps": [
@@ -227,12 +265,16 @@
       "发布机器可读的能力清单，使代理能够发现和组合 API"
     ],
     "ai_relevant": true,
-    "viz_type": "matrix"
+    "viz_type": "matrix",
+    "related": ["tool-use-design-pattern", "richardson-maturity-model", "agent-communication-protocol"],
+    "tags": ["api-design", "ai-first", "machine-readable", "agent-friendly"]
   },
   {
+    "id": 97,
     "name": "Self-Healing Systems Pattern",
     "name_zh": "自愈系统模式",
     "slug": "self-healing-systems",
+    "category": "ai",
     "desc": "Use AI agents to detect, diagnose, and remediate failures",
     "desc_zh": "利用 AI 代理自动检测、诊断并修复系统故障",
     "steps": [
@@ -250,12 +292,16 @@
       "记录每次故障-动作-结果三元组，持续完善运维手册"
     ],
     "ai_relevant": true,
-    "viz_type": "cycle"
+    "viz_type": "cycle",
+    "related": ["chaos-engineering", "circuit-breaker-pattern", "agent-reliability-patterns"],
+    "tags": ["self-healing", "auto-remediation", "monitoring", "runbook"]
   },
   {
+    "id": 98,
     "name": "AI Observability Framework",
     "name_zh": "AI 系统可观测性框架",
     "slug": "ai-observability-framework",
+    "category": "ai",
     "desc": "Trace, monitor, and explain LLM system behavior in prod",
     "desc_zh": "在生产环境中追踪、监控并解释大模型系统行为",
     "steps": [
@@ -273,12 +319,16 @@
       "将提示词-响应对存入评估数据集，用于离线回归测试"
     ],
     "ai_relevant": true,
-    "viz_type": "radar"
+    "viz_type": "radar",
+    "related": ["llmops", "llm-evaluation-framework", "four-golden-signals"],
+    "tags": ["observability", "tracing", "monitoring", "llm-metrics", "drift"]
   },
   {
+    "id": 99,
     "name": "Responsible AI Design Framework",
     "name_zh": "负责任 AI 设计框架",
     "slug": "responsible-ai-design",
+    "category": "ai",
     "desc": "Embed fairness, safety, and accountability in AI systems",
     "desc_zh": "在 AI 系统中内嵌公平性、安全性与问责机制",
     "steps": [
@@ -296,12 +346,16 @@
       "开展红队对抗演练，并发布系统的负责任使用政策"
     ],
     "ai_relevant": true,
-    "viz_type": "radar"
+    "viz_type": "radar",
+    "related": ["guardrails-framework", "human-in-the-loop", "human-ai-interaction-design"],
+    "tags": ["responsible-ai", "fairness", "safety", "accountability", "ethics"]
   },
   {
+    "id": 100,
     "name": "Agent Communication Protocol",
     "name_zh": "代理通信协议模式",
     "slug": "agent-communication-protocol",
+    "category": "ai",
     "desc": "Standardize message contracts between autonomous AI agents",
     "desc_zh": "标准化自主 AI 代理之间的消息契约",
     "steps": [
@@ -319,6 +373,8 @@
       "对所有消息模式进行版本管理，并在代理演进时强制向后兼容"
     ],
     "ai_relevant": true,
-    "viz_type": "matrix"
+    "viz_type": "matrix",
+    "related": ["multi-agent-orchestration-pattern", "actor-model", "eda"],
+    "tags": ["agent-protocol", "messaging", "interoperability", "standards"]
   }
 ]

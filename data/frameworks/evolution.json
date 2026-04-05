@@ -1,8 +1,10 @@
 [
   {
+    "id": 73,
     "name": "Strangler Fig Pattern",
     "name_zh": "绞杀榕模式",
     "slug": "strangler-fig-pattern",
+    "category": "evolution",
     "desc": "Incrementally replace a legacy system by routing traffic to new modules",
     "desc_zh": "通过逐步将流量路由至新模块，渐进式替换遗留系统",
     "steps": [
@@ -20,12 +22,16 @@
       "所有流量迁移并验证稳定后，退役遗留代码"
     ],
     "ai_relevant": true,
-    "viz_type": "flow"
+    "viz_type": "flow",
+    "related": ["branch-by-abstraction", "parallel-run", "microservices-decomposition"],
+    "tags": ["migration", "legacy", "incremental", "strangler-fig"]
   },
   {
+    "id": 74,
     "name": "Branch by Abstraction",
     "name_zh": "抽象分支法",
     "slug": "branch-by-abstraction",
+    "category": "evolution",
     "desc": "Replace a component in-place via an abstraction layer without feature branches",
     "desc_zh": "通过抽象层原地替换组件，无需功能分支",
     "steps": [
@@ -43,12 +49,16 @@
       "迁移完成后移除旧实现与抽象层"
     ],
     "ai_relevant": false,
-    "viz_type": "flow"
+    "viz_type": "flow",
+    "related": ["strangler-fig-pattern", "feature-flags", "hexagonal-architecture"],
+    "tags": ["abstraction", "migration", "refactoring", "trunk-based"]
   },
   {
+    "id": 75,
     "name": "Parallel Run",
     "name_zh": "并行运行模式",
     "slug": "parallel-run",
+    "category": "evolution",
     "desc": "Run old and new implementations simultaneously and compare outputs for safety",
     "desc_zh": "同时运行新旧实现并对比输出，确保迁移安全性",
     "steps": [
@@ -66,12 +76,16 @@
       "下线遗留系统，将新实现晋升为唯一处理方"
     ],
     "ai_relevant": true,
-    "viz_type": "flow"
+    "viz_type": "flow",
+    "related": ["strangler-fig-pattern", "canary-deployment", "blue-green-deployment"],
+    "tags": ["parallel-run", "migration", "comparison", "verification"]
   },
   {
+    "id": 76,
     "name": "Technical Debt Quadrant",
     "name_zh": "技术债务象限",
     "slug": "technical-debt-quadrant",
+    "category": "evolution",
     "desc": "Classify tech debt by deliberate/inadvertent and reckless/prudent axes",
     "desc_zh": "按有意/无意与鲁莽/谨慎两轴对技术债务分类",
     "steps": [
@@ -89,12 +103,16 @@
       "记录主动承担技术债务的决策，明确偿还计划与负责人"
     ],
     "ai_relevant": false,
-    "viz_type": "matrix"
+    "viz_type": "matrix",
+    "related": ["mikado-method", "continuous-architecture", "architectural-fitness-functions"],
+    "tags": ["tech-debt", "classification", "prioritization", "risk-management"]
   },
   {
+    "id": 77,
     "name": "Architectural Fitness Functions",
     "name_zh": "架构适应度函数",
     "slug": "architectural-fitness-functions",
+    "category": "evolution",
     "desc": "Automated tests that continuously verify architectural characteristics stay intact",
     "desc_zh": "通过自动化测试持续验证架构特性保持完整",
     "steps": [
@@ -112,12 +130,16 @@
       "随架构优先级的变化，持续审视和演进适应度函数套件"
     ],
     "ai_relevant": true,
-    "viz_type": "radar"
+    "viz_type": "radar",
+    "related": ["continuous-architecture", "technical-debt-quadrant", "test-pyramid"],
+    "tags": ["fitness-functions", "automated-testing", "architecture-governance", "ci-cd"]
   },
   {
+    "id": 78,
     "name": "Conway's Law",
     "name_zh": "康威定律",
     "slug": "conways-law",
+    "category": "evolution",
     "desc": "Systems mirror the communication structure of the organizations that build them",
     "desc_zh": "系统的结构反映构建它的组织的沟通结构",
     "steps": [
@@ -135,12 +157,16 @@
       "将组织设计与系统设计作为协同演进的制品，一并持续迭代"
     ],
     "ai_relevant": false,
-    "viz_type": "venn"
+    "viz_type": "venn",
+    "related": ["inverse-conway-maneuver", "team-topologies", "microservices-decomposition"],
+    "tags": ["conways-law", "org-structure", "architecture-alignment", "communication"]
   },
   {
+    "id": 79,
     "name": "Inverse Conway Maneuver",
     "name_zh": "逆康威策略",
     "slug": "inverse-conway-maneuver",
+    "category": "evolution",
     "desc": "Deliberately restructure teams to produce the desired system architecture",
     "desc_zh": "主动重组团队结构，以引导产出期望的系统架构",
     "steps": [
@@ -148,7 +174,7 @@
       "Model teams around the desired architecture boundaries before writing any new code",
       "Establish clear team APIs: explicit ownership, stable interfaces, and interaction modes",
       "Spin up new teams or reorganize existing ones to align with the architecture blueprint",
-      "Monitor whether the emerging code structure matches the intended architecture over 2–3 quarters"
+      "Monitor whether the emerging code structure matches the intended architecture over 2-3 quarters"
     ],
     "steps_zh": [
       "定义目标软件架构（如：有界微服务、平台层次）",
@@ -158,12 +184,16 @@
       "在 2-3 个季度内监控涌现的代码结构是否符合预期架构"
     ],
     "ai_relevant": false,
-    "viz_type": "flow"
+    "viz_type": "flow",
+    "related": ["conways-law", "team-topologies", "microservices-decomposition"],
+    "tags": ["inverse-conway", "team-design", "org-restructuring", "architecture"]
   },
   {
+    "id": 80,
     "name": "Team Topologies",
     "name_zh": "团队拓扑",
     "slug": "team-topologies",
+    "category": "evolution",
     "desc": "Four team types and three interaction modes for fast, sustainable software delivery",
     "desc_zh": "通过四种团队类型与三种交互模式实现快速可持续的软件交付",
     "steps": [
@@ -181,12 +211,16 @@
       "设定触发条件（团队规模、认知负荷信号），驱动团队拓扑随时间持续演进"
     ],
     "ai_relevant": false,
-    "viz_type": "tree"
+    "viz_type": "tree",
+    "related": ["conways-law", "inverse-conway-maneuver", "calms-framework"],
+    "tags": ["team-topologies", "cognitive-load", "org-design", "stream-aligned"]
   },
   {
+    "id": 81,
     "name": "Database Migration Patterns",
     "name_zh": "数据库迁移模式",
     "slug": "database-migration-patterns",
+    "category": "evolution",
     "desc": "Safe techniques for evolving database schemas without downtime or data loss",
     "desc_zh": "无停机、无数据丢失地演进数据库模式的安全技术集合",
     "steps": [
@@ -204,12 +238,16 @@
       "为每次迁移自动化回滚脚本，并在合并前通过 CI 验证"
     ],
     "ai_relevant": false,
-    "viz_type": "timeline"
+    "viz_type": "timeline",
+    "related": ["strangler-fig-pattern", "branch-by-abstraction", "api-versioning-strategies"],
+    "tags": ["database", "migration", "schema-evolution", "zero-downtime"]
   },
   {
+    "id": 82,
     "name": "API Versioning Strategies",
     "name_zh": "API 版本管理策略",
     "slug": "api-versioning-strategies",
+    "category": "evolution",
     "desc": "Structured approaches to evolving APIs without breaking existing consumers",
     "desc_zh": "不破坏现有消费者的情况下有序演进 API 的策略体系",
     "steps": [
@@ -227,12 +265,16 @@
       "使用 API 网关或消费者驱动契约测试（Pact）持续验证兼容性"
     ],
     "ai_relevant": true,
-    "viz_type": "timeline"
+    "viz_type": "timeline",
+    "related": ["semantic-versioning", "contract-testing", "richardson-maturity-model"],
+    "tags": ["api-versioning", "backward-compatibility", "deprecation", "evolution"]
   },
   {
+    "id": 83,
     "name": "AI-Assisted Refactoring",
     "name_zh": "AI 辅助重构",
     "slug": "ai-assisted-refactoring",
+    "category": "evolution",
     "desc": "Use LLMs to identify, plan, and execute code refactoring at scale",
     "desc_zh": "利用大语言模型规模化识别、规划和执行代码重构",
     "steps": [
@@ -250,12 +292,16 @@
       "持续追踪重构速度和代码质量指标，量化 AI 辅助的投入产出比"
     ],
     "ai_relevant": true,
-    "viz_type": "flow"
+    "viz_type": "flow",
+    "related": ["mikado-method", "technical-debt-quadrant", "ai-pair-programming"],
+    "tags": ["ai-refactoring", "code-quality", "llm", "automation"]
   },
   {
+    "id": 84,
     "name": "Continuous Architecture",
     "name_zh": "持续架构",
     "slug": "continuous-architecture",
+    "category": "evolution",
     "desc": "Evolve architecture incrementally in sync with delivery rather than big up-front design",
     "desc_zh": "与交付节奏同步地增量演进架构，取代前期大设计",
     "steps": [
@@ -273,12 +319,16 @@
       "当新信息、规模需求或 AI 能力改变优先级时，及时重审和更新 ADR"
     ],
     "ai_relevant": true,
-    "viz_type": "cycle"
+    "viz_type": "cycle",
+    "related": ["adr", "architectural-fitness-functions", "three-ways-devops"],
+    "tags": ["continuous-architecture", "evolutionary", "agile", "incremental"]
   },
   {
+    "id": 85,
     "name": "Evolutionary Agent Systems",
     "name_zh": "演进式智能体系统",
     "slug": "evolutionary-agent-systems",
+    "category": "evolution",
     "desc": "Iteratively evolve AI agent architectures using feedback, eval, and capability staging",
     "desc_zh": "通过反馈、评估和能力分级持续迭代演进 AI 智能体架构",
     "steps": [
@@ -296,12 +346,16 @@
       "通过对智能体输出进行 A/B 测试，增量晋升变更，退役已弃用的行为"
     ],
     "ai_relevant": true,
-    "viz_type": "cycle"
+    "viz_type": "cycle",
+    "related": ["agent-deployment-patterns", "agent-reliability-patterns", "continuous-architecture"],
+    "tags": ["agent-evolution", "capability-staging", "evaluation", "ai"]
   },
   {
+    "id": 86,
     "name": "Mikado Method",
     "name_zh": "米卡多方法",
     "slug": "mikado-method",
+    "category": "evolution",
     "desc": "Visualize and untangle large refactorings as a dependency graph of small safe steps",
     "desc_zh": "将大型重构可视化为依赖图，分解为一系列小而安全的步骤",
     "steps": [
@@ -319,6 +373,8 @@
       "从叶节点开始实现，自底向上逐步完成，直至达成根节点目标"
     ],
     "ai_relevant": false,
-    "viz_type": "tree"
+    "viz_type": "tree",
+    "related": ["technical-debt-quadrant", "ai-assisted-refactoring", "strangler-fig-pattern"],
+    "tags": ["mikado", "refactoring", "dependency-graph", "safe-steps"]
   }
 ]

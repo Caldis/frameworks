@@ -1,0 +1,75 @@
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  max-width: 1600px;
+  margin: auto;
+  padding: 64px 48px 0;
+  width: 100%;
+}
+
+.domainBadge {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #999;
+  border: 1px solid var(--border);
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  transition: all 0.3s;
+}
+
+.domainBadge:hover {
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, #e74c3c, #e67e22, #f1c40f, #2ecc71, #3498db, #9b59b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main {
+  flex: 1;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 48px;
+  width: 100%;
+}
+
+.footer {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 48px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  margin-top: 64px;
+}
+
+.domainName {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #999;
+}
+
+.copyright {
+  font-size: 12px;
+  color: #bbb;
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 32px 20px 0;
+  }
+
+  .main {
+    padding: 0 20px;
+  }
+
+  .footer {
+    padding: 20px;
+  }
+}

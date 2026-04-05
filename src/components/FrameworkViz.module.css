@@ -1,0 +1,28 @@
+.viz {
+  display: inline-block;
+  transition: opacity 0.2s;
+}
+
+.animate .vizElement:nth-child(1) { animation: assembleIn 0.4s ease-out 0.05s both; }
+.animate .vizElement:nth-child(2) { animation: assembleIn 0.4s ease-out 0.12s both; }
+.animate .vizElement:nth-child(3) { animation: assembleIn 0.4s ease-out 0.19s both; }
+.animate .vizElement:nth-child(4) { animation: assembleIn 0.4s ease-out 0.26s both; }
+.animate .vizElement:nth-child(5) { animation: assembleIn 0.4s ease-out 0.33s both; }
+.animate .vizElement:nth-child(6) { animation: assembleIn 0.4s ease-out 0.40s both; }
+.animate .vizElement:nth-child(7) { animation: assembleIn 0.4s ease-out 0.47s both; }
+.animate .vizElement:nth-child(8) { animation: assembleIn 0.4s ease-out 0.54s both; }
+.animate .vizElement:nth-child(9) { animation: assembleIn 0.4s ease-out 0.61s both; }
+.animate .vizElement:nth-child(10) { animation: assembleIn 0.4s ease-out 0.68s both; }
+.animate .vizElement:nth-child(11) { animation: assembleIn 0.4s ease-out 0.75s both; }
+.animate .vizElement:nth-child(12) { animation: assembleIn 0.4s ease-out 0.82s both; }
+
+@keyframes assembleIn {
+  from {
+    opacity: 0;
+    transform: rotate(8deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}

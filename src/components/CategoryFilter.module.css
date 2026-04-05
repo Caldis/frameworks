@@ -1,0 +1,28 @@
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: #555;
+}
+
+.btnActive {
+  background: #1a1916;
+  color: white;
+  border-color: #1a1916;
+}
+
+.count {
+  margin-left: 4px;
+  opacity: 0.6;
+}

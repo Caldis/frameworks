@@ -1,8 +1,10 @@
 [
   {
+    "id": 59,
     "name": "Blue-Green Deployment",
     "name_zh": "蓝绿部署",
     "slug": "blue-green-deployment",
+    "category": "deployment",
     "desc": "Zero-downtime releases via two identical prod environments",
     "desc_zh": "通过两套相同生产环境实现零停机发布",
     "steps": [
@@ -20,35 +22,43 @@
       "保留蓝色环境待命以便快速回滚，稳定后再下线"
     ],
     "ai_relevant": true,
-    "viz_type": "flow"
+    "viz_type": "flow",
+    "related": ["canary-deployment", "feature-flags", "gitops"],
+    "tags": ["deployment", "zero-downtime", "blue-green", "rollback"]
   },
   {
+    "id": 60,
     "name": "Canary Deployment",
     "name_zh": "金丝雀发布",
     "slug": "canary-deployment",
+    "category": "deployment",
     "desc": "Gradually roll out changes to a small user subset first",
     "desc_zh": "先向小部分用户灰度发布变更，再逐步全量推送",
     "steps": [
       "Deploy the new version alongside the stable version in production",
-      "Route a small percentage (1–5%) of real traffic to the canary instance",
+      "Route a small percentage (1-5%) of real traffic to the canary instance",
       "Monitor key metrics: error rates, latency, and business KPIs for the canary",
       "Incrementally increase traffic percentage if metrics remain healthy",
       "Promote canary to 100% or roll back automatically based on threshold alerts"
     ],
     "steps_zh": [
       "在生产环境中将新版本与稳定版本并行部署",
-      "将少量真实流量（1–5%）路由到金丝雀实例",
+      "将少量真实流量（1-5%）路由到金丝雀实例",
       "监控金丝雀的关键指标：错误率、延迟及业务KPI",
       "若指标正常则逐步提高流量比例",
       "依据阈值告警决定将金丝雀全量推送或自动回滚"
     ],
     "ai_relevant": true,
-    "viz_type": "flow"
+    "viz_type": "flow",
+    "related": ["blue-green-deployment", "feature-flags", "dora-metrics"],
+    "tags": ["deployment", "canary", "gradual-rollout", "progressive-delivery"]
   },
   {
+    "id": 61,
     "name": "Feature Flags",
     "name_zh": "功能开关",
     "slug": "feature-flags",
+    "category": "deployment",
     "desc": "Decouple code deployment from feature release via toggles",
     "desc_zh": "通过开关将代码部署与功能发布解耦",
     "steps": [
@@ -66,12 +76,16 @@
       "功能完全上线后移除开关及已废弃的代码路径"
     ],
     "ai_relevant": true,
-    "viz_type": "tree"
+    "viz_type": "tree",
+    "related": ["canary-deployment", "blue-green-deployment", "branch-by-abstraction"],
+    "tags": ["feature-flags", "toggles", "release-management", "progressive-delivery"]
   },
   {
+    "id": 62,
     "name": "GitOps",
     "name_zh": "GitOps",
     "slug": "gitops",
+    "category": "deployment",
     "desc": "Use Git as the single source of truth for infra state",
     "desc_zh": "以Git作为基础设施状态的唯一可信来源",
     "steps": [
@@ -89,12 +103,16 @@
       "控制器自动将集群协调至Git声明的期望状态"
     ],
     "ai_relevant": false,
-    "viz_type": "cycle"
+    "viz_type": "cycle",
+    "related": ["infrastructure-as-code", "three-ways-devops", "dora-metrics"],
+    "tags": ["gitops", "declarative", "reconciliation", "kubernetes"]
   },
   {
+    "id": 63,
     "name": "DORA Metrics",
     "name_zh": "DORA指标",
     "slug": "dora-metrics",
+    "category": "deployment",
     "desc": "Four elite metrics measuring software delivery performance",
     "desc_zh": "衡量软件交付效能的四项精英指标",
     "steps": [
@@ -112,12 +130,16 @@
       "对照DORA精英/高/中/低等级进行基准对比，制定季度改进目标"
     ],
     "ai_relevant": false,
-    "viz_type": "radar"
+    "viz_type": "radar",
+    "related": ["three-ways-devops", "calms-framework", "sli-slo-sla"],
+    "tags": ["dora", "delivery-performance", "metrics", "devops"]
   },
   {
+    "id": 64,
     "name": "CALMS Framework",
     "name_zh": "CALMS框架",
     "slug": "calms-framework",
+    "category": "deployment",
     "desc": "Five DevOps pillars: Culture, Automation, Lean, Measurement, Sharing",
     "desc_zh": "DevOps五大支柱：文化、自动化、精益、度量、共享",
     "steps": [
@@ -135,20 +157,24 @@
       "共享：建立内部知识库、运维手册，开展跨团队学习交流"
     ],
     "ai_relevant": false,
-    "viz_type": "pyramid"
+    "viz_type": "pyramid",
+    "related": ["three-ways-devops", "dora-metrics", "team-topologies"],
+    "tags": ["devops", "culture", "automation", "lean", "sharing"]
   },
   {
+    "id": 65,
     "name": "Three Ways of DevOps",
     "name_zh": "DevOps三步法",
     "slug": "three-ways-devops",
+    "category": "deployment",
     "desc": "Flow, Feedback, and Continual Learning as DevOps foundations",
     "desc_zh": "以流动、反馈、持续学习为核心的DevOps基础原则",
     "steps": [
-      "First Way – Flow: optimize end-to-end delivery pipeline from dev to ops, minimizing batch size and WIP",
+      "First Way - Flow: optimize end-to-end delivery pipeline from dev to ops, minimizing batch size and WIP",
       "Map the value stream and eliminate handoffs, queues, and rework that slow throughput",
-      "Second Way – Feedback: build fast feedback loops at every stage with automated testing and monitoring",
+      "Second Way - Feedback: build fast feedback loops at every stage with automated testing and monitoring",
       "Create telemetry and alerting so problems are detected and fixed at the source quickly",
-      "Third Way – Continual Learning: institutionalize blameless retrospectives, experimentation, and knowledge sharing"
+      "Third Way - Continual Learning: institutionalize blameless retrospectives, experimentation, and knowledge sharing"
     ],
     "steps_zh": [
       "第一步——流动：优化从开发到运维的端到端交付流水线，最小化批次大小和在制品数量",
@@ -158,12 +184,16 @@
       "第三步——持续学习：将无责任回顾、实验文化和知识共享制度化"
     ],
     "ai_relevant": false,
-    "viz_type": "flow"
+    "viz_type": "flow",
+    "related": ["calms-framework", "dora-metrics", "continuous-architecture"],
+    "tags": ["devops", "flow", "feedback", "continual-learning"]
   },
   {
+    "id": 66,
     "name": "Infrastructure as Code",
     "name_zh": "基础设施即代码",
     "slug": "infrastructure-as-code",
+    "category": "deployment",
     "desc": "Manage and provision infrastructure through machine-readable config",
     "desc_zh": "通过机器可读配置文件管理和供应基础设施",
     "steps": [
@@ -181,41 +211,49 @@
       "使用模块和远程状态（remote state）提升复用性，管理特定环境配置"
     ],
     "ai_relevant": false,
-    "viz_type": "tree"
+    "viz_type": "tree",
+    "related": ["gitops", "three-ways-devops", "service-mesh-pattern"],
+    "tags": ["iac", "terraform", "infrastructure", "automation", "declarative"]
   },
   {
+    "id": 67,
     "name": "Twelve-Factor App",
-    "name_zh": "十二因素应用",
+    "name_zh": "十二要素应用",
     "slug": "twelve-factor-app",
-    "desc": "Twelve principles for building cloud-native, scalable SaaS apps",
-    "desc_zh": "构建云原生可扩展SaaS应用的十二项原则",
+    "category": "deployment",
+    "desc": "12 principles for building scalable, maintainable cloud services",
+    "desc_zh": "构建可扩展、可维护云服务的12条原则",
     "steps": [
-      "Audit codebase: one codebase per app in version control, with multiple deploys per environment",
-      "Externalize all config (credentials, URLs, env-specific values) into environment variables",
-      "Treat backing services (DB, cache, queues) as attached resources switchable via config",
-      "Separate build, release, and run stages; make each release immutable with a unique ID",
-      "Design stateless processes, externalize session/state, and export logs as event streams"
+      "Audit the codebase: one codebase in version control, with all dependencies explicitly declared and isolated",
+      "Externalize all configuration into environment variables; never commit secrets or environment-specific config to code",
+      "Treat backing services (databases, queues, caches) as attached resources swappable via config",
+      "Enforce strict separation of build, release, and run stages; build once, deploy the artifact to many environments",
+      "Design for disposability and horizontal scale: stateless processes, fast startup, graceful shutdown, dev/prod parity"
     ],
     "steps_zh": [
-      "审查代码库：每个应用对应一个版本控制仓库，支持多环境多份部署",
-      "将所有配置（凭证、URL、环境特定值）外化到环境变量中",
-      "将后端服务（数据库、缓存、消息队列）视为可通过配置替换的附加资源",
-      "分离构建、发布和运行阶段，每次发布不可变且具有唯一ID",
-      "设计无状态进程，外部化会话/状态，将日志作为事件流导出"
+      "审计代码库：单一代码库纳入版本控制，所有依赖显式声明并隔离",
+      "将所有配置外部化为环境变量；不将密钥或环境特定配置提交到代码",
+      "将后端服务（数据库、队列、缓存）视为可通过配置替换的附加资源",
+      "严格分离构建、发布和运行阶段；一次构建，将制品部署到多个环境",
+      "为可处置性和水平扩展而设计：无状态进程、快速启动、优雅关闭、开发与生产环境对等"
     ],
-    "ai_relevant": true,
-    "viz_type": "pyramid"
+    "ai_relevant": false,
+    "viz_type": "pyramid",
+    "related": ["infrastructure-as-code", "gitops", "calms-framework"],
+    "tags": ["twelve-factor", "cloud-native", "saas", "principles", "scalability"]
   },
   {
+    "id": 68,
     "name": "SLI/SLO/SLA",
     "name_zh": "SLI/SLO/SLA",
     "slug": "sli-slo-sla",
+    "category": "deployment",
     "desc": "Define and measure service reliability through layered objectives",
     "desc_zh": "通过分层目标体系定义和度量服务可靠性",
     "steps": [
       "Define SLIs (Service Level Indicators): choose quantitative measures like availability, latency, throughput",
       "Set SLOs (Service Level Objectives): establish target thresholds for each SLI (e.g., 99.9% availability)",
-      "Calculate Error Budget: the allowable failure margin (1 – SLO) available for risk-taking and innovation",
+      "Calculate Error Budget: the allowable failure margin (1 - SLO) available for risk-taking and innovation",
       "Monitor SLIs in real time with dashboards; burn rate alerts signal when budget depletes too fast",
       "Formalize SLAs (Service Level Agreements) with customers; tie consequences to SLO breaches"
     ],
@@ -227,12 +265,16 @@
       "与客户签订正式SLA，明确违反SLO时的后果与处置机制"
     ],
     "ai_relevant": true,
-    "viz_type": "pyramid"
+    "viz_type": "pyramid",
+    "related": ["four-golden-signals", "dora-metrics", "chaos-engineering"],
+    "tags": ["sli", "slo", "sla", "reliability", "error-budget"]
   },
   {
+    "id": 69,
     "name": "Cell-Based Architecture",
     "name_zh": "单元化架构",
     "slug": "cell-based-architecture",
+    "category": "deployment",
     "desc": "Partition systems into independent cells to contain blast radius",
     "desc_zh": "将系统划分为独立单元以限制故障影响范围",
     "steps": [
@@ -250,12 +292,16 @@
       "使用单元级健康检查，对故障单元自动排水和故障切换，不影响全局"
     ],
     "ai_relevant": false,
-    "viz_type": "matrix"
+    "viz_type": "matrix",
+    "related": ["bulkhead-pattern", "microservices-decomposition", "blue-green-deployment"],
+    "tags": ["cell-architecture", "blast-radius", "isolation", "multi-tenant"]
   },
   {
+    "id": 70,
     "name": "MLOps",
     "name_zh": "MLOps",
     "slug": "mlops",
+    "category": "deployment",
     "desc": "Apply DevOps practices to ML model lifecycle in production",
     "desc_zh": "将DevOps实践应用于机器学习模型的生产全生命周期",
     "steps": [
@@ -273,12 +319,16 @@
       "检测到漂移或性能劣化时触发自动化重训练流水线"
     ],
     "ai_relevant": true,
-    "viz_type": "cycle"
+    "viz_type": "cycle",
+    "related": ["llmops", "dora-metrics", "canary-deployment"],
+    "tags": ["mlops", "machine-learning", "model-lifecycle", "training-pipeline"]
   },
   {
+    "id": 71,
     "name": "LLMOps",
     "name_zh": "LLMOps",
     "slug": "llmops",
+    "category": "deployment",
     "desc": "Operationalize LLM-based apps with prompt, eval, and cost management",
     "desc_zh": "通过提示、评测与成本管理将大语言模型应用投入生产运营",
     "steps": [
@@ -296,12 +346,16 @@
       "在生产环境监控幻觉率、延迟SLO、单次请求成本及安全违规情况"
     ],
     "ai_relevant": true,
-    "viz_type": "cycle"
+    "viz_type": "cycle",
+    "related": ["mlops", "prompt-testing", "ai-observability-framework"],
+    "tags": ["llmops", "prompt-management", "evaluation", "cost-management", "ai"]
   },
   {
+    "id": 72,
     "name": "Agent Deployment Patterns",
     "name_zh": "Agent部署模式",
     "slug": "agent-deployment-patterns",
+    "category": "deployment",
     "desc": "Patterns for reliably deploying autonomous AI agents in production",
     "desc_zh": "在生产环境中可靠部署自主AI Agent的架构模式",
     "steps": [
@@ -309,7 +363,7 @@
       "Containerize the agent runtime with pinned LLM versions and tool dependencies for reproducibility",
       "Implement guardrails: input validation, output filtering, cost caps, and rate limiting per agent instance",
       "Deploy with observability: trace multi-step reasoning chains, tool calls, retries, and final outputs end-to-end",
-      "Use staged rollout (shadow → canary → full) and maintain kill-switch capability to halt runaway agents"
+      "Use staged rollout (shadow -> canary -> full) and maintain kill-switch capability to halt runaway agents"
     ],
     "steps_zh": [
       "定义Agent的执行边界：可用工具、最大步骤数、记忆范围及人工介入检查点",
@@ -319,6 +373,8 @@
       "采用分阶段发布（影子→金丝雀→全量），并保留可立即停止失控Agent的熔断开关"
     ],
     "ai_relevant": true,
-    "viz_type": "flow"
+    "viz_type": "flow",
+    "related": ["agent-reliability-patterns", "llmops", "canary-deployment"],
+    "tags": ["agent-deployment", "guardrails", "staged-rollout", "kill-switch", "ai"]
   }
 ]
