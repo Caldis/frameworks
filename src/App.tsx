@@ -1,14 +1,17 @@
 import { Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
+import HomePage from './pages/HomePage'
+import CategoryPage from './pages/CategoryPage'
+import MapPage from './pages/MapPage'
 
 export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/" element={<div>Home — Building...</div>} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/frameworks/:slug" element={<div>Framework Detail</div>} />
-        <Route path="/category/:slug" element={<div>Category</div>} />
-        <Route path="/map" element={<div>Map</div>} />
+        <Route path="/category/:slug" element={<CategoryPage />} />
+        <Route path="/map" element={<MapPage />} />
       </Route>
     </Routes>
   )

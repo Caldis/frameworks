@@ -1,0 +1,121 @@
+.page {
+  padding: 32px 0;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 24px;
+  font-size: 13px;
+  color: #999;
+  text-decoration: none;
+}
+
+.backLink:hover {
+  color: var(--text);
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.nameRow {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.name {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.1;
+}
+
+.nameZh {
+  font-size: 18px;
+  color: #888;
+  margin-left: 12px;
+}
+
+.desc {
+  font-size: 16px;
+  color: #555;
+  margin-top: 12px;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.descZh {
+  display: none;
+}
+
+.desc:hover .descDefault {
+  display: none;
+}
+
+.desc:hover .descZh {
+  display: inline;
+}
+
+.stats {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #999;
+  margin-top: 8px;
+}
+
+.gridWrap {
+  /* wrapper for AI border targeting */
+}
+
+.aiSection {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.aiSectionTitle {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.aiGroup {
+  margin-bottom: 24px;
+}
+
+.aiGroupName {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.aiItem {
+  display: inline-block;
+  padding: 4px 12px;
+  margin: 4px;
+  border-radius: 8px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: background 0.15s;
+  color: var(--text);
+}
+
+.aiItem:hover {
+  opacity: 0.8;
+}
+
+.notFound {
+  padding: 64px 0;
+  text-align: center;
+}
+
+.notFound h2 {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.notFound a {
+  color: #999;
+  font-size: 14px;
+}

@@ -1,0 +1,121 @@
+import { useParams, useNavigate, Link } from 'react-router-dom'
+import type { Framework } from '../types'
+import { categories } from '../data/categories'
+import { getFrameworksByCategory, getAIRelevantFrameworks } from '../data/loader'
+import { useFavorites } from '../hooks/useFavorites'
+import CardGrid from '../components/CardGrid'
+import styles from './CategoryPage.module.css'
+
+export default function CategoryPage() {
+  const { slug } = useParams<{ slug: string }>()
+  const navigate = useNavigate()
+  const { favorites, toggleFavorite } = useFavorites()
+
+  const category = categories.find(c => c.slug === slug)
+
+  if (!category) {
+    return (
+      <div className={styles.notFound}>
+        <h2>Category not found</h2>
+        <Link to="/">Back to all frameworks</Link>
+      </div>
+    )
+  }
+
+  const frameworks = getFrameworksByCategory(category.key)
+  const aiCount = frameworks.filter(f => f.ai_relevant).length
+
+  // Build nth-child selectors for AI-relevant cards in the grid
+  const aiIndices = frameworks
+    .map((fw, i) => (fw.ai_relevant ? i + 1 : null))
+    .filter((i): i is number => i !== null)
+  const aiBorderCSS = aiIndices.length > 0
+    ? aiIndices
+        .map(n => `.${styles.gridWrap} > div > div:nth-child(${n})`)
+        .join(',\n') + ` { border-left: 3px solid #f8e8e3; }`
+    : ''
+
+  const handleCardClick = (fw: Framework) => {
+    navigate(`/frameworks/${fw.slug}`)
+  }
+
+  // For the AI category page, gather AI-relevant frameworks grouped by other categories
+  const isAICategory = category.key === 'ai'
+  const aiAcrossCategories = isAICategory
+    ? getAIGroupedByCategory()
+    : null
+
+  return (
+    <div className={styles.page}>
+      <Link to="/" className={styles.backLink}>
+        &larr; All Frameworks
+      </Link>
+
+      <div className={styles.header}>
+        <div className={styles.nameRow}>
+          <h1 className={styles.name} style={{ color: category.colorText }}>
+            {category.name}
+          </h1>
+          <span className={styles.nameZh}>{category.name_zh}</span>
+        </div>
+        <p className={styles.desc}>
+          <span className={styles.descDefault}>{category.description}</span>
+          <span className={styles.descZh}>{category.description_zh}</span>
+        </p>
+        <div className={styles.stats}>
+          {frameworks.length} frameworks &middot; {aiCount} AI-relevant
+        </div>
+      </div>
+
+      {aiBorderCSS && <style>{aiBorderCSS}</style>}
+      <div className={styles.gridWrap}>
+        <CardGrid
+          frameworks={frameworks}
+          onCardClick={handleCardClick}
+          favorites={favorites}
+          onToggleFavorite={toggleFavorite}
+        />
+      </div>
+
+      {isAICategory && aiAcrossCategories && (
+        <div className={styles.aiSection}>
+          <h2 className={styles.aiSectionTitle}>AI Across All Categories</h2>
+          {aiAcrossCategories.map(group => (
+            <div key={group.category.key} className={styles.aiGroup}>
+              <div
+                className={styles.aiGroupName}
+                style={{ color: group.category.colorText }}
+              >
+                {group.category.name}
+              </div>
+              <div>
+                {group.frameworks.map(fw => (
+                  <Link
+                    key={fw.slug}
+                    to={`/frameworks/${fw.slug}`}
+                    className={styles.aiItem}
+                    style={{ backgroundColor: group.category.colorBg }}
+                  >
+                    {fw.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+function getAIGroupedByCategory() {
+  const aiFrameworks = getAIRelevantFrameworks()
+  const otherCategories = categories.filter(c => c.key !== 'ai')
+
+  return otherCategories
+    .map(cat => {
+      const fws = aiFrameworks.filter(f => f.category === cat.key)
+      return { category: cat, frameworks: fws }
+    })
+    .filter(group => group.frameworks.length > 0)
+}
