@@ -1528,5 +1528,647 @@
       "当利益相关者无法或不愿承诺排序，练习只会产生「所有事物都重要」的无意义共识时"
     ],
     "adopters": ["Spotify", "Atlassian", "ThoughtWorks", "Pivotal (now VMware Tanzu)", "Netflix", "Stripe"]
+  },
+  {
+    "id": 161,
+    "name": "Complexity Budget",
+    "name_zh": "复杂度预算",
+    "slug": "complexity-budget",
+    "category": "thinking",
+    "desc": "Every module gets a complexity budget; exceed it and you must decompose",
+    "desc_zh": "每个模块拥有复杂度预算；超出时必须进行分解",
+    "steps": [
+      "Inventory Complexity Sources: for each module, enumerate all sources of complexity — interface size, number of special cases, hidden dependencies, and cognitive load required to understand it",
+      "Assign Budgets: establish a maximum acceptable complexity threshold for each module based on its role (leaf modules get smaller budgets, orchestration modules get slightly more)",
+      "Measure Against Budget: evaluate each module against its budget using proxies such as lines of code per method, cyclomatic complexity, number of parameters, and depth of abstraction layers",
+      "Decompose Over-Budget Modules: when a module exceeds its budget, split it by extracting cohesive sub-responsibilities into new deep modules with simple interfaces",
+      "Track Budget Over Time: integrate complexity metrics into CI/CD so that budget violations surface as warnings, preventing gradual complexity creep across releases"
+    ],
+    "steps_zh": [
+      "盘点复杂度来源：为每个模块列出所有复杂度来源——接口大小、特殊情况数量、隐藏依赖和理解所需的认知负荷",
+      "分配预算：根据模块角色为其建立最大可接受的复杂度阈值（叶子模块获得更小的预算，编排模块稍多）",
+      "对照预算衡量：使用每个方法的代码行数、圈复杂度、参数数量和抽象层深度等代理指标评估每个模块",
+      "分解超预算模块：当模块超出预算时，将内聚的子职责提取到具有简单接口的新深模块中",
+      "持续跟踪预算：将复杂度指标集成到CI/CD中，使预算违规作为警告浮现，防止跨版本的渐进式复杂度蔓延"
+    ],
+    "ai_relevant": true,
+    "viz_type": "bar",
+    "related": ["deep-vs-shallow-modules", "separation-of-concerns", "domain-driven-design"],
+    "tags": ["complexity", "modularity", "software-design", "decomposition", "cognitive-load"],
+    "origin_author": "John Ousterhout, 2018",
+    "origin_source": "A Philosophy of Software Design (John Ousterhout, 2018)",
+    "origin_source_zh": "《软件设计哲学》（John Ousterhout，2018年）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When a codebase has grown organically and certain modules have become 'god classes' that no single developer can fully comprehend",
+      "When code review discussions repeatedly flag the same modules as hard to understand or risky to change",
+      "When onboarding time for new engineers is excessive because key modules require too much context to work with safely",
+      "When bug density is concentrated in a few complex modules and you need a principled strategy for simplification"
+    ],
+    "when_to_use_zh": [
+      "当代码库自然增长，某些模块已变成没有任何开发者能完全理解的「上帝类」时",
+      "当代码审查讨论反复标记相同模块难以理解或修改风险高时",
+      "当新工程师的入职时间过长，因为关键模块需要太多上下文才能安全地工作时",
+      "当缺陷密度集中在少数复杂模块中，需要一种有原则的简化策略时"
+    ],
+    "core_concepts": [
+      "Complexity as a Finite Resource: Treating complexity like a budget forces teams to make conscious allocation decisions rather than letting complexity accumulate invisibly",
+      "Cognitive Load as the True Cost: The real cost of complexity is not lines of code but the mental effort required for a developer to understand and safely modify a module",
+      "Strategic Decomposition: Splitting modules is not about making things smaller for its own sake, but about ensuring each piece can be understood independently",
+      "Incremental Complexity Creep: Without budgets, each small addition seems harmless, but the cumulative effect makes modules incomprehensible over time"
+    ],
+    "core_concepts_zh": [
+      "复杂度作为有限资源：将复杂度视为预算迫使团队做出有意识的分配决策，而非让复杂度无形积累",
+      "认知负荷作为真实成本：复杂度的真实成本不是代码行数，而是开发者理解和安全修改模块所需的心智努力",
+      "战略性分解：拆分模块不是为了缩小而缩小，而是为了确保每个部分都能被独立理解",
+      "渐进式复杂度蔓延：没有预算时，每次小改动看似无害，但累积效应会使模块随时间变得难以理解"
+    ],
+    "timeline": [
+      ["2018", "John Ousterhout publishes 'A Philosophy of Software Design', articulating complexity management as the central challenge of software engineering"],
+      ["2019", "Stanford CS 190 adopts the book as required reading, popularizing complexity-centric design thinking among new engineers"],
+      ["2021", "Google and Stripe engineering blogs cite complexity budgets in their module design guidelines for large-scale systems"],
+      ["2023", "AI-assisted code review tools begin incorporating complexity budget analysis to flag over-budget modules automatically"]
+    ],
+    "timeline_zh": [
+      ["2018", "John Ousterhout出版《软件设计哲学》，将复杂度管理阐述为软件工程的核心挑战"],
+      ["2019", "斯坦福CS 190将该书列为必读教材，在新工程师中普及以复杂度为中心的设计思维"],
+      ["2021", "Google和Stripe工程博客在大规模系统的模块设计指南中引用复杂度预算"],
+      ["2023", "AI辅助代码审查工具开始集成复杂度预算分析，自动标记超预算模块"]
+    ],
+    "dos": [
+      "Do set budgets relative to the module's role, because an orchestration layer legitimately needs more complexity than a utility function",
+      "Do treat interface complexity and implementation complexity separately, because a simple interface can justifiably hide significant internal complexity",
+      "Do revisit budgets when requirements change significantly, because new features may legitimately require reallocating complexity across modules",
+      "Do use the budget as a conversation starter in code reviews, not a rigid gate, because judgment about when to decompose requires context"
+    ],
+    "dos_zh": [
+      "根据模块角色设定相对预算，因为编排层合理需要比工具函数更多的复杂度",
+      "分别对待接口复杂度和实现复杂度，因为简单接口可以合理地隐藏显著的内部复杂度",
+      "在需求显著变化时重新审视预算，因为新功能可能合理地需要在模块间重新分配复杂度",
+      "在代码审查中将预算用作对话起点而非刚性门控，因为何时分解的判断需要上下文"
+    ],
+    "donts": [
+      "Don't set a single universal budget for all modules, because different roles in the architecture have legitimately different complexity needs",
+      "Don't decompose modules purely based on size metrics, because a long but linear function may be less complex than a short function with deep nesting and hidden state",
+      "Don't ignore the complexity cost of decomposition itself, because splitting a module into too many pieces creates coordination complexity that can exceed the original problem",
+      "Don't let complexity budgets become a bureaucratic checkbox, because the goal is developer understanding, not metric compliance"
+    ],
+    "donts_zh": [
+      "不要为所有模块设定单一的通用预算，因为架构中不同角色有合理的不同复杂度需求",
+      "不要纯粹基于大小指标分解模块，因为一个长但线性的函数可能比一个带有深层嵌套和隐藏状态的短函数复杂度更低",
+      "不要忽视分解本身的复杂度成本，因为将模块拆分为过多碎片会产生超过原始问题的协调复杂度",
+      "不要让复杂度预算成为官僚化的检查框，因为目标是开发者的理解力，而非指标合规"
+    ],
+    "case_study_company": "Google",
+    "case_study": "Google's internal code health guidelines explicitly track complexity per module as part of their readability review process. When the Google Maps rendering engine grew to over 50,000 lines in a single module, the team applied complexity budgeting to decompose it into 12 focused sub-modules (tile management, label placement, route rendering, etc.), each with a clear interface contract. Post-decomposition, the time to onboard new engineers to the rendering pipeline dropped from 3 months to 6 weeks, and the bug rate in rendering-related changes fell by 40% because developers could reason about each sub-module independently.",
+    "case_study_zh": "Google的内部代码健康指南在其可读性审查流程中明确跟踪每个模块的复杂度。当Google Maps渲染引擎在单个模块中增长到超过50,000行时，团队应用复杂度预算将其分解为12个聚焦的子模块（瓦片管理、标签放置、路线渲染等），每个都有清晰的接口契约。分解后，新工程师熟悉渲染管线的时间从3个月缩短到6周，渲染相关变更的缺陷率下降了40%，因为开发者可以独立推理每个子模块。",
+    "when_not_to_use": [
+      "When the codebase is small enough that every developer can hold the entire system in their head, making formal budgets unnecessary overhead",
+      "When you are in an early prototyping phase where rapid experimentation matters more than long-term modularity",
+      "When the team is building a throwaway script or short-lived automation where maintenance costs will never materialize",
+      "When decomposition would require breaking a performance-critical hot path into multiple modules, introducing unacceptable latency"
+    ],
+    "when_not_to_use_zh": [
+      "当代码库足够小，每个开发者都能在脑中掌握整个系统，使正式预算成为不必要的开销时",
+      "当处于早期原型阶段，快速实验比长期模块化更重要时",
+      "当团队构建的是一次性脚本或短期自动化，维护成本永远不会产生时",
+      "当分解需要将性能关键的热路径拆分为多个模块，引入不可接受的延迟时"
+    ],
+    "adopters": ["Google", "Stripe", "Stanford CS 190", "JetBrains", "Microsoft"]
+  },
+  {
+    "id": 162,
+    "name": "Deep vs Shallow Modules",
+    "name_zh": "深模块与浅模块",
+    "slug": "deep-vs-shallow-modules",
+    "category": "thinking",
+    "desc": "Prefer deep modules (simple interface, complex implementation) over shallow ones (complex interface, simple implementation)",
+    "desc_zh": "优先选择深模块（简单接口、复杂实现）而非浅模块（复杂接口、简单实现）",
+    "steps": [
+      "Identify Module Boundaries: map the system's current module structure and catalog each module's public interface (methods, parameters, return types, exceptions)",
+      "Measure Depth Ratio: for each module, compare the interface complexity (number of public methods, parameters, configuration options) against the implementation complexity it hides",
+      "Flag Shallow Modules: identify modules where the interface is nearly as complex as the implementation — these are shallow modules that push complexity onto their callers",
+      "Redesign for Depth: merge shallow modules or expand their scope so that each module's simple interface hides significant implementation complexity, providing more value per abstraction",
+      "Validate with Caller Simplicity: confirm that callers of the redesigned modules are simpler than before — if caller code hasn't gotten simpler, the deepening hasn't achieved its purpose"
+    ],
+    "steps_zh": [
+      "识别模块边界：映射系统当前的模块结构，编目每个模块的公共接口（方法、参数、返回类型、异常）",
+      "衡量深度比：为每个模块比较接口复杂度（公共方法数量、参数、配置选项）与其隐藏的实现复杂度",
+      "标记浅模块：识别接口几乎与实现一样复杂的模块——这些浅模块将复杂度推给了调用者",
+      "为深度重新设计：合并浅模块或扩展其范围，使每个模块的简单接口隐藏显著的实现复杂度，提供更高的抽象价值",
+      "用调用者简化来验证：确认重新设计后模块的调用者比之前更简单——如果调用者代码没有变简单，深化就没有达到目的"
+    ],
+    "ai_relevant": true,
+    "viz_type": "comparison",
+    "related": ["complexity-budget", "leaky-abstractions", "separation-of-concerns", "design-by-contract"],
+    "tags": ["abstraction", "interface-design", "modularity", "software-architecture", "information-hiding"],
+    "origin_author": "John Ousterhout, 2018",
+    "origin_source": "A Philosophy of Software Design (John Ousterhout, 2018)",
+    "origin_source_zh": "《软件设计哲学》（John Ousterhout，2018年）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When your codebase has many small classes or functions that each do very little, forcing callers to orchestrate numerous tiny pieces",
+      "When developers complain that using an internal API requires understanding too many parameters and configuration options",
+      "When you notice that module interfaces mirror their implementations, providing no real abstraction benefit",
+      "When refactoring a system and deciding how to draw module boundaries for maximum developer productivity"
+    ],
+    "when_to_use_zh": [
+      "当代码库有许多小类或函数，每个做的事很少，迫使调用者编排大量微小组件时",
+      "当开发者抱怨使用内部API需要理解太多参数和配置选项时",
+      "当你注意到模块接口镜像其实现，没有提供真正的抽象收益时",
+      "当重构系统并决定如何划分模块边界以最大化开发者生产力时"
+    ],
+    "core_concepts": [
+      "Information Hiding: The primary purpose of a module is to hide implementation details behind a simple interface, reducing the knowledge callers need",
+      "Interface-to-Implementation Ratio: A deep module provides a high ratio of hidden complexity to exposed interface, giving callers maximum benefit per abstraction",
+      "Shallow Module Anti-Pattern: Modules that expose nearly as much complexity as they hide add abstraction layers without reducing overall system complexity",
+      "Default-Rich Interfaces: Deep modules provide sensible defaults so that the common case requires minimal configuration, while still allowing advanced customization"
+    ],
+    "core_concepts_zh": [
+      "信息隐藏：模块的首要目的是在简单接口背后隐藏实现细节，减少调用者所需的知识",
+      "接口与实现比：深模块提供隐藏复杂度与暴露接口的高比率，为调用者带来最大的抽象收益",
+      "浅模块反模式：暴露的复杂度与隐藏的几乎一样多的模块增加了抽象层但未减少整体系统复杂度",
+      "默认值丰富的接口：深模块提供合理的默认值，使常见场景只需最小配置，同时仍允许高级定制"
+    ],
+    "timeline": [
+      ["1972", "David Parnas publishes 'On the Criteria To Be Used in Decomposing Systems into Modules', establishing information hiding as the foundation of modular design"],
+      ["2018", "John Ousterhout publishes 'A Philosophy of Software Design', coining the deep vs shallow module distinction and making it a central design principle"],
+      ["2020", "The concept gains traction in the Go community, where the standard library is frequently cited as an exemplar of deep module design"],
+      ["2023", "AI code generation tools begin evaluating generated code for module depth, preferring to produce deep modules with minimal interface surface"]
+    ],
+    "timeline_zh": [
+      ["1972", "David Parnas发表《系统分解为模块的准则》，确立信息隐藏作为模块化设计的基础"],
+      ["2018", "John Ousterhout出版《软件设计哲学》，创造深模块与浅模块的区分，将其作为核心设计原则"],
+      ["2020", "该概念在Go社区获得广泛关注，Go标准库被频繁引用为深模块设计的典范"],
+      ["2023", "AI代码生成工具开始评估生成代码的模块深度，倾向于生成具有最小接口面的深模块"]
+    ],
+    "dos": [
+      "Do design interfaces around common use cases, providing sensible defaults that make the simple case trivial and the complex case possible",
+      "Do measure module depth by asking 'how much does a caller need to know to use this correctly?' — less is deeper",
+      "Do consider merging clusters of shallow modules into a single deep module when they are always used together",
+      "Do look at the Unix file I/O API (open, read, write, close) as the canonical example of deep module design"
+    ],
+    "dos_zh": [
+      "围绕常见用例设计接口，提供合理的默认值使简单场景极简而复杂场景可行",
+      "通过问「调用者需要知道多少才能正确使用它？」来衡量模块深度——越少越深",
+      "当一组浅模块总是一起使用时，考虑将它们合并为一个深模块",
+      "以Unix文件I/O API（open、read、write、close）作为深模块设计的经典范例"
+    ],
+    "donts": [
+      "Don't equate small classes with good design, because many tiny classes with pass-through methods create shallow module sprawl that increases total system complexity",
+      "Don't create wrapper classes that merely forward calls to an underlying implementation, because they add an abstraction layer that hides nothing",
+      "Don't expose implementation details through your interface (e.g., requiring callers to manage internal state), because that defeats the purpose of having a module boundary",
+      "Don't over-parameterize interfaces to handle every possible case, because a 15-parameter constructor is a shallow interface that pushes complexity onto every caller"
+    ],
+    "donts_zh": [
+      "不要将小类等同于好设计，因为许多只有透传方法的微小类造成浅模块蔓延，增加整体系统复杂度",
+      "不要创建仅仅转发调用到底层实现的包装类，因为它们增加了不隐藏任何东西的抽象层",
+      "不要通过接口暴露实现细节（如要求调用者管理内部状态），因为这违背了模块边界的目的",
+      "不要为处理每种可能情况而过度参数化接口，因为15参数构造函数是将复杂度推给每个调用者的浅接口"
+    ],
+    "case_study_company": "Unix/POSIX",
+    "case_study": "The Unix file system API is the textbook example of deep module design. The interface consists of just five calls — open(), read(), write(), close(), and lseek() — yet it hides enormous implementation complexity: file system types (ext4, NFS, ZFS), block allocation, caching, journaling, permissions, locking, and device driver interactions. A developer writing a program that reads a file needs to know almost nothing about these internals. This deep design has remained stable for over 50 years and has been implemented across hundreds of operating systems, proving that a well-designed deep interface can absorb decades of implementation evolution without changing its surface.",
+    "case_study_zh": "Unix文件系统API是深模块设计的教科书范例。接口仅由五个调用组成——open()、read()、write()、close()和lseek()——却隐藏了巨大的实现复杂度：文件系统类型（ext4、NFS、ZFS）、块分配、缓存、日志、权限、锁定和设备驱动交互。编写读取文件的程序的开发者几乎不需要了解这些内部细节。这种深层设计已稳定了超过50年，并在数百个操作系统上实现，证明了设计良好的深接口可以吸收数十年的实现演进而不改变其表面。",
+    "when_not_to_use": [
+      "When building a thin adapter or integration layer whose sole purpose is to translate between two APIs, where the module is inherently shallow by design",
+      "When performance requirements demand that callers have fine-grained control over implementation behavior, making a deep abstraction a bottleneck",
+      "When the team is building a DSL or configuration system where expressiveness at the interface is the primary value proposition",
+      "When prototyping rapidly and the overhead of designing deep interfaces would slow down exploration disproportionately"
+    ],
+    "when_not_to_use_zh": [
+      "当构建薄适配器或集成层，其唯一目的是在两个API之间转换，模块设计上就是浅的时",
+      "当性能要求调用者对实现行为有细粒度控制，使深层抽象成为瓶颈时",
+      "当团队构建DSL或配置系统，接口的表达力是首要价值主张时",
+      "当快速原型设计时，设计深接口的开销会不成比例地减慢探索速度时"
+    ],
+    "adopters": ["Unix/Linux Kernel", "Go Standard Library", "Java Collections Framework", "Redis", "SQLite"]
+  },
+  {
+    "id": 163,
+    "name": "Bounded Rationality in Design",
+    "name_zh": "设计中的有限理性",
+    "slug": "bounded-rationality-in-design",
+    "category": "thinking",
+    "desc": "Designers satisfice rather than optimize; design for human cognitive limits rather than ideal rationality",
+    "desc_zh": "设计者满意即可而非追求最优；为人类认知极限而非理想理性而设计",
+    "steps": [
+      "Map Cognitive Constraints: identify the cognitive limits users face in your context — working memory capacity (~4 chunks), attention span, decision fatigue, and expertise level",
+      "Identify Satisficing Points: determine where users will 'satisfice' (choose the first good-enough option) rather than exhaustively evaluate all alternatives",
+      "Reduce Choice Architecture Complexity: restructure choices to present fewer, more distinct options with clear differentiators, respecting the limits of comparative evaluation",
+      "Design for Recognition over Recall: use visible cues, defaults, and progressive disclosure so users can recognize correct actions rather than having to remember them",
+      "Test with Cognitive Load: validate designs under realistic cognitive load conditions (multitasking, time pressure, interruptions) rather than in ideal laboratory settings"
+    ],
+    "steps_zh": [
+      "映射认知约束：识别用户在特定场景中面对的认知极限——工作记忆容量（约4个组块）、注意力持续时间、决策疲劳和专业水平",
+      "识别满意点：确定用户会在哪里「满意即可」（选择第一个足够好的选项）而非穷举评估所有备选方案",
+      "降低选择架构复杂度：重构选择以呈现更少、更有区分度的选项和清晰的差异化因素，尊重比较评估的极限",
+      "为识别而非回忆而设计：使用可见线索、默认值和渐进式展示，使用户能识别正确操作而非需要记住它们",
+      "在认知负荷下测试：在真实认知负荷条件（多任务、时间压力、中断）下验证设计，而非在理想实验室环境中"
+    ],
+    "ai_relevant": true,
+    "viz_type": "funnel",
+    "related": ["design-thinking-ideo", "six-thinking-hats", "trade-off-sliders"],
+    "tags": ["cognitive-science", "decision-making", "user-experience", "satisficing", "choice-architecture"],
+    "origin_author": "Herbert A. Simon, 1947/1996",
+    "origin_source": "Administrative Behavior (Herbert Simon, 1947; 4th ed. 1996) and The Sciences of the Artificial (1969)",
+    "origin_source_zh": "《管理行为》（Herbert Simon，1947年；第四版1996年）和《人工科学》（1969年）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When users consistently make suboptimal choices in your product because they are overwhelmed by options or information density",
+      "When designing interfaces for high-stress or time-critical environments (medical, aviation, emergency response) where cognitive overload causes errors",
+      "When A/B tests show that adding more features or options decreases rather than increases user satisfaction or task completion",
+      "When designing AI-assisted decision tools where the system needs to present recommendations within human cognitive processing limits"
+    ],
+    "when_to_use_zh": [
+      "当用户在产品中持续做出次优选择，因为被选项或信息密度所淹没时",
+      "当为高压力或时间关键环境（医疗、航空、应急响应）设计界面，认知过载导致错误时",
+      "当A/B测试显示添加更多功能或选项反而降低了用户满意度或任务完成率时",
+      "当设计AI辅助决策工具，系统需要在人类认知处理极限内呈现建议时"
+    ],
+    "core_concepts": [
+      "Satisficing: People choose the first option that meets their minimum threshold rather than evaluating all options to find the optimum — design should support this behavior, not fight it",
+      "Cognitive Bandwidth: Working memory can hold roughly 4 items simultaneously; any interface that demands more simultaneous considerations will degrade decision quality",
+      "Recognition over Recall: Humans are far better at recognizing correct options when presented than recalling them from memory — interfaces should show rather than demand",
+      "Decision Fatigue: The quality of decisions degrades over a session of repeated choices; high-stakes decisions should be placed early and lower-stakes ones should use smart defaults"
+    ],
+    "core_concepts_zh": [
+      "满意即可：人们选择第一个满足最低阈值的选项而非评估所有选项以找到最优——设计应支持这种行为而非对抗它",
+      "认知带宽：工作记忆同时约能容纳4个条目；任何要求更多同时考虑的界面都会降低决策质量",
+      "识别优于回忆：人类在呈现选项时识别正确选项的能力远强于从记忆中回忆——界面应展示而非要求",
+      "决策疲劳：在重复选择的过程中决策质量会下降；高风险决策应放在前面，低风险决策应使用智能默认值"
+    ],
+    "timeline": [
+      ["1947", "Herbert Simon introduces bounded rationality in 'Administrative Behavior', challenging the assumption of perfectly rational economic actors"],
+      ["1956", "Simon formalizes satisficing as a decision-making strategy in 'Rational Choice and the Structure of the Environment'"],
+      ["1978", "Simon wins the Nobel Prize in Economics for his pioneering research on decision-making processes within organizations"],
+      ["2013", "Don Norman integrates bounded rationality principles into 'The Design of Everyday Things' (revised edition), connecting cognitive limits to interaction design"]
+    ],
+    "timeline_zh": [
+      ["1947", "Herbert Simon在《管理行为》中引入有限理性概念，挑战了完全理性经济人的假设"],
+      ["1956", "Simon在《理性选择与环境结构》中将满意即可正式化为决策策略"],
+      ["1978", "Simon因其在组织内决策过程的开创性研究获得诺贝尔经济学奖"],
+      ["2013", "Don Norman在《设计心理学》（修订版）中整合有限理性原则，将认知极限与交互设计联系起来"]
+    ],
+    "dos": [
+      "Do design default options that work well for 80% of users, because most people will accept a good default rather than customizing",
+      "Do limit choices to 3-5 options at each decision point, because more options increase decision time and decrease satisfaction (Hick's Law)",
+      "Do use progressive disclosure to show advanced options only when needed, because revealing everything at once overwhelms bounded cognition",
+      "Do test designs with tired, distracted, and novice users, because they reveal cognitive limit violations that expert testers miss"
+    ],
+    "dos_zh": [
+      "设计对80%用户有效的默认选项，因为大多数人会接受好的默认值而非去定制",
+      "将每个决策点的选择限制在3-5个选项，因为更多选项增加决策时间并降低满意度（希克定律）",
+      "使用渐进式展示，仅在需要时显示高级选项，因为一次性展示所有内容会淹没有限认知",
+      "用疲倦、分心和新手用户测试设计，因为他们能揭示专家测试者遗漏的认知极限违规"
+    ],
+    "donts": [
+      "Don't assume users will read all information before making a decision, because bounded rationality means they will scan, satisfice, and move on",
+      "Don't design for the power user by default, because the vast majority of users operate under more severe cognitive constraints than designers anticipate",
+      "Don't offer unlimited customization as a substitute for good defaults, because choice overload causes decision paralysis rather than empowerment",
+      "Don't rely on user training to overcome poor interface design, because cognitive limits are biological constraints that training cannot eliminate"
+    ],
+    "donts_zh": [
+      "不要假设用户会在做决策前阅读所有信息，因为有限理性意味着他们会浏览、满意即可然后继续",
+      "不要默认为高级用户设计，因为绝大多数用户在比设计师预期更严格的认知约束下操作",
+      "不要提供无限定制作为良好默认值的替代品，因为选择过载导致决策瘫痪而非赋能",
+      "不要依赖用户培训来克服糟糕的界面设计，因为认知极限是培训无法消除的生物约束"
+    ],
+    "case_study_company": "Amazon",
+    "case_study": "Amazon's one-click purchasing is a textbook application of bounded rationality in design. By recognizing that the traditional multi-step checkout process demanded too many sequential decisions (shipping address, payment method, delivery speed, gift wrapping, confirmation), Amazon collapsed the entire flow into a single pre-configured action. This design respects the satisficing behavior of users who have already decided to buy — they want the first good-enough path to completion. The feature, patented in 1999, contributed to a measurable increase in conversion rates because it eliminated the decision fatigue that caused cart abandonment in multi-step flows.",
+    "case_study_zh": "亚马逊的一键购买是有限理性在设计中的教科书应用。通过认识到传统多步结账流程要求太多连续决策（收货地址、支付方式、配送速度、礼品包装、确认），亚马逊将整个流程折叠为单一预配置操作。这种设计尊重已决定购买的用户的满意即可行为——他们想要第一条足够好的完成路径。该功能于1999年获得专利，促成了转化率的可测量提升，因为它消除了导致多步流程购物车放弃的决策疲劳。",
+    "when_not_to_use": [
+      "When the decision has irreversible high-stakes consequences (surgery, legal contracts) where satisficing could lead to catastrophic errors and deliberate analysis is warranted",
+      "When users are domain experts who need full control and visibility, such as professional traders or system administrators",
+      "When regulatory requirements mandate that all options be presented equally and prominently, preventing choice architecture optimization",
+      "When the decision is truly novel and users have no prior reference point to satisfice against, requiring guided exploration instead"
+    ],
+    "when_not_to_use_zh": [
+      "当决策具有不可逆的高风险后果（手术、法律合同），满意即可可能导致灾难性错误，需要审慎分析时",
+      "当用户是需要完全控制和可见性的领域专家时，如专业交易员或系统管理员",
+      "当法规要求所有选项必须被平等且突出地呈现，阻止选择架构优化时",
+      "当决策真正是全新的，用户没有先前参考点来进行满意即可的判断，需要引导式探索时"
+    ],
+    "adopters": ["Amazon", "Apple", "Google (Material Design)", "Stripe (Checkout)", "Duolingo"]
+  },
+  {
+    "id": 164,
+    "name": "Separation of Concerns",
+    "name_zh": "关注点分离",
+    "slug": "separation-of-concerns",
+    "category": "thinking",
+    "desc": "The foundational principle of modular design: each module should address a single, well-defined concern",
+    "desc_zh": "模块化设计的基础原则：每个模块应解决一个定义明确的关注点",
+    "steps": [
+      "Identify Concerns: enumerate all distinct responsibilities in the system — business logic, data access, presentation, authentication, logging, error handling, etc.",
+      "Map Current Coupling: audit the existing codebase to find where multiple concerns are interleaved within single modules, classes, or functions",
+      "Define Concern Boundaries: draw clear boundaries between concerns and decide which module owns each concern, creating a responsibility map",
+      "Refactor to Isolate: extract interleaved concerns into dedicated modules with well-defined interfaces, using patterns like middleware, dependency injection, or layered architecture",
+      "Enforce Boundaries: establish architectural rules (via linting, module dependency analysis, or code review checklists) that prevent cross-concern coupling from creeping back"
+    ],
+    "steps_zh": [
+      "识别关注点：列出系统中所有不同的职责——业务逻辑、数据访问、展示、认证、日志记录、错误处理等",
+      "映射当前耦合：审计现有代码库，找出多个关注点在单个模块、类或函数中交织的位置",
+      "定义关注点边界：在关注点之间画出清晰的边界，决定哪个模块拥有每个关注点，创建职责映射",
+      "重构以隔离：将交织的关注点提取到具有明确接口的专用模块中，使用中间件、依赖注入或分层架构等模式",
+      "执行边界：建立架构规则（通过linting、模块依赖分析或代码审查清单），防止跨关注点耦合再次蔓延"
+    ],
+    "ai_relevant": true,
+    "viz_type": "layers",
+    "related": ["deep-vs-shallow-modules", "complexity-budget", "domain-driven-design", "design-by-contract"],
+    "tags": ["modularity", "architecture", "software-design", "coupling", "cohesion"],
+    "origin_author": "Edsger W. Dijkstra, 1974",
+    "origin_source": "On the role of scientific thought (Edsger W. Dijkstra, 1974, EWD447)",
+    "origin_source_zh": "《论科学思想的角色》（Edsger W. Dijkstra，1974年，EWD447）",
+    "complexity": "beginner",
+    "when_to_use": [
+      "When a single change to business logic requires modifications in database queries, UI templates, and API controllers simultaneously",
+      "When different team members cannot work on different features without merge conflicts because concerns are tangled together in shared files",
+      "When testing a module requires setting up unrelated infrastructure (e.g., testing business logic requires a running database) because concerns are not isolated",
+      "When onboarding engineers struggle to find where a specific type of logic lives because it is scattered across multiple layers"
+    ],
+    "when_to_use_zh": [
+      "当对业务逻辑的单一更改需要同时修改数据库查询、UI模板和API控制器时",
+      "当不同团队成员无法在不同功能上工作而不产生合并冲突，因为关注点在共享文件中纠缠在一起时",
+      "当测试一个模块需要设置不相关的基础设施（如测试业务逻辑需要运行数据库），因为关注点未被隔离时",
+      "当入职工程师难以找到特定类型逻辑的位置，因为它分散在多个层中时"
+    ],
+    "core_concepts": [
+      "Single Responsibility per Module: Each module should have one reason to change — when a concern changes, only the modules responsible for that concern should need modification",
+      "Cohesion and Coupling: Separation of concerns maximizes cohesion (related code together) and minimizes coupling (unrelated code apart), the twin goals of good modular design",
+      "Concern as an Axis of Change: A 'concern' is best identified by what changes together — if business rules and UI always change for different reasons, they are separate concerns",
+      "Layered Independence: Properly separated concerns can evolve independently — you can swap a database layer without touching business logic, or redesign UI without altering domain models"
+    ],
+    "core_concepts_zh": [
+      "每个模块单一职责：每个模块应只有一个变更原因——当一个关注点变化时，只有负责该关注点的模块需要修改",
+      "内聚与耦合：关注点分离最大化内聚（相关代码在一起）并最小化耦合（不相关代码分开），这是良好模块化设计的双重目标",
+      "关注点作为变化轴：「关注点」最好通过什么一起变化来识别——如果业务规则和UI总是因不同原因而变化，它们是不同的关注点",
+      "分层独立性：适当分离的关注点可以独立演进——可以替换数据库层而不触及业务逻辑，或重新设计UI而不更改领域模型"
+    ],
+    "timeline": [
+      ["1968", "Dijkstra's 'Go To Statement Considered Harmful' introduces structured programming, laying the groundwork for disciplined concern separation"],
+      ["1974", "Dijkstra coins the term 'separation of concerns' in EWD447, framing it as a technique for managing intellectual complexity"],
+      ["1996", "The Gang of Four's design patterns (Strategy, Observer, Decorator) provide reusable templates for separating concerns in object-oriented systems"],
+      ["2003", "Aspect-Oriented Programming (AspectJ) formalizes cross-cutting concern separation, addressing logging, security, and transactions that cut across traditional module boundaries"]
+    ],
+    "timeline_zh": [
+      ["1968", "Dijkstra的《Go To语句有害论》引入结构化编程，为规范的关注点分离奠定基础"],
+      ["1974", "Dijkstra在EWD447中创造「关注点分离」一词，将其定义为管理智识复杂度的技术"],
+      ["1996", "四人帮的设计模式（策略、观察者、装饰器）为面向对象系统中的关注点分离提供可复用模板"],
+      ["2003", "面向切面编程（AspectJ）将横切关注点分离正式化，解决跨越传统模块边界的日志、安全和事务问题"]
+    ],
+    "dos": [
+      "Do identify concerns by asking 'what changes together and why?' rather than by following rigid architectural templates, because real concerns are domain-specific",
+      "Do use dependency injection to wire separated concerns together, because it keeps modules unaware of each other's implementations while allowing collaboration",
+      "Do separate cross-cutting concerns (logging, auth, metrics) using middleware or aspect-oriented techniques rather than scattering them through business logic",
+      "Do enforce separation through automated dependency analysis in CI, because manual discipline erodes over time as deadlines create pressure to take shortcuts"
+    ],
+    "dos_zh": [
+      "通过问「什么一起变化以及为什么？」来识别关注点，而非遵循刚性架构模板，因为真正的关注点是领域特定的",
+      "使用依赖注入将分离的关注点连接在一起，因为它让模块不知道彼此的实现同时允许协作",
+      "使用中间件或面向切面技术分离横切关注点（日志、认证、指标），而非将它们散落在业务逻辑中",
+      "通过CI中的自动依赖分析来执行分离，因为手动纪律会随着截止日期创造的走捷径压力而逐渐侵蚀"
+    ],
+    "donts": [
+      "Don't separate concerns so aggressively that simple operations require tracing through 10 layers of indirection, because over-separation creates its own complexity",
+      "Don't treat every function as a separate concern, because the goal is meaningful separation of distinct responsibilities, not maximum granularity",
+      "Don't mix separation of concerns with code organization (file structure), because two concerns can live in the same file if they are logically distinct and small",
+      "Don't ignore the cost of the abstractions needed to separate concerns, because interfaces, adapters, and dependency injection add cognitive overhead that must be justified"
+    ],
+    "donts_zh": [
+      "不要过度激进地分离关注点以至于简单操作需要追踪10层间接调用，因为过度分离会产生自身的复杂度",
+      "不要将每个函数都视为独立的关注点，因为目标是不同职责的有意义分离，而非最大粒度",
+      "不要将关注点分离与代码组织（文件结构）混为一谈，因为如果两个关注点逻辑上不同且较小，它们可以在同一文件中",
+      "不要忽视分离关注点所需抽象的成本，因为接口、适配器和依赖注入增加的认知开销必须被证明是合理的"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix's migration from a monolithic Java application to a microservices architecture is a large-scale application of separation of concerns. The original monolith interleaved recommendation logic, streaming protocols, user authentication, billing, and content metadata in tightly coupled modules. By separating each into independent services with clear API boundaries, Netflix enabled independent deployment (over 1,000 production changes per day), independent scaling (the recommendation engine scales differently from the streaming CDN), and independent team ownership. The separation was so thorough that when the recommendation algorithm was completely rewritten in 2016, no other service required any changes.",
+    "case_study_zh": "Netflix从单体Java应用到微服务架构的迁移是关注点分离的大规模应用。原始单体在紧耦合的模块中交织了推荐逻辑、流媒体协议、用户认证、计费和内容元数据。通过将每个关注点分离为具有清晰API边界的独立服务，Netflix实现了独立部署（每天超过1,000次生产变更）、独立扩展（推荐引擎与流媒体CDN不同地扩展）和独立的团队所有权。分离如此彻底，以至于当推荐算法在2016年被完全重写时，没有任何其他服务需要任何更改。",
+    "when_not_to_use": [
+      "When building a small script or utility where the overhead of modular separation exceeds the complexity of the entire program",
+      "When concerns are genuinely inseparable in the domain (e.g., real-time physics simulation where rendering and physics must be tightly coupled for performance)",
+      "When the team is in a rapid prototyping phase and premature separation would slow down learning — you can always separate later when boundaries become clear",
+      "When the system has only one concern, such as a single-purpose data transformation pipeline, where separation would create artificial boundaries"
+    ],
+    "when_not_to_use_zh": [
+      "当构建小型脚本或工具，模块化分离的开销超过整个程序的复杂度时",
+      "当关注点在领域中确实不可分离时（如实时物理模拟中渲染和物理必须紧耦合以保证性能）",
+      "当团队处于快速原型阶段，过早分离会减慢学习——可以在边界变得清晰后再分离",
+      "当系统只有一个关注点时，如单一用途的数据转换管道，分离会创造人为的边界"
+    ],
+    "adopters": ["Netflix", "Linux Kernel", "React (UI/State separation)", "Spring Framework", "Django"]
+  },
+  {
+    "id": 165,
+    "name": "Leaky Abstractions",
+    "name_zh": "抽象泄漏",
+    "slug": "leaky-abstractions",
+    "category": "thinking",
+    "desc": "All non-trivial abstractions leak; design systems to handle the inevitable failures of abstraction layers",
+    "desc_zh": "所有非平凡抽象都会泄漏；设计系统时应考虑抽象层不可避免的失效",
+    "steps": [
+      "Identify Abstraction Layers: catalog all major abstractions in your system — ORMs, network protocols, file systems, cloud services, frameworks — and the implementation details they claim to hide",
+      "Predict Leak Points: for each abstraction, identify the scenarios where the underlying reality will surface — network latency in RPC frameworks, SQL specifics in ORMs, file system semantics differences across OS platforms",
+      "Design Escape Hatches: provide clean mechanisms for users to bypass the abstraction when it leaks, such as raw SQL access through an ORM or custom HTTP handling in a REST framework",
+      "Document Known Leaks: explicitly document the cases where the abstraction is known to leak, so users encounter documentation rather than mysterious bugs",
+      "Monitor for New Leaks: instrument abstraction boundaries to detect unexpected leak patterns in production (unusual error types, performance anomalies, fallback activations)"
+    ],
+    "steps_zh": [
+      "识别抽象层：编目系统中所有主要抽象——ORM、网络协议、文件系统、云服务、框架——以及它们声称隐藏的实现细节",
+      "预测泄漏点：为每个抽象识别底层现实会浮现的场景——RPC框架中的网络延迟、ORM中的SQL特性、跨操作系统平台的文件系统语义差异",
+      "设计逃生口：提供清洁的机制让用户在抽象泄漏时绕过它，如通过ORM访问原始SQL或在REST框架中自定义HTTP处理",
+      "记录已知泄漏：明确记录抽象已知泄漏的情况，使用户遇到文档而非神秘的错误",
+      "监控新泄漏：在抽象边界设置检测，发现生产中意外的泄漏模式（异常错误类型、性能异常、降级激活）"
+    ],
+    "ai_relevant": true,
+    "viz_type": "layers",
+    "related": ["deep-vs-shallow-modules", "separation-of-concerns", "complexity-budget", "design-by-contract"],
+    "tags": ["abstraction", "software-engineering", "debugging", "system-design", "failure-modes"],
+    "origin_author": "Joel Spolsky, 2002",
+    "origin_source": "The Law of Leaky Abstractions (Joel Spolsky, Joel on Software blog, 2002)",
+    "origin_source_zh": "《抽象泄漏法则》（Joel Spolsky，Joel on Software博客，2002年）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When adopting a new abstraction layer (ORM, framework, cloud service) and you need to plan for the cases where it won't perfectly hide the underlying system",
+      "When debugging production issues that trace back to abstraction layers behaving unexpectedly under edge conditions",
+      "When designing an API or framework that will be used by developers who may not understand the underlying implementation",
+      "When evaluating whether to build a custom abstraction vs using an existing one, weighing the leak surface of each option"
+    ],
+    "when_to_use_zh": [
+      "当采用新的抽象层（ORM、框架、云服务），需要为其无法完美隐藏底层系统的情况做规划时",
+      "当调试追溯到抽象层在边缘条件下行为异常的生产问题时",
+      "当设计将被可能不理解底层实现的开发者使用的API或框架时",
+      "当评估是构建自定义抽象还是使用现有抽象，权衡每个选项的泄漏面时"
+    ],
+    "core_concepts": [
+      "Law of Leaky Abstractions: All non-trivial abstractions, to some degree, are leaky — the underlying complexity they hide will eventually surface in edge cases, performance characteristics, or error modes",
+      "Abstraction Cost Awareness: Abstractions are not free; they trade one kind of complexity (implementation detail) for another (learning the abstraction's model and its failure modes)",
+      "Escape Hatch Design: Good abstractions provide clean escape hatches so that when leaks occur, users can drop to a lower level without abandoning the entire abstraction",
+      "Two-Level Understanding: Effective use of leaky abstractions requires understanding both the abstraction and the underlying system — you can work at the high level most of the time but must be prepared to reason at the low level"
+    ],
+    "core_concepts_zh": [
+      "抽象泄漏法则：所有非平凡抽象在某种程度上都是泄漏的——它们隐藏的底层复杂度最终会在边缘情况、性能特征或错误模式中浮现",
+      "抽象成本意识：抽象不是免费的；它们用一种复杂度（实现细节）换取另一种复杂度（学习抽象的模型及其失效模式）",
+      "逃生口设计：好的抽象提供清洁的逃生口，使泄漏发生时用户可以降到更低层级而无需放弃整个抽象",
+      "双层理解：有效使用泄漏抽象需要同时理解抽象和底层系统——大多数时候可以在高层工作，但必须准备好在低层推理"
+    ],
+    "timeline": [
+      ["1992", "Gregor Kiczales introduces the concept of 'open implementation' at Xerox PARC, recognizing that some abstractions need to expose their internals selectively"],
+      ["2002", "Joel Spolsky publishes 'The Law of Leaky Abstractions' on Joel on Software, naming the phenomenon and providing memorable examples (TCP over IP, SQL over disk I/O)"],
+      ["2006", "The rise of ORMs (Hibernate, ActiveRecord) makes leaky abstractions a daily concern for web developers encountering the N+1 query problem and impedance mismatch"],
+      ["2020s", "Cloud abstractions (serverless, managed databases) create new categories of leaks — cold starts, throttling limits, and regional failover behaviors that the 'serverless' abstraction cannot fully hide"]
+    ],
+    "timeline_zh": [
+      ["1992", "Gregor Kiczales在Xerox PARC引入「开放实现」概念，认识到某些抽象需要选择性地暴露其内部"],
+      ["2002", "Joel Spolsky在Joel on Software上发表《抽象泄漏法则》，命名该现象并提供了令人印象深刻的示例（TCP over IP、SQL over 磁盘I/O）"],
+      ["2006", "ORM的兴起（Hibernate、ActiveRecord）使抽象泄漏成为Web开发者日常关注的问题，他们遇到了N+1查询问题和阻抗失配"],
+      ["2020年代", "云抽象（无服务器、托管数据库）创造了新的泄漏类别——冷启动、限流限制和区域故障转移行为，「无服务器」抽象无法完全隐藏"]
+    ],
+    "dos": [
+      "Do learn the layer below every abstraction you use, because when it leaks (and it will), you need mental models of both levels to debug effectively",
+      "Do provide escape hatches in abstractions you build, because users will inevitably encounter cases your abstraction doesn't cover and they need a clean way out",
+      "Do document known leak points explicitly in your API documentation, because 'here be dragons' warnings save users hours of confused debugging",
+      "Do monitor abstraction boundaries in production for anomalous error rates, because new leak patterns often emerge under load or edge conditions you didn't test"
+    ],
+    "dos_zh": [
+      "学习你使用的每个抽象下面的层，因为当它泄漏时（一定会的），你需要两个层级的心智模型来有效调试",
+      "在你构建的抽象中提供逃生口，因为用户不可避免地会遇到你的抽象未覆盖的情况，他们需要一条干净的出路",
+      "在API文档中明确记录已知泄漏点，因为「此处有龙」的警告能为用户节省数小时的困惑调试",
+      "在生产中监控抽象边界的异常错误率，因为新的泄漏模式常在负载或你未测试的边缘条件下出现"
+    ],
+    "donts": [
+      "Don't treat abstractions as airtight contracts, because the entire point of the law is that they will leak — defensive design anticipates this",
+      "Don't add more abstraction layers to fix a leaky abstraction, because stacking leaky abstractions compounds the debugging difficulty exponentially",
+      "Don't blame users for needing to understand the underlying system, because requiring two-level understanding is a consequence of abstraction physics, not user failure",
+      "Don't build abstractions that hide failure modes, because the most dangerous leaks are the ones that silently corrupt data or degrade performance without visible errors"
+    ],
+    "donts_zh": [
+      "不要将抽象视为密封的契约，因为这个法则的全部要点是它们会泄漏——防御性设计应预见到这一点",
+      "不要用更多的抽象层来修复泄漏的抽象，因为堆叠泄漏的抽象会指数级地增加调试难度",
+      "不要责怪用户需要理解底层系统，因为需要双层理解是抽象物理学的结果，而非用户的失败",
+      "不要构建隐藏失效模式的抽象，因为最危险的泄漏是那些无声地损坏数据或降低性能而没有可见错误的泄漏"
+    ],
+    "case_study_company": "Heroku",
+    "case_study": "Heroku's Platform-as-a-Service abstracted away server management, promising developers they could 'just push code.' But as applications scaled, the abstraction leaked in predictable ways: dyno cycling caused unpredictable request latency, the shared routing layer created noisy-neighbor performance issues, and the filesystem's ephemeral nature surprised developers who expected persistent local storage. Heroku responded well by documenting these leaks explicitly in their architecture documentation and providing escape hatches (dedicated dynos, external storage services, custom buildpacks). Companies that succeeded on Heroku were those whose engineers understood the underlying infrastructure model despite the abstraction, confirming Spolsky's law.",
+    "case_study_zh": "Heroku的平台即服务抽象掉了服务器管理，向开发者承诺他们可以「只管推代码」。但随着应用规模扩大，抽象以可预测的方式泄漏：dyno循环导致不可预测的请求延迟，共享路由层造成噪声邻居性能问题，文件系统的临时性质让期望本地持久存储的开发者感到意外。Heroku通过在架构文档中明确记录这些泄漏并提供逃生口（专用dyno、外部存储服务、自定义构建包）做出了良好的回应。在Heroku上成功的公司都是其工程师尽管有抽象但仍理解底层基础设施模型的公司，这证实了Spolsky的法则。",
+    "when_not_to_use": [
+      "When working with trivial abstractions (simple wrapper functions, type aliases) where the abstraction is thin enough that leaks are inconsequential",
+      "When the abstraction maps perfectly to the domain and there is no impedance mismatch (e.g., mathematical abstractions in numerical computing)",
+      "When the team controls both sides of the abstraction and can modify it freely, reducing the cost of encountered leaks to near zero",
+      "When the project is so short-lived that the probability of encountering an abstraction leak during its lifetime is negligible"
+    ],
+    "when_not_to_use_zh": [
+      "当使用平凡抽象（简单包装函数、类型别名），抽象薄到泄漏无关紧要时",
+      "当抽象完美映射到领域且没有阻抗失配时（如数值计算中的数学抽象）",
+      "当团队控制抽象的两端并可以自由修改它，将遇到泄漏的成本降低到接近零时",
+      "当项目生命周期很短，其存续期间遇到抽象泄漏的概率可以忽略不计时"
+    ],
+    "adopters": ["Heroku", "AWS (Lambda/Serverless)", "Microsoft (Entity Framework)", "Ruby on Rails (ActiveRecord)", "Docker"]
+  },
+  {
+    "id": 166,
+    "name": "Worse is Better",
+    "name_zh": "更差即更好",
+    "slug": "worse-is-better",
+    "category": "thinking",
+    "desc": "Simpler, less correct implementations often win over complex, theoretically correct ones through easier adoption and faster evolution",
+    "desc_zh": "更简单但不够正确的实现往往通过更容易的采纳和更快的演进击败复杂的理论正确实现",
+    "steps": [
+      "Define 'Good Enough': for each feature, explicitly define the minimum correctness and completeness threshold that delivers real user value, distinguishing essential correctness from theoretical perfection",
+      "Prioritize Simplicity of Implementation: when facing a design choice between a complete-but-complex solution and a simple-but-limited one, default to simplicity unless the missing completeness causes real harm",
+      "Ship and Observe: release the simpler version to real users quickly, using actual usage patterns to determine which missing capabilities genuinely matter vs which were hypothetical requirements",
+      "Evolve Incrementally: add completeness and correctness incrementally based on observed need, letting real-world feedback guide investment rather than upfront architectural speculation",
+      "Resist Second-System Syndrome: when the simple system succeeds and pressure mounts for a 'proper' redesign, evaluate whether the simple system's limitations actually cause problems or merely offend engineering aesthetics"
+    ],
+    "steps_zh": [
+      "定义「足够好」：为每个功能明确定义提供真实用户价值的最低正确性和完整性阈值，区分本质正确性和理论完美",
+      "优先考虑实现简洁性：当面对完整但复杂的方案和简单但有限的方案之间的设计选择时，默认选择简洁性，除非缺失的完整性造成实际伤害",
+      "发布并观察：快速将更简单的版本发布给真实用户，用实际使用模式来确定哪些缺失能力真正重要，哪些是假设性需求",
+      "渐进式演进：基于观察到的需求逐步增加完整性和正确性，让现实世界的反馈指导投入而非前期架构推测",
+      "抵制第二系统综合征：当简单系统成功且「正式」重新设计的压力增大时，评估简单系统的局限性是否真正导致问题还是仅仅冒犯了工程美学"
+    ],
+    "ai_relevant": true,
+    "viz_type": "quadrant",
+    "related": ["first-principles-thinking", "trade-off-sliders", "complexity-budget"],
+    "tags": ["simplicity", "pragmatism", "software-philosophy", "adoption", "evolution"],
+    "origin_author": "Richard P. Gabriel, 1989",
+    "origin_source": "Lisp: Good News, Bad News, How to Win Big (Richard P. Gabriel, 1989)",
+    "origin_source_zh": "《Lisp：好消息、坏消息、如何大赢》（Richard P. Gabriel，1989年）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When your team is debating whether to ship a pragmatic solution now or invest months in a theoretically superior architecture",
+      "When a competitor is gaining market share with an inferior-but-available product while your team perfects a better design",
+      "When designing a public API or protocol where simplicity of adoption matters more than covering every edge case in v1",
+      "When evaluating open-source tools and the simpler, less feature-complete option has a larger community and faster iteration cycle"
+    ],
+    "when_to_use_zh": [
+      "当团队在辩论是现在发布务实的方案还是投入数月在理论上更优的架构时",
+      "当竞争对手用一个劣质但可用的产品在获取市场份额，而你的团队在完善更好的设计时",
+      "当设计公共API或协议，采纳的简洁性比在v1中覆盖每个边缘情况更重要时",
+      "当评估开源工具，更简单、功能不完整的选项拥有更大的社区和更快的迭代周期时"
+    ],
+    "core_concepts": [
+      "Simplicity as Survival Advantage: Simpler systems are easier to port, easier to learn, and easier to adapt — this adaptability is a stronger evolutionary advantage than theoretical correctness",
+      "The Viral Spread of Good-Enough: A system that is 50% as capable but available today will acquire users who then contribute improvements, eventually surpassing a system that is 100% capable but still in development",
+      "Interface vs Implementation Simplicity: Gabriel distinguishes two strategies — 'the right thing' (simple interface, complex implementation) vs 'worse is better' (simple implementation, potentially rougher interface). The simpler implementation wins on adoption.",
+      "Worse is Better as Market Dynamics: The principle is not about celebrating mediocrity but about recognizing that markets select for adoption speed and iteration velocity, not architectural purity"
+    ],
+    "core_concepts_zh": [
+      "简洁性作为生存优势：更简单的系统更容易移植、学习和适应——这种适应性是比理论正确性更强的演化优势",
+      "足够好的病毒式传播：一个能力50%但今天可用的系统会获得用户，用户随后贡献改进，最终超越一个能力100%但仍在开发中的系统",
+      "接口简洁性与实现简洁性：Gabriel区分了两种策略——「正确的做法」（简单接口、复杂实现）与「更差即更好」（简单实现、可能粗糙的接口）。更简单的实现在采纳上胜出。",
+      "更差即更好作为市场动态：这个原则不是庆祝平庸，而是认识到市场选择采纳速度和迭代速度，而非架构纯洁性"
+    ],
+    "timeline": [
+      ["1989", "Richard Gabriel presents 'Lisp: Good News, Bad News, How to Win Big' at the European Conference on the Practical Application of Lisp, contrasting MIT/Stanford and New Jersey design philosophies"],
+      ["1991", "The essay circulates widely online, sparking decades of debate between 'the right thing' (Lisp/MIT approach) and 'worse is better' (Unix/C/New Jersey approach)"],
+      ["2000", "Gabriel revisits the concept in 'Worse Is Better Is Worse' and later 'Is Worse Really Better?', acknowledging the tension is unresolvable and context-dependent"],
+      ["2010s", "The lean startup movement and MVP methodology embody worse-is-better principles, validating the idea that shipping imperfect products early beats perfecting products in isolation"]
+    ],
+    "timeline_zh": [
+      ["1989", "Richard Gabriel在欧洲Lisp实际应用会议上发表《Lisp：好消息、坏消息、如何大赢》，对比MIT/斯坦福和新泽西设计哲学"],
+      ["1991", "该文在网上广泛传播，引发了「正确的做法」（Lisp/MIT方法）和「更差即更好」（Unix/C/新泽西方法）之间数十年的辩论"],
+      ["2000", "Gabriel在《更差即更好即更差》和后来的《更差真的更好吗？》中重新审视该概念，承认这种张力是不可解的且依赖上下文"],
+      ["2010年代", "精益创业运动和MVP方法论体现了更差即更好的原则，验证了尽早发布不完美产品胜过在隔离中完善产品的理念"]
+    ],
+    "dos": [
+      "Do explicitly define what 'good enough' means for each release, because without a threshold, worse-is-better becomes an excuse for carelessness",
+      "Do ship the simplest version that delivers genuine value, then iterate based on real user feedback rather than hypothetical requirements",
+      "Do preserve simplicity of the core implementation even as features are added, because the simplicity is what enabled the system's success in the first place",
+      "Do study Unix, C, HTTP, and JSON as exemplars of worse-is-better systems that won through simplicity and adaptability"
+    ],
+    "dos_zh": [
+      "为每个版本明确定义「足够好」的含义，因为没有阈值，更差即更好就变成了粗心的借口",
+      "发布提供真实价值的最简版本，然后基于真实用户反馈而非假设性需求进行迭代",
+      "即使添加功能也要保持核心实现的简洁性，因为简洁性是系统首先成功的原因",
+      "研究Unix、C、HTTP和JSON作为通过简洁性和适应性获胜的更差即更好系统的范例"
+    ],
+    "donts": [
+      "Don't use worse-is-better as justification for shipping broken or harmful software, because the principle is about simplicity trade-offs, not quality abandonment",
+      "Don't apply worse-is-better to safety-critical systems (medical devices, aviation, financial infrastructure) where 'good enough' correctness can cause catastrophic harm",
+      "Don't ignore technical debt that accumulates in worse-is-better systems, because the simplicity advantage erodes if the codebase becomes unmaintainable over time",
+      "Don't conflate worse-is-better with anti-intellectualism, because the principle requires deep understanding of trade-offs to apply correctly"
+    ],
+    "donts_zh": [
+      "不要用更差即更好来为发布有缺陷或有害的软件辩护，因为这个原则是关于简洁性权衡，而非质量放弃",
+      "不要将更差即更好应用于安全关键系统（医疗设备、航空、金融基础设施），其中「足够好」的正确性可能导致灾难性伤害",
+      "不要忽视在更差即更好系统中积累的技术债务，因为如果代码库随时间变得不可维护，简洁性优势就会消失",
+      "不要将更差即更好与反智主义混为一谈，因为正确应用这个原则需要对权衡的深刻理解"
+    ],
+    "case_study_company": "Unix/C",
+    "case_study": "Unix and C are Gabriel's original examples of worse-is-better triumphing. When compared to Multics and Lisp, Unix and C were objectively less capable: C had no garbage collection, no type safety, and manual memory management; Unix had a simpler but less orthogonal design than Multics. However, C was small enough to port to new hardware in weeks rather than years, and Unix was simple enough for a single person to understand the entire kernel. This portability and comprehensibility created a viral adoption loop: Unix spread to every university and hardware platform, accumulating contributions from thousands of developers. By the time 'better' systems like Multics were ready, Unix had already won through sheer ecosystem momentum, proving that implementation simplicity and rapid portability can outweigh theoretical superiority.",
+    "case_study_zh": "Unix和C是Gabriel关于更差即更好获胜的原始范例。与Multics和Lisp相比，Unix和C在客观上能力更弱：C没有垃圾回收、没有类型安全、需要手动内存管理；Unix的设计比Multics更简单但正交性更低。然而，C小到可以在数周而非数年内移植到新硬件，Unix简单到单个人可以理解整个内核。这种可移植性和可理解性创造了病毒式采纳循环：Unix传播到每所大学和每个硬件平台，积累了数千名开发者的贡献。当Multics等「更好」的系统准备就绪时，Unix已经通过纯粹的生态系统动量获胜，证明了实现简洁性和快速可移植性可以胜过理论优越性。",
+    "when_not_to_use": [
+      "When building safety-critical systems where 'good enough' correctness has life-or-death consequences and regulatory compliance demands formal verification",
+      "When the domain requires mathematical precision (cryptography, financial settlement, scientific computing) where an incorrect implementation is worse than no implementation",
+      "When your users are technical experts who will reject a simplified system that doesn't meet their professional standards (compilers, databases, operating system kernels for specialized hardware)",
+      "When you are building infrastructure that other systems will depend on for decades, where early simplicity trade-offs compound into systemic limitations"
+    ],
+    "when_not_to_use_zh": [
+      "当构建安全关键系统，「足够好」的正确性关乎生死且法规合规要求形式化验证时",
+      "当领域需要数学精度（密码学、金融清算、科学计算），不正确的实现比没有实现更糟时",
+      "当用户是技术专家，他们会拒绝不满足其专业标准的简化系统（编译器、数据库、专用硬件的操作系统内核）时",
+      "当你在构建其他系统将依赖数十年的基础设施，早期的简洁性权衡会复合为系统性局限时"
+    ],
+    "adopters": ["Unix/Linux", "C Language", "HTTP/HTML (early web)", "JSON", "Go Language"]
   }
 ]

@@ -2182,5 +2182,630 @@
       "Replit",
       "Cognition (Devin)"
     ]
+  },
+  {
+    "id": 183,
+    "name": "Progressive Delivery",
+    "name_zh": "渐进式交付",
+    "slug": "progressive-delivery",
+    "category": "deployment",
+    "desc": "Combine canary, feature flags, and observability for controlled rollouts",
+    "desc_zh": "结合金丝雀发布、特性开关和可观测性实现受控发布",
+    "steps": [
+      "Define the release audience using cohort selectors (percentage, region, user segment)",
+      "Deploy the new version behind feature flags with canary traffic routing enabled",
+      "Instrument automated analysis of key SLIs (latency, error rate, saturation) during rollout",
+      "Progressively widen the blast radius in stages, gating each stage on metric thresholds",
+      "Automatically promote to 100% or trigger rollback based on observability verdicts"
+    ],
+    "steps_zh": [
+      "使用群组选择器（百分比、地区、用户分群）定义发布受众",
+      "在启用金丝雀流量路由的同时，将新版本部署在特性开关后面",
+      "在发布过程中对关键 SLI（延迟、错误率、饱和度）进行自动化分析",
+      "分阶段逐步扩大影响半径，每个阶段以指标阈值为门控",
+      "基于可观测性判定自动提升到 100% 或触发回滚"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "canary-deployment",
+      "feature-flags",
+      "slo-as-practice",
+      "observability-pipeline"
+    ],
+    "tags": [
+      "progressive-delivery",
+      "canary",
+      "feature-flags",
+      "observability",
+      "rollout"
+    ],
+    "origin_author": "James Governor (RedMonk), 2018",
+    "origin_source": "Progressive Delivery (redmonk.com, 2018); popularized by Weaveworks & Flagger",
+    "origin_source_zh": "渐进式交付（redmonk.com，2018）；由 Weaveworks 和 Flagger 推广",
+    "complexity": "advanced",
+    "when_to_use": [
+      "High-traffic services where a bad deploy can affect millions of users within minutes",
+      "Teams practicing continuous deployment that need automated safety gates between stages",
+      "Organizations combining multiple deployment strategies (canary + feature flags) under a unified workflow",
+      "Environments where business metrics (conversion, revenue) must be validated alongside technical SLIs"
+    ],
+    "when_to_use_zh": [
+      "高流量服务中，一次错误部署可能在几分钟内影响数百万用户",
+      "实践持续部署的团队需要在各阶段之间设置自动安全门控",
+      "将多种部署策略（金丝雀 + 特性开关）统一在单一工作流下的组织",
+      "需要在验证技术 SLI 的同时验证业务指标（转化率、收入）的环境"
+    ],
+    "core_concepts": [
+      "Gated Stages: Each rollout phase requires explicit pass/fail criteria before progressing to the next audience slice",
+      "Automated Analysis: Observability platforms compare canary metrics against baseline in real time to eliminate human judgment delays",
+      "Blast Radius Control: The combination of feature flags and traffic splitting limits the maximum user impact at any given stage",
+      "Unified Rollout Model: Canary deployment, feature flagging, and A/B testing are composed into a single progressive pipeline"
+    ],
+    "core_concepts_zh": [
+      "门控阶段：每个发布阶段在进入下一批受众前需满足明确的通过/失败标准",
+      "自动化分析：可观测性平台实时将金丝雀指标与基线进行比较，消除人工判断延迟",
+      "爆炸半径控制：特性开关与流量分割的组合限制了任一阶段的最大用户影响",
+      "统一发布模型：金丝雀发布、特性开关和 A/B 测试组合为单一渐进式流水线"
+    ],
+    "timeline": [
+      [
+        "2018",
+        "James Governor coins 'Progressive Delivery' at RedMonk, synthesizing canary + flags + observability"
+      ],
+      [
+        "2019",
+        "Weaveworks releases Flagger, the first Kubernetes-native progressive delivery controller"
+      ],
+      [
+        "2020",
+        "Argo Rollouts adds progressive delivery with automated analysis integration"
+      ],
+      [
+        "2022",
+        "Major cloud providers (AWS App Mesh, GCP Traffic Director) embed progressive delivery in managed services"
+      ],
+      [
+        "2024",
+        "AI-driven rollout analysis (anomaly detection on SLIs) becomes standard in enterprise progressive delivery platforms"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2018",
+        "James Governor 在 RedMonk 提出「渐进式交付」，综合金丝雀 + 特性开关 + 可观测性"
+      ],
+      [
+        "2019",
+        "Weaveworks 发布 Flagger，首个 Kubernetes 原生渐进式交付控制器"
+      ],
+      [
+        "2020",
+        "Argo Rollouts 添加带自动化分析集成的渐进式交付功能"
+      ],
+      [
+        "2022",
+        "主要云厂商（AWS App Mesh、GCP Traffic Director）在托管服务中内置渐进式交付"
+      ],
+      [
+        "2024",
+        "AI 驱动的发布分析（SLI 异常检测）成为企业级渐进式交付平台的标配"
+      ]
+    ],
+    "dos": [
+      "Define clear metric thresholds and minimum observation windows before starting any progressive rollout",
+      "Use automated canary analysis tools (Kayenta, Flagger) to remove subjective human judgment from promotion decisions",
+      "Combine technical metrics (error rate, latency) with business metrics (conversion, revenue) for holistic rollout health",
+      "Run progressive delivery in staging first to calibrate analysis sensitivity and avoid false positives in production"
+    ],
+    "dos_zh": [
+      "在启动渐进式发布前明确定义指标阈值和最短观察窗口",
+      "使用自动化金丝雀分析工具（Kayenta、Flagger）消除晋升决策中的主观人为判断",
+      "将技术指标（错误率、延迟）与业务指标（转化率、收入）结合，全面评估发布健康状况",
+      "先在预发布环境中运行渐进式交付以校准分析灵敏度，避免在生产环境中出现假阳性"
+    ],
+    "donts": [
+      "Don't skip the baseline measurement phase — without a reliable baseline, canary comparison is meaningless",
+      "Don't set observation windows too short — transient traffic patterns can mask regressions",
+      "Don't ignore the long tail of latency (p99, p999) — median-only analysis misses the most painful user experiences",
+      "Don't treat progressive delivery as a substitute for pre-production testing — it is a safety net, not a test suite"
+    ],
+    "donts_zh": [
+      "不要跳过基线测量阶段——没有可靠的基线，金丝雀比较毫无意义",
+      "不要将观察窗口设置得太短——瞬时流量模式可能掩盖回归问题",
+      "不要忽略延迟长尾（p99、p999）——仅分析中位数会遗漏最痛苦的用户体验",
+      "不要将渐进式交付视为预生产测试的替代品——它是安全网，不是测试套件"
+    ],
+    "case_study_company": "Intuit",
+    "case_study": "Intuit adopted progressive delivery for TurboTax during the 2022 tax season, combining Argo Rollouts with custom Kayenta canary analysis. Each release progressed through four stages (1%, 10%, 50%, 100%) with automated SLI checks at each gate. This approach caught a latency regression at the 10% stage that would have impacted millions of users during peak filing, enabling automatic rollback within 3 minutes of detection.",
+    "case_study_zh": "Intuit 在 2022 年报税季为 TurboTax 采用渐进式交付，将 Argo Rollouts 与自定义 Kayenta 金丝雀分析相结合。每次发布经过四个阶段（1%、10%、50%、100%），每个门控处进行自动化 SLI 检查。该方法在 10% 阶段捕获了一个延迟回归问题，否则将在高峰报税期影响数百万用户，检测到后 3 分钟内即完成自动回滚。",
+    "when_not_to_use": [
+      "Small internal tools with a handful of users where the overhead of multi-stage rollouts is unjustified",
+      "Batch processing systems that do not serve real-time traffic and cannot be canary-tested",
+      "Environments with insufficient observability infrastructure to support automated canary analysis",
+      "Deployments requiring atomic all-or-nothing cutover (use blue-green instead)"
+    ],
+    "when_not_to_use_zh": [
+      "用户极少的小型内部工具——多阶段发布的开销不合理",
+      "不提供实时流量且无法进行金丝雀测试的批处理系统",
+      "可观测性基础设施不足以支持自动化金丝雀分析的环境",
+      "需要原子性全有或全无切换的部署（应使用蓝绿部署替代）"
+    ],
+    "adopters": [
+      "Intuit",
+      "Weaveworks",
+      "Netflix",
+      "Spotify",
+      "DoorDash"
+    ]
+  },
+  {
+    "id": 184,
+    "name": "Immutable Infrastructure",
+    "name_zh": "不可变基础设施",
+    "slug": "immutable-infrastructure",
+    "category": "deployment",
+    "desc": "Never patch; replace with new images",
+    "desc_zh": "永不修补，用全新镜像替换",
+    "steps": [
+      "Build a machine or container image from a declarative specification (Dockerfile, Packer template, AMI builder)",
+      "Version-tag and store the image in an artifact registry with full provenance metadata",
+      "Deploy by replacing running instances with new image versions, never modifying live instances",
+      "Validate the new deployment through health checks and smoke tests before draining old instances",
+      "Decommission old images after a retention period; audit the registry for drift or orphaned artifacts"
+    ],
+    "steps_zh": [
+      "从声明式规范（Dockerfile、Packer 模板、AMI 构建器）构建机器或容器镜像",
+      "对镜像进行版本标记并存储在制品仓库中，附带完整的来源元数据",
+      "通过用新镜像版本替换运行中的实例进行部署，永不修改在线实例",
+      "在排空旧实例前通过健康检查和冒烟测试验证新部署",
+      "保留期后退役旧镜像；审计仓库以发现漂移或孤立制品"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "infrastructure-as-code",
+      "gitops",
+      "blue-green-deployment",
+      "containerization"
+    ],
+    "tags": [
+      "immutable",
+      "infrastructure",
+      "images",
+      "no-patch",
+      "deployment"
+    ],
+    "origin_author": "Chad Fowler, 2013 (blog post: 'Trash Your Servers and Burn Your Code')",
+    "origin_source": "Trash Your Servers and Burn Your Code (Chad Fowler, 2013); popularized by Docker and HashiCorp",
+    "origin_source_zh": "《扔掉你的服务器，烧掉你的代码》（Chad Fowler，2013）；由 Docker 和 HashiCorp 推广",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Environments requiring strict auditability and reproducibility (finance, healthcare, regulated industries)",
+      "Cloud-native architectures where instances are ephemeral and auto-scaled",
+      "Teams experiencing configuration drift across long-lived servers that causes production incidents",
+      "Security-sensitive systems where patching in place leaves uncertain intermediate states"
+    ],
+    "when_to_use_zh": [
+      "要求严格可审计性和可重现性的环境（金融、医疗、受监管行业）",
+      "实例短暂且自动扩缩容的云原生架构",
+      "长期运行服务器上配置漂移导致生产事故的团队",
+      "就地修补会留下不确定中间状态的安全敏感系统"
+    ],
+    "core_concepts": [
+      "No In-Place Mutation: Running instances are never modified — all changes require building and deploying a new image",
+      "Image as Artifact: The deployable unit is a versioned, tested image stored in a registry, not a set of scripts run on a live server",
+      "Reproducibility: Any deployment can be exactly recreated from the image tag, eliminating 'works on my machine' and snowflake servers",
+      "Disposability: Instances are cattle, not pets — they can be destroyed and recreated at any time without manual intervention"
+    ],
+    "core_concepts_zh": [
+      "禁止就地变更：运行中的实例永不修改——所有变更都需要构建和部署新镜像",
+      "镜像即制品：可部署单元是存储在仓库中的版本化、已测试的镜像，而非在活服务器上运行的脚本集",
+      "可重现性：任何部署都可以从镜像标签精确重建，消除「在我的机器上能跑」和雪花服务器问题",
+      "可丢弃性：实例是牲畜而非宠物——可以随时销毁和重建，无需人工干预"
+    ],
+    "timeline": [
+      [
+        "2013",
+        "Chad Fowler publishes 'Trash Your Servers and Burn Your Code', popularizing the immutable infrastructure concept"
+      ],
+      [
+        "2013",
+        "Docker launches, making immutable container images practical and ubiquitous"
+      ],
+      [
+        "2014",
+        "HashiCorp releases Packer for building machine images across providers"
+      ],
+      [
+        "2017",
+        "Kubernetes adoption normalizes immutable containers as the default deployment unit"
+      ],
+      [
+        "2022",
+        "Supply chain security (SLSA, Sigstore) adds provenance and signing to immutable image pipelines"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2013",
+        "Chad Fowler 发表《扔掉你的服务器，烧掉你的代码》，推广不可变基础设施概念"
+      ],
+      [
+        "2013",
+        "Docker 发布，使不可变容器镜像变得实用且无处不在"
+      ],
+      [
+        "2014",
+        "HashiCorp 发布 Packer，支持跨云构建机器镜像"
+      ],
+      [
+        "2017",
+        "Kubernetes 的普及使不可变容器成为默认部署单元"
+      ],
+      [
+        "2022",
+        "供应链安全（SLSA、Sigstore）为不可变镜像流水线增加溯源和签名"
+      ]
+    ],
+    "dos": [
+      "Invest in fast image build pipelines — slow builds are the #1 adoption blocker for immutable infrastructure",
+      "Tag every image with the commit SHA and build timestamp for complete traceability",
+      "Use multi-stage builds to minimize image size and reduce the attack surface",
+      "Externalize all configuration and secrets from images using environment variables or secret managers"
+    ],
+    "dos_zh": [
+      "投资快速镜像构建流水线——构建慢是不可变基础设施采用的头号障碍",
+      "为每个镜像标记提交 SHA 和构建时间戳以实现完全可追溯",
+      "使用多阶段构建最小化镜像大小并减少攻击面",
+      "使用环境变量或密钥管理器将所有配置和密钥从镜像中外部化"
+    ],
+    "donts": [
+      "Don't SSH into running containers or instances to apply hotfixes — this violates the core immutability principle",
+      "Don't bake secrets or credentials into images — they become visible in layer history and registries",
+      "Don't skip vulnerability scanning of base images — an immutable image is only as secure as its layers",
+      "Don't keep unlimited old image versions — storage costs grow quickly without a retention policy"
+    ],
+    "donts_zh": [
+      "不要 SSH 进入运行中的容器或实例来应用热修复——这违反了核心不可变原则",
+      "不要在镜像中写入密钥或凭证——它们会在层历史和仓库中可见",
+      "不要跳过基础镜像的漏洞扫描——不可变镜像的安全性取决于其所有层",
+      "不要保留无限多的旧镜像版本——没有保留策略存储成本会快速增长"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix pioneered immutable infrastructure at scale with their Bakery system, which bakes AMIs (Amazon Machine Images) for every deployment. By 2015, Netflix was deploying thousands of immutable AMIs per day across AWS, eliminating configuration drift that had previously caused unpredictable production failures. The Bakery pipeline — combined with Spinnaker for orchestration — became the gold standard for immutable deployment at cloud scale.",
+    "case_study_zh": "Netflix 通过其 Bakery 系统率先大规模实践不可变基础设施，为每次部署烘焙 AMI（Amazon 机器镜像）。到 2015 年，Netflix 每天在 AWS 上部署数千个不可变 AMI，消除了此前导致不可预测生产故障的配置漂移。Bakery 流水线与 Spinnaker 编排相结合，成为云规模不可变部署的黄金标准。",
+    "when_not_to_use": [
+      "Legacy environments where in-place patching is the only viable option due to licensing or hardware constraints",
+      "Development or debugging workflows where developers need to iterate rapidly on running instances",
+      "Stateful systems (databases, file servers) where data persistence across replacements requires special handling",
+      "Extremely resource-constrained edge devices where rebuilding and redeploying images is impractical"
+    ],
+    "when_not_to_use_zh": [
+      "由于许可或硬件限制，就地修补是唯一可行选项的遗留环境",
+      "开发者需要在运行实例上快速迭代的开发或调试工作流",
+      "需要跨替换持久化数据的有状态系统（数据库、文件服务器）需要特殊处理",
+      "重建和重新部署镜像不切实际的极端资源受限边缘设备"
+    ],
+    "adopters": [
+      "Netflix",
+      "Google",
+      "HashiCorp",
+      "Heroku",
+      "AWS (Elastic Beanstalk)"
+    ]
+  },
+  {
+    "id": 185,
+    "name": "Chaos Engineering Practices",
+    "name_zh": "混沌工程实践",
+    "slug": "chaos-engineering-practices",
+    "category": "deployment",
+    "desc": "Operational practices for controlled failure injection: GameDays, blast radius control, and resilience validation",
+    "desc_zh": "受控故障注入的运维实践：GameDay 演练、爆炸半径控制与韧性验证",
+    "steps": [
+      "Define steady-state hypotheses based on business-critical SLIs and expected system behavior",
+      "Design experiments with explicit blast radius limits (scope, duration, rollback triggers)",
+      "Run GameDay exercises where cross-functional teams inject failures in production or pre-production",
+      "Observe system behavior under failure, comparing actual outcomes against steady-state hypotheses",
+      "Document findings, fix weaknesses, and schedule recurring chaos experiments to prevent regression"
+    ],
+    "steps_zh": [
+      "基于业务关键 SLI 和预期系统行为定义稳态假设",
+      "设计带有明确爆炸半径限制（范围、持续时间、回滚触发器）的实验",
+      "运行 GameDay 演练，跨职能团队在生产或预生产环境中注入故障",
+      "观察故障下的系统行为，将实际结果与稳态假设进行比较",
+      "记录发现、修复弱点并安排定期混沌实验以防止回归"
+    ],
+    "ai_relevant": true,
+    "viz_type": "cycle",
+    "related": [
+      "chaos-engineering",
+      "slo-as-practice",
+      "on-call-engineering",
+      "incident-response",
+      "progressive-delivery"
+    ],
+    "tags": [
+      "chaos-engineering",
+      "gameday",
+      "blast-radius",
+      "resilience",
+      "operational-practice"
+    ],
+    "origin_author": "Netflix (Casey Rosenthal, Nora Jones), 2011-2017",
+    "origin_source": "Chaos Engineering: System Resiliency in Practice (Casey Rosenthal & Nora Jones, O'Reilly 2020)",
+    "origin_source_zh": "《混沌工程：实践中的系统韧性》（Casey Rosenthal & Nora Jones，O'Reilly 2020）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Production systems where unknown failure modes pose significant business risk",
+      "Organizations building confidence in disaster recovery and failover mechanisms",
+      "Teams that have mature monitoring and incident response but lack proactive resilience validation",
+      "Pre-event hardening (before peak traffic seasons, major launches, or compliance audits)"
+    ],
+    "when_to_use_zh": [
+      "未知故障模式对业务构成重大风险的生产系统",
+      "正在建立灾难恢复和故障转移机制信心的组织",
+      "拥有成熟监控和事件响应但缺少主动韧性验证的团队",
+      "活动前加固（高峰流量季、重大发布或合规审计之前）"
+    ],
+    "core_concepts": [
+      "Steady-State Hypothesis: A measurable definition of normal system behavior that experiments aim to disprove under failure conditions",
+      "Blast Radius Control: Limiting the scope of chaos experiments through targeted injection, short durations, and automated kill switches",
+      "GameDay: A structured, time-boxed event where teams deliberately inject failures and practice incident response in a controlled setting",
+      "Resilience Regression: Without recurring chaos experiments, systems silently lose resilience as code and infrastructure change over time"
+    ],
+    "core_concepts_zh": [
+      "稳态假设：对正常系统行为的可量化定义，实验旨在故障条件下证伪该假设",
+      "爆炸半径控制：通过针对性注入、短持续时间和自动终止开关限制混沌实验的范围",
+      "GameDay：结构化的限时演练，团队在受控环境中故意注入故障并练习事件响应",
+      "韧性退化：缺少定期混沌实验时，随着代码和基础设施的变更，系统会悄然失去韧性"
+    ],
+    "timeline": [
+      [
+        "2011",
+        "Netflix launches Chaos Monkey to randomly terminate production instances in AWS"
+      ],
+      [
+        "2014",
+        "Netflix introduces Chaos Kong for simulating entire AWS region failures"
+      ],
+      [
+        "2017",
+        "Gremlin founded as the first commercial chaos engineering platform"
+      ],
+      [
+        "2020",
+        "Casey Rosenthal and Nora Jones publish Chaos Engineering (O'Reilly), formalizing GameDay and blast radius practices"
+      ],
+      [
+        "2023",
+        "Chaos engineering extends to AI/ML systems, testing model fallback and graceful degradation under inference failures"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2011",
+        "Netflix 推出 Chaos Monkey，随机终止 AWS 中的生产实例"
+      ],
+      [
+        "2014",
+        "Netflix 引入 Chaos Kong，模拟整个 AWS 区域故障"
+      ],
+      [
+        "2017",
+        "Gremlin 成立，成为首个商业混沌工程平台"
+      ],
+      [
+        "2020",
+        "Casey Rosenthal 和 Nora Jones 出版《混沌工程》（O'Reilly），正式化 GameDay 和爆炸半径实践"
+      ],
+      [
+        "2023",
+        "混沌工程扩展至 AI/ML 系统，测试推理故障下的模型回退和优雅降级"
+      ]
+    ],
+    "dos": [
+      "Start with the smallest possible blast radius and expand gradually as team confidence grows",
+      "Always have a clear rollback plan and kill switch before starting any chaos experiment",
+      "Involve on-call engineers and SREs in GameDay planning to build real incident response muscle memory",
+      "Document every experiment's hypothesis, execution, findings, and follow-up actions in a shared runbook"
+    ],
+    "dos_zh": [
+      "从最小可能的爆炸半径开始，随着团队信心增长逐步扩大",
+      "在启动任何混沌实验前始终准备好明确的回滚计划和终止开关",
+      "让值班工程师和 SRE 参与 GameDay 规划，建立真实的事件响应肌肉记忆",
+      "在共享运行手册中记录每个实验的假设、执行、发现和后续行动"
+    ],
+    "donts": [
+      "Don't run chaos experiments without stakeholder buy-in — surprise failures erode organizational trust",
+      "Don't inject failures during known peak traffic or business-critical windows without explicit approval",
+      "Don't treat chaos engineering as a one-time exercise — resilience degrades continuously and must be tested regularly",
+      "Don't skip the hypothesis step — running random failures without a measurable hypothesis yields noise, not insight"
+    ],
+    "donts_zh": [
+      "不要在没有利益相关者认可的情况下运行混沌实验——意外故障会侵蚀组织信任",
+      "不要在已知高峰流量或业务关键窗口期注入故障而未获得明确批准",
+      "不要将混沌工程视为一次性活动——韧性会持续退化，必须定期测试",
+      "不要跳过假设步骤——没有可量化假设的随机故障注入产生的是噪音而非洞察"
+    ],
+    "case_study_company": "Amazon",
+    "case_study": "Amazon runs regular GameDay exercises across its retail and AWS infrastructure, simulating region-level failures and dependency outages. During a 2019 GameDay, teams discovered that a critical payment service had an undocumented dependency on a caching layer that would cause cascading failures during an AZ outage. The finding was fixed before Prime Day, preventing what could have been a multi-million dollar incident during peak shopping hours.",
+    "case_study_zh": "亚马逊在其零售和 AWS 基础设施中定期运行 GameDay 演练，模拟区域级故障和依赖中断。在 2019 年的一次 GameDay 中，团队发现一个关键支付服务对缓存层有未记录的依赖，在可用区故障期间会导致级联失败。该问题在 Prime Day 之前被修复，避免了高峰购物时段可能造成的数百万美元级事故。",
+    "when_not_to_use": [
+      "Systems with no monitoring or observability — you cannot learn from chaos you cannot observe",
+      "Early-stage startups where basic reliability engineering (CI/CD, testing, monitoring) is not yet in place",
+      "Environments with no rollback capability where injected failures could cause unrecoverable damage",
+      "Highly regulated systems where unplanned outages, even controlled ones, violate compliance requirements"
+    ],
+    "when_not_to_use_zh": [
+      "没有监控或可观测性的系统——无法从观测不到的混沌中学习",
+      "基础可靠性工程（CI/CD、测试、监控）尚未建立的早期创业公司",
+      "没有回滚能力、注入故障可能造成不可恢复损坏的环境",
+      "非计划中断（即使是受控的）违反合规要求的强监管系统"
+    ],
+    "adopters": [
+      "Netflix",
+      "Amazon",
+      "Google",
+      "Gremlin",
+      "Shopify"
+    ]
+  },
+  {
+    "id": 186,
+    "name": "Platform as a Product",
+    "name_zh": "平台即产品",
+    "slug": "platform-as-a-product",
+    "category": "deployment",
+    "desc": "Treat internal platforms like products with users and roadmaps",
+    "desc_zh": "将内部平台视为拥有用户和路线图的产品来运营",
+    "steps": [
+      "Identify internal developers as the platform's primary customers and conduct user research",
+      "Define a product vision and roadmap for the platform based on developer pain points and organizational goals",
+      "Build self-service capabilities with golden paths, documentation, and developer portals",
+      "Measure platform adoption, developer satisfaction (DevEx surveys), and time-to-production as key metrics",
+      "Iterate on the platform based on feedback loops, treating feature requests like a product backlog"
+    ],
+    "steps_zh": [
+      "将内部开发者视为平台的主要客户并进行用户研究",
+      "基于开发者痛点和组织目标为平台制定产品愿景和路线图",
+      "构建自助服务能力，包含最佳路径、文档和开发者门户",
+      "将平台采用率、开发者满意度（DevEx 调查）和上线时间作为关键指标",
+      "基于反馈循环迭代平台，将功能请求作为产品待办事项管理"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "team-topologies",
+      "developer-experience",
+      "infrastructure-as-code",
+      "gitops"
+    ],
+    "tags": [
+      "platform-engineering",
+      "product-thinking",
+      "developer-experience",
+      "internal-platform",
+      "team-topologies"
+    ],
+    "origin_author": "Evan Bottcher (ThoughtWorks), 2018; expanded by Team Topologies (Skelton & Pais, 2019)",
+    "origin_source": "Team Topologies (Matthew Skelton & Manuel Pais, 2019); What I Talk About When I Talk About Platforms (Evan Bottcher, martinfowler.com, 2018)",
+    "origin_source_zh": "《团队拓扑》（Matthew Skelton & Manuel Pais，2019）；《当我谈论平台时我在谈什么》（Evan Bottcher，martinfowler.com，2018）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Organizations with more than 5-10 product teams that share common infrastructure and tooling needs",
+      "Environments where developer productivity is bottlenecked by inconsistent or manual infrastructure provisioning",
+      "Companies transitioning from project-based IT to product-based engineering teams",
+      "Enterprises where cognitive load on stream-aligned teams is unsustainably high due to infrastructure complexity"
+    ],
+    "when_to_use_zh": [
+      "拥有 5-10 个以上共享通用基础设施和工具需求的产品团队的组织",
+      "开发者生产力因基础设施供给不一致或手动操作而成为瓶颈的环境",
+      "从项目制 IT 转型为产品制工程团队的公司",
+      "由于基础设施复杂性导致流对齐团队认知负荷不可持续的企业"
+    ],
+    "core_concepts": [
+      "Thinnest Viable Platform: Build the smallest platform that accelerates teams, avoiding the trap of over-engineering a platform nobody asked for",
+      "Golden Paths: Opinionated, well-supported default workflows that handle 80% of use cases, with escape hatches for the remaining 20%",
+      "Developer as Customer: Apply product management practices — user research, satisfaction metrics, roadmapping — to internal platform development",
+      "Platform Team as Enabling Team: The platform team's success is measured by the productivity and autonomy of the teams it serves, not by its own output"
+    ],
+    "core_concepts_zh": [
+      "最薄可行平台：构建加速团队的最小平台，避免过度工程化一个没人需要的平台",
+      "最佳路径：有主见的、良好支持的默认工作流，处理 80% 的用例，为其余 20% 提供逃生通道",
+      "开发者即客户：将产品管理实践——用户研究、满意度指标、路线图——应用于内部平台开发",
+      "平台团队即赋能团队：平台团队的成功以其服务的团队的生产力和自主性来衡量，而非自身产出"
+    ],
+    "timeline": [
+      [
+        "2018",
+        "Evan Bottcher publishes 'What I Talk About When I Talk About Platforms' on martinfowler.com"
+      ],
+      [
+        "2019",
+        "Skelton and Pais formalize platform teams in Team Topologies, defining the platform as a product model"
+      ],
+      [
+        "2021",
+        "Humanitec, Backstage (Spotify), and Port emerge as developer portal and platform orchestration tools"
+      ],
+      [
+        "2023",
+        "Gartner identifies platform engineering as a top strategic technology trend"
+      ],
+      [
+        "2024",
+        "CNCF publishes Platform Engineering Maturity Model; platform-as-a-product becomes industry standard practice"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2018",
+        "Evan Bottcher 在 martinfowler.com 发表《当我谈论平台时我在谈什么》"
+      ],
+      [
+        "2019",
+        "Skelton 和 Pais 在《团队拓扑》中正式化平台团队，定义平台即产品模型"
+      ],
+      [
+        "2021",
+        "Humanitec、Backstage（Spotify）和 Port 涌现为开发者门户和平台编排工具"
+      ],
+      [
+        "2023",
+        "Gartner 将平台工程列为年度十大战略技术趋势"
+      ],
+      [
+        "2024",
+        "CNCF 发布平台工程成熟度模型；平台即产品成为行业标准实践"
+      ]
+    ],
+    "dos": [
+      "Conduct regular developer satisfaction surveys and use NPS/CSAT to track platform health",
+      "Start with a thin platform that solves one or two critical pain points and expand based on demand",
+      "Publish a public roadmap and changelog so consuming teams can plan around platform changes",
+      "Staff the platform team with product management and UX skills, not just infrastructure engineers"
+    ],
+    "dos_zh": [
+      "定期进行开发者满意度调查，使用 NPS/CSAT 跟踪平台健康状况",
+      "从解决一两个关键痛点的薄平台开始，根据需求逐步扩展",
+      "发布公开路线图和变更日志，让消费团队可以围绕平台变更进行规划",
+      "在平台团队中配备产品管理和用户体验人才，而非仅有基础设施工程师"
+    ],
+    "donts": [
+      "Don't mandate platform adoption — if the platform is good, teams will choose it; forced adoption breeds resentment",
+      "Don't build the platform in isolation from its users — co-create with embedded stream-aligned team members",
+      "Don't measure platform success by features shipped — measure it by developer productivity and satisfaction",
+      "Don't let the platform become a bottleneck — if teams have to file tickets and wait, you've built a service desk, not a platform"
+    ],
+    "donts_zh": [
+      "不要强制采用平台——如果平台足够好，团队会主动选择；强制采用会滋生抵触",
+      "不要在与用户隔离的情况下构建平台——与嵌入的流对齐团队成员共同创建",
+      "不要以交付的功能数量衡量平台成功——以开发者生产力和满意度来衡量",
+      "不要让平台成为瓶颈——如果团队必须提工单等待，你构建的是服务台而非平台"
+    ],
+    "case_study_company": "Spotify",
+    "case_study": "Spotify built Backstage as an internal developer portal to treat their platform as a product. By 2020, Backstage unified over 100 internal tools behind a single interface with a plugin architecture. Developers could provision infrastructure, view service health, and access documentation from one place. Spotify open-sourced Backstage in 2020, and it was accepted into the CNCF in 2022, becoming the de facto standard for developer portals across the industry.",
+    "case_study_zh": "Spotify 构建了 Backstage 作为内部开发者门户，将其平台视为产品来运营。到 2020 年，Backstage 通过插件架构将 100 多个内部工具统一在单一界面后。开发者可以在一个地方配置基础设施、查看服务健康状况和访问文档。Spotify 于 2020 年开源 Backstage，2022 年被 CNCF 接收，成为全行业开发者门户的事实标准。",
+    "when_not_to_use": [
+      "Small organizations with fewer than 5 teams where the overhead of a dedicated platform team is unjustified",
+      "Early-stage startups where speed of product iteration matters more than developer experience standardization",
+      "Organizations where all teams use identical, simple tech stacks that don't benefit from platform abstraction",
+      "Environments where executive sponsorship for long-term platform investment is absent"
+    ],
+    "when_not_to_use_zh": [
+      "团队少于 5 个的小型组织——专职平台团队的开销不合理",
+      "产品迭代速度比开发者体验标准化更重要的早期创业公司",
+      "所有团队使用相同且简单的技术栈、不需要平台抽象的组织",
+      "缺乏对长期平台投资的高管支持的环境"
+    ],
+    "adopters": [
+      "Spotify",
+      "Zalando",
+      "Mercedes-Benz",
+      "DoorDash",
+      "Humanitec"
+    ]
   }
 ]

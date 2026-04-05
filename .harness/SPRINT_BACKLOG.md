@@ -5,7 +5,7 @@
 
 ## Sprint Queue
 
-### Sprint S01: Code Splitting & Performance [READY]
+### Sprint S01: Code Splitting & Performance [DONE 2026-04-05]
 **Priority**: High (blocks good UX)
 **Contract**: Build produces no chunk > 500KB warning. Lazy-load MapPage and FrameworkPage.
 **Tasks**:
@@ -15,7 +15,7 @@
 - [ ] Verify: `npm run build` shows no chunk warnings
 **Estimate**: Small
 
-### Sprint S02: Add 6 New Categories + 60 Frameworks [READY]
+### Sprint S02: Add 6 New Categories + 60 Frameworks [DONE 2026-04-05]
 **Priority**: High (core content expansion)
 **Contract**: 160 total frameworks across 13 categories, all with full 33-field content, bilingual.
 **Tasks**:
