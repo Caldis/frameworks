@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useI18n } from '../i18n'
 import styles from './SearchBar.module.css'
 
 interface SearchBarProps {
@@ -8,6 +9,7 @@ interface SearchBarProps {
 }
 
 export default function SearchBar({ value, onChange, inputRef }: SearchBarProps) {
+  const { t } = useI18n()
   const [isMac, setIsMac] = useState(false)
 
   useEffect(() => {
@@ -35,7 +37,7 @@ export default function SearchBar({ value, onChange, inputRef }: SearchBarProps)
         ref={inputRef}
         className={styles.input}
         type="text"
-        placeholder="Search frameworks..."
+        placeholder={t.searchPlaceholder}
         value={value}
         onChange={e => onChange(e.target.value)}
       />

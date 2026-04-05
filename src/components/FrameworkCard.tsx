@@ -1,5 +1,6 @@
 import type { Framework } from '../types'
 import { getCategoryByKey } from '../data/categories'
+import { useI18n } from '../i18n'
 import styles from './FrameworkCard.module.css'
 
 interface FrameworkCardProps {
@@ -15,6 +16,7 @@ export default function FrameworkCard({
   isFavorite,
   onToggleFavorite,
 }: FrameworkCardProps) {
+  const { localized } = useI18n()
   const category = getCategoryByKey(framework.category)
 
   const handleStarClick = (e: React.MouseEvent) => {
@@ -36,8 +38,7 @@ export default function FrameworkCard({
         {isFavorite ? '★' : '☆'}
       </button>
 
-      <div className={styles.nameEn}>{framework.name}</div>
-      <div className={styles.nameZh}>{framework.name_zh}</div>
+      <div className={styles.name}>{localized(framework, 'name')}</div>
 
       <div className={styles.tagRow}>
         {category && (
@@ -48,7 +49,7 @@ export default function FrameworkCard({
               color: category.colorText,
             }}
           >
-            {category.name}
+            {localized(category, 'name')}
           </span>
         )}
         {framework.ai_relevant && (
@@ -56,8 +57,7 @@ export default function FrameworkCard({
         )}
       </div>
 
-      <div className={styles.descEn}>{framework.desc}</div>
-      <div className={styles.descZh}>{framework.desc_zh}</div>
+      <div className={styles.desc}>{localized(framework, 'desc')}</div>
     </div>
   )
 }

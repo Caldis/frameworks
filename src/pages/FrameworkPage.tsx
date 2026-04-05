@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import { getFrameworkBySlug, getFrameworksByCategory, getRelatedFrameworks } from '../data/loader'
 import { getCategoryByKey } from '../data/categories'
+import { useI18n } from '../i18n'
 import FrameworkViz from '../components/FrameworkViz'
 import StepsList from '../components/StepsList'
 import RelatedFrameworks from '../components/RelatedFrameworks'
@@ -8,13 +9,14 @@ import styles from './FrameworkPage.module.css'
 
 export default function FrameworkPage() {
   const { slug } = useParams<{ slug: string }>()
+  const { locale, t, localized } = useI18n()
   const framework = slug ? getFrameworkBySlug(slug) : undefined
 
   if (!framework) {
     return (
       <div className={styles.notFound}>
-        <h2>Framework not found</h2>
-        <Link to="/">&larr; Back to Home</Link>
+        <h2>{t.frameworkNotFound}</h2>
+        <Link to="/">{t.backToHome}</Link>
       </div>
     )
   }
@@ -25,28 +27,30 @@ export default function FrameworkPage() {
   const prev = currentIndex > 0 ? categoryFrameworks[currentIndex - 1] : null
   const next = currentIndex < categoryFrameworks.length - 1 ? categoryFrameworks[currentIndex + 1] : null
   const related = getRelatedFrameworks(framework)
+  const steps = locale === 'en' ? framework.steps : framework.steps_zh
 
   const formattedNumber = `#${String(framework.id).padStart(2, '0')}`
+  const subtitle = locale === 'en' ? framework.name_zh : framework.name
 
   return (
     <div className={styles.page}>
       {/* Breadcrumb */}
       <nav className={styles.breadcrumb}>
-        <Link to="/">Home</Link>
+        <Link to="/">{t.allFrameworks}</Link>
         <span className={styles.separator}>/</span>
         {category && (
           <>
-            <Link to={`/category/${category.slug}`}>{category.name}</Link>
+            <Link to={`/category/${category.slug}`}>{localized(category, 'name')}</Link>
             <span className={styles.separator}>/</span>
           </>
         )}
-        <span>{framework.name}</span>
+        <span>{localized(framework, 'name')}</span>
       </nav>
 
       {/* Header */}
       <div className={styles.number}>{formattedNumber}</div>
-      <h1 className={styles.title}>{framework.name}</h1>
-      <div className={styles.titleZh}>{framework.name_zh}</div>
+      <h1 className={styles.title}>{localized(framework, 'name')}</h1>
+      <div className={styles.titleZh}>{subtitle}</div>
       <div className={styles.tags}>
         {category && (
           <span
@@ -56,7 +60,7 @@ export default function FrameworkPage() {
               color: category.colorText,
             }}
           >
-            {category.name}
+            {localized(category, 'name')}
           </span>
         )}
         {framework.ai_relevant && (
@@ -70,19 +74,19 @@ export default function FrameworkPage() {
       </div>
 
       {/* Description */}
-      <p className={styles.desc}>{framework.desc}</p>
-      <p className={styles.descZh}>{framework.desc_zh}</p>
+      <p className={styles.desc}>{localized(framework, 'desc')}</p>
+      <p className={styles.descZh}>{locale === 'en' ? framework.desc_zh : framework.desc}</p>
 
       {/* Implementation Steps */}
       <section className={styles.stepsSection}>
-        <h2 className={styles.stepsTitle}>Implementation Steps</h2>
-        <StepsList steps={framework.steps} steps_zh={framework.steps_zh} />
+        <h2 className={styles.stepsTitle}>{t.implementationSteps}</h2>
+        <StepsList steps={steps} />
       </section>
 
       {/* Related Frameworks */}
       {related.length > 0 && (
         <section className={styles.relatedSection}>
-          <h2 className={styles.stepsTitle}>Related Frameworks</h2>
+          <h2 className={styles.stepsTitle}>{t.relatedFrameworks}</h2>
           <RelatedFrameworks frameworks={related} />
         </section>
       )}
@@ -92,14 +96,14 @@ export default function FrameworkPage() {
         <div>
           {prev && (
             <Link to={`/frameworks/${prev.slug}`} className={styles.navLink}>
-              &larr; Previous: {prev.name}
+              {t.previous.replace('{name}', localized(prev, 'name'))}
             </Link>
           )}
         </div>
         <div>
           {next && (
             <Link to={`/frameworks/${next.slug}`} className={styles.navLink}>
-              Next: {next.name} &rarr;
+              {t.next.replace('{name}', localized(next, 'name'))}
             </Link>
           )}
         </div>
@@ -108,7 +112,7 @@ export default function FrameworkPage() {
       {/* Back to category */}
       {category && (
         <Link to={`/category/${category.slug}`} className={styles.backLink}>
-          &larr; Back to {category.name}
+          {t.backToCategory.replace('{name}', localized(category, 'name'))}
         </Link>
       )}
     </div>

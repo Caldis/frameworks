@@ -1,5 +1,6 @@
 import type { CategoryKey } from '../types'
 import { categories } from '../data/categories'
+import { useI18n } from '../i18n'
 import styles from './CategoryFilter.module.css'
 
 interface CategoryFilterProps {
@@ -9,13 +10,15 @@ interface CategoryFilterProps {
 }
 
 export default function CategoryFilter({ active, onChange, counts }: CategoryFilterProps) {
+  const { t, localized } = useI18n()
+
   return (
     <div className={styles.filters}>
       <button
         className={`${styles.btn} ${active === null ? styles.btnActive : ''}`}
         onClick={() => onChange(null)}
       >
-        All<span className={styles.count}>{counts.all}</span>
+        {t.all}<span className={styles.count}>{counts.all}</span>
       </button>
       {categories.map(cat => (
         <button
@@ -33,7 +36,7 @@ export default function CategoryFilter({ active, onChange, counts }: CategoryFil
             }
           }}
         >
-          {cat.name}<span className={styles.count}>{counts[cat.key]}</span>
+          {localized(cat, 'name')}<span className={styles.count}>{counts[cat.key]}</span>
         </button>
       ))}
     </div>

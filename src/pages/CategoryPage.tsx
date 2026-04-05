@@ -3,10 +3,12 @@ import type { Framework } from '../types'
 import { categories } from '../data/categories'
 import { getFrameworksByCategory, getAIRelevantFrameworks } from '../data/loader'
 import { useFavorites } from '../hooks/useFavorites'
+import { useI18n } from '../i18n'
 import CardGrid from '../components/CardGrid'
 import styles from './CategoryPage.module.css'
 
 export default function CategoryPage() {
+  const { locale, t, localized } = useI18n()
   const { slug } = useParams<{ slug: string }>()
   const navigate = useNavigate()
   const { favorites, toggleFavorite } = useFavorites()
@@ -16,14 +18,17 @@ export default function CategoryPage() {
   if (!category) {
     return (
       <div className={styles.notFound}>
-        <h2>Category not found</h2>
-        <Link to="/">Back to all frameworks</Link>
+        <h2>{t.categoryNotFound}</h2>
+        <Link to="/">{t.backToHome}</Link>
       </div>
     )
   }
 
   const frameworks = getFrameworksByCategory(category.key)
   const aiCount = frameworks.filter(f => f.ai_relevant).length
+
+  const categoryName = localized(category, 'name')
+  const nameSubtitle = locale === 'en' ? category.name_zh : category.name
 
   // Build nth-child selectors for AI-relevant cards in the grid
   const aiIndices = frameworks
@@ -48,22 +53,21 @@ export default function CategoryPage() {
   return (
     <div className={styles.page}>
       <Link to="/" className={styles.backLink}>
-        &larr; All Frameworks
+        {t.backToHome}
       </Link>
 
       <div className={styles.header}>
         <div className={styles.nameRow}>
           <h1 className={styles.name} style={{ color: category.colorText }}>
-            {category.name}
+            {categoryName}
           </h1>
-          <span className={styles.nameZh}>{category.name_zh}</span>
+          <span className={styles.nameZh}>{nameSubtitle}</span>
         </div>
         <p className={styles.desc}>
-          <span className={styles.descDefault}>{category.description}</span>
-          <span className={styles.descZh}>{category.description_zh}</span>
+          {localized(category, 'description')}
         </p>
         <div className={styles.stats}>
-          {frameworks.length} frameworks &middot; {aiCount} AI-relevant
+          {t.frameworksCount.replace('{count}', String(frameworks.length))} &middot; {t.aiRelevantCount.replace('{count}', String(aiCount))}
         </div>
       </div>
 
@@ -79,14 +83,14 @@ export default function CategoryPage() {
 
       {isAICategory && aiAcrossCategories && (
         <div className={styles.aiSection}>
-          <h2 className={styles.aiSectionTitle}>AI Across All Categories</h2>
+          <h2 className={styles.aiSectionTitle}>{t.aiAcrossCategories}</h2>
           {aiAcrossCategories.map(group => (
             <div key={group.category.key} className={styles.aiGroup}>
               <div
                 className={styles.aiGroupName}
                 style={{ color: group.category.colorText }}
               >
-                {group.category.name}
+                {localized(group.category, 'name')}
               </div>
               <div>
                 {group.frameworks.map(fw => (
@@ -96,7 +100,7 @@ export default function CategoryPage() {
                     className={styles.aiItem}
                     style={{ backgroundColor: group.category.colorBg }}
                   >
-                    {fw.name}
+                    {localized(fw, 'name')}
                   </Link>
                 ))}
               </div>

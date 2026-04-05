@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import type { Framework } from '../types'
 import { getCategoryByKey } from '../data/categories'
+import { useI18n } from '../i18n'
 import styles from './RelatedFrameworks.module.css'
 
 interface RelatedFrameworksProps {
@@ -8,6 +9,8 @@ interface RelatedFrameworksProps {
 }
 
 export default function RelatedFrameworks({ frameworks }: RelatedFrameworksProps) {
+  const { localized } = useI18n()
+
   return (
     <div className={styles.row}>
       {frameworks.map((fw) => {
@@ -18,8 +21,7 @@ export default function RelatedFrameworks({ frameworks }: RelatedFrameworksProps
             to={`/frameworks/${fw.slug}`}
             className={styles.card}
           >
-            <div className={styles.nameEn}>{fw.name}</div>
-            <div className={styles.nameZh}>{fw.name_zh}</div>
+            <div className={styles.name}>{localized(fw, 'name')}</div>
             {category && (
               <span
                 className={styles.pill}
@@ -28,11 +30,10 @@ export default function RelatedFrameworks({ frameworks }: RelatedFrameworksProps
                   color: category.colorText,
                 }}
               >
-                {category.name}
+                {localized(category, 'name')}
               </span>
             )}
-            <div className={styles.descEn}>{fw.desc}</div>
-            <div className={styles.descZh}>{fw.desc_zh}</div>
+            <div className={styles.desc}>{localized(fw, 'desc')}</div>
           </Link>
         )
       })}

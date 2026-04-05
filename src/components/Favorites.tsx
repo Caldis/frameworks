@@ -1,4 +1,5 @@
 import type { Framework } from '../types'
+import { useI18n } from '../i18n'
 import CardGrid from './CardGrid'
 import styles from './Favorites.module.css'
 
@@ -15,6 +16,8 @@ export default function Favorites({
   onCardClick,
   onToggleFavorite,
 }: FavoritesProps) {
+  const { t } = useI18n()
+
   if (favorites.length === 0) return null
 
   const favFrameworks = frameworks.filter(fw => favorites.includes(fw.slug))
@@ -25,7 +28,7 @@ export default function Favorites({
     <section className={styles.section}>
       <div className={styles.header}>
         <span className={styles.star}>★</span>
-        <span className={styles.title}>Favorites</span>
+        <span className={styles.title}>{t.favorites}</span>
         <span className={styles.count}>{favFrameworks.length}</span>
       </div>
       <CardGrid

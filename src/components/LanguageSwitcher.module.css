@@ -1,0 +1,31 @@
+.switcher {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  transition: border-color 0.15s;
+}
+
+.switcher:hover {
+  border-color: #999;
+}
+
+.active {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.inactive {
+  color: #bbb;
+}
+
+.separator {
+  color: #ddd;
+  margin: 0 1px;
+}

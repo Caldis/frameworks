@@ -19,18 +19,10 @@
   background: var(--border);
 }
 
-.nameEn {
+.name {
   font-size: 13px;
   font-weight: 600;
   color: var(--text);
-  margin-bottom: 4px;
-}
-
-.nameZh {
-  font-size: 13px;
-  font-weight: 600;
-  color: #666;
-  display: none;
   margin-bottom: 4px;
 }
 
@@ -43,7 +35,7 @@
   margin-bottom: 6px;
 }
 
-.descEn {
+.desc {
   font-size: 11.5px;
   color: #888;
   line-height: 1.4;
@@ -52,31 +44,4 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-}
-
-.descZh {
-  font-size: 11.5px;
-  color: #888;
-  line-height: 1.4;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: none;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-.card:hover .nameEn {
-  display: none;
-}
-
-.card:hover .nameZh {
-  display: block;
-}
-
-.card:hover .descEn {
-  display: none;
-}
-
-.card:hover .descZh {
-  display: -webkit-box;
 }

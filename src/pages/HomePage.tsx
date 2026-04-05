@@ -6,6 +6,7 @@ import { categories } from '../data/categories'
 import { useSearch } from '../hooks/useSearch'
 import { useFavorites } from '../hooks/useFavorites'
 import { useKeyboard } from '../hooks/useKeyboard'
+import { useI18n } from '../i18n'
 import SearchBar from '../components/SearchBar'
 import CategoryFilter from '../components/CategoryFilter'
 import Favorites from '../components/Favorites'
@@ -14,6 +15,7 @@ import Modal from '../components/Modal'
 import styles from './HomePage.module.css'
 
 export default function HomePage() {
+  const { t } = useI18n()
   const [activeCategory, setActiveCategory] = useState<CategoryKey | null>(null)
   const [modalIndex, setModalIndex] = useState<number | null>(null)
   const searchRef = useRef<HTMLInputElement>(null)
@@ -74,12 +76,12 @@ export default function HomePage() {
       {/* Hero section */}
       <div className={styles.hero}>
         <h1 className={styles.title}>
-          100 Software Design
+          {t.siteTitleLine1}
           <br />
-          <span className={styles.titleItalic}>Frameworks</span>
+          <span className={styles.titleItalic}>{t.siteTitleLine2}</span>
         </h1>
         <p className={styles.subtitle}>
-          A curated collection for engineers, architects, and AI agents
+          {t.siteSubtitle}
         </p>
       </div>
 
@@ -92,10 +94,10 @@ export default function HomePage() {
           counts={counts}
         />
         <span className={styles.count}>
-          Showing {filtered.length} of {allFrameworks.length}
+          {t.showingXofY.replace('{shown}', String(filtered.length)).replace('{total}', String(allFrameworks.length))}
         </span>
         <Link to="/map" className={styles.mapLink}>
-          Map
+          {t.map}
         </Link>
       </div>
 
@@ -110,7 +112,7 @@ export default function HomePage() {
       {/* Main card grid or empty state */}
       {filtered.length === 0 ? (
         <div className={styles.empty}>
-          No frameworks found for &lsquo;{query}&rsquo;
+          {t.noResults.replace('{query}', query)}
         </div>
       ) : (
         <CardGrid

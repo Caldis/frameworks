@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { Framework } from '../types'
 import { getCategoryByKey } from '../data/categories'
+import { useI18n } from '../i18n'
 import StepsList from './StepsList'
 import RelatedFrameworks from './RelatedFrameworks'
 import styles from './Modal.module.css'
@@ -27,6 +28,7 @@ export default function Modal({
   hasNext,
   relatedFrameworks,
 }: ModalProps) {
+  const { locale, t, localized } = useI18n()
   const [showHint, setShowHint] = useState(false)
 
   useEffect(() => {
@@ -54,6 +56,8 @@ export default function Modal({
   if (!framework) return null
 
   const category = getCategoryByKey(framework.category)
+  const subtitle = locale === 'en' ? framework.name_zh : framework.name
+  const steps = locale === 'en' ? framework.steps : framework.steps_zh
 
   return (
     <div className={styles.overlay} onClick={onClose}>
@@ -66,8 +70,8 @@ export default function Modal({
             <span className={styles.number}>
               # {String(framework.id).padStart(2, '0')}
             </span>
-            <h2 className={styles.title}>{framework.name}</h2>
-            <span className={styles.titleZh}>{framework.name_zh}</span>
+            <h2 className={styles.title}>{localized(framework, 'name')}</h2>
+            <span className={styles.titleZh}>{subtitle}</span>
             {category && (
               <span
                 style={{
@@ -80,7 +84,7 @@ export default function Modal({
                   display: 'inline-block',
                 }}
               >
-                {category.name}
+                {localized(category, 'name')}
               </span>
             )}
             {framework.ai_relevant && (
@@ -90,12 +94,11 @@ export default function Modal({
           <div className={styles.vizPlaceholder}>
             <span>{framework.viz_type}</span>
           </div>
-          <p className={styles.desc}>{framework.desc}</p>
-          <p className={styles.descZh}>{framework.desc_zh}</p>
-          <StepsList steps={framework.steps} steps_zh={framework.steps_zh} />
+          <p className={styles.desc}>{localized(framework, 'desc')}</p>
+          <StepsList steps={steps} />
           {relatedFrameworks.length > 0 && (
             <div className={styles.related}>
-              <h3>Related Frameworks</h3>
+              <h3>{t.relatedFrameworks}</h3>
               <RelatedFrameworks frameworks={relatedFrameworks} />
             </div>
           )}
@@ -103,7 +106,7 @@ export default function Modal({
             to={`/frameworks/${framework.slug}`}
             className={styles.detailLink}
           >
-            View Details &rarr;
+            {t.viewDetails}
           </Link>
         </div>
       </div>

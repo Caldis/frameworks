@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import * as d3 from 'd3'
 import { getAllFrameworks } from '../data/loader'
 import { categories, getCategoryByKey } from '../data/categories'
+import { useI18n } from '../i18n'
 import type { Framework, CategoryKey } from '../types'
 import styles from './MapPage.module.css'
 
@@ -11,6 +12,7 @@ interface SimNode extends d3.SimulationNodeDatum {
   name: string
   name_zh: string
   desc: string
+  desc_zh: string
   category: CategoryKey
   related: string[]
 }
@@ -21,6 +23,7 @@ interface SimLink extends d3.SimulationLinkDatum<SimNode> {
 }
 
 export default function MapPage() {
+  const { t, localized } = useI18n()
   const svgRef = useRef<SVGSVGElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const tooltipRef = useRef<HTMLDivElement>(null)
@@ -85,6 +88,7 @@ export default function MapPage() {
       name: f.name,
       name_zh: f.name_zh,
       desc: f.desc,
+      desc_zh: f.desc_zh,
       category: f.category,
       related: f.related,
     }))
@@ -176,7 +180,7 @@ export default function MapPage() {
       .attr('fill', '#333')
       .attr('opacity', 0)
       .attr('pointer-events', 'none')
-      .text(d => d.name)
+      .text(d => localized(d, 'name'))
 
     // Interactions
     node
@@ -212,9 +216,9 @@ export default function MapPage() {
         const tooltip = tooltipRef.current
         if (tooltip) {
           tooltip.innerHTML = `
-            <div class="${styles.tooltipName}">${d.name}</div>
-            <div class="${styles.tooltipNameZh}">${d.name_zh}</div>
-            <div class="${styles.tooltipDesc}">${d.desc}</div>
+            <div class="${styles.tooltipName}">${localized(d, 'name')}</div>
+            <div class="${styles.tooltipNameZh}">${localized(d, 'name') === d.name ? d.name_zh : d.name}</div>
+            <div class="${styles.tooltipDesc}">${localized(d, 'desc')}</div>
           `
           tooltip.classList.add(styles.tooltipVisible)
 
@@ -278,11 +282,11 @@ export default function MapPage() {
     return () => {
       simulation.stop()
     }
-  }, [navigate])
+  }, [navigate, localized])
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.title}>Relationship Map</h1>
+      <h1 className={styles.title}>{t.mapTitle}</h1>
       <div className={styles.filters}>
         {categories.map(cat => (
           <button
@@ -295,7 +299,7 @@ export default function MapPage() {
             }
             onClick={() => toggleCategory(cat.key)}
           >
-            {cat.name}
+            {localized(cat, 'name')}
           </button>
         ))}
       </div>
@@ -303,7 +307,7 @@ export default function MapPage() {
         <svg ref={svgRef} />
         <div ref={tooltipRef} className={styles.tooltip} />
       </div>
-      <Link to="/" className={styles.backLink}>&larr; Back to all frameworks</Link>
+      <Link to="/" className={styles.backLink}>{t.backToHome}</Link>
     </div>
   )
 }
