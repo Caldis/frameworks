@@ -1,0 +1,1092 @@
+[
+  {
+    "id": 121,
+    "name": "Consensus Protocols (Raft/Paxos)",
+    "name_zh": "共识协议（Raft/Paxos）",
+    "slug": "consensus-protocols",
+    "category": "distributed",
+    "desc": "Algorithms for achieving agreement among distributed nodes despite failures",
+    "desc_zh": "在节点可能故障的分布式系统中达成一致的算法",
+    "steps": [
+      "Define the replicated state machine: identify what state must be consistently replicated across all nodes in the cluster",
+      "Elect a leader: use randomized timeouts (Raft) or proposal numbers (Paxos) to select a single node responsible for coordinating writes",
+      "Replicate log entries: the leader appends client requests to its log and sends AppendEntries RPCs to followers, waiting for a majority quorum to acknowledge",
+      "Commit and apply: once a majority of nodes have persisted the entry, the leader marks it committed and all nodes apply it to their state machines",
+      "Handle leader failure: when followers detect a missing heartbeat, they increment the term, start a new election, and the cluster converges on a new leader"
+    ],
+    "steps_zh": [
+      "定义复制状态机：确定集群中所有节点需要一致复制的状态内容",
+      "选举领导者：使用随机超时（Raft）或提案编号（Paxos）选出一个负责协调写入的节点",
+      "复制日志条目：领导者将客户端请求追加到日志中，并向跟随者发送AppendEntries RPC，等待多数派确认",
+      "提交并应用：一旦多数节点持久化了该条目，领导者将其标记为已提交，所有节点将其应用到状态机",
+      "处理领导者故障：当跟随者检测到心跳缺失时，递增任期号，发起新选举，集群收敛到新领导者"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": ["cap-theorem", "leader-election", "two-phase-commit"],
+    "tags": ["consensus", "replication", "fault-tolerance", "distributed-state"],
+    "origin_author": "Leslie Lamport (Paxos, 1998); Diego Ongaro & John Ousterhout (Raft, 2014)",
+    "origin_source": "The Part-Time Parliament (ACM TOCS 1998); In Search of an Understandable Consensus Algorithm (USENIX ATC 2014); Kleppmann, Designing Data-Intensive Applications, Ch. 9",
+    "origin_source_zh": "《兼职议会》（ACM TOCS 1998）；《寻找一种可理解的共识算法》（USENIX ATC 2014）；Kleppmann《数据密集型应用系统设计》第9章",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When building a replicated log or replicated state machine that must tolerate node failures without data loss",
+      "When implementing a distributed coordination service like a lock manager, configuration store, or membership registry",
+      "When strong consistency guarantees are required and the system can tolerate the latency of quorum writes",
+      "When you need automatic leader failover without manual intervention in a clustered database or message broker"
+    ],
+    "when_to_use_zh": [
+      "当构建必须容忍节点故障且不丢失数据的复制日志或复制状态机时",
+      "当实现锁管理器、配置存储或成员注册表等分布式协调服务时",
+      "当需要强一致性保证，且系统可以容忍法定人数写入的延迟时",
+      "当需要在集群数据库或消息代理中实现无需人工干预的自动领导者故障转移时"
+    ],
+    "core_concepts": [
+      "Quorum: A majority of nodes (e.g., 3 of 5) must agree before a value is committed, ensuring any two quorums overlap",
+      "Term/epoch: A monotonically increasing logical clock that partitions time into leadership periods, preventing stale leaders from issuing writes",
+      "Log replication: The leader maintains an ordered log of commands and ensures all followers converge to the same log sequence",
+      "Safety property: Once a log entry is committed, no future leader can overwrite it, guaranteeing linearizable reads and writes",
+      "Liveness property: As long as a majority of nodes are reachable and can communicate, the system will eventually elect a leader and make progress"
+    ],
+    "core_concepts_zh": [
+      "法定人数：多数节点（如5中的3）必须同意后值才能提交，确保任意两个法定人数有交集",
+      "任期/纪元：单调递增的逻辑时钟，将时间划分为领导期，防止过期领导者发出写入",
+      "日志复制：领导者维护有序的命令日志，确保所有跟随者收敛到相同的日志序列",
+      "安全性：一旦日志条目被提交，未来的领导者都无法覆盖它，保证线性一致的读写",
+      "活性：只要多数节点可达且能通信，系统最终会选出领导者并继续处理请求"
+    ],
+    "timeline": [
+      ["1989", "Leslie Lamport writes the original Paxos paper using the metaphor of a Greek parliament"],
+      ["1998", "The Part-Time Parliament is finally published in ACM Transactions on Computer Systems"],
+      ["2001", "Lamport publishes Paxos Made Simple to make the algorithm more accessible"],
+      ["2014", "Diego Ongaro and John Ousterhout publish Raft as a more understandable alternative to Paxos"],
+      ["2017", "Kleppmann's DDIA synthesizes consensus protocols in the context of modern data systems"]
+    ],
+    "timeline_zh": [
+      ["1989", "Leslie Lamport使用希腊议会的比喻撰写了最初的Paxos论文"],
+      ["1998", "《兼职议会》最终发表在ACM计算机系统汇刊上"],
+      ["2001", "Lamport发表《Paxos Made Simple》使算法更易理解"],
+      ["2014", "Diego Ongaro和John Ousterhout发表Raft作为比Paxos更易理解的替代方案"],
+      ["2017", "Kleppmann的《数据密集型应用系统设计》在现代数据系统背景下综合介绍共识协议"]
+    ],
+    "dos": [
+      "Do deploy an odd number of nodes (3, 5, 7) because even numbers increase the chance of split votes without improving fault tolerance",
+      "Do persist log entries and term metadata to stable storage before responding because in-memory-only state leads to data loss on restart",
+      "Do implement pre-vote protocol extensions because they prevent disruptive elections from partitioned nodes rejoining the cluster",
+      "Do benchmark your quorum latency under realistic network conditions because consensus adds round-trip overhead to every write"
+    ],
+    "dos_zh": [
+      "部署奇数个节点（3、5、7），因为偶数节点增加了分裂投票的概率而不提升容错能力",
+      "在响应前将日志条目和任期元数据持久化到稳定存储，因为仅内存状态在重启时会导致数据丢失",
+      "实现预投票协议扩展，防止被分区隔离的节点重新加入集群时引发破坏性选举",
+      "在真实网络条件下对法定人数延迟进行基准测试，因为共识会为每次写入增加往返开销"
+    ],
+    "donts": [
+      "Don't run consensus across wide-area networks without accounting for latency because cross-datacenter round trips can make quorum writes unacceptably slow",
+      "Don't use consensus for high-throughput data that tolerates eventual consistency because the overhead of quorum writes is unnecessary",
+      "Don't ignore log compaction and snapshotting because unbounded log growth will exhaust disk space and slow down follower recovery",
+      "Don't assume consensus alone solves all distributed problems because it handles replication but not sharding, load balancing, or schema evolution"
+    ],
+    "donts_zh": [
+      "不要在不考虑延迟的情况下跨广域网运行共识，因为跨数据中心的往返可能使法定人数写入慢到不可接受",
+      "不要对可容忍最终一致性的高吞吐数据使用共识，因为法定人数写入的开销是不必要的",
+      "不要忽视日志压缩和快照，因为无限增长的日志会耗尽磁盘空间并减慢跟随者恢复速度",
+      "不要假设共识能解决所有分布式问题，它处理复制但不处理分片、负载均衡或模式演进"
+    ],
+    "case_study_company": "etcd / Kubernetes",
+    "case_study": "Kubernetes relies on etcd, a distributed key-value store implementing the Raft consensus protocol, as its single source of truth for all cluster state. Every API server write (pod scheduling, config changes, secret updates) is committed through Raft to an etcd cluster of typically 3 or 5 nodes. This design ensures that even if a minority of etcd nodes fail, the cluster state remains consistent and recoverable. When CoreOS (later acquired by Red Hat) originally built etcd in 2013, they chose Raft over Paxos specifically for its understandability, which allowed a broader contributor base to verify correctness.",
+    "case_study_zh": "Kubernetes依赖etcd——一个实现Raft共识协议的分布式键值存储——作为所有集群状态的唯一事实来源。每个API服务器写入（Pod调度、配置变更、密钥更新）都通过Raft提交到通常由3或5个节点组成的etcd集群。这种设计确保即使少数etcd节点故障，集群状态仍然一致且可恢复。当CoreOS（后被Red Hat收购）在2013年构建etcd时，他们选择Raft而非Paxos，正是因为其可理解性，这使得更广泛的贡献者能够验证正确性。",
+    "when_not_to_use": [
+      "High-throughput write-heavy workloads where eventual consistency is acceptable and quorum latency is a bottleneck",
+      "Single-node or embedded systems where there is no replication requirement",
+      "Systems where availability during network partitions is more important than consistency, favoring AP designs instead"
+    ],
+    "when_not_to_use_zh": [
+      "最终一致性可接受且法定人数延迟成为瓶颈的高吞吐写密集型工作负载",
+      "没有复制需求的单节点或嵌入式系统",
+      "网络分区期间可用性比一致性更重要的系统，应改用AP设计"
+    ],
+    "adopters": ["etcd/Kubernetes", "CockroachDB", "TiKV/TiDB", "Consul (HashiCorp)", "Apache ZooKeeper (ZAB)"]
+  },
+  {
+    "id": 122,
+    "name": "Eventual Consistency",
+    "name_zh": "最终一致性",
+    "slug": "eventual-consistency",
+    "category": "distributed",
+    "desc": "Embrace temporary inconsistency across replicas in exchange for higher availability",
+    "desc_zh": "以副本间的暂时不一致换取更高的可用性",
+    "steps": [
+      "Identify which data in the system can tolerate temporary inconsistency by classifying operations into strong-consistency-required vs. eventually-consistent",
+      "Choose a replication strategy: asynchronous replication with conflict detection, or anti-entropy protocols that periodically reconcile divergent replicas",
+      "Implement a conflict resolution policy: last-writer-wins (LWW), version vectors, CRDTs, or application-level merge functions depending on data semantics",
+      "Design read paths with staleness awareness: use read-your-writes consistency, monotonic reads, or causal consistency to meet user-facing expectations",
+      "Add observability for convergence lag: monitor replication delay, conflict rates, and anti-entropy cycle times to detect when the system is slow to converge"
+    ],
+    "steps_zh": [
+      "识别系统中哪些数据可以容忍暂时不一致，将操作分类为需要强一致性与可接受最终一致性",
+      "选择复制策略：带冲突检测的异步复制，或定期协调分歧副本的反熵协议",
+      "实现冲突解决策略：根据数据语义选择最后写入者获胜（LWW）、版本向量、CRDT或应用层合并函数",
+      "设计具有过期感知的读取路径：使用读自己写、单调读或因果一致性来满足面向用户的期望",
+      "为收敛延迟添加可观测性：监控复制延迟、冲突率和反熵周期时间，检测系统收敛缓慢的情况"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": ["cap-theorem", "consensus-protocols", "cqrs-pattern", "saga-pattern"],
+    "tags": ["consistency", "availability", "replication", "conflict-resolution"],
+    "origin_author": "Werner Vogels, 2008",
+    "origin_source": "Eventually Consistent (ACM Queue, 2008); Kleppmann, Designing Data-Intensive Applications, Ch. 5 & 9; Vogels, Amazon's Dynamo paper (SOSP 2007)",
+    "origin_source_zh": "《最终一致性》（ACM Queue 2008）；Kleppmann《数据密集型应用系统设计》第5章和第9章；Vogels，Amazon Dynamo论文（SOSP 2007）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When the system must remain available for writes even during network partitions or node failures",
+      "When data is replicated across geographically distant datacenters and synchronous replication would add unacceptable latency",
+      "When the business domain naturally tolerates stale reads, such as social media feeds, product catalogs, or DNS records",
+      "When write throughput requirements exceed what a single-leader or consensus-based system can handle"
+    ],
+    "when_to_use_zh": [
+      "当系统必须在网络分区或节点故障期间仍然可写时",
+      "当数据跨地理位置遥远的数据中心复制且同步复制会增加不可接受的延迟时",
+      "当业务领域天然容忍过期读取时，如社交媒体动态、产品目录或DNS记录",
+      "当写入吞吐需求超过单领导者或基于共识的系统所能承受的范围时"
+    ],
+    "core_concepts": [
+      "Convergence guarantee: All replicas will eventually reach the same state if no new updates are made, though the convergence window is unbounded",
+      "Conflict resolution: When concurrent writes occur on different replicas, the system must deterministically resolve conflicts using LWW, vector clocks, or CRDTs",
+      "Read-your-writes consistency: A session guarantee that a client always sees its own previous writes, even if other replicas are still catching up",
+      "Anti-entropy: Background processes (like Merkle tree comparison or read-repair) that detect and fix divergence between replicas",
+      "Tunable consistency: Systems like Cassandra allow per-query consistency levels (ONE, QUORUM, ALL) to balance latency and consistency on a per-operation basis"
+    ],
+    "core_concepts_zh": [
+      "收敛保证：如果没有新的更新，所有副本最终将达到相同状态，但收敛窗口是无界的",
+      "冲突解决：当不同副本上发生并发写入时，系统必须使用LWW、向量时钟或CRDT确定性地解决冲突",
+      "读自己写一致性：一种会话保证，确保客户端始终看到自己之前的写入，即使其他副本仍在追赶",
+      "反熵：检测并修复副本间分歧的后台进程（如Merkle树比较或读修复）",
+      "可调一致性：Cassandra等系统允许按查询设置一致性级别（ONE、QUORUM、ALL），逐操作平衡延迟与一致性"
+    ],
+    "timeline": [
+      ["1978", "Lamport defines happens-before relation, laying groundwork for reasoning about consistency in distributed systems"],
+      ["2007", "Amazon publishes the Dynamo paper at SOSP, demonstrating eventual consistency at massive scale with sloppy quorums"],
+      ["2008", "Werner Vogels publishes 'Eventually Consistent' in ACM Queue, formalizing the consistency spectrum"],
+      ["2011", "CRDTs (Conflict-free Replicated Data Types) formalized by Shapiro et al., enabling automatic conflict resolution"],
+      ["2017", "Kleppmann's DDIA provides a comprehensive synthesis of consistency models and their trade-offs for practitioners"]
+    ],
+    "timeline_zh": [
+      ["1978", "Lamport定义先发生关系，奠定分布式系统中推理一致性的基础"],
+      ["2007", "Amazon在SOSP发表Dynamo论文，展示使用松散法定人数实现大规模最终一致性"],
+      ["2008", "Werner Vogels在ACM Queue发表「最终一致性」，形式化一致性谱系"],
+      ["2011", "Shapiro等人形式化CRDT（无冲突复制数据类型），实现自动冲突解决"],
+      ["2017", "Kleppmann的《数据密集型应用系统设计》为从业者综合介绍一致性模型及其权衡"]
+    ],
+    "dos": [
+      "Do classify each piece of data by its consistency requirements because treating all data as eventually consistent leads to subtle correctness bugs",
+      "Do implement read-your-writes guarantees at the session level because users who cannot see their own updates lose trust in the system",
+      "Do monitor replication lag continuously because high convergence delays can indicate infrastructure problems or capacity exhaustion",
+      "Do choose conflict resolution strategies that match domain semantics because generic LWW silently drops valid concurrent updates"
+    ],
+    "dos_zh": [
+      "按一致性需求对每条数据进行分类，因为将所有数据都视为最终一致会导致微妙的正确性缺陷",
+      "在会话级别实现读自己写保证，因为看不到自己更新的用户会丧失对系统的信任",
+      "持续监控复制延迟，因为高收敛延迟可能表明基础设施问题或容量耗尽",
+      "选择与领域语义匹配的冲突解决策略，因为通用的LWW会静默丢弃有效的并发更新"
+    ],
+    "donts": [
+      "Don't assume eventually consistent means 'consistent enough' for financial transactions because money transfers require strong consistency to prevent double-spending",
+      "Don't ignore the convergence window in SLA definitions because users may observe stale data during high-replication-lag periods",
+      "Don't use wall-clock timestamps for conflict resolution across nodes because clock skew between machines makes LWW unreliable",
+      "Don't forget to test failure scenarios because eventual consistency bugs typically manifest only under network partitions or high load"
+    ],
+    "donts_zh": [
+      "不要假设最终一致性对金融交易「足够一致」，因为资金转账需要强一致性来防止双重花费",
+      "不要在SLA定义中忽略收敛窗口，因为用户在高复制延迟期间可能观察到过期数据",
+      "不要使用墙钟时间戳在节点间进行冲突解决，因为机器间的时钟偏差使LWW不可靠",
+      "不要忘记测试故障场景，因为最终一致性缺陷通常只在网络分区或高负载下才会显现"
+    ],
+    "case_study_company": "Amazon (DynamoDB)",
+    "case_study": "Amazon's DynamoDB, descended from the original Dynamo paper (2007), is architected around eventual consistency as the default read mode. During Prime Day 2022, DynamoDB served over 105 million requests per second across globally distributed tables. The eventually consistent read path avoids quorum overhead, delivering single-digit millisecond latency. For the shopping cart — Dynamo's original motivation — Amazon uses a 'last-writer-wins with client-side merge' strategy where the cart is an additive set, so no item is ever silently lost even when concurrent writes conflict across regions.",
+    "case_study_zh": "Amazon的DynamoDB源自2007年的Dynamo论文，以最终一致性作为默认读取模式。在2022年Prime Day期间，DynamoDB在全球分布式表中每秒处理超过1.05亿次请求。最终一致性读取路径避免了法定人数开销，实现个位数毫秒级延迟。对于购物车——Dynamo最初的设计动机——Amazon使用「最后写入者获胜加客户端合并」策略，将购物车视为可加集合，即使跨区域的并发写入冲突也不会静默丢失任何商品。",
+    "when_not_to_use": [
+      "Financial ledger systems where double-spending or lost updates are unacceptable",
+      "Distributed locking or leader election where stale reads can cause split-brain scenarios",
+      "Systems where regulatory compliance demands strong consistency and audit trails for every state transition"
+    ],
+    "when_not_to_use_zh": [
+      "双重花费或更新丢失不可接受的金融账本系统",
+      "过期读取可能导致脑裂场景的分布式锁或领导者选举",
+      "法规合规要求强一致性且每个状态转换都需要审计记录的系统"
+    ],
+    "adopters": ["Amazon DynamoDB", "Apache Cassandra", "Riak", "CouchDB", "Voldemort"]
+  },
+  {
+    "id": 123,
+    "name": "Backpressure Pattern",
+    "name_zh": "背压模式",
+    "slug": "backpressure-pattern",
+    "category": "distributed",
+    "desc": "Flow control mechanism where downstream consumers signal upstream producers to slow down",
+    "desc_zh": "下游消费者向上游生产者发出减速信号的流量控制机制",
+    "steps": [
+      "Identify the bottleneck: profile the pipeline to find where the slowest consumer or resource constraint creates a mismatch between production and consumption rates",
+      "Instrument buffer occupancy: add metrics to every queue, channel, and buffer in the pipeline to observe fill levels and detect when capacity is approaching limits",
+      "Implement the signaling mechanism: choose between reactive pull-based demand (Reactive Streams), TCP window-based flow control, credit-based systems, or explicit NACK/pause signals",
+      "Propagate backpressure end-to-end: ensure every stage in the pipeline forwards pressure upstream rather than absorbing it locally with unbounded buffers",
+      "Define overflow strategies: decide what happens when backpressure fails to prevent overload — drop newest, drop oldest, sample, or reject with an error to the caller"
+    ],
+    "steps_zh": [
+      "识别瓶颈：对管道进行性能分析，找到最慢的消费者或资源约束导致生产与消费速率不匹配的位置",
+      "监测缓冲区占用：为管道中每个队列、通道和缓冲区添加指标，观察填充水平并检测何时接近容量限制",
+      "实现信号机制：选择响应式拉取需求（Reactive Streams）、TCP窗口流控、基于信用的系统或显式NACK/暂停信号",
+      "端到端传播背压：确保管道中每个阶段都将压力向上游传递，而非用无界缓冲区在本地吸收",
+      "定义溢出策略：决定背压无法阻止过载时的处理方式——丢弃最新、丢弃最旧、采样或向调用者返回错误"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": ["circuit-breaker-pattern", "bulkhead-pattern", "reactive-extensions"],
+    "tags": ["flow-control", "resilience", "async", "streaming"],
+    "origin_author": "Concept from networking (TCP flow control); formalized in Reactive Streams (2013-2015)",
+    "origin_source": "Reactive Streams Specification (2015); Nygard, Release It!, Ch. 5; Kleppmann, Designing Data-Intensive Applications, Ch. 11",
+    "origin_source_zh": "Reactive Streams规范（2015）；Nygard《Release It!》第5章；Kleppmann《数据密集型应用系统设计》第11章",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When a fast producer overwhelms a slow consumer, causing memory exhaustion or cascading failures in the pipeline",
+      "When building real-time streaming data pipelines where data loss is unacceptable but throughput varies unpredictably",
+      "When microservices have asymmetric processing speeds and unbounded message queues risk out-of-memory crashes",
+      "When designing async event-driven systems where the event rate can spike during peak traffic periods"
+    ],
+    "when_to_use_zh": [
+      "当快速生产者压垮慢速消费者，导致内存耗尽或管道级联故障时",
+      "当构建实时流数据管道，数据丢失不可接受但吞吐量不可预测地变化时",
+      "当微服务的处理速度不对称，无界消息队列有内存溢出崩溃风险时",
+      "当设计异步事件驱动系统，事件速率在流量高峰期可能突增时"
+    ],
+    "core_concepts": [
+      "Demand signaling: Consumers explicitly request a specific number of items they can handle, preventing producers from pushing more than the consumer can process",
+      "Bounded buffers: Fixed-size queues that block or reject producers when full, converting memory pressure into temporal backpressure",
+      "End-to-end propagation: Backpressure must flow from the slowest stage all the way back to the original source; a single unbounded buffer breaks the chain",
+      "Overflow policies: Strategies for when backpressure is insufficient — drop-head, drop-tail, sample, buffer-to-disk, or reject with HTTP 429/503",
+      "Reactive Streams protocol: A standard (adopted as java.util.concurrent.Flow in JDK 9) defining Publisher, Subscriber, Subscription, and Processor interfaces with non-blocking demand signaling"
+    ],
+    "core_concepts_zh": [
+      "需求信号：消费者显式请求其能处理的特定数量项目，阻止生产者推送超出消费者处理能力的数据",
+      "有界缓冲区：固定大小的队列在满时阻塞或拒绝生产者，将内存压力转换为时间维度的背压",
+      "端到端传播：背压必须从最慢的阶段一路回传到原始数据源；单个无界缓冲区就会打破链条",
+      "溢出策略：背压不足时的处理策略——丢弃队首、丢弃队尾、采样、缓冲到磁盘或以HTTP 429/503拒绝",
+      "Reactive Streams协议：定义Publisher、Subscriber、Subscription和Processor接口的标准（JDK 9中采纳为java.util.concurrent.Flow），支持非阻塞需求信号"
+    ],
+    "timeline": [
+      ["1988", "Van Jacobson designs TCP congestion control with window-based flow control, a foundational backpressure mechanism"],
+      ["2013", "Engineers from Netflix, Pivotal, Lightbend, and Red Hat begin the Reactive Streams initiative"],
+      ["2015", "Reactive Streams 1.0 specification published, defining the Publisher-Subscriber contract with demand signaling"],
+      ["2017", "JDK 9 adopts Reactive Streams as java.util.concurrent.Flow, bringing backpressure to the Java standard library"],
+      ["2018", "Nygard's Release It! second edition covers backpressure as a core stability pattern for production systems"]
+    ],
+    "timeline_zh": [
+      ["1988", "Van Jacobson设计TCP拥塞控制及基于窗口的流控，奠定了背压机制的基础"],
+      ["2013", "Netflix、Pivotal、Lightbend和Red Hat的工程师发起Reactive Streams倡议"],
+      ["2015", "Reactive Streams 1.0规范发布，定义带需求信号的Publisher-Subscriber契约"],
+      ["2017", "JDK 9将Reactive Streams采纳为java.util.concurrent.Flow，将背压引入Java标准库"],
+      ["2018", "Nygard《Release It!》第二版将背压作为生产系统核心稳定性模式进行介绍"]
+    ],
+    "dos": [
+      "Do propagate backpressure end-to-end through every stage because a single unbounded buffer creates a hidden failure point",
+      "Do monitor buffer fill ratios as leading indicators because they reveal impending overload before out-of-memory errors occur",
+      "Do choose overflow strategies explicitly for each pipeline stage because the right policy depends on whether data loss is acceptable",
+      "Do test backpressure behavior under peak load conditions because backpressure bugs only manifest when the system is under stress"
+    ],
+    "dos_zh": [
+      "将背压端到端传播通过每个阶段，因为单个无界缓冲区会形成隐藏的故障点",
+      "将缓冲区填充率作为先导指标进行监控，因为它们在内存溢出错误发生之前就能揭示即将到来的过载",
+      "为每个管道阶段显式选择溢出策略，因为正确的策略取决于数据丢失是否可接受",
+      "在峰值负载条件下测试背压行为，因为背压缺陷只在系统承受压力时才会显现"
+    ],
+    "donts": [
+      "Don't use unbounded queues as a substitute for backpressure because they merely convert a throughput problem into a memory problem",
+      "Don't drop data silently without metrics because undetected data loss undermines system correctness and erodes operator trust",
+      "Don't apply backpressure only at the network edge because internal bottlenecks need their own flow control too",
+      "Don't conflate backpressure with rate limiting because backpressure is adaptive and demand-driven while rate limiting is a fixed policy"
+    ],
+    "donts_zh": [
+      "不要用无界队列替代背压，因为它们只是将吞吐问题转换为内存问题",
+      "不要在没有指标的情况下静默丢弃数据，因为未被检测到的数据丢失会损害系统正确性并侵蚀运维信任",
+      "不要仅在网络边缘应用背压，因为内部瓶颈也需要自己的流量控制",
+      "不要将背压与速率限制混为一谈，因为背压是自适应的需求驱动机制，而速率限制是固定策略"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix's streaming platform uses RxJava and Project Reactor extensively, both of which implement Reactive Streams backpressure. When Netflix's personalization service generates recommendation updates, downstream services (like the row-sorting service) can vary in processing capacity by 10x depending on the device type being served. Without backpressure, the recommendation engine would flood slower consumers, causing cascading timeouts. By implementing pull-based demand signaling, each consumer requests only what it can handle, and the recommendation engine automatically adjusts its emission rate. This pattern reduced out-of-memory incidents in the recommendation pipeline by over 90%.",
+    "case_study_zh": "Netflix的流媒体平台广泛使用RxJava和Project Reactor，两者都实现了Reactive Streams背压。当Netflix的个性化服务生成推荐更新时，下游服务（如行排序服务）的处理能力根据服务的设备类型可能相差10倍。没有背压时，推荐引擎会淹没较慢的消费者，导致级联超时。通过实现基于拉取的需求信号，每个消费者只请求其能处理的数量，推荐引擎自动调整其发射速率。该模式将推荐管道中的内存溢出事件减少了90%以上。",
+    "when_not_to_use": [
+      "Fire-and-forget telemetry where dropping some data points is preferable to slowing the producer",
+      "Simple request-response APIs where synchronous blocking naturally throttles the caller",
+      "Batch processing systems where the entire dataset is known in advance and can be partitioned statically"
+    ],
+    "when_not_to_use_zh": [
+      "丢弃部分数据点比减慢生产者更可取的即发即忘遥测场景",
+      "同步阻塞自然节流调用者的简单请求-响应API",
+      "整个数据集预先已知且可以静态分区的批处理系统"
+    ],
+    "adopters": ["Netflix (RxJava)", "Akka Streams (Lightbend)", "Project Reactor (Spring)", "Apache Flink", "Apache Kafka (consumer fetch)"]
+  },
+  {
+    "id": 124,
+    "name": "Sidecar Pattern",
+    "name_zh": "边车模式",
+    "slug": "sidecar-pattern",
+    "category": "distributed",
+    "desc": "Attach auxiliary processes alongside primary services for cross-cutting concerns",
+    "desc_zh": "在主服务旁部署辅助进程以处理横切关注点",
+    "steps": [
+      "Identify cross-cutting concerns: determine which capabilities (logging, monitoring, TLS termination, service discovery, circuit breaking) should be extracted from the application code",
+      "Design the sidecar contract: define how the primary service and sidecar communicate — shared localhost network, Unix domain sockets, or shared filesystem volumes",
+      "Deploy the sidecar as a co-located process: configure the orchestrator (e.g., Kubernetes pod) to schedule the sidecar container alongside the primary container with shared lifecycle",
+      "Route traffic through the sidecar: use iptables rules, init containers, or transparent proxying so that inbound and outbound traffic flows through the sidecar without application code changes",
+      "Manage sidecar lifecycle independently: update, configure, and version the sidecar proxy separately from the application, enabling platform-wide policy changes without redeploying services"
+    ],
+    "steps_zh": [
+      "识别横切关注点：确定哪些能力（日志、监控、TLS终止、服务发现、熔断）应从应用代码中提取",
+      "设计边车契约：定义主服务与边车的通信方式——共享localhost网络、Unix域套接字或共享文件系统卷",
+      "将边车作为共置进程部署：配置编排器（如Kubernetes Pod）将边车容器与主容器共同调度，共享生命周期",
+      "将流量路由通过边车：使用iptables规则、init容器或透明代理，使入站和出站流量在无需修改应用代码的情况下经过边车",
+      "独立管理边车生命周期：独立于应用更新、配置和版本化边车代理，实现无需重新部署服务即可进行平台级策略变更"
+    ],
+    "ai_relevant": true,
+    "viz_type": "tree",
+    "related": ["service-mesh-pattern", "hexagonal-architecture", "bulkhead-pattern"],
+    "tags": ["infrastructure", "proxy", "microservices", "cross-cutting-concerns"],
+    "origin_author": "Microsoft Azure Architecture Center (formalized 2016); popularized by Envoy/Istio (2016-2017)",
+    "origin_source": "Newman, Building Microservices, Ch. 8 (2nd ed., 2021); Nygard, Release It!, Ch. 17; Burns, Designing Distributed Systems (O'Reilly, 2018)",
+    "origin_source_zh": "Newman《构建微服务》第8章（第二版，2021）；Nygard《Release It!》第17章；Burns《设计分布式系统》（O'Reilly，2018）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When multiple services written in different languages need the same cross-cutting capabilities without duplicating libraries in each language",
+      "When platform teams want to enforce consistent networking policies (mTLS, retries, rate limiting) across all services transparently",
+      "When the application team should not need to understand or maintain infrastructure concerns like service mesh configuration",
+      "When migrating legacy applications to a service mesh where modifying application code is impractical"
+    ],
+    "when_to_use_zh": [
+      "当用不同语言编写的多个服务需要相同的横切能力而不想在每种语言中重复库时",
+      "当平台团队希望透明地在所有服务间强制一致的网络策略（mTLS、重试、速率限制）时",
+      "当应用团队不应需要理解或维护服务网格配置等基础设施关注点时",
+      "当迁移遗留应用到服务网格且修改应用代码不现实时"
+    ],
+    "core_concepts": [
+      "Co-location: The sidecar runs in the same network namespace and scheduling unit (e.g., Kubernetes pod) as the primary, sharing localhost and lifecycle",
+      "Transparent interception: Traffic is redirected through the sidecar via iptables or CNI plugins so the application communicates normally without awareness of the proxy",
+      "Polyglot support: Because the sidecar operates at the network layer, it provides uniform capabilities regardless of the primary service's programming language",
+      "Separation of concerns: Application developers focus on business logic while platform engineers manage the sidecar configuration and upgrades",
+      "Control plane / data plane split: A centralized control plane pushes configuration to distributed sidecar data planes, enabling fleet-wide policy changes"
+    ],
+    "core_concepts_zh": [
+      "共置：边车与主服务运行在同一网络命名空间和调度单元（如Kubernetes Pod）中，共享localhost和生命周期",
+      "透明拦截：流量通过iptables或CNI插件重定向到边车，应用在不感知代理的情况下正常通信",
+      "多语言支持：因为边车在网络层操作，无论主服务使用何种编程语言都能提供统一能力",
+      "关注点分离：应用开发者专注业务逻辑，平台工程师管理边车配置和升级",
+      "控制平面/数据平面分离：集中式控制平面向分布式边车数据平面推送配置，实现全舰队策略变更"
+    ],
+    "timeline": [
+      ["2013", "Netflix's Prana sidecar provides service discovery and health checking for non-JVM services in the Netflix OSS ecosystem"],
+      ["2016", "Lyft open-sources Envoy, a high-performance L7 proxy designed from the ground up as a sidecar for microservices"],
+      ["2017", "Istio launches using Envoy as its sidecar data plane, popularizing the sidecar pattern for service mesh architectures"],
+      ["2021", "Newman's Building Microservices 2nd edition dedicates coverage to the sidecar pattern as a standard microservices infrastructure approach"],
+      ["2023", "Ambient mesh architectures emerge (Istio ambient mode) exploring per-node proxies as an alternative to per-pod sidecars"]
+    ],
+    "timeline_zh": [
+      ["2013", "Netflix的Prana边车为Netflix OSS生态中的非JVM服务提供服务发现和健康检查"],
+      ["2016", "Lyft开源Envoy，一个从零设计为微服务边车的高性能L7代理"],
+      ["2017", "Istio使用Envoy作为边车数据平面发布，推动边车模式在服务网格架构中的普及"],
+      ["2021", "Newman《构建微服务》第二版将边车模式作为标准微服务基础设施方法进行专门介绍"],
+      ["2023", "环境网格架构出现（Istio ambient模式），探索每节点代理作为每Pod边车的替代方案"]
+    ],
+    "dos": [
+      "Do keep the sidecar lightweight and single-purpose because a bloated sidecar adds latency and resource overhead to every pod",
+      "Do version and release the sidecar independently from the application because coupling their release cycles defeats the purpose of separation",
+      "Do provide escape hatches for bypassing the sidecar because some traffic (e.g., health probes, localhost debugging) should not be intercepted",
+      "Do monitor sidecar resource consumption separately because sidecar CPU and memory usage can be significant at scale"
+    ],
+    "dos_zh": [
+      "保持边车轻量和单一职责，因为臃肿的边车会为每个Pod增加延迟和资源开销",
+      "独立于应用对边车进行版本管理和发布，因为耦合它们的发布周期违背了分离的初衷",
+      "提供绕过边车的逃生通道，因为某些流量（如健康探针、localhost调试）不应被拦截",
+      "单独监控边车的资源消耗，因为大规模部署下边车的CPU和内存使用可能相当可观"
+    ],
+    "donts": [
+      "Don't put business logic in the sidecar because it should contain only infrastructure concerns; mixing concerns creates tight coupling",
+      "Don't assume zero-cost proxying because each sidecar adds at least one network hop of latency and consumes CPU for TLS handshakes and header parsing",
+      "Don't deploy sidecars without a control plane because managing hundreds of independently configured sidecars becomes operationally intractable",
+      "Don't ignore sidecar startup ordering because if the sidecar is not ready before the application starts, initial requests will fail"
+    ],
+    "donts_zh": [
+      "不要在边车中放置业务逻辑，它应只包含基础设施关注点；混合关注点会造成紧耦合",
+      "不要假设代理零成本，每个边车至少增加一次网络跳转延迟并消耗CPU用于TLS握手和头部解析",
+      "不要在没有控制平面的情况下部署边车，因为管理数百个独立配置的边车在运维上不可行",
+      "不要忽视边车启动顺序，如果边车在应用启动前未就绪，初始请求将失败"
+    ],
+    "case_study_company": "Lyft",
+    "case_study": "Lyft built Envoy as an internal sidecar proxy to solve the challenge of operating a polyglot microservices fleet (Python, Go, C++) with consistent observability and resilience. Before Envoy, each language ecosystem maintained its own HTTP client library with inconsistent retry logic, timeout handling, and metrics emission. By deploying Envoy as a sidecar in every pod, Lyft achieved uniform distributed tracing, automatic retries with circuit breaking, and consistent latency metrics across all services regardless of language. Envoy handles over 3 million requests per second at Lyft and was donated to the CNCF, becoming the foundation for Istio and other service mesh implementations.",
+    "case_study_zh": "Lyft构建Envoy作为内部边车代理，解决运营多语言微服务集群（Python、Go、C++）时需要一致可观测性和弹性的挑战。在Envoy之前，每种语言生态各自维护HTTP客户端库，重试逻辑、超时处理和指标收集都不一致。通过在每个Pod中部署Envoy边车，Lyft实现了统一的分布式追踪、带熔断的自动重试以及跨所有服务一致的延迟指标，无论使用何种语言。Envoy在Lyft每秒处理超过300万请求，后捐赠给CNCF，成为Istio和其他服务网格实现的基础。",
+    "when_not_to_use": [
+      "Monolithic applications where cross-cutting concerns are handled within the application framework itself",
+      "Extremely latency-sensitive paths where even the sub-millisecond overhead of a local proxy is unacceptable",
+      "Small deployments with only a few services where the operational complexity of managing sidecars outweighs the benefits"
+    ],
+    "when_not_to_use_zh": [
+      "横切关注点在应用框架内部处理的单体应用",
+      "即使本地代理的亚毫秒级开销也不可接受的极端延迟敏感路径",
+      "只有少量服务的小型部署，管理边车的运维复杂性超过其收益"
+    ],
+    "adopters": ["Lyft (Envoy)", "Google (Istio)", "Airbnb", "Stripe", "Shopify"]
+  },
+  {
+    "id": 125,
+    "name": "Leader Election",
+    "name_zh": "领导者选举",
+    "slug": "leader-election",
+    "category": "distributed",
+    "desc": "Coordinate a single leader node among distributed peers to avoid conflicts",
+    "desc_zh": "在分布式对等节点中协调选出单一领导者以避免冲突",
+    "steps": [
+      "Define the leadership scope: determine what resource or responsibility the leader controls (e.g., write coordination, task scheduling, partition ownership)",
+      "Select an election mechanism: choose between consensus-based election (Raft/ZooKeeper), lease-based election (DynamoDB lock, etcd lease), or bully/ring algorithms for simpler topologies",
+      "Implement leader heartbeats: the leader periodically renews a lease or sends heartbeats so followers can detect leader failure within a bounded time",
+      "Handle leader failure: when the heartbeat or lease expires, remaining nodes initiate a new election using the chosen mechanism to converge on a single new leader",
+      "Protect against split-brain: use fencing tokens, epoch numbers, or distributed locks to ensure that a deposed leader cannot continue acting as leader after a new one is elected"
+    ],
+    "steps_zh": [
+      "定义领导权范围：确定领导者控制什么资源或职责（如写协调、任务调度、分区所有权）",
+      "选择选举机制：在基于共识的选举（Raft/ZooKeeper）、基于租约的选举（DynamoDB锁、etcd租约）或适用于简单拓扑的霸道/环形算法之间选择",
+      "实现领导者心跳：领导者定期续约租约或发送心跳，以便跟随者在有界时间内检测到领导者故障",
+      "处理领导者故障：当心跳或租约过期时，剩余节点使用所选机制发起新选举，收敛到单一新领导者",
+      "防止脑裂：使用防护令牌、纪元编号或分布式锁确保被废黜的领导者在新领导者选出后无法继续充当领导者"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": ["consensus-protocols", "cap-theorem", "two-phase-commit"],
+    "tags": ["coordination", "fault-tolerance", "leadership", "distributed-locking"],
+    "origin_author": "Garcia-Molina (Bully algorithm, 1982); Lamport (Paxos-based election, 1998)",
+    "origin_source": "Elections in a Distributed Computing System (IEEE, 1982); Kleppmann, Designing Data-Intensive Applications, Ch. 8 & 9; Nygard, Release It!, Ch. 12",
+    "origin_source_zh": "《分布式计算系统中的选举》（IEEE，1982）；Kleppmann《数据密集型应用系统设计》第8章和第9章；Nygard《Release It!》第12章",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When exactly one node must coordinate writes or task assignment to prevent conflicts or duplicate work",
+      "When a distributed scheduler or cron-like system needs a single active instance to avoid running duplicate jobs",
+      "When implementing master-slave replication where one node must be the authoritative writer at any given time",
+      "When partitioned data processing requires a single coordinator to assign work units to workers without overlap"
+    ],
+    "when_to_use_zh": [
+      "当恰好一个节点必须协调写入或任务分配以防止冲突或重复工作时",
+      "当分布式调度器或类cron系统需要单一活跃实例以避免运行重复作业时",
+      "当实现主从复制且在任意时刻需要一个权威写入节点时",
+      "当分区数据处理需要单一协调者向工作者分配无重叠的工作单元时"
+    ],
+    "core_concepts": [
+      "Lease-based leadership: The leader holds a time-bounded lease that must be periodically renewed; if the lease expires, other nodes can claim leadership",
+      "Fencing tokens: Monotonically increasing tokens issued with each new leader that allow storage systems to reject stale writes from former leaders",
+      "Split-brain prevention: Mechanisms to ensure at most one leader is active at any time, even during network partitions, typically requiring a quorum or external lock service",
+      "Graceful handoff: The outgoing leader completes in-flight operations and releases its lease cleanly before the new leader takes over, minimizing disruption",
+      "Leader liveness detection: Heartbeat intervals and timeout thresholds that balance fast failure detection against false positives from temporary network glitches"
+    ],
+    "core_concepts_zh": [
+      "基于租约的领导权：领导者持有有时间限制的租约，必须定期续约；如果租约过期，其他节点可以竞选领导权",
+      "防护令牌：每次新领导者产生时发放的单调递增令牌，允许存储系统拒绝来自前任领导者的过期写入",
+      "脑裂防护：确保在任何时刻最多只有一个活跃领导者的机制，即使在网络分区期间也是如此，通常需要法定人数或外部锁服务",
+      "优雅交接：即将卸任的领导者完成进行中的操作并干净地释放租约，然后新领导者接管，最小化中断",
+      "领导者活性检测：心跳间隔和超时阈值，在快速故障检测与临时网络抖动引起的误报之间取得平衡"
+    ],
+    "timeline": [
+      ["1982", "Hector Garcia-Molina publishes the Bully algorithm and Ring algorithm for leader election in distributed systems"],
+      ["1998", "Lamport's Paxos provides a consensus-based foundation for leader election in asynchronous systems"],
+      ["2010", "Apache ZooKeeper's ephemeral nodes and sequential znodes become the de facto leader election primitive in the Hadoop ecosystem"],
+      ["2014", "Raft formalizes leader election as an explicit sub-protocol with randomized timeouts for simplicity"],
+      ["2017", "Kleppmann's DDIA warns about the dangers of leader election without fencing tokens, citing real-world split-brain incidents"]
+    ],
+    "timeline_zh": [
+      ["1982", "Hector Garcia-Molina发表分布式系统中领导者选举的霸道算法和环形算法"],
+      ["1998", "Lamport的Paxos为异步系统中的领导者选举提供基于共识的基础"],
+      ["2010", "Apache ZooKeeper的临时节点和顺序znode成为Hadoop生态中事实上的领导者选举原语"],
+      ["2014", "Raft将领导者选举形式化为带随机超时的显式子协议，追求简洁性"],
+      ["2017", "Kleppmann的《数据密集型应用系统设计》警告不使用防护令牌进行领导者选举的危险，引用真实的脑裂事故"]
+    ],
+    "dos": [
+      "Do use fencing tokens for all leader-gated operations because a network-partitioned former leader may not know it has been replaced",
+      "Do set lease timeouts carefully: too short causes unnecessary re-elections during GC pauses, too long delays failover",
+      "Do implement graceful leader shutdown that releases the lease proactively because it enables faster handoff without waiting for lease expiry",
+      "Do test leader election under network partition scenarios because correctness bugs only surface when split-brain conditions actually occur"
+    ],
+    "dos_zh": [
+      "对所有领导者门控操作使用防护令牌，因为被网络分区隔离的前任领导者可能不知道自己已被替换",
+      "仔细设置租约超时：过短会在GC暂停期间导致不必要的重新选举，过长则延迟故障转移",
+      "实现主动释放租约的优雅领导者关闭，因为这能实现更快的交接而无需等待租约过期",
+      "在网络分区场景下测试领导者选举，因为正确性缺陷只在脑裂条件实际发生时才会浮现"
+    ],
+    "donts": [
+      "Don't rely solely on heartbeat absence to detect leader failure because network delays and GC pauses can cause false positives leading to unnecessary elections",
+      "Don't assume the leader election result is globally visible immediately because propagation delays mean some nodes may still believe the old leader is active",
+      "Don't use leader election when the workload can be partitioned among all nodes because a single leader becomes a throughput bottleneck",
+      "Don't implement your own leader election from scratch when proven implementations exist because subtle correctness bugs in election protocols are notoriously difficult to detect"
+    ],
+    "donts_zh": [
+      "不要仅依赖心跳缺失来检测领导者故障，因为网络延迟和GC暂停会导致误报从而引发不必要的选举",
+      "不要假设领导者选举结果对所有节点立即可见，因为传播延迟意味着某些节点可能仍认为旧领导者活跃",
+      "不要在工作负载可以在所有节点间分区时使用领导者选举，因为单一领导者会成为吞吐瓶颈",
+      "不要在已有经过验证的实现时从头实现领导者选举，因为选举协议中微妙的正确性缺陷出了名地难以检测"
+    ],
+    "case_study_company": "Apache Kafka",
+    "case_study": "Apache Kafka uses leader election to assign a single broker as the leader for each topic partition. Prior to KRaft (Kafka Raft), Kafka relied on Apache ZooKeeper for controller election, where one broker served as the cluster controller responsible for partition leader assignment. When a broker failed, ZooKeeper's session timeout triggered controller failover, which then reassigned partition leaders. This process could take 30+ seconds for large clusters. With the introduction of KRaft in Kafka 3.3 (2022), Kafka eliminated the ZooKeeper dependency by implementing Raft-based leader election internally, reducing controller failover time to under 10 seconds and simplifying the operational model from two distributed systems to one.",
+    "case_study_zh": "Apache Kafka使用领导者选举为每个主题分区分配单一代理作为领导者。在KRaft（Kafka Raft）之前，Kafka依赖Apache ZooKeeper进行控制器选举，一个代理充当集群控制器负责分区领导者分配。当代理故障时，ZooKeeper的会话超时触发控制器故障转移，然后重新分配分区领导者。对于大型集群此过程可能需要30秒以上。随着Kafka 3.3（2022）引入KRaft，Kafka消除了ZooKeeper依赖，通过内部实现基于Raft的领导者选举，将控制器故障转移时间缩短到10秒以内，并将运维模型从两个分布式系统简化为一个。",
+    "when_not_to_use": [
+      "Stateless services behind a load balancer where any instance can handle any request without coordination",
+      "Peer-to-peer systems designed for symmetric participation where introducing a leader adds unnecessary centralization",
+      "Systems where brief periods of duplicate processing are acceptable and cheaper than the complexity of leader election"
+    ],
+    "when_not_to_use_zh": [
+      "负载均衡器后的无状态服务，任何实例都能处理任何请求而无需协调",
+      "设计为对称参与的点对点系统，引入领导者会增加不必要的集中化",
+      "短暂的重复处理可接受且成本低于领导者选举复杂性的系统"
+    ],
+    "adopters": ["Apache Kafka (KRaft)", "Apache ZooKeeper", "etcd", "Redis Sentinel", "Elasticsearch"]
+  },
+  {
+    "id": 126,
+    "name": "Consistent Hashing",
+    "name_zh": "一致性哈希",
+    "slug": "consistent-hashing",
+    "category": "distributed",
+    "desc": "Distribute data across nodes with minimal redistribution when the cluster changes",
+    "desc_zh": "在集群变更时以最小重新分配量将数据分布到各节点",
+    "steps": [
+      "Define the hash ring: map both data keys and node identifiers onto the same circular hash space (typically 0 to 2^32-1) using a uniform hash function",
+      "Assign keys to nodes: each key is assigned to the first node encountered when walking clockwise around the ring from the key's hash position",
+      "Add virtual nodes: map each physical node to multiple positions on the ring (e.g., 100-200 virtual nodes per physical node) to ensure uniform load distribution",
+      "Handle node addition: when a new node joins, it claims a portion of the ring; only the keys in the affected arc need to migrate from the successor node",
+      "Handle node removal: when a node leaves, its keys are redistributed to the next node clockwise on the ring, affecting only a fraction of the total keys"
+    ],
+    "steps_zh": [
+      "定义哈希环：使用均匀哈希函数将数据键和节点标识符映射到相同的环形哈希空间（通常为0到2^32-1）",
+      "将键分配给节点：每个键被分配给从该键的哈希位置沿环顺时针方向遇到的第一个节点",
+      "添加虚拟节点：将每个物理节点映射到环上的多个位置（如每个物理节点100-200个虚拟节点）以确保负载均匀分布",
+      "处理节点加入：新节点加入时声明环上的一段弧；只有受影响弧段上的键需要从后继节点迁移",
+      "处理节点移除：节点离开时其键重新分配给环上顺时针方向的下一个节点，只影响总键数的一小部分"
+    ],
+    "ai_relevant": false,
+    "viz_type": "cycle",
+    "related": ["sharding-strategies", "gossip-protocol", "cap-theorem"],
+    "tags": ["partitioning", "load-balancing", "hashing", "scalability"],
+    "origin_author": "David Karger, Eric Lehman, Tom Leighton, et al., 1997",
+    "origin_source": "Consistent Hashing and Random Trees (ACM STOC 1997); Kleppmann, Designing Data-Intensive Applications, Ch. 6; Dynamo: Amazon's Highly Available Key-Value Store (SOSP 2007)",
+    "origin_source_zh": "《一致性哈希与随机树》（ACM STOC 1997）；Kleppmann《数据密集型应用系统设计》第6章；《Dynamo：Amazon高可用键值存储》（SOSP 2007）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When distributing cached data across a cluster of cache servers and nodes are frequently added or removed",
+      "When building a distributed key-value store that must rebalance data with minimal migration on cluster resize",
+      "When implementing client-side load balancing where a consistent mapping from request keys to backend servers is needed",
+      "When designing a CDN or object storage system where content must be distributed across edge nodes predictably"
+    ],
+    "when_to_use_zh": [
+      "当在缓存服务器集群间分布缓存数据且节点频繁增减时",
+      "当构建分布式键值存储，需要在集群扩缩容时以最小迁移量重新平衡数据时",
+      "当实现客户端负载均衡，需要从请求键到后端服务器的一致映射时",
+      "当设计CDN或对象存储系统，内容必须可预测地分布到边缘节点时"
+    ],
+    "core_concepts": [
+      "Hash ring: A circular hash space where the output of the hash function wraps around, so the space has no endpoints and every position has a successor",
+      "Virtual nodes (vnodes): Multiple hash positions per physical node that smooth out distribution imbalances caused by non-uniform hash clustering",
+      "Minimal disruption: When a node joins or leaves, only O(K/N) keys need to move (K total keys, N nodes), compared to O(K) with naive modular hashing",
+      "Replication via ring walking: Data is replicated by storing copies on the next R distinct physical nodes encountered clockwise, providing fault tolerance",
+      "Bounded load extension: Google's 2017 improvement that caps the maximum load on any node to (1+epsilon) times the average, preventing hot spots"
+    ],
+    "core_concepts_zh": [
+      "哈希环：环形哈希空间，哈希函数输出首尾相接，空间没有端点，每个位置都有后继",
+      "虚拟节点（vnodes）：每个物理节点在环上占据多个哈希位置，平滑非均匀哈希聚集导致的分布不均",
+      "最小扰动：节点加入或离开时只需移动O(K/N)个键（K为总键数，N为节点数），而朴素取模哈希需要O(K)",
+      "基于环遍历的复制：通过将副本存储在顺时针方向遇到的下R个不同物理节点上提供容错",
+      "有界负载扩展：Google 2017年的改进，将任意节点的最大负载限制在平均值的(1+epsilon)倍以内，防止热点"
+    ],
+    "timeline": [
+      ["1997", "Karger et al. publish Consistent Hashing and Random Trees at ACM STOC, originally motivated by web caching"],
+      ["2007", "Amazon's Dynamo paper uses consistent hashing with virtual nodes for its distributed key-value store"],
+      ["2008", "Apache Cassandra adopts consistent hashing as its data partitioning strategy, following the Dynamo design"],
+      ["2014", "Consistent hashing becomes standard in memcached clients (libmemcached, ketama) for distributed cache clusters"],
+      ["2017", "Google publishes Consistent Hashing with Bounded Loads, addressing the load imbalance problem in practical deployments"]
+    ],
+    "timeline_zh": [
+      ["1997", "Karger等人在ACM STOC发表《一致性哈希与随机树》，最初动机来自Web缓存"],
+      ["2007", "Amazon的Dynamo论文使用带虚拟节点的一致性哈希作为分布式键值存储的分区策略"],
+      ["2008", "Apache Cassandra采用一致性哈希作为数据分区策略，遵循Dynamo设计"],
+      ["2014", "一致性哈希成为memcached客户端（libmemcached、ketama）在分布式缓存集群中的标准"],
+      ["2017", "Google发表「有界负载的一致性哈希」，解决实际部署中的负载不均衡问题"]
+    ],
+    "dos": [
+      "Do use a sufficient number of virtual nodes per physical node (100+) because too few virtual nodes leads to uneven key distribution",
+      "Do choose a hash function with good uniformity (like xxHash or MurmurHash) because poor distribution creates hot spots regardless of virtual nodes",
+      "Do consider heterogeneous node capacity by assigning more virtual nodes to more powerful machines to achieve proportional load distribution",
+      "Do implement gradual key migration when nodes join because migrating all affected keys at once can cause load spikes on neighboring nodes"
+    ],
+    "dos_zh": [
+      "为每个物理节点使用足够数量的虚拟节点（100+），因为虚拟节点太少会导致键分布不均",
+      "选择具有良好均匀性的哈希函数（如xxHash或MurmurHash），因为分布差的函数无论虚拟节点多少都会产生热点",
+      "考虑异构节点容量，为更强大的机器分配更多虚拟节点以实现按比例的负载分配",
+      "节点加入时实现渐进式键迁移，因为一次性迁移所有受影响的键会在相邻节点造成负载尖峰"
+    ],
+    "donts": [
+      "Don't use consistent hashing with very small clusters (2-3 nodes) because the overhead is unnecessary and simple partitioning suffices",
+      "Don't forget about replication when implementing consistent hashing because hash ring assignment alone does not provide fault tolerance",
+      "Don't assume consistent hashing eliminates all hot spots because skewed access patterns (a few very popular keys) still concentrate load on specific nodes",
+      "Don't change the hash function after deployment because it invalidates the entire key-to-node mapping and forces a full data migration"
+    ],
+    "donts_zh": [
+      "不要在非常小的集群（2-3个节点）中使用一致性哈希，因为开销不必要且简单分区即可满足",
+      "实现一致性哈希时不要忘记复制，因为仅哈希环分配不提供容错能力",
+      "不要假设一致性哈希能消除所有热点，因为倾斜的访问模式（少量非常热门的键）仍会将负载集中在特定节点",
+      "部署后不要更改哈希函数，因为这会使整个键到节点的映射失效并强制全量数据迁移"
+    ],
+    "case_study_company": "Akamai",
+    "case_study": "Consistent hashing was originally invented by Karger et al. at MIT in collaboration with Akamai Technologies to solve the web content caching problem. Akamai's CDN needed to distribute cached web objects across thousands of edge servers worldwide, and when servers were added or removed, traditional modular hashing would invalidate nearly all cache entries, causing a thundering herd of requests to origin servers. With consistent hashing, adding or removing a server affects only 1/N of the cached keys, keeping cache hit rates stable during cluster changes. This approach remains fundamental to Akamai's CDN, which serves over 30% of global web traffic.",
+    "case_study_zh": "一致性哈希最初由MIT的Karger等人与Akamai Technologies合作发明，用于解决Web内容缓存问题。Akamai的CDN需要将缓存的Web对象分布到全球数千个边缘服务器上，当服务器增减时，传统的取模哈希会使几乎所有缓存条目失效，导致对源服务器的惊群请求。使用一致性哈希后，添加或移除服务器只影响1/N的缓存键，在集群变更期间保持缓存命中率稳定。这种方法至今仍是Akamai CDN的基础，该CDN承载了全球超过30%的Web流量。",
+    "when_not_to_use": [
+      "Static clusters that never change size, where simple range or modular partitioning is sufficient and easier to reason about",
+      "Workloads requiring strict ordering or range queries, where hash-based partitioning scatters related keys across nodes",
+      "Single-node systems or systems with a dedicated partitioning coordinator that can use more sophisticated placement algorithms"
+    ],
+    "when_not_to_use_zh": [
+      "永远不会改变大小的静态集群，简单的范围或取模分区已足够且更易推理",
+      "需要严格排序或范围查询的工作负载，基于哈希的分区会将相关键分散到不同节点",
+      "单节点系统或有专用分区协调器可以使用更复杂放置算法的系统"
+    ],
+    "adopters": ["Akamai", "Apache Cassandra", "Amazon DynamoDB", "Memcached (ketama)", "Riak"]
+  },
+  {
+    "id": 127,
+    "name": "Gossip Protocol",
+    "name_zh": "Gossip协议",
+    "slug": "gossip-protocol",
+    "category": "distributed",
+    "desc": "Epidemic-style information dissemination for decentralized cluster communication",
+    "desc_zh": "以流行病传播方式在去中心化集群中进行信息扩散",
+    "steps": [
+      "Bootstrap the protocol: each node maintains a partial membership list of known peers and seeds the list from a configuration file or DNS-based discovery",
+      "Select gossip targets: at each gossip interval (e.g., every 1 second), each node randomly selects a fixed number of peers (fanout, typically 2-3) to exchange state with",
+      "Exchange state digests: nodes send compact digests of their known state (version vectors, heartbeat counters, or Bloom filters) to detect what the peer is missing",
+      "Reconcile differences: after comparing digests, nodes exchange only the delta — new or updated entries — bringing both nodes closer to a shared view of the cluster",
+      "Detect failures: use the accumulated heartbeat information to mark nodes as suspected or confirmed down after a configurable number of missed gossip rounds"
+    ],
+    "steps_zh": [
+      "引导协议：每个节点维护已知对等节点的部分成员列表，从配置文件或基于DNS的发现初始化该列表",
+      "选择gossip目标：在每个gossip间隔（如每1秒），每个节点随机选择固定数量的对等节点（扇出，通常2-3个）进行状态交换",
+      "交换状态摘要：节点发送其已知状态的紧凑摘要（版本向量、心跳计数器或布隆过滤器）以检测对方缺少的内容",
+      "协调差异：比较摘要后，节点仅交换增量——新的或更新的条目——使两个节点更接近集群的共享视图",
+      "检测故障：使用累积的心跳信息，在可配置数量的gossip轮次未收到响应后将节点标记为疑似或确认宕机"
+    ],
+    "ai_relevant": false,
+    "viz_type": "matrix",
+    "related": ["consistent-hashing", "eventual-consistency", "leader-election"],
+    "tags": ["membership", "failure-detection", "decentralized", "epidemic"],
+    "origin_author": "Alan Demers, Dan Greene, Carl Hauser, et al. (Xerox PARC, 1987)",
+    "origin_source": "Epidemic Algorithms for Replicated Database Maintenance (ACM PODC 1987); Kleppmann, Designing Data-Intensive Applications, Ch. 5; van Renesse et al., Efficient Reconciliation and Flow Control for Anti-Entropy Protocols (2008)",
+    "origin_source_zh": "《复制数据库维护的流行病算法》（ACM PODC 1987）；Kleppmann《数据密集型应用系统设计》第5章；van Renesse等《反熵协议的高效协调与流控》（2008）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When cluster membership information must propagate to all nodes without a centralized membership service",
+      "When the system needs a decentralized failure detector that works without a single point of failure",
+      "When metadata (configuration, schema versions, feature flags) must eventually reach all nodes in a large cluster",
+      "When building peer-to-peer systems where no node has a privileged role and information must spread organically"
+    ],
+    "when_to_use_zh": [
+      "当集群成员信息必须在没有集中式成员服务的情况下传播到所有节点时",
+      "当系统需要无单点故障的去中心化故障检测器时",
+      "当元数据（配置、模式版本、特性开关）必须最终到达大型集群中的所有节点时",
+      "当构建没有特权角色节点、信息必须有机扩散的点对点系统时"
+    ],
+    "core_concepts": [
+      "Epidemic dissemination: Information spreads like a disease — each informed node infects a few others per round, achieving O(log N) convergence time for N nodes",
+      "Fanout: The number of random peers each node contacts per gossip round; higher fanout speeds convergence but increases network traffic",
+      "Cramer-von Mises convergence: Mathematical guarantee that all nodes receive the update with high probability after O(log N) rounds with constant fanout",
+      "SWIM protocol: Scalable Weakly-consistent Infection-style Membership protocol that combines gossip with direct and indirect probes for efficient failure detection",
+      "Anti-entropy: A complementary mechanism where nodes periodically do full state reconciliation (using Merkle trees) to repair any inconsistencies that gossip missed"
+    ],
+    "core_concepts_zh": [
+      "流行病扩散：信息像疾病一样传播——每轮中每个已知节点感染几个其他节点，对N个节点实现O(log N)的收敛时间",
+      "扇出：每轮gossip中每个节点联系的随机对等节点数量；更高的扇出加快收敛但增加网络流量",
+      "收敛保证：数学上保证在常数扇出下经过O(log N)轮后所有节点以高概率接收到更新",
+      "SWIM协议：可扩展弱一致感染式成员协议，将gossip与直接和间接探测结合以实现高效的故障检测",
+      "反熵：补充机制，节点定期进行完整的状态协调（使用Merkle树）以修复gossip遗漏的任何不一致"
+    ],
+    "timeline": [
+      ["1987", "Demers et al. at Xerox PARC publish Epidemic Algorithms for Replicated Database Maintenance"],
+      ["2002", "Das, Gupta, and Muthukrishnan introduce SWIM, a gossip-based membership protocol used in many modern systems"],
+      ["2007", "Amazon's Dynamo paper describes using gossip for membership and failure detection in production"],
+      ["2012", "HashiCorp's Serf and later Consul adopt SWIM-based gossip (memberlist library) for cluster membership"],
+      ["2017", "Kleppmann's DDIA contextualizes gossip protocols within the broader landscape of distributed systems primitives"]
+    ],
+    "timeline_zh": [
+      ["1987", "Xerox PARC的Demers等人发表「复制数据库维护的流行病算法」"],
+      ["2002", "Das、Gupta和Muthukrishnan提出SWIM，一种被许多现代系统使用的基于gossip的成员协议"],
+      ["2007", "Amazon的Dynamo论文描述在生产环境中使用gossip进行成员管理和故障检测"],
+      ["2012", "HashiCorp的Serf和后来的Consul采用基于SWIM的gossip（memberlist库）进行集群成员管理"],
+      ["2017", "Kleppmann的《数据密集型应用系统设计》将gossip协议置于分布式系统原语的更广阔背景中进行介绍"]
+    ],
+    "dos": [
+      "Do tune the gossip interval and fanout based on cluster size because defaults optimized for 10 nodes may not work for 10,000 nodes",
+      "Do use compact state digests (Bloom filters, version vectors) because sending full state on every gossip round wastes bandwidth at scale",
+      "Do combine gossip with anti-entropy reconciliation because gossip alone can leave a small probability of nodes missing updates indefinitely",
+      "Do implement suspicion mechanisms (like SWIM's indirect probe) because immediately marking a node as dead on one missed heartbeat leads to flapping"
+    ],
+    "dos_zh": [
+      "根据集群大小调整gossip间隔和扇出，因为针对10个节点优化的默认值可能不适用于10000个节点",
+      "使用紧凑的状态摘要（布隆过滤器、版本向量），因为每轮gossip发送完整状态在大规模下浪费带宽",
+      "将gossip与反熵协调结合，因为仅靠gossip可能留下节点无限期遗漏更新的小概率",
+      "实现怀疑机制（如SWIM的间接探测），因为一次心跳缺失就将节点标记为宕机会导致状态抖动"
+    ],
+    "donts": [
+      "Don't use gossip for data that requires strong consistency because gossip provides only eventual convergence with no ordering guarantees",
+      "Don't set the gossip interval too aggressively in large clusters because the O(N * fanout) messages per interval can create significant network overhead",
+      "Don't assume gossip propagation is instantaneous because in a 1000-node cluster with 1-second intervals, full propagation may take 10+ seconds",
+      "Don't gossip large payloads (e.g., entire database snapshots) because gossip is designed for small metadata, not bulk data transfer"
+    ],
+    "donts_zh": [
+      "不要将gossip用于需要强一致性的数据，因为gossip仅提供最终收敛且没有排序保证",
+      "不要在大型集群中设置过于激进的gossip间隔，因为每个间隔O(N * fanout)条消息会产生显著的网络开销",
+      "不要假设gossip传播是即时的，在1000个节点1秒间隔的集群中，完全传播可能需要10秒以上",
+      "不要通过gossip传播大型负载（如完整数据库快照），因为gossip设计用于小型元数据而非批量数据传输"
+    ],
+    "case_study_company": "Apache Cassandra",
+    "case_study": "Apache Cassandra uses a gossip protocol for cluster membership, failure detection, and schema dissemination. Every second, each Cassandra node selects up to three peers to exchange gossip state, including heartbeat counters, datacenter/rack topology, schema versions, and load information. This decentralized approach means Cassandra has no single point of failure for cluster coordination — any node can serve as a contact point for clients. When a node fails, gossip-based failure detection (using a phi-accrual failure detector built on gossip heartbeats) propagates the failure information across the cluster within seconds, allowing the remaining nodes to take over the failed node's token ranges without a centralized coordinator.",
+    "case_study_zh": "Apache Cassandra使用gossip协议进行集群成员管理、故障检测和模式传播。每秒钟，每个Cassandra节点选择最多三个对等节点交换gossip状态，包括心跳计数器、数据中心/机架拓扑、模式版本和负载信息。这种去中心化方法意味着Cassandra在集群协调上没有单点故障——任何节点都可以作为客户端的联系点。当节点故障时，基于gossip的故障检测（使用构建在gossip心跳上的phi累积故障检测器）在数秒内将故障信息传播到整个集群，使剩余节点无需集中式协调器即可接管故障节点的令牌范围。",
+    "when_not_to_use": [
+      "When strong consistency and total ordering of events is required, because gossip provides only best-effort dissemination",
+      "Small clusters (under 5 nodes) where a centralized membership service is simpler and equally reliable",
+      "When propagation latency must be bounded and deterministic, because gossip convergence is probabilistic"
+    ],
+    "when_not_to_use_zh": [
+      "当需要强一致性和事件全序时，因为gossip仅提供尽力而为的信息扩散",
+      "小型集群（少于5个节点），集中式成员服务更简单且同样可靠",
+      "当传播延迟必须有界和确定性时，因为gossip的收敛是概率性的"
+    ],
+    "adopters": ["Apache Cassandra", "HashiCorp Consul", "Amazon DynamoDB", "ScyllaDB", "Redis Cluster"]
+  },
+  {
+    "id": 128,
+    "name": "Two-Phase Commit (2PC)",
+    "name_zh": "两阶段提交（2PC）",
+    "slug": "two-phase-commit",
+    "category": "distributed",
+    "desc": "Atomic commit protocol ensuring all-or-nothing transaction outcomes across distributed participants",
+    "desc_zh": "确保分布式参与者之间事务要么全部提交要么全部回滚的原子提交协议",
+    "steps": [
+      "Phase 1 — Prepare: The coordinator sends a PREPARE message to all participants, asking each to vote on whether it can commit the transaction",
+      "Participant vote: Each participant performs all transaction work (writes to WAL, acquires locks) and responds with VOTE-COMMIT if ready or VOTE-ABORT if not",
+      "Coordinator decision: If all participants vote COMMIT, the coordinator writes a COMMIT decision to its own durable log; if any participant votes ABORT, the coordinator decides ABORT",
+      "Phase 2 — Commit/Abort: The coordinator sends the decision (COMMIT or ABORT) to all participants, who apply or roll back accordingly and acknowledge",
+      "Recovery: If the coordinator crashes between phases, participants that voted COMMIT remain in a blocked (in-doubt) state until the coordinator recovers and resends the decision"
+    ],
+    "steps_zh": [
+      "阶段一——准备：协调者向所有参与者发送PREPARE消息，要求每个参与者投票决定是否能提交事务",
+      "参与者投票：每个参与者执行所有事务工作（写入WAL、获取锁），如果准备好则回复VOTE-COMMIT，否则回复VOTE-ABORT",
+      "协调者决策：如果所有参与者投票COMMIT，协调者将COMMIT决定写入自己的持久化日志；如果任何参与者投票ABORT，协调者决定ABORT",
+      "阶段二——提交/回滚：协调者将决定（COMMIT或ABORT）发送给所有参与者，参与者相应地应用或回滚并确认",
+      "恢复：如果协调者在两个阶段之间崩溃，已投票COMMIT的参与者将保持阻塞（不确定）状态，直到协调者恢复并重发决定"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": ["saga-pattern", "eventual-consistency", "consensus-protocols"],
+    "tags": ["transactions", "atomicity", "coordination", "distributed-databases"],
+    "origin_author": "Jim Gray, 1978",
+    "origin_source": "Notes on Data Base Operating Systems (1978); Kleppmann, Designing Data-Intensive Applications, Ch. 9; Bernstein, Hadzilacos, Goodman, Concurrency Control and Recovery in Database Systems (1987)",
+    "origin_source_zh": "《数据库操作系统笔记》（1978）；Kleppmann《数据密集型应用系统设计》第9章；Bernstein、Hadzilacos、Goodman《数据库系统中的并发控制与恢复》（1987）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When multiple databases or resource managers must commit or abort as a single atomic unit, such as in XA transactions",
+      "When financial or regulatory requirements demand that cross-system updates are either fully applied or fully rolled back",
+      "When coordinating writes across heterogeneous data stores (e.g., a relational database and a message queue) that must remain consistent",
+      "When the number of participants is small and the transaction duration is short, minimizing the window for blocking"
+    ],
+    "when_to_use_zh": [
+      "当多个数据库或资源管理器必须作为单一原子单元提交或回滚时，如XA事务",
+      "当金融或监管要求跨系统更新必须完全应用或完全回滚时",
+      "当协调必须保持一致的异构数据存储间的写入时（如关系数据库和消息队列）",
+      "当参与者数量少且事务持续时间短，最小化阻塞窗口时"
+    ],
+    "core_concepts": [
+      "Atomicity: The fundamental guarantee that either all participants commit or all abort — no partial outcomes are possible",
+      "Blocking problem: If the coordinator fails after sending PREPARE but before sending the decision, participants holding locks are blocked indefinitely until the coordinator recovers",
+      "Write-ahead logging: Both coordinator and participants durably log their decisions before sending messages, enabling recovery after crashes",
+      "Presumed abort: An optimization where the coordinator does not log ABORT decisions; if a participant asks and finds no commit record, it aborts by default",
+      "XA standard: The X/Open DTP model that defines the 2PC interface (xa_prepare, xa_commit, xa_rollback) for interoperability between transaction managers and resource managers"
+    ],
+    "core_concepts_zh": [
+      "原子性：基本保证——要么所有参与者提交，要么所有参与者回滚，不可能出现部分结果",
+      "阻塞问题：如果协调者在发送PREPARE之后、发送决定之前故障，持有锁的参与者将无限期阻塞直到协调者恢复",
+      "预写日志：协调者和参与者在发送消息之前都将其决定持久化到日志，支持崩溃后恢复",
+      "假定中止：一种优化，协调者不记录ABORT决定；如果参与者查询时未找到提交记录，则默认中止",
+      "XA标准：X/Open DTP模型，定义了2PC接口（xa_prepare、xa_commit、xa_rollback），用于事务管理器和资源管理器之间的互操作"
+    ],
+    "timeline": [
+      ["1978", "Jim Gray describes the two-phase commit protocol in Notes on Data Base Operating Systems"],
+      ["1987", "Bernstein, Hadzilacos, and Goodman formalize 2PC theory in Concurrency Control and Recovery in Database Systems"],
+      ["1991", "X/Open publishes the XA specification standardizing the 2PC interface for distributed transactions"],
+      ["2007", "Pat Helland's Life Beyond Distributed Transactions argues for moving away from 2PC toward compensating transactions"],
+      ["2017", "Kleppmann's DDIA critically examines 2PC's blocking nature and advocates for alternatives like sagas in most microservice architectures"]
+    ],
+    "timeline_zh": [
+      ["1978", "Jim Gray在《数据库操作系统笔记》中描述两阶段提交协议"],
+      ["1987", "Bernstein、Hadzilacos和Goodman在《数据库系统中的并发控制与恢复》中形式化2PC理论"],
+      ["1991", "X/Open发布XA规范，标准化分布式事务的2PC接口"],
+      ["2007", "Pat Helland的「分布式事务之外的生活」主张从2PC转向补偿事务"],
+      ["2017", "Kleppmann的《数据密集型应用系统设计》批判性地审视2PC的阻塞特性，在大多数微服务架构中倡导saga等替代方案"]
+    ],
+    "dos": [
+      "Do keep the prepare-to-commit window as short as possible because participants hold locks during this entire period, blocking other transactions",
+      "Do implement robust recovery procedures for the coordinator because its failure is the most dangerous scenario in 2PC",
+      "Do use 2PC only within a single trust boundary because coordinating 2PC across organizational boundaries creates unacceptable operational coupling",
+      "Do monitor in-doubt transaction counts because even rare coordinator failures can leave orphaned locks that block entire tables"
+    ],
+    "dos_zh": [
+      "将准备到提交的窗口保持尽可能短，因为参与者在此整个期间持有锁，阻塞其他事务",
+      "为协调者实现健壮的恢复程序，因为协调者故障是2PC中最危险的场景",
+      "仅在单一信任边界内使用2PC，因为跨组织边界协调2PC会产生不可接受的运维耦合",
+      "监控不确定事务数量，因为即使罕见的协调者故障也可能留下阻塞整个表的孤立锁"
+    ],
+    "donts": [
+      "Don't use 2PC across microservice boundaries in most cases because the blocking nature and tight coupling contradicts microservice autonomy",
+      "Don't hold expensive resources (like database connections or row locks) during the prepare phase longer than necessary because it degrades overall system throughput",
+      "Don't assume 2PC provides consensus because it only guarantees atomicity; a coordinator failure still blocks the protocol unlike true consensus algorithms",
+      "Don't mix 2PC with long-running business processes because the lock duration becomes unbounded and starves concurrent operations"
+    ],
+    "donts_zh": [
+      "大多数情况下不要跨微服务边界使用2PC，因为其阻塞特性和紧耦合与微服务自治性相矛盾",
+      "不要在准备阶段持有昂贵资源（如数据库连接或行锁）超过必要时间，因为这会降低整体系统吞吐",
+      "不要假设2PC提供共识，它只保证原子性；协调者故障仍会阻塞协议，不像真正的共识算法",
+      "不要将2PC与长时间运行的业务流程混合，因为锁持续时间变得无界并饿死并发操作"
+    ],
+    "case_study_company": "Google Spanner",
+    "case_study": "Google Spanner uses a variant of 2PC combined with Paxos to achieve globally distributed ACID transactions. Each Spanner shard is a Paxos group, and cross-shard transactions use 2PC where each participant shard commits through its own Paxos group. This hybrid eliminates 2PC's blocking problem: if the coordinator fails, the Paxos group that replicated the coordinator's state elects a new coordinator and completes the protocol. Spanner's TrueTime API (GPS + atomic clocks) provides globally synchronized timestamps that order transactions without the traditional 2PC lock contention. This architecture enables Google to run globally consistent transactions with single-digit millisecond latencies for workloads like Google Ads and Google Play, something previously considered impossible for geographically distributed systems.",
+    "case_study_zh": "Google Spanner使用2PC的变体结合Paxos实现全球分布式ACID事务。每个Spanner分片是一个Paxos组，跨分片事务使用2PC，每个参与者分片通过自己的Paxos组提交。这种混合方式消除了2PC的阻塞问题：如果协调者故障，复制了协调者状态的Paxos组选出新的协调者并完成协议。Spanner的TrueTime API（GPS+原子钟）提供全球同步的时间戳来排序事务，无需传统2PC的锁竞争。这种架构使Google能够为Google Ads和Google Play等工作负载运行全球一致的事务且延迟在个位数毫秒级别，这在以前被认为对地理分布式系统是不可能的。",
+    "when_not_to_use": [
+      "Microservice architectures where service autonomy and independent deployability are more important than cross-service atomicity",
+      "High-throughput systems where lock contention from the prepare phase would create unacceptable performance bottlenecks",
+      "Systems spanning multiple organizations or trust boundaries where no single coordinator can be trusted by all parties"
+    ],
+    "when_not_to_use_zh": [
+      "服务自治和独立部署能力比跨服务原子性更重要的微服务架构",
+      "准备阶段的锁竞争会产生不可接受的性能瓶颈的高吞吐系统",
+      "跨越多个组织或信任边界、没有单一协调者能被所有方信任的系统"
+    ],
+    "adopters": ["Google Spanner", "PostgreSQL (prepared transactions)", "Oracle Database (XA)", "MySQL (XA)", "Microsoft SQL Server (MSDTC)"]
+  },
+  {
+    "id": 129,
+    "name": "Sharding Strategies",
+    "name_zh": "分片策略",
+    "slug": "sharding-strategies",
+    "category": "distributed",
+    "desc": "Horizontal data partitioning patterns for distributing load across multiple database nodes",
+    "desc_zh": "将数据水平分区到多个数据库节点以分散负载的模式",
+    "steps": [
+      "Analyze access patterns: identify the most common queries, their selectivity, and which fields they filter on to determine the optimal shard key",
+      "Choose a sharding strategy: select hash-based sharding for uniform distribution, range-based sharding for range queries, or directory-based sharding for complex routing",
+      "Define the shard key: select a high-cardinality field (e.g., user_id, tenant_id) that distributes writes evenly and keeps related data co-located for common query patterns",
+      "Implement query routing: build a routing layer (application-level, proxy, or coordinator) that directs each query to the correct shard(s) based on the shard key",
+      "Plan for rebalancing: design the migration strategy for splitting hot shards or redistributing data when adding nodes, using techniques like consistent hashing or logical sharding"
+    ],
+    "steps_zh": [
+      "分析访问模式：识别最常见的查询、其选择性以及过滤的字段，以确定最优分片键",
+      "选择分片策略：选择基于哈希的分片实现均匀分布、基于范围的分片支持范围查询，或基于目录的分片实现复杂路由",
+      "定义分片键：选择高基数字段（如user_id、tenant_id），确保写入均匀分布且相关数据对常见查询模式保持共置",
+      "实现查询路由：构建路由层（应用级、代理或协调器），根据分片键将每个查询定向到正确的分片",
+      "规划重新平衡：设计分割热分片或在添加节点时重新分配数据的迁移策略，使用一致性哈希或逻辑分片等技术"
+    ],
+    "ai_relevant": false,
+    "viz_type": "matrix",
+    "related": ["consistent-hashing", "cap-theorem", "eventual-consistency"],
+    "tags": ["partitioning", "scalability", "databases", "horizontal-scaling"],
+    "origin_author": "Concept from database research (1980s-1990s); formalized in modern context by Kleppmann (2017)",
+    "origin_source": "Kleppmann, Designing Data-Intensive Applications, Ch. 6; Newman, Building Microservices, Ch. 4 (2nd ed., 2021); Sadalage & Fowler, NoSQL Distilled (2012)",
+    "origin_source_zh": "Kleppmann《数据密集型应用系统设计》第6章；Newman《构建微服务》第4章（第二版，2021）；Sadalage和Fowler《NoSQL精粹》（2012）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When a single database instance cannot handle the write throughput or storage volume required by the application",
+      "When query latency is degraded by the sheer size of tables and indexes on a single node, even after vertical scaling",
+      "When multi-tenant applications need data isolation guarantees where each tenant's data resides on a dedicated shard",
+      "When geographic data locality is required to minimize latency by placing shards close to their primary user base"
+    ],
+    "when_to_use_zh": [
+      "当单个数据库实例无法处理应用所需的写入吞吐量或存储容量时",
+      "当即使垂直扩展后，单节点上表和索引的庞大规模导致查询延迟下降时",
+      "当多租户应用需要数据隔离保证，每个租户的数据驻留在专用分片上时",
+      "当需要地理数据局部性以通过将分片放置在主要用户群附近来最小化延迟时"
+    ],
+    "core_concepts": [
+      "Hash-based sharding: Apply a hash function to the shard key and assign data to shards by hash range; ensures uniform distribution but prevents efficient range queries",
+      "Range-based sharding: Assign contiguous key ranges to each shard; supports range queries but risks hot spots if access patterns cluster around certain ranges",
+      "Directory-based sharding: A lookup table maps each key to its shard; maximally flexible but introduces the directory as a single point of failure and bottleneck",
+      "Cross-shard queries: Queries that span multiple shards require scatter-gather coordination, which is significantly more expensive than single-shard queries",
+      "Shard rebalancing: The process of redistributing data across shards when adding or removing nodes, which must be done without downtime using techniques like logical sharding or dual-write migration"
+    ],
+    "core_concepts_zh": [
+      "基于哈希的分片：对分片键应用哈希函数并按哈希范围分配数据到分片；确保均匀分布但阻碍高效的范围查询",
+      "基于范围的分片：将连续的键范围分配给每个分片；支持范围查询但如果访问模式集中在某些范围则有热点风险",
+      "基于目录的分片：查找表将每个键映射到其分片；灵活性最大但引入目录作为单点故障和瓶颈",
+      "跨分片查询：跨越多个分片的查询需要分散-聚合协调，成本远高于单分片查询",
+      "分片重新平衡：在添加或移除节点时重新分配数据到分片的过程，必须使用逻辑分片或双写迁移等技术在不停机的情况下完成"
+    ],
+    "timeline": [
+      ["1986", "DeWitt and Gray publish papers on parallel database systems with horizontal partitioning strategies"],
+      ["2007", "Amazon's Dynamo and Google's Bigtable papers demonstrate sharding at web scale, influencing the NoSQL movement"],
+      ["2010", "MongoDB introduces auto-sharding, making hash-based and range-based sharding accessible to application developers"],
+      ["2017", "Kleppmann's DDIA provides the definitive practitioner guide to partitioning strategies and their trade-offs"],
+      ["2020", "Vitess (YouTube's MySQL sharding middleware) becomes a CNCF graduated project, proving sharding remains essential at scale"]
+    ],
+    "timeline_zh": [
+      ["1986", "DeWitt和Gray发表关于并行数据库系统水平分区策略的论文"],
+      ["2007", "Amazon的Dynamo和Google的Bigtable论文展示Web级别的分片，影响了NoSQL运动"],
+      ["2010", "MongoDB引入自动分片，使应用开发者能够使用基于哈希和基于范围的分片"],
+      ["2017", "Kleppmann的《数据密集型应用系统设计》提供分区策略及其权衡的权威实践者指南"],
+      ["2020", "Vitess（YouTube的MySQL分片中间件）成为CNCF毕业项目，证明分片在大规模下仍然不可或缺"]
+    ],
+    "dos": [
+      "Do choose a shard key with high cardinality and uniform distribution because low-cardinality keys create unbalanceable hot shards",
+      "Do co-locate related data on the same shard whenever possible because cross-shard joins are orders of magnitude slower than local joins",
+      "Do implement logical sharding from the start (many logical shards per physical node) because it makes future physical rebalancing a matter of reassigning logical shards rather than splitting data",
+      "Do plan for the scatter-gather query pattern because some queries will inevitably span multiple shards and need a coordination layer"
+    ],
+    "dos_zh": [
+      "选择高基数且均匀分布的分片键，因为低基数键会产生无法平衡的热分片",
+      "尽可能将相关数据共置在同一分片上，因为跨分片连接比本地连接慢几个数量级",
+      "从一开始就实现逻辑分片（每个物理节点多个逻辑分片），因为这使未来的物理重新平衡变成重新分配逻辑分片而非分割数据",
+      "为分散-聚合查询模式做好规划，因为某些查询将不可避免地跨越多个分片并需要协调层"
+    ],
+    "donts": [
+      "Don't shard prematurely because sharding adds significant operational complexity; exhaust vertical scaling and read replicas first",
+      "Don't choose a shard key based on write patterns alone because read-heavy queries that span all shards will create a scatter-gather bottleneck",
+      "Don't forget about secondary indexes because global secondary indexes in a sharded system require cross-shard coordination or eventual consistency",
+      "Don't assume you can change the shard key later without a full data migration because the shard key determines the physical data layout"
+    ],
+    "donts_zh": [
+      "不要过早分片，因为分片增加了显著的运维复杂性；先用尽垂直扩展和读副本",
+      "不要仅基于写入模式选择分片键，因为跨所有分片的读密集查询会产生分散-聚合瓶颈",
+      "不要忘记二级索引，因为分片系统中的全局二级索引需要跨分片协调或最终一致性",
+      "不要假设之后可以在不全量数据迁移的情况下更改分片键，因为分片键决定了物理数据布局"
+    ],
+    "case_study_company": "Slack",
+    "case_study": "Slack shards its MySQL databases by workspace (team_id), ensuring that all messages, channels, and metadata for a single workspace reside on the same shard. This design eliminates cross-shard queries for the most common access pattern — loading messages in a channel for a specific workspace. When Slack grew from hundreds to millions of workspaces, they implemented a logical sharding layer called Bedrock that maps workspace IDs to physical shards. When a physical shard becomes too hot, Bedrock moves logical shards to a new physical node with zero-downtime migration using dual-write and cutover. This approach allowed Slack to scale from a single MySQL instance to thousands of shards while maintaining sub-100ms query latencies for workspace-scoped operations.",
+    "case_study_zh": "Slack按工作空间（team_id）对MySQL数据库进行分片，确保单个工作空间的所有消息、频道和元数据驻留在同一分片上。这种设计消除了最常见访问模式——加载特定工作空间中频道消息——的跨分片查询。当Slack从数百增长到数百万个工作空间时，他们实现了名为Bedrock的逻辑分片层，将工作空间ID映射到物理分片。当物理分片过热时，Bedrock使用双写和切换将逻辑分片零停机迁移到新的物理节点。这种方法使Slack从单个MySQL实例扩展到数千个分片，同时将工作空间范围操作的查询延迟保持在100毫秒以内。",
+    "when_not_to_use": [
+      "Datasets that fit comfortably on a single database node with acceptable query performance",
+      "Workloads dominated by cross-entity analytical queries where sharding would require constant scatter-gather operations",
+      "Early-stage products where the data model is still evolving and premature sharding would lock in a suboptimal partition scheme"
+    ],
+    "when_not_to_use_zh": [
+      "在单个数据库节点上能舒适容纳且查询性能可接受的数据集",
+      "以跨实体分析查询为主的工作负载，分片将需要持续的分散-聚合操作",
+      "数据模型仍在演进的早期产品，过早分片会锁定次优的分区方案"
+    ],
+    "adopters": ["Slack", "Pinterest", "Vitess/YouTube", "Instagram", "MongoDB Atlas"]
+  },
+  {
+    "id": 130,
+    "name": "Idempotency Pattern",
+    "name_zh": "幂等性模式",
+    "slug": "idempotency-pattern",
+    "category": "distributed",
+    "desc": "Design operations to be safely retried without causing duplicate effects",
+    "desc_zh": "将操作设计为可安全重试且不产生重复效果",
+    "steps": [
+      "Assign a unique idempotency key: the client generates a UUID or deterministic key for each logical operation and includes it in every request and retry",
+      "Check for prior execution: before processing, the server looks up the idempotency key in a durable store to determine if this operation has already been processed",
+      "Execute and store the result: if the key is new, process the operation, persist the result alongside the idempotency key in the same transaction, and return the response",
+      "Return the cached result for duplicates: if the key already exists, skip processing and return the previously stored response, ensuring the client sees the same outcome",
+      "Expire old keys: implement a TTL-based cleanup policy for idempotency records because storing them indefinitely would consume unbounded storage"
+    ],
+    "steps_zh": [
+      "分配唯一幂等键：客户端为每个逻辑操作生成UUID或确定性键，并在每次请求和重试中包含该键",
+      "检查是否已执行：处理前，服务器在持久化存储中查找幂等键以确定该操作是否已被处理",
+      "执行并存储结果：如果键是新的，处理操作，在同一事务中将结果与幂等键一起持久化，返回响应",
+      "对重复请求返回缓存结果：如果键已存在，跳过处理并返回先前存储的响应，确保客户端看到相同结果",
+      "过期旧键：为幂等记录实现基于TTL的清理策略，因为无限期存储会消耗无界的存储空间"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": ["saga-pattern", "eventual-consistency", "two-phase-commit"],
+    "tags": ["reliability", "retries", "deduplication", "at-least-once"],
+    "origin_author": "Concept from mathematics and HTTP specification (RFC 7231); applied to distributed systems by Helland (2012) and Kleppmann (2017)",
+    "origin_source": "Kleppmann, Designing Data-Intensive Applications, Ch. 11; Nygard, Release It!, Ch. 5; Helland, Idempotence Is Not a Medical Condition (ACM Queue, 2012)",
+    "origin_source_zh": "Kleppmann《数据密集型应用系统设计》第11章；Nygard《Release It!》第5章；Helland「幂等性不是一种疾病」（ACM Queue，2012）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When network failures or timeouts cause clients to retry requests, and duplicate execution would cause data corruption or financial loss",
+      "When at-least-once message delivery semantics require deduplication at the consumer to achieve effectively-once processing",
+      "When designing payment or order APIs where a duplicate charge or double order creation would be a critical business error",
+      "When building webhook receivers that may receive the same event notification multiple times from an external provider"
+    ],
+    "when_to_use_zh": [
+      "当网络故障或超时导致客户端重试请求，且重复执行会导致数据损坏或财务损失时",
+      "当至少一次消息投递语义要求消费者进行去重以实现有效的恰好一次处理时",
+      "当设计支付或订单API，重复扣款或重复创建订单是严重业务错误时",
+      "当构建可能从外部提供者多次收到相同事件通知的webhook接收器时"
+    ],
+    "core_concepts": [
+      "Idempotency key: A client-generated unique identifier (typically a UUID) sent with each request that allows the server to detect and deduplicate retries",
+      "At-least-once to effectively-once: Combining at-least-once delivery with server-side idempotency achieves the effect of exactly-once processing without the complexity of true exactly-once protocols",
+      "Natural vs. artificial idempotency: Some operations are naturally idempotent (SET x=5) while others require artificial idempotency (tracking that a specific payment was already processed)",
+      "Idempotency window: The time period during which the server retains idempotency records; retries after the window has expired may be processed as new operations",
+      "Side-effect isolation: External side effects (sending emails, calling third-party APIs) must be guarded separately because the idempotency store only protects the local state change"
+    ],
+    "core_concepts_zh": [
+      "幂等键：客户端生成的唯一标识符（通常是UUID），随每个请求发送，允许服务器检测和去重重试",
+      "从至少一次到有效恰好一次：将至少一次投递与服务端幂等性结合，实现恰好一次处理的效果而无需真正恰好一次协议的复杂性",
+      "自然幂等与人工幂等：某些操作天然幂等（SET x=5），而其他操作需要人工幂等性（追踪特定支付是否已处理）",
+      "幂等窗口：服务器保留幂等记录的时间段；窗口过期后的重试可能被作为新操作处理",
+      "副作用隔离：外部副作用（发送邮件、调用第三方API）必须单独保护，因为幂等存储只保护本地状态变更"
+    ],
+    "timeline": [
+      ["1999", "HTTP/1.1 (RFC 2616) formalizes idempotency for PUT and DELETE methods, establishing the concept in web API design"],
+      ["2007", "Amazon's Dynamo paper discusses idempotent operations as a requirement for safe retries in eventually consistent systems"],
+      ["2012", "Pat Helland publishes Idempotence Is Not a Medical Condition in ACM Queue, advocating for idempotent API design"],
+      ["2016", "Stripe introduces the Idempotency-Key header for payment APIs, setting an industry standard for financial API design"],
+      ["2017", "Kleppmann's DDIA discusses idempotency in the context of stream processing and exactly-once semantics"]
+    ],
+    "timeline_zh": [
+      ["1999", "HTTP/1.1（RFC 2616）为PUT和DELETE方法形式化幂等性，在Web API设计中确立该概念"],
+      ["2007", "Amazon的Dynamo论文讨论幂等操作作为最终一致系统中安全重试的需求"],
+      ["2012", "Pat Helland在ACM Queue发表「幂等性不是一种疾病」，倡导幂等API设计"],
+      ["2016", "Stripe为支付API引入Idempotency-Key头部，为金融API设计树立行业标准"],
+      ["2017", "Kleppmann的《数据密集型应用系统设计》在流处理和恰好一次语义的背景下讨论幂等性"]
+    ],
+    "dos": [
+      "Do store the idempotency key and result in the same atomic transaction as the business operation because separate stores can become inconsistent after crashes",
+      "Do let the client generate the idempotency key because server-generated keys cannot be correlated with retries of the same logical operation",
+      "Do return the same HTTP status code and response body for duplicate requests because clients rely on consistent responses to determine success",
+      "Do set a reasonable TTL for idempotency records (e.g., 24-72 hours) because indefinite retention creates unbounded storage growth"
+    ],
+    "dos_zh": [
+      "将幂等键和结果与业务操作存储在同一原子事务中，因为分开存储在崩溃后可能变得不一致",
+      "让客户端生成幂等键，因为服务端生成的键无法与同一逻辑操作的重试相关联",
+      "对重复请求返回相同的HTTP状态码和响应体，因为客户端依赖一致的响应来判断成功",
+      "为幂等记录设置合理的TTL（如24-72小时），因为无限期保留会产生无界的存储增长"
+    ],
+    "donts": [
+      "Don't treat all API endpoints as automatically idempotent because POST operations with side effects need explicit idempotency key handling",
+      "Don't use timestamps or sequential IDs as idempotency keys because they are not unique across distributed clients and can collide",
+      "Don't forget to handle the race condition where two identical requests arrive simultaneously because both may pass the 'key not found' check concurrently",
+      "Don't assume idempotency keys protect against different operations because a key is bound to a specific operation — changing the request body with the same key should be rejected"
+    ],
+    "donts_zh": [
+      "不要将所有API端点视为自动幂等的，因为带有副作用的POST操作需要显式的幂等键处理",
+      "不要使用时间戳或顺序ID作为幂等键，因为它们在分布式客户端间不唯一且可能冲突",
+      "不要忘记处理两个相同请求同时到达的竞态条件，因为两者可能同时通过「键未找到」检查",
+      "不要假设幂等键能保护不同的操作，因为键绑定到特定操作——使用相同键但更改请求体应被拒绝"
+    ],
+    "case_study_company": "Stripe",
+    "case_study": "Stripe pioneered the industry-standard approach to API idempotency with their Idempotency-Key header. When a client creates a payment intent, it includes an Idempotency-Key header with a client-generated UUID. Stripe stores this key alongside the payment result in a database. If a network timeout occurs and the client retries with the same key, Stripe returns the original response without charging the customer again. Stripe's implementation handles a subtle edge case: if a retry arrives while the original request is still processing, Stripe returns a 409 Conflict rather than processing it in parallel, preventing race conditions. This pattern has been adopted across the payments industry, with companies like PayPal, Square, and Adyen implementing similar idempotency key mechanisms inspired by Stripe's design.",
+    "case_study_zh": "Stripe通过其Idempotency-Key头部开创了API幂等性的行业标准方法。当客户端创建支付意图时，在请求中包含一个带有客户端生成UUID的Idempotency-Key头部。Stripe将此键与支付结果一起存储在数据库中。如果发生网络超时且客户端使用相同键重试，Stripe返回原始响应而不再次向客户收费。Stripe的实现处理了一个微妙的边缘情况：如果在原始请求仍在处理时收到重试，Stripe返回409 Conflict而非并行处理，防止竞态条件。该模式已被支付行业广泛采用，PayPal、Square和Adyen等公司都实现了类似的幂等键机制，灵感源自Stripe的设计。",
+    "when_not_to_use": [
+      "Read-only GET endpoints that are naturally idempotent and need no special handling",
+      "Fire-and-forget telemetry ingestion where occasional duplicates are acceptable and the deduplication overhead is not justified",
+      "Internal service calls within a single transaction boundary where the database already provides atomicity guarantees"
+    ],
+    "when_not_to_use_zh": [
+      "天然幂等且不需要特殊处理的只读GET端点",
+      "偶尔重复可接受且去重开销不值得的即发即忘遥测数据摄入",
+      "单一事务边界内的内部服务调用，数据库已提供原子性保证"
+    ],
+    "adopters": ["Stripe", "PayPal", "Shopify", "Square", "AWS (SQS deduplication)"]
+  }
+]

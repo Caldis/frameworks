@@ -1,0 +1,1277 @@
+[
+  {
+    "id": 111,
+    "name": "Threat Modeling (STRIDE)",
+    "name_zh": "威胁建模（STRIDE）",
+    "slug": "threat-modeling-stride",
+    "category": "security",
+    "desc": "Systematic identification and mitigation of security threats using the STRIDE taxonomy",
+    "desc_zh": "使用 STRIDE 分类法系统识别和缓解安全威胁",
+    "steps": [
+      "Decompose the system into components and draw a data flow diagram (DFD) with trust boundaries",
+      "Apply STRIDE categories (Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege) to each element",
+      "Enumerate concrete threats for every DFD element crossed with each STRIDE category",
+      "Rate each threat using DREAD or CVSS scoring to prioritize mitigation efforts",
+      "Define mitigations (authentication, integrity checks, logging, encryption, rate limiting, authorization) and map them to threats"
+    ],
+    "steps_zh": [
+      "将系统分解为组件，绘制带信任边界的数据流图（DFD）",
+      "对每个元素应用 STRIDE 六类威胁（仿冒、篡改、抵赖、信息泄露、拒绝服务、权限提升）",
+      "针对 DFD 各元素与每个 STRIDE 类别交叉枚举具体威胁",
+      "使用 DREAD 或 CVSS 评分对威胁进行优先级排序",
+      "定义缓解措施（认证、完整性校验、日志记录、加密、限流、授权）并映射到对应威胁"
+    ],
+    "ai_relevant": false,
+    "viz_type": "matrix",
+    "related": [
+      "defense-in-depth",
+      "security-by-design",
+      "owasp-top-10"
+    ],
+    "tags": [
+      "threat-modeling",
+      "stride",
+      "risk-assessment",
+      "data-flow",
+      "microsoft"
+    ],
+    "origin_author": "Loren Kohnfelder & Praerit Garg (Microsoft), 1999; popularized by Adam Shostack",
+    "origin_source": "Threat Modeling: Designing for Security (Wiley, 2014) by Adam Shostack; Microsoft SDL threat modeling process",
+    "origin_source_zh": "「Threat Modeling: Designing for Security」（Wiley, 2014）Adam Shostack 著；微软 SDL 威胁建模流程",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "During architecture and design phases to proactively identify security weaknesses before code is written",
+      "When onboarding a new system or microservice into a security review program",
+      "Before major releases to validate that new features don't introduce unmitigated threats",
+      "In compliance-driven environments (PCI-DSS, HIPAA) that require documented risk assessments"
+    ],
+    "when_to_use_zh": [
+      "在架构和设计阶段主动识别安全薄弱环节，在编码前发现问题",
+      "将新系统或微服务纳入安全审查体系时",
+      "重大发版前验证新功能未引入未缓解的威胁",
+      "在合规驱动环境（PCI-DSS、HIPAA）中需要文档化风险评估时"
+    ],
+    "core_concepts": [
+      "STRIDE: Six-category threat taxonomy — Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege",
+      "Data Flow Diagram (DFD): Visual decomposition of the system into processes, data stores, external entities, and data flows",
+      "Trust Boundary: A logical border where the level of trust changes, marking where threats are most likely to materialize",
+      "Threat Tree: Hierarchical decomposition of a high-level threat into specific attack paths and preconditions",
+      "Mitigation Mapping: The practice of linking each identified threat to one or more concrete security controls"
+    ],
+    "core_concepts_zh": [
+      "STRIDE：六类威胁分类法——仿冒、篡改、抵赖、信息泄露、拒绝服务、权限提升",
+      "数据流图（DFD）：将系统可视化分解为进程、数据存储、外部实体和数据流",
+      "信任边界：信任级别发生变化的逻辑边界，标识威胁最可能出现的位置",
+      "威胁树：将高层威胁分层分解为具体攻击路径和前置条件",
+      "缓解映射：将每个已识别威胁关联到一个或多个具体安全控制措施"
+    ],
+    "timeline": [
+      ["1999", "Loren Kohnfelder and Praerit Garg propose the STRIDE model internally at Microsoft"],
+      ["2002", "Microsoft integrates STRIDE into the Security Development Lifecycle (SDL)"],
+      ["2006", "Microsoft releases the free Threat Modeling Tool based on STRIDE methodology"],
+      ["2014", "Adam Shostack publishes「Threat Modeling: Designing for Security」, establishing industry best practices"],
+      ["2020", "OWASP Threat Modeling Playbook and community-driven tooling expand STRIDE beyond Microsoft ecosystems"]
+    ],
+    "timeline_zh": [
+      ["1999", "Loren Kohnfelder 和 Praerit Garg 在微软内部提出 STRIDE 模型"],
+      ["2002", "微软将 STRIDE 集成到安全开发生命周期（SDL）中"],
+      ["2006", "微软发布基于 STRIDE 方法论的免费威胁建模工具"],
+      ["2014", "Adam Shostack 出版「Threat Modeling: Designing for Security」，确立行业最佳实践"],
+      ["2020", "OWASP 威胁建模手册和社区驱动工具将 STRIDE 推广到微软生态之外"]
+    ],
+    "dos": [
+      "Start threat modeling early in design — retrofitting is far more expensive than proactive analysis",
+      "Involve cross-functional participants (developers, architects, QA, operations) to surface diverse threat perspectives",
+      "Keep data flow diagrams up to date as the architecture evolves across sprints",
+      "Use the threat model as a living document that feeds into backlog items and test plans"
+    ],
+    "dos_zh": [
+      "尽早在设计阶段开始威胁建模——事后补救的成本远高于主动分析",
+      "让跨职能成员（开发、架构、QA、运维）参与，汇集多角度威胁视角",
+      "随架构迭代及时更新数据流图",
+      "将威胁模型作为活文档，反馈到需求清单和测试计划中"
+    ],
+    "donts": [
+      "Don't treat threat modeling as a one-time checkbox exercise — threats evolve as the system changes",
+      "Don't attempt to enumerate every conceivable threat in one session — focus on high-risk trust boundaries first",
+      "Don't skip the data flow diagram — without it STRIDE analysis becomes unstructured guesswork",
+      "Don't confuse threat modeling with penetration testing — modeling is design-time, pen-testing is runtime validation"
+    ],
+    "donts_zh": [
+      "不要把威胁建模当作一次性的合规勾选项——威胁随系统变化而演变",
+      "不要试图在一次会议中穷举所有威胁——优先关注高风险信任边界",
+      "不要跳过数据流图——缺少它 STRIDE 分析将变成无结构的猜测",
+      "不要混淆威胁建模与渗透测试——建模在设计时进行，渗透测试是运行时验证"
+    ],
+    "case_study_company": "Microsoft",
+    "case_study": "Microsoft mandated STRIDE-based threat modeling across all product teams as part of the Security Development Lifecycle (SDL) starting in 2004. After integrating threat modeling into the Windows Vista development cycle, the team identified and mitigated over 100 high-severity threats before release, contributing to a 45% reduction in security bulletins compared to Windows XP's equivalent post-release period.",
+    "case_study_zh": "微软自 2004 年起在安全开发生命周期（SDL）中强制要求所有产品团队进行基于 STRIDE 的威胁建模。在 Windows Vista 开发周期中引入威胁建模后，团队在发布前识别并缓解了超过 100 个高危威胁，与 Windows XP 同期相比安全公告数量减少了 45%。",
+    "when_not_to_use": [
+      "Throwaway prototypes or hackathon projects where security analysis overhead is unjustified",
+      "Purely static content sites with no user input, authentication, or sensitive data",
+      "When the team lacks basic security vocabulary — invest in training first before formal threat modeling",
+      "Extremely small scripts or CLI utilities with no network exposure and no privilege boundaries"
+    ],
+    "when_not_to_use_zh": [
+      "一次性原型或黑客松项目，安全分析开销不合理时",
+      "没有用户输入、认证或敏感数据的纯静态内容站点",
+      "团队缺乏基本安全词汇时——应先进行培训再开展正式威胁建模",
+      "没有网络暴露和权限边界的极小脚本或 CLI 工具"
+    ],
+    "adopters": [
+      "Microsoft",
+      "Google (variation: process for attack simulation and threat analysis)",
+      "OWASP",
+      "Intel",
+      "SAFECode"
+    ]
+  },
+  {
+    "id": 112,
+    "name": "Zero Trust Architecture",
+    "name_zh": "零信任架构",
+    "slug": "zero-trust-architecture",
+    "category": "security",
+    "desc": "Never trust, always verify — eliminate implicit trust from network architecture",
+    "desc_zh": "永不信任、持续验证——消除网络架构中的隐式信任",
+    "steps": [
+      "Identify all protect surfaces: critical data, assets, applications, and services (DAAS)",
+      "Map transaction flows to understand how subjects access each protect surface",
+      "Build a Zero Trust policy engine that evaluates identity, device health, context, and behavior for every request",
+      "Enforce micro-segmentation at the network and application layer so lateral movement is blocked by default",
+      "Continuously monitor and log all access decisions; feed analytics back into adaptive policies"
+    ],
+    "steps_zh": [
+      "识别所有保护面：关键数据、资产、应用和服务（DAAS）",
+      "映射事务流以理解主体如何访问各保护面",
+      "构建零信任策略引擎，对每个请求评估身份、设备健康状态、上下文和行为",
+      "在网络层和应用层实施微分段，默认阻断横向移动",
+      "持续监控和记录所有访问决策，将分析结果反馈到自适应策略中"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "principle-of-least-privilege",
+      "defense-in-depth",
+      "oauth2-openid-connect"
+    ],
+    "tags": [
+      "zero-trust",
+      "network-security",
+      "identity",
+      "micro-segmentation",
+      "access-control"
+    ],
+    "origin_author": "John Kindervag (Forrester Research), 2010",
+    "origin_source": "Forrester Research report「No More Chewy Centers: Introducing the Zero Trust Model」(2010); NIST SP 800-207「Zero Trust Architecture」(2020)",
+    "origin_source_zh": "Forrester 研究报告「No More Chewy Centers: Introducing the Zero Trust Model」(2010)；NIST SP 800-207「零信任架构」(2020)",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Enterprise environments with hybrid cloud and remote workforce where perimeter-based security is insufficient",
+      "Organizations handling sensitive data (financial, healthcare, government) requiring granular access control",
+      "Post-breach remediation where lateral movement was the primary attack vector",
+      "Mergers and acquisitions requiring rapid, secure integration of disparate network environments"
+    ],
+    "when_to_use_zh": [
+      "混合云和远程办公的企业环境中，边界安全已不足以防护时",
+      "处理敏感数据（金融、医疗、政府）需要细粒度访问控制的组织",
+      "横向移动是主要攻击向量的入侵后补救场景",
+      "并购场景中需要快速安全地整合不同网络环境时"
+    ],
+    "core_concepts": [
+      "Never Trust, Always Verify: Every access request must be authenticated, authorized, and encrypted regardless of network location",
+      "Micro-segmentation: Dividing the network into fine-grained zones so each workload or resource is isolated behind its own access policy",
+      "Policy Decision Point (PDP): The central engine that evaluates context signals (identity, device posture, location, risk score) to allow or deny access",
+      "Policy Enforcement Point (PEP): The gateway that enforces the PDP's decision at the network or application boundary",
+      "Continuous Verification: Ongoing assessment of trust during a session, not just at initial authentication"
+    ],
+    "core_concepts_zh": [
+      "永不信任、持续验证：无论网络位置如何，每个访问请求都必须经过认证、授权和加密",
+      "微分段：将网络划分为细粒度区域，每个工作负载或资源都在独立的访问策略后隔离",
+      "策略决策点（PDP）：评估上下文信号（身份、设备状态、位置、风险评分）以允许或拒绝访问的核心引擎",
+      "策略执行点（PEP）：在网络或应用边界执行 PDP 决策的网关",
+      "持续验证：在会话期间持续评估信任，而非仅在初始认证时验证"
+    ],
+    "timeline": [
+      ["2010", "John Kindervag publishes the Zero Trust model at Forrester Research"],
+      ["2014", "Google publishes BeyondCorp papers, validating Zero Trust at massive scale"],
+      ["2020-08", "NIST releases SP 800-207「Zero Trust Architecture」as the definitive reference standard"],
+      ["2021-05", "US Executive Order 14028 mandates federal agencies adopt Zero Trust architecture"],
+      ["2023", "Major cloud providers (Azure AD Conditional Access, Google BeyondCorp Enterprise, AWS Verified Access) offer native Zero Trust products"]
+    ],
+    "timeline_zh": [
+      ["2010", "John Kindervag 在 Forrester Research 发布零信任模型"],
+      ["2014", "Google 发布 BeyondCorp 论文，在超大规模中验证零信任"],
+      ["2020-08", "NIST 发布 SP 800-207「零信任架构」作为权威参考标准"],
+      ["2021-05", "美国第 14028 号行政令要求联邦机构采用零信任架构"],
+      ["2023", "主要云厂商（Azure AD 条件访问、Google BeyondCorp Enterprise、AWS Verified Access）推出原生零信任产品"]
+    ],
+    "dos": [
+      "Start with your most critical protect surfaces rather than attempting a full network transformation at once",
+      "Integrate identity-aware proxies and device trust signals into every access decision",
+      "Invest in comprehensive logging and SIEM integration — Zero Trust is only as strong as your visibility",
+      "Treat Zero Trust as a journey with incremental maturity levels, not a single product purchase"
+    ],
+    "dos_zh": [
+      "从最关键的保护面开始，而非试图一次性转变整个网络",
+      "将身份感知代理和设备信任信号集成到每个访问决策中",
+      "投资全面的日志记录和 SIEM 集成——零信任的强度取决于可见性",
+      "将零信任视为具有渐进成熟度级别的旅程，而非一次性产品采购"
+    ],
+    "donts": [
+      "Don't assume VPN equals Zero Trust — VPN still grants broad network access once connected",
+      "Don't neglect user experience — overly aggressive verification causes friction and workaround behaviors",
+      "Don't forget east-west traffic — Zero Trust must apply inside the network, not just at the perimeter",
+      "Don't implement Zero Trust without executive sponsorship — it requires cross-team coordination and budget"
+    ],
+    "donts_zh": [
+      "不要假设 VPN 等于零信任——VPN 连接后仍授予广泛网络访问权限",
+      "不要忽视用户体验——过度激进的验证会造成摩擦和绕行行为",
+      "不要忽略东西向流量——零信任必须应用于网络内部，而非仅限边界",
+      "不要在没有高层支持的情况下实施零信任——它需要跨团队协调和预算"
+    ],
+    "case_study_company": "Google",
+    "case_study": "Google pioneered Zero Trust at enterprise scale with BeyondCorp, launched after the 2009 Operation Aurora attacks. By eliminating the privileged corporate network and requiring every request to be authenticated and authorized based on user identity and device state, Google enabled 100,000+ employees to work securely from any network without VPN. BeyondCorp became the template for the entire industry's Zero Trust adoption.",
+    "case_study_zh": "Google 在 2009 年「极光行动」攻击后率先以 BeyondCorp 在企业级大规模实施零信任。通过消除特权企业网络，要求每个请求基于用户身份和设备状态进行认证与授权，Google 使 10 万余名员工无需 VPN 即可从任何网络安全工作。BeyondCorp 成为整个行业零信任采用的模板。",
+    "when_not_to_use": [
+      "Air-gapped networks with no external connectivity where perimeter isolation is physically enforced",
+      "Very small teams (under 10) with a single flat network and no sensitive data — the overhead may exceed the risk",
+      "Legacy OT/ICS environments where devices cannot support modern authentication protocols",
+      "Short-lived experimental environments that will be destroyed before any real data flows through them"
+    ],
+    "when_not_to_use_zh": [
+      "无外部连接的气隙网络，物理隔离已强制执行",
+      "极小团队（10 人以下）单一扁平网络且无敏感数据时——开销可能超过风险",
+      "无法支持现代认证协议的传统 OT/ICS 环境",
+      "在真实数据流入之前就会销毁的短期实验环境"
+    ],
+    "adopters": [
+      "Google (BeyondCorp)",
+      "Microsoft (Azure AD Conditional Access)",
+      "Cloudflare (Cloudflare Access)",
+      "Zscaler",
+      "US Federal Government (per EO 14028)"
+    ]
+  },
+  {
+    "id": 113,
+    "name": "OAuth 2.0 / OpenID Connect",
+    "name_zh": "OAuth 2.0 / OpenID Connect 授权与身份框架",
+    "slug": "oauth2-openid-connect",
+    "category": "security",
+    "desc": "Delegated authorization and federated identity for secure API and application access",
+    "desc_zh": "用于安全 API 和应用访问的委托授权与联合身份框架",
+    "steps": [
+      "Register the client application with the authorization server and obtain client credentials",
+      "Redirect the resource owner to the authorization endpoint with the appropriate grant type and scopes",
+      "The authorization server authenticates the user and issues an authorization code (or token directly for implicit flows)",
+      "The client exchanges the authorization code for an access token (and optionally a refresh token and ID token via OpenID Connect)",
+      "The client presents the access token to the resource server; the server validates the token and enforces scope-based access control"
+    ],
+    "steps_zh": [
+      "在授权服务器注册客户端应用并获取客户端凭据",
+      "使用适当的授权类型和作用域将资源所有者重定向到授权端点",
+      "授权服务器认证用户并颁发授权码（隐式流直接颁发令牌）",
+      "客户端用授权码换取访问令牌（可选地通过 OpenID Connect 获取刷新令牌和 ID 令牌）",
+      "客户端向资源服务器出示访问令牌；服务器验证令牌并执行基于作用域的访问控制"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "zero-trust-architecture",
+      "principle-of-least-privilege",
+      "security-by-design"
+    ],
+    "tags": [
+      "oauth",
+      "openid-connect",
+      "authorization",
+      "identity",
+      "tokens",
+      "api-security"
+    ],
+    "origin_author": "Eran Hammer, Dick Hardt et al. (IETF); OpenID Foundation",
+    "origin_source": "RFC 6749「The OAuth 2.0 Authorization Framework」(IETF, 2012); RFC 6750 Bearer Token Usage; OpenID Connect Core 1.0 (2014)",
+    "origin_source_zh": "RFC 6749「OAuth 2.0 授权框架」(IETF, 2012)；RFC 6750 Bearer 令牌用法；OpenID Connect Core 1.0 (2014)",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Building APIs that need delegated third-party access without sharing user credentials",
+      "Implementing single sign-on (SSO) across multiple applications or microservices",
+      "Mobile and SPA applications that require secure token-based authentication",
+      "Integrating with external identity providers (Google, Microsoft, Apple) for federated login"
+    ],
+    "when_to_use_zh": [
+      "构建需要委托第三方访问而不共享用户凭据的 API",
+      "在多个应用或微服务间实现单点登录（SSO）",
+      "需要安全的基于令牌认证的移动和单页应用",
+      "集成外部身份提供商（Google、Microsoft、Apple）实现联合登录"
+    ],
+    "core_concepts": [
+      "Authorization Grant: A credential representing the resource owner's consent, exchanged for an access token (e.g., authorization code, client credentials)",
+      "Access Token: A short-lived credential that the client presents to access protected resources on behalf of the user",
+      "Refresh Token: A long-lived credential used to obtain new access tokens without requiring the user to re-authenticate",
+      "ID Token (OIDC): A JWT containing identity claims about the authenticated user, issued alongside the access token in OpenID Connect flows",
+      "Scopes: Named permissions that limit what an access token can do, enabling the principle of least privilege at the API level"
+    ],
+    "core_concepts_zh": [
+      "授权许可：代表资源所有者同意的凭据，用于换取访问令牌（如授权码、客户端凭据）",
+      "访问令牌：客户端出示以代表用户访问受保护资源的短期凭据",
+      "刷新令牌：用于获取新访问令牌而无需用户重新认证的长期凭据",
+      "ID 令牌（OIDC）：包含已认证用户身份声明的 JWT，在 OpenID Connect 流程中与访问令牌一起颁发",
+      "作用域：限制访问令牌操作范围的命名权限，在 API 层面实现最小权限原则"
+    ],
+    "timeline": [
+      ["2007", "OAuth 1.0 published as an informal community specification for delegated authorization"],
+      ["2012-10", "OAuth 2.0 (RFC 6749) published by IETF, simplifying the protocol and supporting multiple grant types"],
+      ["2014-02", "OpenID Connect Core 1.0 ratified, adding an identity layer on top of OAuth 2.0"],
+      ["2020", "OAuth 2.1 draft consolidates best practices, deprecating implicit grant and recommending PKCE for all clients"],
+      ["2023", "Rich Authorization Requests (RAR, RFC 9396) extends OAuth with fine-grained, structured authorization"]
+    ],
+    "timeline_zh": [
+      ["2007", "OAuth 1.0 作为委托授权的非正式社区规范发布"],
+      ["2012-10", "OAuth 2.0（RFC 6749）由 IETF 发布，简化协议并支持多种授权类型"],
+      ["2014-02", "OpenID Connect Core 1.0 批准，在 OAuth 2.0 之上添加身份层"],
+      ["2020", "OAuth 2.1 草案整合最佳实践，弃用隐式授权并建议所有客户端使用 PKCE"],
+      ["2023", "富授权请求（RAR, RFC 9396）扩展 OAuth，支持细粒度结构化授权"]
+    ],
+    "dos": [
+      "Always use PKCE (Proof Key for Code Exchange) for public clients — it prevents authorization code interception attacks",
+      "Validate tokens server-side using the authorization server's JWKS endpoint or introspection endpoint",
+      "Keep access token lifetimes short (minutes) and use refresh tokens for long-lived sessions",
+      "Restrict scopes to the minimum required — over-scoped tokens magnify the blast radius of a token leak"
+    ],
+    "dos_zh": [
+      "公共客户端务必使用 PKCE（授权码交换证明密钥）——防止授权码拦截攻击",
+      "使用授权服务器的 JWKS 端点或内省端点在服务端验证令牌",
+      "保持访问令牌生命周期短（分钟级）并使用刷新令牌维持长期会话",
+      "将作用域限制到最小必需——过宽的令牌作用域会放大令牌泄露的爆炸半径"
+    ],
+    "donts": [
+      "Don't use the implicit grant flow — it exposes tokens in the URL fragment and is deprecated in OAuth 2.1",
+      "Don't store tokens in localStorage — use httpOnly secure cookies or in-memory storage to limit XSS exposure",
+      "Don't treat the access token as proof of identity — use the ID token from OpenID Connect for authentication",
+      "Don't skip the state parameter — without it the flow is vulnerable to CSRF attacks"
+    ],
+    "donts_zh": [
+      "不要使用隐式授权流——它在 URL 片段中暴露令牌，已在 OAuth 2.1 中弃用",
+      "不要将令牌存储在 localStorage——使用 httpOnly 安全 Cookie 或内存存储以限制 XSS 风险",
+      "不要将访问令牌当作身份证明——使用 OpenID Connect 的 ID 令牌进行认证",
+      "不要跳过 state 参数——缺少它流程将易受 CSRF 攻击"
+    ],
+    "case_study_company": "Okta",
+    "case_study": "Okta built its entire identity platform on OAuth 2.0 and OpenID Connect, serving over 18,000 enterprise customers by 2023. By providing a standards-based authorization server with pre-built integrations for thousands of applications, Okta reduced enterprise SSO deployment time from months to days. Their acquisition of Auth0 in 2021 further cemented OAuth/OIDC as the universal developer-facing identity protocol.",
+    "case_study_zh": "Okta 在 OAuth 2.0 和 OpenID Connect 之上构建了整个身份平台，到 2023 年服务超过 18,000 家企业客户。通过提供基于标准的授权服务器和数千个应用的预构建集成，Okta 将企业 SSO 部署时间从数月缩短到数天。2021 年收购 Auth0 进一步巩固了 OAuth/OIDC 作为面向开发者的通用身份协议地位。",
+    "when_not_to_use": [
+      "Internal machine-to-machine communication where mutual TLS (mTLS) is simpler and more appropriate",
+      "Simple single-application systems with no third-party integrations where session-based auth suffices",
+      "Extremely constrained IoT devices that cannot perform HTTP redirects or handle token management",
+      "When you need transaction-level authorization — OAuth scopes are coarse; consider UMA or RAR for fine-grained control"
+    ],
+    "when_not_to_use_zh": [
+      "双向 TLS（mTLS）更简单适用的内部机器间通信",
+      "无第三方集成的简单单应用系统，会话认证已足够",
+      "无法执行 HTTP 重定向或处理令牌管理的极度受限 IoT 设备",
+      "需要事务级授权时——OAuth 作用域粒度较粗，应考虑 UMA 或 RAR 进行细粒度控制"
+    ],
+    "adopters": [
+      "Google",
+      "Microsoft (Azure AD / Entra ID)",
+      "Okta / Auth0",
+      "GitHub",
+      "Salesforce"
+    ]
+  },
+  {
+    "id": 114,
+    "name": "Defense in Depth",
+    "name_zh": "纵深防御",
+    "slug": "defense-in-depth",
+    "category": "security",
+    "desc": "Layer multiple independent security controls so that no single point of failure compromises the system",
+    "desc_zh": "分层部署多个独立安全控制，确保任何单点故障不会导致整个系统沦陷",
+    "steps": [
+      "Identify all system layers: physical, network, host, application, data, and human",
+      "For each layer, define independent security controls (firewalls, WAFs, encryption, access controls, training)",
+      "Ensure controls at adjacent layers compensate for each other's weaknesses — no two layers rely on the same mechanism",
+      "Implement monitoring and alerting at each layer to detect failures or bypasses in real time",
+      "Regularly test the layered defenses via red-team exercises and verify that breaching one layer triggers compensating controls"
+    ],
+    "steps_zh": [
+      "识别所有系统层：物理层、网络层、主机层、应用层、数据层和人员层",
+      "为每一层定义独立的安全控制（防火墙、WAF、加密、访问控制、培训）",
+      "确保相邻层的控制措施互相补偿对方的弱点——任意两层不依赖同一机制",
+      "在每一层实施监控和告警，实时检测故障或绕过",
+      "通过红队演练定期测试分层防御，验证突破一层后是否触发补偿控制"
+    ],
+    "ai_relevant": false,
+    "viz_type": "pyramid",
+    "related": [
+      "threat-modeling-stride",
+      "zero-trust-architecture",
+      "security-by-design"
+    ],
+    "tags": [
+      "defense-in-depth",
+      "layered-security",
+      "controls",
+      "risk-management",
+      "nist"
+    ],
+    "origin_author": "Military strategy concept; adapted to information security by NSA and NIST",
+    "origin_source": "NSA Information Assurance Technical Framework (IATF); NIST SP 800-53「Security and Privacy Controls for Information Systems and Organizations」",
+    "origin_source_zh": "NSA 信息保障技术框架（IATF）；NIST SP 800-53「信息系统和组织的安全与隐私控制」",
+    "complexity": "beginner",
+    "when_to_use": [
+      "Designing the overall security posture for any non-trivial production system",
+      "When compliance frameworks (SOC 2, ISO 27001, PCI-DSS) require demonstrable layered controls",
+      "After a security incident reveals that a single control was the sole line of defense",
+      "Cloud migration projects where the shared responsibility model demands explicit controls at each layer"
+    ],
+    "when_to_use_zh": [
+      "为任何非平凡生产系统设计整体安全态势时",
+      "合规框架（SOC 2、ISO 27001、PCI-DSS）要求可证明的分层控制时",
+      "安全事件揭示某单一控制措施是唯一防线之后",
+      "共享责任模型要求每层有明确控制的云迁移项目"
+    ],
+    "core_concepts": [
+      "Layered Controls: Independent security mechanisms applied at physical, network, host, application, and data layers",
+      "Compensating Controls: Backup security measures that activate when a primary control fails or is bypassed",
+      "Fail-Secure: Designing systems to deny access by default when a security control encounters an error",
+      "Diversity of Defense: Using different technologies and vendors at each layer to prevent a single vulnerability from cascading",
+      "Security Monitoring: Continuous observation at every layer to detect anomalies and trigger incident response"
+    ],
+    "core_concepts_zh": [
+      "分层控制：在物理、网络、主机、应用和数据各层应用独立安全机制",
+      "补偿控制：当主控制失效或被绕过时启动的备份安全措施",
+      "安全失败：设计系统在安全控制遇到错误时默认拒绝访问",
+      "防御多样性：在各层使用不同技术和供应商，防止单一漏洞级联",
+      "安全监控：在每一层持续观察，检测异常并触发事件响应"
+    ],
+    "timeline": [
+      ["1990s", "NSA Information Assurance Technical Framework (IATF) formalizes Defense in Depth for IT systems"],
+      ["2005", "NIST SP 800-53 Rev 1 codifies layered security controls as a federal standard"],
+      ["2013", "Target breach (HVAC vendor to POS) becomes a textbook case of insufficient defense in depth"],
+      ["2017", "NIST Cybersecurity Framework v1.1 reinforces layered controls across Identify, Protect, Detect, Respond, Recover"],
+      ["2023", "Cloud-native defense in depth evolves with service mesh policies, eBPF-based monitoring, and runtime security"]
+    ],
+    "timeline_zh": [
+      ["1990s", "NSA 信息保障技术框架（IATF）将纵深防御正式化用于 IT 系统"],
+      ["2005", "NIST SP 800-53 Rev 1 将分层安全控制编入联邦标准"],
+      ["2013", "Target 数据泄露（从 HVAC 供应商到 POS）成为纵深防御不足的教科书案例"],
+      ["2017", "NIST 网络安全框架 v1.1 在识别、保护、检测、响应、恢复各功能中加强分层控制"],
+      ["2023", "云原生纵深防御随服务网格策略、基于 eBPF 的监控和运行时安全而演进"]
+    ],
+    "dos": [
+      "Ensure each layer provides independent value — if removing one layer doesn't change your risk posture, it's redundant not defense in depth",
+      "Document the purpose and coverage of each control layer for incident responders and auditors",
+      "Include human-layer defenses (security awareness training, phishing simulations) alongside technical controls",
+      "Test layers in isolation and in combination to validate that failures cascade into detection, not into compromise"
+    ],
+    "dos_zh": [
+      "确保每层提供独立价值——如果移除某层不改变风险态势，它是冗余而非纵深防御",
+      "为事件响应人员和审计员文档化每个控制层的目的和覆盖范围",
+      "在技术控制之外包含人员层防御（安全意识培训、钓鱼模拟）",
+      "单独和组合测试各层，验证故障级联进入检测环节而非导致入侵"
+    ],
+    "donts": [
+      "Don't equate more layers with better security — poorly configured layers create complexity without protection",
+      "Don't rely on a single vendor for all layers — a vulnerability in their stack compromises every layer simultaneously",
+      "Don't neglect the data layer — encryption at rest and in transit is often the last line of defense after all other controls fail",
+      "Don't assume network controls alone constitute defense in depth — application-layer and identity controls are equally critical"
+    ],
+    "donts_zh": [
+      "不要将更多层等同于更好的安全——配置不当的层只增加复杂度而不提供保护",
+      "不要依赖单一供应商覆盖所有层——其技术栈中的漏洞将同时危及每一层",
+      "不要忽视数据层——静态和传输加密通常是其他控制全部失效后的最后防线",
+      "不要假设网络控制单独构成纵深防御——应用层和身份控制同样关键"
+    ],
+    "case_study_company": "Target",
+    "case_study": "The 2013 Target data breach exposed 40 million credit card records when attackers compromised an HVAC vendor's credentials and moved laterally to the point-of-sale network. The breach demonstrated catastrophic failure of defense in depth: flat network segmentation, insufficient monitoring between zones, and no data-layer encryption on cardholder data. Post-breach, Target invested over $200 million in layered security controls including network segmentation, endpoint detection, and tokenization.",
+    "case_study_zh": "2013 年 Target 数据泄露事件中，攻击者入侵了 HVAC 供应商凭据后横向移动到 POS 网络，暴露了 4000 万张信用卡记录。该事件展示了纵深防御的灾难性失败：扁平网络分段、区域间监控不足、持卡人数据缺乏数据层加密。事后 Target 投入超过 2 亿美元建设分层安全控制，包括网络分段、端点检测和令牌化。",
+    "when_not_to_use": [
+      "Minimal-risk hobby projects where any security control is optional",
+      "When resource constraints force a choice between one strong control or many weak controls — choose one strong control",
+      "Extremely simple systems (static pages, read-only public data) where a single layer of access control suffices",
+      "When adding layers introduces latency or complexity that exceeds the risk being mitigated"
+    ],
+    "when_not_to_use_zh": [
+      "安全控制为可选项的极低风险个人项目",
+      "资源约束迫使在一个强控制和多个弱控制之间选择时——选择一个强控制",
+      "单层访问控制即可满足的极简系统（静态页面、只读公开数据）",
+      "增加层级引入的延迟或复杂度超过所缓解风险时"
+    ],
+    "adopters": [
+      "US Department of Defense",
+      "NIST",
+      "AWS (shared responsibility model)",
+      "JPMorgan Chase",
+      "Cloudflare"
+    ]
+  },
+  {
+    "id": 115,
+    "name": "Privacy by Design",
+    "name_zh": "隐私设计",
+    "slug": "privacy-by-design",
+    "category": "security",
+    "desc": "Embed privacy protections into the design and architecture of systems from the outset, not as an afterthought",
+    "desc_zh": "从一开始就将隐私保护嵌入系统的设计和架构中，而非事后补救",
+    "steps": [
+      "Conduct a Privacy Impact Assessment (PIA) at the design phase to identify all personal data flows and processing purposes",
+      "Apply data minimization: collect only the data strictly necessary for each stated purpose",
+      "Implement privacy-enhancing technologies (PETs): pseudonymization, encryption, differential privacy, or federated processing",
+      "Design user-facing consent and control mechanisms (granular opt-in, data portability, deletion requests)",
+      "Establish ongoing privacy governance: periodic audits, retention enforcement, breach notification procedures, and DPO oversight"
+    ],
+    "steps_zh": [
+      "在设计阶段进行隐私影响评估（PIA），识别所有个人数据流和处理目的",
+      "应用数据最小化原则：仅收集每个声明目的所严格必需的数据",
+      "实施隐私增强技术（PET）：假名化、加密、差分隐私或联邦处理",
+      "设计面向用户的同意和控制机制（细粒度选择加入、数据可携带、删除请求）",
+      "建立持续隐私治理：定期审计、保留期执行、泄露通知流程和 DPO 监督"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "security-by-design",
+      "principle-of-least-privilege",
+      "defense-in-depth"
+    ],
+    "tags": [
+      "privacy",
+      "gdpr",
+      "data-protection",
+      "pbd",
+      "data-minimization",
+      "consent"
+    ],
+    "origin_author": "Ann Cavoukian (Information and Privacy Commissioner of Ontario), 1990s; formalized 2009",
+    "origin_source": "Ann Cavoukian「Privacy by Design: The 7 Foundational Principles」(2009); GDPR Article 25「Data protection by design and by default」(2016/2018)",
+    "origin_source_zh": "Ann Cavoukian「隐私设计：七项基础原则」(2009)；GDPR 第 25 条「设计和默认的数据保护」(2016/2018)",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Any system that collects, processes, or stores personally identifiable information (PII)",
+      "Products subject to GDPR, CCPA, LGPD, or other data protection regulations",
+      "AI/ML pipelines that train on user data and risk unintentional memorization or re-identification",
+      "Healthcare, fintech, or edtech applications where data sensitivity is inherently high"
+    ],
+    "when_to_use_zh": [
+      "任何收集、处理或存储个人身份信息（PII）的系统",
+      "受 GDPR、CCPA、LGPD 或其他数据保护法规管辖的产品",
+      "在用户数据上训练且存在无意记忆或重新识别风险的 AI/ML 管道",
+      "数据敏感度固有较高的医疗、金融科技或教育科技应用"
+    ],
+    "core_concepts": [
+      "Data Minimization: Collect and retain only the personal data strictly necessary for the stated processing purpose",
+      "Purpose Limitation: Personal data must be collected for specified, explicit, and legitimate purposes and not further processed incompatibly",
+      "Privacy-Enhancing Technologies (PETs): Technical measures — pseudonymization, differential privacy, homomorphic encryption — that reduce privacy risk while preserving utility",
+      "Consent and Control: Empowering data subjects with transparent, granular, and revocable choices over their personal data",
+      "Privacy by Default: The strictest privacy settings apply automatically without requiring user action"
+    ],
+    "core_concepts_zh": [
+      "数据最小化：仅收集和保留声明处理目的所严格必需的个人数据",
+      "目的限制：个人数据必须为指定、明确和合法的目的收集，不得不兼容地进一步处理",
+      "隐私增强技术（PET）：假名化、差分隐私、同态加密等技术措施，在保持效用的同时降低隐私风险",
+      "同意与控制：赋予数据主体对其个人数据的透明、细粒度和可撤销的选择权",
+      "默认隐私：最严格的隐私设置自动生效，无需用户主动操作"
+    ],
+    "timeline": [
+      ["1995", "EU Data Protection Directive 95/46/EC introduces data protection by design concepts"],
+      ["2009", "Ann Cavoukian publishes the 7 Foundational Principles of Privacy by Design"],
+      ["2010", "International Conference of Data Protection Authorities unanimously adopts PbD as a global standard"],
+      ["2018-05", "GDPR takes effect with Article 25 making data protection by design and by default a legal requirement"],
+      ["2023", "Privacy-enhancing computation (federated learning, secure multi-party computation) goes mainstream in enterprise AI"]
+    ],
+    "timeline_zh": [
+      ["1995", "欧盟数据保护指令 95/46/EC 引入设计即数据保护的概念"],
+      ["2009", "Ann Cavoukian 发布隐私设计的七项基础原则"],
+      ["2010", "国际数据保护机构大会一致通过 PbD 作为全球标准"],
+      ["2018-05", "GDPR 生效，第 25 条将设计和默认的数据保护作为法律要求"],
+      ["2023", "隐私增强计算（联邦学习、安全多方计算）在企业 AI 中成为主流"]
+    ],
+    "dos": [
+      "Conduct privacy impact assessments before collecting any new category of personal data",
+      "Implement data retention policies with automated deletion — privacy is not just about collection but also about disposal",
+      "Offer users genuine controls: export, delete, opt-out — not just a privacy policy page",
+      "Use privacy-preserving analytics (differential privacy, k-anonymity) instead of collecting raw granular data"
+    ],
+    "dos_zh": [
+      "在收集任何新类别的个人数据前进行隐私影响评估",
+      "实施带自动删除的数据保留策略——隐私不仅关乎收集，也关乎处置",
+      "向用户提供真正的控制权：导出、删除、退出——而非仅有隐私政策页面",
+      "使用隐私保护分析（差分隐私、k-匿名）替代收集原始细粒度数据"
+    ],
+    "donts": [
+      "Don't treat consent as a blanket checkbox — GDPR requires specific, informed, and granular consent per purpose",
+      "Don't collect data speculatively 'in case it's useful later' — purpose limitation forbids this",
+      "Don't confuse anonymization with pseudonymization — pseudonymized data is still personal data under GDPR",
+      "Don't defer privacy to a post-launch patch — regulatory fines and reputational damage are far more expensive than upfront design"
+    ],
+    "donts_zh": [
+      "不要将同意视为笼统的勾选框——GDPR 要求按目的进行具体、知情和细粒度的同意",
+      "不要以「可能以后有用」为由投机性收集数据——目的限制原则禁止此行为",
+      "不要混淆匿名化与假名化——假名化数据在 GDPR 下仍属个人数据",
+      "不要将隐私推迟到上线后修补——监管罚款和声誉损失远比前期设计昂贵"
+    ],
+    "case_study_company": "Apple",
+    "case_study": "Apple has embedded Privacy by Design as a core product principle, implementing on-device processing for Siri, Photos facial recognition, and Health data, along with App Tracking Transparency (ATT) requiring explicit opt-in for cross-app tracking. The introduction of ATT in iOS 14.5 (2021) caused an estimated $10 billion revenue impact on Meta's advertising business, demonstrating that privacy-by-design decisions at the platform level reshape entire industry economics.",
+    "case_study_zh": "Apple 将隐私设计作为核心产品原则，为 Siri、照片人脸识别和健康数据实施设备端处理，并推出应用跟踪透明度（ATT）要求跨应用跟踪前获取明确同意。iOS 14.5（2021）引入 ATT 对 Meta 广告业务造成约 100 亿美元收入影响，证明平台级隐私设计决策可以重塑整个行业经济格局。",
+    "when_not_to_use": [
+      "Systems that process zero personal data and have no user interaction (pure infrastructure tooling)",
+      "Open public datasets where all information is already lawfully public and no re-identification risk exists",
+      "Internal-only developer tools with no PII in any data path",
+      "When the 'system' is a purely mathematical algorithm with no data ingestion"
+    ],
+    "when_not_to_use_zh": [
+      "处理零个人数据且无用户交互的系统（纯基础设施工具）",
+      "所有信息已合法公开且无重新识别风险的开放公共数据集",
+      "任何数据路径中无 PII 的内部专用开发者工具",
+      "「系统」是无数据摄入的纯数学算法时"
+    ],
+    "adopters": [
+      "Apple",
+      "Microsoft",
+      "Google (Privacy Sandbox)",
+      "European Union (GDPR mandate)",
+      "Brave Browser"
+    ]
+  },
+  {
+    "id": 116,
+    "name": "OWASP Top 10",
+    "name_zh": "OWASP 十大 Web 应用安全风险",
+    "slug": "owasp-top-10",
+    "category": "security",
+    "desc": "A prioritized framework of the most critical web application security risks with proven mitigation strategies",
+    "desc_zh": "最关键 Web 应用安全风险的优先级框架及经过验证的缓解策略",
+    "steps": [
+      "Familiarize the team with the current OWASP Top 10 categories (Broken Access Control, Cryptographic Failures, Injection, etc.)",
+      "Integrate OWASP checks into the secure SDLC: code reviews, SAST, DAST, and dependency scanning against each category",
+      "Implement category-specific mitigations: parameterized queries for injection, strong access control for authorization, proper TLS configuration for cryptographic failures",
+      "Add OWASP-aligned test cases to the CI/CD pipeline to catch regressions automatically",
+      "Review and update alignment annually as the OWASP Top 10 evolves with new data from the community"
+    ],
+    "steps_zh": [
+      "让团队熟悉当前 OWASP Top 10 各类别（访问控制失效、加密故障、注入等）",
+      "将 OWASP 检查集成到安全 SDLC 中：代码审查、SAST、DAST 和依赖扫描逐一对照各类别",
+      "实施针对各类别的缓解措施：参数化查询防注入、强访问控制防授权问题、正确 TLS 配置防加密故障",
+      "在 CI/CD 管道中添加 OWASP 对齐的测试用例以自动捕获回归",
+      "随 OWASP Top 10 根据社区新数据演进，每年审查并更新对齐情况"
+    ],
+    "ai_relevant": false,
+    "viz_type": "list",
+    "related": [
+      "threat-modeling-stride",
+      "security-by-design",
+      "defense-in-depth"
+    ],
+    "tags": [
+      "owasp",
+      "web-security",
+      "application-security",
+      "vulnerabilities",
+      "appsec"
+    ],
+    "origin_author": "OWASP Foundation (community-driven, led by Andrew van der Stock et al.)",
+    "origin_source": "OWASP Top 10 — 2021 edition (owasp.org/Top10); first published 2003",
+    "origin_source_zh": "OWASP Top 10 — 2021 版（owasp.org/Top10）；首次发布于 2003 年",
+    "complexity": "beginner",
+    "when_to_use": [
+      "As a baseline security checklist for any web application or API project",
+      "When training developers on application security fundamentals",
+      "During security audits and penetration test scoping to ensure coverage of the most common risks",
+      "As a vendor assessment criterion to verify third-party application security posture"
+    ],
+    "when_to_use_zh": [
+      "作为任何 Web 应用或 API 项目的基线安全检查清单",
+      "培训开发者应用安全基础知识时",
+      "安全审计和渗透测试范围界定中确保覆盖最常见风险",
+      "作为供应商评估标准验证第三方应用安全态势"
+    ],
+    "core_concepts": [
+      "Broken Access Control: Failures that allow users to act outside their intended permissions — the #1 risk in the 2021 edition",
+      "Injection: Untrusted data sent to an interpreter as part of a command or query, including SQL, NoSQL, OS, and LDAP injection",
+      "Cryptographic Failures: Weaknesses in encryption, hashing, or key management that expose sensitive data",
+      "Security Misconfiguration: Insecure default settings, open cloud storage, missing security headers, or verbose error messages",
+      "Software and Data Integrity Failures: Code and infrastructure that don't verify integrity — including insecure CI/CD pipelines and unsigned updates"
+    ],
+    "core_concepts_zh": [
+      "访问控制失效：允许用户在预期权限之外操作的故障——2021 版排名第一的风险",
+      "注入：将不可信数据作为命令或查询的一部分发送给解释器，包括 SQL、NoSQL、OS 和 LDAP 注入",
+      "加密故障：加密、哈希或密钥管理中的弱点导致敏感数据暴露",
+      "安全配置错误：不安全的默认设置、开放的云存储、缺失的安全头或详细的错误消息",
+      "软件和数据完整性故障：不验证完整性的代码和基础设施——包括不安全的 CI/CD 管道和未签名的更新"
+    ],
+    "timeline": [
+      ["2003", "First OWASP Top 10 published, establishing injection and XSS as dominant web risks"],
+      ["2010", "OWASP Top 10 — 2010 edition adds insecure cryptographic storage and insufficient transport layer protection"],
+      ["2017", "OWASP Top 10 — 2017 edition introduces XML External Entities (XXE) and insecure deserialization"],
+      ["2021", "OWASP Top 10 — 2021 edition restructures categories: Broken Access Control rises to #1; new categories include SSRF and Software Integrity Failures"],
+      ["2023", "OWASP releases the Top 10 for LLM Applications, extending the framework to AI security risks"]
+    ],
+    "timeline_zh": [
+      ["2003", "首版 OWASP Top 10 发布，将注入和 XSS 确立为主要 Web 风险"],
+      ["2010", "OWASP Top 10 — 2010 版新增不安全加密存储和不充分传输层保护"],
+      ["2017", "OWASP Top 10 — 2017 版引入 XML 外部实体（XXE）和不安全反序列化"],
+      ["2021", "OWASP Top 10 — 2021 版重构类别：访问控制失效升至第一；新增 SSRF 和软件完整性故障"],
+      ["2023", "OWASP 发布 LLM 应用 Top 10，将框架扩展到 AI 安全风险"]
+    ],
+    "dos": [
+      "Automate OWASP Top 10 checks with SAST/DAST tools integrated into CI/CD pipelines",
+      "Use the OWASP Application Security Verification Standard (ASVS) as the detailed testing counterpart to the Top 10",
+      "Train every developer on at least the Top 10 categories — security is a whole-team responsibility",
+      "Map each Top 10 category to specific coding standards and pull-request review checklists"
+    ],
+    "dos_zh": [
+      "使用集成到 CI/CD 管道的 SAST/DAST 工具自动化 OWASP Top 10 检查",
+      "使用 OWASP ASVS 作为 Top 10 的详细测试对应标准",
+      "培训每位开发者至少了解 Top 10 各类别——安全是全团队的责任",
+      "将每个 Top 10 类别映射到具体的编码标准和 PR 审查清单"
+    ],
+    "donts": [
+      "Don't treat the OWASP Top 10 as an exhaustive security program — it covers only the most common risks, not all risks",
+      "Don't rely solely on automated scanners — many OWASP categories (broken access control, business logic flaws) require manual review",
+      "Don't ignore the 'moved off the list' categories — removal from the Top 10 doesn't mean the vulnerability no longer exists",
+      "Don't use the Top 10 as a penetration test methodology — it's a risk awareness framework, not a testing guide"
+    ],
+    "donts_zh": [
+      "不要将 OWASP Top 10 视为完整的安全计划——它仅覆盖最常见的风险，而非所有风险",
+      "不要仅依赖自动扫描器——许多 OWASP 类别（访问控制失效、业务逻辑缺陷）需要人工审查",
+      "不要忽略「移出列表」的类别——从 Top 10 中移除不意味着该漏洞不再存在",
+      "不要将 Top 10 用作渗透测试方法论——它是风险意识框架，不是测试指南"
+    ],
+    "case_study_company": "Equifax",
+    "case_study": "The 2017 Equifax breach, which exposed 147 million records, was caused by an unpatched Apache Struts vulnerability (CVE-2017-5638) — a classic OWASP Top 10 injection flaw (A03:2021). The vulnerability had a known patch available for two months before exploitation. This incident became the canonical example of why organizations must systematically address OWASP Top 10 risks, leading to $700 million in settlements and sweeping changes to vulnerability management practices industry-wide.",
+    "case_study_zh": "2017 年 Equifax 数据泄露暴露了 1.47 亿条记录，原因是未修补的 Apache Struts 漏洞（CVE-2017-5638）——典型的 OWASP Top 10 注入缺陷（A03:2021）。该漏洞在被利用前两个月已有可用补丁。此事件成为组织必须系统性应对 OWASP Top 10 风险的标志性案例，导致 7 亿美元和解金并推动全行业漏洞管理实践的深刻变革。",
+    "when_not_to_use": [
+      "Non-web systems (embedded firmware, desktop-only applications) where web-specific risks don't apply",
+      "As the sole security standard — the Top 10 is a starting point, not a comprehensive security program",
+      "When the application has no external attack surface (air-gapped, no user input)",
+      "For compliance certification — use OWASP ASVS or ISO 27001 instead; the Top 10 is an awareness document"
+    ],
+    "when_not_to_use_zh": [
+      "Web 特定风险不适用的非 Web 系统（嵌入式固件、纯桌面应用）",
+      "作为唯一安全标准时——Top 10 是起点，不是完整安全计划",
+      "应用无外部攻击面时（气隙环境、无用户输入）",
+      "用于合规认证时——应使用 OWASP ASVS 或 ISO 27001；Top 10 是意识文档"
+    ],
+    "adopters": [
+      "PCI Security Standards Council (references OWASP in PCI-DSS)",
+      "NIST",
+      "US DoD",
+      "GitHub (CodeQL rules mapped to OWASP)",
+      "Snyk"
+    ]
+  },
+  {
+    "id": 117,
+    "name": "Principle of Least Privilege",
+    "name_zh": "最小权限原则",
+    "slug": "principle-of-least-privilege",
+    "category": "security",
+    "desc": "Grant each subject only the minimum permissions necessary to perform its function, nothing more",
+    "desc_zh": "仅授予每个主体执行其功能所需的最小权限，不多不少",
+    "steps": [
+      "Inventory all subjects (users, services, processes, CI/CD pipelines) and the resources they access",
+      "Define the minimum permissions each subject needs based on its actual job function or service contract",
+      "Implement role-based (RBAC) or attribute-based (ABAC) access control and assign the scoped-down roles",
+      "Remove standing privileges: use just-in-time (JIT) access elevation with time-bound approvals for sensitive operations",
+      "Audit access logs regularly, detect privilege creep, and revoke unused permissions automatically"
+    ],
+    "steps_zh": [
+      "盘点所有主体（用户、服务、进程、CI/CD 管道）及其访问的资源",
+      "根据实际工作职能或服务契约定义每个主体所需的最小权限",
+      "实施基于角色（RBAC）或基于属性（ABAC）的访问控制并分配缩减后的角色",
+      "消除常驻权限：对敏感操作使用即时（JIT）访问提升和限时审批",
+      "定期审计访问日志，检测权限蠕变，自动撤销未使用的权限"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "zero-trust-architecture",
+      "oauth2-openid-connect",
+      "defense-in-depth"
+    ],
+    "tags": [
+      "least-privilege",
+      "access-control",
+      "rbac",
+      "abac",
+      "authorization",
+      "iam"
+    ],
+    "origin_author": "Jerome Saltzer and Michael Schroeder, 1975",
+    "origin_source": "Saltzer & Schroeder「The Protection of Information in Computer Systems」(Proceedings of the IEEE, 1975); NIST SP 800-53 AC-6「Least Privilege」",
+    "origin_source_zh": "Saltzer & Schroeder「计算机系统中的信息保护」(IEEE 会刊, 1975)；NIST SP 800-53 AC-6「最小权限」",
+    "complexity": "beginner",
+    "when_to_use": [
+      "Designing IAM policies for cloud infrastructure (AWS IAM, Azure RBAC, GCP IAM)",
+      "Configuring service accounts and API keys that access shared resources",
+      "Defining database roles to restrict queries, writes, and schema changes per application tier",
+      "Setting up CI/CD pipeline permissions to limit what build agents can access in production"
+    ],
+    "when_to_use_zh": [
+      "为云基础设施设计 IAM 策略时（AWS IAM、Azure RBAC、GCP IAM）",
+      "配置访问共享资源的服务账户和 API 密钥时",
+      "定义数据库角色以按应用层限制查询、写入和模式变更时",
+      "设置 CI/CD 管道权限以限制构建代理在生产环境中的访问范围时"
+    ],
+    "core_concepts": [
+      "Need-to-Know: Access to information is restricted to subjects who require it for their current task",
+      "Role-Based Access Control (RBAC): Permissions are assigned to roles, and subjects are assigned to roles, creating an indirection layer",
+      "Just-In-Time (JIT) Access: Elevated privileges are granted temporarily and automatically revoked after a time window",
+      "Privilege Creep: The gradual accumulation of access rights over time as subjects change roles without having old permissions revoked",
+      "Blast Radius: The scope of damage a compromised subject can cause, directly proportional to its granted permissions"
+    ],
+    "core_concepts_zh": [
+      "按需知悉：信息访问仅限于当前任务需要它的主体",
+      "基于角色的访问控制（RBAC）：权限分配给角色，主体分配到角色，创建间接层",
+      "即时访问（JIT）：临时授予提升的权限，在时间窗口后自动撤销",
+      "权限蠕变：随着主体变更角色而旧权限未被撤销，访问权限逐渐积累",
+      "爆炸半径：被入侵主体可造成的损害范围，与其被授予的权限直接成正比"
+    ],
+    "timeline": [
+      ["1975", "Saltzer and Schroeder define the principle of least privilege in their seminal IEEE paper"],
+      ["2004", "Windows XP SP2 introduces User Account Control concepts, applying least privilege to desktop users"],
+      ["2011", "AWS IAM launches with fine-grained policy-based access control, making least privilege practical in the cloud"],
+      ["2019", "Cloud providers introduce IAM Access Analyzer (AWS) and similar tools to detect over-privileged identities"],
+      ["2023", "Just-in-time access platforms (CyberArk, BeyondTrust, HashiCorp Boundary) become standard in enterprise security stacks"]
+    ],
+    "timeline_zh": [
+      ["1975", "Saltzer 和 Schroeder 在开创性 IEEE 论文中定义最小权限原则"],
+      ["2004", "Windows XP SP2 引入用户账户控制概念，将最小权限应用于桌面用户"],
+      ["2011", "AWS IAM 推出细粒度基于策略的访问控制，使最小权限在云端变得实用"],
+      ["2019", "云厂商推出 IAM Access Analyzer（AWS）等工具检测过度授权的身份"],
+      ["2023", "即时访问平台（CyberArk、BeyondTrust、HashiCorp Boundary）成为企业安全栈的标配"]
+    ],
+    "dos": [
+      "Default to deny-all and explicitly grant only needed permissions — whitelisting over blacklisting",
+      "Use infrastructure-as-code (Terraform, Pulumi) to codify and review IAM policies in pull requests",
+      "Implement automated permission review cycles (quarterly) to catch privilege creep",
+      "Separate duties: ensure no single identity can both deploy code and approve production access"
+    ],
+    "dos_zh": [
+      "默认拒绝全部，仅显式授予所需权限——白名单优于黑名单",
+      "使用基础设施即代码（Terraform、Pulumi）将 IAM 策略编码化并在 PR 中审查",
+      "实施自动化权限审查周期（季度），捕获权限蠕变",
+      "职责分离：确保没有单一身份既能部署代码又能批准生产访问"
+    ],
+    "donts": [
+      "Don't use wildcard permissions (e.g., '*' in AWS IAM) in production — they negate the entire principle",
+      "Don't share service accounts across multiple applications — each service needs its own scoped identity",
+      "Don't grant permanent admin access to developers — use JIT elevation with MFA for administrative tasks",
+      "Don't assume least privilege is a one-time setup — permissions must be continuously reviewed as roles evolve"
+    ],
+    "donts_zh": [
+      "不要在生产中使用通配符权限（如 AWS IAM 中的 '*'）——这会否定整个原则",
+      "不要跨多个应用共享服务账户——每个服务需要自己的限定范围身份",
+      "不要给开发者永久管理员权限——管理任务应使用带 MFA 的 JIT 提升",
+      "不要假设最小权限是一次性设置——权限必须随角色演变持续审查"
+    ],
+    "case_study_company": "Capital One",
+    "case_study": "The 2019 Capital One breach exposed 106 million customer records because a misconfigured WAF role had excessive IAM permissions, allowing the attacker to access S3 buckets containing sensitive data. The root cause was a violation of least privilege: the WAF's IAM role could list and read arbitrary S3 buckets rather than being scoped to only the resources it needed. Post-breach, Capital One invested heavily in automated IAM policy analysis and JIT access controls.",
+    "case_study_zh": "2019 年 Capital One 数据泄露暴露了 1.06 亿客户记录，原因是 WAF 角色配置错误拥有过度的 IAM 权限，允许攻击者访问包含敏感数据的 S3 存储桶。根本原因是违反最小权限原则：WAF 的 IAM 角色可以列出和读取任意 S3 存储桶，而非仅限于所需资源。事后 Capital One 大力投资于自动化 IAM 策略分析和即时访问控制。",
+    "when_not_to_use": [
+      "Personal development environments or sandboxes where broad permissions accelerate experimentation",
+      "Emergency break-glass scenarios where rapid access to all systems is required — but these should be audited and time-limited",
+      "Extremely small projects with a single administrator where role separation is impractical",
+      "When the cost of implementing fine-grained access control exceeds the value of the assets being protected"
+    ],
+    "when_not_to_use_zh": [
+      "宽泛权限可加速实验的个人开发环境或沙箱",
+      "需要快速访问所有系统的紧急破玻璃场景——但应审计且限时",
+      "角色分离不切实际的单管理员极小项目",
+      "实施细粒度访问控制的成本超过被保护资产价值时"
+    ],
+    "adopters": [
+      "AWS (IAM least privilege recommendations)",
+      "Google Cloud (IAM Recommender)",
+      "Microsoft (Azure AD PIM)",
+      "HashiCorp (Vault, Boundary)",
+      "CyberArk"
+    ]
+  },
+  {
+    "id": 118,
+    "name": "Security by Design",
+    "name_zh": "安全设计",
+    "slug": "security-by-design",
+    "category": "security",
+    "desc": "Integrate security considerations into every phase of the software development lifecycle from requirements through deployment",
+    "desc_zh": "将安全考量集成到从需求到部署的软件开发生命周期的每个阶段",
+    "steps": [
+      "Elicit security requirements alongside functional requirements: define abuse cases, compliance needs, and trust assumptions",
+      "Apply secure design patterns: input validation, secure defaults, fail-secure behavior, and separation of privilege",
+      "Implement secure coding practices: parameterized queries, output encoding, safe memory management, dependency scanning",
+      "Integrate security testing into CI/CD: SAST, DAST, SCA, secrets scanning, and fuzz testing on every build",
+      "Conduct security reviews (architecture review, code audit, penetration test) at each milestone and feed findings back into the design"
+    ],
+    "steps_zh": [
+      "在功能需求旁引出安全需求：定义滥用用例、合规需要和信任假设",
+      "应用安全设计模式：输入验证、安全默认值、安全失败行为和权限分离",
+      "实施安全编码实践：参数化查询、输出编码、安全内存管理、依赖扫描",
+      "将安全测试集成到 CI/CD：SAST、DAST、SCA、密钥扫描和模糊测试在每次构建中运行",
+      "在每个里程碑进行安全审查（架构审查、代码审计、渗透测试）并将发现反馈到设计中"
+    ],
+    "ai_relevant": false,
+    "viz_type": "cycle",
+    "related": [
+      "threat-modeling-stride",
+      "owasp-top-10",
+      "privacy-by-design"
+    ],
+    "tags": [
+      "secure-sdlc",
+      "security-by-design",
+      "shift-left",
+      "secure-coding",
+      "devsecops"
+    ],
+    "origin_author": "Dan Bergh Johnsson, Daniel Deogun, Daniel Sawano (book); Microsoft SDL (process)",
+    "origin_source": "Johnsson, Deogun & Sawano「Secure by Design」(Manning, 2019); Microsoft Security Development Lifecycle (SDL); NIST SP 800-160「Systems Security Engineering」",
+    "origin_source_zh": "Johnsson, Deogun & Sawano「Secure by Design」(Manning, 2019)；微软安全开发生命周期（SDL）；NIST SP 800-160「系统安全工程」",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Greenfield projects where security can be baked in from day one at minimal marginal cost",
+      "Organizations adopting DevSecOps and shifting security left in the development pipeline",
+      "Products in regulated industries (finance, healthcare, defense) where secure SDLC is mandated",
+      "After security incidents reveal that vulnerabilities were introduced during design or implementation phases"
+    ],
+    "when_to_use_zh": [
+      "可以从第一天以最小边际成本植入安全的新建项目",
+      "采用 DevSecOps 并将安全左移到开发管道的组织",
+      "安全 SDLC 是强制要求的受监管行业（金融、医疗、国防）产品",
+      "安全事件揭示漏洞是在设计或实现阶段引入后"
+    ],
+    "core_concepts": [
+      "Secure Defaults: Systems ship with the most secure configuration out of the box; users must explicitly opt into less secure settings",
+      "Input Validation: All data entering the system is treated as untrusted and validated against strict schemas before processing",
+      "Fail-Secure: When a component fails, it denies access rather than failing open — preventing security bypass through error conditions",
+      "Domain-Driven Security: Using the type system and domain primitives to make invalid or insecure states unrepresentable in code",
+      "Shift Left: Moving security activities (threat modeling, SAST, code review) earlier in the SDLC where fixes are cheapest"
+    ],
+    "core_concepts_zh": [
+      "安全默认值：系统以最安全的配置出厂；用户必须显式选择降低安全设置",
+      "输入验证：进入系统的所有数据被视为不可信，在处理前按严格模式验证",
+      "安全失败：组件故障时拒绝访问而非开放失败——防止通过错误条件绕过安全",
+      "领域驱动安全：使用类型系统和领域原语使无效或不安全状态在代码中不可表达",
+      "左移：将安全活动（威胁建模、SAST、代码审查）前移到修复成本最低的 SDLC 早期"
+    ],
+    "timeline": [
+      ["2004", "Microsoft launches the Security Development Lifecycle (SDL) after the Trustworthy Computing memo"],
+      ["2008", "Gary McGraw publishes「Software Security: Building Security In」, establishing the building security in movement"],
+      ["2016", "DevSecOps movement formalizes security integration into CI/CD pipelines with automated tooling"],
+      ["2019", "Johnsson, Deogun & Sawano publish「Secure by Design」, introducing domain-driven security patterns"],
+      ["2022", "CISA launches the Secure by Design initiative, urging software vendors to take responsibility for product security"]
+    ],
+    "timeline_zh": [
+      ["2004", "微软在「可信计算」备忘录后启动安全开发生命周期（SDL）"],
+      ["2008", "Gary McGraw 出版「Software Security: Building Security In」，建立内建安全运动"],
+      ["2016", "DevSecOps 运动通过自动化工具将安全集成正式化到 CI/CD 管道中"],
+      ["2019", "Johnsson、Deogun 和 Sawano 出版「Secure by Design」，引入领域驱动安全模式"],
+      ["2022", "CISA 发起 Secure by Design 倡议，敦促软件供应商对产品安全负责"]
+    ],
+    "dos": [
+      "Use strong type systems and domain primitives to encode security invariants — let the compiler catch violations",
+      "Automate security gates in CI/CD: fail the build on critical SAST findings or known vulnerable dependencies",
+      "Maintain a security champions program — embed security-minded developers in every team",
+      "Treat security bugs with the same priority as functional bugs — they are not second-class issues"
+    ],
+    "dos_zh": [
+      "使用强类型系统和领域原语编码安全不变量——让编译器捕获违规",
+      "在 CI/CD 中自动化安全门禁：在关键 SAST 发现或已知漏洞依赖时构建失败",
+      "维护安全冠军计划——在每个团队中嵌入有安全意识的开发者",
+      "以与功能缺陷同等优先级对待安全缺陷——它们不是二等问题"
+    ],
+    "donts": [
+      "Don't bolt on security as a final phase — the cost of fixing vulnerabilities increases 30x from design to production",
+      "Don't rely solely on penetration testing — it finds symptoms, not root causes in the design",
+      "Don't assume frameworks handle all security — ORM doesn't prevent all injection; HTTPS doesn't prevent all data exposure",
+      "Don't treat security as solely the security team's responsibility — every developer writes security-sensitive code"
+    ],
+    "donts_zh": [
+      "不要将安全作为最终阶段附加——修复漏洞的成本从设计到生产增加 30 倍",
+      "不要仅依赖渗透测试——它发现症状而非设计中的根本原因",
+      "不要假设框架处理所有安全——ORM 不能防止所有注入；HTTPS 不能防止所有数据泄露",
+      "不要把安全视为仅安全团队的责任——每个开发者都在编写安全敏感代码"
+    ],
+    "case_study_company": "Microsoft",
+    "case_study": "Microsoft's Security Development Lifecycle (SDL), mandated company-wide after Bill Gates' 2002 Trustworthy Computing memo, transformed how the company builds software. By requiring threat modeling, static analysis, fuzz testing, and security reviews at defined checkpoints, Microsoft reduced the vulnerability count in Windows by over 50% between Windows XP and Windows 7. The SDL became the template for secure SDLC practices adopted across the industry.",
+    "case_study_zh": "微软的安全开发生命周期（SDL）在 2002 年比尔·盖茨「可信计算」备忘录后在全公司强制推行，彻底改变了公司构建软件的方式。通过要求在规定检查点进行威胁建模、静态分析、模糊测试和安全审查，微软将 Windows 从 XP 到 Windows 7 的漏洞数量减少了 50% 以上。SDL 成为全行业采用的安全 SDLC 实践模板。",
+    "when_not_to_use": [
+      "Disposable prototypes built purely to validate a business hypothesis with zero real user data",
+      "When retrofitting security into a massive legacy codebase — start with threat modeling and risk-based prioritization instead of full redesign",
+      "Extremely time-constrained emergency patches where the priority is stopping active exploitation",
+      "Open-source hobby projects with no users and no sensitive data"
+    ],
+    "when_not_to_use_zh": [
+      "仅用于验证商业假设、零真实用户数据的一次性原型",
+      "为大型遗留代码库补装安全时——应从威胁建模和基于风险的优先级排序开始，而非全面重设计",
+      "优先级是阻止活跃利用的极度时间紧迫的紧急补丁",
+      "无用户和无敏感数据的开源业余项目"
+    ],
+    "adopters": [
+      "Microsoft (SDL)",
+      "Google (Project Zero drives secure-by-design improvements)",
+      "CISA (Secure by Design initiative)",
+      "SAFECode",
+      "Cisco (Cisco Secure Development Lifecycle)"
+    ]
+  },
+  {
+    "id": 119,
+    "name": "Supply Chain Security (SLSA)",
+    "name_zh": "软件供应链安全（SLSA）",
+    "slug": "supply-chain-security-slsa",
+    "category": "security",
+    "desc": "Ensure the integrity and provenance of software artifacts through verifiable supply chain levels",
+    "desc_zh": "通过可验证的供应链级别确保软件制品的完整性和来源",
+    "steps": [
+      "Establish source integrity: require code review, enforce branch protection, and sign commits in version control",
+      "Secure the build process: use hermetic, reproducible builds on isolated infrastructure with build provenance attestations",
+      "Generate and distribute SLSA provenance metadata (who built what, from which source, on which builder) as signed attestations",
+      "Verify provenance at every consumption point: package registries, container registries, and deployment pipelines must check attestations",
+      "Progress through SLSA levels (L1-L4) incrementally, adding automation and hardening at each level"
+    ],
+    "steps_zh": [
+      "建立源代码完整性：要求代码审查、强制分支保护并在版本控制中签名提交",
+      "保护构建过程：使用隔离基础设施上的封闭、可复现构建并生成构建来源证明",
+      "生成并分发 SLSA 来源元数据（谁在哪个构建器上从哪个源代码构建了什么）作为签名证明",
+      "在每个消费点验证来源：包注册中心、容器注册中心和部署管道必须检查证明",
+      "逐步提升 SLSA 级别（L1-L4），在每个级别增加自动化和加固"
+    ],
+    "ai_relevant": false,
+    "viz_type": "pyramid",
+    "related": [
+      "security-by-design",
+      "owasp-top-10",
+      "defense-in-depth"
+    ],
+    "tags": [
+      "supply-chain",
+      "slsa",
+      "provenance",
+      "sbom",
+      "software-integrity",
+      "sigstore"
+    ],
+    "origin_author": "Google; Linux Foundation / OpenSSF",
+    "origin_source": "SLSA specification (slsa.dev) by Google and OpenSSF (2021); US Executive Order 14028 on Improving the Nation's Cybersecurity (2021); NIST SP 800-218「Secure Software Development Framework」",
+    "origin_source_zh": "SLSA 规范（slsa.dev）由 Google 和 OpenSSF 发布 (2021)；美国第 14028 号行政令「改善国家网络安全」(2021)；NIST SP 800-218「安全软件开发框架」",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Organizations with complex dependency trees (hundreds of open-source libraries) needing to verify artifact provenance",
+      "CI/CD pipelines producing artifacts consumed by external customers or deployed to critical infrastructure",
+      "After a supply chain attack (SolarWinds, Log4Shell, xz-utils) motivates investment in provenance verification",
+      "Regulated environments requiring Software Bill of Materials (SBOM) and artifact traceability"
+    ],
+    "when_to_use_zh": [
+      "拥有复杂依赖树（数百个开源库）需要验证制品来源的组织",
+      "CI/CD 管道产出的制品供外部客户使用或部署到关键基础设施",
+      "供应链攻击（SolarWinds、Log4Shell、xz-utils）促使投资来源验证之后",
+      "要求软件物料清单（SBOM）和制品可追溯性的受监管环境"
+    ],
+    "core_concepts": [
+      "Provenance: Verifiable metadata describing who built an artifact, from what source, using which build platform, and what process was followed",
+      "SLSA Levels: A graduated maturity model (L1: documented build; L2: hosted build with signed provenance; L3: hardened build platform; L4: hermetic, reproducible, two-person review)",
+      "Software Bill of Materials (SBOM): A machine-readable inventory of all components and dependencies in a software artifact",
+      "Hermetic Build: A build process that is fully isolated from the network and external state, ensuring reproducibility",
+      "Sigstore: An open-source project providing keyless signing, transparency logs (Rekor), and certificate authority (Fulcio) for artifact attestation"
+    ],
+    "core_concepts_zh": [
+      "来源证明：描述谁构建了制品、来自什么源代码、使用哪个构建平台以及遵循什么流程的可验证元数据",
+      "SLSA 级别：渐进成熟度模型（L1：文档化构建；L2：托管构建 + 签名来源；L3：加固构建平台；L4：封闭可复现 + 双人审查）",
+      "软件物料清单（SBOM）：软件制品中所有组件和依赖的机器可读清单",
+      "封闭构建：完全与网络和外部状态隔离的构建过程，确保可复现性",
+      "Sigstore：提供无密钥签名、透明日志（Rekor）和证书颁发机构（Fulcio）的开源制品证明项目"
+    ],
+    "timeline": [
+      ["2020-12", "SolarWinds supply chain attack compromises 18,000 organizations, catalyzing industry focus on build integrity"],
+      ["2021-05", "US Executive Order 14028 mandates SBOM and secure software supply chain practices for federal suppliers"],
+      ["2021-06", "Google open-sources the SLSA framework (v0.1) defining four levels of supply chain integrity"],
+      ["2022-10", "Sigstore reaches general availability, providing free keyless signing for open-source artifacts"],
+      ["2024-03", "xz-utils backdoor (CVE-2024-3094) demonstrates social engineering risks in open-source supply chains; SLSA L3+ would have mitigated it"]
+    ],
+    "timeline_zh": [
+      ["2020-12", "SolarWinds 供应链攻击危及 18,000 个组织，催化行业对构建完整性的关注"],
+      ["2021-05", "美国第 14028 号行政令要求联邦供应商实施 SBOM 和安全软件供应链实践"],
+      ["2021-06", "Google 开源 SLSA 框架（v0.1），定义四个供应链完整性级别"],
+      ["2022-10", "Sigstore 正式发布，为开源制品提供免费无密钥签名"],
+      ["2024-03", "xz-utils 后门（CVE-2024-3094）展示开源供应链中的社会工程风险；SLSA L3+ 可以缓解该攻击"]
+    ],
+    "dos": [
+      "Start with SLSA Level 1 (documented build process) and progress incrementally — perfection is not required to gain value",
+      "Generate SBOMs automatically during builds and publish them alongside release artifacts",
+      "Use Sigstore or equivalent tooling for artifact signing — keyless signing removes the key management burden",
+      "Pin dependencies by hash (not just version) and verify checksums in CI to detect tampering"
+    ],
+    "dos_zh": [
+      "从 SLSA Level 1（文档化构建流程）开始逐步推进——不需要完美即可获得价值",
+      "在构建期间自动生成 SBOM 并与发布制品一起发布",
+      "使用 Sigstore 或等效工具进行制品签名——无密钥签名消除密钥管理负担",
+      "通过哈希（不仅是版本）固定依赖并在 CI 中验证校验和以检测篡改"
+    ],
+    "donts": [
+      "Don't assume your CI/CD platform is inherently trusted — build infrastructure itself is an attack surface",
+      "Don't rely on dependency version pinning alone — versions can be republished with different content on some registries",
+      "Don't ignore transitive dependencies — most supply chain attacks target deep, overlooked dependencies",
+      "Don't treat SBOM generation as compliance theater — if no one consumes the SBOM for policy decisions, it's just a file"
+    ],
+    "donts_zh": [
+      "不要假设 CI/CD 平台天然可信——构建基础设施本身就是攻击面",
+      "不要仅依赖依赖版本固定——某些注册中心上版本可能以不同内容重新发布",
+      "不要忽略传递依赖——大多数供应链攻击针对深层、被忽视的依赖",
+      "不要将 SBOM 生成视为合规面子工程——如果无人消费 SBOM 做策略决策，它只是一个文件"
+    ],
+    "case_study_company": "Google",
+    "case_study": "Google developed SLSA from its internal Binary Authorization for Borg (BAB) system, which has protected Google's production workloads since 2013 by requiring cryptographic provenance verification before any binary can run. When open-sourced as SLSA in 2021, the framework provided the industry with a graduated path toward the same supply chain integrity guarantees. Google mandates SLSA Level 3 for all internal production software and contributed Sigstore to make artifact signing accessible to the entire open-source ecosystem.",
+    "case_study_zh": "Google 从内部的 Binary Authorization for Borg（BAB）系统发展出 SLSA，该系统自 2013 年起通过在任何二进制文件运行前要求加密来源验证来保护 Google 的生产工作负载。2021 年开源为 SLSA 后，该框架为行业提供了通向同等供应链完整性保证的渐进路径。Google 对所有内部生产软件强制要求 SLSA Level 3，并贡献了 Sigstore 使制品签名对整个开源生态可及。",
+    "when_not_to_use": [
+      "Single-developer personal projects with no external consumers of the build artifacts",
+      "Early prototyping phases where the dependency set changes daily and provenance verification adds friction without risk reduction",
+      "Environments where all software is built and consumed entirely within a physically secured enclave with no external dependencies",
+      "When the team has not yet adopted basic CI/CD — establish a consistent build pipeline first before adding supply chain verification"
+    ],
+    "when_not_to_use_zh": [
+      "无外部构建制品消费者的单人个人项目",
+      "依赖集每日变化、来源验证增加摩擦而不降低风险的早期原型阶段",
+      "所有软件完全在物理安全飞地内构建和消费、无外部依赖的环境",
+      "团队尚未采用基本 CI/CD 时——应先建立一致的构建管道再添加供应链验证"
+    ],
+    "adopters": [
+      "Google",
+      "GitHub (Artifact Attestations)",
+      "npm (provenance for packages)",
+      "Kubernetes (SLSA L3 for releases)",
+      "OpenSSF / Linux Foundation"
+    ]
+  },
+  {
+    "id": 120,
+    "name": "Confidential Computing",
+    "name_zh": "机密计算",
+    "slug": "confidential-computing",
+    "category": "security",
+    "desc": "Protect data in use by performing computation within hardware-based trusted execution environments (TEEs)",
+    "desc_zh": "通过在基于硬件的可信执行环境（TEE）中执行计算来保护使用中的数据",
+    "steps": [
+      "Identify workloads that process sensitive data in memory and are vulnerable to privileged-attacker threats (rogue admins, compromised hypervisors)",
+      "Select a TEE platform: Intel SGX enclaves, Intel TDX, AMD SEV-SNP confidential VMs, or Arm CCA",
+      "Design the application to partition sensitive processing into the enclave/TEE and keep the trusted computing base (TCB) minimal",
+      "Implement remote attestation: cryptographically verify the TEE's identity, firmware version, and code measurements before sending sensitive data",
+      "Deploy, monitor, and maintain the confidential workload: handle attestation failures, manage sealed storage, and update enclave code with re-attestation"
+    ],
+    "steps_zh": [
+      "识别在内存中处理敏感数据且易受特权攻击者威胁（恶意管理员、被入侵的虚拟机管理程序）的工作负载",
+      "选择 TEE 平台：Intel SGX 安全飞地、Intel TDX、AMD SEV-SNP 机密虚拟机或 Arm CCA",
+      "设计应用将敏感处理分区到飞地/TEE 中，保持可信计算基（TCB）最小化",
+      "实施远程证明：在发送敏感数据前加密验证 TEE 的身份、固件版本和代码度量",
+      "部署、监控和维护机密工作负载：处理证明失败、管理密封存储并通过重新证明更新飞地代码"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "zero-trust-architecture",
+      "defense-in-depth",
+      "privacy-by-design"
+    ],
+    "tags": [
+      "confidential-computing",
+      "tee",
+      "enclave",
+      "attestation",
+      "data-in-use",
+      "hardware-security"
+    ],
+    "origin_author": "Confidential Computing Consortium (Linux Foundation); Intel, AMD, Arm",
+    "origin_source": "Confidential Computing Consortium「A Technical Analysis of Confidential Computing」(2021); Intel SGX documentation; AMD SEV-SNP whitepaper; NIST IR 8320「Hardware-Enabled Security」",
+    "origin_source_zh": "机密计算联盟「机密计算技术分析」(2021)；Intel SGX 文档；AMD SEV-SNP 白皮书；NIST IR 8320「硬件使能安全」",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Multi-party computation scenarios where mutually distrustful parties need to process shared data without revealing it to each other",
+      "Cloud workloads processing highly sensitive data where the cloud provider must be excluded from the trust boundary",
+      "AI/ML inference on private data (healthcare, finance) where model inputs must be protected even from the infrastructure operator",
+      "Key management and cryptographic operations where private keys must never exist in unencrypted memory accessible to the host OS"
+    ],
+    "when_to_use_zh": [
+      "互不信任的多方需要处理共享数据而不向对方泄露的多方计算场景",
+      "处理高度敏感数据且必须将云提供商排除在信任边界外的云工作负载",
+      "在私有数据（医疗、金融）上进行 AI/ML 推理，模型输入必须对基础设施运营者保密",
+      "密钥管理和加密操作中私钥决不能以未加密形式存在于主机 OS 可访问的内存中"
+    ],
+    "core_concepts": [
+      "Trusted Execution Environment (TEE): A hardware-isolated processing area where code and data are protected from the host OS, hypervisor, and other tenants",
+      "Remote Attestation: A cryptographic protocol that allows a remote party to verify the identity, integrity, and configuration of a TEE before entrusting it with sensitive data",
+      "Trusted Computing Base (TCB): The minimal set of hardware and software components that must be trusted — smaller TCB means smaller attack surface",
+      "Memory Encryption: Hardware-level encryption of the TEE's memory pages, preventing physical and software-based memory snooping attacks",
+      "Sealed Storage: Data encrypted to a specific TEE's identity so that only that enclave (or an authorized successor) can decrypt it"
+    ],
+    "core_concepts_zh": [
+      "可信执行环境（TEE）：硬件隔离的处理区域，其中代码和数据受保护免受主机 OS、虚拟机管理程序和其他租户的访问",
+      "远程证明：允许远程方在委托敏感数据前验证 TEE 身份、完整性和配置的加密协议",
+      "可信计算基（TCB）：必须被信任的最小硬件和软件组件集——更小的 TCB 意味着更小的攻击面",
+      "内存加密：TEE 内存页的硬件级加密，防止物理和基于软件的内存窥探攻击",
+      "密封存储：加密到特定 TEE 身份的数据，仅该飞地（或授权继任者）可解密"
+    ],
+    "timeline": [
+      ["2015", "Intel launches SGX (Software Guard Extensions) in 6th-gen Core processors, introducing user-space enclaves"],
+      ["2019", "Confidential Computing Consortium founded under the Linux Foundation by Intel, Microsoft, Google, Arm, and others"],
+      ["2020", "AMD SEV-SNP (Secure Nested Paging) adds strong VM-level isolation, making confidential VMs practical"],
+      ["2022", "Azure, GCP, and AWS launch confidential VM offerings based on AMD SEV-SNP and Intel TDX"],
+      ["2024", "Arm CCA (Confidential Compute Architecture) extends confidential computing to mobile and edge devices; NVIDIA H100 adds GPU TEE support"]
+    ],
+    "timeline_zh": [
+      ["2015", "Intel 在第六代 Core 处理器中推出 SGX（软件保护扩展），引入用户态飞地"],
+      ["2019", "机密计算联盟在 Linux 基金会下由 Intel、Microsoft、Google、Arm 等发起成立"],
+      ["2020", "AMD SEV-SNP（安全嵌套分页）添加强 VM 级隔离，使机密虚拟机切实可行"],
+      ["2022", "Azure、GCP 和 AWS 推出基于 AMD SEV-SNP 和 Intel TDX 的机密 VM 产品"],
+      ["2024", "Arm CCA（机密计算架构）将机密计算扩展到移动和边缘设备；NVIDIA H100 添加 GPU TEE 支持"]
+    ],
+    "dos": [
+      "Always verify remote attestation before sending sensitive data to a TEE — attestation is the foundation of trust",
+      "Minimize the trusted computing base: smaller enclave code means fewer bugs and a smaller attack surface",
+      "Use well-audited TEE SDKs (Open Enclave, Gramine, Enarx) rather than building enclave runtimes from scratch",
+      "Plan for side-channel mitigations: constant-time algorithms, ORAM access patterns, and compiler-level defenses"
+    ],
+    "dos_zh": [
+      "在向 TEE 发送敏感数据前始终验证远程证明——证明是信任的基础",
+      "最小化可信计算基：更小的飞地代码意味着更少的缺陷和更小的攻击面",
+      "使用经过审计的 TEE SDK（Open Enclave、Gramine、Enarx）而非从零构建飞地运行时",
+      "规划侧信道缓解：常量时间算法、ORAM 访问模式和编译器级防御"
+    ],
+    "donts": [
+      "Don't assume TEEs are invulnerable — side-channel attacks (Spectre, Foreshadow, Plundervolt) have repeatedly broken SGX guarantees",
+      "Don't put the entire application inside the enclave — only the security-sensitive processing belongs there",
+      "Don't skip firmware and microcode updates — TEE security depends on patches for known hardware vulnerabilities",
+      "Don't treat attestation as a one-time check — re-attest periodically and after any TEE restart or migration"
+    ],
+    "donts_zh": [
+      "不要假设 TEE 无懈可击——侧信道攻击（Spectre、Foreshadow、Plundervolt）已多次突破 SGX 保证",
+      "不要将整个应用放入飞地——仅安全敏感处理属于其中",
+      "不要跳过固件和微码更新——TEE 安全依赖于已知硬件漏洞的补丁",
+      "不要将证明视为一次性检查——应定期重新证明，并在 TEE 重启或迁移后重新证明"
+    ],
+    "case_study_company": "Signal",
+    "case_study": "Signal implemented Secure Value Recovery (SVR) using Intel SGX enclaves to protect user PIN-derived keys on the server side. By running the PIN verification and key derivation inside an enclave, Signal ensures that even a compromised server or a rogue Signal employee cannot extract the encryption keys protecting users' message history and contacts. Remote attestation allows Signal clients to verify the enclave's integrity before submitting their PIN, achieving end-to-end security for the cloud-assisted recovery process.",
+    "case_study_zh": "Signal 使用 Intel SGX 飞地实现了安全值恢复（SVR），在服务器端保护用户 PIN 派生的密钥。通过在飞地内运行 PIN 验证和密钥派生，Signal 确保即使服务器被入侵或有内鬼员工也无法提取保护用户消息历史和联系人的加密密钥。远程证明使 Signal 客户端在提交 PIN 前可以验证飞地完整性，为云辅助恢复过程实现端到端安全。",
+    "when_not_to_use": [
+      "Workloads with no confidentiality requirements — the performance overhead of TEEs (5-30%) is unjustified",
+      "When the threat model only includes external network attackers and not privileged insiders or infrastructure compromise",
+      "On hardware that lacks TEE support — software-only emulation provides no real security guarantee",
+      "Simple data-at-rest protection needs where standard disk encryption (LUKS, BitLocker) is sufficient"
+    ],
+    "when_not_to_use_zh": [
+      "无保密需求的工作负载——TEE 的性能开销（5-30%）不合理",
+      "威胁模型仅包含外部网络攻击者而不包含特权内部人员或基础设施入侵时",
+      "缺乏 TEE 支持的硬件上——纯软件模拟不提供真正的安全保证",
+      "标准磁盘加密（LUKS、BitLocker）已足够的简单静态数据保护需求"
+    ],
+    "adopters": [
+      "Signal (Secure Value Recovery)",
+      "Microsoft (Azure Confidential Computing)",
+      "Google Cloud (Confidential VMs and GKE Nodes)",
+      "Fortanix",
+      "Anjuna Security"
+    ]
+  }
+]

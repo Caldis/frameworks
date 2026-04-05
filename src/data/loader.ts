@@ -6,10 +6,18 @@ import qualityData from '../../data/frameworks/quality.json'
 import deploymentData from '../../data/frameworks/deployment.json'
 import evolutionData from '../../data/frameworks/evolution.json'
 import aiData from '../../data/frameworks/ai.json'
+import dataArchData from '../../data/frameworks/data.json'
+import securityData from '../../data/frameworks/security.json'
+import distributedData from '../../data/frameworks/distributed.json'
+import apiData from '../../data/frameworks/api.json'
+import teamData from '../../data/frameworks/team.json'
+import observabilityData from '../../data/frameworks/observability.json'
 
 const allFrameworks: Framework[] = [
   ...thinkingData, ...architectureData, ...codingData, ...qualityData,
   ...deploymentData, ...evolutionData, ...aiData,
+  ...dataArchData, ...securityData, ...distributedData,
+  ...apiData, ...teamData, ...observabilityData,
 ] as Framework[]
 
 export function getAllFrameworks() { return allFrameworks }

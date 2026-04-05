@@ -1,0 +1,1112 @@
+[
+  {
+    "id": 131,
+    "name": "GraphQL Schema Design",
+    "name_zh": "GraphQL 模式设计",
+    "slug": "graphql-schema-design",
+    "category": "api",
+    "desc": "Query language and type system for APIs enabling precise data fetching",
+    "desc_zh": "用于API的查询语言与类型系统，支持精确数据获取",
+    "steps": [
+      "Define the domain model as a strongly-typed schema using SDL (Schema Definition Language) with clear object types, enums, and interfaces",
+      "Design queries around client use-cases rather than mirroring database tables, grouping related fields into cohesive types",
+      "Implement resolvers for each field, ensuring they follow the single-responsibility principle and delegate to data sources",
+      "Add pagination (cursor-based or offset), filtering, and sorting arguments to list fields following the Relay Connection specification",
+      "Validate the schema against client requirements, document all types with descriptions, and publish the schema for frontend teams"
+    ],
+    "steps_zh": [
+      "使用SDL（模式定义语言）定义领域模型为强类型模式，包含清晰的对象类型、枚举和接口",
+      "围绕客户端用例而非数据库表镜像来设计查询，将相关字段分组为内聚的类型",
+      "为每个字段实现解析器，确保遵循单一职责原则并委托给数据源",
+      "按照Relay连接规范为列表字段添加分页（游标或偏移）、过滤和排序参数",
+      "根据客户端需求验证模式，为所有类型添加描述文档，并向前端团队发布模式"
+    ],
+    "ai_relevant": true,
+    "viz_type": "matrix",
+    "related": ["bff-pattern", "api-gateway-pattern", "openapi-specification"],
+    "tags": ["graphql", "schema", "type-system", "query-language"],
+    "origin_author": "Lee Byron, Dan Schafer, Nick Schrock / Facebook, 2015",
+    "origin_source": "GraphQL specification (spec.graphql.org); referenced in API Design Patterns (JJ Geewax, 2021, Ch. 1)",
+    "origin_source_zh": "GraphQL规范（spec.graphql.org）；参见《API设计模式》（JJ Geewax，2021，第1章）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When multiple client types (web, mobile, IoT) need different data shapes from the same API",
+      "When frontend teams suffer from over-fetching or under-fetching with REST endpoints",
+      "When the API aggregates data from multiple microservices and clients need a unified query interface",
+      "When rapid frontend iteration requires schema evolution without coordinating backend deployments"
+    ],
+    "when_to_use_zh": [
+      "当多种客户端类型（Web、移动端、IoT）需要从同一API获取不同形状的数据时",
+      "当前端团队因REST端点的过度获取或不足获取而苦恼时",
+      "当API聚合多个微服务的数据且客户端需要统一查询接口时",
+      "当前端快速迭代需要模式演进而无需协调后端部署时"
+    ],
+    "core_concepts": [
+      "Type System: Every field and argument has a declared type, enabling compile-time validation and auto-generated documentation",
+      "Declarative Data Fetching: Clients specify exactly the fields they need in a single request, eliminating over-fetching and under-fetching",
+      "Resolver Architecture: Each field in the schema maps to a resolver function that knows how to fetch or compute its value from any data source",
+      "Introspection: The schema is self-documenting; clients can query the schema itself to discover available types, fields, and relationships",
+      "Schema-First Design: The schema serves as a contract between frontend and backend teams, enabling parallel development"
+    ],
+    "core_concepts_zh": [
+      "类型系统：每个字段和参数都有声明的类型，支持编译时验证和自动生成文档",
+      "声明式数据获取：客户端在单次请求中精确指定所需字段，消除过度获取和不足获取",
+      "解析器架构：模式中的每个字段映射到一个解析器函数，该函数知道如何从任意数据源获取或计算其值",
+      "自省能力：模式自带文档功能，客户端可查询模式本身以发现可用的类型、字段和关系",
+      "模式优先设计：模式作为前后端团队之间的契约，支持并行开发"
+    ],
+    "timeline": [
+      ["2012", "Facebook internally develops GraphQL to solve mobile newsfeed data fetching challenges"],
+      ["2015", "Facebook open-sources GraphQL specification and reference implementation (graphql-js)"],
+      ["2016", "GitHub launches its public GraphQL API (v4), validating GraphQL for large-scale production use"],
+      ["2018", "Apollo Federation introduced, enabling GraphQL composition across microservices"],
+      ["2021", "GraphQL becomes an industry standard; The GraphQL Foundation under Linux Foundation stewards the spec"]
+    ],
+    "timeline_zh": [
+      ["2012", "Facebook内部开发GraphQL以解决移动端新闻流数据获取挑战"],
+      ["2015", "Facebook开源GraphQL规范和参考实现（graphql-js）"],
+      ["2016", "GitHub推出公共GraphQL API（v4），验证了GraphQL在大规模生产中的可行性"],
+      ["2018", "Apollo Federation发布，支持跨微服务的GraphQL组合"],
+      ["2021", "GraphQL成为行业标准；Linux基金会下的GraphQL基金会负责规范管理"]
+    ],
+    "dos": [
+      "Do design types around business domain concepts rather than database tables because it decouples the API from storage implementation",
+      "Do use DataLoader or equivalent batching to solve the N+1 query problem because naive resolvers will degrade performance exponentially",
+      "Do add field-level descriptions to the schema because introspection-driven tools depend on them for developer experience",
+      "Do implement query complexity analysis and depth limiting because unbounded queries can be weaponized for denial-of-service"
+    ],
+    "dos_zh": [
+      "围绕业务领域概念而非数据库表设计类型，因为这将API与存储实现解耦",
+      "使用DataLoader或等效的批处理来解决N+1查询问题，因为朴素的解析器会导致性能指数级下降",
+      "在模式中为字段添加描述，因为基于自省的工具依赖这些描述来提供开发者体验",
+      "实现查询复杂度分析和深度限制，因为无界查询可能被利用进行拒绝服务攻击"
+    ],
+    "donts": [
+      "Don't expose database IDs directly as GraphQL IDs because it leaks implementation details and makes ID migration painful",
+      "Don't create deeply nested types without pagination because clients can construct exponentially expensive queries",
+      "Don't treat GraphQL mutations as simple REST replacements because mutations should model domain actions, not CRUD operations",
+      "Don't skip schema versioning strategy because breaking changes to live schemas will disrupt all connected clients"
+    ],
+    "donts_zh": [
+      "不要将数据库ID直接暴露为GraphQL ID，因为这泄露了实现细节并使ID迁移变得困难",
+      "不要创建没有分页的深度嵌套类型，因为客户端可以构造指数级昂贵的查询",
+      "不要将GraphQL变更简单地视为REST替代品，因为变更应建模领域行为而非CRUD操作",
+      "不要忽略模式版本策略，因为对线上模式的破坏性变更将影响所有已连接的客户端"
+    ],
+    "case_study_company": "GitHub",
+    "case_study": "GitHub migrated from REST API v3 to GraphQL API v4 in 2016 to address the problem of clients needing dozens of REST calls to render a single page. With GraphQL, mobile and web clients could request exactly the data they needed in a single round-trip. GitHub reported that GraphQL reduced API response payload sizes by up to 90% for some endpoints, and the self-documenting schema eliminated the need for separate API documentation maintenance.",
+    "case_study_zh": "GitHub于2016年从REST API v3迁移到GraphQL API v4，解决了客户端渲染单个页面需要发送数十个REST请求的问题。通过GraphQL，移动端和Web客户端可以在一次往返中精确请求所需数据。GitHub报告称GraphQL将某些端点的API响应负载大小减少了高达90%，且自文档化的模式消除了单独维护API文档的需要。",
+    "when_not_to_use": [
+      "Simple CRUD APIs with a single client type where REST is sufficient and GraphQL adds unnecessary complexity",
+      "File upload or streaming scenarios where GraphQL's request-response model is a poor fit",
+      "Public APIs where caching at the HTTP layer (CDN, reverse proxy) is critical, since GraphQL POST requests bypass standard HTTP caching",
+      "Teams without frontend-backend collaboration maturity, where schema negotiation becomes a bottleneck"
+    ],
+    "when_not_to_use_zh": [
+      "单一客户端类型的简单CRUD API，REST已经足够且GraphQL增加了不必要的复杂性",
+      "文件上传或流式传输场景，GraphQL的请求-响应模型不适合",
+      "HTTP层缓存（CDN、反向代理）至关重要的公共API，因为GraphQL POST请求绕过标准HTTP缓存",
+      "前后端协作成熟度不足的团队，模式协商会成为瓶颈"
+    ],
+    "adopters": ["GitHub", "Shopify", "Facebook", "Twitter", "Airbnb"]
+  },
+  {
+    "id": 132,
+    "name": "gRPC & Protocol Buffers",
+    "name_zh": "gRPC与Protocol Buffers",
+    "slug": "grpc-protocol-buffers",
+    "category": "api",
+    "desc": "High-performance RPC framework using HTTP/2 and binary serialization",
+    "desc_zh": "基于HTTP/2和二进制序列化的高性能RPC框架",
+    "steps": [
+      "Define service contracts and message types in .proto files using Protocol Buffer IDL (Interface Definition Language)",
+      "Generate client and server stubs from .proto files using the protoc compiler for your target languages",
+      "Implement the server-side service logic by overriding the generated stub methods with business logic",
+      "Configure gRPC channels with appropriate load balancing, TLS, and deadline/timeout policies",
+      "Deploy and monitor the service using gRPC health checking protocol and observability interceptors for tracing and metrics"
+    ],
+    "steps_zh": [
+      "使用Protocol Buffer IDL（接口定义语言）在.proto文件中定义服务契约和消息类型",
+      "使用protoc编译器为目标语言从.proto文件生成客户端和服务端存根",
+      "通过在生成的存根方法中实现业务逻辑来完成服务端逻辑",
+      "配置gRPC通道，设置适当的负载均衡、TLS以及截止时间/超时策略",
+      "使用gRPC健康检查协议和可观测性拦截器（追踪与指标）部署并监控服务"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": ["api-gateway-pattern", "consumer-driven-contracts", "asyncapi"],
+    "tags": ["grpc", "protobuf", "rpc", "http2", "binary-serialization"],
+    "origin_author": "Google, 2015 (built on internal Stubby RPC framework)",
+    "origin_source": "gRPC: A High-Performance Open-Source Universal RPC Framework (grpc.io); referenced in Building Microservices (Sam Newman, 2nd ed., 2021, Ch. 4)",
+    "origin_source_zh": "《gRPC：高性能开源通用RPC框架》（grpc.io）；参见《构建微服务》（Sam Newman，第2版，2021，第4章）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When low-latency, high-throughput inter-service communication is critical in a microservices architecture",
+      "When services are built in multiple programming languages and need a shared contract with code generation",
+      "When bidirectional streaming is required for real-time data flows between client and server",
+      "When payload size and bandwidth efficiency matter, such as mobile clients on constrained networks"
+    ],
+    "when_to_use_zh": [
+      "在微服务架构中需要低延迟、高吞吐量的服务间通信时",
+      "当服务使用多种编程语言构建，需要带代码生成的共享契约时",
+      "当需要双向流式传输用于客户端与服务端之间的实时数据流时",
+      "当负载大小和带宽效率很重要时，如受限网络上的移动客户端"
+    ],
+    "core_concepts": [
+      "Protocol Buffers: A language-neutral, platform-neutral binary serialization format that is 3-10x smaller and faster than JSON",
+      "HTTP/2 Transport: Multiplexed streams over a single TCP connection with header compression, enabling concurrent RPCs without head-of-line blocking",
+      "Code Generation: The protoc compiler generates type-safe client stubs and server interfaces from .proto files, eliminating manual serialization code",
+      "Streaming Modes: Four communication patterns — unary, server streaming, client streaming, and bidirectional streaming — cover all real-time use cases",
+      "Deadlines and Cancellation: Built-in propagation of timeouts and cancellation signals across the entire call chain prevents resource leaks in distributed systems"
+    ],
+    "core_concepts_zh": [
+      "Protocol Buffers：语言无关、平台无关的二进制序列化格式，比JSON小3-10倍且速度更快",
+      "HTTP/2传输：通过单个TCP连接上的多路复用流和头部压缩，实现并发RPC且无队头阻塞",
+      "代码生成：protoc编译器从.proto文件生成类型安全的客户端存根和服务端接口，消除手动序列化代码",
+      "流式模式：四种通信模式——一元、服务端流、客户端流和双向流——覆盖所有实时用例",
+      "截止时间与取消：内置的超时和取消信号在整个调用链中传播，防止分布式系统中的资源泄漏"
+    ],
+    "timeline": [
+      ["2001", "Google internally develops Stubby, the precursor to gRPC, for inter-datacenter communication"],
+      ["2015", "Google open-sources gRPC 1.0 with support for 10+ programming languages"],
+      ["2017", "gRPC becomes a Cloud Native Computing Foundation (CNCF) incubating project"],
+      ["2019", "gRPC-Web enables browser clients to call gRPC services via an Envoy proxy translation layer"],
+      ["2023", "gRPC adoption surges in AI/ML inference pipelines for low-latency model serving (e.g., TensorFlow Serving, Triton)"]
+    ],
+    "timeline_zh": [
+      ["2001", "Google内部开发Stubby——gRPC的前身，用于跨数据中心通信"],
+      ["2015", "Google开源gRPC 1.0，支持10多种编程语言"],
+      ["2017", "gRPC成为云原生计算基金会（CNCF）孵化项目"],
+      ["2019", "gRPC-Web使浏览器客户端能通过Envoy代理转换层调用gRPC服务"],
+      ["2023", "gRPC在AI/ML推理管线中的采用激增，用于低延迟模型服务（如TensorFlow Serving、Triton）"]
+    ],
+    "dos": [
+      "Do use proto3 syntax and follow the Protocol Buffer style guide because consistent naming and conventions simplify cross-team collaboration",
+      "Do set explicit deadlines on every RPC call because missing deadlines cause cascading timeouts across the entire service mesh",
+      "Do version .proto files carefully using reserved fields and field number preservation because binary compatibility depends on stable field numbers",
+      "Do implement gRPC interceptors for cross-cutting concerns (auth, logging, tracing) because they provide a clean middleware pattern"
+    ],
+    "dos_zh": [
+      "使用proto3语法并遵循Protocol Buffer风格指南，因为一致的命名和约定简化了跨团队协作",
+      "为每次RPC调用设置明确的截止时间，因为缺失截止时间会在整个服务网格中引发级联超时",
+      "使用保留字段和字段号保持来仔细管理.proto文件版本，因为二进制兼容性依赖于稳定的字段号",
+      "为横切关注点（认证、日志、追踪）实现gRPC拦截器，因为它们提供了清晰的中间件模式"
+    ],
+    "donts": [
+      "Don't expose gRPC directly to browser clients without a proxy because browsers cannot natively speak HTTP/2 trailers required by gRPC",
+      "Don't use gRPC for public-facing APIs where developer ergonomics and curl-testability matter because JSON/REST is far more accessible",
+      "Don't ignore backward compatibility when evolving .proto files because removing or renumbering fields breaks all existing clients",
+      "Don't skip implementing health checks because orchestrators like Kubernetes depend on them for readiness and liveness probes"
+    ],
+    "donts_zh": [
+      "不要在没有代理的情况下将gRPC直接暴露给浏览器客户端，因为浏览器不能原生支持gRPC所需的HTTP/2 trailers",
+      "不要在开发者易用性和curl可测试性很重要的公共API中使用gRPC，因为JSON/REST的可访问性远高于此",
+      "不要在演进.proto文件时忽视向后兼容性，因为删除或重编号字段会破坏所有现有客户端",
+      "不要跳过健康检查的实现，因为Kubernetes等编排器依赖它们进行就绪和存活探测"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix migrated its inter-service communication from REST/JSON to gRPC in 2019 to reduce latency in its microservices architecture of over 700 services. The binary serialization of Protocol Buffers reduced payload sizes by approximately 60%, and HTTP/2 multiplexing eliminated the connection overhead that had plagued their REST-based service mesh. Netflix reported a 30-40% reduction in inter-service latency and significant CPU savings from avoiding JSON parsing at scale.",
+    "case_study_zh": "Netflix于2019年将其超过700个微服务间的通信从REST/JSON迁移到gRPC，以降低延迟。Protocol Buffers的二进制序列化将负载大小减少了约60%，HTTP/2多路复用消除了困扰其REST服务网格的连接开销。Netflix报告服务间延迟降低了30-40%，并因避免大规模JSON解析而显著节省了CPU资源。",
+    "when_not_to_use": [
+      "Public developer-facing APIs where ease of testing with curl and browser tools is a priority",
+      "Simple request-response services where the overhead of proto compilation and code generation is unjustified",
+      "Environments where firewall or proxy infrastructure does not support HTTP/2",
+      "Teams without polyglot service needs, where REST with OpenAPI provides sufficient contract enforcement"
+    ],
+    "when_not_to_use_zh": [
+      "面向外部开发者的公共API，在这种场景中用curl和浏览器工具的易测试性是优先考虑的",
+      "简单的请求-响应服务，proto编译和代码生成的开销不合理",
+      "防火墙或代理基础设施不支持HTTP/2的环境",
+      "不需要多语言服务的团队，REST加OpenAPI已提供足够的契约保障"
+    ],
+    "adopters": ["Google", "Netflix", "Square", "Cisco", "CoreOS"]
+  },
+  {
+    "id": 133,
+    "name": "API Gateway Pattern",
+    "name_zh": "API网关模式",
+    "slug": "api-gateway-pattern",
+    "category": "api",
+    "desc": "Single entry point that routes, aggregates, and secures microservices APIs",
+    "desc_zh": "作为微服务API的单一入口点，负责路由、聚合和安全防护",
+    "steps": [
+      "Identify all client types and their API consumption patterns, then define the gateway's routing table mapping external paths to internal services",
+      "Implement cross-cutting concerns at the gateway layer: authentication, rate limiting, request/response transformation, and TLS termination",
+      "Configure request routing and load balancing rules, including path-based routing, header-based routing, and service discovery integration",
+      "Add response aggregation for composite endpoints that combine data from multiple backend services into a single client response",
+      "Set up monitoring, circuit breakers, and fallback responses at the gateway to prevent cascading failures from backend service outages"
+    ],
+    "steps_zh": [
+      "识别所有客户端类型及其API消费模式，然后定义网关的路由表，将外部路径映射到内部服务",
+      "在网关层实现横切关注点：认证、限流、请求/响应转换和TLS终止",
+      "配置请求路由和负载均衡规则，包括基于路径的路由、基于头部的路由和服务发现集成",
+      "为组合端点添加响应聚合，将多个后端服务的数据合并为单个客户端响应",
+      "在网关设置监控、熔断器和降级响应，防止后端服务故障引发级联失败"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": ["bff-pattern", "api-rate-limiting-throttling", "graphql-schema-design"],
+    "tags": ["gateway", "routing", "aggregation", "microservices", "security"],
+    "origin_author": "Microservices community, formalized by Chris Richardson (~2015)",
+    "origin_source": "Building Microservices (Sam Newman, 2nd ed., 2021, Ch. 7); API Design Patterns (JJ Geewax, 2021, Ch. 2)",
+    "origin_source_zh": "《构建微服务》（Sam Newman，第2版，2021，第7章）；《API设计模式》（JJ Geewax，2021，第2章）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When a microservices architecture needs a unified entry point to decouple clients from internal service topology",
+      "When cross-cutting concerns like authentication, logging, and rate limiting should be centralized rather than duplicated in each service",
+      "When clients need aggregated responses from multiple backend services in a single API call",
+      "When internal services use different protocols (gRPC, AMQP) and clients need a consistent HTTP/REST interface"
+    ],
+    "when_to_use_zh": [
+      "当微服务架构需要统一入口点来解耦客户端与内部服务拓扑时",
+      "当认证、日志和限流等横切关注点应集中处理而非在每个服务中重复时",
+      "当客户端需要在单次API调用中获取多个后端服务的聚合响应时",
+      "当内部服务使用不同协议（gRPC、AMQP）而客户端需要一致的HTTP/REST接口时"
+    ],
+    "core_concepts": [
+      "Reverse Proxy: The gateway acts as a reverse proxy, hiding the internal service topology and providing a stable external API surface",
+      "Request Routing: Incoming requests are routed to the appropriate backend service based on URL paths, headers, or query parameters",
+      "Cross-Cutting Concerns: Authentication, authorization, rate limiting, logging, and CORS are handled once at the gateway instead of in each service",
+      "Response Aggregation: The gateway can fan out a single client request to multiple services and compose their responses into one payload",
+      "Protocol Translation: The gateway translates between external protocols (HTTP/REST) and internal protocols (gRPC, WebSocket, message queues)"
+    ],
+    "core_concepts_zh": [
+      "反向代理：网关充当反向代理，隐藏内部服务拓扑并提供稳定的外部API表面",
+      "请求路由：根据URL路径、头部或查询参数将传入请求路由到适当的后端服务",
+      "横切关注点：认证、授权、限流、日志和CORS在网关统一处理，而非在每个服务中重复",
+      "响应聚合：网关可将单个客户端请求扇出到多个服务，并将响应组合为一个负载",
+      "协议转换：网关在外部协议（HTTP/REST）和内部协议（gRPC、WebSocket、消息队列）之间进行转换"
+    ],
+    "timeline": [
+      ["2013", "Netflix Zuul emerges as one of the first dedicated API gateways for microservices"],
+      ["2015", "AWS API Gateway launches as a managed service, popularizing the gateway-as-a-service model"],
+      ["2017", "Kong (built on Nginx/OpenResty) becomes the dominant open-source API gateway"],
+      ["2019", "Envoy-based gateways (Ambassador, Gloo) bring Kubernetes-native API gateway capabilities"],
+      ["2022", "Gateway API specification in Kubernetes standardizes gateway configuration as a portable Kubernetes resource"]
+    ],
+    "timeline_zh": [
+      ["2013", "Netflix Zuul作为首批专用微服务API网关之一出现"],
+      ["2015", "AWS API Gateway作为托管服务推出，普及了网关即服务模式"],
+      ["2017", "Kong（基于Nginx/OpenResty构建）成为主流开源API网关"],
+      ["2019", "基于Envoy的网关（Ambassador、Gloo）带来Kubernetes原生API网关能力"],
+      ["2022", "Kubernetes中的Gateway API规范将网关配置标准化为可移植的Kubernetes资源"]
+    ],
+    "dos": [
+      "Do keep the gateway stateless and thin because a fat gateway with business logic becomes a distributed monolith",
+      "Do implement circuit breakers at the gateway level because backend service failures should degrade gracefully rather than cascading to all clients",
+      "Do use declarative configuration for routing rules because imperative gateway logic is hard to audit, test, and version",
+      "Do deploy the gateway with high availability and auto-scaling because it is a single point of failure for all API traffic"
+    ],
+    "dos_zh": [
+      "保持网关无状态和轻薄，因为包含业务逻辑的臃肿网关会变成分布式单体",
+      "在网关层实现熔断器，因为后端服务故障应优雅降级而非级联到所有客户端",
+      "使用声明式配置定义路由规则，因为命令式网关逻辑难以审计、测试和版本管理",
+      "以高可用和自动扩缩方式部署网关，因为它是所有API流量的单点故障"
+    ],
+    "donts": [
+      "Don't put business logic in the gateway because it creates tight coupling and turns the gateway into a distributed monolith",
+      "Don't use a single gateway for all client types when they have vastly different needs — consider BFF pattern instead",
+      "Don't skip monitoring gateway latency because the gateway adds a network hop and any performance degradation affects every request",
+      "Don't hardcode service URLs in the gateway because it defeats the purpose of service discovery and dynamic routing"
+    ],
+    "donts_zh": [
+      "不要在网关中放置业务逻辑，因为这会产生紧耦合并将网关变为分布式单体",
+      "当不同客户端类型有截然不同的需求时不要使用单一网关——考虑BFF模式替代",
+      "不要忽略监控网关延迟，因为网关增加了一跳网络延迟，任何性能下降都会影响每个请求",
+      "不要在网关中硬编码服务URL，因为这违背了服务发现和动态路由的初衷"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix built Zuul as its API gateway to handle over 50 billion API requests per day across its streaming platform. Zuul provides dynamic routing, monitoring, resiliency, and security for over 1,000 backend microservices. By centralizing authentication, rate limiting, and canary routing at the gateway layer, Netflix reduced per-service boilerplate by thousands of lines of code and gained the ability to perform zero-downtime traffic shifts during deployments.",
+    "case_study_zh": "Netflix构建了Zuul作为其API网关，处理流媒体平台每天超过500亿次API请求。Zuul为超过1000个后端微服务提供动态路由、监控、弹性和安全功能。通过在网关层集中认证、限流和金丝雀路由，Netflix减少了每个服务数千行的样板代码，并获得了在部署期间执行零停机流量切换的能力。",
+    "when_not_to_use": [
+      "Monolithic applications with a single backend where a gateway adds unnecessary latency and operational overhead",
+      "Simple service-to-service communication where a service mesh (Istio, Linkerd) handles routing and resilience at the infrastructure layer",
+      "Extremely latency-sensitive paths where even a single additional network hop is unacceptable",
+      "Small teams with fewer than five services where the operational cost of maintaining a gateway exceeds its benefits"
+    ],
+    "when_not_to_use_zh": [
+      "只有单个后端的单体应用，网关增加了不必要的延迟和运维开销",
+      "简单的服务间通信，服务网格（Istio、Linkerd）已在基础设施层处理路由和弹性",
+      "对延迟极度敏感的路径，即使多一跳网络延迟也不可接受",
+      "服务数少于五个的小团队，维护网关的运维成本超过其收益"
+    ],
+    "adopters": ["Netflix", "Amazon", "Uber", "Alibaba", "Stripe"]
+  },
+  {
+    "id": 134,
+    "name": "Backend for Frontend (BFF)",
+    "name_zh": "服务于前端的后端（BFF）",
+    "slug": "bff-pattern",
+    "category": "api",
+    "desc": "Dedicated backend services tailored to specific client types",
+    "desc_zh": "为特定客户端类型量身定制的专用后端服务",
+    "steps": [
+      "Identify distinct client types (web SPA, mobile iOS/Android, third-party) and document their unique data and interaction requirements",
+      "Create a dedicated BFF service for each client type that acts as an intermediary between the client and downstream microservices",
+      "Implement client-specific data aggregation, transformation, and formatting in each BFF to optimize payloads for that client's constraints",
+      "Have each client team own and maintain their respective BFF to ensure it evolves with the client's needs without cross-team coordination",
+      "Keep BFFs thin: they should orchestrate calls to downstream services and shape responses, but never own business logic or persistent state"
+    ],
+    "steps_zh": [
+      "识别不同的客户端类型（Web SPA、移动端iOS/Android、第三方），记录其独特的数据和交互需求",
+      "为每种客户端类型创建专用的BFF服务，作为客户端和下游微服务之间的中间层",
+      "在每个BFF中实现客户端特定的数据聚合、转换和格式化，优化该客户端约束条件下的负载",
+      "让每个客户端团队拥有并维护其对应的BFF，确保它随客户端需求演进而无需跨团队协调",
+      "保持BFF轻薄：它们应编排对下游服务的调用并塑造响应，但不应拥有业务逻辑或持久状态"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": ["api-gateway-pattern", "graphql-schema-design", "grpc-protocol-buffers"],
+    "tags": ["bff", "frontend", "microservices", "aggregation", "client-specific"],
+    "origin_author": "Sam Newman / ThoughtWorks, 2015",
+    "origin_source": "Building Microservices (Sam Newman, 1st ed., 2015, Ch. 4; 2nd ed., 2021, Ch. 7)",
+    "origin_source_zh": "《构建微服务》（Sam Newman，第1版，2015，第4章；第2版，2021，第7章）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When mobile and web clients need fundamentally different API response shapes from the same microservices",
+      "When a single general-purpose API gateway has become bloated with client-specific logic",
+      "When different client teams want independent release cadences for their API layer",
+      "When mobile clients on constrained networks need aggressively optimized payloads compared to web clients"
+    ],
+    "when_to_use_zh": [
+      "当移动端和Web客户端需要从相同微服务获取根本不同的API响应结构时",
+      "当单一通用API网关因客户端特定逻辑而变得臃肿时",
+      "当不同客户端团队希望其API层有独立的发布节奏时",
+      "当受限网络上的移动客户端需要比Web客户端更积极的负载优化时"
+    ],
+    "core_concepts": [
+      "Client Affinity: Each BFF is purpose-built for one client type, so it can optimize data shape, payload size, and protocol for that client's specific needs",
+      "Team Ownership: The frontend team that consumes the BFF also owns it, eliminating cross-team API negotiation and enabling faster iteration",
+      "Aggregation Layer: BFFs fan out requests to multiple downstream microservices and compose responses tailored to the client's UI structure",
+      "Thin Orchestration: BFFs contain presentation logic and data shaping but delegate all business rules to downstream domain services",
+      "Independent Deployment: Each BFF can be deployed, scaled, and versioned independently without affecting other client channels"
+    ],
+    "core_concepts_zh": [
+      "客户端亲和性：每个BFF专为一种客户端类型构建，可针对该客户端的特定需求优化数据形状、负载大小和协议",
+      "团队所有权：消费BFF的前端团队同时拥有它，消除跨团队API协商并实现更快迭代",
+      "聚合层：BFF将请求扇出到多个下游微服务，并组合出适合客户端UI结构的响应",
+      "轻量编排：BFF包含展示逻辑和数据塑形，但将所有业务规则委托给下游领域服务",
+      "独立部署：每个BFF可以独立部署、扩缩和版本管理，不影响其他客户端渠道"
+    ],
+    "timeline": [
+      ["2015", "Sam Newman coins the BFF pattern in Building Microservices, drawing on ThoughtWorks project experience"],
+      ["2016", "SoundCloud publishes a detailed case study of their BFF adoption for mobile and web clients"],
+      ["2018", "BFF pattern combined with GraphQL emerges as a popular hybrid architecture at companies like Airbnb"],
+      ["2020", "Next.js API routes and Remix loaders popularize BFF-like patterns in the JavaScript full-stack ecosystem"],
+      ["2023", "BFF pattern adapted for AI applications, with dedicated BFFs serving chat interfaces, voice assistants, and API consumers"]
+    ],
+    "timeline_zh": [
+      ["2015", "Sam Newman在《构建微服务》中提出BFF模式，源于ThoughtWorks项目经验"],
+      ["2016", "SoundCloud发布其移动端和Web客户端BFF采用的详细案例研究"],
+      ["2018", "BFF模式与GraphQL的结合作为流行的混合架构出现在Airbnb等公司"],
+      ["2020", "Next.js API路由和Remix加载器在JavaScript全栈生态中普及类BFF模式"],
+      ["2023", "BFF模式被改造用于AI应用，专用BFF服务于聊天界面、语音助手和API消费者"]
+    ],
+    "dos": [
+      "Do let the frontend team own the BFF because they best understand the client's data needs and can iterate without backend team dependencies",
+      "Do keep BFFs focused on data aggregation and response shaping because business logic belongs in domain services",
+      "Do share common concerns (auth, logging) via libraries rather than duplicating them across BFFs because consistency matters for cross-cutting concerns",
+      "Do monitor each BFF independently because different client patterns produce different load and error profiles"
+    ],
+    "dos_zh": [
+      "让前端团队拥有BFF，因为他们最了解客户端的数据需求，可以在不依赖后端团队的情况下迭代",
+      "保持BFF专注于数据聚合和响应塑形，因为业务逻辑属于领域服务",
+      "通过共享库而非跨BFF复制来处理通用关注点（认证、日志），因为横切关注点需要一致性",
+      "独立监控每个BFF，因为不同客户端模式产生不同的负载和错误特征"
+    ],
+    "donts": [
+      "Don't let BFFs accumulate business logic because they should remain thin orchestration layers, not become new monoliths",
+      "Don't create a BFF for every minor client variation because it leads to an explosion of services that are expensive to maintain",
+      "Don't share a BFF across fundamentally different client types because it recreates the one-size-fits-all problem the pattern was designed to solve",
+      "Don't skip shared libraries for authentication and observability because each BFF reimplementing these independently introduces security and consistency risks"
+    ],
+    "donts_zh": [
+      "不要让BFF积累业务逻辑，因为它们应保持为轻量编排层，而非演变为新的单体",
+      "不要为每个小的客户端差异都创建BFF，因为这会导致服务爆炸式增长，维护成本高昂",
+      "不要在根本不同的客户端类型之间共享BFF，因为这会重新产生该模式本要解决的一刀切问题",
+      "不要跳过认证和可观测性的共享库，因为每个BFF独立重新实现会引入安全和一致性风险"
+    ],
+    "case_study_company": "SoundCloud",
+    "case_study": "SoundCloud adopted the BFF pattern in 2016 when their single monolithic API could not satisfy the divergent needs of their iOS, Android, and web clients. Each client team built its own BFF that aggregated calls to shared microservices and shaped responses for their specific UI. This allowed the mobile team to ship optimized, smaller payloads while the web team could include richer metadata. Release velocity increased by 40% because client teams no longer blocked on backend API changes.",
+    "case_study_zh": "SoundCloud于2016年采用BFF模式，当时其单一的单体API无法满足iOS、Android和Web客户端的不同需求。每个客户端团队构建了自己的BFF，聚合对共享微服务的调用并为其特定UI塑形响应。这使移动团队能发送优化的、更小的负载，而Web团队可以包含更丰富的元数据。发布速度提升了40%，因为客户端团队不再被后端API变更阻塞。",
+    "when_not_to_use": [
+      "When all clients consume the same data shape and a single API or GraphQL layer already serves them well",
+      "When the organization is too small to staff separate teams for each BFF, leading to one team maintaining multiple BFFs",
+      "When the overhead of deploying and monitoring additional services outweighs the flexibility gained",
+      "When downstream services already provide well-designed, client-friendly APIs that need no aggregation"
+    ],
+    "when_not_to_use_zh": [
+      "当所有客户端消费相同的数据结构，单一API或GraphQL层已能良好服务时",
+      "当组织规模太小无法为每个BFF配备独立团队，导致一个团队维护多个BFF时",
+      "当部署和监控额外服务的开销超过获得的灵活性时",
+      "当下游服务已提供设计良好的、对客户端友好的API且不需要聚合时"
+    ],
+    "adopters": ["SoundCloud", "Airbnb", "Spotify", "Netflix", "REA Group"]
+  },
+  {
+    "id": 135,
+    "name": "Consumer-Driven Contracts",
+    "name_zh": "消费者驱动契约",
+    "slug": "consumer-driven-contracts",
+    "category": "api",
+    "desc": "API testing approach where consumers define the expectations providers must satisfy",
+    "desc_zh": "消费者定义期望、提供者必须满足的API测试方法",
+    "steps": [
+      "Each consumer team writes contract tests that specify the exact requests they send and the response shape they expect from the provider",
+      "Contracts are published to a shared broker (e.g., Pact Broker) where providers can discover all consumer expectations",
+      "The provider team runs all published consumer contracts against their implementation to verify compatibility",
+      "When contract verification fails, the provider team and affected consumer team collaborate to resolve the incompatibility before deployment",
+      "Integrate contract verification into CI/CD pipelines so that breaking changes are caught before they reach production"
+    ],
+    "steps_zh": [
+      "每个消费者团队编写契约测试，指定其发送的确切请求和期望从提供者获得的响应结构",
+      "契约发布到共享代理（如Pact Broker），提供者可在此发现所有消费者期望",
+      "提供者团队针对其实现运行所有已发布的消费者契约以验证兼容性",
+      "当契约验证失败时，提供者团队与受影响的消费者团队协作，在部署前解决不兼容问题",
+      "将契约验证集成到CI/CD流水线中，确保在到达生产环境之前捕获破坏性变更"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": ["openapi-specification", "api-gateway-pattern", "grpc-protocol-buffers"],
+    "tags": ["contracts", "testing", "consumer-driven", "pact", "compatibility"],
+    "origin_author": "Ian Robinson, 2006; tooling popularized by Pact (2013, DiUS/Beth Skurrie)",
+    "origin_source": "Consumer-Driven Contracts: A Service Evolution Pattern (Ian Robinson, 2006); Building Microservices (Sam Newman, 2nd ed., 2021, Ch. 6)",
+    "origin_source_zh": "《消费者驱动契约：服务演进模式》（Ian Robinson，2006）；《构建微服务》（Sam Newman，第2版，2021，第6章）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When multiple independent teams build services that depend on each other's APIs and need confidence in compatibility",
+      "When integration tests are too slow, brittle, or expensive to run against live downstream services",
+      "When deploying microservices independently requires assurance that API changes won't break existing consumers",
+      "When evolving a shared API that serves many consumers, each with different usage patterns"
+    ],
+    "when_to_use_zh": [
+      "当多个独立团队构建相互依赖API的服务，需要对兼容性有信心时",
+      "当集成测试对活跃下游服务运行太慢、太脆弱或成本太高时",
+      "当独立部署微服务需要确保API变更不会破坏现有消费者时",
+      "当演进一个服务多个消费者的共享API，且每个消费者有不同使用模式时"
+    ],
+    "core_concepts": [
+      "Consumer Contracts: Each consumer defines a lightweight test that captures exactly what it needs from the provider — no more, no less",
+      "Provider Verification: The provider runs all consumer contracts as tests against its own codebase, ensuring it satisfies every consumer's expectations",
+      "Contract Broker: A shared registry (e.g., Pact Broker) stores and versions contracts, enabling providers to discover consumer expectations without direct communication",
+      "Can-I-Deploy: An automated check in CI/CD that verifies whether a specific version of a service is compatible with all its consumers before deployment",
+      "Postel's Law in Practice: Providers are liberal in what they accept and conservative in what they produce, guided by actual consumer usage rather than assumed usage"
+    ],
+    "core_concepts_zh": [
+      "消费者契约：每个消费者定义一个轻量测试，精确捕获其从提供者所需的内容——不多不少",
+      "提供者验证：提供者针对自身代码库运行所有消费者契约作为测试，确保满足每个消费者的期望",
+      "契约代理：共享注册中心（如Pact Broker）存储和版本化契约，使提供者无需直接沟通即可发现消费者期望",
+      "可否部署检查：CI/CD中的自动化检查，在部署前验证服务的特定版本是否与所有消费者兼容",
+      "Postel定律实践：提供者在接受时宽松、在产出时严格，以实际消费者使用而非假设使用为指导"
+    ],
+    "timeline": [
+      ["2006", "Ian Robinson publishes the seminal paper 'Consumer-Driven Contracts: A Service Evolution Pattern'"],
+      ["2013", "Pact framework created at DiUS (Australia), becoming the de facto tool for consumer-driven contract testing"],
+      ["2016", "Pact Broker released, enabling centralized contract storage and cross-service compatibility verification"],
+      ["2018", "Spring Cloud Contract provides JVM-native consumer-driven contract testing for Spring Boot microservices"],
+      ["2021", "PactFlow (commercial SaaS) and Pact v4 specification unify HTTP, messaging, and plugin-based contract types"]
+    ],
+    "timeline_zh": [
+      ["2006", "Ian Robinson发表开创性论文「消费者驱动契约：服务演进模式」"],
+      ["2013", "Pact框架在DiUS（澳大利亚）创建，成为消费者驱动契约测试的事实标准工具"],
+      ["2016", "Pact Broker发布，支持集中化契约存储和跨服务兼容性验证"],
+      ["2018", "Spring Cloud Contract为Spring Boot微服务提供JVM原生的消费者驱动契约测试"],
+      ["2021", "PactFlow（商业SaaS）和Pact v4规范统一了HTTP、消息和基于插件的契约类型"]
+    ],
+    "dos": [
+      "Do write contracts from the consumer's perspective, specifying only what the consumer actually uses, because over-specifying creates false coupling",
+      "Do integrate contract verification into both consumer and provider CI pipelines because manual verification is error-prone and unsustainable",
+      "Do version contracts and use the can-i-deploy check before every deployment because it prevents incompatible services from reaching production",
+      "Do start with the most critical service boundaries because retrofitting contracts everywhere at once is overwhelming"
+    ],
+    "dos_zh": [
+      "从消费者视角编写契约，仅指定消费者实际使用的内容，因为过度指定会产生虚假耦合",
+      "将契约验证集成到消费者和提供者的CI流水线中，因为手动验证容易出错且不可持续",
+      "版本化契约并在每次部署前使用可否部署检查，因为这能防止不兼容的服务到达生产环境",
+      "从最关键的服务边界开始，因为一次性在所有地方改造契约会令人不堪重负"
+    ],
+    "donts": [
+      "Don't let consumers over-specify contracts by asserting on fields they don't use because it creates brittle tests that break on benign provider changes",
+      "Don't use consumer-driven contracts as a replacement for end-to-end integration tests because they verify interface compatibility, not business workflow correctness",
+      "Don't ignore contract test failures in CI because a green build with failing contracts means broken consumers in production",
+      "Don't let contracts become stale by failing to update them when consumer behavior changes because outdated contracts provide false confidence"
+    ],
+    "donts_zh": [
+      "不要让消费者对其不使用的字段进行断言来过度指定契约，因为这会创建脆弱的测试，在提供者进行无害变更时也会失败",
+      "不要将消费者驱动契约作为端到端集成测试的替代品，因为它们验证的是接口兼容性而非业务流程正确性",
+      "不要忽略CI中的契约测试失败，因为带有失败契约的绿色构建意味着生产中的消费者会出问题",
+      "不要因消费者行为变更时未更新契约而让契约过时，因为过时的契约提供虚假的信心"
+    ],
+    "case_study_company": "Atlassian",
+    "case_study": "Atlassian adopted Pact-based consumer-driven contracts across its microservices powering Jira and Confluence. With over 200 services and dozens of teams, integration testing had become a multi-hour bottleneck in their CI pipeline. By shifting to consumer-driven contracts, each service could verify API compatibility in under 2 minutes without standing up dependent services. This reduced their integration test feedback cycle from hours to minutes and eliminated 70% of integration-related production incidents.",
+    "case_study_zh": "Atlassian在驱动Jira和Confluence的微服务中全面采用基于Pact的消费者驱动契约。拥有超过200个服务和数十个团队，集成测试已成为CI流水线中数小时的瓶颈。通过转向消费者驱动契约，每个服务可以在不启动依赖服务的情况下在2分钟内验证API兼容性。这将集成测试反馈周期从数小时缩短至分钟，并消除了70%的集成相关生产事故。",
+    "when_not_to_use": [
+      "Monolithic applications where all components are deployed together and internal API compatibility is guaranteed by the build",
+      "Rapidly prototyping a new service where the API surface is changing daily and contracts would need constant rewriting",
+      "When there is only one consumer per provider, making direct integration tests simpler and equally effective",
+      "Third-party APIs where you have no influence over the provider's implementation and cannot share contracts"
+    ],
+    "when_not_to_use_zh": [
+      "所有组件一起部署的单体应用，构建已保证内部API兼容性",
+      "快速原型开发新服务时，API表面每天变化，契约需要不断重写",
+      "每个提供者只有一个消费者时，直接集成测试更简单且同样有效",
+      "第三方API，你无法影响提供者的实现且无法共享契约"
+    ],
+    "adopters": ["Atlassian", "ING Bank", "DiUS", "Spotify", "REA Group"]
+  },
+  {
+    "id": 136,
+    "name": "OpenAPI Specification",
+    "name_zh": "OpenAPI规范",
+    "slug": "openapi-specification",
+    "category": "api",
+    "desc": "Machine-readable API description standard for RESTful services",
+    "desc_zh": "面向RESTful服务的机器可读API描述标准",
+    "steps": [
+      "Define the OpenAPI document structure: info metadata, server URLs, and global security schemes in YAML or JSON format",
+      "Describe each API endpoint as a path object with HTTP methods, parameters (path, query, header), and request bodies",
+      "Define reusable schemas in the components section using JSON Schema for request/response models, reducing duplication",
+      "Add response definitions for each status code including error responses, linking to component schemas where appropriate",
+      "Validate the specification using linting tools (Spectral, openapi-generator), then generate documentation, client SDKs, and server stubs"
+    ],
+    "steps_zh": [
+      "定义OpenAPI文档结构：以YAML或JSON格式描述info元数据、服务器URL和全局安全方案",
+      "将每个API端点描述为路径对象，包含HTTP方法、参数（路径、查询、头部）和请求体",
+      "在components部分使用JSON Schema定义可复用的请求/响应模型模式，减少重复",
+      "为每个状态码添加响应定义（包括错误响应），在适当处链接到组件模式",
+      "使用lint工具（Spectral、openapi-generator）验证规范，然后生成文档、客户端SDK和服务端存根"
+    ],
+    "ai_relevant": true,
+    "viz_type": "matrix",
+    "related": ["consumer-driven-contracts", "asyncapi", "hateoas"],
+    "tags": ["openapi", "swagger", "specification", "documentation", "code-generation"],
+    "origin_author": "Tony Tam / Swagger (2011); donated to OpenAPI Initiative / Linux Foundation (2015)",
+    "origin_source": "OpenAPI Specification (spec.openapis.org); RESTful Web APIs (Leonard Richardson & Mike Amundsen, 2013, Ch. 9)",
+    "origin_source_zh": "OpenAPI规范（spec.openapis.org）；《RESTful Web API》（Leonard Richardson & Mike Amundsen，2013，第9章）",
+    "complexity": "beginner",
+    "when_to_use": [
+      "When designing REST APIs that need a single source of truth for documentation, client generation, and testing",
+      "When multiple teams consume your API and need unambiguous, machine-readable interface documentation",
+      "When enforcing API design standards across an organization using automated linting in CI pipelines",
+      "When building developer portals where interactive API exploration (try-it-out) is essential for adoption"
+    ],
+    "when_to_use_zh": [
+      "当设计REST API需要文档、客户端生成和测试的单一事实来源时",
+      "当多个团队消费你的API并需要明确的、机器可读的接口文档时",
+      "当在组织中通过CI流水线的自动化lint来执行API设计标准时",
+      "当构建开发者门户，交互式API探索（试用功能）对采用至关重要时"
+    ],
+    "core_concepts": [
+      "Design-First Approach: Write the OpenAPI specification before implementing the API, using it as a contract between frontend and backend teams",
+      "Path and Operation Objects: Each API endpoint is defined by its URL path and HTTP method, with typed parameters, request bodies, and response schemas",
+      "Components and Reuse: Shared schemas, security schemes, parameters, and response objects are defined once in the components section and referenced via $ref",
+      "Code Generation: Tools like openapi-generator and swagger-codegen produce type-safe client SDKs, server stubs, and mock servers from the specification",
+      "Linting and Governance: Rulesets (e.g., Spectral) enforce naming conventions, pagination standards, and error formats across all API specifications in an organization"
+    ],
+    "core_concepts_zh": [
+      "设计优先方法：在实现API之前编写OpenAPI规范，将其作为前后端团队之间的契约",
+      "路径和操作对象：每个API端点由URL路径和HTTP方法定义，包含类型化的参数、请求体和响应模式",
+      "组件与复用：共享的模式、安全方案、参数和响应对象在components部分定义一次，通过$ref引用",
+      "代码生成：openapi-generator和swagger-codegen等工具从规范生成类型安全的客户端SDK、服务端存根和模拟服务器",
+      "Lint与治理：规则集（如Spectral）在组织内所有API规范中强制执行命名约定、分页标准和错误格式"
+    ],
+    "timeline": [
+      ["2011", "Tony Tam creates Swagger specification and tooling for REST API documentation at Wordnik"],
+      ["2015", "Swagger specification donated to the OpenAPI Initiative under the Linux Foundation, renamed to OpenAPI Specification 2.0"],
+      ["2017", "OpenAPI 3.0 released with major improvements: components, links, callbacks, and multiple server support"],
+      ["2021", "OpenAPI 3.1 aligns fully with JSON Schema 2020-12, enabling complete schema compatibility"],
+      ["2024", "OpenAPI 3.1 becomes the dominant API specification format; AI coding assistants use OpenAPI specs for tool/function calling"]
+    ],
+    "timeline_zh": [
+      ["2011", "Tony Tam在Wordnik创建Swagger规范和工具用于REST API文档"],
+      ["2015", "Swagger规范捐赠给Linux基金会下的OpenAPI倡议，更名为OpenAPI规范2.0"],
+      ["2017", "OpenAPI 3.0发布，带来重大改进：组件、链接、回调和多服务器支持"],
+      ["2021", "OpenAPI 3.1与JSON Schema 2020-12完全对齐，实现完整的模式兼容性"],
+      ["2024", "OpenAPI 3.1成为主流API规范格式；AI编码助手使用OpenAPI规范进行工具/函数调用"]
+    ],
+    "dos": [
+      "Do adopt a design-first workflow where the OpenAPI spec is written and reviewed before any code because it catches API design issues before implementation",
+      "Do use $ref extensively for schema reuse because duplicated schemas inevitably drift and cause inconsistencies",
+      "Do integrate Spectral or similar linting into CI because it enforces organizational API standards automatically",
+      "Do include example values for all request and response schemas because they power interactive documentation and mock servers"
+    ],
+    "dos_zh": [
+      "采用设计优先的工作流，在编写任何代码之前编写并审查OpenAPI规范，因为这能在实现前发现API设计问题",
+      "广泛使用$ref进行模式复用，因为重复的模式不可避免地会漂移并导致不一致",
+      "将Spectral或类似的lint工具集成到CI中，因为它能自动执行组织的API标准",
+      "为所有请求和响应模式包含示例值，因为它们驱动交互式文档和模拟服务器"
+    ],
+    "donts": [
+      "Don't generate the OpenAPI spec from code as the primary workflow because code-first approaches produce specs that mirror implementation rather than design intent",
+      "Don't ignore the components section and inline all schemas because it leads to massive duplication and maintenance burden",
+      "Don't treat the OpenAPI spec as documentation only because its greatest value is in code generation, testing, and contract enforcement",
+      "Don't skip error response schemas because undocumented error formats force consumers to handle errors through guesswork"
+    ],
+    "donts_zh": [
+      "不要将从代码生成OpenAPI规范作为主要工作流，因为代码优先的方法产生的规范反映的是实现而非设计意图",
+      "不要忽略components部分并内联所有模式，因为这会导致大量重复和维护负担",
+      "不要仅将OpenAPI规范视为文档，因为其最大价值在于代码生成、测试和契约执行",
+      "不要跳过错误响应模式，因为未文档化的错误格式迫使消费者通过猜测来处理错误"
+    ],
+    "case_study_company": "Stripe",
+    "case_study": "Stripe maintains one of the most comprehensive OpenAPI specifications in the industry, covering every endpoint of their payment API. The specification drives automatic generation of client libraries in 7+ languages, interactive API documentation on their developer portal, and internal contract testing. By treating the OpenAPI spec as the single source of truth, Stripe ensures that documentation, SDKs, and the live API never diverge, which has been a key factor in their industry-leading developer experience.",
+    "case_study_zh": "Stripe维护着业界最全面的OpenAPI规范之一，覆盖其支付API的每个端点。该规范驱动着7种以上语言的客户端库自动生成、开发者门户上的交互式API文档以及内部契约测试。通过将OpenAPI规范作为单一事实来源，Stripe确保文档、SDK和实时API永不偏离，这是其行业领先的开发者体验的关键因素。",
+    "when_not_to_use": [
+      "GraphQL APIs where the schema itself serves as the specification and OpenAPI adds no value",
+      "Event-driven or asynchronous APIs where AsyncAPI is the appropriate specification standard",
+      "Internal gRPC services where Protocol Buffer definitions already serve as the machine-readable contract",
+      "Extremely experimental APIs that change multiple times per day, where spec maintenance overhead exceeds its benefits"
+    ],
+    "when_not_to_use_zh": [
+      "GraphQL API，其模式本身就是规范，OpenAPI不增加价值",
+      "事件驱动或异步API，AsyncAPI是适当的规范标准",
+      "内部gRPC服务，Protocol Buffer定义已作为机器可读契约",
+      "每天变更多次的极端实验性API，规范维护开销超过其收益"
+    ],
+    "adopters": ["Stripe", "Twilio", "GitHub", "Microsoft", "Google"]
+  },
+  {
+    "id": 137,
+    "name": "Webhook Pattern",
+    "name_zh": "Webhook模式",
+    "slug": "webhook-pattern",
+    "category": "api",
+    "desc": "Event-driven API integration via HTTP callbacks for real-time notifications",
+    "desc_zh": "通过HTTP回调实现事件驱动的API集成，提供实时通知",
+    "steps": [
+      "Define the webhook events your system will emit, documenting each event type's payload schema and trigger conditions",
+      "Build a subscription management API that allows consumers to register callback URLs, select event types, and configure secret tokens for verification",
+      "Implement the event dispatch system that serializes events, signs payloads with HMAC, and delivers HTTP POST requests to registered callback URLs",
+      "Add retry logic with exponential backoff for failed deliveries, and implement a dead-letter queue for persistently failing endpoints",
+      "Provide consumers with a webhook delivery log and replay capability so they can debug missed events and recover from outages"
+    ],
+    "steps_zh": [
+      "定义系统将发出的webhook事件，记录每种事件类型的负载模式和触发条件",
+      "构建订阅管理API，允许消费者注册回调URL、选择事件类型并配置用于验证的密钥令牌",
+      "实现事件分发系统，序列化事件、使用HMAC签名负载，并向注册的回调URL发送HTTP POST请求",
+      "为失败的投递添加指数退避的重试逻辑，并为持续失败的端点实现死信队列",
+      "为消费者提供webhook投递日志和重放功能，以便调试遗漏事件并从故障中恢复"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": ["asyncapi", "api-rate-limiting-throttling", "api-gateway-pattern"],
+    "tags": ["webhook", "event-driven", "callback", "integration", "push"],
+    "origin_author": "Jeff Lindsay, 2007 (coined the term); pattern predates the name in early HTTP callback systems",
+    "origin_source": "RESTful Web APIs (Leonard Richardson & Mike Amundsen, 2013, Ch. 11); API Design Patterns (JJ Geewax, 2021, Ch. 15)",
+    "origin_source_zh": "《RESTful Web API》（Leonard Richardson & Mike Amundsen，2013，第11章）；《API设计模式》（JJ Geewax，2021，第15章）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When consumers need real-time notifications of events without continuously polling your API",
+      "When integrating with third-party systems that need to react to state changes in your platform",
+      "When building automation workflows where downstream actions should trigger immediately upon events",
+      "When reducing API load by pushing updates to interested consumers instead of serving repeated polling requests"
+    ],
+    "when_to_use_zh": [
+      "当消费者需要实时事件通知而不需持续轮询API时",
+      "当与需要对平台状态变更做出反应的第三方系统集成时",
+      "当构建自动化工作流，下游动作应在事件发生时立即触发时",
+      "当通过向感兴趣的消费者推送更新来减少API负载，而非服务重复的轮询请求时"
+    ],
+    "core_concepts": [
+      "Push-Based Delivery: The server proactively sends HTTP POST requests to consumer-registered URLs when events occur, inverting the traditional pull model",
+      "Payload Signing: HMAC signatures (using a shared secret) in request headers allow consumers to verify that webhook payloads originated from the legitimate sender",
+      "Idempotency: Consumers must handle duplicate deliveries gracefully using event IDs, because retry logic can deliver the same event multiple times",
+      "Retry with Backoff: Failed deliveries are retried with exponential backoff to handle transient consumer outages without overwhelming recovering endpoints",
+      "Subscription Management: A self-service API for registering, updating, and deactivating webhook subscriptions with event type filtering"
+    ],
+    "core_concepts_zh": [
+      "推送式投递：服务器在事件发生时主动向消费者注册的URL发送HTTP POST请求，逆转了传统的拉取模型",
+      "负载签名：请求头中的HMAC签名（使用共享密钥）允许消费者验证webhook负载来自合法发送者",
+      "幂等性：消费者必须使用事件ID优雅处理重复投递，因为重试逻辑可能多次投递同一事件",
+      "带退避的重试：对失败投递使用指数退避重试，以处理消费者的瞬时故障而不压垮恢复中的端点",
+      "订阅管理：自助服务API，用于注册、更新和停用webhook订阅，支持事件类型过滤"
+    ],
+    "timeline": [
+      ["2007", "Jeff Lindsay coins the term 'webhooks' and advocates for web callbacks as a lightweight integration mechanism"],
+      ["2012", "GitHub, Stripe, and Twilio popularize webhooks as a standard feature of developer platforms"],
+      ["2018", "Standard Webhooks initiative begins, proposing conventions for signatures, retries, and payload formats"],
+      ["2020", "Svix and other webhook-as-a-service platforms emerge, abstracting delivery infrastructure for SaaS providers"],
+      ["2024", "Webhooks become the primary integration mechanism for AI agent platforms, enabling tool-use callbacks and event-driven AI workflows"]
+    ],
+    "timeline_zh": [
+      ["2007", "Jeff Lindsay创造「webhooks」一词，倡导Web回调作为轻量级集成机制"],
+      ["2012", "GitHub、Stripe和Twilio将webhook普及为开发者平台的标准功能"],
+      ["2018", "Standard Webhooks倡议启动，提出签名、重试和负载格式的约定"],
+      ["2020", "Svix等webhook即服务平台出现，为SaaS提供者抽象投递基础设施"],
+      ["2024", "Webhook成为AI代理平台的主要集成机制，支持工具使用回调和事件驱动的AI工作流"]
+    ],
+    "dos": [
+      "Do sign every webhook payload with HMAC and document the verification process because unsigned webhooks are trivially spoofable",
+      "Do include a unique event ID in every payload because consumers need it for idempotent processing and deduplication",
+      "Do implement exponential backoff with jitter for retries because synchronized retries to a recovering endpoint cause thundering herd problems",
+      "Do provide a delivery log and manual replay endpoint because consumers need to debug and recover from missed events"
+    ],
+    "dos_zh": [
+      "使用HMAC为每个webhook负载签名并文档化验证过程，因为未签名的webhook极易被伪造",
+      "在每个负载中包含唯一事件ID，因为消费者需要它来进行幂等处理和去重",
+      "为重试实现带抖动的指数退避，因为对恢复中端点的同步重试会导致惊群问题",
+      "提供投递日志和手动重放端点，因为消费者需要调试和恢复遗漏的事件"
+    ],
+    "donts": [
+      "Don't send webhook payloads without signatures because it exposes consumers to spoofing and injection attacks",
+      "Don't retry indefinitely without a maximum retry count and dead-letter mechanism because it wastes resources on permanently unreachable endpoints",
+      "Don't include sensitive data (passwords, tokens) in webhook payloads because callback URLs may traverse untrusted networks",
+      "Don't assume consumers process events in order because network conditions and retries can deliver events out of sequence"
+    ],
+    "donts_zh": [
+      "不要发送不签名的webhook负载，因为这使消费者暴露于伪造和注入攻击",
+      "不要在没有最大重试次数和死信机制的情况下无限重试，因为这会在永久不可达的端点上浪费资源",
+      "不要在webhook负载中包含敏感数据（密码、令牌），因为回调URL可能经过不可信的网络",
+      "不要假设消费者按顺序处理事件，因为网络条件和重试可能导致事件乱序投递"
+    ],
+    "case_study_company": "Stripe",
+    "case_study": "Stripe's webhook system delivers billions of events per month to merchants for payment lifecycle events (charge.succeeded, invoice.paid, dispute.created). Each event is signed with HMAC-SHA256 using per-endpoint secrets, and Stripe retries failed deliveries for up to 72 hours with exponential backoff. Their webhook dashboard provides real-time delivery logs with payload inspection and one-click replay. This push-based model eliminated the need for merchants to poll the Stripe API, reducing API call volume by an estimated 80% for event-driven workflows.",
+    "case_study_zh": "Stripe的webhook系统每月向商户投递数十亿个支付生命周期事件（charge.succeeded、invoice.paid、dispute.created）。每个事件使用每端点密钥的HMAC-SHA256签名，Stripe对失败投递以指数退避重试长达72小时。其webhook仪表板提供实时投递日志，支持负载检查和一键重放。这种推送模型消除了商户轮询Stripe API的需要，将事件驱动工作流的API调用量减少了约80%。",
+    "when_not_to_use": [
+      "When consumers cannot expose a publicly accessible HTTP endpoint (e.g., behind strict corporate firewalls)",
+      "When strict ordering guarantees are required, as webhook delivery order is inherently non-deterministic",
+      "When the event volume is extremely high and consumers cannot absorb the throughput, requiring a message queue instead",
+      "When bidirectional communication is needed, as webhooks are unidirectional push-only"
+    ],
+    "when_not_to_use_zh": [
+      "当消费者无法暴露公开可访问的HTTP端点时（如严格的企业防火墙后面）",
+      "当需要严格的顺序保证时，因为webhook投递顺序本质上是非确定性的",
+      "当事件量极高且消费者无法承受吞吐量时，需要消息队列替代",
+      "当需要双向通信时，因为webhook是单向推送"
+    ],
+    "adopters": ["Stripe", "GitHub", "Twilio", "Shopify", "Slack"]
+  },
+  {
+    "id": 138,
+    "name": "API Rate Limiting & Throttling",
+    "name_zh": "API限流与节流",
+    "slug": "api-rate-limiting-throttling",
+    "category": "api",
+    "desc": "Protect APIs from overuse by controlling request rates per client",
+    "desc_zh": "通过控制每个客户端的请求速率来保护API免遭过度使用",
+    "steps": [
+      "Define rate limit policies based on business tiers: identify limits per API key, user, IP, or organization with different quotas for free and paid plans",
+      "Choose a rate limiting algorithm appropriate for your use case: token bucket for burst tolerance, sliding window for smooth enforcement, or fixed window for simplicity",
+      "Implement the rate limiter using a distributed counter store (Redis, Memcached) that tracks request counts with TTL-based expiration",
+      "Return standard HTTP 429 (Too Many Requests) responses with Retry-After, X-RateLimit-Limit, X-RateLimit-Remaining, and X-RateLimit-Reset headers",
+      "Monitor rate limit metrics, alert on unusual patterns (abuse, DDoS), and provide a self-service dashboard for consumers to track their usage"
+    ],
+    "steps_zh": [
+      "基于业务层级定义限流策略：按API密钥、用户、IP或组织识别限制，为免费和付费计划设置不同配额",
+      "选择适合用例的限流算法：令牌桶用于突发容忍、滑动窗口用于平滑执行、固定窗口用于简单场景",
+      "使用分布式计数存储（Redis、Memcached）实现限流器，通过TTL过期来跟踪请求计数",
+      "返回标准HTTP 429（请求过多）响应，包含Retry-After、X-RateLimit-Limit、X-RateLimit-Remaining和X-RateLimit-Reset头部",
+      "监控限流指标，对异常模式（滥用、DDoS）告警，并为消费者提供自助仪表板以跟踪使用量"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": ["api-gateway-pattern", "webhook-pattern", "openapi-specification"],
+    "tags": ["rate-limiting", "throttling", "protection", "quota", "resilience"],
+    "origin_author": "Web infrastructure community; formalized in IETF RFC 6585 (2012, HTTP 429 status code)",
+    "origin_source": "API Design Patterns (JJ Geewax, 2021, Ch. 17); RESTful Web APIs (Leonard Richardson & Mike Amundsen, 2013, Ch. 11)",
+    "origin_source_zh": "《API设计模式》（JJ Geewax，2021，第17章）；《RESTful Web API》（Leonard Richardson & Mike Amundsen，2013，第11章）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When a public API must protect backend services from abuse, DDoS attacks, and runaway client scripts",
+      "When different client tiers (free, premium, enterprise) need different usage quotas to align with business models",
+      "When shared infrastructure serves multiple tenants and fair resource allocation must be enforced",
+      "When costly downstream operations (database queries, third-party API calls) need protection from traffic spikes"
+    ],
+    "when_to_use_zh": [
+      "当公共API必须保护后端服务免受滥用、DDoS攻击和失控客户端脚本的影响时",
+      "当不同客户端层级（免费、高级、企业）需要不同的使用配额以匹配业务模型时",
+      "当共享基础设施服务多个租户且必须执行公平的资源分配时",
+      "当昂贵的下游操作（数据库查询、第三方API调用）需要保护以免受流量尖峰影响时"
+    ],
+    "core_concepts": [
+      "Token Bucket Algorithm: Tokens are added at a fixed rate; each request consumes a token. Allows bursts up to bucket capacity while enforcing average rate over time",
+      "Sliding Window Log: Tracks timestamps of each request in a rolling time window, providing precise rate calculation but with higher memory usage",
+      "Fixed Window Counter: Counts requests in discrete time windows (e.g., per minute). Simple but susceptible to burst-at-boundary edge cases",
+      "Distributed Rate Limiting: Rate counters stored in Redis or similar shared stores ensure consistent enforcement across multiple API server instances",
+      "Quota Headers: X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, and Retry-After headers communicate rate limit status transparently to consumers"
+    ],
+    "core_concepts_zh": [
+      "令牌桶算法：以固定速率添加令牌，每个请求消耗一个令牌。允许突发到桶容量，同时随时间强制平均速率",
+      "滑动窗口日志：在滚动时间窗口中跟踪每个请求的时间戳，提供精确的速率计算但内存使用较高",
+      "固定窗口计数器：在离散时间窗口（如每分钟）中计数请求。简单但容易受到边界突发的边缘情况影响",
+      "分布式限流：将速率计数器存储在Redis或类似共享存储中，确保跨多个API服务器实例的一致执行",
+      "配额头部：X-RateLimit-Limit、X-RateLimit-Remaining、X-RateLimit-Reset和Retry-After头部向消费者透明传达限流状态"
+    ],
+    "timeline": [
+      ["2008", "Twitter API introduces rate limiting as one of the first major public APIs to enforce per-client quotas"],
+      ["2012", "IETF publishes RFC 6585 standardizing HTTP 429 Too Many Requests status code"],
+      ["2015", "API gateway products (Kong, AWS API Gateway) include built-in rate limiting as a core feature"],
+      ["2019", "IETF draft for RateLimit header fields standardizes X-RateLimit-* headers across implementations"],
+      ["2023", "AI API providers (OpenAI, Anthropic) make sophisticated rate limiting central to usage-based pricing models"]
+    ],
+    "timeline_zh": [
+      ["2008", "Twitter API引入限流，成为最早执行每客户端配额的主要公共API之一"],
+      ["2012", "IETF发布RFC 6585，标准化HTTP 429请求过多状态码"],
+      ["2015", "API网关产品（Kong、AWS API Gateway）将内置限流作为核心功能"],
+      ["2019", "IETF关于RateLimit头部字段的草案在各实现间标准化X-RateLimit-*头部"],
+      ["2023", "AI API提供商（OpenAI、Anthropic）将精细化限流作为基于使用量定价模型的核心"]
+    ],
+    "dos": [
+      "Do return informative 429 responses with Retry-After and rate limit headers because clients need to implement backoff logic based on concrete values",
+      "Do apply rate limits at the API gateway level because it protects all downstream services uniformly without per-service implementation",
+      "Do differentiate rate limits by client tier and endpoint because not all APIs have the same cost and not all clients have the same entitlement",
+      "Do use sliding window or token bucket algorithms for production because fixed window counters allow boundary-burst abuse"
+    ],
+    "dos_zh": [
+      "返回带有Retry-After和限流头部的信息性429响应，因为客户端需要基于具体值实现退避逻辑",
+      "在API网关层应用限流，因为它能统一保护所有下游服务而无需每个服务单独实现",
+      "按客户端层级和端点区分限流，因为并非所有API成本相同，也并非所有客户端权限相同",
+      "在生产中使用滑动窗口或令牌桶算法，因为固定窗口计数器允许边界突发滥用"
+    ],
+    "donts": [
+      "Don't return generic 500 or 503 errors when rate limiting because clients cannot distinguish server errors from quota exhaustion",
+      "Don't implement rate limiting only on individual servers without a shared counter because clients will get inconsistent limits across instances",
+      "Don't set rate limits without monitoring and alerting because undetected abuse will degrade service for legitimate users",
+      "Don't apply the same rate limit to all endpoints because expensive operations (search, analytics) should have lower limits than lightweight ones (health check)"
+    ],
+    "donts_zh": [
+      "不要在限流时返回通用的500或503错误，因为客户端无法区分服务器错误和配额耗尽",
+      "不要仅在单个服务器上实现限流而不使用共享计数器，因为客户端在不同实例间会获得不一致的限制",
+      "不要设置限流而不监控和告警，因为未检测到的滥用会降低合法用户的服务质量",
+      "不要对所有端点应用相同的限流，因为昂贵操作（搜索、分析）应比轻量操作（健康检查）有更低的限制"
+    ],
+    "case_study_company": "GitHub",
+    "case_study": "GitHub's REST API enforces a rate limit of 5,000 requests per hour for authenticated users and 60 per hour for unauthenticated requests. Every response includes X-RateLimit-Limit, X-RateLimit-Remaining, and X-RateLimit-Reset headers. For their GraphQL API, GitHub uses a point-based system where each query costs points proportional to its complexity. This tiered approach protects GitHub's infrastructure while allowing legitimate automation tools to operate within generous limits, and the transparent headers enable clients to self-throttle before hitting limits.",
+    "case_study_zh": "GitHub的REST API对认证用户执行每小时5,000次请求的限制，对未认证请求为每小时60次。每个响应都包含X-RateLimit-Limit、X-RateLimit-Remaining和X-RateLimit-Reset头部。对于GraphQL API，GitHub使用基于点数的系统，每个查询的成本与其复杂度成正比。这种分层方法保护了GitHub的基础设施，同时允许合法的自动化工具在宽裕的限制内运行，透明的头部使客户端能在触达限制前自行节流。",
+    "when_not_to_use": [
+      "Internal service-to-service communication within a trusted network where circuit breakers and backpressure are more appropriate",
+      "Batch processing pipelines where requests are already controlled by the job scheduler",
+      "Real-time streaming APIs (WebSocket, SSE) where connection-based limits are more relevant than request-based limits",
+      "Early-stage internal APIs with a handful of known consumers where rate limiting adds unnecessary operational complexity"
+    ],
+    "when_not_to_use_zh": [
+      "可信网络内的内部服务间通信，熔断器和反压机制更合适",
+      "批处理管线中请求已由作业调度器控制的场景",
+      "实时流式API（WebSocket、SSE），基于连接的限制比基于请求的限制更相关",
+      "只有少量已知消费者的早期内部API，限流增加了不必要的运维复杂性"
+    ],
+    "adopters": ["GitHub", "Twitter", "Stripe", "OpenAI", "Cloudflare"]
+  },
+  {
+    "id": 139,
+    "name": "HATEOAS",
+    "name_zh": "超媒体驱动应用状态（HATEOAS）",
+    "slug": "hateoas",
+    "category": "api",
+    "desc": "Hypermedia-driven API navigation where responses contain links to available actions",
+    "desc_zh": "超媒体驱动的API导航，响应中包含可用操作的链接",
+    "steps": [
+      "Design resource representations that include hypermedia links indicating available state transitions and related resources",
+      "Choose a hypermedia media type (HAL, JSON:API, Siren, or Collection+JSON) that provides a standard structure for embedding links",
+      "Implement link generation in API responses that dynamically reflects the current resource state and the authenticated user's permissions",
+      "Build clients that discover available actions by following links in responses rather than hardcoding URL patterns",
+      "Document the link relations (rel types) and media types so consumers understand the meaning of each link without needing to know URL structure"
+    ],
+    "steps_zh": [
+      "设计资源表示，包含指示可用状态转换和相关资源的超媒体链接",
+      "选择超媒体媒体类型（HAL、JSON:API、Siren或Collection+JSON），提供嵌入链接的标准结构",
+      "在API响应中实现链接生成，动态反映当前资源状态和认证用户的权限",
+      "构建客户端通过跟随响应中的链接发现可用操作，而非硬编码URL模式",
+      "文档化链接关系（rel类型）和媒体类型，使消费者无需了解URL结构即可理解每个链接的含义"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": ["openapi-specification", "graphql-schema-design", "consumer-driven-contracts"],
+    "tags": ["hateoas", "hypermedia", "rest", "links", "discoverability"],
+    "origin_author": "Roy Fielding, 2000 (as a constraint of REST in his doctoral dissertation)",
+    "origin_source": "Architectural Styles and the Design of Network-based Software Architectures (Roy Fielding, 2000, Ch. 5); RESTful Web APIs (Leonard Richardson & Mike Amundsen, 2013, Ch. 4-5)",
+    "origin_source_zh": "《架构风格与基于网络的软件架构设计》（Roy Fielding，2000，第5章）；《RESTful Web API》（Leonard Richardson & Mike Amundsen，2013，第4-5章）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When building long-lived APIs where URL structures may evolve but clients should not break",
+      "When API workflows involve complex state machines and clients need guidance on valid next actions",
+      "When reducing client-server coupling is a priority, allowing the server to change URL patterns without client updates",
+      "When building APIs for exploration and discoverability, where navigating from a single entry point should reveal all capabilities"
+    ],
+    "when_to_use_zh": [
+      "当构建长期存在的API，URL结构可能演进但客户端不应中断时",
+      "当API工作流涉及复杂状态机，客户端需要关于有效下一步操作的指导时",
+      "当降低客户端-服务器耦合是优先事项，允许服务器更改URL模式而无需客户端更新时",
+      "当构建用于探索和发现的API，从单一入口点导航应展示所有功能时"
+    ],
+    "core_concepts": [
+      "Hypermedia as the Engine: API responses embed links that tell clients what actions are available, making the API self-describing and navigable",
+      "Link Relations (rel): Standardized or custom relation types (e.g., 'self', 'next', 'payment') give semantic meaning to each link independent of its URL",
+      "Dynamic Link Availability: Links in responses change based on resource state and user permissions — a canceled order shows no 'refund' link",
+      "Media Types: Hypermedia formats like HAL (application/hal+json), JSON:API, and Siren define how links are structured within JSON responses",
+      "Maturity Level 3: In Richardson's REST Maturity Model, HATEOAS represents the highest level of REST compliance, beyond resources and HTTP verbs"
+    ],
+    "core_concepts_zh": [
+      "超媒体作为引擎：API响应嵌入链接，告知客户端可用的操作，使API自描述且可导航",
+      "链接关系（rel）：标准化或自定义的关系类型（如「self」「next」「payment」）为每个链接赋予独立于URL的语义含义",
+      "动态链接可用性：响应中的链接根据资源状态和用户权限变化——已取消的订单不显示「退款」链接",
+      "媒体类型：HAL（application/hal+json）、JSON:API和Siren等超媒体格式定义了JSON响应中链接的结构方式",
+      "成熟度第3级：在Richardson的REST成熟度模型中，HATEOAS代表REST合规的最高级别，超越资源和HTTP动词"
+    ],
+    "timeline": [
+      ["2000", "Roy Fielding defines HATEOAS as a core constraint of REST in his doctoral dissertation at UC Irvine"],
+      ["2008", "Leonard Richardson proposes the REST Maturity Model with HATEOAS as Level 3 (the highest level)"],
+      ["2012", "HAL (Hypertext Application Language) specification by Mike Kelly provides a practical JSON hypermedia format"],
+      ["2015", "JSON:API specification reaches 1.0, offering an opinionated standard for REST APIs with relationship links"],
+      ["2024", "HATEOAS principles influence AI agent tool discovery, where LLMs navigate APIs by following hypermedia links"]
+    ],
+    "timeline_zh": [
+      ["2000", "Roy Fielding在其加州大学尔湾分校博士论文中定义HATEOAS为REST的核心约束"],
+      ["2008", "Leonard Richardson提出REST成熟度模型，HATEOAS为第3级（最高级别）"],
+      ["2012", "Mike Kelly的HAL（超文本应用语言）规范提供了实用的JSON超媒体格式"],
+      ["2015", "JSON:API规范达到1.0版本，为带关系链接的REST API提供了一种有主见的标准"],
+      ["2024", "HATEOAS原则影响AI代理工具发现，LLM通过跟随超媒体链接来导航API"]
+    ],
+    "dos": [
+      "Do include a 'self' link in every resource representation because it provides an unambiguous canonical URL for each resource",
+      "Do use standardized link relation types from IANA where possible because custom rel types reduce interoperability",
+      "Do make link availability conditional on resource state because it guides clients on valid transitions and prevents invalid operations",
+      "Do choose an established hypermedia format (HAL, JSON:API, Siren) rather than inventing your own because standard tooling and client libraries already exist"
+    ],
+    "dos_zh": [
+      "在每个资源表示中包含「self」链接，因为它为每个资源提供明确的规范URL",
+      "尽可能使用IANA的标准化链接关系类型，因为自定义rel类型降低互操作性",
+      "使链接可用性取决于资源状态，因为这引导客户端进行有效转换并防止无效操作",
+      "选择已建立的超媒体格式（HAL、JSON:API、Siren）而非发明自己的，因为标准工具和客户端库已经存在"
+    ],
+    "donts": [
+      "Don't include links without documenting their relation types because undocumented links are meaningless to client developers",
+      "Don't require clients to construct URLs from templates or documentation because it defeats the purpose of hypermedia-driven discovery",
+      "Don't add HATEOAS links as an afterthought to an existing API because retrofitting hypermedia requires rethinking resource design holistically",
+      "Don't expect all clients to use hypermedia navigation because many teams will hardcode URLs despite the links being available"
+    ],
+    "donts_zh": [
+      "不要包含链接而不文档化其关系类型，因为未文档化的链接对客户端开发者毫无意义",
+      "不要要求客户端从模板或文档构造URL，因为这违背了超媒体驱动发现的目的",
+      "不要将HATEOAS链接作为事后补充添加到现有API，因为改造超媒体需要从整体重新思考资源设计",
+      "不要期望所有客户端都使用超媒体导航，因为许多团队尽管链接可用仍会硬编码URL"
+    ],
+    "case_study_company": "PayPal",
+    "case_study": "PayPal's REST API is one of the most prominent real-world implementations of HATEOAS. Every API response includes a links array with HATEOAS links that guide consumers through payment workflows. For example, after creating a payment, the response includes 'approve', 'execute', and 'self' links. The client follows the 'approve' link to redirect the user, then the 'execute' link to complete the payment. This approach allows PayPal to change URL structures, add new payment steps, or modify workflows without breaking existing integrations.",
+    "case_study_zh": "PayPal的REST API是HATEOAS最著名的实际实现之一。每个API响应都包含一个links数组，其中的HATEOAS链接引导消费者完成支付工作流。例如，创建支付后，响应包含「approve」「execute」和「self」链接。客户端跟随「approve」链接重定向用户，然后跟随「execute」链接完成支付。这种方法允许PayPal更改URL结构、添加新支付步骤或修改工作流而不破坏现有集成。",
+    "when_not_to_use": [
+      "Internal microservice APIs where clients and servers are deployed together and URL coupling is acceptable",
+      "High-performance APIs where the overhead of generating and transmitting links in every response is unacceptable",
+      "Simple CRUD APIs with flat resource structures where hypermedia navigation adds no value over documented URL patterns",
+      "Mobile or bandwidth-constrained clients where the additional payload size from links degrades performance"
+    ],
+    "when_not_to_use_zh": [
+      "客户端和服务器一起部署的内部微服务API，URL耦合可以接受",
+      "高性能API，在每个响应中生成和传输链接的开销不可接受",
+      "具有扁平资源结构的简单CRUD API，超媒体导航相比文档化的URL模式不增加价值",
+      "移动端或带宽受限的客户端，链接增加的额外负载大小会降低性能"
+    ],
+    "adopters": ["PayPal", "Amazon", "GitHub", "Spring HATEOAS", "FoxyCart"]
+  },
+  {
+    "id": 140,
+    "name": "AsyncAPI",
+    "name_zh": "AsyncAPI异步API规范",
+    "slug": "asyncapi",
+    "category": "api",
+    "desc": "Specification standard for describing event-driven and asynchronous APIs",
+    "desc_zh": "用于描述事件驱动和异步API的规范标准",
+    "steps": [
+      "Define the AsyncAPI document with info metadata, server connections (Kafka brokers, MQTT brokers, WebSocket URLs), and protocol bindings",
+      "Describe channels (topics/queues) with their publish and subscribe operations, specifying which messages flow in each direction",
+      "Define message schemas using JSON Schema or Avro, including headers, payload structure, and correlation IDs for request-reply patterns",
+      "Add protocol-specific bindings (Kafka partition keys, AMQP routing keys, MQTT QoS levels) to each channel and operation",
+      "Generate documentation, code, and mock servers from the specification using AsyncAPI Generator, and validate the spec with AsyncAPI Studio"
+    ],
+    "steps_zh": [
+      "定义AsyncAPI文档，包含info元数据、服务器连接（Kafka代理、MQTT代理、WebSocket URL）和协议绑定",
+      "描述通道（主题/队列）及其发布和订阅操作，指定每个方向的消息流",
+      "使用JSON Schema或Avro定义消息模式，包括头部、负载结构和用于请求-回复模式的关联ID",
+      "为每个通道和操作添加协议特定绑定（Kafka分区键、AMQP路由键、MQTT QoS级别）",
+      "使用AsyncAPI Generator从规范生成文档、代码和模拟服务器，并使用AsyncAPI Studio验证规范"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": ["webhook-pattern", "openapi-specification", "grpc-protocol-buffers"],
+    "tags": ["asyncapi", "event-driven", "specification", "messaging", "async"],
+    "origin_author": "Fran Mendez, 2017",
+    "origin_source": "AsyncAPI Specification (asyncapi.com); conceptually extends patterns in Building Microservices (Sam Newman, 2nd ed., 2021, Ch. 4)",
+    "origin_source_zh": "AsyncAPI规范（asyncapi.com）；概念上扩展了《构建微服务》（Sam Newman，第2版，2021，第4章）中的模式",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When documenting event-driven architectures that use message brokers (Kafka, RabbitMQ, MQTT, NATS)",
+      "When multiple teams produce and consume events and need a shared contract for message schemas",
+      "When generating type-safe consumer and producer code from a specification to prevent schema drift",
+      "When building developer portals for event-driven APIs that need the same discoverability as REST APIs have with OpenAPI"
+    ],
+    "when_to_use_zh": [
+      "当文档化使用消息代理（Kafka、RabbitMQ、MQTT、NATS）的事件驱动架构时",
+      "当多个团队产生和消费事件，需要消息模式的共享契约时",
+      "当从规范生成类型安全的消费者和生产者代码以防止模式漂移时",
+      "当构建事件驱动API的开发者门户，需要与OpenAPI为REST API提供的相同可发现性时"
+    ],
+    "core_concepts": [
+      "Channels: Named communication paths (Kafka topics, AMQP queues, WebSocket paths) where messages are published and consumed",
+      "Operations: Publish and subscribe semantics defined per channel, clarifying whether an application sends or receives messages on each channel",
+      "Message Schemas: Strongly-typed message definitions using JSON Schema or Avro, with headers, payload, and optional correlation IDs for tracing",
+      "Protocol Bindings: Protocol-specific configurations (Kafka consumer groups, MQTT QoS, AMQP exchanges) that extend the generic specification with implementation details",
+      "Code Generation: AsyncAPI Generator produces documentation, client/server code, and mock brokers from the specification, similar to OpenAPI tooling for REST"
+    ],
+    "core_concepts_zh": [
+      "通道：命名的通信路径（Kafka主题、AMQP队列、WebSocket路径），消息在此发布和消费",
+      "操作：每个通道定义的发布和订阅语义，明确应用在每个通道上是发送还是接收消息",
+      "消息模式：使用JSON Schema或Avro的强类型消息定义，包含头部、负载和用于追踪的可选关联ID",
+      "协议绑定：协议特定配置（Kafka消费者组、MQTT QoS、AMQP交换器），用实现细节扩展通用规范",
+      "代码生成：AsyncAPI Generator从规范生成文档、客户端/服务端代码和模拟代理，类似于REST的OpenAPI工具"
+    ],
+    "timeline": [
+      ["2017", "Fran Mendez creates AsyncAPI 1.0 to fill the gap of standardized event-driven API documentation"],
+      ["2019", "AsyncAPI 2.0 released with protocol bindings, multiple server support, and improved message schemas"],
+      ["2021", "AsyncAPI Initiative joins the Linux Foundation, gaining industry-wide governance and backing"],
+      ["2023", "AsyncAPI 3.0 released with major redesign: operations decoupled from channels, reply patterns, and improved reusability"],
+      ["2025", "AsyncAPI adoption grows in AI event pipelines for documenting LLM streaming, agent communication, and model inference events"]
+    ],
+    "timeline_zh": [
+      ["2017", "Fran Mendez创建AsyncAPI 1.0，填补标准化事件驱动API文档的空白"],
+      ["2019", "AsyncAPI 2.0发布，带来协议绑定、多服务器支持和改进的消息模式"],
+      ["2021", "AsyncAPI倡议加入Linux基金会，获得全行业治理和支持"],
+      ["2023", "AsyncAPI 3.0发布，进行重大重设计：操作与通道解耦、回复模式和改进的可复用性"],
+      ["2025", "AsyncAPI在AI事件管线中的采用增长，用于文档化LLM流式传输、代理通信和模型推理事件"]
+    ],
+    "dos": [
+      "Do adopt a spec-first approach where the AsyncAPI document is written before implementing producers and consumers because it serves as the team contract",
+      "Do define protocol bindings explicitly because generic channel descriptions lose critical details like partition strategies and QoS levels",
+      "Do version your AsyncAPI specs and use schema registries (Confluent Schema Registry, Apicurio) because event schema evolution needs the same rigor as REST API versioning",
+      "Do generate documentation alongside code because event-driven APIs are harder to discover than REST endpoints without proper documentation"
+    ],
+    "dos_zh": [
+      "采用规范优先方法，在实现生产者和消费者之前编写AsyncAPI文档，因为它作为团队契约",
+      "明确定义协议绑定，因为通用的通道描述会丢失分区策略和QoS级别等关键细节",
+      "版本化AsyncAPI规范并使用模式注册中心（Confluent Schema Registry、Apicurio），因为事件模式演进需要与REST API版本管理相同的严谨性",
+      "在代码同时生成文档，因为事件驱动API比REST端点更难发现，需要适当的文档支持"
+    ],
+    "donts": [
+      "Don't use AsyncAPI to describe synchronous request-response APIs because OpenAPI is the appropriate standard for that pattern",
+      "Don't skip message schema definitions because untyped event payloads cause silent consumer failures when producers evolve",
+      "Don't ignore channel naming conventions because inconsistent topic/queue names create confusion across teams and environments",
+      "Don't treat AsyncAPI as documentation only because its greatest value is in code generation and contract testing for event-driven systems"
+    ],
+    "donts_zh": [
+      "不要使用AsyncAPI描述同步请求-响应API，因为OpenAPI是该模式的适当标准",
+      "不要跳过消息模式定义，因为无类型的事件负载在生产者演进时会导致消费者静默失败",
+      "不要忽略通道命名约定，因为不一致的主题/队列名称会在团队和环境间造成混乱",
+      "不要仅将AsyncAPI视为文档，因为其最大价值在于事件驱动系统的代码生成和契约测试"
+    ],
+    "case_study_company": "Slack",
+    "case_study": "Slack adopted AsyncAPI to document its Events API and real-time messaging infrastructure that delivers billions of events daily. Before AsyncAPI, consumer teams relied on wiki pages and tribal knowledge to understand event schemas for workspace events (message.posted, channel.created, reaction.added). By standardizing on AsyncAPI 2.0 with JSON Schema payloads, Slack enabled automatic generation of type-safe event handlers in multiple languages and reduced event integration onboarding time for partner developers from weeks to days.",
+    "case_study_zh": "Slack采用AsyncAPI来文档化其每天投递数十亿事件的Events API和实时消息基础设施。在采用AsyncAPI之前，消费者团队依赖wiki页面和口口相传来理解工作区事件（message.posted、channel.created、reaction.added）的事件模式。通过标准化使用AsyncAPI 2.0和JSON Schema负载，Slack实现了多语言类型安全事件处理器的自动生成，并将合作伙伴开发者的事件集成上手时间从数周缩短至数天。",
+    "when_not_to_use": [
+      "Synchronous REST or GraphQL APIs where OpenAPI or the GraphQL schema already serves as the specification",
+      "Simple webhook integrations where a lightweight payload schema is sufficient without full AsyncAPI ceremony",
+      "Internal services with a single producer and consumer where direct schema sharing is simpler",
+      "Early prototyping phases where event schemas change so rapidly that maintaining the spec creates friction"
+    ],
+    "when_not_to_use_zh": [
+      "同步REST或GraphQL API，OpenAPI或GraphQL模式已作为规范",
+      "简单的webhook集成，轻量的负载模式已足够，不需要完整的AsyncAPI仪式",
+      "只有单个生产者和消费者的内部服务，直接模式共享更简单",
+      "早期原型阶段，事件模式变化太快，维护规范反而产生摩擦"
+    ],
+    "adopters": ["Slack", "Adidas", "SAP", "Salesforce", "eBay"]
+  }
+]

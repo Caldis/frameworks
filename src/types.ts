@@ -1,4 +1,4 @@
-export type CategoryKey = 'thinking' | 'architecture' | 'coding' | 'quality' | 'deployment' | 'evolution' | 'ai'
+export type CategoryKey = 'thinking' | 'architecture' | 'coding' | 'quality' | 'deployment' | 'evolution' | 'ai' | 'data' | 'security' | 'distributed' | 'api' | 'team' | 'observability'
 export type VizType = 'matrix' | 'flow' | 'pyramid' | 'cycle' | 'venn' | 'radar' | 'tree' | 'timeline'
 
 export type Complexity = 'beginner' | 'intermediate' | 'advanced'

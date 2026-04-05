@@ -1,0 +1,1072 @@
+[
+  {
+    "id": 101,
+    "name": "Data Mesh",
+    "name_zh": "数据网格",
+    "slug": "data-mesh",
+    "category": "data",
+    "desc": "Domain-oriented decentralized data ownership and architecture",
+    "desc_zh": "面向领域的去中心化数据所有权与架构",
+    "steps": [
+      "Decompose monolithic data platforms by identifying domain boundaries and assigning data ownership to the teams closest to the business context",
+      "Treat data as a product: each domain team publishes discoverable, documented, and quality-assured data products with SLOs",
+      "Build a self-serve data infrastructure platform that abstracts away storage, processing, and governance complexity for domain teams",
+      "Implement federated computational governance by codifying global interoperability standards, security policies, and compliance rules as platform capabilities",
+      "Establish a data product catalog and mesh-wide observability so consumers can discover, trust, and compose data products across domains"
+    ],
+    "steps_zh": [
+      "通过识别领域边界将单体数据平台解耦，将数据所有权分配给最接近业务上下文的团队",
+      "将数据视为产品：每个领域团队发布可发现、有文档、有质量保障且带SLO的数据产品",
+      "构建自助式数据基础设施平台，为领域团队抽象存储、处理和治理的复杂性",
+      "实施联邦式计算治理，将全局互操作标准、安全策略和合规规则编码为平台能力",
+      "建立数据产品目录和网格范围的可观测性，使消费者能够跨领域发现、信任和组合数据产品"
+    ],
+    "ai_relevant": true,
+    "viz_type": "matrix",
+    "related": ["domain-driven-design", "microservices-decomposition", "team-topologies", "polyglot-persistence"],
+    "tags": ["data-mesh", "decentralization", "data-products", "domain-ownership", "governance"],
+    "origin_author": "Zhamak Dehghani, 2019",
+    "origin_source": "Data Mesh: Delivering Data-Driven Value at Scale (O'Reilly, 2022)",
+    "origin_source_zh": "《数据网格：大规模交付数据驱动价值》（O'Reilly，2022）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When a centralized data team has become a bottleneck for multiple business domains",
+      "When domain teams need autonomous control over their analytical and operational data",
+      "When organizational scale demands distributed ownership matching Conway's Law",
+      "When data quality suffers because producers are disconnected from consumers"
+    ],
+    "when_to_use_zh": [
+      "当中心化数据团队成为多个业务领域的瓶颈时",
+      "当领域团队需要自主控制其分析和运营数据时",
+      "当组织规模要求分布式所有权以匹配康威定律时",
+      "当数据质量因生产者与消费者脱节而下降时"
+    ],
+    "core_concepts": [
+      "Domain ownership: data is owned and served by the domain that produces it, not by a central data team",
+      "Data as a product: each dataset is treated as a product with discoverability, quality, SLOs, and documentation",
+      "Self-serve data platform: a shared infrastructure layer that enables domain teams to build and publish data products without deep infrastructure expertise",
+      "Federated computational governance: global policies enforced through automation and platform capabilities rather than centralized gatekeepers"
+    ],
+    "core_concepts_zh": [
+      "领域所有权：数据由产生它的领域拥有和提供，而非中心化数据团队",
+      "数据即产品：每个数据集被视为产品，具备可发现性、质量保障、SLO和文档",
+      "自助式数据平台：共享基础设施层，使领域团队无需深厚基础设施专业知识即可构建和发布数据产品",
+      "联邦式计算治理：通过自动化和平台能力而非集中式守门人来执行全局策略"
+    ],
+    "timeline": [
+      ["2019", "Zhamak Dehghani publishes 'How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh' at ThoughtWorks"],
+      ["2020", "Data Mesh gains rapid industry adoption; ThoughtWorks Technology Radar features it as a key trend"],
+      ["2022", "Dehghani publishes the definitive O'Reilly book 'Data Mesh' formalizing the four principles"],
+      ["2023", "Major cloud vendors (AWS, GCP, Azure) release data mesh reference architectures and tooling"]
+    ],
+    "timeline_zh": [
+      ["2019", "Zhamak Dehghani 在 ThoughtWorks 发表「如何从单体数据湖走向分布式数据网格」"],
+      ["2020", "数据网格获得行业快速采纳；ThoughtWorks 技术雷达将其列为关键趋势"],
+      ["2022", "Dehghani 出版 O'Reilly 权威著作《数据网格》，正式化四大原则"],
+      ["2023", "主要云厂商（AWS、GCP、Azure）发布数据网格参考架构和工具"]
+    ],
+    "dos": [
+      "Do align data product boundaries with business domain boundaries because misalignment creates confusion about ownership",
+      "Do invest in a self-serve platform before asking domains to own their data because without it domain teams will drown in infrastructure complexity",
+      "Do define global interoperability standards (schemas, SLOs, metadata) because mesh-wide discoverability depends on consistency",
+      "Do start with a single domain pilot before scaling because mesh adoption requires organizational learning"
+    ],
+    "dos_zh": [
+      "将数据产品边界与业务领域边界对齐，因为不对齐会导致所有权混乱",
+      "在要求领域拥有数据之前先投资自助式平台，否则领域团队会被基础设施复杂性淹没",
+      "定义全局互操作标准（模式、SLO、元数据），因为网格范围的可发现性依赖一致性",
+      "在扩展前先从单个领域试点开始，因为网格采纳需要组织学习"
+    ],
+    "donts": [
+      "Don't simply rename existing data lake tables as 'data products' because data mesh requires genuine domain ownership and product thinking",
+      "Don't skip governance because decentralization without standards leads to data chaos and duplication",
+      "Don't force every team to adopt mesh simultaneously because a phased rollout reduces organizational resistance",
+      "Don't neglect cross-domain data quality contracts because consumers need trust guarantees across boundaries"
+    ],
+    "donts_zh": [
+      "不要简单地将现有数据湖表重命名为「数据产品」，因为数据网格需要真正的领域所有权和产品思维",
+      "不要跳过治理，因为没有标准的去中心化会导致数据混乱和重复",
+      "不要强迫每个团队同时采用网格，分阶段推出可减少组织阻力",
+      "不要忽视跨领域数据质量契约，因为消费者需要跨边界的信任保障"
+    ],
+    "case_study_company": "Zalando",
+    "case_study": "Zalando adopted Data Mesh to decentralize its analytics infrastructure across 200+ autonomous product teams. Each team publishes data products through a self-serve platform built on AWS and Apache Kafka. This eliminated the central data team bottleneck and reduced the average time to deliver a new analytical dataset from weeks to days.",
+    "case_study_zh": "Zalando 采用数据网格将分析基础设施去中心化分配给200多个自治产品团队。每个团队通过基于AWS和Apache Kafka构建的自助式平台发布数据产品。这消除了中心化数据团队的瓶颈，将交付新分析数据集的平均时间从数周缩短到数天。",
+    "when_not_to_use": [
+      "Small organizations with a single domain where centralized data management is simpler and sufficient",
+      "Early-stage startups that lack the organizational maturity to sustain distributed data ownership",
+      "When data volumes and team count are small enough that a central data team is not a bottleneck",
+      "Highly regulated environments where centralized control is legally mandated"
+    ],
+    "when_not_to_use_zh": [
+      "只有单一领域的小型组织，集中式数据管理更简单且足够",
+      "缺乏组织成熟度来维持分布式数据所有权的早期创业公司",
+      "当数据量和团队数量足够小、中心化数据团队未成为瓶颈时",
+      "法律要求集中控制的高度监管环境"
+    ],
+    "adopters": ["Zalando", "JPMorgan Chase", "Netflix", "Intuit", "ThoughtWorks"]
+  },
+  {
+    "id": 102,
+    "name": "Lambda Architecture",
+    "name_zh": "Lambda 架构",
+    "slug": "lambda-architecture",
+    "category": "data",
+    "desc": "Batch plus speed layers for scalable big data processing",
+    "desc_zh": "批处理加速度层的可扩展大数据处理架构",
+    "steps": [
+      "Ingest all raw data immutably into a master dataset that serves as the system's append-only source of truth",
+      "Build a batch layer that periodically recomputes comprehensive batch views from the entire master dataset using frameworks like Hadoop or Spark",
+      "Build a speed layer that processes only recent data in real-time using stream processors like Storm or Flink to compensate for batch layer latency",
+      "Merge batch views and real-time views at query time in a serving layer that exposes a unified interface to consumers",
+      "Continuously validate that speed layer results converge with batch layer results and that eventual consistency is maintained"
+    ],
+    "steps_zh": [
+      "将所有原始数据不可变地摄入主数据集，作为系统的追加式真实数据源",
+      "构建批处理层，使用Hadoop或Spark等框架定期从整个主数据集重新计算全量批视图",
+      "构建速度层，使用Storm或Flink等流处理器仅实时处理最近数据，以弥补批处理层的延迟",
+      "在服务层查询时合并批视图和实时视图，向消费者暴露统一接口",
+      "持续验证速度层结果与批处理层结果的收敛性，确保最终一致性"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": ["kappa-architecture", "stream-processing-patterns", "cap-theorem"],
+    "tags": ["big-data", "batch-processing", "stream-processing", "lambda"],
+    "origin_author": "Nathan Marz, 2011",
+    "origin_source": "Big Data: Principles and Best Practices of Scalable Real-Time Data Systems (Manning, 2015)",
+    "origin_source_zh": "《大数据：可扩展实时数据系统的原理与最佳实践》（Manning，2015）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When you need both comprehensive historical analytics and low-latency real-time results",
+      "When data correctness requires periodic full recomputation to fix upstream errors",
+      "When existing batch infrastructure must coexist with new real-time requirements",
+      "When fault tolerance demands that real-time views can always be reconstructed from immutable raw data"
+    ],
+    "when_to_use_zh": [
+      "当需要同时具备全面历史分析和低延迟实时结果时",
+      "当数据正确性要求定期全量重算以修复上游错误时",
+      "当现有批处理基础设施必须与新的实时需求共存时",
+      "当容错要求实时视图始终可从不可变原始数据重建时"
+    ],
+    "core_concepts": [
+      "Immutable master dataset: all data is stored in raw, append-only form as the single source of truth",
+      "Batch layer: periodically reprocesses the entire dataset to produce accurate, comprehensive views",
+      "Speed layer: processes only recent data in real-time to provide low-latency approximate views",
+      "Serving layer: merges batch and speed layer outputs to answer queries with both completeness and freshness"
+    ],
+    "core_concepts_zh": [
+      "不可变主数据集：所有数据以原始追加形式存储，作为唯一真实数据源",
+      "批处理层：定期重新处理整个数据集以产生准确、全面的视图",
+      "速度层：仅实时处理最近数据以提供低延迟的近似视图",
+      "服务层：合并批处理层和速度层的输出，以兼顾完整性和时效性来响应查询"
+    ],
+    "timeline": [
+      ["2011", "Nathan Marz introduces the Lambda Architecture concept based on his work at Twitter with Apache Storm"],
+      ["2013", "Lambda Architecture gains wide adoption as Hadoop ecosystem matures and real-time needs grow"],
+      ["2014", "Jay Kreps publishes 'Questioning the Lambda Architecture' proposing Kappa as a simpler alternative"],
+      ["2015", "Marz and Warren publish 'Big Data' (Manning), the definitive reference for Lambda Architecture"]
+    ],
+    "timeline_zh": [
+      ["2011", "Nathan Marz 基于在Twitter使用Apache Storm的经验提出Lambda架构概念"],
+      ["2013", "随着Hadoop生态系统成熟和实时需求增长，Lambda架构获得广泛采纳"],
+      ["2014", "Jay Kreps 发表「质疑Lambda架构」，提出Kappa作为更简单的替代方案"],
+      ["2015", "Marz和Warren出版《大数据》（Manning），成为Lambda架构的权威参考"]
+    ],
+    "dos": [
+      "Do keep the master dataset immutable and append-only because it enables full recomputation and error correction",
+      "Do design batch and speed layers to produce eventually consistent results because divergence erodes consumer trust",
+      "Do automate batch view recomputation on a regular schedule because stale batch views negate the architecture's benefits",
+      "Do monitor latency gaps between speed and batch layers because large gaps indicate system health issues"
+    ],
+    "dos_zh": [
+      "保持主数据集不可变且仅追加，因为这使全量重算和错误修正成为可能",
+      "设计批处理和速度层产生最终一致的结果，因为分歧会侵蚀消费者信任",
+      "定期自动化批视图重算，因为过时的批视图会抵消架构的优势",
+      "监控速度层和批处理层之间的延迟差距，因为大差距表明系统健康问题"
+    ],
+    "donts": [
+      "Don't maintain two completely different codebases for batch and speed logic because it doubles maintenance burden and introduces semantic drift",
+      "Don't skip the serving layer merge logic because consumers should not need to understand the dual-layer internals",
+      "Don't use Lambda when a single stream processing layer can meet your latency and correctness requirements",
+      "Don't ignore the operational complexity of running two parallel processing systems"
+    ],
+    "donts_zh": [
+      "不要为批处理和速度逻辑维护两套完全不同的代码库，因为这会使维护负担翻倍并引入语义漂移",
+      "不要跳过服务层合并逻辑，因为消费者不应需要理解双层内部细节",
+      "当单一流处理层能满足延迟和正确性要求时不要使用Lambda",
+      "不要忽视运行两个并行处理系统的运维复杂性"
+    ],
+    "case_study_company": "Twitter",
+    "case_study": "Twitter used Lambda Architecture to power its real-time analytics and trending topics. The batch layer processed the full tweet history using Hadoop for accurate aggregate metrics, while the speed layer used Apache Storm to detect trending topics within seconds. This dual approach allowed Twitter to serve both precise historical dashboards and real-time trend detection at scale.",
+    "case_study_zh": "Twitter使用Lambda架构驱动其实时分析和热门话题功能。批处理层使用Hadoop处理完整推文历史以获取准确的聚合指标，而速度层使用Apache Storm在几秒内检测热门话题。这种双层方法使Twitter能够大规模同时提供精确的历史仪表板和实时趋势检测。",
+    "when_not_to_use": [
+      "When the operational overhead of maintaining two processing systems is not justified by your scale",
+      "When stream processing alone can provide both correctness and low latency for your use case",
+      "When your team lacks the expertise to maintain synchronized batch and speed layer logic",
+      "When data volumes are small enough that a simple database with incremental updates suffices"
+    ],
+    "when_not_to_use_zh": [
+      "当维护两个处理系统的运维开销无法被规模所证明时",
+      "当单独的流处理即可为用例提供正确性和低延迟时",
+      "当团队缺乏维护同步批处理和速度层逻辑的专业知识时",
+      "当数据量足够小，简单数据库加增量更新即可满足时"
+    ],
+    "adopters": ["Twitter", "LinkedIn", "Yahoo", "Netflix", "Airbnb"]
+  },
+  {
+    "id": 103,
+    "name": "Kappa Architecture",
+    "name_zh": "Kappa 架构",
+    "slug": "kappa-architecture",
+    "category": "data",
+    "desc": "Stream-first architecture eliminating the batch layer entirely",
+    "desc_zh": "以流为核心、完全消除批处理层的数据架构",
+    "steps": [
+      "Ingest all data as immutable events into a durable, replayable log such as Apache Kafka with configurable retention",
+      "Process all data through a single stream processing layer using frameworks like Apache Flink, Kafka Streams, or Apache Beam",
+      "Materialize stream processing results into serving stores (databases, caches, search indices) optimized for query patterns",
+      "When logic changes or reprocessing is needed, deploy a new version of the stream processor and replay the log from the desired offset",
+      "Retire the old materialized views once the new processor has caught up, achieving zero-downtime schema evolution"
+    ],
+    "steps_zh": [
+      "将所有数据作为不可变事件摄入持久化、可重放的日志（如Apache Kafka），配置合适的保留策略",
+      "通过单一流处理层使用Apache Flink、Kafka Streams或Apache Beam等框架处理所有数据",
+      "将流处理结果物化到针对查询模式优化的服务存储（数据库、缓存、搜索索引）",
+      "当逻辑变更或需要重处理时，部署新版本流处理器并从期望偏移量重放日志",
+      "新处理器追上进度后淘汰旧的物化视图，实现零停机模式演进"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": ["lambda-architecture", "eda", "change-data-capture", "stream-processing-patterns"],
+    "tags": ["streaming", "kappa", "event-log", "real-time", "simplicity"],
+    "origin_author": "Jay Kreps, 2014",
+    "origin_source": "Questioning the Lambda Architecture (O'Reilly blog post, 2014)",
+    "origin_source_zh": "「质疑Lambda架构」（O'Reilly博客文章，2014）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When your use case is primarily real-time and batch recomputation adds unnecessary complexity",
+      "When you want a single processing codebase to reduce maintenance and eliminate semantic drift between layers",
+      "When your event log can be retained long enough to enable full reprocessing when logic changes",
+      "When your stream processing framework supports exactly-once semantics and stateful operations"
+    ],
+    "when_to_use_zh": [
+      "当用例主要是实时的，批量重算增加了不必要的复杂性时",
+      "当希望使用单一处理代码库以减少维护并消除层间语义漂移时",
+      "当事件日志能够保留足够长时间以支持逻辑变更时的全量重处理时",
+      "当流处理框架支持精确一次语义和有状态操作时"
+    ],
+    "core_concepts": [
+      "Immutable event log: all data enters as an append-only log that can be replayed from any point in time",
+      "Single processing layer: one stream processing engine handles both real-time and historical reprocessing",
+      "Log replay for reprocessing: when business logic changes, replay the event log through an updated processor instead of maintaining a separate batch system",
+      "Materialized views: stream results are written into purpose-built serving stores optimized for specific query patterns"
+    ],
+    "core_concepts_zh": [
+      "不可变事件日志：所有数据以追加日志形式进入，可从任意时间点重放",
+      "单一处理层：一个流处理引擎同时处理实时和历史重处理",
+      "日志重放实现重处理：当业务逻辑变更时，通过更新后的处理器重放事件日志，而非维护独立的批处理系统",
+      "物化视图：流处理结果写入为特定查询模式优化的专用服务存储"
+    ],
+    "timeline": [
+      ["2011", "Apache Kafka created at LinkedIn establishes the durable replayable log as a core infrastructure primitive"],
+      ["2014", "Jay Kreps publishes 'Questioning the Lambda Architecture' proposing Kappa as a simpler alternative"],
+      ["2017", "Apache Flink matures with exactly-once semantics, making Kappa viable for mission-critical workloads"],
+      ["2020", "Kappa Architecture becomes the default pattern for cloud-native streaming platforms like Confluent and Amazon Kinesis"]
+    ],
+    "timeline_zh": [
+      ["2011", "LinkedIn创建的Apache Kafka将持久可重放日志确立为核心基础设施原语"],
+      ["2014", "Jay Kreps发表「质疑Lambda架构」，提出Kappa作为更简单的替代方案"],
+      ["2017", "Apache Flink成熟并支持精确一次语义，使Kappa适用于关键任务工作负载"],
+      ["2020", "Kappa架构成为Confluent和Amazon Kinesis等云原生流平台的默认模式"]
+    ],
+    "dos": [
+      "Do size your event log retention to cover the longest reprocessing window you anticipate because insufficient retention breaks the replay mechanism",
+      "Do use a framework with exactly-once processing guarantees because at-least-once can produce incorrect materialized views",
+      "Do version your stream processing jobs so old and new versions can run in parallel during migrations",
+      "Do monitor consumer lag closely because growing lag indicates the stream processor cannot keep up with input volume"
+    ],
+    "dos_zh": [
+      "将事件日志保留期设置为能覆盖预期最长重处理窗口，因为保留不足会破坏重放机制",
+      "使用具有精确一次处理保证的框架，因为至少一次可能产生不正确的物化视图",
+      "对流处理作业进行版本管理，使新旧版本可在迁移期间并行运行",
+      "密切监控消费者滞后，因为滞后增长表明流处理器无法跟上输入量"
+    ],
+    "donts": [
+      "Don't assume infinite log retention is free because storage costs and compaction strategies must be planned",
+      "Don't use Kappa when you genuinely need periodic full-dataset recomputation that exceeds your log retention window",
+      "Don't neglect state management in stream processors because stateful operations require checkpointing and recovery",
+      "Don't ignore backpressure signals because unhandled backpressure leads to cascading failures"
+    ],
+    "donts_zh": [
+      "不要假设无限日志保留是免费的，因为存储成本和压缩策略必须规划",
+      "当确实需要超出日志保留窗口的周期性全数据集重算时不要使用Kappa",
+      "不要忽视流处理器中的状态管理，因为有状态操作需要检查点和恢复",
+      "不要忽视背压信号，因为未处理的背压会导致级联故障"
+    ],
+    "case_study_company": "LinkedIn",
+    "case_study": "LinkedIn pioneered the Kappa Architecture pattern through its creation of Apache Kafka and its internal stream processing infrastructure. By replacing batch ETL pipelines with Kafka-based streaming, LinkedIn unified its activity tracking, metrics, and feed generation into a single real-time processing paradigm. This reduced infrastructure complexity by eliminating the dual batch-speed codebases and enabled sub-second data freshness for features like 'Who Viewed Your Profile'.",
+    "case_study_zh": "LinkedIn通过创建Apache Kafka及其内部流处理基础设施开创了Kappa架构模式。通过用基于Kafka的流处理替代批量ETL管道，LinkedIn将活动追踪、指标和信息流生成统一为单一实时处理范式。这通过消除双重批处理-速度代码库降低了基础设施复杂性，并为「谁查看了你的档案」等功能实现了亚秒级数据时效性。",
+    "when_not_to_use": [
+      "When log retention costs are prohibitive for the data volumes and retention periods required",
+      "When complex analytical queries require full-dataset joins that are impractical in a streaming context",
+      "When existing batch infrastructure is well-established and the team lacks streaming expertise",
+      "When regulatory requirements mandate periodic full recomputation from source systems rather than log replay"
+    ],
+    "when_not_to_use_zh": [
+      "当所需数据量和保留期的日志保留成本过高时",
+      "当复杂分析查询需要在流上下文中不切实际的全数据集连接时",
+      "当现有批处理基础设施成熟且团队缺乏流处理专业知识时",
+      "当监管要求从源系统定期全量重算而非日志重放时"
+    ],
+    "adopters": ["LinkedIn", "Confluent", "Uber", "The New York Times", "Wix"]
+  },
+  {
+    "id": 104,
+    "name": "Stream Processing Patterns",
+    "name_zh": "流处理模式",
+    "slug": "stream-processing-patterns",
+    "category": "data",
+    "desc": "Patterns for continuous data stream windowing, joining, and semantics",
+    "desc_zh": "连续数据流窗口化、连接和语义保证的处理模式",
+    "steps": [
+      "Define windowing strategies (tumbling, sliding, session, or global) based on the temporal semantics your analytics require",
+      "Implement stream joins by choosing the correct join type (stream-stream, stream-table, or table-table) and configuring appropriate time bounds and key partitioning",
+      "Configure exactly-once processing semantics through idempotent writes, transactional producers, or framework-level guarantees like Flink checkpoints",
+      "Handle late-arriving and out-of-order events using watermarks, allowed lateness thresholds, and side outputs for dropped events",
+      "Operationalize the pipeline with backpressure handling, state management, checkpoint tuning, and consumer lag monitoring"
+    ],
+    "steps_zh": [
+      "根据分析所需的时间语义定义窗口策略（滚动、滑动、会话或全局窗口）",
+      "通过选择正确的连接类型（流-流、流-表或表-表）并配置适当的时间边界和键分区来实现流连接",
+      "通过幂等写入、事务生产者或框架级保证（如Flink检查点）配置精确一次处理语义",
+      "使用水印、允许延迟阈值和旁路输出处理迟到和乱序事件",
+      "通过背压处理、状态管理、检查点调优和消费者滞后监控使管道运维化"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": ["kappa-architecture", "lambda-architecture", "eda", "change-data-capture"],
+    "tags": ["streaming", "windowing", "exactly-once", "joins", "watermarks"],
+    "origin_author": "Jay Kreps / Martin Kleppmann, 2014-2017",
+    "origin_source": "Designing Data-Intensive Applications, Chapter 11: Stream Processing (O'Reilly, 2017)",
+    "origin_source_zh": "《设计数据密集型应用》第11章：流处理（O'Reilly，2017）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When building real-time analytics, monitoring, or alerting systems on continuous data feeds",
+      "When event-time processing is critical and events arrive out of order or with variable delay",
+      "When joining multiple data streams or enriching streams with reference data in real-time",
+      "When exactly-once processing semantics are required for financial, billing, or compliance workloads"
+    ],
+    "when_to_use_zh": [
+      "当在连续数据流上构建实时分析、监控或告警系统时",
+      "当事件时间处理至关重要且事件乱序到达或延迟不定时",
+      "当需要实时连接多个数据流或用参考数据丰富流时",
+      "当金融、计费或合规工作负载要求精确一次处理语义时"
+    ],
+    "core_concepts": [
+      "Windowing: grouping unbounded streams into finite chunks (tumbling, sliding, session windows) for aggregation and analysis",
+      "Event time vs processing time: distinguishing when an event actually occurred from when it was processed, using watermarks to track progress",
+      "Exactly-once semantics: ensuring each event is processed precisely once despite failures, through checkpointing, idempotent sinks, and transactional writes",
+      "Stream joins: combining two or more streams based on keys and time constraints, including stream-stream windowed joins and stream-table enrichment joins"
+    ],
+    "core_concepts_zh": [
+      "窗口化：将无界流分组为有限块（滚动、滑动、会话窗口）以进行聚合和分析",
+      "事件时间与处理时间：使用水印追踪进度，区分事件实际发生时间和处理时间",
+      "精确一次语义：通过检查点、幂等接收器和事务写入确保每个事件在故障情况下仅被处理一次",
+      "流连接：基于键和时间约束组合两个或多个流，包括流-流窗口连接和流-表丰富连接"
+    ],
+    "timeline": [
+      ["2011", "Apache Storm pioneers distributed real-time stream processing with at-least-once guarantees"],
+      ["2014", "Apache Flink introduces event-time processing, watermarks, and exactly-once state consistency"],
+      ["2017", "Kleppmann's 'Designing Data-Intensive Applications' codifies stream processing patterns as foundational knowledge"],
+      ["2019", "Kafka Streams and Apache Beam mature as portable stream processing APIs abstracting execution engines"]
+    ],
+    "timeline_zh": [
+      ["2011", "Apache Storm以至少一次保证开创分布式实时流处理"],
+      ["2014", "Apache Flink引入事件时间处理、水印和精确一次状态一致性"],
+      ["2017", "Kleppmann的《设计数据密集型应用》将流处理模式编纂为基础知识"],
+      ["2019", "Kafka Streams和Apache Beam作为抽象执行引擎的可移植流处理API走向成熟"]
+    ],
+    "dos": [
+      "Do choose event-time semantics over processing-time when correctness matters because processing-time windows produce non-deterministic results",
+      "Do set watermarks and allowed lateness thresholds based on empirical analysis of your data's delay characteristics",
+      "Do design for idempotent sinks because even with exactly-once frameworks, sink-level idempotency provides defense in depth",
+      "Do test stream processing logic with both in-order and out-of-order event sequences because edge cases dominate production failures"
+    ],
+    "dos_zh": [
+      "当正确性重要时选择事件时间语义而非处理时间，因为处理时间窗口产生非确定性结果",
+      "基于数据延迟特征的经验分析设置水印和允许延迟阈值",
+      "设计幂等接收器，因为即使使用精确一次框架，接收端幂等性也提供纵深防御",
+      "使用有序和乱序事件序列测试流处理逻辑，因为边缘情况主导生产故障"
+    ],
+    "donts": [
+      "Don't use processing-time windows for business metrics because clock skew and variable latency produce incorrect aggregates",
+      "Don't ignore state size growth in windowed aggregations because unbounded state leads to out-of-memory failures",
+      "Don't assume exactly-once means zero duplicates end-to-end because the guarantee applies only within the processing framework boundaries",
+      "Don't skip backpressure configuration because uncontrolled producers will overwhelm slow consumers"
+    ],
+    "donts_zh": [
+      "不要对业务指标使用处理时间窗口，因为时钟偏移和可变延迟会产生不正确的聚合",
+      "不要忽视窗口聚合中的状态大小增长，因为无界状态会导致内存溢出故障",
+      "不要假设精确一次意味着端到端零重复，因为保证仅适用于处理框架边界内",
+      "不要跳过背压配置，因为不受控的生产者会压垮慢速消费者"
+    ],
+    "case_study_company": "Uber",
+    "case_study": "Uber built its real-time surge pricing and ETA computation on Apache Flink stream processing patterns. Using event-time windows and stream-table joins, Uber processes millions of trip events per second to compute supply-demand ratios per geofence. Exactly-once semantics ensure pricing accuracy, while watermark-based late event handling prevents stale data from corrupting surge multipliers.",
+    "case_study_zh": "Uber基于Apache Flink流处理模式构建了实时动态定价和预计到达时间计算。使用事件时间窗口和流-表连接，Uber每秒处理数百万行程事件以计算每个地理围栏的供需比。精确一次语义确保定价准确，基于水印的迟到事件处理防止过时数据破坏动态定价倍数。",
+    "when_not_to_use": [
+      "When batch processing with hourly or daily granularity meets your latency requirements",
+      "When data volumes are low enough that a simple poll-and-process loop is sufficient",
+      "When your team lacks expertise in distributed stream processing and the learning curve is too steep",
+      "When the data source does not provide event timestamps and event-time semantics cannot be established"
+    ],
+    "when_not_to_use_zh": [
+      "当小时级或天级粒度的批处理满足延迟要求时",
+      "当数据量足够低，简单的轮询处理循环即可满足时",
+      "当团队缺乏分布式流处理专业知识且学习曲线过陡时",
+      "当数据源不提供事件时间戳且无法建立事件时间语义时"
+    ],
+    "adopters": ["Uber", "Alibaba", "Netflix", "Spotify", "ING Bank"]
+  },
+  {
+    "id": 105,
+    "name": "Change Data Capture (CDC)",
+    "name_zh": "变更数据捕获",
+    "slug": "change-data-capture",
+    "category": "data",
+    "desc": "Track database changes as real-time event streams for downstream",
+    "desc_zh": "将数据库变更作为实时事件流捕获并传递给下游系统",
+    "steps": [
+      "Configure a CDC connector (e.g., Debezium) to read the database's transaction log (WAL, binlog, or oplog) without impacting production query performance",
+      "Publish change events to a durable message broker like Apache Kafka, preserving the original transaction order and including before/after snapshots of each row",
+      "Transform and enrich change events in a stream processing layer to match downstream consumer schemas and business rules",
+      "Route transformed events to target systems: data warehouses, search indices, caches, or other microservices that need synchronized data",
+      "Monitor CDC pipeline health including replication lag, schema drift detection, and connector failure alerting to ensure data consistency"
+    ],
+    "steps_zh": [
+      "配置CDC连接器（如Debezium）读取数据库事务日志（WAL、binlog或oplog），不影响生产查询性能",
+      "将变更事件发布到持久消息代理（如Apache Kafka），保留原始事务顺序并包含每行的变更前后快照",
+      "在流处理层转换和丰富变更事件，以匹配下游消费者的模式和业务规则",
+      "将转换后的事件路由到目标系统：数据仓库、搜索索引、缓存或需要同步数据的其他微服务",
+      "监控CDC管道健康状况，包括复制延迟、模式漂移检测和连接器故障告警，确保数据一致性"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": ["kappa-architecture", "stream-processing-patterns", "saga-pattern", "eda"],
+    "tags": ["cdc", "replication", "event-streams", "debezium", "database"],
+    "origin_author": "Database community / Popularized by Debezium (Red Hat), 2015",
+    "origin_source": "Designing Data-Intensive Applications, Chapter 11: Stream Processing (O'Reilly, 2017)",
+    "origin_source_zh": "《设计数据密集型应用》第11章：流处理（O'Reilly，2017）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When microservices need to keep local read models synchronized with a source database without tight coupling",
+      "When replacing batch ETL with real-time data replication to a data warehouse or data lake",
+      "When building event-driven architectures that react to database state changes as they happen",
+      "When search indices, caches, or materialized views must stay in near-real-time sync with the primary datastore"
+    ],
+    "when_to_use_zh": [
+      "当微服务需要在不紧耦合的情况下保持本地读模型与源数据库同步时",
+      "当用实时数据复制替代批量ETL到数据仓库或数据湖时",
+      "当构建对数据库状态变更实时响应的事件驱动架构时",
+      "当搜索索引、缓存或物化视图必须与主数据存储保持近实时同步时"
+    ],
+    "core_concepts": [
+      "Log-based capture: reading the database's write-ahead log or binary log to detect changes without modifying the application or adding triggers",
+      "Event ordering: preserving the exact transaction order so downstream systems can replay changes and maintain consistency",
+      "Schema evolution: handling source schema changes gracefully so downstream consumers are not broken by column additions or type changes",
+      "Snapshot plus streaming: performing an initial full snapshot of existing data, then switching to streaming incremental changes going forward"
+    ],
+    "core_concepts_zh": [
+      "基于日志的捕获：读取数据库的预写日志或二进制日志来检测变更，无需修改应用或添加触发器",
+      "事件排序：保留精确的事务顺序，使下游系统能够重放变更并保持一致性",
+      "模式演进：优雅处理源模式变更，使下游消费者不会因列添加或类型变更而中断",
+      "快照加流式：先对现有数据执行全量快照，然后切换到流式增量变更"
+    ],
+    "timeline": [
+      ["2012", "LinkedIn develops Databus, one of the first open-source CDC systems for Oracle and MySQL"],
+      ["2015", "Debezium project launches at Red Hat, providing log-based CDC connectors for Kafka Connect"],
+      ["2017", "Kleppmann's 'Designing Data-Intensive Applications' establishes CDC as a core data architecture pattern"],
+      ["2021", "CDC becomes a standard feature in cloud databases (AWS DMS, Azure CDC, GCP Datastream)"]
+    ],
+    "timeline_zh": [
+      ["2012", "LinkedIn开发Databus，首批支持Oracle和MySQL的开源CDC系统之一"],
+      ["2015", "Debezium项目在Red Hat启动，为Kafka Connect提供基于日志的CDC连接器"],
+      ["2017", "Kleppmann的《设计数据密集型应用》将CDC确立为核心数据架构模式"],
+      ["2021", "CDC成为云数据库标准特性（AWS DMS、Azure CDC、GCP Datastream）"]
+    ],
+    "dos": [
+      "Do use log-based CDC over trigger-based or polling approaches because log reading has minimal impact on source database performance",
+      "Do handle schema evolution by using a schema registry and backward-compatible serialization formats like Avro",
+      "Do monitor replication lag between the source database and downstream consumers because growing lag indicates pipeline issues",
+      "Do plan for initial snapshot strategy because CDC connectors need to bootstrap existing data before streaming incremental changes"
+    ],
+    "dos_zh": [
+      "使用基于日志的CDC而非触发器或轮询方式，因为日志读取对源数据库性能影响最小",
+      "通过使用模式注册表和Avro等向后兼容的序列化格式处理模式演进",
+      "监控源数据库和下游消费者之间的复制延迟，因为延迟增长表明管道问题",
+      "规划初始快照策略，因为CDC连接器在流式增量变更之前需要引导现有数据"
+    ],
+    "donts": [
+      "Don't use trigger-based CDC in high-throughput OLTP systems because triggers add write latency to every transaction",
+      "Don't ignore schema changes in the source database because unhandled schema drift will break downstream consumers",
+      "Don't assume CDC guarantees exactly-once delivery because at-least-once is the default for most connectors and idempotency must be handled downstream",
+      "Don't expose raw CDC events directly to business consumers because internal database schemas leak implementation details"
+    ],
+    "donts_zh": [
+      "不要在高吞吐OLTP系统中使用基于触发器的CDC，因为触发器会为每个事务增加写延迟",
+      "不要忽略源数据库中的模式变更，因为未处理的模式漂移会破坏下游消费者",
+      "不要假设CDC保证精确一次传递，因为大多数连接器默认为至少一次，幂等性必须在下游处理",
+      "不要将原始CDC事件直接暴露给业务消费者，因为内部数据库模式会泄露实现细节"
+    ],
+    "case_study_company": "Shopify",
+    "case_study": "Shopify uses Debezium-based CDC to stream changes from its MySQL databases into Apache Kafka, enabling real-time synchronization of merchant data across its microservices architecture. This replaced brittle batch ETL jobs and reduced data propagation latency from hours to seconds, enabling features like real-time inventory updates and instant order status notifications for millions of merchants.",
+    "case_study_zh": "Shopify使用基于Debezium的CDC将MySQL数据库的变更流式传输到Apache Kafka，实现微服务架构中商户数据的实时同步。这替代了脆弱的批量ETL作业，将数据传播延迟从小时级降低到秒级，为数百万商户启用了实时库存更新和即时订单状态通知等功能。",
+    "when_not_to_use": [
+      "When the source database does not expose a transaction log or the log format is proprietary and unsupported",
+      "When data freshness requirements are measured in hours or days and batch ETL is simpler and sufficient",
+      "When the target system can directly query the source database without needing a separate copy",
+      "When compliance rules prohibit reading database transaction logs due to sensitive data exposure concerns"
+    ],
+    "when_not_to_use_zh": [
+      "当源数据库不暴露事务日志或日志格式为专有且不受支持时",
+      "当数据时效性要求以小时或天计算且批量ETL更简单足够时",
+      "当目标系统可以直接查询源数据库而无需单独副本时",
+      "当合规规则因敏感数据暴露问题而禁止读取数据库事务日志时"
+    ],
+    "adopters": ["Shopify", "Airbnb", "Zalando", "WePay", "Convoy"]
+  },
+  {
+    "id": 106,
+    "name": "Data Lakehouse",
+    "name_zh": "数据湖仓一体",
+    "slug": "data-lakehouse",
+    "category": "data",
+    "desc": "Unified architecture combining data lake flexibility with warehouse reliability",
+    "desc_zh": "结合数据湖灵活性与数据仓库可靠性的统一架构",
+    "steps": [
+      "Store all raw data in open file formats (Parquet, ORC) on cloud object storage (S3, ADLS, GCS) to maintain data lake flexibility and cost efficiency",
+      "Add a transactional metadata layer using Delta Lake, Apache Iceberg, or Apache Hudi to provide ACID transactions, schema enforcement, and time travel on lake data",
+      "Implement a unified catalog (e.g., Unity Catalog, AWS Glue, Hive Metastore) so both BI tools and ML frameworks discover and access the same governed datasets",
+      "Optimize query performance through data clustering, Z-ordering, file compaction, and partition pruning to match traditional data warehouse speed",
+      "Enforce governance policies including row-level security, column masking, lineage tracking, and audit logging directly on lakehouse tables"
+    ],
+    "steps_zh": [
+      "以开放文件格式（Parquet、ORC）将所有原始数据存储在云对象存储（S3、ADLS、GCS）上，保持数据湖的灵活性和成本效益",
+      "使用Delta Lake、Apache Iceberg或Apache Hudi添加事务元数据层，为湖上数据提供ACID事务、模式强制和时间旅行",
+      "实现统一目录（如Unity Catalog、AWS Glue、Hive Metastore），使BI工具和ML框架能发现和访问相同的治理数据集",
+      "通过数据聚类、Z-ordering、文件压缩和分区裁剪优化查询性能，以匹配传统数据仓库速度",
+      "在湖仓表上直接实施治理策略，包括行级安全、列掩码、血缘追踪和审计日志"
+    ],
+    "ai_relevant": true,
+    "viz_type": "pyramid",
+    "related": ["star-schema", "data-mesh", "data-vault-2", "feature-store-pattern"],
+    "tags": ["lakehouse", "delta-lake", "iceberg", "unified-analytics", "data-warehouse"],
+    "origin_author": "Databricks (Armbrust, Ghodsi, Zaharia et al.), 2020",
+    "origin_source": "Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics (CIDR 2021)",
+    "origin_source_zh": "《湖仓：统一数据仓库与高级分析的新一代开放平台》（CIDR 2021）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When maintaining separate data lake and data warehouse systems creates data duplication and governance gaps",
+      "When both SQL analytics and machine learning workloads need to operate on the same datasets",
+      "When you need ACID transactions and schema enforcement on cloud object storage data",
+      "When cost efficiency requires decoupling storage from compute while maintaining warehouse-grade query performance"
+    ],
+    "when_to_use_zh": [
+      "当维护独立的数据湖和数据仓库系统造成数据重复和治理缺口时",
+      "当SQL分析和机器学习工作负载需要在相同数据集上操作时",
+      "当需要在云对象存储数据上实现ACID事务和模式强制时",
+      "当成本效率要求存储与计算解耦同时保持仓库级查询性能时"
+    ],
+    "core_concepts": [
+      "Open table formats: Delta Lake, Apache Iceberg, or Apache Hudi add a transactional metadata layer atop open file formats on object storage",
+      "Storage-compute separation: data remains in cheap cloud object storage while multiple compute engines (Spark, Presto, Flink) query it independently",
+      "ACID on the lake: transaction logs enable atomicity, consistency, isolation, and durability for data lake operations including concurrent writes",
+      "Unified governance: a single catalog and permission model governs both analytical and ML access to the same physical data"
+    ],
+    "core_concepts_zh": [
+      "开放表格式：Delta Lake、Apache Iceberg或Apache Hudi在对象存储的开放文件格式之上添加事务元数据层",
+      "存储计算分离：数据保留在廉价的云对象存储中，多个计算引擎（Spark、Presto、Flink）独立查询",
+      "湖上ACID：事务日志为数据湖操作提供原子性、一致性、隔离性和持久性，包括并发写入",
+      "统一治理：单一目录和权限模型治理对相同物理数据的分析和ML访问"
+    ],
+    "timeline": [
+      ["2017", "Databricks releases Delta Lake as an open-source transactional storage layer on Apache Spark"],
+      ["2020", "Databricks publishes the 'Lakehouse' vision paper unifying lake and warehouse paradigms"],
+      ["2021", "Apache Iceberg gains momentum as a vendor-neutral alternative; Netflix, Apple, and LinkedIn adopt it"],
+      ["2023", "Major cloud vendors offer managed lakehouse services; open table format wars drive rapid innovation"]
+    ],
+    "timeline_zh": [
+      ["2017", "Databricks在Apache Spark上发布开源事务存储层Delta Lake"],
+      ["2020", "Databricks发表「湖仓」愿景论文，统一数据湖和仓库范式"],
+      ["2021", "Apache Iceberg作为供应商中立替代方案获得动力；Netflix、Apple和LinkedIn采纳"],
+      ["2023", "主要云厂商提供托管湖仓服务；开放表格式竞争推动快速创新"]
+    ],
+    "dos": [
+      "Do choose an open table format (Iceberg, Delta, Hudi) to avoid vendor lock-in because the format is the foundation of your lakehouse",
+      "Do implement a unified catalog so BI and ML workloads operate on the same governed data without ETL duplication",
+      "Do tune file sizes and clustering strategies because small files on object storage severely degrade query performance",
+      "Do enable time travel and versioning because it provides rollback capability and reproducible ML training datasets"
+    ],
+    "dos_zh": [
+      "选择开放表格式（Iceberg、Delta、Hudi）以避免供应商锁定，因为格式是湖仓的基础",
+      "实现统一目录，使BI和ML工作负载在相同治理数据上操作而无需ETL重复",
+      "调优文件大小和聚类策略，因为对象存储上的小文件会严重降低查询性能",
+      "启用时间旅行和版本管理，因为它提供回滚能力和可复现的ML训练数据集"
+    ],
+    "donts": [
+      "Don't simply dump unmanaged files into a data lake and call it a lakehouse because the transactional metadata layer is what differentiates a lakehouse from a data swamp",
+      "Don't ignore file compaction and maintenance operations because without them the lakehouse degrades into a slow, fragmented mess",
+      "Don't assume all query engines perform equally on lakehouse tables because engine-format compatibility varies significantly",
+      "Don't skip governance setup because a lakehouse without access controls inherits the worst aspects of ungoverned data lakes"
+    ],
+    "donts_zh": [
+      "不要简单地将非托管文件倒入数据湖就称其为湖仓，因为事务元数据层才是湖仓与数据沼泽的区别",
+      "不要忽视文件压缩和维护操作，否则湖仓会退化为缓慢且碎片化的混乱状态",
+      "不要假设所有查询引擎在湖仓表上表现相同，因为引擎-格式兼容性差异显著",
+      "不要跳过治理设置，因为没有访问控制的湖仓会继承不受治理的数据湖的最坏方面"
+    ],
+    "case_study_company": "Databricks / CERN",
+    "case_study": "CERN adopted a Delta Lake-based lakehouse architecture to manage petabytes of particle physics data from the Large Hadron Collider. By unifying their data lake and analytical warehouse, physicists can run both SQL queries for reporting and Spark ML pipelines for anomaly detection on the same ACID-compliant datasets. This eliminated the need for costly data duplication between separate lake and warehouse systems.",
+    "case_study_zh": "CERN采用基于Delta Lake的湖仓架构来管理来自大型强子对撞机的PB级粒子物理数据。通过统一数据湖和分析仓库，物理学家可以在相同的ACID兼容数据集上运行SQL查询进行报告和Spark ML管道进行异常检测。这消除了在独立湖和仓库系统之间进行昂贵数据复制的需要。",
+    "when_not_to_use": [
+      "When a traditional data warehouse meets all your needs and the added complexity of managing open table formats is not justified",
+      "When your workloads are exclusively SQL analytics with no ML or unstructured data requirements",
+      "When real-time sub-second query latency is critical and a purpose-built OLAP database outperforms lakehouse query engines",
+      "When organizational maturity cannot support the operational overhead of managing object storage, table formats, and compute engines separately"
+    ],
+    "when_not_to_use_zh": [
+      "当传统数据仓库满足所有需求且管理开放表格式的额外复杂性不合理时",
+      "当工作负载完全是SQL分析，没有ML或非结构化数据需求时",
+      "当需要亚秒级实时查询延迟且专用OLAP数据库优于湖仓查询引擎时",
+      "当组织成熟度不足以支撑分别管理对象存储、表格式和计算引擎的运维开销时"
+    ],
+    "adopters": ["Databricks", "Netflix", "Apple", "CERN", "Comcast"]
+  },
+  {
+    "id": 107,
+    "name": "Star Schema",
+    "name_zh": "星型模式",
+    "slug": "star-schema",
+    "category": "data",
+    "desc": "Dimensional modeling with fact and dimension tables for analytics",
+    "desc_zh": "以事实表和维度表进行维度建模的分析架构",
+    "steps": [
+      "Identify the business process to model and define the grain: the most atomic level of detail each fact table row represents",
+      "Design the central fact table containing quantitative measures (revenue, quantity, duration) and foreign keys to all relevant dimensions",
+      "Build dimension tables with descriptive attributes (customer name, product category, date hierarchy) that provide context for slicing and filtering facts",
+      "Denormalize dimension tables into flat, wide structures to optimize join performance and simplify queries for analysts and BI tools",
+      "Load the star schema using ETL/ELT pipelines with surrogate keys, slowly changing dimension handling, and incremental fact loading strategies"
+    ],
+    "steps_zh": [
+      "识别要建模的业务过程并定义粒度：每行事实表代表的最原子级别的细节",
+      "设计中心事实表，包含定量度量（收入、数量、持续时间）和所有相关维度的外键",
+      "构建维度表，包含描述性属性（客户名、产品类别、日期层次），为事实的切片和过滤提供上下文",
+      "将维度表反规范化为扁平宽结构，以优化连接性能并简化分析师和BI工具的查询",
+      "使用ETL/ELT管道加载星型模式，包括代理键、缓慢变化维度处理和增量事实加载策略"
+    ],
+    "ai_relevant": false,
+    "viz_type": "tree",
+    "related": ["data-vault-2", "data-lakehouse", "polyglot-persistence"],
+    "tags": ["dimensional-modeling", "star-schema", "kimball", "analytics", "data-warehouse"],
+    "origin_author": "Ralph Kimball, 1996",
+    "origin_source": "The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling (Wiley, 1996; 3rd edition 2013)",
+    "origin_source_zh": "《数据仓库工具箱：维度建模权威指南》（Wiley，1996；第三版2013）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When building a data warehouse or mart for business intelligence and ad-hoc analytical queries",
+      "When query simplicity and performance for aggregate operations are more important than storage efficiency",
+      "When BI tools like Tableau, Power BI, or Looker need intuitive, join-friendly schema structures",
+      "When business users need self-service analytics with predictable, understandable data models"
+    ],
+    "when_to_use_zh": [
+      "当为商业智能和临时分析查询构建数据仓库或数据集市时",
+      "当聚合操作的查询简洁性和性能比存储效率更重要时",
+      "当Tableau、Power BI或Looker等BI工具需要直观的、连接友好的模式结构时",
+      "当业务用户需要使用可预测、可理解的数据模型进行自助分析时"
+    ],
+    "core_concepts": [
+      "Fact tables: central tables containing quantitative measures (metrics) and foreign keys referencing dimension tables, representing business events at a specific grain",
+      "Dimension tables: wide, denormalized tables containing descriptive attributes that provide the 'who, what, where, when, why' context for analyzing facts",
+      "Grain declaration: explicitly defining what each row in a fact table represents to prevent ambiguity in aggregation and drill-down queries",
+      "Slowly changing dimensions: strategies (Type 1, 2, 3) for tracking how dimension attributes change over time while preserving historical accuracy"
+    ],
+    "core_concepts_zh": [
+      "事实表：包含定量度量（指标）和引用维度表外键的中心表，以特定粒度表示业务事件",
+      "维度表：宽的反规范化表，包含描述性属性，为分析事实提供「谁、什么、哪里、何时、为什么」的上下文",
+      "粒度声明：明确定义事实表中每行代表什么，以防止聚合和下钻查询中的歧义",
+      "缓慢变化维度：追踪维度属性随时间变化的策略（类型1、2、3），同时保持历史准确性"
+    ],
+    "timeline": [
+      ["1996", "Ralph Kimball publishes 'The Data Warehouse Toolkit' establishing dimensional modeling as the standard approach"],
+      ["2002", "Kimball and Ross release 'The Data Warehouse ETL Toolkit' formalizing star schema loading patterns"],
+      ["2013", "Third edition of 'The Data Warehouse Toolkit' updates techniques for modern columnar databases and cloud platforms"],
+      ["2020", "Star schema remains the dominant BI modeling pattern even as lakehouse architectures emerge"]
+    ],
+    "timeline_zh": [
+      ["1996", "Ralph Kimball出版《数据仓库工具箱》，确立维度建模为标准方法"],
+      ["2002", "Kimball和Ross发布《数据仓库ETL工具箱》，正式化星型模式加载模式"],
+      ["2013", "《数据仓库工具箱》第三版为现代列式数据库和云平台更新技术"],
+      ["2020", "即使湖仓架构兴起，星型模式仍是主导的BI建模模式"]
+    ],
+    "dos": [
+      "Do declare the grain of every fact table explicitly because ambiguous grain leads to incorrect aggregations and double-counting",
+      "Do denormalize dimension tables fully because normalized dimensions (snowflake schema) add join complexity with minimal storage savings in analytical workloads",
+      "Do use surrogate keys in dimension tables because natural keys change and cause referential integrity issues",
+      "Do design conformed dimensions shared across multiple fact tables because they enable cross-process analysis and consistent reporting"
+    ],
+    "dos_zh": [
+      "明确声明每个事实表的粒度，因为模糊的粒度会导致不正确的聚合和重复计数",
+      "完全反规范化维度表，因为规范化维度（雪花模式）在分析工作负载中增加连接复杂性而存储节省极少",
+      "在维度表中使用代理键，因为自然键会变化并导致引用完整性问题",
+      "设计跨多个事实表共享的一致维度，因为它们支持跨过程分析和一致性报告"
+    ],
+    "donts": [
+      "Don't normalize dimension tables into snowflake schema for analytical workloads because it forces multi-table joins that slow BI queries",
+      "Don't mix grain levels in a single fact table because it makes aggregation unreliable and confuses business users",
+      "Don't skip slowly changing dimension handling because losing historical dimension values makes historical analysis inaccurate",
+      "Don't create operational (OLTP-style) schemas for analytical purposes because they are optimized for transactional writes, not analytical reads"
+    ],
+    "donts_zh": [
+      "不要为分析工作负载将维度表规范化为雪花模式，因为这会强制多表连接导致BI查询变慢",
+      "不要在单个事实表中混合粒度级别，因为这使聚合不可靠并困扰业务用户",
+      "不要跳过缓慢变化维度处理，因为丢失历史维度值会使历史分析不准确",
+      "不要为分析目的创建操作型（OLTP风格）模式，因为它们为事务写入优化而非分析读取"
+    ],
+    "case_study_company": "Walmart",
+    "case_study": "Walmart's enterprise data warehouse uses Kimball-style star schemas to model its retail operations across 10,000+ stores. Fact tables capture point-of-sale transactions at the item-store-day grain, while conformed dimensions for product, store, and time enable cross-departmental analytics. This design allows supply chain, marketing, and finance teams to query the same data with consistent results using standard BI tools.",
+    "case_study_zh": "Walmart的企业数据仓库使用Kimball风格的星型模式建模其跨10,000多家门店的零售运营。事实表以商品-门店-天粒度捕获销售点交易，而产品、门店和时间的一致维度支持跨部门分析。这种设计使供应链、营销和财务团队能够使用标准BI工具以一致的结果查询相同数据。",
+    "when_not_to_use": [
+      "When the use case is primarily OLTP with heavy insert/update workloads that require normalized schemas",
+      "When data relationships are highly complex and graph-like rather than dimensional",
+      "When schema flexibility is needed and the data structure changes frequently (consider schema-on-read approaches instead)",
+      "When real-time streaming analytics are needed and pre-aggregated materialized views are more appropriate"
+    ],
+    "when_not_to_use_zh": [
+      "当用例主要是OLTP且有大量插入/更新工作负载需要规范化模式时",
+      "当数据关系高度复杂且呈图状而非维度化时",
+      "当需要模式灵活性且数据结构频繁变化时（考虑读时模式方法）",
+      "当需要实时流分析且预聚合物化视图更合适时"
+    ],
+    "adopters": ["Walmart", "Amazon", "Target", "Netflix", "Airbnb"]
+  },
+  {
+    "id": 108,
+    "name": "Data Vault 2.0",
+    "name_zh": "Data Vault 2.0",
+    "slug": "data-vault-2",
+    "category": "data",
+    "desc": "Agile, auditable data warehousing with hubs, links, and satellites",
+    "desc_zh": "以Hub、Link和Satellite实现敏捷可审计的数据仓库方法论",
+    "steps": [
+      "Identify business keys from source systems and model them as Hub tables, each representing a core business concept (customer, product, order) with a hash key and load metadata",
+      "Model relationships between hubs as Link tables that capture associations (customer-places-order) with their own hash keys and load metadata",
+      "Attach descriptive and contextual attributes to hubs and links as Satellite tables, each timestamped to track the full history of changes",
+      "Load the raw vault from source systems using pattern-based, parallelizable ETL that inserts without updating, preserving full auditability",
+      "Build business vault and information marts on top of the raw vault to apply business rules and present data in star schema form for consumption"
+    ],
+    "steps_zh": [
+      "从源系统识别业务键并建模为Hub表，每个代表一个核心业务概念（客户、产品、订单），包含哈希键和加载元数据",
+      "将Hub之间的关系建模为Link表，捕获关联（客户-下-订单），有自己的哈希键和加载元数据",
+      "将描述性和上下文属性作为Satellite表附加到Hub和Link上，每条带时间戳以追踪完整变更历史",
+      "使用基于模式的、可并行化的ETL从源系统加载原始库，仅插入不更新，保留完整可审计性",
+      "在原始库之上构建业务库和信息集市，应用业务规则并以星型模式形式呈现数据供消费"
+    ],
+    "ai_relevant": false,
+    "viz_type": "tree",
+    "related": ["star-schema", "data-lakehouse", "data-mesh", "database-migration-patterns"],
+    "tags": ["data-vault", "agile-warehouse", "auditability", "hub-link-satellite"],
+    "origin_author": "Dan Linstedt, 2000 (formalized as 2.0 in 2013)",
+    "origin_source": "Building a Scalable Data Warehouse with Data Vault 2.0 (Morgan Kaufmann, 2015)",
+    "origin_source_zh": "《使用Data Vault 2.0构建可扩展数据仓库》（Morgan Kaufmann，2015）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When multiple source systems with overlapping business keys need to be integrated into a single warehouse",
+      "When full historical auditability and traceability of every data change is a regulatory or business requirement",
+      "When the data warehouse must accommodate frequent source system changes without major rework",
+      "When agile, incremental delivery of warehouse functionality is needed with parallel development across teams"
+    ],
+    "when_to_use_zh": [
+      "当多个具有重叠业务键的源系统需要集成到单一仓库时",
+      "当每个数据变更的完整历史可审计性和可追溯性是监管或业务要求时",
+      "当数据仓库必须适应频繁的源系统变更而无需大规模返工时",
+      "当需要敏捷、增量交付仓库功能且跨团队并行开发时"
+    ],
+    "core_concepts": [
+      "Hubs: tables anchored on business keys representing core business entities, providing a stable integration point across source systems",
+      "Links: tables capturing relationships between hubs, modeling the associations and transactions between business entities",
+      "Satellites: tables containing descriptive attributes and context for hubs and links, timestamped to maintain full change history",
+      "Insert-only loading: all data is appended, never updated or deleted in the raw vault, ensuring complete auditability and reproducibility"
+    ],
+    "core_concepts_zh": [
+      "Hub：以业务键为锚点的表，代表核心业务实体，提供跨源系统的稳定集成点",
+      "Link：捕获Hub之间关系的表，建模业务实体之间的关联和事务",
+      "Satellite：包含Hub和Link描述性属性和上下文的表，带时间戳以维护完整变更历史",
+      "仅插入加载：原始库中所有数据仅追加，不更新或删除，确保完整的可审计性和可重现性"
+    ],
+    "timeline": [
+      ["2000", "Dan Linstedt introduces the original Data Vault modeling methodology"],
+      ["2013", "Data Vault 2.0 formalized with hash keys, pattern-based loading, and NoSQL support"],
+      ["2015", "Linstedt publishes 'Building a Scalable Data Warehouse with Data Vault 2.0' as the definitive guide"],
+      ["2020", "Data Vault 2.0 gains renewed interest as cloud data warehouses (Snowflake, BigQuery) make its patterns more performant"]
+    ],
+    "timeline_zh": [
+      ["2000", "Dan Linstedt引入最初的Data Vault建模方法论"],
+      ["2013", "Data Vault 2.0通过哈希键、基于模式的加载和NoSQL支持正式化"],
+      ["2015", "Linstedt出版《使用Data Vault 2.0构建可扩展数据仓库》作为权威指南"],
+      ["2020", "随着云数据仓库（Snowflake、BigQuery）提升其模式性能，Data Vault 2.0获得新的关注"]
+    ],
+    "dos": [
+      "Do use hash keys for hub and link primary keys because they enable parallel loading and deterministic key generation across distributed systems",
+      "Do keep the raw vault free of business rules because it should be a pure, auditable reflection of source system data",
+      "Do apply business rules in a separate business vault layer because mixing integration and interpretation creates fragile, hard-to-maintain models",
+      "Do generate ETL code from metadata templates because the repetitive hub/link/satellite loading patterns are ideal for automation"
+    ],
+    "dos_zh": [
+      "使用哈希键作为Hub和Link的主键，因为它们支持并行加载和跨分布式系统的确定性键生成",
+      "保持原始库不含业务规则，因为它应该是源系统数据的纯净、可审计的反映",
+      "在单独的业务库层应用业务规则，因为混合集成和解释会创建脆弱、难以维护的模型",
+      "从元数据模板生成ETL代码，因为重复的Hub/Link/Satellite加载模式非常适合自动化"
+    ],
+    "donts": [
+      "Don't expose raw vault tables directly to business users because the hub-link-satellite structure is not intuitive for analysis",
+      "Don't update or delete records in the raw vault because it destroys the audit trail and historical traceability",
+      "Don't skip the information mart layer because business users need star schema or flat table views for their BI tools",
+      "Don't create point-to-point links between satellites because all relationships must flow through properly modeled link tables"
+    ],
+    "donts_zh": [
+      "不要将原始库表直接暴露给业务用户，因为Hub-Link-Satellite结构对分析而言不直观",
+      "不要更新或删除原始库中的记录，因为这会破坏审计追踪和历史可追溯性",
+      "不要跳过信息集市层，因为业务用户需要星型模式或扁平表视图用于BI工具",
+      "不要在Satellite之间创建点对点链接，因为所有关系必须通过正确建模的Link表流转"
+    ],
+    "case_study_company": "ING Bank",
+    "case_study": "ING Bank adopted Data Vault 2.0 to integrate data from over 40 source systems across its global banking operations. The hub-link-satellite model allowed regulatory reporting teams to trace every data point back to its source system and exact load timestamp, meeting strict European banking audit requirements. Parallel loading patterns reduced their nightly ETL window from 12 hours to under 3 hours.",
+    "case_study_zh": "ING银行采用Data Vault 2.0集成其全球银行业务中超过40个源系统的数据。Hub-Link-Satellite模型使监管报告团队能够将每个数据点追溯到其源系统和确切加载时间戳，满足严格的欧洲银行审计要求。并行加载模式将夜间ETL窗口从12小时缩短到不到3小时。",
+    "when_not_to_use": [
+      "When the organization has a single source system and integration across heterogeneous sources is not needed",
+      "When the team lacks data modeling expertise and the learning curve of Data Vault 2.0 is too steep",
+      "When real-time analytics are the primary use case and the multi-layer architecture adds unacceptable latency",
+      "When data volumes are small and a simple star schema directly loaded from sources is sufficient"
+    ],
+    "when_not_to_use_zh": [
+      "当组织只有单一源系统且不需要跨异构源集成时",
+      "当团队缺乏数据建模专业知识且Data Vault 2.0学习曲线过陡时",
+      "当实时分析是主要用例且多层架构增加不可接受的延迟时",
+      "当数据量较小且从源直接加载的简单星型模式即可满足时"
+    ],
+    "adopters": ["ING Bank", "Pfizer", "USAA", "DirectTV", "Department of Defense (US)"]
+  },
+  {
+    "id": 109,
+    "name": "Polyglot Persistence",
+    "name_zh": "多语言持久化",
+    "slug": "polyglot-persistence",
+    "category": "data",
+    "desc": "Use purpose-fit databases for different data access patterns",
+    "desc_zh": "为不同数据访问模式使用最合适的数据库技术",
+    "steps": [
+      "Analyze each service or bounded context to understand its data access patterns: read/write ratio, query complexity, consistency requirements, and data structure",
+      "Select the optimal database technology for each pattern: relational for transactions, document stores for flexible schemas, graph databases for relationships, key-value for caching, time-series for metrics",
+      "Define clear data ownership boundaries so each service owns its database and no external service directly accesses another's datastore",
+      "Implement cross-service data synchronization using event-driven patterns (CDC, events, sagas) rather than shared databases or direct cross-service queries",
+      "Establish operational standards for each database technology including backup, monitoring, scaling, and security procedures to manage the increased operational surface area"
+    ],
+    "steps_zh": [
+      "分析每个服务或限界上下文以理解其数据访问模式：读写比、查询复杂性、一致性要求和数据结构",
+      "为每种模式选择最佳数据库技术：关系型用于事务、文档存储用于灵活模式、图数据库用于关系、键值存储用于缓存、时序数据库用于指标",
+      "定义清晰的数据所有权边界，每个服务拥有自己的数据库，外部服务不直接访问其数据存储",
+      "使用事件驱动模式（CDC、事件、Saga）而非共享数据库或直接跨服务查询来实现跨服务数据同步",
+      "为每种数据库技术建立运维标准，包括备份、监控、扩展和安全流程，以管理增加的运维面"
+    ],
+    "ai_relevant": true,
+    "viz_type": "matrix",
+    "related": ["microservices-decomposition", "data-mesh", "cap-theorem", "change-data-capture"],
+    "tags": ["polyglot", "database", "persistence", "microservices", "data-access"],
+    "origin_author": "Martin Fowler / Pramod Sadalage, 2011",
+    "origin_source": "Polyglot Persistence (martinfowler.com blog, 2011); NoSQL Distilled (Addison-Wesley, 2012)",
+    "origin_source_zh": "「多语言持久化」（martinfowler.com博客，2011）；《NoSQL精粹》（Addison-Wesley，2012）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When different parts of your system have fundamentally different data access patterns that no single database optimizes well",
+      "When a microservices architecture requires each service to own its persistence independently",
+      "When performance requirements demand specialized databases (e.g., graph for social networks, time-series for IoT metrics)",
+      "When the one-size-fits-all relational database has become a bottleneck for specific workloads"
+    ],
+    "when_to_use_zh": [
+      "当系统不同部分具有根本不同的数据访问模式，没有单一数据库能良好优化时",
+      "当微服务架构要求每个服务独立拥有其持久化时",
+      "当性能要求需要专用数据库（如社交网络的图数据库、IoT指标的时序数据库）时",
+      "当一刀切的关系数据库已成为特定工作负载的瓶颈时"
+    ],
+    "core_concepts": [
+      "Purpose-fit storage: selecting database technology based on the specific data model, query patterns, and consistency needs of each bounded context",
+      "Database-per-service: each microservice owns and encapsulates its database, preventing tight coupling through shared data stores",
+      "Data synchronization: using events, CDC, or sagas to keep data eventually consistent across services that use different database technologies",
+      "Operational complexity trade-off: gaining performance and modeling advantages at the cost of managing multiple database technologies, backup strategies, and operational playbooks"
+    ],
+    "core_concepts_zh": [
+      "适配存储：基于每个限界上下文的特定数据模型、查询模式和一致性需求选择数据库技术",
+      "每服务一数据库：每个微服务拥有并封装其数据库，防止通过共享数据存储产生紧耦合",
+      "数据同步：使用事件、CDC或Saga在使用不同数据库技术的服务之间保持最终一致性",
+      "运维复杂性权衡：以管理多种数据库技术、备份策略和运维手册的成本换取性能和建模优势"
+    ],
+    "timeline": [
+      ["2009", "NoSQL movement gains momentum with MongoDB, Cassandra, and Redis challenging relational database hegemony"],
+      ["2011", "Martin Fowler coins 'Polyglot Persistence' and publishes the influential blog post on choosing databases per use case"],
+      ["2012", "Fowler and Sadalage publish 'NoSQL Distilled' providing a systematic framework for database technology selection"],
+      ["2018", "Managed cloud database services (DynamoDB, CosmosDB, Cloud Spanner) lower the operational barrier to polyglot persistence"]
+    ],
+    "timeline_zh": [
+      ["2009", "NoSQL运动随MongoDB、Cassandra和Redis挑战关系数据库霸权而获得动力"],
+      ["2011", "Martin Fowler创造「多语言持久化」术语并发表按用例选择数据库的有影响力博客文章"],
+      ["2012", "Fowler和Sadalage出版《NoSQL精粹》，提供数据库技术选择的系统框架"],
+      ["2018", "托管云数据库服务（DynamoDB、CosmosDB、Cloud Spanner）降低了多语言持久化的运维门槛"]
+    ],
+    "dos": [
+      "Do choose databases based on data access patterns, not technology hype because the wrong database for a workload creates more problems than it solves",
+      "Do keep database choices encapsulated within service boundaries because leaking database specifics creates tight coupling",
+      "Do invest in team training for each database technology adopted because operational expertise is critical for production reliability",
+      "Do start with fewer databases and add specialized ones only when measured performance demands it"
+    ],
+    "dos_zh": [
+      "基于数据访问模式而非技术热潮选择数据库，因为不适合工作负载的数据库会制造更多问题",
+      "将数据库选择封装在服务边界内，因为泄露数据库细节会产生紧耦合",
+      "为每种采用的数据库技术投资团队培训，因为运维专业知识对生产可靠性至关重要",
+      "从较少的数据库开始，仅在测量的性能需求要求时才添加专用数据库"
+    ],
+    "donts": [
+      "Don't adopt a new database technology for every service because the operational overhead grows multiplicatively with each new technology",
+      "Don't share databases between services to avoid the synchronization problem because shared databases create the tightest form of coupling",
+      "Don't ignore the operational tax of running multiple database technologies because each needs its own monitoring, backup, and upgrade procedures",
+      "Don't choose a NoSQL database just to be modern when a relational database meets your needs because unnecessary complexity is the enemy of reliability"
+    ],
+    "donts_zh": [
+      "不要为每个服务采用新的数据库技术，因为运维开销随每种新技术成倍增长",
+      "不要在服务间共享数据库以规避同步问题，因为共享数据库产生最紧密的耦合形式",
+      "不要忽视运行多种数据库技术的运维税，因为每种都需要自己的监控、备份和升级流程",
+      "当关系数据库满足需求时不要为了时髦而选择NoSQL，因为不必要的复杂性是可靠性的敌人"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix employs polyglot persistence across its microservices: Cassandra for distributed session and viewing history storage, MySQL for billing and account data requiring ACID transactions, Elasticsearch for content search, EVCache (memcached) for low-latency caching, and a proprietary time-series store for real-time streaming telemetry. Each database is chosen to optimize for the specific access pattern of its owning service.",
+    "case_study_zh": "Netflix在其微服务中采用多语言持久化：Cassandra用于分布式会话和观看历史存储，MySQL用于需要ACID事务的计费和账户数据，Elasticsearch用于内容搜索，EVCache（memcached）用于低延迟缓存，以及专有时序存储用于实时流媒体遥测。每种数据库都针对其所属服务的特定访问模式进行优化。",
+    "when_not_to_use": [
+      "When a single database technology adequately serves all your data access patterns and adding complexity is not justified",
+      "When the team is small and cannot afford the operational overhead of managing multiple database technologies",
+      "When strong transactional consistency across all data is required and distributed transactions are too complex",
+      "When regulatory requirements mandate a single auditable datastore for all organizational data"
+    ],
+    "when_not_to_use_zh": [
+      "当单一数据库技术能够充分服务所有数据访问模式且增加复杂性不合理时",
+      "当团队规模较小且无法承担管理多种数据库技术的运维开销时",
+      "当需要跨所有数据的强事务一致性且分布式事务过于复杂时",
+      "当监管要求为所有组织数据使用单一可审计的数据存储时"
+    ],
+    "adopters": ["Netflix", "Amazon", "Spotify", "LinkedIn", "eBay"]
+  },
+  {
+    "id": 110,
+    "name": "Feature Store Pattern",
+    "name_zh": "特征存储模式",
+    "slug": "feature-store-pattern",
+    "category": "data",
+    "desc": "Centralized ML feature management for training and serving",
+    "desc_zh": "集中化ML特征管理，统一训练与在线服务",
+    "steps": [
+      "Define features as reusable, versioned entities with clear ownership, descriptions, data types, and lineage tracked in a feature registry",
+      "Build feature pipelines that compute features from raw data sources using batch (Spark) or real-time (Flink, Kafka) transformations and write them to the feature store",
+      "Materialize features into both an offline store (data warehouse or lake) for training and an online store (Redis, DynamoDB) for low-latency serving",
+      "Ensure training-serving consistency by using the same feature definitions and transformation logic for both model training datasets and real-time inference requests",
+      "Enable feature discovery, sharing, and monitoring by providing a catalog with search, usage metrics, data quality checks, and drift detection"
+    ],
+    "steps_zh": [
+      "将特征定义为可复用、版本化的实体，在特征注册表中追踪清晰的所有权、描述、数据类型和血缘",
+      "构建特征管道，使用批处理（Spark）或实时（Flink、Kafka）转换从原始数据源计算特征并写入特征存储",
+      "将特征物化到离线存储（数据仓库或湖）用于训练和在线存储（Redis、DynamoDB）用于低延迟服务",
+      "通过对模型训练数据集和实时推理请求使用相同的特征定义和转换逻辑来确保训练-服务一致性",
+      "通过提供带搜索、使用指标、数据质量检查和漂移检测的目录来实现特征发现、共享和监控"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": ["mlops", "data-lakehouse", "data-mesh", "stream-processing-patterns"],
+    "tags": ["feature-store", "ml-features", "training-serving", "mlops", "data-management"],
+    "origin_author": "Uber Michelangelo team (Hermann, Del Balso et al.), 2017",
+    "origin_source": "Meet Michelangelo: Uber's Machine Learning Platform (Uber Engineering Blog, 2017)",
+    "origin_source_zh": "「认识Michelangelo：Uber的机器学习平台」（Uber工程博客，2017）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When multiple ML models across teams share common features and redundant computation wastes resources",
+      "When training-serving skew causes model accuracy degradation in production",
+      "When feature engineering is the bottleneck in ML development and data scientists spend most of their time on data preparation",
+      "When feature lineage, versioning, and quality monitoring are required for model governance and reproducibility"
+    ],
+    "when_to_use_zh": [
+      "当多个团队的多个ML模型共享通用特征且冗余计算浪费资源时",
+      "当训练-服务偏差导致生产中模型精度下降时",
+      "当特征工程是ML开发的瓶颈且数据科学家大部分时间花在数据准备上时",
+      "当模型治理和可重现性要求特征血缘、版本管理和质量监控时"
+    ],
+    "core_concepts": [
+      "Feature registry: a centralized catalog where features are defined, versioned, documented, and discoverable across the organization",
+      "Offline-online duality: the same features are materialized into an offline store for batch training and an online store for real-time serving with consistent semantics",
+      "Training-serving consistency: identical feature transformation logic is used during training and inference, eliminating the training-serving skew that degrades model quality",
+      "Point-in-time correctness: features for training datasets are computed as of the event timestamp to prevent data leakage and ensure temporal validity"
+    ],
+    "core_concepts_zh": [
+      "特征注册表：集中化目录，在其中定义、版本化、记录特征并使其在组织范围内可发现",
+      "离线-在线双重性：相同特征以一致语义物化到离线存储（用于批量训练）和在线存储（用于实时服务）",
+      "训练-服务一致性：训练和推理使用相同的特征转换逻辑，消除降低模型质量的训练-服务偏差",
+      "时间点正确性：训练数据集的特征按事件时间戳计算，防止数据泄露并确保时间有效性"
+    ],
+    "timeline": [
+      ["2017", "Uber introduces Michelangelo with the first production-scale feature store for ML feature management"],
+      ["2019", "Feast (Google/Gojek) launches as the first open-source feature store; Hopsworks and Tecton follow"],
+      ["2021", "Feature stores become a standard component in ML platforms; AWS SageMaker and Databricks add feature store services"],
+      ["2023", "Feature stores evolve to support real-time features, streaming transformations, and LLM embedding management"]
+    ],
+    "timeline_zh": [
+      ["2017", "Uber推出Michelangelo，首个生产规模的ML特征管理特征存储"],
+      ["2019", "Feast（Google/Gojek）作为首个开源特征存储发布；Hopsworks和Tecton紧随其后"],
+      ["2021", "特征存储成为ML平台的标准组件；AWS SageMaker和Databricks添加特征存储服务"],
+      ["2023", "特征存储演进以支持实时特征、流式转换和LLM嵌入管理"]
+    ],
+    "dos": [
+      "Do enforce point-in-time correctness when generating training datasets because temporal data leakage silently corrupts model quality",
+      "Do version features and track lineage because reproducibility of ML experiments depends on knowing exactly which feature definitions were used",
+      "Do monitor feature data quality and distribution drift in production because degraded features silently degrade model predictions",
+      "Do design features to be reusable across multiple models because the primary value of a feature store is shared computation"
+    ],
+    "dos_zh": [
+      "生成训练数据集时强制时间点正确性，因为时间数据泄露会悄悄破坏模型质量",
+      "对特征进行版本管理和血缘追踪，因为ML实验的可重现性依赖于确切知道使用了哪些特征定义",
+      "在生产中监控特征数据质量和分布漂移，因为退化的特征会悄悄降低模型预测",
+      "设计可跨多个模型复用的特征，因为特征存储的主要价值是共享计算"
+    ],
+    "donts": [
+      "Don't let data scientists compute features in ad-hoc notebooks and deploy them to production without the feature store because it creates training-serving skew",
+      "Don't skip the online store for real-time serving models because fetching features from the offline store at serving time introduces unacceptable latency",
+      "Don't treat the feature store as a data warehouse replacement because it is specifically designed for ML feature lifecycle management",
+      "Don't ignore feature freshness requirements because stale features in the online store produce predictions based on outdated information"
+    ],
+    "donts_zh": [
+      "不要让数据科学家在临时notebook中计算特征并绕过特征存储部署到生产，因为这会产生训练-服务偏差",
+      "不要为实时服务模型跳过在线存储，因为在服务时从离线存储获取特征会引入不可接受的延迟",
+      "不要将特征存储视为数据仓库的替代品，因为它专门为ML特征生命周期管理而设计",
+      "不要忽视特征时效性要求，因为在线存储中的过时特征会基于过时信息产生预测"
+    ],
+    "case_study_company": "Uber",
+    "case_study": "Uber's Michelangelo platform introduced the feature store concept to solve the problem of thousands of ML models needing consistent access to shared features like trip distance, driver rating, and surge multiplier. By centralizing feature computation, Uber eliminated redundant feature pipelines across teams, ensured training-serving parity, and reduced the time to deploy a new ML model from months to weeks.",
+    "case_study_zh": "Uber的Michelangelo平台引入特征存储概念，解决数千个ML模型需要一致访问共享特征（如行程距离、司机评分和动态倍数）的问题。通过集中化特征计算，Uber消除了跨团队的冗余特征管道，确保了训练-服务对等性，并将部署新ML模型的时间从数月缩短到数周。",
+    "when_not_to_use": [
+      "When you have only one or two ML models that do not share features and the overhead of a feature store is not justified",
+      "When all features are simple direct database lookups with no transformation logic that could cause training-serving skew",
+      "When the organization is in early ML adoption and simpler feature management through version-controlled scripts is sufficient",
+      "When models do not require real-time serving and batch prediction with offline features meets all requirements"
+    ],
+    "when_not_to_use_zh": [
+      "当只有一两个不共享特征的ML模型且特征存储的开销不合理时",
+      "当所有特征都是简单的直接数据库查找，没有可能导致训练-服务偏差的转换逻辑时",
+      "当组织处于ML早期采纳阶段且通过版本控制脚本的简单特征管理即可满足时",
+      "当模型不需要实时服务且使用离线特征的批量预测满足所有要求时"
+    ],
+    "adopters": ["Uber", "Airbnb", "Spotify", "Doordash", "Gojek"]
+  }
+]
