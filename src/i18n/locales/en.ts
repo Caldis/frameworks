@@ -1,8 +1,8 @@
 import type { LocaleStrings } from '../types'
 
 export const en: LocaleStrings = {
-  siteTitle: '100 Software Design Frameworks',
-  siteTitleLine1: '100 Software Design',
+  siteTitle: 'Software Design Frameworks',
+  siteTitleLine1: 'Software Design',
   siteTitleLine2: 'Frameworks',
   siteSubtitle: 'A curated collection for engineers, architects, and AI agents',
   allFrameworks: 'All Frameworks',

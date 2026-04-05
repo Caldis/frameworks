@@ -37,7 +37,7 @@
 - [ ] Update IDs (renumber to 1-200)
 **Estimate**: Large
 
-### Sprint S04: Multi-Dimensional Taxonomy [READY]
+### Sprint S04: Multi-Dimensional Taxonomy [DONE 2026-04-06]
 **Priority**: Medium (architecture change)
 **Contract**: Frameworks tagged with abstraction_level, quality_concerns, maturity_ring. UI supports multi-filter.
 **Tasks**:

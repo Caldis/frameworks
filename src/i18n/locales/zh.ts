@@ -1,8 +1,8 @@
 import type { LocaleStrings } from '../types'
 
 export const zh: LocaleStrings = {
-  siteTitle: '100 个软件设计框架',
-  siteTitleLine1: '100 个软件设计',
+  siteTitle: '软件设计框架',
+  siteTitleLine1: '软件设计',
   siteTitleLine2: '框架',
   siteSubtitle: '为工程师、架构师和 AI 智能体精心策划的框架集',
   allFrameworks: '全部框架',
