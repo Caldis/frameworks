@@ -24,7 +24,89 @@
     "ai_relevant": true,
     "viz_type": "flow",
     "related": ["canary-deployment", "feature-flags", "gitops"],
-    "tags": ["deployment", "zero-downtime", "blue-green", "rollback"]
+    "tags": ["deployment", "zero-downtime", "blue-green", "rollback"],
+    "origin_author": "Daniel Quinlan / early web operations community",
+    "origin_source": "The technique was popularized by Jez Humble and David Farley in 'Continuous Delivery' (2010), building on practices from large-scale web operations in the early 2000s.",
+    "origin_source_zh": "该技术由Jez Humble和David Farley在《持续交付》（2010年）一书中推广，其实践源于2000年代早期的大规模Web运维经验。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Mission-critical services that require zero-downtime releases",
+      "Teams needing instant rollback capability within seconds",
+      "Regulated environments where pre-production validation on a live-identical environment is mandatory",
+      "Applications with long startup times that make in-place rolling updates impractical"
+    ],
+    "when_to_use_zh": [
+      "需要零停机发布的关键业务服务",
+      "需要在数秒内实现即时回滚能力的团队",
+      "监管环境要求在与生产完全一致的环境中进行上线前验证",
+      "启动时间较长、不适合就地滚动更新的应用"
+    ],
+    "core_concepts": [
+      "Environment symmetry: Blue and Green environments must be identical in infrastructure, configuration, and capacity",
+      "Atomic traffic switch: all user traffic cuts over in a single routing change, not gradually",
+      "Instant rollback: the previous environment remains warm and ready, enabling sub-second failback",
+      "Immutable releases: each environment runs exactly one version at a time with no in-place mutations"
+    ],
+    "core_concepts_zh": [
+      "环境对称性：蓝色和绿色环境在基础设施、配置和容量上必须完全一致",
+      "原子流量切换：所有用户流量通过一次路由变更完成切换，而非逐步迁移",
+      "即时回滚：前一版本环境保持热备状态，可在亚秒级完成回退",
+      "不可变发布：每个环境同一时刻仅运行一个版本，不进行就地变更"
+    ],
+    "timeline": [
+      ["2005", "Early web operations teams at Amazon and Google adopt dual-environment switching patterns"],
+      ["2010", "Jez Humble and David Farley formalize blue-green deployment in 'Continuous Delivery'"],
+      ["2013", "Cloud providers (AWS Elastic Beanstalk, Heroku) offer built-in blue-green deployment support"],
+      ["2016", "Kubernetes and container orchestrators simplify blue-green via service abstractions"],
+      ["2020", "Serverless platforms adopt blue-green natively through aliased function versions"]
+    ],
+    "timeline_zh": [
+      ["2005", "Amazon和Google等早期Web运维团队采用双环境切换模式"],
+      ["2010", "Jez Humble和David Farley在《持续交付》中正式定义蓝绿部署"],
+      ["2013", "云服务商（AWS Elastic Beanstalk、Heroku）提供内置蓝绿部署支持"],
+      ["2016", "Kubernetes和容器编排器通过服务抽象简化蓝绿部署"],
+      ["2020", "无服务器平台通过函数版本别名原生支持蓝绿部署"]
+    ],
+    "dos": [
+      "Automate the environment provisioning so Blue and Green stay perfectly in sync",
+      "Run comprehensive smoke tests against the idle environment before switching traffic",
+      "Keep the previous environment available for at least one full release cycle for rollback",
+      "Use database migration strategies (expand-contract) that are compatible with both versions running simultaneously"
+    ],
+    "dos_zh": [
+      "自动化环境供应，确保蓝色和绿色环境完全同步",
+      "在切换流量前对闲置环境执行全面的冒烟测试",
+      "至少保留前一环境一个完整发布周期，以便回滚",
+      "使用兼容两个版本同时运行的数据库迁移策略（扩展-收缩模式）"
+    ],
+    "donts": [
+      "Don't let Blue and Green environments drift in infrastructure or configuration",
+      "Don't switch traffic without automated health checks confirming the new environment is healthy",
+      "Don't forget to handle database schema changes that must work with both old and new application versions",
+      "Don't keep both environments running indefinitely, as it doubles infrastructure cost"
+    ],
+    "donts_zh": [
+      "不要让蓝色和绿色环境在基础设施或配置上产生偏差",
+      "在自动化健康检查确认新环境正常前不要切换流量",
+      "不要忽略必须兼容新旧应用版本的数据库模式变更",
+      "不要无限期地同时运行两套环境，这会使基础设施成本翻倍"
+    ],
+    "case_study_company": "Amazon",
+    "case_study": "Amazon uses blue-green deployment patterns across its retail platform to ship thousands of changes daily with zero downtime. By maintaining parallel environments behind their load balancers, they can validate each release with production traffic patterns before committing the switch, and roll back within seconds if anomalies are detected.",
+    "case_study_zh": "Amazon在其零售平台中使用蓝绿部署模式，每天发布数千次变更且零停机。通过在负载均衡器后维护并行环境，他们可以用生产流量模式验证每次发布，并在检测到异常时数秒内完成回滚。",
+    "when_not_to_use": [
+      "Budget-constrained projects where maintaining two full environments is too expensive",
+      "Applications requiring gradual user exposure rather than all-at-once traffic switching",
+      "Systems with complex stateful sessions that cannot be seamlessly transferred between environments",
+      "Environments where database schema changes are tightly coupled to application code"
+    ],
+    "when_not_to_use_zh": [
+      "预算有限、无法承担维护两套完整环境成本的项目",
+      "需要逐步暴露给用户而非一次性切换流量的应用",
+      "具有复杂有状态会话、无法在环境间无缝转移的系统",
+      "数据库模式变更与应用代码紧密耦合的环境"
+    ],
+    "adopters": ["Amazon", "Facebook", "LinkedIn", "Etsy", "Heroku"]
   },
   {
     "id": 60,
@@ -51,7 +133,87 @@
     "ai_relevant": true,
     "viz_type": "flow",
     "related": ["blue-green-deployment", "feature-flags", "dora-metrics"],
-    "tags": ["deployment", "canary", "gradual-rollout", "progressive-delivery"]
+    "tags": ["deployment", "canary", "gradual-rollout", "progressive-delivery"],
+    "origin_author": "Google Site Reliability Engineering team",
+    "origin_source": "Named after the coal mining practice of using canaries to detect toxic gases. Google SRE formalized canary analysis for software deployments in the mid-2000s, later documented in 'Site Reliability Engineering' (2016).",
+    "origin_source_zh": "名称源于煤矿中用金丝雀检测有毒气体的做法。Google SRE团队在2000年代中期将金丝雀分析正式应用于软件部署，后收录于《站点可靠性工程》（2016年）一书中。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "High-traffic services where even small defects can impact millions of users",
+      "Teams wanting data-driven deployment decisions based on real production metrics",
+      "Releases with uncertain risk profiles that benefit from progressive exposure",
+      "Microservice architectures where individual services can be independently traffic-shifted"
+    ],
+    "when_to_use_zh": [
+      "即使微小缺陷也可能影响数百万用户的高流量服务",
+      "希望基于真实生产指标进行数据驱动部署决策的团队",
+      "风险不确定、适合渐进式暴露的发布",
+      "可对单个服务独立进行流量切换的微服务架构"
+    ],
+    "core_concepts": [
+      "Progressive traffic shifting: incrementally route more users to the new version based on health signals",
+      "Automated canary analysis: statistically compare canary metrics against baseline to decide promotion or rollback",
+      "Blast radius control: limit initial exposure so failures affect only a small fraction of users",
+      "Metric-gated promotion: traffic increases are blocked unless key SLIs remain within acceptable thresholds"
+    ],
+    "core_concepts_zh": [
+      "渐进式流量切换：根据健康信号逐步将更多用户路由到新版本",
+      "自动化金丝雀分析：通过统计方法对比金丝雀指标与基线，决定晋升或回滚",
+      "爆炸半径控制：限制初始暴露范围，使故障仅影响少量用户",
+      "指标门控晋升：除非关键SLI保持在可接受阈值内，否则阻止流量递增"
+    ],
+    "timeline": [
+      ["2004", "Google begins using automated canary analysis for production deployments internally"],
+      ["2013", "Netflix develops Kayenta, an open-source automated canary analysis tool"],
+      ["2016", "Google publishes SRE book detailing canary deployment best practices"],
+      ["2018", "Flagger and Argo Rollouts bring canary deployments to Kubernetes natively"],
+      ["2021", "Cloud-native progressive delivery becomes mainstream with service mesh integration"]
+    ],
+    "timeline_zh": [
+      ["2004", "Google开始在内部生产部署中使用自动化金丝雀分析"],
+      ["2013", "Netflix开发Kayenta，一款开源的自动化金丝雀分析工具"],
+      ["2016", "Google出版SRE书籍，详述金丝雀部署最佳实践"],
+      ["2018", "Flagger和Argo Rollouts将金丝雀部署原生引入Kubernetes"],
+      ["2021", "云原生渐进式交付随服务网格集成成为主流"]
+    ],
+    "dos": [
+      "Define clear success criteria and metric thresholds before starting a canary rollout",
+      "Use automated canary analysis tools (Kayenta, Flagger) rather than manual observation",
+      "Include both technical metrics (latency, errors) and business metrics (conversion, revenue) in canary evaluation",
+      "Start with a very small traffic percentage (1-2%) and increase gradually"
+    ],
+    "dos_zh": [
+      "在开始金丝雀发布前明确定义成功标准和指标阈值",
+      "使用自动化金丝雀分析工具（Kayenta、Flagger）而非人工观察",
+      "在金丝雀评估中同时包含技术指标（延迟、错误率）和业务指标（转化率、收入）",
+      "从极小的流量比例（1-2%）开始，逐步递增"
+    ],
+    "donts": [
+      "Don't skip canary analysis and promote based on gut feeling alone",
+      "Don't use too short an observation window that misses slow-burning issues",
+      "Don't ignore statistically insignificant sample sizes when evaluating canary health",
+      "Don't forget to account for time-of-day and traffic pattern variations in canary comparisons"
+    ],
+    "donts_zh": [
+      "不要跳过金丝雀分析，仅凭直觉决定晋升",
+      "不要设置过短的观察窗口，以免遗漏缓慢暴露的问题",
+      "不要在评估金丝雀健康状况时忽略样本量的统计显著性",
+      "不要在金丝雀对比中忽视时段和流量模式差异的影响"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix developed Kayenta, their automated canary analysis platform, to evaluate every production deployment across hundreds of microservices. Kayenta performs statistical comparison between canary and baseline metrics, enabling Netflix to detect regressions that affect less than 0.1% of users. This system processes thousands of canary analyses daily and has dramatically reduced the incidence of production incidents caused by bad deployments.",
+    "case_study_zh": "Netflix开发了Kayenta自动化金丝雀分析平台，用于评估数百个微服务的每次生产部署。Kayenta对金丝雀和基线指标进行统计对比，使Netflix能够检测到影响不到0.1%用户的回归问题。该系统每天处理数千次金丝雀分析，大幅减少了因不良部署导致的生产事故。",
+    "when_not_to_use": [
+      "Low-traffic services where statistical significance cannot be achieved in a reasonable timeframe",
+      "Deployments requiring all-or-nothing database schema changes that both versions cannot share",
+      "Emergency hotfixes that need immediate full rollout rather than gradual promotion"
+    ],
+    "when_not_to_use_zh": [
+      "低流量服务，无法在合理时间内达到统计显著性",
+      "需要全量数据库模式变更、新旧版本无法共存的部署",
+      "需要立即全量发布而非逐步晋升的紧急修复"
+    ],
+    "adopters": ["Netflix", "Google", "Microsoft", "Uber", "Lyft"]
   },
   {
     "id": 61,
@@ -78,7 +240,87 @@
     "ai_relevant": true,
     "viz_type": "tree",
     "related": ["canary-deployment", "blue-green-deployment", "branch-by-abstraction"],
-    "tags": ["feature-flags", "toggles", "release-management", "progressive-delivery"]
+    "tags": ["feature-flags", "toggles", "release-management", "progressive-delivery"],
+    "origin_author": "Flickr engineering team (early practitioners); Martin Fowler (formalization)",
+    "origin_source": "Feature toggles emerged from continuous deployment practices at Flickr around 2009. Martin Fowler published the definitive taxonomy of feature toggles in his 2010 blog post 'FeatureToggle', distinguishing release toggles, experiment toggles, ops toggles, and permission toggles.",
+    "origin_source_zh": "功能开关源于Flickr团队2009年前后的持续部署实践。Martin Fowler在2010年发表的博客文章「FeatureToggle」中发布了功能开关的权威分类法，区分了发布开关、实验开关、运维开关和权限开关。",
+    "complexity": "beginner",
+    "when_to_use": [
+      "Teams practicing trunk-based development who need to merge incomplete features safely",
+      "Product teams running A/B experiments to validate features with real users",
+      "Operations teams needing kill switches to disable problematic features without redeployment",
+      "Organizations requiring gradual feature rollouts to specific user segments or regions"
+    ],
+    "when_to_use_zh": [
+      "采用主干开发、需要安全合并未完成功能的团队",
+      "需要通过A/B实验验证功能效果的产品团队",
+      "需要无需重新部署即可禁用问题功能的运维团队",
+      "需要向特定用户群体或区域逐步发布功能的组织"
+    ],
+    "core_concepts": [
+      "Toggle types: release toggles (short-lived), experiment toggles (A/B tests), ops toggles (circuit breakers), and permission toggles (premium features)",
+      "Targeting rules: flags can be evaluated based on user attributes, percentages, environments, or custom contexts",
+      "Flag lifecycle management: flags should have owners, expiration dates, and scheduled cleanup to prevent technical debt",
+      "Separation of deploy and release: code can be deployed any time; business decides when the feature goes live"
+    ],
+    "core_concepts_zh": [
+      "开关类型：发布开关（短期）、实验开关（A/B测试）、运维开关（熔断器）和权限开关（付费功能）",
+      "目标规则：开关可基于用户属性、百分比、环境或自定义上下文进行评估",
+      "开关生命周期管理：开关应有负责人、过期日期和定期清理计划，以防止技术债务",
+      "部署与发布分离：代码可随时部署，业务决定功能何时上线"
+    ],
+    "timeline": [
+      ["2009", "Flickr engineers describe using feature flags for continuous deployment at 10+ deploys/day"],
+      ["2010", "Martin Fowler publishes 'FeatureToggle' article establishing the toggle taxonomy"],
+      ["2013", "LaunchDarkly founded as the first dedicated feature flag management platform"],
+      ["2017", "Feature flags become standard practice in progressive delivery and trunk-based development"],
+      ["2022", "OpenFeature project launched under CNCF to create a vendor-neutral feature flag standard"]
+    ],
+    "timeline_zh": [
+      ["2009", "Flickr工程师描述使用功能开关实现每天10次以上持续部署"],
+      ["2010", "Martin Fowler发表「FeatureToggle」文章，建立开关分类体系"],
+      ["2013", "LaunchDarkly成立，成为首个专业功能开关管理平台"],
+      ["2017", "功能开关成为渐进式交付和主干开发的标准实践"],
+      ["2022", "OpenFeature项目在CNCF下启动，创建厂商中立的功能开关标准"]
+    ],
+    "dos": [
+      "Assign an owner and expiration date to every feature flag from the moment of creation",
+      "Use a centralized flag management system rather than scattered config files",
+      "Test both flag-on and flag-off code paths in your CI pipeline",
+      "Remove stale flags promptly after full rollout to prevent technical debt accumulation"
+    ],
+    "dos_zh": [
+      "从创建之日起就为每个功能开关指定负责人和过期日期",
+      "使用集中式开关管理系统，而非分散的配置文件",
+      "在CI流水线中测试开关开启和关闭两种代码路径",
+      "功能完全上线后及时移除过期开关，防止技术债务积累"
+    ],
+    "donts": [
+      "Don't let feature flags accumulate without cleanup -- stale flags become a major source of complexity",
+      "Don't nest multiple feature flags in deeply coupled conditionals",
+      "Don't use feature flags as a substitute for proper configuration management",
+      "Don't forget to log flag evaluation results for debugging and audit trails"
+    ],
+    "donts_zh": [
+      "不要让功能开关在无清理的情况下积累——过期开关是复杂性的主要来源",
+      "不要在深度耦合的条件判断中嵌套多个功能开关",
+      "不要将功能开关作为正式配置管理的替代方案",
+      "不要忘记记录开关评估结果，以便调试和审计追踪"
+    ],
+    "case_study_company": "GitHub",
+    "case_study": "GitHub uses feature flags extensively through their internal system called Flipper to manage the rollout of every major feature. When launching GitHub Copilot, feature flags allowed them to gradually expose the feature to internal engineers, then waitlisted users, and finally the general public. This approach let them collect telemetry and fix issues at each stage before widening exposure.",
+    "case_study_zh": "GitHub通过其内部系统Flipper广泛使用功能开关来管理每个重要功能的发布。在推出GitHub Copilot时，功能开关让他们先向内部工程师、再向候补用户、最后向公众逐步开放。这种方式使他们能在每个阶段收集遥测数据并修复问题，然后再扩大暴露范围。",
+    "when_not_to_use": [
+      "Simple applications with infrequent releases that do not justify the overhead of flag management",
+      "Tightly coupled monolithic systems where flag evaluation paths become unmanageably complex",
+      "Situations where regulatory requirements demand that all deployed code be active and auditable"
+    ],
+    "when_not_to_use_zh": [
+      "发布频率低、不值得承担开关管理开销的简单应用",
+      "紧耦合的单体系统中，开关评估路径会变得不可管理地复杂",
+      "监管要求所有已部署代码必须处于活跃且可审计状态的场景"
+    ],
+    "adopters": ["GitHub", "Netflix", "Google", "Facebook", "LaunchDarkly"]
   },
   {
     "id": 62,
@@ -105,7 +347,89 @@
     "ai_relevant": false,
     "viz_type": "cycle",
     "related": ["infrastructure-as-code", "three-ways-devops", "dora-metrics"],
-    "tags": ["gitops", "declarative", "reconciliation", "kubernetes"]
+    "tags": ["gitops", "declarative", "reconciliation", "kubernetes"],
+    "origin_author": "Weaveworks / Alexis Richardson",
+    "origin_source": "Alexis Richardson, CEO of Weaveworks, coined the term 'GitOps' in a 2017 blog post describing how Weaveworks managed Kubernetes clusters using Git as the single source of truth with automated reconciliation.",
+    "origin_source_zh": "Weaveworks CEO Alexis Richardson于2017年在一篇博客文章中首创「GitOps」一词，描述Weaveworks如何使用Git作为唯一可信来源并通过自动协调来管理Kubernetes集群。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Kubernetes-native environments where declarative configuration is the natural paradigm",
+      "Teams requiring a complete audit trail of every infrastructure change via Git history",
+      "Organizations wanting to enforce change management through pull request review workflows",
+      "Multi-cluster or multi-environment setups needing consistent state synchronization"
+    ],
+    "when_to_use_zh": [
+      "声明式配置为自然范式的Kubernetes原生环境",
+      "需要通过Git历史记录对每次基础设施变更进行完整审计追踪的团队",
+      "希望通过Pull Request审查工作流强制执行变更管理的组织",
+      "需要一致状态同步的多集群或多环境部署"
+    ],
+    "core_concepts": [
+      "Declarative desired state: all infrastructure and app config is expressed as declarative manifests stored in Git",
+      "Continuous reconciliation: a GitOps operator constantly compares desired state in Git against actual state and corrects drift",
+      "Pull-based deployment: the operator pulls changes from Git rather than CI pushing changes to the cluster",
+      "Git as audit log: every change is a commit with author, timestamp, review, and revert capability"
+    ],
+    "core_concepts_zh": [
+      "声明式期望状态：所有基础设施和应用配置以声明式清单形式存储在Git中",
+      "持续协调：GitOps控制器不断对比Git中的期望状态与实际状态，修正偏差",
+      "拉取式部署：控制器从Git拉取变更，而非由CI推送变更到集群",
+      "Git作为审计日志：每次变更都是一次提交，包含作者、时间戳、审查记录和回退能力"
+    ],
+    "timeline": [
+      ["2017", "Alexis Richardson at Weaveworks coins the term 'GitOps' in a blog post"],
+      ["2018", "Weaveworks releases Flux, the first purpose-built GitOps operator for Kubernetes"],
+      ["2019", "Argo CD gains rapid adoption as an alternative GitOps controller with a rich UI"],
+      ["2021", "CNCF accepts Flux and Argo as incubating projects, validating GitOps as a standard pattern"],
+      ["2023", "OpenGitOps project publishes formal GitOps Principles v1.0 under CNCF"]
+    ],
+    "timeline_zh": [
+      ["2017", "Weaveworks的Alexis Richardson在博客文章中首创「GitOps」一词"],
+      ["2018", "Weaveworks发布Flux，首个专为Kubernetes构建的GitOps控制器"],
+      ["2019", "Argo CD作为具有丰富UI的替代GitOps控制器迅速获得采用"],
+      ["2021", "CNCF接纳Flux和Argo为孵化项目，确认GitOps为标准模式"],
+      ["2023", "OpenGitOps项目在CNCF下发布正式的GitOps原则v1.0"]
+    ],
+    "dos": [
+      "Keep application config and infrastructure config in separate Git repositories for independent lifecycle management",
+      "Use sealed secrets or external secret operators to avoid storing plaintext secrets in Git",
+      "Set up drift detection alerts so you know immediately when actual state diverges from Git",
+      "Implement branch protection and mandatory code review for all config repository changes"
+    ],
+    "dos_zh": [
+      "将应用配置和基础设施配置放在独立的Git仓库中，便于独立生命周期管理",
+      "使用加密密钥或外部密钥操作器，避免在Git中存储明文密钥",
+      "设置偏差检测告警，在实际状态偏离Git时立即通知",
+      "对配置仓库的所有变更实施分支保护和强制代码审查"
+    ],
+    "donts": [
+      "Don't store plaintext secrets in the Git repository",
+      "Don't bypass the GitOps workflow by making manual changes directly to the cluster",
+      "Don't use a single monolithic repository for all environments without clear separation",
+      "Don't ignore reconciliation failures or drift alerts as they indicate state inconsistencies"
+    ],
+    "donts_zh": [
+      "不要在Git仓库中存储明文密钥",
+      "不要绕过GitOps工作流直接手动修改集群",
+      "不要在没有明确分隔的情况下将所有环境放在单一巨型仓库中",
+      "不要忽略协调失败或偏差告警，它们表明状态不一致"
+    ],
+    "case_study_company": "Weaveworks",
+    "case_study": "Weaveworks, the company that coined GitOps, used the pattern to manage their own SaaS platform running on Kubernetes. By storing all cluster configuration in Git and using Flux for continuous reconciliation, they achieved a fully auditable deployment pipeline where any engineer could trace exactly what changed, when, and why. Recovery from incidents was reduced to a simple git revert.",
+    "case_study_zh": "创造GitOps一词的Weaveworks公司使用该模式管理其运行在Kubernetes上的SaaS平台。通过将所有集群配置存储在Git中并使用Flux进行持续协调，他们实现了完全可审计的部署流水线，任何工程师都能精确追踪变更内容、时间和原因。故障恢复简化为一次git revert操作。",
+    "when_not_to_use": [
+      "Imperative infrastructure that cannot be expressed declaratively (legacy systems, manual provisioning)",
+      "Small teams or projects where the overhead of GitOps tooling exceeds the governance benefits",
+      "Environments with rapid, frequent secret rotations that would create excessive Git commits",
+      "Systems requiring real-time imperative commands (emergency scaling, live debugging) that cannot wait for reconciliation loops"
+    ],
+    "when_not_to_use_zh": [
+      "无法以声明式方式表达的命令式基础设施（遗留系统、手动供应）",
+      "GitOps工具开销超过治理收益的小型团队或项目",
+      "密钥频繁轮换、会产生过多Git提交的环境",
+      "需要实时命令式操作（紧急扩容、在线调试）、无法等待协调循环的系统"
+    ],
+    "adopters": ["Weaveworks", "Intuit", "Deutsche Telekom", "Alibaba", "Red Hat"]
   },
   {
     "id": 63,
@@ -132,7 +456,87 @@
     "ai_relevant": false,
     "viz_type": "radar",
     "related": ["three-ways-devops", "calms-framework", "sli-slo-sla"],
-    "tags": ["dora", "delivery-performance", "metrics", "devops"]
+    "tags": ["dora", "delivery-performance", "metrics", "devops"],
+    "origin_author": "Nicole Forsgren, Jez Humble, Gene Kim",
+    "origin_source": "The DORA (DevOps Research and Assessment) metrics originated from research led by Dr. Nicole Forsgren, Jez Humble, and Gene Kim, published in the annual State of DevOps Reports starting in 2014 and formalized in their 2018 book 'Accelerate: The Science of Lean Software and DevOps'.",
+    "origin_source_zh": "DORA（DevOps研究与评估）指标源于Nicole Forsgren博士、Jez Humble和Gene Kim主导的研究，自2014年起发表在年度「DevOps现状报告」中，并在2018年出版的《Accelerate：精益软件与DevOps的科学》一书中正式定义。",
+    "complexity": "beginner",
+    "when_to_use": [
+      "Organizations wanting an objective, research-backed way to measure software delivery performance",
+      "Leadership teams seeking to benchmark engineering effectiveness across teams or against industry peers",
+      "DevOps transformation initiatives that need baseline metrics and improvement tracking",
+      "Teams looking to identify bottlenecks in their CI/CD pipeline through data"
+    ],
+    "when_to_use_zh": [
+      "希望以客观、有研究支撑的方式衡量软件交付效能的组织",
+      "需要跨团队或与行业对标来评估工程效能的领导层",
+      "需要基线指标和改进跟踪的DevOps转型计划",
+      "希望通过数据识别CI/CD流水线瓶颈的团队"
+    ],
+    "core_concepts": [
+      "Deployment Frequency: how often code is successfully deployed to production, reflecting batch size and delivery cadence",
+      "Lead Time for Changes: elapsed time from code commit to running in production, measuring pipeline efficiency",
+      "Change Failure Rate: percentage of deployments that cause a failure requiring remediation, measuring release quality",
+      "Mean Time to Restore (MTTR): how quickly a team recovers from a production failure, measuring operational resilience"
+    ],
+    "core_concepts_zh": [
+      "部署频率：代码成功部署到生产环境的频率，反映批次大小和交付节奏",
+      "变更前置时间：从代码提交到在生产环境运行的时间，衡量流水线效率",
+      "变更失败率：导致需要修复的故障的部署比例，衡量发布质量",
+      "平均恢复时间（MTTR）：团队从生产故障中恢复的速度，衡量运维韧性"
+    ],
+    "timeline": [
+      ["2014", "First State of DevOps Report published by Puppet Labs with Dr. Nicole Forsgren as lead researcher"],
+      ["2015", "DORA (DevOps Research and Assessment) established as an independent research organization"],
+      ["2018", "'Accelerate' book published, codifying the four key metrics and their statistical correlations"],
+      ["2019", "Google acquires DORA; metrics integrated into Google Cloud DevOps dashboards"],
+      ["2022", "DORA adds reliability as a fifth metric; DORA team expands research to platform engineering"]
+    ],
+    "timeline_zh": [
+      ["2014", "由Puppet Labs发布首份「DevOps现状报告」，Nicole Forsgren博士为首席研究员"],
+      ["2015", "DORA（DevOps研究与评估）作为独立研究机构成立"],
+      ["2018", "《Accelerate》出版，系统化定义四项关键指标及其统计相关性"],
+      ["2019", "Google收购DORA；指标集成到Google Cloud DevOps仪表盘"],
+      ["2022", "DORA新增可靠性作为第五项指标；研究扩展到平台工程领域"]
+    ],
+    "dos": [
+      "Automate metric collection from CI/CD pipelines rather than relying on manual surveys",
+      "Use DORA metrics to identify systemic bottlenecks, not to compare or rank individual developers",
+      "Track trends over time rather than obsessing over absolute numbers",
+      "Combine DORA metrics with qualitative feedback to get the full picture of delivery health"
+    ],
+    "dos_zh": [
+      "从CI/CD流水线自动采集指标，而非依赖人工调查",
+      "使用DORA指标识别系统性瓶颈，而非对比或排名个人开发者",
+      "跟踪趋势变化，而非过分关注绝对数字",
+      "将DORA指标与定性反馈结合，全面了解交付健康状况"
+    ],
+    "donts": [
+      "Don't use DORA metrics as individual performance KPIs, which leads to gaming and toxic culture",
+      "Don't cherry-pick only the metrics that look good while ignoring the ones that reveal problems",
+      "Don't treat elite-tier benchmarks as universal targets without considering your organization's context",
+      "Don't measure without acting -- metrics are only valuable when they drive improvement initiatives"
+    ],
+    "donts_zh": [
+      "不要将DORA指标作为个人绩效KPI，这会导致刷数据和有害文化",
+      "不要只挑选表现好的指标，而忽略暴露问题的指标",
+      "不要不考虑组织实际情况就将精英级基准当作普遍目标",
+      "不要只度量不行动——指标只有在驱动改进时才有价值"
+    ],
+    "case_study_company": "Google",
+    "case_study": "After acquiring DORA in 2019, Google integrated the four key metrics into its internal engineering productivity framework. Teams across Google Cloud use automated DORA dashboards to identify pipeline bottlenecks and track improvement quarter-over-quarter. The data showed that teams adopting trunk-based development and automated testing consistently achieved elite DORA performance, validating the research findings at massive scale.",
+    "case_study_zh": "Google在2019年收购DORA后，将四项关键指标集成到其内部工程生产力框架中。Google Cloud各团队使用自动化DORA仪表盘识别流水线瓶颈并逐季跟踪改进。数据表明，采用主干开发和自动化测试的团队持续达到DORA精英级表现，在大规模环境中验证了研究结论。",
+    "when_not_to_use": [
+      "Very early-stage startups where the focus should be on product-market fit rather than delivery optimization",
+      "One-off projects or proof-of-concepts where ongoing delivery performance is irrelevant",
+      "Organizations without CI/CD pipelines that cannot meaningfully collect the four metrics"
+    ],
+    "when_not_to_use_zh": [
+      "应聚焦产品市场匹配而非交付优化的早期初创公司",
+      "一次性项目或概念验证，持续交付效能不相关",
+      "没有CI/CD流水线、无法有效采集四项指标的组织"
+    ],
+    "adopters": ["Google", "Microsoft", "Spotify", "Target", "Capital One"]
   },
   {
     "id": 64,
@@ -159,7 +563,87 @@
     "ai_relevant": false,
     "viz_type": "pyramid",
     "related": ["three-ways-devops", "dora-metrics", "team-topologies"],
-    "tags": ["devops", "culture", "automation", "lean", "sharing"]
+    "tags": ["devops", "culture", "automation", "lean", "sharing"],
+    "origin_author": "Jez Humble and Damon Edwards",
+    "origin_source": "The CALMS framework was introduced by Jez Humble and Damon Edwards around 2010 as a way to assess whether an organization is ready to adopt DevOps. It evolved from the broader DevOps movement catalyzed by the 2009 DevOpsDays conference in Ghent, Belgium.",
+    "origin_source_zh": "CALMS框架由Jez Humble和Damon Edwards于2010年前后提出，用于评估组织是否具备采纳DevOps的条件。它源于2009年在比利时根特举办的DevOpsDays大会所催生的DevOps运动。",
+    "complexity": "beginner",
+    "when_to_use": [
+      "Organizations beginning a DevOps transformation and needing a maturity assessment framework",
+      "Teams struggling with dev/ops silos who need a structured approach to cultural change",
+      "Leadership evaluating DevOps readiness across multiple dimensions beyond just tooling",
+      "Consultants or coaches guiding enterprise DevOps adoption programs"
+    ],
+    "when_to_use_zh": [
+      "开始DevOps转型并需要成熟度评估框架的组织",
+      "面临开发/运维壁垒、需要结构化文化变革方法的团队",
+      "需要从工具之外的多个维度评估DevOps就绪度的领导层",
+      "指导企业DevOps采纳项目的顾问或教练"
+    ],
+    "core_concepts": [
+      "Culture: shared responsibility between development and operations, blameless post-mortems, and psychological safety",
+      "Automation: eliminate manual toil through CI/CD pipelines, infrastructure as code, and automated testing",
+      "Lean: minimize waste, reduce batch sizes, limit work-in-progress, and use value-stream mapping",
+      "Measurement and Sharing: collect data to drive decisions, and spread knowledge through documentation, demos, and retrospectives"
+    ],
+    "core_concepts_zh": [
+      "文化：开发与运维之间的共同责任、无责任事后回顾和心理安全感",
+      "自动化：通过CI/CD流水线、基础设施即代码和自动化测试消除手工劳动",
+      "精益：减少浪费、缩小批次、限制在制品数量，使用价值流图",
+      "度量与共享：通过数据驱动决策，通过文档、演示和回顾会传播知识"
+    ],
+    "timeline": [
+      ["2008", "Patrick Debois and Andrew Shafer discuss 'Agile Infrastructure' at Agile 2008 conference"],
+      ["2009", "First DevOpsDays conference held in Ghent, Belgium, launching the DevOps movement"],
+      ["2010", "Jez Humble and Damon Edwards introduce the CALMS framework as a DevOps maturity model"],
+      ["2013", "CALMS widely adopted in enterprise DevOps transformation programs worldwide"],
+      ["2016", "'The DevOps Handbook' by Gene Kim et al. extensively references CALMS principles"]
+    ],
+    "timeline_zh": [
+      ["2008", "Patrick Debois和Andrew Shafer在Agile 2008大会上讨论「敏捷基础设施」"],
+      ["2009", "首届DevOpsDays大会在比利时根特举行，开启DevOps运动"],
+      ["2010", "Jez Humble和Damon Edwards提出CALMS框架作为DevOps成熟度模型"],
+      ["2013", "CALMS在全球企业DevOps转型项目中被广泛采纳"],
+      ["2016", "Gene Kim等人的《DevOps实践指南》大量引用CALMS原则"]
+    ],
+    "dos": [
+      "Start with Culture -- no amount of automation compensates for a blame-heavy, siloed organization",
+      "Use CALMS as an assessment tool to identify which pillars need the most investment",
+      "Measure both leading indicators (deploy frequency) and lagging indicators (incident count) across each pillar",
+      "Share learnings from failures openly through blameless post-mortems and internal tech talks"
+    ],
+    "dos_zh": [
+      "从文化开始——再多的自动化也弥补不了推责和各自为政的组织",
+      "使用CALMS作为评估工具，识别哪些支柱最需要投入",
+      "在每个支柱下同时度量领先指标（部署频率）和滞后指标（故障数量）",
+      "通过无责任事后回顾和内部技术分享会公开分享失败中的教训"
+    ],
+    "donts": [
+      "Don't treat CALMS as a checklist to complete -- it is a continuous assessment framework",
+      "Don't focus solely on Automation while ignoring Culture and Sharing",
+      "Don't adopt DevOps tools without changing the underlying team structure and incentives",
+      "Don't expect overnight results -- cultural transformation takes quarters, not sprints"
+    ],
+    "donts_zh": [
+      "不要将CALMS视为一次性完成的检查清单——它是持续评估框架",
+      "不要只关注自动化而忽略文化和共享",
+      "不要在不改变底层团队结构和激励机制的情况下采纳DevOps工具",
+      "不要期望立竿见影——文化转型需要以季度而非冲刺来计量"
+    ],
+    "case_study_company": "Etsy",
+    "case_study": "Etsy became a poster child for CALMS-driven DevOps transformation in the early 2010s. They built a culture of blameless post-mortems, automated their entire deployment pipeline to enable 50+ deploys per day, applied lean principles to reduce change batch sizes, measured everything with StatsD, and shared knowledge through an engineering blog and open-source contributions.",
+    "case_study_zh": "Etsy在2010年代初成为CALMS驱动DevOps转型的典范。他们建立了无责任事后回顾文化，将整个部署流水线自动化实现每天50多次部署，应用精益原则缩小变更批次，用StatsD度量一切，并通过工程博客和开源贡献分享知识。",
+    "when_not_to_use": [
+      "Organizations looking for a purely technical framework -- CALMS is primarily cultural and organizational",
+      "Teams seeking specific implementation guidance rather than high-level assessment dimensions",
+      "Environments where management is unwilling to invest in cultural change and only wants tool adoption"
+    ],
+    "when_not_to_use_zh": [
+      "寻找纯技术框架的组织——CALMS主要面向文化和组织层面",
+      "需要具体实施指导而非高层评估维度的团队",
+      "管理层不愿投入文化变革、只想采纳工具的环境"
+    ],
+    "adopters": ["Etsy", "ING Bank", "Target", "Ticketmaster", "Capital One"]
   },
   {
     "id": 65,
@@ -186,7 +670,85 @@
     "ai_relevant": false,
     "viz_type": "flow",
     "related": ["calms-framework", "dora-metrics", "continuous-architecture"],
-    "tags": ["devops", "flow", "feedback", "continual-learning"]
+    "tags": ["devops", "flow", "feedback", "continual-learning"],
+    "origin_author": "Gene Kim",
+    "origin_source": "Gene Kim introduced The Three Ways in 'The Phoenix Project' (2013), a DevOps novel co-authored with Kevin Behr and George Spafford. The concepts draw from Lean manufacturing, the Theory of Constraints, and the Toyota Production System. They were further elaborated in 'The DevOps Handbook' (2016).",
+    "origin_source_zh": "Gene Kim在与Kevin Behr和George Spafford合著的DevOps小说《凤凰项目》（2013年）中提出了三步法。这些概念借鉴了精益制造、约束理论和丰田生产系统，并在《DevOps实践指南》（2016年）中进一步阐述。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Engineering organizations wanting a foundational mental model for DevOps transformation",
+      "Teams experiencing slow delivery pipelines, poor feedback loops, or repeated incidents",
+      "Leaders building the case for investing in CI/CD, monitoring, and learning culture",
+      "Organizations transitioning from waterfall or traditional IT operations to DevOps practices"
+    ],
+    "when_to_use_zh": [
+      "希望建立DevOps转型基础心智模型的工程组织",
+      "正在经历交付流水线缓慢、反馈环路薄弱或事故反复发生的团队",
+      "为投资CI/CD、监控和学习文化建立论据的领导者",
+      "从瀑布或传统IT运维过渡到DevOps实践的组织"
+    ],
+    "core_concepts": [
+      "The First Way (Flow): accelerate the left-to-right flow of work from Development to Operations by reducing batch sizes, limiting WIP, and eliminating bottlenecks",
+      "The Second Way (Feedback): create fast, right-to-left feedback loops so that problems are detected and corrected at the source, preventing downstream failures",
+      "The Third Way (Continual Learning): foster a culture of experimentation, blameless post-mortems, and organizational learning that enables continuous improvement",
+      "Systems thinking: all three ways emphasize optimizing the whole system, not local team-level metrics"
+    ],
+    "core_concepts_zh": [
+      "第一步（流动）：通过缩小批次、限制在制品和消除瓶颈，加速工作从开发到运维的从左到右流动",
+      "第二步（反馈）：创建快速的从右到左反馈环路，在源头发现和纠正问题，防止下游故障",
+      "第三步（持续学习）：培育实验文化、无责任事后回顾和组织学习，实现持续改进",
+      "系统思维：三步法都强调优化整个系统，而非局部的团队级指标"
+    ],
+    "timeline": [
+      ["2009", "DevOpsDays Ghent conference sparks the DevOps movement that would inspire The Three Ways"],
+      ["2013", "'The Phoenix Project' published, introducing The Three Ways as the core DevOps principles"],
+      ["2016", "'The DevOps Handbook' published with detailed practices for implementing each of The Three Ways"],
+      ["2019", "'The Unicorn Project' published, extending The Three Ways with the Five Ideals"]
+    ],
+    "timeline_zh": [
+      ["2009", "DevOpsDays根特大会引发DevOps运动，为三步法奠定基础"],
+      ["2013", "《凤凰项目》出版，将三步法作为DevOps核心原则提出"],
+      ["2016", "《DevOps实践指南》出版，详细介绍实施每一步的具体实践"],
+      ["2019", "《独角兽项目》出版，用五大理想扩展三步法"]
+    ],
+    "dos": [
+      "Start with value-stream mapping to identify the biggest bottlenecks in your delivery flow",
+      "Invest in automated testing and monitoring to shorten feedback loops at every stage",
+      "Run blameless post-mortems after every incident and share the findings organization-wide",
+      "Allocate dedicated time for experimentation and improvement (e.g., 20% time, hack weeks)"
+    ],
+    "dos_zh": [
+      "从价值流图开始，识别交付流程中最大的瓶颈",
+      "投资自动化测试和监控，缩短每个阶段的反馈环路",
+      "每次事故后进行无责任事后回顾，并在组织范围内分享发现",
+      "为实验和改进分配专门时间（如20%时间、黑客周）"
+    ],
+    "donts": [
+      "Don't optimize individual team throughput at the expense of end-to-end system flow",
+      "Don't skip the Second Way (Feedback) in favor of only pushing for faster delivery",
+      "Don't treat learning as optional -- without the Third Way, improvements stall",
+      "Don't implement The Three Ways as a one-time initiative; they require ongoing commitment"
+    ],
+    "donts_zh": [
+      "不要以牺牲端到端系统流动为代价来优化单个团队的吞吐量",
+      "不要为追求更快交付而跳过第二步（反馈）",
+      "不要将学习视为可选——没有第三步，改进将停滞",
+      "不要将三步法作为一次性项目实施，它们需要持续的投入"
+    ],
+    "case_study_company": "Nordstrom",
+    "case_study": "Nordstrom applied The Three Ways during their technology transformation, moving from quarterly releases to multiple deployments per day. They mapped their value stream to find that handoffs between teams added weeks of delay, then built automated CI/CD pipelines (Flow), implemented real-time monitoring with rapid incident response (Feedback), and created an internal tech conference culture for knowledge sharing (Continual Learning).",
+    "case_study_zh": "Nordstrom在其技术转型中应用了三步法，从季度发布转变为每天多次部署。他们绘制价值流图发现团队间交接增加了数周延迟，随后构建了自动化CI/CD流水线（流动），实施了带有快速事故响应的实时监控（反馈），并创建了内部技术大会文化进行知识共享（持续学习）。",
+    "when_not_to_use": [
+      "Teams looking for specific tooling recommendations rather than organizational principles",
+      "Environments where management does not support cultural change and only wants faster output",
+      "Very small teams (1-3 people) where the overhead of formalizing flows and feedback is unnecessary"
+    ],
+    "when_not_to_use_zh": [
+      "寻找具体工具建议而非组织原则的团队",
+      "管理层不支持文化变革、只想要更快产出的环境",
+      "正式化流程和反馈显得多余的极小团队（1-3人）"
+    ],
+    "adopters": ["Nordstrom", "Target", "ING Bank", "Nationwide Insurance", "CSG"]
   },
   {
     "id": 66,
@@ -213,7 +775,87 @@
     "ai_relevant": false,
     "viz_type": "tree",
     "related": ["gitops", "three-ways-devops", "service-mesh-pattern"],
-    "tags": ["iac", "terraform", "infrastructure", "automation", "declarative"]
+    "tags": ["iac", "terraform", "infrastructure", "automation", "declarative"],
+    "origin_author": "Mark Burgess (CFEngine) / Luke Kanies (Puppet) / community evolution",
+    "origin_source": "Infrastructure as Code evolved from early configuration management tools. Mark Burgess created CFEngine in 1993, Luke Kanies launched Puppet in 2005, and Chef followed in 2009. The declarative IaC paradigm was popularized by HashiCorp's Terraform (2014) and AWS CloudFormation (2011). The concept was formalized in Kief Morris's book 'Infrastructure as Code' (2016, O'Reilly).",
+    "origin_source_zh": "基础设施即代码从早期配置管理工具演化而来。Mark Burgess于1993年创建CFEngine，Luke Kanies于2005年推出Puppet，Chef于2009年跟进。声明式IaC范式由HashiCorp的Terraform（2014年）和AWS CloudFormation（2011年）推广。该概念在Kief Morris的《Infrastructure as Code》（2016年，O'Reilly）一书中被正式定义。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Any cloud or hybrid infrastructure that needs reproducible, consistent provisioning",
+      "Teams managing multiple environments (dev, staging, production) that must stay in sync",
+      "Organizations requiring audit trails and change approvals for infrastructure modifications",
+      "Disaster recovery scenarios where infrastructure must be rapidly recreated from code"
+    ],
+    "when_to_use_zh": [
+      "需要可复现、一致性供应的任何云或混合基础设施",
+      "管理多个必须保持同步的环境（开发、预发布、生产）的团队",
+      "要求基础设施变更有审计追踪和变更审批的组织",
+      "需要从代码快速重建基础设施的灾难恢复场景"
+    ],
+    "core_concepts": [
+      "Declarative configuration: describe the desired end state of infrastructure and let the tool determine how to achieve it",
+      "Idempotency: applying the same configuration multiple times produces the same result without side effects",
+      "State management: IaC tools track the current state of provisioned resources to compute diffs and plan changes",
+      "Modularity and reuse: infrastructure is composed from reusable modules with parameterized inputs, similar to software libraries"
+    ],
+    "core_concepts_zh": [
+      "声明式配置：描述基础设施的期望终态，让工具决定如何实现",
+      "幂等性：多次应用相同配置产生相同结果，无副作用",
+      "状态管理：IaC工具跟踪已供应资源的当前状态，以计算差异和规划变更",
+      "模块化与复用：基础设施由可复用模块组合而成，接受参数化输入，类似于软件库"
+    ],
+    "timeline": [
+      ["1993", "Mark Burgess creates CFEngine, the first infrastructure configuration management tool"],
+      ["2005", "Puppet released by Luke Kanies, popularizing declarative infrastructure management"],
+      ["2011", "AWS CloudFormation launched, bringing IaC to cloud-native infrastructure"],
+      ["2014", "HashiCorp releases Terraform, introducing multi-cloud declarative IaC with state management"],
+      ["2019", "Pulumi introduces general-purpose programming languages (TypeScript, Python, Go) for IaC"]
+    ],
+    "timeline_zh": [
+      ["1993", "Mark Burgess创建CFEngine，首个基础设施配置管理工具"],
+      ["2005", "Luke Kanies发布Puppet，推广声明式基础设施管理"],
+      ["2011", "AWS CloudFormation发布，将IaC带入云原生基础设施"],
+      ["2014", "HashiCorp发布Terraform，引入带状态管理的多云声明式IaC"],
+      ["2019", "Pulumi引入通用编程语言（TypeScript、Python、Go）编写IaC"]
+    ],
+    "dos": [
+      "Treat IaC with the same rigor as application code: code review, testing, linting, and CI/CD",
+      "Use remote state backends with locking to prevent concurrent modification conflicts",
+      "Break infrastructure into small, composable modules rather than monolithic configurations",
+      "Run plan/diff commands on every pull request so reviewers can see exactly what will change"
+    ],
+    "dos_zh": [
+      "以与应用代码同等的严谨度对待IaC：代码审查、测试、代码检查和CI/CD",
+      "使用带锁定的远程状态后端，防止并发修改冲突",
+      "将基础设施拆分为小型、可组合的模块，而非单体配置",
+      "在每个Pull Request上执行plan/diff命令，让审查者准确看到变更内容"
+    ],
+    "donts": [
+      "Don't make manual changes to infrastructure outside of the IaC workflow (configuration drift)",
+      "Don't store state files in version control -- use a remote backend with locking",
+      "Don't hardcode environment-specific values -- use variables and environment parameterization",
+      "Don't skip the plan step before applying changes to production infrastructure"
+    ],
+    "donts_zh": [
+      "不要在IaC工作流之外手动修改基础设施（导致配置漂移）",
+      "不要将状态文件存入版本控制——使用带锁定的远程后端",
+      "不要硬编码环境特定值——使用变量和环境参数化",
+      "不要在对生产基础设施应用变更前跳过plan步骤"
+    ],
+    "case_study_company": "Spotify",
+    "case_study": "Spotify uses Terraform extensively to manage their multi-cloud infrastructure across GCP and on-premises data centers. Their platform engineering team built Backstage, an open-source developer portal, which integrates IaC templates so that any engineer can provision standardized infrastructure through self-service. This approach reduced infrastructure provisioning time from weeks to minutes while maintaining governance and security standards.",
+    "case_study_zh": "Spotify广泛使用Terraform管理其横跨GCP和本地数据中心的多云基础设施。其平台工程团队构建了开源开发者门户Backstage，集成IaC模板，使任何工程师都能通过自助服务供应标准化基础设施。这一方式将基础设施供应时间从数周缩短到数分钟，同时维持治理和安全标准。",
+    "when_not_to_use": [
+      "Throwaway environments or quick experiments where manual setup is faster and the cost of drift is zero",
+      "Extremely simple infrastructure (single server, no scaling) where IaC overhead is not justified",
+      "Legacy systems with proprietary management interfaces that have no IaC provider support"
+    ],
+    "when_not_to_use_zh": [
+      "一次性环境或快速实验，手动设置更快且漂移成本为零",
+      "极简基础设施（单台服务器、无扩展），IaC开销不合理",
+      "使用专有管理接口、没有IaC提供商支持的遗留系统"
+    ],
+    "adopters": ["Spotify", "Airbnb", "Uber", "Stripe", "Shopify"]
   },
   {
     "id": 67,
@@ -240,7 +882,87 @@
     "ai_relevant": false,
     "viz_type": "pyramid",
     "related": ["infrastructure-as-code", "gitops", "calms-framework"],
-    "tags": ["twelve-factor", "cloud-native", "saas", "principles", "scalability"]
+    "tags": ["twelve-factor", "cloud-native", "saas", "principles", "scalability"],
+    "origin_author": "Adam Wiggins / Heroku",
+    "origin_source": "Adam Wiggins, co-founder of Heroku, published the Twelve-Factor App methodology in 2011 at 12factor.net. It codified best practices observed from deploying thousands of applications on the Heroku platform, distilling patterns for building portable, resilient SaaS applications.",
+    "origin_source_zh": "Heroku联合创始人Adam Wiggins于2011年在12factor.net发布了十二要素应用方法论。它总结了在Heroku平台上部署数千个应用的最佳实践，提炼出构建可移植、高韧性SaaS应用的模式。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Building new cloud-native applications or microservices from scratch",
+      "Migrating legacy monoliths to cloud platforms where portability and scalability are critical",
+      "Teams adopting containerization (Docker, Kubernetes) and need architectural guidelines",
+      "SaaS products that must run reliably across multiple environments and cloud providers"
+    ],
+    "when_to_use_zh": [
+      "从零开始构建云原生应用或微服务",
+      "将遗留单体应用迁移到需要可移植性和可扩展性的云平台",
+      "采用容器化（Docker、Kubernetes）并需要架构指南的团队",
+      "必须在多环境和多云供应商上可靠运行的SaaS产品"
+    ],
+    "core_concepts": [
+      "Codebase and dependencies: one codebase tracked in version control with explicitly declared and isolated dependencies",
+      "Config and backing services: configuration stored in environment variables; backing services (DBs, caches, queues) are attached resources",
+      "Build-release-run separation: strict separation of the build stage, release stage (build + config), and run stage",
+      "Stateless processes and disposability: application processes are stateless, share-nothing, with fast startup and graceful shutdown"
+    ],
+    "core_concepts_zh": [
+      "代码库与依赖：单一代码库纳入版本控制，依赖显式声明并隔离",
+      "配置与后端服务：配置存储在环境变量中；后端服务（数据库、缓存、队列）作为附加资源",
+      "构建-发布-运行分离：严格分离构建阶段、发布阶段（构建+配置）和运行阶段",
+      "无状态进程与可处置性：应用进程无状态、不共享，快速启动并优雅关闭"
+    ],
+    "timeline": [
+      ["2007", "Heroku founded, beginning to observe patterns from hosting thousands of web applications"],
+      ["2011", "Adam Wiggins publishes the Twelve-Factor App methodology at 12factor.net"],
+      ["2013", "Docker popularizes containerization, making twelve-factor principles practical for all teams"],
+      ["2015", "Cloud-native movement (CNCF) embraces twelve-factor as a foundational design philosophy"],
+      ["2024", "Beyond the Twelve-Factor App discussions emerge, addressing serverless, event-driven, and AI workloads"]
+    ],
+    "timeline_zh": [
+      ["2007", "Heroku成立，开始观察托管数千个Web应用中的模式"],
+      ["2011", "Adam Wiggins在12factor.net发布十二要素应用方法论"],
+      ["2013", "Docker普及容器化，使十二要素原则对所有团队变得切实可行"],
+      ["2015", "云原生运动（CNCF）将十二要素作为基础设计理念"],
+      ["2024", "「超越十二要素应用」讨论兴起，涉及无服务器、事件驱动和AI工作负载"]
+    ],
+    "dos": [
+      "Externalize all configuration through environment variables, never bake environment-specific values into code or artifacts",
+      "Declare all dependencies explicitly in a manifest file (package.json, requirements.txt, go.mod)",
+      "Design every process to be stateless so horizontal scaling is a simple matter of adding instances",
+      "Maintain dev/prod parity to minimize the gap between development and production environments"
+    ],
+    "dos_zh": [
+      "通过环境变量外部化所有配置，绝不将环境特定值写入代码或制品",
+      "在清单文件（package.json、requirements.txt、go.mod）中显式声明所有依赖",
+      "将每个进程设计为无状态，使水平扩展只需添加实例即可",
+      "保持开发/生产环境对等，最小化开发与生产环境之间的差距"
+    ],
+    "donts": [
+      "Don't store secrets or environment-specific config in source code or container images",
+      "Don't rely on local filesystem for persistent state -- use external backing services",
+      "Don't tightly couple your application to a specific cloud provider's proprietary APIs",
+      "Don't skip the separation of build and run stages by building in production"
+    ],
+    "donts_zh": [
+      "不要将密钥或环境特定配置存储在源代码或容器镜像中",
+      "不要依赖本地文件系统存储持久状态——使用外部后端服务",
+      "不要将应用与特定云服务商的专有API紧密耦合",
+      "不要在生产环境中构建来跳过构建和运行阶段的分离"
+    ],
+    "case_study_company": "Heroku",
+    "case_study": "Heroku itself was the living laboratory for the Twelve-Factor methodology. By enforcing these principles on their platform (environment variable config, process model, stateless dynos, explicit dependencies), Heroku enabled millions of applications to scale horizontally with zero application-level changes. Developers could push code and have it running in production within minutes, demonstrating the power of strict factor adherence.",
+    "case_study_zh": "Heroku本身就是十二要素方法论的实验室。通过在其平台上强制执行这些原则（环境变量配置、进程模型、无状态Dyno、显式依赖），Heroku使数百万应用无需修改应用层代码即可水平扩展。开发者推送代码后数分钟内即可在生产环境运行，充分展示了严格遵循十二要素的优势。",
+    "when_not_to_use": [
+      "Highly stateful applications (e.g., real-time game servers, embedded systems) where stateless process design is impractical",
+      "Legacy systems with deep filesystem dependencies that cannot be easily refactored",
+      "Edge computing or IoT environments where environment variable configuration is not feasible"
+    ],
+    "when_not_to_use_zh": [
+      "高度有状态的应用（如实时游戏服务器、嵌入式系统），无状态进程设计不切实际",
+      "深度依赖文件系统、无法轻松重构的遗留系统",
+      "环境变量配置不可行的边缘计算或IoT环境"
+    ],
+    "adopters": ["Heroku", "Netflix", "Spotify", "Twilio", "Cloudflare"]
   },
   {
     "id": 68,
@@ -267,7 +989,87 @@
     "ai_relevant": true,
     "viz_type": "pyramid",
     "related": ["four-golden-signals", "dora-metrics", "chaos-engineering"],
-    "tags": ["sli", "slo", "sla", "reliability", "error-budget"]
+    "tags": ["sli", "slo", "sla", "reliability", "error-budget"],
+    "origin_author": "Google Site Reliability Engineering team",
+    "origin_source": "The SLI/SLO/SLA framework was formalized by Google's SRE team and documented in the 'Site Reliability Engineering' book (2016) edited by Betsy Beyer, Chris Jones, Jennifer Petoff, and Niall Richard Murphy. The error budget concept was a key innovation distinguishing SRE's approach from traditional operations.",
+    "origin_source_zh": "SLI/SLO/SLA框架由Google SRE团队正式定义，收录于Betsy Beyer、Chris Jones、Jennifer Petoff和Niall Richard Murphy编辑的《站点可靠性工程》（2016年）一书中。错误预算概念是SRE方法区别于传统运维的关键创新。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Services requiring a data-driven approach to balancing reliability with feature velocity",
+      "Organizations needing to formalize reliability expectations between teams or with external customers",
+      "Platform teams defining internal contracts for shared infrastructure services",
+      "Incident management processes that need objective criteria for prioritization and response"
+    ],
+    "when_to_use_zh": [
+      "需要以数据驱动方式平衡可靠性与功能迭代速度的服务",
+      "需要在团队间或与外部客户之间正式化可靠性期望的组织",
+      "为共享基础设施服务定义内部契约的平台团队",
+      "需要客观标准来确定优先级和响应级别的故障管理流程"
+    ],
+    "core_concepts": [
+      "Service Level Indicators (SLIs): quantitative measures of service behavior that users care about (latency, availability, error rate, throughput)",
+      "Service Level Objectives (SLOs): target values for SLIs that define acceptable service performance (e.g., 99.95% of requests under 200ms)",
+      "Error Budget: the inverse of an SLO (1 - SLO), representing the tolerable amount of unreliability and enabling risk-taking for innovation",
+      "Service Level Agreements (SLAs): formal contracts with customers that specify consequences (credits, penalties) when SLOs are breached"
+    ],
+    "core_concepts_zh": [
+      "服务水平指标（SLI）：用户关心的服务行为的定量度量（延迟、可用性、错误率、吞吐量）",
+      "服务水平目标（SLO）：定义可接受服务表现的SLI目标值（例如99.95%的请求在200ms内完成）",
+      "错误预算：SLO的反面（1 - SLO），代表可容忍的不可靠程度，为创新提供冒险空间",
+      "服务水平协议（SLA）：与客户的正式合同，规定违反SLO时的后果（积分补偿、罚金）"
+    ],
+    "timeline": [
+      ["2003", "Google begins developing internal SRE practices including SLO-based reliability management"],
+      ["2014", "Google shares SRE practices at industry conferences, popularizing the SLI/SLO/error budget model"],
+      ["2016", "'Site Reliability Engineering' book published, formally documenting the SLI/SLO/SLA framework"],
+      ["2018", "'The Site Reliability Workbook' provides hands-on guidance for implementing SLOs in practice"],
+      ["2020", "OpenSLO specification launched to standardize SLO definitions across monitoring platforms"]
+    ],
+    "timeline_zh": [
+      ["2003", "Google开始开发内部SRE实践，包括基于SLO的可靠性管理"],
+      ["2014", "Google在行业大会上分享SRE实践，推广SLI/SLO/错误预算模型"],
+      ["2016", "《站点可靠性工程》出版，正式记录SLI/SLO/SLA框架"],
+      ["2018", "《站点可靠性工作手册》提供SLO落地实施的实操指南"],
+      ["2020", "OpenSLO规范发布，旨在跨监控平台标准化SLO定义"]
+    ],
+    "dos": [
+      "Choose SLIs that directly reflect user experience, not internal system metrics",
+      "Set SLOs based on user expectations and business needs, not on what seems achievable",
+      "Use error budgets to make objective decisions about when to prioritize reliability vs. features",
+      "Review and adjust SLOs quarterly based on changing user needs and business context"
+    ],
+    "dos_zh": [
+      "选择直接反映用户体验的SLI，而非内部系统指标",
+      "基于用户期望和业务需求设定SLO，而非基于看似可达到的水平",
+      "使用错误预算客观决定何时优先考虑可靠性、何时推进功能",
+      "根据用户需求和业务环境的变化，每季度审查和调整SLO"
+    ],
+    "donts": [
+      "Don't set SLOs at 100% -- this leaves no error budget and halts all innovation",
+      "Don't define SLOs without buy-in from both engineering and product teams",
+      "Don't confuse SLOs (internal targets) with SLAs (external contracts with consequences)",
+      "Don't create too many SLIs per service -- focus on 3-5 that truly matter to users"
+    ],
+    "donts_zh": [
+      "不要将SLO设为100%——这不留任何错误预算，会阻止一切创新",
+      "不要在工程团队和产品团队都未认可的情况下定义SLO",
+      "不要混淆SLO（内部目标）和SLA（有后果的外部合同）",
+      "不要为每个服务创建过多SLI——聚焦于3-5个用户真正关心的指标"
+    ],
+    "case_study_company": "Google",
+    "case_study": "Google pioneered the SLI/SLO/SLA framework across all its products, from Search to Cloud Platform. When a service's error budget is exhausted, development teams are required to shift focus from feature work to reliability improvements. This error budget policy created a natural, data-driven balance between innovation velocity and operational stability, fundamentally changing how Google manages the tension between shipping fast and staying reliable.",
+    "case_study_zh": "Google在其所有产品中率先采用SLI/SLO/SLA框架，从搜索到云平台。当某项服务的错误预算耗尽时，开发团队必须将重心从功能开发转向可靠性改进。这一错误预算策略在创新速度与运维稳定性之间建立了自然的、数据驱动的平衡，从根本上改变了Google管理快速交付与保持可靠性之间张力的方式。",
+    "when_not_to_use": [
+      "Internal tools or batch jobs where user-facing latency and availability are not meaningful metrics",
+      "Early prototypes or MVPs where reliability requirements are not yet defined",
+      "Systems where the cost of implementing comprehensive SLI monitoring exceeds the value of the service"
+    ],
+    "when_not_to_use_zh": [
+      "面向用户的延迟和可用性不是有意义指标的内部工具或批处理作业",
+      "可靠性需求尚未明确的早期原型或MVP",
+      "实施全面SLI监控的成本超过服务价值的系统"
+    ],
+    "adopters": ["Google", "Datadog", "Honeycomb", "PagerDuty", "Atlassian"]
   },
   {
     "id": 69,
@@ -294,7 +1096,89 @@
     "ai_relevant": false,
     "viz_type": "matrix",
     "related": ["bulkhead-pattern", "microservices-decomposition", "blue-green-deployment"],
-    "tags": ["cell-architecture", "blast-radius", "isolation", "multi-tenant"]
+    "tags": ["cell-architecture", "blast-radius", "isolation", "multi-tenant"],
+    "origin_author": "AWS / Amazon internal architecture teams",
+    "origin_source": "Cell-based architecture was developed internally at Amazon in the mid-2010s to limit the blast radius of failures in their massive distributed systems. AWS published detailed guidance on the pattern in their Well-Architected Framework and re:Invent talks starting in 2018, popularizing it as an industry-standard resilience pattern.",
+    "origin_source_zh": "单元化架构由Amazon内部架构团队在2010年代中期开发，用于限制其大规模分布式系统中故障的影响范围。AWS从2018年起在其架构完善框架和re:Invent演讲中发布了该模式的详细指南，将其推广为行业标准的韧性模式。",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Large-scale multi-tenant platforms where a single tenant failure must not impact others",
+      "Global services requiring regional isolation for latency, compliance, or fault tolerance",
+      "Systems where blast radius containment is a non-negotiable reliability requirement",
+      "Platforms serving millions of users where even partial outages have severe business impact"
+    ],
+    "when_to_use_zh": [
+      "单个租户故障不得影响其他租户的大规模多租户平台",
+      "因延迟、合规或容错需要区域隔离的全球服务",
+      "爆炸半径控制是不可妥协的可靠性要求的系统",
+      "服务数百万用户、即使部分中断也会造成严重业务影响的平台"
+    ],
+    "core_concepts": [
+      "Cell isolation: each cell is a fully independent unit with its own compute, storage, and networking, sharing no mutable state with other cells",
+      "Cell routing: a lightweight router maps each request to the correct cell based on partitioning key (tenant ID, region, hash range)",
+      "Blast radius containment: failures in one cell are isolated and cannot cascade to other cells, limiting the impact to a subset of users",
+      "Independent deployability: cells can be updated, scaled, and rolled back independently, enabling safe progressive delivery"
+    ],
+    "core_concepts_zh": [
+      "单元隔离：每个单元拥有独立的计算、存储和网络，不与其他单元共享可变状态",
+      "单元路由：轻量级路由器根据分区键（租户ID、区域、哈希范围）将每个请求映射到正确的单元",
+      "爆炸半径控制：单个单元的故障被隔离，不会级联到其他单元，将影响限制在部分用户",
+      "独立可部署性：单元可独立更新、扩缩容和回滚，实现安全的渐进式交付"
+    ],
+    "timeline": [
+      ["2012", "Amazon internally develops cell-based patterns for DynamoDB and other core services"],
+      ["2018", "AWS publishes cell-based architecture guidance at re:Invent and in the Well-Architected Framework"],
+      ["2020", "Slack adopts cell-based architecture to improve reliability after a series of high-profile outages"],
+      ["2022", "Cell-based architecture gains widespread adoption across SaaS platforms for multi-tenant isolation"],
+      ["2024", "CNCF and cloud-native community formalize cell-based patterns alongside service mesh architectures"]
+    ],
+    "timeline_zh": [
+      ["2012", "Amazon内部为DynamoDB和其他核心服务开发单元化模式"],
+      ["2018", "AWS在re:Invent大会和架构完善框架中发布单元化架构指南"],
+      ["2020", "Slack在一系列重大故障后采用单元化架构提升可靠性"],
+      ["2022", "单元化架构在SaaS平台中被广泛采用，用于多租户隔离"],
+      ["2024", "CNCF和云原生社区将单元化模式与服务网格架构一起正式化"]
+    ],
+    "dos": [
+      "Design the cell router to be the simplest, most reliable component in the system",
+      "Size cells to balance isolation benefit against operational overhead of managing many cells",
+      "Test cell failover regularly to verify that draining a cell does not affect other cells",
+      "Use consistent hashing or deterministic mapping for cell assignment to avoid hotspots"
+    ],
+    "dos_zh": [
+      "将单元路由器设计为系统中最简单、最可靠的组件",
+      "合理设定单元大小，平衡隔离收益与管理多个单元的运维开销",
+      "定期测试单元故障切换，验证排空一个单元不影响其他单元",
+      "使用一致性哈希或确定性映射进行单元分配，避免热点"
+    ],
+    "donts": [
+      "Don't introduce shared mutable state between cells, which defeats the purpose of isolation",
+      "Don't make the cell router a single point of failure -- it must be highly available and stateless",
+      "Don't create too many cells initially -- start with a few and scale the number as you learn",
+      "Don't forget cross-cell operational tooling for aggregated monitoring, logging, and incident response"
+    ],
+    "donts_zh": [
+      "不要在单元间引入共享可变状态，这会破坏隔离的目的",
+      "不要让单元路由器成为单点故障——它必须高可用且无状态",
+      "不要一开始就创建过多单元——先从少量开始，逐步扩展",
+      "不要忽略跨单元的运维工具，用于聚合监控、日志和故障响应"
+    ],
+    "case_study_company": "Slack",
+    "case_study": "After experiencing multiple high-profile outages affecting all users simultaneously, Slack redesigned their architecture using cell-based patterns. They partitioned their workspace infrastructure into independent cells, each serving a subset of customers. When a cell experiences issues, only the workspaces assigned to that cell are affected, dramatically reducing the blast radius of incidents from 100% of users to less than 5%.",
+    "case_study_zh": "在经历多次同时影响所有用户的重大故障后，Slack使用单元化模式重新设计了其架构。他们将工作空间基础设施划分为独立单元，每个单元服务一部分客户。当某个单元出现问题时，只有分配到该单元的工作空间受影响，将故障影响范围从100%用户大幅缩小到不到5%。",
+    "when_not_to_use": [
+      "Small-scale applications where the operational complexity of cells outweighs the resilience benefit",
+      "Systems requiring strong consistency across all users that cannot tolerate cell-boundary partitioning",
+      "Early-stage products where user base is too small to justify cell partitioning",
+      "Applications with highly interconnected data models where cross-cell queries are frequent"
+    ],
+    "when_not_to_use_zh": [
+      "单元运维复杂度超过韧性收益的小规模应用",
+      "需要跨所有用户强一致性、无法容忍单元边界分区的系统",
+      "用户基数太小、不足以证明单元分区合理性的早期产品",
+      "数据模型高度互联、跨单元查询频繁的应用"
+    ],
+    "adopters": ["Amazon", "Slack", "Microsoft Azure", "Workday", "Salesforce"]
   },
   {
     "id": 70,
@@ -321,7 +1205,87 @@
     "ai_relevant": true,
     "viz_type": "cycle",
     "related": ["llmops", "dora-metrics", "canary-deployment"],
-    "tags": ["mlops", "machine-learning", "model-lifecycle", "training-pipeline"]
+    "tags": ["mlops", "machine-learning", "model-lifecycle", "training-pipeline"],
+    "origin_author": "D. Sculley et al. (Google) / community convergence",
+    "origin_source": "The term MLOps emerged from the intersection of DevOps and machine learning. Google's 2015 paper 'Hidden Technical Debt in Machine Learning Systems' by D. Sculley et al. highlighted the operational challenges of ML in production. The MLOps discipline was formalized through community efforts from 2018-2020, with Google's ML Engineering best practices and the MLOps Community contributing key frameworks.",
+    "origin_source_zh": "MLOps一词源于DevOps与机器学习的交叉领域。Google在2015年由D. Sculley等人发表的论文《机器学习系统中的隐性技术债务》揭示了ML生产化的运维挑战。MLOps学科在2018-2020年间通过社区努力正式形成，Google的ML工程最佳实践和MLOps社区贡献了关键框架。",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Organizations deploying multiple ML models to production that need lifecycle governance",
+      "Teams experiencing reproducibility issues with model training and deployment",
+      "Projects requiring automated retraining pipelines triggered by data drift detection",
+      "Regulated industries where model lineage, explainability, and bias auditing are mandatory"
+    ],
+    "when_to_use_zh": [
+      "将多个ML模型部署到生产环境、需要全生命周期治理的组织",
+      "在模型训练和部署中遇到可复现性问题的团队",
+      "需要由数据漂移检测触发自动重训练流水线的项目",
+      "模型溯源、可解释性和偏差审计为强制要求的受监管行业"
+    ],
+    "core_concepts": [
+      "Experiment tracking: log every training run with hyperparameters, metrics, data versions, and model artifacts for reproducibility",
+      "Feature store: a centralized repository for feature engineering that ensures consistency between training and serving",
+      "Model registry: versioned catalog of trained models with metadata, lineage, and promotion stages (staging, production, archived)",
+      "Continuous training: automated pipelines that retrain models when data drift is detected or on a scheduled cadence"
+    ],
+    "core_concepts_zh": [
+      "实验跟踪：记录每次训练运行的超参数、指标、数据版本和模型制品，确保可复现",
+      "特征存储：用于特征工程的集中式仓库，确保训练和推理间的一致性",
+      "模型注册中心：带有元数据、溯源信息和晋升阶段（预发布、生产、归档）的模型版本目录",
+      "持续训练：在检测到数据漂移时或按计划周期自动重训练模型的流水线"
+    ],
+    "timeline": [
+      ["2015", "Google publishes 'Hidden Technical Debt in Machine Learning Systems', catalyzing MLOps thinking"],
+      ["2018", "MLflow released by Databricks as an open-source platform for ML lifecycle management"],
+      ["2019", "Kubeflow matures on Kubernetes; Google publishes MLOps maturity levels (0, 1, 2)"],
+      ["2020", "MLOps becomes a recognized discipline with dedicated conferences, communities, and tooling ecosystems"],
+      ["2023", "MLOps practices expand to encompass LLMOps, addressing foundation model deployment challenges"]
+    ],
+    "timeline_zh": [
+      ["2015", "Google发表《机器学习系统中的隐性技术债务》，催生MLOps思想"],
+      ["2018", "Databricks发布MLflow，作为ML生命周期管理的开源平台"],
+      ["2019", "Kubeflow在Kubernetes上成熟；Google发布MLOps成熟度等级（0、1、2级）"],
+      ["2020", "MLOps成为公认学科，拥有专门的大会、社区和工具生态"],
+      ["2023", "MLOps实践扩展到LLMOps领域，应对基础模型部署挑战"]
+    ],
+    "dos": [
+      "Version data, code, and models together so any past experiment can be exactly reproduced",
+      "Implement automated data drift monitoring that triggers alerts and retraining pipelines",
+      "Use a feature store to ensure feature consistency between offline training and online serving",
+      "Include fairness and bias checks as mandatory gates in the model promotion pipeline"
+    ],
+    "dos_zh": [
+      "对数据、代码和模型进行联合版本管理，使任何过去的实验都能精确复现",
+      "实施自动化数据漂移监控，触发告警和重训练流水线",
+      "使用特征存储确保离线训练与在线推理之间的特征一致性",
+      "将公平性和偏差检查作为模型晋升流水线中的强制门控"
+    ],
+    "donts": [
+      "Don't deploy models without monitoring for data drift and prediction quality degradation",
+      "Don't treat model training as a one-time activity -- models degrade as data distributions shift",
+      "Don't ignore the training-serving skew that arises from different feature engineering pipelines",
+      "Don't skip model explainability, especially for models making high-stakes decisions"
+    ],
+    "donts_zh": [
+      "不要在没有监控数据漂移和预测质量退化的情况下部署模型",
+      "不要将模型训练视为一次性活动——随着数据分布变化模型会退化",
+      "不要忽视由不同特征工程流水线导致的训练-推理偏差",
+      "不要跳过模型可解释性，尤其是做出高风险决策的模型"
+    ],
+    "case_study_company": "Uber",
+    "case_study": "Uber built Michelangelo, their internal MLOps platform, to manage the full lifecycle of hundreds of ML models powering pricing, ETA prediction, fraud detection, and driver matching. Michelangelo provides a unified feature store, automated training pipelines, model versioning, and production monitoring. It reduced the time from model ideation to production deployment from months to days, while ensuring consistent model quality through automated validation gates.",
+    "case_study_zh": "Uber构建了内部MLOps平台Michelangelo，管理驱动定价、预计到达时间预测、欺诈检测和司机匹配的数百个ML模型的完整生命周期。Michelangelo提供统一的特征存储、自动化训练流水线、模型版本管理和生产监控。它将模型从构思到生产部署的时间从数月缩短到数天，同时通过自动化验证门控确保一致的模型质量。",
+    "when_not_to_use": [
+      "Simple rule-based systems that do not involve machine learning models",
+      "One-off data analysis or research projects that will not be deployed to production",
+      "Very early ML experimentation phases where the model approach itself is still being validated"
+    ],
+    "when_not_to_use_zh": [
+      "不涉及机器学习模型的简单规则系统",
+      "不会部署到生产环境的一次性数据分析或研究项目",
+      "模型方法本身仍在验证的极早期ML实验阶段"
+    ],
+    "adopters": ["Uber", "Google", "Netflix", "Airbnb", "Spotify"]
   },
   {
     "id": 71,
@@ -348,7 +1312,85 @@
     "ai_relevant": true,
     "viz_type": "cycle",
     "related": ["mlops", "prompt-testing", "ai-observability-framework"],
-    "tags": ["llmops", "prompt-management", "evaluation", "cost-management", "ai"]
+    "tags": ["llmops", "prompt-management", "evaluation", "cost-management", "ai"],
+    "origin_author": "Community convergence (Andreessen Horowitz, Weights & Biases, LangChain community)",
+    "origin_source": "LLMOps emerged as a distinct discipline in 2023 as organizations began deploying LLM-based applications at scale. Andreessen Horowitz published influential analyses of the LLM application stack, while tools like LangSmith, Weights & Biases Prompts, and Braintrust formalized prompt versioning, evaluation, and observability as core operational concerns.",
+    "origin_source_zh": "LLMOps作为独立学科于2023年出现，当时各组织开始大规模部署基于LLM的应用。Andreessen Horowitz发布了关于LLM应用技术栈的影响力分析，LangSmith、Weights & Biases Prompts和Braintrust等工具将提示词版本管理、评测和可观测性正式确立为核心运维关注点。",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Teams deploying LLM-powered features (chatbots, copilots, content generation) to production",
+      "Organizations needing to manage prompt versions, evaluate output quality, and control LLM costs",
+      "Applications where hallucination detection and safety guardrails are business-critical requirements",
+      "Multi-model architectures where different LLM providers or versions must be compared and managed"
+    ],
+    "when_to_use_zh": [
+      "将LLM驱动功能（聊天机器人、Copilot、内容生成）部署到生产的团队",
+      "需要管理提示词版本、评估输出质量和控制LLM成本的组织",
+      "幻觉检测和安全护栏是关键业务需求的应用",
+      "需要对比和管理不同LLM供应商或版本的多模型架构"
+    ],
+    "core_concepts": [
+      "Prompt versioning: treat prompts as first-class versioned artifacts with change history, rollback, and A/B testing capability",
+      "LLM evaluation pipelines: automated scoring of LLM outputs using reference datasets, judge models, and domain-specific rubrics",
+      "LLM observability: end-to-end tracing of every LLM call capturing inputs, outputs, latency, token usage, cost, and chain-of-thought steps",
+      "Cost and rate management: monitoring and optimizing token consumption, implementing caching strategies, and managing API rate limits"
+    ],
+    "core_concepts_zh": [
+      "提示词版本管理：将提示词作为一等版本化制品，具备变更历史、回滚和A/B测试能力",
+      "LLM评测流水线：使用参考数据集、裁判模型和领域特定评分标准自动评估LLM输出",
+      "LLM可观测性：端到端追踪每次LLM调用，捕获输入、输出、延迟、Token用量、成本和推理链步骤",
+      "成本与速率管理：监控和优化Token消耗，实施缓存策略，管理API速率限制"
+    ],
+    "timeline": [
+      ["2022", "ChatGPT launch triggers widespread enterprise interest in deploying LLM-based applications"],
+      ["2023", "LLMOps tools emerge: LangSmith, Braintrust, Humanloop, and others formalize prompt management and evaluation"],
+      ["2024", "LLM evaluation becomes a mature discipline with standardized benchmarks and judge-model scoring patterns"],
+      ["2025", "LLMOps converges with agent orchestration, requiring new patterns for multi-step reasoning observability"]
+    ],
+    "timeline_zh": [
+      ["2022", "ChatGPT发布引发企业广泛关注部署基于LLM的应用"],
+      ["2023", "LLMOps工具涌现：LangSmith、Braintrust、Humanloop等正式化提示词管理和评测"],
+      ["2024", "LLM评测成为成熟学科，具有标准化基准和裁判模型评分模式"],
+      ["2025", "LLMOps与Agent编排融合，需要新的多步推理可观测性模式"]
+    ],
+    "dos": [
+      "Version every prompt change and run evaluation suites before promoting to production",
+      "Implement semantic caching to reduce redundant LLM calls and control costs",
+      "Trace the full chain of LLM interactions including retrieval, tool use, and multi-turn context",
+      "Set up cost alerting with per-feature and per-user token budget monitoring"
+    ],
+    "dos_zh": [
+      "对每次提示词变更进行版本管理，在晋升到生产前运行评测套件",
+      "实施语义缓存以减少冗余LLM调用并控制成本",
+      "追踪完整的LLM交互链，包括检索、工具使用和多轮上下文",
+      "设置成本告警，按功能和用户维度监控Token预算"
+    ],
+    "donts": [
+      "Don't deploy prompt changes without running automated evaluations against regression test sets",
+      "Don't ignore token costs -- LLM API expenses can grow exponentially without monitoring",
+      "Don't rely solely on automated metrics -- include human evaluation for subjective quality dimensions",
+      "Don't treat LLM outputs as deterministic -- build for variability with temperature-aware testing"
+    ],
+    "donts_zh": [
+      "不要在未对回归测试集运行自动化评测的情况下部署提示词变更",
+      "不要忽视Token成本——缺乏监控时LLM API费用可能指数级增长",
+      "不要仅依赖自动化指标——对主观质量维度进行人工评估",
+      "不要将LLM输出视为确定性的——在温度感知测试中为变异性做好准备"
+    ],
+    "case_study_company": "Notion",
+    "case_study": "Notion deployed LLMOps practices for their AI writing assistant, which serves millions of users. They built a prompt versioning system that lets product teams iterate on prompts independently, an automated evaluation pipeline comparing output quality across model versions, and real-time cost monitoring dashboards. This enabled Notion to ship frequent AI feature improvements while maintaining quality thresholds and controlling API costs that would otherwise scale linearly with their user base.",
+    "case_study_zh": "Notion为其服务数百万用户的AI写作助手部署了LLMOps实践。他们构建了提示词版本管理系统，让产品团队可以独立迭代提示词；搭建了跨模型版本对比输出质量的自动化评测流水线；以及实时成本监控仪表盘。这使Notion能够频繁发布AI功能改进，同时维持质量阈值并控制原本会随用户规模线性增长的API成本。",
+    "when_not_to_use": [
+      "Simple LLM integrations (single prompt, single model) that do not justify the overhead of full LLMOps tooling",
+      "Internal experimentation phases where prompt iteration speed matters more than production governance",
+      "Applications where LLM calls are infrequent and cost management is not a concern"
+    ],
+    "when_not_to_use_zh": [
+      "不足以证明完整LLMOps工具开销合理性的简单LLM集成（单提示词、单模型）",
+      "提示词迭代速度比生产治理更重要的内部实验阶段",
+      "LLM调用不频繁且成本管理不是关注点的应用"
+    ],
+    "adopters": ["Notion", "GitHub", "Stripe", "Shopify", "Anthropic"]
   },
   {
     "id": 72,
@@ -375,6 +1417,86 @@
     "ai_relevant": true,
     "viz_type": "flow",
     "related": ["agent-reliability-patterns", "llmops", "canary-deployment"],
-    "tags": ["agent-deployment", "guardrails", "staged-rollout", "kill-switch", "ai"]
+    "tags": ["agent-deployment", "guardrails", "staged-rollout", "kill-switch", "ai"],
+    "origin_author": "Community convergence (OpenAI, Anthropic, LangChain, AutoGPT community)",
+    "origin_source": "Agent deployment patterns crystallized in 2024-2025 as AI agents moved from research demos to production systems. Key contributions came from Anthropic's agent safety research, OpenAI's function-calling and tool-use patterns, LangChain's agent frameworks, and practical learnings from early adopters deploying agents in customer-facing applications.",
+    "origin_source_zh": "Agent部署模式在2024-2025年随AI Agent从研究演示走向生产系统而逐步成型。关键贡献来自Anthropic的Agent安全研究、OpenAI的函数调用和工具使用模式、LangChain的Agent框架，以及早期采用者在面向客户应用中部署Agent的实践经验。",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Production systems where autonomous AI agents perform multi-step tasks with real-world side effects",
+      "Applications where agent actions (API calls, code execution, data modification) require safety boundaries",
+      "Teams deploying customer-facing AI agents that must be reliable, cost-controlled, and auditable",
+      "Organizations needing to progressively roll out agent capabilities while managing risk"
+    ],
+    "when_to_use_zh": [
+      "自主AI Agent执行具有真实副作用的多步任务的生产系统",
+      "Agent行为（API调用、代码执行、数据修改）需要安全边界的应用",
+      "部署面向客户的AI Agent、需要可靠性、成本控制和可审计性的团队",
+      "需要在管理风险的同时渐进式推出Agent能力的组织"
+    ],
+    "core_concepts": [
+      "Execution boundaries: define the sandbox of tools, permissions, max steps, and resource limits within which an agent operates",
+      "Guardrails and safety layers: input validation, output filtering, cost caps, rate limits, and human-in-the-loop approval for high-risk actions",
+      "Agent observability: end-to-end tracing of multi-step reasoning chains, tool invocations, memory reads/writes, retries, and final outputs",
+      "Staged rollout with kill switches: shadow mode testing, canary deployment, progressive traffic exposure, and emergency stop capability"
+    ],
+    "core_concepts_zh": [
+      "执行边界：定义Agent运行的工具、权限、最大步骤数和资源限制的沙箱",
+      "护栏与安全层：输入验证、输出过滤、成本上限、速率限制以及高风险操作的人工审批",
+      "Agent可观测性：端到端追踪多步推理链、工具调用、记忆读写、重试和最终输出",
+      "分阶段发布与熔断开关：影子模式测试、金丝雀部署、渐进式流量暴露和紧急停止能力"
+    ],
+    "timeline": [
+      ["2023", "AutoGPT and BabyAGI spark interest in autonomous AI agents; early production challenges emerge"],
+      ["2024", "OpenAI Assistants API and Anthropic Claude tool-use formalize agent building blocks for production"],
+      ["2024", "LangGraph and CrewAI provide structured frameworks for multi-agent orchestration and deployment"],
+      ["2025", "Agent deployment patterns mature with standardized guardrails, observability, and staged rollout practices"],
+      ["2025", "Enterprise agent platforms emerge with built-in safety, compliance, and governance for regulated industries"]
+    ],
+    "timeline_zh": [
+      ["2023", "AutoGPT和BabyAGI引发对自主AI Agent的兴趣；早期生产挑战浮现"],
+      ["2024", "OpenAI Assistants API和Anthropic Claude工具使用为生产Agent正式化构建模块"],
+      ["2024", "LangGraph和CrewAI为多Agent编排和部署提供结构化框架"],
+      ["2025", "Agent部署模式成熟，具备标准化护栏、可观测性和分阶段发布实践"],
+      ["2025", "企业Agent平台涌现，为受监管行业提供内置安全、合规和治理"]
+    ],
+    "dos": [
+      "Define explicit execution boundaries (max steps, allowed tools, cost caps) before deploying any agent",
+      "Implement comprehensive tracing that captures every reasoning step, tool call, and decision point",
+      "Use shadow mode to test agents against production inputs before enabling real actions",
+      "Build kill-switch mechanisms that can halt agent execution within seconds at any stage"
+    ],
+    "dos_zh": [
+      "在部署任何Agent前定义明确的执行边界（最大步骤数、允许工具、成本上限）",
+      "实施全面追踪，捕获每个推理步骤、工具调用和决策点",
+      "使用影子模式针对生产输入测试Agent，然后再启用真实操作",
+      "构建可在任何阶段数秒内停止Agent执行的熔断开关机制"
+    ],
+    "donts": [
+      "Don't deploy agents with unrestricted tool access or unlimited execution budgets",
+      "Don't skip human-in-the-loop checkpoints for high-risk actions like financial transactions or data deletion",
+      "Don't treat agent failures like traditional software bugs -- agentic failures can be unpredictable and require different debugging approaches",
+      "Don't assume agent behavior is deterministic -- test with multiple runs and evaluate the distribution of outcomes"
+    ],
+    "donts_zh": [
+      "不要部署具有不受限工具访问或无限执行预算的Agent",
+      "不要对金融交易或数据删除等高风险操作跳过人工审批检查点",
+      "不要像对待传统软件Bug一样对待Agent故障——Agent故障可能不可预测，需要不同的调试方法",
+      "不要假设Agent行为是确定性的——用多次运行测试并评估结果分布"
+    ],
+    "case_study_company": "Anthropic",
+    "case_study": "Anthropic developed rigorous agent deployment patterns for Claude's computer-use and tool-use capabilities. Their approach includes multi-layered safety: constitutional AI alignment, runtime guardrails that monitor agent actions in real-time, cost caps per agent session, and human-in-the-loop approval gates for irreversible actions. They use staged rollout to gradually expose agent capabilities to users while collecting safety telemetry at each stage.",
+    "case_study_zh": "Anthropic为Claude的计算机使用和工具使用能力开发了严格的Agent部署模式。其方法包括多层安全：Constitutional AI对齐、实时监控Agent行为的运行时护栏、每个Agent会话的成本上限，以及不可逆操作的人工审批门控。他们使用分阶段发布逐步向用户开放Agent能力，在每个阶段收集安全遥测数据。",
+    "when_not_to_use": [
+      "Simple single-turn LLM integrations that do not involve autonomous multi-step reasoning or tool use",
+      "Environments where the overhead of guardrails and observability exceeds the value of agent autonomy",
+      "Use cases where deterministic workflows (traditional automation) can achieve the same result more reliably"
+    ],
+    "when_not_to_use_zh": [
+      "不涉及自主多步推理或工具使用的简单单轮LLM集成",
+      "护栏和可观测性开销超过Agent自主性价值的环境",
+      "确定性工作流（传统自动化）能更可靠地实现相同结果的场景"
+    ],
+    "adopters": ["Anthropic", "OpenAI", "Microsoft", "Google DeepMind", "Salesforce"]
   }
 ]

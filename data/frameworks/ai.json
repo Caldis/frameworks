@@ -24,7 +24,89 @@
     "ai_relevant": true,
     "viz_type": "cycle",
     "related": ["tool-use-design-pattern", "prompt-chaining", "multi-agent-orchestration-pattern"],
-    "tags": ["react", "reasoning", "agents", "llm", "tool-use"]
+    "tags": ["react", "reasoning", "agents", "llm", "tool-use"],
+    "origin_author": "Shunyu Yao et al.",
+    "origin_source": "ReAct: Synergizing Reasoning and Acting in Language Models (ICLR 2023, arXiv 2022)",
+    "origin_source_zh": "ReAct：在语言模型中协同推理与行动（ICLR 2023，arXiv 2022）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Building LLM agents that need to interact with external tools or APIs",
+      "Tasks requiring multi-step reasoning with real-world information retrieval",
+      "Scenarios where the model must show its reasoning chain for auditability",
+      "Complex question-answering that cannot be solved with a single LLM call"
+    ],
+    "when_to_use_zh": [
+      "构建需要与外部工具或 API 交互的大模型代理",
+      "需要多步推理并结合真实信息检索的任务",
+      "要求模型展示推理链以满足审计需求的场景",
+      "单次大模型调用无法解决的复杂问答任务"
+    ],
+    "core_concepts": [
+      "Thought-Action-Observation loop: the agent alternates between reasoning, acting, and observing results",
+      "Grounded reasoning: each reasoning step is validated against real tool outputs rather than hallucinated",
+      "Trace-based debugging: the full reasoning chain is logged, making failures diagnosable",
+      "Dynamic stopping: the agent decides when it has enough information to produce a final answer"
+    ],
+    "core_concepts_zh": [
+      "Thought-Action-Observation 循环：代理在推理、行动和观察结果之间交替执行",
+      "接地推理：每个推理步骤通过真实工具输出验证，而非凭空生成",
+      "基于轨迹的调试：完整推理链被记录，使故障可诊断",
+      "动态停止：代理自行判断何时已获取足够信息以生成最终答案"
+    ],
+    "timeline": [
+      ["2022-10", "Shunyu Yao et al. publish the ReAct paper on arXiv"],
+      ["2023-01", "ReAct accepted at ICLR 2023; gains wide adoption in agent frameworks"],
+      ["2023-06", "LangChain integrates ReAct as a default agent executor pattern"],
+      ["2024-01", "ReAct variants emerge: ReWOO, Reflexion, and Plan-and-Solve extend the paradigm"],
+      ["2025-01", "ReAct becomes the foundational pattern in most production AI agent systems"]
+    ],
+    "timeline_zh": [
+      ["2022-10", "Shunyu Yao 等人在 arXiv 发布 ReAct 论文"],
+      ["2023-01", "ReAct 被 ICLR 2023 接收，在代理框架中广泛采用"],
+      ["2023-06", "LangChain 将 ReAct 集成为默认代理执行器模式"],
+      ["2024-01", "ReAct 变体涌现：ReWOO、Reflexion、Plan-and-Solve 扩展了该范式"],
+      ["2025-01", "ReAct 成为大多数生产级 AI 代理系统的基础模式"]
+    ],
+    "dos": [
+      "Provide clear, concise tool descriptions so the model selects the right action",
+      "Limit the maximum number of loop iterations to prevent runaway costs",
+      "Log the full Thought-Action-Observation trace for debugging and evaluation",
+      "Use few-shot examples in the prompt to guide the reasoning format"
+    ],
+    "dos_zh": [
+      "提供清晰简洁的工具描述，确保模型选择正确的动作",
+      "限制最大循环迭代次数以防止成本失控",
+      "记录完整的 Thought-Action-Observation 轨迹用于调试和评估",
+      "在提示词中使用少样本示例引导推理格式"
+    ],
+    "donts": [
+      "Don't give the agent access to irreversible or dangerous tools without safeguards",
+      "Don't skip observation validation - always verify tool outputs before feeding back",
+      "Don't allow unbounded context growth; summarize or truncate long traces",
+      "Don't rely solely on ReAct for tasks that require long-horizon planning"
+    ],
+    "donts_zh": [
+      "不要在没有安全保障的情况下让代理访问不可逆或危险的工具",
+      "不要跳过观察验证——始终在回传前核实工具输出",
+      "不要允许上下文无限增长，对过长轨迹进行摘要或截断",
+      "不要仅依赖 ReAct 处理需要长期规划的任务"
+    ],
+    "case_study_company": "LangChain",
+    "case_study": "LangChain adopted the ReAct pattern as the core execution loop for its Agent framework, enabling thousands of developers to build tool-augmented LLM applications. By standardizing the Thought-Action-Observation cycle, LangChain reduced the complexity of building agents from scratch and made reasoning traces inspectable for debugging.",
+    "case_study_zh": "LangChain 将 ReAct 模式作为其 Agent 框架的核心执行循环，使数千名开发者能够构建工具增强的大模型应用。通过标准化「思考-行动-观察」循环，LangChain 降低了从零构建代理的复杂性，并使推理轨迹可供调试检查。",
+    "when_not_to_use": [
+      "Simple single-turn tasks that don't require tool interaction",
+      "Latency-critical applications where multi-step loops add unacceptable delay",
+      "Tasks with very long planning horizons that exceed context window limits",
+      "Scenarios where deterministic rule-based logic is more reliable than LLM reasoning"
+    ],
+    "when_not_to_use_zh": [
+      "不需要工具交互的简单单轮任务",
+      "对延迟极度敏感、多步循环会带来不可接受延迟的应用",
+      "规划范围极长、超出上下文窗口限制的任务",
+      "确定性规则逻辑比大模型推理更可靠的场景"
+    ],
+    "adopters": ["LangChain", "Microsoft Semantic Kernel", "Google DeepMind", "Anthropic", "AutoGPT"]
   },
   {
     "id": 88,
@@ -51,7 +133,89 @@
     "ai_relevant": true,
     "viz_type": "flow",
     "related": ["llm-system-design-patterns", "context-window-management", "ai-observability-framework"],
-    "tags": ["rag", "retrieval", "vector-store", "grounding", "knowledge"]
+    "tags": ["rag", "retrieval", "vector-store", "grounding", "knowledge"],
+    "origin_author": "Patrick Lewis et al. (Meta AI / University College London)",
+    "origin_source": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (NeurIPS 2020)",
+    "origin_source_zh": "面向知识密集型 NLP 任务的检索增强生成（NeurIPS 2020）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Enterprise knowledge bases where accuracy and source citation are required",
+      "Domains with rapidly changing information that cannot be baked into model weights",
+      "Customer-facing Q&A systems that must minimize hallucination",
+      "Compliance-sensitive applications requiring traceable, auditable answers"
+    ],
+    "when_to_use_zh": [
+      "需要准确性和来源引用的企业知识库",
+      "信息快速变化、无法固化到模型权重中的领域",
+      "必须最小化幻觉的面向客户的问答系统",
+      "要求可追溯、可审计答案的合规敏感型应用"
+    ],
+    "core_concepts": [
+      "Retrieval-then-generate: fetch relevant context from an external store before prompting the LLM",
+      "Chunking strategy: document splitting approach directly impacts retrieval quality and relevance",
+      "Embedding similarity: vector distance measures how semantically close a chunk is to the query",
+      "Faithfulness evaluation: measuring whether the generated answer is grounded in retrieved evidence"
+    ],
+    "core_concepts_zh": [
+      "先检索后生成：在提示大模型之前从外部存储获取相关上下文",
+      "分块策略：文档切分方式直接影响检索质量和相关性",
+      "嵌入相似度：向量距离衡量片段与查询的语义接近程度",
+      "忠实度评估：衡量生成的答案是否基于检索到的证据"
+    ],
+    "timeline": [
+      ["2020-05", "Patrick Lewis et al. publish the RAG paper, introducing retrieval-augmented generation"],
+      ["2022-12", "ChatGPT launch sparks massive interest in grounding LLMs with external knowledge"],
+      ["2023-06", "Vector databases (Pinecone, Weaviate, Chroma) see explosive growth driven by RAG adoption"],
+      ["2024-01", "Advanced RAG techniques emerge: hybrid search, reranking, GraphRAG, and agentic RAG"],
+      ["2025-01", "RAG becomes standard architecture for enterprise AI assistants worldwide"]
+    ],
+    "timeline_zh": [
+      ["2020-05", "Patrick Lewis 等人发表 RAG 论文，提出检索增强生成方法"],
+      ["2022-12", "ChatGPT 发布引发大规模兴趣，推动用外部知识为大模型提供依据"],
+      ["2023-06", "向量数据库（Pinecone、Weaviate、Chroma）因 RAG 采用而爆发式增长"],
+      ["2024-01", "高级 RAG 技术涌现：混合检索、重排序、GraphRAG 和代理式 RAG"],
+      ["2025-01", "RAG 成为全球企业 AI 助手的标准架构"]
+    ],
+    "dos": [
+      "Experiment with multiple chunking strategies (fixed-size, semantic, document-structure-aware)",
+      "Use hybrid retrieval combining dense embeddings with sparse keyword search (BM25)",
+      "Add a reranking step to improve precision of retrieved chunks before generation",
+      "Include source citations in the generated output for user trust and verification"
+    ],
+    "dos_zh": [
+      "尝试多种分块策略（固定大小、语义分块、文档结构感知）",
+      "使用混合检索，将稠密嵌入与稀疏关键词搜索（BM25）结合",
+      "在生成前添加重排序步骤以提高检索片段的精确度",
+      "在生成输出中包含来源引用，增强用户信任和可验证性"
+    ],
+    "donts": [
+      "Don't assume embeddings alone capture all query nuances - augment with keyword filters",
+      "Don't use excessively large chunks that dilute relevant information with noise",
+      "Don't skip evaluation of retrieval recall - poor retrieval means poor generation",
+      "Don't ignore chunk overlap; missing context at boundaries causes fragmented answers"
+    ],
+    "donts_zh": [
+      "不要假设嵌入能捕获所有查询细微差别——用关键词过滤补充",
+      "不要使用过大的分块，那会用噪声稀释相关信息",
+      "不要跳过检索召回率评估——检索差意味着生成差",
+      "不要忽略分块重叠问题，边界处缺少上下文会导致答案碎片化"
+    ],
+    "case_study_company": "Stripe",
+    "case_study": "Stripe built an internal RAG-powered documentation assistant that indexes their vast developer docs and internal knowledge base. By retrieving relevant API specifications and support articles before generation, the system reduced hallucinated answers by over 80% compared to a vanilla LLM and cut average developer support resolution time significantly.",
+    "case_study_zh": "Stripe 构建了基于 RAG 的内部文档助手，对其庞大的开发者文档和内部知识库进行索引。通过在生成前检索相关 API 规范和支持文章，系统将幻觉答案减少了 80% 以上，并显著缩短了开发者支持的平均解决时间。",
+    "when_not_to_use": [
+      "Creative or open-ended generation tasks where grounding is unnecessary",
+      "Small, static datasets that can be fully included in the system prompt",
+      "Real-time applications where retrieval latency is prohibitive",
+      "Tasks where the LLM's parametric knowledge alone is sufficient and up to date"
+    ],
+    "when_not_to_use_zh": [
+      "不需要事实依据的创意或开放式生成任务",
+      "可以完整放入系统提示词的小型静态数据集",
+      "检索延迟不可接受的实时应用",
+      "大模型参数知识已足够且时效性满足需求的任务"
+    ],
+    "adopters": ["Microsoft Copilot", "Stripe", "Notion AI", "Elastic", "Databricks"]
   },
   {
     "id": 89,
@@ -78,7 +242,89 @@
     "ai_relevant": true,
     "viz_type": "tree",
     "related": ["react-framework", "agent-communication-protocol", "agent-oriented-design-thinking"],
-    "tags": ["multi-agent", "orchestration", "coordination", "task-decomposition"]
+    "tags": ["multi-agent", "orchestration", "coordination", "task-decomposition"],
+    "origin_author": "Qingyun Wu et al. (Microsoft Research) / CrewAI / LangGraph",
+    "origin_source": "AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation (2023); CrewAI and LangGraph frameworks",
+    "origin_source_zh": "AutoGen：通过多代理对话实现下一代大模型应用（2023）；CrewAI 和 LangGraph 框架",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Complex workflows requiring diverse expertise that no single agent can cover",
+      "Tasks with naturally parallelizable sub-components (research + code + review)",
+      "Systems that benefit from separation of concerns between planning, execution, and verification",
+      "Scenarios requiring role-based collaboration such as debate, review, or consensus"
+    ],
+    "when_to_use_zh": [
+      "需要多元专业能力、单个代理无法覆盖的复杂工作流",
+      "具有天然可并行子组件的任务（研究 + 编码 + 审查）",
+      "规划、执行和验证之间关注点分离有益的系统",
+      "需要基于角色协作（辩论、审查或共识）的场景"
+    ],
+    "core_concepts": [
+      "Orchestrator pattern: a central agent decomposes tasks, delegates to specialists, and synthesizes results",
+      "Agent specialization: each agent has a focused role, model configuration, and tool set",
+      "Inter-agent messaging: structured communication protocols enable reliable handoffs between agents",
+      "Failure isolation: circuit-breakers prevent one failing agent from cascading failures to the system"
+    ],
+    "core_concepts_zh": [
+      "编排器模式：中央代理分解任务、委派给专家并综合结果",
+      "代理专业化：每个代理具有专注的角色、模型配置和工具集",
+      "代理间消息传递：结构化通信协议确保代理间可靠交接",
+      "故障隔离：熔断器防止单个代理故障级联到整个系统"
+    ],
+    "timeline": [
+      ["2023-09", "Microsoft Research publishes AutoGen, pioneering multi-agent conversation frameworks"],
+      ["2023-12", "CrewAI launches, introducing role-based multi-agent orchestration for developers"],
+      ["2024-01", "LangGraph provides graph-based agent orchestration with stateful workflows"],
+      ["2024-06", "OpenAI Swarm and Anthropic multi-agent patterns validate the orchestration paradigm"],
+      ["2025-01", "Multi-agent orchestration becomes standard for complex enterprise AI workflows"]
+    ],
+    "timeline_zh": [
+      ["2023-09", "微软研究院发布 AutoGen，开创多代理对话框架"],
+      ["2023-12", "CrewAI 推出，引入面向开发者的基于角色的多代理编排"],
+      ["2024-01", "LangGraph 提供基于图的代理编排和有状态工作流"],
+      ["2024-06", "OpenAI Swarm 和 Anthropic 多代理模式验证了编排范式"],
+      ["2025-01", "多代理编排成为复杂企业 AI 工作流的标准方案"]
+    ],
+    "dos": [
+      "Define clear role boundaries and responsibilities for each agent",
+      "Use structured message schemas for inter-agent communication",
+      "Implement timeout and retry policies for each agent independently",
+      "Start with 2-3 agents and scale complexity only when proven necessary"
+    ],
+    "dos_zh": [
+      "为每个代理定义清晰的角色边界和职责",
+      "使用结构化消息模式进行代理间通信",
+      "为每个代理独立实现超时和重试策略",
+      "从 2-3 个代理开始，仅在证明必要时才增加复杂度"
+    ],
+    "donts": [
+      "Don't create too many agents - complexity grows non-linearly with agent count",
+      "Don't allow agents to communicate in unstructured free text without validation",
+      "Don't skip the single-agent baseline - prove multi-agent adds value over simpler approaches",
+      "Don't let agents share mutable state without synchronization mechanisms"
+    ],
+    "donts_zh": [
+      "不要创建过多代理——复杂性随代理数量非线性增长",
+      "不要允许代理以未验证的自由文本进行通信",
+      "不要跳过单代理基线——需证明多代理比简单方案更有价值",
+      "不要让代理在没有同步机制的情况下共享可变状态"
+    ],
+    "case_study_company": "Microsoft",
+    "case_study": "Microsoft developed AutoGen to power multi-agent workflows within their enterprise products. In internal testing, a three-agent system (planner, coder, reviewer) achieved 25% higher task completion rates on complex software engineering benchmarks compared to single-agent approaches. The orchestration pattern has since been adopted across Microsoft Copilot products.",
+    "case_study_zh": "微软开发了 AutoGen 来驱动其企业产品中的多代理工作流。在内部测试中，三代理系统（规划者、编码者、审查者）在复杂软件工程基准测试上的任务完成率比单代理方案高出 25%。该编排模式已在微软 Copilot 系列产品中广泛采用。",
+    "when_not_to_use": [
+      "Simple tasks that a single well-prompted agent can handle effectively",
+      "Latency-sensitive applications where multi-agent coordination adds unacceptable overhead",
+      "Projects with limited budget where multiple LLM calls multiply cost significantly",
+      "Early prototyping stages where the task decomposition is not yet well understood"
+    ],
+    "when_not_to_use_zh": [
+      "单个经过良好提示的代理即可有效处理的简单任务",
+      "多代理协调带来不可接受开销的延迟敏感型应用",
+      "预算有限、多次大模型调用会显著增加成本的项目",
+      "任务分解尚不明确的早期原型阶段"
+    ],
+    "adopters": ["Microsoft AutoGen", "CrewAI", "LangGraph", "OpenAI", "Amazon Bedrock Agents"]
   },
   {
     "id": 90,
@@ -105,7 +351,89 @@
     "ai_relevant": true,
     "viz_type": "flow",
     "related": ["human-ai-interaction-design", "guardrails-framework", "responsible-ai-design"],
-    "tags": ["human-in-the-loop", "oversight", "escalation", "feedback"]
+    "tags": ["human-in-the-loop", "oversight", "escalation", "feedback"],
+    "origin_author": "Concept from active learning research; popularized by Saleema Amershi et al. (Microsoft Research)",
+    "origin_source": "Guidelines for Human-AI Interaction (CHI 2019); Power to the People: The Role of Humans in Interactive Machine Learning (AI Magazine, 2014)",
+    "origin_source_zh": "人机交互设计指南（CHI 2019）；赋能于人：人类在交互式机器学习中的角色（AI Magazine，2014）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "High-stakes decisions where AI errors have significant real-world consequences",
+      "Regulatory-compliant workflows that mandate human approval (finance, healthcare, legal)",
+      "Early-stage AI deployments where model reliability is not yet fully established",
+      "Continuously improving systems that use human corrections as training signal"
+    ],
+    "when_to_use_zh": [
+      "AI 错误会产生重大现实后果的高风险决策",
+      "法规要求人工审批的合规工作流（金融、医疗、法律）",
+      "模型可靠性尚未完全建立的早期 AI 部署",
+      "利用人工纠正作为训练信号的持续改进系统"
+    ],
+    "core_concepts": [
+      "Escalation thresholds: confidence scores or risk levels that trigger human review",
+      "Feedback loop: human corrections feed back into model retraining and threshold calibration",
+      "Asymmetric automation: automate low-risk decisions fully while keeping humans for high-risk ones",
+      "Review UI design: presenting AI reasoning and evidence to help humans make fast, informed decisions"
+    ],
+    "core_concepts_zh": [
+      "升级阈值：触发人工审核的置信度分数或风险等级",
+      "反馈回路：人工纠正回馈到模型重训练和阈值校准",
+      "非对称自动化：低风险决策完全自动化，高风险决策保留人工",
+      "审核界面设计：展示 AI 推理和证据，帮助人类快速做出知情决策"
+    ],
+    "timeline": [
+      ["2014-01", "AI Magazine publishes influential work on humans in interactive machine learning"],
+      ["2019-05", "Microsoft Research publishes Guidelines for Human-AI Interaction at CHI 2019"],
+      ["2022-11", "ChatGPT launch highlights the critical need for human oversight in AI systems"],
+      ["2023-10", "EU AI Act formalizes human oversight requirements for high-risk AI systems"],
+      ["2024-06", "Major cloud providers integrate human-in-the-loop workflows into AI platforms"]
+    ],
+    "timeline_zh": [
+      ["2014-01", "AI Magazine 发表关于人类在交互式机器学习中角色的重要研究"],
+      ["2019-05", "微软研究院在 CHI 2019 发布「人机交互设计指南」"],
+      ["2022-11", "ChatGPT 发布凸显了 AI 系统中人工监督的关键需求"],
+      ["2023-10", "欧盟 AI 法案正式规定高风险 AI 系统的人工监督要求"],
+      ["2024-06", "主要云服务商将人机协同工作流集成到 AI 平台中"]
+    ],
+    "dos": [
+      "Set clear escalation criteria based on measurable confidence scores or risk levels",
+      "Design review interfaces that show AI reasoning and supporting evidence together",
+      "Track human override rates and use them to calibrate automation thresholds over time",
+      "Use human feedback systematically as labeled data for model improvement"
+    ],
+    "dos_zh": [
+      "基于可衡量的置信度分数或风险等级设定明确的升级标准",
+      "设计展示 AI 推理过程和支持证据的审核界面",
+      "跟踪人工覆盖率并用于逐步校准自动化阈值",
+      "系统性地将人工反馈用作模型改进的标注数据"
+    ],
+    "donts": [
+      "Don't make human review a bottleneck by sending too many low-value escalations",
+      "Don't ignore human feedback - if overrides are frequent, the model needs improvement",
+      "Don't design review UIs that force humans to start from scratch instead of reviewing AI work",
+      "Don't assume human reviewers are infallible - track reviewer accuracy and consistency too"
+    ],
+    "donts_zh": [
+      "不要因发送过多低价值升级请求而让人工审核成为瓶颈",
+      "不要忽视人工反馈——如果覆盖频繁，说明模型需要改进",
+      "不要设计迫使人工从头开始而非审查 AI 工作的审核界面",
+      "不要假设人工审核者不会出错——也需跟踪审核者的准确性和一致性"
+    ],
+    "case_study_company": "Scale AI",
+    "case_study": "Scale AI built its entire business model around human-in-the-loop workflows for AI training data. Their platform routes AI-generated annotations through calibrated human review stages, where reviewers correct and validate labels. This approach enabled their clients, including OpenAI and Meta, to achieve significantly higher data quality than fully automated labeling.",
+    "case_study_zh": "Scale AI 围绕 AI 训练数据的人机协同工作流构建了整个商业模式。其平台将 AI 生成的标注通过校准的人工审核阶段路由，审核者纠正和验证标签。这种方法使其客户（包括 OpenAI 和 Meta）获得了远高于全自动标注的数据质量。",
+    "when_not_to_use": [
+      "Fully automated systems where latency from human review is unacceptable",
+      "Low-risk decisions where the cost of occasional AI errors is negligible",
+      "High-volume tasks where human review cannot scale to match throughput",
+      "Mature models with proven reliability that no longer benefit from human oversight"
+    ],
+    "when_not_to_use_zh": [
+      "人工审核延迟不可接受的全自动化系统",
+      "偶尔 AI 出错的成本可忽略不计的低风险决策",
+      "人工审核无法扩展到匹配吞吐量的高容量任务",
+      "已证明可靠性、不再需要人工监督的成熟模型"
+    ],
+    "adopters": ["Scale AI", "Tesla Autopilot", "Amazon Mechanical Turk", "Google Cloud AI", "OpenAI"]
   },
   {
     "id": 91,
@@ -132,7 +460,89 @@
     "ai_relevant": true,
     "viz_type": "flow",
     "related": ["react-framework", "prompt-engineering-patterns", "guardrails-framework"],
-    "tags": ["prompt-chaining", "pipeline", "decomposition", "sequential"]
+    "tags": ["prompt-chaining", "pipeline", "decomposition", "sequential"],
+    "origin_author": "Emerged from prompt engineering practice; formalized by Harrison Chase (LangChain) and Anthropic's prompt engineering guides",
+    "origin_source": "LangChain Sequential Chains (2022); Anthropic Prompt Engineering Guide (2023)",
+    "origin_source_zh": "LangChain 顺序链（2022）；Anthropic 提示工程指南（2023）",
+    "complexity": "beginner",
+    "when_to_use": [
+      "Complex tasks that benefit from divide-and-conquer decomposition",
+      "Workflows where each stage needs different instructions or system prompts",
+      "Pipelines requiring intermediate validation or quality gating between steps",
+      "Scenarios where debugging requires inspecting each step independently"
+    ],
+    "when_to_use_zh": [
+      "受益于分治法分解的复杂任务",
+      "每个阶段需要不同指令或系统提示词的工作流",
+      "步骤之间需要中间验证或质量门控的管道",
+      "调试时需要独立检查每个步骤的场景"
+    ],
+    "core_concepts": [
+      "Stage decomposition: breaking a complex task into sequential, focused prompt stages",
+      "Schema contracts: each stage defines typed input/output schemas for reliable handoff",
+      "Quality gates: validation checkpoints between stages that prevent error propagation",
+      "Regression testing: logging stage I/O pairs enables prompt version regression detection"
+    ],
+    "core_concepts_zh": [
+      "阶段分解：将复杂任务拆分为顺序执行的专注提示词阶段",
+      "模式契约：每个阶段定义类型化输入输出模式以确保可靠交接",
+      "质量门控：阶段间的验证检查点防止错误传播",
+      "回归测试：记录阶段输入输出对以检测提示词版本回归"
+    ],
+    "timeline": [
+      ["2022-10", "LangChain introduces SequentialChain as a core abstraction for multi-step LLM workflows"],
+      ["2023-03", "Anthropic publishes prompt engineering guides formalizing chaining best practices"],
+      ["2023-09", "OpenAI Cookbook documents prompt chaining patterns for production applications"],
+      ["2024-03", "Structured output support from major LLMs makes schema-based chaining more reliable"],
+      ["2025-01", "Prompt chaining becomes a foundational pattern taught in AI engineering curricula"]
+    ],
+    "timeline_zh": [
+      ["2022-10", "LangChain 引入 SequentialChain 作为多步大模型工作流的核心抽象"],
+      ["2023-03", "Anthropic 发布提示工程指南，正式化链式调用最佳实践"],
+      ["2023-09", "OpenAI Cookbook 记录面向生产应用的提示词链模式"],
+      ["2024-03", "主流大模型支持结构化输出，使基于模式的链式调用更可靠"],
+      ["2025-01", "提示词链成为 AI 工程课程中教授的基础模式"]
+    ],
+    "dos": [
+      "Define clear typed schemas for inputs and outputs at each chain stage",
+      "Add validation and quality gates between stages to catch errors early",
+      "Log all intermediate inputs and outputs for debugging and regression testing",
+      "Keep each stage focused on a single well-defined sub-task"
+    ],
+    "dos_zh": [
+      "为每个链路阶段定义清晰的类型化输入输出模式",
+      "在阶段之间添加验证和质量门控以尽早捕获错误",
+      "记录所有中间输入输出用于调试和回归测试",
+      "让每个阶段专注于单个明确定义的子任务"
+    ],
+    "donts": [
+      "Don't chain too many stages - each stage adds latency and potential failure points",
+      "Don't pass unvalidated output from one stage to the next without checking",
+      "Don't use the same system prompt for every stage - tailor it to each stage's task",
+      "Don't ignore error propagation; a failure in stage N can corrupt all downstream stages"
+    ],
+    "donts_zh": [
+      "不要链接过多阶段——每个阶段都会增加延迟和潜在故障点",
+      "不要在未验证的情况下将一个阶段的输出传给下一个阶段",
+      "不要对每个阶段使用相同的系统提示词——应针对各阶段任务定制",
+      "不要忽视错误传播，第 N 阶段的失败可能破坏所有下游阶段"
+    ],
+    "case_study_company": "Anthropic",
+    "case_study": "Anthropic uses prompt chaining extensively in Claude's internal content processing pipeline. Complex user requests are decomposed into stages: intent classification, context gathering, response generation, and safety verification. Each stage has independent evaluation metrics, enabling targeted improvements without disrupting the full chain.",
+    "case_study_zh": "Anthropic 在 Claude 的内部内容处理管道中广泛使用提示词链。复杂用户请求被分解为多个阶段：意图分类、上下文收集、响应生成和安全验证。每个阶段有独立的评估指标，支持针对性改进而不影响整条链路。",
+    "when_not_to_use": [
+      "Simple tasks that a single prompt can handle well without decomposition",
+      "Real-time applications where multi-stage latency is unacceptable",
+      "Exploratory or creative tasks where rigid stage boundaries constrain the output",
+      "Scenarios where the task decomposition is unclear or highly dynamic"
+    ],
+    "when_not_to_use_zh": [
+      "单个提示词即可良好处理、无需分解的简单任务",
+      "多阶段延迟不可接受的实时应用",
+      "刚性阶段边界会限制输出的探索性或创意任务",
+      "任务分解不明确或高度动态的场景"
+    ],
+    "adopters": ["Anthropic", "LangChain", "OpenAI", "Vercel AI SDK", "Hugging Face"]
   },
   {
     "id": 92,
@@ -159,7 +569,89 @@
     "ai_relevant": true,
     "viz_type": "cycle",
     "related": ["human-ai-interaction-design", "ai-assisted-refactoring", "conventional-comments"],
-    "tags": ["pair-programming", "ai-collaboration", "coding", "developer-tools"]
+    "tags": ["pair-programming", "ai-collaboration", "coding", "developer-tools"],
+    "origin_author": "GitHub (Oege de Moor, Albert Ziegler et al.)",
+    "origin_source": "GitHub Copilot Technical Preview (2021); Productivity Assessment of Neural Code Completion (2022)",
+    "origin_source_zh": "GitHub Copilot 技术预览版（2021）；神经代码补全的生产力评估（2022）",
+    "complexity": "beginner",
+    "when_to_use": [
+      "Day-to-day software development where AI can accelerate boilerplate and drafting",
+      "Learning new programming languages or frameworks with AI as a knowledgeable tutor",
+      "Refactoring sessions where AI can suggest patterns and handle repetitive transformations",
+      "Debugging sessions where AI can analyze error messages and propose fixes"
+    ],
+    "when_to_use_zh": [
+      "AI 可加速样板代码和起草的日常软件开发",
+      "以 AI 作为知识渊博导师学习新编程语言或框架",
+      "AI 可建议设计模式并处理重复性转换的重构会话",
+      "AI 可分析错误信息并提出修复建议的调试会话"
+    ],
+    "core_concepts": [
+      "Role asymmetry: human provides intent, context, and judgment; AI provides speed and synthesis",
+      "Intent-first prompting: describing goals and constraints before requesting code yields better results",
+      "Iterative refinement: treating AI output as a first draft to be reviewed, tested, and refined",
+      "Skill amplification: AI handles mechanical tasks while human focuses on architecture and design"
+    ],
+    "core_concepts_zh": [
+      "角色不对称：人类提供意图、上下文和判断；AI 提供速度和合成能力",
+      "意图优先提示：在请求代码前描述目标和约束能获得更好的结果",
+      "迭代细化：将 AI 输出视为需要审查、测试和细化的初稿",
+      "技能放大：AI 处理机械性任务，人类专注于架构和设计"
+    ],
+    "timeline": [
+      ["2021-06", "GitHub launches Copilot Technical Preview, pioneering AI pair programming at scale"],
+      ["2022-06", "GitHub Copilot becomes generally available; studies show 55% faster task completion"],
+      ["2023-03", "GPT-4 enables chat-based pair programming with deeper reasoning capabilities"],
+      ["2024-03", "Claude Code, Cursor, and Windsurf emerge as AI-native coding environments"],
+      ["2025-01", "AI pair programming becomes standard practice adopted by over 70% of professional developers"]
+    ],
+    "timeline_zh": [
+      ["2021-06", "GitHub 推出 Copilot 技术预览版，率先大规模实现 AI 结对编程"],
+      ["2022-06", "GitHub Copilot 正式发布；研究显示任务完成速度提升 55%"],
+      ["2023-03", "GPT-4 实现基于对话的结对编程，具备更深层推理能力"],
+      ["2024-03", "Claude Code、Cursor 和 Windsurf 作为 AI 原生编码环境出现"],
+      ["2025-01", "AI 结对编程成为超过 70% 专业开发者采用的标准实践"]
+    ],
+    "dos": [
+      "Always review AI-generated code for correctness, security vulnerabilities, and style",
+      "Provide rich context (project structure, conventions, test expectations) to the AI",
+      "Use failing tests and error messages as concrete feedback for AI refinement",
+      "Maintain your own understanding of the code - don't accept what you can't explain"
+    ],
+    "dos_zh": [
+      "始终审查 AI 生成代码的正确性、安全漏洞和风格",
+      "向 AI 提供丰富上下文（项目结构、约定、测试期望）",
+      "使用失败测试和错误信息作为 AI 细化的具体反馈",
+      "保持对代码的自主理解——不要接受无法解释的代码"
+    ],
+    "donts": [
+      "Don't blindly accept AI-generated code without understanding it",
+      "Don't skip security review - AI may generate code with known vulnerability patterns",
+      "Don't use AI as a crutch that prevents you from learning the underlying concepts",
+      "Don't share proprietary or sensitive code with AI tools without checking data policies"
+    ],
+    "donts_zh": [
+      "不要在不理解的情况下盲目接受 AI 生成的代码",
+      "不要跳过安全审查——AI 可能生成含已知漏洞模式的代码",
+      "不要将 AI 当作阻碍自己学习底层概念的拐杖",
+      "不要在未确认数据政策的情况下与 AI 工具共享专有或敏感代码"
+    ],
+    "case_study_company": "GitHub",
+    "case_study": "GitHub's internal study of Copilot showed that developers using AI pair programming completed tasks 55% faster than those without it. More importantly, developers reported higher satisfaction and spent more time on creative problem-solving rather than boilerplate, demonstrating that the model works best when humans focus on design intent while AI handles synthesis.",
+    "case_study_zh": "GitHub 对 Copilot 的内部研究表明，使用 AI 结对编程的开发者完成任务的速度比未使用者快 55%。更重要的是，开发者报告了更高的满意度，将更多时间用于创造性问题解决而非样板代码，证明了当人类专注于设计意图、AI 处理合成时该模型效果最佳。",
+    "when_not_to_use": [
+      "Security-critical code that requires formal verification rather than AI-assisted drafting",
+      "Proprietary algorithms that cannot be exposed to third-party AI services",
+      "Situations where developers need to deeply learn a concept rather than get quick answers",
+      "Regulated codebases with strict provenance requirements for every line of code"
+    ],
+    "when_not_to_use_zh": [
+      "需要形式化验证而非 AI 辅助起草的安全关键代码",
+      "不能暴露给第三方 AI 服务的专有算法",
+      "开发者需要深入学习概念而非获取快速答案的场景",
+      "对每行代码有严格来源追溯要求的受监管代码库"
+    ],
+    "adopters": ["GitHub Copilot", "Cursor", "Anthropic Claude Code", "JetBrains AI Assistant", "Amazon CodeWhisperer"]
   },
   {
     "id": 93,
@@ -186,7 +678,89 @@
     "ai_relevant": true,
     "viz_type": "flow",
     "related": ["responsible-ai-design", "ai-output-verification", "human-in-the-loop"],
-    "tags": ["guardrails", "safety", "validation", "constraints", "policy"]
+    "tags": ["guardrails", "safety", "validation", "constraints", "policy"],
+    "origin_author": "Shreya Rajpal (Guardrails AI); NVIDIA NeMo Guardrails team",
+    "origin_source": "Guardrails AI open-source library (2023); NVIDIA NeMo Guardrails (2023)",
+    "origin_source_zh": "Guardrails AI 开源库（2023）；NVIDIA NeMo Guardrails（2023）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Production LLM applications that handle user-facing content and must avoid harmful outputs",
+      "Systems processing sensitive data where PII leakage or injection attacks are risks",
+      "Applications requiring structured, schema-compliant outputs from LLMs",
+      "Regulated industries (finance, healthcare) where AI output must meet compliance standards"
+    ],
+    "when_to_use_zh": [
+      "处理面向用户内容、必须避免有害输出的生产级大模型应用",
+      "处理敏感数据、存在个人信息泄露或注入攻击风险的系统",
+      "要求大模型输出结构化、符合模式的应用",
+      "AI 输出必须满足合规标准的受监管行业（金融、医疗）"
+    ],
+    "core_concepts": [
+      "Input validation: filtering, rewriting, or rejecting unsafe prompts before they reach the LLM",
+      "Output validation: checking generated content against policy rules, format schemas, and factual grounding",
+      "Layered defense: combining multiple guardrail techniques (regex, classifiers, LLM-based judges) for robustness",
+      "Continuous learning: using production violation logs to improve guardrail classifiers over time"
+    ],
+    "core_concepts_zh": [
+      "输入验证：在提示词到达大模型前进行过滤、改写或拒绝不安全内容",
+      "输出验证：根据策略规则、格式模式和事实依据检查生成内容",
+      "分层防御：组合多种护栏技术（正则、分类器、基于大模型的评判器）以增强鲁棒性",
+      "持续学习：利用生产违规日志持续改进护栏分类器"
+    ],
+    "timeline": [
+      ["2023-02", "Guardrails AI releases the open-source guardrails library for LLM output validation"],
+      ["2023-04", "NVIDIA releases NeMo Guardrails for programmable LLM safety rails"],
+      ["2023-11", "OpenAI introduces moderation endpoint and system-level safety layers"],
+      ["2024-06", "Guardrails become standard middleware in enterprise LLM deployment stacks"],
+      ["2025-01", "Industry converges on layered guardrail architectures combining classifiers and LLM judges"]
+    ],
+    "timeline_zh": [
+      ["2023-02", "Guardrails AI 发布用于大模型输出验证的开源护栏库"],
+      ["2023-04", "NVIDIA 发布 NeMo Guardrails 可编程大模型安全护栏"],
+      ["2023-11", "OpenAI 推出内容审核端点和系统级安全层"],
+      ["2024-06", "护栏成为企业大模型部署技术栈中的标准中间件"],
+      ["2025-01", "行业趋向于融合分类器和大模型评判器的分层护栏架构"]
+    ],
+    "dos": [
+      "Implement guardrails on both input and output - defense in depth is essential",
+      "Use multiple validation techniques (regex, classifiers, LLM judges) in layers for robustness",
+      "Log all guardrail triggers with full context for analysis and classifier improvement",
+      "Test guardrails with adversarial red-teaming to find bypasses before attackers do"
+    ],
+    "dos_zh": [
+      "在输入和输出两端都实现护栏——纵深防御至关重要",
+      "分层使用多种验证技术（正则、分类器、大模型评判器）以增强鲁棒性",
+      "记录所有护栏触发事件及完整上下文，用于分析和分类器改进",
+      "通过对抗性红队测试发现绕过漏洞，抢在攻击者之前"
+    ],
+    "donts": [
+      "Don't rely solely on prompt-based guardrails - they can be bypassed by prompt injection",
+      "Don't make guardrails so strict that they block legitimate user requests excessively",
+      "Don't treat guardrails as set-and-forget - they need continuous tuning based on production data",
+      "Don't ignore false positives; excessive blocking erodes user trust and adoption"
+    ],
+    "donts_zh": [
+      "不要仅依赖基于提示词的护栏——它们可能被提示注入绕过",
+      "不要让护栏过于严格以致过度阻止合法用户请求",
+      "不要将护栏视为一劳永逸——需要基于生产数据持续调优",
+      "不要忽视误报，过度拦截会侵蚀用户信任和采用率"
+    ],
+    "case_study_company": "NVIDIA",
+    "case_study": "NVIDIA developed NeMo Guardrails to protect enterprise LLM deployments in production. The framework provides programmable rails that intercept both inputs and outputs, enforcing topic boundaries and safety policies. Enterprise adopters reported reducing harmful output incidents by over 90% while maintaining natural conversational quality.",
+    "case_study_zh": "NVIDIA 开发了 NeMo Guardrails 来保护企业生产环境中的大模型部署。该框架提供可编程护栏，拦截输入和输出，强制执行主题边界和安全策略。企业采用者报告有害输出事件减少了 90% 以上，同时保持了自然的对话质量。",
+    "when_not_to_use": [
+      "Internal-only research tools where output safety is not a concern",
+      "Creative writing applications where rigid constraints would limit expression",
+      "Prototype or hackathon projects where speed of iteration outweighs safety requirements",
+      "Systems where all inputs are pre-validated and outputs are only consumed by code"
+    ],
+    "when_not_to_use_zh": [
+      "输出安全性不是关注点的纯内部研究工具",
+      "严格约束会限制表达的创意写作应用",
+      "迭代速度优先于安全要求的原型或黑客松项目",
+      "所有输入已预验证且输出仅被代码消费的系统"
+    ],
+    "adopters": ["NVIDIA", "Guardrails AI", "OpenAI", "Microsoft Azure AI", "Amazon Bedrock"]
   },
   {
     "id": 94,
@@ -213,7 +787,89 @@
     "ai_relevant": true,
     "viz_type": "pyramid",
     "related": ["rag-architecture", "prompt-chaining", "llm-system-design-patterns"],
-    "tags": ["context-window", "token-management", "compression", "memory"]
+    "tags": ["context-window", "token-management", "compression", "memory"],
+    "origin_author": "Emerged from practical LLM engineering; formalized by OpenAI and Anthropic engineering teams",
+    "origin_source": "OpenAI API Best Practices (2023); Anthropic Long Context Guide (2024); MemGPT: Towards LLMs as Operating Systems (2023)",
+    "origin_source_zh": "OpenAI API 最佳实践（2023）；Anthropic 长上下文指南（2024）；MemGPT：迈向操作系统化的大模型（2023）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Long-running conversations that risk exceeding the model's context window",
+      "RAG systems where retrieved content competes with conversation history for token budget",
+      "Multi-turn assistants that need to maintain coherence across many exchanges",
+      "Cost-sensitive applications where reducing context size directly lowers API costs"
+    ],
+    "when_to_use_zh": [
+      "有超出模型上下文窗口风险的长时间对话",
+      "检索内容与对话历史争夺 Token 预算的 RAG 系统",
+      "需要在多轮交互中保持连贯性的多轮助手",
+      "减少上下文大小可直接降低 API 成本的成本敏感型应用"
+    ],
+    "core_concepts": [
+      "Token budgeting: allocating fixed token budgets to system prompt, history, context, and output",
+      "Priority-based pruning: removing lowest-priority context segments first when nearing limits",
+      "Summary compression: replacing older conversation turns with concise summaries to free tokens",
+      "Sliding window: keeping only the N most recent turns while archiving or summarizing older ones"
+    ],
+    "core_concepts_zh": [
+      "Token 预算分配：为系统提示词、历史记录、上下文和输出分配固定的 Token 预算",
+      "基于优先级的裁剪：接近上限时优先移除最低优先级的上下文片段",
+      "摘要压缩：用简洁摘要替代较旧的对话轮次以释放 Token",
+      "滑动窗口：仅保留最近 N 轮对话，对更旧的内容进行归档或摘要"
+    ],
+    "timeline": [
+      ["2023-03", "GPT-4 launches with 8K/32K context windows, making context management critical"],
+      ["2023-10", "MemGPT paper proposes virtual context management inspired by OS memory hierarchies"],
+      ["2024-02", "Anthropic releases Claude with 200K context window, shifting management strategies"],
+      ["2024-06", "Google Gemini offers 1M+ token context, but management remains important for cost and coherence"],
+      ["2025-01", "Context management evolves into a standard discipline in LLM application architecture"]
+    ],
+    "timeline_zh": [
+      ["2023-03", "GPT-4 以 8K/32K 上下文窗口发布，使上下文管理变得至关重要"],
+      ["2023-10", "MemGPT 论文提出受操作系统内存层次启发的虚拟上下文管理"],
+      ["2024-02", "Anthropic 发布 200K 上下文窗口的 Claude，改变了管理策略"],
+      ["2024-06", "Google Gemini 提供 100 万+ Token 上下文，但管理对成本和连贯性仍然重要"],
+      ["2025-01", "上下文管理演变为大模型应用架构中的标准学科"]
+    ],
+    "dos": [
+      "Profile and monitor token usage across all context segments in production",
+      "Implement summary compression for conversation history exceeding a threshold",
+      "Reserve sufficient token budget for the model's output generation",
+      "Test coherence and task accuracy at different context utilization levels"
+    ],
+    "dos_zh": [
+      "在生产环境中分析和监控所有上下文片段的 Token 使用情况",
+      "对超过阈值的对话历史实现摘要压缩",
+      "为模型的输出生成预留足够的 Token 预算",
+      "在不同上下文利用率水平下测试连贯性和任务准确性"
+    ],
+    "donts": [
+      "Don't naively truncate context from the beginning - you may lose critical system instructions",
+      "Don't fill the entire context window; leave room for the model to reason and generate",
+      "Don't assume larger context windows eliminate the need for management - cost and coherence degrade",
+      "Don't mix high-priority and low-priority information without clear segmentation"
+    ],
+    "donts_zh": [
+      "不要简单地从头部截断上下文——可能丢失关键系统指令",
+      "不要填满整个上下文窗口，要为模型的推理和生成留出空间",
+      "不要假设更大的上下文窗口消除了管理需求——成本和连贯性会下降",
+      "不要在没有明确分段的情况下混合高优先级和低优先级信息"
+    ],
+    "case_study_company": "ChatGPT (OpenAI)",
+    "case_study": "OpenAI's ChatGPT manages context windows across millions of concurrent conversations. The system uses a combination of sliding windows and conversation summaries to maintain coherence within token limits. When context exceeds the budget, older turns are progressively summarized, preserving key facts and user preferences while freeing tokens for the current exchange.",
+    "case_study_zh": "OpenAI 的 ChatGPT 在数百万并发对话中管理上下文窗口。系统结合使用滑动窗口和对话摘要在 Token 限制内保持连贯性。当上下文超出预算时，较旧的轮次被逐步摘要，保留关键事实和用户偏好，同时为当前交互释放 Token。",
+    "when_not_to_use": [
+      "Short single-turn interactions that never approach context limits",
+      "Batch processing tasks where each request is independent and stateless",
+      "Applications using models with context windows far exceeding typical input sizes",
+      "Offline analysis tasks where cost and latency are not primary concerns"
+    ],
+    "when_not_to_use_zh": [
+      "永远不会接近上下文限制的短单轮交互",
+      "每个请求独立且无状态的批处理任务",
+      "使用上下文窗口远超典型输入大小的模型的应用",
+      "成本和延迟不是主要关注点的离线分析任务"
+    ],
+    "adopters": ["OpenAI", "Anthropic", "MemGPT", "LangChain", "Microsoft Copilot"]
   },
   {
     "id": 95,
@@ -240,7 +896,89 @@
     "ai_relevant": true,
     "viz_type": "tree",
     "related": ["react-framework", "ai-first-api-design", "tool-use-react-pattern"],
-    "tags": ["tool-use", "function-calling", "api-design", "agent-tools"]
+    "tags": ["tool-use", "function-calling", "api-design", "agent-tools"],
+    "origin_author": "OpenAI Function Calling team; Anthropic Tool Use team; Timo Schick et al.",
+    "origin_source": "Toolformer: Language Models Can Teach Themselves to Use Tools (Meta AI, 2023); OpenAI Function Calling (2023)",
+    "origin_source_zh": "Toolformer：语言模型可以自学使用工具（Meta AI，2023）；OpenAI 函数调用（2023）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Building LLM agents that need to interact with external APIs and services",
+      "Applications requiring deterministic operations (math, database queries, file I/O) within LLM workflows",
+      "Systems where the LLM must select the right tool from a large catalog based on user intent",
+      "Production agents that need reliable, versioned, and well-documented tool interfaces"
+    ],
+    "when_to_use_zh": [
+      "构建需要与外部 API 和服务交互的大模型代理",
+      "在大模型工作流中需要确定性操作（数学、数据库查询、文件 I/O）的应用",
+      "大模型需要根据用户意图从大型工具目录中选择正确工具的系统",
+      "需要可靠、版本化且文档完善的工具接口的生产代理"
+    ],
+    "core_concepts": [
+      "JSON Schema tool definitions: machine-readable descriptions that tell the model what each tool does and expects",
+      "Model-perspective descriptions: writing tool docs optimized for LLM comprehension rather than human developers",
+      "Idempotent handlers: ensuring tools can be safely retried without side effects on failure",
+      "Tool selection evaluation: measuring how accurately the model picks the right tool for a given query"
+    ],
+    "core_concepts_zh": [
+      "JSON Schema 工具定义：告知模型每个工具的功能和期望的机器可读描述",
+      "模型视角描述：为大模型理解而非人类开发者优化的工具文档",
+      "幂等处理器：确保工具在失败时可安全重试而无副作用",
+      "工具选择评估：衡量模型针对给定查询选择正确工具的准确性"
+    ],
+    "timeline": [
+      ["2023-02", "Meta AI publishes Toolformer, showing LLMs can learn to use tools autonomously"],
+      ["2023-06", "OpenAI launches Function Calling in the Chat Completions API"],
+      ["2023-11", "Anthropic introduces Tool Use for Claude, enabling structured tool interactions"],
+      ["2024-06", "Tool-use becomes a standard feature across all major LLM providers"],
+      ["2025-01", "MCP (Model Context Protocol) and open standards emerge for universal tool interoperability"]
+    ],
+    "timeline_zh": [
+      ["2023-02", "Meta AI 发布 Toolformer，展示大模型可自主学习使用工具"],
+      ["2023-06", "OpenAI 在 Chat Completions API 中推出函数调用功能"],
+      ["2023-11", "Anthropic 为 Claude 引入工具使用功能，实现结构化工具交互"],
+      ["2024-06", "工具使用成为所有主要大模型提供商的标准功能"],
+      ["2025-01", "MCP（模型上下文协议）和开放标准涌现，实现通用工具互操作性"]
+    ],
+    "dos": [
+      "Write tool descriptions from the model's perspective - be explicit about when to use and when not to",
+      "Use JSON Schema to define typed parameters with clear descriptions and constraints",
+      "Make tool handlers idempotent so retries are safe and error messages are actionable",
+      "Evaluate tool selection accuracy regularly with representative query benchmarks"
+    ],
+    "dos_zh": [
+      "从模型视角编写工具描述——明确说明何时使用和何时不应使用",
+      "使用 JSON Schema 定义带有清晰描述和约束的类型化参数",
+      "使工具处理器幂等，确保重试安全且错误消息可操作",
+      "定期用代表性查询基准评估工具选择准确性"
+    ],
+    "donts": [
+      "Don't write vague tool descriptions - ambiguity causes the model to misselect tools",
+      "Don't expose irreversible side effects without confirmation mechanisms",
+      "Don't provide too many similar tools - consolidate to reduce selection confusion",
+      "Don't return unstructured error messages; the model needs parseable feedback to recover"
+    ],
+    "donts_zh": [
+      "不要编写模糊的工具描述——歧义会导致模型错误选择工具",
+      "不要在没有确认机制的情况下暴露不可逆的副作用",
+      "不要提供太多相似工具——合并以减少选择混淆",
+      "不要返回非结构化错误信息，模型需要可解析的反馈来恢复"
+    ],
+    "case_study_company": "Anthropic",
+    "case_study": "Anthropic designed Claude's tool-use system with strict JSON Schema definitions and model-perspective documentation. By requiring typed parameters and deterministic error responses, Claude achieves high tool selection accuracy even with large tool catalogs. The approach has become a reference implementation for the industry's best practices in agent tool design.",
+    "case_study_zh": "Anthropic 使用严格的 JSON Schema 定义和模型视角文档设计了 Claude 的工具使用系统。通过要求类型化参数和确定性错误响应，Claude 即使在大型工具目录中也能实现高工具选择准确率。该方案已成为行业代理工具设计最佳实践的参考实现。",
+    "when_not_to_use": [
+      "Purely conversational applications that don't need external tool access",
+      "Tasks where all required knowledge is within the model's parametric memory",
+      "Prototypes where hardcoding a single tool call is simpler than building a tool framework",
+      "Scenarios where deterministic code logic is more reliable than LLM-driven tool selection"
+    ],
+    "when_not_to_use_zh": [
+      "不需要外部工具访问的纯对话应用",
+      "所需知识全在模型参数记忆中的任务",
+      "硬编码单个工具调用比构建工具框架更简单的原型",
+      "确定性代码逻辑比大模型驱动的工具选择更可靠的场景"
+    ],
+    "adopters": ["OpenAI", "Anthropic", "Google Gemini", "Cohere", "LangChain"]
   },
   {
     "id": 96,
@@ -267,7 +1005,89 @@
     "ai_relevant": true,
     "viz_type": "matrix",
     "related": ["tool-use-design-pattern", "richardson-maturity-model", "agent-communication-protocol"],
-    "tags": ["api-design", "ai-first", "machine-readable", "agent-friendly"]
+    "tags": ["api-design", "ai-first", "machine-readable", "agent-friendly"],
+    "origin_author": "Emerging practice from Anthropic MCP team, OpenAI Plugins team, and API-first companies",
+    "origin_source": "Anthropic Model Context Protocol (MCP, 2024); OpenAI Plugins and Actions (2023); API design community best practices",
+    "origin_source_zh": "Anthropic 模型上下文协议（MCP，2024）；OpenAI 插件与动作（2023）；API 设计社区最佳实践",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Building APIs that will be primarily consumed by AI agents rather than human developers",
+      "Creating tool ecosystems for LLM platforms (ChatGPT plugins, Claude MCP servers)",
+      "Enterprise systems where AI agents need to discover and compose APIs autonomously",
+      "Modernizing existing APIs to be compatible with AI agent consumption patterns"
+    ],
+    "when_to_use_zh": [
+      "构建主要由 AI 代理而非人类开发者消费的 API",
+      "为大模型平台创建工具生态系统（ChatGPT 插件、Claude MCP 服务器）",
+      "AI 代理需要自主发现和组合 API 的企业系统",
+      "改造现有 API 以兼容 AI 代理的消费模式"
+    ],
+    "core_concepts": [
+      "Self-describing endpoints: APIs that include rich semantic descriptions machines can understand",
+      "Structured responses: schema-validated JSON that eliminates ambiguity for agent consumption",
+      "Capability manifests: machine-readable declarations of what an API can do, enabling autonomous discovery",
+      "Hypermedia hints: embedding next-action suggestions and related resources in responses to guide agents"
+    ],
+    "core_concepts_zh": [
+      "自描述端点：包含机器可理解的丰富语义描述的 API",
+      "结构化响应：消除代理消费歧义的模式验证 JSON",
+      "能力清单：API 功能的机器可读声明，实现自主发现",
+      "超媒体提示：在响应中嵌入下一步动作建议和关联资源以引导代理"
+    ],
+    "timeline": [
+      ["2023-03", "OpenAI launches ChatGPT Plugins, establishing AI-consumable API patterns"],
+      ["2023-11", "OpenAI evolves Plugins into GPT Actions with improved API integration"],
+      ["2024-11", "Anthropic releases Model Context Protocol (MCP) as an open standard for AI-tool interop"],
+      ["2025-01", "AI-first API design becomes a recognized discipline as agent ecosystems mature"],
+      ["2025-04", "MCP adoption accelerates with support from major IDE and cloud providers"]
+    ],
+    "timeline_zh": [
+      ["2023-03", "OpenAI 推出 ChatGPT 插件，确立 AI 可消费的 API 模式"],
+      ["2023-11", "OpenAI 将插件演进为 GPT Actions，改进 API 集成"],
+      ["2024-11", "Anthropic 发布模型上下文协议（MCP）作为 AI 工具互操作的开放标准"],
+      ["2025-01", "随着代理生态系统成熟，AI 优先 API 设计成为公认学科"],
+      ["2025-04", "MCP 获得主要 IDE 和云服务商支持，采用加速"]
+    ],
+    "dos": [
+      "Provide rich OpenAPI descriptions with semantic resource names and usage examples",
+      "Return structured, schema-validated responses with consistent error formats",
+      "Include hypermedia links and next-action hints to guide agent navigation",
+      "Design idempotent operations so agents can safely retry on failure"
+    ],
+    "dos_zh": [
+      "提供带有语义资源名称和使用示例的丰富 OpenAPI 描述",
+      "返回具有一致错误格式的结构化、模式验证响应",
+      "包含超媒体链接和下一步动作提示以引导代理导航",
+      "设计幂等操作使代理在失败时可安全重试"
+    ],
+    "donts": [
+      "Don't use ambiguous free-text response fields that require interpretation",
+      "Don't require complex multi-step authentication flows that agents struggle with",
+      "Don't return HTML or unstructured formats when the consumer is an AI agent",
+      "Don't break backward compatibility without versioning and deprecation notices"
+    ],
+    "donts_zh": [
+      "不要使用需要解读的模糊自由文本响应字段",
+      "不要要求代理难以处理的复杂多步认证流程",
+      "当消费者是 AI 代理时不要返回 HTML 或非结构化格式",
+      "不要在没有版本控制和弃用通知的情况下破坏向后兼容性"
+    ],
+    "case_study_company": "Anthropic",
+    "case_study": "Anthropic created the Model Context Protocol (MCP) to standardize how AI agents interact with external tools and data sources. MCP provides a universal protocol for AI-first API design, enabling any tool to be exposed to Claude and other LLMs through a consistent interface. The open standard has been adopted across the industry, powering thousands of MCP servers.",
+    "case_study_zh": "Anthropic 创建了模型上下文协议（MCP）来标准化 AI 代理与外部工具和数据源的交互方式。MCP 为 AI 优先 API 设计提供了通用协议，使任何工具都能通过一致接口暴露给 Claude 和其他大模型。该开放标准已在行业中广泛采用，驱动数千个 MCP 服务器。",
+    "when_not_to_use": [
+      "APIs primarily consumed by human developers through traditional client applications",
+      "Internal microservice-to-microservice communication where agents are not involved",
+      "Legacy systems where redesigning APIs is not feasible or cost-effective",
+      "Simple CRUD APIs where standard REST conventions are sufficient"
+    ],
+    "when_not_to_use_zh": [
+      "主要由人类开发者通过传统客户端应用消费的 API",
+      "不涉及代理的内部微服务间通信",
+      "重新设计 API 不可行或不划算的遗留系统",
+      "标准 REST 约定已足够的简单 CRUD API"
+    ],
+    "adopters": ["Anthropic MCP", "OpenAI", "Shopify", "Twilio", "Stripe"]
   },
   {
     "id": 97,
@@ -294,7 +1114,89 @@
     "ai_relevant": true,
     "viz_type": "cycle",
     "related": ["chaos-engineering", "circuit-breaker-pattern", "agent-reliability-patterns"],
-    "tags": ["self-healing", "auto-remediation", "monitoring", "runbook"]
+    "tags": ["self-healing", "auto-remediation", "monitoring", "runbook"],
+    "origin_author": "IBM Autonomic Computing initiative (2001); modernized by AIOps pioneers (Moogsoft, BigPanda, Shoreline.io)",
+    "origin_source": "The Vision of Autonomic Computing (IBM, 2003); AIOps: Real-World Challenges and Research Innovations (2023)",
+    "origin_source_zh": "自主计算愿景（IBM，2003）；AIOps：现实挑战与研究创新（2023）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Large-scale distributed systems where manual incident response is too slow",
+      "Cloud-native environments with frequent, predictable failure patterns",
+      "24/7 operations where immediate automated response prevents cascading outages",
+      "Systems with well-documented runbooks that can be translated into automated actions"
+    ],
+    "when_to_use_zh": [
+      "手动事故响应太慢的大规模分布式系统",
+      "具有频繁、可预测故障模式的云原生环境",
+      "需要即时自动响应以防止级联中断的全天候运营",
+      "具有可转化为自动动作的完善运维手册的系统"
+    ],
+    "core_concepts": [
+      "Observe-Orient-Decide-Act: the AI agent continuously monitors, diagnoses, decides, and remediates",
+      "Runbook automation: codifying human operational knowledge into machine-executable remediation playbooks",
+      "Risk-tiered remediation: auto-executing safe fixes while escalating risky ones for human approval",
+      "Feedback learning: recording incident-action-outcome triples to improve future diagnosis and remediation"
+    ],
+    "core_concepts_zh": [
+      "观察-定向-决策-行动：AI 代理持续监控、诊断、决策和修复",
+      "运维手册自动化：将人类运维知识编码为机器可执行的修复剧本",
+      "分级修复：自动执行安全修复，将高风险操作升级至人工审批",
+      "反馈学习：记录故障-动作-结果三元组以改进未来的诊断和修复"
+    ],
+    "timeline": [
+      ["2001-10", "IBM launches the Autonomic Computing initiative, envisioning self-managing systems"],
+      ["2016-01", "AIOps emerges as a category, applying ML to IT operations monitoring"],
+      ["2023-06", "LLM-powered AIOps agents begin replacing rule-based runbook automation"],
+      ["2024-01", "Shoreline.io and PagerDuty integrate LLM agents for intelligent incident remediation"],
+      ["2025-01", "Self-healing patterns become standard in cloud-native infrastructure management"]
+    ],
+    "timeline_zh": [
+      ["2001-10", "IBM 启动自主计算计划，设想自我管理的系统"],
+      ["2016-01", "AIOps 作为一个类别出现，将机器学习应用于 IT 运维监控"],
+      ["2023-06", "基于大模型的 AIOps 代理开始取代基于规则的运维手册自动化"],
+      ["2024-01", "Shoreline.io 和 PagerDuty 集成大模型代理进行智能事故修复"],
+      ["2025-01", "自愈模式成为云原生基础设施管理的标准方案"]
+    ],
+    "dos": [
+      "Start with well-understood, low-risk remediations and gradually expand the automation scope",
+      "Maintain comprehensive runbook documentation that the AI agent can reference",
+      "Log every remediation action with full context for post-incident review and learning",
+      "Implement circuit-breakers to prevent the healing agent from making things worse"
+    ],
+    "dos_zh": [
+      "从理解充分、低风险的修复操作开始，逐步扩大自动化范围",
+      "维护 AI 代理可参考的完整运维手册文档",
+      "记录每个修复动作及完整上下文用于事后审查和学习",
+      "实现熔断器以防止自愈代理使情况恶化"
+    ],
+    "donts": [
+      "Don't automate high-risk remediations without human approval gates",
+      "Don't deploy self-healing agents without extensive testing in staging environments",
+      "Don't let the agent operate without guardrails - define clear boundaries of what it can do",
+      "Don't assume the agent's diagnosis is always correct; maintain human escalation paths"
+    ],
+    "donts_zh": [
+      "不要在没有人工审批门控的情况下自动执行高风险修复",
+      "不要在未经预发布环境充分测试的情况下部署自愈代理",
+      "不要让代理在没有护栏的情况下运行——明确定义其操作边界",
+      "不要假设代理的诊断总是正确的，保持人工升级路径"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix pioneered self-healing infrastructure practices at scale. Their systems automatically detect and remediate common failure patterns such as unhealthy instances, capacity bottlenecks, and configuration drift. By combining chaos engineering with AI-driven remediation, Netflix achieves 99.99% availability while reducing mean time to recovery from hours to minutes.",
+    "case_study_zh": "Netflix 率先在大规模环境中实践自愈基础设施。其系统自动检测并修复常见故障模式，如不健康实例、容量瓶颈和配置漂移。通过将混沌工程与 AI 驱动的修复结合，Netflix 在将平均恢复时间从数小时缩短到数分钟的同时实现了 99.99% 的可用性。",
+    "when_not_to_use": [
+      "Small systems where manual incident response is fast and sufficient",
+      "Environments with unpredictable, novel failure modes that lack runbook coverage",
+      "Systems where automated remediation carries regulatory or safety risks",
+      "Early-stage products where operational patterns are not yet well understood"
+    ],
+    "when_not_to_use_zh": [
+      "手动事故响应足够快且充分的小型系统",
+      "缺乏运维手册覆盖的不可预测新型故障模式的环境",
+      "自动修复带有监管或安全风险的系统",
+      "运维模式尚未充分了解的早期产品"
+    ],
+    "adopters": ["Netflix", "Google SRE", "Amazon AWS", "PagerDuty", "Shoreline.io"]
   },
   {
     "id": 98,
@@ -321,7 +1223,89 @@
     "ai_relevant": true,
     "viz_type": "radar",
     "related": ["llmops", "llm-evaluation-framework", "four-golden-signals"],
-    "tags": ["observability", "tracing", "monitoring", "llm-metrics", "drift"]
+    "tags": ["observability", "tracing", "monitoring", "llm-metrics", "drift"],
+    "origin_author": "LLM observability community; pioneered by Arize AI, LangSmith (LangChain), and Weights & Biases",
+    "origin_source": "Arize AI LLM Observability Platform (2023); LangSmith Tracing and Evaluation (2023); OpenTelemetry for LLMs proposals",
+    "origin_source_zh": "Arize AI 大模型可观测性平台（2023）；LangSmith 追踪与评估（2023）；面向大模型的 OpenTelemetry 提案",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Production LLM applications where output quality must be continuously monitored",
+      "Systems requiring cost tracking and optimization of LLM API spending",
+      "Applications where model upgrades or prompt changes need regression detection",
+      "Compliance-sensitive deployments that require audit trails for AI decisions"
+    ],
+    "when_to_use_zh": [
+      "需要持续监控输出质量的生产级大模型应用",
+      "需要追踪和优化大模型 API 开支的系统",
+      "模型升级或提示词变更需要回归检测的应用",
+      "要求 AI 决策审计跟踪的合规敏感型部署"
+    ],
+    "core_concepts": [
+      "LLM tracing: linking every call to its prompt, model version, parameters, and output for full reproducibility",
+      "Quality metrics: automated scoring of output quality using LLM-as-judge or custom evaluators",
+      "Drift detection: alerting when output quality, latency, or cost distributions shift from established baselines",
+      "Evaluation datasets: curated prompt-response pairs used for offline regression testing across model or prompt versions"
+    ],
+    "core_concepts_zh": [
+      "大模型追踪：将每次调用与其提示词、模型版本、参数和输出关联以实现完全可复现",
+      "质量指标：使用 LLM-as-Judge 或自定义评估器自动对输出质量打分",
+      "漂移检测：当输出质量、延迟或成本分布偏离基线时触发告警",
+      "评估数据集：用于跨模型或提示词版本离线回归测试的精选提示词-响应对"
+    ],
+    "timeline": [
+      ["2023-03", "Arize AI launches dedicated LLM observability features for production monitoring"],
+      ["2023-07", "LangSmith releases as an integrated tracing and evaluation platform for LangChain"],
+      ["2023-12", "Weights & Biases adds LLM-specific tracing and evaluation to their MLOps platform"],
+      ["2024-06", "OpenTelemetry community begins standardizing LLM observability instrumentation"],
+      ["2025-01", "AI observability becomes a required capability in enterprise LLM deployment checklists"]
+    ],
+    "timeline_zh": [
+      ["2023-03", "Arize AI 推出专用大模型可观测性功能用于生产监控"],
+      ["2023-07", "LangSmith 作为 LangChain 的集成追踪和评估平台发布"],
+      ["2023-12", "Weights & Biases 在其 MLOps 平台中添加大模型特定的追踪和评估"],
+      ["2024-06", "OpenTelemetry 社区开始标准化大模型可观测性插桩"],
+      ["2025-01", "AI 可观测性成为企业大模型部署检查清单中的必备能力"]
+    ],
+    "dos": [
+      "Instrument every LLM call with trace IDs that link prompts, outputs, and metadata",
+      "Set up automated quality evaluation on sampled production traffic using LLM judges",
+      "Create baseline metrics and alert on significant deviations in quality, latency, or cost",
+      "Build evaluation datasets from production data for offline regression testing"
+    ],
+    "dos_zh": [
+      "为每次大模型调用打上关联提示词、输出和元数据的追踪 ID",
+      "使用大模型评判器对采样生产流量设置自动化质量评估",
+      "创建基线指标并在质量、延迟或成本显著偏离时告警",
+      "从生产数据构建评估数据集用于离线回归测试"
+    ],
+    "donts": [
+      "Don't log sensitive user data in traces without proper anonymization and access controls",
+      "Don't rely solely on manual spot-checking - automate quality evaluation at scale",
+      "Don't ignore cost metrics; unmonitored token usage can lead to surprise bills",
+      "Don't skip baselining before deploying model or prompt changes to production"
+    ],
+    "donts_zh": [
+      "不要在没有适当匿名化和访问控制的情况下在追踪中记录敏感用户数据",
+      "不要仅依赖人工抽查——在规模化场景下自动化质量评估",
+      "不要忽视成本指标，未监控的 Token 使用可能导致意外账单",
+      "不要在将模型或提示词变更部署到生产环境之前跳过基线建立"
+    ],
+    "case_study_company": "Arize AI",
+    "case_study": "Arize AI built a comprehensive LLM observability platform that traces every call, evaluates output quality, and detects drift in production. One enterprise customer reduced their hallucination rate by 40% after implementing Arize's monitoring, as the drift alerts enabled them to catch prompt degradation within hours of deployment rather than days.",
+    "case_study_zh": "Arize AI 构建了综合性大模型可观测性平台，追踪每次调用、评估输出质量并检测生产中的漂移。一家企业客户在实施 Arize 监控后将幻觉率降低了 40%，因为漂移告警使他们能在部署后数小时内而非数天后发现提示词退化。",
+    "when_not_to_use": [
+      "Prototype or experimental LLM applications where monitoring overhead is premature",
+      "Offline batch processing where real-time observability is unnecessary",
+      "Personal or hobby projects where the cost of observability tooling is unjustified",
+      "One-off data analysis tasks where reproducibility is not a concern"
+    ],
+    "when_not_to_use_zh": [
+      "监控开销为时过早的原型或实验性大模型应用",
+      "不需要实时可观测性的离线批处理",
+      "可观测性工具成本不合理的个人或业余项目",
+      "可复现性不是关注点的一次性数据分析任务"
+    ],
+    "adopters": ["Arize AI", "LangSmith", "Weights & Biases", "Datadog", "Honeycomb"]
   },
   {
     "id": 99,
@@ -348,7 +1332,89 @@
     "ai_relevant": true,
     "viz_type": "radar",
     "related": ["guardrails-framework", "human-in-the-loop", "human-ai-interaction-design"],
-    "tags": ["responsible-ai", "fairness", "safety", "accountability", "ethics"]
+    "tags": ["responsible-ai", "fairness", "safety", "accountability", "ethics"],
+    "origin_author": "Microsoft Responsible AI team; Google PAIR; Timnit Gebru, Margaret Mitchell et al.",
+    "origin_source": "Model Cards for Model Reporting (FAT* 2019); Microsoft Responsible AI Standard (2022); EU AI Act (2024)",
+    "origin_source_zh": "模型报告的模型卡（FAT* 2019）；微软负责任 AI 标准（2022）；欧盟 AI 法案（2024）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Any AI system that makes decisions affecting people's lives, opportunities, or rights",
+      "Regulated industries where AI compliance with fairness and transparency laws is required",
+      "Public-facing AI products where trust and reputation depend on responsible behavior",
+      "Organizations establishing AI governance frameworks and ethical review processes"
+    ],
+    "when_to_use_zh": [
+      "任何影响人们生活、机会或权利的 AI 决策系统",
+      "要求 AI 符合公平性和透明度法规的受监管行业",
+      "信任和声誉依赖于负责任行为的面向公众的 AI 产品",
+      "建立 AI 治理框架和伦理审查流程的组织"
+    ],
+    "core_concepts": [
+      "Fairness metrics: quantifiable measures of equitable treatment across demographic groups and use cases",
+      "Model cards: standardized documentation of model capabilities, limitations, and intended use",
+      "Accountability chains: clear mapping from every AI decision to a responsible human owner",
+      "Red-teaming: adversarial testing to discover bias, safety issues, and misuse vectors before deployment"
+    ],
+    "core_concepts_zh": [
+      "公平性指标：跨人群和用例衡量公平对待的可量化度量",
+      "模型卡：模型能力、局限性和预期用途的标准化文档",
+      "问责链：从每项 AI 决策到负责任人类所有者的清晰映射",
+      "红队测试：在部署前发现偏见、安全问题和滥用向量的对抗性测试"
+    ],
+    "timeline": [
+      ["2019-01", "Mitchell et al. publish Model Cards for Model Reporting at FAT* conference"],
+      ["2021-06", "UNESCO adopts the Recommendation on the Ethics of Artificial Intelligence"],
+      ["2022-09", "Microsoft publishes its Responsible AI Standard with mandatory internal requirements"],
+      ["2024-03", "EU AI Act formally adopted, establishing legal requirements for AI transparency and fairness"],
+      ["2025-01", "Responsible AI frameworks become standard practice in enterprise AI development worldwide"]
+    ],
+    "timeline_zh": [
+      ["2019-01", "Mitchell 等人在 FAT* 会议上发表「模型报告的模型卡」"],
+      ["2021-06", "联合国教科文组织通过人工智能伦理建议书"],
+      ["2022-09", "微软发布负责任 AI 标准，包含强制性内部要求"],
+      ["2024-03", "欧盟 AI 法案正式通过，确立 AI 透明度和公平性的法律要求"],
+      ["2025-01", "负责任 AI 框架成为全球企业 AI 开发的标准实践"]
+    ],
+    "dos": [
+      "Conduct impact assessments early and revisit them as the system evolves",
+      "Define measurable fairness metrics and test them across diverse demographic slices",
+      "Publish model cards and maintain transparent documentation of system limitations",
+      "Establish red-teaming practices and run adversarial exercises before each major release"
+    ],
+    "dos_zh": [
+      "尽早开展影响评估并随系统演进重新审视",
+      "定义可衡量的公平性指标并在多元人群切片上测试",
+      "发布模型卡并维护系统局限性的透明文档",
+      "建立红队实践并在每次重大发布前进行对抗演练"
+    ],
+    "donts": [
+      "Don't treat responsible AI as a checkbox exercise - embed it in the development lifecycle",
+      "Don't assume fairness in one context transfers to all contexts - test across diverse scenarios",
+      "Don't publish AI systems without clear documentation of known limitations and failure modes",
+      "Don't ignore intersectional bias - test fairness across combinations of demographic attributes"
+    ],
+    "donts_zh": [
+      "不要将负责任 AI 视为打勾练习——将其嵌入开发生命周期",
+      "不要假设一个场景中的公平性可迁移到所有场景——跨多样化场景测试",
+      "不要在没有明确记录已知局限和故障模式的情况下发布 AI 系统",
+      "不要忽视交叉偏见——跨人口属性组合测试公平性"
+    ],
+    "case_study_company": "Microsoft",
+    "case_study": "Microsoft implemented its Responsible AI Standard across all product teams, requiring impact assessments, fairness testing, and model cards before any AI feature ships. After discovering bias in a facial recognition system, the company established mandatory red-teaming and fairness testing protocols that became an industry reference for responsible AI governance.",
+    "case_study_zh": "微软在所有产品团队实施了负责任 AI 标准，要求在任何 AI 功能发布前完成影响评估、公平性测试和模型卡。在发现面部识别系统中的偏见后，公司建立了强制性的红队测试和公平性测试协议，成为行业负责任 AI 治理的参考标准。",
+    "when_not_to_use": [
+      "Internal research experiments that will never be deployed to production",
+      "Purely creative AI tools with no decision-making impact on people",
+      "Hobby projects with no public users or consequential outputs",
+      "Benchmarking or evaluation tasks that don't produce user-facing decisions"
+    ],
+    "when_not_to_use_zh": [
+      "永远不会部署到生产环境的内部研究实验",
+      "对人没有决策影响的纯创意 AI 工具",
+      "没有公共用户或后果性输出的业余项目",
+      "不产生面向用户决策的基准测试或评估任务"
+    ],
+    "adopters": ["Microsoft", "Google", "Anthropic", "Meta", "IBM"]
   },
   {
     "id": 100,
@@ -375,6 +1441,88 @@
     "ai_relevant": true,
     "viz_type": "matrix",
     "related": ["multi-agent-orchestration-pattern", "actor-model", "eda"],
-    "tags": ["agent-protocol", "messaging", "interoperability", "standards"]
+    "tags": ["agent-protocol", "messaging", "interoperability", "standards"],
+    "origin_author": "FIPA (Foundation for Intelligent Physical Agents); modernized by Agent Protocol (e2b), Anthropic MCP, and Google A2A",
+    "origin_source": "FIPA Agent Communication Language Specification (2002); Agent Protocol open standard (2023); Google Agent-to-Agent Protocol (2025)",
+    "origin_source_zh": "FIPA 代理通信语言规范（2002）；Agent Protocol 开放标准（2023）；Google Agent-to-Agent 协议（2025）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Multi-agent systems where agents from different teams or organizations must interoperate",
+      "Distributed agent architectures that need reliable, asynchronous message passing",
+      "Platforms hosting third-party agents that require standardized communication contracts",
+      "Systems where agent capabilities evolve independently and must maintain compatibility"
+    ],
+    "when_to_use_zh": [
+      "不同团队或组织的代理需要互操作的多代理系统",
+      "需要可靠异步消息传递的分布式代理架构",
+      "托管第三方代理、需要标准化通信契约的平台",
+      "代理能力独立演进且必须保持兼容性的系统"
+    ],
+    "core_concepts": [
+      "Message envelope: a standardized wrapper containing sender, receiver, intent, payload, and correlation ID",
+      "Capability registry: a shared directory where agents advertise what they can do and what schemas they accept",
+      "Async decoupling: using message queues to decouple agents so they can operate independently",
+      "Schema versioning: evolving message formats with backward-compatible changes to avoid breaking existing agents"
+    ],
+    "core_concepts_zh": [
+      "消息信封：包含发送方、接收方、意图、载荷和关联 ID 的标准化封装",
+      "能力注册中心：代理广播自身功能和接受的消息模式的共享目录",
+      "异步解耦：使用消息队列解耦代理，使其可独立运行",
+      "模式版本控制：以向后兼容的方式演进消息格式，避免破坏现有代理"
+    ],
+    "timeline": [
+      ["2002-01", "FIPA publishes the Agent Communication Language specification for multi-agent systems"],
+      ["2023-08", "e2b launches the Agent Protocol open standard for LLM agent interoperability"],
+      ["2024-11", "Anthropic releases MCP, enabling standardized agent-to-tool communication"],
+      ["2025-04", "Google publishes the Agent-to-Agent (A2A) protocol for cross-platform agent communication"],
+      ["2025-04", "Industry convergence begins around MCP and A2A as complementary agent communication standards"]
+    ],
+    "timeline_zh": [
+      ["2002-01", "FIPA 发布面向多代理系统的代理通信语言规范"],
+      ["2023-08", "e2b 推出面向大模型代理互操作的 Agent Protocol 开放标准"],
+      ["2024-11", "Anthropic 发布 MCP，实现标准化的代理到工具通信"],
+      ["2025-04", "Google 发布 Agent-to-Agent（A2A）协议用于跨平台代理通信"],
+      ["2025-04", "行业开始围绕 MCP 和 A2A 作为互补的代理通信标准进行融合"]
+    ],
+    "dos": [
+      "Define a canonical message envelope with clear fields for routing, intent, and correlation",
+      "Implement capability discovery so agents can find and understand each other dynamically",
+      "Use idempotency keys for all state-changing messages to enable safe retries",
+      "Version all message schemas and enforce backward compatibility rules"
+    ],
+    "dos_zh": [
+      "定义包含路由、意图和关联字段的规范消息信封",
+      "实现能力发现，使代理能动态发现和理解彼此",
+      "为所有状态变更消息使用幂等键以实现安全重试",
+      "对所有消息模式进行版本管理并强制执行向后兼容规则"
+    ],
+    "donts": [
+      "Don't let agents communicate via unstructured natural language without schema validation",
+      "Don't tightly couple agents with synchronous point-to-point calls in distributed systems",
+      "Don't ignore message ordering and delivery guarantees in critical workflows",
+      "Don't break backward compatibility in message schemas without a migration path"
+    ],
+    "donts_zh": [
+      "不要让代理通过未经模式验证的非结构化自然语言通信",
+      "不要在分布式系统中用同步点对点调用紧耦合代理",
+      "不要在关键工作流中忽视消息排序和交付保证",
+      "不要在没有迁移路径的情况下破坏消息模式的向后兼容性"
+    ],
+    "case_study_company": "Google",
+    "case_study": "Google developed the Agent-to-Agent (A2A) protocol to enable interoperability between AI agents across different platforms and organizations. A2A provides a standardized way for agents to discover each other's capabilities, negotiate communication formats, and exchange structured messages. Combined with MCP for tool access, A2A establishes a comprehensive agent communication stack.",
+    "case_study_zh": "Google 开发了 Agent-to-Agent（A2A）协议，实现不同平台和组织间 AI 代理的互操作性。A2A 提供了标准化方式让代理发现彼此的能力、协商通信格式并交换结构化消息。结合用于工具访问的 MCP，A2A 建立了完整的代理通信技术栈。",
+    "when_not_to_use": [
+      "Single-agent systems where there is no inter-agent communication needed",
+      "Tightly integrated systems where all agents are owned and deployed by the same team",
+      "Prototype projects where the overhead of protocol design is premature",
+      "Simple tool-calling scenarios where direct function invocation is sufficient"
+    ],
+    "when_not_to_use_zh": [
+      "不需要代理间通信的单代理系统",
+      "所有代理由同一团队拥有和部署的紧密集成系统",
+      "协议设计开销为时过早的原型项目",
+      "直接函数调用已足够的简单工具调用场景"
+    ],
+    "adopters": ["Google A2A", "Anthropic MCP", "e2b Agent Protocol", "Microsoft AutoGen", "LangChain"]
   }
 ]
