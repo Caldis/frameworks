@@ -48,7 +48,7 @@
 - [ ] Update MapPage to visualize by abstraction level
 **Estimate**: Medium
 
-### Sprint S05: Provenance & Reading List [READY]
+### Sprint S05: Provenance & Reading List [DONE 2026-04-06]
 **Priority**: Medium
 **Contract**: Every framework has primary_source citation. Category pages have curated reading lists.
 **Tasks**:
