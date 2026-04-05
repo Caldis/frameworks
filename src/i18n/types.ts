@@ -42,6 +42,7 @@ export interface LocaleStrings {
   footerTitle: string
   builtBy: string
   source: string
+  inspiredBy: string
 
   // Misc
   noResults: string  // uses {query} placeholder

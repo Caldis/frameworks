@@ -9,14 +9,24 @@ export default function Layout() {
   return (
     <div className={styles.layout}>
       <header className={styles.header}>
-        <Link to="/" className={styles.domainBadge}>frameworks</Link>
+        <Link to="/" className={styles.domainBadge}>SDFrame.works</Link>
         <LanguageSwitcher />
       </header>
       <main className={styles.main}>
         <Outlet />
       </main>
       <footer className={styles.footer}>
-        <span className={styles.footerLeft}>{t.footerTitle}</span>
+        <div className={styles.footerLeft}>
+          <span className={styles.footerBrand}>{t.footerTitle}</span>
+          <a
+            href="https://pmframe.works/"
+            className={styles.footerInspired}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t.inspiredBy}
+          </a>
+        </div>
         <div className={styles.footerRight}>
           <a
             href="https://github.com/Caldis"

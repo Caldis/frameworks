@@ -24,9 +24,10 @@ export const zh: LocaleStrings = {
   aiRelevantCount: '{count} 个 AI 相关',
   aiAcrossCategories: '全分类 AI 框架汇总',
   mapTitle: '框架关系图',
-  footerTitle: '100 个软件设计框架',
+  footerTitle: 'SDFrame.works',
   builtBy: '由 Caldis 构建',
   source: '源码',
+  inspiredBy: '灵感来自 PMFrame.works',
   noResults: '未找到与 "{query}" 相关的框架',
   ai: 'AI',
 }

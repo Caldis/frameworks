@@ -24,9 +24,10 @@ export const en: LocaleStrings = {
   aiRelevantCount: '{count} AI-relevant',
   aiAcrossCategories: 'AI Across All Categories',
   mapTitle: 'Framework Relationship Map',
-  footerTitle: '100 Software Design Frameworks',
+  footerTitle: 'SDFrame.works',
   builtBy: 'Built by Caldis',
   source: 'Source',
+  inspiredBy: 'Inspired by PMFrame.works',
   noResults: 'No frameworks found for "{query}"',
   ai: 'AI',
 }
