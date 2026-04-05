@@ -24,7 +24,89 @@
     "ai_relevant": false,
     "viz_type": "pyramid",
     "related": ["clean-code-principles", "grasp-patterns", "dependency-injection"],
-    "tags": ["solid", "oop", "design-principles", "maintainability"]
+    "tags": ["solid", "oop", "design-principles", "maintainability"],
+    "origin_author": "Robert C. Martin, 2000",
+    "origin_source": "Design Principles and Design Patterns",
+    "origin_source_zh": "《设计原则与设计模式》",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Designing object-oriented systems that need to evolve over time",
+      "Refactoring legacy codebases to improve modularity and testability",
+      "Establishing coding standards for a team working on shared libraries",
+      "Building plugin-based architectures that require extensibility"
+    ],
+    "when_to_use_zh": [
+      "设计需要长期演进的面向对象系统",
+      "重构遗留代码库以提升模块化和可测试性",
+      "为共同维护共享库的团队建立编码规范",
+      "构建需要可扩展性的插件式架构"
+    ],
+    "core_concepts": [
+      "Single Responsibility Principle: a class should have only one reason to change, aligning each module with a single actor or stakeholder",
+      "Open/Closed Principle: software entities should be open for extension but closed for modification, enabling new behavior without touching existing code",
+      "Liskov Substitution Principle: objects of a superclass should be replaceable with objects of a subclass without breaking program correctness",
+      "Interface Segregation Principle: clients should not be forced to depend on interfaces they do not use",
+      "Dependency Inversion Principle: high-level modules should depend on abstractions, not on low-level concrete implementations"
+    ],
+    "core_concepts_zh": [
+      "单一职责原则：一个类应当只有一个变更原因，使每个模块对应一个参与者或利益相关方",
+      "开闭原则：软件实体应对扩展开放、对修改封闭，在不触碰已有代码的前提下引入新行为",
+      "里氏替换原则：超类的对象应当可以被其子类的对象替换而不破坏程序正确性",
+      "接口隔离原则：客户端不应被迫依赖其不使用的接口",
+      "依赖倒置原则：高层模块应依赖抽象，而非低层具体实现"
+    ],
+    "timeline": [
+      ["1988", "Barbara Liskov formally defines the Liskov Substitution Principle"],
+      ["2000", "Robert C. Martin publishes 'Design Principles and Design Patterns' introducing SOLID as a set"],
+      ["2003", "Martin's 'Agile Software Development' book popularizes SOLID in the agile community"],
+      ["2009", "Michael Feathers coins the SOLID acronym, making the principles easier to remember and teach"]
+    ],
+    "timeline_zh": [
+      ["1988", "Barbara Liskov 正式定义里氏替换原则"],
+      ["2000", "Robert C. Martin 发表《设计原则与设计模式》，首次将 SOLID 作为一组原则提出"],
+      ["2003", "Martin 的《敏捷软件开发》一书在敏捷社区中推广了 SOLID"],
+      ["2009", "Michael Feathers 创造了 SOLID 缩写，使这些原则更易于记忆和传授"]
+    ],
+    "dos": [
+      "Do favor composition over inheritance because it naturally aligns with SRP and reduces tight coupling",
+      "Do define interfaces from the client's perspective because this ensures ISP compliance",
+      "Do inject dependencies through constructors because it makes classes testable and explicit about their needs",
+      "Do apply SOLID incrementally during refactoring because premature abstraction adds unnecessary complexity"
+    ],
+    "dos_zh": [
+      "优先使用组合而非继承，因为组合天然符合单一职责并减少紧耦合",
+      "从客户端视角定义接口，因为这能确保符合接口隔离原则",
+      "通过构造函数注入依赖，因为这使类可测试且明确表达其需求",
+      "在重构过程中渐进式地应用 SOLID，因为过早抽象会增加不必要的复杂性"
+    ],
+    "donts": [
+      "Don't create god classes that handle multiple unrelated responsibilities because they become change magnets",
+      "Don't violate LSP by throwing unexpected exceptions in subclasses because callers rely on base type contracts",
+      "Don't build fat interfaces that force implementers to write empty stub methods because it creates confusing APIs",
+      "Don't apply SOLID dogmatically to simple scripts because the overhead outweighs the benefits in small codebases"
+    ],
+    "donts_zh": [
+      "不要创建处理多个不相关职责的上帝类，因为它们会成为变更磁铁",
+      "不要在子类中抛出意外异常来违反 LSP，因为调用方依赖基类型契约",
+      "不要构建迫使实现者编写空桩方法的臃肿接口，因为这会造成令人困惑的 API",
+      "不要对简单脚本教条式地应用 SOLID，因为在小型代码库中其开销大于收益"
+    ],
+    "case_study_company": "Spotify",
+    "case_study": "Spotify's backend squad model relies heavily on SOLID principles. Each microservice is designed with single responsibility in mind, and dependency inversion allows squads to swap out infrastructure adapters (e.g., switching message brokers) without modifying core domain logic. This architectural discipline enables over 200 squads to deploy independently multiple times per day.",
+    "case_study_zh": "Spotify 的后端小队模式深度依赖 SOLID 原则。每个微服务都以单一职责为核心设计，依赖倒置使各小队能够替换基础设施适配器（如切换消息中间件）而无需修改核心领域逻辑。这种架构纪律让超过 200 个小队能够每天独立部署多次。",
+    "when_not_to_use": [
+      "Throwaway prototypes or spike experiments where speed matters more than design quality",
+      "Very small scripts or single-file utilities with no anticipated future changes",
+      "Performance-critical inner loops where abstraction layers add unacceptable overhead",
+      "Functional programming codebases where SOLID's OOP assumptions do not apply"
+    ],
+    "when_not_to_use_zh": [
+      "一次性原型或探针实验，速度比设计质量更重要时",
+      "非常小的脚本或不预期未来变更的单文件工具",
+      "性能关键的内层循环，抽象层会带来不可接受的开销",
+      "函数式编程代码库，SOLID 的面向对象假设不适用"
+    ],
+    "adopters": ["Microsoft", "Google", "Spotify", "Thoughtworks", "JetBrains"]
   },
   {
     "id": 30,
@@ -51,7 +133,89 @@
     "ai_relevant": false,
     "viz_type": "matrix",
     "related": ["solid-principles", "gof-design-patterns", "clean-code-principles"],
-    "tags": ["grasp", "responsibility-assignment", "oop", "coupling", "cohesion"]
+    "tags": ["grasp", "responsibility-assignment", "oop", "coupling", "cohesion"],
+    "origin_author": "Craig Larman, 2004",
+    "origin_source": "Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design and Iterative Development",
+    "origin_source_zh": "《UML和模式应用：面向对象分析与设计及迭代开发导论》",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Deciding which class should own a particular method or behavior",
+      "Teaching junior developers how to think about responsibility assignment in OOP",
+      "Reviewing domain models to identify misplaced logic or god objects",
+      "Designing new classes during iterative object-oriented analysis"
+    ],
+    "when_to_use_zh": [
+      "决定哪个类应拥有特定方法或行为时",
+      "教导初级开发者如何在面向对象编程中思考职责分配",
+      "审查领域模型以识别放置不当的逻辑或上帝对象",
+      "在迭代式面向对象分析中设计新类"
+    ],
+    "core_concepts": [
+      "Information Expert: assign responsibility to the class that has the data needed to fulfill it, reducing data transfer between objects",
+      "Creator: determine which class should create instances of another based on containment, aggregation, or close usage relationships",
+      "Low Coupling: minimize interdependencies between classes so that changes in one class have minimal ripple effects",
+      "High Cohesion: keep each class focused on a narrow, well-defined set of related responsibilities",
+      "Controller: assign the responsibility for handling system events to a non-UI object that coordinates the use case"
+    ],
+    "core_concepts_zh": [
+      "信息专家：将职责分配给拥有完成该职责所需数据的类，减少对象间的数据传递",
+      "创建者：根据包含、聚合或密切使用关系确定哪个类应负责创建另一个类的实例",
+      "低耦合：最小化类间的相互依赖，使一个类的变更对其他类的影响最小",
+      "高内聚：保持每个类专注于范围窄小、定义良好的相关职责集合",
+      "控制器：将系统事件处理职责分配给协调用例的非 UI 对象"
+    ],
+    "timeline": [
+      ["2001", "Craig Larman introduces GRASP in the first edition of 'Applying UML and Patterns'"],
+      ["2004", "Third edition of the book consolidates all nine patterns and becomes a university textbook standard"],
+      ["2010", "GRASP gains renewed interest as complement to SOLID in enterprise Java and C# communities"],
+      ["2015", "GRASP patterns are adapted for microservice responsibility assignment in distributed systems literature"]
+    ],
+    "timeline_zh": [
+      ["2001", "Craig Larman 在《UML和模式应用》第一版中引入 GRASP"],
+      ["2004", "第三版整合了全部九种模式，成为高校教材标准"],
+      ["2010", "GRASP 在企业级 Java 和 C# 社区中作为 SOLID 的补充再次受到关注"],
+      ["2015", "GRASP 模式被改编用于分布式系统文献中的微服务职责分配"]
+    ],
+    "dos": [
+      "Do start with Information Expert when unsure where to place a method because it naturally reduces coupling",
+      "Do use Controller pattern to separate UI from business logic because it enables independent testing",
+      "Do evaluate cohesion when a class grows beyond five methods because low cohesion indicates mixed responsibilities",
+      "Do combine GRASP with SOLID because they are complementary and reinforce each other"
+    ],
+    "dos_zh": [
+      "当不确定方法应放在哪里时，优先用信息专家模式，因为它自然地减少耦合",
+      "使用控制器模式将 UI 与业务逻辑分离，因为这能实现独立测试",
+      "当一个类的方法超过五个时评估内聚性，因为低内聚表明职责混杂",
+      "将 GRASP 与 SOLID 结合使用，因为它们互为补充、相互强化"
+    ],
+    "donts": [
+      "Don't treat GRASP as rigid rules because they are guidelines requiring contextual judgment",
+      "Don't assign creation responsibility to a class just because it is convenient without evaluating aggregation relationships",
+      "Don't over-apply Indirection by adding unnecessary mediator classes because it increases complexity without benefit",
+      "Don't ignore GRASP when doing domain modeling because it prevents common mistakes in responsibility assignment"
+    ],
+    "donts_zh": [
+      "不要将 GRASP 视为死板的规则，因为它们是需要结合上下文判断的指导原则",
+      "不要仅因方便就将创建职责分配给某个类，而不评估聚合关系",
+      "不要通过添加不必要的中介类来过度应用间接模式，因为这会增加复杂性而无收益",
+      "不要在领域建模时忽视 GRASP，因为它能防止职责分配中的常见错误"
+    ],
+    "case_study_company": "Ericsson",
+    "case_study": "Ericsson's telecom platform team adopted GRASP patterns when restructuring their legacy billing system. By systematically applying Information Expert and Creator patterns, they reduced the number of cross-module dependencies by 40% and shortened the average time to implement new billing features from three weeks to five days.",
+    "case_study_zh": "爱立信的电信平台团队在重构遗留计费系统时采用了 GRASP 模式。通过系统性地应用信息专家和创建者模式，他们将跨模块依赖减少了 40%，新计费功能的平均实现周期从三周缩短到五天。",
+    "when_not_to_use": [
+      "Purely functional codebases where objects and classes are not the primary abstraction",
+      "Rapid prototyping where responsibility placement will be revisited soon",
+      "Data-centric CRUD applications where anemic models with service layers are the deliberate choice",
+      "Very small projects with only a handful of classes where the overhead of formal patterns is unnecessary"
+    ],
+    "when_not_to_use_zh": [
+      "纯函数式代码库，对象和类不是主要抽象手段",
+      "快速原型开发阶段，职责分配很快会被重新审视",
+      "以数据为中心的 CRUD 应用，贫血模型配合服务层是刻意的选择",
+      "仅有少数几个类的极小项目，正式模式的开销没有必要"
+    ],
+    "adopters": ["Ericsson", "SAP", "Oracle", "Siemens", "IBM"]
   },
   {
     "id": 31,
@@ -78,7 +242,89 @@
     "ai_relevant": false,
     "viz_type": "tree",
     "related": ["solid-principles", "grasp-patterns", "hexagonal-architecture"],
-    "tags": ["design-patterns", "gof", "creational", "structural", "behavioral"]
+    "tags": ["design-patterns", "gof", "creational", "structural", "behavioral"],
+    "origin_author": "Gang of Four (Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides), 1994",
+    "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
+    "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Solving recurring design problems in object-oriented software with proven solutions",
+      "Establishing a shared design vocabulary across a development team",
+      "Decoupling systems by introducing abstraction layers for creation, structure, or behavior",
+      "Evolving a codebase to handle new requirements without rewriting existing modules"
+    ],
+    "when_to_use_zh": [
+      "用经过验证的方案解决面向对象软件中反复出现的设计问题",
+      "在开发团队中建立共享的设计词汇表",
+      "通过引入创建、结构或行为的抽象层来解耦系统",
+      "演进代码库以处理新需求，而不重写已有模块"
+    ],
+    "core_concepts": [
+      "Creational Patterns: abstract the instantiation process to make systems independent of how objects are created (Factory Method, Abstract Factory, Builder, Prototype, Singleton)",
+      "Structural Patterns: describe how classes and objects are composed to form larger structures (Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy)",
+      "Behavioral Patterns: define how objects interact and distribute responsibility (Strategy, Observer, Command, Iterator, Mediator, State, Template Method, Visitor, Chain of Responsibility, Memento, Interpreter)",
+      "Program to an interface, not an implementation: depend on abstract types so concrete classes can be swapped",
+      "Favor composition over inheritance: assemble behavior by composing objects rather than extending class hierarchies"
+    ],
+    "core_concepts_zh": [
+      "创建型模式：抽象实例化过程，使系统独立于对象的创建方式（工厂方法、抽象工厂、建造者、原型、单例）",
+      "结构型模式：描述类和对象如何组合形成更大的结构（适配器、桥接、组合、装饰器、外观、享元、代理）",
+      "行为型模式：定义对象如何交互和分配职责（策略、观察者、命令、迭代器、中介者、状态、模板方法、访问者、职责链、备忘录、解释器）",
+      "面向接口编程而非面向实现：依赖抽象类型，使具体类可以互换",
+      "优先使用组合而非继承：通过组合对象来装配行为，而非扩展类继承层次"
+    ],
+    "timeline": [
+      ["1987", "Ward Cunningham and Kent Beck begin cataloging Smalltalk design patterns inspired by Christopher Alexander's architectural patterns"],
+      ["1994", "The 'Gang of Four' publish 'Design Patterns', establishing 23 canonical patterns"],
+      ["2004", "Joshua Kerievsky publishes 'Refactoring to Patterns', bridging the gap between patterns and refactoring"],
+      ["2014", "Modern language features (lambdas, generics) reduce boilerplate, leading to simpler pattern implementations"]
+    ],
+    "timeline_zh": [
+      ["1987", "Ward Cunningham 和 Kent Beck 受 Christopher Alexander 建筑模式启发，开始编目 Smalltalk 设计模式"],
+      ["1994", "「四人帮」出版《设计模式》，确立 23 种经典模式"],
+      ["2004", "Joshua Kerievsky 出版《重构与模式》，架起了模式与重构之间的桥梁"],
+      ["2014", "现代语言特性（lambda、泛型）减少了模板代码，使模式实现更加简洁"]
+    ],
+    "dos": [
+      "Do learn the intent of each pattern before memorizing its structure because understanding the 'why' prevents misapplication",
+      "Do adapt patterns to your language's idioms because a Python Strategy pattern looks very different from a Java one",
+      "Do combine patterns when needed because real-world problems often require Factory + Strategy or Decorator + Composite",
+      "Do document which pattern you used and why because future maintainers need context to evolve the design"
+    ],
+    "dos_zh": [
+      "在记住模式结构之前先理解其意图，因为理解「为什么」能防止误用",
+      "将模式适配到你所用语言的惯用法，因为 Python 的策略模式与 Java 的看起来截然不同",
+      "在需要时组合使用多个模式，因为现实问题通常需要工厂+策略或装饰器+组合",
+      "记录你使用了哪个模式及其原因，因为未来的维护者需要上下文来演进设计"
+    ],
+    "donts": [
+      "Don't force patterns where a simple function call suffices because over-engineering reduces readability",
+      "Don't use Singleton as a global variable because it hides dependencies and makes testing difficult",
+      "Don't apply patterns preemptively because YAGNI often applies — wait for the need to emerge",
+      "Don't treat the 23 GoF patterns as exhaustive because many modern patterns (Null Object, Service Locator) emerged later"
+    ],
+    "donts_zh": [
+      "不要在简单函数调用即可满足需求时强行套用模式，因为过度工程降低可读性",
+      "不要将单例当作全局变量使用，因为它隐藏了依赖关系且使测试困难",
+      "不要预防性地应用模式，因为 YAGNI 原则通常适用——等需求出现再说",
+      "不要将 23 种 GoF 模式视为完整集合，因为许多现代模式（空对象、服务定位器）是后来出现的"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix extensively uses GoF patterns across its microservice ecosystem. The API Gateway employs the Facade pattern to simplify backend complexity for client devices, while the Hystrix library (now succeeded by Resilience4j) implemented the Command pattern to wrap every service call with circuit-breaking and fallback behavior. This pattern-driven approach has been key to achieving 99.99% availability.",
+    "case_study_zh": "Netflix 在其微服务生态系统中广泛使用 GoF 模式。API 网关采用外观模式简化客户端设备面对的后端复杂性，而 Hystrix 库（现已被 Resilience4j 接替）实现了命令模式来为每个服务调用包装熔断和降级行为。这种模式驱动的方法是实现 99.99% 可用性的关键。",
+    "when_not_to_use": [
+      "Simple CRUD applications where patterns add unnecessary abstraction layers",
+      "Functional programming contexts where higher-order functions replace most behavioral patterns",
+      "One-off scripts or automation tasks where design longevity is irrelevant",
+      "Early-stage prototypes where premature pattern application slows exploration"
+    ],
+    "when_not_to_use_zh": [
+      "简单的 CRUD 应用，模式会添加不必要的抽象层",
+      "函数式编程场景，高阶函数替代了大多数行为型模式",
+      "一次性脚本或自动化任务，设计持久性无关紧要",
+      "早期原型阶段，过早应用模式会拖慢探索速度"
+    ],
+    "adopters": ["Netflix", "Amazon", "Google", "Microsoft", "Apple"]
   },
   {
     "id": 32,
@@ -105,7 +351,89 @@
     "ai_relevant": false,
     "viz_type": "pyramid",
     "related": ["solid-principles", "conventional-comments", "grasp-patterns"],
-    "tags": ["clean-code", "readability", "naming", "refactoring", "simplicity"]
+    "tags": ["clean-code", "readability", "naming", "refactoring", "simplicity"],
+    "origin_author": "Robert C. Martin, 2008",
+    "origin_source": "Clean Code: A Handbook of Agile Software Craftsmanship",
+    "origin_source_zh": "《代码整洁之道》",
+    "complexity": "beginner",
+    "when_to_use": [
+      "Writing any production code that will be read and maintained by others",
+      "Onboarding new team members who need to understand existing code quickly",
+      "Refactoring legacy code to reduce cognitive load and bug density",
+      "Code reviews where readability and maintainability are primary concerns"
+    ],
+    "when_to_use_zh": [
+      "编写任何将被他人阅读和维护的生产代码",
+      "新团队成员入职时需要快速理解已有代码",
+      "重构遗留代码以降低认知负荷和缺陷密度",
+      "以可读性和可维护性为主要关注点的代码评审"
+    ],
+    "core_concepts": [
+      "Meaningful Names: names should reveal intent, avoid disinformation, and be pronounceable and searchable",
+      "Small Functions: functions should do one thing, do it well, and do it only — ideally under 20 lines",
+      "DRY (Don't Repeat Yourself): every piece of knowledge should have a single, unambiguous representation in the system",
+      "Boy Scout Rule: always leave the codebase cleaner than you found it through incremental improvements",
+      "Comments as Last Resort: well-written code should be self-explanatory; comments should explain 'why', not 'what'"
+    ],
+    "core_concepts_zh": [
+      "有意义的命名：名称应揭示意图、避免误导，且可发音、可搜索",
+      "小函数：函数应只做一件事，做好它，只做这一件——理想情况下不超过 20 行",
+      "DRY（不要重复自己）：系统中每条知识都应有唯一、明确的表示",
+      "童子军规则：通过渐进式改进，始终让代码库比你发现时更整洁",
+      "注释是最后手段：写得好的代码应该是自解释的；注释应解释「为什么」而非「做什么」"
+    ],
+    "timeline": [
+      ["1999", "The Pragmatic Programmer by Hunt and Thomas introduces DRY and related code quality ideas"],
+      ["2008", "Robert C. Martin publishes 'Clean Code', codifying readability-first principles"],
+      ["2011", "Martin follows up with 'The Clean Coder', extending principles to professional conduct"],
+      ["2017", "Clean Code ideas merge with modern practices like pull request reviews and automated linting"]
+    ],
+    "timeline_zh": [
+      ["1999", "Hunt 和 Thomas 的《程序员修炼之道》引入 DRY 及相关代码质量理念"],
+      ["2008", "Robert C. Martin 出版《代码整洁之道》，将可读性优先的原则系统化"],
+      ["2011", "Martin 出版后续作品《程序员的职业素养》，将原则扩展到职业行为"],
+      ["2017", "整洁代码理念与拉取请求评审和自动化 lint 等现代实践融合"]
+    ],
+    "dos": [
+      "Do choose descriptive names even if they are longer because clarity beats brevity",
+      "Do extract functions at different levels of abstraction because it makes the code read like a narrative",
+      "Do write unit tests for every behavior because tests are the best documentation of intent",
+      "Do refactor in small steps because large refactors introduce risk and are hard to review"
+    ],
+    "dos_zh": [
+      "即使名称较长也要选择描述性命名，因为清晰胜于简短",
+      "在不同抽象层级提取函数，因为这让代码读起来像叙事文",
+      "为每个行为编写单元测试，因为测试是意图的最佳文档",
+      "以小步骤进行重构，因为大规模重构引入风险且难以评审"
+    ],
+    "donts": [
+      "Don't use magic numbers or strings because they hide intent and create maintenance landmines",
+      "Don't write functions with more than three parameters because they are hard to understand and test",
+      "Don't leave dead code commented out because version control preserves history",
+      "Don't obsess over code aesthetics at the expense of shipping because perfect is the enemy of done"
+    ],
+    "donts_zh": [
+      "不要使用魔法数字或字符串，因为它们隐藏意图并埋下维护隐患",
+      "不要编写超过三个参数的函数，因为它们难以理解和测试",
+      "不要将死代码注释保留，因为版本控制已保存了历史",
+      "不要为追求代码美观而牺牲交付速度，因为完美是完成的敌人"
+    ],
+    "case_study_company": "Basecamp",
+    "case_study": "Basecamp (formerly 37signals) built their entire Ruby on Rails codebase around Clean Code principles. DHH and the team maintained strict naming conventions and small method sizes, which allowed a team of fewer than 20 programmers to build and maintain a product used by millions. Their emphasis on readable code over clever code became a core tenet of the Rails community.",
+    "case_study_zh": "Basecamp（前身为 37signals）围绕整洁代码原则构建了整个 Ruby on Rails 代码库。DHH 和团队保持了严格的命名约定和小方法规模，使得不到 20 人的团队能够构建和维护数百万用户使用的产品。他们对可读代码而非聪明代码的强调成为 Rails 社区的核心信条。",
+    "when_not_to_use": [
+      "Competitive programming or algorithmic contests where execution speed is the only metric",
+      "Quick throwaway scripts that will never be maintained or shared",
+      "Performance-critical hot paths where micro-optimizations require less readable code",
+      "Exploratory data analysis notebooks where iteration speed trumps code structure"
+    ],
+    "when_not_to_use_zh": [
+      "竞技编程或算法竞赛，执行速度是唯一指标",
+      "永远不会维护或共享的快速一次性脚本",
+      "性能关键的热路径，微优化需要牺牲代码可读性",
+      "探索性数据分析笔记本，迭代速度优先于代码结构"
+    ],
+    "adopters": ["Basecamp", "Pivotal Labs", "Thoughtworks", "Shopify", "GitHub"]
   },
   {
     "id": 33,
@@ -132,7 +460,89 @@
     "ai_relevant": false,
     "viz_type": "tree",
     "related": ["domain-driven-design", "event-sourcing-pattern", "cqrs-pattern", "hexagonal-architecture"],
-    "tags": ["ddd", "entities", "value-objects", "aggregates", "domain-events"]
+    "tags": ["ddd", "entities", "value-objects", "aggregates", "domain-events"],
+    "origin_author": "Eric Evans, 2003",
+    "origin_source": "Domain-Driven Design: Tackling Complexity in the Heart of Software",
+    "origin_source_zh": "《领域驱动设计：软件核心复杂性应对之道》",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Building complex business domains with intricate rules and workflows",
+      "Systems where the domain model is the primary source of competitive advantage",
+      "Projects with domain experts actively collaborating with developers",
+      "Microservice boundaries need to enforce strong consistency within aggregates"
+    ],
+    "when_to_use_zh": [
+      "构建具有复杂规则和工作流的业务领域",
+      "领域模型是核心竞争优势来源的系统",
+      "领域专家积极与开发者协作的项目",
+      "微服务边界需要在聚合内强制严格一致性"
+    ],
+    "core_concepts": [
+      "Entity: an object defined by its identity rather than its attributes, whose lifecycle is tracked across state changes",
+      "Value Object: an immutable object defined entirely by its attributes, with no conceptual identity (e.g., Money, DateRange)",
+      "Aggregate: a cluster of entities and value objects treated as a single unit for data changes, with an Aggregate Root as the entry point",
+      "Domain Event: a record of something meaningful that happened in the domain, used to communicate between bounded contexts",
+      "Repository: an abstraction that mediates between the domain and data mapping layers, providing collection-like access to aggregates"
+    ],
+    "core_concepts_zh": [
+      "实体：由其标识而非属性定义的对象，其生命周期跨越状态变更被持续追踪",
+      "值对象：完全由属性定义的不可变对象，没有概念上的标识（如金额、日期范围）",
+      "聚合：作为数据变更单元的实体和值对象集群，以聚合根作为入口点",
+      "领域事件：领域中发生的有意义事情的记录，用于限界上下文之间的通信",
+      "仓储：在领域层和数据映射层之间的抽象中介，提供类集合式的聚合访问"
+    ],
+    "timeline": [
+      ["2003", "Eric Evans publishes 'Domain-Driven Design', introducing tactical and strategic patterns"],
+      ["2013", "Vaughn Vernon publishes 'Implementing Domain-Driven Design', providing practical implementation guidance"],
+      ["2016", "DDD tactical patterns gain traction in microservice architectures as natural aggregate-to-service mapping"],
+      ["2019", "Event-sourced aggregates become mainstream with tools like EventStoreDB and Axon Framework"]
+    ],
+    "timeline_zh": [
+      ["2003", "Eric Evans 出版《领域驱动设计》，引入战术和战略模式"],
+      ["2013", "Vaughn Vernon 出版《实现领域驱动设计》，提供实践性实施指导"],
+      ["2016", "DDD 战术模式在微服务架构中获得广泛应用，聚合自然映射到服务"],
+      ["2019", "事件溯源聚合随着 EventStoreDB 和 Axon Framework 等工具成为主流"]
+    ],
+    "dos": [
+      "Do keep aggregates small because large aggregates create contention and performance problems",
+      "Do make value objects immutable because mutability introduces subtle bugs in equality and hashing",
+      "Do use ubiquitous language in code because domain experts should be able to read your class names",
+      "Do enforce invariants at the aggregate root because consistency boundaries must be explicit"
+    ],
+    "dos_zh": [
+      "保持聚合小巧，因为大聚合会造成竞争和性能问题",
+      "使值对象不可变，因为可变性会在相等性和哈希中引入微妙的缺陷",
+      "在代码中使用通用语言，因为领域专家应能读懂你的类名",
+      "在聚合根处强制不变式，因为一致性边界必须是显式的"
+    ],
+    "donts": [
+      "Don't reference other aggregates by direct object reference because it breaks consistency boundaries — use IDs instead",
+      "Don't create anemic domain models that are just data bags with external service logic because it defeats the purpose of DDD",
+      "Don't skip event modeling because domain events are the primary mechanism for cross-aggregate communication",
+      "Don't apply DDD tactical patterns to simple CRUD domains because the overhead is not justified"
+    ],
+    "donts_zh": [
+      "不要通过直接对象引用关联其他聚合，因为这破坏了一致性边界——应使用 ID",
+      "不要创建仅是数据袋配外部服务逻辑的贫血领域模型，因为这违背了 DDD 的初衷",
+      "不要跳过事件建模，因为领域事件是跨聚合通信的主要机制",
+      "不要对简单的 CRUD 领域应用 DDD 战术模式，因为其开销不值得"
+    ],
+    "case_study_company": "Zalando",
+    "case_study": "Zalando, Europe's largest online fashion platform, restructured its order management system using DDD tactical patterns. Each bounded context (inventory, payment, shipping) was modeled with distinct aggregates, and domain events enabled eventual consistency across contexts. This allowed Zalando to scale to processing over 500,000 orders per day with independent team deployments.",
+    "case_study_zh": "欧洲最大的在线时尚平台 Zalando 使用 DDD 战术模式重构了其订单管理系统。每个限界上下文（库存、支付、物流）都用独立的聚合建模，领域事件实现了跨上下文的最终一致性。这使 Zalando 能够扩展到每天处理超过 50 万笔订单，同时各团队独立部署。",
+    "when_not_to_use": [
+      "Simple CRUD applications with minimal business logic",
+      "Projects without access to domain experts for collaborative modeling",
+      "Teams unfamiliar with DDD who would misapply patterns and create accidental complexity",
+      "Read-heavy reporting systems where a query-optimized model is more appropriate"
+    ],
+    "when_not_to_use_zh": [
+      "业务逻辑极少的简单 CRUD 应用",
+      "无法接触领域专家进行协作建模的项目",
+      "不熟悉 DDD 的团队，会误用模式并造成意外复杂性",
+      "以读为主的报表系统，查询优化模型更合适"
+    ],
+    "adopters": ["Zalando", "SoundCloud", "Klarna", "Just Eat Takeaway", "Vrbo"]
   },
   {
     "id": 34,
@@ -159,7 +569,89 @@
     "ai_relevant": true,
     "viz_type": "venn",
     "related": ["solid-principles", "dependency-injection", "ddd-tactical-patterns", "clean-code-principles"],
-    "tags": ["hexagonal", "ports-adapters", "clean-architecture", "isolation", "testability"]
+    "tags": ["hexagonal", "ports-adapters", "clean-architecture", "isolation", "testability"],
+    "origin_author": "Alistair Cockburn, 2005",
+    "origin_source": "Hexagonal Architecture (Ports and Adapters)",
+    "origin_source_zh": "《六边形架构（端口与适配器）》",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Building applications that need to support multiple delivery mechanisms (REST, CLI, gRPC, messaging)",
+      "Systems where infrastructure decisions (database, cloud provider) may change over time",
+      "Projects requiring high testability with fast unit tests that don't need infrastructure",
+      "Teams adopting DDD where domain isolation from infrastructure is a priority"
+    ],
+    "when_to_use_zh": [
+      "构建需要支持多种交付机制（REST、CLI、gRPC、消息队列）的应用",
+      "基础设施决策（数据库、云提供商）可能随时间变化的系统",
+      "要求高可测试性、快速单元测试不依赖基础设施的项目",
+      "采用 DDD 且领域与基础设施隔离是优先级的团队"
+    ],
+    "core_concepts": [
+      "Domain Core: the innermost layer containing pure business logic with zero external dependencies",
+      "Ports: interfaces that define how the outside world interacts with the domain (inbound) and how the domain reaches external systems (outbound)",
+      "Adapters: concrete implementations that plug into ports, translating between external technology and domain contracts",
+      "Composition Root: the single place (typically application startup) where all ports are wired to their adapters via dependency injection",
+      "Dependency Rule: dependencies always point inward — adapters depend on ports, never the reverse"
+    ],
+    "core_concepts_zh": [
+      "领域核心：最内层，包含零外部依赖的纯业务逻辑",
+      "端口：定义外部世界如何与领域交互（入站）以及领域如何访问外部系统（出站）的接口",
+      "适配器：插入端口的具体实现，在外部技术与领域契约之间进行翻译",
+      "组合根：所有端口通过依赖注入连接到适配器的唯一位置（通常是应用启动处）",
+      "依赖规则：依赖方向始终指向内部——适配器依赖端口，绝不反过来"
+    ],
+    "timeline": [
+      ["2005", "Alistair Cockburn publishes the Hexagonal Architecture pattern on his wiki"],
+      ["2008", "Jeffrey Palermo introduces Onion Architecture, a close variant with explicit layer rings"],
+      ["2012", "Robert C. Martin presents Clean Architecture, synthesizing hexagonal, onion, and DCI ideas"],
+      ["2017", "Netflix and Spotify publicly share their hexagonal architecture implementations for microservices"]
+    ],
+    "timeline_zh": [
+      ["2005", "Alistair Cockburn 在其 wiki 上发布六边形架构模式"],
+      ["2008", "Jeffrey Palermo 提出洋葱架构，一种具有显式分层环的近似变体"],
+      ["2012", "Robert C. Martin 提出整洁架构，综合了六边形、洋葱和 DCI 的思想"],
+      ["2017", "Netflix 和 Spotify 公开分享了他们微服务的六边形架构实现"]
+    ],
+    "dos": [
+      "Do define ports as interfaces in the domain layer because they represent domain needs, not infrastructure capabilities",
+      "Do keep the domain core free of framework annotations because annotations create hidden dependencies",
+      "Do create separate adapter modules for each external system because it isolates change impact",
+      "Do write domain tests using in-memory adapters because they run in milliseconds and catch logic bugs"
+    ],
+    "dos_zh": [
+      "在领域层定义端口为接口，因为它们代表领域需求而非基础设施能力",
+      "保持领域核心不含框架注解，因为注解会创建隐式依赖",
+      "为每个外部系统创建独立的适配器模块，因为这隔离了变更影响",
+      "使用内存适配器编写领域测试，因为它们在毫秒内运行并能捕获逻辑缺陷"
+    ],
+    "donts": [
+      "Don't let domain objects import infrastructure packages because it violates the dependency rule",
+      "Don't create one mega-adapter that handles multiple external systems because it defeats the purpose of isolation",
+      "Don't skip the port abstraction by having domain code call adapters directly because it reintroduces coupling",
+      "Don't over-architect simple CRUD endpoints with hexagonal layers because the indirection adds no value"
+    ],
+    "donts_zh": [
+      "不要让领域对象导入基础设施包，因为这违反了依赖规则",
+      "不要创建处理多个外部系统的超级适配器，因为这违背了隔离的初衷",
+      "不要跳过端口抽象让领域代码直接调用适配器，因为这重新引入了耦合",
+      "不要对简单的 CRUD 端点过度应用六边形分层，因为间接层不带来价值"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix adopted hexagonal architecture for its content encoding pipeline. The domain core handles transcoding decisions and quality rules, while adapters connect to different cloud storage backends (S3, Google Cloud Storage) and encoding engines. When Netflix migrated parts of its infrastructure, only adapters changed — the core encoding logic remained untouched, saving months of re-testing.",
+    "case_study_zh": "Netflix 为其内容编码管道采用了六边形架构。领域核心处理转码决策和质量规则，而适配器连接不同的云存储后端（S3、Google Cloud Storage）和编码引擎。当 Netflix 迁移部分基础设施时，只有适配器发生变化——核心编码逻辑保持不变，节省了数月的重新测试时间。",
+    "when_not_to_use": [
+      "Trivial applications with a single database and one delivery mechanism",
+      "Serverless functions where each function is a single-purpose handler with minimal logic",
+      "Teams that lack experience with dependency injection and interface-based design",
+      "Performance-critical systems where the port/adapter indirection introduces unacceptable latency"
+    ],
+    "when_not_to_use_zh": [
+      "只有单个数据库和一种交付机制的简单应用",
+      "每个函数都是单用途处理程序且逻辑极少的无服务器函数",
+      "缺乏依赖注入和基于接口设计经验的团队",
+      "端口/适配器间接层引入不可接受延迟的性能关键系统"
+    ],
+    "adopters": ["Netflix", "Spotify", "Mercado Libre", "BBVA", "Thoughtworks"]
   },
   {
     "id": 35,
@@ -186,7 +678,89 @@
     "ai_relevant": false,
     "viz_type": "venn",
     "related": ["hexagonal-architecture", "clean-code-principles", "property-based-testing"],
-    "tags": ["functional-programming", "pure-functions", "side-effects", "testability", "architecture"]
+    "tags": ["functional-programming", "pure-functions", "side-effects", "testability", "architecture"],
+    "origin_author": "Gary Bernhardt, 2012",
+    "origin_source": "Boundaries (talk at RubyConf and Destroy All Software screencasts)",
+    "origin_source_zh": "《Boundaries》（RubyConf 演讲及 Destroy All Software 系列视频）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Applications with complex business logic that needs thorough testing without infrastructure dependencies",
+      "Codebases with tangled side effects that make unit testing slow and flaky",
+      "Multi-language systems where the pure core can be shared or ported across platforms",
+      "Data pipelines where transformation logic should be independent of I/O mechanisms"
+    ],
+    "when_to_use_zh": [
+      "业务逻辑复杂、需要彻底测试而不依赖基础设施的应用",
+      "副作用交织导致单元测试缓慢且不稳定的代码库",
+      "纯核心可在平台间共享或移植的多语言系统",
+      "转换逻辑应独立于 I/O 机制的数据管道"
+    ],
+    "core_concepts": [
+      "Pure Functions: functions that always return the same output for the same input and produce no side effects",
+      "Imperative Shell: the thin boundary layer that performs all I/O, state mutations, and external communications",
+      "Data In, Data Out: the pure core communicates through plain data structures, not interfaces or service objects",
+      "Testability by Design: pure functions can be tested with simple assertions; no mocks, stubs, or test doubles needed",
+      "Push Effects to the Edges: move all side-effectful code as far outward as possible so the core remains pure"
+    ],
+    "core_concepts_zh": [
+      "纯函数：对相同输入始终返回相同输出、不产生副作用的函数",
+      "命令式外壳：执行所有 I/O、状态变更和外部通信的薄边界层",
+      "数据进，数据出：纯核心通过普通数据结构通信，而非接口或服务对象",
+      "设计即可测试：纯函数可用简单断言测试；不需要 mock、stub 或测试替身",
+      "将副作用推向边缘：将所有副作用代码尽可能推向外层，保持核心纯净"
+    ],
+    "timeline": [
+      ["2012", "Gary Bernhardt presents 'Boundaries' at RubyConf, articulating the Functional Core / Imperative Shell pattern"],
+      ["2013", "The pattern gains traction in the Ruby and Elixir communities through Destroy All Software screencasts"],
+      ["2016", "Redux architecture in React popularizes a similar pattern: pure reducers (core) with side-effect middleware (shell)"],
+      ["2020", "The pattern becomes standard in serverless architectures where pure business logic is separated from handler wiring"]
+    ],
+    "timeline_zh": [
+      ["2012", "Gary Bernhardt 在 RubyConf 发表《Boundaries》演讲，阐述函数式核心/命令式外壳模式"],
+      ["2013", "该模式通过 Destroy All Software 系列视频在 Ruby 和 Elixir 社区中获得关注"],
+      ["2016", "React 中的 Redux 架构推广了类似模式：纯 reducer（核心）配合副作用中间件（外壳）"],
+      ["2020", "该模式成为无服务器架构的标准做法，纯业务逻辑与处理程序装配分离"]
+    ],
+    "dos": [
+      "Do pass all needed data as function arguments because implicit state access breaks purity",
+      "Do return new data structures from pure functions instead of mutating inputs because immutability prevents bugs",
+      "Do keep the shell as thin as possible because the less imperative code you have, the fewer integration tests you need",
+      "Do use value objects to pass structured data between shell and core because they enforce type safety"
+    ],
+    "dos_zh": [
+      "将所有所需数据作为函数参数传递，因为隐式状态访问破坏纯净性",
+      "从纯函数返回新数据结构而非修改输入，因为不可变性防止缺陷",
+      "保持外壳尽可能薄，因为命令式代码越少，需要的集成测试就越少",
+      "使用值对象在外壳和核心之间传递结构化数据，因为它们强制类型安全"
+    ],
+    "donts": [
+      "Don't inject services or repositories into the pure core because it reintroduces side-effect dependencies",
+      "Don't perform logging or metrics collection inside pure functions because those are side effects",
+      "Don't let the shell grow to contain business logic because it should only orchestrate I/O and delegation",
+      "Don't test pure functions with mocks because they should be testable with plain input/output assertions"
+    ],
+    "donts_zh": [
+      "不要向纯核心注入服务或仓储，因为这重新引入了副作用依赖",
+      "不要在纯函数内执行日志记录或指标收集，因为这些是副作用",
+      "不要让外壳膨胀到包含业务逻辑，因为它应仅编排 I/O 和委托",
+      "不要用 mock 测试纯函数，因为它们应该可以用简单的输入/输出断言来测试"
+    ],
+    "case_study_company": "Shopify",
+    "case_study": "Shopify's checkout system uses the Functional Core / Imperative Shell pattern in its Ruby codebase. All pricing, discount, and tax calculation logic lives in pure functions that receive cart data and return pricing results. The imperative shell handles payment gateway calls and database persistence. This separation enabled Shopify to achieve sub-100ms test suites for pricing logic and confidently handle Black Friday traffic spikes.",
+    "case_study_zh": "Shopify 的结账系统在其 Ruby 代码库中使用了函数式核心/命令式外壳模式。所有定价、折扣和税费计算逻辑都在纯函数中，接收购物车数据并返回定价结果。命令式外壳处理支付网关调用和数据库持久化。这种分离使 Shopify 的定价逻辑测试套件达到了低于 100 毫秒的执行速度，并能自信地应对黑色星期五的流量高峰。",
+    "when_not_to_use": [
+      "Highly interactive UI applications where state management is inherently stateful",
+      "Systems dominated by I/O with very little business logic (e.g., proxy servers)",
+      "Legacy codebases where extracting pure functions would require a massive rewrite",
+      "Real-time systems where the overhead of data copying affects latency requirements"
+    ],
+    "when_not_to_use_zh": [
+      "高度交互式的 UI 应用，状态管理本质上是有状态的",
+      "以 I/O 为主、业务逻辑极少的系统（如代理服务器）",
+      "提取纯函数需要大规模重写的遗留代码库",
+      "数据拷贝开销影响延迟要求的实时系统"
+    ],
+    "adopters": ["Shopify", "Stripe", "GitHub", "Jane Street", "Nubank"]
   },
   {
     "id": 36,
@@ -213,7 +787,89 @@
     "ai_relevant": false,
     "viz_type": "flow",
     "related": ["eda", "actor-model", "functional-core-imperative-shell"],
-    "tags": ["reactive", "observables", "streams", "async", "operators"]
+    "tags": ["reactive", "observables", "streams", "async", "operators"],
+    "origin_author": "Erik Meijer, 2009",
+    "origin_source": "Reactive Extensions for .NET (Rx.NET), Microsoft DevLabs",
+    "origin_source_zh": "《.NET 响应式扩展（Rx.NET）》，微软开发实验室",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Building real-time UIs that react to multiple asynchronous data sources (WebSocket, user input, timers)",
+      "Implementing complex event processing pipelines with backpressure and error recovery",
+      "Mobile applications where lifecycle-aware subscription management is critical",
+      "Systems that need to compose, merge, and throttle multiple event streams declaratively"
+    ],
+    "when_to_use_zh": [
+      "构建响应多个异步数据源（WebSocket、用户输入、定时器）的实时 UI",
+      "实现具有背压和错误恢复的复杂事件处理管道",
+      "生命周期感知的订阅管理至关重要的移动应用",
+      "需要声明式地组合、合并和限流多个事件流的系统"
+    ],
+    "core_concepts": [
+      "Observable: a push-based collection that emits items over time, representing an asynchronous data stream",
+      "Observer/Subscriber: a consumer that reacts to items emitted by an Observable via onNext, onError, and onComplete callbacks",
+      "Operators: composable functions (map, filter, flatMap, debounce, zip) that transform and combine Observable streams",
+      "Schedulers: control which thread or execution context an Observable emits on and an Observer subscribes on",
+      "Backpressure: a mechanism for handling situations where an Observable produces items faster than an Observer can consume them"
+    ],
+    "core_concepts_zh": [
+      "Observable：基于推送的集合，随时间发射元素，表示异步数据流",
+      "Observer/Subscriber：通过 onNext、onError 和 onComplete 回调响应 Observable 发射元素的消费者",
+      "操作符：可组合的函数（map、filter、flatMap、debounce、zip），用于转换和组合 Observable 流",
+      "调度器：控制 Observable 在哪个线程或执行上下文上发射以及 Observer 在哪里订阅",
+      "背压：处理 Observable 产生元素速度快于 Observer 消费速度的机制"
+    ],
+    "timeline": [
+      ["2009", "Erik Meijer and team release Rx.NET at Microsoft, introducing the Observable/Observer pattern for async streams"],
+      ["2013", "RxJava is released by Netflix for JVM-based reactive programming in their microservice architecture"],
+      ["2015", "The Reactive Streams specification is published, standardizing backpressure across libraries"],
+      ["2018", "RxJS becomes integral to Angular framework, bringing Rx to mainstream frontend development"]
+    ],
+    "timeline_zh": [
+      ["2009", "Erik Meijer 团队在微软发布 Rx.NET，引入用于异步流的 Observable/Observer 模式"],
+      ["2013", "Netflix 发布 RxJava，用于其微服务架构中的 JVM 响应式编程"],
+      ["2015", "Reactive Streams 规范发布，在各库间标准化背压处理"],
+      ["2018", "RxJS 成为 Angular 框架的核心组件，将 Rx 带入主流前端开发"]
+    ],
+    "dos": [
+      "Do use marble diagrams for documentation and testing because they visually clarify complex timing behavior",
+      "Do unsubscribe or use takeUntil patterns because leaked subscriptions are the most common Rx bug",
+      "Do choose the right operator for the job because using flatMap when you need switchMap causes subtle bugs",
+      "Do handle errors at the stream level because an unhandled error terminates the entire Observable chain"
+    ],
+    "dos_zh": [
+      "使用弹珠图进行文档编写和测试，因为它们能直观地说明复杂的时序行为",
+      "取消订阅或使用 takeUntil 模式，因为泄漏的订阅是最常见的 Rx 缺陷",
+      "为任务选择正确的操作符，因为在需要 switchMap 时使用 flatMap 会导致微妙的缺陷",
+      "在流级别处理错误，因为未处理的错误会终止整个 Observable 链"
+    ],
+    "donts": [
+      "Don't nest subscribe calls because it defeats the purpose of declarative stream composition",
+      "Don't use Rx for simple one-shot async operations because Promises/async-await are simpler and sufficient",
+      "Don't ignore backpressure in high-throughput scenarios because uncontrolled buffering causes out-of-memory errors",
+      "Don't create hot observables without understanding multicasting because each subscription may trigger a new execution"
+    ],
+    "donts_zh": [
+      "不要嵌套 subscribe 调用，因为这违背了声明式流组合的初衷",
+      "不要对简单的一次性异步操作使用 Rx，因为 Promise/async-await 更简单且足够",
+      "不要在高吞吐场景中忽略背压，因为不受控的缓冲会导致内存溢出",
+      "不要在不理解多播的情况下创建热 Observable，因为每次订阅可能触发新的执行"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix created RxJava to manage the complexity of composing dozens of asynchronous microservice calls in their API layer. By modeling each service call as an Observable and using operators like zip and merge, they could assemble personalized page responses from parallel backend calls. This reactive approach reduced API response latency by 30% and simplified error handling across hundreds of microservices.",
+    "case_study_zh": "Netflix 创建了 RxJava 来管理其 API 层中组合数十个异步微服务调用的复杂性。通过将每个服务调用建模为 Observable 并使用 zip 和 merge 等操作符，他们能从并行的后端调用中组装个性化页面响应。这种响应式方法将 API 响应延迟降低了 30%，并简化了数百个微服务的错误处理。",
+    "when_not_to_use": [
+      "Simple request-response APIs where Promises or async/await are sufficient",
+      "Teams unfamiliar with functional reactive programming who would struggle with the learning curve",
+      "Applications with very few asynchronous operations where Rx adds unnecessary complexity",
+      "Batch processing systems where pull-based iteration is more appropriate than push-based streams"
+    ],
+    "when_not_to_use_zh": [
+      "Promise 或 async/await 已足够的简单请求-响应 API",
+      "不熟悉函数式响应式编程、难以应对学习曲线的团队",
+      "异步操作极少的应用，Rx 会增加不必要的复杂性",
+      "基于拉取的迭代比基于推送的流更合适的批处理系统"
+    ],
+    "adopters": ["Netflix", "Microsoft", "Google (Angular)", "Trello", "SoundCloud"]
   },
   {
     "id": 37,
@@ -240,7 +896,89 @@
     "ai_relevant": false,
     "viz_type": "pyramid",
     "related": ["api-versioning-strategies", "contract-testing", "ai-first-api-design"],
-    "tags": ["rest", "api-design", "maturity-model", "hateoas", "http"]
+    "tags": ["rest", "api-design", "maturity-model", "hateoas", "http"],
+    "origin_author": "Leonard Richardson, 2008",
+    "origin_source": "Justice Will Take Us Millions of Intricate Moves (QCon talk, later popularized by Martin Fowler)",
+    "origin_source_zh": "QCon 演讲，后由 Martin Fowler 撰文推广",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Evaluating the design quality of existing REST APIs during architecture reviews",
+      "Planning API modernization roadmaps from RPC-style to RESTful design",
+      "Teaching teams about REST best practices with a clear progression model",
+      "Deciding the appropriate level of REST maturity for a new API based on client needs"
+    ],
+    "when_to_use_zh": [
+      "在架构评审中评估现有 REST API 的设计质量",
+      "规划从 RPC 风格到 RESTful 设计的 API 现代化路线图",
+      "用清晰的渐进模型向团队传授 REST 最佳实践",
+      "根据客户端需求决定新 API 的合适 REST 成熟度级别"
+    ],
+    "core_concepts": [
+      "Level 0 - The Swamp of POX: one URI, one HTTP method (usually POST), essentially RPC over HTTP",
+      "Level 1 - Resources: individual URIs for each resource, but still using a single HTTP method for all operations",
+      "Level 2 - HTTP Verbs: proper use of GET, POST, PUT, DELETE with correct status codes and idempotency",
+      "Level 3 - Hypermedia Controls (HATEOAS): responses include links that guide clients to available next actions",
+      "Progressive Enhancement: each level builds on the previous, and most practical APIs target Level 2"
+    ],
+    "core_concepts_zh": [
+      "第 0 级 - POX 沼泽：一个 URI、一个 HTTP 方法（通常是 POST），本质上是基于 HTTP 的 RPC",
+      "第 1 级 - 资源：每个资源有独立的 URI，但仍对所有操作使用单一 HTTP 方法",
+      "第 2 级 - HTTP 动词：正确使用 GET、POST、PUT、DELETE，配合正确的状态码和幂等性",
+      "第 3 级 - 超媒体控制（HATEOAS）：响应中包含链接，引导客户端发现可用的后续操作",
+      "渐进增强：每一级在前一级基础上构建，大多数实用 API 以第 2 级为目标"
+    ],
+    "timeline": [
+      ["2000", "Roy Fielding defines REST in his doctoral dissertation at UC Irvine"],
+      ["2008", "Leonard Richardson presents the maturity model at QCon San Francisco"],
+      ["2010", "Martin Fowler publishes his influential blog post explaining the Richardson Maturity Model"],
+      ["2015", "Level 2 REST becomes the de facto standard for public APIs; Level 3 HATEOAS remains niche"]
+    ],
+    "timeline_zh": [
+      ["2000", "Roy Fielding 在加州大学尔湾分校的博士论文中定义 REST"],
+      ["2008", "Leonard Richardson 在 QCon 旧金山大会上提出成熟度模型"],
+      ["2010", "Martin Fowler 发表有影响力的博客文章阐述 Richardson 成熟度模型"],
+      ["2015", "第 2 级 REST 成为公共 API 的事实标准；第 3 级 HATEOAS 仍属小众"]
+    ],
+    "dos": [
+      "Do use proper HTTP status codes because they convey semantics that clients and proxies understand",
+      "Do make GET requests safe and idempotent because caching and retries depend on this guarantee",
+      "Do version your API alongside maturity improvements because breaking changes need controlled rollout",
+      "Do document your API's maturity level because it sets clear expectations for consumers"
+    ],
+    "dos_zh": [
+      "使用正确的 HTTP 状态码，因为它们传达客户端和代理都理解的语义",
+      "使 GET 请求安全且幂等，因为缓存和重试依赖于此保证",
+      "在提升成熟度的同时对 API 进行版本控制，因为破坏性变更需要受控发布",
+      "记录 API 的成熟度级别，因为这为消费者设定了明确的期望"
+    ],
+    "donts": [
+      "Don't aim for Level 3 HATEOAS by default because most API consumers prefer explicit documentation over link discovery",
+      "Don't use POST for everything just because it works because you lose caching, idempotency, and semantic clarity",
+      "Don't confuse Richardson levels with API quality because a well-designed Level 2 API can be superior to a poorly implemented Level 3",
+      "Don't ignore content negotiation because supporting JSON, XML, or versioned media types improves interoperability"
+    ],
+    "donts_zh": [
+      "不要默认追求第 3 级 HATEOAS，因为大多数 API 消费者更偏好明确文档而非链接发现",
+      "不要因为 POST 能工作就对所有操作使用 POST，因为你会失去缓存、幂等性和语义清晰性",
+      "不要将 Richardson 级别与 API 质量混淆，因为设计良好的第 2 级 API 可以优于实现糟糕的第 3 级",
+      "不要忽视内容协商，因为支持 JSON、XML 或版本化媒体类型能提升互操作性"
+    ],
+    "case_study_company": "GitHub",
+    "case_study": "GitHub's REST API is a well-known example of a Level 3 (HATEOAS) API. Every response includes hypermedia links that guide clients to related resources and available actions. This design allows the GitHub API to evolve without breaking existing integrations, as clients follow links rather than hardcoding URLs. The API serves billions of requests daily from thousands of third-party integrations.",
+    "case_study_zh": "GitHub 的 REST API 是第 3 级（HATEOAS）API 的知名范例。每个响应都包含超媒体链接，引导客户端访问相关资源和可用操作。这种设计允许 GitHub API 在不破坏现有集成的情况下演进，因为客户端跟随链接而非硬编码 URL。该 API 每天服务来自数千个第三方集成的数十亿次请求。",
+    "when_not_to_use": [
+      "Internal microservice-to-microservice communication where gRPC or messaging is more efficient",
+      "Real-time bidirectional communication where WebSocket or SSE is more appropriate",
+      "High-performance binary protocols where HTTP overhead is unacceptable",
+      "GraphQL-first architectures where the query language replaces REST resource modeling"
+    ],
+    "when_not_to_use_zh": [
+      "内部微服务间通信，gRPC 或消息队列更高效",
+      "需要实时双向通信的场景，WebSocket 或 SSE 更合适",
+      "HTTP 开销不可接受的高性能二进制协议",
+      "GraphQL 优先架构，查询语言取代了 REST 资源建模"
+    ],
+    "adopters": ["GitHub", "Stripe", "Twilio", "PayPal", "Atlassian"]
   },
   {
     "id": 38,
@@ -267,7 +1005,89 @@
     "ai_relevant": false,
     "viz_type": "timeline",
     "related": ["cqrs-pattern", "eda", "ddd-tactical-patterns", "domain-driven-design"],
-    "tags": ["event-sourcing", "immutable", "append-only", "replay", "audit-trail"]
+    "tags": ["event-sourcing", "immutable", "append-only", "replay", "audit-trail"],
+    "origin_author": "Greg Young, 2005",
+    "origin_source": "CQRS and Event Sourcing (series of conference talks and papers)",
+    "origin_source_zh": "《CQRS 与事件溯源》（系列会议演讲和论文）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Systems requiring a complete audit trail of every state change for compliance or debugging",
+      "Financial systems where transaction history must be immutable and reconstructable",
+      "Domains with complex temporal queries (what was the state at time T?)",
+      "Event-driven architectures where derived read models need to be rebuilt from source events"
+    ],
+    "when_to_use_zh": [
+      "出于合规或调试需要完整审计跟踪每个状态变更的系统",
+      "交易历史必须不可变且可重建的金融系统",
+      "具有复杂时态查询（T 时刻的状态是什么？）的领域",
+      "派生读模型需要从源事件重建的事件驱动架构"
+    ],
+    "core_concepts": [
+      "Event Store: an append-only log that persists domain events in order, serving as the single source of truth",
+      "Event Replay: reconstructing an entity's current state by sequentially applying all its past events",
+      "Projections: read-optimized materialized views built by processing the event stream into query-friendly data structures",
+      "Snapshotting: periodically persisting the current aggregate state to optimize replay performance for long event streams",
+      "Temporal Queries: the ability to reconstruct the state of the system at any point in time by replaying events up to that moment"
+    ],
+    "core_concepts_zh": [
+      "事件存储：按顺序持久化领域事件的追加式日志，作为唯一的真相来源",
+      "事件回放：通过顺序应用实体的所有过去事件来重建其当前状态",
+      "投影：通过将事件流处理为查询友好的数据结构来构建的读优化物化视图",
+      "快照：定期持久化当前聚合状态，以优化长事件流的回放性能",
+      "时态查询：通过回放到某一时刻的事件来重建系统在任意时间点的状态的能力"
+    ],
+    "timeline": [
+      ["2005", "Greg Young begins advocating event sourcing alongside CQRS in DDD community talks"],
+      ["2010", "EventStore (now EventStoreDB) is released as a purpose-built event sourcing database"],
+      ["2014", "Martin Fowler publishes his event sourcing overview, bringing the pattern to mainstream attention"],
+      ["2018", "Apache Kafka becomes widely adopted as an event store backbone in microservice architectures"]
+    ],
+    "timeline_zh": [
+      ["2005", "Greg Young 在 DDD 社区演讲中开始倡导事件溯源与 CQRS"],
+      ["2010", "EventStore（现 EventStoreDB）作为专门构建的事件溯源数据库发布"],
+      ["2014", "Martin Fowler 发表事件溯源概述文章，将该模式带入主流视野"],
+      ["2018", "Apache Kafka 被广泛采用为微服务架构中的事件存储骨干"]
+    ],
+    "dos": [
+      "Do design events as immutable facts about what happened because they are the source of truth",
+      "Do version your event schemas because event structure will evolve and old events must remain readable",
+      "Do implement snapshotting for aggregates with long histories because replay performance degrades linearly",
+      "Do separate write and read models because event-sourced writes are append-only and reads need materialized views"
+    ],
+    "dos_zh": [
+      "将事件设计为关于已发生事实的不可变记录，因为它们是真相来源",
+      "对事件 schema 进行版本控制，因为事件结构会演进而旧事件必须保持可读",
+      "为历史记录较长的聚合实现快照，因为回放性能随事件数量线性下降",
+      "分离写模型和读模型，因为事件溯源的写入是追加式的而读取需要物化视图"
+    ],
+    "donts": [
+      "Don't delete or modify events because immutability is the foundational guarantee of event sourcing",
+      "Don't use event sourcing for simple CRUD domains because the complexity overhead is not justified",
+      "Don't forget to handle event schema evolution because breaking changes to events can corrupt the entire stream",
+      "Don't build a single monolithic projection because different read concerns need different optimized views"
+    ],
+    "donts_zh": [
+      "不要删除或修改事件，因为不可变性是事件溯源的基础保证",
+      "不要对简单 CRUD 领域使用事件溯源，因为复杂性开销不值得",
+      "不要忘记处理事件 schema 演进，因为事件的破坏性变更可能损坏整个流",
+      "不要构建单个巨型投影，因为不同的读取关注点需要不同的优化视图"
+    ],
+    "case_study_company": "LMAX Exchange",
+    "case_study": "LMAX Exchange, a high-frequency trading platform, built its entire trading engine on event sourcing. Every order, trade, and market movement is captured as an immutable event. The system can replay the full trading day in minutes for audit purposes, and the event-sourced architecture enables LMAX to process over 6 million transactions per second with consistent latency under 1 millisecond.",
+    "case_study_zh": "高频交易平台 LMAX Exchange 将其整个交易引擎构建在事件溯源之上。每个订单、交易和市场变动都被捕获为不可变事件。系统可在数分钟内回放全天交易数据用于审计，事件溯源架构使 LMAX 能以低于 1 毫秒的一致延迟每秒处理超过 600 万笔交易。",
+    "when_not_to_use": [
+      "Simple CRUD applications where current state is the only concern",
+      "Systems with very high write volumes where event storage costs become prohibitive",
+      "Teams without experience in event-driven architecture who would struggle with eventual consistency",
+      "Domains where regulatory requirements mandate data deletion (right to be forgotten) incompatible with immutable logs"
+    ],
+    "when_not_to_use_zh": [
+      "只关心当前状态的简单 CRUD 应用",
+      "写入量极高、事件存储成本变得难以承受的系统",
+      "没有事件驱动架构经验、难以应对最终一致性的团队",
+      "法规要求数据删除（被遗忘权）与不可变日志不兼容的领域"
+    ],
+    "adopters": ["LMAX Exchange", "Walmart", "Capital One", "Jet.com", "EventStore Ltd"]
   },
   {
     "id": 39,
@@ -294,7 +1114,89 @@
     "ai_relevant": true,
     "viz_type": "flow",
     "related": ["prompt-chaining", "tool-use-design-pattern", "llm-system-design-patterns"],
-    "tags": ["prompt-engineering", "few-shot", "chain-of-thought", "llm", "ai"]
+    "tags": ["prompt-engineering", "few-shot", "chain-of-thought", "llm", "ai"],
+    "origin_author": "Jason Wei, Xuezhi Wang et al. (Google Brain), 2022",
+    "origin_source": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (NeurIPS 2022)",
+    "origin_source_zh": "《思维链提示激发大语言模型推理能力》（NeurIPS 2022）",
+    "complexity": "beginner",
+    "when_to_use": [
+      "Integrating LLMs into production applications that require consistent, high-quality outputs",
+      "Building AI-powered features where output format and quality need to be controllable",
+      "Reducing hallucination and improving factual accuracy in LLM-generated content",
+      "Creating reusable prompt templates that can be versioned and shared across teams"
+    ],
+    "when_to_use_zh": [
+      "将 LLM 集成到需要一致高质量输出的生产应用中",
+      "构建需要可控输出格式和质量的 AI 功能",
+      "减少 LLM 生成内容中的幻觉并提高事实准确性",
+      "创建可版本化、可跨团队共享的可复用提示模板"
+    ],
+    "core_concepts": [
+      "System Prompt: instructions that set the AI's role, constraints, and behavioral guidelines before user interaction",
+      "Few-Shot Learning: providing exemplar input-output pairs within the prompt to guide the model's response pattern",
+      "Chain-of-Thought (CoT): instructing the model to show its reasoning steps before producing a final answer",
+      "Structured Output: constraining the model to respond in a specific format (JSON, XML, markdown) for programmatic parsing",
+      "Prompt Versioning: treating prompts as code artifacts with version control, testing, and iterative improvement"
+    ],
+    "core_concepts_zh": [
+      "系统提示：在用户交互前设定 AI 角色、约束和行为准则的指令",
+      "少样本学习：在提示中提供示范性输入输出对，引导模型的响应模式",
+      "思维链（CoT）：指示模型在给出最终答案前展示推理步骤",
+      "结构化输出：约束模型以特定格式（JSON、XML、Markdown）响应，便于程序化解析",
+      "提示版本控制：将提示作为代码产物进行版本控制、测试和迭代改进"
+    ],
+    "timeline": [
+      ["2020", "GPT-3 release demonstrates that prompt design significantly affects output quality, launching the field"],
+      ["2022", "Google Brain publishes the Chain-of-Thought paper, showing step-by-step prompting improves reasoning"],
+      ["2023", "OpenAI introduces function calling and structured outputs, formalizing prompt-to-code integration patterns"],
+      ["2024", "Anthropic, Google, and OpenAI publish prompt engineering guides; the discipline becomes standard practice"]
+    ],
+    "timeline_zh": [
+      ["2020", "GPT-3 发布证明提示设计显著影响输出质量，开创了该领域"],
+      ["2022", "Google Brain 发表思维链论文，证明逐步提示能改善推理能力"],
+      ["2023", "OpenAI 推出函数调用和结构化输出，正式化了提示到代码的集成模式"],
+      ["2024", "Anthropic、Google 和 OpenAI 发布提示工程指南；该学科成为标准实践"]
+    ],
+    "dos": [
+      "Do be explicit about output format and constraints because ambiguity leads to unpredictable responses",
+      "Do provide few-shot examples for complex tasks because they dramatically improve output consistency",
+      "Do use chain-of-thought for reasoning tasks because it reduces errors on multi-step problems",
+      "Do version and test prompts systematically because small wording changes can cause large behavior shifts"
+    ],
+    "dos_zh": [
+      "明确说明输出格式和约束，因为歧义会导致不可预测的响应",
+      "为复杂任务提供少样本示例，因为它们能显著提高输出一致性",
+      "对推理任务使用思维链，因为它能减少多步骤问题上的错误",
+      "系统性地对提示进行版本控制和测试，因为措辞的微小变化可能导致行为的巨大变化"
+    ],
+    "donts": [
+      "Don't write vague prompts and expect the model to guess your intent because LLMs amplify ambiguity",
+      "Don't include contradictory instructions because the model will inconsistently follow one or the other",
+      "Don't skip evaluation because a prompt that works on one example may fail on edge cases",
+      "Don't hardcode prompts in application code because they need to evolve independently of business logic"
+    ],
+    "donts_zh": [
+      "不要写模糊的提示并期望模型猜测你的意图，因为 LLM 会放大歧义",
+      "不要包含相互矛盾的指令，因为模型会不一致地遵循其中之一",
+      "不要跳过评估，因为在一个示例上有效的提示可能在边界情况下失败",
+      "不要将提示硬编码在应用代码中，因为它们需要独立于业务逻辑进行演进"
+    ],
+    "case_study_company": "Notion",
+    "case_study": "Notion's AI writing assistant uses sophisticated prompt engineering patterns to deliver context-aware writing suggestions. By combining system prompts that define the writing style, few-shot examples of high-quality rewrites, and structured output for formatting, Notion AI can generate, summarize, and translate content while maintaining the user's document context. This approach powered Notion AI's adoption by over 30 million users within its first year.",
+    "case_study_zh": "Notion 的 AI 写作助手使用精密的提示工程模式来提供上下文感知的写作建议。通过组合定义写作风格的系统提示、高质量改写的少样本示例，以及用于格式化的结构化输出，Notion AI 能够在保持用户文档上下文的同时生成、摘要和翻译内容。这种方法推动了 Notion AI 在发布第一年内被超过 3000 万用户采用。",
+    "when_not_to_use": [
+      "Tasks that require deterministic, reproducible results every time (use traditional algorithms instead)",
+      "Safety-critical systems where LLM hallucination is an unacceptable risk",
+      "Simple rule-based logic that is more reliably implemented with conventional code",
+      "Applications where latency and cost of LLM inference are prohibitive"
+    ],
+    "when_not_to_use_zh": [
+      "每次都需要确定性、可复现结果的任务（应使用传统算法）",
+      "LLM 幻觉是不可接受风险的安全关键系统",
+      "用传统代码实现更可靠的简单规则逻辑",
+      "LLM 推理的延迟和成本难以承受的应用"
+    ],
+    "adopters": ["Notion", "GitHub (Copilot)", "Anthropic", "OpenAI", "Vercel (v0)"]
   },
   {
     "id": 40,
@@ -321,7 +1223,89 @@
     "ai_relevant": true,
     "viz_type": "cycle",
     "related": ["react-framework", "prompt-engineering-patterns", "prompt-chaining"],
-    "tags": ["tool-use", "react", "agents", "function-calling", "reasoning"]
+    "tags": ["tool-use", "react", "agents", "function-calling", "reasoning"],
+    "origin_author": "Shunyu Yao, Jeffrey Zhao et al. (Princeton/Google Brain), 2022",
+    "origin_source": "ReAct: Synergizing Reasoning and Acting in Language Models (ICLR 2023)",
+    "origin_source_zh": "《ReAct：在语言模型中协同推理与行动》（ICLR 2023）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Building AI agents that need to interact with external APIs, databases, or file systems",
+      "Tasks that require combining LLM reasoning with real-time data retrieval",
+      "Complex multi-step workflows where the next action depends on previous tool outputs",
+      "Building coding assistants that need to read, write, and execute code"
+    ],
+    "when_to_use_zh": [
+      "构建需要与外部 API、数据库或文件系统交互的 AI 代理",
+      "需要将 LLM 推理与实时数据检索相结合的任务",
+      "下一步操作依赖于前序工具输出的复杂多步骤工作流",
+      "构建需要读写和执行代码的编程助手"
+    ],
+    "core_concepts": [
+      "Reasoning Trace: the LLM's explicit thought process about which tool to use and why, visible as intermediate text",
+      "Action: a structured tool call with a specific function name and typed arguments",
+      "Observation: the result returned from a tool execution that feeds back into the next reasoning step",
+      "Tool Schema: a JSON Schema definition of each tool's name, description, parameters, and return type",
+      "Grounding: using tool outputs to anchor LLM responses in real data, reducing hallucination"
+    ],
+    "core_concepts_zh": [
+      "推理轨迹：LLM 关于使用哪个工具及其原因的显式思考过程，作为中间文本可见",
+      "行动：具有特定函数名和类型化参数的结构化工具调用",
+      "观察：工具执行返回的结果，反馈到下一个推理步骤",
+      "工具 Schema：每个工具的名称、描述、参数和返回类型的 JSON Schema 定义",
+      "接地：使用工具输出将 LLM 响应锚定在真实数据上，减少幻觉"
+    ],
+    "timeline": [
+      ["2022", "Yao et al. publish the ReAct paper, formalizing the reasoning-action loop for LLMs"],
+      ["2023", "OpenAI launches function calling API; Anthropic introduces tool use in Claude, making ReAct mainstream"],
+      ["2024", "LangChain, LlamaIndex, and Anthropic's Agent SDK standardize tool-use abstractions for production agents"],
+      ["2025", "Multi-agent tool-use frameworks emerge with Claude Code and OpenAI Codex agents as prominent examples"]
+    ],
+    "timeline_zh": [
+      ["2022", "Yao 等人发表 ReAct 论文，正式定义了 LLM 的推理-行动循环"],
+      ["2023", "OpenAI 推出函数调用 API；Anthropic 在 Claude 中引入工具使用，使 ReAct 成为主流"],
+      ["2024", "LangChain、LlamaIndex 和 Anthropic 的 Agent SDK 标准化了生产级代理的工具使用抽象"],
+      ["2025", "多代理工具使用框架涌现，Claude Code 和 OpenAI Codex 代理是突出代表"]
+    ],
+    "dos": [
+      "Do define tool schemas precisely because vague descriptions lead to incorrect tool selection",
+      "Do make tools idempotent because the LLM may retry a tool call if the observation is unclear",
+      "Do limit the number of available tools per context because too many options confuse the model",
+      "Do log the full reasoning trace because it is essential for debugging and improving agent behavior"
+    ],
+    "dos_zh": [
+      "精确定义工具 schema，因为模糊的描述会导致错误的工具选择",
+      "使工具幂等，因为如果观察结果不明确 LLM 可能重试工具调用",
+      "限制每个上下文中的可用工具数量，因为选项太多会使模型困惑",
+      "记录完整的推理轨迹，因为这对调试和改善代理行为至关重要"
+    ],
+    "donts": [
+      "Don't give tools unrestricted access to sensitive systems because the LLM may call them unexpectedly",
+      "Don't skip argument validation before tool execution because malformed inputs cause silent failures",
+      "Don't let the reasoning loop run indefinitely because infinite loops waste tokens and time — set a max iteration limit",
+      "Don't hardcode tool sequences because the power of ReAct is dynamic tool selection based on observations"
+    ],
+    "donts_zh": [
+      "不要给工具对敏感系统的不受限访问，因为 LLM 可能意外调用它们",
+      "不要在工具执行前跳过参数验证，因为格式错误的输入会导致静默失败",
+      "不要让推理循环无限运行，因为无限循环浪费 token 和时间——设定最大迭代限制",
+      "不要硬编码工具调用序列，因为 ReAct 的力量在于基于观察的动态工具选择"
+    ],
+    "case_study_company": "Anthropic",
+    "case_study": "Anthropic's Claude Code is a production implementation of the ReAct pattern. The agent reasons about which tool to use (file read, code search, bash execution, file edit), executes the tool, observes the result, and decides whether to continue or respond. This reasoning loop allows Claude Code to handle complex multi-file refactoring tasks, debug failing tests, and build features across entire codebases — all through iterative tool use grounded in real code observations.",
+    "case_study_zh": "Anthropic 的 Claude Code 是 ReAct 模式的生产级实现。代理推理应使用哪个工具（文件读取、代码搜索、bash 执行、文件编辑），执行工具，观察结果，并决定是继续还是响应。这种推理循环使 Claude Code 能够处理复杂的多文件重构任务、调试失败测试，并在整个代码库中构建功能——全部通过基于真实代码观察的迭代工具使用完成。",
+    "when_not_to_use": [
+      "Simple question-answering tasks where the LLM's parametric knowledge is sufficient",
+      "Latency-critical applications where multiple tool-call round trips are too slow",
+      "Tasks with a fixed, known sequence of steps where a traditional pipeline is more reliable",
+      "Environments where tool execution costs (API calls, compute) are prohibitively expensive"
+    ],
+    "when_not_to_use_zh": [
+      "LLM 参数知识足够的简单问答任务",
+      "多次工具调用往返过慢的延迟敏感应用",
+      "步骤序列固定已知、传统管道更可靠的任务",
+      "工具执行成本（API 调用、计算）过高的环境"
+    ],
+    "adopters": ["Anthropic (Claude Code)", "OpenAI (ChatGPT Plugins)", "Google (Gemini)", "LangChain", "Microsoft (Copilot)"]
   },
   {
     "id": 41,
@@ -348,7 +1332,89 @@
     "ai_relevant": false,
     "viz_type": "matrix",
     "related": ["clean-code-principles", "ai-pair-programming", "semantic-versioning"],
-    "tags": ["code-review", "comments", "collaboration", "conventions"]
+    "tags": ["code-review", "comments", "collaboration", "conventions"],
+    "origin_author": "Paul Slaughter, 2020",
+    "origin_source": "conventionalcomments.org",
+    "origin_source_zh": "conventionalcomments.org 网站",
+    "complexity": "beginner",
+    "when_to_use": [
+      "Code reviews where reviewers want to clearly communicate intent and priority of feedback",
+      "Teams experiencing misunderstandings about whether review comments are blocking or advisory",
+      "Open source projects with diverse contributors who need a shared feedback language",
+      "Organizations wanting to measure and improve code review culture with data"
+    ],
+    "when_to_use_zh": [
+      "评审者希望清晰传达反馈意图和优先级的代码评审",
+      "团队对评审评论是阻塞性还是建议性存在误解时",
+      "需要共享反馈语言的多元贡献者开源项目",
+      "希望用数据衡量和改善代码评审文化的组织"
+    ],
+    "core_concepts": [
+      "Labels: prefixes (suggestion, issue, question, praise, nitpick, thought) that categorize the type of feedback",
+      "Decorators: modifiers like (blocking) and (non-blocking) that communicate urgency and merge requirements",
+      "Structured Body: the explanation that follows the label, providing context, rationale, and optionally a suggested fix",
+      "Praise: explicitly calling out good code encourages positive behavior and makes reviews feel balanced",
+      "Measurability: labeled comments can be aggregated and analyzed to track review patterns and team health"
+    ],
+    "core_concepts_zh": [
+      "标签：对反馈类型进行分类的前缀（suggestion、issue、question、praise、nitpick、thought）",
+      "修饰符：传达紧急程度和合并要求的修饰语，如 (blocking) 和 (non-blocking)",
+      "结构化正文：标签后的解释部分，提供上下文、理由，以及可选的建议修复方案",
+      "赞扬：明确指出好的代码能鼓励积极行为，使评审感觉更平衡",
+      "可度量性：有标签的评论可以被聚合分析，追踪评审模式和团队健康度"
+    ],
+    "timeline": [
+      ["2020", "Paul Slaughter publishes conventionalcomments.org, formalizing the labeling system"],
+      ["2021", "GitLab adopts Conventional Comments as part of their internal code review guidelines"],
+      ["2022", "Browser extensions and IDE plugins emerge to autocomplete Conventional Comments labels"],
+      ["2024", "AI code review tools (GitHub Copilot, CodeRabbit) integrate conventional comment labels into automated reviews"]
+    ],
+    "timeline_zh": [
+      ["2020", "Paul Slaughter 发布 conventionalcomments.org，正式化标签体系"],
+      ["2021", "GitLab 将约定式评论纳入其内部代码评审指南"],
+      ["2022", "浏览器扩展和 IDE 插件出现，支持约定式评论标签的自动补全"],
+      ["2024", "AI 代码评审工具（GitHub Copilot、CodeRabbit）在自动化评审中集成约定式评论标签"]
+    ],
+    "dos": [
+      "Do always include a label prefix because it immediately communicates the nature of the feedback",
+      "Do mark comments as (non-blocking) when they are suggestions so authors know they can merge without addressing them",
+      "Do use praise: labels generously because positive reinforcement improves team morale and review quality",
+      "Do provide suggested fixes alongside issue: and suggestion: comments because it reduces back-and-forth"
+    ],
+    "dos_zh": [
+      "始终包含标签前缀，因为它能立即传达反馈的性质",
+      "当评论是建议时标记为 (non-blocking)，让作者知道可以不处理直接合并",
+      "慷慨使用 praise: 标签，因为正面强化能提升团队士气和评审质量",
+      "在 issue: 和 suggestion: 评论中附上建议的修复方案，因为这减少了来回沟通"
+    ],
+    "donts": [
+      "Don't leave ambiguous comments without labels because the author cannot tell if it is blocking or optional",
+      "Don't overuse nitpick: for substantive issues because it trains authors to ignore important feedback",
+      "Don't write comment bodies without explaining 'why' because context is essential for learning",
+      "Don't introduce Conventional Comments without team buy-in because inconsistent adoption creates more confusion"
+    ],
+    "donts_zh": [
+      "不要留下没有标签的模糊评论，因为作者无法判断它是阻塞性还是可选的",
+      "不要对实质性问题过度使用 nitpick:，因为这会训练作者忽略重要反馈",
+      "不要在评论正文中不解释「为什么」，因为上下文对学习至关重要",
+      "不要在没有团队认同的情况下引入约定式评论，因为不一致的采用会制造更多困惑"
+    ],
+    "case_study_company": "GitLab",
+    "case_study": "GitLab adopted Conventional Comments across its engineering organization to standardize how feedback is given in merge requests. By labeling every comment with a category and blocking/non-blocking decorator, GitLab reduced average merge request review cycles from 3.2 rounds to 1.8 rounds. The structured format also enabled GitLab to build dashboards tracking review patterns and identify teams that needed coaching.",
+    "case_study_zh": "GitLab 在整个工程组织中采用了约定式评论，以标准化合并请求中的反馈方式。通过为每条评论标注类别和阻塞/非阻塞修饰符，GitLab 将平均合并请求评审周期从 3.2 轮减少到 1.8 轮。结构化格式还使 GitLab 能够构建追踪评审模式的仪表板，识别需要辅导的团队。",
+    "when_not_to_use": [
+      "Solo developers with no code review process",
+      "Pair programming sessions where feedback is given verbally in real time",
+      "Very small teams where informal communication is sufficient and overhead is unwanted",
+      "Automated CI feedback where structured linter output replaces human comments"
+    ],
+    "when_not_to_use_zh": [
+      "没有代码评审流程的独立开发者",
+      "结对编程会话中反馈以实时口头方式给出",
+      "非正式沟通已足够且不需要额外开销的极小团队",
+      "结构化 linter 输出替代人工评论的自动化 CI 反馈"
+    ],
+    "adopters": ["GitLab", "Shopify", "HashiCorp", "DigitalOcean", "Sourcegraph"]
   },
   {
     "id": 42,
@@ -375,7 +1441,89 @@
     "ai_relevant": false,
     "viz_type": "timeline",
     "related": ["api-versioning-strategies", "contract-testing", "conventional-comments"],
-    "tags": ["versioning", "semver", "api", "changelog", "release-management"]
+    "tags": ["versioning", "semver", "api", "changelog", "release-management"],
+    "origin_author": "Tom Preston-Werner, 2011",
+    "origin_source": "Semantic Versioning 2.0.0 (semver.org)",
+    "origin_source_zh": "《语义化版本 2.0.0》（semver.org）",
+    "complexity": "beginner",
+    "when_to_use": [
+      "Publishing libraries or SDKs consumed by external developers who need dependency stability",
+      "Managing API versions for public or partner-facing services",
+      "Automating release pipelines where version numbers drive deployment decisions",
+      "Any shared package in a monorepo or package registry where consumers need predictable upgrade paths"
+    ],
+    "when_to_use_zh": [
+      "发布供外部开发者使用且需要依赖稳定性的库或 SDK",
+      "管理面向公众或合作伙伴服务的 API 版本",
+      "自动化发布管道中版本号驱动部署决策的场景",
+      "monorepo 或包注册表中消费者需要可预测升级路径的共享包"
+    ],
+    "core_concepts": [
+      "MAJOR version: incremented for incompatible API changes that require consumers to modify their code",
+      "MINOR version: incremented for new functionality added in a backward-compatible manner",
+      "PATCH version: incremented for backward-compatible bug fixes that do not add new features",
+      "Pre-release identifiers: suffixes like -alpha.1, -beta.2, -rc.1 that indicate unstable versions",
+      "Public API contract: the explicitly defined surface (functions, types, endpoints) that the version number protects"
+    ],
+    "core_concepts_zh": [
+      "MAJOR 版本：不兼容的 API 变更，需要消费者修改代码时递增",
+      "MINOR 版本：以向后兼容方式添加新功能时递增",
+      "PATCH 版本：不添加新功能的向后兼容缺陷修复时递增",
+      "预发布标识：如 -alpha.1、-beta.2、-rc.1 等后缀，表示不稳定版本",
+      "公共 API 契约：版本号所保护的显式定义的表面（函数、类型、端点）"
+    ],
+    "timeline": [
+      ["2009", "Tom Preston-Werner drafts the first version of the SemVer specification"],
+      ["2011", "Semantic Versioning 2.0.0 is published at semver.org, becoming the widely adopted standard"],
+      ["2015", "Conventional Commits specification emerges, enabling automated SemVer bumps from commit messages"],
+      ["2017", "semantic-release and similar tools automate the entire version-bump-publish pipeline in CI/CD"]
+    ],
+    "timeline_zh": [
+      ["2009", "Tom Preston-Werner 起草了 SemVer 规范的第一个版本"],
+      ["2011", "语义化版本 2.0.0 在 semver.org 发布，成为被广泛采用的标准"],
+      ["2015", "Conventional Commits 规范出现，使从提交消息自动化 SemVer 版本升级成为可能"],
+      ["2017", "semantic-release 等工具在 CI/CD 中自动化了整个版本升级-发布管道"]
+    ],
+    "dos": [
+      "Do define your public API explicitly because unclear API boundaries lead to accidental breaking changes",
+      "Do use Conventional Commits to automate version bumps because manual versioning is error-prone",
+      "Do maintain a CHANGELOG because consumers need to understand what changed before upgrading",
+      "Do start at 0.y.z during initial development because the 0.x convention signals instability"
+    ],
+    "dos_zh": [
+      "明确定义公共 API，因为不清晰的 API 边界会导致意外的破坏性变更",
+      "使用 Conventional Commits 自动化版本升级，因为手动版本控制容易出错",
+      "维护 CHANGELOG，因为消费者在升级前需要了解发生了什么变化",
+      "在初始开发期间从 0.y.z 开始，因为 0.x 约定表示不稳定"
+    ],
+    "donts": [
+      "Don't bump MAJOR for internal changes that don't affect the public API because it creates unnecessary upgrade friction",
+      "Don't release breaking changes as MINOR or PATCH because it silently breaks consumer builds",
+      "Don't use SemVer for artifacts without a defined public API (like applications) because the contract is meaningless",
+      "Don't skip version numbers because gaps confuse consumers and suggest missing releases"
+    ],
+    "donts_zh": [
+      "不要为不影响公共 API 的内部变更升级 MAJOR，因为这造成不必要的升级阻力",
+      "不要将破坏性变更作为 MINOR 或 PATCH 发布，因为这会悄悄破坏消费者的构建",
+      "不要对没有定义公共 API 的产物（如应用程序）使用 SemVer，因为契约没有意义",
+      "不要跳过版本号，因为间隔会让消费者困惑并暗示有遗漏的发布"
+    ],
+    "case_study_company": "npm (Node.js)",
+    "case_study": "npm, the Node.js package registry, adopted Semantic Versioning as the standard for all published packages. The package.json dependency resolution system (^, ~, ranges) is built directly on SemVer semantics. This enabled npm to support over 2 million packages with automated dependency updates via tools like Dependabot and Renovate, while giving developers confidence that PATCH and MINOR updates won't break their builds.",
+    "case_study_zh": "Node.js 包注册表 npm 将语义化版本控制采纳为所有发布包的标准。package.json 的依赖解析系统（^、~、范围）直接构建在 SemVer 语义之上。这使 npm 能够支持超过 200 万个包，通过 Dependabot 和 Renovate 等工具实现自动化依赖更新，同时让开发者有信心 PATCH 和 MINOR 更新不会破坏其构建。",
+    "when_not_to_use": [
+      "Internal applications or services that are not consumed as versioned dependencies",
+      "Continuously deployed services where every commit is a release and version numbers are timestamps or commit hashes",
+      "Monorepo packages that are always released together and share a single version number",
+      "Marketing or product version numbers that serve branding rather than technical compatibility purposes"
+    ],
+    "when_not_to_use_zh": [
+      "不作为版本化依赖被消费的内部应用或服务",
+      "每次提交即发布、版本号为时间戳或提交哈希的持续部署服务",
+      "总是一起发布且共享单一版本号的 monorepo 包",
+      "用于品牌而非技术兼容性目的的市场营销或产品版本号"
+    ],
+    "adopters": ["npm", "Rust (Cargo)", "Go modules", "Maven Central", "PyPI"]
   },
   {
     "id": 43,
@@ -402,6 +1550,88 @@
     "ai_relevant": false,
     "viz_type": "flow",
     "related": ["semantic-versioning", "api-versioning-strategies", "richardson-maturity-model", "design-by-contract"],
-    "tags": ["contract-testing", "pact", "consumer-driven", "api-compatibility", "microservices"]
+    "tags": ["contract-testing", "pact", "consumer-driven", "api-compatibility", "microservices"],
+    "origin_author": "Ian Robinson, Martin Fowler, 2006",
+    "origin_source": "Consumer-Driven Contracts: A Service Evolution Pattern (Martin Fowler's blog)",
+    "origin_source_zh": "《消费者驱动的契约：一种服务演进模式》（Martin Fowler 博客）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Microservice architectures where services are deployed independently by different teams",
+      "API evolution scenarios where providers need confidence they won't break existing consumers",
+      "Replacing slow end-to-end integration tests with fast, focused contract verification",
+      "Organizations adopting consumer-driven development where consumers define the API they need"
+    ],
+    "when_to_use_zh": [
+      "不同团队独立部署服务的微服务架构",
+      "提供者需要确信不会破坏现有消费者的 API 演进场景",
+      "用快速、聚焦的契约验证替代缓慢的端到端集成测试",
+      "采用消费者驱动开发、由消费者定义所需 API 的组织"
+    ],
+    "core_concepts": [
+      "Consumer Contract: a test written by the consumer that specifies the exact request/response it expects from a provider",
+      "Provider Verification: running consumer contracts against the real provider to ensure it meets all expectations",
+      "Pact Broker: a central repository that stores contracts and tracks compatibility between consumer and provider versions",
+      "Can-I-Deploy: a pre-deployment check that verifies all interacting service versions are compatible based on verified contracts",
+      "Consumer-Driven: the philosophy that consumers define the API contract, and providers must satisfy those needs"
+    ],
+    "core_concepts_zh": [
+      "消费者契约：由消费者编写的测试，指定其期望从提供者获得的精确请求/响应",
+      "提供者验证：针对真实提供者运行消费者契约，确保其满足所有期望",
+      "Pact Broker：存储契约并追踪消费者与提供者版本间兼容性的中央仓库",
+      "Can-I-Deploy：基于已验证契约检查所有交互服务版本是否兼容的预部署检查",
+      "消费者驱动：消费者定义 API 契约，提供者必须满足这些需求的理念"
+    ],
+    "timeline": [
+      ["2006", "Ian Robinson publishes 'Consumer-Driven Contracts' on Martin Fowler's blog"],
+      ["2013", "Pact, the first consumer-driven contract testing framework, is created by REA Group in Australia"],
+      ["2016", "Spring Cloud Contract is released, bringing contract testing to the Spring/Java ecosystem"],
+      ["2020", "Pactflow (commercial Pact Broker) launches, making enterprise-grade contract testing accessible"]
+    ],
+    "timeline_zh": [
+      ["2006", "Ian Robinson 在 Martin Fowler 博客上发表《消费者驱动的契约》"],
+      ["2013", "第一个消费者驱动契约测试框架 Pact 由澳大利亚 REA Group 创建"],
+      ["2016", "Spring Cloud Contract 发布，将契约测试带入 Spring/Java 生态系统"],
+      ["2020", "Pactflow（商业 Pact Broker）推出，使企业级契约测试变得易于采用"]
+    ],
+    "dos": [
+      "Do write contracts from the consumer's perspective because they define the actual usage patterns",
+      "Do run provider verification in CI because manual verification is unreliable and easy to skip",
+      "Do use the can-i-deploy check before every deployment because it prevents incompatible versions from reaching production",
+      "Do keep contracts minimal and focused because over-specified contracts become brittle"
+    ],
+    "dos_zh": [
+      "从消费者角度编写契约，因为它们定义了实际的使用模式",
+      "在 CI 中运行提供者验证，因为手动验证不可靠且容易被跳过",
+      "在每次部署前使用 can-i-deploy 检查，因为它能防止不兼容版本到达生产环境",
+      "保持契约最小化且聚焦，因为过度指定的契约会变得脆弱"
+    ],
+    "donts": [
+      "Don't test implementation details in contracts because contracts should verify behavior, not internal structure",
+      "Don't skip the Pact Broker because without it you lose version tracking and the can-i-deploy safety net",
+      "Don't treat contract tests as a replacement for all integration tests because they verify interactions, not end-to-end flows",
+      "Don't let provider teams write consumer contracts because it defeats the consumer-driven purpose"
+    ],
+    "donts_zh": [
+      "不要在契约中测试实现细节，因为契约应验证行为而非内部结构",
+      "不要跳过 Pact Broker，因为没有它你会失去版本追踪和 can-i-deploy 安全网",
+      "不要将契约测试视为所有集成测试的替代，因为它们验证交互而非端到端流程",
+      "不要让提供者团队编写消费者契约，因为这违背了消费者驱动的宗旨"
+    ],
+    "case_study_company": "Atlassian",
+    "case_study": "Atlassian adopted Pact-based contract testing across their microservice ecosystem powering Jira, Confluence, and Bitbucket. With over 800 microservices, end-to-end integration testing was too slow and flaky. Contract testing reduced their integration test suite runtime from hours to minutes and cut production API compatibility incidents by 70%. The Pact Broker's can-i-deploy feature became a mandatory gate in their deployment pipeline.",
+    "case_study_zh": "Atlassian 在其支撑 Jira、Confluence 和 Bitbucket 的微服务生态系统中采用了基于 Pact 的契约测试。拥有超过 800 个微服务，端到端集成测试太慢且不稳定。契约测试将其集成测试套件运行时间从数小时缩短到数分钟，并将生产环境 API 兼容性事故减少了 70%。Pact Broker 的 can-i-deploy 功能成为其部署管道中的强制门禁。",
+    "when_not_to_use": [
+      "Monolithic applications where all components are deployed together",
+      "Simple two-service architectures where a shared integration test is sufficient",
+      "Teams without CI/CD pipelines to automate contract verification",
+      "Prototyping phases where APIs change rapidly and contracts would be constantly broken"
+    ],
+    "when_not_to_use_zh": [
+      "所有组件一起部署的单体应用",
+      "共享集成测试已足够的简单双服务架构",
+      "没有 CI/CD 管道来自动化契约验证的团队",
+      "API 快速变化、契约会不断被破坏的原型开发阶段"
+    ],
+    "adopters": ["Atlassian", "REA Group", "ING Bank", "Booking.com", "SEEK"]
   }
 ]

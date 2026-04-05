@@ -24,7 +24,89 @@
     "ai_relevant": true,
     "viz_type": "timeline",
     "related": ["continuous-architecture", "atam", "c4-model"],
-    "tags": ["documentation", "decisions", "rationale", "governance"]
+    "tags": ["documentation", "decisions", "rationale", "governance"],
+    "origin_author": "Michael Nygard, 2011",
+    "origin_source": "Documenting Architecture Decisions (blog post on Cognitect)",
+    "origin_source_zh": "《记录架构决策》（Cognitect博客文章）",
+    "complexity": "beginner",
+    "when_to_use": [
+      "When a team needs to preserve the reasoning behind key architectural choices for future developers",
+      "When multiple stakeholders disagree and a transparent decision log is needed",
+      "When onboarding new team members who need to understand why the system is built a certain way",
+      "When working in regulated industries that require auditable decision trails"
+    ],
+    "when_to_use_zh": [
+      "当团队需要为未来开发者保留关键架构选择背后的理由时",
+      "当多个利益相关者存在分歧，需要透明的决策日志时",
+      "当新成员加入团队，需要了解系统为何如此构建时",
+      "当在受监管行业工作，需要可审计的决策记录时"
+    ],
+    "core_concepts": [
+      "Immutability: ADRs are append-only; decisions are never edited, only superseded by new ADRs",
+      "Context capture: Recording the forces, constraints, and environment that shaped the decision",
+      "Status lifecycle: Each ADR transitions through proposed, accepted, deprecated, or superseded states",
+      "Consequence tracking: Explicitly documenting both positive outcomes and accepted trade-offs",
+      "Lightweight format: Markdown files stored alongside code in version control for easy discoverability"
+    ],
+    "core_concepts_zh": [
+      "不可变性：ADR采用追加模式，决策不会被修改，只会被新的ADR取代",
+      "上下文捕获：记录影响决策的驱动力、约束条件和环境因素",
+      "状态生命周期：每条ADR经历建议中、已接受、已废弃或已取代的状态流转",
+      "后果追踪：明确记录正面结果和已接受的权衡取舍",
+      "轻量格式：以Markdown文件存储在版本控制中，与代码并置以便于发现"
+    ],
+    "timeline": [
+      ["2011", "Michael Nygard publishes the original blog post proposing ADRs"],
+      ["2016", "Nat Pryce creates the adr-tools command-line utility for managing ADRs"],
+      ["2017", "ThoughtWorks Technology Radar recommends ADRs as an 'Adopt' technique"],
+      ["2020", "ADRs become widely adopted in cloud-native and microservices communities"],
+      ["2022", "Log4brains and other ADR management tools emerge for team-scale usage"]
+    ],
+    "timeline_zh": [
+      ["2011", "Michael Nygard发表原始博客文章提出ADR概念"],
+      ["2016", "Nat Pryce创建adr-tools命令行工具用于管理ADR"],
+      ["2017", "ThoughtWorks技术雷达将ADR推荐为「采纳」级别技术"],
+      ["2020", "ADR在云原生和微服务社区中被广泛采用"],
+      ["2022", "Log4brains等ADR管理工具涌现，支持团队规模使用"]
+    ],
+    "dos": [
+      "Do number ADRs sequentially and give them short descriptive titles because it aids navigation and referencing",
+      "Do store ADRs in the same repository as the code because it keeps decisions close to the artifacts they affect",
+      "Do write ADRs at the time of the decision because context and rationale fade from memory quickly",
+      "Do link related ADRs together because it creates a traceable decision graph"
+    ],
+    "dos_zh": [
+      "按顺序编号并给ADR起简短的描述性标题，便于导航和引用",
+      "将ADR存储在与代码相同的仓库中，让决策与其影响的产物保持紧密关联",
+      "在做出决策时立即编写ADR，因为上下文和理由会很快被遗忘",
+      "将相关的ADR相互链接，形成可追溯的决策图谱"
+    ],
+    "donts": [
+      "Don't edit accepted ADRs retroactively because it destroys the historical record of what was actually decided",
+      "Don't record every minor implementation detail because ADRs should focus on architecturally significant decisions",
+      "Don't skip the context section because without it the decision loses its rationale over time",
+      "Don't use ADRs as a replacement for discussion because they document outcomes, not the debate itself"
+    ],
+    "donts_zh": [
+      "不要事后修改已接受的ADR，因为这会破坏实际决策的历史记录",
+      "不要记录每个细小的实现细节，ADR应聚焦于架构层面的重要决策",
+      "不要跳过上下文部分，缺少上下文会导致决策理由随时间流失",
+      "不要用ADR替代讨论过程，ADR记录的是结论而非辩论本身"
+    ],
+    "case_study_company": "Spotify",
+    "case_study": "Spotify adopted ADRs across its autonomous squad model to solve the problem of architectural knowledge loss when engineers rotated between squads. By storing ADRs in each service repository, new squad members could quickly understand past decisions. This reduced onboarding time for new squad members by roughly 40% and prevented teams from revisiting decisions that had already been thoroughly evaluated.",
+    "case_study_zh": "Spotify在其自治小队模型中全面采用ADR，解决工程师在小队间轮换时架构知识丢失的问题。通过在每个服务仓库中存储ADR，新小队成员能快速理解过去的决策。这使新成员的上手时间缩短约40%，并避免了团队重复讨论已经充分评估过的决策。",
+    "when_not_to_use": [
+      "Trivial decisions that don't affect system architecture or are easily reversible",
+      "Solo projects where decision context exists only in one person's head and the project has no future maintainers",
+      "Extremely fast-moving prototypes where the entire architecture may be discarded within weeks"
+    ],
+    "when_not_to_use_zh": [
+      "不影响系统架构或容易撤销的琐碎决策",
+      "决策上下文仅存在于一个人头脑中且项目没有未来维护者的个人项目",
+      "整体架构可能在数周内被完全丢弃的快速原型项目"
+    ],
+    "adopters": ["Spotify", "GitHub", "GOV.UK", "Shopify", "ThoughtWorks"]
   },
   {
     "id": 16,
@@ -51,7 +133,89 @@
     "ai_relevant": false,
     "viz_type": "radar",
     "related": ["qaw", "trade-off-sliders", "adr"],
-    "tags": ["evaluation", "trade-offs", "quality-attributes", "stakeholders"]
+    "tags": ["evaluation", "trade-offs", "quality-attributes", "stakeholders"],
+    "origin_author": "Rick Kazman, Mark Klein, Paul Clements / SEI, 2000",
+    "origin_source": "ATAM: Method for Architecture Evaluation (SEI Technical Report CMU/SEI-2000-TR-004)",
+    "origin_source_zh": "《ATAM：架构评估方法》（SEI技术报告CMU/SEI-2000-TR-004）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When evaluating a critical system architecture before committing to implementation",
+      "When multiple quality attributes conflict and explicit trade-off analysis is needed",
+      "When stakeholders need confidence that the architecture meets key business requirements",
+      "When regulatory or safety-critical systems require documented architecture risk assessment"
+    ],
+    "when_to_use_zh": [
+      "在进入实现阶段之前评估关键系统架构时",
+      "当多个质量属性相互冲突，需要明确的权衡分析时",
+      "当利益相关者需要确信架构满足关键业务需求时",
+      "当法规或安全关键系统需要文档化的架构风险评估时"
+    ],
+    "core_concepts": [
+      "Utility tree: Hierarchical decomposition of quality attributes into prioritized, testable scenarios",
+      "Sensitivity point: An architectural parameter where a small change significantly affects a quality attribute",
+      "Trade-off point: An architectural decision that affects two or more quality attributes in opposing directions",
+      "Risk and non-risk: Categorization of architectural decisions based on their potential for negative outcomes",
+      "Architectural approach: A specific design strategy or pattern used to address quality requirements"
+    ],
+    "core_concepts_zh": [
+      "效用树：将质量属性层级分解为有优先级的可测试场景",
+      "敏感点：一个微小变化就能显著影响质量属性的架构参数",
+      "权衡点：同时以相反方向影响两个或多个质量属性的架构决策",
+      "风险与非风险：根据产生负面结果的可能性对架构决策进行分类",
+      "架构方法：用于满足质量需求的特定设计策略或模式"
+    ],
+    "timeline": [
+      ["1998", "Initial ATAM concepts developed at the Software Engineering Institute (SEI)"],
+      ["2000", "SEI publishes the formal ATAM technical report"],
+      ["2003", "Kazman, Bass, and Clements publish 'Software Architecture in Practice' covering ATAM in depth"],
+      ["2005", "ATAM becomes an industry standard for architecture evaluation in defense and aerospace"],
+      ["2012", "Lightweight variants of ATAM emerge for agile teams needing faster evaluation cycles"]
+    ],
+    "timeline_zh": [
+      ["1998", "软件工程研究所（SEI）开发ATAM的初始概念"],
+      ["2000", "SEI发布ATAM正式技术报告"],
+      ["2003", "Kazman、Bass和Clements出版《软件架构实践》深入介绍ATAM"],
+      ["2005", "ATAM成为国防和航空航天领域架构评估的行业标准"],
+      ["2012", "针对敏捷团队需要更快评估周期的轻量级ATAM变体出现"]
+    ],
+    "dos": [
+      "Do involve a broad set of stakeholders because hidden quality concerns surface only when diverse perspectives are present",
+      "Do build the utility tree collaboratively because stakeholder buy-in on scenario priorities is critical",
+      "Do schedule ATAM early in the lifecycle because it is most cost-effective before major implementation decisions are locked in",
+      "Do document all identified risks even if they seem unlikely because they form a valuable risk registry"
+    ],
+    "dos_zh": [
+      "邀请广泛的利益相关者参与，因为隐藏的质量关切只有在多元视角汇聚时才会浮现",
+      "协作构建效用树，因为利益相关者对场景优先级的认同至关重要",
+      "在生命周期早期安排ATAM，因为在主要实现决策锁定之前最具成本效益",
+      "记录所有已识别的风险，即使看似不太可能发生，因为它们构成了有价值的风险登记册"
+    ],
+    "donts": [
+      "Don't skip stakeholder scenario brainstorming because the evaluation team cannot anticipate all quality concerns alone",
+      "Don't treat ATAM as a pass/fail audit because its purpose is to surface risks and trade-offs, not to judge",
+      "Don't run ATAM on an architecture that hasn't been documented because the method requires concrete views to analyze",
+      "Don't rush the utility tree prioritization because incorrect priorities lead to analyzing the wrong scenarios"
+    ],
+    "donts_zh": [
+      "不要跳过利益相关者的场景头脑风暴，因为评估团队无法独自预见所有质量关切",
+      "不要将ATAM视为通过/不通过的审计，其目的是揭示风险和权衡而非评判",
+      "不要对尚未文档化的架构运行ATAM，因为该方法需要具体的视图来分析",
+      "不要仓促进行效用树优先级排序，因为错误的优先级会导致分析错误的场景"
+    ],
+    "case_study_company": "NASA Jet Propulsion Laboratory",
+    "case_study": "NASA JPL used ATAM to evaluate the architecture of the Mars Rover ground control system before the Curiosity mission. The evaluation identified critical trade-offs between real-time telemetry processing performance and fault tolerance. By surfacing these risks early, JPL redesigned the data pipeline to support graceful degradation, which proved essential when communication delays exceeded expected parameters during landing.",
+    "case_study_zh": "NASA喷气推进实验室在好奇号火星车任务之前使用ATAM评估地面控制系统架构。评估识别出实时遥测处理性能与容错性之间的关键权衡。通过及早发现这些风险，JPL重新设计了数据管道以支持优雅降级，这在着陆期间通信延迟超出预期参数时证明至关重要。",
+    "when_not_to_use": [
+      "Small projects where the cost of a full ATAM evaluation exceeds the project budget",
+      "Early-stage startups where requirements change too rapidly for formal evaluation to remain relevant",
+      "Systems with a single dominant quality attribute where trade-off analysis adds little value"
+    ],
+    "when_not_to_use_zh": [
+      "小型项目中完整ATAM评估的成本超过项目预算时",
+      "需求变化过快、正式评估难以保持相关性的早期创业公司",
+      "只有单一主导质量属性、权衡分析附加价值有限的系统"
+    ],
+    "adopters": ["NASA", "Lockheed Martin", "Philips Healthcare", "Raytheon", "Boeing"]
   },
   {
     "id": 17,
@@ -78,7 +242,89 @@
     "ai_relevant": false,
     "viz_type": "venn",
     "related": ["cqrs-pattern", "saga-pattern", "eda"],
-    "tags": ["distributed-systems", "consistency", "availability", "partition-tolerance"]
+    "tags": ["distributed-systems", "consistency", "availability", "partition-tolerance"],
+    "origin_author": "Eric Brewer, 2000",
+    "origin_source": "Towards Robust Distributed Systems (keynote at ACM PODC 2000); formally proved by Gilbert and Lynch, 2002",
+    "origin_source_zh": "《迈向健壮的分布式系统》（2000年ACM PODC主题演讲）；由Gilbert和Lynch于2002年正式证明",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When designing a distributed database or data store and choosing replication strategy",
+      "When evaluating the behavior of a system during network failures or partitions",
+      "When deciding between strong consistency and high availability for a distributed service",
+      "When selecting between CP systems like ZooKeeper and AP systems like Cassandra"
+    ],
+    "when_to_use_zh": [
+      "设计分布式数据库或数据存储并选择复制策略时",
+      "评估系统在网络故障或分区期间的行为时",
+      "在分布式服务中决定强一致性与高可用性之间的取舍时",
+      "在ZooKeeper等CP系统和Cassandra等AP系统之间做选择时"
+    ],
+    "core_concepts": [
+      "Consistency: Every read receives the most recent write or an error across all nodes",
+      "Availability: Every request receives a non-error response, without guarantee it contains the most recent write",
+      "Partition tolerance: The system continues operating despite arbitrary message loss or delay between nodes",
+      "PACELC extension: When partitioned choose A or C; Else (no partition) choose between Latency and Consistency",
+      "Eventual consistency: A relaxed consistency model where all replicas converge to the same state over time"
+    ],
+    "core_concepts_zh": [
+      "一致性：每次读取都能获得所有节点上最近的写入结果或返回错误",
+      "可用性：每个请求都能收到非错误响应，但不保证包含最新写入",
+      "分区容错性：系统在节点间任意消息丢失或延迟的情况下继续运行",
+      "PACELC扩展：分区时选择A或C；无分区时在延迟和一致性之间选择",
+      "最终一致性：一种宽松的一致性模型，所有副本随时间收敛到相同状态"
+    ],
+    "timeline": [
+      ["2000", "Eric Brewer presents the CAP conjecture at ACM PODC symposium"],
+      ["2002", "Seth Gilbert and Nancy Lynch formally prove the CAP theorem at MIT"],
+      ["2007", "Amazon publishes the Dynamo paper, demonstrating AP design at scale"],
+      ["2012", "Eric Brewer publishes 'CAP Twelve Years Later' clarifying common misconceptions"],
+      ["2015", "Martin Kleppmann critiques CAP and proposes more nuanced consistency models"]
+    ],
+    "timeline_zh": [
+      ["2000", "Eric Brewer在ACM PODC研讨会上提出CAP猜想"],
+      ["2002", "Seth Gilbert和Nancy Lynch在MIT正式证明CAP定理"],
+      ["2007", "Amazon发布Dynamo论文，展示大规模AP设计"],
+      ["2012", "Eric Brewer发表《CAP定理十二年后》澄清常见误解"],
+      ["2015", "Martin Kleppmann对CAP提出批评，提出更细致的一致性模型"]
+    ],
+    "dos": [
+      "Do treat CAP as a spectrum rather than a binary choice because real systems can tune consistency levels per operation",
+      "Do consider the PACELC extension because it covers the common case where no partition exists",
+      "Do design for partition tolerance first because network partitions are inevitable in distributed systems",
+      "Do use conflict resolution strategies like vector clocks or CRDTs when choosing AP designs"
+    ],
+    "dos_zh": [
+      "将CAP视为一个频谱而非二元选择，因为真实系统可以按操作调整一致性级别",
+      "考虑PACELC扩展，因为它涵盖了无分区存在的常见情况",
+      "优先为分区容错性设计，因为网络分区在分布式系统中不可避免",
+      "选择AP设计时使用向量时钟或CRDT等冲突解决策略"
+    ],
+    "donts": [
+      "Don't interpret CAP as 'pick exactly two' because partition tolerance is not optional in real distributed systems",
+      "Don't assume CAP applies to single-node systems because it only describes distributed system behavior during partitions",
+      "Don't ignore the latency dimension because CAP doesn't address the consistency-latency trade-off in normal operations",
+      "Don't apply CAP to classify systems statically because the same system may behave as CP or AP depending on configuration"
+    ],
+    "donts_zh": [
+      "不要将CAP理解为「三选二」，因为分区容错性在真实分布式系统中不可选择放弃",
+      "不要假设CAP适用于单节点系统，它仅描述分布式系统在分区期间的行为",
+      "不要忽略延迟维度，因为CAP未涉及正常运行中一致性与延迟的权衡",
+      "不要静态地用CAP对系统进行分类，因为同一系统可能根据配置表现为CP或AP"
+    ],
+    "case_study_company": "Amazon DynamoDB",
+    "case_study": "Amazon designed DynamoDB as an AP system to ensure the shopping cart is always available, even during network partitions. During partition events, DynamoDB accepts conflicting writes and resolves them later using vector clocks and application-level reconciliation. This design choice directly supported Amazon's business requirement that a customer should never see an error when adding items to their cart, even if it means showing slightly stale data.",
+    "case_study_zh": "Amazon将DynamoDB设计为AP系统，确保购物车在网络分区期间始终可用。在分区事件中，DynamoDB接受冲突写入，随后使用向量时钟和应用层协调来解决冲突。这一设计选择直接支持了Amazon的业务需求：客户在向购物车添加商品时永远不应看到错误，即使这意味着显示略微过时的数据。",
+    "when_not_to_use": [
+      "Single-node or non-distributed systems where partition tolerance is irrelevant",
+      "Systems where you need a nuanced consistency model beyond the binary CP/AP classification",
+      "Real-time financial transaction systems that require linearizable consistency without compromise"
+    ],
+    "when_not_to_use_zh": [
+      "分区容错性无关紧要的单节点或非分布式系统",
+      "需要超出CP/AP二元分类的细致一致性模型的系统",
+      "要求线性化一致性且不能妥协的实时金融交易系统"
+    ],
+    "adopters": ["Amazon", "Apache Cassandra", "Google Spanner", "CockroachDB", "Riak"]
   },
   {
     "id": 18,
@@ -105,7 +351,89 @@
     "ai_relevant": true,
     "viz_type": "tree",
     "related": ["adr", "togaf-adm", "microservices-decomposition"],
-    "tags": ["visualization", "diagrams", "architecture-views", "documentation"]
+    "tags": ["visualization", "diagrams", "architecture-views", "documentation"],
+    "origin_author": "Simon Brown, 2011",
+    "origin_source": "Software Architecture for Developers (Leanpub book) and c4model.com",
+    "origin_source_zh": "《面向开发者的软件架构》（Leanpub书籍）及c4model.com",
+    "complexity": "beginner",
+    "when_to_use": [
+      "When communicating software architecture to both technical and non-technical stakeholders",
+      "When onboarding new developers who need to understand system structure at multiple levels",
+      "When creating architecture documentation that stays maintainable and up-to-date",
+      "When replacing ad-hoc whiteboard diagrams with a consistent, hierarchical visualization approach"
+    ],
+    "when_to_use_zh": [
+      "向技术和非技术利益相关者传达软件架构时",
+      "新开发者入职需要在多个层次理解系统结构时",
+      "创建可维护且保持最新的架构文档时",
+      "用一致的层级化可视化方法替代随意的白板图时"
+    ],
+    "core_concepts": [
+      "Context diagram: The highest level showing the system boundary, users, and external dependencies",
+      "Container diagram: Major runtime units (applications, databases, message queues) with technology labels",
+      "Component diagram: Internal building blocks within a container showing responsibilities and relationships",
+      "Code diagram: Lowest level showing classes or modules, typically auto-generated from code",
+      "Abstraction hierarchy: Each level zooms into the previous one, like a map with increasing detail"
+    ],
+    "core_concepts_zh": [
+      "上下文图：最高层级，展示系统边界、用户和外部依赖",
+      "容器图：主要的运行时单元（应用、数据库、消息队列），标注技术选型",
+      "组件图：容器内部的构建模块，展示职责和关系",
+      "代码图：最低层级，展示类或模块，通常从代码自动生成",
+      "抽象层级：每个层级放大前一个层级的细节，类似不同比例的地图"
+    ],
+    "timeline": [
+      ["2006", "Simon Brown begins developing the C4 approach while consulting at various organizations"],
+      ["2011", "C4 Model formally published as part of 'Software Architecture for Developers'"],
+      ["2018", "Structurizr tooling released for diagram-as-code C4 modeling"],
+      ["2020", "C4-PlantUML integration brings C4 to the PlantUML ecosystem"],
+      ["2023", "C4 Model becomes the de facto standard for software architecture diagramming in many organizations"]
+    ],
+    "timeline_zh": [
+      ["2006", "Simon Brown在多个组织咨询期间开始开发C4方法"],
+      ["2011", "C4模型作为《面向开发者的软件架构》的一部分正式发布"],
+      ["2018", "Structurizr工具发布，支持以代码方式创建C4模型图"],
+      ["2020", "C4-PlantUML集成将C4引入PlantUML生态系统"],
+      ["2023", "C4模型成为众多组织中软件架构图绘制的事实标准"]
+    ],
+    "dos": [
+      "Do start with Context diagrams because they provide the broadest overview and are accessible to all audiences",
+      "Do add a legend and clear labels to every diagram because C4 relies on explicitness over convention",
+      "Do keep diagrams up to date as architecture evolves because stale diagrams erode trust in documentation",
+      "Do use diagram-as-code tools like Structurizr because they integrate with version control and CI pipelines"
+    ],
+    "dos_zh": [
+      "从上下文图开始，因为它提供最广泛的概览，所有受众都能理解",
+      "为每张图添加图例和清晰标注，因为C4依赖明确性而非惯例",
+      "随架构演进保持图表更新，因为过时的图表会削弱对文档的信任",
+      "使用Structurizr等图表即代码工具，因为它们可与版本控制和CI管道集成"
+    ],
+    "donts": [
+      "Don't create Code-level diagrams for every component because they become stale quickly and add maintenance burden",
+      "Don't mix abstraction levels in a single diagram because it confuses the audience about scope",
+      "Don't use C4 as a replacement for UML in all cases because some domains need more formal behavioral diagrams",
+      "Don't overload diagrams with too many elements because readability drops sharply beyond 15-20 elements per diagram"
+    ],
+    "donts_zh": [
+      "不要为每个组件都创建代码级图表，因为它们很快会过时并增加维护负担",
+      "不要在单张图中混合不同抽象层级，因为这会混淆受众对范围的理解",
+      "不要在所有情况下都用C4替代UML，某些领域需要更正式的行为图",
+      "不要在图表中放入过多元素，超过15-20个元素时可读性会急剧下降"
+    ],
+    "case_study_company": "ING Bank",
+    "case_study": "ING Bank adopted the C4 Model to standardize architecture documentation across hundreds of development teams during their large-scale agile transformation. By mandating Context and Container diagrams for every service, they created a navigable catalog of their entire technology landscape. This enabled cross-team dependency analysis and reduced integration issues by giving teams a shared vocabulary for discussing system boundaries.",
+    "case_study_zh": "ING银行在大规模敏捷转型中采用C4模型，标准化数百个开发团队的架构文档。通过要求每个服务都提供上下文图和容器图，他们创建了整个技术全景的可导航目录。这使跨团队依赖分析成为可能，并通过为团队提供讨论系统边界的共享词汇来减少集成问题。",
+    "when_not_to_use": [
+      "Hardware-centric systems that need electrical or physical architecture diagrams rather than software views",
+      "Formal model-driven development where UML with code generation is required",
+      "Very small projects where a single whiteboard sketch suffices and maintaining multiple diagram levels is overhead"
+    ],
+    "when_not_to_use_zh": [
+      "需要电气或物理架构图而非软件视图的硬件中心系统",
+      "需要UML配合代码生成的正式模型驱动开发",
+      "单张白板草图即可满足需求、维护多层图表反而增加开销的极小项目"
+    ],
+    "adopters": ["ING Bank", "Zalando", "Elastic", "Swiss Re", "Structurizr"]
   },
   {
     "id": 19,
@@ -132,7 +460,89 @@
     "ai_relevant": false,
     "viz_type": "flow",
     "related": ["event-sourcing-pattern", "eda", "domain-driven-design", "saga-pattern"],
-    "tags": ["cqrs", "read-write-separation", "scalability", "event-driven"]
+    "tags": ["cqrs", "read-write-separation", "scalability", "event-driven"],
+    "origin_author": "Greg Young, 2010",
+    "origin_source": "CQRS Documents (Greg Young, 2010); builds on Bertrand Meyer's Command-Query Separation principle from 1988",
+    "origin_source_zh": "《CQRS文档》（Greg Young，2010）；基于Bertrand Meyer 1988年提出的命令查询分离原则",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When read and write workloads have vastly different scaling requirements",
+      "When complex domain logic on the write side doesn't align with the data shapes needed for queries",
+      "When you need highly optimized read models for dashboards, reports, or search-heavy features",
+      "When combined with Event Sourcing to build audit trails and temporal queries"
+    ],
+    "when_to_use_zh": [
+      "读写工作负载具有截然不同的扩展需求时",
+      "写侧的复杂领域逻辑与查询所需的数据形态不一致时",
+      "需要为仪表盘、报表或大量搜索功能构建高度优化的读模型时",
+      "与事件溯源结合构建审计追踪和时间查询时"
+    ],
+    "core_concepts": [
+      "Command model: Write-optimized model focused on enforcing business rules and maintaining invariants",
+      "Query model: Read-optimized projections denormalized for specific UI or API consumption patterns",
+      "Eventual consistency: Read models are asynchronously updated and may lag behind the write model",
+      "Event propagation: Domain events bridge the write and read sides, serving as the synchronization mechanism",
+      "Task-based UI: User interfaces designed around commands (actions) rather than CRUD operations"
+    ],
+    "core_concepts_zh": [
+      "命令模型：面向写优化的模型，专注于执行业务规则和维护不变式",
+      "查询模型：为特定UI或API消费模式进行非规范化的读优化投影",
+      "最终一致性：读模型异步更新，可能滞后于写模型",
+      "事件传播：领域事件连接写侧和读侧，作为同步机制",
+      "基于任务的UI：围绕命令（动作）而非CRUD操作设计的用户界面"
+    ],
+    "timeline": [
+      ["1988", "Bertrand Meyer introduces Command-Query Separation (CQS) in 'Object-Oriented Software Construction'"],
+      ["2010", "Greg Young formalizes CQRS as an architectural pattern and publishes CQRS Documents"],
+      ["2011", "Microsoft publishes the CQRS Journey guidance project on Azure"],
+      ["2014", "Axon Framework released for Java, providing first-class CQRS and Event Sourcing support"],
+      ["2019", "CQRS patterns become mainstream in cloud-native and event-driven microservices architectures"]
+    ],
+    "timeline_zh": [
+      ["1988", "Bertrand Meyer在《面向对象软件构造》中引入命令查询分离（CQS）"],
+      ["2010", "Greg Young将CQRS形式化为架构模式并发布CQRS文档"],
+      ["2011", "Microsoft发布基于Azure的CQRS Journey指导项目"],
+      ["2014", "Axon Framework发布Java版本，提供CQRS和事件溯源一等支持"],
+      ["2019", "CQRS模式在云原生和事件驱动微服务架构中成为主流"]
+    ],
+    "dos": [
+      "Do start with a single database and logical separation before introducing physical read/write stores because premature splitting adds complexity",
+      "Do design read models for specific use cases because one-size-fits-all projections defeat the purpose of CQRS",
+      "Do implement idempotent event handlers because events may be delivered more than once",
+      "Do combine with Event Sourcing when you need a complete audit trail and temporal query capabilities"
+    ],
+    "dos_zh": [
+      "先从单一数据库和逻辑分离开始，再引入物理读写分离，因为过早拆分增加复杂性",
+      "为特定用例设计读模型，因为通用投影违背了CQRS的初衷",
+      "实现幂等的事件处理器，因为事件可能被多次投递",
+      "需要完整审计追踪和时间查询能力时，与事件溯源结合使用"
+    ],
+    "donts": [
+      "Don't apply CQRS to every bounded context because most CRUD-heavy modules don't benefit from the added complexity",
+      "Don't ignore eventual consistency in the UI because users will be confused if they write data and don't see it immediately",
+      "Don't build synchronous projections because it couples the write and read paths, negating CQRS benefits",
+      "Don't skip monitoring the projection lag because undetected delays can cause significant user experience issues"
+    ],
+    "donts_zh": [
+      "不要对每个限界上下文都应用CQRS，大多数以CRUD为主的模块不会从额外复杂性中获益",
+      "不要在UI中忽视最终一致性，用户写入数据后若不能立即看到会感到困惑",
+      "不要构建同步投影，因为这会耦合读写路径，抵消CQRS的好处",
+      "不要忽略投影延迟的监控，未被发现的延迟可能导致严重的用户体验问题"
+    ],
+    "case_study_company": "Microsoft Azure DevOps",
+    "case_study": "Microsoft applied CQRS in Azure DevOps (formerly VSTS) to handle the extreme asymmetry between read and write workloads in work item tracking. The write model enforces complex workflow rules and permissions, while multiple denormalized read models serve dashboards, queries, and reports. This separation allowed the read side to scale independently to handle millions of queries per minute during peak usage without impacting the consistency guarantees of the write path.",
+    "case_study_zh": "Microsoft在Azure DevOps（原VSTS）中应用CQRS来处理工作项跟踪中读写工作负载的极端不对称。写模型执行复杂的工作流规则和权限控制，而多个非规范化读模型服务于仪表盘、查询和报表。这种分离使读侧能够独立扩展，在峰值使用期间处理每分钟数百万次查询，而不影响写路径的一致性保证。",
+    "when_not_to_use": [
+      "Simple CRUD applications where read and write models are nearly identical",
+      "Small-scale systems where the operational overhead of maintaining two models exceeds the benefits",
+      "Domains where strong real-time consistency between reads and writes is a hard requirement"
+    ],
+    "when_not_to_use_zh": [
+      "读写模型几乎相同的简单CRUD应用",
+      "维护两套模型的运维开销超过收益的小规模系统",
+      "读写之间强实时一致性是硬性要求的领域"
+    ],
+    "adopters": ["Microsoft", "Axon", "EventStore", "Walmart", "Booking.com"]
   },
   {
     "id": 20,
@@ -159,7 +569,89 @@
     "ai_relevant": true,
     "viz_type": "flow",
     "related": ["cqrs-pattern", "event-sourcing-pattern", "saga-pattern", "microservices-decomposition"],
-    "tags": ["events", "async", "messaging", "loose-coupling", "choreography"]
+    "tags": ["events", "async", "messaging", "loose-coupling", "choreography"],
+    "origin_author": "Concept has roots in publish-subscribe systems; popularized by Gregor Hohpe and Bobby Woolf, 2003",
+    "origin_source": "Enterprise Integration Patterns (Hohpe & Woolf, 2003)",
+    "origin_source_zh": "《企业集成模式》（Hohpe与Woolf，2003年）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When multiple services need to react to the same business event independently",
+      "When you need to decouple producers from consumers to allow independent deployment and scaling",
+      "When building real-time data pipelines that process streams of events",
+      "When system components have different processing speeds and need buffering via queues"
+    ],
+    "when_to_use_zh": [
+      "多个服务需要独立响应同一业务事件时",
+      "需要将生产者与消费者解耦以支持独立部署和扩展时",
+      "构建处理事件流的实时数据管道时",
+      "系统组件处理速度不同，需要通过队列进行缓冲时"
+    ],
+    "core_concepts": [
+      "Event: An immutable record of something that happened in the system, carrying relevant data",
+      "Event broker: Infrastructure (Kafka, RabbitMQ, SNS/SQS) that routes events from producers to consumers",
+      "Choreography: Services react to events autonomously without a central coordinator",
+      "Orchestration: A central component directs the flow by sending commands and listening for events",
+      "Idempotency: Consumers must handle duplicate event delivery gracefully using idempotency keys"
+    ],
+    "core_concepts_zh": [
+      "事件：系统中发生事情的不可变记录，携带相关数据",
+      "事件代理：将事件从生产者路由到消费者的基础设施（Kafka、RabbitMQ、SNS/SQS）",
+      "编排：服务自主响应事件，无需中央协调器",
+      "协调：中央组件通过发送命令和监听事件来指挥流程",
+      "幂等性：消费者必须使用幂等键优雅地处理重复事件投递"
+    ],
+    "timeline": [
+      ["1987", "Publish-subscribe pattern formalized in early distributed systems research"],
+      ["2003", "Hohpe and Woolf publish 'Enterprise Integration Patterns', codifying event-driven messaging"],
+      ["2011", "Apache Kafka released by LinkedIn, enabling high-throughput event streaming at scale"],
+      ["2015", "AWS launches Lambda and EventBridge, making serverless EDA accessible"],
+      ["2020", "Event-driven architecture becomes the dominant pattern for cloud-native microservices"]
+    ],
+    "timeline_zh": [
+      ["1987", "发布-订阅模式在早期分布式系统研究中被形式化"],
+      ["2003", "Hohpe和Woolf出版《企业集成模式》，系统化事件驱动消息传递"],
+      ["2011", "Apache Kafka由LinkedIn发布，支持大规模高吞吐量事件流"],
+      ["2015", "AWS推出Lambda和EventBridge，使无服务器EDA变得可及"],
+      ["2020", "事件驱动架构成为云原生微服务的主导模式"]
+    ],
+    "dos": [
+      "Do define a clear event schema registry and versioning strategy because schema evolution is inevitable",
+      "Do implement dead-letter queues for every consumer because unprocessable events need a safe landing zone",
+      "Do design events as facts about what happened rather than commands because it preserves loose coupling",
+      "Do build replay capability because it enables recovery from consumer bugs and supports new projections"
+    ],
+    "dos_zh": [
+      "定义清晰的事件模式注册表和版本策略，因为模式演进不可避免",
+      "为每个消费者实现死信队列，因为无法处理的事件需要安全的存放区",
+      "将事件设计为已发生事实的记录而非命令，因为这保持了松耦合",
+      "构建事件回放能力，因为它支持从消费者缺陷中恢复并支持新投影"
+    ],
+    "donts": [
+      "Don't put too much data in events because large event payloads create coupling and bandwidth issues",
+      "Don't assume ordered delivery across partitions because most brokers only guarantee order within a partition",
+      "Don't create circular event dependencies because they cause infinite loops and are extremely hard to debug",
+      "Don't skip correlation IDs because without them tracing a business transaction across services is nearly impossible"
+    ],
+    "donts_zh": [
+      "不要在事件中放入过多数据，因为过大的事件负载会造成耦合和带宽问题",
+      "不要假设跨分区的有序投递，因为大多数代理只保证分区内有序",
+      "不要创建循环事件依赖，因为它们会导致无限循环且极难调试",
+      "不要省略关联ID，因为没有它们几乎无法在服务间追踪业务事务"
+    ],
+    "case_study_company": "LinkedIn",
+    "case_study": "LinkedIn built Apache Kafka to solve their data integration challenge of connecting hundreds of microservices. Before Kafka, point-to-point integrations created a brittle mesh of dependencies. By moving to an event-driven architecture with Kafka as the central nervous system, LinkedIn processes over 7 trillion messages per day. This architecture enabled features like real-time activity feeds, recommendation engines, and monitoring systems to all consume the same event streams independently.",
+    "case_study_zh": "LinkedIn开发了Apache Kafka来解决数百个微服务之间的数据集成挑战。在Kafka之前，点对点集成创建了一个脆弱的依赖网络。通过以Kafka作为中枢神经系统转向事件驱动架构，LinkedIn每天处理超过7万亿条消息。这种架构使实时动态流、推荐引擎和监控系统能够独立消费相同的事件流。",
+    "when_not_to_use": [
+      "Simple request-response interactions where synchronous communication is more straightforward",
+      "Systems requiring strict real-time consistency where eventual consistency is unacceptable",
+      "Small monolithic applications where the overhead of an event broker is unjustified"
+    ],
+    "when_not_to_use_zh": [
+      "同步通信更直接的简单请求-响应交互场景",
+      "需要严格实时一致性、最终一致性不可接受的系统",
+      "事件代理的开销不合理的小型单体应用"
+    ],
+    "adopters": ["LinkedIn", "Netflix", "Uber", "Airbnb", "Shopify"]
   },
   {
     "id": 21,
@@ -186,7 +678,89 @@
     "ai_relevant": false,
     "viz_type": "tree",
     "related": ["domain-driven-design", "eda", "service-mesh-pattern", "strangler-fig-pattern"],
-    "tags": ["microservices", "decomposition", "monolith", "service-boundaries"]
+    "tags": ["microservices", "decomposition", "monolith", "service-boundaries"],
+    "origin_author": "James Lewis and Martin Fowler, 2014",
+    "origin_source": "Microservices: a definition of this new architectural term (martinfowler.com, 2014)",
+    "origin_source_zh": "《微服务：这一新架构术语的定义》（martinfowler.com，2014年）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When a monolith's deployment frequency is bottlenecked by team coordination overhead",
+      "When different parts of the system have vastly different scaling requirements",
+      "When teams need to independently develop, deploy, and scale their owned services",
+      "When migrating gradually from a legacy monolith using the Strangler Fig approach"
+    ],
+    "when_to_use_zh": [
+      "单体应用的部署频率因团队协调开销而成为瓶颈时",
+      "系统不同部分具有截然不同的扩展需求时",
+      "团队需要独立开发、部署和扩展其负责的服务时",
+      "使用绞杀者模式从遗留单体逐步迁移时"
+    ],
+    "core_concepts": [
+      "Decompose by Business Capability: Align service boundaries with what the business does (e.g., payments, inventory)",
+      "Decompose by Subdomain: Use DDD bounded contexts to find natural service boundaries",
+      "Strangler Fig Pattern: Incrementally replace monolith functionality by routing traffic to new services",
+      "Database per Service: Each microservice owns its data store to ensure loose coupling",
+      "API Gateway: A single entry point that routes, aggregates, and translates client requests to internal services"
+    ],
+    "core_concepts_zh": [
+      "按业务能力分解：将服务边界与业务功能对齐（如支付、库存）",
+      "按子域分解：使用DDD限界上下文找到自然的服务边界",
+      "绞杀者模式：通过将流量路由到新服务来增量替换单体功能",
+      "服务独占数据库：每个微服务拥有自己的数据存储以确保松耦合",
+      "API网关：路由、聚合和转换客户端请求到内部服务的单一入口点"
+    ],
+    "timeline": [
+      ["2011", "Netflix begins its large-scale monolith-to-microservices migration"],
+      ["2014", "James Lewis and Martin Fowler publish the canonical microservices article"],
+      ["2015", "Sam Newman publishes 'Building Microservices', establishing practical patterns"],
+      ["2018", "Service mesh tools (Istio, Linkerd) mature, addressing microservice networking complexity"],
+      ["2023", "Industry recognizes 'right-sizing' services, moving beyond naive fine-grained decomposition"]
+    ],
+    "timeline_zh": [
+      ["2011", "Netflix开始大规模从单体向微服务迁移"],
+      ["2014", "James Lewis和Martin Fowler发表经典微服务文章"],
+      ["2015", "Sam Newman出版《构建微服务》，建立实践模式"],
+      ["2018", "服务网格工具（Istio、Linkerd）成熟，应对微服务网络复杂性"],
+      ["2023", "业界认识到「合理粒度」服务的重要性，超越简单的细粒度分解"]
+    ],
+    "dos": [
+      "Do start with a well-structured modular monolith before decomposing because clear boundaries make extraction easier",
+      "Do define service boundaries using domain-driven design because business alignment prevents arbitrary splits",
+      "Do automate deployment pipelines for each service because manual deployment negates microservices benefits",
+      "Do implement contract testing between services because integration breakage is the top microservices risk"
+    ],
+    "dos_zh": [
+      "先构建结构良好的模块化单体再进行分解，因为清晰的边界使提取更容易",
+      "使用领域驱动设计定义服务边界，因为业务对齐可防止任意拆分",
+      "为每个服务自动化部署管道，因为手动部署会抵消微服务的好处",
+      "在服务间实现契约测试，因为集成破坏是微服务最大的风险"
+    ],
+    "donts": [
+      "Don't decompose a monolith you don't understand because you'll replicate its problems in distributed form",
+      "Don't create nano-services by splitting too finely because excessive network calls destroy performance",
+      "Don't share databases between services because it creates hidden coupling that defeats service independence",
+      "Don't skip investing in observability because debugging distributed systems without tracing is nearly impossible"
+    ],
+    "donts_zh": [
+      "不要分解你不理解的单体，因为你会以分布式形式复制其问题",
+      "不要通过过度细分创建纳米服务，因为过多的网络调用会摧毁性能",
+      "不要在服务间共享数据库，因为这会产生破坏服务独立性的隐性耦合",
+      "不要跳过可观测性投入，因为没有追踪的分布式系统调试几乎不可能"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix migrated from a monolithic Java application to over 700 microservices between 2011 and 2016. The migration used the Strangler Fig pattern, gradually replacing monolith endpoints with new services. Each service owned its data and communicated via REST and asynchronous messaging. This transformation enabled Netflix to deploy hundreds of times per day, scale individual services based on demand, and achieve 99.99% availability for its streaming platform serving 200+ million subscribers.",
+    "case_study_zh": "Netflix在2011至2016年间从单体Java应用迁移到超过700个微服务。迁移使用绞杀者模式，逐步用新服务替换单体端点。每个服务拥有自己的数据，通过REST和异步消息通信。这一转型使Netflix能够每天部署数百次、按需扩展单个服务，并为超过2亿订阅用户的流媒体平台实现99.99%的可用性。",
+    "when_not_to_use": [
+      "Early-stage startups where the domain model is still being discovered and boundaries will shift",
+      "Small teams (fewer than 8 developers) where microservices overhead exceeds coordination benefits",
+      "Systems with very tight latency requirements where inter-service network calls add unacceptable delay"
+    ],
+    "when_not_to_use_zh": [
+      "领域模型仍在探索中且边界会持续变化的早期创业公司",
+      "微服务开销超过协调收益的小型团队（少于8名开发者）",
+      "服务间网络调用会增加不可接受延迟的极低延迟要求系统"
+    ],
+    "adopters": ["Netflix", "Amazon", "Uber", "Spotify", "SoundCloud"]
   },
   {
     "id": 22,
@@ -213,7 +787,89 @@
     "ai_relevant": false,
     "viz_type": "flow",
     "related": ["eda", "cqrs-pattern", "circuit-breaker-pattern", "microservices-decomposition"],
-    "tags": ["distributed-transactions", "compensation", "orchestration", "choreography", "consistency"]
+    "tags": ["distributed-transactions", "compensation", "orchestration", "choreography", "consistency"],
+    "origin_author": "Hector Garcia-Molina and Kenneth Salem, 1987",
+    "origin_source": "Sagas (ACM SIGMOD Conference, 1987)",
+    "origin_source_zh": "《Sagas》（1987年ACM SIGMOD会议论文）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When a business process spans multiple microservices and requires all-or-nothing semantics",
+      "When distributed transactions (2PC) are not feasible due to latency or service autonomy requirements",
+      "When you need compensating logic to undo partial work in case of failures",
+      "When order processing, booking, or payment flows involve multiple independent services"
+    ],
+    "when_to_use_zh": [
+      "业务流程跨越多个微服务且需要全有或全无语义时",
+      "因延迟或服务自治需求导致分布式事务（2PC）不可行时",
+      "需要补偿逻辑在故障时撤销部分完成的工作时",
+      "订单处理、预订或支付流程涉及多个独立服务时"
+    ],
+    "core_concepts": [
+      "Compensating transaction: A reverse operation that semantically undoes a previously committed local transaction",
+      "Orchestration: A central saga coordinator directs each participant and handles failure routing",
+      "Choreography: Each service listens for events and decides independently whether to proceed or compensate",
+      "Semantic rollback: Unlike database rollback, compensation may not restore exact original state but achieves business equivalence",
+      "Saga execution coordinator (SEC): Tracks saga state and ensures all steps complete or all compensations execute"
+    ],
+    "core_concepts_zh": [
+      "补偿事务：在语义上撤销先前已提交的本地事务的反向操作",
+      "编排：中央Saga协调器指挥每个参与者并处理故障路由",
+      "协调：每个服务监听事件并独立决定继续执行还是进行补偿",
+      "语义回滚：与数据库回滚不同，补偿可能不恢复精确原始状态但实现业务等价",
+      "Saga执行协调器（SEC）：追踪Saga状态，确保所有步骤完成或所有补偿执行"
+    ],
+    "timeline": [
+      ["1987", "Garcia-Molina and Salem publish the original Sagas paper at ACM SIGMOD"],
+      ["2015", "Caitie McCaffrey presents on distributed sagas at Strange Loop, reviving interest"],
+      ["2017", "Chris Richardson popularizes sagas in microservices context via microservices.io"],
+      ["2019", "Temporal.io and other orchestration engines provide first-class saga support"],
+      ["2021", "Saga pattern becomes standard practice in event-driven microservices architectures"]
+    ],
+    "timeline_zh": [
+      ["1987", "Garcia-Molina和Salem在ACM SIGMOD发表原始Sagas论文"],
+      ["2015", "Caitie McCaffrey在Strange Loop演讲分布式Sagas，重新引起关注"],
+      ["2017", "Chris Richardson通过microservices.io在微服务语境中推广Saga模式"],
+      ["2019", "Temporal.io等编排引擎提供一等Saga支持"],
+      ["2021", "Saga模式成为事件驱动微服务架构的标准实践"]
+    ],
+    "dos": [
+      "Do design compensating actions for every forward step before implementation because retrofitting compensations is error-prone",
+      "Do make each step and compensation idempotent because network failures will cause retries",
+      "Do use a saga state machine to track progress because it simplifies debugging and recovery",
+      "Do set timeouts on each saga step because hung steps can block the entire business process"
+    ],
+    "dos_zh": [
+      "在实现之前为每个正向步骤设计补偿动作，因为事后添加补偿容易出错",
+      "确保每个步骤及其补偿是幂等的，因为网络故障会导致重试",
+      "使用Saga状态机追踪进度，因为这简化了调试和恢复",
+      "为每个Saga步骤设置超时，因为挂起的步骤可能阻塞整个业务流程"
+    ],
+    "donts": [
+      "Don't assume compensations will always succeed because they can fail too, requiring retry queues and manual intervention plans",
+      "Don't use sagas for operations that can be done in a single database transaction because the complexity is unnecessary",
+      "Don't ignore the visibility problem because without saga-level tracing, failures are invisible to operations teams",
+      "Don't mix choreography and orchestration in the same saga because it makes the flow extremely hard to reason about"
+    ],
+    "donts_zh": [
+      "不要假设补偿总会成功，因为补偿也可能失败，需要重试队列和人工干预计划",
+      "不要对可以在单个数据库事务中完成的操作使用Saga，因为增加的复杂性没有必要",
+      "不要忽视可见性问题，因为没有Saga级别的追踪，故障对运维团队是不可见的",
+      "不要在同一个Saga中混用编排和协调，因为这会使流程极难推理"
+    ],
+    "case_study_company": "Uber",
+    "case_study": "Uber uses the saga pattern to coordinate its ride-booking flow across multiple microservices including matching, pricing, payment, and driver notification. When a ride is requested, each service executes its local transaction and emits an event. If payment fails after a driver has been matched, a compensating action releases the driver back to the available pool and notifies the rider. Uber's saga orchestrator (built on Cadence, later Temporal) processes millions of ride sagas daily with exactly-once semantics.",
+    "case_study_zh": "Uber使用Saga模式协调其跨多个微服务的叫车流程，包括匹配、定价、支付和司机通知。当请求叫车时，每个服务执行本地事务并发出事件。如果在司机匹配后支付失败，补偿动作会将司机释放回可用池并通知乘客。Uber的Saga编排器（基于Cadence构建，后演变为Temporal）每天以精确一次语义处理数百万次叫车Saga。",
+    "when_not_to_use": [
+      "Operations that can fit within a single ACID transaction boundary",
+      "Systems where the business can tolerate partial completion without compensation",
+      "Extremely low-latency paths where saga coordination overhead is unacceptable"
+    ],
+    "when_not_to_use_zh": [
+      "可以在单个ACID事务边界内完成的操作",
+      "业务可以容忍部分完成而无需补偿的系统",
+      "Saga协调开销不可接受的极低延迟路径"
+    ],
+    "adopters": ["Uber", "Airbnb", "Stripe", "Booking.com", "DoorDash"]
   },
   {
     "id": 23,
@@ -240,7 +896,89 @@
     "ai_relevant": false,
     "viz_type": "cycle",
     "related": ["c4-model", "adr", "wardley-mapping"],
-    "tags": ["enterprise-architecture", "governance", "lifecycle", "methodology"]
+    "tags": ["enterprise-architecture", "governance", "lifecycle", "methodology"],
+    "origin_author": "The Open Group, 1995",
+    "origin_source": "TOGAF Standard (The Open Group Architecture Framework), first published 1995, current version TOGAF 10",
+    "origin_source_zh": "《TOGAF标准》（开放组架构框架），1995年首次发布，当前版本为TOGAF 10",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When an enterprise needs a structured approach to align IT architecture with business strategy",
+      "When managing large-scale digital transformation programs across multiple business units",
+      "When governance and compliance requirements demand formal architecture review processes",
+      "When building an enterprise architecture practice from scratch in a large organization"
+    ],
+    "when_to_use_zh": [
+      "企业需要结构化方法将IT架构与业务战略对齐时",
+      "管理跨多个业务单元的大规模数字化转型项目时",
+      "治理和合规要求需要正式架构审查流程时",
+      "在大型组织中从零开始建立企业架构实践时"
+    ],
+    "core_concepts": [
+      "Architecture Development Method: An iterative cycle of phases from Vision through Migration and Governance",
+      "Architecture Repository: A structured store of architecture assets, standards, reference models, and governance records",
+      "Architecture Building Blocks: Reusable architecture components that can be combined into solutions",
+      "Gap analysis: Systematic comparison of baseline and target architectures to identify required changes",
+      "Transition architecture: Intermediate states between current and target architecture that are deployable and valuable"
+    ],
+    "core_concepts_zh": [
+      "架构开发方法：从愿景到迁移和治理的迭代阶段循环",
+      "架构知识库：架构资产、标准、参考模型和治理记录的结构化存储",
+      "架构构建块：可组合成解决方案的可复用架构组件",
+      "差距分析：系统地比较基线和目标架构以识别所需变更",
+      "过渡架构：当前架构与目标架构之间可部署且有价值的中间状态"
+    ],
+    "timeline": [
+      ["1995", "The Open Group publishes the first version of TOGAF based on the US DoD TAFIM framework"],
+      ["2003", "TOGAF 8 introduces the Architecture Development Method (ADM) cycle"],
+      ["2009", "TOGAF 9 released with major restructuring and the content metamodel"],
+      ["2018", "TOGAF 9.2 adds agile and digital transformation guidance"],
+      ["2022", "TOGAF Standard 10th Edition released with modular structure and updated for cloud-era enterprise architecture"]
+    ],
+    "timeline_zh": [
+      ["1995", "开放组基于美国国防部TAFIM框架发布TOGAF第一版"],
+      ["2003", "TOGAF 8引入架构开发方法（ADM）循环"],
+      ["2009", "TOGAF 9发布，进行重大重构并引入内容元模型"],
+      ["2018", "TOGAF 9.2添加敏捷和数字化转型指导"],
+      ["2022", "TOGAF标准第10版发布，采用模块化结构并针对云时代企业架构更新"]
+    ],
+    "dos": [
+      "Do tailor TOGAF to your organization's size and culture because the full framework is designed to be adapted",
+      "Do maintain the Architecture Repository as a living asset because it is the institutional memory of architectural decisions",
+      "Do engage business stakeholders early in the Vision phase because IT-only architecture fails to deliver business value",
+      "Do use transition architectures because big-bang migrations carry excessive risk"
+    ],
+    "dos_zh": [
+      "根据组织规模和文化裁剪TOGAF，因为完整框架本身就是为适配而设计的",
+      "将架构知识库作为活资产维护，因为它是架构决策的组织记忆",
+      "在愿景阶段尽早让业务利益相关者参与，因为纯IT架构无法交付业务价值",
+      "使用过渡架构，因为大爆炸式迁移承担过高风险"
+    ],
+    "donts": [
+      "Don't apply TOGAF rigidly without tailoring because the overhead will crush agility in smaller organizations",
+      "Don't treat ADM phases as a strict waterfall because the method is designed to be iterative and adaptive",
+      "Don't create architecture artifacts that nobody reads because documentation without consumers is waste",
+      "Don't skip the Requirements Management phase because it anchors all ADM iterations to actual business needs"
+    ],
+    "donts_zh": [
+      "不要未经裁剪就严格应用TOGAF，因为在较小组织中其开销会扼杀敏捷性",
+      "不要将ADM阶段视为严格的瀑布模型，因为该方法设计为迭代和自适应的",
+      "不要创建无人阅读的架构文档，因为没有消费者的文档是浪费",
+      "不要跳过需求管理阶段，因为它将所有ADM迭代锚定于实际业务需求"
+    ],
+    "case_study_company": "US Department of Defense",
+    "case_study": "The US Department of Defense adopted TOGAF as the basis for its enterprise architecture practice across military branches. Using the ADM cycle, DoD created baseline and target architectures for its IT consolidation initiative, reducing data center count from over 2,000 to fewer than 800. The Architecture Repository became the authoritative source for technology standards and reference architectures, enabling interoperability across Army, Navy, and Air Force systems.",
+    "case_study_zh": "美国国防部采用TOGAF作为跨军种企业架构实践的基础。使用ADM循环，国防部为其IT整合计划创建了基线和目标架构，将数据中心数量从2000多个减少到不足800个。架构知识库成为技术标准和参考架构的权威来源，实现了陆军、海军和空军系统间的互操作性。",
+    "when_not_to_use": [
+      "Startups and small companies where lightweight architecture practices like ADRs and C4 suffice",
+      "Purely agile product teams that need fast iteration without formal governance gates",
+      "Projects with a single system where enterprise-level architecture planning is overkill"
+    ],
+    "when_not_to_use_zh": [
+      "ADR和C4等轻量级架构实践即可满足需求的创业公司和小型企业",
+      "需要快速迭代而无需正式治理关卡的纯敏捷产品团队",
+      "企业级架构规划过度的单一系统项目"
+    ],
+    "adopters": ["US Department of Defense", "Capgemini", "Infosys", "Accenture", "Deutsche Bank"]
   },
   {
     "id": 24,
@@ -267,7 +1005,89 @@
     "ai_relevant": false,
     "viz_type": "radar",
     "related": ["atam", "trade-off-sliders", "four-golden-signals"],
-    "tags": ["quality-attributes", "workshop", "stakeholders", "requirements"]
+    "tags": ["quality-attributes", "workshop", "stakeholders", "requirements"],
+    "origin_author": "Mario Barbacci, Robert Ellison, et al. / SEI, 2003",
+    "origin_source": "Quality Attribute Workshop (QAWs) Third Edition (SEI Technical Report CMU/SEI-2003-TR-016)",
+    "origin_source_zh": "《质量属性工作坊（QAWs）第三版》（SEI技术报告CMU/SEI-2003-TR-016）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When starting a new project and quality requirements are unclear or unstated",
+      "When stakeholders have conflicting views on which quality attributes matter most",
+      "When feeding scenarios into an ATAM evaluation session",
+      "When transitioning from functional requirements to non-functional architecture design"
+    ],
+    "when_to_use_zh": [
+      "开始新项目且质量需求不明确或未被表述时",
+      "利益相关者对哪些质量属性最重要存在分歧时",
+      "为ATAM评估会议准备场景输入时",
+      "从功能需求过渡到非功能架构设计时"
+    ],
+    "core_concepts": [
+      "Quality attribute scenario: A structured description with stimulus, environment, response, and measurable response measure",
+      "Utility tree: A hierarchical grouping of quality attributes into categories with prioritized leaf scenarios",
+      "Stakeholder brainstorming: Open elicitation where diverse perspectives surface hidden quality concerns",
+      "Scenario prioritization: Voting or ranking to identify the most architecturally significant scenarios",
+      "Quality attribute categories: Performance, availability, security, modifiability, usability, and others from the SEI taxonomy"
+    ],
+    "core_concepts_zh": [
+      "质量属性场景：包含刺激、环境、响应和可度量响应度量的结构化描述",
+      "效用树：将质量属性按类别层级分组，叶节点为有优先级的场景",
+      "利益相关者头脑风暴：开放式挖掘，多元视角揭示隐藏的质量关切",
+      "场景优先级排序：通过投票或排名识别架构上最重要的场景",
+      "质量属性分类：SEI分类体系中的性能、可用性、安全性、可修改性、可用性等"
+    ],
+    "timeline": [
+      ["2000", "SEI develops the initial QAW method as a companion to ATAM"],
+      ["2003", "SEI publishes the third edition of the QAW technical report"],
+      ["2006", "QAW becomes widely used in government and defense architecture programs"],
+      ["2012", "Lightweight adaptations of QAW emerge for agile and lean teams"],
+      ["2018", "QAW principles integrated into modern architecture review practices like fitness functions"]
+    ],
+    "timeline_zh": [
+      ["2000", "SEI开发初始QAW方法作为ATAM的配套工具"],
+      ["2003", "SEI发布QAW技术报告第三版"],
+      ["2006", "QAW在政府和国防架构项目中被广泛使用"],
+      ["2012", "针对敏捷和精益团队的轻量级QAW适配版出现"],
+      ["2018", "QAW原则被整合到适应度函数等现代架构审查实践中"]
+    ],
+    "dos": [
+      "Do invite stakeholders from diverse roles because developers, operators, and business users have different quality priorities",
+      "Do use the SEI scenario template rigorously because vague scenarios cannot drive architecture decisions",
+      "Do limit the workshop to one day because stakeholder fatigue degrades scenario quality",
+      "Do connect QAW output directly to architecture evaluation because scenarios without follow-through are wasted effort"
+    ],
+    "dos_zh": [
+      "邀请不同角色的利益相关者，因为开发者、运维和业务用户有不同的质量优先级",
+      "严格使用SEI场景模板，因为模糊的场景无法驱动架构决策",
+      "将工作坊限制在一天内，因为利益相关者的疲劳会降低场景质量",
+      "将QAW输出直接关联到架构评估，因为没有后续跟进的场景是浪费"
+    ],
+    "donts": [
+      "Don't let a single stakeholder dominate brainstorming because it suppresses important minority perspectives",
+      "Don't confuse functional requirements with quality attribute scenarios because QAW focuses on the '-ilities' not features",
+      "Don't skip the prioritization step because treating all scenarios equally makes architecture design impossible",
+      "Don't conduct QAW without a facilitator because untrained facilitation leads to unfocused and unproductive sessions"
+    ],
+    "donts_zh": [
+      "不要让单个利益相关者主导头脑风暴，因为这会压制重要的少数派视角",
+      "不要混淆功能需求与质量属性场景，因为QAW关注的是质量特性而非功能",
+      "不要跳过优先级排序步骤，因为平等对待所有场景会使架构设计无从下手",
+      "不要在没有引导者的情况下进行QAW，因为未经训练的引导会导致会议失焦且无成效"
+    ],
+    "case_study_company": "Philips Healthcare",
+    "case_study": "Philips Healthcare used QAW when designing the architecture of their patient monitoring platform that serves hospitals worldwide. The workshop surfaced critical quality attributes around real-time data latency (patient vitals must display within 2 seconds), availability (99.999% uptime for ICU monitors), and regulatory compliance (FDA Class II requirements). These prioritized scenarios directly shaped the decision to use a redundant publish-subscribe architecture with local edge processing.",
+    "case_study_zh": "飞利浦医疗在设计服务全球医院的患者监护平台架构时使用了QAW。工作坊揭示了关于实时数据延迟（患者体征必须在2秒内显示）、可用性（ICU监护仪99.999%正常运行时间）和法规合规（FDA二类要求）的关键质量属性。这些有优先级的场景直接影响了采用带有本地边缘处理的冗余发布-订阅架构的决策。",
+    "when_not_to_use": [
+      "Projects where quality requirements are already well-defined through existing SLAs and compliance frameworks",
+      "Very small teams where informal conversation achieves the same quality requirement alignment",
+      "Rapid prototyping phases where quality attributes will be revisited once the concept is validated"
+    ],
+    "when_not_to_use_zh": [
+      "通过现有SLA和合规框架已明确定义质量需求的项目",
+      "非正式对话即可实现同等质量需求对齐的极小团队",
+      "概念验证后将重新审视质量属性的快速原型阶段"
+    ],
+    "adopters": ["Philips Healthcare", "Lockheed Martin", "Bosch", "Siemens", "US Department of Veterans Affairs"]
   },
   {
     "id": 25,
@@ -294,7 +1114,89 @@
     "ai_relevant": false,
     "viz_type": "tree",
     "related": ["eda", "reactive-extensions", "agent-communication-protocol"],
-    "tags": ["concurrency", "message-passing", "actors", "fault-tolerance", "distributed"]
+    "tags": ["concurrency", "message-passing", "actors", "fault-tolerance", "distributed"],
+    "origin_author": "Carl Hewitt, Peter Bishop, Richard Steiger, 1973",
+    "origin_source": "A Universal Modular ACTOR Formalism for Artificial Intelligence (IJCAI 1973)",
+    "origin_source_zh": "《一种面向人工智能的通用模块化ACTOR形式化方法》（1973年IJCAI会议）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When building highly concurrent systems that need to manage millions of lightweight concurrent entities",
+      "When designing fault-tolerant systems that must self-heal from component failures",
+      "When shared-memory concurrency (locks, mutexes) becomes too error-prone or bottlenecked",
+      "When building distributed systems that need location-transparent communication between components"
+    ],
+    "when_to_use_zh": [
+      "构建需要管理数百万轻量级并发实体的高并发系统时",
+      "设计必须从组件故障中自我修复的容错系统时",
+      "共享内存并发（锁、互斥量）变得过于容易出错或成为瓶颈时",
+      "构建需要组件间位置透明通信的分布式系统时"
+    ],
+    "core_concepts": [
+      "Actor: A fundamental unit of computation that encapsulates state, behavior, and a mailbox for receiving messages",
+      "Message passing: Actors communicate exclusively through asynchronous, immutable messages with no shared state",
+      "Supervision tree: Hierarchical fault handling where parent actors define recovery strategies for child actor failures",
+      "Location transparency: Actors communicate through addresses that abstract away whether the target is local or remote",
+      "Let it crash: Rather than defensive error handling everywhere, let actors fail and rely on supervisors to restart them"
+    ],
+    "core_concepts_zh": [
+      "Actor：封装状态、行为和消息邮箱的基本计算单元",
+      "消息传递：Actor仅通过异步、不可变的消息通信，不共享状态",
+      "监督树：层级化的故障处理，父Actor为子Actor失败定义恢复策略",
+      "位置透明：Actor通过抽象地址通信，屏蔽目标是本地还是远程",
+      "任其崩溃：不在各处进行防御性错误处理，而是让Actor失败并依赖监督者重启"
+    ],
+    "timeline": [
+      ["1973", "Carl Hewitt et al. publish the foundational Actor Model paper at IJCAI"],
+      ["1986", "Joe Armstrong creates Erlang at Ericsson, implementing the Actor Model for telecom systems"],
+      ["2006", "Philipp Haller introduces Scala Actors, later evolving into the Akka framework"],
+      ["2009", "Lightbend (Typesafe) releases Akka, bringing the Actor Model to the JVM ecosystem"],
+      ["2014", "Microsoft Research releases Orleans, a virtual actor framework for .NET cloud services"]
+    ],
+    "timeline_zh": [
+      ["1973", "Carl Hewitt等人在IJCAI发表奠基性的Actor模型论文"],
+      ["1986", "Joe Armstrong在爱立信创建Erlang，为电信系统实现Actor模型"],
+      ["2006", "Philipp Haller引入Scala Actors，后演变为Akka框架"],
+      ["2009", "Lightbend（Typesafe）发布Akka，将Actor模型带入JVM生态"],
+      ["2014", "微软研究院发布Orleans，面向.NET云服务的虚拟Actor框架"]
+    ],
+    "dos": [
+      "Do keep actor state private and communicate only through messages because shared state defeats the concurrency model",
+      "Do design fine-grained actors with single responsibilities because coarse-grained actors become concurrency bottlenecks",
+      "Do use supervision hierarchies to handle failures because actors will crash and need systematic recovery",
+      "Do make messages immutable and serializable because they may cross thread, process, or network boundaries"
+    ],
+    "dos_zh": [
+      "保持Actor状态私有，仅通过消息通信，因为共享状态会破坏并发模型",
+      "设计职责单一的细粒度Actor，因为粗粒度Actor会成为并发瓶颈",
+      "使用监督层级处理故障，因为Actor会崩溃且需要系统化恢复",
+      "使消息不可变且可序列化，因为消息可能跨线程、进程或网络边界传递"
+    ],
+    "donts": [
+      "Don't block inside actors with synchronous I/O because it defeats the asynchronous concurrency model",
+      "Don't create too few, too large actors because it reintroduces the bottleneck problems actors solve",
+      "Don't rely on message ordering between different actors because the model guarantees order only between a specific sender-receiver pair",
+      "Don't expose actor internal state through shared references because it creates race conditions"
+    ],
+    "donts_zh": [
+      "不要在Actor内部用同步I/O阻塞，因为这会破坏异步并发模型",
+      "不要创建过少或过大的Actor，因为这会重新引入Actor模型要解决的瓶颈问题",
+      "不要依赖不同Actor之间的消息顺序，因为模型仅保证特定发送者-接收者对之间的顺序",
+      "不要通过共享引用暴露Actor内部状态，因为这会产生竞态条件"
+    ],
+    "case_study_company": "Ericsson (WhatsApp)",
+    "case_study": "WhatsApp used Erlang/OTP's actor model to build its messaging backend, enabling a team of just 50 engineers to support 900 million users at the time of the Facebook acquisition. Each user connection was represented as a lightweight Erlang process (actor) consuming only about 2KB of memory. The supervision tree architecture meant that individual connection failures were isolated and automatically restarted without affecting other users, achieving 99.99% uptime.",
+    "case_study_zh": "WhatsApp使用Erlang/OTP的Actor模型构建消息后端，使仅50名工程师的团队在被Facebook收购时能支持9亿用户。每个用户连接被表示为仅消耗约2KB内存的轻量级Erlang进程（Actor）。监督树架构意味着单个连接故障被隔离并自动重启，不影响其他用户，实现了99.99%的正常运行时间。",
+    "when_not_to_use": [
+      "Simple sequential programs that don't require concurrency or distribution",
+      "CPU-bound computations that benefit more from parallel data processing than message-passing",
+      "Systems with very strict latency requirements where message routing overhead is unacceptable"
+    ],
+    "when_not_to_use_zh": [
+      "不需要并发或分布的简单顺序程序",
+      "从并行数据处理中获益更多而非消息传递的CPU密集型计算",
+      "消息路由开销不可接受的极严格延迟要求系统"
+    ],
+    "adopters": ["Ericsson", "WhatsApp", "Discord", "Microsoft (Orleans)", "Lightbend (Akka)"]
   },
   {
     "id": 26,
@@ -321,7 +1223,89 @@
     "ai_relevant": false,
     "viz_type": "tree",
     "related": ["solid-principles", "hexagonal-architecture", "clean-code-principles"],
-    "tags": ["dependency-injection", "inversion-of-control", "decoupling", "testability"]
+    "tags": ["dependency-injection", "inversion-of-control", "decoupling", "testability"],
+    "origin_author": "Martin Fowler, 2004",
+    "origin_source": "Inversion of Control Containers and the Dependency Injection pattern (martinfowler.com, 2004)",
+    "origin_source_zh": "《控制反转容器与依赖注入模式》（martinfowler.com，2004年）",
+    "complexity": "beginner",
+    "when_to_use": [
+      "When classes have hard-coded dependencies that make unit testing with mocks impossible",
+      "When you need to swap implementations at runtime or between environments (e.g., test vs. production)",
+      "When building modular applications where components should be independently replaceable",
+      "When applying SOLID principles, particularly the Dependency Inversion Principle"
+    ],
+    "when_to_use_zh": [
+      "类存在硬编码依赖导致无法用Mock进行单元测试时",
+      "需要在运行时或不同环境间（如测试与生产）切换实现时",
+      "构建组件应可独立替换的模块化应用时",
+      "应用SOLID原则，特别是依赖倒置原则时"
+    ],
+    "core_concepts": [
+      "Constructor injection: Dependencies are provided through the constructor, making them explicit and required",
+      "Composition root: The single place in the application where the entire dependency graph is assembled",
+      "Interface segregation: Consumers depend on narrow abstractions rather than concrete classes",
+      "Lifetime management: Controlling whether dependencies are singletons, scoped, or created fresh each time",
+      "Service locator anti-pattern: Using a global registry to look up dependencies, which hides them from the API surface"
+    ],
+    "core_concepts_zh": [
+      "构造函数注入：通过构造函数提供依赖，使依赖关系显式且必需",
+      "组合根：应用中组装整个依赖图的唯一位置",
+      "接口隔离：消费方依赖窄接口抽象而非具体类",
+      "生命周期管理：控制依赖是单例、作用域还是每次创建新实例",
+      "服务定位器反模式：使用全局注册表查找依赖，将依赖隐藏于API表面之下"
+    ],
+    "timeline": [
+      ["1994", "Gang of Four 'Design Patterns' book introduces Strategy and Factory patterns as precursors"],
+      ["1998", "Apache Avalon framework introduces early IoC container concepts in Java"],
+      ["2003", "Spring Framework 1.0 released, popularizing DI in the Java ecosystem"],
+      ["2004", "Martin Fowler coins the term 'Dependency Injection' in his influential article"],
+      ["2016", "ASP.NET Core ships with a built-in DI container, making DI a first-class framework feature"]
+    ],
+    "timeline_zh": [
+      ["1994", "四人帮《设计模式》引入策略模式和工厂模式作为前身概念"],
+      ["1998", "Apache Avalon框架在Java中引入早期IoC容器概念"],
+      ["2003", "Spring Framework 1.0发布，在Java生态中推广DI"],
+      ["2004", "Martin Fowler在其影响深远的文章中创造「依赖注入」一词"],
+      ["2016", "ASP.NET Core内置DI容器发布，使DI成为框架一等特性"]
+    ],
+    "dos": [
+      "Do prefer constructor injection because it makes dependencies explicit, required, and visible in the API",
+      "Do configure the DI container at a single composition root because scattered configuration creates confusion",
+      "Do register dependencies by interface rather than concrete type because it preserves the abstraction benefit",
+      "Do validate the container at startup because failing fast on missing registrations prevents runtime surprises"
+    ],
+    "dos_zh": [
+      "优先使用构造函数注入，因为它使依赖显式、必需且在API中可见",
+      "在单一组合根配置DI容器，因为分散的配置会造成混乱",
+      "按接口而非具体类型注册依赖，因为这保留了抽象的好处",
+      "在启动时验证容器，因为对缺失注册快速失败可防止运行时意外"
+    ],
+    "donts": [
+      "Don't inject the DI container itself into classes because it creates a Service Locator anti-pattern",
+      "Don't use property injection for required dependencies because they can be left null, causing runtime failures",
+      "Don't create deep dependency chains because they make the system hard to understand and debug",
+      "Don't register everything as singleton by default because incorrect lifetime scoping causes subtle concurrency bugs"
+    ],
+    "donts_zh": [
+      "不要将DI容器本身注入到类中，因为这会产生服务定位器反模式",
+      "不要对必需的依赖使用属性注入，因为它们可能为空导致运行时失败",
+      "不要创建过深的依赖链，因为这使系统难以理解和调试",
+      "不要默认将所有依赖注册为单例，因为错误的生命周期范围会导致隐蔽的并发缺陷"
+    ],
+    "case_study_company": "Google (Angular)",
+    "case_study": "Google designed Angular's dependency injection system as a core framework feature, making it the first major frontend framework with built-in hierarchical DI. Angular's injector tree mirrors the component tree, allowing services to be scoped at module, component, or application level. This design enabled teams at Google to build large-scale web applications where components could be independently tested with mock services and swapped without modifying consuming code.",
+    "case_study_zh": "Google将Angular的依赖注入系统设计为核心框架特性，使其成为首个内置层级化DI的主流前端框架。Angular的注入器树镜像组件树，允许服务在模块、组件或应用级别限定作用域。这种设计使Google的团队能够构建大规模Web应用，组件可以用Mock服务独立测试，并在不修改消费方代码的情况下替换。",
+    "when_not_to_use": [
+      "Simple scripts or small programs where the overhead of a DI framework exceeds the coupling problem it solves",
+      "Performance-critical hot paths where the indirection of DI containers adds measurable latency",
+      "Functional programming codebases where higher-order functions and closures naturally invert dependencies"
+    ],
+    "when_not_to_use_zh": [
+      "DI框架的开销超过它所解决的耦合问题的简单脚本或小程序",
+      "DI容器的间接性增加可测量延迟的性能关键热路径",
+      "高阶函数和闭包自然反转依赖的函数式编程代码库"
+    ],
+    "adopters": ["Google (Angular)", "Pivotal (Spring)", "Microsoft (.NET)", "JetBrains (IntelliJ)", "NestJS"]
   },
   {
     "id": 27,
@@ -348,7 +1332,89 @@
     "ai_relevant": false,
     "viz_type": "flow",
     "related": ["microservices-decomposition", "circuit-breaker-pattern", "infrastructure-as-code"],
-    "tags": ["service-mesh", "sidecar", "traffic-management", "observability", "mTLS"]
+    "tags": ["service-mesh", "sidecar", "traffic-management", "observability", "mTLS"],
+    "origin_author": "William Morgan (Buoyant), 2017",
+    "origin_source": "What's a service mesh? And why do I need one? (buoyant.io blog, 2017); concept evolved from Linkerd and Envoy projects",
+    "origin_source_zh": "《什么是服务网格？为什么我需要它？》（buoyant.io博客，2017年）；概念从Linkerd和Envoy项目演化而来",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When managing dozens or hundreds of microservices and cross-cutting concerns like mTLS, retries, and observability become repetitive in application code",
+      "When zero-trust networking requires mutual TLS between all services without application code changes",
+      "When canary deployments and traffic shifting need fine-grained, infrastructure-level control",
+      "When distributed tracing and metrics need to be collected uniformly across all services"
+    ],
+    "when_to_use_zh": [
+      "管理数十或数百个微服务且mTLS、重试、可观测性等横切关注点在应用代码中重复出现时",
+      "零信任网络要求所有服务间双向TLS而不修改应用代码时",
+      "金丝雀部署和流量切换需要细粒度基础设施级别控制时",
+      "需要在所有服务中统一收集分布式追踪和指标时"
+    ],
+    "core_concepts": [
+      "Sidecar proxy: A proxy (typically Envoy) deployed alongside each service to handle all network traffic transparently",
+      "Control plane: Centralized management (Istiod, linkerd-control-plane) that configures all sidecar proxies",
+      "Data plane: The collection of sidecar proxies that actually handle request routing and policy enforcement",
+      "Mutual TLS (mTLS): Automatic encryption and identity verification between services without application changes",
+      "Traffic management: Capabilities like canary releases, circuit breaking, retries, and rate limiting managed at infrastructure level"
+    ],
+    "core_concepts_zh": [
+      "边车代理：部署在每个服务旁的代理（通常为Envoy），透明处理所有网络流量",
+      "控制面：集中管理（Istiod、linkerd-control-plane），配置所有边车代理",
+      "数据面：实际处理请求路由和策略执行的边车代理集合",
+      "双向TLS（mTLS）：无需修改应用即可在服务间自动加密和身份验证",
+      "流量管理：金丝雀发布、熔断、重试和限流等在基础设施层管理的能力"
+    ],
+    "timeline": [
+      ["2016", "Linkerd 1.0 released by Buoyant as the first dedicated service mesh"],
+      ["2016", "Lyft open-sources Envoy proxy, which becomes the standard data plane"],
+      ["2017", "Google, IBM, and Lyft launch Istio, the most widely adopted service mesh"],
+      ["2019", "Service Mesh Interface (SMI) specification proposed for mesh interoperability"],
+      ["2023", "Istio ambient mesh introduces sidecar-less mode, reducing resource overhead"]
+    ],
+    "timeline_zh": [
+      ["2016", "Buoyant发布Linkerd 1.0，作为首个专用服务网格"],
+      ["2016", "Lyft开源Envoy代理，成为标准数据面"],
+      ["2017", "Google、IBM和Lyft推出Istio，成为最广泛采用的服务网格"],
+      ["2019", "服务网格接口（SMI）规范被提出以实现网格互操作性"],
+      ["2023", "Istio ambient mesh引入无边车模式，降低资源开销"]
+    ],
+    "dos": [
+      "Do start with observability features first because they provide immediate value with low risk",
+      "Do adopt incrementally by enabling the mesh for a subset of services first because big-bang rollouts are risky",
+      "Do monitor the resource overhead of sidecar proxies because they consume CPU and memory alongside each service",
+      "Do use the mesh for mTLS everywhere because it eliminates an entire class of network security vulnerabilities"
+    ],
+    "dos_zh": [
+      "优先从可观测性功能开始，因为它们以低风险提供即时价值",
+      "增量采用，先为部分服务启用网格，因为大爆炸式推出风险很高",
+      "监控边车代理的资源开销，因为它们在每个服务旁消耗CPU和内存",
+      "全面使用网格实现mTLS，因为它消除了一整类网络安全漏洞"
+    ],
+    "donts": [
+      "Don't adopt a service mesh for fewer than 10 services because the operational overhead outweighs the benefits",
+      "Don't ignore the latency added by sidecar proxies because each hop adds 1-3ms that compounds across call chains",
+      "Don't configure traffic policies without load testing because misconfigured retry budgets can cause retry storms",
+      "Don't assume the mesh replaces application-level resilience because it complements rather than substitutes business logic error handling"
+    ],
+    "donts_zh": [
+      "不要为少于10个服务采用服务网格，因为运维开销超过收益",
+      "不要忽视边车代理增加的延迟，因为每一跳增加1-3毫秒并在调用链中累积",
+      "不要未经负载测试就配置流量策略，因为错误配置的重试预算可能导致重试风暴",
+      "不要假设网格替代应用级弹性，它是业务逻辑错误处理的补充而非替代"
+    ],
+    "case_study_company": "Lyft",
+    "case_study": "Lyft built Envoy proxy to solve the challenge of managing service-to-service communication across hundreds of microservices written in multiple languages. Before Envoy, each service team implemented its own retry logic, circuit breaking, and observability, leading to inconsistent behavior. By deploying Envoy as a sidecar proxy for every service, Lyft achieved uniform mTLS, distributed tracing, and traffic management. Envoy was later donated to the CNCF and became the data plane for Istio and other service meshes.",
+    "case_study_zh": "Lyft构建Envoy代理来解决数百个以多种语言编写的微服务之间管理服务间通信的挑战。在Envoy之前，每个服务团队自行实现重试逻辑、熔断和可观测性，导致行为不一致。通过为每个服务部署Envoy作为边车代理，Lyft实现了统一的mTLS、分布式追踪和流量管理。Envoy后来捐赠给CNCF，成为Istio和其他服务网格的数据面。",
+    "when_not_to_use": [
+      "Small deployments with fewer than 10 services where a simple API gateway or load balancer suffices",
+      "Teams without Kubernetes expertise because most service meshes assume container orchestration",
+      "Latency-sensitive applications where the added sidecar proxy hop is unacceptable"
+    ],
+    "when_not_to_use_zh": [
+      "少于10个服务、简单API网关或负载均衡器即可满足需求的小型部署",
+      "缺乏Kubernetes经验的团队，因为大多数服务网格假设容器编排环境",
+      "边车代理额外跳转不可接受的延迟敏感应用"
+    ],
+    "adopters": ["Lyft", "Airbnb", "eBay", "Salesforce", "T-Mobile"]
   },
   {
     "id": 28,
@@ -375,6 +1441,88 @@
     "ai_relevant": true,
     "viz_type": "matrix",
     "related": ["rag-architecture", "react-framework", "prompt-chaining", "guardrails-framework"],
-    "tags": ["llm", "ai-architecture", "rag", "prompt-engineering", "production"]
+    "tags": ["llm", "ai-architecture", "rag", "prompt-engineering", "production"],
+    "origin_author": "Community-evolved; key contributors include Harrison Chase (LangChain, 2022) and Jerry Liu (LlamaIndex, 2022)",
+    "origin_source": "Patterns of LLM Application Design (various: LangChain docs, Chip Huyen's blog, Anthropic's guides)",
+    "origin_source_zh": "《LLM应用设计模式》（多来源：LangChain文档、Chip Huyen博客、Anthropic指南）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When building production applications that integrate LLMs for generation, summarization, or reasoning tasks",
+      "When you need to ground LLM outputs in domain-specific knowledge using retrieval-augmented generation",
+      "When designing multi-step agent workflows that require tool use, planning, and iterative refinement",
+      "When cost, latency, and quality trade-offs require intelligent routing between different model sizes"
+    ],
+    "when_to_use_zh": [
+      "构建集成LLM用于生成、摘要或推理任务的生产应用时",
+      "需要使用检索增强生成将LLM输出锚定在领域特定知识中时",
+      "设计需要工具使用、规划和迭代改进的多步骤智能体工作流时",
+      "成本、延迟和质量权衡需要在不同模型大小之间智能路由时"
+    ],
+    "core_concepts": [
+      "RAG (Retrieval-Augmented Generation): Enhancing LLM responses by retrieving relevant documents from a vector store before generation",
+      "Prompt chaining: Breaking complex tasks into sequential LLM calls where each step's output feeds the next",
+      "Tool use / function calling: Enabling LLMs to invoke external APIs, databases, or code execution environments",
+      "Model routing: Directing requests to different model sizes based on task complexity to optimize cost and latency",
+      "Guardrails: Input/output validation layers that prevent harmful, off-topic, or hallucinated responses"
+    ],
+    "core_concepts_zh": [
+      "RAG（检索增强生成）：在生成前从向量存储中检索相关文档以增强LLM响应",
+      "提示链：将复杂任务分解为顺序LLM调用，每步输出作为下一步输入",
+      "工具使用/函数调用：使LLM能够调用外部API、数据库或代码执行环境",
+      "模型路由：根据任务复杂度将请求导向不同大小的模型以优化成本和延迟",
+      "安全护栏：防止有害、离题或幻觉响应的输入/输出验证层"
+    ],
+    "timeline": [
+      ["2020", "OpenAI releases GPT-3 API, sparking the first wave of LLM application development"],
+      ["2022", "LangChain and LlamaIndex frameworks launch, establishing common LLM integration patterns"],
+      ["2023", "RAG pattern becomes the dominant approach for grounding LLM outputs in enterprise data"],
+      ["2024", "Agentic architectures emerge with tool use, planning loops, and multi-agent coordination"],
+      ["2025", "LLM system design matures with standardized evaluation frameworks, cost optimization, and production observability"]
+    ],
+    "timeline_zh": [
+      ["2020", "OpenAI发布GPT-3 API，引发第一波LLM应用开发浪潮"],
+      ["2022", "LangChain和LlamaIndex框架发布，建立通用LLM集成模式"],
+      ["2023", "RAG模式成为将LLM输出锚定在企业数据中的主导方法"],
+      ["2024", "智能体架构兴起，支持工具使用、规划循环和多智能体协调"],
+      ["2025", "LLM系统设计随标准化评估框架、成本优化和生产可观测性趋于成熟"]
+    ],
+    "dos": [
+      "Do implement structured evaluation pipelines because 'it looks good' is not a reliable quality measure for LLM outputs",
+      "Do version your prompts and treat them as code artifacts because prompt changes directly affect output quality",
+      "Do use RAG before fine-tuning because it is cheaper, faster to iterate, and keeps the knowledge updatable",
+      "Do add guardrails for input validation and output safety because LLMs can be manipulated through prompt injection"
+    ],
+    "dos_zh": [
+      "实现结构化评估管道，因为「看起来不错」不是LLM输出的可靠质量度量",
+      "对提示进行版本控制并将其视为代码产物，因为提示变更直接影响输出质量",
+      "在微调之前先使用RAG，因为它更便宜、迭代更快且知识可更新",
+      "添加输入验证和输出安全的护栏，因为LLM可能被提示注入攻击操纵"
+    ],
+    "donts": [
+      "Don't send raw user input directly to the LLM because it opens the door to prompt injection attacks",
+      "Don't rely solely on temperature settings for output diversity because structured sampling strategies give more control",
+      "Don't build monolithic prompt chains because a failure in one step cascades and is hard to debug",
+      "Don't skip cost monitoring because LLM API costs can grow exponentially with scale and retries"
+    ],
+    "donts_zh": [
+      "不要将原始用户输入直接发送给LLM，因为这为提示注入攻击打开了大门",
+      "不要仅依赖温度设置来控制输出多样性，因为结构化采样策略提供更多控制",
+      "不要构建单体提示链，因为一步失败会级联影响且难以调试",
+      "不要跳过成本监控，因为LLM API费用可能随规模和重试呈指数增长"
+    ],
+    "case_study_company": "Klarna",
+    "case_study": "Klarna deployed an AI assistant powered by OpenAI that handled two-thirds of all customer service chats within its first month, performing the equivalent work of 700 full-time agents. The system uses RAG to retrieve relevant order data and company policies, prompt chaining for multi-turn conversation management, and guardrails to prevent the AI from making unauthorized commitments. Klarna reported a 25% reduction in repeat inquiries and average resolution time dropping from 11 minutes to under 2 minutes.",
+    "case_study_zh": "Klarna部署了由OpenAI驱动的AI助手，在上线首月即处理了三分之二的客服聊天，相当于700名全职客服的工作量。该系统使用RAG检索相关订单数据和公司政策，使用提示链管理多轮对话，并使用护栏防止AI做出未授权的承诺。Klarna报告重复咨询减少25%，平均解决时间从11分钟降至不到2分钟。",
+    "when_not_to_use": [
+      "Deterministic computation tasks where traditional algorithms provide exact, reproducible results",
+      "Highly regulated domains where LLM non-determinism and hallucination risk are unacceptable without human oversight",
+      "Low-latency paths where LLM inference time (hundreds of milliseconds to seconds) exceeds requirements"
+    ],
+    "when_not_to_use_zh": [
+      "传统算法能提供精确可重现结果的确定性计算任务",
+      "LLM的不确定性和幻觉风险在没有人工监督的情况下不可接受的高度监管领域",
+      "LLM推理时间（数百毫秒到数秒）超出要求的低延迟路径"
+    ],
+    "adopters": ["Klarna", "Notion", "Shopify", "Stripe", "Replit"]
   }
 ]

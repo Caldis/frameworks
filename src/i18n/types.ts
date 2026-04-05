@@ -46,6 +46,22 @@ export interface LocaleStrings {
   source: string
   inspiredBy: string
 
+  // Detail page sections
+  whenToUse: string
+  coreConceptsTitle: string
+  originAndEvolution: string
+  howItWorks: string
+  dosTitle: string
+  dontsTitle: string
+  caseStudy: string
+  whenNotToUse: string
+  notableAdopters: string
+  complexity: string
+  complexityBeginner: string
+  complexityIntermediate: string
+  complexityAdvanced: string
+  originBy: string
+
   // Misc
   noResults: string  // uses {query} placeholder
   ai: string

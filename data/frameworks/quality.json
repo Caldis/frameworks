@@ -24,7 +24,89 @@
     "ai_relevant": true,
     "viz_type": "pyramid",
     "related": ["testing-trophy", "tdd", "property-based-testing"],
-    "tags": ["testing", "test-pyramid", "unit-tests", "integration-tests", "e2e"]
+    "tags": ["testing", "test-pyramid", "unit-tests", "integration-tests", "e2e"],
+    "origin_author": "Mike Cohn, 2009",
+    "origin_source": "Succeeding with Agile: Software Development Using Scrum",
+    "origin_source_zh": "《Scrum敏捷软件开发》",
+    "complexity": "beginner",
+    "when_to_use": [
+      "Designing a test strategy for a new project or service from scratch",
+      "Auditing an existing test suite that has become slow or flaky",
+      "Onboarding a team to testing best practices with a simple mental model",
+      "Balancing CI pipeline speed against test coverage confidence"
+    ],
+    "when_to_use_zh": [
+      "为新项目或服务从零开始设计测试策略",
+      "审计已变得缓慢或不稳定的现有测试套件",
+      "用简单的心智模型引导团队学习测试最佳实践",
+      "在CI流水线速度和测试覆盖信心之间取得平衡"
+    ],
+    "core_concepts": [
+      "Unit Tests: Fast, isolated tests of individual functions or classes with no external dependencies",
+      "Integration Tests: Tests verifying that multiple components, services, or databases work correctly together",
+      "End-to-End Tests: Full-stack tests simulating real user journeys through the entire system",
+      "Pyramid Shape: More unit tests at the base, fewer integration in the middle, fewest E2E at the top",
+      "Cost-Speed Tradeoff: Higher-level tests provide more confidence but are slower, more expensive, and more brittle"
+    ],
+    "core_concepts_zh": [
+      "单元测试：对单个函数或类进行快速、隔离的测试，不依赖外部资源",
+      "集成测试：验证多个组件、服务或数据库正确协作的测试",
+      "端到端测试：模拟真实用户旅程、贯穿整个系统的全栈测试",
+      "金字塔形状：底部大量单元测试，中间较少集成测试，顶部最少端到端测试",
+      "成本-速度权衡：层级越高的测试提供更高信心，但更慢、更贵且更脆弱"
+    ],
+    "timeline": [
+      ["2003", "Mike Cohn begins advocating layered test strategies in agile teams"],
+      ["2009", "Cohn publishes the Test Pyramid in 'Succeeding with Agile'"],
+      ["2012", "Martin Fowler popularizes the concept with his influential blog post 'TestPyramid'"],
+      ["2018", "Ham Vocke writes the comprehensive 'Practical Test Pyramid' guide on martinfowler.com"],
+      ["2020", "Test Pyramid becomes the de facto mental model taught in most testing courses"]
+    ],
+    "timeline_zh": [
+      ["2003", "Mike Cohn开始在敏捷团队中倡导分层测试策略"],
+      ["2009", "Cohn在《Scrum敏捷软件开发》中发表测试金字塔"],
+      ["2012", "Martin Fowler通过其影响力博客文章'TestPyramid'普及了这一概念"],
+      ["2018", "Ham Vocke在martinfowler.com上撰写了全面的「实用测试金字塔」指南"],
+      ["2020", "测试金字塔成为大多数测试课程中教授的事实标准心智模型"]
+    ],
+    "dos": [
+      "Do keep unit tests fast (under 10ms each) because slow unit tests discourage frequent runs",
+      "Do isolate layers with test doubles so each level validates its own concerns independently",
+      "Do track the ratio of tests per layer because an inverted pyramid signals structural problems",
+      "Do invest in deterministic tests because flaky tests erode team confidence in the entire suite"
+    ],
+    "dos_zh": [
+      "保持单元测试的快速执行（每个不超过10毫秒），因为慢速单元测试会阻碍频繁运行",
+      "用测试替身隔离各层，使每个层级独立验证自身关注点",
+      "追踪每层的测试数量比例，因为倒金字塔意味着结构性问题",
+      "投入精力确保测试的确定性，因为不稳定测试会侵蚀团队对整个套件的信心"
+    ],
+    "donts": [
+      "Don't write E2E tests for every feature because they are slow, brittle, and expensive to maintain",
+      "Don't mock everything in integration tests because over-mocking hides real integration bugs",
+      "Don't ignore flaky tests because they train teams to dismiss legitimate failures",
+      "Don't treat the pyramid as a rigid rule because some architectures need a different shape"
+    ],
+    "donts_zh": [
+      "不要为每个功能都编写端到端测试，因为它们缓慢、脆弱且维护成本高",
+      "不要在集成测试中过度使用Mock，因为过度Mock会隐藏真实的集成缺陷",
+      "不要忽视不稳定测试，因为它们会训练团队习惯性地忽略合理的失败",
+      "不要将金字塔视为死板规则，因为某些架构需要不同的形状"
+    ],
+    "case_study_company": "Google",
+    "case_study": "Google's engineering teams maintain a roughly 70/20/10 split between unit, integration, and E2E tests across their monorepo. This ratio keeps their CI pipeline fast while still catching integration issues. When teams deviated toward too many E2E tests, build times spiked and flaky test rates increased, prompting internal tooling to enforce pyramid ratios.",
+    "case_study_zh": "Google的工程团队在其单一代码仓库中大致维持着70/20/10的单元测试、集成测试和端到端测试比例。这一比例保证了CI流水线的速度，同时仍能捕获集成问题。当团队偏向过多的端到端测试时，构建时间激增、不稳定测试率上升，促使内部工具开始强制执行金字塔比例。",
+    "when_not_to_use": [
+      "Highly UI-driven applications where visual correctness matters more than logic coverage",
+      "Simple CRUD apps with minimal business logic where integration tests provide more value",
+      "Exploratory prototyping phases where tests would be immediately rewritten"
+    ],
+    "when_not_to_use_zh": [
+      "以UI为核心的应用，视觉正确性比逻辑覆盖更重要",
+      "业务逻辑极少的简单CRUD应用，集成测试能提供更多价值",
+      "探索性原型阶段，测试很快就会被重写"
+    ],
+    "adopters": ["Google", "Microsoft", "Spotify", "Atlassian", "ThoughtWorks"]
   },
   {
     "id": 45,
@@ -51,7 +133,89 @@
     "ai_relevant": false,
     "viz_type": "pyramid",
     "related": ["test-pyramid", "tdd", "contract-testing"],
-    "tags": ["testing", "integration-tests", "static-analysis", "test-strategy"]
+    "tags": ["testing", "integration-tests", "static-analysis", "test-strategy"],
+    "origin_author": "Kent C. Dodds, 2018",
+    "origin_source": "The Testing Trophy and Testing Classifications (blog post)",
+    "origin_source_zh": "《测试奖杯与测试分类》（博客文章）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Building modern JavaScript/TypeScript web applications with component-based frameworks",
+      "Teams already using static typing and linting who want to optimize their test investment",
+      "Projects where integration bugs cause more production incidents than unit-level logic errors",
+      "Frontend-heavy applications with significant UI interaction logic"
+    ],
+    "when_to_use_zh": [
+      "使用基于组件的框架构建现代JavaScript/TypeScript Web应用",
+      "已使用静态类型和代码检查、希望优化测试投入的团队",
+      "集成缺陷比单元级逻辑错误导致更多生产事故的项目",
+      "有大量UI交互逻辑的前端密集型应用"
+    ],
+    "core_concepts": [
+      "Static Analysis: Type checkers and linters as the zero-cost base layer catching bugs at compile time",
+      "Integration Tests: The highest-ROI layer testing real interactions between components and services",
+      "Confidence Coefficient: The idea that each test should maximize confidence per dollar of maintenance cost",
+      "Testing Classification: Distinguishing tests by the type of confidence they provide, not just scope",
+      "Write Tests Not Too Many Mostly Integration: Kent C. Dodds's guiding principle summarizing the approach"
+    ],
+    "core_concepts_zh": [
+      "静态分析：类型检查器和代码检查工具作为零成本基础层，在编译时捕获缺陷",
+      "集成测试：投资回报率最高的测试层，测试组件和服务之间的真实交互",
+      "信心系数：每个测试应最大化每单位维护成本所带来的信心",
+      "测试分类：按测试提供的信心类型区分测试，而不仅仅是范围",
+      "编写测试，不要太多，主要写集成测试：Kent C. Dodds总结该方法的指导原则"
+    ],
+    "timeline": [
+      ["2017", "Kent C. Dodds develops the Testing Library family (DOM Testing Library, React Testing Library)"],
+      ["2018", "Dodds publishes 'The Testing Trophy and Testing Classifications' blog post coining the term"],
+      ["2019", "React Testing Library overtakes Enzyme as the most popular React testing tool"],
+      ["2020", "Testing Trophy gains widespread adoption in the frontend community"],
+      ["2023", "The philosophy influences testing approaches across Vue, Svelte, and other framework ecosystems"]
+    ],
+    "timeline_zh": [
+      ["2017", "Kent C. Dodds开发了Testing Library系列工具（DOM Testing Library、React Testing Library）"],
+      ["2018", "Dodds发表「测试奖杯与测试分类」博客文章，首创该术语"],
+      ["2019", "React Testing Library超越Enzyme成为最流行的React测试工具"],
+      ["2020", "测试奖杯模型在前端社区获得广泛采用"],
+      ["2023", "该理念影响了Vue、Svelte等框架生态系统的测试方法"]
+    ],
+    "dos": [
+      "Do test components the way users interact with them because implementation-detail tests break on refactors",
+      "Do invest in static analysis tooling because it catches entire categories of bugs for free",
+      "Do write integration tests that span real component boundaries because that is where most bugs live",
+      "Do use Testing Library's guiding principles to write tests that resemble how software is used"
+    ],
+    "dos_zh": [
+      "按用户交互方式测试组件，因为测试实现细节会在重构时频繁失败",
+      "投资静态分析工具，因为它能免费捕获整类缺陷",
+      "编写跨越真实组件边界的集成测试，因为大多数缺陷存在于边界处",
+      "使用Testing Library的指导原则编写模拟真实软件使用方式的测试"
+    ],
+    "donts": [
+      "Don't write excessive unit tests for simple component wiring because they add maintenance cost without proportional confidence",
+      "Don't test implementation details because such tests break on every refactor without catching real bugs",
+      "Don't skip static analysis because it is the cheapest and fastest bug-catching layer available",
+      "Don't rely solely on E2E tests because they are too slow and flaky for broad coverage"
+    ],
+    "donts_zh": [
+      "不要为简单的组件组装编写过多单元测试，因为增加了维护成本却没有相应的信心提升",
+      "不要测试实现细节，因为这类测试在每次重构时都会失败，却捕获不到真实缺陷",
+      "不要跳过静态分析，因为它是最廉价、最快速的缺陷捕获层",
+      "不要仅依赖端到端测试，因为它们太慢且不稳定，无法提供广泛覆盖"
+    ],
+    "case_study_company": "PayPal",
+    "case_study": "At PayPal, Kent C. Dodds championed the Testing Trophy approach during his tenure, shifting the frontend team from heavy Enzyme unit tests to React Testing Library integration tests. This reduced test maintenance burden by roughly 40% while improving defect detection rates, as integration tests caught more cross-component bugs that unit tests had missed.",
+    "case_study_zh": "在PayPal任职期间，Kent C. Dodds推广了测试奖杯方法，将前端团队从大量Enzyme单元测试转向React Testing Library集成测试。这将测试维护负担降低了约40%，同时提高了缺陷检测率，因为集成测试捕获了更多单元测试遗漏的跨组件缺陷。",
+    "when_not_to_use": [
+      "Backend systems with complex algorithmic logic where unit tests are more valuable than integration tests",
+      "Projects without static typing where the base layer of the trophy is effectively missing",
+      "Systems with expensive integration test environments where unit tests are more cost-effective"
+    ],
+    "when_not_to_use_zh": [
+      "拥有复杂算法逻辑的后端系统，单元测试比集成测试更有价值",
+      "没有静态类型的项目，奖杯的基础层实际上是缺失的",
+      "集成测试环境成本高昂的系统，单元测试更具成本效益"
+    ],
+    "adopters": ["PayPal", "Shopify", "Vercel", "Netflix", "GitHub"]
   },
   {
     "id": 46,
@@ -78,7 +242,89 @@
     "ai_relevant": true,
     "viz_type": "cycle",
     "related": ["test-pyramid", "bdd", "clean-code-principles"],
-    "tags": ["tdd", "red-green-refactor", "test-first", "design", "feedback"]
+    "tags": ["tdd", "red-green-refactor", "test-first", "design", "feedback"],
+    "origin_author": "Kent Beck, 1999",
+    "origin_source": "Extreme Programming Explained: Embrace Change",
+    "origin_source_zh": "《解析极限编程：拥抱变化》",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Implementing well-understood business logic where requirements can be expressed as clear assertions",
+      "Refactoring legacy code where you need a safety net of tests before making changes",
+      "Developing library or API code where correctness and contracts are paramount",
+      "Coaching developers on incremental design and YAGNI thinking"
+    ],
+    "when_to_use_zh": [
+      "实现需求明确的业务逻辑，能用清晰的断言表达",
+      "重构遗留代码，在修改前需要测试安全网",
+      "开发正确性和契约至关重要的库或API代码",
+      "指导开发者学习增量设计和YAGNI思维"
+    ],
+    "core_concepts": [
+      "Red-Green-Refactor: The three-step cycle of writing a failing test, making it pass, then improving the code",
+      "Baby Steps: Making the smallest possible increment in each cycle to maintain continuous progress",
+      "Emergent Design: Letting the architecture emerge from the refactoring step rather than up-front big design",
+      "YAGNI: Only writing code needed to pass the current test, avoiding speculative features",
+      "Triangulation: Using multiple test cases to drive toward a general solution instead of hard-coding"
+    ],
+    "core_concepts_zh": [
+      "红-绿-重构：编写失败测试、使其通过、改善代码的三步循环",
+      "小步前进：每个循环中做最小可能的增量，保持持续进展",
+      "浮现式设计：让架构从重构步骤中自然浮现，而非前期大规模设计",
+      "YAGNI：只编写使当前测试通过所需的代码，避免推测性功能",
+      "三角测量：使用多个测试用例驱动通用解决方案，而非硬编码"
+    ],
+    "timeline": [
+      ["1999", "Kent Beck introduces TDD as a core practice of Extreme Programming"],
+      ["2002", "Beck publishes 'Test-Driven Development: By Example' as a standalone guide"],
+      ["2005", "TDD becomes a mainstream practice adopted by agile teams worldwide"],
+      ["2014", "David Heinemeier Hansson sparks the 'TDD is Dead' debate, leading to deeper community discussion"],
+      ["2020", "TDD experiences resurgence with AI-assisted coding, as tests serve as specifications for code generation"]
+    ],
+    "timeline_zh": [
+      ["1999", "Kent Beck将TDD作为极限编程的核心实践引入"],
+      ["2002", "Beck出版《测试驱动开发：实战与模式解析》作为独立指南"],
+      ["2005", "TDD成为全球敏捷团队广泛采用的主流实践"],
+      ["2014", "David Heinemeier Hansson发起'TDD已死'辩论，引发社区深入讨论"],
+      ["2020", "随着AI辅助编码兴起，TDD迎来复兴，测试充当代码生成的规格说明"]
+    ],
+    "dos": [
+      "Do write the test before the production code because the test-first discipline drives better design",
+      "Do keep cycles short (1-5 minutes) because long cycles lose the feedback benefit of TDD",
+      "Do refactor aggressively in the green phase because skipping refactoring leads to test-passing spaghetti",
+      "Do test behavior not implementation because behavior tests survive refactoring"
+    ],
+    "dos_zh": [
+      "在生产代码之前编写测试，因为测试优先的纪律能驱动更好的设计",
+      "保持短周期（1-5分钟），因为过长的周期会失去TDD的反馈优势",
+      "在绿灯阶段积极重构，因为跳过重构会导致虽然通过测试但代码混乱",
+      "测试行为而非实现，因为行为测试能在重构中存活"
+    ],
+    "donts": [
+      "Don't write multiple failing tests at once because it breaks the one-step-at-a-time discipline",
+      "Don't skip the refactor step because accumulated technical debt defeats the purpose of TDD",
+      "Don't test private methods directly because it couples tests to implementation details",
+      "Don't pursue 100% coverage as a goal because it leads to low-value tests and false confidence"
+    ],
+    "donts_zh": [
+      "不要同时编写多个失败测试，因为这破坏了一步一步前进的纪律",
+      "不要跳过重构步骤，因为累积的技术债会违背TDD的初衷",
+      "不要直接测试私有方法，因为这将测试与实现细节耦合",
+      "不要把100%覆盖率作为目标，因为这会导致低价值测试和虚假信心"
+    ],
+    "case_study_company": "Pivotal Labs",
+    "case_study": "Pivotal Labs (now part of VMware Tanzu) built their entire consulting practice around TDD and pair programming. Their client engagements consistently showed that TDD-practiced teams delivered code with 40-60% fewer production defects compared to non-TDD teams. The discipline also reduced debugging time significantly, as most bugs were caught within minutes of introduction.",
+    "case_study_zh": "Pivotal Labs（现为VMware Tanzu的一部分）围绕TDD和结对编程建立了整个咨询实践。他们的客户项目一致表明，采用TDD的团队交付的代码比未采用TDD的团队减少了40-60%的生产缺陷。该方法还显著减少了调试时间，因为大多数缺陷在引入后几分钟内就被捕获。",
+    "when_not_to_use": [
+      "Rapid prototyping where requirements are unknown and code will be thrown away",
+      "Exploratory UI design where visual outcomes are subjective and hard to assert",
+      "Highly concurrent or distributed systems where deterministic unit testing is difficult"
+    ],
+    "when_not_to_use_zh": [
+      "需求不明确且代码将被丢弃的快速原型开发",
+      "视觉效果主观且难以断言的探索性UI设计",
+      "确定性单元测试困难的高并发或分布式系统"
+    ],
+    "adopters": ["Pivotal Labs", "ThoughtWorks", "8th Light", "Industrial Logic", "Spotify"]
   },
   {
     "id": 47,
@@ -105,7 +351,89 @@
     "ai_relevant": false,
     "viz_type": "flow",
     "related": ["tdd", "test-pyramid", "domain-driven-design"],
-    "tags": ["bdd", "gherkin", "given-when-then", "living-documentation", "collaboration"]
+    "tags": ["bdd", "gherkin", "given-when-then", "living-documentation", "collaboration"],
+    "origin_author": "Dan North, 2006",
+    "origin_source": "Introducing BDD (blog post on dannorth.net)",
+    "origin_source_zh": "《BDD介绍》（dannorth.net博客文章）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Projects where miscommunication between business and development causes frequent rework",
+      "Domain-heavy applications where business rules need executable documentation",
+      "Teams with non-technical stakeholders who need to read and validate test specifications",
+      "Regulated industries requiring traceable specification-to-test coverage"
+    ],
+    "when_to_use_zh": [
+      "业务与开发之间的沟通不畅导致频繁返工的项目",
+      "业务规则需要可执行文档的领域密集型应用",
+      "有非技术干系人需要阅读和验证测试规格的团队",
+      "需要可追溯的规格到测试覆盖的受监管行业"
+    ],
+    "core_concepts": [
+      "Given-When-Then: A structured format for expressing scenarios as context, action, and expected outcome",
+      "Gherkin: A domain-specific language for writing human-readable executable specifications",
+      "Example Mapping: A collaborative workshop technique to discover rules, examples, and open questions",
+      "Living Documentation: Automated scenarios that serve as always-up-to-date system documentation",
+      "Ubiquitous Language: Using the same domain terms in scenarios, code, and conversations with stakeholders"
+    ],
+    "core_concepts_zh": [
+      "Given-When-Then：用上下文、动作和预期结果表达场景的结构化格式",
+      "Gherkin：用于编写人类可读的可执行规格的领域特定语言",
+      "示例映射：发现规则、示例和开放问题的协作工作坊技术",
+      "活文档：作为始终最新系统文档的自动化场景",
+      "通用语言：在场景、代码和干系人对话中使用相同的领域术语"
+    ],
+    "timeline": [
+      ["2003", "Dan North begins exploring alternatives to TDD terminology to improve communication"],
+      ["2006", "North publishes 'Introducing BDD' establishing the Given-When-Then format"],
+      ["2008", "Cucumber is released by Aslak Hellesoy, making BDD automation practical in Ruby"],
+      ["2012", "SpecFlow brings BDD to .NET; Behave brings it to Python; BDD goes cross-platform"],
+      ["2015", "Example Mapping technique by Matt Wynne formalizes the BDD discovery workshop process"]
+    ],
+    "timeline_zh": [
+      ["2003", "Dan North开始探索TDD术语的替代方案以改善沟通"],
+      ["2006", "North发表「BDD介绍」，确立Given-When-Then格式"],
+      ["2008", "Aslak Hellesoy发布Cucumber，使BDD自动化在Ruby中变得实用"],
+      ["2012", "SpecFlow将BDD带入.NET；Behave将其带入Python；BDD走向跨平台"],
+      ["2015", "Matt Wynne的示例映射技术正式化了BDD发现工作坊流程"]
+    ],
+    "dos": [
+      "Do involve the whole team in writing scenarios because BDD is a collaboration tool, not just a testing tool",
+      "Do keep scenarios at the business behavior level because technical details belong in step definitions",
+      "Do use Example Mapping before writing Gherkin because it prevents writing scenarios for unclear requirements",
+      "Do prune outdated scenarios regularly because stale scenarios undermine trust in living documentation"
+    ],
+    "dos_zh": [
+      "让整个团队参与编写场景，因为BDD是协作工具而不仅是测试工具",
+      "保持场景在业务行为层面，因为技术细节属于步骤定义",
+      "在编写Gherkin之前使用示例映射，因为这能防止为不清晰的需求编写场景",
+      "定期修剪过时场景，因为陈旧场景会破坏对活文档的信任"
+    ],
+    "donts": [
+      "Don't write scenarios in isolation without business stakeholders because it defeats the collaboration purpose",
+      "Don't include UI selectors or technical details in Gherkin because it makes scenarios brittle and unreadable",
+      "Don't treat BDD as merely a test automation framework because the real value is in the discovery conversations",
+      "Don't write too many scenarios per feature because it creates a maintenance burden that slows development"
+    ],
+    "donts_zh": [
+      "不要在没有业务干系人参与的情况下孤立编写场景，因为这违背了协作的目的",
+      "不要在Gherkin中包含UI选择器或技术细节，因为这使场景脆弱且难以阅读",
+      "不要将BDD仅视为测试自动化框架，因为真正的价值在于发现对话",
+      "不要为每个功能编写过多场景，因为这会产生拖慢开发的维护负担"
+    ],
+    "case_study_company": "GOV.UK",
+    "case_study": "The UK Government Digital Service (GDS) adopted BDD with Cucumber for building GOV.UK services. The Given-When-Then scenarios served as a shared language between policy teams and developers, ensuring that government services correctly implemented complex regulatory requirements. This approach reduced requirement misunderstandings by over 50% in their first year of adoption.",
+    "case_study_zh": "英国政府数字服务部（GDS）在构建GOV.UK服务时采用了BDD与Cucumber。Given-When-Then场景作为政策团队和开发人员之间的共享语言，确保政府服务正确实现了复杂的监管要求。这一方法在采用的第一年将需求误解减少了50%以上。",
+    "when_not_to_use": [
+      "Small teams where developers and stakeholders communicate directly and frequently",
+      "Purely technical infrastructure projects without business-facing behavior",
+      "Rapid prototyping phases where specifications change too fast for Gherkin to keep up"
+    ],
+    "when_not_to_use_zh": [
+      "开发人员与干系人直接频繁沟通的小型团队",
+      "没有面向业务行为的纯技术基础设施项目",
+      "规格变化太快以至于Gherkin跟不上的快速原型阶段"
+    ],
+    "adopters": ["GOV.UK", "BBC", "Booking.com", "Ryanair", "Commonwealth Bank of Australia"]
   },
   {
     "id": 48,
@@ -132,7 +460,89 @@
     "ai_relevant": true,
     "viz_type": "radar",
     "related": ["tdd", "design-by-contract", "functional-core-imperative-shell"],
-    "tags": ["property-testing", "fuzzing", "generators", "invariants", "quickcheck"]
+    "tags": ["property-testing", "fuzzing", "generators", "invariants", "quickcheck"],
+    "origin_author": "Koen Claessen & John Hughes, 2000",
+    "origin_source": "QuickCheck: A Lightweight Tool for Random Testing of Haskell Programs (ICFP 2000)",
+    "origin_source_zh": "《QuickCheck：一种轻量级的Haskell程序随机测试工具》（ICFP 2000）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Testing serialization/deserialization round-trips where encode-decode must be lossless",
+      "Validating mathematical or algorithmic invariants (sorting, parsing, compression)",
+      "Exploring edge cases that manual test writers would never think of",
+      "Testing data pipeline transformations where properties like idempotence or commutativity must hold"
+    ],
+    "when_to_use_zh": [
+      "测试序列化/反序列化往返，编码-解码必须无损",
+      "验证数学或算法不变式（排序、解析、压缩）",
+      "探索手工测试编写者永远不会想到的边界情况",
+      "测试数据管道转换，其中幂等性或交换律等属性必须成立"
+    ],
+    "core_concepts": [
+      "Property: A universally quantified statement that must hold true for all valid inputs",
+      "Generator: A composable function that produces random values of a given type for test inputs",
+      "Shrinking: Automatic reduction of a failing input to the minimal case that still fails",
+      "Arbitrary: A typeclass or interface that combines a generator with a shrinker for a type",
+      "Counterexample: A specific input found by the framework that violates the stated property"
+    ],
+    "core_concepts_zh": [
+      "属性：对所有有效输入必须成立的全称量化陈述",
+      "生成器：产生给定类型随机值作为测试输入的可组合函数",
+      "收缩：将失败输入自动缩减为仍然失败的最小用例",
+      "Arbitrary：将生成器和收缩器组合的类型类或接口",
+      "反例：框架找到的违反所述属性的具体输入"
+    ],
+    "timeline": [
+      ["1999", "Koen Claessen and John Hughes develop QuickCheck at Chalmers University"],
+      ["2000", "QuickCheck paper published at ICFP, introducing property-based testing to the functional programming community"],
+      ["2006", "Quviq founded by John Hughes to commercialize QuickCheck for Erlang in industrial settings"],
+      ["2016", "Hypothesis for Python by David MacIver brings PBT to mainstream imperative languages"],
+      ["2018", "fast-check for JavaScript/TypeScript gains popularity, making PBT accessible to web developers"]
+    ],
+    "timeline_zh": [
+      ["1999", "Koen Claessen和John Hughes在查尔姆斯理工大学开发QuickCheck"],
+      ["2000", "QuickCheck论文在ICFP发表，将基于属性的测试引入函数式编程社区"],
+      ["2006", "John Hughes创立Quviq公司，将QuickCheck商业化应用于Erlang工业场景"],
+      ["2016", "David MacIver开发的Python版Hypothesis将PBT带入主流命令式语言"],
+      ["2018", "JavaScript/TypeScript的fast-check库流行，使PBT对Web开发者可及"]
+    ],
+    "dos": [
+      "Do start with simple round-trip properties because they are easy to understand and highly effective",
+      "Do compose generators from smaller ones because complex custom generators are error-prone",
+      "Do use shrinking to find minimal failing cases because it dramatically speeds up debugging",
+      "Do combine PBT with example-based tests because each approach catches different kinds of bugs"
+    ],
+    "dos_zh": [
+      "从简单的往返属性开始，因为它们易于理解且非常有效",
+      "从较小的生成器组合构建复杂生成器，因为复杂的自定义生成器容易出错",
+      "利用收缩找到最小失败用例，因为这能显著加速调试",
+      "将PBT与基于示例的测试结合，因为两种方法捕获不同类型的缺陷"
+    ],
+    "donts": [
+      "Don't write overly complex generators because they become a source of bugs themselves",
+      "Don't ignore failing seeds because non-deterministic test failures indicate real property violations",
+      "Don't replace all example tests with PBT because specific documented behaviors need explicit examples",
+      "Don't test properties that are trivially true because they waste computation without providing confidence"
+    ],
+    "donts_zh": [
+      "不要编写过于复杂的生成器，因为它们本身会成为缺陷来源",
+      "不要忽略失败的种子值，因为非确定性测试失败表明存在真实的属性违反",
+      "不要用PBT替换所有示例测试，因为特定文档化行为需要明确的示例",
+      "不要测试平凡成立的属性，因为这浪费计算而不提供信心"
+    ],
+    "case_study_company": "Volvo",
+    "case_study": "Volvo used Quviq QuickCheck to test the AUTOSAR embedded software standard used in their vehicles. Property-based testing discovered over 200 bugs in the specification and implementations that traditional testing had missed, including critical timing and state machine issues. John Hughes presented this work as evidence of PBT's industrial effectiveness at multiple conferences.",
+    "case_study_zh": "沃尔沃使用Quviq QuickCheck测试其车辆中使用的AUTOSAR嵌入式软件标准。基于属性的测试发现了传统测试遗漏的200多个规格和实现缺陷，包括关键的时序和状态机问题。John Hughes在多个会议上展示这项工作，作为PBT工业有效性的证据。",
+    "when_not_to_use": [
+      "Simple CRUD operations where properties are trivial and example tests suffice",
+      "UI layout testing where visual correctness cannot be expressed as algebraic properties",
+      "Exploratory prototypes where the properties themselves are not yet understood"
+    ],
+    "when_not_to_use_zh": [
+      "属性平凡且示例测试足够的简单CRUD操作",
+      "视觉正确性无法用代数属性表达的UI布局测试",
+      "属性本身尚未被理解的探索性原型"
+    ],
+    "adopters": ["Volvo", "Ericsson", "Spotify", "Jet.com", "Jane Street"]
   },
   {
     "id": 49,
@@ -159,7 +569,89 @@
     "ai_relevant": false,
     "viz_type": "cycle",
     "related": ["circuit-breaker-pattern", "bulkhead-pattern", "sli-slo-sla"],
-    "tags": ["chaos-engineering", "resilience", "fault-injection", "reliability"]
+    "tags": ["chaos-engineering", "resilience", "fault-injection", "reliability"],
+    "origin_author": "Netflix, 2011",
+    "origin_source": "Netflix Tech Blog: The Netflix Simian Army",
+    "origin_source_zh": "Netflix技术博客：《Netflix猴子军团》",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Distributed systems where failures are inevitable and resilience must be validated proactively",
+      "After major architectural changes to verify that new fault-tolerance mechanisms actually work",
+      "Before peak traffic events (Black Friday, product launches) to uncover hidden weaknesses",
+      "Organizations transitioning from monolith to microservices where failure modes multiply"
+    ],
+    "when_to_use_zh": [
+      "故障不可避免且需要主动验证韧性的分布式系统",
+      "重大架构变更后，验证新容错机制是否真正有效",
+      "流量高峰事件（黑色星期五、产品发布）前发现隐藏弱点",
+      "从单体向微服务过渡、故障模式成倍增加的组织"
+    ],
+    "core_concepts": [
+      "Steady State Hypothesis: A measurable definition of normal system behavior used as the experiment baseline",
+      "Blast Radius: The scope of impact of a chaos experiment, starting small and gradually expanding",
+      "Abort Conditions: Automated safety mechanisms that halt experiments when impact exceeds acceptable thresholds",
+      "Game Days: Scheduled team exercises where chaos experiments are run with the whole team observing and responding",
+      "Failure Injection: Deliberately introducing faults like latency, errors, or resource constraints into a running system"
+    ],
+    "core_concepts_zh": [
+      "稳态假设：作为实验基线的正常系统行为可衡量定义",
+      "影响范围：混沌实验的影响范围，从小处开始逐步扩大",
+      "中止条件：当影响超过可接受阈值时自动停止实验的安全机制",
+      "演练日：安排的团队演练，全队观察和响应混沌实验",
+      "故障注入：在运行系统中故意引入延迟、错误或资源约束等故障"
+    ],
+    "timeline": [
+      ["2010", "Netflix creates Chaos Monkey to randomly terminate EC2 instances in production"],
+      ["2011", "Netflix publishes the Simian Army blog post, formalizing chaos engineering practices"],
+      ["2014", "Netflix releases Chaos Monkey as open source and formalizes the discipline internally"],
+      ["2017", "Casey Rosenthal and Nora Jones publish 'Chaos Engineering' (O'Reilly), establishing it as a field"],
+      ["2019", "Gremlin, LitmusChaos, and Chaos Mesh emerge as commercial and open-source chaos platforms"]
+    ],
+    "timeline_zh": [
+      ["2010", "Netflix创建Chaos Monkey在生产环境中随机终止EC2实例"],
+      ["2011", "Netflix发表猴子军团博客文章，正式化混沌工程实践"],
+      ["2014", "Netflix将Chaos Monkey开源并在内部正式化该学科"],
+      ["2017", "Casey Rosenthal和Nora Jones出版《混沌工程》（O'Reilly），将其确立为一个领域"],
+      ["2019", "Gremlin、LitmusChaos和Chaos Mesh作为商业和开源混沌平台涌现"]
+    ],
+    "dos": [
+      "Do start with small blast radius experiments because production chaos must be safe and controlled",
+      "Do define abort conditions before every experiment because uncontrolled chaos is just an outage",
+      "Do run experiments during business hours because that is when real failures happen and teams are available",
+      "Do share findings widely because chaos experiments create organizational learning about system behavior"
+    ],
+    "dos_zh": [
+      "从小影响范围的实验开始，因为生产混沌必须是安全和受控的",
+      "在每次实验前定义中止条件，因为不受控的混沌只是一次故障",
+      "在业务时间运行实验，因为那是真实故障发生且团队在场的时候",
+      "广泛分享发现，因为混沌实验创造了关于系统行为的组织学习"
+    ],
+    "donts": [
+      "Don't run chaos experiments without monitoring in place because you cannot measure what you cannot observe",
+      "Don't start in production without first practicing in staging because premature production chaos risks real outages",
+      "Don't chaos-test without stakeholder buy-in because surprise outages destroy trust in the practice",
+      "Don't treat chaos engineering as one-time because systems change and new weaknesses emerge continuously"
+    ],
+    "donts_zh": [
+      "不要在没有监控的情况下运行混沌实验，因为你无法衡量无法观察的东西",
+      "不要在未先在预发布环境实践的情况下直接在生产环境实验，因为过早的生产混沌有真实宕机风险",
+      "不要在没有干系人支持的情况下进行混沌测试，因为意外宕机会摧毁对该实践的信任",
+      "不要将混沌工程视为一次性活动，因为系统不断变化且新弱点持续出现"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix pioneered chaos engineering with Chaos Monkey, which randomly terminated production EC2 instances to force engineers to build resilient services. During the 2011 AWS US-East outage that took down Reddit, Quora, and others, Netflix remained operational because their systems had been hardened through continuous chaos experiments. This event validated the approach and inspired industry-wide adoption.",
+    "case_study_zh": "Netflix以Chaos Monkey开创了混沌工程，随机终止生产EC2实例以迫使工程师构建具有韧性的服务。在2011年AWS美东区域故障导致Reddit、Quora等公司宕机时，Netflix因系统经过持续混沌实验加固而保持运营。这一事件验证了该方法并激发了全行业的采用。",
+    "when_not_to_use": [
+      "Systems without adequate monitoring and observability to measure experiment impact",
+      "Early-stage startups where uptime matters more than resilience validation",
+      "Monolithic systems with no redundancy where any failure causes total outage"
+    ],
+    "when_not_to_use_zh": [
+      "缺乏足够监控和可观测性来衡量实验影响的系统",
+      "正常运行时间比韧性验证更重要的早期创业公司",
+      "没有冗余且任何故障都会导致全面宕机的单体系统"
+    ],
+    "adopters": ["Netflix", "Amazon", "Google", "Microsoft", "Slack"]
   },
   {
     "id": 50,
@@ -186,7 +678,89 @@
     "ai_relevant": true,
     "viz_type": "flow",
     "related": ["bulkhead-pattern", "chaos-engineering", "saga-pattern"],
-    "tags": ["circuit-breaker", "resilience", "fault-tolerance", "cascading-failure", "fallback"]
+    "tags": ["circuit-breaker", "resilience", "fault-tolerance", "cascading-failure", "fallback"],
+    "origin_author": "Michael Nygard, 2007",
+    "origin_source": "Release It! Design and Deploy Production-Ready Software",
+    "origin_source_zh": "《发布！软件的设计与部署》",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Microservice architectures where one slow or failing service can cascade to bring down the entire system",
+      "Applications calling external third-party APIs with unpredictable reliability",
+      "High-traffic systems where waiting on failing dependencies wastes thread pool resources",
+      "Services with defined fallback behaviors (caches, defaults) that can serve users during degradation"
+    ],
+    "when_to_use_zh": [
+      "一个慢速或故障服务可能级联导致整个系统崩溃的微服务架构",
+      "调用可靠性不可预测的外部第三方API的应用",
+      "等待故障依赖会浪费线程池资源的高流量系统",
+      "具有可在降级期间服务用户的降级行为（缓存、默认值）的服务"
+    ],
+    "core_concepts": [
+      "Closed State: Normal operation where requests pass through and failures are counted",
+      "Open State: The circuit is tripped and all requests immediately fail-fast without calling the dependency",
+      "Half-Open State: A limited number of probe requests are allowed to test whether the dependency has recovered",
+      "Fallback: An alternative response strategy used when the circuit is open (cached data, defaults, degraded features)",
+      "Failure Threshold: The number or rate of failures within a time window that triggers the circuit to open"
+    ],
+    "core_concepts_zh": [
+      "关闭状态：请求正常通过、失败被计数的正常运行状态",
+      "打开状态：熔断器跳闸，所有请求立即快速失败而不调用依赖",
+      "半开状态：允许有限数量的探测请求测试依赖是否已恢复",
+      "降级响应：熔断器打开时使用的替代响应策略（缓存数据、默认值、降级功能）",
+      "失败阈值：在时间窗口内触发熔断器打开的失败次数或失败率"
+    ],
+    "timeline": [
+      ["2007", "Michael Nygard describes the Circuit Breaker pattern in 'Release It!'"],
+      ["2012", "Netflix releases Hystrix, making circuit breakers a standard microservice pattern"],
+      ["2014", "Martin Fowler publishes a detailed circuit breaker blog post popularizing the pattern"],
+      ["2018", "Resilience4j emerges as the lightweight successor to Hystrix for Java applications"],
+      ["2020", "Circuit breakers become built-in features of service mesh platforms like Istio and Linkerd"]
+    ],
+    "timeline_zh": [
+      ["2007", "Michael Nygard在《发布！》中描述了熔断器模式"],
+      ["2012", "Netflix发布Hystrix，使熔断器成为标准微服务模式"],
+      ["2014", "Martin Fowler发表详细的熔断器博客文章，普及了该模式"],
+      ["2018", "Resilience4j作为Hystrix的轻量级继任者出现，用于Java应用"],
+      ["2020", "熔断器成为Istio和Linkerd等服务网格平台的内置功能"]
+    ],
+    "dos": [
+      "Do configure different thresholds per dependency because each downstream has different failure characteristics",
+      "Do implement meaningful fallbacks because a circuit breaker without fallback just changes the error message",
+      "Do log circuit state transitions because they are critical signals for operational awareness",
+      "Do test circuit breaker behavior with chaos engineering because misconfigured breakers can mask problems"
+    ],
+    "dos_zh": [
+      "为每个依赖配置不同阈值，因为每个下游服务有不同的故障特征",
+      "实现有意义的降级响应，因为没有降级的熔断器只是改变了错误消息",
+      "记录熔断器状态转换日志，因为它们是运维感知的关键信号",
+      "用混沌工程测试熔断器行为，因为配置错误的熔断器可能掩盖问题"
+    ],
+    "donts": [
+      "Don't use a single circuit breaker for all dependencies because one failing service will trip the breaker for all",
+      "Don't set thresholds too sensitive because transient network blips will trigger unnecessary circuit opens",
+      "Don't forget the half-open state because without it the circuit never recovers automatically",
+      "Don't ignore circuit breaker metrics because a circuit that is always open indicates a deeper systemic problem"
+    ],
+    "donts_zh": [
+      "不要为所有依赖使用单一熔断器，因为一个故障服务会触发所有服务的熔断",
+      "不要设置过于敏感的阈值，因为瞬时网络抖动会触发不必要的熔断",
+      "不要忘记半开状态，因为没有它熔断器永远无法自动恢复",
+      "不要忽略熔断器指标，因为始终处于打开状态的熔断器表明存在更深层的系统问题"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix developed Hystrix as their circuit breaker library after experiencing cascading failures in their microservice architecture. When a single recommendation service slowed down, it consumed all available threads in calling services, eventually taking down the entire streaming experience. Hystrix circuit breakers resolved this by fail-fasting degraded calls and returning cached recommendations instead.",
+    "case_study_zh": "Netflix在其微服务架构中经历级联故障后开发了Hystrix熔断器库。当单个推荐服务变慢时，它消耗了调用服务的所有可用线程，最终导致整个流媒体体验崩溃。Hystrix熔断器通过快速失败降级调用并返回缓存的推荐内容来解决这一问题。",
+    "when_not_to_use": [
+      "Monolithic applications with no remote dependencies where failures are handled in-process",
+      "Fire-and-forget messaging where failures don't block the caller",
+      "Batch processing systems where retries with backoff are more appropriate than fail-fast"
+    ],
+    "when_not_to_use_zh": [
+      "没有远程依赖、故障在进程内处理的单体应用",
+      "失败不会阻塞调用者的即发即忘消息系统",
+      "使用退避重试比快速失败更合适的批处理系统"
+    ],
+    "adopters": ["Netflix", "Amazon", "Uber", "Alibaba", "Capital One"]
   },
   {
     "id": 51,
@@ -213,7 +787,89 @@
     "ai_relevant": false,
     "viz_type": "matrix",
     "related": ["circuit-breaker-pattern", "chaos-engineering", "cell-based-architecture"],
-    "tags": ["bulkhead", "isolation", "resilience", "resource-partitioning"]
+    "tags": ["bulkhead", "isolation", "resilience", "resource-partitioning"],
+    "origin_author": "Michael Nygard, 2007",
+    "origin_source": "Release It! Design and Deploy Production-Ready Software",
+    "origin_source_zh": "《发布！软件的设计与部署》",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Systems with multiple external dependencies where one slow dependency can exhaust shared resources",
+      "Multi-tenant platforms where one tenant's traffic spike must not affect others",
+      "Services with mixed workload priorities (critical vs. best-effort) requiring resource isolation",
+      "Applications experiencing thread pool starvation during dependency outages"
+    ],
+    "when_to_use_zh": [
+      "有多个外部依赖且一个慢依赖可能耗尽共享资源的系统",
+      "一个租户的流量激增不能影响其他租户的多租户平台",
+      "混合工作负载优先级（关键型与尽力型）需要资源隔离的服务",
+      "在依赖中断期间经历线程池饥饿的应用"
+    ],
+    "core_concepts": [
+      "Failure Domain Isolation: Preventing a failure in one component from consuming resources needed by others",
+      "Thread Pool Bulkhead: Dedicating separate thread pools per dependency so one cannot starve another",
+      "Semaphore Bulkhead: Using counting semaphores to limit concurrent access without dedicated thread pools",
+      "Resource Partitioning: Allocating fixed resource budgets (connections, memory, CPU) per workload or tenant",
+      "Graceful Degradation: Continuing to serve critical functions even when non-critical partitions are overwhelmed"
+    ],
+    "core_concepts_zh": [
+      "故障域隔离：防止一个组件的故障消耗其他组件所需的资源",
+      "线程池舱壁：为每个依赖分配专用线程池，使其无法饿死其他线程池",
+      "信号量舱壁：使用计数信号量限制并发访问而无需专用线程池",
+      "资源分区：为每个工作负载或租户分配固定资源预算（连接、内存、CPU）",
+      "优雅降级：即使非关键分区过载也能继续服务关键功能"
+    ],
+    "timeline": [
+      ["2007", "Michael Nygard introduces the Bulkhead pattern in 'Release It!' inspired by ship compartmentalization"],
+      ["2012", "Netflix Hystrix implements thread pool isolation as a core bulkhead mechanism"],
+      ["2016", "Kubernetes resource limits and requests enable infrastructure-level bulkheading"],
+      ["2018", "Resilience4j provides lightweight bulkhead implementations for Java microservices"],
+      ["2021", "AWS Cell-based Architecture formalizes bulkheading at the infrastructure level for hyperscale systems"]
+    ],
+    "timeline_zh": [
+      ["2007", "Michael Nygard在《发布！》中受船舶隔舱启发引入舱壁模式"],
+      ["2012", "Netflix Hystrix实现线程池隔离作为核心舱壁机制"],
+      ["2016", "Kubernetes的资源限制和请求实现了基础设施级的舱壁隔离"],
+      ["2018", "Resilience4j为Java微服务提供轻量级舱壁实现"],
+      ["2021", "AWS蜂窝架构在基础设施层面正式化了超大规模系统的舱壁隔离"]
+    ],
+    "dos": [
+      "Do size bulkheads based on measured traffic patterns because under-provisioned partitions cause unnecessary rejections",
+      "Do combine bulkheads with circuit breakers because they complement each other for comprehensive fault tolerance",
+      "Do implement per-tenant bulkheads in multi-tenant systems because noisy neighbors are a top reliability risk",
+      "Do monitor bulkhead utilization because consistently full bulkheads indicate under-provisioning or dependency issues"
+    ],
+    "dos_zh": [
+      "根据实际流量模式调整舱壁大小，因为配置不足的分区会导致不必要的拒绝",
+      "将舱壁与熔断器结合使用，因为两者相互补充以实现全面容错",
+      "在多租户系统中实现每租户舱壁，因为嘈杂邻居是首要可靠性风险",
+      "监控舱壁利用率，因为持续满载的舱壁表明资源不足或依赖问题"
+    ],
+    "donts": [
+      "Don't create too many fine-grained partitions because overhead and complexity outweigh isolation benefits",
+      "Don't share thread pools across critical and non-critical paths because this defeats the isolation purpose",
+      "Don't set bulkhead limits without load testing because guessed limits are usually wrong",
+      "Don't forget to handle rejection gracefully because rejected requests should return meaningful errors, not stack traces"
+    ],
+    "donts_zh": [
+      "不要创建过多细粒度的分区，因为开销和复杂性会超过隔离收益",
+      "不要在关键路径和非关键路径之间共享线程池，因为这违背了隔离目的",
+      "不要在没有负载测试的情况下设置舱壁限制，因为猜测的限制通常是错误的",
+      "不要忘记优雅处理拒绝，因为被拒绝的请求应返回有意义的错误而非堆栈跟踪"
+    ],
+    "case_study_company": "Amazon",
+    "case_study": "Amazon uses bulkhead patterns extensively through their Cell-based Architecture, where each cell is an independent, isolated deployment serving a subset of customers. During the 2021 US-EAST-1 disruption, cells with proper bulkheading continued operating while affected cells were isolated, preventing a total service outage and limiting the blast radius of the failure.",
+    "case_study_zh": "Amazon通过其蜂窝架构广泛使用舱壁模式，每个蜂窝单元是一个独立隔离的部署，服务于客户子集。在2021年US-EAST-1中断期间，具有适当舱壁隔离的蜂窝单元继续运行，而受影响的单元被隔离，防止了全面服务中断并限制了故障影响范围。",
+    "when_not_to_use": [
+      "Simple applications with a single dependency where isolation adds complexity without benefit",
+      "Low-traffic systems where resource contention is unlikely to occur",
+      "Stateless serverless functions that inherently isolate through per-invocation containers"
+    ],
+    "when_not_to_use_zh": [
+      "只有单一依赖的简单应用，隔离增加复杂性而无收益",
+      "不太可能发生资源争用的低流量系统",
+      "通过每次调用独立容器天然隔离的无状态Serverless函数"
+    ],
+    "adopters": ["Amazon", "Netflix", "Microsoft Azure", "Alibaba Cloud", "Uber"]
   },
   {
     "id": 52,
@@ -240,7 +896,89 @@
     "ai_relevant": false,
     "viz_type": "matrix",
     "related": ["red-method", "four-golden-signals", "sli-slo-sla"],
-    "tags": ["use-method", "utilization", "saturation", "errors", "performance"]
+    "tags": ["use-method", "utilization", "saturation", "errors", "performance"],
+    "origin_author": "Brendan Gregg, 2012",
+    "origin_source": "The USE Method (brendangregg.com blog post)",
+    "origin_source_zh": "《USE方法》（brendangregg.com博客文章）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Diagnosing performance problems when you do not know where the bottleneck is",
+      "Capacity planning to identify which resources are approaching saturation",
+      "Setting up monitoring dashboards for infrastructure and server resources",
+      "Post-incident analysis to systematically identify the root cause of resource-related outages"
+    ],
+    "when_to_use_zh": [
+      "诊断性能问题但不知道瓶颈在哪里时",
+      "容量规划以识别哪些资源接近饱和",
+      "为基础设施和服务器资源建立监控仪表盘",
+      "事后分析以系统化识别资源相关故障的根本原因"
+    ],
+    "core_concepts": [
+      "Utilization: The percentage of time a resource is busy or the proportion of its capacity being used",
+      "Saturation: The extent to which work is queued waiting for a resource, indicating capacity has been exceeded",
+      "Errors: Error events per resource that may indicate hardware degradation or misconfiguration",
+      "Resource List: A comprehensive enumeration of all system resources to ensure nothing is overlooked",
+      "Functional Block Diagram: A visual map of system components and their resources used to guide the USE analysis"
+    ],
+    "core_concepts_zh": [
+      "利用率：资源忙碌时间的百分比或其容量被使用的比例",
+      "饱和度：工作在资源处排队等待的程度，表明容量已被超过",
+      "错误：每个资源的错误事件，可能表明硬件退化或配置错误",
+      "资源清单：系统所有资源的全面枚举，确保没有遗漏",
+      "功能框图：系统组件及其资源的可视化映射，用于指导USE分析"
+    ],
+    "timeline": [
+      ["2012", "Brendan Gregg publishes 'The USE Method' blog post while working at Joyent"],
+      ["2013", "Gregg publishes 'Systems Performance: Enterprise and the Cloud' expanding on the method"],
+      ["2014", "USE Method becomes a standard troubleshooting methodology taught at performance engineering conferences"],
+      ["2017", "Netflix adopts USE Method as part of their standard performance analysis workflow"],
+      ["2020", "Gregg publishes the second edition of 'Systems Performance' with updated USE Method guidance for cloud-native systems"]
+    ],
+    "timeline_zh": [
+      ["2012", "Brendan Gregg在Joyent工作时发表「USE方法」博客文章"],
+      ["2013", "Gregg出版《系统性能：企业与云》一书，扩展了该方法"],
+      ["2014", "USE方法成为性能工程会议上教授的标准故障排除方法论"],
+      ["2017", "Netflix将USE方法纳入其标准性能分析工作流"],
+      ["2020", "Gregg出版《系统性能》第二版，包含针对云原生系统的更新USE方法指南"]
+    ],
+    "dos": [
+      "Do create a complete resource checklist before starting because missing a resource means missing a potential bottleneck",
+      "Do check errors first for each resource because error diagnosis is often the fastest path to finding issues",
+      "Do measure saturation alongside utilization because high utilization alone does not always indicate a problem",
+      "Do use the method iteratively because new resources are added as systems evolve"
+    ],
+    "dos_zh": [
+      "开始前创建完整的资源检查清单，因为遗漏一个资源意味着遗漏潜在瓶颈",
+      "对每个资源优先检查错误，因为错误诊断通常是发现问题的最快路径",
+      "将饱和度与利用率一起测量，因为仅高利用率并不总是表明存在问题",
+      "迭代使用该方法，因为随着系统演进会添加新资源"
+    ],
+    "donts": [
+      "Don't skip resources because the bottleneck is often in the resource you least suspect",
+      "Don't confuse utilization with saturation because a resource at 90% utilization may have zero saturation",
+      "Don't only look at averages because averages hide spikes and tail latency problems",
+      "Don't apply USE to request-based workloads because the RED Method is better suited for that"
+    ],
+    "donts_zh": [
+      "不要跳过资源，因为瓶颈通常在你最不怀疑的资源上",
+      "不要混淆利用率和饱和度，因为90%利用率的资源可能饱和度为零",
+      "不要只看平均值，因为平均值隐藏了尖峰和尾延迟问题",
+      "不要将USE应用于基于请求的工作负载，因为RED方法更适合"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix's performance engineering team adopted the USE Method as their standard approach for diagnosing performance issues across their cloud infrastructure. When a streaming service experienced intermittent latency spikes, systematic USE analysis revealed that network interface saturation on specific instance types was the root cause, not the CPU or memory bottlenecks initially suspected.",
+    "case_study_zh": "Netflix的性能工程团队采用USE方法作为诊断云基础设施性能问题的标准方法。当流媒体服务出现间歇性延迟尖峰时，系统化的USE分析揭示了特定实例类型上网络接口饱和才是根本原因，而非最初怀疑的CPU或内存瓶颈。",
+    "when_not_to_use": [
+      "Application-layer request debugging where RED Method provides more relevant signals",
+      "User experience monitoring where latency and error rates matter more than resource utilization",
+      "Serverless architectures where underlying resources are abstracted away from the operator"
+    ],
+    "when_not_to_use_zh": [
+      "应用层请求调试，RED方法能提供更相关的信号",
+      "延迟和错误率比资源利用率更重要的用户体验监控",
+      "底层资源对运维人员透明的Serverless架构"
+    ],
+    "adopters": ["Netflix", "Facebook", "LinkedIn", "Joyent", "Cloudflare"]
   },
   {
     "id": 53,
@@ -267,7 +1005,89 @@
     "ai_relevant": false,
     "viz_type": "radar",
     "related": ["use-method", "four-golden-signals", "dora-metrics"],
-    "tags": ["red-method", "request-rate", "error-rate", "duration", "monitoring"]
+    "tags": ["red-method", "request-rate", "error-rate", "duration", "monitoring"],
+    "origin_author": "Tom Wilkie, 2018",
+    "origin_source": "The RED Method: How to Instrument Your Services (Grafana Labs blog/talk)",
+    "origin_source_zh": "《RED方法：如何为你的服务埋点》（Grafana Labs博客/演讲）",
+    "complexity": "beginner",
+    "when_to_use": [
+      "Monitoring microservices where request-centric metrics provide the most actionable signals",
+      "Building SRE dashboards that need to answer 'is this service healthy?' at a glance",
+      "Establishing baseline monitoring for any new service deployed to production",
+      "Debugging production issues where you need to quickly identify which service is degraded"
+    ],
+    "when_to_use_zh": [
+      "以请求为中心的指标能提供最可操作信号的微服务监控",
+      "需要一眼回答「这个服务健康吗？」的SRE仪表盘构建",
+      "为任何部署到生产的新服务建立基线监控",
+      "需要快速识别哪个服务降级的生产问题调试"
+    ],
+    "core_concepts": [
+      "Rate: The number of requests per second a service is handling, indicating demand and throughput",
+      "Errors: The count or percentage of requests that fail, indicating service correctness issues",
+      "Duration: The distribution of request latency (p50, p95, p99), indicating service performance",
+      "Service-Centric Monitoring: Focusing on the work a service does (requests) rather than the resources it uses",
+      "Percentile Latency: Using percentiles instead of averages to expose tail latency and worst-case user experience"
+    ],
+    "core_concepts_zh": [
+      "速率：服务每秒处理的请求数，表示需求和吞吐量",
+      "错误：失败请求的计数或百分比，表示服务正确性问题",
+      "持续时间：请求延迟的分布（p50、p95、p99），表示服务性能",
+      "以服务为中心的监控：关注服务所做的工作（请求）而非使用的资源",
+      "百分位延迟：使用百分位数而非平均值来暴露尾延迟和最差用户体验"
+    ],
+    "timeline": [
+      ["2015", "Tom Wilkie begins developing the RED Method at Weaveworks based on experience with microservices monitoring"],
+      ["2018", "Wilkie formally presents the RED Method at KubeCon and in the Grafana Labs blog"],
+      ["2019", "RED becomes a standard monitoring methodology in the Kubernetes and cloud-native community"],
+      ["2020", "Grafana, Datadog, and New Relic build RED-aligned dashboard templates into their platforms"],
+      ["2022", "RED Method is widely taught alongside USE and Golden Signals in SRE training programs"]
+    ],
+    "timeline_zh": [
+      ["2015", "Tom Wilkie在Weaveworks根据微服务监控经验开始开发RED方法"],
+      ["2018", "Wilkie在KubeCon和Grafana Labs博客上正式发表RED方法"],
+      ["2019", "RED成为Kubernetes和云原生社区的标准监控方法论"],
+      ["2020", "Grafana、Datadog和New Relic将RED对齐的仪表盘模板内置于其平台"],
+      ["2022", "RED方法在SRE培训项目中与USE和黄金信号并列广泛教授"]
+    ],
+    "dos": [
+      "Do track latency distributions (percentiles) because averages hide tail latency affecting real users",
+      "Do separate error types (client vs server, transient vs permanent) because they require different responses",
+      "Do set up RED dashboards for every service before going to production because retroactive instrumentation is harder",
+      "Do correlate RED metrics with deployment events because many degradations are caused by code changes"
+    ],
+    "dos_zh": [
+      "追踪延迟分布（百分位数），因为平均值隐藏了影响真实用户的尾延迟",
+      "区分错误类型（客户端/服务端、瞬时/永久），因为它们需要不同的响应",
+      "在上线前为每个服务建立RED仪表盘，因为回溯性埋点更困难",
+      "将RED指标与部署事件关联，因为许多降级由代码变更导致"
+    ],
+    "donts": [
+      "Don't use only averages for duration because they conceal p99 spikes that affect user experience",
+      "Don't ignore rate changes because sudden drops in request rate often indicate upstream failures",
+      "Don't alert on every metric independently because correlated alerts (rate drops + error spikes) are more actionable",
+      "Don't apply RED to infrastructure resources because USE Method is designed for that purpose"
+    ],
+    "donts_zh": [
+      "不要只用平均值衡量持续时间，因为平均值掩盖了影响用户体验的p99尖峰",
+      "不要忽略速率变化，因为请求率的突然下降通常表示上游故障",
+      "不要对每个指标独立告警，因为相关联的告警（速率下降+错误激增）更具可操作性",
+      "不要将RED应用于基础设施资源，因为USE方法是为此目的设计的"
+    ],
+    "case_study_company": "Grafana Labs",
+    "case_study": "Grafana Labs uses the RED Method internally to monitor their own Grafana Cloud platform, which serves millions of dashboards and alerts. By standardizing on RED metrics across all microservices, their SRE team can diagnose cross-service issues in minutes. When a spike in error rates was detected in their alerting pipeline, RED dashboards immediately pinpointed the degraded service and specific endpoint.",
+    "case_study_zh": "Grafana Labs在内部使用RED方法监控其服务数百万仪表盘和告警的Grafana Cloud平台。通过在所有微服务上标准化RED指标，他们的SRE团队能在几分钟内诊断跨服务问题。当告警管道中检测到错误率尖峰时，RED仪表盘立即定位了降级的服务和具体端点。",
+    "when_not_to_use": [
+      "Infrastructure and hardware monitoring where resource utilization matters more than request metrics",
+      "Batch processing or streaming systems that do not follow a request-response pattern",
+      "Storage systems where disk and memory metrics are more relevant than request-level signals"
+    ],
+    "when_not_to_use_zh": [
+      "资源利用率比请求指标更重要的基础设施和硬件监控",
+      "不遵循请求-响应模式的批处理或流处理系统",
+      "磁盘和内存指标比请求级信号更相关的存储系统"
+    ],
+    "adopters": ["Grafana Labs", "Weaveworks", "Google", "Shopify", "Cloudflare"]
   },
   {
     "id": 54,
@@ -294,7 +1114,89 @@
     "ai_relevant": false,
     "viz_type": "radar",
     "related": ["red-method", "use-method", "sli-slo-sla"],
-    "tags": ["golden-signals", "latency", "traffic", "errors", "saturation"]
+    "tags": ["golden-signals", "latency", "traffic", "errors", "saturation"],
+    "origin_author": "Google SRE Team, 2016",
+    "origin_source": "Site Reliability Engineering: How Google Runs Production Systems (O'Reilly)",
+    "origin_source_zh": "《SRE：Google运维解密》（O'Reilly）",
+    "complexity": "beginner",
+    "when_to_use": [
+      "Establishing foundational monitoring for any production service regardless of architecture",
+      "Training new SRE or DevOps team members on what to monitor first",
+      "Creating on-call dashboards that need to surface problems quickly for incident responders",
+      "Defining SLIs when you need a starting point for service level indicators"
+    ],
+    "when_to_use_zh": [
+      "为任何生产服务建立基础监控，不论架构如何",
+      "培训新SRE或DevOps团队成员首先应监控什么",
+      "创建需要为值班人员快速呈现问题的事件响应仪表盘",
+      "需要服务级别指标起点时定义SLI"
+    ],
+    "core_concepts": [
+      "Latency: The time it takes to service a request, differentiated between success and failure responses",
+      "Traffic: A measure of demand being placed on the system (requests per second, I/O rates, sessions)",
+      "Errors: The rate of requests that fail either explicitly (HTTP 5xx) or implicitly (wrong content, policy violations)",
+      "Saturation: How full the service is, measuring the most constrained resource and predicting impending capacity limits",
+      "Signal Correlation: Analyzing all four signals together to distinguish between load, code, and infrastructure issues"
+    ],
+    "core_concepts_zh": [
+      "延迟：服务请求所花时间，区分成功和失败响应",
+      "流量：系统所承受的需求度量（每秒请求数、I/O速率、会话数）",
+      "错误：显式（HTTP 5xx）或隐式（内容错误、策略违规）失败的请求速率",
+      "饱和度：服务有多满，测量最受限的资源并预测即将到来的容量上限",
+      "信号关联：同时分析四个信号以区分负载、代码和基础设施问题"
+    ],
+    "timeline": [
+      ["2003", "Google's internal SRE practices begin crystallizing around key monitoring signals"],
+      ["2016", "Google publishes the SRE book featuring the Four Golden Signals as Chapter 6"],
+      ["2017", "The SRE Workbook provides detailed implementation guidance for golden signals"],
+      ["2019", "Major observability platforms (Datadog, New Relic, Grafana) build golden signals templates"],
+      ["2022", "Four Golden Signals becomes the most widely cited monitoring framework in the industry"]
+    ],
+    "timeline_zh": [
+      ["2003", "Google的内部SRE实践开始围绕关键监控信号固化"],
+      ["2016", "Google出版SRE书籍，在第6章介绍四大黄金信号"],
+      ["2017", "SRE工作手册为黄金信号提供了详细的实施指南"],
+      ["2019", "主要可观测性平台（Datadog、New Relic、Grafana）构建黄金信号模板"],
+      ["2022", "四大黄金信号成为业界引用最广泛的监控框架"]
+    ],
+    "dos": [
+      "Do separate latency for successful and failed requests because failed requests can be artificially fast",
+      "Do track saturation proactively because it predicts future problems before they cause incidents",
+      "Do build a single dashboard showing all four signals per service because correlation enables faster diagnosis",
+      "Do define explicit error budgets for each signal because thresholds without budgets lead to alert fatigue"
+    ],
+    "dos_zh": [
+      "分别统计成功和失败请求的延迟，因为失败请求可能人为地很快",
+      "主动追踪饱和度，因为它能在引发事故前预测未来问题",
+      "为每个服务构建展示全部四个信号的单一仪表盘，因为关联性能加速诊断",
+      "为每个信号定义明确的错误预算，因为没有预算的阈值会导致告警疲劳"
+    ],
+    "donts": [
+      "Don't monitor only latency and errors because saturation and traffic provide essential context for interpreting them",
+      "Don't use averages exclusively because they hide the tail latency experienced by the worst-affected users",
+      "Don't create separate unrelated dashboards for each signal because the power is in seeing them correlated",
+      "Don't treat all errors equally because client errors (4xx) and server errors (5xx) have very different implications"
+    ],
+    "donts_zh": [
+      "不要仅监控延迟和错误，因为饱和度和流量为解读它们提供了重要上下文",
+      "不要只使用平均值，因为平均值隐藏了受影响最严重用户经历的尾延迟",
+      "不要为每个信号创建独立的不相关仪表盘，因为关联展示才有力量",
+      "不要平等对待所有错误，因为客户端错误（4xx）和服务端错误（5xx）含义非常不同"
+    ],
+    "case_study_company": "Google",
+    "case_study": "Google developed the Four Golden Signals from over a decade of running production services at massive scale. The approach proved its value during a Gmail latency incident where traffic metrics showed normal request rates but saturation metrics revealed thread pool exhaustion on a specific cluster. Without the saturation signal, the team would have spent hours chasing code-level bugs instead of the resource constraint.",
+    "case_study_zh": "Google从十多年大规模运行生产服务的经验中发展出四大黄金信号。该方法在一次Gmail延迟事故中证明了其价值：流量指标显示请求率正常，但饱和度指标揭示了特定集群的线程池耗尽。如果没有饱和度信号，团队会花数小时追查代码级缺陷，而非资源约束。",
+    "when_not_to_use": [
+      "Low-level hardware debugging where OS-level metrics (USE Method) provide more granular signals",
+      "Client-side performance monitoring where Web Vitals and user experience metrics are more appropriate",
+      "Offline batch processing where request-oriented signals do not apply"
+    ],
+    "when_not_to_use_zh": [
+      "操作系统级指标（USE方法）能提供更细粒度信号的底层硬件调试",
+      "Web Vitals和用户体验指标更合适的客户端性能监控",
+      "面向请求的信号不适用的离线批处理"
+    ],
+    "adopters": ["Google", "Dropbox", "Twitter", "Uber", "Stripe"]
   },
   {
     "id": 55,
@@ -321,7 +1223,89 @@
     "ai_relevant": true,
     "viz_type": "radar",
     "related": ["ai-output-verification", "prompt-testing", "ai-observability-framework"],
-    "tags": ["llm-eval", "benchmarks", "quality-metrics", "automated-evaluation", "ai"]
+    "tags": ["llm-eval", "benchmarks", "quality-metrics", "automated-evaluation", "ai"],
+    "origin_author": "OpenAI / Anthropic / Google, 2023",
+    "origin_source": "HELM: Holistic Evaluation of Language Models (Stanford CRFM, 2022) and industry eval frameworks",
+    "origin_source_zh": "《HELM：语言模型整体评估》（斯坦福CRFM，2022）及行业评估框架",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Deploying LLM-powered features to production where output quality must be measurable and tracked",
+      "Comparing model versions or providers to make data-driven upgrade decisions",
+      "Building RAG pipelines where retrieval and generation quality both need monitoring",
+      "Establishing quality gates in CI/CD for prompt engineering workflows"
+    ],
+    "when_to_use_zh": [
+      "将LLM功能部署到输出质量必须可衡量和可追踪的生产环境",
+      "比较模型版本或供应商以做出数据驱动的升级决策",
+      "构建检索和生成质量都需要监控的RAG管道",
+      "在提示词工程工作流的CI/CD中建立质量门控"
+    ],
+    "core_concepts": [
+      "Golden Dataset: A curated set of input-output pairs used as ground truth for evaluation",
+      "LLM-as-Judge: Using a language model to evaluate another model's output against defined criteria",
+      "Faithfulness: The degree to which generated content is grounded in provided source material without hallucination",
+      "Evaluation Rubric: A structured scoring guide defining what constitutes good, acceptable, and poor output",
+      "Regression Testing: Running evaluations on every change to detect quality degradation before deployment"
+    ],
+    "core_concepts_zh": [
+      "黄金数据集：作为评估基准真相的精选输入-输出对集合",
+      "LLM作为裁判：使用语言模型根据定义的标准评估另一个模型的输出",
+      "忠实度：生成内容基于提供的源材料且无幻觉的程度",
+      "评估准则：定义优良、可接受和差劣输出的结构化评分指南",
+      "回归测试：在每次变更时运行评估以在部署前检测质量退化"
+    ],
+    "timeline": [
+      ["2020", "OpenAI introduces early evaluation benchmarks for GPT-3 measuring accuracy across tasks"],
+      ["2022", "Stanford CRFM releases HELM providing holistic multi-metric evaluation of language models"],
+      ["2023", "Braintrust, Langsmith, and Promptfoo emerge as dedicated LLM evaluation platforms"],
+      ["2024", "LLM-as-Judge becomes the dominant evaluation pattern, validated by research from Anthropic and Google"],
+      ["2025", "Evaluation frameworks mature to include multi-turn agent evaluation and tool-use correctness"]
+    ],
+    "timeline_zh": [
+      ["2020", "OpenAI为GPT-3引入早期评估基准，衡量跨任务准确性"],
+      ["2022", "斯坦福CRFM发布HELM，提供语言模型的整体多指标评估"],
+      ["2023", "Braintrust、Langsmith和Promptfoo作为专用LLM评估平台涌现"],
+      ["2024", "LLM作为裁判成为主导评估模式，经Anthropic和Google研究验证"],
+      ["2025", "评估框架成熟到包含多轮智能体评估和工具使用正确性"]
+    ],
+    "dos": [
+      "Do build diverse golden datasets because biased test sets produce misleading evaluation scores",
+      "Do evaluate multiple quality dimensions because a model can be accurate but unsafe or unfaithful",
+      "Do version evaluations alongside prompts because evaluation criteria must evolve with the application",
+      "Do include adversarial test cases because edge cases and attacks reveal real-world failure modes"
+    ],
+    "dos_zh": [
+      "构建多样化的黄金数据集，因为有偏差的测试集会产生误导性评估分数",
+      "评估多个质量维度，因为模型可能准确但不安全或不忠实",
+      "将评估与提示词一起版本化，因为评估标准必须随应用演进",
+      "包含对抗性测试用例，因为边界情况和攻击揭示了真实世界的失败模式"
+    ],
+    "donts": [
+      "Don't rely solely on LLM-as-Judge because model judges have their own biases and failure modes",
+      "Don't use a single metric because reducing quality to one number hides important failure dimensions",
+      "Don't evaluate only happy paths because production failures occur on unexpected and adversarial inputs",
+      "Don't skip human evaluation entirely because automated metrics can miss nuanced quality issues"
+    ],
+    "donts_zh": [
+      "不要仅依赖LLM作为裁判，因为模型裁判有自身的偏见和失败模式",
+      "不要使用单一指标，因为将质量压缩为一个数字会隐藏重要的失败维度",
+      "不要只评估正向路径，因为生产故障发生在意外和对抗性输入上",
+      "不要完全跳过人工评估，因为自动化指标可能遗漏细微的质量问题"
+    ],
+    "case_study_company": "Anthropic",
+    "case_study": "Anthropic built extensive evaluation frameworks for Claude, including automated benchmarks across helpfulness, harmlessness, and honesty dimensions. Their evaluation suite runs thousands of test cases on every model iteration, enabling rapid detection of capability regressions and safety issues. This systematic approach allows them to ship model updates with high confidence that quality has not degraded.",
+    "case_study_zh": "Anthropic为Claude构建了广泛的评估框架，包括跨有用性、无害性和诚实性维度的自动化基准。他们的评估套件在每次模型迭代时运行数千个测试用例，能快速检测能力回归和安全问题。这种系统化方法使他们能高信心地发布模型更新，确保质量未退化。",
+    "when_not_to_use": [
+      "Simple rule-based systems where deterministic output validation is sufficient",
+      "One-off exploratory uses of LLMs where systematic evaluation adds overhead without ongoing value",
+      "Early prototyping phases where the evaluation criteria themselves are not yet defined"
+    ],
+    "when_not_to_use_zh": [
+      "确定性输出验证足够的简单规则系统",
+      "LLM的一次性探索使用，系统评估增加开销但无持续价值",
+      "评估标准本身尚未定义的早期原型阶段"
+    ],
+    "adopters": ["Anthropic", "OpenAI", "Google DeepMind", "Microsoft", "Braintrust"]
   },
   {
     "id": 56,
@@ -348,7 +1332,89 @@
     "ai_relevant": true,
     "viz_type": "flow",
     "related": ["llm-evaluation-framework", "guardrails-framework", "prompt-testing"],
-    "tags": ["verification", "hallucination-detection", "safety", "grounding", "ai"]
+    "tags": ["verification", "hallucination-detection", "safety", "grounding", "ai"],
+    "origin_author": "Guardrails AI / NeMo Guardrails (NVIDIA), 2023",
+    "origin_source": "Guardrails AI framework and NVIDIA NeMo Guardrails documentation",
+    "origin_source_zh": "Guardrails AI框架及NVIDIA NeMo Guardrails文档",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Production AI applications where incorrect outputs could cause financial, legal, or safety harm",
+      "Customer-facing AI features where hallucinated content damages brand trust",
+      "Regulated industries (healthcare, finance) where AI outputs must be auditable and verifiable",
+      "RAG-based systems where generated answers must be traceable to source documents"
+    ],
+    "when_to_use_zh": [
+      "错误输出可能造成财务、法律或安全损害的生产AI应用",
+      "幻觉内容会损害品牌信任的面向客户的AI功能",
+      "AI输出必须可审计和可验证的受监管行业（医疗、金融）",
+      "生成答案必须可追溯到源文档的RAG系统"
+    ],
+    "core_concepts": [
+      "Schema Validation: Structural verification ensuring AI output matches expected format, types, and required fields",
+      "Factual Grounding: Cross-referencing generated claims against authoritative source documents to detect hallucinations",
+      "Output Guardrails: Automated filters that block or modify outputs violating safety, policy, or quality rules",
+      "PII Detection: Scanning generated content for personally identifiable information that should not be exposed",
+      "Human-in-the-Loop: Routing a sample of outputs to human reviewers for quality assurance and model improvement"
+    ],
+    "core_concepts_zh": [
+      "模式验证：结构性验证确保AI输出匹配预期格式、类型和必填字段",
+      "事实依据：将生成的声明与权威源文档交叉参照以检测幻觉",
+      "输出护栏：自动过滤违反安全、策略或质量规则的输出",
+      "PII检测：扫描生成内容中不应暴露的个人身份信息",
+      "人在回路中：将输出样本路由给人工审阅者以进行质量保证和模型改进"
+    ],
+    "timeline": [
+      ["2022", "Hallucination detection emerges as a critical research area as LLMs deploy widely in production"],
+      ["2023", "Guardrails AI releases open-source framework for validating LLM outputs with programmable rules"],
+      ["2023", "NVIDIA releases NeMo Guardrails for controlling LLM conversational behavior and output safety"],
+      ["2024", "Major cloud providers (AWS Bedrock, Azure AI) build output verification into their managed LLM services"],
+      ["2025", "Multi-layer verification becomes standard practice with schema, grounding, safety, and human checks in pipeline"]
+    ],
+    "timeline_zh": [
+      ["2022", "随着LLM广泛部署到生产环境，幻觉检测成为关键研究领域"],
+      ["2023", "Guardrails AI发布开源框架，用可编程规则验证LLM输出"],
+      ["2023", "NVIDIA发布NeMo Guardrails用于控制LLM对话行为和输出安全"],
+      ["2024", "主要云提供商（AWS Bedrock、Azure AI）将输出验证内置到其托管LLM服务中"],
+      ["2025", "多层验证成为标准实践，在管道中包含模式、依据、安全和人工检查"]
+    ],
+    "dos": [
+      "Do implement verification as a pipeline with multiple independent layers because no single check catches everything",
+      "Do ground-check factual claims against source documents because hallucinations are the top production risk for LLMs",
+      "Do log all verification failures for analysis because patterns in failures drive systematic improvements",
+      "Do include adversarial inputs in your test suite because users will probe boundaries in unexpected ways"
+    ],
+    "dos_zh": [
+      "将验证实现为多个独立层的管道，因为没有单一检查能捕获所有问题",
+      "将事实声明与源文档进行依据检查，因为幻觉是LLM的首要生产风险",
+      "记录所有验证失败以供分析，因为失败模式驱动系统化改进",
+      "在测试套件中包含对抗性输入，因为用户会以意想不到的方式探测边界"
+    ],
+    "donts": [
+      "Don't deploy AI features without output verification because unverified outputs will hallucinate in production",
+      "Don't rely solely on the LLM to self-verify because models are poor judges of their own hallucinations",
+      "Don't treat verification as a one-time setup because new failure modes emerge as usage patterns evolve",
+      "Don't block all outputs on strict rules because overly aggressive filtering degrades user experience"
+    ],
+    "donts_zh": [
+      "不要在没有输出验证的情况下部署AI功能，因为未验证的输出会在生产中产生幻觉",
+      "不要仅依赖LLM自我验证，因为模型不善于判断自身的幻觉",
+      "不要将验证视为一次性设置，因为随着使用模式演进会出现新的失败模式",
+      "不要用严格规则阻止所有输出，因为过于激进的过滤会降低用户体验"
+    ],
+    "case_study_company": "Bing Chat (Microsoft)",
+    "case_study": "After Microsoft launched Bing Chat (now Copilot) in early 2023, several high-profile hallucination incidents prompted them to build robust output verification layers. They implemented factual grounding checks against Bing search results, citation verification, and safety classifiers. These multi-layer checks significantly reduced hallucination rates and inappropriate responses in subsequent releases.",
+    "case_study_zh": "微软在2023年初推出Bing Chat（现为Copilot）后，几次高调的幻觉事件促使他们构建了强大的输出验证层。他们实现了基于Bing搜索结果的事实依据检查、引用验证和安全分类器。这些多层检查在后续版本中显著降低了幻觉率和不当响应。",
+    "when_not_to_use": [
+      "Creative writing or brainstorming use cases where factual grounding is not required",
+      "Internal developer tools where the cost of occasional errors is low and human review is built in",
+      "Prototype or demo environments where verification overhead is not justified"
+    ],
+    "when_not_to_use_zh": [
+      "不需要事实依据的创意写作或头脑风暴场景",
+      "偶尔出错成本低且已内置人工审查的内部开发工具",
+      "验证开销不合理的原型或演示环境"
+    ],
+    "adopters": ["Microsoft", "Google", "Anthropic", "Amazon", "Salesforce"]
   },
   {
     "id": 57,
@@ -375,7 +1441,89 @@
     "ai_relevant": true,
     "viz_type": "flow",
     "related": ["circuit-breaker-pattern", "agent-deployment-patterns", "chaos-engineering"],
-    "tags": ["agent-reliability", "bounded-execution", "idempotency", "checkpointing", "ai"]
+    "tags": ["agent-reliability", "bounded-execution", "idempotency", "checkpointing", "ai"],
+    "origin_author": "Anthropic / LangChain / OpenAI, 2023",
+    "origin_source": "Building Reliable AI Agents (industry practices from Anthropic, LangChain, and OpenAI documentation)",
+    "origin_source_zh": "《构建可靠AI智能体》（来自Anthropic、LangChain和OpenAI文档的行业实践）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Deploying autonomous AI agents that perform multi-step tasks with real-world side effects",
+      "Building agent systems that interact with external APIs, databases, or file systems",
+      "Production environments where agent failures must be contained and recovered from gracefully",
+      "Cost-sensitive deployments where runaway agent loops can generate massive API bills"
+    ],
+    "when_to_use_zh": [
+      "部署执行有真实副作用的多步任务的自主AI智能体",
+      "构建与外部API、数据库或文件系统交互的智能体系统",
+      "智能体故障必须被遏制且优雅恢复的生产环境",
+      "失控智能体循环可能产生巨额API账单的成本敏感部署"
+    ],
+    "core_concepts": [
+      "Bounded Execution: Hard limits on step count, time, and token usage to prevent infinite agent loops",
+      "Checkpointing: Persisting agent state at decision points to enable resume-from-failure without restarting",
+      "Idempotent Tool Calls: Designing tools so that retrying the same call produces the same result without duplicate side effects",
+      "Deterministic Fallbacks: Pre-defined simpler strategies activated when the primary agent path fails",
+      "Loop Detection: Monitoring for repetitive agent behaviors that indicate the agent is stuck in an unproductive cycle"
+    ],
+    "core_concepts_zh": [
+      "有界执行：对步数、时间和Token使用设置硬限制以防止无限智能体循环",
+      "检查点：在决策点持久化智能体状态以实现从故障处恢复而无需重启",
+      "幂等工具调用：设计工具使重试同一调用产生相同结果而无重复副作用",
+      "确定性降级：当主要智能体路径失败时激活的预定义更简单策略",
+      "循环检测：监控指示智能体陷入无效循环的重复行为"
+    ],
+    "timeline": [
+      ["2022", "Early LLM agents (AutoGPT, BabyAGI) demonstrate both potential and reliability challenges of autonomous AI"],
+      ["2023", "LangChain and LlamaIndex formalize agent architectures with tool use, planning, and memory patterns"],
+      ["2024", "Anthropic publishes best practices for building reliable Claude-based agents with bounded execution"],
+      ["2024", "OpenAI Assistants API and function calling introduce structured tool use with built-in safety mechanisms"],
+      ["2025", "Agent reliability patterns mature into production-grade frameworks with observability, cost controls, and human escalation"]
+    ],
+    "timeline_zh": [
+      ["2022", "早期LLM智能体（AutoGPT、BabyAGI）展示了自主AI的潜力和可靠性挑战"],
+      ["2023", "LangChain和LlamaIndex正式化了包含工具使用、规划和记忆模式的智能体架构"],
+      ["2024", "Anthropic发布构建可靠Claude智能体的最佳实践，包含有界执行"],
+      ["2024", "OpenAI Assistants API和函数调用引入了带内置安全机制的结构化工具使用"],
+      ["2025", "智能体可靠性模式成熟为生产级框架，包含可观测性、成本控制和人工升级"]
+    ],
+    "dos": [
+      "Do set hard budget limits (steps, tokens, time) because unconstrained agents will eventually enter infinite loops",
+      "Do make all tool calls idempotent because agent retries are inevitable and must not cause duplicate actions",
+      "Do implement human escalation paths because agents will encounter situations beyond their reliable capability",
+      "Do log every agent decision and tool call because debugging agent failures requires full execution traces"
+    ],
+    "dos_zh": [
+      "设置硬预算限制（步数、Token、时间），因为不受约束的智能体最终会进入无限循环",
+      "使所有工具调用幂等，因为智能体重试不可避免且不能导致重复操作",
+      "实现人工升级路径，因为智能体会遇到超出其可靠能力的情况",
+      "记录每个智能体决策和工具调用，因为调试智能体故障需要完整的执行跟踪"
+    ],
+    "donts": [
+      "Don't give agents unlimited tool access because broad permissions amplify the impact of agent errors",
+      "Don't skip loop detection because a stuck agent wastes resources and may cause unintended side effects",
+      "Don't deploy agents without monitoring because silent failures accumulate cost and erode user trust",
+      "Don't assume agent behavior is deterministic because LLM-based agents can take different paths on identical inputs"
+    ],
+    "donts_zh": [
+      "不要给智能体无限制的工具访问权限，因为广泛权限会放大智能体错误的影响",
+      "不要跳过循环检测，因为陷入循环的智能体浪费资源且可能造成意外副作用",
+      "不要在没有监控的情况下部署智能体，因为静默失败会累积成本并侵蚀用户信任",
+      "不要假设智能体行为是确定性的，因为基于LLM的智能体在相同输入上可能走不同路径"
+    ],
+    "case_study_company": "Anthropic",
+    "case_study": "Anthropic developed agent reliability patterns while building Claude's tool-use capabilities, discovering that bounded execution and checkpointing were essential after observing agents entering loops during complex multi-step tasks. Their internal agent framework enforces token budgets, implements retry-with-backoff for tool calls, and includes automatic human escalation when confidence drops below thresholds.",
+    "case_study_zh": "Anthropic在构建Claude的工具使用能力时开发了智能体可靠性模式，在观察到智能体在复杂多步任务中进入循环后，发现有界执行和检查点是必要的。他们的内部智能体框架强制Token预算，为工具调用实现退避重试，并在信心低于阈值时自动升级给人类。",
+    "when_not_to_use": [
+      "Simple single-turn LLM calls that do not involve tool use or multi-step reasoning",
+      "Fully supervised human-in-the-loop workflows where every agent action requires approval",
+      "Offline batch inference where failures can be retried without real-time reliability concerns"
+    ],
+    "when_not_to_use_zh": [
+      "不涉及工具使用或多步推理的简单单轮LLM调用",
+      "每个智能体动作都需要审批的完全监督人在回路工作流",
+      "失败可重试且无实时可靠性顾虑的离线批量推理"
+    ],
+    "adopters": ["Anthropic", "OpenAI", "Google DeepMind", "LangChain", "Replit"]
   },
   {
     "id": 58,
@@ -402,6 +1550,88 @@
     "ai_relevant": true,
     "viz_type": "cycle",
     "related": ["llm-evaluation-framework", "ai-output-verification", "prompt-engineering-patterns"],
-    "tags": ["prompt-testing", "regression", "ci-cd", "evaluation", "ai"]
+    "tags": ["prompt-testing", "regression", "ci-cd", "evaluation", "ai"],
+    "origin_author": "Promptfoo (Ian Webster), 2023",
+    "origin_source": "Promptfoo: Test Your LLM App (open-source project and documentation)",
+    "origin_source_zh": "《Promptfoo：测试你的LLM应用》（开源项目及文档）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Teams iterating on prompts frequently and needing confidence that changes do not break existing behavior",
+      "Production LLM applications where prompt regressions directly impact user experience",
+      "Multi-prompt pipelines where changes to one prompt can cascade and affect downstream outputs",
+      "Organizations building prompt engineering as a disciplined, measurable practice"
+    ],
+    "when_to_use_zh": [
+      "频繁迭代提示词且需要确信变更不会破坏现有行为的团队",
+      "提示词回归直接影响用户体验的生产LLM应用",
+      "一个提示词的变更可能级联影响下游输出的多提示词管道",
+      "将提示词工程建设为有纪律、可衡量实践的组织"
+    ],
+    "core_concepts": [
+      "Prompt Versioning: Tracking prompt text in version control like code to enable diff, review, and rollback",
+      "Assertion Types: Multiple validation methods including exact match, regex, semantic similarity, and LLM-as-judge",
+      "Regression Suite: A collection of test cases that must pass before any prompt change is deployed",
+      "Quality Scores: Quantitative metrics tracking prompt performance over time across multiple dimensions",
+      "A/B Evaluation: Comparing two prompt versions against the same test cases to measure relative improvement"
+    ],
+    "core_concepts_zh": [
+      "提示词版本化：像代码一样在版本控制中跟踪提示词文本，以实现差异对比、审查和回滚",
+      "断言类型：包括精确匹配、正则、语义相似度和LLM作为裁判的多种验证方法",
+      "回归套件：在部署任何提示词变更前必须通过的测试用例集合",
+      "质量分数：跨多个维度追踪提示词性能随时间变化的定量指标",
+      "A/B评估：将两个提示词版本对同一测试用例进行比较以衡量相对改进"
+    ],
+    "timeline": [
+      ["2022", "Early prompt engineering practitioners begin manually testing prompts with spreadsheets and scripts"],
+      ["2023", "Promptfoo releases as an open-source CLI tool for systematic prompt evaluation and comparison"],
+      ["2023", "Langsmith and Braintrust launch cloud platforms for prompt testing with built-in analytics"],
+      ["2024", "Prompt testing integrates into standard CI/CD pipelines alongside traditional software tests"],
+      ["2025", "Prompt testing tools mature to support multi-turn agent evaluation and model-agnostic testing"]
+    ],
+    "timeline_zh": [
+      ["2022", "早期提示词工程实践者开始用电子表格和脚本手动测试提示词"],
+      ["2023", "Promptfoo作为用于系统化提示词评估和比较的开源CLI工具发布"],
+      ["2023", "Langsmith和Braintrust推出带内置分析的提示词测试云平台"],
+      ["2024", "提示词测试与传统软件测试一起集成到标准CI/CD管道中"],
+      ["2025", "提示词测试工具成熟到支持多轮智能体评估和模型无关测试"]
+    ],
+    "dos": [
+      "Do version prompts alongside their tests because untested prompt changes are the leading cause of LLM regressions",
+      "Do use multiple assertion types because no single check captures all quality dimensions of LLM output",
+      "Do include adversarial and edge case inputs because prompts often fail on inputs the author did not consider",
+      "Do track scores over time because gradual drift is harder to notice than sudden regression"
+    ],
+    "dos_zh": [
+      "将提示词与其测试一起版本化，因为未测试的提示词变更是LLM回归的首要原因",
+      "使用多种断言类型，因为没有单一检查能捕获LLM输出的所有质量维度",
+      "包含对抗性和边界输入，因为提示词经常在作者未考虑的输入上失败",
+      "追踪分数随时间的变化，因为渐进漂移比突然回归更难察觉"
+    ],
+    "donts": [
+      "Don't change prompts in production without running regression tests because seemingly minor edits can cause major output changes",
+      "Don't test only with ideal inputs because production users will provide messy, ambiguous, and adversarial inputs",
+      "Don't ignore non-determinism because the same prompt can produce different outputs across runs",
+      "Don't rely solely on exact match assertions because LLM outputs are naturally variable and semantically equivalent answers may differ in phrasing"
+    ],
+    "donts_zh": [
+      "不要在未运行回归测试的情况下在生产中修改提示词，因为看似微小的编辑可能导致重大输出变化",
+      "不要仅用理想输入测试，因为生产用户会提供混乱、模糊和对抗性的输入",
+      "不要忽略非确定性，因为同一提示词在不同运行中可能产生不同输出",
+      "不要仅依赖精确匹配断言，因为LLM输出自然具有变异性，语义等价的答案可能措辞不同"
+    ],
+    "case_study_company": "Shopify",
+    "case_study": "Shopify implemented prompt testing for their AI-powered product description generator that serves millions of merchants. After a prompt change inadvertently degraded output quality for non-English products, they built a comprehensive regression suite with 500+ test cases across 12 languages. This caught three subsequent regressions before they reached production, saving significant merchant-facing impact.",
+    "case_study_zh": "Shopify为其服务数百万商家的AI产品描述生成器实施了提示词测试。在一次提示词变更意外降低了非英语产品的输出质量后，他们构建了一个包含12种语言500多个测试用例的综合回归套件。这在后续三次回归到达生产之前就将其捕获，避免了对商家的重大影响。",
+    "when_not_to_use": [
+      "One-off prompt usage where the prompt is not maintained or reused over time",
+      "Creative applications where output variability is desired and correctness is subjective",
+      "Very early experimentation where prompts change so rapidly that maintaining tests is counterproductive"
+    ],
+    "when_not_to_use_zh": [
+      "提示词不会长期维护或复用的一次性使用",
+      "输出变异性是期望的且正确性是主观的创意应用",
+      "提示词变化极快以至于维护测试适得其反的早期实验"
+    ],
+    "adopters": ["Shopify", "Vercel", "Notion", "Stripe", "GitHub Copilot"]
   }
 ]
