@@ -64,6 +64,10 @@ export const zh: LocaleStrings = {
   qualityTestability: '可测试性',
   qualityObservability: '可观测性',
   qualityPortability: '可移植性',
+  primarySource: '主要来源',
+  secondarySourcesTitle: '延伸阅读',
+  readingList: '推荐书单',
+  recommendedReading: '{category}推荐阅读',
   noResults: '未找到与 "{query}" 相关的框架',
   ai: 'AI',
 }

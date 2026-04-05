@@ -64,6 +64,10 @@ export const en: LocaleStrings = {
   qualityTestability: 'Testability',
   qualityObservability: 'Observability',
   qualityPortability: 'Portability',
+  primarySource: 'Primary Source',
+  secondarySourcesTitle: 'Further Reading',
+  readingList: 'Reading List',
+  recommendedReading: 'Recommended Reading for {category}',
   noResults: 'No frameworks found for "{query}"',
   ai: 'AI',
 }

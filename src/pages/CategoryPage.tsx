@@ -81,6 +81,28 @@ export default function CategoryPage() {
         />
       </div>
 
+      {/* Reading List */}
+      {(() => {
+        const sources = frameworks
+          .map(f => f.primary_source)
+          .filter(Boolean)
+          .filter((s, i, arr) => arr.indexOf(s) === i)
+          .slice(0, 8)
+
+        return sources.length > 0 ? (
+          <section className={styles.readingList}>
+            <h2 className={styles.readingTitle}>
+              📚 {t.recommendedReading.replace('{category}', localized(category, 'name'))}
+            </h2>
+            <ol className={styles.readingItems}>
+              {sources.map((s, i) => (
+                <li key={i} className={styles.readingItem}>{s}</li>
+              ))}
+            </ol>
+          </section>
+        ) : null
+      })()}
+
       {isAICategory && aiAcrossCategories && (
         <div className={styles.aiSection}>
           <h2 className={styles.aiSectionTitle}>{t.aiAcrossCategories}</h2>

@@ -247,14 +247,38 @@ export default function FrameworkPage() {
         </section>
       )}
 
-      {/* ── 9. Visualization ── */}
+      {/* ── 9. Sources ── */}
+      {(framework.primary_source || framework.secondary_sources?.length) && (
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle} style={sectionBorderStyle}>
+            📚 {t.primarySource}
+          </h2>
+          {framework.primary_source && (
+            <blockquote className={styles.sourceBlock}>
+              {framework.primary_source}
+            </blockquote>
+          )}
+          {framework.secondary_sources && framework.secondary_sources.length > 0 && (
+            <>
+              <h3 className={styles.subTitle}>{t.secondarySourcesTitle}</h3>
+              <ul className={styles.sourceList}>
+                {framework.secondary_sources.map((s, i) => (
+                  <li key={i} className={styles.sourceItem}>{s}</li>
+                ))}
+              </ul>
+            </>
+          )}
+        </section>
+      )}
+
+      {/* ── 10. Visualization ── */}
       <section className={styles.section}>
         <div className={styles.viz}>
           <FrameworkViz type={framework.viz_type} size={300} animate labels={steps} />
         </div>
       </section>
 
-      {/* ── 10. Related Frameworks ── */}
+      {/* ── 11. Related Frameworks ── */}
       {related.length > 0 && (
         <section className={styles.relatedSection}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.relatedFrameworks}</h2>
@@ -262,7 +286,7 @@ export default function FrameworkPage() {
         </section>
       )}
 
-      {/* ── 11. Prev/Next Navigation ── */}
+      {/* ── 12. Prev/Next Navigation ── */}
       <nav className={styles.nav}>
         <div>
           {prev && (

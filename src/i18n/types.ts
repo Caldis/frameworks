@@ -84,6 +84,12 @@ export interface LocaleStrings {
   qualityObservability: string
   qualityPortability: string
 
+  // Provenance
+  primarySource: string
+  secondarySourcesTitle: string
+  readingList: string
+  recommendedReading: string
+
   // Misc
   noResults: string  // uses {query} placeholder
   ai: string

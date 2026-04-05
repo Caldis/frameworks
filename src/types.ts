@@ -43,6 +43,10 @@ export interface Framework {
   when_not_to_use_zh: string[]
   adopters: string[]
 
+  // Provenance (S05)
+  primary_source?: string
+  secondary_sources?: string[]
+
   // Multi-dimensional taxonomy (S04)
   abstraction_level: AbstractionLevel
   quality_concerns: QualityConcern[]
