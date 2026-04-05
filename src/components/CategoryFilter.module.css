@@ -13,16 +13,24 @@
   transition: all 0.15s;
   border: 1px solid var(--border);
   background: transparent;
-  color: #555;
+  color: var(--text);
+}
+
+.btn:hover {
+  border-color: #999;
 }
 
 .btnActive {
-  background: #1a1916;
-  color: white;
-  border-color: #1a1916;
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.btnActive:hover {
+  border-color: var(--text);
 }
 
 .count {
   margin-left: 4px;
-  opacity: 0.6;
+  opacity: 0.5;
 }

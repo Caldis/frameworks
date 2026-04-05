@@ -27,12 +27,18 @@ export default function CategoryFilter({ active, onChange, counts }: CategoryFil
           onClick={() => onChange(cat.key)}
           onMouseEnter={e => {
             if (active !== cat.key) {
-              (e.currentTarget as HTMLButtonElement).style.backgroundColor = cat.colorBg
+              const el = e.currentTarget as HTMLButtonElement
+              el.style.backgroundColor = cat.colorBg
+              el.style.color = cat.colorText
+              el.style.borderColor = cat.colorBg
             }
           }}
           onMouseLeave={e => {
             if (active !== cat.key) {
-              (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'transparent'
+              const el = e.currentTarget as HTMLButtonElement
+              el.style.backgroundColor = ''
+              el.style.color = ''
+              el.style.borderColor = ''
             }
           }}
         >
