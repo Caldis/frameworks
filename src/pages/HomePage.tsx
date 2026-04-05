@@ -83,6 +83,14 @@ export default function HomePage() {
         <p className={styles.subtitle}>
           {t.siteSubtitle}
         </p>
+        <a
+          href="https://pmframe.works/"
+          className={styles.inspiredBy}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t.inspiredBy}
+        </a>
       </div>
 
       {/* Sticky controls bar */}
