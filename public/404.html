@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>100 Software Design Frameworks</title>
+  <script>
+    // Single Page App redirect for GitHub Pages
+    // Stores the path in sessionStorage and redirects to root
+    var pathSegmentsToKeep = 1; // /frameworks/ is the base
+    var l = window.location;
+    sessionStorage.redirect = l.pathname.slice(1) + l.search + l.hash;
+    l.replace(l.protocol + '//' + l.host + l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/');
+  </script>
+</head>
+<body></body>
+</html>
