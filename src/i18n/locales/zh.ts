@@ -68,6 +68,12 @@ export const zh: LocaleStrings = {
   secondarySourcesTitle: '延伸阅读',
   readingList: '推荐书单',
   recommendedReading: '{category}推荐阅读',
+  compare: '对比',
+  compareTitle: '框架对比',
+  compareSubtitle: '选择 2-3 个框架进行并排对比',
+  compareSelect: '选择一个框架...',
+  compareEmpty: '请在上方选择框架开始对比',
+  compareClear: '清除',
   noResults: '未找到与 "{query}" 相关的框架',
   ai: 'AI',
 }

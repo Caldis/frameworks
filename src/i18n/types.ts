@@ -90,6 +90,14 @@ export interface LocaleStrings {
   readingList: string
   recommendedReading: string
 
+  // Compare
+  compare: string
+  compareTitle: string
+  compareSubtitle: string
+  compareSelect: string
+  compareEmpty: string
+  compareClear: string
+
   // Misc
   noResults: string  // uses {query} placeholder
   ai: string

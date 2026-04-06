@@ -158,6 +158,9 @@ export default function HomePage() {
         <Link to="/map" className={styles.mapLink}>
           {t.map}
         </Link>
+        <Link to="/compare" className={styles.mapLink}>
+          {t.compare}
+        </Link>
         {showAdvanced && (
           <div className={styles.advancedFilters}>
             <DimensionFilter

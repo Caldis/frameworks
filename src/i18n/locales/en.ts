@@ -68,6 +68,12 @@ export const en: LocaleStrings = {
   secondarySourcesTitle: 'Further Reading',
   readingList: 'Reading List',
   recommendedReading: 'Recommended Reading for {category}',
+  compare: 'Compare',
+  compareTitle: 'Compare Frameworks',
+  compareSubtitle: 'Select 2-3 frameworks to compare side by side',
+  compareSelect: 'Select a framework...',
+  compareEmpty: 'Select frameworks above to start comparing',
+  compareClear: 'Clear',
   noResults: 'No frameworks found for "{query}"',
   ai: 'AI',
 }
