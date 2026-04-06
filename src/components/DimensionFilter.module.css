@@ -7,17 +7,18 @@
 
 .label {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   text-transform: uppercase;
-  color: #999;
+  color: var(--muted);
   letter-spacing: 0.5px;
   min-width: 70px;
 }
 
 .pill {
-  padding: 3px 10px;
+  padding: 6px 12px;
   border-radius: 16px;
-  font-size: 11px;
+  font-size: 12px;
+  min-height: 32px;
   border: 1px solid var(--border);
   background: transparent;
   cursor: pointer;
@@ -26,7 +27,7 @@
 }
 
 .pill:hover {
-  border-color: #999;
+  border-color: var(--muted);
 }
 
 .pillActive {

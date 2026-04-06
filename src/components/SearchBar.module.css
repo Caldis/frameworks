@@ -11,12 +11,12 @@
 }
 
 .container:focus-within {
-  border-color: #999;
+  border-color: var(--muted);
 }
 
 .icon {
   font-size: 14px;
-  color: #999;
+  color: var(--muted);
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -35,7 +35,7 @@
 .shortcut {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: #bbb;
+  color: var(--muted-light);
   background: var(--surface);
   padding: 2px 6px;
   border-radius: 4px;
