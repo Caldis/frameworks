@@ -12,11 +12,11 @@
 - **Deploy**: GitHub Actions → GitHub Pages (custom domain)
 - **Inspired by**: pmframe.works
 
-## Current State (as of 2026-04-05, end of Sprint S03)
+## Current State (as of 2026-04-06, end of Sprint S10)
 
 ### What Exists
 - 194 software design frameworks across 13 categories
-- Each framework has 33 fields: basic (name, desc, steps) + extended (origin, when_to_use, core_concepts, timeline, dos/donts, case_study, when_not_to_use, adopters)
+- Each framework has 38 fields: basic + extended + taxonomy (abstraction_level, quality_concerns, maturity_ring) + provenance (primary_source, secondary_sources)
 - 13 categories: 7 original lifecycle + 6 new (Data Architecture, Security & Privacy, Distributed Systems, API Design, Team & Organization, Observability & DX)
 - Full bilingual content (EN/ZH) with i18n system (useI18n hook, locale files)
 - Pages: Home (card grid + search + filter + favorites + modal), Framework Detail (11-section progressive layout), Category Landing (with AI cross-category view), Relationship Map (D3 force graph with lifecycle X-axis + complexity Y-axis)
@@ -37,10 +37,14 @@
 - S08: Design Debt cleanup (H2 hierarchy, focus-visible, modal, warnings)
 - S09: Compare page + Map 13-category fix
 
+### What Exists (continued)
+- Pages: Home (grouped by category + multi-dimension filter), Framework Detail (11 sections), Category Landing, Map (search + touch + 13 categories), Compare (side-by-side)
+- 40 E2E tests: smoke(9) + visual/a11y(8) + interaction(6) + data-display(7) + screenshots(10)
+- Harness: 4-gate evaluation, sprint boundary discipline, model selection guide, operational patterns
+
 ### Known Issues
 - No SSG yet (client-side only, SPA + 404 redirect)
-- No data-display correctness tests (map category bug hid for 5 sprints)
-- Map UX has further improvement potential (search, touch tooltip, better axis labels)
+- PROJECT_STATE file structure section outdated (still says "7 category data files")
 
 ### Key Lessons Learned (see .harness/evaluations/ for details)
 - "Build passes" ≠ "works correctly" (S00 route bug, S09 map bug)

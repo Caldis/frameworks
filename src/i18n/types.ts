@@ -99,6 +99,19 @@ export interface LocaleStrings {
   compareEmpty: string
   compareClear: string
 
+  // Selector
+  selector: string
+  selectorTitle: string
+  selectorSubtitle: string
+  selectorStep: string
+  selectorResults: string
+  selectorNoResults: string
+  selectorReset: string
+  selectorQ1: string
+  selectorQ2: string
+  selectorQ3: string
+  selectorQ4: string
+
   // Misc
   noResults: string  // uses {query} placeholder
   ai: string
