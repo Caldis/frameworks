@@ -80,15 +80,17 @@ START
   │   └─ npx playwright test        → all tests must pass
   │   [If any fail → Generator fixes → re-run Gate 1]
   │
-  ├─ 4. EVALUATE (Gate 2: Visual & A11y)
-  │   ├─ Launch Evaluator agent (separate context, adversarial)
-  │   ├─ Evaluator navigates running site via Playwright:
-  │   │   - Screenshot key pages at 1200px, 768px, 375px
-  │   │   - Tab through all interactive elements
-  │   │   - Check contrast, spacing, typography, overflow
-  │   │   - Switch to ZH, repeat visual check
-  │   ├─ Evaluator writes bug list (specific: file, line, what's wrong)
-  │   └─ If bugs found → Generator fixes → re-evaluate (max 3 rounds)
+  ├─ 4. EVALUATE (Gate 2: Screenshot-Based Design Critic)
+  │   ├─ Run `npx playwright test e2e/visual-screenshot.spec.ts`
+  │   │   → Captures 10 screenshots to test-results/screenshots/
+  │   ├─ Dispatch 4 parallel Design Critic sub-agents, each reviewing screenshots:
+  │   │   a) **Layout & Spacing Critic**: section gaps, alignment, visual rhythm
+  │   │   b) **Typography & Contrast Critic**: font sizes, contrast ratios, hierarchy
+  │   │   c) **Interaction State Critic**: hover/active/focus states, single/multi-select
+  │   │   d) **Content Presentation Critic**: text truncation, chart labels, data display
+  │   ├─ Merge 4 critic reports → prioritized bug list
+  │   ├─ If Critical bugs → Generator fixes → re-screenshot → re-evaluate
+  │   └─ Remaining issues → logged to next sprint backlog as "Design Debt"
   │
   ├─ 5. EVALUATE (Gate 3+4: Content + Design Language)
   │   ├─ Spot-check 3 random frameworks for factual accuracy
