@@ -30,12 +30,25 @@
 - S01: Code splitting (index 1019KB → 36KB)
 - S02: Expand to 160 frameworks, 13 categories (+60)
 - S03: Deepen to 194 frameworks (+34, from authoritative sources)
+- S04: Multi-dimensional taxonomy (abstraction, quality, maturity)
+- S05: Provenance citations + reading lists
+- S06: Playwright E2E tests (33 tests)
+- S07: Homepage category grouping + Map labels + Mobile UX
+- S08: Design Debt cleanup (H2 hierarchy, focus-visible, modal, warnings)
+- S09: Compare page + Map 13-category fix
 
 ### Known Issues
-- Map page designed for 7 categories — 13 categories may be crowded (not verified)
-- No SSG yet (client-side only, planned for S06)
-- Related field cross-references not always bidirectional
-- No E2E browser test automation (manual verification only)
+- No SSG yet (client-side only, SPA + 404 redirect)
+- No data-display correctness tests (map category bug hid for 5 sprints)
+- Map UX has further improvement potential (search, touch tooltip, better axis labels)
+
+### Key Lessons Learned (see .harness/evaluations/ for details)
+- "Build passes" ≠ "works correctly" (S00 route bug, S09 map bug)
+- Don't hardcode data lists — import from single source of truth
+- When adding data, test ALL consumer pages
+- Sonnet for CSS/content, Opus for components/logic
+- Pre-sprint data audit prevents downstream issues
+- Quick-win-after-retro prevents debt accumulation
 
 ### Architecture Decisions Made
 - CSS Modules over Tailwind (Minimal Scholar aesthetic)

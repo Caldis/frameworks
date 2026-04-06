@@ -81,6 +81,18 @@
 - [ ] Test with screen reader
 **Estimate**: Medium
 
+### Sprint S10: Map UX Overhaul + Data Display Tests [READY]
+**Priority**: High (S09 retro — map bug hid for 5 sprints)
+**Contract**: Map fully functional for 13 categories. Data display correctness tests prevent regressions.
+**Tasks**:
+- [ ] Add E2E data-display correctness tests (map has 13 category columns, home has 13 section headers, compare has all frameworks in dropdown)
+- [ ] Map: add search/highlight for specific frameworks
+- [ ] Map: touch-friendly tooltip (tap instead of hover)
+- [ ] Map: X-axis labels readable at 13 categories (may need horizontal scroll or 2-row layout)
+- [ ] Map: verify node distribution across all 13 columns
+- [ ] Audit all pages for hardcoded category lists — replace with imports from categories.ts
+**Estimate**: Medium
+
 ---
 
 ## Completed Sprints

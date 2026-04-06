@@ -162,6 +162,8 @@ Visual quality and accessibility are NOT separate sprints. They are **gates that
 - **Don't trust "build passes" as quality proxy** — the FrameworkPage was a `<div>` placeholder that built fine.
 - **Don't hardcode counts or text** — "100" was wrong by S02. Use dynamic values or generic text.
 - **Don't skip CJK font stacks** — System serif fallback looks broken. Always include Noto SC in font declarations.
+- **Don't hardcode data lists** — Map hardcoded 7 categories; when S02 added 6 more, it silently broke. Always import from the single source of truth.
+- **Don't add data without testing display** — When categories/frameworks are added, verify ALL consumer pages (home, map, compare, category) reflect the new data. "Build passes" ≠ "data is displayed." (Lesson: Map bug hid for 5 sprints because no test checked node count vs category count.)
 
 ## Assumptions to Re-Test
 
