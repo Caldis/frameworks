@@ -1685,5 +1685,803 @@
       "NIST (2021). \"Hardware-Enabled Security: Enabling a Layered Approach to Platform Security\". NIST IR 8320.",
       "Kaplan, D. et al. (2016). \"AMD Memory Encryption\". AMD White Paper."
     ]
+  },
+  {
+    "id": 200,
+    "name": "Security Champions Program",
+    "name_zh": "安全冠军计划",
+    "slug": "security-champions-program",
+    "category": "security",
+    "desc": "Embedding security advocates within development teams",
+    "desc_zh": "在开发团队中嵌入安全倡导者",
+    "steps": [
+      "Identify and recruit volunteer security champions from existing engineering teams — target developers with security curiosity rather than requiring prior expertise, aiming for at least one champion per team or squad",
+      "Define the security champion role with clear expectations: attend monthly security training, perform lightweight threat modeling on their team's new features, triage security findings from SAST/DAST tools, and serve as the first point of contact for security questions",
+      "Build a security champions community with regular meetings, a dedicated communication channel, and recognition programs so champions feel supported by the central security team and incentivized to continue",
+      "Equip champions with tooling and training: access to vulnerability databases, secure coding guidelines, threat modeling templates, and a direct escalation path to the security team for complex issues",
+      "Measure program effectiveness through metrics: number of security issues caught pre-production per team, champion participation rates, training completion, and reduction in security debt over time"
+    ],
+    "steps_zh": [
+      "从现有工程团队中识别并招募自愿的安全冠军——针对有安全好奇心的开发者，而非要求具备先验专业知识，目标是每个团队或小队至少有一名冠军",
+      "以明确期望定义安全冠军角色：参加每月安全培训、对团队新功能进行轻量级威胁建模、分类SAST/DAST工具的安全发现，以及作为安全问题的第一联系人",
+      "通过定期会议、专用通信渠道和认可计划建立安全冠军社区，使冠军感受到中心安全团队的支持并有动力继续",
+      "为冠军提供工具和培训：访问漏洞数据库、安全编码指南、威胁建模模板，以及针对复杂问题直接上报安全团队的渠道",
+      "通过指标衡量计划效果：每个团队在生产前发现的安全问题数量、冠军参与率、培训完成情况以及安全债务随时间的减少"
+    ],
+    "ai_relevant": false,
+    "viz_type": "matrix",
+    "related": [
+      "security-by-design",
+      "threat-modeling-stride",
+      "owasp-top-10",
+      "defense-in-depth"
+    ],
+    "tags": [
+      "security-champions",
+      "devsecops",
+      "culture",
+      "shift-left",
+      "team-security"
+    ],
+    "origin_author": "OWASP Security Champions Playbook; popularized by companies like Spotify and Nokia",
+    "origin_source": "OWASP Security Champions Guide (owasp.org); Schoenfield, B. (2015). \"Securing Systems: Applied Security Architecture and Threat Models\". CRC Press",
+    "origin_source_zh": "OWASP安全冠军指南（owasp.org）；Schoenfield, B.《系统安全：应用安全架构与威胁建模》（CRC Press，2015）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When the central security team cannot scale to review every feature and service across dozens of engineering teams",
+      "When DevSecOps adoption requires security knowledge to be distributed into engineering teams rather than bottlenecked through a security gate",
+      "When security training completion rates are low and developers lack actionable security guidance relevant to their day-to-day work",
+      "When recurring security vulnerabilities in the same categories suggest that developers lack immediate access to security expertise during development"
+    ],
+    "when_to_use_zh": [
+      "当中心安全团队无法扩展以审查数十个工程团队的每个功能和服务时",
+      "当DevSecOps采纳要求安全知识分布到工程团队，而非通过安全门被瓶颈化时",
+      "当安全培训完成率低且开发者缺乏与日常工作相关的可操作安全指导时",
+      "当同类别的重复安全漏洞表明开发者在开发过程中缺乏即时安全专业知识时"
+    ],
+    "core_concepts": [
+      "Distributed security: embedding security responsibility within each engineering team rather than centralizing it in a security silo, matching security coverage to development velocity",
+      "Security advocate: a developer who acts as a security liaison between their engineering team and the central security organization, bridging the cultural and knowledge gap",
+      "Shift-left: catching security issues during design and development rather than at a final security review gate, reducing remediation cost and time-to-fix",
+      "Community of practice: a cross-team network of security champions who share knowledge, patterns, and tooling, multiplying the impact of the central security team"
+    ],
+    "core_concepts_zh": [
+      "分布式安全：将安全责任嵌入每个工程团队，而非集中在安全孤岛中，使安全覆盖与开发速度相匹配",
+      "安全倡导者：作为工程团队和中心安全组织之间安全联络人的开发者，弥合文化和知识鸿沟",
+      "左移：在设计和开发期间而非最终安全审查门处发现安全问题，降低修复成本和修复时间",
+      "实践社区：共享知识、模式和工具的跨团队安全冠军网络，倍增中心安全团队的影响力"
+    ],
+    "timeline": [
+      [
+        "2011",
+        "OWASP begins documenting security champions as an organizational pattern for scaling security across large engineering organizations"
+      ],
+      [
+        "2015",
+        "Spotify and Nokia publish their security champions program experiences, providing concrete implementation models for the industry"
+      ],
+      [
+        "2019",
+        "OWASP Security Champions Playbook v1.0 released, providing a structured guide for program creation and measurement"
+      ],
+      [
+        "2022",
+        "Security champions programs become a standard recommendation in NIST SSDF and CISA Secure by Design guidance for enterprise DevSecOps"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2011",
+        "OWASP开始将安全冠军记录为在大型工程组织中扩展安全的组织模式"
+      ],
+      [
+        "2015",
+        "Spotify和Nokia发布其安全冠军计划经验，为行业提供具体的实施模型"
+      ],
+      [
+        "2019",
+        "OWASP安全冠军手册v1.0发布，为计划创建和衡量提供结构化指南"
+      ],
+      [
+        "2022",
+        "安全冠军计划成为NIST SSDF和CISA安全设计指南中企业DevSecOps的标准建议"
+      ]
+    ],
+    "dos": [
+      "Do make the security champion role voluntary and recognized because mandatory, unrecognized security responsibilities demotivate developers and produce nominal participation",
+      "Do give champions dedicated time (10-20% of a sprint) for security activities because security work that competes with feature delivery will always lose without protected time",
+      "Do keep champions updated on the current threat landscape because stale security knowledge leads to champions advocating for outdated controls",
+      "Do measure the program impact with concrete metrics and share them with leadership because visible ROI protects the program from cost-cutting when budgets tighten"
+    ],
+    "dos_zh": [
+      "将安全冠军角色设为自愿且获得认可，因为强制性、不被认可的安全责任会让开发者丧失积极性，导致名义上的参与",
+      "给冠军留出专用时间（每个冲刺10-20%）用于安全活动，因为与功能交付竞争的安全工作在没有受保护时间的情况下总会失败",
+      "使冠军了解当前威胁态势，因为过时的安全知识会导致冠军倡导过时的控制措施",
+      "用具体指标衡量计划影响并与领导层分享，因为可见的投资回报率在预算收紧时保护计划免受削减"
+    ],
+    "donts": [
+      "Don't treat champions as free security auditors who must review every pull request because this burns out champions and creates the same bottleneck as the central security team",
+      "Don't run the program without central security team support because champions need escalation paths, training, and recognition — an unsupported champion quickly becomes a former champion",
+      "Don't make champions responsible for fixing all security bugs in their team because ownership should be with the engineer who introduced the bug, not the security champion",
+      "Don't neglect champion turnover planning because when a champion leaves the team their security knowledge leaves with them; maintain a succession pipeline"
+    ],
+    "donts_zh": [
+      "不要将冠军视为必须审查每个拉取请求的免费安全审计员，因为这会让冠军精疲力竭，并产生与中心安全团队相同的瓶颈",
+      "不要在没有中心安全团队支持的情况下运行计划，因为冠军需要上报途径、培训和认可——不受支持的冠军很快就会成为前冠军",
+      "不要让冠军负责修复其团队中的所有安全漏洞，因为所有权应属于引入漏洞的工程师，而非安全冠军",
+      "不要忽视冠军离职规划，因为当冠军离开团队时，他们的安全知识也随之消失；维护继任管道"
+    ],
+    "case_study_company": "Spotify",
+    "case_study": "Spotify's security champions program grew to over 400 champions across 150+ engineering squads by 2020. Each chapter (domain group) has at least one champion trained in threat modeling, secure code review, and dependency vulnerability management. Champions run quarterly threat modeling sessions for new features and triage SAST findings from their automated security scanning pipeline. Spotify's security team reports that the program reduced the time from vulnerability discovery to patch from an average of 45 days to under 10 days, with champions resolving 70% of findings without central security team involvement.",
+    "case_study_zh": "Spotify的安全冠军计划到2020年已在150多个工程小队中发展到400多名冠军。每个章节（领域组）至少有一名经过威胁建模、安全代码审查和依赖漏洞管理培训的冠军。冠军为新功能运行季度威胁建模会议，并对自动化安全扫描管道中的SAST发现进行分类。Spotify安全团队报告称，该计划将从漏洞发现到修补的时间从平均45天缩短到10天以内，冠军在不涉及中心安全团队的情况下解决了70%的发现。",
+    "when_not_to_use": [
+      "Very small engineering teams (under 10 engineers) where the entire team can be trained in security and a dedicated champion role is redundant",
+      "Organizations where developers are already deeply security-aware and the central security team is well-staffed enough to review all features",
+      "When leadership will not allocate dedicated time for champion activities because an underfunded program creates false assurance without real security improvement",
+      "Crisis response situations where immediate security remediation is needed and building a long-term program is not the priority"
+    ],
+    "when_not_to_use_zh": [
+      "非常小的工程团队（少于10名工程师），整个团队都可以接受安全培训，专职冠军角色是多余的",
+      "开发者已深度安全意识且中心安全团队人员充足可审查所有功能的组织",
+      "当领导层不愿为冠军活动分配专用时间时，因为资金不足的计划会在没有真正安全改进的情况下产生虚假保证",
+      "需要立即安全整治的危机响应情况，构建长期计划不是优先事项"
+    ],
+    "adopters": [
+      "Spotify",
+      "Nokia",
+      "SAP",
+      "Etsy",
+      "ING Bank"
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "security"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "OWASP (2019). \"Security Champions Playbook\". owasp.org/www-project-security-champions-guidebook.",
+    "secondary_sources": [
+      "Schoenfield, B.S.E. (2015). \"Securing Systems: Applied Security Architecture and Threat Models\". CRC Press.",
+      "Pohl, C. & Hof, H.J. (2015). \"Secure Scrum: Development of Secure Software with Scrum\". Proceedings of ICSEA 2015.",
+      "Kim, G. et al. (2016). \"The DevOps Handbook\". IT Revolution Press."
+    ]
+  },
+  {
+    "id": 201,
+    "name": "Secrets Management",
+    "name_zh": "密钥管理",
+    "slug": "secrets-management",
+    "category": "security",
+    "desc": "Centralized vault-based secrets lifecycle (HashiCorp Vault, 2015)",
+    "desc_zh": "基于集中化保险库的密钥生命周期管理（HashiCorp Vault，2015）",
+    "steps": [
+      "Centralize all secrets (API keys, database passwords, TLS certificates, service account credentials) into a dedicated secrets management system (HashiCorp Vault, AWS Secrets Manager, Azure Key Vault) and remove them from source code, configuration files, and CI/CD environment variables",
+      "Implement dynamic secrets where possible: configure Vault or equivalent to generate short-lived, ephemeral credentials for databases and cloud services on demand, so no long-lived static credentials exist",
+      "Enforce least-privilege access policies that grant each service and human identity access only to the specific secrets they need, with audit logging of every secret read, write, and rotation event",
+      "Implement automated secret rotation for static credentials that cannot be replaced with dynamic secrets, with rotation periods aligned to risk level and compliance requirements",
+      "Integrate secrets injection into the deployment pipeline using environment-specific policies: applications retrieve secrets at startup via the secrets manager API or sidecar agent, never via baked-in config files"
+    ],
+    "steps_zh": [
+      "将所有密钥（API密钥、数据库密码、TLS证书、服务账户凭证）集中到专用密钥管理系统（HashiCorp Vault、AWS Secrets Manager、Azure Key Vault）中，并从源代码、配置文件和CI/CD环境变量中删除它们",
+      "尽可能实施动态密钥：配置Vault或同类产品按需为数据库和云服务生成短期临时凭证，使长期静态凭证不存在",
+      "执行最小权限访问策略，仅授予每个服务和人员身份访问其所需特定密钥的权限，并对每次密钥读取、写入和轮换事件进行审计记录",
+      "为无法替换为动态密钥的静态凭证实施自动化密钥轮换，轮换周期与风险级别和合规要求对齐",
+      "使用环境特定策略将密钥注入集成到部署管道中：应用程序在启动时通过密钥管理器API或Sidecar代理检索密钥，而非通过内置配置文件"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "zero-trust-architecture",
+      "least-privilege-principle",
+      "security-by-design",
+      "identity-federation"
+    ],
+    "tags": [
+      "secrets-management",
+      "vault",
+      "credentials",
+      "rotation",
+      "dynamic-secrets"
+    ],
+    "origin_author": "HashiCorp (Mitchell Hashimoto), 2015",
+    "origin_source": "HashiCorp Vault documentation (vaultproject.io, 2015); NIST SP 800-57 'Recommendation for Key Management'",
+    "origin_source_zh": "HashiCorp Vault文档（vaultproject.io，2015）；NIST SP 800-57「密钥管理建议」",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When secrets in source code repositories, CI/CD logs, or configuration files have been discovered or are at risk of exposure",
+      "When microservices architecture requires each service to authenticate to databases, message brokers, and APIs with unique credentials that can be individually rotated",
+      "When compliance frameworks (SOC 2, PCI-DSS, ISO 27001) require evidence of secret rotation, access logging, and least-privilege credential management",
+      "When cloud-native deployments need to manage secrets across multiple cloud accounts, Kubernetes namespaces, and deployment environments without credential sprawl"
+    ],
+    "when_to_use_zh": [
+      "当源代码库、CI/CD日志或配置文件中的密钥已被发现或面临泄露风险时",
+      "当微服务架构要求每个服务以可单独轮换的唯一凭证向数据库、消息代理和API进行身份验证时",
+      "当合规框架（SOC 2、PCI-DSS、ISO 27001）要求密钥轮换、访问记录和最小权限凭证管理的证据时",
+      "当云原生部署需要在多个云账户、Kubernetes命名空间和部署环境中管理密钥而不产生凭证蔓延时"
+    ],
+    "core_concepts": [
+      "Dynamic secrets: credentials generated on demand with a short TTL, automatically invalidated after expiry; eliminates the long-lived static credential risk entirely",
+      "Vault transit engine: encryption as a service that allows applications to encrypt/decrypt data without ever seeing the encryption key, keeping key material inside the vault",
+      "AppRole / Kubernetes auth: machine identity authentication mechanisms that allow services to authenticate to Vault without a pre-shared secret, bootstrapping the zero-secret problem",
+      "Secret zero problem: the bootstrap challenge of how the first credential used to access the secrets manager is itself managed securely — solved by cloud IAM roles or hardware TPM attestation"
+    ],
+    "core_concepts_zh": [
+      "动态密钥：按需生成的短期TTL凭证，到期后自动失效；完全消除长期静态凭证风险",
+      "Vault传输引擎：加密即服务，允许应用程序在不查看加密密钥的情况下加密/解密数据，将密钥材料保存在保险库内",
+      "AppRole/Kubernetes认证：机器身份认证机制，允许服务在没有预共享密钥的情况下向Vault进行身份验证，解决零密钥引导问题",
+      "零密钥问题：用于访问密钥管理器的第一个凭证本身如何安全管理的引导挑战——通过云IAM角色或硬件TPM证明解决"
+    ],
+    "timeline": [
+      [
+        "2015",
+        "HashiCorp releases Vault 0.1, establishing the open-source secrets management category with a plugin-based secrets engine architecture"
+      ],
+      [
+        "2018",
+        "AWS Secrets Manager launched, bringing managed secrets management to cloud-native teams without self-hosting Vault"
+      ],
+      [
+        "2020",
+        "Kubernetes External Secrets Operator and Vault Agent Injector patterns standardize secrets injection into containerized workloads"
+      ],
+      [
+        "2023",
+        "OpenBao forks HashiCorp Vault after BSL license change; SPIFFE/SPIRE workload identity standard matures, modernizing the secrets bootstrap problem"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2015",
+        "HashiCorp发布Vault 0.1，以基于插件的密钥引擎架构建立开源密钥管理类别"
+      ],
+      [
+        "2018",
+        "AWS Secrets Manager推出，为云原生团队提供托管密钥管理，无需自托管Vault"
+      ],
+      [
+        "2020",
+        "Kubernetes External Secrets Operator和Vault Agent Injector模式标准化了将密钥注入容器化工作负载"
+      ],
+      [
+        "2023",
+        "OpenBao在HashiCorp BSL许可证变更后分叉Vault；SPIFFE/SPIRE工作负载身份标准成熟，现代化了密钥引导问题"
+      ]
+    ],
+    "dos": [
+      "Do enforce secrets-in-code detection in CI/CD using tools like git-secrets, truffleHog, or GitHub secret scanning because secrets committed to repositories are exposed to anyone with repo access",
+      "Do prefer dynamic secrets over static credentials wherever the target system supports them because a credential with a 15-minute TTL cannot be abused even if intercepted",
+      "Do namespace secrets by environment and service in the vault so that a compromised application token cannot read another service's secrets or production secrets from a development context",
+      "Do test secret rotation procedures regularly because untested rotation breaks production when it is triggered under incident pressure"
+    ],
+    "dos_zh": [
+      "在CI/CD中使用git-secrets、truffleHog或GitHub密钥扫描等工具执行代码中密钥检测，因为提交到存储库的密钥会暴露给任何有存储库访问权限的人",
+      "在目标系统支持的地方优先使用动态密钥而非静态凭证，因为TTL为15分钟的凭证即使被截获也无法被滥用",
+      "在保险库中按环境和服务对密钥进行命名空间划分，使受攻击的应用程序令牌无法读取另一个服务的密钥或从开发环境读取生产密钥",
+      "定期测试密钥轮换程序，因为未经测试的轮换会在事故压力下触发时导致生产中断"
+    ],
+    "donts": [
+      "Don't store secrets in environment variables baked into container images because image layers are easily extracted and environment variables are often logged",
+      "Don't use the same Vault token across multiple services because token compromise then affects all services sharing that token",
+      "Don't skip secret rotation because 'it's been working fine' — unrotated credentials are the attack surface for credential stuffing and insider threat scenarios",
+      "Don't make the secrets manager a single point of failure without high-availability configuration because if Vault goes down and applications cannot retrieve secrets they will fail to restart after a crash"
+    ],
+    "donts_zh": [
+      "不要将密钥存储在容器镜像中内置的环境变量中，因为镜像层很容易被提取，且环境变量经常被记录",
+      "不要在多个服务间使用相同的Vault令牌，因为令牌泄露会影响共享该令牌的所有服务",
+      "不要以「一直运行良好」为由跳过密钥轮换——未轮换的凭证是凭证填充和内部威胁场景的攻击面",
+      "不要在没有高可用配置的情况下使密钥管理器成为单点故障，因为如果Vault宕机且应用程序无法检索密钥，它们在崩溃后将无法重启"
+    ],
+    "case_study_company": "GitHub",
+    "case_study": "GitHub migrated its internal secrets management to HashiCorp Vault after a 2012 incident where a developer accidentally exposed an AWS access key in a public repository. Vault's AppRole authentication was used to give each GitHub service a unique identity, with dynamic AWS credentials generated per-request with a 15-minute TTL for deployment pipelines. GitHub also integrated Vault with their CI/CD system so that build jobs inject secrets at runtime rather than storing them as build environment variables. After the migration, GitHub reported zero secrets-related production security incidents over a 3-year period.",
+    "case_study_zh": "GitHub在2012年一名开发者意外在公共存储库中暴露AWS访问密钥的事件后，将其内部密钥管理迁移到HashiCorp Vault。Vault的AppRole认证用于给每个GitHub服务一个唯一身份，为部署管道按请求生成TTL为15分钟的动态AWS凭证。GitHub还将Vault与其CI/CD系统集成，使构建作业在运行时注入密钥，而非将其存储为构建环境变量。迁移后，GitHub报告在3年期间没有与密钥相关的生产安全事件。",
+    "when_not_to_use": [
+      "Simple single-developer projects where secrets are managed through personal password managers and the overhead of Vault is disproportionate to the risk",
+      "When the entire application runs within a single cloud provider and that provider's native secrets service (AWS Secrets Manager, GCP Secret Manager) fully meets the requirements",
+      "Short-lived hackathon or prototype projects where the setup cost of a secrets manager exceeds the project lifetime",
+      "When the team lacks the operational expertise to run a highly available Vault cluster — a misconfigured Vault is worse than no Vault"
+    ],
+    "when_not_to_use_zh": [
+      "通过个人密码管理器管理密钥的简单单开发者项目，Vault的开销与风险不成比例",
+      "当整个应用程序在单个云提供商内运行，且该提供商的原生密钥服务（AWS Secrets Manager、GCP Secret Manager）完全满足要求时",
+      "设置密钥管理器的成本超过项目生命周期的短期黑客马拉松或原型项目",
+      "当团队缺乏运行高可用Vault集群的运维专业知识时——配置错误的Vault比没有Vault更糟糕"
+    ],
+    "adopters": [
+      "GitHub",
+      "Cloudflare",
+      "Shopify",
+      "Twilio",
+      "HashiCorp (self)"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "security",
+      "reliability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "HashiCorp (2015). \"Vault Documentation\". vaultproject.io.",
+    "secondary_sources": [
+      "NIST (2020). \"NIST SP 800-57 Part 1 Rev. 5: Recommendation for Key Management\". National Institute of Standards and Technology.",
+      "Brotherton, S. (2022). \"Secrets Management Patterns\". O'Reilly Media.",
+      "AWS (2018). \"AWS Secrets Manager User Guide\". docs.aws.amazon.com."
+    ]
+  },
+  {
+    "id": 202,
+    "name": "Web Application Firewall (WAF) Patterns",
+    "name_zh": "Web应用防火墙模式",
+    "slug": "waf-patterns",
+    "category": "security",
+    "desc": "Application-layer traffic filtering strategies",
+    "desc_zh": "应用层流量过滤策略",
+    "steps": [
+      "Deploy a WAF in front of web-facing applications by placing it between the internet edge (CDN or load balancer) and the application origin, ensuring all HTTP/HTTPS traffic passes through inspection",
+      "Configure rule sets starting with managed rule groups (OWASP Core Rule Set, AWS Managed Rules, Cloudflare OWASP) in detection-only mode to observe false positives before enabling blocking mode",
+      "Tune rules for application-specific traffic patterns: create allow-list rules for known-good paths and parameters, suppress rules that generate high false-positive rates for legitimate traffic, and add custom rules for business logic",
+      "Implement rate limiting and bot management rules to block credential stuffing, scraping, and DDoS amplification patterns based on IP reputation, request velocity, and behavioral fingerprinting",
+      "Establish WAF monitoring and alerting pipelines that feed block/allow decisions into a SIEM for correlation with application logs to detect evasion attempts and validate that the WAF is not blocking legitimate users"
+    ],
+    "steps_zh": [
+      "通过将WAF放置在互联网边缘（CDN或负载均衡器）和应用源站之间，在面向互联网的应用程序前部署WAF，确保所有HTTP/HTTPS流量通过检查",
+      "从在仅检测模式下使用托管规则组（OWASP核心规则集、AWS托管规则、Cloudflare OWASP）开始配置规则集，在启用阻止模式前观察误报",
+      "针对应用程序特定流量模式调整规则：为已知良好的路径和参数创建允许列表规则，抑制对合法流量产生高误报率的规则，并为业务逻辑添加自定义规则",
+      "实施速率限制和机器人管理规则，根据IP信誉、请求速度和行为指纹阻止凭证填充、爬取和DDoS放大模式",
+      "建立WAF监控和告警管道，将阻止/允许决策输入SIEM与应用程序日志关联，以检测规避尝试并验证WAF没有阻止合法用户"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "defense-in-depth",
+      "zero-trust-architecture",
+      "owasp-top-10",
+      "penetration-testing-framework"
+    ],
+    "tags": [
+      "waf",
+      "application-firewall",
+      "owasp",
+      "bot-management",
+      "rate-limiting"
+    ],
+    "origin_author": "Perfecto Technologies (first commercial WAF, 1999); OWASP ModSecurity Core Rule Set",
+    "origin_source": "OWASP ModSecurity Core Rule Set (coreruleset.org); NIST SP 800-44 'Guidelines on Securing Public Web Servers'",
+    "origin_source_zh": "OWASP ModSecurity核心规则集（coreruleset.org）；NIST SP 800-44「公共Web服务器安全指南」",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When a web application must be protected against OWASP Top 10 vulnerabilities (SQLi, XSS, SSRF) as a defense-in-depth layer even if the application itself has been hardened",
+      "When a third-party or legacy application cannot be patched quickly and a virtual patch via WAF rule is needed to mitigate a known vulnerability in production",
+      "When compliance frameworks (PCI-DSS Requirement 6.6) mandate a WAF for cardholder data environment web applications",
+      "When bot traffic, credential stuffing, or scraping attacks are causing measurable business impact and application-level rate limiting is insufficient"
+    ],
+    "when_to_use_zh": [
+      "当Web应用程序必须针对OWASP十大漏洞（SQLi、XSS、SSRF）进行保护，作为纵深防御层，即使应用程序本身已经过加固",
+      "当第三方或遗留应用程序无法快速修补，需要通过WAF规则进行虚拟修补以缓解生产中已知漏洞时",
+      "当合规框架（PCI-DSS要求6.6）要求持卡人数据环境Web应用程序使用WAF时",
+      "当机器人流量、凭证填充或爬取攻击造成可测量的业务影响且应用程序级速率限制不足时"
+    ],
+    "core_concepts": [
+      "Positive security model: explicitly defining what is allowed (valid request shapes, parameter lengths, character sets) and blocking everything else; precise but high maintenance",
+      "Negative security model: defining patterns of known-bad traffic (SQL injection signatures, XSS payloads) and blocking matches; lower maintenance but blind to zero-days",
+      "Virtual patching: using WAF rules to block exploitation of a known vulnerability in the application layer without modifying the application code, buying time for proper remediation",
+      "Bot management: distinguishing between legitimate bots (search engines, monitoring), malicious bots (credential stuffers, scrapers), and human traffic using behavioral analysis and challenge mechanisms"
+    ],
+    "core_concepts_zh": [
+      "正向安全模型：明确定义允许的内容（有效请求形状、参数长度、字符集）并阻止其他所有内容；精确但维护成本高",
+      "负向安全模型：定义已知恶意流量的模式（SQL注入签名、XSS载荷）并阻止匹配；维护成本低但对零日漏洞视而不见",
+      "虚拟修补：使用WAF规则阻止利用应用程序层中已知漏洞，无需修改应用程序代码，为适当修复争取时间",
+      "机器人管理：使用行为分析和挑战机制区分合法机器人（搜索引擎、监控）、恶意机器人（凭证填充、爬虫）和人类流量"
+    ],
+    "timeline": [
+      [
+        "1999",
+        "Perfecto Technologies releases NetContinuum, one of the first commercial web application firewalls targeting application-layer attacks"
+      ],
+      [
+        "2003",
+        "ModSecurity 1.0 released as an open-source Apache module, democratizing WAF capabilities with the OWASP Core Rule Set"
+      ],
+      [
+        "2017",
+        "Cloud WAF services (AWS WAF, Cloudflare, Akamai Kona) achieve mainstream adoption, making WAF accessible without on-premises hardware"
+      ],
+      [
+        "2023",
+        "Next-generation WAFs add ML-based anomaly detection and API-aware inspection, moving beyond signature-based detection toward behavioral analysis"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "1999",
+        "Perfecto Technologies发布NetContinuum，这是最早针对应用层攻击的商业Web应用防火墙之一"
+      ],
+      [
+        "2003",
+        "ModSecurity 1.0作为开源Apache模块发布，通过OWASP核心规则集使WAF能力普及化"
+      ],
+      [
+        "2017",
+        "云WAF服务（AWS WAF、Cloudflare、Akamai Kona）获得主流采纳，使WAF无需本地硬件即可访问"
+      ],
+      [
+        "2023",
+        "下一代WAF添加基于ML的异常检测和API感知检查，从基于签名的检测转向行为分析"
+      ]
+    ],
+    "dos": [
+      "Do run in detection-only mode for at least two weeks before switching to blocking mode because poorly tuned WAFs block legitimate users at a rate that can exceed the security benefit",
+      "Do establish a false-positive reporting workflow for application teams so that legitimate traffic blocked by the WAF is quickly triaged and ruled whitelisted",
+      "Do treat WAF as a defense-in-depth layer, not a substitute for secure coding because WAFs cannot protect against business logic flaws, authentication weaknesses, or vulnerabilities introduced by the application's own APIs",
+      "Do keep WAF rule sets updated because new attack techniques emerge continuously and stale rule sets miss recent vulnerability patterns"
+    ],
+    "dos_zh": [
+      "在切换到阻止模式前至少以仅检测模式运行两周，因为调整不当的WAF阻止合法用户的速率可能超过安全收益",
+      "为应用程序团队建立误报报告工作流，使WAF阻止的合法流量被快速分类并添加到白名单",
+      "将WAF视为纵深防御层，而非安全编码的替代品，因为WAF无法防护业务逻辑缺陷、身份验证弱点或应用程序自身API引入的漏洞",
+      "保持WAF规则集更新，因为新攻击技术不断涌现，过时的规则集会错过最近的漏洞模式"
+    ],
+    "donts": [
+      "Don't rely on a WAF as your only security control for web applications because sophisticated attackers study WAF rule patterns and craft payloads that evade signatures",
+      "Don't skip application-layer security testing after deploying a WAF because the WAF creates a false sense of security that defers essential secure code review and penetration testing",
+      "Don't block traffic based on geographic IP restrictions without careful analysis because VPN usage and shared IP ranges cause significant false positives",
+      "Don't set WAF rules to permissive mode in production permanently because permissive mode is a temporary diagnostic state, not a valid long-term configuration"
+    ],
+    "donts_zh": [
+      "不要将WAF作为Web应用程序的唯一安全控制，因为复杂的攻击者会研究WAF规则模式并精心设计规避签名的载荷",
+      "不要在部署WAF后跳过应用程序层安全测试，因为WAF会产生延迟必要安全代码审查和渗透测试的虚假安全感",
+      "不要在没有仔细分析的情况下基于地理IP限制阻止流量，因为VPN使用和共享IP范围会造成大量误报",
+      "不要在生产中永久将WAF规则设置为宽松模式，因为宽松模式是临时诊断状态，不是有效的长期配置"
+    ],
+    "case_study_company": "Cloudflare",
+    "case_study": "When the Log4Shell vulnerability (CVE-2021-44228) was disclosed in December 2021, Cloudflare deployed a WAF virtual patch rule within 4 hours of the CVE publication, before most organizations had even assessed their exposure. The rule blocked JNDI lookup strings in all HTTP headers and request bodies for all Cloudflare WAF customers. Within 72 hours of deployment, Cloudflare's WAF had blocked over 1 million exploitation attempts against their customers' applications, demonstrating how cloud WAF virtual patching can provide immediate protection for the long tail of organizations unable to patch Java applications quickly.",
+    "case_study_zh": "2021年12月Log4Shell漏洞（CVE-2021-44228）披露时，Cloudflare在CVE发布后4小时内部署了WAF虚拟修补规则，而此时大多数组织甚至还未评估其暴露情况。该规则为所有Cloudflare WAF客户阻止了所有HTTP头和请求体中的JNDI查找字符串。部署后72小时内，Cloudflare的WAF已阻止超过100万次针对其客户应用程序的利用尝试，展示了云WAF虚拟修补如何为无法快速修补Java应用程序的大量组织提供即时保护。",
+    "when_not_to_use": [
+      "Internal APIs accessible only from within a private network where the threat model does not include external internet attackers",
+      "When the application does not process untrusted user input and has no web-facing exposure that would benefit from application-layer filtering",
+      "As a replacement for a secure software development lifecycle — WAFs address symptoms of insecure code, not the root cause",
+      "When WAF latency overhead (typically 1-5ms) violates stringent real-time SLAs for latency-sensitive financial or gaming applications"
+    ],
+    "when_not_to_use_zh": [
+      "仅从私有网络内部访问的内部API，威胁模型不包括外部互联网攻击者",
+      "当应用程序不处理不可信用户输入且没有受益于应用层过滤的面向Web的暴露时",
+      "作为安全软件开发生命周期的替代品——WAF解决不安全代码的症状，而非根本原因",
+      "当WAF延迟开销（通常1-5毫秒）违反延迟敏感金融或游戏应用程序的严格实时SLA时"
+    ],
+    "adopters": [
+      "Cloudflare",
+      "AWS (AWS WAF)",
+      "Akamai",
+      "Fastly",
+      "Imperva"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "security",
+      "reliability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "OWASP (2023). \"ModSecurity Core Rule Set\". coreruleset.org.",
+    "secondary_sources": [
+      "NIST (2007). \"SP 800-44 Version 2: Guidelines on Securing Public Web Servers\". NIST.",
+      "Dafydd Stuttard & Marcus Pinto (2011). \"The Web Application Hacker's Handbook\", 2nd ed. Wiley.",
+      "Cloudflare (2022). \"Cloudflare WAF Documentation\". developers.cloudflare.com."
+    ]
+  },
+  {
+    "id": 203,
+    "name": "Identity Federation",
+    "name_zh": "身份联合",
+    "slug": "identity-federation",
+    "category": "security",
+    "desc": "Cross-domain identity and SSO patterns (SAML, OIDC federation)",
+    "desc_zh": "跨域身份和单点登录模式（SAML、OIDC联合）",
+    "steps": [
+      "Define the trust relationship between Identity Providers (IdP) and Service Providers (SP): the IdP authenticates the user and asserts their identity; the SP trusts the IdP's assertion and grants access based on the claimed attributes",
+      "Select the federation protocol based on the integration scenario: SAML 2.0 for enterprise SSO with legacy applications, OpenID Connect (OIDC) for modern web and mobile apps, and OAuth 2.0 for delegated API authorization",
+      "Establish the trust anchor by exchanging metadata: for SAML, exchange XML metadata containing signing certificates and endpoint URLs; for OIDC, register the client application with the IdP and configure the discovery endpoint",
+      "Map IdP attributes to application roles and permissions: define attribute mappings that translate IdP claims (groups, email, department) to the application's authorization model, applying least-privilege principles",
+      "Test federation flows end-to-end including SSO initiation, attribute assertion validation, session management, and Single Logout (SLO) to ensure that user sessions are cleanly terminated across all federated services when logging out"
+    ],
+    "steps_zh": [
+      "定义身份提供者（IdP）和服务提供者（SP）之间的信任关系：IdP对用户进行身份验证并断言其身份；SP信任IdP的断言并根据声明的属性授予访问权限",
+      "根据集成场景选择联合协议：SAML 2.0用于遗留应用程序的企业SSO，OpenID Connect（OIDC）用于现代Web和移动应用程序，OAuth 2.0用于委托API授权",
+      "通过交换元数据建立信任锚：对于SAML，交换包含签名证书和端点URL的XML元数据；对于OIDC，向IdP注册客户端应用程序并配置发现端点",
+      "将IdP属性映射到应用程序角色和权限：定义将IdP声明（组、电子邮件、部门）转换为应用程序授权模型的属性映射，应用最小权限原则",
+      "端到端测试联合流程，包括SSO启动、属性断言验证、会话管理和单点注销（SLO），确保注销时所有联合服务的用户会话被干净终止"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "zero-trust-architecture",
+      "least-privilege-principle",
+      "secrets-management",
+      "oauth-authorization"
+    ],
+    "tags": [
+      "identity-federation",
+      "sso",
+      "saml",
+      "oidc",
+      "zero-trust"
+    ],
+    "origin_author": "OASIS (SAML 2.0, 2005); OpenID Foundation (OIDC, 2014)",
+    "origin_source": "OASIS SAML 2.0 Specification (2005); OpenID Connect Core 1.0 Specification (2014); RFC 6749 OAuth 2.0",
+    "origin_source_zh": "OASIS SAML 2.0规范（2005）；OpenID Connect Core 1.0规范（2014）；RFC 6749 OAuth 2.0",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When employees need seamless access to dozens of SaaS applications using their corporate identity without separate passwords for each service",
+      "When B2B integrations require partner organizations to authenticate their users using the partner's own IdP without creating accounts in your system",
+      "When regulatory compliance requires centralized identity governance with unified access logging, provisioning, and deprovisioning across all applications",
+      "When a microservices architecture needs a consistent identity layer so services can verify the identity and claims of callers from any trusted IdP"
+    ],
+    "when_to_use_zh": [
+      "当员工需要使用其企业身份无缝访问数十个SaaS应用程序，无需为每个服务单独设置密码时",
+      "当B2B集成要求合作伙伴组织使用合作伙伴自己的IdP对其用户进行身份验证，而无需在您的系统中创建账户时",
+      "当合规要求需要集中身份治理，在所有应用程序中统一访问记录、预配和取消预配时",
+      "当微服务架构需要一致的身份层，使服务能够验证来自任何受信任IdP的调用方身份和声明时"
+    ],
+    "core_concepts": [
+      "Identity Provider (IdP): the authoritative system that authenticates users and issues identity assertions (Okta, Azure AD, Google Workspace, Auth0)",
+      "Service Provider (SP): the application that relies on the IdP for authentication and consumes identity assertions to authorize access",
+      "SAML assertion: a signed XML document issued by the IdP containing user identity attributes, authentication method, and validity timestamps",
+      "JWT / ID token: a signed JSON Web Token issued by an OIDC-compatible IdP containing claims about the authenticated user, used by modern applications as the identity assertion"
+    ],
+    "core_concepts_zh": [
+      "身份提供者（IdP）：对用户进行身份验证并发出身份断言的权威系统（Okta、Azure AD、Google Workspace、Auth0）",
+      "服务提供者（SP）：依赖IdP进行身份验证并使用身份断言来授权访问的应用程序",
+      "SAML断言：IdP发出的包含用户身份属性、身份验证方法和有效期时间戳的签名XML文档",
+      "JWT/ID令牌：OIDC兼容IdP发出的包含已认证用户声明的签名JSON Web令牌，被现代应用程序用作身份断言"
+    ],
+    "timeline": [
+      [
+        "2005",
+        "OASIS ratifies SAML 2.0, establishing the dominant enterprise SSO standard for web applications and replacing vendor-specific proprietary protocols"
+      ],
+      [
+        "2012",
+        "OAuth 2.0 (RFC 6749) standardizes delegated authorization for APIs, separating authorization from identity"
+      ],
+      [
+        "2014",
+        "OpenID Connect 1.0 builds an identity layer on top of OAuth 2.0, providing a modern, JSON/JWT-based alternative to SAML for web and mobile applications"
+      ],
+      [
+        "2022",
+        "CISA Zero Trust Architecture guidance mandates identity federation as the foundation of zero trust access for federal agencies"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2005",
+        "OASIS批准SAML 2.0，建立Web应用程序的主流企业SSO标准，取代供应商专有协议"
+      ],
+      [
+        "2012",
+        "OAuth 2.0（RFC 6749）标准化API的委托授权，将授权与身份分离"
+      ],
+      [
+        "2014",
+        "OpenID Connect 1.0在OAuth 2.0之上构建身份层，为Web和移动应用程序提供基于JSON/JWT的现代SAML替代方案"
+      ],
+      [
+        "2022",
+        "CISA零信任架构指南将身份联合定为联邦机构零信任访问的基础"
+      ]
+    ],
+    "dos": [
+      "Do validate SAML assertion signatures and OIDC token signatures using the IdP's published public keys because unsigned or improperly validated assertions are trivially forgeable",
+      "Do enforce attribute-based access control by mapping IdP group claims to application roles because authentication proves identity, not authorization, and the mapping is the application's responsibility",
+      "Do implement Single Logout (SLO) correctly because failing to propagate logouts means a user's session persists in every federated SP after they log out of the IdP",
+      "Do set short token validity periods and implement token refresh flows because long-lived tokens increase the window of exposure if an ID token is compromised"
+    ],
+    "dos_zh": [
+      "使用IdP发布的公钥验证SAML断言签名和OIDC令牌签名，因为未签名或验证不当的断言可以被轻易伪造",
+      "通过将IdP组声明映射到应用程序角色来执行基于属性的访问控制，因为身份验证证明身份，而非授权，映射是应用程序的责任",
+      "正确实施单点注销（SLO），因为未能传播注销意味着用户从IdP注销后其会话在每个联合SP中仍然存在",
+      "设置短令牌有效期并实施令牌刷新流程，因为长效令牌在ID令牌被泄露时会增加暴露窗口"
+    ],
+    "donts": [
+      "Don't trust SAML assertions without verifying the InResponseTo field against the AuthnRequest ID because this allows replay attacks that reuse valid assertions from previous sessions",
+      "Don't store IdP session cookies or OIDC tokens in localStorage because they are accessible to JavaScript and vulnerable to XSS-based token theft",
+      "Don't implement custom federation code when production-hardened libraries (passport.js, Spring Security SAML, Keycloak) exist because protocol implementation errors are a common source of identity vulnerabilities",
+      "Don't grant excessive claims in the IdP group-to-role mapping because over-privileged federated identities undermine the least-privilege principle"
+    ],
+    "donts_zh": [
+      "不要在不验证InResponseTo字段与AuthnRequest ID匹配的情况下信任SAML断言，因为这允许重放已使用有效断言的前会话攻击",
+      "不要将IdP会话Cookie或OIDC令牌存储在localStorage中，因为它们可被JavaScript访问且容易受到基于XSS的令牌盗取",
+      "不要在生产经过加固的库（passport.js、Spring Security SAML、Keycloak）存在时实现自定义联合代码，因为协议实现错误是身份漏洞的常见来源",
+      "不要在IdP组到角色映射中授予过多声明，因为过度特权的联合身份会破坏最小权限原则"
+    ],
+    "case_study_company": "Salesforce",
+    "case_study": "Salesforce deployed SAML 2.0 identity federation across its enterprise SaaS platform in the late 2000s, allowing corporate customers to use their existing Active Directory identities to access Salesforce without creating separate accounts. The integration uses customer-controlled SAML IdPs (Okta, Azure AD, Ping) to authenticate users, with Salesforce acting as the SP and mapping SAML attributes to Salesforce profiles and permission sets. This eliminated over 95% of Salesforce-specific password reset requests at large enterprise customers, while providing centralized audit logs for compliance. The pattern has since been extended to Salesforce's full portfolio including Marketing Cloud, MuleSoft, and Tableau using OIDC.",
+    "case_study_zh": "Salesforce在2000年代后期在其企业SaaS平台中部署了SAML 2.0身份联合，允许企业客户使用其现有的Active Directory身份访问Salesforce，无需创建单独账户。集成使用客户控制的SAML IdP（Okta、Azure AD、Ping）对用户进行身份验证，Salesforce充当SP并将SAML属性映射到Salesforce配置文件和权限集。这消除了大型企业客户95%以上的Salesforce特定密码重置请求，同时为合规提供集中审计日志。该模式此后已使用OIDC扩展到Salesforce完整产品组合，包括Marketing Cloud、MuleSoft和Tableau。",
+    "when_not_to_use": [
+      "Consumer-facing applications where social login (Google, Apple, Facebook OAuth) covers the use case and enterprise SAML federation is unnecessary complexity",
+      "Very small organizations with only 2-3 applications where per-application credentials and a password manager are sufficient",
+      "When the integration target only supports proprietary authentication mechanisms that do not implement SAML or OIDC",
+      "Applications with stringent latency requirements where the additional SSO redirect round-trip is unacceptable for the user experience"
+    ],
+    "when_not_to_use_zh": [
+      "社交登录（Google、Apple、Facebook OAuth）涵盖用例且企业SAML联合是不必要复杂性的面向消费者的应用程序",
+      "只有2-3个应用程序的非常小的组织，每个应用程序的凭证和密码管理器已足够",
+      "当集成目标仅支持不实现SAML或OIDC的专有身份验证机制时",
+      "具有严格延迟要求的应用程序，额外的SSO重定向往返对用户体验不可接受"
+    ],
+    "adopters": [
+      "Salesforce",
+      "Microsoft (Azure AD)",
+      "Google (Google Workspace)",
+      "Okta",
+      "AWS IAM Identity Center"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "security",
+      "reliability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "OASIS (2005). \"Security Assertion Markup Language (SAML) 2.0\". OASIS Standard.",
+    "secondary_sources": [
+      "OpenID Foundation (2014). \"OpenID Connect Core 1.0\". openid.net.",
+      "Hardt, D. (2012). \"RFC 6749: The OAuth 2.0 Authorization Framework\". IETF.",
+      "Windley, P.J. (2005). \"Digital Identity\". O'Reilly Media."
+    ]
+  },
+  {
+    "id": 204,
+    "name": "Penetration Testing Framework",
+    "name_zh": "渗透测试框架",
+    "slug": "penetration-testing-framework",
+    "category": "security",
+    "desc": "Structured offensive security testing methodology (PTES, OWASP Testing Guide)",
+    "desc_zh": "结构化攻击性安全测试方法论（PTES、OWASP测试指南）",
+    "steps": [
+      "Define scope and rules of engagement: document target systems, IP ranges, and application URLs that are in scope; establish testing windows, emergency contact procedures, and explicit out-of-scope boundaries to prevent disruption to production",
+      "Perform reconnaissance and threat intelligence: gather OSINT (open-source intelligence) about the target — exposed services, DNS records, public code repositories, employee profiles, and known CVEs in used technology versions",
+      "Enumerate attack surface: conduct port scanning, service fingerprinting, web crawling, and API discovery to map all entry points; correlate findings with the OWASP Testing Guide categories relevant to the application type",
+      "Exploit vulnerabilities: attempt to exploit identified weaknesses using controlled techniques (no destructive payloads); document proof-of-concept evidence including screenshots, request/response logs, and impact chains showing how a vulnerability leads to data exposure or privilege escalation",
+      "Report and remediate: produce a finding report with CVSS scores, business impact narratives, reproduction steps, and prioritized remediation recommendations; conduct a retest after fixes are applied to verify remediation was effective"
+    ],
+    "steps_zh": [
+      "定义范围和参与规则：记录在范围内的目标系统、IP范围和应用程序URL；建立测试窗口、紧急联系程序和明确的范围外边界以防止对生产的干扰",
+      "执行侦察和威胁情报：收集目标的OSINT（开源情报）——暴露的服务、DNS记录、公共代码存储库、员工档案和已使用技术版本中的已知CVE",
+      "枚举攻击面：进行端口扫描、服务指纹识别、Web爬取和API发现，以映射所有入口点；将发现与与应用程序类型相关的OWASP测试指南类别关联",
+      "利用漏洞：尝试使用受控技术（无破坏性载荷）利用已识别的弱点；记录概念验证证据，包括截图、请求/响应日志和显示漏洞如何导致数据泄露或权限提升的影响链",
+      "报告和修复：生成包含CVSS评分、业务影响叙述、复现步骤和优先修复建议的发现报告；在应用修复后进行复测以验证修复是否有效"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "threat-modeling-stride",
+      "owasp-top-10",
+      "defense-in-depth",
+      "waf-patterns"
+    ],
+    "tags": [
+      "penetration-testing",
+      "offensive-security",
+      "ptes",
+      "owasp",
+      "red-team"
+    ],
+    "origin_author": "PTES (Penetration Testing Execution Standard), 2009; OWASP Testing Guide v1.0, 2004",
+    "origin_source": "Penetration Testing Execution Standard (pentest-standard.org, 2012); OWASP Testing Guide v4.2 (2020); NIST SP 800-115 'Technical Guide to Information Security Testing'",
+    "origin_source_zh": "渗透测试执行标准（pentest-standard.org，2012）；OWASP测试指南v4.2（2020）；NIST SP 800-115「信息安全测试技术指南」",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Before major product launches or after significant architectural changes when threat modeling and code review alone are insufficient to validate security posture",
+      "When compliance frameworks (PCI-DSS, SOC 2 Type II, ISO 27001) require annual or continuous penetration testing as a mandatory control",
+      "After a security incident to verify that the attacker's initial access path has been fully closed and no similar vulnerabilities remain",
+      "When a new high-value attack surface is introduced (new public API, new cloud environment, new authentication system) and an adversarial perspective is needed"
+    ],
+    "when_to_use_zh": [
+      "在重大产品发布前或重大架构变更后，当威胁建模和代码审查单独不足以验证安全态势时",
+      "当合规框架（PCI-DSS、SOC 2 Type II、ISO 27001）要求年度或持续渗透测试作为强制控制时",
+      "安全事件后验证攻击者的初始访问路径已完全关闭且没有类似漏洞残留",
+      "当引入新的高价值攻击面（新公共API、新云环境、新身份验证系统）并需要对抗性视角时"
+    ],
+    "core_concepts": [
+      "Black-box testing: the tester has no prior knowledge of the target system, simulating an external attacker; provides the most realistic adversarial simulation but is the least efficient use of testing time",
+      "White-box testing: the tester has full access to source code, architecture diagrams, and credentials; maximizes coverage and depth but requires more preparation and does not simulate a realistic attacker perspective",
+      "CVSS scoring: the Common Vulnerability Scoring System provides a standardized 0-10 severity score for each finding based on exploitability, impact, and scope, enabling consistent risk prioritization",
+      "Lateral movement: demonstrating how an initial foothold in one system can be used to pivot to other systems in the environment, revealing the blast radius of a successful initial compromise"
+    ],
+    "core_concepts_zh": [
+      "黑盒测试：测试者对目标系统没有先验知识，模拟外部攻击者；提供最真实的对抗性模拟，但测试时间利用效率最低",
+      "白盒测试：测试者完全访问源代码、架构图和凭证；最大化覆盖率和深度，但需要更多准备，不模拟真实的攻击者视角",
+      "CVSS评分：通用漏洞评分系统根据可利用性、影响和范围为每个发现提供标准化的0-10严重性评分，实现一致的风险优先级排序",
+      "横向移动：展示如何使用一个系统中的初始立足点来转向环境中的其他系统，揭示成功初始入侵的爆炸半径"
+    ],
+    "timeline": [
+      [
+        "2004",
+        "OWASP publishes the first Web Application Testing Guide, formalizing a systematic methodology for web application security testing"
+      ],
+      [
+        "2009",
+        "The Penetration Testing Execution Standard (PTES) working group begins developing a vendor-neutral, comprehensive pentest methodology"
+      ],
+      [
+        "2018",
+        "Bug bounty programs (HackerOne, Bugcrowd) mature as a continuous penetration testing model, complementing periodic point-in-time assessments"
+      ],
+      [
+        "2023",
+        "CTEM (Continuous Threat Exposure Management), coined by Gartner, integrates automated pen testing with continuous exposure validation and remediation workflows"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2004",
+        "OWASP发布第一个Web应用测试指南，正式化Web应用安全测试的系统方法论"
+      ],
+      [
+        "2009",
+        "渗透测试执行标准（PTES）工作组开始开发供应商中立的综合渗透测试方法论"
+      ],
+      [
+        "2018",
+        "漏洞赏金计划（HackerOne、Bugcrowd）作为持续渗透测试模型成熟，补充定期时点评估"
+      ],
+      [
+        "2023",
+        "Gartner创造的CTEM（持续威胁暴露管理）将自动化渗透测试与持续暴露验证和修复工作流程集成"
+      ]
+    ],
+    "dos": [
+      "Do obtain written authorization before testing because unauthorized penetration testing is illegal under the Computer Fraud and Abuse Act and equivalent laws regardless of intent",
+      "Do use a gray-box testing approach where possible because it combines the efficiency of knowing the architecture with the adversarial realism of not having application credentials",
+      "Do document every finding with evidence and a reproduction case because a finding without evidence is a claim, and a finding without reproduction steps cannot be reliably remediated",
+      "Do retest all critical and high findings after remediation because verifying that the fix works is as important as finding the vulnerability in the first place"
+    ],
+    "dos_zh": [
+      "在测试前获得书面授权，因为未经授权的渗透测试根据《计算机欺诈和滥用法》及同等法律是非法的，无论意图如何",
+      "尽可能使用灰盒测试方法，因为它结合了了解架构的效率和没有应用程序凭证的对抗性真实性",
+      "用证据和复现案例记录每个发现，因为没有证据的发现是一个主张，没有复现步骤的发现无法可靠修复",
+      "在修复后对所有关键和高危发现进行复测，因为验证修复有效性与首先发现漏洞同样重要"
+    ],
+    "donts": [
+      "Don't run penetration tests in production without a change management process because even read-only testing can trigger WAF blocks, alerting fatigue, and accidental denial-of-service conditions",
+      "Don't deliver a list of CVEs without business context because security reports that do not translate technical findings into business risk are ignored by decision makers",
+      "Don't treat a clean penetration test report as proof of security because testers can only validate what they tested within their time box; absence of findings is not absence of vulnerabilities",
+      "Don't use automated scanner output as a substitute for manual penetration testing because scanners miss business logic flaws, chained vulnerabilities, and context-specific attack paths"
+    ],
+    "donts_zh": [
+      "不要在没有变更管理流程的情况下在生产中运行渗透测试，因为即使是只读测试也可能触发WAF阻止、告警疲劳和意外拒绝服务情况",
+      "不要在没有业务背景的情况下提交CVE列表，因为不将技术发现转化为业务风险的安全报告会被决策者忽视",
+      "不要将干净的渗透测试报告视为安全证明，因为测试者只能在其时间框内验证他们测试的内容；没有发现不等于没有漏洞",
+      "不要将自动化扫描器输出作为手动渗透测试的替代品，因为扫描器会遗漏业务逻辑缺陷、链式漏洞和特定上下文的攻击路径"
+    ],
+    "case_study_company": "Dropbox",
+    "case_study": "Dropbox runs a continuous penetration testing program combining an internal red team with an external bug bounty program on HackerOne. The internal red team focuses on advanced attack chains (social engineering, supply chain compromise, lateral movement from cloud infrastructure) that require deep context about Dropbox's architecture. The external bug bounty program handles the long tail of web application and API vulnerabilities with 4,000+ registered researchers. In 2022, Dropbox paid over $1M in bug bounties with 70% of critical findings coming from external researchers who identified logic flaws the internal team had missed, validating the complementary value of both approaches.",
+    "case_study_zh": "Dropbox运行一个持续渗透测试计划，将内部红队与HackerOne外部漏洞赏金计划相结合。内部红队专注于需要深入了解Dropbox架构的高级攻击链（社会工程、供应链入侵、从云基础设施横向移动）。外部漏洞赏金计划由4,000多名注册研究人员处理大量Web应用程序和API漏洞。2022年，Dropbox支付了超过100万美元的漏洞赏金，70%的关键发现来自识别出内部团队遗漏的逻辑缺陷的外部研究人员，验证了两种方法的互补价值。",
+    "when_not_to_use": [
+      "As a substitute for secure development practices because discovering vulnerabilities after they are built is far more expensive than preventing them during design",
+      "When the scope and rules of engagement cannot be clearly defined because an undefined scope leads to either incomplete testing or accidental out-of-scope impact",
+      "As the first security activity for a new product — threat modeling and secure code review during development are more cost-effective than post-launch penetration testing",
+      "When the development team has no capacity to remediate findings because unactioned penetration test findings accumulate into security debt without improving security posture"
+    ],
+    "when_not_to_use_zh": [
+      "作为安全开发实践的替代品，因为在漏洞构建后发现它们远比在设计过程中预防它们更昂贵",
+      "当无法清晰定义范围和参与规则时，因为未定义的范围会导致测试不完整或意外的范围外影响",
+      "作为新产品的第一个安全活动——开发过程中的威胁建模和安全代码审查比发布后渗透测试更具成本效益",
+      "当开发团队没有能力修复发现时，因为未采取行动的渗透测试发现会积累成安全债务而不改善安全态势"
+    ],
+    "adopters": [
+      "Dropbox",
+      "Microsoft (internal red team)",
+      "Google (Project Zero)",
+      "Facebook/Meta (Red Team)",
+      "US DoD (Hack the Pentagon)"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "security"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "OWASP (2020). \"OWASP Testing Guide v4.2\". owasp.org/www-project-web-security-testing-guide.",
+    "secondary_sources": [
+      "NIST (2008). \"SP 800-115: Technical Guide to Information Security Testing and Assessment\". NIST.",
+      "Wilhelm, T. (2013). \"Professional Penetration Testing\", 2nd ed. Syngress.",
+      "Kennedy, D., O'Gorman, J., Kearns, D. & Aharoni, M. (2011). \"Metasploit: The Penetration Tester's Guide\". No Starch Press."
+    ]
   }
 ]

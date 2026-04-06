@@ -1594,5 +1594,806 @@
       "Orr, L. et al. (2021). \"Managing ML Pipelines: Feature Stores, Model Stores, and the Coming Wave of Embedding Stores\". Proceedings of the VLDB Endowment, 14(12).",
       "Huyen, C. (2022). \"Designing Machine Learning Systems\", Ch. 7. O'Reilly Media."
     ]
+  },
+  {
+    "id": 195,
+    "name": "Slowly Changing Dimensions (SCD)",
+    "name_zh": "缓慢变化维度",
+    "slug": "slowly-changing-dimensions",
+    "category": "data",
+    "desc": "Techniques for tracking historical changes in dimension tables (Kimball, 1996)",
+    "desc_zh": "在维度表中追踪历史变更的技术体系（Kimball，1996）",
+    "steps": [
+      "Identify dimension attributes that change over time (e.g., customer address, product category) and classify each as Type 1, 2, or 3 based on historical tracking requirements",
+      "For Type 2 SCD, add surrogate key, effective_from, effective_to, and is_current columns to the dimension table to represent each historical version as a distinct row",
+      "Build ETL/ELT pipelines that detect source system changes via CDC or delta loads and apply the correct SCD strategy: overwrite for Type 1, insert new row for Type 2, add attribute column for Type 3",
+      "Link fact tables to dimension surrogate keys so that historical facts always join to the dimension version that was current at the time of the event, preserving analytical accuracy",
+      "Monitor SCD pipeline health by tracking dimension table growth rates, detecting unexpected attribute changes, and validating that no overlapping effective date ranges exist for Type 2 rows"
+    ],
+    "steps_zh": [
+      "识别随时间变化的维度属性（如客户地址、产品类别），根据历史追踪需求将每个属性分类为类型1、2或3",
+      "对于类型2 SCD，在维度表中添加代理键、effective_from、effective_to和is_current列，将每个历史版本表示为独立的行",
+      "构建ETL/ELT管道，通过CDC或增量加载检测源系统变更，应用正确的SCD策略：类型1覆盖、类型2插入新行、类型3增加属性列",
+      "将事实表关联到维度代理键，使历史事实始终关联到事件发生时当时有效的维度版本，保障分析准确性",
+      "通过追踪维度表增长率、检测意外属性变更、验证类型2行的有效日期范围无重叠来监控SCD管道健康状况"
+    ],
+    "ai_relevant": false,
+    "viz_type": "table",
+    "related": [
+      "star-schema",
+      "data-vault",
+      "change-data-capture",
+      "medallion-architecture"
+    ],
+    "tags": [
+      "scd",
+      "dimensional-modeling",
+      "data-warehouse",
+      "kimball",
+      "history-tracking"
+    ],
+    "origin_author": "Ralph Kimball, 1996",
+    "origin_source": "The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling (Wiley, 1996, 3rd ed. 2013)",
+    "origin_source_zh": "《数据仓库工具包：维度建模权威指南》（Wiley，1996，第3版2013）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When dimension attributes change over time and business users need to analyze historical facts against the dimension values that existed at the time of each event",
+      "When regulatory or audit requirements mandate that historical states of master data (customer, product, employee) are preserved and queryable",
+      "When a data warehouse must support 'as-was' reporting showing what a dimension looked like at any point in the past",
+      "When source systems overwrite attribute values without preserving history and the warehouse must compensate for this loss"
+    ],
+    "when_to_use_zh": [
+      "当维度属性随时间变化，且业务用户需要按事件发生时的维度值分析历史事实时",
+      "当法规或审计要求要求保留并可查询主数据（客户、产品、员工）的历史状态时",
+      "当数据仓库必须支持展示过去任意时刻维度状态的「历史如实」报告时",
+      "当源系统覆盖属性值而不保留历史，数据仓库必须弥补这一信息损失时"
+    ],
+    "core_concepts": [
+      "Type 1 SCD: overwrite the old value with the new value; no history is preserved; used for correcting errors or attributes where history is irrelevant",
+      "Type 2 SCD: insert a new row with a new surrogate key for each change; full history is preserved via effective date ranges and is_current flags",
+      "Type 3 SCD: add a new column to store the previous value alongside the current value; supports limited one-step history",
+      "Surrogate key: a system-generated integer or hash key assigned to each dimension row, decoupling the warehouse model from source natural keys and enabling multiple historical versions"
+    ],
+    "core_concepts_zh": [
+      "类型1 SCD：用新值覆盖旧值；不保留历史；用于纠正错误或历史无关紧要的属性",
+      "类型2 SCD：每次变更插入带新代理键的新行；通过有效日期范围和is_current标志保留完整历史",
+      "类型3 SCD：增加新列在当前值旁边存储上一个值；支持有限的单步历史",
+      "代理键：分配给每个维度行的系统生成整数或哈希键，将仓库模型与源自然键解耦，支持多个历史版本"
+    ],
+    "timeline": [
+      [
+        "1996",
+        "Ralph Kimball introduces the SCD concept in 'The Data Warehouse Toolkit', defining Type 1, 2, and 3 strategies"
+      ],
+      [
+        "2002",
+        "Kimball and Ross publish expanded SCD guidance including hybrid types (Type 4, 6) in 'The Data Warehouse Lifecycle Toolkit'"
+      ],
+      [
+        "2013",
+        "The 3rd edition of 'The Data Warehouse Toolkit' remains the definitive SCD reference, adding cloud data warehouse considerations"
+      ],
+      [
+        "2020",
+        "dbt introduces incremental models and snapshot functionality, making Type 2 SCD implementable in SQL-first ELT pipelines on cloud warehouses"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "1996",
+        "Ralph Kimball在《数据仓库工具包》中引入SCD概念，定义类型1、2和3策略"
+      ],
+      [
+        "2002",
+        "Kimball和Ross在《数据仓库生命周期工具包》中发布扩展SCD指南，包括混合类型（类型4、6）"
+      ],
+      [
+        "2013",
+        "《数据仓库工具包》第3版仍是SCD权威参考，新增云数据仓库注意事项"
+      ],
+      [
+        "2020",
+        "dbt引入增量模型和快照功能，使类型2 SCD可在云数据仓库上的SQL优先ELT管道中实现"
+      ]
+    ],
+    "dos": [
+      "Do choose the SCD type based on actual business reporting needs rather than technical convenience because the wrong type loses history that cannot be recovered",
+      "Do use surrogate keys for all Type 2 dimensions because natural keys cannot uniquely identify historical versions of the same entity",
+      "Do close expired Type 2 rows atomically with the insert of the new row to prevent gaps or overlaps in effective date ranges",
+      "Do document the SCD type for each dimension attribute in a data dictionary because undocumented conventions become tribal knowledge that causes reporting errors"
+    ],
+    "dos_zh": [
+      "根据实际业务报告需求而非技术便利性选择SCD类型，因为错误的类型会丢失无法恢复的历史",
+      "对所有类型2维度使用代理键，因为自然键无法唯一标识同一实体的历史版本",
+      "在插入新行时原子性地关闭过期的类型2行，以防止有效日期范围出现间隙或重叠",
+      "在数据字典中记录每个维度属性的SCD类型，因为未记录的约定会成为部落知识并导致报告错误"
+    ],
+    "donts": [
+      "Don't apply Type 2 SCD to all dimension attributes indiscriminately because dimension table explosion leads to query performance degradation and storage waste",
+      "Don't forget to update fact table foreign keys when dimension rows are closed and new versions are inserted because stale keys break historical analysis",
+      "Don't mix SCD logic with business transformation logic in the same ETL step because it makes pipelines harder to test and debug",
+      "Don't ignore late-arriving dimension changes where the source change timestamp precedes already-loaded fact records because retroactive corrections require special handling"
+    ],
+    "donts_zh": [
+      "不要不加区分地对所有维度属性应用类型2 SCD，因为维度表膨胀会导致查询性能下降和存储浪费",
+      "不要忘记在维度行关闭并插入新版本时更新事实表外键，因为过时的键会破坏历史分析",
+      "不要在同一ETL步骤中混合SCD逻辑和业务转换逻辑，因为这会使管道更难测试和调试",
+      "不要忽视迟到的维度变更（源变更时间戳早于已加载的事实记录），因为追溯更正需要特殊处理"
+    ],
+    "case_study_company": "Airbnb",
+    "case_study": "Airbnb's data warehouse uses Type 2 SCD on its host and listing dimensions to support accurate historical analysis of booking revenue. When a host changes their listing's price tier or location, a new dimension row is inserted with a new surrogate key, preserving the state that existed when each booking was made. This allows revenue reports to correctly attribute bookings to the pricing tier that was active at the time of the reservation rather than the current tier, which is essential for accurate year-over-year comparison and cohort analysis.",
+    "case_study_zh": "Airbnb的数据仓库在其房东和房源维度上使用类型2 SCD，以支持准确的历史预订收入分析。当房东更改房源的价格层级或位置时，会插入一个带新代理键的新维度行，保留每次预订时的状态。这使收入报告能够将预订正确归因于预订时有效的价格层级，而非当前层级，这对准确的年同比比较和队列分析至关重要。",
+    "when_not_to_use": [
+      "Operational OLTP systems where historical dimension versioning adds unnecessary complexity and query overhead",
+      "When the dimension attribute changes so frequently (e.g., real-time price) that Type 2 generates millions of rows and a separate temporal table or time-series store is more appropriate",
+      "When no business user has expressed a need to analyze historical facts against past dimension states and the added complexity is pure overhead",
+      "Highly agile early-stage data models where dimension schemas change frequently and SCD infrastructure would need constant rework"
+    ],
+    "when_not_to_use_zh": [
+      "历史维度版本化会增加不必要的复杂性和查询开销的OLTP操作系统",
+      "当维度属性变化过于频繁（如实时价格）导致类型2生成数百万行时，独立的时态表或时序存储更合适",
+      "当没有业务用户表达需要按过去维度状态分析历史事实，增加的复杂性纯属开销时",
+      "维度模式频繁变更的高度敏捷早期数据模型，SCD基础设施需要持续返工"
+    ],
+    "adopters": [
+      "Airbnb",
+      "Amazon",
+      "Walmart",
+      "Capital One",
+      "Snowflake (dbt snapshots)"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "maintainability",
+      "reliability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Kimball, R. & Ross, M. (2013). \"The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling\", 3rd ed. Wiley.",
+    "secondary_sources": [
+      "Kimball, R. (1996). \"Slowly Changing Dimensions\". DBMS Magazine.",
+      "dbt Labs (2022). \"dbt Snapshots: Implementing Type 2 SCDs in SQL\". docs.getdbt.com.",
+      "Inmon, W.H. (2005). \"Building the Data Warehouse\", 4th ed. Wiley."
+    ]
+  },
+  {
+    "id": 196,
+    "name": "Data Lineage",
+    "name_zh": "数据血缘",
+    "slug": "data-lineage",
+    "category": "data",
+    "desc": "Tracking data origin, transformations, and consumption across pipelines",
+    "desc_zh": "追踪数据在管道中的来源、转换过程和消费情况",
+    "steps": [
+      "Instrument data pipelines to capture lineage metadata: record source datasets, transformation logic, output datasets, execution timestamps, and job identifiers at each processing step",
+      "Store lineage metadata in a dedicated lineage graph (directed acyclic graph) where nodes represent datasets or transformation steps and edges represent data flow relationships",
+      "Integrate lineage capture with orchestration tools (Airflow, dbt, Spark) using native hooks or OpenLineage-compatible APIs to automate metadata collection without manual instrumentation",
+      "Build a lineage UI or API that allows data consumers, data owners, and compliance teams to trace any dataset upstream to its origin and downstream to all its consumers",
+      "Use lineage for impact analysis: when a source schema changes or a data quality issue is detected, automatically identify all downstream datasets, dashboards, and models that are affected"
+    ],
+    "steps_zh": [
+      "对数据管道进行埋点以捕获血缘元数据：在每个处理步骤记录源数据集、转换逻辑、输出数据集、执行时间戳和作业标识符",
+      "将血缘元数据存储在专用血缘图（有向无环图）中，其中节点代表数据集或转换步骤，边代表数据流关系",
+      "使用原生钩子或兼容OpenLineage的API将血缘捕获与编排工具（Airflow、dbt、Spark）集成，实现自动化元数据采集",
+      "构建血缘UI或API，允许数据消费者、数据所有者和合规团队将任何数据集追溯到其上游来源和所有下游消费者",
+      "使用血缘进行影响分析：当源模式变更或检测到数据质量问题时，自动识别所有受影响的下游数据集、仪表板和模型"
+    ],
+    "ai_relevant": true,
+    "viz_type": "graph",
+    "related": [
+      "data-mesh",
+      "data-quality-framework",
+      "schema-registry-pattern",
+      "medallion-architecture"
+    ],
+    "tags": [
+      "lineage",
+      "metadata",
+      "governance",
+      "observability",
+      "openlineage"
+    ],
+    "origin_author": "Industry-wide practice; standardized by OpenLineage (Astronomer/Linux Foundation, 2021)",
+    "origin_source": "OpenLineage specification (openlineage.io, 2021); Apache Atlas documentation; Marquez project (WeWork, 2019)",
+    "origin_source_zh": "OpenLineage规范（openlineage.io，2021）；Apache Atlas文档；Marquez项目（WeWork，2019）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When data quality issues in downstream reports need to be traced back to their root cause in source systems or intermediate transformations",
+      "When regulatory compliance (GDPR, CCPA, BCBS 239) requires demonstrating where personal or financial data originates and how it is processed",
+      "When schema changes in source systems need impact analysis to identify which downstream pipelines, models, and dashboards will break",
+      "When a data mesh or data lakehouse architecture spans many teams and datasets, making manual tracking of data provenance infeasible"
+    ],
+    "when_to_use_zh": [
+      "当下游报告中的数据质量问题需要追溯到源系统或中间转换的根本原因时",
+      "当监管合规（GDPR、CCPA、BCBS 239）要求证明个人或财务数据的来源及其处理方式时",
+      "当源系统模式变更需要影响分析以识别哪些下游管道、模型和仪表板将受影响时",
+      "当数据网格或数据湖仓架构跨越许多团队和数据集，使手动追踪数据来源变得不可行时"
+    ],
+    "core_concepts": [
+      "Column-level lineage: tracking data flow at the column granularity so that a single field in a report can be traced through all joins, aggregations, and transformations to the source column",
+      "Operational lineage: metadata about pipeline runs including execution time, row counts, and job IDs captured alongside structural lineage",
+      "OpenLineage: an open standard for lineage metadata collection providing a common API that tools like Airflow, Spark, and dbt emit events to",
+      "Impact analysis: using the lineage graph in reverse (downstream traversal) to predict which datasets and consumers are affected by an upstream change"
+    ],
+    "core_concepts_zh": [
+      "列级血缘：在列粒度追踪数据流，使报告中的单个字段可以通过所有连接、聚合和转换追溯到源列",
+      "操作血缘：管道运行的元数据，包括执行时间、行数和作业ID，与结构性血缘一起捕获",
+      "OpenLineage：血缘元数据采集的开放标准，提供Airflow、Spark和dbt等工具发送事件的通用API",
+      "影响分析：反向使用血缘图（下游遍历）预测哪些数据集和消费者受上游变更影响"
+    ],
+    "timeline": [
+      [
+        "2012",
+        "Apache Atlas (originally Falcon) introduced for Hadoop ecosystem metadata and lineage tracking at Hortonworks"
+      ],
+      [
+        "2019",
+        "WeWork open-sources Marquez, an early OpenLineage-compatible metadata server for Airflow pipelines"
+      ],
+      [
+        "2021",
+        "OpenLineage specification reaches v1.0 under Linux Foundation, standardizing lineage event schemas across tools"
+      ],
+      [
+        "2023",
+        "dbt, Apache Airflow 2.7, and Apache Spark natively emit OpenLineage events, making automated lineage mainstream"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2012",
+        "Apache Atlas（最初为Falcon）在Hortonworks为Hadoop生态系统引入元数据和血缘追踪"
+      ],
+      [
+        "2019",
+        "WeWork开源Marquez，这是Airflow管道的早期OpenLineage兼容元数据服务器"
+      ],
+      [
+        "2021",
+        "OpenLineage规范在Linux基金会下达到v1.0，标准化跨工具的血缘事件模式"
+      ],
+      [
+        "2023",
+        "dbt、Apache Airflow 2.7和Apache Spark原生发送OpenLineage事件，使自动化血缘成为主流"
+      ]
+    ],
+    "dos": [
+      "Do capture lineage at the column level wherever possible because table-level lineage is insufficient for regulatory compliance and root cause analysis",
+      "Do use OpenLineage-compatible tooling to avoid vendor lock-in and enable lineage aggregation across heterogeneous pipeline tools",
+      "Do store lineage in a graph database or dedicated lineage store rather than a relational table because traversal queries are natural graph operations",
+      "Do automate lineage capture through instrumentation rather than manual documentation because manual lineage goes stale immediately after the first pipeline change"
+    ],
+    "dos_zh": [
+      "尽可能在列级别捕获血缘，因为表级血缘不足以满足监管合规和根本原因分析",
+      "使用兼容OpenLineage的工具以避免供应商锁定，并在异构管道工具中聚合血缘",
+      "将血缘存储在图数据库或专用血缘存储中，而非关系表中，因为遍历查询是天然的图操作",
+      "通过埋点自动化血缘捕获，而非手动文档化，因为手动血缘在第一次管道变更后立即过时"
+    ],
+    "donts": [
+      "Don't conflate data lineage with data catalog documentation because lineage is runtime-captured provenance, not manually authored descriptions",
+      "Don't capture only successful pipeline runs because failed runs and partial writes can cause data quality issues that require lineage to diagnose",
+      "Don't expose raw lineage graphs to business users without a purpose-built UI because raw DAG structures are incomprehensible to non-engineers",
+      "Don't rely solely on static code analysis for lineage because dynamic SQL generation and runtime table routing cannot be resolved statically"
+    ],
+    "donts_zh": [
+      "不要将数据血缘与数据目录文档混为一谈，因为血缘是运行时捕获的来源证明，而非手动编写的描述",
+      "不要只捕获成功的管道运行，因为失败的运行和部分写入可能导致需要血缘才能诊断的数据质量问题",
+      "不要在没有专用UI的情况下将原始血缘图暴露给业务用户，因为原始DAG结构对非工程师来说难以理解",
+      "不要仅依赖静态代码分析来获取血缘，因为动态SQL生成和运行时表路由无法静态解析"
+    ],
+    "case_study_company": "ING Bank",
+    "case_study": "ING Bank implemented column-level data lineage across its enterprise data platform to satisfy BCBS 239 regulatory requirements for risk data aggregation and reporting. By instrumenting Spark jobs and dbt models with OpenLineage, ING can trace any figure in a regulatory capital report back to its source transaction in the core banking system, through every join and aggregation, in under five minutes. This replaced a previously manual documentation process that took compliance teams weeks per report.",
+    "case_study_zh": "ING银行在其企业数据平台中实施列级数据血缘，以满足BCBS 239风险数据汇总和报告的监管要求。通过使用OpenLineage对Spark作业和dbt模型进行埋点，ING可以在五分钟内将监管资本报告中的任何数字追溯到核心银行系统中的源交易，经过每一个连接和聚合。这取代了之前需要合规团队每份报告花费数周的手动文档化流程。",
+    "when_not_to_use": [
+      "Small single-pipeline projects where all transformations are visible in one place and lineage tracking adds overhead without benefit",
+      "Pure real-time streaming pipelines where event-level lineage generates prohibitive metadata volume and sampling-based observability is sufficient",
+      "When the organization has not yet established basic data catalog and data ownership practices, as lineage without governance context provides limited value",
+      "Throwaway analytics scripts and ad-hoc queries where the cost of instrumenting lineage outweighs the benefit"
+    ],
+    "when_not_to_use_zh": [
+      "所有转换都在一处可见的小型单管道项目，血缘追踪会增加开销而没有收益",
+      "纯实时流管道，事件级血缘会产生难以承受的元数据量，基于采样的可观测性已足够",
+      "当组织尚未建立基本的数据目录和数据所有权实践时，没有治理背景的血缘价值有限",
+      "一次性分析脚本和临时查询，埋点血缘的成本超过收益"
+    ],
+    "adopters": [
+      "ING Bank",
+      "LinkedIn (DataHub)",
+      "Netflix (Metacat)",
+      "Airbnb (Dataportal)",
+      "Lyft (Amundsen)"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "maintainability",
+      "reliability"
+    ],
+    "maturity_ring": "emerging",
+    "primary_source": "OpenLineage Project (2021). \"OpenLineage: An Open Standard for Data Lineage\". openlineage.io.",
+    "secondary_sources": [
+      "Deeleman, J. et al. (2022). \"Data Governance: The Definitive Guide\". O'Reilly Media.",
+      "Spirent (2022). \"BCBS 239: Principles for Effective Risk Data Aggregation and Risk Reporting\". Basel Committee on Banking Supervision.",
+      "Ehrlinger, L. & Woss, W. (2016). \"Towards a Definition of Knowledge Graphs\". Proceedings of the SEMANTICS 2016 Poster & Demo Track."
+    ]
+  },
+  {
+    "id": 197,
+    "name": "Schema Registry Pattern",
+    "name_zh": "模式注册表模式",
+    "slug": "schema-registry-pattern",
+    "category": "data",
+    "desc": "Centralized schema management for data contracts (Confluent, 2015)",
+    "desc_zh": "用于数据契约的集中化模式管理体系（Confluent，2015）",
+    "steps": [
+      "Deploy a schema registry service (Confluent Schema Registry, AWS Glue Schema Registry, or Apicurio) that acts as the centralized repository for all schema versions across your data platform",
+      "Producers register schemas before writing data: the registry assigns a schema ID, validates compatibility with the existing version history, and rejects schemas that violate the configured compatibility mode",
+      "Serializers embed the schema ID in the message payload (e.g., Avro magic byte + schema ID prefix) so consumers can resolve the exact schema version used to encode each message without out-of-band coordination",
+      "Configure compatibility rules per subject: BACKWARD compatibility ensures new consumers can read old messages; FORWARD ensures old consumers can read new messages; FULL ensures both directions are safe",
+      "Integrate schema validation into CI/CD pipelines so that schema changes are reviewed and compatibility-checked before deployment, treating schema changes as a first-class engineering artifact"
+    ],
+    "steps_zh": [
+      "部署模式注册表服务（Confluent Schema Registry、AWS Glue Schema Registry或Apicurio），作为数据平台中所有模式版本的集中存储库",
+      "生产者在写入数据前注册模式：注册表分配模式ID，验证与现有版本历史的兼容性，并拒绝违反配置兼容性模式的模式",
+      "序列化器将模式ID嵌入消息负载（如Avro魔术字节+模式ID前缀），使消费者无需带外协调即可解析用于编码每条消息的确切模式版本",
+      "按主题配置兼容性规则：BACKWARD兼容性确保新消费者可读取旧消息；FORWARD确保旧消费者可读取新消息；FULL确保双向安全",
+      "将模式验证集成到CI/CD管道中，使模式变更在部署前经过审查和兼容性检查，将模式变更视为一等工程制品"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "change-data-capture",
+      "data-lineage",
+      "data-quality-framework",
+      "stream-processing-patterns"
+    ],
+    "tags": [
+      "schema-registry",
+      "data-contracts",
+      "avro",
+      "protobuf",
+      "compatibility"
+    ],
+    "origin_author": "Confluent (Jay Kreps et al.), 2015",
+    "origin_source": "Confluent Schema Registry documentation (confluent.io, 2015); Designing Event-Driven Systems (O'Reilly, 2018) by Ben Stopford",
+    "origin_source_zh": "Confluent模式注册表文档（confluent.io，2015）；Ben Stopford《事件驱动系统设计》（O'Reilly，2018）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When multiple producers and consumers share Kafka topics or event streams and schema evolution must not break existing consumers",
+      "When data contracts between microservices need to be enforced automatically rather than relying on developer discipline",
+      "When serialization formats like Avro or Protobuf are used and schema IDs need to be resolved at deserialization time",
+      "When compliance or data governance requires an auditable history of all schema versions ever published to production"
+    ],
+    "when_to_use_zh": [
+      "当多个生产者和消费者共享Kafka主题或事件流，模式演进不得破坏现有消费者时",
+      "当微服务之间的数据契约需要自动执行而非依赖开发者纪律时",
+      "当使用Avro或Protobuf等序列化格式且需要在反序列化时解析模式ID时",
+      "当合规或数据治理要求对所有曾发布到生产的模式版本进行可审计的历史记录时"
+    ],
+    "core_concepts": [
+      "Schema subject: a named scope (typically a Kafka topic name) under which multiple schema versions are registered and their compatibility enforced",
+      "Compatibility modes: BACKWARD (new schema can read old data), FORWARD (old schema can read new data), FULL (both), NONE (no compatibility checking)",
+      "Schema ID wire format: the compact binary prefix (magic byte + 4-byte schema ID) that Confluent serializers embed in messages, allowing consumers to fetch the schema from the registry at deserialization",
+      "Data contract: a formal agreement between producer and consumer teams about the shape, semantics, and evolution rules of a dataset, enforced by the registry"
+    ],
+    "core_concepts_zh": [
+      "模式主题：命名范围（通常是Kafka主题名称），在其下注册多个模式版本并执行兼容性",
+      "兼容性模式：BACKWARD（新模式可读取旧数据）、FORWARD（旧模式可读取新数据）、FULL（两者）、NONE（不检查兼容性）",
+      "模式ID线格式：Confluent序列化器嵌入消息中的紧凑二进制前缀（魔术字节+4字节模式ID），允许消费者在反序列化时从注册表获取模式",
+      "数据契约：生产者和消费者团队之间关于数据集形状、语义和演进规则的正式协议，由注册表执行"
+    ],
+    "timeline": [
+      [
+        "2015",
+        "Confluent open-sources the Schema Registry as part of the Confluent Platform, paired with Apache Kafka"
+      ],
+      [
+        "2018",
+        "Ben Stopford's 'Designing Event-Driven Systems' popularizes schema registry as a core data contract pattern"
+      ],
+      [
+        "2021",
+        "AWS launches Glue Schema Registry; Azure Event Hubs adds Schema Registry support, making the pattern cloud-native"
+      ],
+      [
+        "2023",
+        "Data contract movement formalizes schema registries as the enforcement mechanism for producer-consumer SLAs in data mesh architectures"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2015",
+        "Confluent将模式注册表作为Confluent平台的一部分开源，与Apache Kafka配套"
+      ],
+      [
+        "2018",
+        "Ben Stopford的《事件驱动系统设计》将模式注册表推广为核心数据契约模式"
+      ],
+      [
+        "2021",
+        "AWS推出Glue Schema Registry；Azure Event Hubs添加模式注册表支持，使该模式成为云原生"
+      ],
+      [
+        "2023",
+        "数据契约运动将模式注册表正式化为数据网格架构中生产者-消费者SLA的执行机制"
+      ]
+    ],
+    "dos": [
+      "Do set BACKWARD or FULL compatibility as the default because it prevents producers from silently breaking consumers without coordination",
+      "Do treat schema changes as part of the pull request and code review process because catching incompatibilities before deployment is far cheaper than rolling back production",
+      "Do document the semantic meaning of each field in the schema alongside its type because a field named 'amount' without currency and unit context is an incomplete contract",
+      "Do version the schema subject per Kafka topic and environment (dev, staging, prod) to prevent development schema pollution from breaking production consumers"
+    ],
+    "dos_zh": [
+      "将BACKWARD或FULL兼容性设为默认值，因为它防止生产者在未协调的情况下静默地破坏消费者",
+      "将模式变更作为拉取请求和代码审查过程的一部分，因为在部署前发现不兼容远比回滚生产便宜",
+      "在模式中记录每个字段的语义含义以及其类型，因为没有货币和单位上下文的「amount」字段是不完整的契约",
+      "按Kafka主题和环境（开发、预发、生产）对模式主题进行版本控制，防止开发模式污染破坏生产消费者"
+    ],
+    "donts": [
+      "Don't use JSON Schema without a registry because without versioning and compatibility checks any producer can silently break all consumers",
+      "Don't delete or modify registered schema versions because consumers may still rely on those versions to deserialize historical messages",
+      "Don't let producers register schemas at runtime in production without CI/CD validation because unreviewed schema changes are a common source of production incidents",
+      "Don't ignore the schema registry as an operational dependency because if it becomes unavailable all producers and consumers using it will fail to start or process messages"
+    ],
+    "donts_zh": [
+      "不要在没有注册表的情况下使用JSON Schema，因为没有版本控制和兼容性检查，任何生产者都可能静默地破坏所有消费者",
+      "不要删除或修改已注册的模式版本，因为消费者可能仍依赖这些版本来反序列化历史消息",
+      "不要在生产中不经CI/CD验证就让生产者在运行时注册模式，因为未经审查的模式变更是生产事故的常见来源",
+      "不要忽视模式注册表作为操作依赖，因为如果它不可用，所有使用它的生产者和消费者将无法启动或处理消息"
+    ],
+    "case_study_company": "Linkedin",
+    "case_study": "LinkedIn uses a schema registry (built on their internal Espresso key-value store) to manage thousands of Avro schemas across over 10,000 Kafka topics that power their feed, notifications, and analytics pipelines. The registry enforces BACKWARD compatibility so that the 300+ microservices consuming any given topic can be deployed independently without coordination windows. Schema evolution incidents dropped by over 80% after the registry was mandated company-wide, compared to the prior JSON-without-schema era.",
+    "case_study_zh": "LinkedIn使用模式注册表（基于其内部Espresso键值存储构建）管理驱动其动态、通知和分析管道的10,000多个Kafka主题中的数千个Avro模式。注册表执行BACKWARD兼容性，使消费任何给定主题的300多个微服务可以独立部署，无需协调窗口。与之前无模式JSON时代相比，模式演进事故在注册表全公司强制推行后下降了80%以上。",
+    "when_not_to_use": [
+      "Simple request-response REST APIs where OpenAPI specification and HTTP versioning provide sufficient contract management",
+      "Single-team internal pipelines where producer and consumer are the same team and informal coordination is sufficient",
+      "When message volumes are low and human-readable JSON without schema enforcement meets the team's agility needs",
+      "Throwaway event streams used only for debugging or short-lived experiments where schema evolution is not a concern"
+    ],
+    "when_not_to_use_zh": [
+      "OpenAPI规范和HTTP版本控制提供足够契约管理的简单请求-响应REST API",
+      "生产者和消费者是同一团队且非正式协调已足够的单团队内部管道",
+      "当消息量较低且没有模式强制的人类可读JSON满足团队敏捷性需求时",
+      "仅用于调试或短期实验的一次性事件流，模式演进不是关注点"
+    ],
+    "adopters": [
+      "LinkedIn",
+      "Uber",
+      "Cloudflare",
+      "Robinhood",
+      "Confluent customers (10,000+)"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "maintainability",
+      "reliability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Confluent Inc. (2015). \"Schema Registry Documentation\". docs.confluent.io.",
+    "secondary_sources": [
+      "Stopford, B. (2018). \"Designing Event-Driven Systems\". O'Reilly Media.",
+      "Narkhede, N., Shapira, G. & Palino, T. (2017). \"Kafka: The Definitive Guide\". O'Reilly Media.",
+      "Dehghani, Z. (2022). \"Data Contracts\". martinfowler.com."
+    ]
+  },
+  {
+    "id": 198,
+    "name": "Data Quality Framework",
+    "name_zh": "数据质量框架",
+    "slug": "data-quality-framework",
+    "category": "data",
+    "desc": "Systematic validation of data accuracy, completeness, and consistency",
+    "desc_zh": "系统性验证数据准确性、完整性和一致性的方法体系",
+    "steps": [
+      "Define data quality dimensions relevant to the business context: accuracy, completeness, consistency, timeliness, uniqueness, and validity; assign ownership and SLOs for each critical dataset",
+      "Instrument data pipelines with quality checks at ingestion, transformation, and serving layers using declarative frameworks (dbt tests, Great Expectations, Soda) that express expectations as code",
+      "Publish quality metrics to a data observability platform with alerting so that data owners are notified of SLO breaches before downstream consumers are impacted",
+      "Implement quarantine patterns: route records that fail quality checks to a quarantine table with failure annotations rather than silently dropping them, preserving auditability",
+      "Close the feedback loop by routing quality alerts to data producers and establishing data quality SLAs in data contracts, making quality a shared responsibility between producers and consumers"
+    ],
+    "steps_zh": [
+      "定义与业务背景相关的数据质量维度：准确性、完整性、一致性、及时性、唯一性和有效性；为每个关键数据集分配所有权和SLO",
+      "使用声明式框架（dbt tests、Great Expectations、Soda）在摄入、转换和服务层对数据管道进行质量检查埋点，将期望表达为代码",
+      "将质量指标发布到数据可观测性平台并设置告警，使数据所有者在下游消费者受影响前收到SLO违规通知",
+      "实施隔离模式：将未通过质量检查的记录路由到带有失败注释的隔离表，而非静默丢弃，保留可审计性",
+      "通过将质量告警路由给数据生产者并在数据契约中建立数据质量SLA来形成反馈闭环，使质量成为生产者和消费者的共同责任"
+    ],
+    "ai_relevant": true,
+    "viz_type": "matrix",
+    "related": [
+      "data-lineage",
+      "schema-registry-pattern",
+      "data-mesh",
+      "medallion-architecture"
+    ],
+    "tags": [
+      "data-quality",
+      "observability",
+      "validation",
+      "great-expectations",
+      "dbt-tests"
+    ],
+    "origin_author": "Thomas C. Redman (1992); operationalized by DAMA International DMBOK",
+    "origin_source": "DAMA International, \"DMBOK2: Data Management Body of Knowledge\" (2017); Great Expectations documentation (2019)",
+    "origin_source_zh": "DAMA International《DMBOK2：数据管理知识体系》（2017）；Great Expectations文档（2019）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When downstream business decisions, ML models, or regulatory reports depend on data that could be corrupted by upstream system defects",
+      "When data pipelines span multiple systems and teams, creating opportunities for data corruption at each handoff",
+      "When SLA breaches or model accuracy degradation are caused by silent data quality issues that are detected only after business impact",
+      "When data mesh or data product patterns require producers to publish quality guarantees to consumers as part of their data product contract"
+    ],
+    "when_to_use_zh": [
+      "当下游业务决策、ML模型或监管报告依赖可能被上游系统缺陷破坏的数据时",
+      "当数据管道跨越多个系统和团队，在每次交接处都有数据损坏的机会时",
+      "当SLA违规或模型精度下降是由仅在业务影响后才发现的静默数据质量问题引起时",
+      "当数据网格或数据产品模式要求生产者作为其数据产品契约的一部分向消费者发布质量保证时"
+    ],
+    "core_concepts": [
+      "Data quality dimensions: the measurable characteristics of data — accuracy (correct values), completeness (no missing values), consistency (no contradictions), timeliness (freshness), uniqueness (no duplicates), validity (conforms to format/range rules)",
+      "Expectations as code: expressing data quality rules as version-controlled, executable assertions that run in CI/CD and pipeline jobs rather than ad-hoc manual checks",
+      "Data observability: continuous monitoring of data health metrics (freshness, volume, distribution, schema) with anomaly detection to catch quality issues before they propagate",
+      "Shift-left quality: validating data quality at the earliest possible pipeline stage (ingestion) rather than at the consumption point to minimize the blast radius of quality failures"
+    ],
+    "core_concepts_zh": [
+      "数据质量维度：数据的可测量特征——准确性（正确的值）、完整性（无缺失值）、一致性（无矛盾）、及时性（新鲜度）、唯一性（无重复）、有效性（符合格式/范围规则）",
+      "代码化期望：将数据质量规则表达为版本控制的、可执行的断言，在CI/CD和管道作业中运行，而非临时手动检查",
+      "数据可观测性：持续监控数据健康指标（新鲜度、数量、分布、模式），通过异常检测在质量问题传播前发现",
+      "左移质量：在最早的管道阶段（摄入）而非消费点验证数据质量，以最小化质量失败的爆炸半径"
+    ],
+    "timeline": [
+      [
+        "1992",
+        "Thomas Redman publishes 'Data Quality: Management and Technology', establishing data quality as a discipline"
+      ],
+      [
+        "2017",
+        "DAMA International releases DMBOK2, providing a comprehensive data management framework including quality dimensions"
+      ],
+      [
+        "2019",
+        "Great Expectations open-sourced, introducing 'expectations as code' and making programmatic data quality accessible to data engineers"
+      ],
+      [
+        "2022",
+        "Monte Carlo, Bigeye, and Soda raise significant funding, validating data observability as a distinct commercial category"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "1992",
+        "Thomas Redman出版《数据质量：管理与技术》，将数据质量确立为一门学科"
+      ],
+      [
+        "2017",
+        "DAMA International发布DMBOK2，提供包含质量维度的综合数据管理框架"
+      ],
+      [
+        "2019",
+        "Great Expectations开源，引入「代码化期望」，使数据工程师可以进行程序化数据质量管理"
+      ],
+      [
+        "2022",
+        "Monte Carlo、Bigeye和Soda获得大量融资，验证数据可观测性作为独立商业类别的价值"
+      ]
+    ],
+    "dos": [
+      "Do define quality rules in collaboration with data consumers because they know which quality failures have business impact and which are acceptable anomalies",
+      "Do run quality checks in the pipeline, not just on a schedule, because schedule-based checks detect failures hours after the bad data has already propagated",
+      "Do monitor data distributions and volumes in addition to schema checks because statistical anomalies (e.g., sudden 50% drop in row count) often signal upstream issues before column-level checks fire",
+      "Do track quality metrics over time and build quality dashboards because point-in-time pass/fail is insufficient for understanding quality trends and SLO achievement"
+    ],
+    "dos_zh": [
+      "与数据消费者协作定义质量规则，因为他们知道哪些质量失败有业务影响，哪些是可接受的异常",
+      "在管道中而非仅按计划运行质量检查，因为基于计划的检查在坏数据已传播数小时后才发现失败",
+      "除模式检查外还监控数据分布和数量，因为统计异常（如行数突然下降50%）通常在列级检查触发前就标志着上游问题",
+      "随时间追踪质量指标并建立质量仪表板，因为时间点的通过/失败不足以理解质量趋势和SLO达成情况"
+    ],
+    "donts": [
+      "Don't treat data quality as a one-time remediation project because data quality degrades continuously and requires ongoing monitoring",
+      "Don't block all pipeline progress on quality failures because blocking every issue stops data delivery entirely; use severity tiers to quarantine critical failures and warn on minor ones",
+      "Don't write quality checks only for known failure modes because unexpected quality issues are the most damaging; include statistical distribution monitoring for unknown unknowns",
+      "Don't assign data quality responsibility solely to a central data team because data producers closest to the source are best positioned to understand and fix quality issues"
+    ],
+    "donts_zh": [
+      "不要将数据质量视为一次性整治项目，因为数据质量会持续退化，需要持续监控",
+      "不要在质量失败时阻止所有管道进度，因为阻止每个问题会完全停止数据交付；使用严重性级别隔离关键失败并对次要失败发出警告",
+      "不要只为已知失败模式编写质量检查，因为意外的质量问题最具破坏性；包括统计分布监控以应对未知的未知",
+      "不要将数据质量责任完全分配给中心化数据团队，因为最接近源头的数据生产者最有能力理解和修复质量问题"
+    ],
+    "case_study_company": "Intuit",
+    "case_study": "Intuit built a company-wide data quality platform called DataQA that runs over 500,000 quality checks daily across their tax, payments, and small business data products. Using Great Expectations integrated into their Airflow pipelines, Intuit detects data quality issues before they reach the models powering TurboTax recommendations and QuickBooks insights. After implementing the framework, Intuit reduced data-quality-related model prediction errors by 35% and cut the mean time to detect a data quality incident from 4 hours to under 15 minutes.",
+    "case_study_zh": "Intuit构建了名为DataQA的全公司数据质量平台，每天在其税务、支付和小企业数据产品中运行超过50万次质量检查。使用集成到Airflow管道中的Great Expectations，Intuit在数据质量问题到达驱动TurboTax推荐和QuickBooks洞察的模型之前检测到它们。实施该框架后，Intuit将数据质量相关的模型预测错误减少了35%，并将检测数据质量事件的平均时间从4小时缩短到15分钟以内。",
+    "when_not_to_use": [
+      "Exploratory data science environments where data is inherently messy and the cost of quality enforcement exceeds the benefit",
+      "Real-time streaming pipelines where synchronous quality checks add latency that violates SLA requirements; use async anomaly detection instead",
+      "When the organization has not yet established data ownership — quality frameworks without accountable owners produce alerts that no one acts on",
+      "Throwaway prototypes and one-time data migrations where ongoing quality monitoring is unnecessary"
+    ],
+    "when_not_to_use_zh": [
+      "数据本质上杂乱且质量执行成本超过收益的探索性数据科学环境",
+      "同步质量检查增加违反SLA要求延迟的实时流管道；改用异步异常检测",
+      "当组织尚未建立数据所有权时——没有负责任所有者的质量框架会产生无人处理的告警",
+      "一次性原型和单次数据迁移，持续质量监控是不必要的"
+    ],
+    "adopters": [
+      "Intuit",
+      "Airbnb",
+      "Lyft",
+      "Shopify",
+      "Etsy"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "maintainability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "DAMA International (2017). \"DMBOK2: Data Management Body of Knowledge\", 2nd ed. Technics Publications.",
+    "secondary_sources": [
+      "Redman, T.C. (1992). \"Data Quality: Management and Technology\". Bantam Books.",
+      "Great Expectations (2019). \"Great Expectations Documentation\". greatexpectations.io.",
+      "Barr Moses et al. (2022). \"Data Quality Fundamentals\". O'Reilly Media."
+    ]
+  },
+  {
+    "id": 199,
+    "name": "Medallion Architecture",
+    "name_zh": "奖章架构",
+    "slug": "medallion-architecture",
+    "category": "data",
+    "desc": "Bronze/Silver/Gold layered data processing pattern (Databricks, 2021)",
+    "desc_zh": "铜/银/金分层数据处理模式（Databricks，2021）",
+    "steps": [
+      "Ingest raw data from source systems into the Bronze layer without transformation, preserving the exact source payload including schema, data types, and any malformed records for full auditability",
+      "Transform Bronze data into the Silver layer by applying cleaning, deduplication, schema normalization, and type casting; join related datasets and enrich records to produce a validated, integrated view",
+      "Aggregate and model Silver data into the Gold layer, producing business-level tables, star schemas, or aggregated metrics optimized for BI tools, dashboards, and ML feature consumption",
+      "Enforce data quality checks at each layer boundary: Bronze validates that data arrived; Silver validates schema and business rules; Gold validates business metrics and aggregation accuracy",
+      "Implement incremental processing using Delta Lake or Iceberg MERGE operations so that each layer is updated efficiently without full re-scans, enabling near-real-time Gold layer freshness"
+    ],
+    "steps_zh": [
+      "将来自源系统的原始数据无转换地摄入铜层，保留完整的源负载，包括模式、数据类型和任何格式错误的记录，以实现完整可审计性",
+      "通过应用清洗、去重、模式规范化和类型转换将铜层数据转换为银层；连接相关数据集并丰富记录以产生经过验证的集成视图",
+      "将银层数据聚合和建模为金层，产生为BI工具、仪表板和ML特征消费优化的业务级表、星型模式或聚合指标",
+      "在每个层边界执行数据质量检查：铜层验证数据已到达；银层验证模式和业务规则；金层验证业务指标和聚合准确性",
+      "使用Delta Lake或Iceberg MERGE操作实现增量处理，使每层能够高效更新而无需全量重扫，实现近实时金层新鲜度"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "data-lakehouse",
+      "data-quality-framework",
+      "data-lineage",
+      "slowly-changing-dimensions"
+    ],
+    "tags": [
+      "medallion",
+      "lakehouse",
+      "delta-lake",
+      "data-layers",
+      "databricks"
+    ],
+    "origin_author": "Databricks (Reza Shiftehfar et al.), 2021",
+    "origin_source": "Databricks Engineering Blog: 'Building a Medallion Architecture with Delta Lake' (2021); Delta Lake documentation",
+    "origin_source_zh": "Databricks工程博客：「使用Delta Lake构建奖章架构」（2021）；Delta Lake文档",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When building a data lakehouse on Delta Lake, Apache Iceberg, or Apache Hudi that needs clear separation between raw ingestion, integration, and serving layers",
+      "When multiple downstream consumers (BI, ML, data science) have different quality and latency requirements and a single pipeline cannot serve all of them optimally",
+      "When auditability requires preserving the original raw data alongside transformed versions for regulatory or debugging purposes",
+      "When incremental data processing and data quality need to be enforced systematically across a multi-team data platform"
+    ],
+    "when_to_use_zh": [
+      "当在Delta Lake、Apache Iceberg或Apache Hudi上构建需要清晰分离原始摄入、集成和服务层的数据湖仓时",
+      "当多个下游消费者（BI、ML、数据科学）有不同的质量和延迟要求，单一管道无法最优服务所有人时",
+      "当可审计性要求为监管或调试目的在转换版本旁边保留原始数据时",
+      "当增量数据处理和数据质量需要在多团队数据平台上系统性执行时"
+    ],
+    "core_concepts": [
+      "Bronze layer: the raw landing zone that stores data exactly as received from source systems; immutable append-only storage enabling full replay and re-processing",
+      "Silver layer: the cleaned and integrated layer where business rules are applied, duplicates removed, and schemas normalized; serves as the single source of truth for analytical consumption",
+      "Gold layer: the consumption-ready layer of aggregated, business-domain-specific datasets; optimized for query performance by BI tools and ML feature pipelines",
+      "Delta Lake / table format: ACID-compliant table format (Delta, Iceberg, Hudi) that enables MERGE, schema evolution, and time travel across all three layers"
+    ],
+    "core_concepts_zh": [
+      "铜层：原始登陆区，完全按从源系统接收的方式存储数据；不可变的追加式存储支持完整重放和重新处理",
+      "银层：应用业务规则、删除重复项和规范化模式的清洗集成层；作为分析消费的单一真实数据源",
+      "金层：消费就绪的聚合业务域特定数据集层；针对BI工具和ML特征管道的查询性能进行优化",
+      "Delta Lake/表格式：支持所有三层MERGE、模式演进和时间旅行的符合ACID的表格式（Delta、Iceberg、Hudi）"
+    ],
+    "timeline": [
+      [
+        "2019",
+        "Databricks releases Delta Lake as open source, providing the ACID foundation that makes the medallion pattern practical at scale"
+      ],
+      [
+        "2021",
+        "Databricks formalizes the 'Medallion Architecture' pattern in engineering blog posts and Spark Summit talks"
+      ],
+      [
+        "2022",
+        "Microsoft adopts medallion as the recommended architecture for Azure Data Lake and Synapse Analytics, accelerating enterprise adoption"
+      ],
+      [
+        "2024",
+        "Apache Iceberg achieves feature parity with Delta Lake; medallion architecture becomes table-format-agnostic, running on any open lakehouse format"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2019",
+        "Databricks将Delta Lake作为开源发布，提供使奖章模式在规模上实用的ACID基础"
+      ],
+      [
+        "2021",
+        "Databricks在工程博客文章和Spark峰会演讲中正式化「奖章架构」模式"
+      ],
+      [
+        "2022",
+        "微软采用奖章架构作为Azure Data Lake和Synapse Analytics的推荐架构，加速企业采纳"
+      ],
+      [
+        "2024",
+        "Apache Iceberg实现与Delta Lake的功能对等；奖章架构变得与表格式无关，可在任何开放湖仓格式上运行"
+      ]
+    ],
+    "dos": [
+      "Do keep the Bronze layer truly raw and append-only because any transformation applied at ingestion time makes it impossible to re-derive the Silver layer from a different transformation logic later",
+      "Do enforce explicit schema on Silver and Gold tables because schema-on-read in Silver causes unpredictable failures in downstream Gold pipelines",
+      "Do partition Gold tables by the query predicates most common in BI tools (e.g., date, region) because partition pruning is the primary performance lever for large Gold tables",
+      "Do use incremental MERGE rather than full refresh for Silver and Gold layers because full refreshes are slow, expensive, and create latency spikes for consumers"
+    ],
+    "dos_zh": [
+      "保持铜层真正原始且只追加，因为在摄入时应用的任何转换都会使以后无法从不同的转换逻辑重新派生银层",
+      "对银层和金层表强制执行显式模式，因为银层的读取时模式会在下游金层管道中造成不可预测的失败",
+      "按BI工具中最常见的查询谓词（如日期、区域）对金层表进行分区，因为分区裁剪是大型金层表的主要性能杠杆",
+      "对银层和金层使用增量MERGE而非全量刷新，因为全量刷新速度慢、成本高，会为消费者造成延迟尖峰"
+    ],
+    "donts": [
+      "Don't skip the Bronze layer and write transformed data directly to Silver because without the raw layer you lose the ability to replay history after discovering a transformation bug",
+      "Don't build Gold tables that replicate the entire Silver layer with minor variations because this creates maintenance sprawl; Gold should aggregate and simplify",
+      "Don't mix streaming and batch processing in the same layer without explicit partition isolation because mixed write patterns cause Delta Lake file compaction issues",
+      "Don't treat the medallion architecture as strictly three layers; hybrid Silver-Gold or additional domain layers are valid when business complexity justifies them"
+    ],
+    "donts_zh": [
+      "不要跳过铜层直接将转换后的数据写入银层，因为没有原始层，在发现转换错误后就无法重放历史",
+      "不要构建以细微变化复制整个银层的金层表，因为这会产生维护蔓延；金层应聚合和简化",
+      "不要在没有显式分区隔离的情况下在同一层混合流处理和批处理，因为混合写入模式会导致Delta Lake文件压缩问题",
+      "不要将奖章架构视为严格的三层；当业务复杂性证明合理时，混合银-金层或额外的领域层是有效的"
+    ],
+    "case_study_company": "Comcast",
+    "case_study": "Comcast migrated its advertising analytics platform to a medallion architecture on Delta Lake, processing over 50 billion ad impression events per day. The Bronze layer captures raw impression, click, and conversion events from 200+ ad servers. The Silver layer joins these events with campaign metadata and applies identity resolution to deduplicate device IDs. The Gold layer produces advertiser-facing campaign performance reports and ML training datasets for bid optimization models. This architecture reduced ad reporting latency from 24 hours to under 2 hours while cutting data platform costs by 40% through Delta Lake's optimized file compaction.",
+    "case_study_zh": "Comcast将其广告分析平台迁移到Delta Lake上的奖章架构，每天处理超过500亿个广告展示事件。铜层从200多个广告服务器捕获原始展示、点击和转化事件。银层将这些事件与活动元数据连接，并应用身份解析去重设备ID。金层产生面向广告主的活动绩效报告和用于出价优化模型的ML训练数据集。这种架构将广告报告延迟从24小时减少到2小时以内，同时通过Delta Lake的优化文件压缩将数据平台成本降低了40%。",
+    "when_not_to_use": [
+      "Simple single-source ETL pipelines where a two-layer approach (raw + curated) is sufficient and the three-layer overhead is not justified",
+      "Real-time OLTP systems where sub-second query latency is required and the batch-oriented medallion processing model is incompatible with latency SLAs",
+      "When the organization lacks the engineering maturity to maintain three layers of pipelines; start with a two-layer approach and evolve",
+      "Small datasets that fit in a single database where the complexity of a distributed lakehouse is unnecessary overhead"
+    ],
+    "when_not_to_use_zh": [
+      "两层方法（原始+精制）已足够且三层开销不合理的简单单源ETL管道",
+      "需要亚秒查询延迟且面向批处理的奖章处理模型与延迟SLA不兼容的实时OLTP系统",
+      "当组织缺乏维护三层管道的工程成熟度时；从两层方法开始并逐步演进",
+      "适合单个数据库的小型数据集，分布式湖仓的复杂性是不必要的开销"
+    ],
+    "adopters": [
+      "Databricks",
+      "Comcast",
+      "Shell",
+      "H&M Group",
+      "HSBC"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "scalability",
+      "maintainability",
+      "reliability"
+    ],
+    "maturity_ring": "emerging",
+    "primary_source": "Databricks Engineering (2021). \"Building a Medallion Architecture with Delta Lake\". databricks.com/blog.",
+    "secondary_sources": [
+      "Armbrust, M. et al. (2020). \"Delta Lake: High-Performance ACID Table Storage over Cloud Object Stores\". Proceedings of the VLDB Endowment, 13(12).",
+      "Doan, A. et al. (2022). \"The Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics\". CIDR 2022.",
+      "Databricks (2023). \"Delta Lake: The Definitive Guide\". O'Reilly Media."
+    ]
   }
 ]

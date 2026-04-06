@@ -1688,5 +1688,851 @@
       "Zuill, W. (2014). \"Mob Programming — A Whole Team Approach\". Proceedings of Agile 2014.",
       "Wilson, E. (2023). \"Ensemble Programming Guidebook\". ensembleprogramming.xyz."
     ]
+  },
+  {
+    "id": 215,
+    "name": "RFC Process",
+    "name_zh": "RFC流程",
+    "slug": "rfc-process",
+    "category": "team",
+    "desc": "Lightweight request-for-comments process for transparent technical decision-making",
+    "desc_zh": "用于透明技术决策的轻量级意见征集流程",
+    "steps": [
+      "Author drafts an RFC document using a standard template (motivation, proposed solution, alternatives considered, drawbacks, unresolved questions) and opens it as a pull request or shared document",
+      "The RFC enters a comment period (typically 1-4 weeks) during which any stakeholder can read, comment, ask questions, or propose amendments to the draft",
+      "The author revises the RFC based on feedback, addressing objections and updating the alternatives and unresolved questions sections",
+      "A designated shepherd (tech lead, architect, or committee) evaluates the feedback and makes a final decision: accept, reject, or send back for revision with specific changes required",
+      "Accepted RFCs are merged into the RFC repository and serve as the authoritative record of the decision; rejected RFCs are closed with a documented rationale"
+    ],
+    "steps_zh": [
+      "作者使用标准模板（动机、提议的解决方案、已考虑的替代方案、缺点、未解决的问题）起草RFC文档，并作为拉取请求或共享文档打开",
+      "RFC进入评论期（通常为1-4周），在此期间任何利益相关方都可以阅读、评论、提问或提议修改草案",
+      "作者根据反馈修改RFC，解决异议并更新替代方案和未解决问题部分",
+      "指定的推进者（技术负责人、架构师或委员会）评估反馈并做出最终决定：接受、拒绝或要求特定修改后重新提交",
+      "被接受的RFC合并到RFC仓库，作为决策的权威记录；被拒绝的RFC以记录的理由关闭"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "architecture-review-board",
+      "tech-debt-management",
+      "engineering-ladder"
+    ],
+    "tags": [
+      "rfc",
+      "decision-making",
+      "process",
+      "governance",
+      "documentation"
+    ],
+    "origin_author": "Popularized by Rust language team (2014) and React team (2017); inspired by IETF RFC process (1969)",
+    "origin_source": "Rust RFC Book (github.com/rust-lang/rfcs); React RFC process (github.com/reactjs/rfcs); Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 1.",
+    "origin_source_zh": "Rust RFC手册（github.com/rust-lang/rfcs）；React RFC流程（github.com/reactjs/rfcs）；Kleppmann, M.（2017）「数据密集型应用系统设计」，第1章",
+    "complexity": "basic",
+    "when_to_use": [
+      "When a technical decision will affect multiple teams or cannot be easily reversed once implemented",
+      "When the team needs a structured way to gather diverse perspectives before committing to an architectural direction",
+      "When junior engineers need a safe, asynchronous way to propose improvements without requiring real-time advocacy skills",
+      "When the organization has had recurring problems with decisions made in small groups without broader input leading to downstream rework"
+    ],
+    "when_to_use_zh": [
+      "当技术决策将影响多个团队或一旦实施就难以逆转时",
+      "当团队需要一种结构化方式在承诺某个架构方向之前收集多样化观点时",
+      "当初级工程师需要一种安全、异步的方式来提议改进，而不需要实时倡导技能时",
+      "当组织在没有更广泛输入的小组决策导致后期返工方面有反复问题时"
+    ],
+    "core_concepts": [
+      "Asynchronous Decision-Making: RFC enables thoughtful deliberation across time zones and schedules without requiring synchronous meetings for every technical choice",
+      "Written Culture: Decisions are made through written argument rather than verbal persuasion, which benefits introverts, non-native speakers, and remote team members equally",
+      "Decision Record: The final RFC serves as a durable, searchable record of why a decision was made, preventing the 'why did we do it this way?' problem months later",
+      "Shepherd Model: A designated individual or small committee ensures the RFC reaches a decision rather than dying in an infinite comment cycle",
+      "Alternatives Considered: The RFC format requires documenting rejected alternatives with reasons, preventing the same rejected ideas from being re-proposed without new information"
+    ],
+    "core_concepts_zh": [
+      "异步决策制定：RFC使得跨时区和日程的深思熟虑审议成为可能，而不需要为每个技术选择举行同步会议",
+      "书面文化：决策通过书面论证而非口头说服做出，这对内向者、非母语使用者和远程团队成员同等有益",
+      "决策记录：最终的RFC作为持久、可搜索的记录，说明为什么做出某个决定，防止数月后出现「为什么我们这样做？」的问题",
+      "推进者模式：指定的个人或小型委员会确保RFC达成决定，而不是在无限评论循环中消亡",
+      "已考虑的替代方案：RFC格式要求记录被拒绝的替代方案及原因，防止相同的被拒绝想法在没有新信息的情况下被重新提议"
+    ],
+    "timeline": [
+      [
+        "1969",
+        "IETF publishes its first Request for Comments (RFC 1 by Steve Crocker), establishing the collaborative technical discussion format"
+      ],
+      [
+        "2014",
+        "Rust language team adopts a formal RFC process for all language changes, setting the template for engineering team RFCs"
+      ],
+      [
+        "2017",
+        "React team open-sources its RFC process for major API changes, popularizing lightweight RFCs in product engineering teams"
+      ],
+      [
+        "2019",
+        "Basecamp, GitHub, and Shopify publish their internal RFC/ADR templates, spurring adoption across the industry"
+      ],
+      [
+        "2022",
+        "RFC tools (Linear, Notion, Confluence RFC templates) make structured decision-making accessible to non-developer teams"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "1969",
+        "IETF发布其第一个意见征集文档（Steve Crocker的RFC 1），建立了协作技术讨论格式"
+      ],
+      [
+        "2014",
+        "Rust语言团队为所有语言变更采用正式的RFC流程，为工程团队RFC设立了模板"
+      ],
+      [
+        "2017",
+        "React团队开源其重大API变更的RFC流程，使轻量级RFC在产品工程团队中流行"
+      ],
+      [
+        "2019",
+        "Basecamp、GitHub和Shopify发布其内部RFC/ADR模板，推动了整个行业的采用"
+      ],
+      [
+        "2022",
+        "RFC工具（Linear、Notion、Confluence RFC模板）使非开发者团队也能进行结构化决策"
+      ]
+    ],
+    "dos": [
+      "Do keep RFC documents short (1-3 pages) because long documents are not read; extract detail into appendices or linked documents",
+      "Do set a clear comment deadline so that stakeholders know when to engage and the RFC doesn't linger in review indefinitely",
+      "Do require authors to document rejected alternatives with specific reasons because it prevents re-hashing of already-explored options in future discussions",
+      "Do store merged RFCs in a searchable repository (Git, Confluence, Notion) so that future engineers can understand the reasoning behind current decisions"
+    ],
+    "dos_zh": [
+      "保持RFC文档简短（1-3页），因为长文档不会被阅读；将细节提取到附录或链接文档中",
+      "设置明确的评论截止日期，使利益相关方知道何时参与，RFC不会无限期停留在评审中",
+      "要求作者记录被拒绝的替代方案及具体原因，防止在未来讨论中重复已探索过的选项",
+      "将合并的RFC存储在可搜索的仓库（Git、Confluence、Notion）中，使未来的工程师能够理解当前决策背后的原因"
+    ],
+    "donts": [
+      "Don't require RFCs for every decision because the overhead will cause engineers to bypass the process for non-trivial choices to avoid bureaucracy",
+      "Don't let RFCs become approval theater where the decision is made before the RFC is written and comments are ignored",
+      "Don't allow RFC comment periods to drag on indefinitely without a shepherd closing the discussion because stalled RFCs create organizational paralysis",
+      "Don't make RFC authorship gatekept to senior engineers because it defeats the purpose of creating a democratic, inclusive decision process"
+    ],
+    "donts_zh": [
+      "不要对每个决策都要求RFC，因为开销会导致工程师为了避免官僚程序而对非平凡的选择绕过该流程",
+      "不要让RFC成为审批表演，即在编写RFC之前就已做出决定，评论被忽视",
+      "不要让RFC评论期在没有推进者结束讨论的情况下无限期拖延，因为停滞的RFC会造成组织瘫痪",
+      "不要将RFC作者资格限制给高级工程师，因为这违背了创建民主、包容决策流程的目的"
+    ],
+    "case_study_company": "Rust Language Team",
+    "case_study": "The Rust programming language team has used an RFC process since 2014 for all significant language, library, and tooling changes. Every feature in Rust — from async/await to the ownership model refinements — was first proposed, debated, and approved through a public RFC on GitHub. The process has enabled a globally distributed community of contributors to make high-quality decisions without centralized authority. As of 2024, the Rust RFC repository contains over 3,000 RFCs spanning 10 years of language evolution, serving as an unparalleled historical record of why Rust is designed the way it is.",
+    "case_study_zh": "Rust编程语言团队自2014年以来对所有重要的语言、库和工具变更使用RFC流程。Rust中的每个特性——从async/await到所有权模型改进——都首先通过GitHub上的公开RFC提议、讨论和批准。该流程使全球分布式贡献者社区能够在没有集中权威的情况下做出高质量决策。截至2024年，Rust RFC仓库包含超过3000个RFC，跨越10年的语言演进，作为Rust为何如此设计的无与伦比的历史记录。",
+    "when_not_to_use": [
+      "Urgent production incidents where decisions must be made in minutes, not weeks, and the RFC process creates dangerous delay",
+      "Small decisions (library patch version bumps, variable naming, minor refactors) where the RFC overhead exceeds the decision complexity",
+      "Exploration and research phases where the goal is to learn, not commit, and forcing premature decisions stifles experimentation",
+      "Organizations with fewer than 5 engineers where synchronous conversation is more efficient than asynchronous written deliberation"
+    ],
+    "when_not_to_use_zh": [
+      "紧急生产事故，决策必须在分钟而非数周内做出，RFC流程造成危险延迟",
+      "小型决策（库补丁版本升级、变量命名、小型重构），RFC开销超过决策复杂度",
+      "探索和研究阶段，目标是学习而非承诺，强制提前决策会扼制实验",
+      "少于5名工程师的组织，同步对话比异步书面审议更高效"
+    ],
+    "adopters": [
+      "Rust Foundation",
+      "React / Meta",
+      "Ember.js",
+      "Swift (Apple)",
+      "Shopify"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "maintainability",
+      "usability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Crocker, S. (1969). \"RFC 1: Host Software\". IETF. / Rust Team (2014). \"RFC 0002: RFC Process\". github.com/rust-lang/rfcs.",
+    "secondary_sources": [
+      "React Team (2017). \"React RFC Process\". github.com/reactjs/rfcs.",
+      "Nygard, M. (2011). \"Documenting Architecture Decisions\". cognitect.com.",
+      "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\". O'Reilly Media."
+    ]
+  },
+  {
+    "id": 216,
+    "name": "Guilds and Communities of Practice",
+    "name_zh": "行会与实践社区",
+    "slug": "guilds-communities-of-practice",
+    "category": "team",
+    "desc": "Cross-team knowledge-sharing groups that build expertise and standards across organizational silos",
+    "desc_zh": "跨团队知识共享群体，跨组织孤岛构建专业知识和标准",
+    "steps": [
+      "Identify a technical or practice domain (frontend, security, data engineering, accessibility) that spans multiple teams and would benefit from cross-team coordination",
+      "Appoint a guild lead (voluntary or designated) who owns the meeting cadence, agenda, and communication channels; this role rotates periodically to prevent single-point-of-failure",
+      "Establish recurring touchpoints: a monthly meeting for knowledge sharing (demos, post-mortems, book clubs) and an async channel (Slack, Discord) for daily questions and resource sharing",
+      "Define the guild's output artifacts: shared coding standards, reviewed libraries, onboarding guides, and recommended tooling that teams adopt voluntarily",
+      "Measure the guild's health annually through member satisfaction surveys and track adoption of guild-produced standards to demonstrate value to leadership"
+    ],
+    "steps_zh": [
+      "识别跨多个团队的技术或实践领域（前端、安全、数据工程、可访问性），跨团队协调将带来价值",
+      "任命行会负责人（自愿或指定），负责会议节奏、议程和沟通渠道；该角色定期轮换以防止单点故障",
+      "建立定期接触点：每月知识共享会议（演示、事后分析、读书会）和异步频道（Slack、Discord）用于日常问题和资源分享",
+      "定义行会的输出产物：共享编码标准、审查的库、入职指南和推荐工具，团队自愿采用",
+      "通过成员满意度调查每年评估行会健康状况，并跟踪行会制定标准的采用情况以向领导层证明价值"
+    ],
+    "ai_relevant": false,
+    "viz_type": "matrix",
+    "related": [
+      "spotify-model",
+      "platform-engineering",
+      "developer-experience"
+    ],
+    "tags": [
+      "guild",
+      "community-of-practice",
+      "knowledge-sharing",
+      "cross-team",
+      "standards"
+    ],
+    "origin_author": "Etienne Wenger, Communities of Practice (1998); popularized in software by the Spotify Model (2012)",
+    "origin_source": "Wenger, E. (1998). \"Communities of Practice: Learning, Meaning, and Identity\". Cambridge University Press; Kniberg, H. & Ivarsson, A. (2012). \"Scaling Agile @ Spotify\".",
+    "origin_source_zh": "Wenger, E.（1998）「实践社区：学习、意义与认同」，剑桥大学出版社；Kniberg, H. & Ivarsson, A.（2012）「Spotify的规模化敏捷」",
+    "complexity": "basic",
+    "when_to_use": [
+      "When the organization has grown beyond 3-4 teams and domain expertise is siloed within individual squads rather than shared across the organization",
+      "When the same technical problems (security vulnerabilities, performance issues, accessibility failures) are solved independently by multiple teams with inconsistent outcomes",
+      "When senior engineers are embedded in delivery teams with no mechanism to share their expertise at the organizational level",
+      "When the organization is adopting new technology (AI, observability, platform engineering) and needs a coordinated learning and adoption path across teams"
+    ],
+    "when_to_use_zh": [
+      "当组织已超过3-4个团队，领域专业知识被孤立在各个小组内而非跨组织共享时",
+      "当相同的技术问题（安全漏洞、性能问题、可访问性失败）被多个团队独立解决，结果不一致时",
+      "当高级工程师嵌入交付团队，没有在组织层面分享专业知识的机制时",
+      "当组织正在采用新技术（AI、可观测性、平台工程）并需要跨团队协调学习和采用路径时"
+    ],
+    "core_concepts": [
+      "Domain: The shared area of interest or expertise that defines the guild's scope — narrow enough to be coherent but broad enough to span multiple teams",
+      "Community: The group of practitioners who care about the domain and voluntarily participate in the guild's activities, regardless of their squad or reporting line",
+      "Practice: The shared repertoire of tools, standards, patterns, and processes that the guild develops and curates over time",
+      "Voluntary Participation: Guilds are opt-in; mandatory guilds become bureaucratic committees that produce compliance theater rather than genuine knowledge sharing",
+      "Influence Without Authority: Guild leads must influence team behavior through demonstrated expertise and useful artifacts rather than through organizational hierarchy"
+    ],
+    "core_concepts_zh": [
+      "领域：定义行会范围的共同兴趣或专业知识领域——范围足够窄以保持连贯性，但足够宽以跨越多个团队",
+      "社区：关心该领域并自愿参与行会活动的实践者群体，无论其所在小组或汇报关系",
+      "实践：行会随时间开发和策划的共享工具、标准、模式和流程库",
+      "自愿参与：行会是可选的；强制性行会变成产生合规表演而非真正知识共享的官僚委员会",
+      "无权力的影响力：行会负责人必须通过展示的专业知识和有用的产物而非通过组织层级来影响团队行为"
+    ],
+    "timeline": [
+      [
+        "1991",
+        "Jean Lave and Etienne Wenger coin 'communities of practice' studying apprenticeship learning in craft trades"
+      ],
+      [
+        "1998",
+        "Wenger's book 'Communities of Practice' formalizes the theory for organizational knowledge management"
+      ],
+      [
+        "2012",
+        "Spotify's engineering model paper introduces 'guilds' as a specific implementation for software engineering organizations"
+      ],
+      [
+        "2016",
+        "Major tech companies (Google, Amazon, Zalando, ING) adopt guilds as a formal organizational layer alongside squads and chapters"
+      ],
+      [
+        "2022",
+        "Remote-first guilds emerge as a primary mechanism for maintaining cross-team connection and knowledge sharing in distributed organizations"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "1991",
+        "Jean Lave和Etienne Wenger在研究手工艺学徒制学习时创造了「实践社区」一词"
+      ],
+      [
+        "1998",
+        "Wenger的「实践社区」一书为组织知识管理正式化了该理论"
+      ],
+      [
+        "2012",
+        "Spotify工程模型论文引入「行会」作为软件工程组织的具体实现"
+      ],
+      [
+        "2016",
+        "主要科技公司（Google、Amazon、Zalando、ING）将行会作为小组和章节之外的正式组织层次采用"
+      ],
+      [
+        "2022",
+        "远程优先行会成为在分布式组织中维持跨团队联系和知识共享的主要机制"
+      ]
+    ],
+    "dos": [
+      "Do keep guild membership voluntary because mandatory guilds create attendance compliance rather than genuine engagement",
+      "Do produce concrete, usable artifacts (linting configs, Docker base images, onboarding guides) because abstract knowledge sharing without deliverables doesn't change daily practice",
+      "Do rotate guild leads every 12-18 months because static leadership creates knowledge monopolies and prevents the next generation of experts from developing",
+      "Do give guilds a dedicated time allocation (e.g., 10% of sprint capacity) so that participation doesn't exclusively happen as unpaid overtime"
+    ],
+    "dos_zh": [
+      "保持行会成员资格自愿，因为强制性行会产生出勤合规而非真正的参与",
+      "产出具体、可用的产物（代码检查配置、Docker基础镜像、入职指南），因为没有可交付成果的抽象知识共享不会改变日常实践",
+      "每12-18个月轮换行会负责人，因为静态领导层创造知识垄断并阻止下一代专家的发展",
+      "给行会分配专用时间（如迭代容量的10%），使参与不仅仅作为无偿加班发生"
+    ],
+    "donts": [
+      "Don't let guilds become toothless talking shops that meet monthly, produce slide decks, and have no impact on how teams actually work",
+      "Don't create guilds for every topic because guild proliferation causes context-switching fatigue and dilutes participation across all guilds",
+      "Don't measure guild success by attendance alone because a 50-person guild with zero adopted standards is less valuable than a 10-person guild whose patterns are used everywhere",
+      "Don't conflate guilds with chapters — chapters own career development and competency within a discipline, guilds focus on cross-team knowledge sharing"
+    ],
+    "donts_zh": [
+      "不要让行会成为每月开会、生产幻灯片、对团队实际工作方式没有影响的无实质内容的讨论场所",
+      "不要为每个主题创建行会，因为行会泛滥会导致上下文切换疲劳并稀释所有行会的参与度",
+      "不要仅通过出勤率来衡量行会成功，因为一个有50人但标准采用率为零的行会不如一个有10人但其模式被广泛使用的行会有价值",
+      "不要将行会与章节混淆——章节负责某学科内的职业发展和能力，行会专注于跨团队知识共享"
+    ],
+    "case_study_company": "ING Bank",
+    "case_study": "ING Bank adopted the Spotify model in 2015, organizing its 13,000-person IT department into squads, tribes, chapters, and guilds. The bank's Security Guild became a flagship example: a 200-engineer voluntary community that produced shared security testing frameworks, threat modeling templates, and a weekly vulnerability digest. Within 18 months of the guild's formation, security issue detection rates improved 40% and remediation time dropped from 45 days to 11 days, attributed directly to the shared knowledge and tools the guild produced. ING later expanded the model to non-engineering functions including data science, UX, and product management.",
+    "case_study_zh": "ING银行于2015年采用Spotify模型，将其13000人的IT部门组织成小组、部落、章节和行会。该银行的安全行会成为旗舰示例：一个由200名工程师组成的自愿社区，生产了共享安全测试框架、威胁建模模板和每周漏洞摘要。在行会成立后的18个月内，安全问题检测率提高了40%，修复时间从45天降至11天，这直接归功于行会产生的共享知识和工具。ING后来将该模型扩展到非工程职能，包括数据科学、UX和产品管理。",
+    "when_not_to_use": [
+      "Organizations of fewer than 20-30 engineers where everyone already knows each other and cross-team knowledge sharing happens organically",
+      "High-urgency delivery phases (pre-launch sprints, critical incident recovery) where all capacity must focus on delivery and community activities must pause",
+      "Organizations with highly contractual employment relationships where voluntary after-hours participation is inappropriate or legally ambiguous",
+      "Domains where knowledge sharing requires security clearances or confidentiality that prevents open cross-team discussion"
+    ],
+    "when_not_to_use_zh": [
+      "少于20-30名工程师的组织，每个人已经认识对方，跨团队知识共享有机发生",
+      "高紧迫度交付阶段（发布前冲刺、关键事故恢复），所有容量必须专注于交付，社区活动必须暂停",
+      "具有高度契约性雇佣关系的组织，自愿的非工时参与是不恰当的或法律上模糊的",
+      "知识共享需要安全许可或保密性的领域，这阻止了开放的跨团队讨论"
+    ],
+    "adopters": [
+      "Spotify",
+      "ING Bank",
+      "Zalando",
+      "Adidas",
+      "Google"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "maintainability",
+      "usability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Wenger, E. (1998). \"Communities of Practice: Learning, Meaning, and Identity\". Cambridge University Press.",
+    "secondary_sources": [
+      "Kniberg, H. & Ivarsson, A. (2012). \"Scaling Agile @ Spotify\". Spotify R&D whitepaper.",
+      "Wenger, E., McDermott, R. & Snyder, W.M. (2002). \"Cultivating Communities of Practice\". Harvard Business School Press.",
+      "Skelton, M. & Pais, M. (2019). \"Team Topologies\", Ch. 7. IT Revolution Press."
+    ]
+  },
+  {
+    "id": 217,
+    "name": "On-Call Rotation Design",
+    "name_zh": "值班轮换设计",
+    "slug": "on-call-rotation-design",
+    "category": "team",
+    "desc": "Fair, sustainable on-call schedules and escalation policies that protect engineer wellbeing",
+    "desc_zh": "保护工程师福祉的公平、可持续值班计划和升级策略",
+    "steps": [
+      "Define the service ownership scope for the on-call rotation: which services, alerts, and runbooks belong to the on-call engineer and what constitutes a page-worthy incident",
+      "Design the rotation schedule: determine the rotation length (weekly is most common), the number of engineers in the pool (minimum 4-6 to allow reasonable frequency), and whether a secondary on-call provides backup",
+      "Set escalation policies: define how long the primary on-call has to acknowledge an alert before it escalates to the secondary, and from secondary to team lead, with explicit timeouts",
+      "Establish on-call compensation and working norms: time-off in lieu (TOIL) for disturbed nights, a hard limit on night pages per on-call shift, and a mandatory rest period after a severe incident",
+      "Run a quarterly on-call retrospective reviewing alert volume, false positive rate, mean time to acknowledge (MTTA), and engineer satisfaction to drive continuous improvement"
+    ],
+    "steps_zh": [
+      "定义值班轮换的服务所有权范围：哪些服务、告警和运行手册属于值班工程师，什么构成值得呼叫的事件",
+      "设计轮换计划：确定轮换长度（每周最为常见）、轮换池中的工程师数量（至少4-6人以保证合理频率），以及是否由二线值班提供备份",
+      "设定升级策略：定义一线值班工程师在告警升级到二线之前有多长时间确认，以及从二线升级到团队负责人的时间，包含明确的超时时间",
+      "建立值班补偿和工作规范：因被打扰的夜晚给予调休（TOIL），每个值班班次的夜间呼叫硬性上限，以及严重事故后的强制休息期",
+      "运行季度值班回顾，审查告警量、误报率、平均确认时间（MTTA）和工程师满意度，以推动持续改进"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "blameless-postmortems",
+      "runbook-automation",
+      "engineering-metrics-dashboard"
+    ],
+    "tags": [
+      "on-call",
+      "rotation",
+      "incident-response",
+      "escalation",
+      "sustainability"
+    ],
+    "origin_author": "SRE practices (Google, 2003); PagerDuty escalation model (2010); Charity Majors and Alice Goldfuss advocacy for sustainable on-call",
+    "origin_source": "Beyer, B. et al. (2016). \"Site Reliability Engineering\", Ch. 11. Google / O'Reilly; Majors, C. (2019). \"On-Call Shouldn't Suck\". honeycomb.io blog.",
+    "origin_source_zh": "Beyer, B.等（2016）「网站可靠性工程」，第11章，Google/O'Reilly；Majors, C.（2019）「值班不应该很糟糕」，honeycomb.io博客",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When a service has production SLOs that require human intervention within minutes and must be monitored 24/7",
+      "When the team is growing past 6-8 engineers and informal 'ping the person who built it' escalation is creating burnout for individual contributors",
+      "When incident response times are inconsistent because there is no defined first-responder and anyone might respond (or no one does)",
+      "When on-call burn rate is causing attrition and engineers cite on-call burden as a primary reason for leaving the organization"
+    ],
+    "when_to_use_zh": [
+      "当服务有需要几分钟内人工干预且必须24/7监控的生产SLO时",
+      "当团队超过6-8名工程师，非正式的「联系构建它的人」升级方式导致个人贡献者倦怠时",
+      "当事故响应时间不一致，因为没有定义的第一响应者，任何人都可能响应（或没有人响应）时",
+      "当值班消耗率导致人员流失，工程师将值班负担列为离开组织的主要原因时"
+    ],
+    "core_concepts": [
+      "Primary and Secondary On-Call: A two-tier model where primary handles the initial alert and secondary acts as backup if primary doesn't acknowledge within the timeout period",
+      "Escalation Policy: A defined sequence of contacts and timeouts that ensure an alert is never silently dropped — it always reaches a human who can act on it",
+      "MTTA and MTTR: Mean Time to Acknowledge (MTTA) measures responsiveness; Mean Time to Resolve (MTTR) measures effectiveness; both are tracked per on-call rotation",
+      "Alert Fatigue: The cumulative effect of too many low-signal alerts that trains responders to ignore pages, leading to missed critical incidents",
+      "Sustainable On-Call: The principle that on-call should consume less than 25% of an engineer's working time (SRE guideline) to allow focus on improvement work"
+    ],
+    "core_concepts_zh": [
+      "一线和二线值班：两级模型，一线处理初始告警，二线在一线未在超时期限内确认时作为备份",
+      "升级策略：定义的联系人序列和超时，确保告警永远不会被静默丢弃——它总会到达能够采取行动的人",
+      "MTTA和MTTR：平均确认时间（MTTA）衡量响应能力；平均解决时间（MTTR）衡量有效性；两者都按值班轮换跟踪",
+      "告警疲劳：过多低信号告警的累积效应，训练响应者忽略呼叫，导致错过关键事故",
+      "可持续值班：值班消耗应少于工程师工作时间25%的原则（SRE指导方针），以允许专注于改进工作"
+    ],
+    "timeline": [
+      [
+        "2003",
+        "Google SRE team formalizes on-call rotation practices including the 50% toil limit and escalation policies for production services"
+      ],
+      [
+        "2010",
+        "PagerDuty founded, providing the first SaaS platform specifically designed for on-call scheduling and alert routing"
+      ],
+      [
+        "2016",
+        "Google's SRE book (O'Reilly) publishes on-call practices as industry standard, including the rule that on-call burden must not exceed 25% of time"
+      ],
+      [
+        "2019",
+        "Charity Majors and Alice Goldfuss publish 'Database Reliability Engineering' and blog extensively on sustainable on-call culture"
+      ],
+      [
+        "2022",
+        "Incident.io, Rootly, and Opsgenie advance on-call tooling with AI-powered alert correlation and automatic runbook suggestions"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2003",
+        "Google SRE团队正式化值班轮换实践，包括50%琐事上限和生产服务的升级策略"
+      ],
+      [
+        "2010",
+        "PagerDuty成立，提供第一个专门为值班排班和告警路由设计的SaaS平台"
+      ],
+      [
+        "2016",
+        "Google的SRE书（O'Reilly）将值班实践作为行业标准发布，包括值班负担不得超过25%时间的规则"
+      ],
+      [
+        "2019",
+        "Charity Majors和Alice Goldfuss发布「数据库可靠性工程」并广泛撰写关于可持续值班文化的博客"
+      ],
+      [
+        "2022",
+        "Incident.io、Rootly和Opsgenie通过AI驱动的告警关联和自动运行手册建议推进值班工具"
+      ]
+    ],
+    "dos": [
+      "Do ensure the on-call rotation pool has at least 4-6 engineers so that no individual is on-call more than one week in four",
+      "Do compensate engineers for on-call time through explicit pay, time-off in lieu, or reduced sprint commitments because unpaid on-call creates resentment and attrition",
+      "Do conduct post-incident reviews for every severity-1 incident and track the actionable improvements through to completion to prevent recurring pages",
+      "Do set a maximum number of night pages per on-call shift (e.g., 5 per week) as a hard organizational commitment, not a guideline"
+    ],
+    "dos_zh": [
+      "确保值班轮换池至少有4-6名工程师，使任何个人的值班频率不超过每四周一次",
+      "通过明确的薪酬、调休或减少迭代承诺来补偿工程师的值班时间，因为无偿值班会产生怨恨和人员流失",
+      "对每个S1级事故进行事后审查，并跟踪可操作的改进直到完成，以防止重复告警",
+      "将每个值班班次的夜间呼叫最大数量（如每周5次）设为硬性组织承诺，而非指导方针"
+    ],
+    "donts": [
+      "Don't put engineers on-call for services they didn't build and haven't been properly trained on because it creates dangerous guesswork during incidents",
+      "Don't treat on-call as a rite of passage or proof of seniority because it normalizes unsustainable practices and drives away excellent engineers who have alternatives",
+      "Don't ignore alert volume as a metric because teams that normalize high alert volumes are training themselves for alert fatigue and missed critical incidents",
+      "Don't allow on-call engineers to stay on a page without escalation indefinitely; set hard timeouts because delayed escalation extends incident duration"
+    ],
+    "donts_zh": [
+      "不要让工程师值班他们没有构建且没有经过适当培训的服务，因为这在事故中产生危险的猜测",
+      "不要将值班视为成人礼或资历证明，因为这使不可持续的实践正常化，并驱走有其他选择的优秀工程师",
+      "不要忽视告警量作为指标，因为使高告警量正常化的团队正在训练自己产生告警疲劳并错过关键事故",
+      "不要允许值班工程师无限期停留在呼叫上而不升级；设置硬性超时，因为延迟升级会延长事故持续时间"
+    ],
+    "case_study_company": "Google SRE",
+    "case_study": "Google's Site Reliability Engineering team codified on-call best practices that became the industry standard. Their model limits on-call burden to 25% of an SRE's working time (including both the on-call shift and follow-up work), with the remainder dedicated to engineering improvements. Google's SRE book documented that when on-call load exceeded 25%, SRE teams experienced measurable increases in burnout, errors, and attrition. The escalation policy model — primary acknowledges within 5 minutes or secondary is paged, secondary within 10 minutes or management is called — has been adopted by PagerDuty, Opsgenie, and Incident.io as the default template for new customers.",
+    "case_study_zh": "Google的网站可靠性工程团队编纂了成为行业标准的值班最佳实践。他们的模型将值班负担限制在SRE工作时间的25%（包括值班班次和后续工作），其余时间专注于工程改进。Google的SRE书记录了当值班负载超过25%时，SRE团队经历了可测量的倦怠、错误和人员流失增加。升级策略模型——一线在5分钟内确认，否则呼叫二线，二线在10分钟内确认，否则通知管理层——已被PagerDuty、Opsgenie和Incident.io采用为新客户的默认模板。",
+    "when_not_to_use": [
+      "Internal tooling or development services with no user-facing SLOs where an 8x5 support model with next-business-day response is acceptable",
+      "Services in early development where stability is not yet expected and alerting produces more noise than signal",
+      "Teams of fewer than 4 engineers where sustainable rotation is impossible and alternative architectures (using managed services to reduce operational burden) should be prioritized",
+      "Non-critical internal services where the cost of a 24/7 on-call rotation exceeds the cost of occasional downtime"
+    ],
+    "when_not_to_use_zh": [
+      "没有面向用户SLO的内部工具或开发服务，8x5支持模型和下一个工作日响应是可接受的",
+      "早期开发中的服务，尚不期望稳定性，告警产生的噪音多于信号",
+      "少于4名工程师的团队，可持续轮换是不可能的，应优先考虑替代架构（使用托管服务减少运营负担）",
+      "非关键内部服务，24/7值班轮换的成本超过偶尔停机的成本"
+    ],
+    "adopters": [
+      "Google",
+      "Netflix",
+      "Stripe",
+      "Atlassian",
+      "PagerDuty"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "maintainability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Beyer, B., Jones, C., Petoff, J. & Murphy, N.R. (2016). \"Site Reliability Engineering\", Ch. 11. O'Reilly Media.",
+    "secondary_sources": [
+      "Majors, C. (2019). \"On-Call Shouldn't Suck: A Guide for Managers\". honeycomb.io.",
+      "PagerDuty (2023). \"Incident Response Operational Guide\". response.pagerduty.com.",
+      "Blank-Edelman, D. (2018). \"Seeking SRE\", Ch. 18-19. O'Reilly Media."
+    ]
+  },
+  {
+    "id": 218,
+    "name": "Engineering Metrics Dashboard",
+    "name_zh": "工程指标仪表板",
+    "slug": "engineering-metrics-dashboard",
+    "category": "team",
+    "desc": "DORA metrics, developer satisfaction, and quality metrics unified in the SPACE framework",
+    "desc_zh": "在SPACE框架中统一的DORA指标、开发者满意度和质量指标",
+    "steps": [
+      "Select the metric framework: DORA (Deployment Frequency, Lead Time for Changes, Change Failure Rate, Time to Restore Service) plus SPACE dimensions (Satisfaction, Performance, Activity, Communication, Efficiency)",
+      "Instrument the delivery pipeline to collect DORA metrics automatically: connect CI/CD, incident management, and version control systems to a metrics aggregation platform (LinearB, Jellyfish, Sleuth, or custom)",
+      "Survey developers quarterly using validated satisfaction instruments (Developer Experience Index, DevEx survey) to capture the subjective SPACE dimensions that pipeline data cannot measure",
+      "Build a dashboard visible to teams, managers, and leadership that shows trends over time (not just current snapshots) and highlights leading indicators like PR cycle time alongside lagging indicators like MTTR",
+      "Hold a monthly metrics review with the team to interpret trends, set improvement targets for the next quarter, and connect metric improvements to engineering investments"
+    ],
+    "steps_zh": [
+      "选择指标框架：DORA（部署频率、变更前置时间、变更失败率、服务恢复时间）加上SPACE维度（满意度、性能、活动、沟通、效率）",
+      "对交付流水线进行仪器化以自动收集DORA指标：将CI/CD、事故管理和版本控制系统连接到指标聚合平台（LinearB、Jellyfish、Sleuth或自定义）",
+      "使用经过验证的满意度工具（开发者体验指数、DevEx调查）每季度调查开发者，捕获流水线数据无法衡量的主观SPACE维度",
+      "构建对团队、管理者和领导层可见的仪表板，显示随时间的趋势（而不仅仅是当前快照），并突出显示PR周期时间等先导指标以及MTTR等滞后指标",
+      "与团队进行月度指标回顾，解读趋势，为下一季度设定改进目标，并将指标改进与工程投资联系起来"
+    ],
+    "ai_relevant": true,
+    "viz_type": "matrix",
+    "related": [
+      "developer-experience",
+      "blameless-postmortems",
+      "tech-debt-management"
+    ],
+    "tags": [
+      "dora",
+      "space-framework",
+      "metrics",
+      "developer-experience",
+      "engineering-effectiveness"
+    ],
+    "origin_author": "DORA research (Nicole Forsgren et al., 2018); SPACE framework (Forsgren et al., 2021, ACM Queue)",
+    "origin_source": "Forsgren, N., Humble, J. & Kim, G. (2018). \"Accelerate\". IT Revolution Press; Forsgren, N. et al. (2021). \"The SPACE of Developer Productivity\". ACM Queue.",
+    "origin_source_zh": "Forsgren, N., Humble, J. & Kim, G.（2018）「加速」，IT Revolution Press；Forsgren, N.等（2021）「开发者生产力的SPACE」，ACM Queue",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When engineering leadership needs objective data to justify investments in developer tooling, platform engineering, or technical debt reduction",
+      "When the organization is scaling rapidly and delivery performance needs to be tracked across multiple teams without relying on anecdotal evidence",
+      "When there is disagreement between engineering and product/business about whether engineering capacity is being used effectively",
+      "When attrition surveys cite developer experience as a concern and leadership wants to track whether investments in DX are yielding measurable improvement"
+    ],
+    "when_to_use_zh": [
+      "当工程领导层需要客观数据来证明对开发者工具、平台工程或技术债务减少的投资合理时",
+      "当组织快速扩展，需要在不依赖轶事证据的情况下跨多个团队跟踪交付性能时",
+      "当工程团队与产品/业务之间对工程容量是否被有效使用存在分歧时",
+      "当流失率调查将开发者体验列为关注点，领导层希望跟踪DX投资是否产生可衡量的改进时"
+    ],
+    "core_concepts": [
+      "DORA Metrics: Four evidence-backed metrics from the DevOps Research and Assessment program — Deployment Frequency, Lead Time for Changes, Change Failure Rate, and Time to Restore Service — that predict organizational performance",
+      "SPACE Framework: Five dimensions of developer productivity (Satisfaction and wellbeing, Performance, Activity, Communication and collaboration, Efficiency and flow) that together provide a holistic view beyond throughput metrics",
+      "Elite Performers Benchmark: DORA research defines four performance bands; Elite teams deploy multiple times per day with <1h lead time, <15% change failure rate, and <1h MTTR — a target for continuous improvement",
+      "Leading vs Lagging Indicators: PR cycle time and build duration are leading indicators that predict future DORA metrics; MTTR and change failure rate are lagging indicators of actual production outcomes",
+      "Goodhart's Law Risk: When a measure becomes a target, it ceases to be a good measure — engineering metrics must be used for learning and improvement, not as performance evaluation for individual engineers"
+    ],
+    "core_concepts_zh": [
+      "DORA指标：来自DevOps研究与评估项目的四个有证据支持的指标——部署频率、变更前置时间、变更失败率和服务恢复时间——预测组织绩效",
+      "SPACE框架：开发者生产力的五个维度（满意度和幸福感、性能、活动、沟通与协作、效率和流状态），共同提供超越吞吐量指标的整体视图",
+      "精英表现者基准：DORA研究定义了四个绩效档次；精英团队每天部署多次，前置时间<1小时，变更失败率<15%，MTTR<1小时——这是持续改进的目标",
+      "先导指标与滞后指标：PR周期时间和构建时长是预测未来DORA指标的先导指标；MTTR和变更失败率是实际生产结果的滞后指标",
+      "古德哈特定律风险：当一个指标成为目标时，它就不再是好的指标——工程指标必须用于学习和改进，而不是作为对个别工程师的绩效评估"
+    ],
+    "timeline": [
+      [
+        "2014",
+        "DORA (DevOps Research and Assessment) founded by Nicole Forsgren, Jez Humble, and Gene Kim to study software delivery performance"
+      ],
+      [
+        "2018",
+        "Accelerate book publishes DORA research findings, establishing the four key metrics as industry standard for software delivery performance"
+      ],
+      [
+        "2019",
+        "Google acquires DORA; the annual State of DevOps Report becomes the definitive benchmark for engineering performance across industries"
+      ],
+      [
+        "2021",
+        "SPACE framework published in ACM Queue, extending productivity measurement beyond pipeline metrics to include developer satisfaction and flow"
+      ],
+      [
+        "2023",
+        "McKinsey Developer Productivity report triggers industry debate; DORA and SPACE researchers respond, reinforcing multi-dimensional measurement over simplistic metrics"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2014",
+        "DORA（DevOps研究与评估）由Nicole Forsgren、Jez Humble和Gene Kim创立，研究软件交付性能"
+      ],
+      [
+        "2018",
+        "「加速」一书发布DORA研究成果，将四个关键指标确立为软件交付性能的行业标准"
+      ],
+      [
+        "2019",
+        "Google收购DORA；年度DevOps状态报告成为跨行业工程性能的权威基准"
+      ],
+      [
+        "2021",
+        "SPACE框架发表在ACM Queue，将生产力测量从流水线指标扩展到包括开发者满意度和流状态"
+      ],
+      [
+        "2023",
+        "麦肯锡开发者生产力报告引发行业辩论；DORA和SPACE研究人员回应，强调多维度测量而非简单化指标"
+      ]
+    ],
+    "dos": [
+      "Do measure DORA metrics at the team level, not the individual level, because they are systems-level indicators of team and organizational performance",
+      "Do combine quantitative pipeline metrics with qualitative developer surveys because throughput metrics without satisfaction data miss half the picture",
+      "Do share dashboards transparently with teams rather than only with management because teams improve faster when they can see their own metrics",
+      "Do use metrics to identify systemic investment opportunities (slow CI, flaky tests, manual deployments) rather than to evaluate individual engineers"
+    ],
+    "dos_zh": [
+      "在团队层面而非个人层面测量DORA指标，因为它们是团队和组织绩效的系统级指标",
+      "将定量流水线指标与定性开发者调查结合起来，因为没有满意度数据的吞吐量指标只看到了一半情况",
+      "向团队透明地共享仪表板，而不仅仅与管理层共享，因为当团队能看到自己的指标时，他们改进更快",
+      "使用指标来识别系统性投资机会（缓慢的CI、不稳定的测试、手动部署），而不是评估个别工程师"
+    ],
+    "donts": [
+      "Don't use DORA metrics as a performance management tool for individual engineers because it drives gaming behavior and destroys the trust needed for honest reporting",
+      "Don't track activity metrics (commits per day, PRs merged) as proxies for productivity because they incentivize quantity over quality and discourage large, impactful changes",
+      "Don't compare metrics across teams without controlling for domain complexity because a team maintaining a legacy payment system will have different metrics than a team building a new microservice",
+      "Don't treat metrics as a substitute for direct conversation with engineers about what is slowing them down"
+    ],
+    "donts_zh": [
+      "不要将DORA指标用作对个别工程师的绩效管理工具，因为这会驱动博弈行为并破坏诚实报告所需的信任",
+      "不要将活动指标（每天提交次数、合并的PR）作为生产力的代理，因为它们激励数量而非质量，并阻碍大型有影响力的变更",
+      "不要在不控制领域复杂度的情况下跨团队比较指标，因为维护遗留支付系统的团队与构建新微服务的团队会有不同的指标",
+      "不要将指标视为与工程师直接对话关于什么在减慢他们速度的替代品"
+    ],
+    "case_study_company": "Puppet / DORA State of DevOps",
+    "case_study": "The DORA State of DevOps research program, spanning 2014-2023 with over 33,000 survey respondents across industries, validated that elite software delivery performance (high deployment frequency, low change failure rate, fast MTTR) is statistically correlated with better organizational outcomes — higher profitability, market share growth, and employee satisfaction. Companies that adopted DORA metrics and tracked them as team health indicators, rather than management KPIs, consistently outperformed their peers. The research also found that psychological safety — the ability for engineers to report failures without fear — was the strongest predictor of both high DORA performance and innovation outcomes.",
+    "case_study_zh": "DORA DevOps状态研究项目跨越2014-2023年，有超过33000名跨行业调查受访者，验证了精英软件交付性能（高部署频率、低变更失败率、快速MTTR）与更好的组织结果统计相关——更高的盈利能力、市场份额增长和员工满意度。将DORA指标作为团队健康指标而非管理KPI进行跟踪的公司，始终优于同行。研究还发现，心理安全——工程师在没有恐惧的情况下报告失败的能力——是高DORA绩效和创新结果的最强预测因子。",
+    "when_not_to_use": [
+      "Early-stage startups where the engineering team is fewer than 5 people and the overhead of measurement exceeds its benefit",
+      "Research and innovation teams where the goal is exploration rather than delivery throughput, and DORA metrics would incentivize the wrong behaviors",
+      "Organizations where metrics data is consistently used punitively, because introducing metrics in a low-trust environment will cause gaming rather than improvement",
+      "Short-duration project teams (under 6 months) where there is insufficient time to establish baselines and observe trend improvements"
+    ],
+    "when_not_to_use_zh": [
+      "早期创业公司，工程团队少于5人，测量开销超过其收益",
+      "研究和创新团队，目标是探索而非交付吞吐量，DORA指标会激励错误的行为",
+      "指标数据持续被用于惩罚性目的的组织，因为在低信任环境中引入指标会导致博弈而非改进",
+      "持续时间短的项目团队（少于6个月），没有足够时间建立基准和观察趋势改进"
+    ],
+    "adopters": [
+      "Google",
+      "Microsoft",
+      "Capital One",
+      "Nordstrom",
+      "ING Bank"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "maintainability",
+      "reliability",
+      "usability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Forsgren, N., Humble, J. & Kim, G. (2018). \"Accelerate: The Science of Lean Software and DevOps\". IT Revolution Press.",
+    "secondary_sources": [
+      "Forsgren, N. et al. (2021). \"The SPACE of Developer Productivity\". ACM Queue, Vol. 19.",
+      "DORA (2023). \"State of DevOps Report 2023\". dora.dev.",
+      "Greening, D. & Keane, S. (2021). \"Engineering Effectiveness at Shopify\". shopify.engineering."
+    ]
+  },
+  {
+    "id": 219,
+    "name": "Technical Writing as a Practice",
+    "name_zh": "技术写作实践",
+    "slug": "technical-writing-as-a-practice",
+    "category": "team",
+    "desc": "Documentation standards, style guides, and docs-as-code workflows for engineering organizations",
+    "desc_zh": "工程组织的文档标准、风格指南和文档即代码工作流",
+    "steps": [
+      "Adopt a documentation taxonomy (the Divio/Diataxis framework: tutorials, how-to guides, explanations, and reference) and map existing documentation to the four quadrants to identify gaps",
+      "Establish a docs-as-code workflow: store documentation in Git alongside code, use Markdown or AsciiDoc, review documentation in PRs, and publish via static site generators (Docusaurus, MkDocs, Sphinx)",
+      "Create a style guide (or adopt an existing one: Google Developer Documentation Style Guide, Microsoft Writing Style Guide) and enforce it with automated prose linters (Vale, textlint)",
+      "Define documentation ownership: each service or API has a designated documentation owner responsible for keeping it current; documentation is tracked on the team's definition of done",
+      "Measure documentation quality quarterly through developer surveys ('Was the documentation sufficient to complete your task?') and track documentation coverage against the API/service inventory"
+    ],
+    "steps_zh": [
+      "采用文档分类法（Divio/Diataxis框架：教程、操作指南、解释和参考），将现有文档映射到四个象限以识别差距",
+      "建立文档即代码工作流：将文档与代码一起存储在Git中，使用Markdown或AsciiDoc，在PR中审查文档，并通过静态站点生成器（Docusaurus、MkDocs、Sphinx）发布",
+      "创建风格指南（或采用现有的：Google开发者文档风格指南、Microsoft写作风格指南），并使用自动化散文代码检查工具（Vale、textlint）强制执行",
+      "定义文档所有权：每个服务或API有指定的文档所有者负责保持其最新；文档在团队的完成定义中被跟踪",
+      "通过开发者调查每季度衡量文档质量（「文档是否足以完成您的任务？」），并跟踪API/服务清单中的文档覆盖率"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "platform-engineering",
+      "developer-experience",
+      "rfc-process"
+    ],
+    "tags": [
+      "documentation",
+      "docs-as-code",
+      "divio",
+      "style-guide",
+      "technical-writing"
+    ],
+    "origin_author": "Divio documentation system (Daniele Procida, 2017); docs-as-code popularized by Anne Gentle (2015)",
+    "origin_source": "Procida, D. (2017). \"The Documentation System\". divio.com; Gentle, A. (2015). \"Docs Like Code\". lulu.com; Diataxis framework (diataxis.fr).",
+    "origin_source_zh": "Procida, D.（2017）「文档系统」，divio.com；Gentle, A.（2015）「像代码一样的文档」；Diataxis框架（diataxis.fr）",
+    "complexity": "basic",
+    "when_to_use": [
+      "When engineering teams spend significant time answering the same questions repeatedly because documentation is absent, outdated, or hard to find",
+      "When onboarding new engineers takes weeks longer than expected because institutional knowledge lives in people's heads rather than written documentation",
+      "When the API or platform is becoming a product used by external developers who need documentation as good as the code itself",
+      "When the team has grown past 20 engineers and informal knowledge transfer through conversation no longer scales"
+    ],
+    "when_to_use_zh": [
+      "当工程团队花费大量时间重复回答相同问题，因为文档缺失、过时或难以找到时",
+      "当新工程师入职花费比预期长数周时间，因为机构知识存在于人们的脑海中而非书面文档时",
+      "当API或平台正在成为外部开发者使用的产品，需要与代码本身一样好的文档时",
+      "当团队超过20名工程师，通过对话进行的非正式知识传递不再具有可扩展性时"
+    ],
+    "core_concepts": [
+      "Diataxis Framework: Four documentation types serving different user needs — Tutorials (learning-oriented, taking the user through a complete example), How-To Guides (task-oriented, solving a specific problem), Explanations (understanding-oriented, discussing concepts), and Reference (information-oriented, describing the system accurately)",
+      "Docs as Code: Treating documentation with the same rigor as code — stored in Git, reviewed in PRs, tested for accuracy, versioned alongside releases, and built/deployed through CI/CD pipelines",
+      "Style Guide: A shared standard for voice, tone, formatting, terminology, and code sample conventions that makes documentation feel consistent regardless of who wrote it",
+      "Documentation Debt: The accumulated deficit of missing, outdated, or inaccurate documentation that creates a hidden tax on every engineer who uses the underdocumented system",
+      "The Documentation Triangle: For every release, three artifacts must be updated — the code, the tests, and the documentation — treating all three as first-class deliverables"
+    ],
+    "core_concepts_zh": [
+      "Diataxis框架：满足不同用户需求的四种文档类型——教程（面向学习，带领用户完成完整示例）、操作指南（面向任务，解决特定问题）、解释（面向理解，讨论概念）和参考（面向信息，准确描述系统）",
+      "文档即代码：以与代码相同的严格程度对待文档——存储在Git中、在PR中审查、测试准确性、随发布版本化，并通过CI/CD流水线构建/部署",
+      "风格指南：关于语气、格式、术语和代码示例约定的共享标准，使文档无论谁写都感觉一致",
+      "文档债务：缺失、过时或不准确文档的累积赤字，对使用文档不足系统的每个工程师造成隐形税",
+      "文档三角：对于每个发布，必须更新三个产物——代码、测试和文档——将三者都视为一级可交付成果"
+    ],
+    "timeline": [
+      [
+        "2010",
+        "Write the Docs community founded, bringing together technical writers and engineers to develop documentation best practices"
+      ],
+      [
+        "2015",
+        "Anne Gentle publishes 'Docs Like Code', popularizing the docs-as-code workflow using Git, Markdown, and static site generators"
+      ],
+      [
+        "2017",
+        "Divio publishes 'The Documentation System' (later Diataxis), providing a widely-adopted taxonomy of documentation types"
+      ],
+      [
+        "2019",
+        "Google Developer Documentation Style Guide released publicly, becoming a reference standard for technical writing in engineering organizations"
+      ],
+      [
+        "2023",
+        "AI-assisted documentation tools (GitHub Copilot for docs, Mintlify Writer) automate docstring generation and keep reference documentation current"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2010",
+        "Write the Docs社区成立，汇集技术写作者和工程师开发文档最佳实践"
+      ],
+      [
+        "2015",
+        "Anne Gentle发布「像代码一样的文档」，推广使用Git、Markdown和静态站点生成器的文档即代码工作流"
+      ],
+      [
+        "2017",
+        "Divio发布「文档系统」（后来的Diataxis），提供被广泛采用的文档类型分类法"
+      ],
+      [
+        "2019",
+        "Google开发者文档风格指南公开发布，成为工程组织技术写作的参考标准"
+      ],
+      [
+        "2023",
+        "AI辅助文档工具（GitHub Copilot for docs、Mintlify Writer）自动化文档字符串生成并保持参考文档最新"
+      ]
+    ],
+    "dos": [
+      "Do use the Diataxis framework to separate tutorials from reference documentation because mixing them produces documentation that serves neither learning nor lookup well",
+      "Do enforce documentation updates in the PR review checklist so that documentation debt doesn't accumulate silently with every feature release",
+      "Do run automated link-checking and prose linting in CI because broken links and style inconsistencies are caught at merge time rather than discovered by frustrated readers",
+      "Do invest in documentation search because even the best-written documentation is useless if engineers cannot find it within 30 seconds"
+    ],
+    "dos_zh": [
+      "使用Diataxis框架将教程与参考文档分离，因为混合它们产生的文档既不适合学习也不适合查找",
+      "在PR审查清单中强制执行文档更新，使文档债务不随每个功能发布静默积累",
+      "在CI中运行自动化链接检查和散文代码检查，因为断链和风格不一致在合并时被捕获，而不是被沮丧的读者发现",
+      "投资文档搜索，因为即使是写得最好的文档，如果工程师不能在30秒内找到它，也是没用的"
+    ],
+    "donts": [
+      "Don't assign documentation as a post-release afterthought because it will never be prioritized over the next feature and the documentation debt will compound",
+      "Don't use documentation as a substitute for good API design because if the documentation for an API is long and complex, the API itself is probably too complex",
+      "Don't let documentation ownership become 'everyone's problem' because diffuse ownership is the primary cause of stale, inaccurate documentation",
+      "Don't optimize documentation for the writer's convenience (dumping raw notes, linking to internal Slack threads, assuming tribal knowledge) — optimize it for a reader encountering the topic for the first time"
+    ],
+    "donts_zh": [
+      "不要将文档视为发布后的事后想法，因为它永远不会比下一个功能优先，文档债务会复利增长",
+      "不要使用文档作为良好API设计的替代品，因为如果API的文档又长又复杂，API本身可能过于复杂",
+      "不要让文档所有权成为「所有人的问题」，因为分散的所有权是文档过时、不准确的主要原因",
+      "不要为写作者的便利优化文档（倾倒原始笔记、链接到内部Slack线程、假设部落知识）——为首次遇到该主题的读者优化"
+    ],
+    "case_study_company": "Stripe",
+    "case_study": "Stripe has consistently ranked at the top of developer experience benchmarks, with its documentation cited as a primary driver. Stripe's documentation approach embodies every docs-as-code principle: all documentation is stored in a monorepo alongside the API code, reviewed in the same PR workflow as code changes, and built through an automated publishing pipeline. Each API endpoint has dedicated tutorial content, code samples in 8 languages generated from a single source, and a reference section. Stripe employs over 20 technical writers who collaborate directly with engineers rather than receiving finished content to document. Internal research showed that new developers who could complete a working integration in under 30 minutes (possible because of documentation quality) had significantly higher activation rates.",
+    "case_study_zh": "Stripe在开发者体验基准中始终排名靠前，其文档被列为主要驱动因素。Stripe的文档方法体现了所有文档即代码原则：所有文档与API代码一起存储在单体仓库中，在与代码变更相同的PR工作流中审查，并通过自动化发布流水线构建。每个API端点都有专门的教程内容、从单一来源生成的8种语言代码示例和参考部分。Stripe雇用超过20名技术写作者，他们直接与工程师协作，而不是接收已完成的内容来记录。内部研究表明，能够在30分钟内完成工作集成（由于文档质量而成为可能）的新开发者具有显著更高的激活率。",
+    "when_not_to_use": [
+      "Internal proof-of-concept projects with a lifespan under 3 months where the documentation investment will not be recouped before the project is discarded",
+      "Highly experimental research systems where the design changes faster than documentation can be written and maintained",
+      "Proprietary code that will never be shared beyond the immediate team, where informal knowledge transfer through pair programming and code reviews is sufficient",
+      "Automated code where inline comments and self-documenting variable names serve as documentation, and separate prose documentation would be redundant"
+    ],
+    "when_not_to_use_zh": [
+      "寿命不足3个月的内部概念验证项目，文档投资在项目被丢弃之前无法得到回报",
+      "高度实验性研究系统，设计变化速度比文档可以编写和维护的速度更快",
+      "永远不会在直接团队之外共享的专有代码，通过结对编程和代码审查进行的非正式知识传递已经足够",
+      "自动化代码，其中内联注释和自文档变量名充当文档，单独的散文文档将是多余的"
+    ],
+    "adopters": [
+      "Stripe",
+      "Twilio",
+      "Cloudflare",
+      "Hashicorp",
+      "Netlify"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "usability",
+      "maintainability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Procida, D. (2017). \"The Documentation System\". divio.com / diataxis.fr.",
+    "secondary_sources": [
+      "Gentle, A. (2015). \"Docs Like Code\". lulu.com.",
+      "Google (2019). \"Google Developer Documentation Style Guide\". developers.google.com/style.",
+      "Write the Docs community (2023). \"Documentation Best Practices\". writethedocs.org."
+    ]
   }
 ]

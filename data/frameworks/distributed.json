@@ -1652,5 +1652,805 @@
       "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 11. O'Reilly Media.",
       "Nygard, M.T. (2018). \"Release It!\", 2nd ed., Ch. 5. Pragmatic Bookshelf."
     ]
+  },
+  {
+    "id": 205,
+    "name": "CRDT (Conflict-free Replicated Data Types)",
+    "name_zh": "无冲突复制数据类型",
+    "slug": "crdt",
+    "category": "distributed",
+    "desc": "Data structures that auto-merge without coordination (Shapiro, 2011)",
+    "desc_zh": "无需协调即可自动合并的数据结构（Shapiro，2011）",
+    "steps": [
+      "Identify the collaborative or distributed data-sharing use case where concurrent modifications by multiple nodes or users must be merged automatically without a coordination round-trip",
+      "Select the appropriate CRDT type: G-Counter or PN-Counter for incrementing counters, G-Set or OR-Set for sets, LWW-Element-Set for last-write-wins semantics, or an RGA (Replicated Growable Array) for text collaboration",
+      "Implement the CRDT's merge function (join in lattice terms) which must be commutative, associative, and idempotent so that applying the same update multiple times or in any order produces the same result",
+      "Design the state or operation propagation strategy: state-based CRDTs (CvRDTs) gossip full state snapshots to peers; operation-based CRDTs (CmRDTs) propagate individual operations and require exactly-once delivery guarantees",
+      "Validate convergence under network partition scenarios by simulating concurrent conflicting updates across replicas and verifying that all replicas reach identical state after reconnection, regardless of the order messages were received"
+    ],
+    "steps_zh": [
+      "识别协作或分布式数据共享用例，其中多个节点或用户的并发修改必须自动合并，无需协调往返",
+      "选择适当的CRDT类型：G-Counter或PN-Counter用于递增计数器，G-Set或OR-Set用于集合，LWW-Element-Set用于最后写入胜出语义，或RGA（可复制增长数组）用于文本协作",
+      "实现CRDT的合并函数（格论中的连接），该函数必须是交换的、结合的和幂等的，使得多次或以任何顺序应用同一更新都产生相同结果",
+      "设计状态或操作传播策略：基于状态的CRDT（CvRDT）向对等节点传播完整状态快照；基于操作的CRDT（CmRDT）传播单个操作，并需要精确一次交付保证",
+      "通过模拟副本之间的并发冲突更新来验证网络分区场景下的收敛性，验证所有副本在重新连接后达到相同状态，无论消息的接收顺序如何"
+    ],
+    "ai_relevant": false,
+    "viz_type": "graph",
+    "related": [
+      "eventual-consistency",
+      "gossip-protocol",
+      "consensus-protocols",
+      "outbox-pattern"
+    ],
+    "tags": [
+      "crdt",
+      "eventual-consistency",
+      "distributed-state",
+      "conflict-resolution",
+      "collaboration"
+    ],
+    "origin_author": "Marc Shapiro, Nuno Preguiça, Carlos Baquero, Marek Zawirski, 2011",
+    "origin_source": "Shapiro, M. et al. (2011). \"Conflict-Free Replicated Data Types\". Proceedings of SSS 2011, LNCS 6976. Springer.",
+    "origin_source_zh": "Shapiro, M. 等（2011）。「无冲突复制数据类型」。SSS 2011论文集，LNCS 6976，Springer。",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When building real-time collaborative editing applications (documents, spreadsheets, whiteboards) where multiple users concurrently modify shared state",
+      "When distributed systems must remain available during network partitions and data must be automatically reconciled upon reconnection without human intervention",
+      "When a multi-region active-active database architecture requires conflict resolution that is provably correct without a centralized coordinator",
+      "When mobile or offline-capable applications need to merge local changes made during disconnection with server-side changes upon sync"
+    ],
+    "when_to_use_zh": [
+      "构建多用户并发修改共享状态的实时协作编辑应用程序（文档、电子表格、白板）时",
+      "当分布式系统在网络分区期间必须保持可用，且数据必须在重新连接时自动协调而无需人工干预时",
+      "当多区域主-主数据库架构需要无需集中协调器的可证明正确的冲突解决时",
+      "当移动或支持离线的应用程序需要在同步时将断开连接期间进行的本地更改与服务器端更改合并时"
+    ],
+    "core_concepts": [
+      "Monotonic join semi-lattice: the mathematical structure underlying CRDTs where the state space forms a lattice with a least-upper-bound merge operation that is commutative, associative, and idempotent",
+      "State-based CRDT (CvRDT): replicas periodically exchange full state; the merge function computes the join of two states; requires only eventual message delivery",
+      "Operation-based CRDT (CmRDT): replicas propagate operations that mutate state; requires exactly-once causal delivery but produces smaller network payloads",
+      "Strong Eventual Consistency (SEC): the guarantee that all replicas that have received the same set of updates will have identical state, without requiring synchronous coordination"
+    ],
+    "core_concepts_zh": [
+      "单调连接半格：CRDT底层的数学结构，状态空间形成具有最小上界合并操作的格，该操作是交换的、结合的和幂等的",
+      "基于状态的CRDT（CvRDT）：副本定期交换完整状态；合并函数计算两个状态的连接；仅需最终消息交付",
+      "基于操作的CRDT（CmRDT）：副本传播改变状态的操作；需要精确一次因果交付，但产生更小的网络负载",
+      "强最终一致性（SEC）：保证所有收到同一组更新的副本将具有相同状态，无需同步协调"
+    ],
+    "timeline": [
+      [
+        "2006",
+        "Logoot and other operational transformation (OT) approaches used in collaborative editors precede formal CRDT theory"
+      ],
+      [
+        "2011",
+        "Shapiro et al. publish the landmark 'A Comprehensive Study of Convergent and Commutative Replicated Data Types', formalizing CRDT theory"
+      ],
+      [
+        "2014",
+        "Riak 2.0 ships with production-ready CRDT support (counters, sets, maps), bringing CRDTs to mainstream distributed databases"
+      ],
+      [
+        "2017",
+        "Figma, a collaborative design tool, publicly discusses using CRDTs for multiplayer editing, driving broader awareness in the software industry"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2006",
+        "协作编辑器中使用的Logoot和其他操作转换（OT）方法早于正式CRDT理论"
+      ],
+      [
+        "2011",
+        "Shapiro等人发表里程碑式的「收敛和可交换复制数据类型综合研究」，正式化CRDT理论"
+      ],
+      [
+        "2014",
+        "Riak 2.0发布生产就绪的CRDT支持（计数器、集合、映射），将CRDT带入主流分布式数据库"
+      ],
+      [
+        "2017",
+        "协作设计工具Figma公开讨论使用CRDT进行多人编辑，推动软件行业更广泛的认知"
+      ]
+    ],
+    "dos": [
+      "Do choose the CRDT type that naturally matches the data semantics because forcing application data into a mismatched CRDT produces correct but semantically wrong results",
+      "Do use delta-CRDTs (delta state CRDTs) for large state spaces because shipping full state on every sync generates excessive network bandwidth for large CRDT instances",
+      "Do test convergence properties with property-based testing that generates arbitrary sequences of concurrent operations because CRDTs are easy to implement incorrectly in subtle ways",
+      "Do consider using established CRDT libraries (Automerge, Yjs, redis-crdt) rather than building from scratch because the theoretical simplicity of CRDTs masks substantial implementation complexity"
+    ],
+    "dos_zh": [
+      "选择与数据语义自然匹配的CRDT类型，因为将应用程序数据强制放入不匹配的CRDT会产生正确但语义错误的结果",
+      "对大状态空间使用增量CRDT（增量状态CRDT），因为每次同步都传送完整状态会为大型CRDT实例产生过多网络带宽",
+      "使用生成任意并发操作序列的基于属性的测试来测试收敛特性，因为CRDT很容易以微妙的方式实现不正确",
+      "考虑使用成熟的CRDT库（Automerge、Yjs、redis-crdt）而非从头构建，因为CRDT的理论简单性掩盖了大量的实现复杂性"
+    ],
+    "donts": [
+      "Don't use CRDTs for data that requires strict consistency (financial balances, inventory counts where overselling is unacceptable) because CRDTs guarantee eventual consistency, not strong consistency",
+      "Don't model all application state as CRDTs because not every field needs conflict-free merging and the overhead is unnecessary for state that is never concurrently modified",
+      "Don't confuse operational transformation (OT) with CRDTs because they solve the same collaboration problem with different guarantees — CRDTs are more composable but OT can produce better user intent preservation",
+      "Don't ignore tombstone growth in OR-Sets and similar CRDTs because deleted elements leave tombstones that accumulate indefinitely without periodic garbage collection"
+    ],
+    "donts_zh": [
+      "不要将CRDT用于需要强一致性的数据（财务余额、超卖不可接受的库存计数），因为CRDT保证最终一致性，而非强一致性",
+      "不要将所有应用程序状态建模为CRDT，因为并非每个字段都需要无冲突合并，对于从未被并发修改的状态，开销是不必要的",
+      "不要将操作转换（OT）与CRDT混淆，因为它们用不同的保证解决相同的协作问题——CRDT更可组合，但OT可以更好地保留用户意图",
+      "不要忽视OR-Sets和类似CRDT中的墓碑增长，因为删除的元素会留下无限期积累的墓碑，没有定期垃圾收集"
+    ],
+    "case_study_company": "Figma",
+    "case_study": "Figma uses a custom CRDT-inspired data model for its multiplayer design editor, allowing dozens of designers to simultaneously edit the same design file without merge conflicts. Each design element (frame, shape, text) is represented as a node in a document tree, with properties stored as last-write-wins registers. Operations (move, resize, recolor) are sent as small deltas to a central relay server that broadcasts them to all connected clients. Figma's multiplayer system handles over 1 million concurrent collaborative sessions daily with sub-100ms operation propagation latency, making real-time collaboration indistinguishable from working locally.",
+    "case_study_zh": "Figma为其多人设计编辑器使用自定义的CRDT启发数据模型，允许数十名设计师同时编辑同一设计文件而不产生合并冲突。每个设计元素（框架、形状、文本）表示为文档树中的节点，属性存储为最后写入胜出寄存器。操作（移动、调整大小、重新着色）作为小增量发送到中央中继服务器，该服务器将其广播给所有连接的客户端。Figma的多人系统每天处理超过100万个并发协作会话，操作传播延迟低于100毫秒，使实时协作与本地工作无异。",
+    "when_not_to_use": [
+      "Financial or inventory systems where preventing double-spending or overselling requires strong consistency guarantees that CRDTs cannot provide",
+      "Simple leader-follower replication where a single primary handles all writes and conflict-free merging is unnecessary",
+      "When the team lacks the mathematical background to correctly implement and test CRDT merge functions — incorrect implementations create subtle data loss bugs",
+      "Systems with low concurrency where optimistic locking or simple last-write-wins semantics with human conflict resolution is sufficient"
+    ],
+    "when_not_to_use_zh": [
+      "防止双重支出或超卖需要CRDT无法提供的强一致性保证的金融或库存系统",
+      "单个主节点处理所有写入且无冲突合并不必要的简单主从复制",
+      "当团队缺乏正确实现和测试CRDT合并函数的数学背景时——不正确的实现会产生微妙的数据丢失错误",
+      "并发性低的系统，乐观锁定或带有人工冲突解决的简单最后写入胜出语义已足够"
+    ],
+    "adopters": [
+      "Figma",
+      "Notion",
+      "Apple (CloudKit)",
+      "Redis (CRDT for Redis Enterprise)",
+      "Riak (Basho)"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability",
+      "scalability"
+    ],
+    "maturity_ring": "emerging",
+    "primary_source": "Shapiro, M., Preguiça, N., Baquero, C. & Zawirski, M. (2011). \"Conflict-Free Replicated Data Types\". Proceedings of SSS 2011, LNCS 6976. Springer.",
+    "secondary_sources": [
+      "Shapiro, M. et al. (2011). \"A Comprehensive Study of Convergent and Commutative Replicated Data Types\". INRIA Research Report RR-7506.",
+      "Kleppmann, M. & Beresford, A.R. (2017). \"A Conflict-Free Replicated JSON Datatype\". IEEE Transactions on Parallel and Distributed Systems.",
+      "Kleppmann, M. (2019). \"Designing Data-Intensive Applications\", Ch. 5. O'Reilly Media."
+    ]
+  },
+  {
+    "id": 206,
+    "name": "Outbox Pattern",
+    "name_zh": "发件箱模式",
+    "slug": "outbox-pattern",
+    "category": "distributed",
+    "desc": "Reliable event publishing from database transactions",
+    "desc_zh": "从数据库事务中可靠地发布事件",
+    "steps": [
+      "Add an outbox table to the service's database schema alongside the primary business entities; the table stores pending domain events with columns for event type, payload, destination topic, and publication status",
+      "Modify the service's transactional write path to insert domain events into the outbox table within the same database transaction as the business entity mutation, guaranteeing atomicity between state change and event recording",
+      "Deploy a message relay process (Debezium CDC connector, polling relay, or Transactional Outbox relay) that reads unpublished events from the outbox table and publishes them to the message broker (Kafka, SQS, RabbitMQ)",
+      "Mark events as published after successful broker acknowledgment; implement at-least-once delivery semantics since the relay may publish an event, crash before marking it, and republish on restart",
+      "Consumers must be idempotent to handle duplicate events produced by the at-least-once relay; use deduplication keys or idempotent operations to ensure duplicate publications have no additional effect"
+    ],
+    "steps_zh": [
+      "在服务的数据库模式中，在主要业务实体旁边添加发件箱表；该表存储待处理的领域事件，包含事件类型、负载、目标主题和发布状态的列",
+      "修改服务的事务写入路径，在与业务实体变更相同的数据库事务中将领域事件插入发件箱表，保证状态变更和事件记录之间的原子性",
+      "部署消息中继进程（Debezium CDC连接器、轮询中继或事务性发件箱中继），从发件箱表读取未发布的事件并将其发布到消息代理（Kafka、SQS、RabbitMQ）",
+      "成功获得代理确认后将事件标记为已发布；实施至少一次交付语义，因为中继可能发布事件、在标记前崩溃，并在重启时重新发布",
+      "消费者必须是幂等的以处理至少一次中继产生的重复事件；使用去重键或幂等操作确保重复发布没有额外影响"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "change-data-capture",
+      "saga-pattern",
+      "idempotency-pattern",
+      "crdt"
+    ],
+    "tags": [
+      "outbox",
+      "reliable-messaging",
+      "transactional-outbox",
+      "event-driven",
+      "at-least-once"
+    ],
+    "origin_author": "Chris Richardson (microservices.io); popularized by Udi Dahan and Greg Young in CQRS/event sourcing contexts",
+    "origin_source": "Richardson, C. (2018). \"Microservices Patterns\". Manning; microservices.io/patterns/data/transactional-outbox.html",
+    "origin_source_zh": "Richardson, C.（2018）。《微服务模式》，Manning；microservices.io/patterns/data/transactional-outbox.html",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When a microservice must atomically update its database and publish a domain event without using distributed transactions, preventing the dual-write problem",
+      "When message broker publish failures (network partition, broker unavailability) must not cause data inconsistencies between the service database and the event log",
+      "When event-driven architectures require guaranteed at-least-once event delivery even if the publishing service crashes immediately after committing a transaction",
+      "When implementing the Saga pattern where each saga step must reliably publish the event that triggers the next step in the compensating transaction chain"
+    ],
+    "when_to_use_zh": [
+      "当微服务必须在不使用分布式事务的情况下原子性地更新其数据库并发布领域事件，防止双写问题时",
+      "当消息代理发布失败（网络分区、代理不可用）不得导致服务数据库和事件日志之间数据不一致时",
+      "当事件驱动架构需要保证至少一次事件交付，即使发布服务在提交事务后立即崩溃时",
+      "当实现Saga模式时，每个Saga步骤必须可靠地发布触发补偿事务链中下一步的事件"
+    ],
+    "core_concepts": [
+      "Dual-write problem: the impossibility of atomically updating a database and publishing to a message broker in two separate operations — one will succeed and the other can fail, creating inconsistency",
+      "Transactional outbox: a staging table within the same database that acts as a durable event queue, allowing a single database transaction to atomically commit both the business state and the event record",
+      "Message relay: a background process that polls or tails the outbox table and publishes events to the broker, decoupling the business transaction from the publish operation",
+      "At-least-once delivery: the guarantee that every event in the outbox will eventually be published to the broker, potentially more than once; consumers must handle duplicates"
+    ],
+    "core_concepts_zh": [
+      "双写问题：在两个独立操作中原子性地更新数据库和发布到消息代理的不可能性——一个会成功而另一个可能失败，造成不一致",
+      "事务性发件箱：同一数据库中作为持久事件队列的暂存表，允许单个数据库事务原子性地提交业务状态和事件记录",
+      "消息中继：轮询或跟踪发件箱表并将事件发布到代理的后台进程，将业务事务与发布操作解耦",
+      "至少一次交付：保证发件箱中的每个事件最终将发布到代理（可能不止一次）；消费者必须处理重复项"
+    ],
+    "timeline": [
+      [
+        "2010",
+        "Udi Dahan and Greg Young discuss the dual-write problem and outbox as part of NServiceBus and CQRS/event sourcing patterns"
+      ],
+      [
+        "2015",
+        "Debezium project released by Red Hat, providing a CDC-based implementation of the outbox relay using database transaction logs"
+      ],
+      [
+        "2018",
+        "Chris Richardson formalizes the Transactional Outbox pattern in 'Microservices Patterns' and on microservices.io, giving it a canonical name and reference implementation"
+      ],
+      [
+        "2020",
+        "Debezium's Outbox Event Router SMT (Single Message Transform) provides a turnkey outbox implementation without polling, using log-based CDC"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2010",
+        "Udi Dahan和Greg Young在NServiceBus和CQRS/事件溯源模式的背景下讨论双写问题和发件箱"
+      ],
+      [
+        "2015",
+        "Red Hat发布Debezium项目，提供使用数据库事务日志的基于CDC的发件箱中继实现"
+      ],
+      [
+        "2018",
+        "Chris Richardson在《微服务模式》和microservices.io中正式化事务性发件箱模式，为其提供规范名称和参考实现"
+      ],
+      [
+        "2020",
+        "Debezium的发件箱事件路由器SMT（单消息转换）提供无需轮询的即用型发件箱实现，使用基于日志的CDC"
+      ]
+    ],
+    "dos": [
+      "Do use CDC-based outbox relay (Debezium) rather than polling where possible because CDC has lower database load and sub-second relay latency compared to polling intervals of seconds or minutes",
+      "Do include a correlation ID in every outbox event so that distributed traces can be reconstructed across service boundaries from the originating request to the eventual event consumer",
+      "Do partition the outbox table by service or aggregate type to prevent a high-volume event stream from a single aggregate from blocking events of other types",
+      "Do set a maximum event age and alert when events remain unpublished beyond it because stuck events in the outbox indicate a relay failure that may cause business-critical delays"
+    ],
+    "dos_zh": [
+      "尽可能使用基于CDC的发件箱中继（Debezium）而非轮询，因为与数秒或数分钟的轮询间隔相比，CDC具有更低的数据库负载和亚秒中继延迟",
+      "在每个发件箱事件中包含关联ID，使分布式追踪可以跨服务边界从原始请求到最终事件消费者进行重建",
+      "按服务或聚合类型对发件箱表进行分区，以防止单个聚合的大量事件流阻塞其他类型的事件",
+      "设置最大事件年龄并在事件超出该时间未发布时发出告警，因为发件箱中的卡住事件表明可能导致业务关键延迟的中继失败"
+    ],
+    "donts": [
+      "Don't use the outbox as a long-term event store because it is a short-lived staging area — events should be published within seconds and the outbox should be trimmed regularly",
+      "Don't skip consumer idempotency because at-least-once delivery is a fundamental outbox guarantee and consumers that process duplicates non-idempotently will produce incorrect results",
+      "Don't implement the outbox in a separate database from the business entity because the entire point of the pattern is to use a single database transaction to atomically write both",
+      "Don't forget to monitor outbox table growth because an accumulating backlog indicates a relay outage or broker connectivity issue that requires immediate attention"
+    ],
+    "donts_zh": [
+      "不要将发件箱用作长期事件存储，因为它是短期暂存区——事件应在几秒内发布，发件箱应定期清理",
+      "不要跳过消费者幂等性，因为至少一次交付是发件箱的基本保证，非幂等处理重复项的消费者将产生不正确的结果",
+      "不要在与业务实体不同的数据库中实现发件箱，因为该模式的整个意义在于使用单个数据库事务原子性地写入两者",
+      "不要忘记监控发件箱表增长，因为积累的积压表明中继中断或代理连接问题，需要立即关注"
+    ],
+    "case_study_company": "Uber",
+    "case_study": "Uber uses the Outbox Pattern across many of its microservices to ensure reliable event publishing without distributed transactions. In their trip dispatch service, when a driver accepts a trip, the service atomically updates the trip state in its PostgreSQL database and inserts a TripAccepted domain event into the outbox table in the same transaction. A Debezium CDC relay reads the outbox events from the PostgreSQL WAL and publishes them to Apache Kafka topics consumed by the rider notification service, pricing engine, and analytics pipeline. This design ensures that a TripAccepted event is always published exactly once — even if the trip service crashes between committing the trip state and publishing the event — eliminating ghost trips and missed notifications.",
+    "case_study_zh": "Uber在其许多微服务中使用发件箱模式，以确保在没有分布式事务的情况下可靠地发布事件。在其行程调度服务中，当司机接受行程时，服务在同一事务中原子性地更新其PostgreSQL数据库中的行程状态，并将TripAccepted领域事件插入发件箱表。Debezium CDC中继从PostgreSQL WAL读取发件箱事件，并将其发布到乘客通知服务、定价引擎和分析管道消费的Apache Kafka主题。这种设计确保TripAccepted事件始终被发布一次——即使行程服务在提交行程状态和发布事件之间崩溃——消除了幽灵行程和错过的通知。",
+    "when_not_to_use": [
+      "When the message broker and database can participate in an XA distributed transaction and the operational overhead of XA is acceptable",
+      "Simple single-service applications without downstream event consumers where the overhead of maintaining an outbox table is unnecessary",
+      "When event loss is acceptable (fire-and-forget telemetry, non-critical notifications) and the complexity of the outbox pattern is not justified by the reliability requirement",
+      "Greenfield services where an event streaming architecture with event sourcing (Kafka as the system of record) eliminates the dual-write problem entirely at the architecture level"
+    ],
+    "when_not_to_use_zh": [
+      "当消息代理和数据库可以参与XA分布式事务，且XA的运维开销可以接受时",
+      "没有下游事件消费者的简单单服务应用程序，维护发件箱表的开销是不必要的",
+      "当事件丢失可以接受（即发即忘遥测、非关键通知）且发件箱模式的复杂性不被可靠性要求所证明时",
+      "采用事件溯源的事件流架构（Kafka作为记录系统）在架构级别完全消除双写问题的绿地服务"
+    ],
+    "adopters": [
+      "Uber",
+      "Netflix",
+      "Shopify",
+      "Red Hat (Debezium)",
+      "Eventuate.io"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability",
+      "maintainability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Richardson, C. (2018). \"Microservices Patterns\", Ch. 3. Manning Publications.",
+    "secondary_sources": [
+      "Richardson, C. (2018). \"Pattern: Transactional outbox\". microservices.io/patterns/data/transactional-outbox.html.",
+      "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 11. O'Reilly Media.",
+      "Debezium Project (2020). \"Outbox Event Router Transformation\". debezium.io/documentation."
+    ]
+  },
+  {
+    "id": 207,
+    "name": "Service Discovery",
+    "name_zh": "服务发现",
+    "slug": "service-discovery",
+    "category": "distributed",
+    "desc": "Dynamic registration and lookup of service instances (Consul, etcd)",
+    "desc_zh": "服务实例的动态注册与查找（Consul、etcd）",
+    "steps": [
+      "Choose a service registry (Consul, etcd, ZooKeeper, Eureka, or Kubernetes Service + CoreDNS) and deploy it as a highly available cluster with at least 3 nodes to survive node failures without losing the registry",
+      "Implement service registration: when a service instance starts, it registers its network address (IP, port, protocol) and health check endpoint with the registry; on shutdown, it deregisters to remove stale entries",
+      "Configure health checks in the registry so that the registry actively monitors instance health and automatically removes instances that fail checks, preventing traffic from routing to unhealthy endpoints",
+      "Implement service lookup in client services using either client-side discovery (the client queries the registry and load-balances across healthy instances) or server-side discovery (the client sends requests to a load balancer or service mesh proxy that performs registry lookup)",
+      "Test failure scenarios: kill a service instance and verify that the registry removes it within the health check timeout and that clients stop routing traffic to the dead instance within the acceptable failover window"
+    ],
+    "steps_zh": [
+      "选择服务注册表（Consul、etcd、ZooKeeper、Eureka或Kubernetes Service + CoreDNS）并将其部署为至少3个节点的高可用集群，以在节点故障后存活而不丢失注册表",
+      "实施服务注册：当服务实例启动时，向注册表注册其网络地址（IP、端口、协议）和健康检查端点；关闭时注销以删除过期条目",
+      "在注册表中配置健康检查，使注册表主动监控实例健康状况，并自动删除未通过检查的实例，防止流量路由到不健康的端点",
+      "在客户端服务中使用客户端发现（客户端查询注册表并在健康实例间负载均衡）或服务器端发现（客户端向执行注册表查找的负载均衡器或服务网格代理发送请求）来实施服务查找",
+      "测试故障场景：终止服务实例并验证注册表在健康检查超时内删除它，以及客户端在可接受的故障转移窗口内停止路由流量到死亡实例"
+    ],
+    "ai_relevant": false,
+    "viz_type": "graph",
+    "related": [
+      "consensus-protocols",
+      "leader-election",
+      "circuit-breaker-with-retry",
+      "bulkhead-service-level"
+    ],
+    "tags": [
+      "service-discovery",
+      "consul",
+      "etcd",
+      "kubernetes",
+      "load-balancing"
+    ],
+    "origin_author": "Netflix (Eureka, 2012); HashiCorp (Consul, 2014); Kubernetes (CoreDNS-based, 2015)",
+    "origin_source": "Richardson, C. (2018). \"Microservices Patterns\", Ch. 3. Manning; consul.io documentation; Kubernetes Service documentation",
+    "origin_source_zh": "Richardson, C.（2018）。《微服务模式》第3章，Manning；consul.io文档；Kubernetes Service文档",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When microservices are deployed on dynamic infrastructure where IP addresses change on every deployment, container restart, or auto-scaling event",
+      "When a service mesh is not in use and services must directly discover the network locations of their dependencies without hard-coded configuration",
+      "When the number of service instances varies dynamically based on load and clients must route only to currently healthy instances",
+      "When multi-datacenter or multi-cloud deployments require services to discover peers across network segments with different address spaces"
+    ],
+    "when_to_use_zh": [
+      "当微服务部署在每次部署、容器重启或自动扩展事件都会更改IP地址的动态基础设施上时",
+      "当没有使用服务网格，服务必须直接发现其依赖项的网络位置而不使用硬编码配置时",
+      "当服务实例数量根据负载动态变化，客户端必须仅路由到当前健康的实例时",
+      "当多数据中心或多云部署要求服务在具有不同地址空间的网络段之间发现对等节点时"
+    ],
+    "core_concepts": [
+      "Service registry: the centralized (or distributed) store that maintains the mapping from service name to healthy instance network addresses",
+      "Client-side discovery: the calling service queries the registry directly, selects an instance using a load-balancing algorithm (round-robin, least-connections), and makes the request directly to the chosen instance",
+      "Server-side discovery: the calling service sends requests to a stable proxy (load balancer, API gateway, or service mesh sidecar) that performs registry lookup and routing, hiding infrastructure dynamism from the application",
+      "Health check: a mechanism by which the registry (or a sidecar) periodically probes service instances (HTTP endpoint, TCP ping, or script) and removes those that fail"
+    ],
+    "core_concepts_zh": [
+      "服务注册表：维护服务名称到健康实例网络地址映射的集中（或分布式）存储",
+      "客户端发现：调用服务直接查询注册表，使用负载均衡算法（轮询、最少连接）选择实例，并直接向所选实例发送请求",
+      "服务器端发现：调用服务向稳定代理（负载均衡器、API网关或服务网格Sidecar）发送请求，该代理执行注册表查找和路由，向应用程序隐藏基础设施动态性",
+      "健康检查：注册表（或Sidecar）定期探测服务实例（HTTP端点、TCP ping或脚本）并删除失败实例的机制"
+    ],
+    "timeline": [
+      [
+        "2012",
+        "Netflix open-sources Eureka, one of the first widely-used service registries built for cloud-native microservices at scale"
+      ],
+      [
+        "2014",
+        "HashiCorp releases Consul with built-in service discovery, health checking, key-value store, and multi-datacenter support"
+      ],
+      [
+        "2015",
+        "Kubernetes Services and CoreDNS provide DNS-based service discovery as a first-class primitive in the container orchestration platform"
+      ],
+      [
+        "2018",
+        "Service meshes (Istio, Linkerd) supersede explicit service discovery for many use cases by embedding discovery in the sidecar proxy"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2012",
+        "Netflix开源Eureka，这是最早为大规模云原生微服务构建的广泛使用的服务注册表之一"
+      ],
+      [
+        "2014",
+        "HashiCorp发布Consul，内置服务发现、健康检查、键值存储和多数据中心支持"
+      ],
+      [
+        "2015",
+        "Kubernetes Services和CoreDNS在容器编排平台中提供基于DNS的服务发现作为一等原语"
+      ],
+      [
+        "2018",
+        "服务网格（Istio、Linkerd）通过将发现嵌入Sidecar代理，在许多用例中取代了显式服务发现"
+      ]
+    ],
+    "dos": [
+      "Do deploy the service registry as a clustered, highly available service with at least 3 nodes because the registry is a critical infrastructure dependency that every service relies on",
+      "Do implement graceful deregistration in shutdown hooks so that instances remove themselves from the registry before stopping, minimizing the window where the registry routes to a dead instance",
+      "Do tune health check intervals and failure thresholds to balance detection speed against false-positive deregistrations because overly sensitive health checks deregister healthy instances under load",
+      "Do cache registry lookups with a short TTL in client services because querying the registry on every request creates a bottleneck at the registry and adds latency to every service call"
+    ],
+    "dos_zh": [
+      "将服务注册表部署为至少3个节点的集群高可用服务，因为注册表是每个服务都依赖的关键基础设施依赖项",
+      "在关闭钩子中实施优雅注销，使实例在停止前从注册表中删除自身，最小化注册表路由到死亡实例的窗口",
+      "调整健康检查间隔和失败阈值以平衡检测速度与误报注销，因为过于敏感的健康检查会在负载下注销健康实例",
+      "在客户端服务中以短TTL缓存注册表查找，因为每次请求都查询注册表会在注册表处产生瓶颈，并为每次服务调用增加延迟"
+    ],
+    "donts": [
+      "Don't hard-code service instance addresses in configuration files or environment variables because they change with every deployment and become stale immediately",
+      "Don't skip health checks on registered services because the registry will route traffic to instances that are up but serving errors if health checks are absent",
+      "Don't make the service registry a single point of failure by running it as a single instance — a registry outage means no service can discover any other service",
+      "Don't use service discovery for databases or stateful services that require sticky connections because round-robin instance selection breaks connection pooling and stateful session affinity"
+    ],
+    "donts_zh": [
+      "不要在配置文件或环境变量中硬编码服务实例地址，因为它们在每次部署时都会更改，立即变得过时",
+      "不要跳过已注册服务的健康检查，因为如果没有健康检查，注册表将向运行中但提供错误服务的实例路由流量",
+      "不要通过将服务注册表作为单实例运行使其成为单点故障——注册表中断意味着没有服务可以发现任何其他服务",
+      "不要将服务发现用于需要粘性连接的数据库或有状态服务，因为轮询实例选择会破坏连接池和有状态会话亲和性"
+    ],
+    "case_study_company": "Airbnb",
+    "case_study": "Airbnb runs a service discovery infrastructure built on Consul, managing over 5,000 service instances across multiple AWS availability zones. When an Airbnb service deploys a new version, the old instances deregister and new instances register with Consul automatically via their deployment system. Consul's health checks probe each instance's /health endpoint every 10 seconds, removing failed instances within 30 seconds. Client services use a local Consul agent for cached lookups, making service resolution sub-millisecond. During Airbnb's 2020 AWS availability zone failures, Consul's multi-datacenter federation automatically shifted traffic to healthy availability zones with under 2 minutes of detection-to-failover latency.",
+    "case_study_zh": "Airbnb运行基于Consul构建的服务发现基础设施，管理跨多个AWS可用区的5,000多个服务实例。当Airbnb服务部署新版本时，旧实例注销，新实例通过其部署系统自动向Consul注册。Consul的健康检查每10秒探测每个实例的/health端点，在30秒内删除失败的实例。客户端服务使用本地Consul代理进行缓存查找，使服务解析达到亚毫秒级。在Airbnb 2020年AWS可用区故障期间，Consul的多数据中心联合自动将流量转移到健康的可用区，检测到故障转移的延迟不到2分钟。",
+    "when_not_to_use": [
+      "Monolithic applications where all components run in the same process or on a fixed set of known servers with static IP addresses",
+      "Small deployments with a fixed number of service instances where a static load balancer configuration is sufficient and the overhead of a service registry is not justified",
+      "When a service mesh (Istio, Linkerd) is already in use because the mesh sidecar handles service discovery transparently without a separate registry client in the application",
+      "Serverless or FaaS architectures where the platform manages instance routing and developers do not need to implement service discovery"
+    ],
+    "when_not_to_use_zh": [
+      "所有组件在同一进程中运行或在具有静态IP地址的固定已知服务器集上运行的单体应用程序",
+      "具有固定服务实例数量的小型部署，静态负载均衡器配置已足够且服务注册表的开销不合理",
+      "当服务网格（Istio、Linkerd）已在使用时，因为网格Sidecar透明地处理服务发现，应用程序中不需要单独的注册表客户端",
+      "平台管理实例路由且开发者不需要实现服务发现的无服务器或FaaS架构"
+    ],
+    "adopters": [
+      "Airbnb",
+      "Lyft",
+      "Shopify",
+      "HashiCorp customers",
+      "Kubernetes ecosystem"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "scalability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Richardson, C. (2018). \"Microservices Patterns\", Ch. 3. Manning Publications.",
+    "secondary_sources": [
+      "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 10. O'Reilly Media.",
+      "HashiCorp (2014). \"Consul Documentation\". consul.io.",
+      "Kubernetes Project (2015). \"Kubernetes Services Documentation\". kubernetes.io/docs/concepts/services-networking/service."
+    ]
+  },
+  {
+    "id": 208,
+    "name": "Circuit Breaker with Retry",
+    "name_zh": "带重试的断路器",
+    "slug": "circuit-breaker-with-retry",
+    "category": "distributed",
+    "desc": "Combined retry + circuit breaker for resilient communication",
+    "desc_zh": "结合重试与断路器实现弹性通信",
+    "steps": [
+      "Instrument all inter-service calls with a retry policy: configure a maximum retry count (e.g., 3 attempts), a retry delay strategy (fixed, exponential backoff, or jitter), and the specific exception types that should trigger a retry versus those that should fail immediately",
+      "Wrap the retry-capable call with a circuit breaker: configure a failure threshold (e.g., 50% failure rate over 30 seconds) that trips the breaker to open state, a timeout for the half-open probe attempt, and the success count required to close the breaker",
+      "Ensure the circuit breaker wraps the entire retry sequence, not each individual attempt: the breaker tracks failures of the final result after all retries are exhausted, not intermediate retry failures",
+      "Implement a fallback strategy for open circuit state: return a cached value, a degraded default response, or propagate a clear error to the caller indicating the dependency is unavailable",
+      "Monitor the circuit breaker state, failure rate, and retry exhaustion metrics in a dashboard; alert when a circuit enters open state for more than a configurable threshold because open circuits indicate dependency health problems requiring investigation"
+    ],
+    "steps_zh": [
+      "用重试策略对所有服务间调用进行埋点：配置最大重试次数（如3次尝试）、重试延迟策略（固定、指数退避或抖动）以及应触发重试的特定异常类型与应立即失败的类型",
+      "用断路器包装具有重试能力的调用：配置使断路器跳闸为打开状态的失败阈值（如30秒内50%失败率）、半开探测尝试的超时和关闭断路器所需的成功次数",
+      "确保断路器包装整个重试序列，而非每次单独尝试：断路器在所有重试耗尽后追踪最终结果的失败，而非中间重试失败",
+      "为断路器打开状态实施回退策略：返回缓存值、降级默认响应，或向调用方传播明确的错误，指示依赖项不可用",
+      "在仪表板中监控断路器状态、失败率和重试耗尽指标；当断路器进入打开状态超过可配置阈值时发出告警，因为打开的断路器表明需要调查的依赖项健康问题"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "bulkhead-service-level",
+      "service-discovery",
+      "idempotency-pattern",
+      "backpressure"
+    ],
+    "tags": [
+      "circuit-breaker",
+      "retry",
+      "resilience",
+      "fault-tolerance",
+      "hystrix"
+    ],
+    "origin_author": "Michael Nygard (circuit breaker pattern, 2007); Polly (.NET) and Hystrix (Netflix, 2012) as implementations",
+    "origin_source": "Nygard, M.T. (2007/2018). \"Release It!\", 2nd ed. Pragmatic Bookshelf; Netflix Hystrix documentation (2012); Fowler, M. (2014). \"CircuitBreaker\". martinfowler.com",
+    "origin_source_zh": "Nygard, M.T.（2007/2018）。《Release It!》第2版，Pragmatic Bookshelf；Netflix Hystrix文档（2012）；Fowler, M.（2014）。「断路器」，martinfowler.com",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When a microservice makes synchronous HTTP or gRPC calls to downstream dependencies that may be temporarily unavailable, slow, or returning errors intermittently",
+      "When retry storms from many callers simultaneously retrying a failing service would overwhelm the dependency rather than allowing it to recover",
+      "When graceful degradation is required so that a failed dependency causes the calling service to return a degraded response rather than failing entirely",
+      "When a critical downstream service is known to experience periodic maintenance windows or traffic-related slowdowns that should not cascade into the calling service"
+    ],
+    "when_to_use_zh": [
+      "当微服务对可能暂时不可用、缓慢或间歇性返回错误的下游依赖项进行同步HTTP或gRPC调用时",
+      "当来自许多调用方同时重试失败服务的重试风暴会压垮依赖项而不允许其恢复时",
+      "当需要优雅降级使失败的依赖项导致调用服务返回降级响应而非完全失败时",
+      "当已知关键下游服务会经历定期维护窗口或与流量相关的减速，不应级联到调用服务时"
+    ],
+    "core_concepts": [
+      "Closed state: the circuit is functioning normally; requests flow through; failures are counted against the threshold",
+      "Open state: the failure threshold has been breached; all requests fail immediately without attempting the downstream call, preventing further load on an already-struggling dependency",
+      "Half-open state: after a configured timeout, the circuit allows a single probe request through; if it succeeds the circuit closes; if it fails the circuit reopens for another timeout period",
+      "Exponential backoff with jitter: retry delays that grow exponentially with each attempt and add random jitter to prevent thundering herd — many callers retrying simultaneously at the same interval"
+    ],
+    "core_concepts_zh": [
+      "关闭状态：断路器正常运行；请求通过；失败被计入阈值",
+      "打开状态：失败阈值已被突破；所有请求立即失败而不尝试下游调用，防止对已经困难的依赖项进一步加载",
+      "半开状态：在配置的超时后，断路器允许单个探测请求通过；如果成功则断路器关闭；如果失败则断路器重新打开另一个超时周期",
+      "带抖动的指数退避：每次尝试指数增长并添加随机抖动以防止雷鸣群——许多调用方在同一间隔同时重试"
+    ],
+    "timeline": [
+      [
+        "2007",
+        "Michael Nygard introduces the circuit breaker pattern in 'Release It!' as a stability pattern for preventing cascading failures"
+      ],
+      [
+        "2012",
+        "Netflix open-sources Hystrix, the first widely-adopted circuit breaker library for JVM services in production-scale microservices"
+      ],
+      [
+        "2016",
+        "Polly (.NET) and Resilience4j (Java) emerge as framework-agnostic circuit breaker libraries; Hystrix enters maintenance mode"
+      ],
+      [
+        "2020",
+        "Service meshes (Istio, Linkerd) implement circuit breaking at the infrastructure layer via sidecar proxies, making it available without code changes"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2007",
+        "Michael Nygard在《Release It!》中引入断路器模式，作为防止级联故障的稳定性模式"
+      ],
+      [
+        "2012",
+        "Netflix开源Hystrix，这是第一个在生产规模微服务中广泛采用的JVM服务断路器库"
+      ],
+      [
+        "2016",
+        "Polly（.NET）和Resilience4j（Java）作为框架无关的断路器库出现；Hystrix进入维护模式"
+      ],
+      [
+        "2020",
+        "服务网格（Istio、Linkerd）通过Sidecar代理在基础设施层实现断路，使其无需代码更改即可使用"
+      ]
+    ],
+    "dos": [
+      "Do configure separate circuit breakers for each downstream dependency because a shared breaker allows one failing dependency to block calls to all other healthy dependencies",
+      "Do use jitter in retry delays because without jitter all retrying clients synchronize their retry timing and create a thundering herd that can overwhelm a recovering service",
+      "Do set the circuit breaker timeout based on the dependency's expected recovery time rather than an arbitrary default because too-short timeouts cause premature circuit closure before the dependency has recovered",
+      "Do test the circuit breaker behavior under load with chaos engineering tools (Chaos Monkey, Gremlin) because untested circuit breakers fail in unexpected ways under production conditions"
+    ],
+    "dos_zh": [
+      "为每个下游依赖项配置单独的断路器，因为共享断路器允许一个失败的依赖项阻塞对所有其他健康依赖项的调用",
+      "在重试延迟中使用抖动，因为没有抖动，所有重试客户端会同步其重试时间，并创建可能压垮恢复中服务的雷鸣群",
+      "根据依赖项的预期恢复时间而非任意默认值设置断路器超时，因为过短的超时会导致在依赖项恢复前过早关闭断路器",
+      "使用混沌工程工具（Chaos Monkey、Gremlin）在负载下测试断路器行为，因为未经测试的断路器在生产条件下会以意想不到的方式失败"
+    ],
+    "donts": [
+      "Don't retry non-idempotent operations (POST, DELETE with side effects) without idempotency keys because each retry may duplicate the business action",
+      "Don't set retry counts too high because aggressive retries amplify load on a struggling service and delay the circuit breaker from tripping when a dependency is genuinely down",
+      "Don't share a circuit breaker thread pool across all callers because a slow dependency that exhausts the pool will block all other requests in the service, regardless of their target",
+      "Don't disable circuit breakers in production to 'fix' a broken integration because the circuit breaker is revealing a dependency problem — disabling it causes cascading failure instead of graceful degradation"
+    ],
+    "donts_zh": [
+      "不要在没有幂等键的情况下重试非幂等操作（带有副作用的POST、DELETE），因为每次重试都可能重复业务操作",
+      "不要将重试次数设置得太高，因为激进的重试会放大对困难服务的负载，并延迟断路器在依赖项真正宕机时跳闸",
+      "不要在所有调用方之间共享断路器线程池，因为耗尽池的慢依赖项将阻塞服务中的所有其他请求，无论其目标是什么",
+      "不要在生产中禁用断路器来「修复」损坏的集成，因为断路器揭示的是依赖项问题——禁用它会导致级联故障而非优雅降级"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix's Hystrix library powered circuit breaking across hundreds of microservices in their video streaming platform. The most famous application is their API gateway, which calls dozens of downstream services (recommendations, user profiles, billing, content catalog) to assemble the home screen. Each dependency is wrapped in its own Hystrix command with a dedicated thread pool. When the recommendations service degrades during peak traffic, Hystrix trips its circuit and the API gateway falls back to a curated editorial list instead of crashing the entire home screen. Netflix reported that during their 2012 Christmas peak, over 3.5 billion Hystrix fallback calls were executed, keeping the service available for millions of users while individual dependencies experienced failures.",
+    "case_study_zh": "Netflix的Hystrix库为其视频流平台数百个微服务提供断路支持。最著名的应用是其API网关，它调用数十个下游服务（推荐、用户资料、计费、内容目录）来组装主屏幕。每个依赖项都包装在自己的Hystrix命令中，带有专用线程池。当推荐服务在峰值流量期间降级时，Hystrix跳闸其断路器，API网关回退到精心策划的编辑列表，而不是使整个主屏幕崩溃。Netflix报告称，在2012年圣诞节峰值期间，执行了超过35亿次Hystrix回退调用，在各个依赖项遭受故障时使数百万用户的服务保持可用。",
+    "when_not_to_use": [
+      "Internal in-process method calls that do not cross network boundaries because the overhead of a circuit breaker is unnecessary for calls that cannot fail due to network issues",
+      "Asynchronous message-based communication where at-least-once delivery and consumer retries already handle transient failures at the messaging layer",
+      "Database connections within a single service where connection pooling and timeout configuration provide sufficient resilience without circuit breaker complexity",
+      "When the downstream service is the organization's own service with very high availability SLAs — invest in improving the service's reliability rather than masking its failures with a circuit breaker"
+    ],
+    "when_not_to_use_zh": [
+      "不跨越网络边界的进程内方法调用，因为对于不会因网络问题而失败的调用，断路器的开销是不必要的",
+      "至少一次交付和消费者重试已经在消息层处理瞬态故障的异步基于消息的通信",
+      "单个服务内的数据库连接，连接池和超时配置提供足够的弹性而不需要断路器复杂性",
+      "当下游服务是具有非常高可用性SLA的组织自己的服务时——投资提高服务的可靠性，而不是用断路器掩盖其故障"
+    ],
+    "adopters": [
+      "Netflix",
+      "Amazon",
+      "Alibaba (Sentinel)",
+      "Microsoft (Polly/.NET)",
+      "Spring Cloud (Resilience4j)"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability",
+      "performance"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Nygard, M.T. (2018). \"Release It!\", 2nd ed., Ch. 5: Stability Patterns. Pragmatic Bookshelf.",
+    "secondary_sources": [
+      "Fowler, M. (2014). \"CircuitBreaker\". martinfowler.com/bliki/CircuitBreaker.html.",
+      "Netflix (2012). \"Hystrix: Latency and Fault Tolerance for Distributed Systems\". github.com/Netflix/Hystrix.",
+      "Resilience4j Project (2019). \"Resilience4j Documentation\". resilience4j.readme.io."
+    ]
+  },
+  {
+    "id": 209,
+    "name": "Bulkhead at Service Level",
+    "name_zh": "服务级隔离舱",
+    "slug": "bulkhead-service-level",
+    "category": "distributed",
+    "desc": "Isolating service resources to prevent cascading failures (different from code-level bulkhead in quality.json)",
+    "desc_zh": "隔离服务资源以防止级联故障（区别于quality.json中代码级别的隔离舱）",
+    "steps": [
+      "Identify the critical resource pools in the service that can be exhausted by a single misbehaving dependency or tenant: thread pools, connection pools, memory limits, and rate-limited API quotas",
+      "Partition resource pools by consumer or dependency: assign dedicated thread pools to each downstream dependency call (Hystrix semaphore/thread isolation), or partition connection pools by calling service identity",
+      "Set capacity limits on each bulkhead partition: define the maximum concurrent requests, maximum queue depth, and timeout for each pool so that no single consumer can exceed its allocation even if it sends unlimited requests",
+      "Implement tenant-level bulkheads for multi-tenant services: allocate separate rate limits, request queues, and processing resources per tenant so that a high-volume tenant cannot starve resources for other tenants",
+      "Monitor bulkhead utilization, queue depth, and rejection rates per partition in observability tooling; tune partition sizes based on observed traffic patterns and ensure that the sum of all partition limits does not exceed total resource capacity"
+    ],
+    "steps_zh": [
+      "识别服务中可能被单个行为异常的依赖项或租户耗尽的关键资源池：线程池、连接池、内存限制和受速率限制的API配额",
+      "按消费者或依赖项划分资源池：为每个下游依赖项调用分配专用线程池（Hystrix信号量/线程隔离），或按调用服务身份划分连接池",
+      "设置每个隔离舱分区的容量限制：为每个池定义最大并发请求数、最大队列深度和超时，使任何单个消费者即使发送无限请求也无法超过其分配",
+      "为多租户服务实施租户级隔离舱：按租户分配单独的速率限制、请求队列和处理资源，使高流量租户无法使其他租户的资源饥饿",
+      "在可观测性工具中监控每个分区的隔离舱利用率、队列深度和拒绝率；根据观察到的流量模式调整分区大小，并确保所有分区限制之和不超过总资源容量"
+    ],
+    "ai_relevant": false,
+    "viz_type": "matrix",
+    "related": [
+      "circuit-breaker-with-retry",
+      "backpressure",
+      "service-discovery",
+      "consistent-hashing"
+    ],
+    "tags": [
+      "bulkhead",
+      "isolation",
+      "resilience",
+      "multi-tenant",
+      "resource-partitioning"
+    ],
+    "origin_author": "Michael Nygard (2007); popularized by Netflix Hystrix thread pool isolation (2012)",
+    "origin_source": "Nygard, M.T. (2018). \"Release It!\", 2nd ed., Ch. 5. Pragmatic Bookshelf; Netflix Hystrix Bulkhead documentation",
+    "origin_source_zh": "Nygard, M.T.（2018）。《Release It!》第2版第5章，Pragmatic Bookshelf；Netflix Hystrix隔离舱文档",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When a single slow or failing downstream dependency can exhaust the service's shared thread pool and make all other API endpoints unresponsive",
+      "When a multi-tenant service must guarantee fair resource allocation so that a noisy tenant does not starve resources for others",
+      "When different API endpoints have vastly different latency profiles and fast, latency-sensitive endpoints share a thread pool with slow batch endpoints",
+      "When a service has multiple integration points with third-party APIs that have independent failure modes and rate limits"
+    ],
+    "when_to_use_zh": [
+      "当单个缓慢或失败的下游依赖项可能耗尽服务的共享线程池，使所有其他API端点无响应时",
+      "当多租户服务必须保证公平的资源分配，使嘈杂的租户不会使其他租户的资源饥饿时",
+      "当不同的API端点具有截然不同的延迟特性，且快速的延迟敏感端点与慢速批处理端点共享线程池时",
+      "当服务具有多个与具有独立故障模式和速率限制的第三方API的集成点时"
+    ],
+    "core_concepts": [
+      "Resource partition: a dedicated, bounded allocation of a resource type (threads, connections, memory) assigned to a specific consumer, dependency, or tenant, preventing cross-partition interference",
+      "Thread pool isolation: assigning a dedicated thread pool to each downstream dependency call; if the dependency blocks, only its pool is exhausted, not the service's main execution pool",
+      "Semaphore isolation: limiting the number of concurrent in-flight requests to a dependency using a semaphore rather than a separate thread pool; lower overhead than thread isolation but no timeout enforcement",
+      "Shed load: when a bulkhead's queue reaches capacity, new requests are immediately rejected with an explicit error (503 or rate limit response) rather than queuing indefinitely and causing latency to grow unbounded"
+    ],
+    "core_concepts_zh": [
+      "资源分区：分配给特定消费者、依赖项或租户的专用、有界资源类型（线程、连接、内存）分配，防止跨分区干扰",
+      "线程池隔离：为每个下游依赖项调用分配专用线程池；如果依赖项阻塞，只有其池被耗尽，而不是服务的主执行池",
+      "信号量隔离：使用信号量而非单独的线程池限制对依赖项的并发进行中请求数量；比线程隔离开销更低，但无法强制超时",
+      "减负：当隔离舱的队列达到容量时，新请求立即以明确的错误（503或速率限制响应）被拒绝，而非无限排队导致延迟无限增长"
+    ],
+    "timeline": [
+      [
+        "2007",
+        "Michael Nygard introduces the Bulkhead pattern in 'Release It!', drawing the analogy to ship hull compartmentalization for software system isolation"
+      ],
+      [
+        "2012",
+        "Netflix Hystrix implements thread pool isolation as its primary bulkhead mechanism, making the pattern production-proven at massive scale"
+      ],
+      [
+        "2017",
+        "Kubernetes resource limits (CPU/memory per pod) and namespaces provide infrastructure-level bulkheads for multi-tenant clusters"
+      ],
+      [
+        "2020",
+        "Service meshes (Istio) implement connection pool settings and concurrency limits at the infrastructure layer, providing bulkhead behavior without application code changes"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2007",
+        "Michael Nygard在《Release It!》中引入隔离舱模式，将船体舱室隔离的类比用于软件系统隔离"
+      ],
+      [
+        "2012",
+        "Netflix Hystrix将线程池隔离作为其主要隔离舱机制，使该模式在大规模生产中得到验证"
+      ],
+      [
+        "2017",
+        "Kubernetes资源限制（每个Pod的CPU/内存）和命名空间为多租户集群提供基础设施级隔离舱"
+      ],
+      [
+        "2020",
+        "服务网格（Istio）在基础设施层实施连接池设置和并发限制，在不更改应用程序代码的情况下提供隔离舱行为"
+      ]
+    ],
+    "dos": [
+      "Do size bulkhead partitions based on measured traffic data rather than intuition because over-partitioning wastes resources while under-partitioning creates artificial bottlenecks",
+      "Do return meaningful rejection errors (503 Service Unavailable with Retry-After) when bulkhead capacity is exceeded so clients can implement appropriate backoff",
+      "Do combine bulkheads with circuit breakers because bulkheads limit the blast radius of a failure while circuit breakers prevent repeated attempts against a known-failed dependency",
+      "Do test bulkhead behavior with load tests that simulate tenant isolation scenarios and third-party API slowdowns to verify that partitions behave correctly under stress"
+    ],
+    "dos_zh": [
+      "根据测量的流量数据而非直觉调整隔离舱分区大小，因为过度分区浪费资源，而分区不足会造成人为瓶颈",
+      "当隔离舱容量超出时返回有意义的拒绝错误（503服务不可用 + Retry-After），以便客户端可以实施适当的退避",
+      "将隔离舱与断路器结合，因为隔离舱限制故障的爆炸半径，而断路器防止对已知失败依赖项的重复尝试",
+      "使用模拟租户隔离场景和第三方API减速的负载测试来测试隔离舱行为，以验证分区在压力下正确运行"
+    ],
+    "donts": [
+      "Don't create too many small partitions because context switching between many small thread pools introduces overhead that can degrade performance more than the isolation benefit provides",
+      "Don't set partition limits so large that they effectively share resources — a bulkhead that allows 95% of total threads defeats the isolation purpose",
+      "Don't implement bulkheads only at the thread pool level because network connection pools, database connection pools, and outbound API rate limits also need partitioning for true isolation",
+      "Don't confuse bulkhead rejection (immediate fail-fast) with throttling (delayed processing) because bulkhead rejections are intentional load shedding, not queuing — clients must retry with backoff"
+    ],
+    "donts_zh": [
+      "不要创建太多小分区，因为在许多小线程池之间切换上下文会引入开销，可能比隔离收益更大地降低性能",
+      "不要将分区限制设置得太大以至于有效共享资源——允许95%总线程的隔离舱失去了隔离目的",
+      "不要仅在线程池级别实施隔离舱，因为网络连接池、数据库连接池和出站API速率限制也需要分区才能实现真正隔离",
+      "不要将隔离舱拒绝（立即快速失败）与节流（延迟处理）混淆，因为隔离舱拒绝是有意的负载减少，而非排队——客户端必须使用退避重试"
+    ],
+    "case_study_company": "Amazon",
+    "case_study": "Amazon's retail website uses bulkhead isolation to prevent slow third-party integrations from degrading the core shopping experience. The product detail page aggregates data from dozens of internal and external services (reviews, inventory, pricing, recommendations, seller data). Each data source is assigned a dedicated connection pool and thread pool with a strict timeout. When a third-party seller data API experiences latency spikes during peak events like Prime Day, its bulkhead is exhausted and the page falls back to cached seller information, leaving all other page components (price, add-to-cart, reviews) fully functional. Amazon reports that bulkhead isolation prevents over 99% of third-party API degradations from impacting their core conversion metrics.",
+    "case_study_zh": "亚马逊零售网站使用隔离舱隔离防止慢速第三方集成降低核心购物体验。产品详情页面汇总来自数十个内部和外部服务（评论、库存、定价、推荐、卖家数据）的数据。每个数据源都分配了带有严格超时的专用连接池和线程池。当第三方卖家数据API在Prime Day等峰值事件期间遇到延迟尖峰时，其隔离舱被耗尽，页面回退到缓存的卖家信息，使所有其他页面组件（价格、加购、评论）完全正常运行。亚马逊报告称，隔离舱隔离防止了99%以上的第三方API降级影响其核心转化指标。",
+    "when_not_to_use": [
+      "Single-threaded or event-loop based services (Node.js, asyncio) where thread pool isolation is not applicable — use semaphore-based concurrency limits and async timeout instead",
+      "Monolithic applications where all components share the same process and true resource isolation requires OS-level process or container boundaries",
+      "When all downstream dependencies have identical performance characteristics and there is no differentiation needed between fast and slow paths",
+      "When the service only calls a single downstream dependency and there is no multi-tenancy to isolate — the complexity of bulkhead partitioning is not justified"
+    ],
+    "when_not_to_use_zh": [
+      "基于单线程或事件循环的服务（Node.js、asyncio），线程池隔离不适用——改用基于信号量的并发限制和异步超时",
+      "所有组件共享同一进程且真正的资源隔离需要操作系统级进程或容器边界的单体应用程序",
+      "当所有下游依赖项具有相同的性能特征，快速路径和慢速路径之间不需要差异化时",
+      "当服务只调用单个下游依赖项且没有需要隔离的多租户时——隔离舱分区的复杂性不合理"
+    ],
+    "adopters": [
+      "Amazon",
+      "Netflix",
+      "Microsoft (Azure Service Fabric)",
+      "Uber",
+      "Istio service mesh users"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability",
+      "performance"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Nygard, M.T. (2018). \"Release It!\", 2nd ed., Ch. 5: Stability Patterns — Bulkheads. Pragmatic Bookshelf.",
+    "secondary_sources": [
+      "Netflix (2012). \"Hystrix: How it Works — Thread Pool Isolation\". github.com/Netflix/Hystrix/wiki.",
+      "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 12. O'Reilly Media.",
+      "Richardson, C. (2018). \"Microservices Patterns\", Ch. 3. Manning Publications."
+    ]
   }
 ]
