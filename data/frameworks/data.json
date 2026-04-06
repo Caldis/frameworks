@@ -157,6 +157,24 @@
       "Dehghani, Z. (2019). \"How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh\". ThoughtWorks.",
       "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\". O'Reilly Media.",
       "Machado, I., Costa, C. & Santos, M.Y. (2022). \"Data Mesh: Concepts and Principles of a Paradigm Shift in Data Architectures\". Procedia Computer Science, Vol. 196."
+    ],
+    "typed_relations": [
+      {
+        "slug": "domain-driven-design",
+        "type": "complement"
+      },
+      {
+        "slug": "microservices-decomposition",
+        "type": "complement"
+      },
+      {
+        "slug": "team-topologies",
+        "type": "complement"
+      },
+      {
+        "slug": "polyglot-persistence",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -316,6 +334,20 @@
       "Marz, N. (2011). \"How to Beat the CAP Theorem\". nathanmarz.com.",
       "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 11. O'Reilly Media.",
       "Kreps, J. (2014). \"Questioning the Lambda Architecture\". O'Reilly Radar."
+    ],
+    "typed_relations": [
+      {
+        "slug": "kappa-architecture",
+        "type": "alternative"
+      },
+      {
+        "slug": "stream-processing-patterns",
+        "type": "complement"
+      },
+      {
+        "slug": "cap-theorem",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -476,6 +508,24 @@
     "secondary_sources": [
       "Kreps, J. (2013). \"The Log: What Every Software Engineer Should Know About Real-Time Data's Unifying Abstraction\". LinkedIn Engineering.",
       "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 11. O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "lambda-architecture",
+        "type": "alternative"
+      },
+      {
+        "slug": "eda",
+        "type": "complement"
+      },
+      {
+        "slug": "change-data-capture",
+        "type": "complement"
+      },
+      {
+        "slug": "stream-processing-patterns",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -637,6 +687,24 @@
       "Kreps, J. (2014). \"I Heart Logs: Event Data, Stream Processing, and Data Integration\". O'Reilly Media.",
       "Akidau, T. et al. (2015). \"The Dataflow Model: A Practical Approach to Balancing Correctness, Latency, and Cost in Massive-Scale, Unbounded, Out-of-Order Data Processing\". Proceedings of the VLDB Endowment, 8(12).",
       "Hueske, F. & Kalavri, V. (2019). \"Stream Processing with Apache Flink\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "kappa-architecture",
+        "type": "complement"
+      },
+      {
+        "slug": "lambda-architecture",
+        "type": "complement"
+      },
+      {
+        "slug": "eda",
+        "type": "complement"
+      },
+      {
+        "slug": "change-data-capture",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -796,6 +864,24 @@
     "secondary_sources": [
       "Kozlovski, R. (2020). \"Change Data Capture with Debezium\". Red Hat Developer Blog.",
       "Narkhede, N., Shapira, G. & Palino, T. (2017). \"Kafka: The Definitive Guide\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "kappa-architecture",
+        "type": "complement"
+      },
+      {
+        "slug": "stream-processing-patterns",
+        "type": "complement"
+      },
+      {
+        "slug": "saga-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "eda",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -956,6 +1042,24 @@
     "secondary_sources": [
       "Armbrust, M. et al. (2020). \"Delta Lake: High-Performance ACID Table Storage over Cloud Object Stores\". Proceedings of the VLDB Endowment, 13(12).",
       "Databricks (2020). \"What Is a Lakehouse?\". databricks.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "star-schema",
+        "type": "complement"
+      },
+      {
+        "slug": "data-mesh",
+        "type": "complement"
+      },
+      {
+        "slug": "data-vault-2",
+        "type": "alternative"
+      },
+      {
+        "slug": "feature-store-pattern",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1115,6 +1219,20 @@
       "Kimball, R. (1996). \"The Data Warehouse Toolkit: Practical Techniques for Building Dimensional Data Warehouses\". Wiley.",
       "Inmon, W.H. (2005). \"Building the Data Warehouse\", 4th ed. Wiley.",
       "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 3. O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "data-vault-2",
+        "type": "alternative"
+      },
+      {
+        "slug": "data-lakehouse",
+        "type": "related"
+      },
+      {
+        "slug": "polyglot-persistence",
+        "type": "related"
+      }
     ]
   },
   {
@@ -1274,6 +1392,24 @@
     "secondary_sources": [
       "Linstedt, D. (2002). \"Data Vault Series\". The Data Administration Newsletter (TDAN.com).",
       "Linstedt, D. (2010). \"Super Charge Your Data Warehouse\". CreateSpace."
+    ],
+    "typed_relations": [
+      {
+        "slug": "star-schema",
+        "type": "alternative"
+      },
+      {
+        "slug": "data-lakehouse",
+        "type": "complement"
+      },
+      {
+        "slug": "data-mesh",
+        "type": "complement"
+      },
+      {
+        "slug": "database-migration-patterns",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1433,6 +1569,24 @@
     "secondary_sources": [
       "Fowler, M. (2011). \"Polyglot Persistence\". martinfowler.com.",
       "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "microservices-decomposition",
+        "type": "complement"
+      },
+      {
+        "slug": "data-mesh",
+        "type": "complement"
+      },
+      {
+        "slug": "cap-theorem",
+        "type": "complement"
+      },
+      {
+        "slug": "change-data-capture",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1593,6 +1747,24 @@
     "secondary_sources": [
       "Orr, L. et al. (2021). \"Managing ML Pipelines: Feature Stores, Model Stores, and the Coming Wave of Embedding Stores\". Proceedings of the VLDB Endowment, 14(12).",
       "Huyen, C. (2022). \"Designing Machine Learning Systems\", Ch. 7. O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "mlops",
+        "type": "complement"
+      },
+      {
+        "slug": "data-lakehouse",
+        "type": "complement"
+      },
+      {
+        "slug": "data-mesh",
+        "type": "complement"
+      },
+      {
+        "slug": "stream-processing-patterns",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1753,6 +1925,24 @@
       "Kimball, R. (1996). \"Slowly Changing Dimensions\". DBMS Magazine.",
       "dbt Labs (2022). \"dbt Snapshots: Implementing Type 2 SCDs in SQL\". docs.getdbt.com.",
       "Inmon, W.H. (2005). \"Building the Data Warehouse\", 4th ed. Wiley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "star-schema",
+        "type": "complement"
+      },
+      {
+        "slug": "data-vault",
+        "type": "complement"
+      },
+      {
+        "slug": "change-data-capture",
+        "type": "complement"
+      },
+      {
+        "slug": "medallion-architecture",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1913,6 +2103,24 @@
       "Deeleman, J. et al. (2022). \"Data Governance: The Definitive Guide\". O'Reilly Media.",
       "Spirent (2022). \"BCBS 239: Principles for Effective Risk Data Aggregation and Risk Reporting\". Basel Committee on Banking Supervision.",
       "Ehrlinger, L. & Woss, W. (2016). \"Towards a Definition of Knowledge Graphs\". Proceedings of the SEMANTICS 2016 Poster & Demo Track."
+    ],
+    "typed_relations": [
+      {
+        "slug": "data-mesh",
+        "type": "complement"
+      },
+      {
+        "slug": "data-quality-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "schema-registry-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "medallion-architecture",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2073,6 +2281,24 @@
       "Stopford, B. (2018). \"Designing Event-Driven Systems\". O'Reilly Media.",
       "Narkhede, N., Shapira, G. & Palino, T. (2017). \"Kafka: The Definitive Guide\". O'Reilly Media.",
       "Dehghani, Z. (2022). \"Data Contracts\". martinfowler.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "change-data-capture",
+        "type": "complement"
+      },
+      {
+        "slug": "data-lineage",
+        "type": "complement"
+      },
+      {
+        "slug": "data-quality-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "stream-processing-patterns",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2233,6 +2459,24 @@
       "Redman, T.C. (1992). \"Data Quality: Management and Technology\". Bantam Books.",
       "Great Expectations (2019). \"Great Expectations Documentation\". greatexpectations.io.",
       "Barr Moses et al. (2022). \"Data Quality Fundamentals\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "data-lineage",
+        "type": "complement"
+      },
+      {
+        "slug": "schema-registry-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "data-mesh",
+        "type": "complement"
+      },
+      {
+        "slug": "medallion-architecture",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2394,6 +2638,24 @@
       "Armbrust, M. et al. (2020). \"Delta Lake: High-Performance ACID Table Storage over Cloud Object Stores\". Proceedings of the VLDB Endowment, 13(12).",
       "Doan, A. et al. (2022). \"The Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics\". CIDR 2022.",
       "Databricks (2023). \"Delta Lake: The Definitive Guide\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "data-lakehouse",
+        "type": "extends"
+      },
+      {
+        "slug": "data-quality-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "data-lineage",
+        "type": "complement"
+      },
+      {
+        "slug": "slowly-changing-dimensions",
+        "type": "complement"
+      }
     ]
   }
 ]

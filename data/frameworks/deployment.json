@@ -161,6 +161,20 @@
     "secondary_sources": [
       "Martin Fowler (2010). \"BlueGreenDeployment\". martinfowler.com.",
       "Gene Kim et al. (2016). \"The DevOps Handbook\". IT Revolution Press."
+    ],
+    "typed_relations": [
+      {
+        "slug": "canary-deployment",
+        "type": "alternative"
+      },
+      {
+        "slug": "feature-flags",
+        "type": "complement"
+      },
+      {
+        "slug": "gitops",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -325,6 +339,20 @@
     "secondary_sources": [
       "Jez Humble and David Farley (2010). \"Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation\". Addison-Wesley.",
       "Danilo Sato, Arjan Schaaf, and Daniel Bryant (2019). \"Canary Releases\". martinfowler.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "blue-green-deployment",
+        "type": "alternative"
+      },
+      {
+        "slug": "feature-flags",
+        "type": "complement"
+      },
+      {
+        "slug": "dora-metrics",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -491,6 +519,20 @@
     "secondary_sources": [
       "Pete Hodgson (2017). \"Feature Toggles (aka Feature Flags)\". martinfowler.com.",
       "Jez Humble and David Farley (2010). \"Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "canary-deployment",
+        "type": "complement"
+      },
+      {
+        "slug": "blue-green-deployment",
+        "type": "complement"
+      },
+      {
+        "slug": "branch-by-abstraction",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -656,6 +698,20 @@
     "secondary_sources": [
       "CNCF GitOps Working Group (2021). \"GitOps Principles\". opengitops.dev.",
       "Cornelia Davis (2019). \"Cloud Native Patterns\". Manning Publications."
+    ],
+    "typed_relations": [
+      {
+        "slug": "infrastructure-as-code",
+        "type": "complement"
+      },
+      {
+        "slug": "three-ways-devops",
+        "type": "complement"
+      },
+      {
+        "slug": "dora-metrics",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -823,6 +879,20 @@
     "secondary_sources": [
       "DORA Team (2019). \"State of DevOps Report\". cloud.google.com/devops.",
       "Nicole Forsgren et al. (2021). \"The SPACE of Developer Productivity\". ACM Queue, 19(1)."
+    ],
+    "typed_relations": [
+      {
+        "slug": "three-ways-devops",
+        "type": "complement"
+      },
+      {
+        "slug": "calms-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "sli-slo-sla",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -990,6 +1060,20 @@
     "secondary_sources": [
       "Gene Kim, Jez Humble, Patrick Debois, and John Willis (2016). \"The DevOps Handbook\". IT Revolution Press.",
       "Patrick Debois (2009). \"DevOpsDays Ghent: Agile System Administration\". devopsdays.org."
+    ],
+    "typed_relations": [
+      {
+        "slug": "three-ways-devops",
+        "type": "complement"
+      },
+      {
+        "slug": "dora-metrics",
+        "type": "complement"
+      },
+      {
+        "slug": "team-topologies",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1157,6 +1241,20 @@
     "secondary_sources": [
       "Gene Kim, Jez Humble, Patrick Debois, and John Willis (2016). \"The DevOps Handbook\". IT Revolution Press.",
       "Eliyahu M. Goldratt (1984). \"The Goal: A Process of Ongoing Improvement\". North River Press."
+    ],
+    "typed_relations": [
+      {
+        "slug": "calms-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "dora-metrics",
+        "type": "complement"
+      },
+      {
+        "slug": "continuous-architecture",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1325,6 +1423,20 @@
     "secondary_sources": [
       "Yevgeniy Brikman (2017). \"Terraform: Up & Running\". O'Reilly Media.",
       "Kief Morris (2020). \"Infrastructure as Code, 2nd Edition\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "gitops",
+        "type": "complement"
+      },
+      {
+        "slug": "three-ways-devops",
+        "type": "complement"
+      },
+      {
+        "slug": "service-mesh-pattern",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1493,6 +1605,20 @@
     "secondary_sources": [
       "Kevin Hoffman (2016). \"Beyond the Twelve-Factor App\". O'Reilly Media.",
       "Cornelia Davis (2019). \"Cloud Native Patterns\". Manning Publications."
+    ],
+    "typed_relations": [
+      {
+        "slug": "infrastructure-as-code",
+        "type": "complement"
+      },
+      {
+        "slug": "gitops",
+        "type": "complement"
+      },
+      {
+        "slug": "calms-framework",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1661,6 +1787,20 @@
     "secondary_sources": [
       "Betsy Beyer et al. (2018). \"The Site Reliability Workbook: Practical Ways to Implement SRE\". O'Reilly Media.",
       "Alex Hidalgo (2020). \"Implementing Service Level Objectives\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "four-golden-signals",
+        "type": "complement"
+      },
+      {
+        "slug": "dora-metrics",
+        "type": "complement"
+      },
+      {
+        "slug": "chaos-engineering",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1828,6 +1968,20 @@
     "secondary_sources": [
       "AWS (2023). \"AWS Well-Architected Framework: Reliability Pillar\". docs.aws.amazon.com.",
       "Colm MacCarthaigh (2018). \"Fairness in Multi-Tenant Systems\". AWS re:Invent Talk."
+    ],
+    "typed_relations": [
+      {
+        "slug": "bulkhead-pattern",
+        "type": "extends"
+      },
+      {
+        "slug": "microservices-decomposition",
+        "type": "related"
+      },
+      {
+        "slug": "blue-green-deployment",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1995,6 +2149,20 @@
     "secondary_sources": [
       "Google Cloud (2020). \"MLOps: Continuous Delivery and Automation Pipelines in Machine Learning\". cloud.google.com.",
       "Noah Gift (2021). \"Practical MLOps: Operationalizing Machine Learning Models\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "llmops",
+        "type": "extends"
+      },
+      {
+        "slug": "dora-metrics",
+        "type": "complement"
+      },
+      {
+        "slug": "canary-deployment",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2163,6 +2331,20 @@
     "secondary_sources": [
       "Anthropic (2024). \"Building Effective Agents\". anthropic.com.",
       "OpenAI (2023). \"Production Best Practices\". platform.openai.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "mlops",
+        "type": "extends"
+      },
+      {
+        "slug": "prompt-testing",
+        "type": "complement"
+      },
+      {
+        "slug": "ai-observability-framework",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2331,6 +2513,20 @@
     "secondary_sources": [
       "OpenAI (2023). \"Production Deployment Best Practices\". platform.openai.com.",
       "Harrison Chase et al. (2023). \"LangGraph: Multi-Actor Agent Framework\". langchain.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "agent-reliability-patterns",
+        "type": "complement"
+      },
+      {
+        "slug": "llmops",
+        "type": "complement"
+      },
+      {
+        "slug": "canary-deployment",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2497,6 +2693,24 @@
     "secondary_sources": [
       "Jez Humble and David Farley (2010). \"Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation\". Addison-Wesley.",
       "Weaveworks (2019). \"Progressive Delivery with Flagger\". flagger.app."
+    ],
+    "typed_relations": [
+      {
+        "slug": "canary-deployment",
+        "type": "extends"
+      },
+      {
+        "slug": "feature-flags",
+        "type": "complement"
+      },
+      {
+        "slug": "slo-as-practice",
+        "type": "complement"
+      },
+      {
+        "slug": "opentelemetry",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2663,6 +2877,20 @@
     "secondary_sources": [
       "Kief Morris (2016). \"Infrastructure as Code: Managing Servers in the Cloud\". O'Reilly Media.",
       "Docker, Inc. (2013). \"Docker: An Open Platform for Distributed Applications\". docker.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "infrastructure-as-code",
+        "type": "complement"
+      },
+      {
+        "slug": "gitops",
+        "type": "complement"
+      },
+      {
+        "slug": "blue-green-deployment",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2830,6 +3058,28 @@
     "secondary_sources": [
       "Netflix Technology Blog (2011). \"The Netflix Simian Army\". netflixtechblog.com.",
       "Ali Basiri et al. (2016). \"Chaos Engineering\". IEEE Software, 33(3)."
+    ],
+    "typed_relations": [
+      {
+        "slug": "chaos-engineering",
+        "type": "extends"
+      },
+      {
+        "slug": "slo-as-practice",
+        "type": "complement"
+      },
+      {
+        "slug": "on-call-engineering",
+        "type": "complement"
+      },
+      {
+        "slug": "runbook-automation",
+        "type": "complement"
+      },
+      {
+        "slug": "progressive-delivery",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2997,6 +3247,24 @@
     "secondary_sources": [
       "Matthew Skelton and Manuel Pais (2019). \"Team Topologies: Organizing Business and Technology Teams for Fast Flow\". IT Revolution Press.",
       "Gregor Hohpe (2020). \"The Software Architect Elevator\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "team-topologies",
+        "type": "complement"
+      },
+      {
+        "slug": "developer-experience-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "infrastructure-as-code",
+        "type": "complement"
+      },
+      {
+        "slug": "gitops",
+        "type": "complement"
+      }
     ]
   }
 ]

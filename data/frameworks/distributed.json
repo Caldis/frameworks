@@ -163,6 +163,20 @@
       "Ongaro, D. & Ousterhout, J. (2014). \"In Search of an Understandable Consensus Algorithm\". Proceedings of USENIX ATC.",
       "Lamport, L. (2001). \"Paxos Made Simple\". ACM SIGACT News, 32(4).",
       "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 9. O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "cap-theorem",
+        "type": "prerequisite"
+      },
+      {
+        "slug": "leader-election",
+        "type": "complement"
+      },
+      {
+        "slug": "two-phase-commit",
+        "type": "alternative"
+      }
     ]
   },
   {
@@ -330,6 +344,24 @@
     "secondary_sources": [
       "DeCandia, G. et al. (2007). \"Dynamo: Amazon's Highly Available Key-Value Store\". Proceedings of ACM SOSP.",
       "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 5 & 9. O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "cap-theorem",
+        "type": "prerequisite"
+      },
+      {
+        "slug": "consensus-protocols",
+        "type": "alternative"
+      },
+      {
+        "slug": "cqrs-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "saga-pattern",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -495,6 +527,20 @@
     "secondary_sources": [
       "Nygard, M.T. (2018). \"Release It!\", 2nd ed., Ch. 5. Pragmatic Bookshelf.",
       "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 11. O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "circuit-breaker-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "bulkhead-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "reactive-extensions",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -661,6 +707,20 @@
       "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 8. O'Reilly Media.",
       "Microsoft Azure Architecture Center (2016). \"Sidecar Pattern\". docs.microsoft.com.",
       "Nygard, M.T. (2018). \"Release It!\", 2nd ed., Ch. 17. Pragmatic Bookshelf."
+    ],
+    "typed_relations": [
+      {
+        "slug": "service-mesh-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "hexagonal-architecture",
+        "type": "complement"
+      },
+      {
+        "slug": "bulkhead-pattern",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -826,6 +886,20 @@
     "secondary_sources": [
       "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 8 & 9. O'Reilly Media.",
       "Lamport, L. (1998). \"The Part-Time Parliament\". ACM Transactions on Computer Systems, 16(2)."
+    ],
+    "typed_relations": [
+      {
+        "slug": "consensus-protocols",
+        "type": "extends"
+      },
+      {
+        "slug": "cap-theorem",
+        "type": "prerequisite"
+      },
+      {
+        "slug": "two-phase-commit",
+        "type": "related"
+      }
     ]
   },
   {
@@ -991,6 +1065,20 @@
     "secondary_sources": [
       "DeCandia, G. et al. (2007). \"Dynamo: Amazon's Highly Available Key-Value Store\". Proceedings of ACM SOSP.",
       "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 6. O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "sharding-strategies",
+        "type": "complement"
+      },
+      {
+        "slug": "gossip-protocol",
+        "type": "complement"
+      },
+      {
+        "slug": "cap-theorem",
+        "type": "prerequisite"
+      }
     ]
   },
   {
@@ -1156,6 +1244,20 @@
     "secondary_sources": [
       "van Renesse, R., Minsky, Y. & Hayden, M. (2008). \"Efficient Reconciliation and Flow Control for Anti-Entropy Protocols\". Cornell University.",
       "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 5. O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "consistent-hashing",
+        "type": "complement"
+      },
+      {
+        "slug": "eventual-consistency",
+        "type": "extends"
+      },
+      {
+        "slug": "leader-election",
+        "type": "alternative"
+      }
     ]
   },
   {
@@ -1321,6 +1423,20 @@
     "secondary_sources": [
       "Bernstein, P.A., Hadzilacos, V. & Goodman, N. (1987). \"Concurrency Control and Recovery in Database Systems\". Addison-Wesley.",
       "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 9. O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "saga-pattern",
+        "type": "alternative"
+      },
+      {
+        "slug": "eventual-consistency",
+        "type": "alternative"
+      },
+      {
+        "slug": "consensus-protocols",
+        "type": "extends"
+      }
     ]
   },
   {
@@ -1486,6 +1602,20 @@
     "secondary_sources": [
       "Sadalage, P.J. & Fowler, M. (2012). \"NoSQL Distilled: A Brief Guide to the Emerging World of Polyglot Persistence\". Addison-Wesley.",
       "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 4. O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "consistent-hashing",
+        "type": "complement"
+      },
+      {
+        "slug": "cap-theorem",
+        "type": "prerequisite"
+      },
+      {
+        "slug": "eventual-consistency",
+        "type": "related"
+      }
     ]
   },
   {
@@ -1651,6 +1781,20 @@
     "secondary_sources": [
       "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 11. O'Reilly Media.",
       "Nygard, M.T. (2018). \"Release It!\", 2nd ed., Ch. 5. Pragmatic Bookshelf."
+    ],
+    "typed_relations": [
+      {
+        "slug": "saga-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "eventual-consistency",
+        "type": "complement"
+      },
+      {
+        "slug": "two-phase-commit",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1811,6 +1955,24 @@
       "Shapiro, M. et al. (2011). \"A Comprehensive Study of Convergent and Commutative Replicated Data Types\". INRIA Research Report RR-7506.",
       "Kleppmann, M. & Beresford, A.R. (2017). \"A Conflict-Free Replicated JSON Datatype\". IEEE Transactions on Parallel and Distributed Systems.",
       "Kleppmann, M. (2019). \"Designing Data-Intensive Applications\", Ch. 5. O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "eventual-consistency",
+        "type": "extends"
+      },
+      {
+        "slug": "gossip-protocol",
+        "type": "complement"
+      },
+      {
+        "slug": "consensus-protocols",
+        "type": "alternative"
+      },
+      {
+        "slug": "outbox-pattern",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1971,6 +2133,24 @@
       "Richardson, C. (2018). \"Pattern: Transactional outbox\". microservices.io/patterns/data/transactional-outbox.html.",
       "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 11. O'Reilly Media.",
       "Debezium Project (2020). \"Outbox Event Router Transformation\". debezium.io/documentation."
+    ],
+    "typed_relations": [
+      {
+        "slug": "change-data-capture",
+        "type": "complement"
+      },
+      {
+        "slug": "saga-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "idempotency-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "crdt",
+        "type": "related"
+      }
     ]
   },
   {
@@ -2131,6 +2311,24 @@
       "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 10. O'Reilly Media.",
       "HashiCorp (2014). \"Consul Documentation\". consul.io.",
       "Kubernetes Project (2015). \"Kubernetes Services Documentation\". kubernetes.io/docs/concepts/services-networking/service."
+    ],
+    "typed_relations": [
+      {
+        "slug": "consensus-protocols",
+        "type": "complement"
+      },
+      {
+        "slug": "leader-election",
+        "type": "complement"
+      },
+      {
+        "slug": "circuit-breaker-with-retry",
+        "type": "complement"
+      },
+      {
+        "slug": "bulkhead-service-level",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2291,6 +2489,24 @@
       "Fowler, M. (2014). \"CircuitBreaker\". martinfowler.com/bliki/CircuitBreaker.html.",
       "Netflix (2012). \"Hystrix: Latency and Fault Tolerance for Distributed Systems\". github.com/Netflix/Hystrix.",
       "Resilience4j Project (2019). \"Resilience4j Documentation\". resilience4j.readme.io."
+    ],
+    "typed_relations": [
+      {
+        "slug": "bulkhead-service-level",
+        "type": "complement"
+      },
+      {
+        "slug": "service-discovery",
+        "type": "complement"
+      },
+      {
+        "slug": "idempotency-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "backpressure",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2451,6 +2667,24 @@
       "Netflix (2012). \"Hystrix: How it Works — Thread Pool Isolation\". github.com/Netflix/Hystrix/wiki.",
       "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 12. O'Reilly Media.",
       "Richardson, C. (2018). \"Microservices Patterns\", Ch. 3. Manning Publications."
+    ],
+    "typed_relations": [
+      {
+        "slug": "circuit-breaker-with-retry",
+        "type": "complement"
+      },
+      {
+        "slug": "backpressure",
+        "type": "complement"
+      },
+      {
+        "slug": "service-discovery",
+        "type": "complement"
+      },
+      {
+        "slug": "consistent-hashing",
+        "type": "related"
+      }
     ]
   }
 ]

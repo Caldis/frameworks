@@ -163,6 +163,20 @@
     "secondary_sources": [
       "Martin Fowler (2012). \"TestPyramid\". martinfowler.com.",
       "Ham Vocke (2018). \"The Practical Test Pyramid\". martinfowler.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "testing-trophy",
+        "type": "alternative"
+      },
+      {
+        "slug": "tdd",
+        "type": "complement"
+      },
+      {
+        "slug": "property-based-testing",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -328,6 +342,20 @@
     "secondary_sources": [
       "Kent C. Dodds (2019). \"Write Tests. Not Too Many. Mostly Integration.\". kentcdodds.com.",
       "Guillermo Rauch (2016). \"Write Tests\" (original tweet inspiring the concept). Twitter."
+    ],
+    "typed_relations": [
+      {
+        "slug": "test-pyramid",
+        "type": "alternative"
+      },
+      {
+        "slug": "tdd",
+        "type": "complement"
+      },
+      {
+        "slug": "contract-testing",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -494,6 +522,20 @@
     "secondary_sources": [
       "Kent Beck (1999). \"Extreme Programming Explained: Embrace Change\". Addison-Wesley.",
       "Robert C. Martin (2007). \"Professionalism and Test-Driven Development\". IEEE Software, 24(3)."
+    ],
+    "typed_relations": [
+      {
+        "slug": "test-pyramid",
+        "type": "complement"
+      },
+      {
+        "slug": "bdd",
+        "type": "complement"
+      },
+      {
+        "slug": "clean-code-principles",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -660,6 +702,20 @@
     "secondary_sources": [
       "Matt Wynne and Aslak Hellesoy (2012). \"The Cucumber Book: Behaviour-Driven Development for Testers and Developers\". Pragmatic Bookshelf.",
       "Gojko Adzic (2011). \"Specification by Example: How Successful Teams Deliver the Right Software\". Manning Publications."
+    ],
+    "typed_relations": [
+      {
+        "slug": "tdd",
+        "type": "complement"
+      },
+      {
+        "slug": "test-pyramid",
+        "type": "complement"
+      },
+      {
+        "slug": "domain-driven-design",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -826,6 +882,20 @@
     "secondary_sources": [
       "John Hughes (2007). \"QuickCheck Testing for Fun and Profit\". PADL 2007.",
       "Fred Hebert (2019). \"Property-Based Testing with PropEr, Erlang, and Elixir\". Pragmatic Bookshelf."
+    ],
+    "typed_relations": [
+      {
+        "slug": "tdd",
+        "type": "complement"
+      },
+      {
+        "slug": "design-by-contract",
+        "type": "complement"
+      },
+      {
+        "slug": "functional-core-imperative-shell",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -990,6 +1060,20 @@
     "secondary_sources": [
       "Casey Rosenthal and Nora Jones (2020). \"Chaos Engineering: System Resiliency in Practice\". O'Reilly Media.",
       "Ali Basiri et al. (2016). \"Chaos Engineering\". IEEE Software, 33(3)."
+    ],
+    "typed_relations": [
+      {
+        "slug": "circuit-breaker-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "bulkhead-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "sli-slo-sla",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1155,6 +1239,20 @@
     "secondary_sources": [
       "Martin Fowler (2014). \"CircuitBreaker\". martinfowler.com.",
       "Michael Nygard (2018). \"Release It! Design and Deploy Production-Ready Software, 2nd Edition\". Pragmatic Bookshelf."
+    ],
+    "typed_relations": [
+      {
+        "slug": "bulkhead-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "chaos-engineering",
+        "type": "complement"
+      },
+      {
+        "slug": "saga-pattern",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1319,6 +1417,20 @@
     "secondary_sources": [
       "Michael Nygard (2018). \"Release It! Design and Deploy Production-Ready Software, 2nd Edition\". Pragmatic Bookshelf.",
       "Sam Newman (2015). \"Building Microservices: Designing Fine-Grained Systems\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "circuit-breaker-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "chaos-engineering",
+        "type": "complement"
+      },
+      {
+        "slug": "cell-based-architecture",
+        "type": "related"
+      }
     ]
   },
   {
@@ -1485,6 +1597,20 @@
     "secondary_sources": [
       "Brendan Gregg (2013). \"Systems Performance: Enterprise and the Cloud\". Prentice Hall.",
       "Brendan Gregg (2020). \"Systems Performance: Enterprise and the Cloud, 2nd Edition\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "red-method",
+        "type": "alternative"
+      },
+      {
+        "slug": "four-golden-signals",
+        "type": "alternative"
+      },
+      {
+        "slug": "sli-slo-sla",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1651,6 +1777,20 @@
     "secondary_sources": [
       "Cindy Sridharan (2018). \"Distributed Systems Observability\". O'Reilly Media.",
       "Brendan Gregg (2012). \"The USE Method\". brendangregg.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "use-method",
+        "type": "alternative"
+      },
+      {
+        "slug": "four-golden-signals",
+        "type": "alternative"
+      },
+      {
+        "slug": "dora-metrics",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1817,6 +1957,20 @@
     "secondary_sources": [
       "Betsy Beyer et al. (2018). \"The Site Reliability Workbook: Practical Ways to Implement SRE\". O'Reilly Media.",
       "Niall Richard Murphy et al. (2020). \"Monitoring and Observability\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "red-method",
+        "type": "alternative"
+      },
+      {
+        "slug": "use-method",
+        "type": "alternative"
+      },
+      {
+        "slug": "sli-slo-sla",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1983,6 +2137,20 @@
     "secondary_sources": [
       "Yuntao Bai et al. (2022). \"Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback\". Anthropic.",
       "Dan Hendrycks et al. (2021). \"Measuring Massive Multitask Language Understanding (MMLU)\". ICLR 2021."
+    ],
+    "typed_relations": [
+      {
+        "slug": "ai-output-verification",
+        "type": "complement"
+      },
+      {
+        "slug": "prompt-testing",
+        "type": "complement"
+      },
+      {
+        "slug": "ai-observability-framework",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2149,6 +2317,20 @@
     "secondary_sources": [
       "NVIDIA (2023). \"NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications with Programmable Rails\". arXiv:2310.10501.",
       "Anthropic (2023). \"Constitutional AI: Harmlessness from AI Feedback\". arXiv:2212.08073."
+    ],
+    "typed_relations": [
+      {
+        "slug": "llm-evaluation-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "guardrails-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "prompt-testing",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2314,6 +2496,20 @@
     "secondary_sources": [
       "Harrison Chase et al. (2023). \"LangChain: Building Context-Aware Reasoning Applications\". langchain.com.",
       "OpenAI (2023). \"GPT Best Practices: Strategy for Reliable Outputs\". platform.openai.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "circuit-breaker-pattern",
+        "type": "extends"
+      },
+      {
+        "slug": "agent-deployment-patterns",
+        "type": "complement"
+      },
+      {
+        "slug": "chaos-engineering",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2480,6 +2676,20 @@
     "secondary_sources": [
       "Braintrust (2023). \"Braintrust: Enterprise-Grade LLM Evaluation\". braintrustdata.com.",
       "Percy Liang et al. (2022). \"Holistic Evaluation of Language Models (HELM)\". Stanford CRFM."
+    ],
+    "typed_relations": [
+      {
+        "slug": "llm-evaluation-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "ai-output-verification",
+        "type": "complement"
+      },
+      {
+        "slug": "prompt-engineering-patterns",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2645,6 +2855,20 @@
     "secondary_sources": [
       "Yue Jia and Mark Harman (2011). \"An Analysis and Survey of the Development of Mutation Testing\". IEEE Transactions on Software Engineering, 37(5).",
       "Henry Coles (2010). \"PIT Mutation Testing\". pitest.org."
+    ],
+    "typed_relations": [
+      {
+        "slug": "test-pyramid",
+        "type": "complement"
+      },
+      {
+        "slug": "tdd",
+        "type": "complement"
+      },
+      {
+        "slug": "property-based-testing",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2809,6 +3033,16 @@
     "secondary_sources": [
       "Christoph Nakazawa (2016). \"Snapshot Testing in Jest\". jestjs.io/blog.",
       "Kent C. Dodds (2018). \"Effective Snapshot Testing\". kentcdodds.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "test-pyramid",
+        "type": "complement"
+      },
+      {
+        "slug": "mutation-testing",
+        "type": "related"
+      }
     ]
   },
   {
@@ -2975,6 +3209,20 @@
     "secondary_sources": [
       "Michael Nygard (2018). \"Release It! Design and Deploy Production-Ready Software, 2nd Edition\". Pragmatic Bookshelf.",
       "Scott Barber (2004). \"Web Load Testing for Dummies\". Wiley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "chaos-engineering",
+        "type": "complement"
+      },
+      {
+        "slug": "sli-slo-sla",
+        "type": "complement"
+      },
+      {
+        "slug": "circuit-breaker-pattern",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -3140,6 +3388,20 @@
     "secondary_sources": [
       "Michael Nygard (2018). \"Release It! Design and Deploy Production-Ready Software, 2nd Edition\". Pragmatic Bookshelf.",
       "Robert C. Martin (2008). \"Clean Code: A Handbook of Agile Software Craftsmanship\". Prentice Hall. Chapter 7: Error Handling."
+    ],
+    "typed_relations": [
+      {
+        "slug": "circuit-breaker-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "bulkhead-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "chaos-engineering",
+        "type": "related"
+      }
     ]
   },
   {
@@ -3306,6 +3568,20 @@
     "secondary_sources": [
       "Charity Majors, Liz Fong-Jones, and George Miranda (2022). \"Observability Engineering\". O'Reilly Media.",
       "Cindy Sridharan (2018). \"Distributed Systems Observability\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "error-budget-policy",
+        "type": "complement"
+      },
+      {
+        "slug": "chaos-engineering",
+        "type": "complement"
+      },
+      {
+        "slug": "twelve-factor-app",
+        "type": "complement"
+      }
     ]
   }
 ]

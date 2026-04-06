@@ -155,6 +155,20 @@
     "secondary_sources": [
       "Robert C. Martin (2003). \"Agile Software Development, Principles, Patterns, and Practices\". Prentice Hall.",
       "Robert C. Martin (2017). \"Clean Architecture: A Craftsman's Guide to Software Structure and Design\". Prentice Hall."
+    ],
+    "typed_relations": [
+      {
+        "slug": "clean-code-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "grasp-patterns",
+        "type": "complement"
+      },
+      {
+        "slug": "dependency-injection",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -314,6 +328,20 @@
     "secondary_sources": [
       "Craig Larman (2002). \"Applying UML and Patterns, 2nd Edition\". Prentice Hall.",
       "Rebecca Wirfs-Brock and Alan McKean (2002). \"Object Design: Roles, Responsibilities, and Collaborations\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "gof-design-patterns",
+        "type": "complement"
+      },
+      {
+        "slug": "clean-code-principles",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -473,6 +501,20 @@
     "secondary_sources": [
       "Joshua Kerievsky (2004). \"Refactoring to Patterns\". Addison-Wesley.",
       "Eric Freeman and Elisabeth Robson (2004). \"Head First Design Patterns\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "solid-principles",
+        "type": "prerequisite"
+      },
+      {
+        "slug": "grasp-patterns",
+        "type": "complement"
+      },
+      {
+        "slug": "hexagonal-architecture",
+        "type": "related"
+      }
     ]
   },
   {
@@ -632,6 +674,20 @@
     "secondary_sources": [
       "Martin Fowler (2018). \"Refactoring: Improving the Design of Existing Code, 2nd Edition\". Addison-Wesley.",
       "Robert C. Martin (2011). \"The Clean Coder: A Code of Conduct for Professional Programmers\". Prentice Hall."
+    ],
+    "typed_relations": [
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "conventional-comments",
+        "type": "complement"
+      },
+      {
+        "slug": "grasp-patterns",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -792,6 +848,24 @@
     "secondary_sources": [
       "Vaughn Vernon (2013). \"Implementing Domain-Driven Design\". Addison-Wesley.",
       "Scott Millett and Nick Tune (2015). \"Patterns, Principles, and Practices of Domain-Driven Design\". Wrox."
+    ],
+    "typed_relations": [
+      {
+        "slug": "domain-driven-design",
+        "type": "extends"
+      },
+      {
+        "slug": "event-sourcing-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "cqrs-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "hexagonal-architecture",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -953,6 +1027,24 @@
     "secondary_sources": [
       "Robert C. Martin (2017). \"Clean Architecture: A Craftsman's Guide to Software Structure and Design\". Prentice Hall.",
       "Tom Hombergs (2019). \"Get Your Hands Dirty on Clean Architecture\". Packt Publishing."
+    ],
+    "typed_relations": [
+      {
+        "slug": "solid-principles",
+        "type": "prerequisite"
+      },
+      {
+        "slug": "dependency-injection",
+        "type": "complement"
+      },
+      {
+        "slug": "ddd-tactical-patterns",
+        "type": "complement"
+      },
+      {
+        "slug": "clean-code-principles",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1113,6 +1205,20 @@
     "secondary_sources": [
       "Scott Wlaschin (2018). \"Domain Modeling Made Functional\". Pragmatic Bookshelf.",
       "Mark Seemann (2021). \"Code That Fits in Your Head: Heuristics for Software Engineering\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "hexagonal-architecture",
+        "type": "complement"
+      },
+      {
+        "slug": "clean-code-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "property-based-testing",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1273,6 +1379,20 @@
     "secondary_sources": [
       "Jonas Boner et al. (2014). \"The Reactive Manifesto\". reactivemanifesto.org.",
       "Tomas Petricek (2016). \"Real-World Functional Programming\". Manning Publications."
+    ],
+    "typed_relations": [
+      {
+        "slug": "eda",
+        "type": "complement"
+      },
+      {
+        "slug": "actor-model",
+        "type": "alternative"
+      },
+      {
+        "slug": "functional-core-imperative-shell",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1433,6 +1553,20 @@
     "secondary_sources": [
       "Martin Fowler (2010). \"Richardson Maturity Model\". martinfowler.com.",
       "Jim Webber, Savas Parastatidis, and Ian Robinson (2010). \"REST in Practice: Hypermedia and Systems Architecture\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "api-versioning-strategies",
+        "type": "complement"
+      },
+      {
+        "slug": "contract-testing",
+        "type": "complement"
+      },
+      {
+        "slug": "ai-first-api-design",
+        "type": "related"
+      }
     ]
   },
   {
@@ -1594,6 +1728,24 @@
     "secondary_sources": [
       "Martin Fowler (2005). \"Event Sourcing\". martinfowler.com.",
       "Vaughn Vernon (2013). \"Implementing Domain-Driven Design\". Addison-Wesley. Chapter 8."
+    ],
+    "typed_relations": [
+      {
+        "slug": "cqrs-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "eda",
+        "type": "complement"
+      },
+      {
+        "slug": "ddd-tactical-patterns",
+        "type": "complement"
+      },
+      {
+        "slug": "domain-driven-design",
+        "type": "prerequisite"
+      }
     ]
   },
   {
@@ -1754,6 +1906,20 @@
     "secondary_sources": [
       "Jules White et al. (2023). \"A Prompt Pattern Catalog to Enhance Prompt Engineering with ChatGPT\". arXiv:2302.11382.",
       "Pengfei Liu et al. (2023). \"Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in NLP\". ACM Computing Surveys."
+    ],
+    "typed_relations": [
+      {
+        "slug": "prompt-chaining",
+        "type": "complement"
+      },
+      {
+        "slug": "tool-use-design-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "llm-system-design-patterns",
+        "type": "related"
+      }
     ]
   },
   {
@@ -1913,6 +2079,20 @@
     "secondary_sources": [
       "Timo Schick et al. (2023). \"Toolformer: Language Models Can Teach Themselves to Use Tools\". NeurIPS 2023.",
       "Takeshi Kojima et al. (2022). \"Large Language Models are Zero-Shot Reasoners\". NeurIPS 2022."
+    ],
+    "typed_relations": [
+      {
+        "slug": "react-framework",
+        "type": "extends"
+      },
+      {
+        "slug": "prompt-engineering-patterns",
+        "type": "complement"
+      },
+      {
+        "slug": "prompt-chaining",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2071,6 +2251,20 @@
     "secondary_sources": [
       "Google Engineering Practices (2019). \"How to Do a Code Review\". google.github.io/eng-practices.",
       "Karl Wiegers (2002). \"Peer Reviews in Software: A Practical Guide\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "clean-code-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "ai-pair-programming",
+        "type": "complement"
+      },
+      {
+        "slug": "semantic-versioning",
+        "type": "related"
+      }
     ]
   },
   {
@@ -2231,6 +2425,20 @@
     "secondary_sources": [
       "Russ Cox (2019). \"Semantic Import Versioning\". research.swtch.com.",
       "IETF RFC 2119, Scott Bradner (1997). \"Key words for use in RFCs to Indicate Requirement Levels\". IETF."
+    ],
+    "typed_relations": [
+      {
+        "slug": "api-versioning-strategies",
+        "type": "complement"
+      },
+      {
+        "slug": "contract-testing",
+        "type": "complement"
+      },
+      {
+        "slug": "conventional-comments",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2392,6 +2600,24 @@
     "secondary_sources": [
       "Martin Fowler (2011). \"Integration Contract Test\". martinfowler.com.",
       "Beth Skurrie et al. (2017). \"Pact: Consumer-Driven Contract Testing\". pact.io."
+    ],
+    "typed_relations": [
+      {
+        "slug": "semantic-versioning",
+        "type": "complement"
+      },
+      {
+        "slug": "api-versioning-strategies",
+        "type": "complement"
+      },
+      {
+        "slug": "richardson-maturity-model",
+        "type": "complement"
+      },
+      {
+        "slug": "design-by-contract",
+        "type": "extends"
+      }
     ]
   },
   {
@@ -2551,6 +2777,20 @@
     "secondary_sources": [
       "Michael Feathers (2004). \"Working Effectively with Legacy Code\". Prentice Hall.",
       "Martin Fowler (2018). \"Refactoring: Improving the Design of Existing Code, 2nd Edition\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "strangler-fig-pattern",
+        "type": "extends"
+      },
+      {
+        "slug": "branch-by-abstraction",
+        "type": "complement"
+      },
+      {
+        "slug": "design-by-contract",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2711,6 +2951,24 @@
     "secondary_sources": [
       "Martin Fowler (2010). \"FeatureToggle\". martinfowler.com.",
       "Jez Humble and David Farley (2010). \"Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "strangler-fig-at-code-level",
+        "type": "complement"
+      },
+      {
+        "slug": "branch-by-abstraction",
+        "type": "complement"
+      },
+      {
+        "slug": "feature-branch-strategy",
+        "type": "alternative"
+      },
+      {
+        "slug": "clean-code-principles",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2872,6 +3130,24 @@
     "secondary_sources": [
       "John Ousterhout (2018). \"A Philosophy of Software Design\". Yaknyam Press.",
       "Martin Fowler (2018). \"Refactoring: Improving the Design of Existing Code, 2nd Edition\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "functional-core-imperative-shell",
+        "type": "complement"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "clean-code-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "error-handling-patterns",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -3033,6 +3309,24 @@
     "secondary_sources": [
       "Martin Fowler (2018). \"Refactoring: Improving the Design of Existing Code, 2nd Edition\". Addison-Wesley.",
       "Michael Feathers (2004). \"Working Effectively with Legacy Code\". Prentice Hall."
+    ],
+    "typed_relations": [
+      {
+        "slug": "design-by-contract",
+        "type": "complement"
+      },
+      {
+        "slug": "clean-code-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "error-handling-patterns",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -3194,6 +3488,24 @@
     "secondary_sources": [
       "John Ousterhout (2018). \"A Philosophy of Software Design\". Yaknyam Press.",
       "Benjamin Pierce (2002). \"Types and Programming Languages\". MIT Press."
+    ],
+    "typed_relations": [
+      {
+        "slug": "design-by-contract",
+        "type": "complement"
+      },
+      {
+        "slug": "domain-driven-design",
+        "type": "complement"
+      },
+      {
+        "slug": "clean-code-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "immutability-pattern",
+        "type": "complement"
+      }
     ]
   }
 ]

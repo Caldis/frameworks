@@ -166,6 +166,20 @@
       "Byron, L. (2015). \"GraphQL: A Data Query Language\". Engineering at Meta Blog.",
       "Geewax, J.J. (2021). \"API Design Patterns\", Ch. 1. Manning Publications.",
       "Buna, S. (2021). \"GraphQL in Action\". Manning Publications."
+    ],
+    "typed_relations": [
+      {
+        "slug": "bff-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "api-gateway-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "openapi-specification",
+        "type": "alternative"
+      }
     ]
   },
   {
@@ -335,6 +349,20 @@
     "secondary_sources": [
       "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 4. O'Reilly Media.",
       "Indrasiri, K. & Kuruppu, D. (2020). \"gRPC: Up and Running\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "api-gateway-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "consumer-driven-contracts",
+        "type": "complement"
+      },
+      {
+        "slug": "asyncapi",
+        "type": "related"
+      }
     ]
   },
   {
@@ -504,6 +532,20 @@
     "secondary_sources": [
       "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 7. O'Reilly Media.",
       "Geewax, J.J. (2021). \"API Design Patterns\", Ch. 2. Manning Publications."
+    ],
+    "typed_relations": [
+      {
+        "slug": "bff-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "api-rate-limiting-throttling",
+        "type": "complement"
+      },
+      {
+        "slug": "graphql-schema-design",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -672,6 +714,20 @@
     "secondary_sources": [
       "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 7. O'Reilly Media.",
       "Newman, S. (2015). \"Pattern: Backends For Frontends\". samnewman.io."
+    ],
+    "typed_relations": [
+      {
+        "slug": "api-gateway-pattern",
+        "type": "extends"
+      },
+      {
+        "slug": "graphql-schema-design",
+        "type": "complement"
+      },
+      {
+        "slug": "grpc-protocol-buffers",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -840,6 +896,20 @@
     "secondary_sources": [
       "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 6. O'Reilly Media.",
       "Skurrie, B. (2013). \"Pact: A Contract Testing Tool\". pact.io."
+    ],
+    "typed_relations": [
+      {
+        "slug": "openapi-specification",
+        "type": "complement"
+      },
+      {
+        "slug": "api-gateway-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "grpc-protocol-buffers",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1008,6 +1078,20 @@
     "secondary_sources": [
       "Richardson, L. & Amundsen, M. (2013). \"RESTful Web APIs\", Ch. 9. O'Reilly Media.",
       "Tam, T. (2011). \"Swagger: A Simple, Open Standard for Describing REST APIs\". swagger.io."
+    ],
+    "typed_relations": [
+      {
+        "slug": "consumer-driven-contracts",
+        "type": "complement"
+      },
+      {
+        "slug": "asyncapi",
+        "type": "alternative"
+      },
+      {
+        "slug": "hateoas",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1176,6 +1260,20 @@
     "secondary_sources": [
       "Richardson, L. & Amundsen, M. (2013). \"RESTful Web APIs\", Ch. 11. O'Reilly Media.",
       "Geewax, J.J. (2021). \"API Design Patterns\", Ch. 15. Manning Publications."
+    ],
+    "typed_relations": [
+      {
+        "slug": "asyncapi",
+        "type": "complement"
+      },
+      {
+        "slug": "api-rate-limiting-throttling",
+        "type": "complement"
+      },
+      {
+        "slug": "api-gateway-pattern",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1345,6 +1443,20 @@
     "secondary_sources": [
       "Nottingham, M. & Fielding, R. (2012). \"Additional HTTP Status Codes (429 Too Many Requests)\". IETF RFC 6585.",
       "Richardson, L. & Amundsen, M. (2013). \"RESTful Web APIs\", Ch. 11. O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "api-gateway-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "webhook-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "openapi-specification",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1513,6 +1625,20 @@
     "secondary_sources": [
       "Richardson, L. & Amundsen, M. (2013). \"RESTful Web APIs\", Ch. 4-5. O'Reilly Media.",
       "Fielding, R.T. (2008). \"REST APIs Must Be Hypertext-Driven\". roy.gbiv.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "openapi-specification",
+        "type": "complement"
+      },
+      {
+        "slug": "graphql-schema-design",
+        "type": "alternative"
+      },
+      {
+        "slug": "consumer-driven-contracts",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1681,6 +1807,20 @@
     "secondary_sources": [
       "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 4. O'Reilly Media.",
       "Hohpe, G. & Woolf, B. (2003). \"Enterprise Integration Patterns\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "webhook-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "openapi-specification",
+        "type": "complement"
+      },
+      {
+        "slug": "grpc-protocol-buffers",
+        "type": "alternative"
+      }
     ]
   },
   {
@@ -1851,6 +1991,20 @@
       "Geewax, J.J. (2021). \"API Design Patterns\", Ch. 2. Manning Publications.",
       "Sturgeon, P. (2022). \"Designing APIs with Swagger and OpenAPI\". Manning Publications.",
       "Wildermuth, S. (2020). \"API-First development with OpenAPI\". Pluralsight."
+    ],
+    "typed_relations": [
+      {
+        "slug": "openapi-specification",
+        "type": "complement"
+      },
+      {
+        "slug": "consumer-driven-contracts",
+        "type": "complement"
+      },
+      {
+        "slug": "bff-pattern",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2021,6 +2175,20 @@
       "Winand, M. (2016). \"Pagination Done the Right Way\". use-the-index-luke.com.",
       "Geewax, J.J. (2021). \"API Design Patterns\", Ch. 9. Manning Publications.",
       "IETF (2010). \"RFC 5988: Web Linking\". tools.ietf.org."
+    ],
+    "typed_relations": [
+      {
+        "slug": "graphql-schema-design",
+        "type": "complement"
+      },
+      {
+        "slug": "openapi-specification",
+        "type": "complement"
+      },
+      {
+        "slug": "rate-limiting",
+        "type": "related"
+      }
     ]
   },
   {
@@ -2191,6 +2359,20 @@
       "IETF (2022). \"RFC 9457: Problem Details for HTTP APIs\" (obsoletes RFC 7807). IETF.",
       "Geewax, J.J. (2021). \"API Design Patterns\", Ch. 6. Manning Publications.",
       "Zalando SE (2022). \"Zalando RESTful API and Event Guidelines\". opensource.zalando.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "openapi-specification",
+        "type": "complement"
+      },
+      {
+        "slug": "api-first-design",
+        "type": "complement"
+      },
+      {
+        "slug": "rate-limiting",
+        "type": "related"
+      }
     ]
   },
   {
@@ -2361,6 +2543,20 @@
       "Hardt, D. & Wilde, E. (2023). \"The Deprecation HTTP Header Field\". IETF draft-ietf-httpapi-deprecation-header.",
       "Geewax, J.J. (2021). \"API Design Patterns\", Ch. 15. Manning Publications.",
       "Sturgeon, P. (2022). \"Designing APIs with Swagger and OpenAPI\". Manning Publications."
+    ],
+    "typed_relations": [
+      {
+        "slug": "openapi-specification",
+        "type": "complement"
+      },
+      {
+        "slug": "api-first-design",
+        "type": "complement"
+      },
+      {
+        "slug": "api-gateway-pattern",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2531,6 +2727,20 @@
       "AWS (2017). \"Lambda@Edge Developer Guide\". docs.aws.amazon.com.",
       "Fastly (2019). \"Compute@Edge: WebAssembly at the Edge\". developer.fastly.com.",
       "Grigorik, I. (2023). \"Edge Computing: The Next Frontier of API Design\". InfoQ."
+    ],
+    "typed_relations": [
+      {
+        "slug": "api-gateway-pattern",
+        "type": "extends"
+      },
+      {
+        "slug": "rate-limiting",
+        "type": "complement"
+      },
+      {
+        "slug": "api-first-design",
+        "type": "complement"
+      }
     ]
   }
 ]

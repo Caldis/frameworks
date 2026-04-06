@@ -166,6 +166,20 @@
       "Kohnfelder, L. & Garg, P. (1999). \"The Threats to Our Products\". Microsoft Internal Document.",
       "Howard, M. & Lipner, S. (2006). \"The Security Development Lifecycle\". Microsoft Press.",
       "OWASP (2020). \"Threat Modeling Playbook\". owasp.org."
+    ],
+    "typed_relations": [
+      {
+        "slug": "defense-in-depth",
+        "type": "complement"
+      },
+      {
+        "slug": "security-by-design",
+        "type": "complement"
+      },
+      {
+        "slug": "owasp-top-10",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -334,6 +348,20 @@
     "secondary_sources": [
       "Kindervag, J. (2010). \"No More Chewy Centers: Introducing the Zero Trust Model of Information Security\". Forrester Research.",
       "Ward, R. & Beyer, B. (2014). \"BeyondCorp: A New Approach to Enterprise Security\". ;login: USENIX, 39(6)."
+    ],
+    "typed_relations": [
+      {
+        "slug": "principle-of-least-privilege",
+        "type": "prerequisite"
+      },
+      {
+        "slug": "defense-in-depth",
+        "type": "complement"
+      },
+      {
+        "slug": "oauth2-openid-connect",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -504,6 +532,20 @@
       "Sakimura, N. et al. (2014). \"OpenID Connect Core 1.0\". OpenID Foundation.",
       "Jones, M. & Hardt, D. (2012). \"The OAuth 2.0 Authorization Framework: Bearer Token Usage\". IETF RFC 6750.",
       "Richer, J. & Sanso, A. (2017). \"OAuth 2 in Action\". Manning Publications."
+    ],
+    "typed_relations": [
+      {
+        "slug": "zero-trust-architecture",
+        "type": "complement"
+      },
+      {
+        "slug": "principle-of-least-privilege",
+        "type": "prerequisite"
+      },
+      {
+        "slug": "security-by-design",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -672,6 +714,20 @@
     "secondary_sources": [
       "NIST (2020). \"Security and Privacy Controls for Information Systems and Organizations\". NIST Special Publication 800-53, Rev. 5.",
       "Schneier, B. (2000). \"Secrets and Lies: Digital Security in a Networked World\". Wiley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "threat-modeling-stride",
+        "type": "complement"
+      },
+      {
+        "slug": "zero-trust-architecture",
+        "type": "complement"
+      },
+      {
+        "slug": "security-by-design",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -841,6 +897,20 @@
     "secondary_sources": [
       "European Parliament (2016). \"General Data Protection Regulation (GDPR), Article 25: Data Protection by Design and by Default\". Official Journal of the European Union.",
       "Hoepman, J.-H. (2014). \"Privacy Design Strategies\". Proceedings of the IFIP TC 11 International Conference (SEC 2014). Springer."
+    ],
+    "typed_relations": [
+      {
+        "slug": "security-by-design",
+        "type": "complement"
+      },
+      {
+        "slug": "principle-of-least-privilege",
+        "type": "complement"
+      },
+      {
+        "slug": "defense-in-depth",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1008,6 +1078,20 @@
     "secondary_sources": [
       "OWASP Foundation (2003). \"OWASP Top 10 — 2003 (First Edition)\". owasp.org.",
       "Stuttard, D. & Pinto, M. (2011). \"The Web Application Hacker's Handbook\", 2nd ed. Wiley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "threat-modeling-stride",
+        "type": "complement"
+      },
+      {
+        "slug": "security-by-design",
+        "type": "complement"
+      },
+      {
+        "slug": "defense-in-depth",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1177,6 +1261,20 @@
     "secondary_sources": [
       "NIST (2020). \"Security and Privacy Controls for Information Systems and Organizations, AC-6: Least Privilege\". NIST SP 800-53, Rev. 5.",
       "Anderson, R. (2020). \"Security Engineering\", 3rd ed. Wiley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "zero-trust-architecture",
+        "type": "extends"
+      },
+      {
+        "slug": "oauth2-openid-connect",
+        "type": "complement"
+      },
+      {
+        "slug": "defense-in-depth",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1345,6 +1443,20 @@
     "secondary_sources": [
       "Microsoft (2010). \"Security Development Lifecycle (SDL)\". microsoft.com/sdl.",
       "NIST (2018). \"Systems Security Engineering: Considerations for a Multidisciplinary Approach in the Engineering of Trustworthy Secure Systems\". NIST SP 800-160, Vol. 1."
+    ],
+    "typed_relations": [
+      {
+        "slug": "threat-modeling-stride",
+        "type": "complement"
+      },
+      {
+        "slug": "owasp-top-10",
+        "type": "complement"
+      },
+      {
+        "slug": "privacy-by-design",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1515,6 +1627,20 @@
       "The White House (2021). \"Executive Order 14028 on Improving the Nation's Cybersecurity\". Federal Register.",
       "NIST (2022). \"Secure Software Development Framework (SSDF)\". NIST SP 800-218.",
       "in-toto Project (2019). \"in-toto: Providing Farm-to-Table Guarantees for Bits and Bytes\". Proceedings of USENIX Security Symposium."
+    ],
+    "typed_relations": [
+      {
+        "slug": "security-by-design",
+        "type": "extends"
+      },
+      {
+        "slug": "owasp-top-10",
+        "type": "complement"
+      },
+      {
+        "slug": "defense-in-depth",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1684,6 +1810,20 @@
       "Costan, V. & Devadas, S. (2016). \"Intel SGX Explained\". IACR Cryptology ePrint Archive.",
       "NIST (2021). \"Hardware-Enabled Security: Enabling a Layered Approach to Platform Security\". NIST IR 8320.",
       "Kaplan, D. et al. (2016). \"AMD Memory Encryption\". AMD White Paper."
+    ],
+    "typed_relations": [
+      {
+        "slug": "zero-trust-architecture",
+        "type": "complement"
+      },
+      {
+        "slug": "defense-in-depth",
+        "type": "extends"
+      },
+      {
+        "slug": "privacy-by-design",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1843,6 +1983,24 @@
       "Schoenfield, B.S.E. (2015). \"Securing Systems: Applied Security Architecture and Threat Models\". CRC Press.",
       "Pohl, C. & Hof, H.J. (2015). \"Secure Scrum: Development of Secure Software with Scrum\". Proceedings of ICSEA 2015.",
       "Kim, G. et al. (2016). \"The DevOps Handbook\". IT Revolution Press."
+    ],
+    "typed_relations": [
+      {
+        "slug": "security-by-design",
+        "type": "complement"
+      },
+      {
+        "slug": "threat-modeling-stride",
+        "type": "complement"
+      },
+      {
+        "slug": "owasp-top-10",
+        "type": "complement"
+      },
+      {
+        "slug": "defense-in-depth",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2003,6 +2161,24 @@
       "NIST (2020). \"NIST SP 800-57 Part 1 Rev. 5: Recommendation for Key Management\". National Institute of Standards and Technology.",
       "Brotherton, S. (2022). \"Secrets Management Patterns\". O'Reilly Media.",
       "AWS (2018). \"AWS Secrets Manager User Guide\". docs.aws.amazon.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "zero-trust-architecture",
+        "type": "complement"
+      },
+      {
+        "slug": "least-privilege-principle",
+        "type": "complement"
+      },
+      {
+        "slug": "security-by-design",
+        "type": "complement"
+      },
+      {
+        "slug": "identity-federation",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2163,6 +2339,24 @@
       "NIST (2007). \"SP 800-44 Version 2: Guidelines on Securing Public Web Servers\". NIST.",
       "Dafydd Stuttard & Marcus Pinto (2011). \"The Web Application Hacker's Handbook\", 2nd ed. Wiley.",
       "Cloudflare (2022). \"Cloudflare WAF Documentation\". developers.cloudflare.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "defense-in-depth",
+        "type": "extends"
+      },
+      {
+        "slug": "zero-trust-architecture",
+        "type": "complement"
+      },
+      {
+        "slug": "owasp-top-10",
+        "type": "complement"
+      },
+      {
+        "slug": "penetration-testing-framework",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2323,6 +2517,24 @@
       "OpenID Foundation (2014). \"OpenID Connect Core 1.0\". openid.net.",
       "Hardt, D. (2012). \"RFC 6749: The OAuth 2.0 Authorization Framework\". IETF.",
       "Windley, P.J. (2005). \"Digital Identity\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "zero-trust-architecture",
+        "type": "complement"
+      },
+      {
+        "slug": "least-privilege-principle",
+        "type": "complement"
+      },
+      {
+        "slug": "secrets-management",
+        "type": "complement"
+      },
+      {
+        "slug": "oauth-authorization",
+        "type": "related"
+      }
     ]
   },
   {
@@ -2482,6 +2694,24 @@
       "NIST (2008). \"SP 800-115: Technical Guide to Information Security Testing and Assessment\". NIST.",
       "Wilhelm, T. (2013). \"Professional Penetration Testing\", 2nd ed. Syngress.",
       "Kennedy, D., O'Gorman, J., Kearns, D. & Aharoni, M. (2011). \"Metasploit: The Penetration Tester's Guide\". No Starch Press."
+    ],
+    "typed_relations": [
+      {
+        "slug": "threat-modeling-stride",
+        "type": "complement"
+      },
+      {
+        "slug": "owasp-top-10",
+        "type": "complement"
+      },
+      {
+        "slug": "defense-in-depth",
+        "type": "complement"
+      },
+      {
+        "slug": "waf-patterns",
+        "type": "complement"
+      }
     ]
   }
 ]

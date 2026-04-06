@@ -164,6 +164,20 @@
     "secondary_sources": [
       "Jason Wei et al. (2022). \"Chain-of-Thought Prompting Elicits Reasoning in Large Language Models\". NeurIPS 2022.",
       "Takeshi Kojima et al. (2022). \"Large Language Models are Zero-Shot Reasoners\". NeurIPS 2022."
+    ],
+    "typed_relations": [
+      {
+        "slug": "tool-use-design-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "prompt-chaining",
+        "type": "complement"
+      },
+      {
+        "slug": "multi-agent-orchestration-pattern",
+        "type": "extends"
+      }
     ]
   },
   {
@@ -332,6 +346,20 @@
     "secondary_sources": [
       "Vladimir Karpukhin et al. (2020). \"Dense Passage Retrieval for Open-Domain Question Answering\". EMNLP 2020.",
       "Jerry Liu (2022). \"LlamaIndex: A Data Framework for LLM Applications\". llamaindex.ai."
+    ],
+    "typed_relations": [
+      {
+        "slug": "llm-system-design-patterns",
+        "type": "related"
+      },
+      {
+        "slug": "context-window-management",
+        "type": "complement"
+      },
+      {
+        "slug": "ai-observability-framework",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -499,6 +527,20 @@
     "secondary_sources": [
       "Chi Wang et al. (2023). \"AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation\". arXiv:2308.08155.",
       "Yiran Wu et al. (2023). \"AutoGen: A Framework for Large Language Model Applications\". Microsoft Research."
+    ],
+    "typed_relations": [
+      {
+        "slug": "react-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "agent-communication-protocol",
+        "type": "complement"
+      },
+      {
+        "slug": "agent-oriented-design-thinking",
+        "type": "prerequisite"
+      }
     ]
   },
   {
@@ -666,6 +708,20 @@
     "secondary_sources": [
       "Burr Settles (2012). \"Active Learning\". Synthesis Lectures on Artificial Intelligence and Machine Learning, Morgan & Claypool.",
       "Saleema Amershi et al. (2014). \"Power to the People: The Role of Humans in Interactive Machine Learning\". AI Magazine, 35(4)."
+    ],
+    "typed_relations": [
+      {
+        "slug": "human-ai-interaction-design",
+        "type": "complement"
+      },
+      {
+        "slug": "guardrails-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "responsible-ai-design",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -833,6 +889,20 @@
     "secondary_sources": [
       "Harrison Chase (2022). \"LangChain: Building Applications with LLMs through Composability\". github.com/langchain-ai.",
       "Ofir Press et al. (2022). \"Measuring and Narrowing the Compositionality Gap in Language Models\". arXiv:2210.03350."
+    ],
+    "typed_relations": [
+      {
+        "slug": "react-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "prompt-engineering-patterns",
+        "type": "complement"
+      },
+      {
+        "slug": "guardrails-framework",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1000,6 +1070,20 @@
     "secondary_sources": [
       "Albert Ziegler et al. (2022). \"Productivity Assessment of Neural Code Completion\". MAPS 2022.",
       "Sida Peng et al. (2023). \"The Impact of AI on Developer Productivity: Evidence from GitHub Copilot\". arXiv:2302.06590."
+    ],
+    "typed_relations": [
+      {
+        "slug": "human-ai-interaction-design",
+        "type": "complement"
+      },
+      {
+        "slug": "ai-assisted-refactoring",
+        "type": "complement"
+      },
+      {
+        "slug": "conventional-comments",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1168,6 +1252,20 @@
     "secondary_sources": [
       "NVIDIA (2023). \"NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications with Programmable Rails\". arXiv:2310.10501.",
       "Yuntao Bai et al. (2022). \"Constitutional AI: Harmlessness from AI Feedback\". arXiv:2212.08073. Anthropic."
+    ],
+    "typed_relations": [
+      {
+        "slug": "responsible-ai-design",
+        "type": "complement"
+      },
+      {
+        "slug": "ai-output-verification",
+        "type": "complement"
+      },
+      {
+        "slug": "human-in-the-loop",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1335,6 +1433,20 @@
     "secondary_sources": [
       "Anthropic (2023). \"Long Context Prompting for Claude\". docs.anthropic.com.",
       "Iz Beltagy, Matthew E. Peters, and Arman Cohan (2020). \"Longformer: The Long-Document Transformer\". arXiv:2004.05150."
+    ],
+    "typed_relations": [
+      {
+        "slug": "rag-architecture",
+        "type": "complement"
+      },
+      {
+        "slug": "prompt-chaining",
+        "type": "complement"
+      },
+      {
+        "slug": "llm-system-design-patterns",
+        "type": "related"
+      }
     ]
   },
   {
@@ -1502,6 +1614,20 @@
     "secondary_sources": [
       "OpenAI (2023). \"Function Calling and Other API Updates\". openai.com/blog.",
       "Yujia Qin et al. (2023). \"Tool Learning with Foundation Models\". arXiv:2304.08354."
+    ],
+    "typed_relations": [
+      {
+        "slug": "react-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "ai-first-api-design",
+        "type": "complement"
+      },
+      {
+        "slug": "tool-use-react-pattern",
+        "type": "extends"
+      }
     ]
   },
   {
@@ -1669,6 +1795,20 @@
     "secondary_sources": [
       "OpenAI (2023). \"ChatGPT Plugins\". openai.com/blog.",
       "JJ Geewax (2021). \"API Design Patterns\". Manning Publications."
+    ],
+    "typed_relations": [
+      {
+        "slug": "tool-use-design-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "richardson-maturity-model",
+        "type": "extends"
+      },
+      {
+        "slug": "agent-communication-protocol",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1836,6 +1976,20 @@
     "secondary_sources": [
       "IBM (2001). \"Autonomic Computing: IBM's Perspective on the State of Information Technology\". IBM Research.",
       "Pankaj Jalote (2013). \"Autonomic Computing Concepts\". Proceedings of the IEEE."
+    ],
+    "typed_relations": [
+      {
+        "slug": "chaos-engineering",
+        "type": "complement"
+      },
+      {
+        "slug": "circuit-breaker-pattern",
+        "type": "extends"
+      },
+      {
+        "slug": "agent-reliability-patterns",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2004,6 +2158,20 @@
     "secondary_sources": [
       "Harrison Chase (2023). \"LangSmith: LLM Application Tracing and Evaluation\". langchain.com.",
       "Shreya Shankar et al. (2022). \"Operationalizing Machine Learning: An Interview Study\". arXiv:2209.09125."
+    ],
+    "typed_relations": [
+      {
+        "slug": "llmops",
+        "type": "complement"
+      },
+      {
+        "slug": "llm-evaluation-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "four-golden-signals",
+        "type": "extends"
+      }
     ]
   },
   {
@@ -2172,6 +2340,20 @@
     "secondary_sources": [
       "Google (2018). \"AI Principles\". ai.google/principles.",
       "European Union (2024). \"EU Artificial Intelligence Act\". eur-lex.europa.eu."
+    ],
+    "typed_relations": [
+      {
+        "slug": "guardrails-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "human-in-the-loop",
+        "type": "complement"
+      },
+      {
+        "slug": "human-ai-interaction-design",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2339,6 +2521,20 @@
     "secondary_sources": [
       "E2B (2023). \"Agent Protocol: Open Standard for AI Agent Communication\". agentprotocol.ai.",
       "Anthropic (2024). \"Model Context Protocol Specification\". modelcontextprotocol.io."
+    ],
+    "typed_relations": [
+      {
+        "slug": "multi-agent-orchestration-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "actor-model",
+        "type": "complement"
+      },
+      {
+        "slug": "eda",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2506,6 +2702,24 @@
     "secondary_sources": [
       "Andrew Ng (2024). \"Agentic Design Patterns\". deeplearning.ai.",
       "Shunyu Yao et al. (2023). \"ReAct: Synergizing Reasoning and Acting in Language Models\". ICLR 2023."
+    ],
+    "typed_relations": [
+      {
+        "slug": "react-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "multi-agent-orchestration-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "prompt-chaining",
+        "type": "complement"
+      },
+      {
+        "slug": "tool-use-design-pattern",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2673,6 +2887,24 @@
     "secondary_sources": [
       "Anthropic (2024). \"Introducing the Model Context Protocol\". anthropic.com/news.",
       "FIPA (2002). \"FIPA Agent Communication Language Specifications\". IEEE Foundation for Intelligent Physical Agents."
+    ],
+    "typed_relations": [
+      {
+        "slug": "tool-use-design-pattern",
+        "type": "extends"
+      },
+      {
+        "slug": "react-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "agentic-workflow-patterns",
+        "type": "complement"
+      },
+      {
+        "slug": "agent-communication-protocol",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2839,6 +3071,20 @@
     "secondary_sources": [
       "Patrick Lewis et al. (2020). \"Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks\". NeurIPS 2020.",
       "Edward Hu et al. (2021). \"LoRA: Low-Rank Adaptation of Large Language Models\". arXiv:2106.09685."
+    ],
+    "typed_relations": [
+      {
+        "slug": "rag-architecture",
+        "type": "extends"
+      },
+      {
+        "slug": "prompt-chaining",
+        "type": "complement"
+      },
+      {
+        "slug": "llm-evaluation-framework",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -3006,6 +3252,24 @@
     "secondary_sources": [
       "OWASP (2023). \"OWASP Top 10 for Large Language Model Applications\". owasp.org.",
       "Yuntao Bai et al. (2022). \"Constitutional AI: Harmlessness from AI Feedback\". arXiv:2212.08073. Anthropic."
+    ],
+    "typed_relations": [
+      {
+        "slug": "responsible-ai-design",
+        "type": "complement"
+      },
+      {
+        "slug": "guardrails-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "llm-evaluation-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "human-in-the-loop",
+        "type": "complement"
+      }
     ]
   }
 ]

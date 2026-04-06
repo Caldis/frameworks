@@ -170,6 +170,32 @@
     "secondary_sources": [
       "CNCF (2019). \"OpenTelemetry Specification\". opentelemetry.io.",
       "Sigelman, B.H. et al. (2010). \"Dapper, a Large-Scale Distributed Systems Tracing Infrastructure\". Google Technical Report."
+    ],
+    "typed_relations": [
+      {
+        "slug": "distributed-tracing",
+        "type": "complement"
+      },
+      {
+        "slug": "structured-logging",
+        "type": "complement"
+      },
+      {
+        "slug": "four-golden-signals",
+        "type": "complement"
+      },
+      {
+        "slug": "use-method",
+        "type": "alternative"
+      },
+      {
+        "slug": "red-method",
+        "type": "alternative"
+      },
+      {
+        "slug": "sli-slo-sla",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -342,6 +368,28 @@
     "secondary_sources": [
       "Majors, C., Fong-Jones, L. & Miranda, G. (2022). \"Observability Engineering\". O'Reilly Media.",
       "Shkuro, Y. (2019). \"Mastering Distributed Tracing\". Packt Publishing."
+    ],
+    "typed_relations": [
+      {
+        "slug": "opentelemetry",
+        "type": "complement"
+      },
+      {
+        "slug": "structured-logging",
+        "type": "complement"
+      },
+      {
+        "slug": "four-golden-signals",
+        "type": "complement"
+      },
+      {
+        "slug": "red-method",
+        "type": "complement"
+      },
+      {
+        "slug": "circuit-breaker-pattern",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -512,6 +560,24 @@
     "secondary_sources": [
       "Winters, T., Manshreck, T. & Wright, H. (2020). \"Software Engineering at Google\", Ch. 16. O'Reilly Media.",
       "Beyer, B. et al. (2016). \"Site Reliability Engineering: How Google Runs Production Systems\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "opentelemetry",
+        "type": "complement"
+      },
+      {
+        "slug": "distributed-tracing",
+        "type": "complement"
+      },
+      {
+        "slug": "four-golden-signals",
+        "type": "complement"
+      },
+      {
+        "slug": "slo-as-practice",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -683,6 +749,28 @@
     "secondary_sources": [
       "Beyer, B. et al. (2016). \"Site Reliability Engineering: How Google Runs Production Systems\", Ch. 4. O'Reilly Media.",
       "Beyer, B. et al. (2018). \"The Site Reliability Workbook\", Ch. 2. O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "sli-slo-sla",
+        "type": "extends"
+      },
+      {
+        "slug": "error-budget-policy",
+        "type": "complement"
+      },
+      {
+        "slug": "four-golden-signals",
+        "type": "prerequisite"
+      },
+      {
+        "slug": "dora-metrics",
+        "type": "complement"
+      },
+      {
+        "slug": "on-call-engineering",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -854,6 +942,28 @@
     "secondary_sources": [
       "Beyer, B. et al. (2018). \"The Site Reliability Workbook\", Ch. 3. O'Reilly Media.",
       "Hidalgo, A. (2020). \"Implementing Service Level Objectives\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "slo-as-practice",
+        "type": "extends"
+      },
+      {
+        "slug": "sli-slo-sla",
+        "type": "prerequisite"
+      },
+      {
+        "slug": "on-call-engineering",
+        "type": "complement"
+      },
+      {
+        "slug": "dora-metrics",
+        "type": "complement"
+      },
+      {
+        "slug": "chaos-engineering",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1025,6 +1135,28 @@
     "secondary_sources": [
       "Winters, T., Manshreck, T. & Wright, H. (2020). \"Software Engineering at Google\". O'Reilly Media.",
       "Limoncelli, T.A., Chalup, S.R. & Hogan, C.J. (2014). \"The Practice of Cloud System Administration\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "on-call-engineering",
+        "type": "complement"
+      },
+      {
+        "slug": "error-budget-policy",
+        "type": "complement"
+      },
+      {
+        "slug": "slo-as-practice",
+        "type": "complement"
+      },
+      {
+        "slug": "infrastructure-as-code",
+        "type": "complement"
+      },
+      {
+        "slug": "chaos-engineering",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1195,6 +1327,24 @@
     "secondary_sources": [
       "Majors, C., Fong-Jones, L. & Miranda, G. (2022). \"Observability Engineering\". O'Reilly Media.",
       "Beyer, B. et al. (2018). \"The Site Reliability Workbook\", Ch. 8. O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "runbook-automation",
+        "type": "complement"
+      },
+      {
+        "slug": "error-budget-policy",
+        "type": "complement"
+      },
+      {
+        "slug": "slo-as-practice",
+        "type": "complement"
+      },
+      {
+        "slug": "sli-slo-sla",
+        "type": "prerequisite"
+      }
     ]
   },
   {
@@ -1366,6 +1516,28 @@
     "secondary_sources": [
       "CNCF (2022). \"OpenFeature Specification\". openfeature.dev.",
       "Fitz, P. (2010). \"Feature Flags (Flippers)\". flickr.com (Flickr Engineering Blog)."
+    ],
+    "typed_relations": [
+      {
+        "slug": "feature-flags",
+        "type": "extends"
+      },
+      {
+        "slug": "opentelemetry",
+        "type": "complement"
+      },
+      {
+        "slug": "canary-deployment",
+        "type": "complement"
+      },
+      {
+        "slug": "slo-as-practice",
+        "type": "complement"
+      },
+      {
+        "slug": "red-method",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1537,6 +1709,24 @@
     "secondary_sources": [
       "Winters, T., Manshreck, T. & Wright, H. (2020). \"Software Engineering at Google\". O'Reilly Media.",
       "CNCF (2022). \"Backstage CNCF Incubation Proposal\". cncf.io."
+    ],
+    "typed_relations": [
+      {
+        "slug": "documentation-as-code",
+        "type": "complement"
+      },
+      {
+        "slug": "dora-metrics",
+        "type": "complement"
+      },
+      {
+        "slug": "opentelemetry",
+        "type": "complement"
+      },
+      {
+        "slug": "slo-as-practice",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1706,6 +1896,20 @@
     "secondary_sources": [
       "Winters, T., Manshreck, T. & Wright, H. (2020). \"Software Engineering at Google\", Ch. 10. O'Reilly Media.",
       "Eby, T. & Bhatti, Z. (2023). \"Docs-as-Code Tools and Workflows\". Write the Docs Community."
+    ],
+    "typed_relations": [
+      {
+        "slug": "developer-portal-backstage",
+        "type": "complement"
+      },
+      {
+        "slug": "gitops",
+        "type": "complement"
+      },
+      {
+        "slug": "twelve-factor-app",
+        "type": "related"
+      }
     ]
   },
   {
@@ -1876,6 +2080,20 @@
       "Laptev, N. et al. (2015). \"Generic and Scalable Framework for Automated Time-series Anomaly Detection\". KDD 2015.",
       "Datadog (2018). \"Introducing Watchdog: Automated Anomaly Detection for Metrics\". datadoghq.com.",
       "Chen, M. et al. (2019). \"AIOps: Real-World Challenges and Research Innovations\". IEEE Software."
+    ],
+    "typed_relations": [
+      {
+        "slug": "structured-logging",
+        "type": "complement"
+      },
+      {
+        "slug": "slo-as-practice",
+        "type": "complement"
+      },
+      {
+        "slug": "feature-flag-observability",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2046,6 +2264,20 @@
       "Kalman, G. et al. (2020). \"Pyroscope: Open Source Continuous Profiling\". pyroscope.io.",
       "Datadog (2018). \"Continuous Profiler Documentation\". docs.datadoghq.com.",
       "OpenTelemetry (2024). \"Profiling Signal Specification\". opentelemetry.io."
+    ],
+    "typed_relations": [
+      {
+        "slug": "distributed-tracing",
+        "type": "complement"
+      },
+      {
+        "slug": "opentelemetry",
+        "type": "complement"
+      },
+      {
+        "slug": "slo-as-practice",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2216,6 +2448,20 @@
       "PagerDuty (2016). \"Incident Response Operational Guide\". response.pagerduty.com.",
       "Atlassian (2018). \"Incident Management Handbook\". atlassian.com/incident-management.",
       "Allspaw, J. & Hammond, P. (2009). \"10+ Deploys Per Day\". Velocity Conference, O'Reilly."
+    ],
+    "typed_relations": [
+      {
+        "slug": "blameless-postmortems",
+        "type": "complement"
+      },
+      {
+        "slug": "runbook-automation",
+        "type": "complement"
+      },
+      {
+        "slug": "on-call-rotation-design",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2386,6 +2632,20 @@
       "Basiri, A. et al. (2016). \"Chaos Engineering\". IEEE Software, 33(3), pp. 35-41.",
       "Netflix Technology Blog (2014). \"The Netflix Simian Army\". netflixtechblog.com.",
       "Gremlin (2020). \"Chaos Engineering: Breaking Things on Purpose\". gremlin.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "slo-as-practice",
+        "type": "complement"
+      },
+      {
+        "slug": "error-budget",
+        "type": "complement"
+      },
+      {
+        "slug": "opentelemetry",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2556,6 +2816,20 @@
       "Storment, J.R. & Fuller, M. (2019). \"Cloud FinOps: Collaborative, Real-Time Cloud Financial Management\". O'Reilly Media.",
       "AWS (2022). \"AWS Well-Architected Framework: Cost Optimization Pillar\". docs.aws.amazon.com.",
       "Google Cloud (2021). \"Google Cloud Cost Management Best Practices\". cloud.google.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "slo-as-practice",
+        "type": "complement"
+      },
+      {
+        "slug": "error-budget",
+        "type": "related"
+      },
+      {
+        "slug": "platform-engineering",
+        "type": "complement"
+      }
     ]
   }
 ]
