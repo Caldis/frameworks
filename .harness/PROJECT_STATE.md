@@ -12,7 +12,7 @@
 - **Deploy**: GitHub Actions → GitHub Pages (custom domain)
 - **Inspired by**: pmframe.works
 
-## Current State (as of 2026-04-06, end of Sprint S10)
+## Current State (as of 2026-04-07, end of Sprint S23)
 
 ### What Exists
 - 194 software design frameworks across 13 categories
@@ -36,10 +36,12 @@
 - S07: Homepage category grouping + Map labels + Mobile UX
 - S08: Design Debt cleanup (H2 hierarchy, focus-visible, modal, warnings)
 - S09: Compare page + Map 13-category fix
+- S10-S22: Map UX, Selector, Paths, SEO, typed relations, design patterns, visual fixes
+- S23: Compare Page Enhancement (radar chart, suggestions, diff highlighting)
 
 ### What Exists (continued)
-- Pages: Home (grouped by category + multi-dimension filter), Framework Detail (11 sections), Category Landing, Map (search + touch + 13 categories), Compare (side-by-side)
-- 40 E2E tests: smoke(9) + visual/a11y(8) + interaction(6) + data-display(7) + screenshots(10)
+- Pages: Home (grouped by category + multi-dimension filter), Framework Detail (11 sections), Category Landing, Map (search + touch + 13 categories), Compare (radar chart + diff highlighting + curated suggestions)
+- 51 E2E tests: smoke(9) + visual/a11y(8) + interaction(6) + data-display(8) + screenshots(11) + compare(9)
 - Harness: 4-gate evaluation, sprint boundary discipline, model selection guide, operational patterns
 
 ### Known Issues

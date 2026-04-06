@@ -78,6 +78,23 @@ test.describe('Data Display Correctness', () => {
     expect(count).toBeGreaterThan(50) // should have many edges
   })
 
+  test('compare page suggestions load frameworks and show radar chart', async ({ page }) => {
+    await page.goto('/compare')
+    // Click "DDD vs Hexagonal" — different categories guarantee diff highlighting
+    const suggestionCard = page.locator('button').filter({ hasText: 'DDD vs Hexagonal' })
+    await suggestionCard.click()
+    // Radar chart should appear
+    await page.waitForSelector('.recharts-radar', { timeout: 5000 })
+    // Two framework columns should appear in the table header
+    const thCells = page.locator('th')
+    const thCount = await thCells.count()
+    expect(thCount).toBeGreaterThanOrEqual(3) // label column + 2 frameworks
+    // Table should have comparison rows
+    const rows = page.locator('tbody tr')
+    const rowCount = await rows.count()
+    expect(rowCount).toBeGreaterThanOrEqual(5)
+  })
+
   test('framework detail page renders content sections', async ({ page }) => {
     // Check a known framework has all major sections
     await page.goto('/frameworks/solid-principles')

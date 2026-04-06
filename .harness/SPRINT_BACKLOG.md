@@ -94,16 +94,18 @@
 ### Sprint S20: Typed Edges on Map + KP-Map R4 (Edge Styles, Legend, Labels) [DONE 2026-04-06]
 ### Sprint S21: +15 Classic Design Patterns + KP-Map R5 Partial [DONE 2026-04-06]
 ### Sprint S22: Visual Fixes — Chart 5-char Labels, Title Dedup, Viz-First [DONE 2026-04-06]
-**Priority**: High (S09 retro — map bug hid for 5 sprints)
-**Contract**: Map fully functional for 13 categories. Data display correctness tests prevent regressions.
+### Sprint S23: Compare Page Enhancement — Radar Chart + Suggestions + Diff Highlighting [DONE 2026-04-07]
+**Priority**: Medium (weakest page in the site)
+**Contract**: Compare page shows radar chart overlay for 2-3 frameworks, 6 curated comparison suggestions on empty state, diff highlighting in table. 51 E2E tests pass.
 **Tasks**:
-- [ ] Add E2E data-display correctness tests (map has 13 category columns, home has 13 section headers, compare has all frameworks in dropdown)
-- [ ] Map: add search/highlight for specific frameworks
-- [ ] Map: touch-friendly tooltip (tap instead of hover)
-- [ ] Map: X-axis labels readable at 13 categories (may need horizontal scroll or 2-row layout)
-- [ ] Map: verify node distribution across all 13 columns
-- [ ] Audit all pages for hardcoded category lists — replace with imports from categories.ts
-**Estimate**: Medium
+- [x] Add Recharts RadarChart comparing frameworks on 5 dimensions (complexity, abstraction, maturity, quality breadth, adoption)
+- [x] Add 6 curated comparison suggestions on empty state (SOLID vs GRASP, TDD vs BDD, Microservices vs Monolith, DDD vs Hexagonal, Circuit Breaker vs Bulkhead, REST vs GraphQL vs gRPC)
+- [x] Add diff highlighting for categorical rows (warm background + dot indicator for differing values)
+- [x] Color-code framework names in table header to match radar chart colors
+- [x] Add i18n strings for new UI elements (EN + ZH)
+- [x] Add E2E tests: suggestion click loads radar chart + screenshot capture for active comparison
+- [x] 51/51 tests pass, build clean
+**Estimate**: Small
 
 ---
 

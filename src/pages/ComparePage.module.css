@@ -17,6 +17,7 @@
   margin-top: 8px;
 }
 
+/* Selectors */
 .selectors {
   display: flex;
   gap: 16px;
@@ -59,6 +60,99 @@
   color: var(--bg);
 }
 
+/* Empty state + Suggestions */
+.emptyState {
+  margin-top: 32px;
+}
+
+.emptyText {
+  text-align: center;
+  padding: 24px;
+  color: var(--muted);
+  font-size: 14px;
+  font-family: var(--font-mono);
+}
+
+.suggestionsSection {
+  margin-top: 16px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.suggestionsTitle {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.suggestionsHint {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.suggestionsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.suggestionCard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+}
+
+.suggestionCard:hover {
+  border-color: var(--text);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.suggestionLabel {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.suggestionCount {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* Radar Chart */
+.radarSection {
+  margin: 8px 0 32px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+}
+
+.radarTitle {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -0.2px;
+}
+
+.radarChart {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* Comparison Table */
 .tableWrapper {
   overflow-x: auto;
   margin-top: 8px;
@@ -99,8 +193,29 @@
   padding: 12px 16px;
   border-bottom: 1px solid #f0f0f0;
   vertical-align: top;
+  position: relative;
 }
 
+/* Diff highlight */
+.diffRow .td {
+  background: #faf7f2;
+}
+
+.diffRow .tdLabel {
+  background: #faf7f2;
+}
+
+.diffDot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #c9a227;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+/* Badges */
 .badge {
   display: inline-block;
   padding: 2px 8px;
@@ -109,40 +224,13 @@
   font-family: var(--font-mono);
 }
 
-.badgeBeginner {
-  background: #e8f5ee;
-  color: #2d6a4f;
-}
-
-.badgeIntermediate {
-  background: #fdf3e3;
-  color: #7d6608;
-}
-
-.badgeAdvanced {
-  background: #fce8e8;
-  color: #922b21;
-}
-
-.badgeFoundational {
-  background: #e8eef8;
-  color: #1a5276;
-}
-
-.badgeEstablished {
-  background: #e8f5ee;
-  color: #2d6a4f;
-}
-
-.badgeEmerging {
-  background: #fdf3e3;
-  color: #7d6608;
-}
-
-.badgeExperimental {
-  background: #fce8e8;
-  color: #922b21;
-}
+.badgeBeginner { background: #e8f5ee; color: #2d6a4f; }
+.badgeIntermediate { background: #fdf3e3; color: #7d6608; }
+.badgeAdvanced { background: #fce8e8; color: #922b21; }
+.badgeFoundational { background: #e8eef8; color: #1a5276; }
+.badgeEstablished { background: #e8f5ee; color: #2d6a4f; }
+.badgeEmerging { background: #fdf3e3; color: #7d6608; }
+.badgeExperimental { background: #fce8e8; color: #922b21; }
 
 .list {
   list-style: none;
@@ -161,22 +249,22 @@
   color: var(--muted);
 }
 
-.empty {
-  text-align: center;
-  padding: 48px;
-  color: var(--muted);
-  font-size: 14px;
-  font-family: var(--font-mono);
-}
-
 .fwName {
   font-family: var(--font-serif);
   font-size: 15px;
   font-weight: 600;
 }
 
-/* Responsive: stacked cards on mobile */
+/* Responsive */
 @media (max-width: 768px) {
+  .suggestionsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .radarChart {
+    max-width: 100%;
+  }
+
   .tableWrapper {
     overflow-x: visible;
   }
@@ -210,5 +298,11 @@
   .td {
     padding: 2px 16px 8px;
     border-bottom: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .suggestionsGrid {
+    grid-template-columns: 1fr;
   }
 }

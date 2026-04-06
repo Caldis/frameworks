@@ -101,6 +101,14 @@ export interface LocaleStrings {
   compareSelect: string
   compareEmpty: string
   compareClear: string
+  compareSuggestions: string
+  compareSuggestionsHint: string
+  compareRadarTitle: string
+  compareDimComplexity: string
+  compareDimAbstraction: string
+  compareDimMaturity: string
+  compareDimQuality: string
+  compareDimAdoption: string
 
   // Selector
   selector: string

@@ -100,6 +100,16 @@ test.describe('Screenshot Capture for Design Review', () => {
     await page.screenshot({ path: `${SCREENSHOT_DIR}/compare.png`, fullPage: true })
   })
 
+  test('compare page — with frameworks selected', async ({ page }) => {
+    await page.setViewportSize({ width: 1200, height: 900 })
+    await page.goto('/compare')
+    // Click "SOLID vs GRASP" suggestion
+    await page.locator('button').filter({ hasText: 'SOLID vs GRASP' }).click()
+    await page.waitForSelector('.recharts-radar', { timeout: 5000 })
+    await page.waitForTimeout(300)
+    await page.screenshot({ path: `${SCREENSHOT_DIR}/compare-active.png`, fullPage: true })
+  })
+
   test('selector page', async ({ page }) => {
     await page.setViewportSize({ width: 1200, height: 900 })
     await page.goto('/selector')
