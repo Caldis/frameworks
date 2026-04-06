@@ -2531,7 +2531,7 @@
       "持续跟踪预算：将复杂度指标集成到CI/CD中，使预算违规作为警告浮现，防止跨版本的渐进式复杂度蔓延"
     ],
     "ai_relevant": true,
-    "viz_type": "bar",
+    "viz_type": "pyramid",
     "related": [
       "deep-vs-shallow-modules",
       "separation-of-concerns",
@@ -2702,7 +2702,7 @@
       "用调用者简化来验证：确认重新设计后模块的调用者比之前更简单——如果调用者代码没有变简单，深化就没有达到目的"
     ],
     "ai_relevant": true,
-    "viz_type": "comparison",
+    "viz_type": "matrix",
     "related": [
       "complexity-budget",
       "leaky-abstractions",
@@ -2879,7 +2879,7 @@
       "在认知负荷下测试：在真实认知负荷条件（多任务、时间压力、中断）下验证设计，而非在理想实验室环境中"
     ],
     "ai_relevant": true,
-    "viz_type": "funnel",
+    "viz_type": "pyramid",
     "related": [
       "design-thinking-ideo",
       "six-thinking-hats",
@@ -3051,7 +3051,7 @@
       "执行边界：建立架构规则（通过linting、模块依赖分析或代码审查清单），防止跨关注点耦合再次蔓延"
     ],
     "ai_relevant": true,
-    "viz_type": "layers",
+    "viz_type": "tree",
     "related": [
       "deep-vs-shallow-modules",
       "complexity-budget",
@@ -3227,7 +3227,7 @@
       "监控新泄漏：在抽象边界设置检测，发现生产中意外的泄漏模式（异常错误类型、性能异常、降级激活）"
     ],
     "ai_relevant": true,
-    "viz_type": "layers",
+    "viz_type": "tree",
     "related": [
       "deep-vs-shallow-modules",
       "separation-of-concerns",
@@ -3404,7 +3404,7 @@
       "抵制第二系统综合征：当简单系统成功且「正式」重新设计的压力增大时，评估简单系统的局限性是否真正导致问题还是仅仅冒犯了工程美学"
     ],
     "ai_relevant": true,
-    "viz_type": "quadrant",
+    "viz_type": "matrix",
     "related": [
       "first-principles-thinking",
       "trade-off-sliders",

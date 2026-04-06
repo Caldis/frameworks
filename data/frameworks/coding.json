@@ -2994,7 +2994,7 @@
       "隔离可变边界：当变更不可避免时（I/O、缓存、缓冲区），将其限制在明确标记的边界内，保持核心逻辑纯不可变"
     ],
     "ai_relevant": false,
-    "viz_type": "quadrant",
+    "viz_type": "matrix",
     "related": [
       "functional-core-imperative-shell",
       "solid-principles",
@@ -3531,7 +3531,7 @@
       "独立测试各策略：对每个具体策略进行单元测试，再用模拟策略测试上下文以验证委托行为"
     ],
     "ai_relevant": true,
-    "viz_type": "flowchart",
+    "viz_type": "flow",
     "related": [
       "solid-principles",
       "command-pattern",
@@ -3692,7 +3692,7 @@
       "管理订阅生命周期：确保观察者在不再需要时取消订阅，防止内存泄漏和陈旧通知"
     ],
     "ai_relevant": true,
-    "viz_type": "flowchart",
+    "viz_type": "flow",
     "related": [
       "strategy-pattern",
       "command-pattern",
@@ -4337,7 +4337,7 @@
       "透明使用适配器：在客户端期望目标的地方配置或注入适配器；客户端对被适配者一无所知"
     ],
     "ai_relevant": false,
-    "viz_type": "flowchart",
+    "viz_type": "flow",
     "related": [
       "decorator-pattern",
       "facade-pattern",
@@ -4499,7 +4499,7 @@
       "考虑依赖注入作为替代方案：在现代应用中，优先通过 DI 容器注入单一共享实例，而非依赖静态访问器"
     ],
     "ai_relevant": false,
-    "viz_type": "flowchart",
+    "viz_type": "flow",
     "related": [
       "solid-principles",
       "dependency-injection",
@@ -4660,7 +4660,7 @@
       "组合宏命令：将多个命令组合成复合命令，以原子方式或统一撤销支持执行复杂工作流"
     ],
     "ai_relevant": true,
-    "viz_type": "flowchart",
+    "viz_type": "flow",
     "related": [
       "strategy-pattern",
       "observer-pattern",
@@ -4822,7 +4822,7 @@
       "当可变性增长时倾向组合：当可覆盖步骤数量激增时，考虑用注入单一模板类的策略对象替代继承"
     ],
     "ai_relevant": false,
-    "viz_type": "flowchart",
+    "viz_type": "flow",
     "related": [
       "strategy-pattern",
       "solid-principles",
@@ -4983,7 +4983,7 @@
       "初始化和转换：在上下文构造函数中设置初始状态，让状态机运行，由具体状态或上下文响应事件触发转换"
     ],
     "ai_relevant": false,
-    "viz_type": "flowchart",
+    "viz_type": "flow",
     "related": [
       "strategy-pattern",
       "command-pattern",
@@ -5144,7 +5144,7 @@
       "使用内存仿冒对象进行测试：为仓储接口实现轻量级内存版本，在不依赖数据库的情况下测试领域逻辑"
     ],
     "ai_relevant": false,
-    "viz_type": "layered",
+    "viz_type": "tree",
     "related": [
       "unit-of-work-pattern",
       "data-mapper-pattern",
@@ -5305,7 +5305,7 @@
       "失败时回滚：如果任何步骤抛出异常，调用 rollback() 丢弃所有跟踪的变更，使数据库保持操作前的状态"
     ],
     "ai_relevant": false,
-    "viz_type": "flowchart",
+    "viz_type": "flow",
     "related": [
       "repository-pattern",
       "data-mapper-pattern",
@@ -5466,7 +5466,7 @@
       "与工作单元集成：将加载的和变更的对象注册到工作单元，使映射器的写操作在提交时批处理到单一事务中"
     ],
     "ai_relevant": false,
-    "viz_type": "layered",
+    "viz_type": "tree",
     "related": [
       "repository-pattern",
       "unit-of-work-pattern",
@@ -5627,7 +5627,7 @@
       "引入 Director（可选）：为常用配置添加 Director 类，使客户端可以生产标准产品（如 buildMinimalConfig()、buildProductionConfig()）而无需重复步骤"
     ],
     "ai_relevant": false,
-    "viz_type": "flowchart",
+    "viz_type": "flow",
     "related": [
       "factory-method-pattern",
       "solid-principles",
@@ -5788,7 +5788,7 @@
       "支持双向流（洋葱模型）：设计中间件在调用 next() 之前（入站/请求阶段）和之后（出站/响应阶段）都执行逻辑，用于时间和错误包装等对称关注点"
     ],
     "ai_relevant": true,
-    "viz_type": "pipeline",
+    "viz_type": "flow",
     "related": [
       "chain-of-responsibility-pattern",
       "decorator-pattern",
