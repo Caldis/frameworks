@@ -1,23 +1,18 @@
-/* ── Nothing Design System — FrameworkCard ── */
 .card {
   padding: 16px;
   cursor: pointer;
   position: relative;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  transition: border-color 0.15s;
+  transition: background 0.15s;
 }
 
 .card:hover {
-  border-color: var(--border-visible);
   background: var(--surface);
 }
 
 .number {
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--text-disabled);
+  color: var(--muted-light);
 }
 
 .star {
@@ -32,7 +27,6 @@
   transition: opacity 0.15s;
   padding: 0;
   line-height: 1;
-  color: var(--text-disabled);
 }
 
 .card:hover .star,
@@ -41,55 +35,45 @@
 }
 
 .starActive {
-  color: var(--accent);
+  color: #e8a820;
 }
 
 .name {
-  font-family: 'Space Grotesk', 'Noto Sans SC', system-ui, sans-serif;
   font-size: 14px;
-  font-weight: 500;
-  margin: 4px 0 6px;
-  color: var(--text-primary);
+  font-weight: 600;
+  margin: 4px 0 2px;
+  color: var(--text);
 }
 
 .tagRow {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0;
 }
 
 .tag {
-  font-family: 'Space Mono', monospace;
   font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  font-family: var(--font-mono);
   padding: 2px 8px;
-  border-radius: 4px;
-  border: 1px solid var(--border-visible);
-  background: transparent;
-  color: var(--text-secondary);
+  border-radius: 10px;
   display: inline-block;
 }
 
 .aiTag {
-  font-family: 'Space Mono', monospace;
   font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--accent);
-  font-weight: 700;
-  margin-left: 2px;
+  color: #a04000;
+  font-weight: 600;
+  margin-left: 4px;
 }
 
 .desc {
-  font-size: var(--body-sm, 14px);
-  color: var(--text-secondary);
-  margin-top: 6px;
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 4px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  line-height: 1.5;
 }
 
 @media (max-width: 768px) {

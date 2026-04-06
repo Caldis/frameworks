@@ -1,6 +1,6 @@
 .row {
   display: flex;
-  gap: var(--space-sm);
+  gap: 12px;
   overflow-x: auto;
 }
 
@@ -8,47 +8,36 @@
   flex: 1;
   min-width: 140px;
   max-width: 200px;
-  padding: var(--space-sm);
-  border-radius: 8px;
+  padding: 12px;
+  border-radius: 10px;
   background: var(--surface);
-  border: 1px solid var(--border);
-  transition: border-color 0.15s;
+  transition: background 0.15s;
   cursor: pointer;
-  text-decoration: none;
-  display: block;
 }
 
 .card:hover {
-  border-color: var(--border-visible);
+  background: var(--border);
 }
 
 .name {
-  font-family: var(--font-body);
-  font-size: var(--body-sm);
-  font-weight: 500;
-  color: var(--text-display);
-  margin-bottom: var(--space-xs);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
 }
 
-/* Type badge — Space Mono, ALL CAPS */
 .pill {
-  font-family: var(--font-data);
-  font-size: var(--label);
+  font-size: 10px;
+  font-family: var(--font-mono);
   padding: 2px 8px;
   border-radius: 10px;
   display: inline-block;
   margin-bottom: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
-  background: transparent;
 }
 
 .desc {
-  font-family: var(--font-body);
-  font-size: var(--caption);
-  color: var(--text-secondary);
+  font-size: 11.5px;
+  color: var(--muted);
   line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -59,15 +48,13 @@
 
 .relType {
   display: inline-block;
-  font-family: var(--font-data);
-  font-size: var(--label);
-  color: var(--text-disabled);
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--muted);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 1px 6px;
   margin-left: 6px;
   vertical-align: middle;
   white-space: nowrap;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
 }

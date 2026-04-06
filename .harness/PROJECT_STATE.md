@@ -43,8 +43,8 @@
 - Harness: 4-gate evaluation, sprint boundary discipline, model selection guide, operational patterns
 
 ### Known Issues
-- **Nothing Design visual overhaul incomplete** — S23 changed tokens/fonts but missed the core aesthetic: needs OLED dark mode, Doto hero numbers, segmented progress bars, instrument-panel feel. Current result is "monochrome light theme" not "Nothing industrial". Needs fresh session with full design rethink.
 - No SSG yet (client-side only, SPA + 404 redirect)
+- PROJECT_STATE file structure section outdated (still says "7 category data files")
 
 ### Key Lessons Learned (see .harness/evaluations/ for details)
 - "Build passes" ≠ "works correctly" (S00 route bug, S09 map bug)

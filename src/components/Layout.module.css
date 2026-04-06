@@ -7,7 +7,7 @@
 .header {
   max-width: 1600px;
   margin: auto;
-  padding: var(--space-3xl) var(--space-2xl) 0;
+  padding: 64px 48px 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -15,60 +15,65 @@
 }
 
 .domainBadge {
-  font-family: var(--font-data);
-  font-size: var(--label);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-secondary);
-  border: 1px solid var(--border-visible);
-  padding: var(--space-xs) var(--space-md);
-  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 4px 12px;
+  border-radius: 20px;
   display: inline-block;
-  transition: color 0.2s;
+  transition: all 0.3s;
+  animation: fadeInSlide 0.6s ease-out;
+}
+
+@keyframes fadeInSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .domainBadge:hover {
-  color: var(--text-display);
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, #e74c3c, #e67e22, #f1c40f, #2ecc71, #3498db, #9b59b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .main {
   flex: 1;
   max-width: 1600px;
   margin: 0 auto;
-  padding: 0 var(--space-2xl);
+  padding: 0 48px;
   width: 100%;
 }
 
 .footer {
   max-width: 1600px;
   margin: 0 auto;
-  padding: var(--space-2xl);
+  padding: 48px;
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: 24px;
   border-top: 1px solid var(--border);
-  margin-top: var(--space-3xl);
+  margin-top: 64px;
 }
 
 .footerNav {
   display: flex;
   flex-direction: row;
-  gap: var(--space-md);
+  gap: 16px;
 }
 
 .footerNavLink {
-  font-family: var(--font-data);
-  font-size: var(--label);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
   text-decoration: none;
   transition: color 0.15s;
 }
 
 .footerNavLink:hover {
-  color: var(--text-primary);
+  color: var(--text);
 }
 
 .footerMeta {
@@ -80,51 +85,46 @@
 .footerLeft {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: 4px;
 }
 
 .footerBrand {
-  font-family: var(--font-data);
-  font-size: var(--label);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--muted);
   font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .footerInspired {
-  font-family: var(--font-data);
-  font-size: var(--label);
-  letter-spacing: 0.06em;
-  color: var(--text-disabled);
+  font-size: 12px;
+  color: var(--muted-light);
   text-decoration: none;
   transition: color 0.15s;
 }
 
 .footerInspired:hover {
-  color: var(--text-primary);
+  color: var(--text);
 }
 
 .footerRight {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
-  font-family: var(--font-data);
-  font-size: var(--label);
-  letter-spacing: 0.06em;
+  gap: 12px;
+  font-size: 13px;
 }
 
 .footerLink {
-  color: var(--text-secondary);
+  color: var(--muted);
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: 4px;
   transition: color 0.15s;
 }
 
 .footerLink:hover {
-  color: var(--text-primary);
+  color: var(--text);
 }
 
 .githubIcon {
@@ -134,19 +134,19 @@
 }
 
 .separator {
-  color: var(--border-visible);
+  color: #ddd;
 }
 
 @media (max-width: 600px) {
   .header {
-    padding: var(--space-xl) var(--space-md) 0;
+    padding: 32px 20px 0;
   }
 
   .main {
-    padding: 0 var(--space-md);
+    padding: 0 20px;
   }
 
   .footer {
-    padding: var(--space-md);
+    padding: 20px;
   }
 }

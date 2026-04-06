@@ -1,123 +1,102 @@
 .page {
   max-width: 900px;
   margin: 0 auto;
-  padding: var(--space-2xl) var(--space-lg);
+  padding: 48px 24px;
 }
 
 .title {
-  font-family: var(--font-body);
-  font-size: var(--display-md);
-  font-weight: 500;
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 4vw, 40px);
   line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: var(--text-display);
+  letter-spacing: -0.3px;
 }
 
 .subtitle {
-  font-family: var(--font-body);
-  font-size: var(--body-sm);
-  color: var(--text-secondary);
-  margin-top: var(--space-sm);
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 8px;
 }
 
 .pathGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-  gap: var(--space-md);
-  margin-top: var(--space-xl);
+  gap: 16px;
+  margin-top: 32px;
 }
 
 .pathCard {
-  padding: var(--space-lg);
+  padding: 24px;
   border: 1px solid var(--border);
   border-radius: 12px;
-  background: var(--surface);
   cursor: pointer;
-  transition: border-color 0.15s;
+  transition: all 0.15s;
 }
 
 .pathCard:hover {
-  border-color: var(--border-visible);
+  background: var(--surface);
 }
 
 .pathCardExpanded {
-  border-color: var(--text-display);
+  border-color: var(--text);
 }
 
 .pathIcon {
-  font-size: 24px;
-  margin-bottom: var(--space-sm);
+  font-size: 32px;
+  margin-bottom: 8px;
 }
 
 .pathName {
-  font-family: var(--font-body);
-  font-size: var(--subheading);
-  font-weight: 500;
-  color: var(--text-display);
+  font-family: var(--font-serif);
+  font-size: 20px;
 }
 
 .pathDesc {
-  font-family: var(--font-body);
-  font-size: var(--body-sm);
-  color: var(--text-secondary);
-  margin-top: var(--space-xs);
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 4px;
 }
 
 .pathMeta {
-  font-family: var(--font-data);
-  font-size: var(--caption);
-  color: var(--text-disabled);
-  margin-top: var(--space-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted-light);
+  margin-top: 8px;
 }
 
-/* Segmented progress bar — Nothing signature */
 .progressBar {
-  display: flex;
-  gap: 2px;
-  margin-top: var(--space-sm);
-  height: 4px;
-}
-
-.progressSegment {
-  flex: 1;
   height: 4px;
   background: var(--border);
-  border-radius: 0;
+  border-radius: 2px;
+  margin-top: 12px;
+  overflow: hidden;
 }
 
-.progressSegmentFilled {
-  background: var(--text-display);
-}
-
-/* Fallback for smooth fill via JS-set width on a single bar */
 .progressFill {
   height: 100%;
-  background: var(--text-display);
+  background: #2ecc71;
+  border-radius: 2px;
   transition: width 0.3s;
 }
 
 .stepList {
   list-style: none;
   padding: 0;
-  margin: var(--space-md) 0;
+  margin: 16px 0;
 }
 
 .stepItem {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-sm) 0;
-  border-bottom: 1px solid var(--border);
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-/* Square checkbox */
 .stepCheckbox {
-  width: 18px;
-  height: 18px;
-  border-radius: 2px;
-  border: 1px solid var(--border-visible);
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid var(--border);
   cursor: pointer;
   flex-shrink: 0;
   display: flex;
@@ -128,36 +107,24 @@
   padding: 0;
 }
 
-/* Checked: solid fill */
 .stepChecked {
-  background: var(--text-display);
-  border-color: var(--text-display);
-  color: var(--black);
+  background: #2ecc71;
+  border-color: #2ecc71;
+  color: white;
 }
 
-/* Step number: Space Mono */
-.stepNumber {
-  font-family: var(--font-data);
-  font-size: var(--label);
-  color: var(--text-disabled);
-  min-width: 32px;
-}
-
-/* Step name: Space Grotesk */
 .stepName {
-  font-family: var(--font-body);
   font-weight: 500;
-  font-size: var(--body-sm);
-  color: var(--text-primary);
+  font-size: 14px;
 }
 
 .stepNameDone {
   text-decoration: line-through;
-  color: var(--text-disabled);
+  color: var(--muted);
 }
 
 .stepLink {
-  color: var(--text-primary);
+  color: var(--text);
   text-decoration: none;
 }
 
@@ -165,27 +132,29 @@
   text-decoration: underline;
 }
 
+.stepNumber {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted-light);
+  min-width: 32px;
+}
+
 .categoryPill {
-  font-family: var(--font-data);
-  font-size: var(--label);
+  font-family: var(--font-mono);
+  font-size: 10px;
   padding: 2px 8px;
   border-radius: 9999px;
   white-space: nowrap;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
 }
 
 .complexityBadge {
-  font-family: var(--font-data);
-  font-size: var(--label);
+  font-family: var(--font-mono);
+  font-size: 10px;
   padding: 2px 8px;
   border-radius: 9999px;
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
+  background: var(--surface);
+  color: var(--muted);
   white-space: nowrap;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
 }
 
 @media (max-width: 600px) {

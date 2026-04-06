@@ -1,88 +1,79 @@
 .page {
   max-width: 900px;
   margin: 0 auto;
-  padding: var(--space-xl) var(--space-lg);
+  padding: 32px 24px;
 }
 
 .title {
-  font-family: var(--font-body);
-  font-size: var(--display-md);
-  font-weight: 500;
+  font-family: var(--font-serif);
+  font-size: 32px;
   line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: var(--text-display);
+  letter-spacing: -0.3px;
 }
 
 .subtitle {
-  font-family: var(--font-body);
-  font-size: var(--body-sm);
-  color: var(--text-secondary);
-  margin-top: var(--space-sm);
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 8px;
 }
 
 .steps {
   display: flex;
-  gap: var(--space-sm);
-  margin: var(--space-lg) 0;
+  gap: 8px;
+  margin: 24px 0;
   align-items: center;
 }
 
-/* Square step dots — industrial */
 .stepDot {
   width: 28px;
   height: 28px;
-  border-radius: 2px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-data);
-  font-size: var(--caption);
+  font-family: var(--font-mono);
+  font-size: 12px;
   cursor: pointer;
-  border: 1px solid var(--border-visible);
+  border: 1px solid var(--border);
   background: transparent;
-  color: var(--text-disabled);
+  color: var(--muted);
   transition: all 0.15s;
 }
 
 .stepDot:hover {
-  border-color: var(--text-display);
-  color: var(--text-primary);
+  border-color: var(--text);
+  color: var(--text);
 }
 
-/* Active: inverted */
 .stepDotActive {
-  background: var(--text-display);
-  color: var(--black);
-  border-color: var(--text-display);
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
 }
 
 .stepDotDone {
   background: var(--surface);
-  color: var(--text-primary);
-  border-color: var(--text-display);
+  color: var(--text);
+  border-color: var(--text);
 }
 
 .stepLabel {
-  font-family: var(--font-data);
-  font-size: var(--caption);
-  color: var(--text-secondary);
-  margin-left: var(--space-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  margin-left: 8px;
 }
 
 .question {
-  font-family: var(--font-body);
-  font-size: var(--subheading);
-  font-weight: 500;
-  color: var(--text-display);
-  margin: var(--space-lg) 0 var(--space-md);
+  font-family: var(--font-serif);
+  font-size: 22px;
+  margin: 24px 0 16px;
 }
 
 .options {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: var(--space-sm);
+  gap: 12px;
 }
 
 .optionsPills {
@@ -92,25 +83,23 @@
 }
 
 .option {
-  padding: var(--space-md);
-  border-radius: 8px;
+  padding: 16px;
+  border-radius: 12px;
   border: 1px solid var(--border);
-  background: var(--surface);
   cursor: pointer;
-  transition: border-color 0.15s;
+  transition: all 0.15s;
+  background: transparent;
   text-align: left;
-  color: var(--text-primary);
+  color: var(--text);
 }
 
 .option:hover {
-  border-color: var(--border-visible);
+  border-color: #bbb;
 }
 
-/* Active: prominent border, no fill */
 .optionActive {
-  background: var(--surface);
-  border-color: var(--text-display);
-  border-width: 1px;
+  background: #f0ebe5;
+  border-color: #d4cdc4;
 }
 
 .optionPill {
@@ -118,82 +107,74 @@
   border-radius: 20px;
   border: 1px solid var(--border);
   cursor: pointer;
-  transition: border-color 0.15s;
+  transition: all 0.15s;
   background: transparent;
-  font-family: var(--font-body);
-  font-size: var(--body-sm);
-  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--text);
 }
 
 .optionPill:hover {
-  border-color: var(--border-visible);
+  border-color: #bbb;
 }
 
 .optionPillActive {
-  background: transparent;
-  border-color: var(--text-display);
+  background: #f0ebe5;
+  border-color: #d4cdc4;
 }
 
 .optionDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 1px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
   display: inline-block;
-  margin-right: var(--space-sm);
+  margin-right: 8px;
 }
 
 .optionName {
-  font-family: var(--font-body);
   font-weight: 600;
-  font-size: var(--body-sm);
-  color: var(--text-display);
+  font-size: 14px;
 }
 
 .optionDesc {
-  font-family: var(--font-body);
-  font-size: var(--caption);
-  color: var(--text-secondary);
-  margin-top: var(--space-xs);
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
 }
 
 .optionCount {
-  font-family: var(--font-data);
-  font-size: var(--label);
-  color: var(--text-disabled);
-  margin-top: var(--space-xs);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
 }
 
 .nav {
   display: flex;
   justify-content: space-between;
-  margin-top: var(--space-lg);
+  margin-top: 24px;
 }
 
-/* Secondary nav btn — ghost */
 .navBtn {
   padding: 10px 24px;
-  border-radius: 20px;
-  font-family: var(--font-data);
-  font-size: var(--caption);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
   cursor: pointer;
-  border: 1px solid var(--border-visible);
+  border: 1px solid var(--border);
   background: transparent;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  color: var(--text);
   transition: all 0.15s;
 }
 
 .navBtn:hover {
-  border-color: var(--text-display);
-  color: var(--text-primary);
+  border-color: var(--text);
 }
 
-/* Primary nav btn — pill, solid */
 .navBtnPrimary {
-  background: var(--text-display);
-  color: var(--black);
-  border-color: var(--text-display);
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
 }
 
 .navBtnPrimary:hover {
@@ -201,51 +182,48 @@
 }
 
 .results {
-  margin-top: var(--space-xl);
-  padding-top: var(--space-lg);
+  margin-top: 32px;
+  padding-top: 24px;
   border-top: 1px solid var(--border);
 }
 
 .resultsCount {
-  font-family: var(--font-data);
-  font-size: var(--caption);
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: var(--space-md);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
 }
 
 .resultGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: var(--space-sm);
+  gap: 12px;
 }
 
 .resultCard {
   padding: 14px;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid var(--border);
   cursor: pointer;
-  transition: border-color 0.15s;
+  transition: background 0.15s;
   text-decoration: none;
-  color: var(--text-primary);
+  color: var(--text);
   display: block;
 }
 
 .resultCard:hover {
-  border-color: var(--border-visible);
+  background: var(--surface);
 }
 
 .resultName {
-  font-family: var(--font-body);
-  font-size: var(--body-sm);
+  font-family: var(--font-serif);
+  font-size: 15px;
   font-weight: 600;
-  color: var(--text-display);
 }
 
 .resultMeta {
   display: flex;
-  gap: var(--space-sm);
+  gap: 8px;
   align-items: center;
   margin-top: 6px;
   flex-wrap: wrap;
@@ -255,29 +233,23 @@
   display: inline-block;
   padding: 2px 8px;
   border-radius: 10px;
-  font-size: var(--label);
-  font-family: var(--font-data);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  font-size: 11px;
+  font-family: var(--font-mono);
 }
 
 .resultBadge {
   display: inline-block;
   padding: 2px 8px;
   border-radius: 10px;
-  font-size: var(--label);
-  font-family: var(--font-data);
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  background: var(--surface);
+  color: var(--muted);
 }
 
 .resultDesc {
-  font-family: var(--font-body);
-  font-size: var(--caption);
-  color: var(--text-secondary);
+  font-size: 12px;
+  color: var(--muted);
   margin-top: 6px;
   line-height: 1.4;
   display: -webkit-box;
@@ -287,24 +259,22 @@
 }
 
 .resetBtn {
-  font-family: var(--font-data);
-  font-size: var(--caption);
-  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
   background: none;
-  border: 1px solid var(--border-visible);
+  border: 1px dashed var(--border);
   padding: 6px 14px;
   border-radius: 20px;
   cursor: pointer;
-  margin-top: var(--space-md);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  margin-top: 16px;
   transition: all 0.15s;
 }
 
 .resetBtn:hover {
-  background: var(--text-display);
-  color: var(--black);
-  border-color: var(--text-display);
+  background: var(--text);
+  color: var(--bg);
+  border-style: solid;
 }
 
 @media (max-width: 600px) {
@@ -318,7 +288,7 @@
 
   .nav {
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: 8px;
   }
 
   .navBtn {

@@ -1,4 +1,3 @@
-/* ── Nothing Design System — DimensionFilter ── */
 .row {
   display: flex;
   align-items: center;
@@ -7,38 +6,32 @@
 }
 
 .label {
-  font-family: 'Space Mono', monospace;
-  font-size: var(--label, 11px);
+  font-family: var(--font-mono);
+  font-size: 11px;
   text-transform: uppercase;
-  color: var(--text-disabled);
-  letter-spacing: 0.08em;
+  color: var(--muted);
+  letter-spacing: 0.5px;
   min-width: 70px;
 }
 
 .pill {
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-family: 'Space Mono', monospace;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
   min-height: 32px;
-  border: 1px solid var(--border-visible);
+  border: 1px solid var(--border);
   background: transparent;
   cursor: pointer;
   transition: all 0.15s;
-  color: var(--text-secondary);
-  line-height: 1;
+  color: var(--text);
 }
 
 .pill:hover {
-  border-color: var(--text-primary);
-  color: var(--text-primary);
+  border-color: var(--muted);
 }
 
 .pillActive {
-  background: var(--text-display);
-  color: var(--black, #F5F5F5);
-  border-color: var(--text-display);
-  font-weight: 700;
+  background: #f0ebe5;
+  border-color: #d4cdc4;
+  font-weight: 500;
 }

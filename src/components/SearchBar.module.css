@@ -1,24 +1,22 @@
-/* ── Nothing Design System — SearchBar ── */
-/* Underline-only style: no container border, industrial typographic input */
 .container {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 0;
-  border: none;
-  border-bottom: 1px solid var(--border-visible);
-  background: transparent;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: white;
   max-width: 320px;
   transition: border-color 0.15s;
 }
 
 .container:focus-within {
-  border-bottom-color: var(--text-primary);
+  border-color: var(--muted);
 }
 
 .icon {
   font-size: 14px;
-  color: var(--text-disabled);
+  color: var(--muted);
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -28,24 +26,18 @@
   flex: 1;
   border: none;
   outline: none;
-  font-family: 'Space Mono', monospace;
-  font-size: var(--body, 16px);
+  font-family: var(--font-sans);
+  font-size: 14px;
   background: transparent;
-  color: var(--text-primary);
-}
-
-.input::placeholder {
-  color: var(--text-disabled);
-  font-family: 'Space Mono', monospace;
+  color: var(--text);
 }
 
 .shortcut {
-  font-family: 'Space Mono', monospace;
-  font-size: var(--label, 11px);
-  color: var(--text-disabled);
-  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted-light);
+  background: var(--surface);
   padding: 2px 6px;
   border-radius: 4px;
-  border: 1px solid var(--border);
   flex-shrink: 0;
 }
