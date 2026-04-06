@@ -126,6 +126,8 @@ Visual quality and accessibility are NOT separate sprints. They are **gates that
 3. **Content agents by category**: One agent per data/frameworks/*.json file
 4. **Frontend agents by component**: One agent per page/component being modified
 5. **HARD LIMIT: Maximum 10 concurrent sub-agents** — exceeding this triggers API rate limiting. If need 12+ tasks, batch into 2 waves of ≤10.
+6. **Content agent batch size: max 8 frameworks per sonnet agent** — 15 at once caused stuck agents (S21). Split into batches of ≤8.
+7. **Progress feedback: at least every 10 minutes** — user expects regular updates during long operations. Don't go silent.
 
 ## Model Selection: When to Use Sonnet vs Opus
 
