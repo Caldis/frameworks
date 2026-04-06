@@ -92,4 +92,18 @@ test.describe('Screenshot Capture for Design Review', () => {
     await page.waitForTimeout(500)
     await page.screenshot({ path: `${SCREENSHOT_DIR}/modal.png`, fullPage: false })
   })
+
+  test('compare page', async ({ page }) => {
+    await page.setViewportSize({ width: 1200, height: 900 })
+    await page.goto('/compare')
+    await page.waitForTimeout(500)
+    await page.screenshot({ path: `${SCREENSHOT_DIR}/compare.png`, fullPage: true })
+  })
+
+  test('selector page', async ({ page }) => {
+    await page.setViewportSize({ width: 1200, height: 900 })
+    await page.goto('/selector')
+    await page.waitForTimeout(500)
+    await page.screenshot({ path: `${SCREENSHOT_DIR}/selector.png`, fullPage: true })
+  })
 })

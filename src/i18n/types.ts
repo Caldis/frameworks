@@ -112,6 +112,15 @@ export interface LocaleStrings {
   selectorQ3: string
   selectorQ4: string
 
+  // Learning Paths
+  learningPaths: string
+  learningPathsTitle: string
+  learningPathsSubtitle: string
+  pathProgress: string
+  pathStep: string
+  startPath: string
+  continuePath: string
+
   // Misc
   noResults: string  // uses {query} placeholder
   ai: string

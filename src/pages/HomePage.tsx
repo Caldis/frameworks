@@ -164,6 +164,9 @@ export default function HomePage() {
         <Link to="/selector" className={styles.mapLink}>
           {t.selector}
         </Link>
+        <Link to="/paths" className={styles.mapLink}>
+          {t.learningPaths}
+        </Link>
         {showAdvanced && (
           <div className={styles.advancedFilters}>
             <DimensionFilter

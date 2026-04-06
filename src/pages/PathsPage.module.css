@@ -1,0 +1,164 @@
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.pathGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.pathCard {
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.pathCard:hover {
+  background: var(--surface);
+}
+
+.pathCardExpanded {
+  border-color: var(--text);
+}
+
+.pathIcon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.pathName {
+  font-family: var(--font-serif);
+  font-size: 20px;
+}
+
+.pathDesc {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.pathMeta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted-light);
+  margin-top: 8px;
+}
+
+.progressBar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: #2ecc71;
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+
+.stepList {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+}
+
+.stepItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.stepCheckbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  background: transparent;
+  padding: 0;
+}
+
+.stepChecked {
+  background: #2ecc71;
+  border-color: #2ecc71;
+  color: white;
+}
+
+.stepName {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.stepNameDone {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.stepLink {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.stepLink:hover {
+  text-decoration: underline;
+}
+
+.stepNumber {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted-light);
+  min-width: 32px;
+}
+
+.categoryPill {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.complexityBadge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: var(--surface);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .pathGrid {
+    grid-template-columns: 1fr;
+  }
+}

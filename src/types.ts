@@ -63,3 +63,13 @@ export interface Category {
   description: string
   description_zh: string
 }
+
+export interface LearningPath {
+  id: string
+  name: string
+  name_zh: string
+  desc: string
+  desc_zh: string
+  icon: string
+  frameworks: string[]  // slugs in order
+}

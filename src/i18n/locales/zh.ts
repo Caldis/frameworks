@@ -86,6 +86,13 @@ export const zh: LocaleStrings = {
   selectorQ2: '在哪个抽象层级？',
   selectorQ3: '最关注哪些质量属性？',
   selectorQ4: '偏好什么成熟度的框架？',
+  learningPaths: '路径',
+  learningPathsTitle: '学习路径',
+  learningPathsSubtitle: '精心编排的框架序列，一步步掌握软件设计',
+  pathProgress: '已完成 {done} / {total}',
+  pathStep: '第 {n} 步',
+  startPath: '开始学习',
+  continuePath: '继续',
   noResults: '未找到与 "{query}" 相关的框架',
   ai: 'AI',
 }

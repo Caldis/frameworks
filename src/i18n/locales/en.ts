@@ -86,6 +86,13 @@ export const en: LocaleStrings = {
   selectorQ2: 'What abstraction level?',
   selectorQ3: 'What quality concerns matter most?',
   selectorQ4: 'What maturity level do you prefer?',
+  learningPaths: 'Paths',
+  learningPathsTitle: 'Learning Paths',
+  learningPathsSubtitle: 'Curated sequences to master software design, step by step',
+  pathProgress: '{done} of {total} completed',
+  pathStep: 'Step {n}',
+  startPath: 'Start Path',
+  continuePath: 'Continue',
   noResults: 'No frameworks found for "{query}"',
   ai: 'AI',
 }
