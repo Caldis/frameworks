@@ -96,6 +96,11 @@ export const en: LocaleStrings = {
   pathStep: 'Step {n}',
   startPath: 'Start Path',
   continuePath: 'Continue',
+  relTypeRelated: 'Related',
+  relTypeAlternative: 'Alternative',
+  relTypeComplement: 'Works with',
+  relTypeExtends: 'Extends',
+  relTypePrerequisite: 'Prerequisite',
   noResults: 'No frameworks found for "{query}"',
   ai: 'AI',
 }

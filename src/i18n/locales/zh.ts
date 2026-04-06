@@ -96,6 +96,11 @@ export const zh: LocaleStrings = {
   pathStep: '第 {n} 步',
   startPath: '开始学习',
   continuePath: '继续',
+  relTypeRelated: '相关',
+  relTypeAlternative: '替代方案',
+  relTypeComplement: '配合使用',
+  relTypeExtends: '扩展/深化',
+  relTypePrerequisite: '前置知识',
   noResults: '未找到与 "{query}" 相关的框架',
   ai: 'AI',
 }

@@ -1,6 +1,13 @@
 export type CategoryKey = 'thinking' | 'architecture' | 'coding' | 'quality' | 'deployment' | 'evolution' | 'ai' | 'data' | 'security' | 'distributed' | 'api' | 'team' | 'observability'
 export type VizType = 'matrix' | 'flow' | 'pyramid' | 'cycle' | 'venn' | 'radar' | 'tree' | 'timeline'
 
+export type RelationType = 'related' | 'alternative' | 'complement' | 'extends' | 'prerequisite'
+
+export interface TypedRelation {
+  slug: string
+  type: RelationType
+}
+
 export type Complexity = 'beginner' | 'intermediate' | 'advanced'
 export type AbstractionLevel = 'code' | 'component' | 'system' | 'organization'
 export type MaturityRing = 'foundational' | 'established' | 'emerging' | 'experimental'
@@ -18,7 +25,10 @@ export interface Framework {
   steps_zh: string[]
   ai_relevant: boolean
   viz_type: VizType
+  // Existing (keep for backward compat)
   related: string[]
+  // New typed relations (optional, populated incrementally)
+  typed_relations?: TypedRelation[]
   tags: string[]
 
   // Extended detail fields

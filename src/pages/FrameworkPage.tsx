@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
-import { getFrameworkBySlug, getFrameworksByCategory, getRelatedFrameworks } from '../data/loader'
+import { getFrameworkBySlug, getFrameworksByCategory, getRelatedFrameworks, getTypedRelations } from '../data/loader'
 import { getCategoryByKey } from '../data/categories'
 import { useI18n } from '../i18n'
 import { usePageMeta } from '../hooks/usePageMeta'
@@ -33,6 +33,7 @@ export default function FrameworkPage() {
   const prev = currentIndex > 0 ? categoryFrameworks[currentIndex - 1] : null
   const next = currentIndex < categoryFrameworks.length - 1 ? categoryFrameworks[currentIndex + 1] : null
   const related = getRelatedFrameworks(framework)
+  const typedRelations = getTypedRelations(framework)
   const steps = locale === 'en' ? framework.steps : framework.steps_zh
 
   const formattedNumber = `#${String(framework.id).padStart(2, '0')}`
@@ -294,7 +295,7 @@ export default function FrameworkPage() {
       {related.length > 0 && (
         <section className={styles.relatedSection}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.relatedFrameworks}</h2>
-          <RelatedFrameworks frameworks={related} />
+          <RelatedFrameworks frameworks={related} typedRelations={typedRelations} />
         </section>
       )}
 

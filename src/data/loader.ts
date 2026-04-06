@@ -1,4 +1,4 @@
-import type { Framework, CategoryKey } from '../types'
+import type { Framework, CategoryKey, TypedRelation, RelationType } from '../types'
 import thinkingData from '../../data/frameworks/thinking.json'
 import architectureData from '../../data/frameworks/architecture.json'
 import codingData from '../../data/frameworks/coding.json'
@@ -25,6 +25,11 @@ export function getFrameworkBySlug(slug: string) { return allFrameworks.find(f =
 export function getFrameworksByCategory(cat: CategoryKey) { return allFrameworks.filter(f => f.category === cat) }
 export function getAIRelevantFrameworks() { return allFrameworks.filter(f => f.ai_relevant) }
 export function getRelatedFrameworks(fw: Framework) { return fw.related.map(s => getFrameworkBySlug(s)).filter(Boolean) as Framework[] }
+export function getTypedRelations(fw: Framework): TypedRelation[] {
+  // Use typed_relations if available, otherwise convert plain related to type 'related'
+  if (fw.typed_relations?.length) return fw.typed_relations
+  return fw.related.map(slug => ({ slug, type: 'related' as RelationType }))
+}
 export function searchFrameworks(query: string) {
   const q = query.toLowerCase()
   return allFrameworks.filter(f => {

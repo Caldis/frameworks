@@ -260,11 +260,17 @@ export default function MapPage() {
     const g = svg.append('g')
 
     const zoom = d3.zoom<SVGSVGElement, unknown>()
-      .scaleExtent([0.3, 4])
+      .scaleExtent([0.5, 3])
       .on('zoom', (event) => {
-        g.attr('transform', event.transform)
+        const t = event.transform
+        // Clamp translation to keep graph somewhat visible
+        const maxPan = 200
+        t.x = Math.max(-width * t.k + maxPan, Math.min(width - maxPan, t.x))
+        t.y = Math.max(-height * t.k + maxPan, Math.min(height - maxPan, t.y))
+
+        g.attr('transform', t)
         // Also transform background layer so axes stay aligned with nodes
-        bgLayer.attr('transform', event.transform)
+        bgLayer.attr('transform', t)
 
         // Track zoom level and update label visibility threshold
         const k: number = event.transform.k
@@ -549,6 +555,12 @@ export default function MapPage() {
 
     // Tick
     simulation.on('tick', () => {
+      // Clamp node positions to SVG bounds
+      nodes.forEach(d => {
+        d.x = Math.max(margin.left + 10, Math.min(width - margin.right - 10, d.x!))
+        d.y = Math.max(margin.top + 10, Math.min(height - margin.bottom - 10, d.y!))
+      })
+
       link
         .attr('x1', d => (d.source as SimNode).x!)
         .attr('y1', d => (d.source as SimNode).y!)
@@ -557,6 +569,39 @@ export default function MapPage() {
 
       node.attr('transform', d => `translate(${d.x},${d.y})`)
     })
+
+    // Fit-to-view helper: calculate bounding box and apply zoom transform
+    const fitToView = () => {
+      let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity
+      nodes.forEach(n => {
+        if (n.x! < minX) minX = n.x!
+        if (n.x! > maxX) maxX = n.x!
+        if (n.y! < minY) minY = n.y!
+        if (n.y! > maxY) maxY = n.y!
+      })
+
+      const padding = 40
+      const bboxWidth = maxX - minX + padding * 2
+      const bboxHeight = maxY - minY + padding * 2
+      const scale = Math.min(width / bboxWidth, height / bboxHeight, 1) // don't zoom in beyond 1x
+      const centerX = (minX + maxX) / 2
+      const centerY = (minY + maxY) / 2
+
+      const transform = d3.zoomIdentity
+        .translate(width / 2, height / 2)
+        .scale(scale)
+        .translate(-centerX, -centerY)
+
+      svg.transition().duration(500).call(zoom.transform, transform)
+    }
+
+    // After simulation settles, automatically fit all nodes in view
+    simulation.on('end', () => {
+      fitToView()
+    })
+
+    // Expose fitToView for external use (reset view button)
+    ;(svgEl as any).__fitToView = fitToView
 
     // Cleanup
     return () => {
@@ -576,6 +621,13 @@ export default function MapPage() {
     const zoomBehavior = zoomRef.current
     if (!svgEl || !zoomBehavior) return
     d3.select(svgEl).transition().duration(300).call(zoomBehavior.scaleBy, 1 / 1.4)
+  }, [])
+
+  const handleFitToView = useCallback(() => {
+    const svgEl = svgRef.current
+    if (!svgEl) return
+    const fitFn = (svgEl as any).__fitToView
+    if (typeof fitFn === 'function') fitFn()
   }, [])
 
   // Resolve selected framework details
@@ -620,6 +672,7 @@ export default function MapPage() {
           <div className={styles.zoomControls}>
             <button className={styles.zoomBtn} onClick={handleZoomIn} aria-label="Zoom in">+</button>
             <button className={styles.zoomBtn} onClick={handleZoomOut} aria-label="Zoom out">&minus;</button>
+            <button className={styles.zoomBtn} onClick={handleFitToView} aria-label="Fit to view" title="Reset view">&#8865;</button>
           </div>
           {showHint && (
             <div className={styles.hint} onClick={dismissHint}>

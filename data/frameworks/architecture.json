@@ -161,6 +161,20 @@
     "secondary_sources": [
       "Len Bass, Paul Clements, and Rick Kazman (2021). \"Software Architecture in Practice, 4th Edition\". Addison-Wesley.",
       "Joel Parker Henderson (2023). \"Architecture Decision Record (ADR)\". github.com/joelparkerhenderson/architecture-decision-record."
+    ],
+    "typed_relations": [
+      {
+        "slug": "continuous-architecture",
+        "type": "complement"
+      },
+      {
+        "slug": "atam",
+        "type": "complement"
+      },
+      {
+        "slug": "c4-model",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -326,6 +340,20 @@
     "secondary_sources": [
       "Len Bass, Paul Clements, and Rick Kazman (2003). \"Software Architecture in Practice, 2nd Edition\". Addison-Wesley.",
       "Rick Kazman et al. (1998). \"The Architecture Tradeoff Analysis Method\". IEEE ICECCS 1998."
+    ],
+    "typed_relations": [
+      {
+        "slug": "qaw",
+        "type": "prerequisite"
+      },
+      {
+        "slug": "trade-off-sliders",
+        "type": "complement"
+      },
+      {
+        "slug": "adr",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -491,6 +519,20 @@
     "secondary_sources": [
       "Seth Gilbert and Nancy Lynch (2002). \"Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services\". ACM SIGACT News, 33(2).",
       "Martin Kleppmann (2017). \"Designing Data-Intensive Applications\". O'Reilly Media. Chapter 9."
+    ],
+    "typed_relations": [
+      {
+        "slug": "cqrs-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "saga-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "eda",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -655,6 +697,20 @@
     "secondary_sources": [
       "Simon Brown (2018). \"Software Architecture for Developers, Volume 2\". Leanpub.",
       "Simon Brown (2011). \"Software Architecture for Developers\". Leanpub."
+    ],
+    "typed_relations": [
+      {
+        "slug": "adr",
+        "type": "complement"
+      },
+      {
+        "slug": "togaf-adm",
+        "type": "alternative"
+      },
+      {
+        "slug": "microservices-decomposition",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -821,6 +877,24 @@
     "secondary_sources": [
       "Bertrand Meyer (1988). \"Object-Oriented Software Construction\". Prentice Hall. Command-Query Separation principle.",
       "Martin Fowler (2011). \"CQRS\". martinfowler.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "event-sourcing-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "eda",
+        "type": "prerequisite"
+      },
+      {
+        "slug": "domain-driven-design",
+        "type": "prerequisite"
+      },
+      {
+        "slug": "saga-pattern",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -988,6 +1062,24 @@
     "secondary_sources": [
       "Martin Fowler (2017). \"What do you mean by Event-Driven?\". martinfowler.com.",
       "Adam Bellemare (2020). \"Building Event-Driven Microservices\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "cqrs-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "event-sourcing-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "saga-pattern",
+        "type": "extends"
+      },
+      {
+        "slug": "microservices-decomposition",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1154,6 +1246,24 @@
     "secondary_sources": [
       "Sam Newman (2015). \"Building Microservices: Designing Fine-Grained Systems\". O'Reilly Media.",
       "Chris Richardson (2018). \"Microservices Patterns: With Examples in Java\". Manning Publications."
+    ],
+    "typed_relations": [
+      {
+        "slug": "domain-driven-design",
+        "type": "prerequisite"
+      },
+      {
+        "slug": "eda",
+        "type": "complement"
+      },
+      {
+        "slug": "service-mesh-pattern",
+        "type": "extends"
+      },
+      {
+        "slug": "strangler-fig-pattern",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1320,6 +1430,24 @@
     "secondary_sources": [
       "Chris Richardson (2018). \"Microservices Patterns: With Examples in Java\". Manning Publications. Chapter 4.",
       "Caitie McCaffrey (2015). \"Applying the Saga Pattern\". Strange Loop Conference."
+    ],
+    "typed_relations": [
+      {
+        "slug": "eda",
+        "type": "prerequisite"
+      },
+      {
+        "slug": "cqrs-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "circuit-breaker-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "microservices-decomposition",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1484,6 +1612,20 @@
     "secondary_sources": [
       "The Open Group (2022). \"TOGAF Standard, 10th Edition\". The Open Group.",
       "Andrew Josey et al. (2011). \"TOGAF Version 9.1\". Van Haren Publishing."
+    ],
+    "typed_relations": [
+      {
+        "slug": "c4-model",
+        "type": "complement"
+      },
+      {
+        "slug": "adr",
+        "type": "complement"
+      },
+      {
+        "slug": "wardley-mapping",
+        "type": "alternative"
+      }
     ]
   },
   {
@@ -1649,6 +1791,20 @@
     "secondary_sources": [
       "Len Bass, Paul Clements, and Rick Kazman (2003). \"Software Architecture in Practice, 2nd Edition\". Addison-Wesley.",
       "Rick Kazman et al. (2001). \"Quality Attribute Workshop Participants Handbook\". SEI Special Report CMU/SEI-2001-SR-001."
+    ],
+    "typed_relations": [
+      {
+        "slug": "atam",
+        "type": "extends"
+      },
+      {
+        "slug": "trade-off-sliders",
+        "type": "complement"
+      },
+      {
+        "slug": "four-golden-signals",
+        "type": "complement"
+      }
     ]
   },
   {

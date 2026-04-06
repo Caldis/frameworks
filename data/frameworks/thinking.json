@@ -163,6 +163,20 @@
     "secondary_sources": [
       "Herbert A. Simon (1969). \"The Sciences of the Artificial\". MIT Press.",
       "Nigel Cross (2011). \"Design Thinking: Understanding How Designers Think and Work\". Berg Publishers."
+    ],
+    "typed_relations": [
+      {
+        "slug": "jobs-to-be-done",
+        "type": "complement"
+      },
+      {
+        "slug": "problem-framing-how-now-wow",
+        "type": "complement"
+      },
+      {
+        "slug": "human-ai-interaction-design",
+        "type": "extends"
+      }
     ]
   },
   {
@@ -328,6 +342,20 @@
     "secondary_sources": [
       "Vaughn Vernon (2013). \"Implementing Domain-Driven Design\". Addison-Wesley.",
       "Eric Evans (2015). \"Domain-Driven Design Reference\". Domain Language, Inc."
+    ],
+    "typed_relations": [
+      {
+        "slug": "ddd-tactical-patterns",
+        "type": "extends"
+      },
+      {
+        "slug": "cqrs-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "event-sourcing-pattern",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -494,6 +522,20 @@
     "secondary_sources": [
       "Jay W. Forrester (1961). \"Industrial Dynamics\". MIT Press.",
       "Peter Senge (1990). \"The Fifth Discipline: The Art & Practice of the Learning Organization\". Doubleday."
+    ],
+    "typed_relations": [
+      {
+        "slug": "cynefin-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "wardley-mapping",
+        "type": "complement"
+      },
+      {
+        "slug": "conways-law",
+        "type": "related"
+      }
     ]
   },
   {
@@ -1154,6 +1196,20 @@
     "secondary_sources": [
       "Dave Snowden (2000). \"Cynefin: A Sense of Time and Space\". Knowledge Management World.",
       "Dave Snowden and Zhen Goh (2020). \"Cynefin: Weaving Sense-Making into the Fabric of Our World\". Cognitive Edge."
+    ],
+    "typed_relations": [
+      {
+        "slug": "systems-thinking",
+        "type": "complement"
+      },
+      {
+        "slug": "trade-off-sliders",
+        "type": "complement"
+      },
+      {
+        "slug": "wardley-mapping",
+        "type": "alternative"
+      }
     ]
   },
   {
@@ -1321,6 +1377,20 @@
     "secondary_sources": [
       "Simon Wardley (2016). \"Wardley Mapping: An Iterative Process of Situational Awareness\". blog.gardeviance.org.",
       "Ben Mosior (2021). \"Wardley Mapping Canvas and Resources\". Hiredthought.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "cynefin-framework",
+        "type": "alternative"
+      },
+      {
+        "slug": "systems-thinking",
+        "type": "complement"
+      },
+      {
+        "slug": "trade-off-sliders",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -1651,6 +1721,20 @@
     "secondary_sources": [
       "Edward de Bono (1970). \"Lateral Thinking: Creativity Step by Step\". Harper & Row.",
       "Edward de Bono (1992). \"Serious Creativity: Using the Power of Lateral Thinking to Create New Ideas\". HarperBusiness."
+    ],
+    "typed_relations": [
+      {
+        "slug": "problem-framing-how-now-wow",
+        "type": "complement"
+      },
+      {
+        "slug": "first-principles-thinking",
+        "type": "alternative"
+      },
+      {
+        "slug": "trade-off-sliders",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2318,6 +2402,20 @@
     "secondary_sources": [
       "Rick Kazman, Mark Klein, and Paul Clements (2000). \"ATAM: Method for Architecture Evaluation\". SEI Technical Report CMU/SEI-2000-TR-004.",
       "Barry Boehm and Richard Turner (2003). \"Balancing Agility and Discipline: A Guide for the Perplexed\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "atam",
+        "type": "complement"
+      },
+      {
+        "slug": "qaw",
+        "type": "complement"
+      },
+      {
+        "slug": "cynefin-framework",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -2475,6 +2573,20 @@
     "secondary_sources": [
       "Fred Brooks (1986). \"No Silver Bullet: Essence and Accidents of Software Engineering\". IEEE Computer, 19(4).",
       "Rich Hickey (2012). \"Simple Made Easy\". Strange Loop Conference, 2011."
+    ],
+    "typed_relations": [
+      {
+        "slug": "deep-vs-shallow-modules",
+        "type": "complement"
+      },
+      {
+        "slug": "separation-of-concerns",
+        "type": "complement"
+      },
+      {
+        "slug": "domain-driven-design",
+        "type": "prerequisite"
+      }
     ]
   },
   {
@@ -2950,6 +3062,24 @@
     "secondary_sources": [
       "David Parnas (1972). \"On the Criteria to Be Used in Decomposing Systems into Modules\". Communications of the ACM, 15(12).",
       "Gregor Kiczales et al. (1997). \"Aspect-Oriented Programming\". ECOOP 1997, Springer."
+    ],
+    "typed_relations": [
+      {
+        "slug": "deep-vs-shallow-modules",
+        "type": "complement"
+      },
+      {
+        "slug": "complexity-budget",
+        "type": "complement"
+      },
+      {
+        "slug": "domain-driven-design",
+        "type": "complement"
+      },
+      {
+        "slug": "design-by-contract",
+        "type": "complement"
+      }
     ]
   },
   {
@@ -3109,6 +3239,24 @@
     "secondary_sources": [
       "John Ousterhout (2018). \"A Philosophy of Software Design\". Yaknyam Press.",
       "David Parnas (1972). \"On the Criteria to Be Used in Decomposing Systems into Modules\". Communications of the ACM, 15(12)."
+    ],
+    "typed_relations": [
+      {
+        "slug": "deep-vs-shallow-modules",
+        "type": "complement"
+      },
+      {
+        "slug": "separation-of-concerns",
+        "type": "prerequisite"
+      },
+      {
+        "slug": "complexity-budget",
+        "type": "complement"
+      },
+      {
+        "slug": "design-by-contract",
+        "type": "complement"
+      }
     ]
   },
   {

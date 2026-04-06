@@ -124,6 +124,13 @@ export interface LocaleStrings {
   startPath: string
   continuePath: string
 
+  // Relation types
+  relTypeRelated: string
+  relTypeAlternative: string
+  relTypeComplement: string
+  relTypeExtends: string
+  relTypePrerequisite: string
+
   // Misc
   noResults: string  // uses {query} placeholder
   ai: string
