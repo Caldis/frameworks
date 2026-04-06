@@ -106,4 +106,11 @@ test.describe('Screenshot Capture for Design Review', () => {
     await page.waitForTimeout(500)
     await page.screenshot({ path: `${SCREENSHOT_DIR}/selector.png`, fullPage: true })
   })
+
+  test('learning paths page', async ({ page }) => {
+    await page.setViewportSize({ width: 1200, height: 900 })
+    await page.goto('/paths')
+    await page.waitForTimeout(500)
+    await page.screenshot({ path: `${SCREENSHOT_DIR}/paths.png`, fullPage: true })
+  })
 })

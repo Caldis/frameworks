@@ -15,6 +15,8 @@ npx playwright test            # All E2E tests pass
 
 If the sprint added new UI features, add corresponding E2E tests BEFORE evaluation.
 
+**New route rule**: If the sprint adds a new page/route, `e2e/visual-screenshot.spec.ts` MUST include a screenshot capture for it. This gap recurred 3 times (S09, S11, S12) before being caught.
+
 ## Gate 2: Visual & Accessibility (Evaluator inspects running site)
 
 The Evaluator launches a browser (Playwright or manual) and checks:
