@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { getAllFrameworks, getFrameworksByCategory } from '../data/loader'
 import { categories } from '../data/categories'
 import { useI18n } from '../i18n'
+import { usePageMeta } from '../hooks/usePageMeta'
 import type { CategoryKey, AbstractionLevel, QualityConcern, MaturityRing } from '../types'
 import styles from './SelectorPage.module.css'
 
@@ -27,6 +28,7 @@ const MATURITY_LEVELS: { key: MaturityRing; descEn: string; descZh: string }[] =
 
 export default function SelectorPage() {
   const { locale, t } = useI18n()
+  usePageMeta('Framework Selector', 'Find the right software design framework for your situation')
 
   const [step, setStep] = useState(1)
   const [selectedCats, setSelectedCats] = useState<CategoryKey[]>([])

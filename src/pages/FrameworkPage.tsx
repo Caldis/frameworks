@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { getFrameworkBySlug, getFrameworksByCategory, getRelatedFrameworks } from '../data/loader'
 import { getCategoryByKey } from '../data/categories'
 import { useI18n } from '../i18n'
+import { usePageMeta } from '../hooks/usePageMeta'
 import FrameworkViz from '../components/FrameworkViz'
 import StepsList from '../components/StepsList'
 import RelatedFrameworks from '../components/RelatedFrameworks'
@@ -11,6 +12,11 @@ export default function FrameworkPage() {
   const { slug } = useParams<{ slug: string }>()
   const { locale, t, localized } = useI18n()
   const framework = slug ? getFrameworkBySlug(slug) : undefined
+
+  usePageMeta(
+    framework ? localized(framework, 'name') : 'Framework Not Found',
+    framework ? localized(framework, 'desc') : undefined
+  )
 
   if (!framework) {
     return (

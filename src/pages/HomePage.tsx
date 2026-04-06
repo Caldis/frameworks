@@ -6,6 +6,7 @@ import { categories } from '../data/categories'
 import { useSearch } from '../hooks/useSearch'
 import { useFavorites } from '../hooks/useFavorites'
 import { useKeyboard } from '../hooks/useKeyboard'
+import { usePageMeta } from '../hooks/usePageMeta'
 import { useI18n } from '../i18n'
 import SearchBar from '../components/SearchBar'
 import CategoryFilter from '../components/CategoryFilter'
@@ -18,6 +19,7 @@ import styles from './HomePage.module.css'
 
 export default function HomePage() {
   const { t } = useI18n()
+  usePageMeta('Software Design Frameworks', '194 curated frameworks for engineers, architects, and AI agents')
   const [activeCategory, setActiveCategory] = useState<CategoryKey | null>(null)
   const [modalIndex, setModalIndex] = useState<number | null>(null)
   const [showAdvanced, setShowAdvanced] = useState(false)

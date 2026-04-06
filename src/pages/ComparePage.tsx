@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import { getAllFrameworks } from '../data/loader'
 import { categories } from '../data/categories'
 import { useI18n } from '../i18n'
+import { usePageMeta } from '../hooks/usePageMeta'
 import type { Framework, CategoryKey } from '../types'
 import styles from './ComparePage.module.css'
 
@@ -9,6 +10,7 @@ const MAX_SLOTS = 3
 
 export default function ComparePage() {
   const { locale, t, localized } = useI18n()
+  usePageMeta('Compare Frameworks', 'Compare 2-3 software design frameworks side by side')
   const [selected, setSelected] = useState<string[]>([])
 
   const allFrameworks = useMemo(() => getAllFrameworks(), [])

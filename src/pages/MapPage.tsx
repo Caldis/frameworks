@@ -4,6 +4,7 @@ import * as d3 from 'd3'
 import { getAllFrameworks } from '../data/loader'
 import { categories, getCategoryByKey } from '../data/categories'
 import { useI18n } from '../i18n'
+import { usePageMeta } from '../hooks/usePageMeta'
 import type { CategoryKey } from '../types'
 import styles from './MapPage.module.css'
 
@@ -26,6 +27,7 @@ interface SimLink extends d3.SimulationLinkDatum<SimNode> {
 
 export default function MapPage() {
   const { t, localized, locale } = useI18n()
+  usePageMeta('Framework Relationship Map', 'Interactive map of 194 software design frameworks and their connections')
   const svgRef = useRef<SVGSVGElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const tooltipRef = useRef<HTMLDivElement>(null)

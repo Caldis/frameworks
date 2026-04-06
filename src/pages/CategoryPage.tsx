@@ -4,6 +4,7 @@ import { categories } from '../data/categories'
 import { getFrameworksByCategory, getAIRelevantFrameworks } from '../data/loader'
 import { useFavorites } from '../hooks/useFavorites'
 import { useI18n } from '../i18n'
+import { usePageMeta } from '../hooks/usePageMeta'
 import CardGrid from '../components/CardGrid'
 import styles from './CategoryPage.module.css'
 
@@ -14,6 +15,11 @@ export default function CategoryPage() {
   const { favorites, toggleFavorite } = useFavorites()
 
   const category = categories.find(c => c.slug === slug)
+
+  usePageMeta(
+    category ? localized(category, 'name') : 'Category Not Found',
+    category ? localized(category, 'description') : undefined
+  )
 
   if (!category) {
     return (

@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { useI18n } from '../i18n'
+import { usePageMeta } from '../hooks/usePageMeta'
 import { getFrameworkBySlug } from '../data/loader'
 import { getCategoryByKey } from '../data/categories'
 import learningPathsData from '../../data/learning-paths.json'
@@ -11,6 +12,7 @@ const learningPaths: LearningPath[] = learningPathsData
 
 export default function PathsPage() {
   const { t, localized } = useI18n()
+  usePageMeta('Learning Paths', 'Curated learning sequences to master software design step by step')
   const [expandedPath, setExpandedPath] = useState<string | null>(null)
   const [progress, setProgress] = useState<Record<string, string[]>>(() => {
     try {
