@@ -553,20 +553,16 @@
   max-width: 60%;
 }
 
-.stickyDots {
-  display: flex;
-  gap: 6px;
+.stickyBack {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s;
 }
 
-.stickyDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--border);
-}
-
-.stickyDotActive {
-  background: var(--text);
+.stickyBack:hover {
+  color: var(--text);
 }
 
 /* ── Responsive ── */
