@@ -3569,16 +3569,40 @@
       "组合优于继承：通过替换整个对象而非对上下文子类化来改变行为"
     ],
     "timeline": [
-      ["1994", "GoF publish 'Design Patterns', introducing Strategy as one of 23 canonical patterns"],
-      ["2000", "Strategy becomes a foundation of the Policy Object pattern in enterprise Java frameworks"],
-      ["2010", "Functional languages popularize Strategy via first-class functions and lambdas, reducing boilerplate"],
-      ["2020", "Strategy widely adopted in ML pipelines to swap preprocessing, model, and evaluation components"]
+      [
+        "1994",
+        "GoF publish 'Design Patterns', introducing Strategy as one of 23 canonical patterns"
+      ],
+      [
+        "2000",
+        "Strategy becomes a foundation of the Policy Object pattern in enterprise Java frameworks"
+      ],
+      [
+        "2010",
+        "Functional languages popularize Strategy via first-class functions and lambdas, reducing boilerplate"
+      ],
+      [
+        "2020",
+        "Strategy widely adopted in ML pipelines to swap preprocessing, model, and evaluation components"
+      ]
     ],
     "timeline_zh": [
-      ["1994", "GoF 出版《设计模式》，将策略模式作为 23 个经典模式之一引入"],
-      ["2000", "策略模式成为企业 Java 框架中策略对象模式的基础"],
-      ["2010", "函数式语言通过一等函数和 lambda 推广策略模式，减少样板代码"],
-      ["2020", "策略模式在 ML 流水线中广泛应用，用于替换预处理、模型和评估组件"]
+      [
+        "1994",
+        "GoF 出版《设计模式》，将策略模式作为 23 个经典模式之一引入"
+      ],
+      [
+        "2000",
+        "策略模式成为企业 Java 框架中策略对象模式的基础"
+      ],
+      [
+        "2010",
+        "函数式语言通过一等函数和 lambda 推广策略模式，减少样板代码"
+      ],
+      [
+        "2020",
+        "策略模式在 ML 流水线中广泛应用，用于替换预处理、模型和评估组件"
+      ]
     ],
     "dos": [
       "Do keep the strategy interface small and focused so each variant is easy to implement and test",
@@ -3707,16 +3731,40 @@
       "推送 vs 拉取：主题可在通知负载中推送状态（推送模式），或观察者在收到通知后查询状态（拉取模式）"
     ],
     "timeline": [
-      ["1994", "GoF formalize Observer as one of 23 patterns; MVC's model-view notification already used the concept"],
-      ["2000", "Java introduces java.util.Observable and java.util.Observer in the standard library"],
-      ["2012", "Reactive Extensions (Rx) reframe Observer as IObservable/IObserver, adding backpressure and composition"],
-      ["2019", "Observer underpins modern frontend state libraries (Redux, MobX, Vue reactivity) and agent event loops"]
+      [
+        "1994",
+        "GoF formalize Observer as one of 23 patterns; MVC's model-view notification already used the concept"
+      ],
+      [
+        "2000",
+        "Java introduces java.util.Observable and java.util.Observer in the standard library"
+      ],
+      [
+        "2012",
+        "Reactive Extensions (Rx) reframe Observer as IObservable/IObserver, adding backpressure and composition"
+      ],
+      [
+        "2019",
+        "Observer underpins modern frontend state libraries (Redux, MobX, Vue reactivity) and agent event loops"
+      ]
     ],
     "timeline_zh": [
-      ["1994", "GoF 将观察者模式正式化为 23 个模式之一；MVC 的模型-视图通知机制已在使用该概念"],
-      ["2000", "Java 在标准库中引入 java.util.Observable 和 java.util.Observer"],
-      ["2012", "响应式扩展（Rx）将观察者重塑为 IObservable/IObserver，增加背压和组合能力"],
-      ["2019", "观察者模式支撑现代前端状态库（Redux、MobX、Vue 响应式）和智能体事件循环"]
+      [
+        "1994",
+        "GoF 将观察者模式正式化为 23 个模式之一；MVC 的模型-视图通知机制已在使用该概念"
+      ],
+      [
+        "2000",
+        "Java 在标准库中引入 java.util.Observable 和 java.util.Observer"
+      ],
+      [
+        "2012",
+        "响应式扩展（Rx）将观察者重塑为 IObservable/IObserver，增加背压和组合能力"
+      ],
+      [
+        "2019",
+        "观察者模式支撑现代前端状态库（Redux、MobX、Vue 响应式）和智能体事件循环"
+      ]
     ],
     "dos": [
       "Do use weak references or explicit unsubscribe to prevent memory leaks when observers outlive their subjects",
@@ -3844,16 +3892,40 @@
       "产品多态：创建者的逻辑基于产品接口运行，独立于具体产品类型"
     ],
     "timeline": [
-      ["1994", "GoF publish Factory Method as a core creational pattern alongside Abstract Factory"],
-      ["2000", "Factory Method becomes the backbone of Java's JDBC DriverManager and servlet container APIs"],
-      ["2009", "Spring Framework codifies factory methods via @Bean annotations, blending DI with factory semantics"],
-      ["2018", "Factory functions (not classes) become idiomatic in TypeScript and Kotlin, simplifying the pattern"]
+      [
+        "1994",
+        "GoF publish Factory Method as a core creational pattern alongside Abstract Factory"
+      ],
+      [
+        "2000",
+        "Factory Method becomes the backbone of Java's JDBC DriverManager and servlet container APIs"
+      ],
+      [
+        "2009",
+        "Spring Framework codifies factory methods via @Bean annotations, blending DI with factory semantics"
+      ],
+      [
+        "2018",
+        "Factory functions (not classes) become idiomatic in TypeScript and Kotlin, simplifying the pattern"
+      ]
     ],
     "timeline_zh": [
-      ["1994", "GoF 将工厂方法作为核心创建型模式与抽象工厂一并发布"],
-      ["2000", "工厂方法成为 Java JDBC DriverManager 和 Servlet 容器 API 的核心"],
-      ["2009", "Spring Framework 通过 @Bean 注解将工厂方法规范化，融合 DI 与工厂语义"],
-      ["2018", "工厂函数（而非类）在 TypeScript 和 Kotlin 中成为惯用写法，简化了该模式"]
+      [
+        "1994",
+        "GoF 将工厂方法作为核心创建型模式与抽象工厂一并发布"
+      ],
+      [
+        "2000",
+        "工厂方法成为 Java JDBC DriverManager 和 Servlet 容器 API 的核心"
+      ],
+      [
+        "2009",
+        "Spring Framework 通过 @Bean 注解将工厂方法规范化，融合 DI 与工厂语义"
+      ],
+      [
+        "2018",
+        "工厂函数（而非类）在 TypeScript 和 Kotlin 中成为惯用写法，简化了该模式"
+      ]
     ],
     "dos": [
       "Do define the factory method on an interface or abstract class so callers depend on the abstraction",
@@ -3981,16 +4053,40 @@
       "产品族一致性：该模式保证来自同一工厂的产品被设计为协同工作"
     ],
     "timeline": [
-      ["1994", "GoF introduce Abstract Factory as an extension of Factory Method for product families"],
-      ["1998", "Abstract Factory becomes the canonical solution for Java Look-and-Feel (PLAF) in Swing"],
-      ["2010", "Cloud SDKs adopt Abstract Factory to let applications switch between AWS, Azure, and GCP implementations"],
-      ["2020", "Abstract Factory influences plugin architectures in VS Code and IntelliJ for multi-platform extension APIs"]
+      [
+        "1994",
+        "GoF introduce Abstract Factory as an extension of Factory Method for product families"
+      ],
+      [
+        "1998",
+        "Abstract Factory becomes the canonical solution for Java Look-and-Feel (PLAF) in Swing"
+      ],
+      [
+        "2010",
+        "Cloud SDKs adopt Abstract Factory to let applications switch between AWS, Azure, and GCP implementations"
+      ],
+      [
+        "2020",
+        "Abstract Factory influences plugin architectures in VS Code and IntelliJ for multi-platform extension APIs"
+      ]
     ],
     "timeline_zh": [
-      ["1994", "GoF 将抽象工厂作为工厂方法针对产品族的扩展引入"],
-      ["1998", "抽象工厂成为 Swing 中 Java 外观（PLAF）的标准解决方案"],
-      ["2010", "云 SDK 采用抽象工厂，使应用可在 AWS、Azure 和 GCP 实现间切换"],
-      ["2020", "抽象工厂影响 VS Code 和 IntelliJ 的插件架构，用于多平台扩展 API"]
+      [
+        "1994",
+        "GoF 将抽象工厂作为工厂方法针对产品族的扩展引入"
+      ],
+      [
+        "1998",
+        "抽象工厂成为 Swing 中 Java 外观（PLAF）的标准解决方案"
+      ],
+      [
+        "2010",
+        "云 SDK 采用抽象工厂，使应用可在 AWS、Azure 和 GCP 实现间切换"
+      ],
+      [
+        "2020",
+        "抽象工厂影响 VS Code 和 IntelliJ 的插件架构，用于多平台扩展 API"
+      ]
     ],
     "dos": [
       "Do introduce Abstract Factory only when you genuinely need multiple families; premature abstraction is costly",
@@ -4118,16 +4214,40 @@
       "符合开闭原则：通过编写新装饰器添加新行为，从不修改现有组件或装饰器代码"
     ],
     "timeline": [
-      ["1994", "GoF introduce Decorator as the primary alternative to subclassing for extending behavior"],
-      ["2000", "Java I/O streams (InputStream, BufferedInputStream, GZIPInputStream) popularize Decorator in practice"],
-      ["2015", "Python decorator syntax (@decorator) normalizes the pattern as a language feature, though it differs semantically"],
-      ["2022", "Middleware stacks in web frameworks (Express.js, ASP.NET Core) are recognized as Decorator chains"]
+      [
+        "1994",
+        "GoF introduce Decorator as the primary alternative to subclassing for extending behavior"
+      ],
+      [
+        "2000",
+        "Java I/O streams (InputStream, BufferedInputStream, GZIPInputStream) popularize Decorator in practice"
+      ],
+      [
+        "2015",
+        "Python decorator syntax (@decorator) normalizes the pattern as a language feature, though it differs semantically"
+      ],
+      [
+        "2022",
+        "Middleware stacks in web frameworks (Express.js, ASP.NET Core) are recognized as Decorator chains"
+      ]
     ],
     "timeline_zh": [
-      ["1994", "GoF 将装饰器作为子类化扩展行为的主要替代方案引入"],
-      ["2000", "Java I/O 流（InputStream、BufferedInputStream、GZIPInputStream）在实践中推广装饰器模式"],
-      ["2015", "Python 装饰器语法（@decorator）将该模式规范化为语言特性，尽管语义有所不同"],
-      ["2022", "Web 框架中的中间件栈（Express.js、ASP.NET Core）被认可为装饰器链"]
+      [
+        "1994",
+        "GoF 将装饰器作为子类化扩展行为的主要替代方案引入"
+      ],
+      [
+        "2000",
+        "Java I/O 流（InputStream、BufferedInputStream、GZIPInputStream）在实践中推广装饰器模式"
+      ],
+      [
+        "2015",
+        "Python 装饰器语法（@decorator）将该模式规范化为语言特性，尽管语义有所不同"
+      ],
+      [
+        "2022",
+        "Web 框架中的中间件栈（Express.js、ASP.NET Core）被认可为装饰器链"
+      ]
     ],
     "dos": [
       "Do ensure decorators are truly transparent by fully implementing the component interface, including edge-case methods",
@@ -4256,16 +4376,40 @@
       "对象适配器 vs 类适配器：对象适配器使用组合（推荐）；类适配器使用多重继承（取决于语言）"
     ],
     "timeline": [
-      ["1994", "GoF formalize Adapter as a structural pattern for interface translation and legacy integration"],
-      ["2002", "Adapter becomes the standard approach for wrapping SOAP services behind clean Java interfaces in J2EE"],
-      ["2014", "Anti-Corruption Layer in DDD is widely recognized as a strategic application of the Adapter pattern"],
-      ["2023", "LLM tool/function adapters translate between agent tool schemas and underlying API signatures"]
+      [
+        "1994",
+        "GoF formalize Adapter as a structural pattern for interface translation and legacy integration"
+      ],
+      [
+        "2002",
+        "Adapter becomes the standard approach for wrapping SOAP services behind clean Java interfaces in J2EE"
+      ],
+      [
+        "2014",
+        "Anti-Corruption Layer in DDD is widely recognized as a strategic application of the Adapter pattern"
+      ],
+      [
+        "2023",
+        "LLM tool/function adapters translate between agent tool schemas and underlying API signatures"
+      ]
     ],
     "timeline_zh": [
-      ["1994", "GoF 将适配器正式化为用于接口转换和遗留集成的结构型模式"],
-      ["2002", "适配器成为在 J2EE 中将 SOAP 服务包装在整洁 Java 接口后面的标准方法"],
-      ["2014", "DDD 中的防腐层被广泛认可为适配器模式的战略应用"],
-      ["2023", "LLM 工具/函数适配器在智能体工具模式和底层 API 签名之间进行转换"]
+      [
+        "1994",
+        "GoF 将适配器正式化为用于接口转换和遗留集成的结构型模式"
+      ],
+      [
+        "2002",
+        "适配器成为在 J2EE 中将 SOAP 服务包装在整洁 Java 接口后面的标准方法"
+      ],
+      [
+        "2014",
+        "DDD 中的防腐层被广泛认可为适配器模式的战略应用"
+      ],
+      [
+        "2023",
+        "LLM 工具/函数适配器在智能体工具模式和底层 API 签名之间进行转换"
+      ]
     ],
     "dos": [
       "Do prefer object adapters (composition) over class adapters (inheritance) for better flexibility and testability",
@@ -4393,16 +4537,40 @@
       "懒加载 vs 饿加载：实例可在首次访问时创建（懒加载）或在类加载时创建（饿加载），各有不同的线程安全含义"
     ],
     "timeline": [
-      ["1994", "GoF introduce Singleton as a creational pattern; it quickly becomes one of the most recognized patterns"],
-      ["2004", "Singleton earns criticism as an anti-pattern due to hidden global state, testing difficulties, and tight coupling"],
-      ["2009", "Spring and Guice DI containers popularize singleton-scoped beans as a managed, testable alternative"],
-      ["2020", "Singleton remains useful for low-level infrastructure (loggers, metrics registries) but avoided in domain logic"]
+      [
+        "1994",
+        "GoF introduce Singleton as a creational pattern; it quickly becomes one of the most recognized patterns"
+      ],
+      [
+        "2004",
+        "Singleton earns criticism as an anti-pattern due to hidden global state, testing difficulties, and tight coupling"
+      ],
+      [
+        "2009",
+        "Spring and Guice DI containers popularize singleton-scoped beans as a managed, testable alternative"
+      ],
+      [
+        "2020",
+        "Singleton remains useful for low-level infrastructure (loggers, metrics registries) but avoided in domain logic"
+      ]
     ],
     "timeline_zh": [
-      ["1994", "GoF 将单例作为创建型模式引入；它迅速成为最广为人知的模式之一"],
-      ["2004", "由于隐藏全局状态、测试困难和紧耦合，单例因被视为反模式而受到批评"],
-      ["2009", "Spring 和 Guice DI 容器推广单例作用域 Bean，作为可管理、可测试的替代方案"],
-      ["2020", "单例对于低级基础设施（日志记录器、指标注册表）仍有用，但在领域逻辑中应避免使用"]
+      [
+        "1994",
+        "GoF 将单例作为创建型模式引入；它迅速成为最广为人知的模式之一"
+      ],
+      [
+        "2004",
+        "由于隐藏全局状态、测试困难和紧耦合，单例因被视为反模式而受到批评"
+      ],
+      [
+        "2009",
+        "Spring 和 Guice DI 容器推广单例作用域 Bean，作为可管理、可测试的替代方案"
+      ],
+      [
+        "2020",
+        "单例对于低级基础设施（日志记录器、指标注册表）仍有用，但在领域逻辑中应避免使用"
+      ]
     ],
     "dos": [
       "Do prefer DI-container-managed singletons over static getInstance() for testability and lifecycle control",
@@ -4531,16 +4699,40 @@
       "接收者：知道如何执行实际工作的对象；命令委托给它，使自身保持精简"
     ],
     "timeline": [
-      ["1994", "GoF formalize Command as a behavioral pattern, unifying transactions, macros, and UI actions under one concept"],
-      ["2003", "Command becomes the backbone of GUI undo/redo in editors like Eclipse and IntelliJ IDEA"],
-      ["2014", "Event sourcing architectures adopt Command as the write model, storing commands as an immutable audit log"],
-      ["2023", "LLM agent frameworks (LangChain, AutoGen) model tool calls as Command objects enabling replay and rollback"]
+      [
+        "1994",
+        "GoF formalize Command as a behavioral pattern, unifying transactions, macros, and UI actions under one concept"
+      ],
+      [
+        "2003",
+        "Command becomes the backbone of GUI undo/redo in editors like Eclipse and IntelliJ IDEA"
+      ],
+      [
+        "2014",
+        "Event sourcing architectures adopt Command as the write model, storing commands as an immutable audit log"
+      ],
+      [
+        "2023",
+        "LLM agent frameworks (LangChain, AutoGen) model tool calls as Command objects enabling replay and rollback"
+      ]
     ],
     "timeline_zh": [
-      ["1994", "GoF 将命令正式化为行为型模式，将事务、宏和 UI 动作统一在一个概念下"],
-      ["2003", "命令成为 Eclipse 和 IntelliJ IDEA 等编辑器中 GUI 撤销/重做的核心"],
-      ["2014", "事件溯源架构将命令作为写模型，将命令存储为不可变的审计日志"],
-      ["2023", "LLM 智能体框架（LangChain、AutoGen）将工具调用建模为命令对象，支持重放和回滚"]
+      [
+        "1994",
+        "GoF 将命令正式化为行为型模式，将事务、宏和 UI 动作统一在一个概念下"
+      ],
+      [
+        "2003",
+        "命令成为 Eclipse 和 IntelliJ IDEA 等编辑器中 GUI 撤销/重做的核心"
+      ],
+      [
+        "2014",
+        "事件溯源架构将命令作为写模型，将命令存储为不可变的审计日志"
+      ],
+      [
+        "2023",
+        "LLM 智能体框架（LangChain、AutoGen）将工具调用建模为命令对象，支持重放和回滚"
+      ]
     ],
     "dos": [
       "Do implement undo() alongside execute() from the start if reversibility is a requirement — retrofitting it later is painful",
@@ -4604,6 +4796,1141 @@
       {
         "slug": "solid-principles",
         "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 233,
+    "name": "Template Method Pattern",
+    "name_zh": "模板方法模式",
+    "slug": "template-method-pattern",
+    "category": "coding",
+    "desc": "Define algorithm skeleton in base class, let subclasses override specific steps",
+    "desc_zh": "在基类中定义算法骨架，允许子类覆盖特定步骤而不改变算法整体结构",
+    "steps": [
+      "Define the abstract base class: declare the template method as a final (non-overridable) method that calls a sequence of primitive operations in the correct order",
+      "Identify primitive operations: split the algorithm into steps — mark required steps as abstract methods and optional steps as hook methods with default implementations",
+      "Implement concrete subclasses: override only the primitive operations that differ, leaving the overall algorithm structure untouched in the base class",
+      "Apply hook methods for optional behavior: provide empty or no-op hook implementations in the base class so subclasses can optionally extend behavior at defined extension points",
+      "Favor composition if variability grows: when the number of overridable steps proliferates, consider replacing inheritance with Strategy objects injected into a single template class"
+    ],
+    "steps_zh": [
+      "定义抽象基类：将模板方法声明为 final（不可覆盖）方法，按正确顺序调用一系列基本操作",
+      "识别基本操作：将算法拆分为步骤——将必须实现的步骤标记为抽象方法，可选步骤标记为带默认实现的钩子方法",
+      "实现具体子类：只覆盖不同的基本操作，保持基类中的整体算法结构不变",
+      "使用钩子方法实现可选行为：在基类中提供空的或无操作的钩子实现，使子类可以在定义的扩展点选择性地扩展行为",
+      "当可变性增长时倾向组合：当可覆盖步骤数量激增时，考虑用注入单一模板类的策略对象替代继承"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flowchart",
+    "related": [
+      "strategy-pattern",
+      "solid-principles",
+      "factory-method-pattern"
+    ],
+    "tags": [
+      "gof",
+      "behavioral",
+      "design-patterns",
+      "inheritance",
+      "oop"
+    ],
+    "origin_author": "Gamma, Helm, Johnson, Vlissides, 1994",
+    "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
+    "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
+    "complexity": "beginner",
+    "when_to_use": [
+      "Multiple subclasses share the same algorithm structure but differ in one or more concrete steps",
+      "You want to enforce a fixed sequence of operations while allowing flexibility at specific extension points",
+      "Eliminating code duplication across related classes by pulling the invariant parts into a common base"
+    ],
+    "when_to_use_zh": [
+      "多个子类共享相同的算法结构，但在一个或多个具体步骤上有所不同",
+      "需要强制执行固定的操作顺序，同时允许在特定扩展点灵活处理",
+      "通过将不变部分提取到公共基类中，消除相关类之间的代码重复"
+    ],
+    "core_concepts": [
+      "Template method: the invariant algorithm skeleton defined in the base class as a final method that orchestrates calls to primitive operations",
+      "Primitive operations: abstract or hook methods that represent the variable parts of the algorithm; subclasses override these to specialize behavior",
+      "Hollywood Principle: the base class calls subclass methods, not the other way around — high-level components control flow and low-level components fill in details"
+    ],
+    "core_concepts_zh": [
+      "模板方法：在基类中定义为 final 方法的不变算法骨架，负责编排对基本操作的调用",
+      "基本操作：代表算法可变部分的抽象方法或钩子方法；子类通过覆盖这些方法来专门化行为",
+      "好莱坞原则：基类调用子类方法，而非反过来——高层组件控制流程，低层组件填充细节"
+    ],
+    "timeline": [
+      [
+        "1994",
+        "GoF formalize Template Method as a behavioral pattern, observing it was already widely used in object-oriented frameworks"
+      ],
+      [
+        "2000",
+        "Java AWT and Swing adopt Template Method extensively in component lifecycle callbacks (paint, update, validate)"
+      ],
+      [
+        "2005",
+        "JUnit test framework uses Template Method in TestCase, with setUp() and tearDown() as hook methods around each test"
+      ],
+      [
+        "2015",
+        "Modern frameworks favor composition and lambda callbacks over inheritance-based template methods to reduce coupling"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "1994",
+        "GoF 将模板方法正式化为行为型模式，注意到它已在面向对象框架中被广泛使用"
+      ],
+      [
+        "2000",
+        "Java AWT 和 Swing 在组件生命周期回调（paint、update、validate）中大量采用模板方法"
+      ],
+      [
+        "2005",
+        "JUnit 测试框架在 TestCase 中使用模板方法，setUp() 和 tearDown() 作为每个测试前后的钩子方法"
+      ],
+      [
+        "2015",
+        "现代框架倾向于使用组合和 lambda 回调而非基于继承的模板方法，以降低耦合"
+      ]
+    ],
+    "dos": [
+      "Do declare the template method final to prevent subclasses from accidentally breaking the algorithm invariant",
+      "Do minimize the number of abstract steps to reduce the implementation burden on concrete subclasses",
+      "Do document the intended contract of each primitive operation so subclass authors understand what invariants they must preserve"
+    ],
+    "dos_zh": [
+      "将模板方法声明为 final，防止子类意外破坏算法不变量",
+      "最小化抽象步骤的数量，减少具体子类的实现负担",
+      "记录每个基本操作的预期契约，使子类作者了解必须保持哪些不变量"
+    ],
+    "donts": [
+      "Don't override the template method in subclasses — doing so defeats the entire purpose of the pattern and leads to divergent algorithm variants",
+      "Don't create deep inheritance hierarchies using Template Method because they become brittle and hard to understand as the hierarchy grows",
+      "Don't use Template Method when the varying behavior is unrelated to a shared algorithm structure — Strategy composition is more appropriate"
+    ],
+    "donts_zh": [
+      "不要在子类中覆盖模板方法——这样做违背了模式的整体目的，导致算法变体分歧",
+      "不要使用模板方法创建深度继承层次结构，因为随着层次结构的增长，它们会变得脆弱且难以理解",
+      "当可变行为与共享算法结构无关时，不要使用模板方法——策略组合更为合适"
+    ],
+    "case_study_company": "JUnit",
+    "case_study": "JUnit's TestCase class is a textbook Template Method implementation. The runBare() method is the template — it calls setUp(), then run(), then tearDown() in a guaranteed sequence regardless of what happens inside the test. Test authors override only setUp() and tearDown() with their specific fixture logic, while JUnit controls the lifecycle. This allowed thousands of test classes to implement consistent setup/teardown behavior without duplicating the error-handling and lifecycle management code that JUnit provides centrally.",
+    "case_study_zh": "JUnit 的 TestCase 类是模板方法的教科书式实现。runBare() 方法是模板——它以固定顺序调用 setUp()、run()、tearDown()，无论测试内部发生什么。测试作者只需用特定的固件逻辑覆盖 setUp() 和 tearDown()，而 JUnit 控制生命周期。这使数千个测试类能够实现一致的 setup/teardown 行为，而无需重复 JUnit 集中提供的错误处理和生命周期管理代码。",
+    "when_not_to_use": [
+      "When behavior varies along multiple independent dimensions simultaneously — use Strategy objects composed together instead",
+      "When the algorithm steps have no natural fixed ordering and callers need full control over sequencing",
+      "When the codebase favors functional programming where higher-order functions achieve the same result without inheritance"
+    ],
+    "when_not_to_use_zh": [
+      "当行为同时沿多个独立维度变化时——改用组合在一起的策略对象",
+      "当算法步骤没有自然的固定顺序，且调用方需要完全控制排序时",
+      "当代码库倾向函数式编程，高阶函数可以在不使用继承的情况下达到相同效果时"
+    ],
+    "adopters": [
+      "JUnit (TestCase lifecycle)",
+      "Java AWT / Swing",
+      "Spring (JdbcTemplate)",
+      "Android Activity lifecycle"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "reusability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+    "secondary_sources": [
+      "Freeman, E., Robson, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+      "Kerievsky, J. (2004). \"Refactoring to Patterns\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "strategy-pattern",
+        "type": "alternative"
+      },
+      {
+        "slug": "factory-method-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 234,
+    "name": "State Pattern",
+    "name_zh": "状态模式",
+    "slug": "state-pattern",
+    "category": "coding",
+    "desc": "Allow object behavior to change automatically when its internal state changes",
+    "desc_zh": "允许对象在内部状态改变时自动改变其行为，使其看起来像改变了类",
+    "steps": [
+      "Identify the states: enumerate all distinct states the context object can be in and the transitions between them",
+      "Define the State interface: declare all context-behavior methods that vary by state; every concrete state must implement this interface",
+      "Implement Concrete State classes: one class per state, each implementing the behavior appropriate to that state and triggering transitions by calling context.setState() when conditions are met",
+      "Configure the Context class: hold a reference to the current State object, delegate behavior calls to it, and expose setState() so state objects can drive transitions",
+      "Initialize and transition: set the initial state in the Context constructor and let the state machine run by having concrete states or the context trigger transitions in response to events"
+    ],
+    "steps_zh": [
+      "识别状态：枚举上下文对象可能处于的所有不同状态及其转换关系",
+      "定义状态接口：声明所有随状态变化的上下文行为方法；每个具体状态必须实现此接口",
+      "实现具体状态类：每个状态一个类，各自实现该状态下的适当行为，并在满足条件时通过调用 context.setState() 触发转换",
+      "配置上下文类：持有对当前状态对象的引用，将行为调用委托给它，并暴露 setState() 使状态对象能驱动转换",
+      "初始化和转换：在上下文构造函数中设置初始状态，让状态机运行，由具体状态或上下文响应事件触发转换"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flowchart",
+    "related": [
+      "strategy-pattern",
+      "command-pattern",
+      "observer-pattern"
+    ],
+    "tags": [
+      "gof",
+      "behavioral",
+      "design-patterns",
+      "state-machine",
+      "oop"
+    ],
+    "origin_author": "Gamma, Helm, Johnson, Vlissides, 1994",
+    "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
+    "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "An object's behavior depends heavily on its current state and must change at runtime as state transitions occur",
+      "Large switch/if-else blocks handling state-dependent logic are becoming hard to maintain and extend",
+      "Modeling workflows, protocol parsers, UI wizards, or game characters with distinct operational modes"
+    ],
+    "when_to_use_zh": [
+      "对象的行为严重依赖于当前状态，并且必须随运行时状态转换而改变",
+      "处理状态相关逻辑的大型 switch/if-else 块变得难以维护和扩展",
+      "对工作流、协议解析器、UI 向导或具有不同操作模式的游戏角色进行建模"
+    ],
+    "core_concepts": [
+      "Context: the object whose behavior varies; it delegates all state-dependent requests to the current State object and holds a reference that can be swapped at runtime",
+      "State interface: defines the contract for all behaviors that differ across states, ensuring the Context can treat all states uniformly",
+      "Concrete States: encapsulate the behavior and transition logic for one specific state, replacing large conditionals with focused, single-responsibility classes"
+    ],
+    "core_concepts_zh": [
+      "上下文：行为发生变化的对象；它将所有状态相关请求委托给当前状态对象，并持有可在运行时交换的引用",
+      "状态接口：定义跨状态不同的所有行为契约，确保上下文可以统一处理所有状态",
+      "具体状态：封装一个特定状态的行为和转换逻辑，用专注、单一职责的类替代大型条件语句"
+    ],
+    "timeline": [
+      [
+        "1994",
+        "GoF introduce State as a behavioral pattern, noting its close relationship with finite-state machines from computer science"
+      ],
+      [
+        "2000",
+        "Game development community adopts State pattern extensively for character AI, game modes, and UI screen transitions"
+      ],
+      [
+        "2010",
+        "Statecharts and tools like XState bring hierarchical and parallel state machines to frontend and Node.js applications"
+      ],
+      [
+        "2020",
+        "XState v4 gains mainstream adoption in React ecosystems, reviving interest in explicit state machine modeling for UI"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "1994",
+        "GoF 引入状态作为行为型模式，注意到其与计算机科学中有限状态机的密切关系"
+      ],
+      [
+        "2000",
+        "游戏开发社区广泛采用状态模式用于角色 AI、游戏模式和 UI 屏幕转换"
+      ],
+      [
+        "2010",
+        "状态图和 XState 等工具将层次化和并行状态机引入前端和 Node.js 应用"
+      ],
+      [
+        "2020",
+        "XState v4 在 React 生态系统中获得主流采用，重新激发了对 UI 显式状态机建模的兴趣"
+      ]
+    ],
+    "dos": [
+      "Do let State objects know about each other or use named state constants on the Context to keep transitions explicit and auditable",
+      "Do keep each Concrete State class small and focused on one state's behavior to preserve single-responsibility",
+      "Do use State pattern alongside event logging to create an audit trail of every state transition for debugging and monitoring"
+    ],
+    "dos_zh": [
+      "允许状态对象相互了解，或在上下文上使用命名状态常量，使转换显式且可审计",
+      "保持每个具体状态类小巧，专注于一个状态的行为，以保持单一职责",
+      "将状态模式与事件日志记录结合使用，为每次状态转换创建审计追踪，便于调试和监控"
+    ],
+    "donts": [
+      "Don't scatter transition logic across both State classes and the Context — choose one location and keep it consistent",
+      "Don't create a new State object on every transition if State objects are stateless — share flyweight instances to avoid allocation overhead",
+      "Don't use State pattern for simple two-state toggles; a boolean field is clearer and less over-engineered"
+    ],
+    "donts_zh": [
+      "不要将转换逻辑分散在状态类和上下文两者中——选择一个位置并保持一致",
+      "如果状态对象是无状态的，不要在每次转换时创建新的状态对象——共享享元实例以避免分配开销",
+      "不要对简单的双状态切换使用状态模式；布尔字段更清晰，过度设计更少"
+    ],
+    "case_study_company": "XState / Stately",
+    "case_study": "XState, the JavaScript state machine library, applies the State pattern at scale in frontend applications. A traffic-light component modeled in XState has explicit states (red, yellow, green) with guarded transitions, entry/exit actions, and parallel states for pedestrian signals. Netflix uses XState to manage the complex state of their video player — buffering, playing, paused, error, ad-break — ensuring that user interactions like clicking play during buffering produce predictable, testable outcomes rather than ad hoc if/else chains.",
+    "case_study_zh": "XState（JavaScript 状态机库）在前端应用中大规模应用状态模式。用 XState 建模的交通灯组件具有显式状态（红、黄、绿），带守卫的转换、进入/退出动作以及行人信号的并行状态。Netflix 使用 XState 管理其视频播放器的复杂状态——缓冲、播放、暂停、错误、广告时段——确保在缓冲期间点击播放等用户交互产生可预测、可测试的结果，而非临时的 if/else 链。",
+    "when_not_to_use": [
+      "Objects with only one or two states where a simple boolean or enum is sufficient and self-documenting",
+      "When state transitions are rare and the complexity of multiple state classes outweighs the maintenance benefit",
+      "Stateless services or pure functions that have no mutable internal state to manage"
+    ],
+    "when_not_to_use_zh": [
+      "只有一两个状态的对象，简单的布尔值或枚举就足够且自文档化",
+      "当状态转换很少，多个状态类的复杂性超过维护收益时",
+      "无状态服务或纯函数，没有可变内部状态需要管理"
+    ],
+    "adopters": [
+      "XState / Stately",
+      "Unity (game AI state machines)",
+      "Apache Commons SCXML",
+      "Redux (reducer as state machine)"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "reliability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+    "secondary_sources": [
+      "Freeman, E., Robson, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+      "Samek, M. (2008). \"Practical UML Statecharts in C/C++, 2nd ed.\". Newnes."
+    ],
+    "typed_relations": [
+      {
+        "slug": "strategy-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "command-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "observer-pattern",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 235,
+    "name": "Repository Pattern",
+    "name_zh": "仓储模式",
+    "slug": "repository-pattern",
+    "category": "coding",
+    "desc": "Mediate between domain model and data mapping layers using a collection-like interface",
+    "desc_zh": "使用类集合接口在领域模型与数据映射层之间进行中介，解耦业务逻辑与数据访问",
+    "steps": [
+      "Define the repository interface in the domain layer: express data-access needs as domain-language methods (findById, findByEmail, save, remove) without any persistence technology details",
+      "Implement a concrete repository: create an infrastructure-layer class that satisfies the interface using an ORM, query builder, or raw SQL, translating between domain objects and persistence records",
+      "Use the repository in application services: inject the repository interface into use cases or application services; never let domain logic call persistence APIs directly",
+      "Add a Unit of Work if needed: coordinate multiple repositories under a single transaction boundary so that all domain changes within a use case commit or roll back atomically",
+      "Test with in-memory fakes: implement a lightweight in-memory version of the repository interface for unit tests, exercising domain logic without database dependencies"
+    ],
+    "steps_zh": [
+      "在领域层定义仓储接口：用领域语言方法（findById、findByEmail、save、remove）表达数据访问需求，不涉及任何持久化技术细节",
+      "实现具体仓储：创建基础设施层类，使用 ORM、查询构建器或原始 SQL 满足接口，在领域对象和持久化记录之间进行转换",
+      "在应用服务中使用仓储：将仓储接口注入用例或应用服务；永远不让领域逻辑直接调用持久化 API",
+      "如需要则添加工作单元：在单一事务边界下协调多个仓储，使一个用例内的所有领域更改原子性地提交或回滚",
+      "使用内存仿冒对象进行测试：为仓储接口实现轻量级内存版本，在不依赖数据库的情况下测试领域逻辑"
+    ],
+    "ai_relevant": false,
+    "viz_type": "layered",
+    "related": [
+      "unit-of-work-pattern",
+      "data-mapper-pattern",
+      "dependency-injection"
+    ],
+    "tags": [
+      "fowler",
+      "poeaa",
+      "data-access",
+      "domain-driven-design",
+      "persistence"
+    ],
+    "origin_author": "Martin Fowler, 2002",
+    "origin_source": "Patterns of Enterprise Application Architecture",
+    "origin_source_zh": "《企业应用架构模式》",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Domain logic must be unit-tested without a real database, requiring an abstraction over persistence",
+      "The application may need to switch storage backends (SQL to NoSQL, or file to cloud) without changing domain code",
+      "Centralizing query logic prevents the same complex query from being duplicated across multiple services or controllers"
+    ],
+    "when_to_use_zh": [
+      "领域逻辑必须在没有真实数据库的情况下进行单元测试，需要对持久化进行抽象",
+      "应用可能需要切换存储后端（SQL 到 NoSQL，或文件到云），而无需更改领域代码",
+      "集中查询逻辑可防止相同的复杂查询在多个服务或控制器中重复"
+    ],
+    "core_concepts": [
+      "Collection semantics: the repository presents domain objects as if they live in an in-memory collection; callers add, remove, and query without knowing the underlying store",
+      "Domain language interface: method names reflect the ubiquitous language of the domain (findActiveCustomers, not SELECT * FROM customers WHERE active=1)",
+      "Persistence ignorance: domain objects and application services are unaware of the database schema, ORM, or storage technology — only the concrete repository implementation knows"
+    ],
+    "core_concepts_zh": [
+      "集合语义：仓储将领域对象呈现为存在于内存集合中；调用方可添加、删除和查询，而不知道底层存储",
+      "领域语言接口：方法名反映领域的通用语言（findActiveCustomers，而非 SELECT * FROM customers WHERE active=1）",
+      "持久化无知：领域对象和应用服务不知道数据库模式、ORM 或存储技术——只有具体仓储实现才知道"
+    ],
+    "timeline": [
+      [
+        "2002",
+        "Martin Fowler formalizes Repository in PoEAA as a domain-layer pattern that abstracts the data mapping layer"
+      ],
+      [
+        "2004",
+        "Eric Evans' Domain-Driven Design elevates Repository to a core DDD tactical pattern, pairing it with Aggregate roots"
+      ],
+      [
+        "2010",
+        "Spring Data auto-generates Repository implementations from interface method names, drastically reducing boilerplate"
+      ],
+      [
+        "2020",
+        "Repository becomes standard in Clean Architecture and Hexagonal Architecture as the primary persistence port/adapter boundary"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2002",
+        "Martin Fowler 在 PoEAA 中将仓储正式化为领域层模式，抽象数据映射层"
+      ],
+      [
+        "2004",
+        "Eric Evans 的《领域驱动设计》将仓储提升为核心 DDD 战术模式，与聚合根配对使用"
+      ],
+      [
+        "2010",
+        "Spring Data 从接口方法名自动生成仓储实现，大幅减少样板代码"
+      ],
+      [
+        "2020",
+        "仓储成为整洁架构和六边形架构中的标准，作为主要的持久化端口/适配器边界"
+      ]
+    ],
+    "dos": [
+      "Do define repository interfaces in the domain layer and implementations in the infrastructure layer to enforce the dependency rule",
+      "Do use repositories per Aggregate root only — querying across aggregate boundaries should go through a dedicated query service or read model",
+      "Do provide in-memory repository fakes alongside production implementations so teams can write fast, database-free unit tests"
+    ],
+    "dos_zh": [
+      "在领域层定义仓储接口，在基础设施层定义实现，以强制执行依赖规则",
+      "仅对聚合根使用仓储——跨聚合边界的查询应通过专用查询服务或读模型进行",
+      "提供内存仓储仿冒对象与生产实现并存，使团队能够编写快速、无数据库依赖的单元测试"
+    ],
+    "donts": [
+      "Don't expose IQueryable or database-specific query builders through the repository interface — it leaks the persistence abstraction into the domain",
+      "Don't create one mega-repository for the entire application; scope each repository to its aggregate root to keep responsibilities focused",
+      "Don't bypass the repository by directly calling an ORM or SQL from application services — it defeats the abstraction and couples domain logic to infrastructure"
+    ],
+    "donts_zh": [
+      "不要通过仓储接口暴露 IQueryable 或数据库特定的查询构建器——这会将持久化抽象泄漏到领域中",
+      "不要为整个应用创建一个巨型仓储；将每个仓储限定到其聚合根，保持职责专注",
+      "不要通过直接从应用服务调用 ORM 或 SQL 来绕过仓储——这会破坏抽象并将领域逻辑与基础设施耦合"
+    ],
+    "case_study_company": "Spring Data / Pivotal",
+    "case_study": "Spring Data's CrudRepository and JpaRepository interfaces are the most widely used Repository pattern implementation in the Java ecosystem. Developers declare an interface extending JpaRepository<Customer, Long>, annotate query methods with @Query or follow naming conventions like findByEmailAndActiveTrue(), and Spring Data generates the full implementation at startup. This eliminates thousands of lines of JDBC/JPA boilerplate, while the interface boundary allows teams to swap Spring Data JPA for Spring Data MongoDB or an in-memory fake without changing a single line of service code.",
+    "case_study_zh": "Spring Data 的 CrudRepository 和 JpaRepository 接口是 Java 生态系统中使用最广泛的仓储模式实现。开发者声明一个扩展 JpaRepository<Customer, Long> 的接口，用 @Query 注解查询方法或遵循 findByEmailAndActiveTrue() 等命名约定，Spring Data 在启动时生成完整实现。这消除了数千行 JDBC/JPA 样板代码，而接口边界允许团队将 Spring Data JPA 换成 Spring Data MongoDB 或内存仿冒对象，而无需更改任何服务代码。",
+    "when_not_to_use": [
+      "Simple CRUD applications with no domain logic where an Active Record pattern or direct ORM calls are simpler and equally testable",
+      "Read-heavy reporting scenarios where complex JOIN queries benefit from direct SQL or a dedicated CQRS read model rather than repository abstractions",
+      "Microservices that own a single table with trivial access patterns where the repository indirection adds no value"
+    ],
+    "when_not_to_use_zh": [
+      "没有领域逻辑的简单 CRUD 应用，活动记录模式或直接 ORM 调用更简单且同样可测试",
+      "读密集型报告场景，复杂 JOIN 查询受益于直接 SQL 或专用 CQRS 读模型，而非仓储抽象",
+      "拥有单个表且访问模式简单的微服务，仓储间接层没有带来任何价值"
+    ],
+    "adopters": [
+      "Spring Data (Java)",
+      "Entity Framework Core (.NET)",
+      "Laravel Eloquent (PHP)",
+      "TypeORM / MikroORM (Node.js)"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "testability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Fowler, M. (2002). \"Patterns of Enterprise Application Architecture\". Addison-Wesley.",
+    "secondary_sources": [
+      "Evans, E. (2003). \"Domain-Driven Design: Tackling Complexity in the Heart of Software\". Addison-Wesley.",
+      "Vernon, V. (2013). \"Implementing Domain-Driven Design\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "unit-of-work-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "data-mapper-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "dependency-injection",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 236,
+    "name": "Unit of Work Pattern",
+    "name_zh": "工作单元模式",
+    "slug": "unit-of-work-pattern",
+    "category": "coding",
+    "desc": "Track object changes during a business transaction and commit them as a single atomic batch",
+    "desc_zh": "在业务事务期间跟踪对象变更，并将其作为单一原子批次提交到数据库",
+    "steps": [
+      "Open a Unit of Work: begin a new UoW instance at the start of each business operation, representing a single logical transaction boundary",
+      "Register changes: as domain operations occur, register new, dirty (modified), and removed objects with the UoW rather than writing to the database immediately",
+      "Coordinate repositories: repositories created within the same UoW share its identity map and change tracker to ensure consistency across aggregate boundaries",
+      "Commit atomically: when the business operation completes successfully, call commit() to flush all changes in a single database transaction — insert new, update dirty, delete removed",
+      "Roll back on failure: if any step throws, call rollback() to discard all tracked changes and leave the database in its pre-operation state"
+    ],
+    "steps_zh": [
+      "打开工作单元：在每个业务操作开始时创建一个新的 UoW 实例，代表单一的逻辑事务边界",
+      "注册变更：随着领域操作的发生，将新建的、脏的（已修改的）和已删除的对象注册到 UoW，而非立即写入数据库",
+      "协调仓储：在同一 UoW 内创建的仓储共享其身份映射和变更跟踪器，确保跨聚合边界的一致性",
+      "原子提交：当业务操作成功完成时，调用 commit() 在单一数据库事务中刷新所有变更——插入新建、更新脏的、删除已删除的",
+      "失败时回滚：如果任何步骤抛出异常，调用 rollback() 丢弃所有跟踪的变更，使数据库保持操作前的状态"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flowchart",
+    "related": [
+      "repository-pattern",
+      "data-mapper-pattern",
+      "solid-principles"
+    ],
+    "tags": [
+      "fowler",
+      "poeaa",
+      "transactions",
+      "data-access",
+      "persistence"
+    ],
+    "origin_author": "Martin Fowler, 2002",
+    "origin_source": "Patterns of Enterprise Application Architecture",
+    "origin_source_zh": "《企业应用架构模式》",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "A single business operation modifies multiple domain objects or aggregates that must all succeed or fail together",
+      "You need to batch database writes for performance, reducing round-trips from N individual inserts to one transaction",
+      "Preventing partial updates that would leave the system in an inconsistent state if an error occurs mid-operation"
+    ],
+    "when_to_use_zh": [
+      "单一业务操作修改多个领域对象或聚合，它们必须全部成功或全部失败",
+      "需要批量数据库写入以提升性能，将 N 个单独插入减少到一个事务",
+      "防止在操作中途发生错误时留下不一致状态的部分更新"
+    ],
+    "core_concepts": [
+      "Change tracking: the UoW maintains three lists — new objects (to INSERT), dirty objects (to UPDATE), and removed objects (to DELETE) — populated as domain operations mutate state",
+      "Identity map: a cache keyed by entity ID within the UoW scope ensures the same database row is loaded only once per transaction, preventing conflicting in-memory copies",
+      "Atomic commit: all registered changes are flushed inside a single database transaction; if the transaction fails the UoW discards the identity map and change lists"
+    ],
+    "core_concepts_zh": [
+      "变更跟踪：UoW 维护三个列表——新对象（需 INSERT）、脏对象（需 UPDATE）和已删除对象（需 DELETE）——在领域操作改变状态时填充",
+      "身份映射：在 UoW 范围内以实体 ID 为键的缓存确保每个事务只加载一次相同的数据库行，防止内存中的冲突副本",
+      "原子提交：所有注册的变更在单一数据库事务中刷新；如果事务失败，UoW 丢弃身份映射和变更列表"
+    ],
+    "timeline": [
+      [
+        "2002",
+        "Martin Fowler formalizes Unit of Work in PoEAA, describing it as a pattern already implemented by ORMs like TopLink"
+      ],
+      [
+        "2006",
+        "Hibernate's Session and .NET's DataContext implement UoW transparently, making the pattern invisible but ubiquitous"
+      ],
+      [
+        "2012",
+        "Entity Framework DbContext becomes the canonical .NET UoW implementation, combining repository and UoW in one object"
+      ],
+      [
+        "2018",
+        "CQRS architectures use explicit UoW for the write side while the read side bypasses it entirely for performance"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2002",
+        "Martin Fowler 在 PoEAA 中将工作单元正式化，描述它为 TopLink 等 ORM 已实现的模式"
+      ],
+      [
+        "2006",
+        "Hibernate 的 Session 和 .NET 的 DataContext 透明地实现了 UoW，使该模式不可见但无处不在"
+      ],
+      [
+        "2012",
+        "Entity Framework 的 DbContext 成为规范的 .NET UoW 实现，将仓储和 UoW 合并在一个对象中"
+      ],
+      [
+        "2018",
+        "CQRS 架构在写端使用显式 UoW，读端为了性能完全绕过它"
+      ]
+    ],
+    "dos": [
+      "Do scope each Unit of Work to a single business request or use case — long-lived UoW sessions accumulate stale state and lock database rows unnecessarily",
+      "Do let the application service control commit/rollback so that transaction boundaries align with business operation boundaries, not individual repository calls",
+      "Do combine Unit of Work with the Repository pattern so repositories share the same UoW session and changes are flushed together"
+    ],
+    "dos_zh": [
+      "将每个工作单元限定在单一业务请求或用例上——长期存活的 UoW 会话会积累过时状态并不必要地锁定数据库行",
+      "让应用服务控制提交/回滚，使事务边界与业务操作边界对齐，而非单个仓储调用",
+      "将工作单元与仓储模式结合使用，使仓储共享同一 UoW 会话，变更一起刷新"
+    ],
+    "donts": [
+      "Don't use a single UoW for an entire user session or HTTP request that spans multiple unrelated business operations — this creates large, hard-to-debug transactions",
+      "Don't call commit() multiple times within a single UoW; design the boundary so one business operation maps to one commit",
+      "Don't expose the UoW directly to domain objects — domain logic should not know or care about transaction management"
+    ],
+    "donts_zh": [
+      "不要对跨越多个不相关业务操作的整个用户会话或 HTTP 请求使用单一 UoW——这会创建大型、难以调试的事务",
+      "不要在单一 UoW 中多次调用 commit()；设计边界使一个业务操作映射到一次提交",
+      "不要将 UoW 直接暴露给领域对象——领域逻辑不应知道或关心事务管理"
+    ],
+    "case_study_company": "Entity Framework / Microsoft",
+    "case_study": "Entity Framework Core's DbContext is the most widely used Unit of Work implementation in the .NET ecosystem. When an ASP.NET controller action updates a customer's address and creates an order in the same request, both operations are performed on in-memory entity objects tracked by a single DbContext. Only when SaveChanges() is called does EF Core analyze the change tracker, generate the minimal SQL (UPDATE + INSERT), and execute both statements inside a single transaction. If the INSERT fails, the entire transaction rolls back, leaving no partial state — exactly the atomicity guarantee Unit of Work provides.",
+    "case_study_zh": "Entity Framework Core 的 DbContext 是 .NET 生态系统中使用最广泛的工作单元实现。当 ASP.NET 控制器操作在同一请求中更新客户地址并创建订单时，两个操作都在由单一 DbContext 跟踪的内存实体对象上执行。只有调用 SaveChanges() 时，EF Core 才分析变更跟踪器，生成最小 SQL（UPDATE + INSERT），并在单一事务中执行两条语句。如果 INSERT 失败，整个事务回滚，不留下任何部分状态——这正是工作单元提供的原子性保证。",
+    "when_not_to_use": [
+      "Event-sourced systems where the write model stores immutable events rather than mutable entity state, making change tracking irrelevant",
+      "Read-only query services that never modify state and have no need for transaction coordination",
+      "Simple single-entity operations where a single repository save within its own transaction is sufficient"
+    ],
+    "when_not_to_use_zh": [
+      "事件溯源系统，写模型存储不可变事件而非可变实体状态，使变更跟踪变得无关",
+      "从不修改状态且不需要事务协调的只读查询服务",
+      "简单的单实体操作，在其自身事务中单个仓储保存就足够了"
+    ],
+    "adopters": [
+      "Entity Framework Core (.NET)",
+      "Hibernate / JPA (Java)",
+      "SQLAlchemy (Python)",
+      "Doctrine ORM (PHP)"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "reliability",
+      "maintainability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Fowler, M. (2002). \"Patterns of Enterprise Application Architecture\". Addison-Wesley.",
+    "secondary_sources": [
+      "Evans, E. (2003). \"Domain-Driven Design: Tackling Complexity in the Heart of Software\". Addison-Wesley.",
+      "Haack, P. (2011). \"Repository and Unit of Work Pattern\". haacked.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "repository-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "data-mapper-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 237,
+    "name": "Data Mapper Pattern",
+    "name_zh": "数据映射器模式",
+    "slug": "data-mapper-pattern",
+    "category": "coding",
+    "desc": "Transfer data between in-memory objects and a database while keeping them independent of each other",
+    "desc_zh": "在内存对象与数据库之间传输数据，同时保持两者相互独立，领域对象对持久化完全无知",
+    "steps": [
+      "Design persistence-ignorant domain objects: model domain classes using only business logic and in-memory state, with no database annotations, base class inheritance, or SQL awareness",
+      "Create the Mapper class: implement a dedicated class (or ORM mapping configuration) responsible for SELECT, INSERT, UPDATE, DELETE and for translating between database rows and domain objects",
+      "Map columns to fields: define explicit mappings from table columns to object properties, handling type conversions, naming differences, and value object composition",
+      "Handle identity and lazy loading: the mapper manages object identity (avoiding duplicate in-memory instances for the same row) and can support lazy-loading of associations via proxies",
+      "Integrate with Unit of Work: register loaded and mutated objects with a Unit of Work so the mapper's write operations are batched into a single transaction on commit"
+    ],
+    "steps_zh": [
+      "设计持久化无知的领域对象：使用仅包含业务逻辑和内存状态的领域类，没有数据库注解、基类继承或 SQL 意识",
+      "创建映射器类：实现专用类（或 ORM 映射配置），负责 SELECT、INSERT、UPDATE、DELETE 以及在数据库行和领域对象之间进行转换",
+      "将列映射到字段：定义从表列到对象属性的显式映射，处理类型转换、命名差异和值对象组合",
+      "处理标识和懒加载：映射器管理对象标识（避免同一行在内存中有重复实例），并可通过代理支持关联的懒加载",
+      "与工作单元集成：将加载的和变更的对象注册到工作单元，使映射器的写操作在提交时批处理到单一事务中"
+    ],
+    "ai_relevant": false,
+    "viz_type": "layered",
+    "related": [
+      "repository-pattern",
+      "unit-of-work-pattern",
+      "solid-principles"
+    ],
+    "tags": [
+      "fowler",
+      "poeaa",
+      "data-access",
+      "orm",
+      "persistence"
+    ],
+    "origin_author": "Martin Fowler, 2002",
+    "origin_source": "Patterns of Enterprise Application Architecture",
+    "origin_source_zh": "《企业应用架构模式》",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Domain objects are complex and their structure diverges significantly from the relational schema (impedance mismatch)",
+      "Domain objects must remain free of persistence concerns so they can be tested, serialized, or reused in non-database contexts",
+      "The database schema is legacy or independently owned and cannot be changed to match the object model"
+    ],
+    "when_to_use_zh": [
+      "领域对象很复杂，其结构与关系模式显著不同（阻抗不匹配）",
+      "领域对象必须保持对持久化关注点的自由，以便在非数据库上下文中测试、序列化或重用",
+      "数据库模式是遗留的或独立拥有的，无法更改以匹配对象模型"
+    ],
+    "core_concepts": [
+      "Persistence ignorance: domain objects know nothing about the database — no SQL, no annotations, no base ORM classes — making them pure expressions of business rules",
+      "Bidirectional translation: the mapper reads rows and constructs domain objects (hydration), and reads domain objects to produce SQL (dehydration), keeping both sides clean",
+      "Impedance mismatch resolution: the mapper bridges structural differences between the relational world (tables, joins, foreign keys) and the object world (inheritance, associations, value objects)"
+    ],
+    "core_concepts_zh": [
+      "持久化无知：领域对象对数据库一无所知——没有 SQL、没有注解、没有 ORM 基类——使其成为业务规则的纯粹表达",
+      "双向转换：映射器读取行并构造领域对象（水合），以及读取领域对象生成 SQL（脱水），保持两侧整洁",
+      "阻抗不匹配解决：映射器桥接关系世界（表、连接、外键）与对象世界（继承、关联、值对象）之间的结构差异"
+    ],
+    "timeline": [
+      [
+        "2002",
+        "Fowler formalizes Data Mapper in PoEAA, contrasting it with Active Record and noting its greater complexity but higher isolation"
+      ],
+      [
+        "2006",
+        "Hibernate becomes the dominant Java Data Mapper ORM, inspiring similar frameworks in Python (SQLAlchemy) and PHP (Doctrine)"
+      ],
+      [
+        "2010",
+        "NHibernate and then Entity Framework bring Data Mapper semantics to .NET, with EF eventually adding Code First and fluent mapping APIs"
+      ],
+      [
+        "2020",
+        "Micro-ORMs like Dapper show that hand-written SQL with explicit object mapping can outperform full ORM mappers for read-heavy workloads"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2002",
+        "Fowler 在 PoEAA 中将数据映射器正式化，将其与活动记录对比，注意到其更高的复杂性但也更高的隔离性"
+      ],
+      [
+        "2006",
+        "Hibernate 成为主流 Java 数据映射器 ORM，启发了 Python（SQLAlchemy）和 PHP（Doctrine）中的类似框架"
+      ],
+      [
+        "2010",
+        "NHibernate 以及后来的 Entity Framework 将数据映射器语义引入 .NET，EF 最终添加了 Code First 和流式映射 API"
+      ],
+      [
+        "2020",
+        "Dapper 等微型 ORM 表明，对于读密集型工作负载，手写 SQL 配合显式对象映射可以优于完整 ORM 映射器"
+      ]
+    ],
+    "dos": [
+      "Do keep domain classes free of any persistence annotations or base class requirements — pure POJOs/POCOs enable the highest degree of testability",
+      "Do version and test the mapping configurations independently to catch schema-migration regressions before they reach production",
+      "Do consider using a micro-ORM with explicit SQL for read models where the full Data Mapper overhead is unnecessary"
+    ],
+    "dos_zh": [
+      "保持领域类没有任何持久化注解或基类要求——纯 POJO/POCO 实现最高程度的可测试性",
+      "独立对映射配置进行版本控制和测试，在模式迁移回归到达生产环境之前捕获它们",
+      "考虑对读模型使用带显式 SQL 的微型 ORM，在完整数据映射器开销不必要的地方"
+    ],
+    "donts": [
+      "Don't let the mapper bleed into the domain layer — mapping concerns (RowMapper, ResultSetExtractor) belong exclusively in the infrastructure layer",
+      "Don't use Data Mapper for simple, table-per-class CRUD entities where Active Record provides the same isolation with far less ceremony",
+      "Don't hand-write mappers when a mature ORM covers your schema — manual mappers require significant effort to maintain through schema changes"
+    ],
+    "donts_zh": [
+      "不要让映射器渗入领域层——映射关注点（RowMapper、ResultSetExtractor）专属于基础设施层",
+      "不要将数据映射器用于简单的、每类一表的 CRUD 实体，活动记录以更少的繁文缛节提供相同的隔离",
+      "当成熟的 ORM 涵盖你的模式时，不要手写映射器——手动映射器需要大量精力来维护模式变更"
+    ],
+    "case_study_company": "Hibernate / Red Hat",
+    "case_study": "Hibernate is the most influential Data Mapper implementation, used by millions of Java applications. A Customer domain class has no SQL, no base class, and no Hibernate imports — it is a plain Java object. Hibernate's mapping configuration (XML or JPA annotations in a separate orm.xml) translates between the CUSTOMERS table and the Customer class, handling the one-to-many relationship to Orders, lazy-loading Address as a value object, and managing the identity map to ensure that loading Customer#42 twice in the same session returns the same Java object. This separation allowed Netflix and LinkedIn to evolve domain models and database schemas independently during rapid growth.",
+    "case_study_zh": "Hibernate 是最具影响力的数据映射器实现，被数百万 Java 应用使用。Customer 领域类没有 SQL、没有基类、没有 Hibernate 导入——它是一个普通的 Java 对象。Hibernate 的映射配置（单独的 orm.xml 中的 XML 或 JPA 注解）在 CUSTOMERS 表和 Customer 类之间进行转换，处理与 Orders 的一对多关系，将 Address 懒加载为值对象，并管理身份映射以确保在同一会话中两次加载 Customer#42 返回同一 Java 对象。这种分离使 Netflix 和 LinkedIn 能够在快速增长期间独立演进领域模型和数据库模式。",
+    "when_not_to_use": [
+      "Simple applications where domain classes map one-to-one with tables and Active Record or table gateway is significantly simpler",
+      "Read-only reporting or analytics queries where raw SQL with a thin result mapper is more performant and easier to optimize",
+      "Microservices with a single, small schema that owns fewer than a dozen entities, where the indirection of a full mapper adds little value"
+    ],
+    "when_not_to_use_zh": [
+      "领域类与表一一对应的简单应用，活动记录或表网关明显更简单",
+      "只读报告或分析查询，带薄结果映射器的原始 SQL 性能更好且更易于优化",
+      "拥有不到十几个实体的单一小型模式的微服务，完整映射器的间接层几乎没有价值"
+    ],
+    "adopters": [
+      "Hibernate (Java)",
+      "SQLAlchemy (Python)",
+      "Doctrine ORM (PHP)",
+      "Entity Framework Core (.NET)"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "testability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Fowler, M. (2002). \"Patterns of Enterprise Application Architecture\". Addison-Wesley.",
+    "secondary_sources": [
+      "Bauer, C., King, G. (2006). \"Java Persistence with Hibernate\". Manning Publications.",
+      "Evans, E. (2003). \"Domain-Driven Design: Tackling Complexity in the Heart of Software\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "repository-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "unit-of-work-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 238,
+    "name": "Builder Pattern",
+    "name_zh": "构建器模式",
+    "slug": "builder-pattern",
+    "category": "coding",
+    "desc": "Construct complex objects step by step using a fluent API, separating construction from representation",
+    "desc_zh": "使用流式 API 逐步构建复杂对象，将构建过程与对象表示分离，支持多种表示形式",
+    "steps": [
+      "Identify the complex object: target classes with many constructor parameters (especially optional ones), telescoping constructors, or objects that require multi-step initialization",
+      "Create the Builder class: implement a separate Builder (often a static inner class) with a setter method for each configurable attribute, each returning the Builder itself for chaining",
+      "Add validation in build(): implement a terminal build() method that validates that required fields are set, assembles the final immutable object, and throws if preconditions are violated",
+      "Make the target object immutable: construct the target class so it only accepts a fully built Builder instance, storing all values as final fields accessible via getters",
+      "Introduce a Director (optional): add a Director class for commonly used configurations so clients can produce standard products (e.g., buildMinimalConfig(), buildProductionConfig()) without repeating steps"
+    ],
+    "steps_zh": [
+      "识别复杂对象：针对具有许多构造函数参数（尤其是可选参数）、伸缩式构造函数或需要多步初始化的类",
+      "创建构建器类：实现一个单独的 Builder（通常是静态内部类），为每个可配置属性提供 setter 方法，每个方法返回 Builder 本身以支持链式调用",
+      "在 build() 中添加验证：实现终结方法 build()，验证必填字段已设置，组装最终不可变对象，如违反前置条件则抛出异常",
+      "使目标对象不可变：构造目标类使其只接受完全构建的 Builder 实例，将所有值存储为可通过 getter 访问的 final 字段",
+      "引入 Director（可选）：为常用配置添加 Director 类，使客户端可以生产标准产品（如 buildMinimalConfig()、buildProductionConfig()）而无需重复步骤"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flowchart",
+    "related": [
+      "factory-method-pattern",
+      "solid-principles",
+      "strategy-pattern"
+    ],
+    "tags": [
+      "gof",
+      "creational",
+      "design-patterns",
+      "fluent-api",
+      "immutability"
+    ],
+    "origin_author": "Gamma, Helm, Johnson, Vlissides, 1994",
+    "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software (modernized with fluent API)",
+    "origin_source_zh": "《设计模式：可复用面向对象软件的基础》（以流式 API 现代化）",
+    "complexity": "beginner",
+    "when_to_use": [
+      "A class has four or more constructor parameters, especially when several are optional, making call sites ambiguous and error-prone",
+      "The same construction process should produce different representations (e.g., HTML vs PDF report builders)",
+      "Object initialization requires a specific sequence of steps or validation logic that must not be bypassed"
+    ],
+    "when_to_use_zh": [
+      "一个类有四个或更多构造函数参数，尤其是其中几个是可选的，使调用点模糊且容易出错",
+      "相同的构建过程应该生产不同的表示（如 HTML vs PDF 报告构建器）",
+      "对象初始化需要特定的步骤顺序或验证逻辑，不能被绕过"
+    ],
+    "core_concepts": [
+      "Step-by-step construction: the Builder accumulates configuration through a series of named setter calls, making each parameter's purpose explicit at the call site",
+      "Fluent interface: each setter returns the Builder instance, enabling a readable method-chain syntax that reads like natural language (new PersonBuilder().name(\"Alice\").age(30).build())",
+      "Separation of construction and representation: the Builder isolates complex assembly logic from the product class itself, allowing multiple Builder implementations to produce different product variants"
+    ],
+    "core_concepts_zh": [
+      "逐步构建：构建器通过一系列命名 setter 调用积累配置，使每个参数的用途在调用点显式明确",
+      "流式接口：每个 setter 返回 Builder 实例，支持可读的方法链语法，读起来像自然语言（new PersonBuilder().name(\"Alice\").age(30).build()）",
+      "构建与表示分离：Builder 将复杂的组装逻辑与产品类本身隔离，允许多个 Builder 实现生产不同的产品变体"
+    ],
+    "timeline": [
+      [
+        "1994",
+        "GoF introduce Builder as a creational pattern focused on step-by-step construction with an optional Director to control sequencing"
+      ],
+      [
+        "2001",
+        "Joshua Bloch popularizes the fluent Builder inner-class idiom in Effective Java as a solution to telescoping constructors"
+      ],
+      [
+        "2009",
+        "Lombok's @Builder annotation auto-generates fluent Builder code in Java, making the pattern near-zero boilerplate"
+      ],
+      [
+        "2020",
+        "Kotlin data classes with named parameters and default values reduce the need for Builder in modern JVM code, while Swift uses the pattern for SwiftUI view modifiers"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "1994",
+        "GoF 将构建器作为创建型模式引入，专注于逐步构建，可选 Director 控制顺序"
+      ],
+      [
+        "2001",
+        "Joshua Bloch 在《Effective Java》中推广流式构建器内部类习语，作为伸缩式构造函数的解决方案"
+      ],
+      [
+        "2009",
+        "Lombok 的 @Builder 注解在 Java 中自动生成流式构建器代码，使该模式近乎零样板"
+      ],
+      [
+        "2020",
+        "Kotlin 的命名参数和默认值数据类减少了现代 JVM 代码中对构建器的需求，而 Swift 在 SwiftUI 视图修饰符中使用该模式"
+      ]
+    ],
+    "dos": [
+      "Do make the built product immutable by storing all fields as final and providing only getters — the Builder is the sole mutation point",
+      "Do validate field combinations in build() rather than in individual setters, so validation runs once against the complete configuration",
+      "Do provide sensible defaults for optional fields in the Builder so callers only need to specify what differs from the norm"
+    ],
+    "dos_zh": [
+      "通过将所有字段存储为 final 并只提供 getter 使构建的产品不可变——构建器是唯一的变更点",
+      "在 build() 中验证字段组合而非在单个 setter 中，使验证在完整配置上运行一次",
+      "在 Builder 中为可选字段提供合理的默认值，使调用方只需指定与规范不同的内容"
+    ],
+    "donts": [
+      "Don't use Builder for simple objects with one or two required fields — it adds unnecessary ceremony where a plain constructor is clearer",
+      "Don't allow the Builder to be reused after build() is called without a clear reset; reuse leads to accidental shared state between product instances",
+      "Don't skip the terminal build() validation step — returning a partially configured object silently is worse than a clear exception at construction time"
+    ],
+    "donts_zh": [
+      "不要对具有一两个必填字段的简单对象使用构建器——在普通构造函数更清晰的地方增加了不必要的繁文缛节",
+      "不要在 build() 调用后允许 Builder 重用而不明确重置；重用会导致产品实例之间意外的共享状态",
+      "不要跳过终结 build() 验证步骤——静默返回部分配置的对象比构建时的明确异常更糟糕"
+    ],
+    "case_study_company": "OkHttp / Square",
+    "case_study": "OkHttp, the widely used Android and Java HTTP client, uses Builder throughout its API. OkHttpClient is constructed via OkHttpClient.Builder with chainable calls to set timeouts, interceptors, cache, SSL certificates, and proxy configuration. Request objects are built via Request.Builder with URL, method, headers, and body. Neither OkHttpClient nor Request can be constructed directly — only the Builder exposes setters, and build() produces immutable instances. This design made OkHttp's API self-documenting, prevented half-initialized client objects, and enabled Square's team to add new configuration options across major versions without breaking existing call sites.",
+    "case_study_zh": "OkHttp（广泛使用的 Android 和 Java HTTP 客户端）在其 API 中全面使用构建器。OkHttpClient 通过 OkHttpClient.Builder 构建，可链式调用设置超时、拦截器、缓存、SSL 证书和代理配置。Request 对象通过 Request.Builder 构建，包含 URL、方法、头部和正文。OkHttpClient 和 Request 均不能直接构建——只有 Builder 暴露 setter，build() 生产不可变实例。这种设计使 OkHttp 的 API 自文档化，防止了半初始化的客户端对象，并使 Square 团队能够在主要版本中添加新配置选项而不破坏现有调用点。",
+    "when_not_to_use": [
+      "Value objects with only one or two fields where a plain constructor with named parameters is more readable",
+      "Mutable objects that change state frequently after construction — Builder is optimized for producing final, immutable products",
+      "Performance-critical tight loops where the extra Builder object allocation per product is a measurable bottleneck"
+    ],
+    "when_not_to_use_zh": [
+      "只有一两个字段的值对象，带命名参数的普通构造函数更具可读性",
+      "构建后频繁改变状态的可变对象——构建器针对生产最终不可变产品进行了优化",
+      "性能关键的紧循环，每个产品额外的 Builder 对象分配是可测量的瓶颈"
+    ],
+    "adopters": [
+      "OkHttp / Retrofit (Square)",
+      "Lombok @Builder (Java)",
+      "SwiftUI (view modifiers)",
+      "Apache HttpClient"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "usability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+    "secondary_sources": [
+      "Bloch, J. (2008). \"Effective Java, 2nd ed.\". Addison-Wesley.",
+      "Freeman, E., Robson, E. (2004). \"Head First Design Patterns\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "factory-method-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "strategy-pattern",
+        "type": "related"
+      }
+    ]
+  },
+  {
+    "id": 239,
+    "name": "Middleware / Pipeline Pattern",
+    "name_zh": "中间件/管道模式",
+    "slug": "middleware-pipeline-pattern",
+    "category": "coding",
+    "desc": "Chain processing steps that can inspect, transform, or short-circuit a request as it flows through a pipeline",
+    "desc_zh": "将处理步骤链接成管道，每个步骤可检查、转换请求或短路请求的流动，实现横切关注点的解耦",
+    "steps": [
+      "Define the middleware interface: establish a contract where each middleware receives the request/context and a next function to invoke the remaining pipeline",
+      "Implement individual middleware functions: each middleware performs one focused concern (authentication, logging, compression, rate limiting) and calls next() to pass control downstream",
+      "Compose the pipeline: register middleware in order using an app.use() style API, a list, or a builder; the framework or pipeline runner chains them so each wraps the next",
+      "Handle short-circuiting: allow middleware to terminate the pipeline early (e.g., return 401 without calling next()) for cross-cutting rejection or caching scenarios",
+      "Support bi-directional flow (onion model): design middleware to execute logic both before calling next() (inbound/request phase) and after it returns (outbound/response phase) for symmetric concerns like timing and error wrapping"
+    ],
+    "steps_zh": [
+      "定义中间件接口：建立每个中间件接收请求/上下文和调用剩余管道的 next 函数的契约",
+      "实现各个中间件函数：每个中间件执行一个专注的关注点（认证、日志、压缩、速率限制），并调用 next() 将控制权传递给下游",
+      "组合管道：使用 app.use() 风格 API、列表或构建器按顺序注册中间件；框架或管道运行器将它们链接起来，使每个中间件包装下一个",
+      "处理短路：允许中间件提前终止管道（如不调用 next() 直接返回 401），用于横切拒绝或缓存场景",
+      "支持双向流（洋葱模型）：设计中间件在调用 next() 之前（入站/请求阶段）和之后（出站/响应阶段）都执行逻辑，用于时间和错误包装等对称关注点"
+    ],
+    "ai_relevant": true,
+    "viz_type": "pipeline",
+    "related": [
+      "chain-of-responsibility-pattern",
+      "decorator-pattern",
+      "command-pattern"
+    ],
+    "tags": [
+      "pipeline",
+      "middleware",
+      "behavioral",
+      "http",
+      "cross-cutting-concerns"
+    ],
+    "origin_author": "Community practice; popularized by TJ Holowaychuk (Express.js / Koa), 2010s",
+    "origin_source": "Express.js, Koa, ASP.NET Core, and WSGI community practice",
+    "origin_source_zh": "Express.js、Koa、ASP.NET Core 及 WSGI 社区实践",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Cross-cutting concerns (auth, logging, tracing, rate limiting, caching) need to be applied uniformly across many request handlers without polluting handler code",
+      "Request processing involves a well-defined, ordered sequence of transformations where each step is independently testable and replaceable",
+      "Building extensible frameworks or plugins systems where users can inject behavior into the processing flow without modifying core code"
+    ],
+    "when_to_use_zh": [
+      "横切关注点（认证、日志、追踪、速率限制、缓存）需要统一应用于许多请求处理程序，而不污染处理程序代码",
+      "请求处理涉及定义明确的有序转换序列，每个步骤独立可测试且可替换",
+      "构建可扩展框架或插件系统，用户可以在不修改核心代码的情况下将行为注入处理流程"
+    ],
+    "core_concepts": [
+      "Middleware function: a unit of pipeline logic that receives the context and a next() function; it can inspect or mutate context, delegate to next(), and optionally process the result on the way back",
+      "Pipeline composition: middleware functions are stacked at configuration time into a chain; at runtime each function wraps and delegates to the remaining chain, creating the onion model",
+      "Short-circuit termination: middleware can halt the pipeline by not calling next(), returning a synthetic response directly — enabling authentication guards, cache hits, and error fences without touching downstream handlers"
+    ],
+    "core_concepts_zh": [
+      "中间件函数：管道逻辑的单元，接收上下文和 next() 函数；可以检查或改变上下文，委托给 next()，并可选地在返回途中处理结果",
+      "管道组合：中间件函数在配置时堆叠成链；在运行时每个函数包装并委托给剩余链，创建洋葱模型",
+      "短路终止：中间件可以通过不调用 next() 来中止管道，直接返回合成响应——使认证守卫、缓存命中和错误隔离无需触及下游处理程序"
+    ],
+    "timeline": [
+      [
+        "2000",
+        "Python's WSGI specification defines a middleware-composable interface for web applications, predating popular Node.js frameworks"
+      ],
+      [
+        "2010",
+        "TJ Holowaychuk releases Express.js for Node.js, popularizing app.use() middleware as the dominant pattern for HTTP pipeline composition"
+      ],
+      [
+        "2013",
+        "Koa.js introduces the generator-based (later async/await) onion model, making bidirectional middleware first-class"
+      ],
+      [
+        "2016",
+        "ASP.NET Core rebuilds its HTTP pipeline around IMiddleware and app.Use(), bringing the Express idiom to the .NET ecosystem with dependency injection support"
+      ],
+      [
+        "2022",
+        "AI agent frameworks (LangChain, LlamaIndex) adopt pipeline/middleware patterns for LLM request chains, tool routing, and response post-processing"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2000",
+        "Python 的 WSGI 规范为 Web 应用定义了中间件可组合接口，早于流行的 Node.js 框架"
+      ],
+      [
+        "2010",
+        "TJ Holowaychuk 为 Node.js 发布 Express.js，推广 app.use() 中间件作为 HTTP 管道组合的主流模式"
+      ],
+      [
+        "2013",
+        "Koa.js 引入基于生成器（后来是 async/await）的洋葱模型，使双向中间件成为一等公民"
+      ],
+      [
+        "2016",
+        "ASP.NET Core 围绕 IMiddleware 和 app.Use() 重建其 HTTP 管道，将 Express 习语带入 .NET 生态系统并支持依赖注入"
+      ],
+      [
+        "2022",
+        "AI 智能体框架（LangChain、LlamaIndex）采用管道/中间件模式用于 LLM 请求链、工具路由和响应后处理"
+      ]
+    ],
+    "dos": [
+      "Do keep each middleware focused on a single concern — authentication middleware should not also perform logging; compose separate middlewares instead",
+      "Do always call next() or explicitly terminate; forgetting next() in non-terminating middleware silently hangs requests and is one of the most common pipeline bugs",
+      "Do order middleware deliberately — security and authentication checks must precede business logic; logging middleware should wrap the entire pipeline to capture timings"
+    ],
+    "dos_zh": [
+      "保持每个中间件专注于单一关注点——认证中间件不应同时执行日志记录；改为组合独立的中间件",
+      "始终调用 next() 或显式终止；在非终止中间件中忘记 next() 会静默挂起请求，是最常见的管道错误之一",
+      "刻意排序中间件——安全和认证检查必须在业务逻辑之前；日志中间件应包装整个管道以捕获时间"
+    ],
+    "donts": [
+      "Don't put significant business logic inside middleware — it makes the logic hard to test in isolation and blurs the separation between infrastructure and domain concerns",
+      "Don't swallow errors inside middleware without either handling them fully or re-throwing them — silent error absorption prevents upstream error handlers from running",
+      "Don't register too many middleware globally when only a few routes need them — route-specific middleware keeps pipelines lean and improves request tracing clarity"
+    ],
+    "donts_zh": [
+      "不要在中间件内放置重要的业务逻辑——这使逻辑难以隔离测试，并模糊了基础设施和领域关注点之间的分离",
+      "不要在中间件内静默吞噬错误而不完全处理或重新抛出——静默错误吸收会阻止上游错误处理程序运行",
+      "当只有少数路由需要时，不要全局注册太多中间件——特定路由的中间件保持管道精简并提高请求追踪清晰度"
+    ],
+    "case_study_company": "Express.js / OpenJS Foundation",
+    "case_study": "Express.js made the middleware pipeline pattern the de facto standard for Node.js web development. An Express application handling e-commerce requests chains: morgan (request logging), helmet (security headers), cors (CORS policy), express-rate-limit (abuse prevention), passport.authenticate (JWT verification), and finally the route handler itself. Each middleware is independently installable, testable with supertest, and replaceable without touching others. When Stripe integrated Express into their API development workflow, they used middleware chains to enforce API versioning, idempotency-key validation, and audit logging across all endpoints without duplicating these concerns inside individual route handlers.",
+    "case_study_zh": "Express.js 使中间件管道模式成为 Node.js Web 开发的事实标准。处理电商请求的 Express 应用链接：morgan（请求日志）、helmet（安全头部）、cors（CORS 策略）、express-rate-limit（滥用防护）、passport.authenticate（JWT 验证），最终是路由处理程序本身。每个中间件都独立可安装、可用 supertest 测试，且可替换而不触及其他中间件。当 Stripe 将 Express 集成到其 API 开发工作流时，他们使用中间件链在所有端点强制执行 API 版本控制、幂等键验证和审计日志，而无需在单个路由处理程序内重复这些关注点。",
+    "when_not_to_use": [
+      "Simple single-step transformations where a plain function call is more readable than a pipeline of one",
+      "Batch processing jobs with no need for cross-cutting HTTP concerns, where a direct sequence of function calls is easier to follow",
+      "High-throughput low-latency paths where middleware function call overhead and context allocation per request is a measurable bottleneck"
+    ],
+    "when_not_to_use_zh": [
+      "简单的单步转换，普通函数调用比只有一个中间件的管道更具可读性",
+      "无需横切 HTTP 关注点的批处理作业，直接的函数调用序列更容易理解",
+      "高吞吐量低延迟路径，每个请求的中间件函数调用开销和上下文分配是可测量的瓶颈"
+    ],
+    "adopters": [
+      "Express.js / Koa.js (Node.js)",
+      "ASP.NET Core (.NET)",
+      "Django middleware (Python)",
+      "LangChain (AI pipelines)"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "extensibility"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Holowaychuk, T. (2010). Express.js framework documentation. expressjs.com.",
+    "secondary_sources": [
+      "Microsoft (2016). \"ASP.NET Core Middleware\". docs.microsoft.com.",
+      "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "chain-of-responsibility-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "decorator-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "command-pattern",
+        "type": "related"
       }
     ]
   }
