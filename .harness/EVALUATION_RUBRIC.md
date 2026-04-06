@@ -29,7 +29,15 @@ The Evaluator launches a browser (Playwright or manual) and checks:
 - [ ] **No orphaned UI**: No empty sections, placeholder text, or "undefined" showing
 - [ ] **Chinese text fit**: ZH mode — no truncation, overflow, or layout breakage
 
-### 2b. Accessibility Checklist
+### 2b. Interaction State Checklist
+- [ ] **Single-select controls**: Components that should be single-select (category filter) show exactly ONE active item at a time. No ghost states, no stale highlights.
+- [ ] **Multi-select controls**: Components that support multi-select (dimension filters) correctly toggle on/off and visually reflect all selected items.
+- [ ] **State reset**: Clearing a filter, closing a modal, switching language — UI returns to a clean state with no residual styling.
+- [ ] **Hover → click → hover-off**: After clicking an element, hovering away does not leave behind ghost styles (the inline-style-on-hover antipattern).
+- [ ] **Modal lifecycle**: Open → content correct → navigate prev/next → close → re-open → still works.
+- [ ] **Cross-filter interaction**: Category filter + dimension filter + search all compose correctly; changing one doesn't corrupt another's visual state.
+
+### 2c. Accessibility Checklist
 - [ ] **Keyboard navigation**: Tab through page — all interactive elements reachable
 - [ ] **Focus ring visible**: Tab navigation shows clear focus indicator
 - [ ] **Alt text / aria-labels**: SVG charts and icons have descriptive labels
@@ -39,8 +47,9 @@ The Evaluator launches a browser (Playwright or manual) and checks:
 ### Scoring
 Score each criterion 1-5. Sprint passes if:
 - Gate 1: ALL automated checks pass (binary)
-- Gate 2a: All items checked, no critical issues (score ≥ 3)
-- Gate 2b: No WCAG AA violations on changed pages (score ≥ 3)
+- Gate 2a: All visual items checked, no critical issues (score ≥ 3)
+- Gate 2b: All interaction states correct — no ghost states, no stale highlights (score ≥ 3)
+- Gate 2c: No WCAG AA violations on changed pages (score ≥ 3)
 
 ## Gate 3: Content Quality (for sprints that add/modify content)
 
