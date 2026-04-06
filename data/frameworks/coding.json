@@ -3507,5 +3507,1104 @@
         "type": "complement"
       }
     ]
+  },
+  {
+    "id": 225,
+    "name": "Strategy Pattern",
+    "name_zh": "策略模式",
+    "slug": "strategy-pattern",
+    "category": "coding",
+    "desc": "Encapsulate interchangeable algorithms behind a common interface",
+    "desc_zh": "将可互换的算法封装在统一接口后，使算法可独立于使用方变化",
+    "steps": [
+      "Define the Strategy interface: declare a single method (or small set) that all algorithm variants must implement, establishing the contract",
+      "Implement Concrete Strategies: create one class per algorithm variant, each encapsulating its logic behind the shared interface",
+      "Build the Context class: hold a reference to a Strategy interface and delegate the algorithm call to it, keeping Context free of conditional logic",
+      "Inject or swap strategies at runtime: pass the desired strategy via constructor or setter so callers can change behavior without modifying Context",
+      "Test strategies independently: unit-test each concrete strategy in isolation, then test Context with mock strategies to verify delegation"
+    ],
+    "steps_zh": [
+      "定义策略接口：声明所有算法变体必须实现的单一方法（或小型方法集），建立契约",
+      "实现具体策略：为每种算法变体创建一个类，各自将逻辑封装在共享接口后",
+      "构建上下文类：持有策略接口的引用，并将算法调用委托给它，使上下文不含条件判断逻辑",
+      "在运行时注入或切换策略：通过构造函数或 setter 传入所需策略，调用方无需修改上下文即可改变行为",
+      "独立测试各策略：对每个具体策略进行单元测试，再用模拟策略测试上下文以验证委托行为"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flowchart",
+    "related": [
+      "solid-principles",
+      "command-pattern",
+      "dependency-injection"
+    ],
+    "tags": [
+      "gof",
+      "behavioral",
+      "design-patterns",
+      "algorithm",
+      "oop"
+    ],
+    "origin_author": "Gamma, Helm, Johnson, Vlissides, 1994",
+    "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
+    "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Multiple variants of an algorithm exist and you want to switch between them at runtime without conditionals",
+      "You need to isolate business rules or policies so they can be tested and replaced independently",
+      "An AI agent needs to select different planning, search, or scoring strategies dynamically"
+    ],
+    "when_to_use_zh": [
+      "存在多种算法变体，希望在运行时无需条件判断即可切换",
+      "需要将业务规则或策略隔离，以便独立测试和替换",
+      "AI 智能体需要动态选择不同的规划、搜索或评分策略"
+    ],
+    "core_concepts": [
+      "Strategy interface: the contract that all algorithm variants implement, enabling polymorphic substitution",
+      "Context: the object that holds a strategy reference and delegates the variable part of its behavior to it",
+      "Composition over inheritance: behavior varies by swapping whole objects rather than by subclassing Context"
+    ],
+    "core_concepts_zh": [
+      "策略接口：所有算法变体实现的契约，支持多态替换",
+      "上下文：持有策略引用并将可变行为委托给策略的对象",
+      "组合优于继承：通过替换整个对象而非对上下文子类化来改变行为"
+    ],
+    "timeline": [
+      ["1994", "GoF publish 'Design Patterns', introducing Strategy as one of 23 canonical patterns"],
+      ["2000", "Strategy becomes a foundation of the Policy Object pattern in enterprise Java frameworks"],
+      ["2010", "Functional languages popularize Strategy via first-class functions and lambdas, reducing boilerplate"],
+      ["2020", "Strategy widely adopted in ML pipelines to swap preprocessing, model, and evaluation components"]
+    ],
+    "timeline_zh": [
+      ["1994", "GoF 出版《设计模式》，将策略模式作为 23 个经典模式之一引入"],
+      ["2000", "策略模式成为企业 Java 框架中策略对象模式的基础"],
+      ["2010", "函数式语言通过一等函数和 lambda 推广策略模式，减少样板代码"],
+      ["2020", "策略模式在 ML 流水线中广泛应用，用于替换预处理、模型和评估组件"]
+    ],
+    "dos": [
+      "Do keep the strategy interface small and focused so each variant is easy to implement and test",
+      "Do inject strategies via constructors to make dependencies explicit and enable straightforward unit testing",
+      "Do use Strategy whenever you find yourself writing if-else or switch on a type enum to pick an algorithm"
+    ],
+    "dos_zh": [
+      "保持策略接口小而专注，使每个变体易于实现和测试",
+      "通过构造函数注入策略，使依赖关系明确，便于单元测试",
+      "每当发现自己用 if-else 或 switch 枚举类型来选择算法时，就应使用策略模式"
+    ],
+    "donts": [
+      "Don't use Strategy for a single algorithm with no anticipated variation because the indirection adds complexity without benefit",
+      "Don't allow strategies to reach into the Context's internals because it creates hidden coupling between the two",
+      "Don't create a new Strategy subclass for trivial one-line variants in languages with lambdas — pass a function instead"
+    ],
+    "donts_zh": [
+      "不要对没有预期变化的单一算法使用策略模式，因为间接层只增加复杂性而无益处",
+      "不要让策略访问上下文的内部状态，因为这会在两者之间造成隐性耦合",
+      "在支持 lambda 的语言中，不要为简单的单行变体创建策略子类——直接传入函数即可"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix's streaming playback engine uses the Strategy pattern to select adaptive bitrate (ABR) algorithms. Different strategies (buffer-based, throughput-based, reinforcement-learning-based) implement a common ABR interface. The playback Context selects the appropriate strategy based on device type and network conditions at runtime, allowing Netflix to A/B test new algorithms without touching the core player code.",
+    "case_study_zh": "Netflix 的流媒体播放引擎使用策略模式来选择自适应码率（ABR）算法。不同的策略（基于缓冲区、基于吞吐量、基于强化学习）实现统一的 ABR 接口。播放上下文在运行时根据设备类型和网络条件选择合适的策略，使 Netflix 无需修改核心播放器代码即可对新算法进行 A/B 测试。",
+    "when_not_to_use": [
+      "When there is truly only one algorithm and no realistic chance of needing to swap it",
+      "Simple scripts or small utilities where the overhead of interface + multiple classes is disproportionate",
+      "When a language supports first-class functions, a plain function parameter is often cleaner than a Strategy class"
+    ],
+    "when_not_to_use_zh": [
+      "只有一种算法且没有切换需求时",
+      "简单脚本或小型工具，接口加多个类的开销不成比例",
+      "当语言支持一等函数时，普通函数参数通常比策略类更简洁"
+    ],
+    "adopters": [
+      "Netflix",
+      "Spring Framework",
+      "Java Collections (Comparator)",
+      "scikit-learn"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "extensibility"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+    "secondary_sources": [
+      "Freeman, E., Robson, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+      "Martin, R. C. (2002). \"Agile Software Development, Principles, Patterns, and Practices\". Prentice Hall."
+    ],
+    "typed_relations": [
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "command-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "dependency-injection",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 226,
+    "name": "Observer Pattern",
+    "name_zh": "观察者模式",
+    "slug": "observer-pattern",
+    "category": "coding",
+    "desc": "Notify dependents automatically when state changes",
+    "desc_zh": "当对象状态发生变化时自动通知所有依赖方",
+    "steps": [
+      "Define the Subject interface: expose methods to attach, detach, and notify observers, keeping the subject independent of concrete observer types",
+      "Define the Observer interface: declare an update method that subjects will call, carrying relevant state or event data",
+      "Implement the Concrete Subject: maintain a list of observers, manage state, and call notify whenever a meaningful state change occurs",
+      "Implement Concrete Observers: register with the subject and react to notifications by reading subject state or the pushed event payload",
+      "Manage subscription lifecycle: ensure observers unsubscribe when no longer needed to prevent memory leaks and stale notifications"
+    ],
+    "steps_zh": [
+      "定义主题接口：暴露注册、注销和通知观察者的方法，使主题独立于具体观察者类型",
+      "定义观察者接口：声明主题将调用的 update 方法，携带相关状态或事件数据",
+      "实现具体主题：维护观察者列表，管理状态，并在有意义的状态变更时调用通知方法",
+      "实现具体观察者：向主题注册，通过读取主题状态或推送的事件负载对通知做出响应",
+      "管理订阅生命周期：确保观察者在不再需要时取消订阅，防止内存泄漏和陈旧通知"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flowchart",
+    "related": [
+      "strategy-pattern",
+      "command-pattern",
+      "event-driven-architecture"
+    ],
+    "tags": [
+      "gof",
+      "behavioral",
+      "design-patterns",
+      "event",
+      "pub-sub",
+      "oop"
+    ],
+    "origin_author": "Gamma, Helm, Johnson, Vlissides, 1994",
+    "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
+    "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "One object's state change should trigger updates in an unknown or variable number of other objects",
+      "You want to decouple the producer of events from the consumers without forcing them to know about each other",
+      "Building reactive UIs, event-driven agent environments, or real-time data feeds where multiple components react to changes"
+    ],
+    "when_to_use_zh": [
+      "一个对象的状态变化需要触发数量未知或可变的其他对象的更新",
+      "希望将事件生产者与消费者解耦，无需双方互相了解",
+      "构建响应式 UI、事件驱动的智能体环境或实时数据流，多个组件对变化做出响应"
+    ],
+    "core_concepts": [
+      "Subject (Observable): maintains a list of observers and broadcasts notifications on state change",
+      "Observer: the interface or callback that subjects invoke when notifying, decoupling it from concrete implementations",
+      "Push vs Pull: subjects can push state in the notification payload (push model) or observers can query state after being pinged (pull model)"
+    ],
+    "core_concepts_zh": [
+      "主题（可观察者）：维护观察者列表，在状态变化时广播通知",
+      "观察者：主题在通知时调用的接口或回调，将其与具体实现解耦",
+      "推送 vs 拉取：主题可在通知负载中推送状态（推送模式），或观察者在收到通知后查询状态（拉取模式）"
+    ],
+    "timeline": [
+      ["1994", "GoF formalize Observer as one of 23 patterns; MVC's model-view notification already used the concept"],
+      ["2000", "Java introduces java.util.Observable and java.util.Observer in the standard library"],
+      ["2012", "Reactive Extensions (Rx) reframe Observer as IObservable/IObserver, adding backpressure and composition"],
+      ["2019", "Observer underpins modern frontend state libraries (Redux, MobX, Vue reactivity) and agent event loops"]
+    ],
+    "timeline_zh": [
+      ["1994", "GoF 将观察者模式正式化为 23 个模式之一；MVC 的模型-视图通知机制已在使用该概念"],
+      ["2000", "Java 在标准库中引入 java.util.Observable 和 java.util.Observer"],
+      ["2012", "响应式扩展（Rx）将观察者重塑为 IObservable/IObserver，增加背压和组合能力"],
+      ["2019", "观察者模式支撑现代前端状态库（Redux、MobX、Vue 响应式）和智能体事件循环"]
+    ],
+    "dos": [
+      "Do use weak references or explicit unsubscribe to prevent memory leaks when observers outlive their subjects",
+      "Do keep observer update methods fast and non-blocking; offload heavy work to background threads or queues",
+      "Do consider passing event data in the notification rather than forcing observers to call back into the subject"
+    ],
+    "dos_zh": [
+      "使用弱引用或显式取消订阅，防止观察者比主题生命周期更长时造成内存泄漏",
+      "保持观察者的 update 方法快速且非阻塞；将繁重工作卸载到后台线程或队列",
+      "考虑在通知中传递事件数据，而非强制观察者回调主题"
+    ],
+    "donts": [
+      "Don't create cascading notification chains where one observer triggers another subject's notification — it causes hard-to-trace update storms",
+      "Don't notify observers in a non-deterministic order when observers depend on each other's effects",
+      "Don't use Observer for simple one-to-one callbacks; a direct method call or delegate is simpler"
+    ],
+    "donts_zh": [
+      "不要创建级联通知链，即一个观察者触发另一个主题的通知——这会导致难以追踪的更新风暴",
+      "当观察者相互依赖对方效果时，不要以不确定的顺序通知观察者",
+      "不要将观察者用于简单的一对一回调；直接方法调用或委托更简单"
+    ],
+    "case_study_company": "Vue.js",
+    "case_study": "Vue.js 3's reactivity system is a direct application of the Observer pattern. Each reactive data property is a Subject; component render functions and computed properties are Observers automatically registered via dependency tracking during a getter trap. When a property changes, only the components that actually read that property are notified and re-rendered, achieving fine-grained reactivity without manual subscription management.",
+    "case_study_zh": "Vue.js 3 的响应式系统是观察者模式的直接应用。每个响应式数据属性都是一个主题；组件渲染函数和计算属性是通过 getter 拦截期间的依赖追踪自动注册的观察者。当属性变化时，只有实际读取该属性的组件才会收到通知并重新渲染，实现细粒度响应性而无需手动管理订阅。",
+    "when_not_to_use": [
+      "Simple synchronous pipelines where direct method calls are clearer and the set of dependents is fixed",
+      "Performance-critical tight loops where notification overhead is measurable",
+      "When event ordering guarantees are critical and the broadcast model introduces non-determinism"
+    ],
+    "when_not_to_use_zh": [
+      "简单的同步流水线，直接方法调用更清晰且依赖方集合固定",
+      "性能关键的紧密循环，通知开销可被度量",
+      "事件顺序保证至关重要而广播模型引入不确定性时"
+    ],
+    "adopters": [
+      "Vue.js",
+      "Angular (EventEmitter)",
+      "RxJS",
+      "Redux"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "extensibility"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+    "secondary_sources": [
+      "Freeman, E., Robson, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+      "Meijer, E. (2012). \"Your Mouse is a Database\". ACM Queue."
+    ],
+    "typed_relations": [
+      {
+        "slug": "strategy-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "command-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "event-driven-architecture",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 227,
+    "name": "Factory Method Pattern",
+    "name_zh": "工厂方法模式",
+    "slug": "factory-method-pattern",
+    "category": "coding",
+    "desc": "Delegate object creation to subclasses",
+    "desc_zh": "将对象的创建委托给子类决定，使父类无需依赖具体产品类",
+    "steps": [
+      "Define the Product interface: declare the interface or abstract class that all created objects must conform to",
+      "Declare the Creator with a factory method: write an abstract or virtual method in the Creator that returns a Product, leaving the concrete type unspecified",
+      "Implement Concrete Creators: subclass the Creator and override the factory method to instantiate and return the appropriate Concrete Product",
+      "Use the product through its interface: write the Creator's template business logic against the Product interface, not the concrete type",
+      "Register or select creators dynamically: optionally use a registry or configuration to choose which Concrete Creator to instantiate at runtime"
+    ],
+    "steps_zh": [
+      "定义产品接口：声明所有创建对象必须符合的接口或抽象类",
+      "在创建者中声明工厂方法：在创建者中编写抽象或虚方法，返回产品类型，不指定具体类型",
+      "实现具体创建者：对创建者进行子类化，重写工厂方法以实例化并返回相应的具体产品",
+      "通过接口使用产品：基于产品接口编写创建者的模板业务逻辑，而非依赖具体类型",
+      "动态注册或选择创建者：可选地使用注册表或配置在运行时选择实例化哪个具体创建者"
+    ],
+    "ai_relevant": false,
+    "viz_type": "tree",
+    "related": [
+      "abstract-factory-pattern",
+      "solid-principles",
+      "dependency-injection"
+    ],
+    "tags": [
+      "gof",
+      "creational",
+      "design-patterns",
+      "object-creation",
+      "oop"
+    ],
+    "origin_author": "Gamma, Helm, Johnson, Vlissides, 1994",
+    "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
+    "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "A class cannot anticipate the exact type of objects it must create, deferring the decision to subclasses",
+      "You want to give subclasses control over which objects they create while sharing the surrounding template logic",
+      "Frameworks need to create objects whose type is unknown to the framework itself but known to its users"
+    ],
+    "when_to_use_zh": [
+      "一个类无法预期它必须创建的对象的确切类型，将决定权推迟到子类",
+      "希望让子类控制创建哪些对象，同时共享周围的模板逻辑",
+      "框架需要创建其自身未知但用户已知类型的对象"
+    ],
+    "core_concepts": [
+      "Creator: the class that declares the factory method, often providing default implementation or a template method that calls it",
+      "Concrete Creator: overrides the factory method to produce a specific product, encapsulating instantiation details",
+      "Product polymorphism: the creator's logic works against the Product interface, making it independent of which concrete product is made"
+    ],
+    "core_concepts_zh": [
+      "创建者：声明工厂方法的类，通常提供默认实现或调用工厂方法的模板方法",
+      "具体创建者：重写工厂方法以生产特定产品，封装实例化细节",
+      "产品多态：创建者的逻辑基于产品接口运行，独立于具体产品类型"
+    ],
+    "timeline": [
+      ["1994", "GoF publish Factory Method as a core creational pattern alongside Abstract Factory"],
+      ["2000", "Factory Method becomes the backbone of Java's JDBC DriverManager and servlet container APIs"],
+      ["2009", "Spring Framework codifies factory methods via @Bean annotations, blending DI with factory semantics"],
+      ["2018", "Factory functions (not classes) become idiomatic in TypeScript and Kotlin, simplifying the pattern"]
+    ],
+    "timeline_zh": [
+      ["1994", "GoF 将工厂方法作为核心创建型模式与抽象工厂一并发布"],
+      ["2000", "工厂方法成为 Java JDBC DriverManager 和 Servlet 容器 API 的核心"],
+      ["2009", "Spring Framework 通过 @Bean 注解将工厂方法规范化，融合 DI 与工厂语义"],
+      ["2018", "工厂函数（而非类）在 TypeScript 和 Kotlin 中成为惯用写法，简化了该模式"]
+    ],
+    "dos": [
+      "Do define the factory method on an interface or abstract class so callers depend on the abstraction",
+      "Do use the factory method to encapsulate all construction complexity — validation, configuration, dependency wiring",
+      "Do prefer factory functions over factory classes in languages with first-class functions to reduce boilerplate"
+    ],
+    "dos_zh": [
+      "在接口或抽象类上定义工厂方法，使调用方依赖抽象",
+      "使用工厂方法封装所有构造复杂性——验证、配置、依赖装配",
+      "在支持一等函数的语言中，优先使用工厂函数而非工厂类，以减少样板代码"
+    ],
+    "donts": [
+      "Don't use Factory Method when a simple constructor is sufficient; it adds indirection without benefit",
+      "Don't make the factory method do heavy work like I/O or network calls; it should assemble, not execute",
+      "Don't confuse Factory Method with Static Factory Method — the GoF pattern requires subclassing for variation"
+    ],
+    "donts_zh": [
+      "当简单构造函数足够时，不要使用工厂方法；它只增加间接层而无益处",
+      "不要让工厂方法执行 I/O 或网络调用等繁重工作；它应负责组装，而非执行",
+      "不要将工厂方法与静态工厂方法混淆——GoF 模式需要通过子类化实现变化"
+    ],
+    "case_study_company": "Java JDBC",
+    "case_study": "Java's JDBC API is a textbook Factory Method implementation. DriverManager.getConnection() is the factory method — callers pass a connection URL, and the registered Driver (Concrete Creator) determines which Connection implementation to instantiate. Application code depends only on the java.sql.Connection interface, enabling transparent switching between MySQL, PostgreSQL, and Oracle drivers without changing a single line of business logic.",
+    "case_study_zh": "Java 的 JDBC API 是工厂方法的教科书级实现。DriverManager.getConnection() 是工厂方法——调用方传入连接 URL，已注册的 Driver（具体创建者）决定实例化哪个 Connection 实现。应用代码只依赖 java.sql.Connection 接口，可在 MySQL、PostgreSQL 和 Oracle 驱动之间透明切换，无需修改任何业务逻辑。",
+    "when_not_to_use": [
+      "When there is only one product type and no anticipated need for variation",
+      "When the overhead of subclassing Creators is not justified by the complexity of the creation logic",
+      "When dependency injection already manages object creation centrally, making factories redundant"
+    ],
+    "when_not_to_use_zh": [
+      "只有一种产品类型且没有预期变化需求时",
+      "子类化创建者的开销不被创建逻辑的复杂性所证明时",
+      "依赖注入已集中管理对象创建，使工厂变得多余时"
+    ],
+    "adopters": [
+      "Java JDBC",
+      "Spring Framework",
+      "Angular",
+      ".NET HttpClientFactory"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "extensibility"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+    "secondary_sources": [
+      "Freeman, E., Robson, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+      "Bloch, J. (2008). \"Effective Java, 2nd ed.\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "abstract-factory-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "dependency-injection",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 228,
+    "name": "Abstract Factory Pattern",
+    "name_zh": "抽象工厂模式",
+    "slug": "abstract-factory-pattern",
+    "category": "coding",
+    "desc": "Create families of related objects without specifying concrete classes",
+    "desc_zh": "在不指定具体类的情况下创建一系列相关或相互依赖的对象",
+    "steps": [
+      "Identify product families: group related product types (e.g., Button + Checkbox for a UI toolkit) into coherent families per platform or variant",
+      "Define Abstract Product interfaces: declare an interface for each product type in the family so clients depend on abstractions",
+      "Define the Abstract Factory interface: declare creation methods for each product type, returning Abstract Product interfaces",
+      "Implement Concrete Factories: create one factory class per product family, implementing all creation methods to produce the matching product variants",
+      "Configure the application with a Concrete Factory: inject or select the appropriate Concrete Factory at startup; all downstream code uses only the Abstract Factory"
+    ],
+    "steps_zh": [
+      "识别产品族：将相关产品类型（如 UI 工具包的按钮和复选框）按平台或变体分组为连贯的产品族",
+      "定义抽象产品接口：为族中每种产品类型声明接口，使客户端依赖抽象",
+      "定义抽象工厂接口：为每种产品类型声明创建方法，返回抽象产品接口",
+      "实现具体工厂：为每个产品族创建一个工厂类，实现所有创建方法以生产匹配的产品变体",
+      "用具体工厂配置应用：在启动时注入或选择合适的具体工厂；所有下游代码只使用抽象工厂"
+    ],
+    "ai_relevant": false,
+    "viz_type": "matrix",
+    "related": [
+      "factory-method-pattern",
+      "solid-principles",
+      "dependency-injection"
+    ],
+    "tags": [
+      "gof",
+      "creational",
+      "design-patterns",
+      "object-creation",
+      "oop"
+    ],
+    "origin_author": "Gamma, Helm, Johnson, Vlissides, 1994",
+    "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
+    "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "A system must be independent of how its products are created and composed, and must work with multiple product families",
+      "You want to enforce consistency across a family of related products (e.g., all UI widgets must match the same theme)",
+      "You need to swap entire product families at runtime — e.g., switching between a cloud provider's SDK implementations"
+    ],
+    "when_to_use_zh": [
+      "系统必须独立于其产品的创建和组合方式，且必须与多个产品族协作",
+      "希望强制一系列相关产品之间的一致性（如所有 UI 控件必须符合同一主题）",
+      "需要在运行时切换整个产品族——例如切换云服务商的 SDK 实现"
+    ],
+    "core_concepts": [
+      "Abstract Factory: the interface declaring creation methods for all product types in a family",
+      "Concrete Factory: implements the Abstract Factory to produce a coherent set of product variants for one platform or theme",
+      "Product family consistency: the pattern guarantees that products from the same factory are designed to work together"
+    ],
+    "core_concepts_zh": [
+      "抽象工厂：声明为族中所有产品类型创建方法的接口",
+      "具体工厂：实现抽象工厂，为一个平台或主题生产一套连贯的产品变体",
+      "产品族一致性：该模式保证来自同一工厂的产品被设计为协同工作"
+    ],
+    "timeline": [
+      ["1994", "GoF introduce Abstract Factory as an extension of Factory Method for product families"],
+      ["1998", "Abstract Factory becomes the canonical solution for Java Look-and-Feel (PLAF) in Swing"],
+      ["2010", "Cloud SDKs adopt Abstract Factory to let applications switch between AWS, Azure, and GCP implementations"],
+      ["2020", "Abstract Factory influences plugin architectures in VS Code and IntelliJ for multi-platform extension APIs"]
+    ],
+    "timeline_zh": [
+      ["1994", "GoF 将抽象工厂作为工厂方法针对产品族的扩展引入"],
+      ["1998", "抽象工厂成为 Swing 中 Java 外观（PLAF）的标准解决方案"],
+      ["2010", "云 SDK 采用抽象工厂，使应用可在 AWS、Azure 和 GCP 实现间切换"],
+      ["2020", "抽象工厂影响 VS Code 和 IntelliJ 的插件架构，用于多平台扩展 API"]
+    ],
+    "dos": [
+      "Do introduce Abstract Factory only when you genuinely need multiple families; premature abstraction is costly",
+      "Do keep each Concrete Factory cohesive — every product it creates should belong to the same family or theme",
+      "Do inject the Abstract Factory at the application composition root so the rest of the code never knows which family is active"
+    ],
+    "dos_zh": [
+      "仅在真正需要多个产品族时引入抽象工厂；过早抽象代价高昂",
+      "保持每个具体工厂的内聚性——它创建的每个产品都应属于同一族或主题",
+      "在应用组合根处注入抽象工厂，使其余代码永远不知道哪个产品族处于激活状态"
+    ],
+    "donts": [
+      "Don't add new product types to an existing Abstract Factory lightly — it forces changes to all Concrete Factories",
+      "Don't use Abstract Factory when Factory Method is sufficient; the added layer of abstraction has a real cost",
+      "Don't let Concrete Factories hold mutable state; they should be stateless creation services"
+    ],
+    "donts_zh": [
+      "不要轻易向现有抽象工厂添加新产品类型——这会迫使所有具体工厂做出修改",
+      "当工厂方法已足够时，不要使用抽象工厂；额外的抽象层有真实代价",
+      "不要让具体工厂持有可变状态；它们应该是无状态的创建服务"
+    ],
+    "case_study_company": "Java Swing",
+    "case_study": "Java Swing's Pluggable Look-and-Feel (PLAF) architecture is Abstract Factory in action. The LookAndFeel class acts as the Abstract Factory, declaring creation methods for every UI component (Button, TextField, ScrollBar). Concrete factories like MetalLookAndFeel and WindowsLookAndFeel implement all methods, ensuring every widget produced in a session is visually consistent. Switching the entire UI theme requires changing only a single factory at startup.",
+    "case_study_zh": "Java Swing 的可插拔外观（PLAF）架构是抽象工厂的实际应用。LookAndFeel 类充当抽象工厂，为每个 UI 组件（按钮、文本框、滚动条）声明创建方法。MetalLookAndFeel 和 WindowsLookAndFeel 等具体工厂实现所有方法，确保会话中产生的每个控件在视觉上保持一致。切换整个 UI 主题只需在启动时更换一个工厂。",
+    "when_not_to_use": [
+      "When the application only has one product family and no plans to support others",
+      "Small projects where the interface hierarchy adds more boilerplate than it saves",
+      "When dependency injection containers already manage multi-implementation selection, making an explicit factory redundant"
+    ],
+    "when_not_to_use_zh": [
+      "应用只有一个产品族且没有支持其他族的计划时",
+      "小型项目中，接口层次结构增加的样板代码多于节省的代码",
+      "依赖注入容器已管理多实现选择，使显式工厂变得多余时"
+    ],
+    "adopters": [
+      "Java Swing (PLAF)",
+      "AWS SDK",
+      "Qt Framework",
+      "IntelliJ Plugin API"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "extensibility"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+    "secondary_sources": [
+      "Freeman, E., Robson, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+      "Larman, C. (2004). \"Applying UML and Patterns\". Prentice Hall."
+    ],
+    "typed_relations": [
+      {
+        "slug": "factory-method-pattern",
+        "type": "extends"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "dependency-injection",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 229,
+    "name": "Decorator Pattern",
+    "name_zh": "装饰器模式",
+    "slug": "decorator-pattern",
+    "category": "coding",
+    "desc": "Attach additional responsibilities to objects dynamically",
+    "desc_zh": "动态地为对象添加额外职责，是子类化扩展功能的灵活替代方案",
+    "steps": [
+      "Define the Component interface: establish the interface that both concrete components and decorators implement, ensuring they are interchangeable",
+      "Implement the Concrete Component: create the base object providing the core behavior to be decorated",
+      "Create the abstract Decorator: implement the Component interface, hold a reference to a Component, and delegate all calls to it by default",
+      "Implement Concrete Decorators: subclass the abstract Decorator and override methods to add behavior before or after delegating to the wrapped component",
+      "Compose at runtime: wrap components in one or more decorators in any order to achieve the desired combination of behaviors"
+    ],
+    "steps_zh": [
+      "定义组件接口：建立具体组件和装饰器都实现的接口，确保它们可互换",
+      "实现具体组件：创建提供要被装饰的核心行为的基础对象",
+      "创建抽象装饰器：实现组件接口，持有组件引用，默认将所有调用委托给它",
+      "实现具体装饰器：对抽象装饰器进行子类化，重写方法以在委托给被包装组件前后添加行为",
+      "在运行时组合：以任意顺序将组件包装在一个或多个装饰器中，实现所需的行为组合"
+    ],
+    "ai_relevant": false,
+    "viz_type": "tree",
+    "related": [
+      "solid-principles",
+      "adapter-pattern",
+      "strategy-pattern"
+    ],
+    "tags": [
+      "gof",
+      "structural",
+      "design-patterns",
+      "composition",
+      "oop"
+    ],
+    "origin_author": "Gamma, Helm, Johnson, Vlissides, 1994",
+    "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
+    "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "You need to add responsibilities to individual objects without affecting others of the same class",
+      "Subclassing would produce an explosion of classes to cover every possible feature combination",
+      "Behaviors need to be layered or stacked in different orders at runtime (e.g., logging + caching + auth on an HTTP handler)"
+    ],
+    "when_to_use_zh": [
+      "需要为单个对象添加职责而不影响同类的其他对象",
+      "子类化会因功能组合爆炸而导致类数量激增",
+      "行为需要在运行时以不同顺序层叠（如 HTTP 处理器上的日志 + 缓存 + 认证）"
+    ],
+    "core_concepts": [
+      "Wrapping: a decorator holds a reference to the component it wraps and forwards calls to it, adding behavior around the delegation",
+      "Transparent interface: because decorators implement the same interface as the component, clients cannot tell whether they hold a raw component or a stack of decorators",
+      "Open/Closed compliance: new behaviors are added by writing new decorators, never by modifying existing component or decorator code"
+    ],
+    "core_concepts_zh": [
+      "包装：装饰器持有被包装组件的引用，将调用转发给它，并在委托前后添加行为",
+      "透明接口：因为装饰器与组件实现相同的接口，客户端无法判断持有的是原始组件还是装饰器栈",
+      "符合开闭原则：通过编写新装饰器添加新行为，从不修改现有组件或装饰器代码"
+    ],
+    "timeline": [
+      ["1994", "GoF introduce Decorator as the primary alternative to subclassing for extending behavior"],
+      ["2000", "Java I/O streams (InputStream, BufferedInputStream, GZIPInputStream) popularize Decorator in practice"],
+      ["2015", "Python decorator syntax (@decorator) normalizes the pattern as a language feature, though it differs semantically"],
+      ["2022", "Middleware stacks in web frameworks (Express.js, ASP.NET Core) are recognized as Decorator chains"]
+    ],
+    "timeline_zh": [
+      ["1994", "GoF 将装饰器作为子类化扩展行为的主要替代方案引入"],
+      ["2000", "Java I/O 流（InputStream、BufferedInputStream、GZIPInputStream）在实践中推广装饰器模式"],
+      ["2015", "Python 装饰器语法（@decorator）将该模式规范化为语言特性，尽管语义有所不同"],
+      ["2022", "Web 框架中的中间件栈（Express.js、ASP.NET Core）被认可为装饰器链"]
+    ],
+    "dos": [
+      "Do ensure decorators are truly transparent by fully implementing the component interface, including edge-case methods",
+      "Do keep each decorator focused on a single concern (logging, caching, auth) to maintain composability",
+      "Do order decorators intentionally — the sequence matters when behaviors interact (e.g., cache before auth vs after)"
+    ],
+    "dos_zh": [
+      "通过完整实现组件接口（包括边缘情况方法）确保装饰器真正透明",
+      "保持每个装饰器专注于单一关注点（日志、缓存、认证）以维持可组合性",
+      "有意地排列装饰器顺序——当行为相互交互时顺序很重要（如缓存在认证之前还是之后）"
+    ],
+    "donts": [
+      "Don't use Decorator when the class hierarchy is stable and one or two subclasses would suffice",
+      "Don't create deeply nested decorator stacks without documenting the intended order, as debugging them is difficult",
+      "Don't break the component interface in a decorator by adding public methods that clients are expected to call directly"
+    ],
+    "donts_zh": [
+      "当类层次结构稳定且一两个子类已足够时，不要使用装饰器",
+      "不要在不记录预期顺序的情况下创建深层嵌套的装饰器栈，因为调试它们很困难",
+      "不要在装饰器中通过添加客户端预期直接调用的公共方法来破坏组件接口"
+    ],
+    "case_study_company": "Java I/O",
+    "case_study": "Java's java.io package is the most cited real-world Decorator implementation. Reading a gzip-compressed file over a network uses a chain: new GZIPInputStream(new BufferedInputStream(new FileInputStream(file))). Each wrapper adds one capability — buffering, decompression — to the underlying InputStream. The consuming code reads from InputStream regardless of how many decorators are stacked, demonstrating transparent composability that would have required dozens of subclasses without the pattern.",
+    "case_study_zh": "Java 的 java.io 包是最常被引用的真实装饰器实现。通过网络读取 gzip 压缩文件使用了一条链：new GZIPInputStream(new BufferedInputStream(new FileInputStream(file)))。每个包装器向底层 InputStream 添加一种能力——缓冲、解压。消费代码无论堆叠了多少装饰器都从 InputStream 读取，展示了没有此模式就需要数十个子类才能实现的透明可组合性。",
+    "when_not_to_use": [
+      "When the component interface is large and implementing it fully in every decorator is burdensome",
+      "When the order of decoration is complex and error-prone, and a Strategy or Chain of Responsibility is clearer",
+      "Simple classes with one or two known extension points where straightforward subclassing is more readable"
+    ],
+    "when_not_to_use_zh": [
+      "当组件接口很大，在每个装饰器中完整实现它很繁琐时",
+      "当装饰顺序复杂且易出错，策略模式或职责链更清晰时",
+      "具有一两个已知扩展点的简单类，直接子类化更易读"
+    ],
+    "adopters": [
+      "Java I/O Streams",
+      "Python (built-in @decorator)",
+      "ASP.NET Core Middleware",
+      "Express.js"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "extensibility"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+    "secondary_sources": [
+      "Freeman, E., Robson, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+      "Martin, R. C. (2002). \"Agile Software Development, Principles, Patterns, and Practices\". Prentice Hall."
+    ],
+    "typed_relations": [
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "adapter-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "strategy-pattern",
+        "type": "related"
+      }
+    ]
+  },
+  {
+    "id": 230,
+    "name": "Adapter Pattern",
+    "name_zh": "适配器模式",
+    "slug": "adapter-pattern",
+    "category": "coding",
+    "desc": "Convert one interface to another that clients expect",
+    "desc_zh": "将一个类的接口转换为客户期望的另一个接口，使原本不兼容的类可以协作",
+    "steps": [
+      "Identify the Target interface: define the interface that the client code is written against and expects to interact with",
+      "Identify the Adaptee: locate the existing class with a useful but incompatible interface that you cannot or do not want to modify",
+      "Create the Adapter class: implement the Target interface and hold a reference to the Adaptee (object adapter) or inherit from it (class adapter)",
+      "Delegate in each Target method: implement each Target method by translating the call and its parameters into the equivalent Adaptee call",
+      "Use the Adapter transparently: configure or inject the Adapter where the client expects a Target; the client remains unaware of the Adaptee"
+    ],
+    "steps_zh": [
+      "确定目标接口：定义客户端代码所针对并期望交互的接口",
+      "确定被适配者：找到拥有有用但不兼容接口的现有类，您无法或不想修改它",
+      "创建适配器类：实现目标接口，持有被适配者的引用（对象适配器）或继承它（类适配器）",
+      "在每个目标方法中委托：通过将调用及其参数转换为等效的被适配者调用来实现每个目标方法",
+      "透明使用适配器：在客户端期望目标的地方配置或注入适配器；客户端对被适配者一无所知"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flowchart",
+    "related": [
+      "decorator-pattern",
+      "facade-pattern",
+      "solid-principles"
+    ],
+    "tags": [
+      "gof",
+      "structural",
+      "design-patterns",
+      "interface",
+      "integration",
+      "oop"
+    ],
+    "origin_author": "Gamma, Helm, Johnson, Vlissides, 1994",
+    "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
+    "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Integrating a third-party library or legacy component whose interface is incompatible with your system's expectations",
+      "You want to reuse existing classes without modifying their source code",
+      "Building an anti-corruption layer to translate between external and internal domain models"
+    ],
+    "when_to_use_zh": [
+      "集成第三方库或遗留组件，其接口与系统期望不兼容",
+      "希望复用现有类而不修改其源代码",
+      "构建防腐层以在外部和内部领域模型之间进行转换"
+    ],
+    "core_concepts": [
+      "Target: the interface clients expect; adapters implement this to become drop-in replacements",
+      "Adaptee: the existing class with incompatible interface being wrapped by the adapter",
+      "Object vs Class adapter: object adapters use composition (preferred); class adapters use multiple inheritance (language-dependent)"
+    ],
+    "core_concepts_zh": [
+      "目标：客户端期望的接口；适配器实现此接口以成为可替换的插入式组件",
+      "被适配者：被适配器包装的、具有不兼容接口的现有类",
+      "对象适配器 vs 类适配器：对象适配器使用组合（推荐）；类适配器使用多重继承（取决于语言）"
+    ],
+    "timeline": [
+      ["1994", "GoF formalize Adapter as a structural pattern for interface translation and legacy integration"],
+      ["2002", "Adapter becomes the standard approach for wrapping SOAP services behind clean Java interfaces in J2EE"],
+      ["2014", "Anti-Corruption Layer in DDD is widely recognized as a strategic application of the Adapter pattern"],
+      ["2023", "LLM tool/function adapters translate between agent tool schemas and underlying API signatures"]
+    ],
+    "timeline_zh": [
+      ["1994", "GoF 将适配器正式化为用于接口转换和遗留集成的结构型模式"],
+      ["2002", "适配器成为在 J2EE 中将 SOAP 服务包装在整洁 Java 接口后面的标准方法"],
+      ["2014", "DDD 中的防腐层被广泛认可为适配器模式的战略应用"],
+      ["2023", "LLM 工具/函数适配器在智能体工具模式和底层 API 签名之间进行转换"]
+    ],
+    "dos": [
+      "Do prefer object adapters (composition) over class adapters (inheritance) for better flexibility and testability",
+      "Do keep the adapter thin — its only job is interface translation, not additional business logic",
+      "Do create an adapter per external system boundary to isolate integration concerns and simplify testing with mock adaptees"
+    ],
+    "dos_zh": [
+      "优先使用对象适配器（组合）而非类适配器（继承），以获得更好的灵活性和可测试性",
+      "保持适配器精简——其唯一职责是接口转换，而非额外的业务逻辑",
+      "为每个外部系统边界创建一个适配器，以隔离集成关注点并简化使用模拟被适配者的测试"
+    ],
+    "donts": [
+      "Don't put business logic in the adapter; it should only translate, not transform semantics",
+      "Don't create adapters for interfaces that could simply be updated; only adapt what you cannot change",
+      "Don't chain multiple adapters together — it signals a deeper design problem that should be addressed structurally"
+    ],
+    "donts_zh": [
+      "不要在适配器中放置业务逻辑；它只应翻译，而非转换语义",
+      "不要为可以直接更新的接口创建适配器；只适配您无法更改的内容",
+      "不要将多个适配器链接在一起——这表明存在应从结构上解决的更深层设计问题"
+    ],
+    "case_study_company": "AWS SDK",
+    "case_study": "The AWS SDK for Java uses Adapter extensively in its service client wrappers. The SDK exposes clean, idiomatic Java interfaces (S3Client, DynamoDbClient) that serve as Targets, while internally adapting the raw HTTP request/response cycle of each AWS service API. Application teams depend only on the idiomatic Target interface; when AWS changes the underlying HTTP protocol or authentication mechanism, only the adapter layer changes, insulating all business logic from API churn.",
+    "case_study_zh": "Java 版 AWS SDK 在其服务客户端包装器中广泛使用适配器。SDK 暴露整洁的、符合 Java 惯用法的接口（S3Client、DynamoDbClient）作为目标，同时在内部适配每个 AWS 服务 API 的原始 HTTP 请求/响应周期。应用团队只依赖惯用目标接口；当 AWS 更改底层 HTTP 协议或认证机制时，只有适配器层发生变化，使所有业务逻辑免受 API 变动的影响。",
+    "when_not_to_use": [
+      "When you control both interfaces and can simply unify them without an adapter",
+      "When the semantic gap between Adaptee and Target is so large that translation would be complex and error-prone",
+      "When extensive data transformation is required — consider a dedicated mapper or anti-corruption layer with richer logic instead"
+    ],
+    "when_not_to_use_zh": [
+      "当您控制两个接口且可以直接统一它们而无需适配器时",
+      "当被适配者和目标之间的语义差距如此之大，以至于转换会变得复杂且容易出错时",
+      "当需要大量数据转换时——考虑使用具有更丰富逻辑的专用映射器或防腐层"
+    ],
+    "adopters": [
+      "AWS SDK",
+      "Spring Data",
+      "SLF4J",
+      "Jakarta EE Connectors"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "interoperability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+    "secondary_sources": [
+      "Freeman, E., Robson, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+      "Evans, E. (2003). \"Domain-Driven Design\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "decorator-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "hexagonal-architecture",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 231,
+    "name": "Singleton Pattern",
+    "name_zh": "单例模式",
+    "slug": "singleton-pattern",
+    "category": "coding",
+    "desc": "Ensure a class has only one instance with a global access point",
+    "desc_zh": "确保一个类只有一个实例，并提供一个访问它的全局入口点",
+    "steps": [
+      "Make the constructor private: prevent external code from instantiating the class directly using the new keyword",
+      "Declare a private static instance field: hold the single instance inside the class itself",
+      "Provide a public static accessor method: implement getInstance() that creates the instance on first call and returns it on every subsequent call",
+      "Handle thread safety: in multi-threaded environments, use double-checked locking, an initialization-on-demand holder, or language-level guarantees to prevent race conditions",
+      "Consider dependency injection as an alternative: in modern applications prefer injecting a single shared instance via a DI container rather than relying on a static accessor"
+    ],
+    "steps_zh": [
+      "将构造函数设为私有：防止外部代码直接使用 new 关键字实例化类",
+      "声明私有静态实例字段：在类内部持有单一实例",
+      "提供公共静态访问方法：实现 getInstance()，在第一次调用时创建实例，后续每次调用返回该实例",
+      "处理线程安全：在多线程环境中，使用双重检查锁定、按需初始化持有者或语言级保证来防止竞态条件",
+      "考虑依赖注入作为替代方案：在现代应用中，优先通过 DI 容器注入单一共享实例，而非依赖静态访问器"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flowchart",
+    "related": [
+      "solid-principles",
+      "dependency-injection",
+      "factory-method-pattern"
+    ],
+    "tags": [
+      "gof",
+      "creational",
+      "design-patterns",
+      "instance-management",
+      "oop"
+    ],
+    "origin_author": "Gamma, Helm, Johnson, Vlissides, 1994",
+    "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
+    "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
+    "complexity": "beginner",
+    "when_to_use": [
+      "Exactly one shared resource must exist — e.g., a thread pool, configuration registry, or hardware interface driver",
+      "Global coordination is required and the cost of multiple instances would cause correctness issues (e.g., duplicate caches)",
+      "A legacy codebase cannot use dependency injection and needs a controlled global access point"
+    ],
+    "when_to_use_zh": [
+      "必须存在唯一一个共享资源——如线程池、配置注册表或硬件接口驱动",
+      "需要全局协调，多个实例的代价会导致正确性问题（如重复缓存）",
+      "遗留代码库无法使用依赖注入，需要一个受控的全局访问点"
+    ],
+    "core_concepts": [
+      "Single instance guarantee: only one object of the class can exist in the process; enforced by private constructor",
+      "Global access point: the static getInstance() method provides a well-known entry to the single instance from anywhere in the codebase",
+      "Lazy vs eager initialization: the instance can be created on first access (lazy) or at class load time (eager), each with different thread-safety implications"
+    ],
+    "core_concepts_zh": [
+      "单实例保证：进程中只能存在该类的一个对象；通过私有构造函数强制实现",
+      "全局访问点：静态 getInstance() 方法提供从代码库任何地方访问单一实例的知名入口",
+      "懒加载 vs 饿加载：实例可在首次访问时创建（懒加载）或在类加载时创建（饿加载），各有不同的线程安全含义"
+    ],
+    "timeline": [
+      ["1994", "GoF introduce Singleton as a creational pattern; it quickly becomes one of the most recognized patterns"],
+      ["2004", "Singleton earns criticism as an anti-pattern due to hidden global state, testing difficulties, and tight coupling"],
+      ["2009", "Spring and Guice DI containers popularize singleton-scoped beans as a managed, testable alternative"],
+      ["2020", "Singleton remains useful for low-level infrastructure (loggers, metrics registries) but avoided in domain logic"]
+    ],
+    "timeline_zh": [
+      ["1994", "GoF 将单例作为创建型模式引入；它迅速成为最广为人知的模式之一"],
+      ["2004", "由于隐藏全局状态、测试困难和紧耦合，单例因被视为反模式而受到批评"],
+      ["2009", "Spring 和 Guice DI 容器推广单例作用域 Bean，作为可管理、可测试的替代方案"],
+      ["2020", "单例对于低级基础设施（日志记录器、指标注册表）仍有用，但在领域逻辑中应避免使用"]
+    ],
+    "dos": [
+      "Do prefer DI-container-managed singletons over static getInstance() for testability and lifecycle control",
+      "Do use thread-safe initialization (enum singleton in Java, module-level object in Python) to avoid subtle concurrency bugs",
+      "Do limit Singleton to stateless or append-only resources; mutable shared state is a concurrency hazard"
+    ],
+    "dos_zh": [
+      "优先使用 DI 容器管理的单例而非静态 getInstance()，以获得可测试性和生命周期控制",
+      "使用线程安全的初始化方式（Java 中的枚举单例、Python 中的模块级对象）以避免微妙的并发缺陷",
+      "将单例限制于无状态或只追加的资源；可变共享状态是并发风险"
+    ],
+    "donts": [
+      "Don't use Singleton for domain objects — it makes them impossible to vary, test in isolation, or run concurrently",
+      "Don't store mutable business state in a Singleton because it introduces race conditions and makes tests order-dependent",
+      "Don't use Singleton as a convenient global variable bag — it is an architectural coupling that erodes maintainability over time"
+    ],
+    "donts_zh": [
+      "不要将单例用于领域对象——这使它们无法变化、无法隔离测试或并发运行",
+      "不要在单例中存储可变业务状态，因为这会引入竞态条件并使测试依赖于顺序",
+      "不要将单例用作方便的全局变量袋——它是一种随时间侵蚀可维护性的架构耦合"
+    ],
+    "case_study_company": "Log4j / SLF4J",
+    "case_study": "The logging ecosystem (Log4j, Logback, SLF4J) uses a managed Singleton approach for the LoggerFactory. The root logger and its appenders are singletons scoped to the JVM process, ensuring all threads write to the same configured output destinations without creating duplicate file handles or losing log entries. Modern logging frameworks implement this via class-loading guarantees (not double-checked locking), demonstrating the correct, thread-safe form of the pattern.",
+    "case_study_zh": "日志生态系统（Log4j、Logback、SLF4J）为 LoggerFactory 使用托管单例方式。根日志记录器及其附加器是作用于 JVM 进程的单例，确保所有线程写入相同的已配置输出目的地，而不会创建重复的文件句柄或丢失日志条目。现代日志框架通过类加载保证（而非双重检查锁定）实现这一点，展示了模式的正确、线程安全形式。",
+    "when_not_to_use": [
+      "Domain model objects that represent real-world entities with potentially multiple instances",
+      "Services that need to be substituted with test doubles in unit testing",
+      "Any case where multiple independent instances improve correctness, throughput, or testability"
+    ],
+    "when_not_to_use_zh": [
+      "代表现实世界实体、可能有多个实例的领域模型对象",
+      "需要在单元测试中用测试替身替代的服务",
+      "多个独立实例能提高正确性、吞吐量或可测试性的任何情况"
+    ],
+    "adopters": [
+      "Log4j / SLF4J",
+      "Spring (singleton scope)",
+      "Node.js module system",
+      "Android Application class"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "reliability",
+      "maintainability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+    "secondary_sources": [
+      "Freeman, E., Robson, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+      "Bloch, J. (2008). \"Effective Java, 2nd ed.\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "solid-principles",
+        "type": "related"
+      },
+      {
+        "slug": "dependency-injection",
+        "type": "alternative"
+      },
+      {
+        "slug": "factory-method-pattern",
+        "type": "related"
+      }
+    ]
+  },
+  {
+    "id": 232,
+    "name": "Command Pattern",
+    "name_zh": "命令模式",
+    "slug": "command-pattern",
+    "category": "coding",
+    "desc": "Encapsulate a request as an object for undo, queue, or logging",
+    "desc_zh": "将请求封装为对象，从而支持撤销、排队或日志记录等操作",
+    "steps": [
+      "Define the Command interface: declare an execute() method (and optionally undo()) that all command objects must implement",
+      "Implement Concrete Commands: create one class per operation, storing the Receiver reference and any parameters needed to carry out the action",
+      "Build the Invoker: hold a Command reference (or queue), call execute() at the appropriate time, and optionally maintain a history stack for undo",
+      "Configure the Receiver: the Receiver contains the actual business logic; Concrete Commands delegate to it rather than implementing the operation themselves",
+      "Compose macro commands: combine multiple Commands into a CompositeCommand to execute complex workflows atomically or with unified undo support"
+    ],
+    "steps_zh": [
+      "定义命令接口：声明所有命令对象必须实现的 execute() 方法（以及可选的 undo()）",
+      "实现具体命令：为每个操作创建一个类，存储接收者引用和执行操作所需的任何参数",
+      "构建调用者：持有命令引用（或队列），在适当时机调用 execute()，并可选地维护用于撤销的历史栈",
+      "配置接收者：接收者包含实际的业务逻辑；具体命令委托给它而非自己实现操作",
+      "组合宏命令：将多个命令组合成复合命令，以原子方式或统一撤销支持执行复杂工作流"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flowchart",
+    "related": [
+      "strategy-pattern",
+      "observer-pattern",
+      "solid-principles"
+    ],
+    "tags": [
+      "gof",
+      "behavioral",
+      "design-patterns",
+      "undo",
+      "queue",
+      "oop"
+    ],
+    "origin_author": "Gamma, Helm, Johnson, Vlissides, 1994",
+    "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
+    "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "You need undoable operations — encapsulating each action with an undo() method enables a full undo/redo history",
+      "Operations must be queued, scheduled, or transmitted across a network as serializable objects",
+      "An AI agent needs to plan, validate, and selectively execute or roll back a sequence of actions"
+    ],
+    "when_to_use_zh": [
+      "需要可撤销操作——将每个动作与 undo() 方法封装，实现完整的撤销/重做历史",
+      "操作必须作为可序列化对象进行排队、调度或通过网络传输",
+      "AI 智能体需要规划、验证并选择性地执行或回滚一系列动作"
+    ],
+    "core_concepts": [
+      "Command object: encapsulates an operation as a first-class object, decoupling the sender from the receiver and the timing of execution",
+      "Invoker: triggers command execution and can maintain a command history for undo/redo, retry, or audit logging",
+      "Receiver: the object that knows how to perform the actual work; commands delegate to it, keeping themselves thin"
+    ],
+    "core_concepts_zh": [
+      "命令对象：将操作封装为一等对象，将发送者与接收者及执行时机解耦",
+      "调用者：触发命令执行，可维护命令历史以支持撤销/重做、重试或审计日志",
+      "接收者：知道如何执行实际工作的对象；命令委托给它，使自身保持精简"
+    ],
+    "timeline": [
+      ["1994", "GoF formalize Command as a behavioral pattern, unifying transactions, macros, and UI actions under one concept"],
+      ["2003", "Command becomes the backbone of GUI undo/redo in editors like Eclipse and IntelliJ IDEA"],
+      ["2014", "Event sourcing architectures adopt Command as the write model, storing commands as an immutable audit log"],
+      ["2023", "LLM agent frameworks (LangChain, AutoGen) model tool calls as Command objects enabling replay and rollback"]
+    ],
+    "timeline_zh": [
+      ["1994", "GoF 将命令正式化为行为型模式，将事务、宏和 UI 动作统一在一个概念下"],
+      ["2003", "命令成为 Eclipse 和 IntelliJ IDEA 等编辑器中 GUI 撤销/重做的核心"],
+      ["2014", "事件溯源架构将命令作为写模型，将命令存储为不可变的审计日志"],
+      ["2023", "LLM 智能体框架（LangChain、AutoGen）将工具调用建模为命令对象，支持重放和回滚"]
+    ],
+    "dos": [
+      "Do implement undo() alongside execute() from the start if reversibility is a requirement — retrofitting it later is painful",
+      "Do keep Command objects immutable and serializable so they can be logged, transmitted, and replayed reliably",
+      "Do use Command queues for rate limiting, retry logic, and background processing to decouple production from consumption"
+    ],
+    "dos_zh": [
+      "如果需要可逆性，从一开始就与 execute() 一起实现 undo()——事后补加很痛苦",
+      "保持命令对象不可变且可序列化，以便可靠地记录、传输和重放",
+      "使用命令队列进行速率限制、重试逻辑和后台处理，将生产与消费解耦"
+    ],
+    "donts": [
+      "Don't put business logic in the Command itself — delegate to the Receiver and keep the Command as a thin action descriptor",
+      "Don't create a Command class for every single trivial method call; overhead is only justified when queuing, undo, or logging is needed",
+      "Don't neglect failure handling in undo() — a partial undo that leaves the system in an inconsistent state is worse than no undo"
+    ],
+    "donts_zh": [
+      "不要将业务逻辑放在命令本身——委托给接收者，保持命令作为精简的动作描述符",
+      "不要为每个简单的方法调用创建命令类；只有在需要排队、撤销或日志记录时开销才是合理的",
+      "不要忽视 undo() 中的失败处理——将系统置于不一致状态的部分撤销比没有撤销更糟糕"
+    ],
+    "case_study_company": "Microsoft Word",
+    "case_study": "Microsoft Word's undo/redo system is a canonical Command pattern implementation. Every user action — typing a character, changing font size, inserting an image — is encapsulated as a Command object stored in a history stack. Ctrl+Z pops and calls undo(); Ctrl+Y pushes and calls execute() again. This architecture allows Word to maintain a 100-step undo history across arbitrarily complex nested formatting operations, and the same Command objects are reused for macro recording and the Track Changes feature.",
+    "case_study_zh": "Microsoft Word 的撤销/重做系统是命令模式的典型实现。每个用户操作——输入字符、更改字体大小、插入图片——都被封装为存储在历史栈中的命令对象。Ctrl+Z 弹出并调用 undo()；Ctrl+Y 压入并再次调用 execute()。这种架构使 Word 能够在任意复杂的嵌套格式化操作中维护 100 步的撤销历史，同样的命令对象被复用于宏录制和修订追踪功能。",
+    "when_not_to_use": [
+      "Simple request-response flows with no need for undo, queuing, or logging overhead",
+      "High-frequency operations (millions per second) where object allocation per-command is a measurable bottleneck",
+      "Purely functional codebases where immutable data transformations are already first-class and eliminate the need for Command objects"
+    ],
+    "when_not_to_use_zh": [
+      "无需撤销、排队或日志开销的简单请求-响应流",
+      "高频操作（每秒数百万次），每个命令的对象分配是可测量的瓶颈",
+      "纯函数式代码库，不可变数据转换已是一等公民，无需命令对象"
+    ],
+    "adopters": [
+      "Microsoft Word / Office",
+      "Eclipse IDE",
+      "Git (commits as commands)",
+      "Apache Kafka (log as command store)"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "reliability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+    "secondary_sources": [
+      "Freeman, E., Robson, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+      "Martin, R. C. (2002). \"Agile Software Development, Principles, Patterns, and Practices\". Prentice Hall."
+    ],
+    "typed_relations": [
+      {
+        "slug": "strategy-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "observer-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      }
+    ]
   }
 ]
