@@ -17,7 +17,9 @@
 }
 
 .btn:hover {
-  border-color: #999;
+  background: var(--cat-bg, var(--surface));
+  color: var(--cat-text, var(--text));
+  border-color: var(--cat-bg, #999);
 }
 
 .btnActive {
@@ -27,6 +29,8 @@
 }
 
 .btnActive:hover {
+  background: var(--text);
+  color: var(--bg);
   border-color: var(--text);
 }
 

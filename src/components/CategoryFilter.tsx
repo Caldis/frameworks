@@ -25,22 +25,10 @@ export default function CategoryFilter({ active, onChange, counts }: CategoryFil
           key={cat.key}
           className={`${styles.btn} ${active === cat.key ? styles.btnActive : ''}`}
           onClick={() => onChange(cat.key)}
-          onMouseEnter={e => {
-            if (active !== cat.key) {
-              const el = e.currentTarget as HTMLButtonElement
-              el.style.backgroundColor = cat.colorBg
-              el.style.color = cat.colorText
-              el.style.borderColor = cat.colorBg
-            }
-          }}
-          onMouseLeave={e => {
-            if (active !== cat.key) {
-              const el = e.currentTarget as HTMLButtonElement
-              el.style.backgroundColor = ''
-              el.style.color = ''
-              el.style.borderColor = ''
-            }
-          }}
+          style={{
+            '--cat-bg': cat.colorBg,
+            '--cat-text': cat.colorText,
+          } as React.CSSProperties}
         >
           {localized(cat, 'name')}<span className={styles.count}>{counts[cat.key]}</span>
         </button>
