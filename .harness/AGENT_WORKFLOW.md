@@ -158,7 +158,8 @@ Visual quality and accessibility are NOT separate sprints. They are **gates that
 - **Partial is fine**: 72/100 shipped, then 100/100. 188/194, then 194/194. Each push deploys.
 
 ### Pre-Sprint Hygiene
-- **Audit data before generating**: Run broken-ref check, duplicate-slug check, field-completeness check BEFORE dispatching generators. Cheaper to fix first.
+- **Audit data before generating**: Run broken-ref check, duplicate-slug check, field-completeness check, **enum field validation** (viz_type, abstraction_level, complexity, maturity_ring, quality_concerns) BEFORE dispatching generators. Cheaper to fix first.
+- **Enum validation is critical**: Sonnet agents invented 10+ invalid viz_type values (flowchart, layered, pipeline, etc.) that silently rendered nothing. Always validate enum fields after content agents complete.
 - **Quick-win-after-retro**: If retro finds a trivial fix (e.g., "100" hardcoded in title), do it immediately — don't queue a sprint for it.
 
 ### Gate 2 Screenshot Review
