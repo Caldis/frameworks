@@ -17,9 +17,12 @@
 }
 
 .filterBtn {
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 11px;
+  padding: 6px 10px;
+  border-radius: 16px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
   font-family: var(--font-mono);
   cursor: pointer;
   border: 1px solid var(--border);
@@ -131,6 +134,13 @@
 
 .zoomBtn:hover {
   background: var(--surface);
+}
+
+.filterDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .backLink {

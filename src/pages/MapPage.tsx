@@ -120,8 +120,8 @@ export default function MapPage() {
     const innerHeight = height - margin.top - margin.bottom
     const colWidth = innerWidth / categories.length
 
-    // Build a map from category key to column index
-    const categoryOrder: CategoryKey[] = ['thinking', 'architecture', 'coding', 'quality', 'deployment', 'evolution', 'ai']
+    // Build a map from category key to column index — use ALL categories
+    const categoryOrder: CategoryKey[] = categories.map(c => c.key)
     const catIndex = new Map<CategoryKey, number>(categoryOrder.map((k, i) => [k, i]))
 
     // Compute target X for each category (center of its column)
@@ -423,16 +423,9 @@ export default function MapPage() {
             className={`${styles.filterBtn} ${activeCategories.has(cat.key) ? styles.filterBtnActive : ''}`}
             onClick={() => toggleCategory(cat.key)}
           >
+            <span className={styles.filterDot} style={{ background: cat.colorText }} />
             {localized(cat, 'name')}
           </button>
-        ))}
-      </div>
-      <div className={styles.legend}>
-        {categories.map(cat => (
-          <span key={cat.key} className={styles.legendItem}>
-            <span className={styles.legendDot} style={{ background: cat.colorText }} />
-            {localized(cat, 'name')}
-          </span>
         ))}
       </div>
       <div className={styles.svgContainer} ref={containerRef}>
