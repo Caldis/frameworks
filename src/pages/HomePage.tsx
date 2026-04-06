@@ -12,6 +12,7 @@ import CategoryFilter from '../components/CategoryFilter'
 import DimensionFilter from '../components/DimensionFilter'
 import Favorites from '../components/Favorites'
 import CardGrid from '../components/CardGrid'
+import CategorySection from '../components/CategorySection'
 import Modal from '../components/Modal'
 import styles from './HomePage.module.css'
 
@@ -194,7 +195,24 @@ export default function HomePage() {
         <div className={styles.empty}>
           {t.noResults.replace('{query}', query)}
         </div>
+      ) : activeCategory === null && !query ? (
+        // Grouped view: render per-category sections
+        categories.map(cat => {
+          const catFrameworks = dimensionFiltered.filter(f => f.category === cat.key)
+          if (catFrameworks.length === 0) return null
+          return (
+            <CategorySection
+              key={cat.key}
+              category={cat}
+              frameworks={catFrameworks}
+              onCardClick={handleCardClick}
+              favorites={favorites}
+              onToggleFavorite={toggleFavorite}
+            />
+          )
+        })
       ) : (
+        // Single category or search results: flat grid
         <CardGrid
           frameworks={filtered}
           onCardClick={handleCardClick}

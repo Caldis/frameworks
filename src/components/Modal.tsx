@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { Framework } from '../types'
 import { getCategoryByKey } from '../data/categories'
@@ -32,6 +32,21 @@ export default function Modal({
   const { locale, t, localized } = useI18n()
   const [showHint, setShowHint] = useState(false)
 
+  // Touch swipe handling
+  const touchStartX = useRef(0)
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX
+    if (Math.abs(diff) > 60) {
+      if (diff > 0 && hasNext) onNext()  // swipe left = next
+      if (diff < 0 && hasPrev) onPrev()  // swipe right = prev
+    }
+  }
+
   useEffect(() => {
     if (framework && !sessionStorage.getItem(HINT_KEY)) {
       sessionStorage.setItem(HINT_KEY, '1')
@@ -62,7 +77,7 @@ export default function Modal({
 
   return (
     <div className={styles.overlay} onClick={onClose}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
         <button className={styles.close} onClick={onClose}>
           &times;
         </button>

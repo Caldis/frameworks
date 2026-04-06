@@ -531,6 +531,13 @@
 /* ── Responsive ── */
 
 @media (max-width: 600px) {
+  .breadcrumb {
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .whenGrid {
     grid-template-columns: 1fr;
   }

@@ -1,0 +1,47 @@
+.categorySection {
+  margin-bottom: 40px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-left: 16px;
+  margin-bottom: 16px;
+}
+
+.sectionName {
+  font-family: var(--font-serif);
+  font-size: 20px;
+}
+
+.sectionNameZh {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.sectionCount {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted-light);
+}
+
+.showMore {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 12px;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px dashed var(--border);
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.showMore:hover {
+  color: var(--text);
+}

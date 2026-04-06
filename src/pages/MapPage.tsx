@@ -25,11 +25,12 @@ interface SimLink extends d3.SimulationLinkDatum<SimNode> {
 }
 
 export default function MapPage() {
-  const { t, localized } = useI18n()
+  const { t, localized, locale } = useI18n()
   const svgRef = useRef<SVGSVGElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const tooltipRef = useRef<HTMLDivElement>(null)
   const navigate = useNavigate()
+  const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null)
   const [activeCategories, setActiveCategories] = useState<Set<CategoryKey>>(
     () => new Set(categories.map(c => c.key))
   )
@@ -59,7 +60,9 @@ export default function MapPage() {
     svg.selectAll<SVGTextElement, SimNode>('.node-label')
       .transition()
       .duration(300)
-      .attr('opacity', d => activeCategories.has(d.category) ? 1 : 0)
+      .attr('opacity', d =>
+        activeCategories.has(d.category) && d.related.length >= 2 ? 1 : 0
+      )
 
     svg.selectAll<SVGLineElement, SimLink>('.link-line')
       .transition()
@@ -200,6 +203,7 @@ export default function MapPage() {
       })
 
     svg.call(zoom)
+    zoomRef.current = zoom
 
     // Simulation with category-based X and complexity-based Y
     const simulation = d3.forceSimulation<SimNode>(nodes)
@@ -254,17 +258,26 @@ export default function MapPage() {
       .attr('stroke', 'white')
       .attr('stroke-width', 2)
 
-    // Node labels (hidden by default, shown on hover via interaction)
+    // Node labels: persistent for nodes with >= 2 connections, hidden for others
+    const truncateLabel = (d: SimNode) => {
+      const name = localized(d, 'name')
+      const maxLen = locale === 'zh' ? 5 : 10
+      return name.length > maxLen ? name.slice(0, maxLen) + '…' : name
+    }
+
     node.append('text')
       .attr('class', 'node-label')
       .attr('text-anchor', 'middle')
-      .attr('dy', d => -(8 + Math.min(d.related.length, 4) * 2))
-      .attr('font-size', 10)
+      .attr('dy', d => (6 + Math.min(d.related.length, 4) * 2) + 10)
+      .attr('font-size', 8)
       .attr('font-family', 'var(--font-mono)')
-      .attr('fill', '#333')
-      .attr('opacity', 0)
+      .attr('fill', d => {
+        const cat = getCategoryByKey(d.category)
+        return cat ? cat.colorText : '#666'
+      })
+      .attr('opacity', d => d.related.length >= 2 ? 1 : 0)
       .attr('pointer-events', 'none')
-      .text(d => localized(d, 'name'))
+      .text(d => truncateLabel(d))
 
     // Interactions
     node
@@ -292,9 +305,11 @@ export default function MapPage() {
             return (s === d.slug || t === d.slug) ? 0.8 : 0.15
           })
 
-        // Show labels of connected nodes
+        // Show labels of connected nodes and the hovered node; keep persistent labels visible
         svg.selectAll<SVGTextElement, SimNode>('.node-label')
-          .attr('opacity', n => connectedSlugs.has(n.slug) ? 1 : (n.slug === d.slug ? 1 : 0))
+          .attr('opacity', n =>
+            n.slug === d.slug || connectedSlugs.has(n.slug) ? 1 : (n.related.length >= 2 ? 0.3 : 0)
+          )
 
         // Tooltip
         const tooltip = tooltipRef.current
@@ -337,9 +352,9 @@ export default function MapPage() {
           .attr('stroke-width', 1)
           .attr('opacity', 0.4)
 
-        // Hide all labels
-        svg.selectAll('.node-label')
-          .attr('opacity', 0)
+        // Restore persistent labels; hide labels for low-connection nodes
+        svg.selectAll<SVGTextElement, SimNode>('.node-label')
+          .attr('opacity', n => n.related.length >= 2 ? 1 : 0)
 
         // Hide tooltip
         const tooltip = tooltipRef.current
@@ -366,7 +381,21 @@ export default function MapPage() {
     return () => {
       simulation.stop()
     }
-  }, [navigate, localized, t])
+  }, [navigate, localized, t, locale])
+
+  const handleZoomIn = useCallback(() => {
+    const svgEl = svgRef.current
+    const zoomBehavior = zoomRef.current
+    if (!svgEl || !zoomBehavior) return
+    d3.select(svgEl).transition().duration(300).call(zoomBehavior.scaleBy, 1.4)
+  }, [])
+
+  const handleZoomOut = useCallback(() => {
+    const svgEl = svgRef.current
+    const zoomBehavior = zoomRef.current
+    if (!svgEl || !zoomBehavior) return
+    d3.select(svgEl).transition().duration(300).call(zoomBehavior.scaleBy, 1 / 1.4)
+  }, [])
 
   return (
     <div className={styles.page}>
@@ -387,9 +416,21 @@ export default function MapPage() {
           </button>
         ))}
       </div>
+      <div className={styles.legend}>
+        {categories.map(cat => (
+          <span key={cat.key} className={styles.legendItem}>
+            <span className={styles.legendDot} style={{ background: cat.colorText }} />
+            {localized(cat, 'name')}
+          </span>
+        ))}
+      </div>
       <div className={styles.svgContainer} ref={containerRef}>
         <svg ref={svgRef} />
         <div ref={tooltipRef} className={styles.tooltip} />
+        <div className={styles.zoomControls}>
+          <button className={styles.zoomBtn} onClick={handleZoomIn} aria-label="Zoom in">+</button>
+          <button className={styles.zoomBtn} onClick={handleZoomOut} aria-label="Zoom out">&minus;</button>
+        </div>
       </div>
       <Link to="/" className={styles.backLink}>{t.backToHome}</Link>
     </div>
