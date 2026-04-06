@@ -70,6 +70,7 @@
 **Estimate**: Medium
 
 ### Sprint S07: Design Debt — Homepage Grouping, Map Labels, Mobile UX [DONE 2026-04-06]
+### Sprint S08: Design Debt Cleanup — Detail Polish, Map Fix, Sticky Nav [DONE 2026-04-06]
 **Priority**: Low
 **Contract**: WCAG 2.1 AA contrast compliance. Keyboard-navigable throughout. Print-friendly detail pages.
 **Tasks**:
