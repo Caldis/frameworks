@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import type { Category, Framework } from '../types'
 import { useI18n } from '../i18n'
 import CardGrid from './CardGrid'
@@ -22,10 +22,9 @@ export default function CategorySection({
   onToggleFavorite,
 }: CategorySectionProps) {
   const { localized } = useI18n()
-  const [expanded, setExpanded] = useState(false)
 
   const hasMore = frameworks.length > PREVIEW_COUNT
-  const visible = expanded || !hasMore ? frameworks : frameworks.slice(0, PREVIEW_COUNT)
+  const visible = hasMore ? frameworks.slice(0, PREVIEW_COUNT) : frameworks
 
   return (
     <section className={styles.categorySection}>
@@ -33,9 +32,9 @@ export default function CategorySection({
         className={styles.sectionHeader}
         style={{ borderLeft: `4px solid ${category.colorText}` }}
       >
-        <span className={styles.sectionName}>
+        <Link to={`/category/${category.slug}`} className={styles.sectionNameLink}>
           {localized(category, 'name')}
-        </span>
+        </Link>
         <span className={styles.sectionNameZh}>
           {category.name_zh}
         </span>
@@ -51,13 +50,13 @@ export default function CategorySection({
         onToggleFavorite={onToggleFavorite}
       />
 
-      {hasMore && !expanded && (
-        <button
+      {hasMore && (
+        <Link
+          to={`/category/${category.slug}`}
           className={styles.showMore}
-          onClick={() => setExpanded(true)}
         >
-          Show all {frameworks.length} &rarr;
-        </button>
+          View all {frameworks.length} in {localized(category, 'name')} &rarr;
+        </Link>
       )}
     </section>
   )

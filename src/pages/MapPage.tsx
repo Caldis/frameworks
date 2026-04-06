@@ -102,7 +102,7 @@ export default function MapPage() {
       .attr('opacity', d => {
         const s = d.source as SimNode
         const t = d.target as SimNode
-        return activeCategories.has(s.category) && activeCategories.has(t.category) ? 0.2 : 0.05
+        return activeCategories.has(s.category) && activeCategories.has(t.category) ? 0.15 : 0.05
       })
   }, [activeCategories])
 
@@ -216,10 +216,22 @@ export default function MapPage() {
         .attr('y1', margin.top)
         .attr('x2', x)
         .attr('y2', margin.top + innerHeight)
-        .attr('stroke', '#eee')
+        .attr('stroke', '#e0ddd8')
         .attr('stroke-width', 1)
         .attr('stroke-dasharray', '4,4')
     }
+
+    // Alternating column background tint
+    categoryOrder.forEach((_catKey, i) => {
+      if (i % 2 === 0) {
+        bgLayer.append('rect')
+          .attr('x', margin.left + i * colWidth)
+          .attr('y', margin.top)
+          .attr('width', colWidth)
+          .attr('height', innerHeight)
+          .attr('fill', 'rgba(0,0,0,0.015)')
+      }
+    })
 
     // Draw X-axis labels (category names at bottom)
     categoryOrder.forEach((catKey, i) => {
@@ -274,10 +286,10 @@ export default function MapPage() {
     // Simulation with category-based X and complexity-based Y
     const simulation = d3.forceSimulation<SimNode>(nodes)
       .force('link', d3.forceLink<SimNode, SimLink>(links).id(d => d.slug).distance(80))
-      .force('charge', d3.forceManyBody().strength(-120))
+      .force('charge', d3.forceManyBody().strength(-180))
       .force('x', d3.forceX<SimNode>(d => catTargetX(d.category)).strength(0.4))
-      .force('y', d3.forceY<SimNode>(d => complexityTargetY(d)).strength(0.15))
-      .force('collision', d3.forceCollide().radius(18))
+      .force('y', d3.forceY<SimNode>(d => complexityTargetY(d)).strength(0.2))
+      .force('collision', d3.forceCollide().radius(22))
 
     // Links
     const link = g.append('g')
@@ -285,9 +297,9 @@ export default function MapPage() {
       .data(links)
       .join('line')
       .attr('class', 'link-line')
-      .attr('stroke', '#ddd')
-      .attr('stroke-width', 1)
-      .attr('opacity', 0.2)
+      .attr('stroke', '#c4a882')
+      .attr('stroke-width', 1.5)
+      .attr('opacity', 0.15)
 
     // Node groups
     const node = g.append('g')
@@ -370,17 +382,17 @@ export default function MapPage() {
           .attr('stroke', l => {
             const s = (l.source as SimNode).slug
             const tgt = (l.target as SimNode).slug
-            return (s === d.slug || tgt === d.slug) ? sourceColor : '#ddd'
+            return (s === d.slug || tgt === d.slug) ? sourceColor : '#c4a882'
           })
           .attr('stroke-width', l => {
             const s = (l.source as SimNode).slug
             const tgt = (l.target as SimNode).slug
-            return (s === d.slug || tgt === d.slug) ? 3 : 1
+            return (s === d.slug || tgt === d.slug) ? 3 : 1.5
           })
           .attr('opacity', l => {
             const s = (l.source as SimNode).slug
             const tgt = (l.target as SimNode).slug
-            return (s === d.slug || tgt === d.slug) ? 0.9 : 0.08
+            return (s === d.slug || tgt === d.slug) ? 0.8 : 0.05
           })
           .attr('filter', l => {
             const s = (l.source as SimNode).slug
@@ -433,11 +445,11 @@ export default function MapPage() {
         }
       })
       .on('mouseleave', () => {
-        // Reset links
+        // Reset links to default warm styling
         link
-          .attr('stroke', '#ddd')
-          .attr('stroke-width', 1)
-          .attr('opacity', 0.2)
+          .attr('stroke', '#c4a882')
+          .attr('stroke-width', 1.5)
+          .attr('opacity', 0.15)
           .attr('filter', 'none')
 
         // Restore labels: always show for high-connection, zoom-dependent for others
@@ -473,17 +485,17 @@ export default function MapPage() {
           .attr('stroke', l => {
             const s = (l.source as SimNode).slug
             const tgt = (l.target as SimNode).slug
-            return (s === d.slug || tgt === d.slug) ? sourceColor : '#ddd'
+            return (s === d.slug || tgt === d.slug) ? sourceColor : '#c4a882'
           })
           .attr('stroke-width', l => {
             const s = (l.source as SimNode).slug
             const tgt = (l.target as SimNode).slug
-            return (s === d.slug || tgt === d.slug) ? 3 : 1
+            return (s === d.slug || tgt === d.slug) ? 3 : 1.5
           })
           .attr('opacity', l => {
             const s = (l.source as SimNode).slug
             const tgt = (l.target as SimNode).slug
-            return (s === d.slug || tgt === d.slug) ? 0.9 : 0.08
+            return (s === d.slug || tgt === d.slug) ? 0.8 : 0.05
           })
           .attr('filter', l => {
             const s = (l.source as SimNode).slug
