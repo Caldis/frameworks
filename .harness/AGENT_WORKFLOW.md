@@ -64,27 +64,51 @@ Following the Harness Design principle of context reset over compaction:
 ```
 START
   │
-  ├─ Planner reads STATE + BACKLOG
-  ├─ Planner picks sprint, writes sprint spec
-  ├─ User approves sprint spec
+  ├─ 1. PLAN
+  │   ├─ Read STATE + BACKLOG + last evaluation
+  │   ├─ Pick sprint, write sprint spec with "done" contract
+  │   └─ User approves
   │
-  ├─ Generator agents dispatched (parallel where possible)
-  │   ├─ Each reads: sprint spec + STATE
-  │   ├─ Each writes: specific files only
-  │   └─ Each validates: build passes
+  ├─ 2. GENERATE
+  │   ├─ Dispatch parallel agents (file-isolated)
+  │   ├─ Each self-validates: build passes, JSON valid
+  │   └─ If sprint adds UI: agent MUST add E2E test for the new feature
   │
-  ├─ All generators complete
-  ├─ git commit + push
+  ├─ 3. EVALUATE (Gate 1: Automated)
+  │   ├─ npm run build              → must pass
+  │   ├─ npx tsc --noEmit           → must pass
+  │   └─ npx playwright test        → all tests must pass
+  │   [If any fail → Generator fixes → re-run Gate 1]
   │
-  ├─ Evaluator scores against rubric
-  │   ├─ PASS (all ≥ 3, avg ≥ 3.5) → update STATE, mark sprint DONE
-  │   └─ FAIL → bug list → Generator fixes → re-evaluate (max 3 rounds)
+  ├─ 4. EVALUATE (Gate 2: Visual & A11y)
+  │   ├─ Launch Evaluator agent (separate context, adversarial)
+  │   ├─ Evaluator navigates running site via Playwright:
+  │   │   - Screenshot key pages at 1200px, 768px, 375px
+  │   │   - Tab through all interactive elements
+  │   │   - Check contrast, spacing, typography, overflow
+  │   │   - Switch to ZH, repeat visual check
+  │   ├─ Evaluator writes bug list (specific: file, line, what's wrong)
+  │   └─ If bugs found → Generator fixes → re-evaluate (max 3 rounds)
   │
-  ├─ Update PROJECT_STATE.md
-  ├─ Update SPRINT_BACKLOG.md
-  └─ Report to user
+  ├─ 5. EVALUATE (Gate 3+4: Content + Design Language)
+  │   ├─ Spot-check 3 random frameworks for factual accuracy
+  │   ├─ Verify new components match Minimal Scholar style
+  │   └─ Check cross-references resolve
+  │
+  ├─ 6. SHIP
+  │   ├─ git commit + push
+  │   ├─ Verify deployment succeeds
+  │   ├─ Update PROJECT_STATE.md
+  │   ├─ Write retrospective
+  │   └─ Report to user
 END
 ```
+
+### Key Change from Earlier Workflow
+Previously: Generate → commit → push → then maybe evaluate.
+Now: Generate → evaluate BEFORE commit → fix → evaluate again → only then ship.
+
+Visual quality and accessibility are NOT separate sprints. They are **gates that every sprint must pass**. The Evaluator is adversarial — its job is to find problems, not confirm success.
 
 ## Parallel Agent Dispatch Rules
 
