@@ -661,6 +661,9 @@ export default function MapPage() {
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
         />
+        {searchQuery && (
+          <button className={styles.searchClear} onClick={() => setSearchQuery('')}>×</button>
+        )}
       </div>
       <div className={styles.filters}>
         {categories.map(cat => (
@@ -693,8 +696,8 @@ export default function MapPage() {
           <svg ref={svgRef} />
           <div ref={tooltipRef} className={styles.tooltip} />
           <div className={styles.zoomControls}>
-            <button className={styles.zoomBtn} onClick={handleZoomIn} aria-label="Zoom in">+</button>
-            <button className={styles.zoomBtn} onClick={handleZoomOut} aria-label="Zoom out">&minus;</button>
+            <button className={styles.zoomBtn} onClick={handleZoomIn} aria-label="Zoom in" title="Zoom in">+</button>
+            <button className={styles.zoomBtn} onClick={handleZoomOut} aria-label="Zoom out" title="Zoom out">&minus;</button>
             <button className={styles.zoomBtn} onClick={handleFitToView} aria-label="Fit to view" title="Reset view">&#8865;</button>
           </div>
           {showHint && (
