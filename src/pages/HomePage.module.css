@@ -7,24 +7,24 @@
 .hero::before {
   content: '';
   position: absolute;
-  width: 360px;
-  height: 360px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  top: -100px;
-  right: -80px;
+  border: 2px solid rgba(196, 168, 130, 0.12);
+  top: -80px;
+  right: -40px;
   pointer-events: none;
 }
 
 .hero::after {
   content: '';
   position: absolute;
-  width: 240px;
-  height: 240px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  top: 60px;
-  right: 120px;
+  border: 2px solid rgba(143, 170, 143, 0.12);
+  top: 80px;
+  right: 160px;
   pointer-events: none;
 }
 
@@ -69,7 +69,8 @@
   z-index: 10;
   background: var(--bg);
   padding: 16px 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: none;
+  box-shadow: 0 1px 0 var(--border);
   display: flex;
   align-items: center;
   gap: 16px;
@@ -127,6 +128,26 @@
   color: var(--muted);
   font-family: var(--font-mono);
   font-size: 14px;
+}
+
+.heroStats {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--muted-light);
+}
+
+.heroStat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.heroStatSep {
+  color: var(--border);
 }
 
 @media (max-width: 900px) {

@@ -138,6 +138,13 @@ export default function HomePage() {
         >
           {t.inspiredBy}
         </a>
+        <div className={styles.heroStats}>
+          <span className={styles.heroStat}>{allFrameworks.length} {t.all === 'All' ? 'frameworks' : '个框架'}</span>
+          <span className={styles.heroStatSep}>·</span>
+          <span className={styles.heroStat}>{categories.length} {t.all === 'All' ? 'categories' : '个分类'}</span>
+          <span className={styles.heroStatSep}>·</span>
+          <span className={styles.heroStat}>EN/中</span>
+        </div>
       </div>
 
       {/* Sticky controls bar */}
