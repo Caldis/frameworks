@@ -77,6 +77,17 @@ test.describe('SDFrame Smoke Tests', () => {
     await expect(page.getByRole('button', { name: 'System', exact: true })).toBeVisible()
   })
 
+  test('search finds frameworks by adopter company', async ({ page }) => {
+    await page.goto('/')
+    const search = page.locator('input[type="text"]')
+    await search.fill('Netflix')
+    await page.waitForTimeout(300)
+    // Should find frameworks that list Netflix as an adopter
+    const cards = page.locator('[class*="card"]')
+    const count = await cards.count()
+    expect(count).toBeGreaterThan(0)
+  })
+
   test('modal opens on card click', async ({ page }) => {
     await page.goto('/')
     // Click the first framework card

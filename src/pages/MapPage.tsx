@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState, useCallback } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import * as d3 from 'd3'
-import { getAllFrameworks } from '../data/loader'
+import { getAllFrameworks, getFrameworkBySlug } from '../data/loader'
 import { categories, getCategoryByKey } from '../data/categories'
 import { useI18n } from '../i18n'
 import { usePageMeta } from '../hooks/usePageMeta'
@@ -39,6 +39,25 @@ export default function MapPage() {
   )
   const activeCategoriesRef = useRef<Set<CategoryKey>>(new Set(categories.map(c => c.key)))
   const [searchQuery, setSearchQuery] = useState('')
+  const [selectedNode, setSelectedNode] = useState<string | null>(null)
+  const [showHint, setShowHint] = useState(() => {
+    return !sessionStorage.getItem('mapHintDismissed')
+  })
+
+  // Auto-dismiss hint after 5 seconds
+  useEffect(() => {
+    if (!showHint) return
+    const timer = setTimeout(() => {
+      setShowHint(false)
+      sessionStorage.setItem('mapHintDismissed', '1')
+    }, 5000)
+    return () => clearTimeout(timer)
+  }, [showHint])
+
+  const dismissHint = useCallback(() => {
+    setShowHint(false)
+    sessionStorage.setItem('mapHintDismissed', '1')
+  }, [])
 
   const toggleCategory = useCallback((key: CategoryKey) => {
     setActiveCategories(prev => {
@@ -51,6 +70,9 @@ export default function MapPage() {
       return next
     })
   }, [])
+
+  // Helper: determine if a node should always show its label
+  const isHighConnection = (d: SimNode) => d.related.length >= 3
 
   // Update visibility when activeCategories changes (without rebuilding the graph)
   useEffect(() => {
@@ -67,9 +89,12 @@ export default function MapPage() {
     svg.selectAll<SVGTextElement, SimNode>('.node-label')
       .transition()
       .duration(300)
-      .attr('opacity', d =>
-        showLabels && activeCategories.has(d.category) && d.related.length >= 2 ? 1 : 0
-      )
+      .attr('opacity', d => {
+        if (!activeCategories.has(d.category)) return 0
+        if (isHighConnection(d)) return 1
+        if (showLabels && d.related.length >= 2) return 1
+        return 0
+      })
 
     svg.selectAll<SVGLineElement, SimLink>('.link-line')
       .transition()
@@ -77,7 +102,7 @@ export default function MapPage() {
       .attr('opacity', d => {
         const s = d.source as SimNode
         const t = d.target as SimNode
-        return activeCategories.has(s.category) && activeCategories.has(t.category) ? 0.4 : 0.05
+        return activeCategories.has(s.category) && activeCategories.has(t.category) ? 0.2 : 0.05
       })
   }, [activeCategories])
 
@@ -172,6 +197,14 @@ export default function MapPage() {
       .attr('width', width)
       .attr('height', height)
 
+    // Define a glow filter for highlighted edges
+    const defs = svg.append('defs')
+    const glowFilter = defs.append('filter').attr('id', 'edge-glow')
+    glowFilter.append('feGaussianBlur').attr('stdDeviation', '2').attr('result', 'coloredBlur')
+    const feMerge = glowFilter.append('feMerge')
+    feMerge.append('feMergeNode').attr('in', 'coloredBlur')
+    feMerge.append('feMergeNode').attr('in', 'SourceGraphic')
+
     // Static background layer (not affected by zoom)
     const bgLayer = svg.append('g').attr('class', 'bg-layer')
 
@@ -227,9 +260,12 @@ export default function MapPage() {
         const showLabels = k > 1.2
         const currentCategories = activeCategoriesRef.current
         svg.selectAll<SVGTextElement, SimNode>('.node-label')
-          .attr('opacity', (d: SimNode) =>
-            showLabels && currentCategories.has(d.category) && d.related.length >= 2 ? 1 : 0
-          )
+          .attr('opacity', (d: SimNode) => {
+            if (!currentCategories.has(d.category)) return 0
+            if (isHighConnection(d)) return 1
+            if (showLabels && d.related.length >= 2) return 1
+            return 0
+          })
       })
 
     svg.call(zoom)
@@ -251,7 +287,7 @@ export default function MapPage() {
       .attr('class', 'link-line')
       .attr('stroke', '#ddd')
       .attr('stroke-width', 1)
-      .attr('opacity', 0.4)
+      .attr('opacity', 0.2)
 
     // Node groups
     const node = g.append('g')
@@ -288,24 +324,24 @@ export default function MapPage() {
       .attr('stroke', 'white')
       .attr('stroke-width', 2)
 
-    // Node labels: persistent for nodes with >= 2 connections, hidden for others
+    // Node labels: always visible for high-connection nodes, zoom-dependent for others
     const truncateLabel = (d: SimNode) => {
       const name = localized(d, 'name')
-      const maxLen = locale === 'zh' ? 5 : 10
-      return name.length > maxLen ? name.slice(0, maxLen) + '…' : name
+      const maxLen = locale === 'zh' ? 8 : 12
+      return name.length > maxLen ? name.slice(0, maxLen) + '...' : name
     }
 
     node.append('text')
       .attr('class', 'node-label')
       .attr('text-anchor', 'middle')
       .attr('dy', d => (6 + Math.min(d.related.length, 4) * 2) + 10)
-      .attr('font-size', 8)
+      .attr('font-size', 9)
       .attr('font-family', 'var(--font-mono)')
       .attr('fill', d => {
         const cat = getCategoryByKey(d.category)
         return cat ? cat.colorText : '#666'
       })
-      .attr('opacity', 0)
+      .attr('opacity', d => isHighConnection(d) ? 1 : 0)
       .attr('pointer-events', 'none')
       .text(d => truncateLabel(d))
 
@@ -314,6 +350,12 @@ export default function MapPage() {
       tooltipRef.current?.classList.remove(styles.tooltipVisible)
     })
 
+    // Helper to get category color for a node
+    const getNodeColor = (d: SimNode) => {
+      const cat = getCategoryByKey(d.category)
+      return cat ? cat.colorText : '#999'
+    }
+
     // Interactions
     node
       .on('mouseenter', (event, d) => {
@@ -321,31 +363,40 @@ export default function MapPage() {
         d3.select(event.currentTarget).select('.node-label')
           .attr('opacity', 1)
 
-        // Highlight connected edges
+        // Highlight connected edges with category color and glow
         const connectedSlugs = new Set(d.related)
+        const sourceColor = getNodeColor(d)
         link
           .attr('stroke', l => {
             const s = (l.source as SimNode).slug
-            const t = (l.target as SimNode).slug
-            return (s === d.slug || t === d.slug) ? '#666' : '#ddd'
+            const tgt = (l.target as SimNode).slug
+            return (s === d.slug || tgt === d.slug) ? sourceColor : '#ddd'
           })
           .attr('stroke-width', l => {
             const s = (l.source as SimNode).slug
-            const t = (l.target as SimNode).slug
-            return (s === d.slug || t === d.slug) ? 2 : 1
+            const tgt = (l.target as SimNode).slug
+            return (s === d.slug || tgt === d.slug) ? 3 : 1
           })
           .attr('opacity', l => {
             const s = (l.source as SimNode).slug
-            const t = (l.target as SimNode).slug
-            return (s === d.slug || t === d.slug) ? 0.8 : 0.15
+            const tgt = (l.target as SimNode).slug
+            return (s === d.slug || tgt === d.slug) ? 0.9 : 0.08
+          })
+          .attr('filter', l => {
+            const s = (l.source as SimNode).slug
+            const tgt = (l.target as SimNode).slug
+            return (s === d.slug || tgt === d.slug) ? 'url(#edge-glow)' : 'none'
           })
 
         // Show labels of connected nodes and the hovered node; keep persistent labels visible at zoom
         const showLabels = zoomLevelRef.current > 1.2
         svg.selectAll<SVGTextElement, SimNode>('.node-label')
-          .attr('opacity', n =>
-            n.slug === d.slug || connectedSlugs.has(n.slug) ? 1 : (showLabels && n.related.length >= 2 ? 0.3 : 0)
-          )
+          .attr('opacity', n => {
+            if (n.slug === d.slug || connectedSlugs.has(n.slug)) return 1
+            if (isHighConnection(n)) return 0.3
+            if (showLabels && n.related.length >= 2) return 0.3
+            return 0
+          })
 
         // Tooltip
         const tooltip = tooltipRef.current
@@ -386,12 +437,17 @@ export default function MapPage() {
         link
           .attr('stroke', '#ddd')
           .attr('stroke-width', 1)
-          .attr('opacity', 0.4)
+          .attr('opacity', 0.2)
+          .attr('filter', 'none')
 
-        // Restore labels based on zoom level; only show for well-connected nodes when zoomed in
+        // Restore labels: always show for high-connection, zoom-dependent for others
         const showLabels = zoomLevelRef.current > 1.2
         svg.selectAll<SVGTextElement, SimNode>('.node-label')
-          .attr('opacity', n => showLabels && n.related.length >= 2 ? 1 : 0)
+          .attr('opacity', n => {
+            if (isHighConnection(n)) return 1
+            if (showLabels && n.related.length >= 2) return 1
+            return 0
+          })
 
         // Hide tooltip
         const tooltip = tooltipRef.current
@@ -400,7 +456,7 @@ export default function MapPage() {
         }
       })
       .on('click', (_event, d) => {
-        navigate(`/frameworks/${d.slug}`)
+        setSelectedNode(d.slug)
       })
       .on('touchstart', (event, d) => {
         event.preventDefault()
@@ -410,31 +466,40 @@ export default function MapPage() {
         d3.select(event.currentTarget).select('.node-label')
           .attr('opacity', 1)
 
-        // Highlight connected edges
+        // Highlight connected edges with category color and glow
         const connectedSlugs = new Set(d.related)
+        const sourceColor = getNodeColor(d)
         link
           .attr('stroke', l => {
             const s = (l.source as SimNode).slug
             const tgt = (l.target as SimNode).slug
-            return (s === d.slug || tgt === d.slug) ? '#666' : '#ddd'
+            return (s === d.slug || tgt === d.slug) ? sourceColor : '#ddd'
           })
           .attr('stroke-width', l => {
             const s = (l.source as SimNode).slug
             const tgt = (l.target as SimNode).slug
-            return (s === d.slug || tgt === d.slug) ? 2 : 1
+            return (s === d.slug || tgt === d.slug) ? 3 : 1
           })
           .attr('opacity', l => {
             const s = (l.source as SimNode).slug
             const tgt = (l.target as SimNode).slug
-            return (s === d.slug || tgt === d.slug) ? 0.8 : 0.15
+            return (s === d.slug || tgt === d.slug) ? 0.9 : 0.08
+          })
+          .attr('filter', l => {
+            const s = (l.source as SimNode).slug
+            const tgt = (l.target as SimNode).slug
+            return (s === d.slug || tgt === d.slug) ? 'url(#edge-glow)' : 'none'
           })
 
         // Show labels of connected nodes and the hovered node
         const showLabels = zoomLevelRef.current > 1.2
         svg.selectAll<SVGTextElement, SimNode>('.node-label')
-          .attr('opacity', n =>
-            n.slug === d.slug || connectedSlugs.has(n.slug) ? 1 : (showLabels && n.related.length >= 2 ? 0.3 : 0)
-          )
+          .attr('opacity', n => {
+            if (n.slug === d.slug || connectedSlugs.has(n.slug)) return 1
+            if (isHighConnection(n)) return 0.3
+            if (showLabels && n.related.length >= 2) return 0.3
+            return 0
+          })
 
         // Tooltip
         const tooltip = tooltipRef.current
@@ -501,6 +566,17 @@ export default function MapPage() {
     d3.select(svgEl).transition().duration(300).call(zoomBehavior.scaleBy, 1 / 1.4)
   }, [])
 
+  // Resolve selected framework details
+  const selectedFramework = selectedNode ? getFrameworkBySlug(selectedNode) : null
+  const selectedCategory = selectedFramework ? getCategoryByKey(selectedFramework.category) : null
+
+  // Complexity label
+  const complexityLabel = selectedFramework
+    ? selectedFramework.complexity === 'beginner' ? t.complexityBeginner
+      : selectedFramework.complexity === 'intermediate' ? t.complexityIntermediate
+      : t.complexityAdvanced
+    : ''
+
   return (
     <div className={styles.page}>
       <h1 className={styles.title}>{t.mapTitle}</h1>
@@ -525,13 +601,82 @@ export default function MapPage() {
           </button>
         ))}
       </div>
-      <div className={styles.svgContainer} ref={containerRef}>
-        <svg ref={svgRef} />
-        <div ref={tooltipRef} className={styles.tooltip} />
-        <div className={styles.zoomControls}>
-          <button className={styles.zoomBtn} onClick={handleZoomIn} aria-label="Zoom in">+</button>
-          <button className={styles.zoomBtn} onClick={handleZoomOut} aria-label="Zoom out">&minus;</button>
+      <div className={styles.mapLayout}>
+        <div className={styles.svgContainer} ref={containerRef} style={selectedNode ? { flex: 1 } : undefined}>
+          <svg ref={svgRef} />
+          <div ref={tooltipRef} className={styles.tooltip} />
+          <div className={styles.zoomControls}>
+            <button className={styles.zoomBtn} onClick={handleZoomIn} aria-label="Zoom in">+</button>
+            <button className={styles.zoomBtn} onClick={handleZoomOut} aria-label="Zoom out">&minus;</button>
+          </div>
+          {showHint && (
+            <div className={styles.hint} onClick={dismissHint}>
+              {t.mapHint}
+            </div>
+          )}
         </div>
+        {selectedFramework && selectedCategory && (
+          <div className={styles.sidePanel} key={selectedFramework.slug}>
+            <button className={styles.panelClose} onClick={() => setSelectedNode(null)} aria-label="Close">
+              &times;
+            </button>
+            <div className={styles.panelName}>{localized(selectedFramework, 'name')}</div>
+            <div className={styles.panelNameZh}>
+              {localized(selectedFramework, 'name') === selectedFramework.name
+                ? selectedFramework.name_zh
+                : selectedFramework.name}
+            </div>
+            <div className={styles.panelMeta}>
+              <span className={styles.panelCategoryPill}>
+                <span className={styles.connectionDot} style={{ background: selectedCategory.colorText }} />
+                {localized(selectedCategory, 'name')}
+              </span>
+              <span className={styles.panelComplexity}>{complexityLabel}</span>
+            </div>
+            <div className={styles.panelDesc}>
+              {localized(selectedFramework, 'desc')}
+            </div>
+            {(selectedFramework.when_to_use.length > 0 || selectedFramework.when_to_use_zh.length > 0) && (
+              <div className={styles.panelSection}>
+                <div className={styles.panelSectionTitle}>{t.whenToUse}</div>
+                <ul style={{ margin: 0, paddingLeft: 16, fontSize: 13, lineHeight: 1.6 }}>
+                  {(locale === 'zh' ? selectedFramework.when_to_use_zh : selectedFramework.when_to_use)
+                    .slice(0, 2)
+                    .map((item, i) => <li key={i}>{item}</li>)}
+                </ul>
+              </div>
+            )}
+            {selectedFramework.related.length > 0 && (
+              <div className={styles.panelSection}>
+                <div className={styles.panelSectionTitle}>{t.mapConnections}</div>
+                {selectedFramework.related.map(slug => {
+                  const relFw = getFrameworkBySlug(slug)
+                  if (!relFw) return null
+                  const relCat = getCategoryByKey(relFw.category)
+                  return (
+                    <div
+                      key={slug}
+                      className={styles.connectionItem}
+                      onClick={() => setSelectedNode(slug)}
+                    >
+                      <span
+                        className={styles.connectionDot}
+                        style={{ background: relCat ? relCat.colorText : '#999' }}
+                      />
+                      {localized(relFw, 'name')}
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+            <Link
+              to={`/frameworks/${selectedFramework.slug}`}
+              className={styles.panelViewBtn}
+            >
+              {t.mapViewDetails} &rarr;
+            </Link>
+          </div>
+        )}
       </div>
       <Link to="/" className={styles.backLink}>{t.backToHome}</Link>
     </div>
