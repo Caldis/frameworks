@@ -86,6 +86,7 @@
 ### Sprint S12: Learning Paths + Screenshot Coverage [DONE 2026-04-06]
 ### Sprint S13: SEO + Open Graph + Favicon + Sitemap [DONE 2026-04-06]
 ### Sprint S14: OG Image + Sitemap Automation + Hero Polish [DONE 2026-04-06]
+### Sprint S15: Expand 6 New Categories to 15 Each (+30) [DONE 2026-04-06]
 **Priority**: High (S09 retro — map bug hid for 5 sprints)
 **Contract**: Map fully functional for 13 categories. Data display correctness tests prevent regressions.
 **Tasks**:
