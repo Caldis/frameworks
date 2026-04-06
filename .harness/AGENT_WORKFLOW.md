@@ -102,8 +102,15 @@ START
   │   ├─ Verify deployment succeeds
   │   ├─ Update PROJECT_STATE.md
   │   ├─ Write retrospective
-  │   └─ Report to user
+  │   ├─ Push united-memory (every sprint, not just major milestones)
+  │   └─ **Report to user**: current sprint deliverables + KP progress + next sprint plan
 END
+
+**Mandatory report format after every sprint:**
+1. What was delivered (Main track + KP track)
+2. KP-Map current status and remaining issues
+3. Next sprint plan (Main + KP scope)
+4. Any user feedback logged for future sprints
 ```
 
 ### Key Change from Earlier Workflow
@@ -118,7 +125,7 @@ Visual quality and accessibility are NOT separate sprints. They are **gates that
 2. **No shared state**: Agents don't communicate with each other, only through files
 3. **Content agents by category**: One agent per data/frameworks/*.json file
 4. **Frontend agents by component**: One agent per page/component being modified
-5. **Maximum practical parallelism**: 7-9 agents (content) + 1-2 (frontend) = 8-11 total
+5. **HARD LIMIT: Maximum 10 concurrent sub-agents** — exceeding this triggers API rate limiting. If need 12+ tasks, batch into 2 waves of ≤10.
 
 ## Model Selection: When to Use Sonnet vs Opus
 
