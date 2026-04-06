@@ -180,6 +180,18 @@ User feedback during a sprint falls into two categories:
 
 This prevents: scope creep, half-finished features, untested changes, and skipped evaluations.
 
+### Gate 2 Visual Review: MUST CHECK (not a rubber stamp)
+
+Gate 2 is NOT "glance at screenshot and say OK." You MUST actively look for:
+1. **Text truncation with "..."** — any visible ellipsis in charts, cards, labels = fail
+2. **Duplicate text** — same text appearing twice in one element (e.g., title + subtitle both showing same name)
+3. **Empty space** — large blank areas with no content
+4. **Layout misalignment** — elements not aligned, inconsistent spacing
+5. **Language mismatch** — EN text in ZH mode or vice versa
+6. **Broken interactions** — hover states, click targets, scroll behavior
+
+If you see ANY of these, stop and fix before committing. Don't log as "debt for next sprint."
+
 ### What NOT to Do
 - **Don't use inline style for hover effects** — causes ghost state bugs. Use CSS :hover + custom properties.
 - **Don't trust "build passes" as quality proxy** — the FrameworkPage was a `<div>` placeholder that built fine.

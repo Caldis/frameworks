@@ -21,7 +21,7 @@ export default function CategorySection({
   favorites,
   onToggleFavorite,
 }: CategorySectionProps) {
-  const { localized } = useI18n()
+  const { locale, localized } = useI18n()
 
   const hasMore = frameworks.length > PREVIEW_COUNT
   const visible = hasMore ? frameworks.slice(0, PREVIEW_COUNT) : frameworks
@@ -36,7 +36,7 @@ export default function CategorySection({
           {localized(category, 'name')}
         </Link>
         <span className={styles.sectionNameZh}>
-          {category.name_zh}
+          {locale === 'en' ? category.name_zh : category.name}
         </span>
         <span className={styles.sectionCount}>
           {frameworks.length}
@@ -55,7 +55,10 @@ export default function CategorySection({
           to={`/category/${category.slug}`}
           className={styles.showMore}
         >
-          View all {frameworks.length} in {localized(category, 'name')} &rarr;
+          {locale === 'en'
+            ? `View all ${frameworks.length} in ${localized(category, 'name')} →`
+            : `查看全部 ${frameworks.length} 个 ${localized(category, 'name')} →`
+          }
         </Link>
       )}
     </section>

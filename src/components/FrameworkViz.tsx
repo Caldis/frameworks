@@ -16,29 +16,19 @@ function isChinese(text: string): boolean {
   return /[\u4e00-\u9fff]/.test(text)
 }
 
-function extractKeyPhrase(text: string): string {
+function shortLabel(text: string): string {
   const zh = isChinese(text)
-  // 1. If text has "Concept Name: explanation", take the part before ":"
+  // Take text before colon if present
   const colonIdx = text.indexOf(zh ? '：' : ':')
-  if (colonIdx > 0 && colonIdx < (zh ? 12 : 20)) {
-    return text.slice(0, colonIdx).trim()
-  }
-  // 2. If text starts with a verb phrase, take first N words
+  let phrase = colonIdx > 0 && colonIdx <= 10 ? text.slice(0, colonIdx).trim() : text
   if (zh) {
-    // For Chinese: take first 6 characters (usually a complete phrase)
-    return text.length > 6 ? text.slice(0, 6) : text
+    // Chinese: max 5 chars, no ellipsis
+    return phrase.length > 5 ? phrase.slice(0, 5) : phrase
   } else {
-    // For English: take first 2-3 words
-    const words = text.split(/\s+/)
-    const phrase = words.slice(0, 3).join(' ')
-    return phrase.length > 18 ? words.slice(0, 2).join(' ') : phrase
+    // English: first word only, max 10 chars, no ellipsis
+    const firstWord = phrase.split(/\s+/)[0]
+    return firstWord.length > 10 ? firstWord.slice(0, 10) : firstWord
   }
-}
-
-function shortLabel(text: string, maxLen?: number): string {
-  const phrase = extractKeyPhrase(text)
-  const limit = maxLen ?? (isChinese(phrase) ? 6 : 16)
-  return phrase.length > limit ? phrase.slice(0, limit) : phrase
 }
 
 /* ── Color palette ── */

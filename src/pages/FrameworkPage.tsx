@@ -116,6 +116,13 @@ export default function FrameworkPage() {
         <div className={styles.originSource}>{originSource}</div>
       )}
 
+      {/* ── Visualization (first, before text content) ── */}
+      <section className={styles.vizSection}>
+        <div className={styles.viz}>
+          <FrameworkViz type={framework.viz_type} size={300} animate labels={steps} />
+        </div>
+      </section>
+
       {/* Description */}
       <p className={styles.desc}>{localized(framework, 'desc')}</p>
       <p className={styles.descAlt}>{locale === 'en' ? framework.desc_zh : framework.desc}</p>
@@ -284,14 +291,7 @@ export default function FrameworkPage() {
         </section>
       )}
 
-      {/* ── 10. Visualization ── */}
-      <section className={styles.section}>
-        <div className={styles.viz}>
-          <FrameworkViz type={framework.viz_type} size={300} animate labels={steps} />
-        </div>
-      </section>
-
-      {/* ── 11. Related Frameworks ── */}
+      {/* ── Related Frameworks ── */}
       {related.length > 0 && (
         <section className={styles.relatedSection}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.relatedFrameworks}</h2>
