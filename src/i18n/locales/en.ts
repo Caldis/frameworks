@@ -26,6 +26,7 @@ export const en: LocaleStrings = {
   mapTitle: 'Framework Relationship Map',
   mapAxisFundamental: 'Fundamental',
   mapAxisAdvanced: 'Advanced',
+  mapSearch: 'Search on map...',
   footerTitle: 'SDFrame',
   builtBy: 'Built by Caldis',
   source: 'Source',

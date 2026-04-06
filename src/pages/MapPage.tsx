@@ -36,6 +36,7 @@ export default function MapPage() {
     () => new Set(categories.map(c => c.key))
   )
   const activeCategoriesRef = useRef<Set<CategoryKey>>(new Set(categories.map(c => c.key)))
+  const [searchQuery, setSearchQuery] = useState('')
 
   const toggleCategory = useCallback((key: CategoryKey) => {
     setActiveCategories(prev => {
@@ -77,6 +78,19 @@ export default function MapPage() {
         return activeCategories.has(s.category) && activeCategories.has(t.category) ? 0.4 : 0.05
       })
   }, [activeCategories])
+
+  // Highlight matching nodes when searchQuery changes
+  useEffect(() => {
+    const svg = d3.select(svgRef.current)
+    if (!svg.node()) return
+    const q = searchQuery.toLowerCase()
+    svg.selectAll<SVGCircleElement, SimNode>('.node-circle')
+      .attr('opacity', d => !q || d.name.toLowerCase().includes(q) || d.name_zh.includes(q) ? 1 : 0.15)
+      .attr('r', d => {
+        const baseR = 6 + Math.min(d.related.length, 4) * 2
+        return (!q || d.name.toLowerCase().includes(q) || d.name_zh.includes(q)) ? baseR : baseR * 0.7
+      })
+  }, [searchQuery])
 
   // Build graph once
   useEffect(() => {
@@ -293,6 +307,11 @@ export default function MapPage() {
       .attr('pointer-events', 'none')
       .text(d => truncateLabel(d))
 
+    // Hide tooltip when tapping empty SVG background
+    svg.on('touchstart', () => {
+      tooltipRef.current?.classList.remove(styles.tooltipVisible)
+    })
+
     // Interactions
     node
       .on('mouseenter', (event, d) => {
@@ -381,6 +400,73 @@ export default function MapPage() {
       .on('click', (_event, d) => {
         navigate(`/frameworks/${d.slug}`)
       })
+      .on('touchstart', (event, d) => {
+        event.preventDefault()
+        event.stopPropagation()
+
+        // Show label for this node
+        d3.select(event.currentTarget).select('.node-label')
+          .attr('opacity', 1)
+
+        // Highlight connected edges
+        const connectedSlugs = new Set(d.related)
+        link
+          .attr('stroke', l => {
+            const s = (l.source as SimNode).slug
+            const tgt = (l.target as SimNode).slug
+            return (s === d.slug || tgt === d.slug) ? '#666' : '#ddd'
+          })
+          .attr('stroke-width', l => {
+            const s = (l.source as SimNode).slug
+            const tgt = (l.target as SimNode).slug
+            return (s === d.slug || tgt === d.slug) ? 2 : 1
+          })
+          .attr('opacity', l => {
+            const s = (l.source as SimNode).slug
+            const tgt = (l.target as SimNode).slug
+            return (s === d.slug || tgt === d.slug) ? 0.8 : 0.15
+          })
+
+        // Show labels of connected nodes and the hovered node
+        const showLabels = zoomLevelRef.current > 1.2
+        svg.selectAll<SVGTextElement, SimNode>('.node-label')
+          .attr('opacity', n =>
+            n.slug === d.slug || connectedSlugs.has(n.slug) ? 1 : (showLabels && n.related.length >= 2 ? 0.3 : 0)
+          )
+
+        // Tooltip
+        const tooltip = tooltipRef.current
+        if (tooltip) {
+          tooltip.innerHTML = `
+            <div class="${styles.tooltipName}">${localized(d, 'name')}</div>
+            <div class="${styles.tooltipNameZh}">${localized(d, 'name') === d.name ? d.name_zh : d.name}</div>
+            <div class="${styles.tooltipDesc}">${localized(d, 'desc')}</div>
+          `
+          tooltip.classList.add(styles.tooltipVisible)
+
+          const containerRect = containerEl.getBoundingClientRect()
+          const touch = event.touches[0]
+          const nodeX = touch.clientX - containerRect.left
+          const nodeY = touch.clientY - containerRect.top
+
+          const tooltipWidth = tooltip.offsetWidth
+          const tooltipHeight = tooltip.offsetHeight
+
+          let left = nodeX + 12
+          let top = nodeY - tooltipHeight / 2
+
+          if (left + tooltipWidth > containerRect.width) {
+            left = nodeX - tooltipWidth - 12
+          }
+          if (top < 0) top = 4
+          if (top + tooltipHeight > containerRect.height) {
+            top = containerRect.height - tooltipHeight - 4
+          }
+
+          tooltip.style.left = `${left}px`
+          tooltip.style.top = `${top}px`
+        }
+      })
 
     // Tick
     simulation.on('tick', () => {
@@ -416,6 +502,15 @@ export default function MapPage() {
   return (
     <div className={styles.page}>
       <h1 className={styles.title}>{t.mapTitle}</h1>
+      <div className={styles.searchRow}>
+        <input
+          className={styles.mapSearch}
+          type="search"
+          placeholder={t.mapSearch}
+          value={searchQuery}
+          onChange={e => setSearchQuery(e.target.value)}
+        />
+      </div>
       <div className={styles.filters}>
         {categories.map(cat => (
           <button

@@ -155,6 +155,30 @@
   color: var(--text);
 }
 
+.searchRow {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.mapSearch {
+  flex: 1;
+  max-width: 280px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  background: var(--bg);
+  color: var(--text);
+  outline: none;
+}
+
+.mapSearch:focus {
+  border-color: var(--muted);
+}
+
 @media (max-width: 600px) {
   .svgContainer {
     height: calc(100vh - 280px);

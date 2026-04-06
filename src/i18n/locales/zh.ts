@@ -26,6 +26,7 @@ export const zh: LocaleStrings = {
   mapTitle: '框架关系图',
   mapAxisFundamental: '基础',
   mapAxisAdvanced: '进阶',
+  mapSearch: '在图中搜索...',
   footerTitle: 'SDFrame',
   builtBy: '由 Caldis 构建',
   source: '源码',

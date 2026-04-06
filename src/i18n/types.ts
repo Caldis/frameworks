@@ -39,6 +39,7 @@ export interface LocaleStrings {
   mapTitle: string
   mapAxisFundamental: string
   mapAxisAdvanced: string
+  mapSearch: string
 
   // Footer
   footerTitle: string
