@@ -30,7 +30,7 @@
 
 | Sprint | KP Scope | Result | Remaining |
 |--------|---------|--------|-----------|
-| S16 | TBD | — | — |
+| S16 | Default labels, side panel, light pills, hint card | ✅ Labels visible, panel works, pills lighter | Edges still hard to see, no minimap, no connection filter, category columns unclear |
 
 ## Done Criteria
 User explicitly says they're satisfied with the map interaction.
