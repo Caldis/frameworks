@@ -32,6 +32,7 @@
 |--------|---------|--------|-----------|
 | S16 | Default labels, side panel, light pills, hint card | ✅ Labels visible, panel works, pills lighter | Edges still hard to see, no minimap, no connection filter, category columns unclear |
 | S17 | Edge warm color + thicker, charge -180, collision 22, column bg tint | ✅ Edges visible, nodes more spread, columns discernible | Nodes still dense in some areas, no minimap, no connection-count filter, side panel UX untested on mobile |
+| S18 | Zoom 0.5-3x, node boundary clamp, fit-to-view, reset button, pan limits | ✅ All nodes in bounds, auto-fit, controlled zoom/pan | Side panel mobile untested, no minimap, center still somewhat dense |
 
 ## Done Criteria
 User explicitly says they're satisfied with the map interaction.
