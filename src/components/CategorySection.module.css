@@ -1,25 +1,33 @@
+/* ── Nothing Design System — CategorySection ── */
+/* "Dividers are a symptom of insufficient spacing" — use space, not borders */
 .categorySection {
-  margin-bottom: 40px;
+  margin-bottom: var(--space-xl, 40px);
 }
 
 .sectionHeader {
   display: flex;
   align-items: baseline;
   gap: 12px;
-  padding-left: 16px;
-  margin-bottom: 16px;
+  /* Removed colored left border — spacing alone provides separation */
+  padding-left: 0;
+  margin-bottom: var(--space-md, 16px);
 }
 
 .sectionName {
-  font-family: var(--font-serif);
-  font-size: 20px;
+  font-family: 'Space Grotesk', 'Noto Sans SC', system-ui, sans-serif;
+  font-size: var(--heading, 24px);
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
 }
 
 .sectionNameLink {
-  font-family: var(--font-serif);
-  font-size: 20px;
-  color: inherit;
+  font-family: 'Space Grotesk', 'Noto Sans SC', system-ui, sans-serif;
+  font-size: var(--heading, 24px);
+  font-weight: 500;
+  color: var(--text-primary);
   text-decoration: none;
+  letter-spacing: -0.02em;
 }
 
 .sectionNameLink:hover {
@@ -27,32 +35,32 @@
 }
 
 .sectionNameZh {
-  font-size: 14px;
-  color: var(--muted);
+  font-size: var(--body-sm, 14px);
+  color: var(--text-secondary);
 }
 
 .sectionCount {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--muted-light);
+  font-family: 'Space Mono', monospace;
+  font-size: var(--caption, 12px);
+  color: var(--text-disabled);
 }
 
 .showMore {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+  font-size: var(--label, 11px);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
   margin-top: 12px;
   display: inline-block;
   text-decoration: none;
-  border-bottom: 1px dashed var(--border);
   background: none;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  border: none;
   cursor: pointer;
   padding: 0;
 }
 
 .showMore:hover {
-  color: var(--text);
+  text-decoration: underline;
+  color: var(--text-primary);
 }

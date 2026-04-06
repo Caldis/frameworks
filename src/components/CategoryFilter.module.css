@@ -1,3 +1,4 @@
+/* ── Nothing Design System — CategoryFilter ── */
 .filters {
   display: flex;
   gap: 8px;
@@ -5,34 +6,39 @@
 }
 
 .btn {
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-size: 12px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   min-height: 36px;
-  font-family: var(--font-mono);
   cursor: pointer;
   transition: all 0.15s;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-visible);
   background: transparent;
-  color: var(--text);
+  color: var(--text-secondary);
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .btn:hover {
-  background: var(--cat-bg, var(--surface));
-  color: var(--cat-text, var(--text));
-  border-color: var(--cat-bg, #999);
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+  background: transparent;
 }
 
 .btnActive {
-  background: var(--text);
-  color: var(--bg);
-  border-color: var(--text);
+  background: var(--text-display);
+  color: var(--black, #F5F5F5);
+  border-color: var(--text-display);
 }
 
 .btnActive:hover {
-  background: var(--text);
-  color: var(--bg);
-  border-color: var(--text);
+  background: var(--text-display);
+  color: var(--black, #F5F5F5);
+  border-color: var(--text-display);
 }
 
 .count {

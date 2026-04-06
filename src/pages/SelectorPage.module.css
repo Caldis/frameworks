@@ -1,79 +1,88 @@
 .page {
   max-width: 900px;
   margin: 0 auto;
-  padding: 32px 24px;
+  padding: var(--space-xl) var(--space-lg);
 }
 
 .title {
-  font-family: var(--font-serif);
-  font-size: 32px;
+  font-family: var(--font-body);
+  font-size: var(--display-md);
+  font-weight: 500;
   line-height: 1.2;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.02em;
+  color: var(--text-display);
 }
 
 .subtitle {
-  font-size: 14px;
-  color: var(--muted);
-  margin-top: 8px;
+  font-family: var(--font-body);
+  font-size: var(--body-sm);
+  color: var(--text-secondary);
+  margin-top: var(--space-sm);
 }
 
 .steps {
   display: flex;
-  gap: 8px;
-  margin: 24px 0;
+  gap: var(--space-sm);
+  margin: var(--space-lg) 0;
   align-items: center;
 }
 
+/* Square step dots — industrial */
 .stepDot {
   width: 28px;
   height: 28px;
-  border-radius: 50%;
+  border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 12px;
+  font-family: var(--font-data);
+  font-size: var(--caption);
   cursor: pointer;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-visible);
   background: transparent;
-  color: var(--muted);
+  color: var(--text-disabled);
   transition: all 0.15s;
 }
 
 .stepDot:hover {
-  border-color: var(--text);
-  color: var(--text);
+  border-color: var(--text-display);
+  color: var(--text-primary);
 }
 
+/* Active: inverted */
 .stepDotActive {
-  background: var(--text);
-  color: var(--bg);
-  border-color: var(--text);
+  background: var(--text-display);
+  color: var(--black);
+  border-color: var(--text-display);
 }
 
 .stepDotDone {
   background: var(--surface);
-  color: var(--text);
-  border-color: var(--text);
+  color: var(--text-primary);
+  border-color: var(--text-display);
 }
 
 .stepLabel {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--muted);
-  margin-left: 8px;
+  font-family: var(--font-data);
+  font-size: var(--caption);
+  color: var(--text-secondary);
+  margin-left: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .question {
-  font-family: var(--font-serif);
-  font-size: 22px;
-  margin: 24px 0 16px;
+  font-family: var(--font-body);
+  font-size: var(--subheading);
+  font-weight: 500;
+  color: var(--text-display);
+  margin: var(--space-lg) 0 var(--space-md);
 }
 
 .options {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 12px;
+  gap: var(--space-sm);
 }
 
 .optionsPills {
@@ -83,23 +92,25 @@
 }
 
 .option {
-  padding: 16px;
-  border-radius: 12px;
+  padding: var(--space-md);
+  border-radius: 8px;
   border: 1px solid var(--border);
+  background: var(--surface);
   cursor: pointer;
-  transition: all 0.15s;
-  background: transparent;
+  transition: border-color 0.15s;
   text-align: left;
-  color: var(--text);
+  color: var(--text-primary);
 }
 
 .option:hover {
-  border-color: #bbb;
+  border-color: var(--border-visible);
 }
 
+/* Active: prominent border, no fill */
 .optionActive {
-  background: #f0ebe5;
-  border-color: #d4cdc4;
+  background: var(--surface);
+  border-color: var(--text-display);
+  border-width: 1px;
 }
 
 .optionPill {
@@ -107,74 +118,82 @@
   border-radius: 20px;
   border: 1px solid var(--border);
   cursor: pointer;
-  transition: all 0.15s;
+  transition: border-color 0.15s;
   background: transparent;
-  font-family: var(--font-sans);
-  font-size: 13px;
-  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--body-sm);
+  color: var(--text-primary);
 }
 
 .optionPill:hover {
-  border-color: #bbb;
+  border-color: var(--border-visible);
 }
 
 .optionPillActive {
-  background: #f0ebe5;
-  border-color: #d4cdc4;
+  background: transparent;
+  border-color: var(--text-display);
 }
 
 .optionDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
   display: inline-block;
-  margin-right: 8px;
+  margin-right: var(--space-sm);
 }
 
 .optionName {
+  font-family: var(--font-body);
   font-weight: 600;
-  font-size: 14px;
+  font-size: var(--body-sm);
+  color: var(--text-display);
 }
 
 .optionDesc {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 4px;
+  font-family: var(--font-body);
+  font-size: var(--caption);
+  color: var(--text-secondary);
+  margin-top: var(--space-xs);
 }
 
 .optionCount {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--muted);
-  margin-top: 4px;
+  font-family: var(--font-data);
+  font-size: var(--label);
+  color: var(--text-disabled);
+  margin-top: var(--space-xs);
 }
 
 .nav {
   display: flex;
   justify-content: space-between;
-  margin-top: 24px;
+  margin-top: var(--space-lg);
 }
 
+/* Secondary nav btn — ghost */
 .navBtn {
   padding: 10px 24px;
-  border-radius: 8px;
-  font-family: var(--font-mono);
-  font-size: 13px;
+  border-radius: 20px;
+  font-family: var(--font-data);
+  font-size: var(--caption);
   cursor: pointer;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-visible);
   background: transparent;
-  color: var(--text);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   transition: all 0.15s;
 }
 
 .navBtn:hover {
-  border-color: var(--text);
+  border-color: var(--text-display);
+  color: var(--text-primary);
 }
 
+/* Primary nav btn — pill, solid */
 .navBtnPrimary {
-  background: var(--text);
-  color: var(--bg);
-  border-color: var(--text);
+  background: var(--text-display);
+  color: var(--black);
+  border-color: var(--text-display);
 }
 
 .navBtnPrimary:hover {
@@ -182,48 +201,51 @@
 }
 
 .results {
-  margin-top: 32px;
-  padding-top: 24px;
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
   border-top: 1px solid var(--border);
 }
 
 .resultsCount {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 16px;
+  font-family: var(--font-data);
+  font-size: var(--caption);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-md);
 }
 
 .resultGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 12px;
+  gap: var(--space-sm);
 }
 
 .resultCard {
   padding: 14px;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid var(--border);
   cursor: pointer;
-  transition: background 0.15s;
+  transition: border-color 0.15s;
   text-decoration: none;
-  color: var(--text);
+  color: var(--text-primary);
   display: block;
 }
 
 .resultCard:hover {
-  background: var(--surface);
+  border-color: var(--border-visible);
 }
 
 .resultName {
-  font-family: var(--font-serif);
-  font-size: 15px;
+  font-family: var(--font-body);
+  font-size: var(--body-sm);
   font-weight: 600;
+  color: var(--text-display);
 }
 
 .resultMeta {
   display: flex;
-  gap: 8px;
+  gap: var(--space-sm);
   align-items: center;
   margin-top: 6px;
   flex-wrap: wrap;
@@ -233,23 +255,29 @@
   display: inline-block;
   padding: 2px 8px;
   border-radius: 10px;
-  font-size: 11px;
-  font-family: var(--font-mono);
+  font-size: var(--label);
+  font-family: var(--font-data);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .resultBadge {
   display: inline-block;
   padding: 2px 8px;
   border-radius: 10px;
-  font-size: 11px;
-  font-family: var(--font-mono);
-  background: var(--surface);
-  color: var(--muted);
+  font-size: var(--label);
+  font-family: var(--font-data);
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .resultDesc {
-  font-size: 12px;
-  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: var(--caption);
+  color: var(--text-secondary);
   margin-top: 6px;
   line-height: 1.4;
   display: -webkit-box;
@@ -259,22 +287,24 @@
 }
 
 .resetBtn {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--muted);
+  font-family: var(--font-data);
+  font-size: var(--caption);
+  color: var(--text-secondary);
   background: none;
-  border: 1px dashed var(--border);
+  border: 1px solid var(--border-visible);
   padding: 6px 14px;
   border-radius: 20px;
   cursor: pointer;
-  margin-top: 16px;
+  margin-top: var(--space-md);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   transition: all 0.15s;
 }
 
 .resetBtn:hover {
-  background: var(--text);
-  color: var(--bg);
-  border-style: solid;
+  background: var(--text-display);
+  color: var(--black);
+  border-color: var(--text-display);
 }
 
 @media (max-width: 600px) {
@@ -288,7 +318,7 @@
 
   .nav {
     flex-direction: column;
-    gap: 8px;
+    gap: var(--space-sm);
   }
 
   .navBtn {

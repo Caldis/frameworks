@@ -7,7 +7,7 @@ test.describe('Interaction State Correctness', () => {
 
     // "All" button should be initially active (dark bg)
     const allBtn = page.locator('button').filter({ hasText: /^All|^全部/ }).first()
-    await expect(allBtn).toHaveCSS('background-color', 'rgb(26, 25, 22)') // var(--text) = #1a1916
+    await expect(allBtn).toHaveCSS('background-color', 'rgb(0, 0, 0)') // var(--text) = #1a1916
 
     // Click "Design Thinking" category
     const thinkingBtn = page.locator('button').filter({ hasText: /Design Thinking|设计思考/ }).first()
@@ -15,10 +15,10 @@ test.describe('Interaction State Correctness', () => {
     await page.waitForTimeout(200)
 
     // "Design Thinking" should now have active style (dark bg)
-    await expect(thinkingBtn).toHaveCSS('background-color', 'rgb(26, 25, 22)')
+    await expect(thinkingBtn).toHaveCSS('background-color', 'rgb(0, 0, 0)')
     // "All" should NOT have active style anymore
     const allBg = await allBtn.evaluate(el => getComputedStyle(el).backgroundColor)
-    expect(allBg).not.toBe('rgb(26, 25, 22)')
+    expect(allBg).not.toBe('rgb(0, 0, 0)')
 
     // Click "Architecture" category
     const archBtn = page.locator('button').filter({ hasText: /Architecture|架构决策/ }).first()
@@ -26,10 +26,10 @@ test.describe('Interaction State Correctness', () => {
     await page.waitForTimeout(200)
 
     // "Architecture" should be active
-    await expect(archBtn).toHaveCSS('background-color', 'rgb(26, 25, 22)')
+    await expect(archBtn).toHaveCSS('background-color', 'rgb(0, 0, 0)')
     // "Design Thinking" should NOT be active anymore
     const thinkingBg = await thinkingBtn.evaluate(el => getComputedStyle(el).backgroundColor)
-    expect(thinkingBg).not.toBe('rgb(26, 25, 22)')
+    expect(thinkingBg).not.toBe('rgb(0, 0, 0)')
   })
 
   test('category filter: clicking active category deselects to "All"', async ({ page }) => {
@@ -130,9 +130,9 @@ test.describe('Interaction State Correctness', () => {
     await starBtn.click({ force: true })
     await page.waitForTimeout(200)
 
-    // Star should now be visually "active" (golden color)
+    // Star should now be visually "active" (accent red in Nothing design)
     const color = await starBtn.evaluate(el => getComputedStyle(el).color)
-    // #e8a820 = rgb(232, 168, 32)
-    expect(color).toContain('232')
+    // #D71921 = rgb(215, 25, 33) — Nothing accent red
+    expect(color).toContain('215')
   })
 })

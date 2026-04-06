@@ -2,30 +2,34 @@
   display: flex;
   align-items: center;
   gap: 2px;
-  padding: 4px 10px;
-  border: 1px solid var(--border);
+  padding: 4px 12px;
+  border: 1px solid var(--border-visible);
   border-radius: 20px;
   background: transparent;
   cursor: pointer;
-  font-family: var(--font-mono);
-  font-size: 12px;
+  font-family: var(--font-data);
+  font-size: var(--caption);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   transition: border-color 0.15s;
 }
 
 .switcher:hover {
-  border-color: var(--muted);
+  border-color: var(--text-display);
 }
 
+/* Active language — prominent */
 .active {
-  color: var(--text);
+  color: var(--text-display);
   font-weight: 700;
 }
 
+/* Inactive language — subdued */
 .inactive {
-  color: var(--muted-light);
+  color: var(--text-disabled);
 }
 
 .separator {
-  color: #ddd;
+  color: var(--border-visible);
   margin: 0 1px;
 }

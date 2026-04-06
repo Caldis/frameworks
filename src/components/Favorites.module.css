@@ -1,3 +1,4 @@
+/* ── Nothing Design System — Favorites ── */
 .section {
   margin-bottom: 32px;
   padding-bottom: 32px;
@@ -11,18 +12,22 @@
   margin-bottom: 16px;
 }
 
+/* Red accent — the only color moment */
 .star {
-  color: #e8a820;
+  color: var(--accent);
   font-size: 18px;
 }
 
 .title {
-  font-family: var(--font-serif);
-  font-size: 20px;
+  font-family: 'Space Mono', monospace;
+  font-size: var(--label, 11px);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
 }
 
 .count {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+  font-size: var(--caption, 12px);
+  color: var(--text-disabled);
 }

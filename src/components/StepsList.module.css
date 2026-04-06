@@ -2,32 +2,36 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-sm);
 }
 
 .step {
   display: flex;
-  gap: 12px;
+  gap: var(--space-sm);
   align-items: flex-start;
 }
 
+/* Square background — industrial, not circle */
 .number {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  border-radius: 2px;
   background: var(--surface);
+  border: 1px solid var(--border-visible);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--muted);
+  font-family: var(--font-data);
+  font-size: var(--label);
+  color: var(--text-disabled);
   flex-shrink: 0;
 }
 
 .text {
-  font-size: 14px;
+  font-family: var(--font-body);
+  font-size: var(--body-sm);
   line-height: 1.5;
+  color: var(--text-primary);
   cursor: default;
   transition: opacity 0.15s;
 }

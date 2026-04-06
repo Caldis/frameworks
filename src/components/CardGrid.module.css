@@ -1,20 +1,21 @@
+/* ── Nothing Design System — CardGrid ── */
+/* Spacing as meaning: each card has its own border, gap provides rhythm */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1px;
-  background: var(--border);
-}
-
-.grid > * {
-  background: var(--bg);
+  gap: var(--space-md, 16px);
+  background: transparent;
 }
 
 .empty {
   grid-column: 1 / -1;
   padding: 48px;
   text-align: center;
-  color: var(--muted);
-  font-size: 14px;
+  color: var(--text-secondary);
+  font-family: 'Space Mono', monospace;
+  font-size: var(--caption, 12px);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 @media (max-width: 600px) {

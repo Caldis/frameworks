@@ -1,47 +1,54 @@
 .page {
   position: relative;
-  padding: 16px 0;
+  padding: var(--space-md) 0;
 }
 
 .title {
-  font-family: var(--font-serif);
-  font-size: 24px;
-  margin-bottom: 16px;
+  font-family: var(--font-body);
+  font-size: var(--heading);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text-display);
+  margin-bottom: var(--space-md);
 }
 
 .filters {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
   flex-wrap: wrap;
 }
 
+/* Filter pills — Space Mono, ALL CAPS */
 .filterBtn {
-  padding: 6px 10px;
-  border-radius: 16px;
-  font-size: 10px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: var(--label);
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-family: var(--font-mono);
+  gap: var(--space-xs);
+  font-family: var(--font-data);
   cursor: pointer;
-  border: 1px solid transparent;
-  background: var(--surface);
-  color: var(--muted);
+  border: 1px solid var(--border-visible);
+  background: transparent;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   transition: all 0.15s;
 }
 
 .filterBtn:hover {
-  border-color: var(--border);
+  border-color: var(--text-display);
+  color: var(--text-primary);
 }
 
 .filterBtnActive {
-  background: var(--text);
-  color: var(--bg);
-  border-color: transparent;
-  font-weight: 600;
+  background: var(--text-display);
+  color: var(--black);
+  border-color: var(--text-display);
 }
 
+/* SVG container — bordered, rounded, surface bg */
 .svgContainer {
   width: 100%;
   height: calc(100vh - 240px);
@@ -49,18 +56,20 @@
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
-  background: var(--bg);
+  background: var(--surface);
   position: relative;
 }
 
+/* Tooltip — no shadow */
 .tooltip {
   position: absolute;
   pointer-events: none;
-  background: white;
-  padding: 8px 12px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  font-size: 13px;
+  background: var(--surface);
+  border: 1px solid var(--border-visible);
+  padding: var(--space-sm) var(--space-sm);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: var(--body-sm);
   z-index: 10;
   max-width: 240px;
   opacity: 0;
@@ -73,93 +82,104 @@
 
 .tooltipName {
   font-weight: 600;
-  font-size: 14px;
+  font-size: var(--body-sm);
+  color: var(--text-display);
 }
 
 .tooltipNameZh {
-  font-size: 12px;
-  color: #666;
+  font-size: var(--caption);
+  color: var(--text-secondary);
 }
 
 .tooltipDesc {
-  color: var(--muted);
-  font-size: 12px;
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  font-size: var(--caption);
   margin-top: 2px;
 }
 
 .legend {
   display: flex;
-  gap: 12px;
+  gap: var(--space-sm);
   flex-wrap: wrap;
-  margin-bottom: 12px;
-  margin-top: 8px;
-  padding: 0 12px;
-  font-size: 11px;
-  color: var(--muted);
+  margin-bottom: var(--space-sm);
+  margin-top: var(--space-sm);
+  padding: 0 var(--space-sm);
+  font-family: var(--font-data);
+  font-size: var(--label);
+  color: var(--text-disabled);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .legendItem {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--space-xs);
 }
 
 .legendDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
   flex-shrink: 0;
 }
 
 .zoomControls {
   position: absolute;
-  bottom: 12px;
-  right: 12px;
+  bottom: var(--space-sm);
+  right: var(--space-sm);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--space-xs);
 }
 
 .zoomBtn {
   width: 32px;
   height: 32px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--bg);
+  border-radius: 4px;
+  border: 1px solid var(--border-visible);
+  background: var(--surface);
   cursor: pointer;
-  font-size: 16px;
+  font-size: var(--body);
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--text-secondary);
+  transition: all 0.15s;
 }
 
 .zoomBtn:hover {
-  background: var(--surface);
+  border-color: var(--text-display);
+  color: var(--text-display);
 }
 
 .filterDot {
   width: 6px;
   height: 6px;
-  border-radius: 50%;
+  border-radius: 1px;
   flex-shrink: 0;
 }
 
 .backLink {
   display: inline-block;
-  margin-top: 16px;
-  font-size: 13px;
-  color: var(--muted);
+  margin-top: var(--space-md);
+  font-family: var(--font-data);
+  font-size: var(--caption);
+  color: var(--text-disabled);
   text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .backLink:hover {
-  color: var(--text);
+  color: var(--text-primary);
 }
 
 .searchRow {
   display: flex;
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
   align-items: center;
   position: relative;
 }
@@ -167,18 +187,20 @@
 .mapSearch {
   flex: 1;
   max-width: 280px;
-  padding: 8px 14px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-family: var(--font-sans);
-  font-size: 13px;
-  background: var(--bg);
-  color: var(--text);
+  padding: var(--space-sm) 14px;
+  border: none;
+  border-bottom: 1px solid var(--border-visible);
+  border-radius: 0;
+  font-family: var(--font-body);
+  font-size: var(--body-sm);
+  background: transparent;
+  color: var(--text-primary);
   outline: none;
+  transition: border-color 0.15s;
 }
 
 .mapSearch:focus {
-  border-color: var(--muted);
+  border-bottom-color: var(--text-display);
 }
 
 .searchClear {
@@ -189,19 +211,19 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--muted);
-  font-size: 16px;
+  color: var(--text-secondary);
+  font-size: var(--body);
   line-height: 1;
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: color 0.15s;
 }
 
 .searchClear:hover {
-  color: var(--text);
-  background: var(--surface);
+  color: var(--text-display);
 }
 
 .mapLayout {
@@ -209,70 +231,79 @@
   gap: 0;
 }
 
+/* Side panel — surface bg, border left */
 .sidePanel {
   width: 340px;
   flex-shrink: 0;
+  background: var(--surface);
   border-left: 1px solid var(--border);
-  padding: 24px;
+  padding: var(--space-lg);
   overflow-y: auto;
   max-height: calc(100vh - 240px);
-  animation: slideInRight 0.2s ease-out;
+  animation: fadeIn 0.2s ease-out;
   position: relative;
 }
 
-@keyframes slideInRight {
-  from { transform: translateX(20px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .panelClose {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: var(--space-sm);
+  right: var(--space-sm);
   background: none;
   border: none;
-  font-size: 18px;
+  font-family: var(--font-data);
+  font-size: var(--body-sm);
   cursor: pointer;
-  color: var(--muted);
-  width: 32px;
-  height: 32px;
+  color: var(--text-secondary);
+  padding: 4px 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: color 0.15s;
 }
 
 .panelClose:hover {
-  color: var(--text);
+  color: var(--text-display);
 }
 
 .panelName {
-  font-family: var(--font-serif);
-  font-size: 18px;
-  margin-bottom: 4px;
+  font-family: var(--font-body);
+  font-size: var(--subheading);
+  font-weight: 500;
+  color: var(--text-display);
+  margin-bottom: var(--space-xs);
 }
 
 .panelNameZh {
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 12px;
+  font-family: var(--font-body);
+  font-size: var(--caption);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
 }
 
 .panelMeta {
   display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
   flex-wrap: wrap;
 }
 
 .panelCategoryPill {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--space-xs);
   padding: 3px 10px;
   border-radius: 12px;
-  font-size: 11px;
-  font-family: var(--font-mono);
-  border: 1px solid var(--border);
+  font-family: var(--font-data);
+  font-size: var(--label);
+  border: 1px solid var(--border-visible);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
 }
 
 .panelComplexity {
@@ -280,65 +311,72 @@
   align-items: center;
   padding: 3px 10px;
   border-radius: 12px;
-  font-size: 11px;
-  font-family: var(--font-mono);
+  font-family: var(--font-data);
+  font-size: var(--label);
   border: 1px solid var(--border);
-  color: var(--muted);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .panelDesc {
-  font-size: 14px;
+  font-family: var(--font-body);
+  font-size: var(--body-sm);
   line-height: 1.6;
-  margin-bottom: 16px;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
 }
 
 .panelSection {
-  margin-bottom: 16px;
+  margin-bottom: var(--space-md);
 }
 
 .panelSectionTitle {
-  font-family: var(--font-mono);
-  font-size: 11px;
+  font-family: var(--font-data);
+  font-size: var(--label);
   text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 8px;
+  letter-spacing: 0.06em;
+  color: var(--text-disabled);
+  margin-bottom: var(--space-sm);
 }
 
 .connectionItem {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-sm);
   padding: 6px 0;
   cursor: pointer;
-  font-size: 13px;
+  font-family: var(--font-body);
+  font-size: var(--body-sm);
   transition: color 0.15s;
-  color: var(--muted);
+  color: var(--text-secondary);
 }
 
 .connectionItem:hover {
-  color: var(--text);
-  font-weight: 500;
+  color: var(--text-display);
 }
 
 .connectionDot {
   width: 6px;
   height: 6px;
-  border-radius: 50%;
+  border-radius: 1px;
   flex-shrink: 0;
 }
 
 .panelViewBtn {
   display: inline-block;
-  margin-top: 16px;
-  padding: 10px 20px;
-  background: var(--text);
-  color: var(--bg);
+  margin-top: var(--space-md);
+  padding: 10px var(--space-md);
+  background: var(--text-display);
+  color: var(--black);
   border: none;
-  border-radius: 8px;
-  font-family: var(--font-mono);
-  font-size: 13px;
+  border-radius: 20px;
+  font-family: var(--font-data);
+  font-size: var(--caption);
   cursor: pointer;
   text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   transition: opacity 0.15s;
 }
 
@@ -348,32 +386,33 @@
 
 .hint {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  padding: 12px 16px;
-  font-size: 13px;
-  color: var(--muted);
+  top: var(--space-sm);
+  right: var(--space-sm);
+  background: var(--surface);
+  border: 1px solid var(--border-visible);
+  border-radius: 4px;
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-data);
+  font-size: var(--caption);
+  color: var(--text-secondary);
   z-index: 5;
   max-width: 280px;
   animation: fadeIn 0.3s ease-out;
   cursor: pointer;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .edgeLegend {
   display: flex;
-  gap: 16px;
+  gap: var(--space-md);
   flex-wrap: wrap;
-  font-size: 11px;
-  color: var(--muted);
-  margin-bottom: 12px;
+  font-family: var(--font-data);
+  font-size: var(--label);
+  color: var(--text-disabled);
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .edgeLegendItem {
@@ -384,20 +423,22 @@
 
 .edgeLine {
   width: 20px;
-  height: 2px;
-  border-radius: 1px;
+  height: 1px;
+  background: var(--border-visible);
   display: inline-block;
 }
 
 .relTypeBadge {
   margin-left: auto;
-  font-size: 10px;
-  font-family: var(--font-mono);
-  color: var(--muted);
+  font-family: var(--font-data);
+  font-size: var(--label);
+  color: var(--text-disabled);
   opacity: 0.7;
   padding: 1px 6px;
   border: 1px solid var(--border);
   border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 @media (max-width: 768px) {
@@ -416,7 +457,7 @@
     border-top: 1px solid var(--border);
     border-radius: 16px 16px 0 0;
     z-index: 10;
-    background: var(--bg);
+    background: var(--surface);
   }
 }
 
@@ -427,10 +468,10 @@
 
   .filterBtn {
     padding: 3px 8px;
-    font-size: 10px;
+    font-size: var(--label);
   }
 
   .title {
-    font-size: 20px;
+    font-size: var(--subheading);
   }
 }

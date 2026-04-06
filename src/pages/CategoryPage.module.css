@@ -1,21 +1,24 @@
 .page {
-  padding: 32px 0;
+  padding: var(--space-xl) 0;
 }
 
 .backLink {
   display: inline-block;
-  margin-bottom: 24px;
-  font-size: 13px;
-  color: var(--muted);
+  margin-bottom: var(--space-lg);
+  font-family: var(--font-data);
+  font-size: var(--caption);
+  color: var(--text-disabled);
   text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .backLink:hover {
-  color: var(--text);
+  color: var(--text-primary);
 }
 
 .header {
-  margin-bottom: 32px;
+  margin-bottom: var(--space-xl);
 }
 
 .nameRow {
@@ -25,21 +28,26 @@
 }
 
 .name {
-  font-family: var(--font-serif);
-  font-size: clamp(28px, 4vw, 48px);
+  font-family: var(--font-body);
+  font-size: var(--display-md);
+  font-weight: 500;
   line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-display);
 }
 
 .nameZh {
-  font-size: 18px;
-  color: var(--muted);
-  margin-left: 12px;
+  font-family: var(--font-body);
+  font-size: var(--subheading);
+  color: var(--text-secondary);
+  margin-left: var(--space-sm);
 }
 
 .desc {
-  font-size: 16px;
-  color: #555;
-  margin-top: 12px;
+  font-family: var(--font-body);
+  font-size: var(--body);
+  color: var(--text-primary);
+  margin-top: var(--space-sm);
   max-width: 600px;
   line-height: 1.6;
 }
@@ -57,10 +65,12 @@
 }
 
 .stats {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 8px;
+  font-family: var(--font-data);
+  font-size: var(--caption);
+  color: var(--text-disabled);
+  margin-top: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .gridWrap {
@@ -68,25 +78,33 @@
 }
 
 .aiSection {
-  margin-top: 48px;
-  padding-top: 32px;
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
   border-top: 1px solid var(--border);
 }
 
 .aiSectionTitle {
-  font-family: var(--font-serif);
-  font-size: 24px;
-  margin-bottom: 24px;
+  font-family: var(--font-data);
+  font-size: var(--label);
+  font-weight: 400;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-lg);
 }
 
 .aiGroup {
-  margin-bottom: 24px;
+  margin-bottom: var(--space-lg);
 }
 
 .aiGroupName {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 8px;
+  font-family: var(--font-data);
+  font-size: var(--label);
+  color: var(--text-secondary);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-sm);
 }
 
 .aiItem {
@@ -94,10 +112,12 @@
   padding: 4px 12px;
   margin: 4px;
   border-radius: 8px;
-  font-size: 13px;
+  font-family: var(--font-body);
+  font-size: var(--body-sm);
   text-decoration: none;
-  transition: background 0.15s;
-  color: var(--text);
+  transition: opacity 0.15s;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
 }
 
 .aiItem:hover {
@@ -107,40 +127,65 @@
 /* ── Reading List ── */
 
 .readingList {
-  margin-top: 48px;
-  padding-top: 32px;
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
   border-top: 1px solid var(--border);
 }
 
 .readingTitle {
-  font-family: var(--font-serif);
-  font-size: 22px;
-  margin-bottom: 16px;
+  font-family: var(--font-data);
+  font-size: var(--label);
+  font-weight: 400;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-md);
 }
 
 .readingItems {
-  padding-left: 20px;
+  list-style: none;
+  padding: 0;
+  counter-reset: reading;
 }
 
 .readingItem {
-  font-size: 14px;
-  color: #555;
-  padding: 8px 0;
+  font-family: var(--font-body);
+  font-size: var(--body-sm);
+  color: var(--text-primary);
+  padding: var(--space-sm) 0;
   line-height: 1.5;
+  display: flex;
+  gap: var(--space-md);
+  border-bottom: 1px solid var(--border);
+  counter-increment: reading;
+}
+
+.readingItem::before {
+  content: counter(reading, decimal-leading-zero);
+  font-family: var(--font-data);
+  font-size: var(--caption);
+  color: var(--text-disabled);
+  flex-shrink: 0;
+  min-width: 24px;
+}
+
+.readingItem:last-child {
+  border-bottom: none;
 }
 
 .notFound {
-  padding: 64px 0;
+  padding: var(--space-3xl) 0;
   text-align: center;
 }
 
 .notFound h2 {
-  font-family: var(--font-serif);
-  font-size: 24px;
-  margin-bottom: 16px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--heading);
+  margin-bottom: var(--space-md);
 }
 
 .notFound a {
-  color: var(--muted);
-  font-size: 14px;
+  color: var(--text-secondary);
+  font-size: var(--body-sm);
 }

@@ -1,13 +1,55 @@
+/* ── Nothing Design System Tokens ── */
 :root {
-  --bg: #faf9f6;
-  --text: #1a1916;
-  --surface: #f8f7f4;
-  --border: #e8e6e1;
-  --muted: #6b6b68;        /* WCAG AA 4.5:1 on --bg */
-  --muted-light: #858580;  /* WCAG AA 3:1 for large text */
-  --font-serif: 'DM Serif Display', 'Noto Serif SC', Georgia, serif;
-  --font-sans: 'DM Sans', 'Noto Sans SC', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Noto Sans Mono', monospace;
+  /* Colors — Light mode */
+  --black: #F5F5F5;
+  --surface: #FFFFFF;
+  --surface-raised: #F0F0F0;
+  --border: #E8E8E8;
+  --border-visible: #CCCCCC;
+  --text-disabled: #999999;
+  --text-secondary: #666666;
+  --text-primary: #1A1A1A;
+  --text-display: #000000;
+  --accent: #D71921;
+  --interactive: #007AFF;
+
+  /* Typography — Font stacks */
+  --font-display: 'Doto', 'Noto Sans SC', system-ui, sans-serif;
+  --font-body: 'Space Grotesk', 'Noto Sans SC', system-ui, sans-serif;
+  --font-data: 'Space Mono', 'Noto Sans Mono', monospace;
+
+  /* Typography — Scale */
+  --display-xl: 72px;
+  --display-lg: 48px;
+  --display-md: 36px;
+  --heading: 24px;
+  --subheading: 18px;
+  --body: 16px;
+  --body-sm: 14px;
+  --caption: 12px;
+  --label: 11px;
+
+  /* Spacing — 8px base */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+
+  /* ── Backward-compatible aliases (consumed by existing component CSS) ── */
+  --bg: var(--black);
+  --text: var(--text-primary);
+  --surface: #FFFFFF;
+  --muted: var(--text-secondary);
+  --muted-light: var(--text-disabled);
+  --font-serif: var(--font-display);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-data);
+
+  /* Category accent colors (unchanged) */
   --cat-thinking-bg: #e8f5ee; --cat-thinking-text: #2d6a4f;
   --cat-architecture-bg: #e8eef8; --cat-architecture-text: #1a5276;
   --cat-coding-bg: #ede8f8; --cat-coding-text: #6c3483;
@@ -16,26 +58,46 @@
   --cat-evolution-bg: #e8f8e8; --cat-evolution-text: #1e8449;
   --cat-ai-bg: #f8e8e3; --cat-ai-text: #a04000;
 }
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
+
 body {
-  font-family: var(--font-sans);
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--text);
-  background: var(--bg);
+  font-family: 'Space Grotesk', 'Noto Sans SC', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--black);
   -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
 }
-h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; }
-a { color: inherit; text-decoration: none; }
+
+h1, h2, h3 {
+  font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+h4 {
+  font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+  font-weight: 500;
+}
+
+a { color: var(--interactive); text-decoration: none; }
 
 :focus-visible {
-  outline: 2px solid #c4a882;
+  outline: 2px solid var(--text-primary);
   outline-offset: 2px;
 }
 
 button:focus-visible, a:focus-visible {
-  outline: 2px solid #c4a882;
+  outline: 2px solid var(--text-primary);
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* Dot-grid motif utility */
+.dot-grid {
+  background-image: radial-gradient(circle, var(--border-visible) 1px, transparent 1px);
+  background-size: 16px 16px;
 }
