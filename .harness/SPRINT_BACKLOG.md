@@ -93,6 +93,7 @@
 ### Sprint S19: Typed Relations 100% Coverage (224/224) [DONE 2026-04-06]
 ### Sprint S20: Typed Edges on Map + KP-Map R4 (Edge Styles, Legend, Labels) [DONE 2026-04-06]
 ### Sprint S21: +15 Classic Design Patterns + KP-Map R5 Partial [DONE 2026-04-06]
+### Sprint S22: Visual Fixes — Chart 5-char Labels, Title Dedup, Viz-First [DONE 2026-04-06]
 **Priority**: High (S09 retro — map bug hid for 5 sprints)
 **Contract**: Map fully functional for 13 categories. Data display correctness tests prevent regressions.
 **Tasks**:
