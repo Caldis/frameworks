@@ -143,11 +143,11 @@
 
 .sectionTitle {
   font-family: var(--font-serif);
-  font-size: 22px;
-  font-weight: 400;
+  font-size: 24px;
+  font-weight: 700;
   margin-bottom: 20px;
-  padding-left: 16px;
-  border-left: 4px solid var(--border);
+  padding-left: 20px;
+  border-left: 5px solid var(--border);
 }
 
 /* ── When to Use ── */
@@ -392,7 +392,7 @@
   font-size: 14px;
   line-height: 1.5;
   padding: 12px 16px;
-  background: #fef9f0;
+  background: #fdf0e0;
   border-left: 4px solid #e67e22;
   border-radius: 0 8px 8px 0;
   color: #444;
@@ -526,6 +526,47 @@
 
 .notFound a:hover {
   color: var(--text);
+}
+
+/* ── Sticky Progress / Navigation Bar ── */
+
+.stickyNav {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 24px;
+}
+
+.stickyName {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 60%;
+}
+
+.stickyDots {
+  display: flex;
+  gap: 6px;
+}
+
+.stickyDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.stickyDotActive {
+  background: var(--text);
 }
 
 /* ── Responsive ── */

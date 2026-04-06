@@ -113,6 +113,28 @@ export default function FrameworkPage() {
       <p className={styles.desc}>{localized(framework, 'desc')}</p>
       <p className={styles.descAlt}>{locale === 'en' ? framework.desc_zh : framework.desc}</p>
 
+      {/* ── Sticky Progress / Navigation Bar ── */}
+      <div className={styles.stickyNav}>
+        <span className={styles.stickyName}>{localized(framework, 'name')}</span>
+        <div className={styles.stickyDots}>
+          {[
+            whenToUse?.length > 0,
+            coreConcepts?.length > 0,
+            timeline?.length > 0,
+            true, // How It Works always present
+            !!caseStudyText,
+            whenNotToUse?.length > 0,
+            framework.adopters?.length > 0,
+            !!(framework.primary_source || framework.secondary_sources?.length),
+          ].filter(Boolean).map((_, i) => (
+            <span
+              key={i}
+              className={i === 0 ? `${styles.stickyDot} ${styles.stickyDotActive}` : styles.stickyDot}
+            />
+          ))}
+        </div>
+      </div>
+
       {/* ── 2. When to Use ── */}
       {whenToUse?.length > 0 && (
         <section className={styles.section}>

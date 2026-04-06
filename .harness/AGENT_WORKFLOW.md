@@ -120,6 +120,49 @@ Visual quality and accessibility are NOT separate sprints. They are **gates that
 4. **Frontend agents by component**: One agent per page/component being modified
 5. **Maximum practical parallelism**: 7-9 agents (content) + 1-2 (frontend) = 8-11 total
 
+## Model Selection: When to Use Sonnet vs Opus
+
+| Task Type | Model | Rationale |
+|-----------|-------|-----------|
+| JSON data tagging (add fields to existing entries) | **sonnet** | Mechanical, schema-following, no creativity needed |
+| Content generation (EN steps, case studies) | **sonnet** | Sufficient quality for factual content |
+| Content generation (ZH translations) | **sonnet** | Adequate for translation if given clear EN source |
+| Design Critic screenshot review | **sonnet** | Good at visual analysis, cheaper for parallel critics |
+| React component writing | **opus** | Needs type system understanding + context awareness |
+| Complex CSS / interaction bug fixes | **opus** | Needs to reason about state + DOM + CSS interactions |
+| E2E test writing | **opus** | Needs to understand component structure + selectors |
+| Harness/workflow document updates | **main agent** | Needs cross-sprint context, keep inline |
+| Data validation scripts | **main agent** | Fast inline python, no agent overhead |
+| Batch CSS fixes (sed/replace) | **bash script** | Faster and more reliable than any agent |
+
+**Default**: Use sonnet for all Generator agents unless the task requires architecture reasoning or complex TypeScript.
+
+## Operational Patterns (Learned from S00-S07)
+
+### Agent Reliability
+- **10-minute rule**: If an agent's output file stays 0 bytes for 10+ minutes, it's stuck. Take over manually.
+- **JSON validation gate**: Every content agent must validate JSON with python before reporting done. This eliminated corruption issues from S02 onward.
+- **Architecture agent fragility**: The architecture.json category has stuck 3 times across sprints. Give this file's agents simpler, shorter prompts.
+
+### Incremental Delivery
+- **Don't wait for all agents**: Commit and push completed work while others are still running. User sees progress, no all-or-nothing risk.
+- **Partial is fine**: 72/100 shipped, then 100/100. 188/194, then 194/194. Each push deploys.
+
+### Pre-Sprint Hygiene
+- **Audit data before generating**: Run broken-ref check, duplicate-slug check, field-completeness check BEFORE dispatching generators. Cheaper to fix first.
+- **Quick-win-after-retro**: If retro finds a trivial fix (e.g., "100" hardcoded in title), do it immediately — don't queue a sprint for it.
+
+### Gate 2 Screenshot Review
+- **Main agent reads screenshots directly** — faster and more reliable than dispatching sonnet critic sub-agents (which can get stuck on image loading).
+- **Sonnet critics as background async** — dispatch them but don't block ship. Review their findings post-ship and log as Design Debt.
+- **Always re-screenshot after fixes** — stale screenshots lead to false evaluations.
+
+### What NOT to Do
+- **Don't use inline style for hover effects** — causes ghost state bugs. Use CSS :hover + custom properties.
+- **Don't trust "build passes" as quality proxy** — the FrameworkPage was a `<div>` placeholder that built fine.
+- **Don't hardcode counts or text** — "100" was wrong by S02. Use dynamic values or generic text.
+- **Don't skip CJK font stacks** — System serif fallback looks broken. Always include Noto SC in font declarations.
+
 ## Assumptions to Re-Test
 
 Per Harness Design: "Every component encodes an assumption about what the model can't do alone."
@@ -129,5 +172,6 @@ Per Harness Design: "Every component encodes an assumption about what the model 
 | Parallel agents per category | One agent can't generate 100 frameworks in one shot | Models get larger context + better long-form |
 | Separate evaluator role | Generators praise their own work | Models improve at self-critique |
 | JSON validation step | Agents produce invalid JSON | JSON output reliability improves |
-| Label truncation (8 chars zh) | SVGs overflow with long text | Layout engines improve |
-| Manual Recharts over hand-coded SVG | Hand SVG can't handle text layout | SVG text handling improves |
+| Sonnet for data tagging | Cost optimization | Sonnet quality drops or opus gets cheaper |
+| Main agent for Gate 2 screenshots | Sonnet agents stuck on image loading | Sonnet image reliability improves |
+| extractKeyPhrase for chart labels | Full steps too long for SVG text | Recharts or layout engine handles wrapping |

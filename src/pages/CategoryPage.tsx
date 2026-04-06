@@ -78,6 +78,7 @@ export default function CategoryPage() {
           onCardClick={handleCardClick}
           favorites={favorites}
           onToggleFavorite={toggleFavorite}
+          hideCategoryTag={true}
         />
       </div>
 

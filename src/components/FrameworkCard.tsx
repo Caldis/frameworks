@@ -8,6 +8,7 @@ interface FrameworkCardProps {
   onClick: (fw: Framework) => void
   isFavorite: boolean
   onToggleFavorite: (slug: string) => void
+  hideCategoryTag?: boolean
 }
 
 export default function FrameworkCard({
@@ -15,6 +16,7 @@ export default function FrameworkCard({
   onClick,
   isFavorite,
   onToggleFavorite,
+  hideCategoryTag = false,
 }: FrameworkCardProps) {
   const { localized } = useI18n()
   const category = getCategoryByKey(framework.category)
@@ -41,7 +43,7 @@ export default function FrameworkCard({
       <div className={styles.name}>{localized(framework, 'name')}</div>
 
       <div className={styles.tagRow}>
-        {category && (
+        {category && !hideCategoryTag && (
           <span
             className={styles.tag}
             style={{

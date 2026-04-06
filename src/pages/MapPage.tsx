@@ -31,9 +31,11 @@ export default function MapPage() {
   const tooltipRef = useRef<HTMLDivElement>(null)
   const navigate = useNavigate()
   const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null)
+  const zoomLevelRef = useRef<number>(1)
   const [activeCategories, setActiveCategories] = useState<Set<CategoryKey>>(
     () => new Set(categories.map(c => c.key))
   )
+  const activeCategoriesRef = useRef<Set<CategoryKey>>(new Set(categories.map(c => c.key)))
 
   const toggleCategory = useCallback((key: CategoryKey) => {
     setActiveCategories(prev => {
@@ -49,6 +51,7 @@ export default function MapPage() {
 
   // Update visibility when activeCategories changes (without rebuilding the graph)
   useEffect(() => {
+    activeCategoriesRef.current = activeCategories
     const svg = d3.select(svgRef.current)
     if (!svg.node()) return
 
@@ -57,11 +60,12 @@ export default function MapPage() {
       .duration(300)
       .attr('opacity', d => activeCategories.has(d.category) ? 1 : 0.1)
 
+    const showLabels = zoomLevelRef.current > 1.2
     svg.selectAll<SVGTextElement, SimNode>('.node-label')
       .transition()
       .duration(300)
       .attr('opacity', d =>
-        activeCategories.has(d.category) && d.related.length >= 2 ? 1 : 0
+        showLabels && activeCategories.has(d.category) && d.related.length >= 2 ? 1 : 0
       )
 
     svg.selectAll<SVGLineElement, SimLink>('.link-line')
@@ -200,6 +204,16 @@ export default function MapPage() {
         g.attr('transform', event.transform)
         // Also transform background layer so axes stay aligned with nodes
         bgLayer.attr('transform', event.transform)
+
+        // Track zoom level and update label visibility threshold
+        const k: number = event.transform.k
+        zoomLevelRef.current = k
+        const showLabels = k > 1.2
+        const currentCategories = activeCategoriesRef.current
+        svg.selectAll<SVGTextElement, SimNode>('.node-label')
+          .attr('opacity', (d: SimNode) =>
+            showLabels && currentCategories.has(d.category) && d.related.length >= 2 ? 1 : 0
+          )
       })
 
     svg.call(zoom)
@@ -275,7 +289,7 @@ export default function MapPage() {
         const cat = getCategoryByKey(d.category)
         return cat ? cat.colorText : '#666'
       })
-      .attr('opacity', d => d.related.length >= 2 ? 1 : 0)
+      .attr('opacity', 0)
       .attr('pointer-events', 'none')
       .text(d => truncateLabel(d))
 
@@ -305,10 +319,11 @@ export default function MapPage() {
             return (s === d.slug || t === d.slug) ? 0.8 : 0.15
           })
 
-        // Show labels of connected nodes and the hovered node; keep persistent labels visible
+        // Show labels of connected nodes and the hovered node; keep persistent labels visible at zoom
+        const showLabels = zoomLevelRef.current > 1.2
         svg.selectAll<SVGTextElement, SimNode>('.node-label')
           .attr('opacity', n =>
-            n.slug === d.slug || connectedSlugs.has(n.slug) ? 1 : (n.related.length >= 2 ? 0.3 : 0)
+            n.slug === d.slug || connectedSlugs.has(n.slug) ? 1 : (showLabels && n.related.length >= 2 ? 0.3 : 0)
           )
 
         // Tooltip
@@ -352,9 +367,10 @@ export default function MapPage() {
           .attr('stroke-width', 1)
           .attr('opacity', 0.4)
 
-        // Restore persistent labels; hide labels for low-connection nodes
+        // Restore labels based on zoom level; only show for well-connected nodes when zoomed in
+        const showLabels = zoomLevelRef.current > 1.2
         svg.selectAll<SVGTextElement, SimNode>('.node-label')
-          .attr('opacity', n => n.related.length >= 2 ? 1 : 0)
+          .attr('opacity', n => showLabels && n.related.length >= 2 ? 1 : 0)
 
         // Hide tooltip
         const tooltip = tooltipRef.current
@@ -405,11 +421,6 @@ export default function MapPage() {
           <button
             key={cat.key}
             className={`${styles.filterBtn} ${activeCategories.has(cat.key) ? styles.filterBtnActive : ''}`}
-            style={
-              activeCategories.has(cat.key)
-                ? { background: cat.colorText, borderColor: cat.colorText, color: 'white' }
-                : undefined
-            }
             onClick={() => toggleCategory(cat.key)}
           >
             {localized(cat, 'name')}
