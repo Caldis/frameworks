@@ -1,11 +1,11 @@
 import { useRef, useEffect, useState, useCallback } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import * as d3 from 'd3'
-import { getAllFrameworks, getFrameworkBySlug } from '../data/loader'
+import { getAllFrameworks, getFrameworkBySlug, getTypedRelations } from '../data/loader'
 import { categories, getCategoryByKey } from '../data/categories'
 import { useI18n } from '../i18n'
 import { usePageMeta } from '../hooks/usePageMeta'
-import type { CategoryKey } from '../types'
+import type { CategoryKey, RelationType } from '../types'
 import styles from './MapPage.module.css'
 
 interface SimNode extends d3.SimulationNodeDatum {
@@ -23,6 +23,7 @@ interface SimNode extends d3.SimulationNodeDatum {
 interface SimLink extends d3.SimulationLinkDatum<SimNode> {
   source: string | SimNode
   target: string | SimNode
+  relType: RelationType
 }
 
 export default function MapPage() {
@@ -102,7 +103,7 @@ export default function MapPage() {
       .attr('opacity', d => {
         const s = d.source as SimNode
         const t = d.target as SimNode
-        return activeCategories.has(s.category) && activeCategories.has(t.category) ? 0.15 : 0.05
+        return activeCategories.has(s.category) && activeCategories.has(t.category) ? 0.2 : 0.05
       })
   }, [activeCategories])
 
@@ -148,12 +149,22 @@ export default function MapPage() {
     const nodeMap = new Map(nodes.map(n => [n.slug, n]))
     const links: SimLink[] = []
     frameworks.forEach(f => {
-      f.related.forEach(r => {
-        if (f.slug < r && nodeMap.has(r)) {
-          links.push({ source: f.slug, target: r })
+      const typed = getTypedRelations(f)
+      typed.forEach(r => {
+        if (f.slug < r.slug && nodeMap.has(r.slug)) {
+          links.push({ source: f.slug, target: r.slug, relType: r.type })
         }
       })
     })
+
+    // Edge colors by relation type
+    const edgeStyles: Record<string, { color: string; dash: string; width: number }> = {
+      complement: { color: '#8faa8f', dash: '', width: 1.5 },
+      alternative: { color: '#c4a882', dash: '4,3', width: 1.5 },
+      extends: { color: '#8f9faa', dash: '', width: 2 },
+      prerequisite: { color: '#aa8f8f', dash: '2,2', width: 1 },
+      related: { color: '#d4cdc4', dash: '', width: 1 },
+    }
 
     // Layout margins for axis labels
     const margin = { top: 20, right: 20, bottom: 40, left: 36 }
@@ -303,9 +314,10 @@ export default function MapPage() {
       .data(links)
       .join('line')
       .attr('class', 'link-line')
-      .attr('stroke', '#c4a882')
-      .attr('stroke-width', 1.5)
-      .attr('opacity', 0.15)
+      .attr('stroke', d => edgeStyles[d.relType]?.color || '#d4cdc4')
+      .attr('stroke-width', d => edgeStyles[d.relType]?.width || 1)
+      .attr('stroke-dasharray', d => edgeStyles[d.relType]?.dash || '')
+      .attr('opacity', 0.2)
 
     // Node groups
     const node = g.append('g')
@@ -353,7 +365,7 @@ export default function MapPage() {
       .attr('class', 'node-label')
       .attr('text-anchor', 'middle')
       .attr('dy', d => (6 + Math.min(d.related.length, 4) * 2) + 10)
-      .attr('font-size', 9)
+      .attr('font-size', d => d.related.length >= 4 ? 10 : 9)
       .attr('font-family', 'var(--font-mono)')
       .attr('fill', d => {
         const cat = getCategoryByKey(d.category)
@@ -368,12 +380,6 @@ export default function MapPage() {
       tooltipRef.current?.classList.remove(styles.tooltipVisible)
     })
 
-    // Helper to get category color for a node
-    const getNodeColor = (d: SimNode) => {
-      const cat = getCategoryByKey(d.category)
-      return cat ? cat.colorText : '#999'
-    }
-
     // Interactions
     node
       .on('mouseenter', (event, d) => {
@@ -381,24 +387,25 @@ export default function MapPage() {
         d3.select(event.currentTarget).select('.node-label')
           .attr('opacity', 1)
 
-        // Highlight connected edges with category color and glow
+        // Highlight connected edges — show typed styling with thicker lines + glow
         const connectedSlugs = new Set(d.related)
-        const sourceColor = getNodeColor(d)
         link
           .attr('stroke', l => {
             const s = (l.source as SimNode).slug
             const tgt = (l.target as SimNode).slug
-            return (s === d.slug || tgt === d.slug) ? sourceColor : '#c4a882'
+            if (s === d.slug || tgt === d.slug) return edgeStyles[l.relType]?.color || '#d4cdc4'
+            return edgeStyles[l.relType]?.color || '#d4cdc4'
           })
           .attr('stroke-width', l => {
             const s = (l.source as SimNode).slug
             const tgt = (l.target as SimNode).slug
-            return (s === d.slug || tgt === d.slug) ? 3 : 1.5
+            return (s === d.slug || tgt === d.slug) ? 3 : (edgeStyles[l.relType]?.width || 1)
           })
+          .attr('stroke-dasharray', l => edgeStyles[l.relType]?.dash || '')
           .attr('opacity', l => {
             const s = (l.source as SimNode).slug
             const tgt = (l.target as SimNode).slug
-            return (s === d.slug || tgt === d.slug) ? 0.8 : 0.05
+            return (s === d.slug || tgt === d.slug) ? 1 : 0.05
           })
           .attr('filter', l => {
             const s = (l.source as SimNode).slug
@@ -451,11 +458,12 @@ export default function MapPage() {
         }
       })
       .on('mouseleave', () => {
-        // Reset links to default warm styling
+        // Reset links to typed edge styles
         link
-          .attr('stroke', '#c4a882')
-          .attr('stroke-width', 1.5)
-          .attr('opacity', 0.15)
+          .attr('stroke', l => edgeStyles[l.relType]?.color || '#d4cdc4')
+          .attr('stroke-width', l => edgeStyles[l.relType]?.width || 1)
+          .attr('stroke-dasharray', l => edgeStyles[l.relType]?.dash || '')
+          .attr('opacity', 0.2)
           .attr('filter', 'none')
 
         // Restore labels: always show for high-connection, zoom-dependent for others
@@ -484,24 +492,25 @@ export default function MapPage() {
         d3.select(event.currentTarget).select('.node-label')
           .attr('opacity', 1)
 
-        // Highlight connected edges with category color and glow
+        // Highlight connected edges — show typed styling with thicker lines + glow
         const connectedSlugs = new Set(d.related)
-        const sourceColor = getNodeColor(d)
         link
           .attr('stroke', l => {
             const s = (l.source as SimNode).slug
             const tgt = (l.target as SimNode).slug
-            return (s === d.slug || tgt === d.slug) ? sourceColor : '#c4a882'
+            if (s === d.slug || tgt === d.slug) return edgeStyles[l.relType]?.color || '#d4cdc4'
+            return edgeStyles[l.relType]?.color || '#d4cdc4'
           })
           .attr('stroke-width', l => {
             const s = (l.source as SimNode).slug
             const tgt = (l.target as SimNode).slug
-            return (s === d.slug || tgt === d.slug) ? 3 : 1.5
+            return (s === d.slug || tgt === d.slug) ? 3 : (edgeStyles[l.relType]?.width || 1)
           })
+          .attr('stroke-dasharray', l => edgeStyles[l.relType]?.dash || '')
           .attr('opacity', l => {
             const s = (l.source as SimNode).slug
             const tgt = (l.target as SimNode).slug
-            return (s === d.slug || tgt === d.slug) ? 0.8 : 0.05
+            return (s === d.slug || tgt === d.slug) ? 1 : 0.05
           })
           .attr('filter', l => {
             const s = (l.source as SimNode).slug
@@ -665,6 +674,20 @@ export default function MapPage() {
           </button>
         ))}
       </div>
+      <div className={styles.edgeLegend}>
+        <span className={styles.edgeLegendItem}>
+          <span className={styles.edgeLine} style={{ background: '#8faa8f' }} /> complement
+        </span>
+        <span className={styles.edgeLegendItem}>
+          <span className={styles.edgeLine} style={{ background: '#c4a882', borderStyle: 'dashed' }} /> alternative
+        </span>
+        <span className={styles.edgeLegendItem}>
+          <span className={styles.edgeLine} style={{ background: '#8f9faa', height: '3px' }} /> extends
+        </span>
+        <span className={styles.edgeLegendItem}>
+          <span className={styles.edgeLine} style={{ background: '#aa8f8f', borderStyle: 'dotted' }} /> prerequisite
+        </span>
+      </div>
       <div className={styles.mapLayout}>
         <div className={styles.svgContainer} ref={containerRef} style={selectedNode ? { flex: 1 } : undefined}>
           <svg ref={svgRef} />
@@ -711,29 +734,33 @@ export default function MapPage() {
                 </ul>
               </div>
             )}
-            {selectedFramework.related.length > 0 && (
-              <div className={styles.panelSection}>
-                <div className={styles.panelSectionTitle}>{t.mapConnections}</div>
-                {selectedFramework.related.map(slug => {
-                  const relFw = getFrameworkBySlug(slug)
-                  if (!relFw) return null
-                  const relCat = getCategoryByKey(relFw.category)
-                  return (
-                    <div
-                      key={slug}
-                      className={styles.connectionItem}
-                      onClick={() => setSelectedNode(slug)}
-                    >
-                      <span
-                        className={styles.connectionDot}
-                        style={{ background: relCat ? relCat.colorText : '#999' }}
-                      />
-                      {localized(relFw, 'name')}
-                    </div>
-                  )
-                })}
-              </div>
-            )}
+            {selectedFramework.related.length > 0 && (() => {
+              const typedRels = getTypedRelations(selectedFramework)
+              return (
+                <div className={styles.panelSection}>
+                  <div className={styles.panelSectionTitle}>{t.mapConnections}</div>
+                  {typedRels.map(({ slug, type }) => {
+                    const relFw = getFrameworkBySlug(slug)
+                    if (!relFw) return null
+                    const relCat = getCategoryByKey(relFw.category)
+                    return (
+                      <div
+                        key={slug}
+                        className={styles.connectionItem}
+                        onClick={() => setSelectedNode(slug)}
+                      >
+                        <span
+                          className={styles.connectionDot}
+                          style={{ background: relCat ? relCat.colorText : '#999' }}
+                        />
+                        {localized(relFw, 'name')}
+                        <span className={styles.relTypeBadge}>{type}</span>
+                      </div>
+                    )
+                  })}
+                </div>
+              )
+            })()}
             <Link
               to={`/frameworks/${selectedFramework.slug}`}
               className={styles.panelViewBtn}

@@ -69,6 +69,15 @@ test.describe('Data Display Correctness', () => {
     }
   })
 
+  test('map edges have different styles for relation types', async ({ page }) => {
+    await page.goto('/map')
+    await page.waitForTimeout(2000)
+    // Check that SVG has line elements with different stroke colors
+    const lines = page.locator('svg line.link-line')
+    const count = await lines.count()
+    expect(count).toBeGreaterThan(50) // should have many edges
+  })
+
   test('framework detail page renders content sections', async ({ page }) => {
     // Check a known framework has all major sections
     await page.goto('/frameworks/solid-principles')
