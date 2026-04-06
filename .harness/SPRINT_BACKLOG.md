@@ -81,7 +81,7 @@
 - [ ] Test with screen reader
 **Estimate**: Medium
 
-### Sprint S10: Map UX Overhaul + Data Display Tests [READY]
+### Sprint S10: Map UX Overhaul + Data Display Tests [DONE 2026-04-06]
 **Priority**: High (S09 retro — map bug hid for 5 sprints)
 **Contract**: Map fully functional for 13 categories. Data display correctness tests prevent regressions.
 **Tasks**:
