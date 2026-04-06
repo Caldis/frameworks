@@ -157,6 +157,20 @@ Visual quality and accessibility are NOT separate sprints. They are **gates that
 - **Sonnet critics as background async** — dispatch them but don't block ship. Review their findings post-ship and log as Design Debt.
 - **Always re-screenshot after fixes** — stale screenshots lead to false evaluations.
 
+### Sprint Boundary Discipline
+
+User feedback during a sprint falls into two categories:
+
+1. **Blocking bug** (crash, data loss, broken deploy) → fix immediately, inline
+2. **Improvement/feature request** → log it, include in NEXT sprint's plan, summarize with current sprint's retro
+
+**Never interrupt a sprint's flow for non-blocking improvements.** The improvement gets:
+- Noted in the current sprint's retrospective ("user feedback received")
+- Added to the next sprint's scope
+- Properly planned, executed, and evaluated as part of the normal flow
+
+This prevents: scope creep, half-finished features, untested changes, and skipped evaluations.
+
 ### What NOT to Do
 - **Don't use inline style for hover effects** — causes ghost state bugs. Use CSS :hover + custom properties.
 - **Don't trust "build passes" as quality proxy** — the FrameworkPage was a `<div>` placeholder that built fine.
