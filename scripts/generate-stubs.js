@@ -31,6 +31,9 @@ for (const cat of CATEGORIES) {
     for (const field of STUB_FIELDS) {
       stub[field] = fw[field] ?? (Array.isArray(DETAIL_DEFAULTS[field]) ? [] : '')
     }
+    // Extract origin year from timeline first entry
+    const tl = fw.timeline || []
+    stub.origin_year = tl.length > 0 ? parseInt(tl[0][0], 10) || 0 : 0
     Object.assign(stub, DETAIL_DEFAULTS)
     allStubs.push(stub)
   }

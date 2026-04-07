@@ -77,6 +77,30 @@ body {
 h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; }
 a { color: inherit; text-decoration: none; }
 
+/* ── Scrollbar ── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-light);
+}
+
 :focus-visible {
   outline: 2px solid #c4a882;
   outline-offset: 2px;
