@@ -1,6 +1,7 @@
 import type { Framework } from '../types'
 import { getCategoryByKey, catColorVar } from '../data/categories'
 import { useI18n } from '../i18n'
+import Fingerprint from './Fingerprint'
 import styles from './FrameworkCard.module.css'
 
 interface FrameworkCardProps {
@@ -28,9 +29,15 @@ export default function FrameworkCard({
 
   return (
     <div className={styles.card} onClick={() => onClick(framework)}>
-      <span className={styles.number}>
-        # {String(framework.id).padStart(2, '0')}
-      </span>
+      <div className={styles.topRow}>
+        <span className={styles.number}>
+          # {String(framework.id).padStart(2, '0')}
+        </span>
+        <Fingerprint
+          framework={framework}
+          color={catColorVar(framework.category, 'text')}
+        />
+      </div>
 
       <button
         className={`${styles.star} ${isFavorite ? styles.starActive : ''}`}
