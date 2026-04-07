@@ -179,6 +179,9 @@ export default function HomePage() {
         <Link to="/insights" className={styles.mapLink}>
           {t.insights}
         </Link>
+        <Link to="/timeline" className={styles.mapLink}>
+          {t.timeline}
+        </Link>
         {showAdvanced && (
           <div className={styles.advancedFilters}>
             <DimensionFilter

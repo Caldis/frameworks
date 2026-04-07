@@ -10,6 +10,7 @@ const ComparePage = lazy(() => import('./pages/ComparePage'))
 const SelectorPage = lazy(() => import('./pages/SelectorPage'))
 const PathsPage = lazy(() => import('./pages/PathsPage'))
 const StatsPage = lazy(() => import('./pages/StatsPage'))
+const TimelinePage = lazy(() => import('./pages/TimelinePage'))
 
 function Loading() {
   return <div style={{ padding: '64px 0', textAlign: 'center', color: '#999', fontFamily: 'var(--font-mono)', fontSize: 13 }}>Loading...</div>
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/selector" element={<Suspense fallback={<Loading />}><SelectorPage /></Suspense>} />
         <Route path="/paths" element={<Suspense fallback={<Loading />}><PathsPage /></Suspense>} />
         <Route path="/insights" element={<Suspense fallback={<Loading />}><StatsPage /></Suspense>} />
+        <Route path="/timeline" element={<Suspense fallback={<Loading />}><TimelinePage /></Suspense>} />
       </Route>
     </Routes>
   )

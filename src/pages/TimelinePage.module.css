@@ -1,0 +1,137 @@
+.page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -0.3px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 8px;
+  margin-bottom: 48px;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.decade {
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.decadeLabel {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  letter-spacing: -1px;
+  color: var(--muted);
+  margin-bottom: 16px;
+  margin-left: -32px;
+  padding-left: 24px;
+  position: relative;
+}
+
+.decadeLabel::before {
+  content: '';
+  position: absolute;
+  left: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--viz-accent);
+}
+
+.entries {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.entry:hover {
+  opacity: 0.65;
+}
+
+.year {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted-light);
+  width: 36px;
+  flex-shrink: 0;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.name {
+  font-size: 13px;
+  color: var(--text);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.author {
+  font-size: 11px;
+  color: var(--muted-light);
+  font-style: italic;
+  flex-shrink: 0;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .timeline {
+    padding-left: 24px;
+  }
+
+  .decadeLabel {
+    font-size: 22px;
+    margin-left: -24px;
+    padding-left: 16px;
+  }
+
+  .decadeLabel::before {
+    left: -17px;
+    width: 6px;
+    height: 6px;
+  }
+
+  .author {
+    display: none;
+  }
+}
