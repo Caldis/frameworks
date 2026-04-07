@@ -1,11 +1,11 @@
 import { useRef, useEffect, useState, useCallback } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import * as d3 from 'd3'
-import { getAllFrameworks, getFrameworkBySlug, getTypedRelations } from '../data/loader'
+import { getAllFrameworks, getFrameworkBySlug, getTypedRelations, getFrameworkFull } from '../data/loader'
 import { categories, getCategoryByKey } from '../data/categories'
 import { useI18n } from '../i18n'
 import { usePageMeta } from '../hooks/usePageMeta'
-import type { CategoryKey, RelationType } from '../types'
+import type { CategoryKey, Framework, RelationType } from '../types'
 import styles from './MapPage.module.css'
 
 interface SimNode extends d3.SimulationNodeDatum {
@@ -41,6 +41,7 @@ export default function MapPage() {
   const activeCategoriesRef = useRef<Set<CategoryKey>>(new Set(categories.map(c => c.key)))
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedNode, setSelectedNode] = useState<string | null>(null)
+  const [selectedDetail, setSelectedDetail] = useState<Framework | null>(null)
   const [showHint, setShowHint] = useState(() => {
     return !sessionStorage.getItem('mapHintDismissed')
   })
@@ -59,6 +60,17 @@ export default function MapPage() {
     setShowHint(false)
     sessionStorage.setItem('mapHintDismissed', '1')
   }, [])
+
+  // Load full detail when a node is selected
+  useEffect(() => {
+    if (!selectedNode) {
+      setSelectedDetail(null)
+      return
+    }
+    getFrameworkFull(selectedNode).then(fw => {
+      if (fw) setSelectedDetail(fw)
+    })
+  }, [selectedNode])
 
   const toggleCategory = useCallback((key: CategoryKey) => {
     setActiveCategories(prev => {
@@ -727,11 +739,11 @@ export default function MapPage() {
             <div className={styles.panelDesc}>
               {localized(selectedFramework, 'desc')}
             </div>
-            {(selectedFramework.when_to_use.length > 0 || selectedFramework.when_to_use_zh.length > 0) && (
+            {((selectedDetail?.when_to_use?.length ?? 0) > 0 || (selectedDetail?.when_to_use_zh?.length ?? 0) > 0) && (
               <div className={styles.panelSection}>
                 <div className={styles.panelSectionTitle}>{t.whenToUse}</div>
                 <ul style={{ margin: 0, paddingLeft: 16, fontSize: 13, lineHeight: 1.6 }}>
-                  {(locale === 'zh' ? selectedFramework.when_to_use_zh : selectedFramework.when_to_use)
+                  {(locale === 'zh' ? selectedDetail!.when_to_use_zh : selectedDetail!.when_to_use)
                     .slice(0, 2)
                     .map((item, i) => <li key={i}>{item}</li>)}
                 </ul>

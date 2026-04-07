@@ -1,7 +1,8 @@
 import { useParams, useNavigate, Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import type { Framework } from '../types'
 import { categories } from '../data/categories'
-import { getFrameworksByCategory, getAIRelevantFrameworks } from '../data/loader'
+import { getFrameworksByCategory, getAIRelevantFrameworks, getFrameworksFullByCategory } from '../data/loader'
 import { useFavorites } from '../hooks/useFavorites'
 import { useI18n } from '../i18n'
 import { usePageMeta } from '../hooks/usePageMeta'
@@ -32,6 +33,14 @@ export default function CategoryPage() {
 
   const frameworks = getFrameworksByCategory(category.key)
   const aiCount = frameworks.filter(f => f.ai_relevant).length
+
+  const [fullFrameworks, setFullFrameworks] = useState<Framework[]>([])
+
+  useEffect(() => {
+    if (category) {
+      getFrameworksFullByCategory(category.key).then(setFullFrameworks)
+    }
+  }, [category])
 
   const categoryName = localized(category, 'name')
   const nameSubtitle = locale === 'en' ? category.name_zh : category.name
@@ -90,7 +99,7 @@ export default function CategoryPage() {
 
       {/* Reading List */}
       {(() => {
-        const sources = frameworks
+        const sources = fullFrameworks
           .map(f => f.primary_source)
           .filter(Boolean)
           .filter((s, i, arr) => arr.indexOf(s) === i)
