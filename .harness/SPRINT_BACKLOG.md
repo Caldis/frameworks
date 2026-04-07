@@ -111,7 +111,15 @@
 - [x] vite.config.ts: removed framework-data chunk → 13 per-category lazy chunks
 - [x] 51/51 E2E tests pass, build clean, no chunk > 500KB
 **Estimate**: Medium
-**Priority**: Medium (weakest page in the site)
+
+### Sprint S25: Horizontal Scroll Cards + Lerp Engine + FLIP Expand [DONE 2026-04-07]
+### Sprint S26: Map Label Collision Detection [DONE 2026-04-07]
+### Sprint S27: Dark Mode — Warm-Tinted Palette [DONE 2026-04-08]
+### Sprint S28: Insights Page — Editorial Data Visualizations [DONE 2026-04-08]
+### Sprint S29: Search Autocomplete + Visual Fixes [DONE 2026-04-08]
+### Sprint S30: Timeline Page — Frameworks by Origin Year [DONE 2026-04-08]
+### Sprint S31: Keyboard Shortcuts Help Panel [DONE 2026-04-08]
+### Sprint S32: PWA — Service Worker + Offline Caching [DONE 2026-04-08]
 **Contract**: Compare page shows radar chart overlay for 2-3 frameworks, 6 curated comparison suggestions on empty state, diff highlighting in table. 51 E2E tests pass.
 **Tasks**:
 - [x] Add Recharts RadarChart comparing frameworks on 5 dimensions (complexity, abstraction, maturity, quality breadth, adoption)

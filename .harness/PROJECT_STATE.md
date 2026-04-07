@@ -12,17 +12,20 @@
 - **Deploy**: GitHub Actions → GitHub Pages (custom domain)
 - **Inspired by**: pmframe.works
 
-## Current State (as of 2026-04-07, end of Sprint S24)
+## Current State (as of 2026-04-08, end of Sprint S32)
 
 ### What Exists
-- 194 software design frameworks across 13 categories
-- Each framework has 38 fields: basic + extended + taxonomy (abstraction_level, quality_concerns, maturity_ring) + provenance (primary_source, secondary_sources)
-- 13 categories: 7 original lifecycle + 6 new (Data Architecture, Security & Privacy, Distributed Systems, API Design, Team & Organization, Observability & DX)
+- 239 software design frameworks across 13 categories, 39 fields per framework
 - Full bilingual content (EN/ZH) with i18n system (useI18n hook, locale files)
-- Pages: Home (card grid + search + filter + favorites + modal), Framework Detail (11-section progressive layout), Category Landing (with AI cross-category view), Relationship Map (D3 force graph with lifecycle X-axis + complexity Y-axis)
-- LanguageSwitcher in header, browser auto-detection, localStorage persistence
+- 11 pages: Home (horizontal scroll cards + lerp engine), Framework Detail (11-section progressive layout + async detail loading), Category Landing (AI cross-category + reading list), Map (D3 force graph + label collision detection), Compare (radar chart + suggestions + diff highlighting), Selector (4-step wizard), Paths (learning sequences), Insights (editorial data viz), Timeline (by origin year), plus Layout shell
+- Dark mode: warm-tinted dark palette, prefers-color-scheme auto-detect + manual toggle (☽/☀), 55+ CSS variables, all category colors adapted
+- Two-tier data loading: stubs upfront (603KB), 13 per-category detail chunks loaded on demand
+- Search autocomplete: dropdown suggestions with keyboard nav (↑/↓/Enter/Esc), category dots, author tags
+- PWA: Service worker (cache-first assets, network-first navigation), manifest.json, offline support
+- Keyboard shortcuts: ? toggle help panel
+- LanguageSwitcher + ThemeToggle in header
 - FrameworkViz: Recharts RadarChart + HTML/CSS layouts for 8 viz types
-- Code splitting: lazy routes + manual chunks (vendor, charts, d3) + two-tier data loading (stubs upfront 664KB, 13 per-category detail chunks loaded on demand)
+- Code splitting: lazy routes + manual chunks (vendor, charts, d3)
 - GitHub Actions CI/CD, SPA 404 redirect, CNAME for custom domain
 
 ### Completed Sprints
@@ -39,10 +42,17 @@
 - S10-S22: Map UX, Selector, Paths, SEO, typed relations, design patterns, visual fixes
 - S23: Compare Page Enhancement (radar chart, suggestions, diff highlighting)
 - S24: Data Performance 76% + Card Metadata (two-tier loading, complexity/author on cards)
+- S25: Horizontal scroll cards + lerp engine + FLIP expand animation
+- S26: Map label collision detection (greedy placement + zoom-aware thresholds)
+- S27: Dark Mode (warm-tinted palette, 71 hardcoded colors → CSS variables)
+- S28: Insights page (editorial data viz — 8 pure CSS visualization sections)
+- S29: Search autocomplete (dropdown, keyboard nav, quick-jump)
+- S30: Timeline page (frameworks by origin year, grouped by decade)
+- S31: Keyboard shortcuts help panel (? toggle)
+- S32: PWA (service worker, manifest, offline caching)
 
-### What Exists (continued)
-- Pages: Home (grouped by category + multi-dimension filter), Framework Detail (11 sections), Category Landing, Map (search + touch + 13 categories), Compare (radar chart + diff highlighting + curated suggestions)
-- 51 E2E tests: smoke(9) + visual/a11y(8) + interaction(6) + data-display(8) + screenshots(11) + compare(9)
+### Test Coverage
+- 54 E2E tests: smoke(9) + visual/a11y(8) + interaction(6) + data-display(8) + screenshots(14, incl. dark mode + insights)
 - Harness: 4-gate evaluation, sprint boundary discipline, model selection guide, operational patterns
 
 ### Known Issues
