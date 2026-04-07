@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import type { Framework } from '../types'
 import type { TypedRelation, RelationType } from '../types'
-import { getCategoryByKey } from '../data/categories'
+import { getCategoryByKey, catColorVar } from '../data/categories'
 import { useI18n } from '../i18n'
 import styles from './RelatedFrameworks.module.css'
 
@@ -48,8 +48,8 @@ export default function RelatedFrameworks({ frameworks, typedRelations }: Relate
               <span
                 className={styles.pill}
                 style={{
-                  backgroundColor: category.colorBg,
-                  color: category.colorText,
+                  backgroundColor: catColorVar(fw.category, 'bg'),
+                  color: catColorVar(fw.category, 'text'),
                 }}
               >
                 {localized(category, 'name')}

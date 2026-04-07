@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useI18n } from '../i18n'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { getFrameworkBySlug } from '../data/loader'
-import { getCategoryByKey } from '../data/categories'
+import { getCategoryByKey, catColorVar } from '../data/categories'
 import learningPathsData from '../../data/learning-paths.json'
 import type { LearningPath } from '../types'
 import styles from './PathsPage.module.css'
@@ -100,7 +100,7 @@ export default function PathsPage() {
                         {category && (
                           <span
                             className={styles.categoryPill}
-                            style={{ background: category.colorBg, color: category.colorText }}
+                            style={{ background: catColorVar(category.key, 'bg'), color: catColorVar(category.key, 'text') }}
                           >
                             {localized(category, 'name')}
                           </span>

@@ -2,7 +2,7 @@ import { useRef, useEffect, useState, useCallback } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import * as d3 from 'd3'
 import { getAllFrameworks, getFrameworkBySlug, getTypedRelations, getFrameworkFull } from '../data/loader'
-import { categories, getCategoryByKey } from '../data/categories'
+import { categories, getCategoryByKey, catColorVar } from '../data/categories'
 import { useI18n } from '../i18n'
 import { usePageMeta } from '../hooks/usePageMeta'
 import type { CategoryKey, Framework, RelationType } from '../types'
@@ -303,7 +303,7 @@ export default function MapPage() {
         .attr('text-anchor', 'middle')
         .attr('font-size', 11)
         .attr('font-family', 'monospace')
-        .attr('fill', cat.colorText)
+        .style('fill', catColorVar(catKey, 'text'))
         .text(localized(cat, 'name'))
     })
 
@@ -388,10 +388,7 @@ export default function MapPage() {
     node.append('circle')
       .attr('class', 'node-circle')
       .attr('r', d => 6 + Math.min(d.related.length, 4) * 2)
-      .attr('fill', d => {
-        const cat = getCategoryByKey(d.category)
-        return cat ? cat.colorText : '#999'
-      })
+      .style('fill', d => catColorVar(d.category, 'text'))
       .attr('stroke', 'white')
       .attr('stroke-width', 2)
 
@@ -408,10 +405,7 @@ export default function MapPage() {
       .attr('dy', d => (6 + Math.min(d.related.length, 4) * 2) + 10)
       .attr('font-size', d => d.related.length >= 4 ? 10 : 9)
       .attr('font-family', 'var(--font-mono)')
-      .attr('fill', d => {
-        const cat = getCategoryByKey(d.category)
-        return cat ? cat.colorText : '#666'
-      })
+      .style('fill', d => catColorVar(d.category, 'text'))
       .attr('opacity', 0)
       .attr('pointer-events', 'none')
       .text(d => truncateLabel(d))
@@ -735,7 +729,7 @@ export default function MapPage() {
             className={`${styles.filterBtn} ${activeCategories.has(cat.key) ? styles.filterBtnActive : ''}`}
             onClick={() => toggleCategory(cat.key)}
           >
-            <span className={styles.filterDot} style={{ background: cat.colorText }} />
+            <span className={styles.filterDot} style={{ background: catColorVar(cat.key, 'text') }} />
             {localized(cat, 'name')}
           </button>
         ))}
@@ -782,7 +776,7 @@ export default function MapPage() {
             </div>
             <div className={styles.panelMeta}>
               <span className={styles.panelCategoryPill}>
-                <span className={styles.connectionDot} style={{ background: selectedCategory.colorText }} />
+                <span className={styles.connectionDot} style={{ background: catColorVar(selectedCategory.key, 'text') }} />
                 {localized(selectedCategory, 'name')}
               </span>
               <span className={styles.panelComplexity}>{complexityLabel}</span>
@@ -817,7 +811,7 @@ export default function MapPage() {
                       >
                         <span
                           className={styles.connectionDot}
-                          style={{ background: relCat ? relCat.colorText : '#999' }}
+                          style={{ background: relCat ? catColorVar(relCat.key, 'text') : '#999' }}
                         />
                         {localized(relFw, 'name')}
                         <span className={styles.relTypeBadge}>{type}</span>

@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { getAllFrameworks, getFrameworksByCategory } from '../data/loader'
-import { categories } from '../data/categories'
+import { categories, catColorVar } from '../data/categories'
 import { useI18n } from '../i18n'
 import { usePageMeta } from '../hooks/usePageMeta'
 import type { CategoryKey, AbstractionLevel, QualityConcern, MaturityRing } from '../types'
@@ -186,7 +186,7 @@ export default function SelectorPage() {
                 onClick={() => toggleCat(cat.key)}
               >
                 <div>
-                  <span className={styles.optionDot} style={{ backgroundColor: cat.colorText }} />
+                  <span className={styles.optionDot} style={{ backgroundColor: catColorVar(cat.key, 'text') }} />
                   <span className={styles.optionName}>
                     {locale === 'en' ? cat.name : cat.name_zh}
                   </span>
@@ -310,7 +310,7 @@ export default function SelectorPage() {
                     {cat && (
                       <span
                         className={styles.resultCatPill}
-                        style={{ background: cat.colorBg, color: cat.colorText }}
+                        style={{ background: catColorVar(cat.key, 'bg'), color: catColorVar(cat.key, 'text') }}
                       >
                         {locale === 'en' ? cat.name : cat.name_zh}
                       </span>

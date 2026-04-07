@@ -1,5 +1,5 @@
 import type { Framework } from '../types'
-import { getCategoryByKey } from '../data/categories'
+import { getCategoryByKey, catColorVar } from '../data/categories'
 import { useI18n } from '../i18n'
 import styles from './FrameworkCard.module.css'
 
@@ -47,8 +47,8 @@ export default function FrameworkCard({
           <span
             className={styles.tag}
             style={{
-              backgroundColor: category.colorBg,
-              color: category.colorText,
+              backgroundColor: catColorVar(framework.category, 'bg'),
+              color: catColorVar(framework.category, 'text'),
             }}
           >
             {localized(category, 'name')}

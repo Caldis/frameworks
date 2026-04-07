@@ -1,6 +1,7 @@
 import { useState, useRef, useLayoutEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import type { Category, Framework } from '../types'
+import { catColorVar } from '../data/categories'
 import { useI18n } from '../i18n'
 import { useHorizontalScroll } from '../hooks/useHorizontalScroll'
 import FrameworkCard from './FrameworkCard'
@@ -75,7 +76,7 @@ export default function CategorySection({
   return (
     <section className={styles.section}>
       {/* Header */}
-      <div className={styles.header} style={{ borderLeftColor: category.colorText }}>
+      <div className={styles.header} style={{ borderLeftColor: catColorVar(category.key, 'text') }}>
         <Link to={`/category/${category.slug}`} className={styles.nameLink}>
           {localized(category, 'name')}
         </Link>

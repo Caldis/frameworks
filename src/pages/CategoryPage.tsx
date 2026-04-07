@@ -1,7 +1,7 @@
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import type { Framework } from '../types'
-import { categories } from '../data/categories'
+import { categories, catColorVar } from '../data/categories'
 import { getFrameworksByCategory, getAIRelevantFrameworks, getFrameworksFullByCategory } from '../data/loader'
 import { useFavorites } from '../hooks/useFavorites'
 import { useI18n } from '../i18n'
@@ -73,7 +73,7 @@ export default function CategoryPage() {
 
       <div className={styles.header}>
         <div className={styles.nameRow}>
-          <h1 className={styles.name} style={{ color: category.colorText }}>
+          <h1 className={styles.name} style={{ color: catColorVar(category.key, 'text') }}>
             {categoryName}
           </h1>
           <span className={styles.nameZh}>{nameSubtitle}</span>
@@ -126,7 +126,7 @@ export default function CategoryPage() {
             <div key={group.category.key} className={styles.aiGroup}>
               <div
                 className={styles.aiGroupName}
-                style={{ color: group.category.colorText }}
+                style={{ color: catColorVar(group.category.key, 'text') }}
               >
                 {localized(group.category, 'name')}
               </div>
@@ -136,7 +136,7 @@ export default function CategoryPage() {
                     key={fw.slug}
                     to={`/frameworks/${fw.slug}`}
                     className={styles.aiItem}
-                    style={{ backgroundColor: group.category.colorBg }}
+                    style={{ backgroundColor: catColorVar(group.category.key, 'bg') }}
                   >
                     {localized(fw, 'name')}
                   </Link>

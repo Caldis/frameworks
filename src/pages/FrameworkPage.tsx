@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { getFrameworkBySlug, getFrameworksByCategory, getRelatedFrameworks, getTypedRelations } from '../data/loader'
-import { getCategoryByKey } from '../data/categories'
+import { getCategoryByKey, catColorVar } from '../data/categories'
 import { useI18n } from '../i18n'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { useFrameworkDetail } from '../hooks/useFrameworkDetail'
@@ -66,7 +66,7 @@ export default function FrameworkPage() {
       : styles.complexityAdvanced
 
   const sectionBorderStyle = category
-    ? { borderLeftColor: category.colorText }
+    ? { borderLeftColor: catColorVar(framework.category, 'text') }
     : undefined
 
   const whenIcons = ['\u26A1', '\uD83C\uDFAF', '\uD83D\uDD04', '\uD83D\uDCA1', '\uD83D\uDE80']
@@ -105,8 +105,8 @@ export default function FrameworkPage() {
           <span
             className={styles.categoryPill}
             style={{
-              backgroundColor: category.colorBg,
-              color: category.colorText,
+              backgroundColor: catColorVar(framework.category, 'bg'),
+              color: catColorVar(framework.category, 'text'),
             }}
           >
             {localized(category, 'name')}
@@ -238,7 +238,7 @@ export default function FrameworkPage() {
           )}
           <div
             className={styles.caseStudyCard}
-            style={category ? { borderLeftColor: category.colorText } : undefined}
+            style={category ? { borderLeftColor: catColorVar(framework.category, 'text') } : undefined}
           >
             {caseStudyText}
           </div>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { Framework } from '../types'
-import { getCategoryByKey } from '../data/categories'
+import { getCategoryByKey, catColorVar } from '../data/categories'
 import { useI18n } from '../i18n'
 import FrameworkViz from './FrameworkViz'
 import StepsList from './StepsList'
@@ -95,8 +95,8 @@ export default function Modal({
                   fontFamily: 'var(--font-mono)',
                   padding: '2px 8px',
                   borderRadius: '10px',
-                  backgroundColor: category.colorBg,
-                  color: category.colorText,
+                  backgroundColor: catColorVar(framework.category, 'bg'),
+                  color: catColorVar(framework.category, 'text'),
                   display: 'inline-block',
                 }}
               >

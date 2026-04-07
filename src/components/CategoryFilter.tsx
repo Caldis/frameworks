@@ -1,5 +1,5 @@
 import type { CategoryKey } from '../types'
-import { categories } from '../data/categories'
+import { categories, catColorVar } from '../data/categories'
 import { useI18n } from '../i18n'
 import styles from './CategoryFilter.module.css'
 
@@ -26,8 +26,8 @@ export default function CategoryFilter({ active, onChange, counts }: CategoryFil
           className={`${styles.btn} ${active === cat.key ? styles.btnActive : ''}`}
           onClick={() => onChange(cat.key)}
           style={{
-            '--cat-bg': cat.colorBg,
-            '--cat-text': cat.colorText,
+            '--cat-bg': catColorVar(cat.key, 'bg'),
+            '--cat-text': catColorVar(cat.key, 'text'),
           } as React.CSSProperties}
         >
           {localized(cat, 'name')}<span className={styles.count}>{counts[cat.key]}</span>
