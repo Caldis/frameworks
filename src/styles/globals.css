@@ -3,11 +3,12 @@
   --text: #1a1916;
   --surface: #f8f7f4;
   --border: #e8e6e1;
-  --muted: #6b6b68;        /* WCAG AA 4.5:1 on --bg */
-  --muted-light: #858580;  /* WCAG AA 3:1 for large text */
+  --muted: #6b6b68;
+  --muted-light: #858580;
   --font-serif: 'DM Serif Display', 'Noto Serif SC', Georgia, serif;
   --font-sans: 'DM Sans', 'Noto Sans SC', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Noto Sans Mono', monospace;
+  /* Category colors — light */
   --cat-thinking-bg: #e8f5ee; --cat-thinking-text: #2d6a4f;
   --cat-architecture-bg: #e8eef8; --cat-architecture-text: #1a5276;
   --cat-coding-bg: #ede8f8; --cat-coding-text: #6c3483;
@@ -15,6 +16,53 @@
   --cat-deployment-bg: #fdf3e3; --cat-deployment-text: #7d6608;
   --cat-evolution-bg: #e8f8e8; --cat-evolution-text: #1e8449;
   --cat-ai-bg: #f8e8e3; --cat-ai-text: #a04000;
+  --cat-data-bg: #e3ecf8; --cat-data-text: #1b4f72;
+  --cat-security-bg: #f8e8f0; --cat-security-text: #7b2d52;
+  --cat-distributed-bg: #e8f0f8; --cat-distributed-text: #1a3c5e;
+  --cat-api-bg: #f0f0e8; --cat-api-text: #5a5a2d;
+  --cat-team-bg: #f8f0e8; --cat-team-text: #6b4226;
+  --cat-observability-bg: #e8f4f0; --cat-observability-text: #1a5245;
+  /* Visualization & UI */
+  --viz-bg: #f0ebe5;
+  --viz-text: #5a5046;
+  --viz-accent: #c4a882;
+  --viz-node: #e8e2d9;
+  --viz-line: #d4cdc4;
+  --diff-bg: #faf7f2;
+  --map-grid: #e0ddd8;
+  --map-col-tint: rgba(0,0,0,0.015);
+}
+
+[data-theme="dark"] {
+  --bg: #1a1917;
+  --text: #e8e5df;
+  --surface: #23221f;
+  --border: #3a3835;
+  --muted: #9a978f;
+  --muted-light: #6b6860;
+  /* Category colors — dark (deeper bg, brighter text) */
+  --cat-thinking-bg: #1a2b22; --cat-thinking-text: #5cb88a;
+  --cat-architecture-bg: #1a2433; --cat-architecture-text: #5a9fd0;
+  --cat-coding-bg: #261e33; --cat-coding-text: #b07acc;
+  --cat-quality-bg: #331a1a; --cat-quality-text: #d4605a;
+  --cat-deployment-bg: #332a18; --cat-deployment-text: #c4a030;
+  --cat-evolution-bg: #1a2e1c; --cat-evolution-text: #40c47a;
+  --cat-ai-bg: #33221a; --cat-ai-text: #e08040;
+  --cat-data-bg: #1a2233; --cat-data-text: #5a90ba;
+  --cat-security-bg: #331a28; --cat-security-text: #c46088;
+  --cat-distributed-bg: #1a2633; --cat-distributed-text: #5a85b5;
+  --cat-api-bg: #28281a; --cat-api-text: #a0a060;
+  --cat-team-bg: #33281a; --cat-team-text: #b87548;
+  --cat-observability-bg: #1a2e28; --cat-observability-text: #45a890;
+  /* Visualization & UI — dark */
+  --viz-bg: #2a2825;
+  --viz-text: #b0a898;
+  --viz-accent: #c4a882;
+  --viz-node: #3a3630;
+  --viz-line: #4a4640;
+  --diff-bg: #252320;
+  --map-grid: #3a3835;
+  --map-col-tint: rgba(255,255,255,0.02);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; overflow-x: hidden; }

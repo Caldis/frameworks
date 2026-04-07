@@ -19,3 +19,8 @@ export const categories: Category[] = [
 export function getCategoryByKey(key: string) {
   return categories.find(c => c.key === key)
 }
+
+/** CSS variable reference for category colors — responds to dark mode automatically */
+export function catColorVar(key: string, type: 'bg' | 'text'): string {
+  return `var(--cat-${key}-${type})`
+}

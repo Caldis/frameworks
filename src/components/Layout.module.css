@@ -38,6 +38,27 @@
   -webkit-text-fill-color: transparent;
 }
 
+.headerControls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.themeToggle {
+  font-size: 16px;
+  line-height: 1;
+  padding: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  transition: color 0.15s;
+}
+
+.themeToggle:hover {
+  color: var(--text);
+}
+
 .main {
   flex: 1;
   max-width: 1600px;
@@ -134,7 +155,7 @@
 }
 
 .separator {
-  color: #ddd;
+  color: var(--border);
 }
 
 @media (max-width: 600px) {

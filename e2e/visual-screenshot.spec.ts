@@ -123,4 +123,25 @@ test.describe('Screenshot Capture for Design Review', () => {
     await page.waitForTimeout(500)
     await page.screenshot({ path: `${SCREENSHOT_DIR}/paths.png`, fullPage: true })
   })
+
+  test('homepage — dark mode', async ({ page }) => {
+    await page.setViewportSize({ width: 1200, height: 900 })
+    await page.goto('/')
+    // Activate dark mode via the theme toggle
+    await page.evaluate(() => {
+      document.documentElement.setAttribute('data-theme', 'dark')
+    })
+    await page.waitForTimeout(300)
+    await page.screenshot({ path: `${SCREENSHOT_DIR}/home-dark.png`, fullPage: true })
+  })
+
+  test('framework detail — dark mode', async ({ page }) => {
+    await page.setViewportSize({ width: 1200, height: 900 })
+    await page.goto('/frameworks/solid-principles')
+    await page.evaluate(() => {
+      document.documentElement.setAttribute('data-theme', 'dark')
+    })
+    await page.waitForTimeout(300)
+    await page.screenshot({ path: `${SCREENSHOT_DIR}/detail-dark.png`, fullPage: true })
+  })
 })

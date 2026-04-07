@@ -1,16 +1,28 @@
 import { Link, Outlet } from 'react-router-dom'
 import LanguageSwitcher from './LanguageSwitcher'
 import { useI18n } from '../i18n'
+import { useTheme } from '../hooks/useTheme'
 import styles from './Layout.module.css'
 
 export default function Layout() {
   const { t } = useI18n()
+  const { theme, toggle } = useTheme()
 
   return (
     <div className={styles.layout}>
       <header className={styles.header}>
         <Link to="/" className={styles.domainBadge}>SDFrame</Link>
-        <LanguageSwitcher />
+        <div className={styles.headerControls}>
+          <button
+            className={styles.themeToggle}
+            onClick={toggle}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+          >
+            {theme === 'dark' ? '☀' : '☽'}
+          </button>
+          <LanguageSwitcher />
+        </div>
       </header>
       <main className={styles.main}>
         <Outlet />

@@ -276,7 +276,7 @@ export default function MapPage() {
         .attr('y1', margin.top)
         .attr('x2', x)
         .attr('y2', margin.top + innerHeight)
-        .attr('stroke', '#e0ddd8')
+        .style('stroke', 'var(--map-grid)')
         .attr('stroke-width', 1)
         .attr('stroke-dasharray', '4,4')
     }
@@ -289,7 +289,7 @@ export default function MapPage() {
           .attr('y', margin.top)
           .attr('width', colWidth)
           .attr('height', innerHeight)
-          .attr('fill', 'rgba(0,0,0,0.015)')
+          .style('fill', 'var(--map-col-tint)')
       }
     })
 
@@ -313,7 +313,7 @@ export default function MapPage() {
       .attr('text-anchor', 'middle')
       .attr('font-size', 11)
       .attr('font-family', 'monospace')
-      .attr('fill', '#bbb')
+      .style('fill', 'var(--muted-light)')
       .text(`${t.mapAxisFundamental} → ${t.mapAxisAdvanced}`)
 
     // Zoom container (for nodes and links)
@@ -389,7 +389,7 @@ export default function MapPage() {
       .attr('class', 'node-circle')
       .attr('r', d => 6 + Math.min(d.related.length, 4) * 2)
       .style('fill', d => catColorVar(d.category, 'text'))
-      .attr('stroke', 'white')
+      .style('stroke', 'var(--bg)')
       .attr('stroke-width', 2)
 
     // Node labels — initially hidden, collision detection determines which to show
