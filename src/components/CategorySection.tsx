@@ -133,8 +133,8 @@ export default function CategorySection({
           ref={containerRef}
           className={`${styles.row} ${expanded ? styles.rowExpanded : ''}`}
         >
-          {frameworks.map(fw => (
-            <div key={fw.slug} data-card={fw.slug} className={styles.slot}>
+          {frameworks.map((fw, i) => (
+            <div key={fw.slug} data-card={fw.slug} className={styles.slot} style={{ '--i': i } as React.CSSProperties}>
               <FrameworkCard
                 framework={fw}
                 onClick={onCardClick}
