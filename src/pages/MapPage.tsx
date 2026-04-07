@@ -26,6 +26,52 @@ interface SimLink extends d3.SimulationLinkDatum<SimNode> {
   relType: RelationType
 }
 
+// Greedy label placement with bounding-box collision detection.
+// Returns the set of slugs whose labels can be displayed without overlap.
+function computeVisibleLabels(
+  nodes: SimNode[],
+  zoomLevel: number,
+  activeCategories: Set<CategoryKey>,
+  lang: 'en' | 'zh',
+): Set<string> {
+  const minConn = zoomLevel > 2.5 ? 0 : zoomLevel > 1.5 ? 1 : zoomLevel > 0.8 ? 2 : 3
+
+  const candidates = nodes
+    .filter(n => activeCategories.has(n.category) && n.related.length >= minConn && n.x != null)
+    .sort((a, b) => b.related.length - a.related.length)
+
+  const charW = 5.5
+  const labelH = 14
+  const pad = 8
+
+  type Rect = { x: number; y: number; w: number; h: number }
+  const placed: Rect[] = []
+  const visible = new Set<string>()
+
+  for (const node of candidates) {
+    const name = lang === 'zh' ? node.name_zh : node.name
+    const maxLen = lang === 'zh' ? 8 : 12
+    const len = Math.min(name.length, maxLen)
+    const nodeR = 6 + Math.min(node.related.length, 4) * 2
+    const w = len * charW + pad
+    const h = labelH
+    const x = node.x! - w / 2
+    const y = node.y! + nodeR + 2
+
+    const rect: Rect = { x, y, w, h }
+    const hit = placed.some(p =>
+      !(rect.x + rect.w < p.x || p.x + p.w < rect.x ||
+        rect.y + rect.h < p.y || p.y + p.h < rect.y)
+    )
+
+    if (!hit) {
+      placed.push(rect)
+      visible.add(node.slug)
+    }
+  }
+  return visible
+}
+
 export default function MapPage() {
   const { t, localized, locale } = useI18n()
   usePageMeta('Framework Relationship Map', 'Interactive map of 194 software design frameworks and their connections')
@@ -84,13 +130,11 @@ export default function MapPage() {
     })
   }, [])
 
-  // Helper: determine if a node should always show its label
-  const isHighConnection = (d: SimNode) => d.related.length >= 3
-
   // Update visibility when activeCategories changes (without rebuilding the graph)
   useEffect(() => {
     activeCategoriesRef.current = activeCategories
-    const svg = d3.select(svgRef.current)
+    const svgEl = svgRef.current
+    const svg = d3.select(svgEl)
     if (!svg.node()) return
 
     svg.selectAll<SVGCircleElement, SimNode>('.node-circle')
@@ -98,16 +142,9 @@ export default function MapPage() {
       .duration(300)
       .attr('opacity', d => activeCategories.has(d.category) ? 1 : 0.1)
 
-    const showLabels = zoomLevelRef.current > 1.2
-    svg.selectAll<SVGTextElement, SimNode>('.node-label')
-      .transition()
-      .duration(300)
-      .attr('opacity', d => {
-        if (!activeCategories.has(d.category)) return 0
-        if (isHighConnection(d)) return 1
-        if (showLabels && d.related.length >= 2) return 1
-        return 0
-      })
+    // Recompute collision-free labels
+    const updateFn = (svgEl as any)?.__updateLabels
+    if (typeof updateFn === 'function') updateFn()
 
     svg.selectAll<SVGLineElement, SimLink>('.link-line')
       .transition()
@@ -295,18 +332,10 @@ export default function MapPage() {
         // Also transform background layer so axes stay aligned with nodes
         bgLayer.attr('transform', t)
 
-        // Track zoom level and update label visibility threshold
-        const k: number = event.transform.k
-        zoomLevelRef.current = k
-        const showLabels = k > 1.2
-        const currentCategories = activeCategoriesRef.current
-        svg.selectAll<SVGTextElement, SimNode>('.node-label')
-          .attr('opacity', (d: SimNode) => {
-            if (!currentCategories.has(d.category)) return 0
-            if (isHighConnection(d)) return 1
-            if (showLabels && d.related.length >= 2) return 1
-            return 0
-          })
+        // Track zoom level and recompute collision-free labels
+        zoomLevelRef.current = event.transform.k
+        const updateFn = (svgEl as any)?.__updateLabels
+        if (typeof updateFn === 'function') updateFn()
       })
 
     svg.call(zoom)
@@ -366,7 +395,7 @@ export default function MapPage() {
       .attr('stroke', 'white')
       .attr('stroke-width', 2)
 
-    // Node labels: always visible for high-connection nodes, zoom-dependent for others
+    // Node labels — initially hidden, collision detection determines which to show
     const truncateLabel = (d: SimNode) => {
       const name = localized(d, 'name')
       const maxLen = locale === 'zh' ? 8 : 12
@@ -383,9 +412,27 @@ export default function MapPage() {
         const cat = getCategoryByKey(d.category)
         return cat ? cat.colorText : '#666'
       })
-      .attr('opacity', d => isHighConnection(d) ? 1 : 0)
+      .attr('opacity', 0)
       .attr('pointer-events', 'none')
       .text(d => truncateLabel(d))
+
+    // Collision-free label update — shared across zoom, filter, and simulation end
+    const updateLabels = () => {
+      const visible = computeVisibleLabels(
+        nodes,
+        zoomLevelRef.current,
+        activeCategoriesRef.current,
+        locale as 'en' | 'zh',
+      )
+      svg.selectAll<SVGTextElement, SimNode>('.node-label')
+        .transition()
+        .duration(200)
+        .attr('opacity', d => {
+          if (!activeCategoriesRef.current.has(d.category)) return 0
+          return visible.has(d.slug) ? 1 : 0
+        })
+    }
+    ;(svgEl as any).__updateLabels = updateLabels
 
     // Hide tooltip when tapping empty SVG background
     svg.on('touchstart', () => {
@@ -425,13 +472,14 @@ export default function MapPage() {
             return (s === d.slug || tgt === d.slug) ? 'url(#edge-glow)' : 'none'
           })
 
-        // Show labels of connected nodes and the hovered node; keep persistent labels visible at zoom
-        const showLabels = zoomLevelRef.current > 1.2
+        // Show labels of connected nodes and the hovered node
+        const currentVisible = computeVisibleLabels(
+          nodes, zoomLevelRef.current, activeCategoriesRef.current, locale as 'en' | 'zh'
+        )
         svg.selectAll<SVGTextElement, SimNode>('.node-label')
           .attr('opacity', n => {
             if (n.slug === d.slug || connectedSlugs.has(n.slug)) return 1
-            if (isHighConnection(n)) return 0.3
-            if (showLabels && n.related.length >= 2) return 0.3
+            if (currentVisible.has(n.slug)) return 0.3
             return 0
           })
 
@@ -478,14 +526,8 @@ export default function MapPage() {
           .attr('opacity', 0.2)
           .attr('filter', 'none')
 
-        // Restore labels: always show for high-connection, zoom-dependent for others
-        const showLabels = zoomLevelRef.current > 1.2
-        svg.selectAll<SVGTextElement, SimNode>('.node-label')
-          .attr('opacity', n => {
-            if (isHighConnection(n)) return 1
-            if (showLabels && n.related.length >= 2) return 1
-            return 0
-          })
+        // Restore collision-based labels
+        updateLabels()
 
         // Hide tooltip
         const tooltip = tooltipRef.current
@@ -530,13 +572,14 @@ export default function MapPage() {
             return (s === d.slug || tgt === d.slug) ? 'url(#edge-glow)' : 'none'
           })
 
-        // Show labels of connected nodes and the hovered node
-        const showLabels = zoomLevelRef.current > 1.2
+        // Show labels of connected nodes and the touched node
+        const currentVisible = computeVisibleLabels(
+          nodes, zoomLevelRef.current, activeCategoriesRef.current, locale as 'en' | 'zh'
+        )
         svg.selectAll<SVGTextElement, SimNode>('.node-label')
           .attr('opacity', n => {
             if (n.slug === d.slug || connectedSlugs.has(n.slug)) return 1
-            if (isHighConnection(n)) return 0.3
-            if (showLabels && n.related.length >= 2) return 0.3
+            if (currentVisible.has(n.slug)) return 0.3
             return 0
           })
 
@@ -575,12 +618,19 @@ export default function MapPage() {
       })
 
     // Tick
+    let labelsRevealed = false
     simulation.on('tick', () => {
       // Clamp node positions to SVG bounds
       nodes.forEach(d => {
         d.x = Math.max(margin.left + 10, Math.min(width - margin.right - 10, d.x!))
         d.y = Math.max(margin.top + 10, Math.min(height - margin.bottom - 10, d.y!))
       })
+
+      // Show collision-free labels once positions stabilize (alpha < 0.15)
+      if (!labelsRevealed && simulation.alpha() < 0.15) {
+        labelsRevealed = true
+        updateLabels()
+      }
 
       link
         .attr('x1', d => (d.source as SimNode).x!)
@@ -616,9 +666,10 @@ export default function MapPage() {
       svg.transition().duration(500).call(zoom.transform, transform)
     }
 
-    // After simulation settles, automatically fit all nodes in view
+    // After simulation settles, fit view and compute collision-free labels
     simulation.on('end', () => {
       fitToView()
+      updateLabels()
     })
 
     // Expose fitToView for external use (reset view button)
