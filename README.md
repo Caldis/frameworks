@@ -1,85 +1,118 @@
-# sdframe
+# SDFrame
 
-100 Software Design Frameworks — a curated collection for engineers, architects, and AI agents.
+239 Software Design Frameworks — a curated, bilingual knowledge base for engineers, architects, and AI agents.
 
-**[Live Site](http://sdframe.caldis.me/)** | **Inspired by [pmframe.works](https://pmframe.works/)**
+**[sdframe.caldis.me](https://sdframe.caldis.me/)** | Inspired by [PMFrame.works](https://pmframe.works/)
 
 ## Overview
 
-sdframe organizes 100 software design frameworks across the full software lifecycle, from design thinking to AI-native collaboration patterns. Each framework includes bilingual (EN/ZH) descriptions, 5 actionable implementation steps, and cross-references to related frameworks.
+SDFrame organizes 239 software design frameworks across 13 categories, spanning the full software lifecycle from design thinking to AI-native collaboration patterns. Each framework includes:
+
+- Bilingual content (EN/ZH) with natural translations
+- 5 actionable implementation steps with visual diagrams
+- Multi-dimensional taxonomy (abstraction level, maturity, quality concerns)
+- Provenance citations to authoritative sources
+- Typed relationships to related frameworks (alternative, complement, extends, prerequisite)
 
 ## Categories
 
-| # | Category | Count | Description |
-|---|----------|-------|-------------|
-| 1 | Design Thinking | 14 | Mental models, design philosophies, problem framing |
-| 2 | Architecture Decisions | 14 | Architectural patterns, trade-off analysis, system decomposition |
-| 3 | Coding Practices | 15 | Code-level design, patterns, API design, implementation |
-| 4 | Quality Engineering | 15 | Testing strategies, reliability, observability |
-| 5 | Deployment & Operations | 14 | DevOps, SRE, infrastructure patterns |
-| 6 | Evolution & Iteration | 14 | Refactoring, tech debt, migration, team scaling |
-| 7 | AI Collaboration | 14 | Agent architecture, LLM design, human-AI workflows |
-
-AI-relevant frameworks are distributed across all categories, with Category 7 as the flagship AI-native collection.
+| # | Category | Frameworks | Description |
+|---|----------|-----------|-------------|
+| 1 | Design Thinking | 20 | Mental models, design philosophies, problem framing |
+| 2 | Architecture Decisions | 20 | Architectural patterns, trade-off analysis, system decomposition |
+| 3 | Coding Practices | 27 | Code-level design, GoF patterns, implementation |
+| 4 | Quality Engineering | 20 | Testing strategies, reliability, observability |
+| 5 | Deployment & Operations | 18 | DevOps, SRE, infrastructure patterns |
+| 6 | Evolution & Iteration | 15 | Refactoring, tech debt, migration, team scaling |
+| 7 | AI Collaboration | 18 | Agent architecture, LLM design, human-AI workflows |
+| 8 | Data Architecture | 15 | Storage, streaming, data modeling patterns |
+| 9 | Security & Privacy | 15 | Threat modeling, zero trust, privacy by design |
+| 10 | Distributed Systems | 15 | Consensus, consistency, fault tolerance |
+| 11 | API Design & Integration | 13 | REST, GraphQL, gRPC, versioning |
+| 12 | Team & Organization | 15 | Team topologies, engineering culture, inner source |
+| 13 | Observability & DX | 15 | Tracing, SLOs, developer experience |
 
 ## Features
 
-- **100 frameworks** with bilingual content (EN/ZH)
-- **Search & filter** by category, keyword, or AI-relevance
-- **Favorites** with localStorage persistence
-- **Quick preview modal** with keyboard navigation (Arrow keys, Esc, Cmd+K)
-- **Individual framework pages** with SVG visualizations and 5-step implementation guides
-- **Category landing pages** with AI cross-category aggregation
-- **Relationship map** — D3 force-directed graph of framework connections
+### Knowledge Base
+- **239 frameworks** with 39 fields each — bilingual, authoritative, cross-referenced
+- **Multi-dimensional taxonomy** — filter by abstraction level (Code/Component/System/Organization), maturity ring, quality concerns (ISO 25010)
+- **Typed relationships** — 5 relation types: alternative, complement, extends, prerequisite, related
+- **Provenance** — primary source citations and recommended reading per category
+
+### Pages
+- **Home** — card grid with search, category filter, dimension filter, favorites
+- **Framework Detail** — 11-section progressive layout with SVG visualization
+- **Category Landing** — category overview with AI cross-reference and reading list
+- **Relationship Map** — D3 force graph with typed edges, search, category filter, side panel
+- **Compare** — side-by-side comparison with radar chart overlay and curated suggestions
+- **Selector** — 4-step wizard to find frameworks matching your situation
+- **Learning Paths** — curated sequences to master software design step by step
+
+### Technical
+- **Two-tier data loading** — listing stubs loaded upfront; detail data lazy-loaded per category
+- **Full-text search** — name, description, tags, author, adopters
 - **i18n** — full language switching with browser auto-detection
-- **Responsive** — 4 breakpoints from desktop to mobile
+- **SEO** — Open Graph meta tags, sitemap, per-page titles
+- **51 E2E tests** — smoke, visual/a11y, interaction state, data display, screenshots
 
 ## Tech Stack
 
 - **Vite 6** + **React 19** + **TypeScript**
-- **React Router 7** — client-side routing
+- **React Router 7** — client-side routing with lazy-loaded pages
+- **Recharts** — radar charts, data visualization
 - **D3.js** — force-directed relationship graph
-- **CSS Modules** — scoped styles, no utility framework
+- **Playwright** — E2E testing
+- **CSS Modules** — Minimal Scholar aesthetic (serif headers, warm palette)
 - **GitHub Actions** — CI/CD to GitHub Pages
 
 ## Development
 
 ```bash
-# Install
 npm install
-
-# Dev server
-npm run dev
-
-# Production build
-npm run build
-
-# Preview production build
-npm run preview
+npm run dev        # Dev server
+npm run build      # Production build
+npm run test:e2e   # Run Playwright E2E tests
 ```
 
-## Project Structure
+### Data Pipeline
+
+Framework data lives in `data/frameworks/*.json` (one file per category). A pre-build script generates lightweight listing stubs for fast initial load:
 
 ```
-├── data/frameworks/     # 7 JSON files (one per category, 100 total)
-├── src/
-│   ├── i18n/            # Internationalization (locales, context, types)
-│   ├── components/      # Reusable UI components
-│   ├── pages/           # Route pages (Home, Framework, Category, Map)
-│   ├── hooks/           # Custom hooks (search, favorites, keyboard)
-│   ├── data/            # Data loader and category metadata
-│   └── styles/          # Global CSS and custom properties
-├── public/              # Static assets + SPA 404 redirect
-└── .github/workflows/   # GitHub Actions deployment
+data/frameworks/*.json  →  scripts/generate-stubs.js  →  src/data/generated/stubs.json (upfront)
+                        →  dynamic import() per category (on demand)
 ```
 
-## Adding a New Language
+### Project Structure
 
-1. Create `src/i18n/locales/<lang>.ts` implementing the `LocaleStrings` interface
-2. Add the locale to the `Locale` type in `src/i18n/types.ts`
-3. Register it in `src/i18n/context.tsx` locales map
-4. Update `LanguageSwitcher` component for the new option
-5. Add `_<lang>` suffix fields to framework data if needed
+```
+data/frameworks/         # 13 JSON files (239 frameworks)
+scripts/                 # Build scripts (stubs, sitemap)
+src/
+  components/            # Reusable UI (cards, filters, modal, viz)
+  data/                  # Loader (sync stubs + async detail), categories
+  hooks/                 # useSearch, useFavorites, useFrameworkDetail
+  i18n/                  # Internationalization (EN/ZH)
+  pages/                 # Route pages (7 pages)
+  styles/                # Global CSS and custom properties
+e2e/                     # Playwright E2E tests
+.harness/                # AI agent workflow (sprint planning, evaluation)
+```
+
+### Adding Frameworks
+
+1. Add entries to the appropriate `data/frameworks/<category>.json`
+2. Run `node scripts/generate-stubs.js` to regenerate listing stubs
+3. Verify: `npm run build && npx playwright test`
+
+### Adding a Language
+
+1. Create `src/i18n/locales/<lang>.ts` implementing `LocaleStrings`
+2. Add the locale to `Locale` type in `src/i18n/types.ts`
+3. Register in `src/i18n/context.tsx`
+4. Update `LanguageSwitcher` component
+5. Add `_<lang>` suffix fields to framework data
 
 ## License
 
