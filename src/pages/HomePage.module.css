@@ -4,28 +4,44 @@
   overflow: hidden;
 }
 
-.hero::before {
-  content: '';
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  border: 2px solid rgba(196, 168, 130, 0.12);
-  top: -80px;
-  right: -40px;
-  pointer-events: none;
+@property --trace {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
 
+.hero::before,
 .hero::after {
   content: '';
   position: absolute;
+  border-radius: 50%;
+  border: 2px solid;
+  pointer-events: none;
+  --trace: 0deg;
+  -webkit-mask: conic-gradient(#000 var(--trace), transparent 0);
+  mask: conic-gradient(#000 var(--trace), transparent 0);
+}
+
+.hero::before {
+  width: 300px;
+  height: 300px;
+  border-color: rgba(196, 168, 130, 0.12);
+  top: -80px;
+  right: -40px;
+  animation: traceCircle 2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+
+.hero::after {
   width: 200px;
   height: 200px;
-  border-radius: 50%;
-  border: 2px solid rgba(143, 170, 143, 0.12);
+  border-color: rgba(143, 170, 143, 0.12);
   top: 80px;
   right: 160px;
-  pointer-events: none;
+  animation: traceCircle 2s cubic-bezier(0.22, 1, 0.36, 1) 0.8s forwards;
+}
+
+@keyframes traceCircle {
+  to { --trace: 360deg; }
 }
 
 .title {
@@ -69,6 +85,7 @@
   z-index: 10;
   background: var(--bg);
   padding: 16px 0;
+  margin-bottom: 24px;
   border-bottom: none;
   box-shadow: 0 1px 0 var(--border);
   display: flex;
