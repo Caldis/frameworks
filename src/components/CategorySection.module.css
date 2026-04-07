@@ -1,58 +1,180 @@
-.categorySection {
-  margin-bottom: 40px;
+/* ── Section ── */
+.section {
+  margin-bottom: 48px;
 }
 
-.sectionHeader {
+/* ── Header ── */
+.header {
   display: flex;
   align-items: baseline;
-  gap: 12px;
+  gap: 10px;
   padding-left: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
+  border-left: 4px solid;
 }
 
-.sectionName {
-  font-family: var(--font-serif);
-  font-size: 20px;
-}
-
-.sectionNameLink {
+.nameLink {
   font-family: var(--font-serif);
   font-size: 20px;
   color: inherit;
   text-decoration: none;
 }
 
-.sectionNameLink:hover {
+.nameLink:hover {
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.sectionNameZh {
+.nameAlt {
   font-size: 14px;
   color: var(--muted);
 }
 
-.sectionCount {
+.count {
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--muted-light);
 }
 
-.showMore {
+.toggle {
+  margin-left: auto;
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 11px;
+  letter-spacing: 0.3px;
   color: var(--muted);
-  margin-top: 12px;
-  display: inline-block;
-  text-decoration: none;
-  border-bottom: 1px dashed var(--border);
   background: none;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 3px 12px;
   cursor: pointer;
-  padding: 0;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
 }
 
-.showMore:hover {
+.toggle:hover {
   color: var(--text);
+  border-color: var(--text);
+}
+
+/* ── Track (scroll wrapper) ── */
+.track {
+  position: relative;
+}
+
+/* ── Arrows ── */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--muted);
+  cursor: pointer;
+  transition: opacity 0.25s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.arrow:hover {
+  color: var(--text);
+  border-color: var(--text);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.arrowLeft { left: 8px; }
+.arrowRight { right: 8px; }
+
+.arrowHidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Edge fades ── */
+.fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 48px;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+
+.fadeLeft {
+  left: 0;
+  background: linear-gradient(to right, var(--bg), transparent);
+}
+
+.fadeRight {
+  right: 0;
+  background: linear-gradient(to left, var(--bg), transparent);
+}
+
+.fadeHidden {
+  opacity: 0;
+}
+
+/* ── Card row (horizontal) ── */
+.row {
+  display: flex;
+  gap: 1px;
+  overflow: hidden;
+  background: var(--border);
+}
+
+.slot {
+  flex: 0 0 220px;
+  background: var(--bg);
+}
+
+/* ── Card row (expanded grid) ── */
+.rowExpanded {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  overflow: visible;
+}
+
+.rowExpanded .slot {
+  flex: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .row:not(.rowExpanded) {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .row:not(.rowExpanded)::-webkit-scrollbar {
+    display: none;
+  }
+
+  .row:not(.rowExpanded) .slot {
+    scroll-snap-align: start;
+  }
+
+  .arrow {
+    display: none;
+  }
+
+  .fade {
+    width: 24px;
+  }
+
+  .slot {
+    flex: 0 0 min(220px, 72vw);
+  }
+
+  .toggle {
+    font-size: 10px;
+    padding: 2px 10px;
+  }
 }

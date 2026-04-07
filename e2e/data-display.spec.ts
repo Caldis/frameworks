@@ -6,7 +6,8 @@ test.describe('Data Display Correctness', () => {
     await page.goto('/')
     // When "All" is selected (default), grouped view should have section headers
     // Count section headers — should match category count (13)
-    const sectionHeaders = page.locator('[class*="sectionHeader"], [class*="categorySection"] h2, [class*="categorySection"] h3')
+    // Each category section has a nameLink element (one per category)
+    const sectionHeaders = page.locator('[class*="nameLink"]')
     const count = await sectionHeaders.count()
     expect(count).toBeGreaterThanOrEqual(13)
   })
