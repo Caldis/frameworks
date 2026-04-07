@@ -23,7 +23,7 @@ export default function CategorySection({
 }: CategorySectionProps) {
   const { locale, localized } = useI18n()
   const [expanded, setExpanded] = useState(false)
-  const { containerRef, scrollState, scrollBy, onWheel, reset } = useHorizontalScroll()
+  const { containerRef, scrollState, scrollBy, reset } = useHorizontalScroll(!expanded)
   const flipRef = useRef<Map<string, DOMRect> | null>(null)
   const showToggle = frameworks.length > 4
 
@@ -131,7 +131,6 @@ export default function CategorySection({
         <div
           ref={containerRef}
           className={`${styles.row} ${expanded ? styles.rowExpanded : ''}`}
-          onWheel={expanded ? undefined : onWheel}
         >
           {frameworks.map(fw => (
             <div key={fw.slug} data-card={fw.slug} className={styles.slot}>

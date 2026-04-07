@@ -8,7 +8,7 @@ interface ScrollState {
 const LERP = 0.12
 const STOP_THRESHOLD = 0.5
 
-export function useHorizontalScroll() {
+export function useHorizontalScroll(enabled = true) {
   const containerRef = useRef<HTMLDivElement>(null)
   const target = useRef(0)
   const current = useRef(0)
@@ -56,23 +56,32 @@ export function useHorizontalScroll() {
     target.current = Math.max(0, Math.min(target.current, el.scrollWidth - el.clientWidth))
   }, [])
 
-  const onWheel = useCallback((e: React.WheelEvent) => {
+  // Native wheel listener with { passive: false } — React's onWheel is passive
+  // and ignores preventDefault(). Native listener lets us actually block page scroll.
+  useEffect(() => {
     const el = containerRef.current
-    if (!el) return
+    if (!el || !enabled) return
 
-    const max = el.scrollWidth - el.clientWidth
-    // Use whichever axis has greater magnitude (wheel=deltaY, trackpad swipe=deltaX)
-    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY
+    const handleWheel = (e: WheelEvent) => {
+      const max = el.scrollWidth - el.clientWidth
+      if (max <= 0) return // nothing to scroll
 
-    // Pass through to page scroll if at boundary
-    if (delta > 0 && target.current >= max - 1) return
-    if (delta < 0 && target.current <= 1) return
+      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY
 
-    e.preventDefault()
-    target.current += delta
-    clamp()
-    ensureRunning()
-  }, [clamp, ensureRunning])
+      // Pass through to page scroll if at boundary
+      if (delta > 0 && target.current >= max - 1) return
+      if (delta < 0 && target.current <= 1) return
+
+      e.preventDefault()
+      e.stopPropagation()
+      target.current += delta
+      clamp()
+      ensureRunning()
+    }
+
+    el.addEventListener('wheel', handleWheel, { passive: false })
+    return () => el.removeEventListener('wheel', handleWheel)
+  }, [enabled, clamp, ensureRunning])
 
   const scrollBy = useCallback((direction: 1 | -1) => {
     const el = containerRef.current
@@ -110,5 +119,5 @@ export function useHorizontalScroll() {
     if (raf.current !== null) cancelAnimationFrame(raf.current)
   }, [])
 
-  return { containerRef, scrollState, scrollBy, onWheel, reset }
+  return { containerRef, scrollState, scrollBy, reset }
 }
