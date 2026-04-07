@@ -3,6 +3,7 @@ import { getFrameworkBySlug, getFrameworksByCategory, getRelatedFrameworks, getT
 import { getCategoryByKey } from '../data/categories'
 import { useI18n } from '../i18n'
 import { usePageMeta } from '../hooks/usePageMeta'
+import { useFrameworkDetail } from '../hooks/useFrameworkDetail'
 import FrameworkViz from '../components/FrameworkViz'
 import StepsList from '../components/StepsList'
 import RelatedFrameworks from '../components/RelatedFrameworks'
@@ -12,6 +13,7 @@ export default function FrameworkPage() {
   const { slug } = useParams<{ slug: string }>()
   const { locale, t, localized } = useI18n()
   const framework = slug ? getFrameworkBySlug(slug) : undefined
+  const { framework: fullFramework } = useFrameworkDetail(slug)
 
   usePageMeta(
     framework ? localized(framework, 'name') : 'Framework Not Found',
@@ -27,6 +29,9 @@ export default function FrameworkPage() {
     )
   }
 
+  // Use full data when available, fall back to stub
+  const fw = fullFramework ?? framework
+
   const category = getCategoryByKey(framework.category)
   const categoryFrameworks = getFrameworksByCategory(framework.category)
   const currentIndex = categoryFrameworks.findIndex(f => f.slug === framework.slug)
@@ -39,14 +44,14 @@ export default function FrameworkPage() {
   const formattedNumber = `#${String(framework.id).padStart(2, '0')}`
   const subtitle = locale === 'en' ? framework.name_zh : framework.name
 
-  const whenToUse = locale === 'en' ? framework.when_to_use : framework.when_to_use_zh
-  const coreConcepts = locale === 'en' ? framework.core_concepts : framework.core_concepts_zh
-  const timeline = locale === 'en' ? framework.timeline : framework.timeline_zh
-  const dos = locale === 'en' ? framework.dos : framework.dos_zh
-  const donts = locale === 'en' ? framework.donts : framework.donts_zh
-  const caseStudyText = locale === 'en' ? framework.case_study : framework.case_study_zh
-  const whenNotToUse = locale === 'en' ? framework.when_not_to_use : framework.when_not_to_use_zh
-  const originSource = locale === 'en' ? framework.origin_source : framework.origin_source_zh
+  const whenToUse = locale === 'en' ? fw.when_to_use : fw.when_to_use_zh
+  const coreConcepts = locale === 'en' ? fw.core_concepts : fw.core_concepts_zh
+  const timeline = locale === 'en' ? fw.timeline : fw.timeline_zh
+  const dos = locale === 'en' ? fw.dos : fw.dos_zh
+  const donts = locale === 'en' ? fw.donts : fw.donts_zh
+  const caseStudyText = locale === 'en' ? fw.case_study : fw.case_study_zh
+  const whenNotToUse = locale === 'en' ? fw.when_not_to_use : fw.when_not_to_use_zh
+  const originSource = locale === 'en' ? fw.origin_source : fw.origin_source_zh
 
   const complexityLabel = framework.complexity === 'beginner'
     ? t.complexityBeginner
@@ -228,8 +233,8 @@ export default function FrameworkPage() {
       {caseStudyText && (
         <section className={styles.section}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.caseStudy}</h2>
-          {framework.case_study_company && (
-            <span className={styles.caseStudyCompany}>{framework.case_study_company}</span>
+          {fw.case_study_company && (
+            <span className={styles.caseStudyCompany}>{fw.case_study_company}</span>
           )}
           <div
             className={styles.caseStudyCard}
@@ -268,21 +273,21 @@ export default function FrameworkPage() {
       )}
 
       {/* ── 9. Sources ── */}
-      {(framework.primary_source || framework.secondary_sources?.length) && (
+      {(fw.primary_source || fw.secondary_sources?.length) && (
         <section className={styles.section}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>
             📚 {t.primarySource}
           </h2>
-          {framework.primary_source && (
+          {fw.primary_source && (
             <blockquote className={styles.sourceBlock}>
-              {framework.primary_source}
+              {fw.primary_source}
             </blockquote>
           )}
-          {framework.secondary_sources && framework.secondary_sources.length > 0 && (
+          {fw.secondary_sources && fw.secondary_sources.length > 0 && (
             <>
               <h3 className={styles.subTitle}>{t.secondarySourcesTitle}</h3>
               <ul className={styles.sourceList}>
-                {framework.secondary_sources.map((s, i) => (
+                {fw.secondary_sources.map((s, i) => (
                   <li key={i} className={styles.sourceItem}>{s}</li>
                 ))}
               </ul>

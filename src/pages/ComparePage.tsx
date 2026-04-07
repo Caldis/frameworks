@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer, Legend } from 'recharts'
-import { getAllFrameworks } from '../data/loader'
+import { getAllFrameworks, getFrameworkFull } from '../data/loader'
 import { categories } from '../data/categories'
 import { useI18n } from '../i18n'
 import { usePageMeta } from '../hooks/usePageMeta'
@@ -49,9 +49,26 @@ export default function ComparePage() {
     [selected, allFrameworks]
   )
 
+  const [fullFrameworks, setFullFrameworks] = useState<Framework[]>([])
+
+  useEffect(() => {
+    if (selectedFrameworks.length < 2) {
+      setFullFrameworks([])
+      return
+    }
+    Promise.all(selectedFrameworks.map(fw => getFrameworkFull(fw.slug))).then(results => {
+      setFullFrameworks(results.filter(Boolean) as Framework[])
+    })
+  }, [selectedFrameworks])
+
+  // Use full data for table/radar when available, stubs otherwise
+  const displayFrameworks = fullFrameworks.length === selectedFrameworks.length
+    ? fullFrameworks
+    : selectedFrameworks
+
   // Radar chart data
   const radarData = useMemo(() => {
-    if (selectedFrameworks.length < 2) return []
+    if (displayFrameworks.length < 2) return []
     const dimKeys = ['complexity', 'abstraction', 'maturity', 'quality', 'adoption'] as const
     const dimLabels: Record<string, string> = {
       complexity: t.compareDimComplexity,
@@ -60,15 +77,15 @@ export default function ComparePage() {
       quality: t.compareDimQuality,
       adoption: t.compareDimAdoption,
     }
-    const scores = selectedFrameworks.map(fw => toRadarScore(fw))
+    const scores = displayFrameworks.map(fw => toRadarScore(fw))
     return dimKeys.map(key => {
       const entry: Record<string, string | number> = { dimension: dimLabels[key] }
-      selectedFrameworks.forEach((fw, i) => {
+      displayFrameworks.forEach((fw, i) => {
         entry[fw.slug] = scores[i][key]
       })
       return entry
     })
-  }, [selectedFrameworks, t])
+  }, [displayFrameworks, t])
 
   // Detect differing values for highlighting
   const isDiff = (values: unknown[]) => {
@@ -309,7 +326,7 @@ export default function ComparePage() {
                     dataKey="dimension"
                     tick={{ fontSize: 12, fontFamily: 'var(--font-mono)', fill: '#6b6560' }}
                   />
-                  {selectedFrameworks.map((fw, i) => (
+                  {displayFrameworks.map((fw, i) => (
                     <Radar
                       key={fw.slug}
                       name={localized(fw, 'name')}
@@ -345,7 +362,7 @@ export default function ComparePage() {
               </thead>
               <tbody>
                 {rows.map((row, ri) => {
-                  const diffValues = selectedFrameworks.map(fw => row.diffKey(fw))
+                  const diffValues = displayFrameworks.map(fw => row.diffKey(fw))
                   const hasDiff = diffValues[0] !== null && isDiff(diffValues)
                   return (
                     <tr key={ri} className={hasDiff ? styles.diffRow : undefined}>
@@ -353,7 +370,7 @@ export default function ComparePage() {
                         {row.label}
                         {hasDiff && <span className={styles.diffDot} />}
                       </td>
-                      {selectedFrameworks.map(fw => (
+                      {displayFrameworks.map(fw => (
                         <td key={fw.slug} className={styles.td}>
                           {row.render(fw)}
                         </td>
