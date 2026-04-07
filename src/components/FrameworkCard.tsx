@@ -60,6 +60,19 @@ export default function FrameworkCard({
       </div>
 
       <div className={styles.desc}>{localized(framework, 'desc')}</div>
+
+      <div className={styles.meta}>
+        <span className={`${styles.complexity} ${
+          framework.complexity === 'beginner' ? styles.complexityBeginner
+          : framework.complexity === 'intermediate' ? styles.complexityIntermediate
+          : styles.complexityAdvanced
+        }`}>
+          {framework.complexity === 'beginner' ? '~' : framework.complexity === 'intermediate' ? '~~' : '~~~'}
+        </span>
+        {framework.origin_author && (
+          <span className={styles.author}>{framework.origin_author}</span>
+        )}
+      </div>
     </div>
   )
 }

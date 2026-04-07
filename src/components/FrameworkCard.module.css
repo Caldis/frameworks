@@ -76,6 +76,33 @@
   -webkit-box-orient: vertical;
 }
 
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.complexity {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.complexityBeginner { color: #2d6a4f; }
+.complexityIntermediate { color: #7d6608; }
+.complexityAdvanced { color: #922b21; }
+
+.author {
+  font-size: 11px;
+  color: var(--muted-light);
+  font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 160px;
+}
+
 @media (max-width: 768px) {
   .star {
     opacity: 0.4;
