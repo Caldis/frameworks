@@ -16,8 +16,8 @@ test.describe('SDFrame Smoke Tests', () => {
     await page.goto('/')
     const searchInput = page.locator('input[type="text"]')
     await searchInput.fill('SOLID')
-    // Should show filtered results containing SOLID
-    await expect(page.locator('text=SOLID')).toBeVisible()
+    // Should show filtered results containing SOLID (card grid, not autocomplete)
+    await expect(page.locator('[class*="card"]').filter({ hasText: 'SOLID' }).first()).toBeVisible()
     // Count should show a smaller number
     await expect(page.locator('text=/Showing \\d+ of \\d+/')).toBeVisible()
   })
