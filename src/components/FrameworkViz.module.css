@@ -37,8 +37,8 @@
   flex-direction: column;
   align-items: center;
   gap: 3px;
-  background: #f0ebe5;
-  border: 1px solid #e8e6e1;
+  background: var(--viz-bg);
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 6px 8px;
   min-width: 0;
@@ -47,7 +47,7 @@
 }
 
 .flowArrow {
-  color: #c4a882;
+  color: var(--viz-accent);
   font-size: 14px;
   flex-shrink: 0;
   line-height: 1;
@@ -61,8 +61,8 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #e8e2d9;
-  color: #5a5046;
+  background: var(--viz-node);
+  color: var(--viz-text);
   font-size: 10px;
   font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
   font-weight: 600;
@@ -71,7 +71,7 @@
 
 .stepLabel {
   font-size: 10px;
-  color: #5a5046;
+  color: var(--viz-text);
   text-align: center;
   line-height: 1.2;
   overflow: hidden;
@@ -94,8 +94,8 @@
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  background: #f0ebe5;
-  border: 1px solid #e8e6e1;
+  background: var(--viz-bg);
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 4px 7px;
   transform: translate(-50%, -50%);
@@ -130,13 +130,13 @@
   gap: 6px;
   border-radius: 6px;
   padding: 5px 10px;
-  border: 1px solid #e8e6e1;
+  border: 1px solid var(--border);
   min-height: 28px;
 }
 
 .pyramidLabel {
   font-size: 10px;
-  color: #5a5046;
+  color: var(--viz-text);
   text-align: center;
   line-height: 1.2;
   overflow: hidden;
@@ -162,21 +162,21 @@
   gap: 3px;
   padding: 8px 6px;
   border-radius: 8px;
-  border: 1px solid #e8e6e1;
+  border: 1px solid var(--border);
   min-height: 48px;
 }
 
 .gridCellEven {
-  background: #f0ebe5;
+  background: var(--viz-bg);
 }
 
 .gridCellOdd {
-  background: #faf9f6;
+  background: var(--bg);
 }
 
 .gridLabel {
   font-size: 10px;
-  color: #5a5046;
+  color: var(--viz-text);
   text-align: center;
   line-height: 1.2;
   overflow: hidden;
@@ -231,21 +231,21 @@
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  background: #f0ebe5;
-  border: 1px solid #e8e6e1;
+  background: var(--viz-bg);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 5px 8px;
 }
 
 .treeNodeRoot {
-  background: #e8e2d9;
-  border-color: #d4cdc4;
+  background: var(--viz-node);
+  border-color: var(--viz-line);
   font-weight: 600;
 }
 
 .treeNodeLabel {
   font-size: 10px;
-  color: #5a5046;
+  color: var(--viz-text);
   text-align: center;
   line-height: 1.2;
   overflow: hidden;
@@ -267,13 +267,13 @@
   top: 0;
   width: 1px;
   height: 100%;
-  background: #d4cdc4;
+  background: var(--viz-line);
 }
 
 .treeBranch {
   position: relative;
   height: 20px;
-  border-top: 1px solid #d4cdc4;
+  border-top: 1px solid var(--viz-line);
 }
 
 .treeSvgLines {
@@ -299,7 +299,7 @@
   right: 10%;
   top: 50%;
   height: 2px;
-  background: #d4cdc4;
+  background: var(--viz-line);
   border-radius: 1px;
   transform: translateY(-50%);
 }
@@ -328,14 +328,14 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #e8e2d9;
-  border: 2px solid #c4a882;
+  background: var(--viz-node);
+  border: 2px solid var(--viz-accent);
   flex-shrink: 0;
 }
 
 .timelineLabel {
   font-size: 10px;
-  color: #5a5046;
+  color: var(--viz-text);
   text-align: center;
   line-height: 1.2;
   max-width: 60px;

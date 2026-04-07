@@ -179,7 +179,7 @@
 
 .td {
   padding: 12px 16px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--border);
   font-size: 14px;
   vertical-align: top;
 }
@@ -191,18 +191,18 @@
   min-width: 120px;
   text-transform: uppercase;
   padding: 12px 16px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--border);
   vertical-align: top;
   position: relative;
 }
 
 /* Diff highlight */
 .diffRow .td {
-  background: #faf7f2;
+  background: var(--diff-bg);
 }
 
 .diffRow .tdLabel {
-  background: #faf7f2;
+  background: var(--diff-bg);
 }
 
 .diffDot {
@@ -210,7 +210,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #c9a227;
+  background: var(--viz-accent);
   margin-left: 6px;
   vertical-align: middle;
 }
@@ -224,13 +224,13 @@
   font-family: var(--font-mono);
 }
 
-.badgeBeginner { background: #e8f5ee; color: #2d6a4f; }
-.badgeIntermediate { background: #fdf3e3; color: #7d6608; }
-.badgeAdvanced { background: #fce8e8; color: #922b21; }
-.badgeFoundational { background: #e8eef8; color: #1a5276; }
-.badgeEstablished { background: #e8f5ee; color: #2d6a4f; }
-.badgeEmerging { background: #fdf3e3; color: #7d6608; }
-.badgeExperimental { background: #fce8e8; color: #922b21; }
+.badgeBeginner { background: var(--cat-thinking-bg); color: var(--cat-thinking-text); }
+.badgeIntermediate { background: var(--cat-deployment-bg); color: var(--cat-deployment-text); }
+.badgeAdvanced { background: var(--cat-quality-bg); color: var(--cat-quality-text); }
+.badgeFoundational { background: var(--cat-architecture-bg); color: var(--cat-architecture-text); }
+.badgeEstablished { background: var(--cat-thinking-bg); color: var(--cat-thinking-text); }
+.badgeEmerging { background: var(--cat-deployment-bg); color: var(--cat-deployment-text); }
+.badgeExperimental { background: var(--cat-quality-bg); color: var(--cat-quality-text); }
 
 .list {
   list-style: none;
