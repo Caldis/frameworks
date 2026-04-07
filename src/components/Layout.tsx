@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import LanguageSwitcher from './LanguageSwitcher'
+import KeyboardHelp from './KeyboardHelp'
 import { useI18n } from '../i18n'
 import { useTheme } from '../hooks/useTheme'
 import styles from './Layout.module.css'
@@ -7,6 +9,20 @@ import styles from './Layout.module.css'
 export default function Layout() {
   const { t } = useI18n()
   const { theme, toggle } = useTheme()
+  const [showHelp, setShowHelp] = useState(false)
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      // Don't trigger when typing in inputs
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
+      if (e.key === '?') {
+        e.preventDefault()
+        setShowHelp(prev => !prev)
+      }
+    }
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [])
 
   return (
     <div className={styles.layout}>
@@ -34,6 +50,7 @@ export default function Layout() {
           <Link to="/selector" className={styles.footerNavLink}>{t.selector}</Link>
           <Link to="/paths" className={styles.footerNavLink}>{t.learningPaths}</Link>
           <Link to="/insights" className={styles.footerNavLink}>{t.insights}</Link>
+          <Link to="/timeline" className={styles.footerNavLink}>{t.timeline}</Link>
         </nav>
         <div className={styles.footerMeta}>
           <div className={styles.footerLeft}>
@@ -75,6 +92,7 @@ export default function Layout() {
           </div>
         </div>
       </footer>
+      <KeyboardHelp visible={showHelp} onClose={() => setShowHelp(false)} />
     </div>
   )
 }
