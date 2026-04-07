@@ -95,6 +95,22 @@
 ### Sprint S21: +15 Classic Design Patterns + KP-Map R5 Partial [DONE 2026-04-06]
 ### Sprint S22: Visual Fixes — Chart 5-char Labels, Title Dedup, Viz-First [DONE 2026-04-06]
 ### Sprint S23: Compare Page Enhancement — Radar Chart + Suggestions + Diff Highlighting [DONE 2026-04-07]
+### Sprint S24: Data Performance 76% Reduction + Card Metadata [DONE 2026-04-07]
+**Priority**: High (2.2MB initial load was largest technical debt)
+**Contract**: Initial bundle reduced from 2,276KB to 664KB (76% raw, gzip 848→206KB). Per-category detail loaded on demand. Framework cards show complexity + author. 51 E2E tests pass.
+**Tasks**:
+- [x] Generate stubs script (scripts/generate-stubs.js) — extracts 20 listing fields, fills detail defaults
+- [x] Rewrite loader.ts — stubs sync API + async getFrameworkFull/getFrameworksFullByCategory
+- [x] Simplify useSearch to stub fields only (name, desc, tags, origin_author, adopters)
+- [x] Create useFrameworkDetail hook for shared async loading
+- [x] FrameworkPage async detail loading (detail sections populate on demand)
+- [x] ComparePage async detail loading (comparison table + radar use full data)
+- [x] MapPage side panel async detail loading (when_to_use on demand)
+- [x] CategoryPage reading list async detail loading (primary_source on demand)
+- [x] Card metadata: complexity indicator (~, ~~, ~~~) + origin_author
+- [x] vite.config.ts: removed framework-data chunk → 13 per-category lazy chunks
+- [x] 51/51 E2E tests pass, build clean, no chunk > 500KB
+**Estimate**: Medium
 **Priority**: Medium (weakest page in the site)
 **Contract**: Compare page shows radar chart overlay for 2-3 frameworks, 6 curated comparison suggestions on empty state, diff highlighting in table. 51 E2E tests pass.
 **Tasks**:

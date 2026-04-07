@@ -12,7 +12,7 @@
 - **Deploy**: GitHub Actions → GitHub Pages (custom domain)
 - **Inspired by**: pmframe.works
 
-## Current State (as of 2026-04-07, end of Sprint S23)
+## Current State (as of 2026-04-07, end of Sprint S24)
 
 ### What Exists
 - 194 software design frameworks across 13 categories
@@ -22,7 +22,7 @@
 - Pages: Home (card grid + search + filter + favorites + modal), Framework Detail (11-section progressive layout), Category Landing (with AI cross-category view), Relationship Map (D3 force graph with lifecycle X-axis + complexity Y-axis)
 - LanguageSwitcher in header, browser auto-detection, localStorage persistence
 - FrameworkViz: Recharts RadarChart + HTML/CSS layouts for 8 viz types
-- Code splitting: lazy routes + manual chunks (vendor, charts, d3, framework-data)
+- Code splitting: lazy routes + manual chunks (vendor, charts, d3) + two-tier data loading (stubs upfront 664KB, 13 per-category detail chunks loaded on demand)
 - GitHub Actions CI/CD, SPA 404 redirect, CNAME for custom domain
 
 ### Completed Sprints
@@ -38,6 +38,7 @@
 - S09: Compare page + Map 13-category fix
 - S10-S22: Map UX, Selector, Paths, SEO, typed relations, design patterns, visual fixes
 - S23: Compare Page Enhancement (radar chart, suggestions, diff highlighting)
+- S24: Data Performance 76% + Card Metadata (two-tier loading, complexity/author on cards)
 
 ### What Exists (continued)
 - Pages: Home (grouped by category + multi-dimension filter), Framework Detail (11 sections), Category Landing, Map (search + touch + 13 categories), Compare (radar chart + diff highlighting + curated suggestions)
