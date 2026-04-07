@@ -4,6 +4,7 @@ import { getAllFrameworks } from '../data/loader'
 import { categories, catColorVar } from '../data/categories'
 import { useI18n } from '../i18n'
 import { usePageMeta } from '../hooks/usePageMeta'
+import { useCountUp } from '../hooks/useCountUp'
 import type { CategoryKey } from '../types'
 import styles from './StatsPage.module.css'
 
@@ -100,7 +101,7 @@ export default function StatsPage() {
     <div className={styles.page}>
       {/* ── Hero ── */}
       <div className={styles.hero}>
-        <div className={styles.heroNumber}>{frameworks.length}</div>
+        <div className={styles.heroNumber}>{useCountUp(frameworks.length, 1600)}</div>
         <p className={styles.heroSub}>
           {locale === 'en'
             ? `frameworks across ${categories.length} categories, distilled`
@@ -309,7 +310,7 @@ export default function StatsPage() {
 
       {/* ── Footer stat ── */}
       <div className={styles.coda}>
-        <span className={styles.codaStat}>{aiCount}</span>
+        <span className={styles.codaStat}>{useCountUp(aiCount, 1000)}</span>
         <span className={styles.codaLabel}>
           {locale === 'en'
             ? `of ${frameworks.length} are AI-relevant`
