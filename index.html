@@ -15,7 +15,10 @@
   <meta name="twitter:title" content="SDFrame — Software Design Frameworks" />
   <meta name="twitter:description" content="194 curated frameworks for engineers, architects, and AI agents" />
   <link rel="canonical" href="https://sdframe.caldis.me/" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#1a1916">
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
+  <link rel="apple-touch-icon" href="/icon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;700&display=swap" as="style" />
@@ -34,5 +37,12 @@
     })();
   </script>
   <script type="module" src="/src/main.tsx"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+      })
+    }
+  </script>
 </body>
 </html>
