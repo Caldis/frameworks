@@ -33,6 +33,7 @@ export default function Layout() {
           <Link to="/compare" className={styles.footerNavLink}>{t.compare}</Link>
           <Link to="/selector" className={styles.footerNavLink}>{t.selector}</Link>
           <Link to="/paths" className={styles.footerNavLink}>{t.learningPaths}</Link>
+          <Link to="/insights" className={styles.footerNavLink}>{t.insights}</Link>
         </nav>
         <div className={styles.footerMeta}>
           <div className={styles.footerLeft}>

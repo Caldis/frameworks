@@ -1,0 +1,418 @@
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ── Hero ── */
+.hero {
+  padding: 40px 0 56px;
+}
+
+.heroNumber {
+  font-family: var(--font-serif);
+  font-size: clamp(80px, 15vw, 140px);
+  line-height: 0.85;
+  letter-spacing: -4px;
+  color: var(--text);
+}
+
+.heroSub {
+  font-size: 15px;
+  color: var(--muted);
+  margin-top: 12px;
+  max-width: 360px;
+}
+
+.spectrum {
+  display: flex;
+  height: 4px;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 32px;
+  gap: 2px;
+}
+
+.spectrumBar {
+  border-radius: 1px;
+  transition: flex 0.3s;
+}
+
+/* ── Sections ── */
+.section {
+  margin-top: 56px;
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  letter-spacing: -0.3px;
+  margin-bottom: 24px;
+}
+
+/* ── Category bars ── */
+.catList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.catRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  padding: 4px 0;
+  transition: opacity 0.15s;
+}
+
+.catRow:hover {
+  opacity: 0.7;
+}
+
+.catName {
+  font-size: 13px;
+  color: var(--text);
+  width: 200px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.catBar {
+  flex: 1;
+  height: 18px;
+  position: relative;
+  background: var(--surface);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.catFill {
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+  opacity: 0.7;
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.catCount {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  width: 28px;
+  text-align: right;
+}
+
+/* ── Dimension triptych ── */
+.triptych {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.dimChart {
+  display: flex;
+  flex-direction: column;
+}
+
+.dimTitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.dimBars {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 120px;
+}
+
+.dimBar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.dimFill {
+  width: 100%;
+  border-radius: 2px 2px 0 0;
+  opacity: 0.7;
+  transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dimVal {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text);
+  margin-top: 6px;
+}
+
+.dimLabel {
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 2px;
+  text-align: center;
+}
+
+/* ── Quality grid ── */
+.qualityGrid {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.qualityItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 72px;
+}
+
+.qualityBar {
+  width: 100%;
+  height: 64px;
+  background: var(--surface);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.qualityFill {
+  width: 100%;
+  background: var(--viz-accent);
+  opacity: 0.5;
+  border-radius: 2px 2px 0 0;
+  transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.qualityCount {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text);
+}
+
+.qualityLabel {
+  font-size: 10px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* ── Two-column layout ── */
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 56px;
+}
+
+.columns .section {
+  margin-top: 0;
+}
+
+/* ── Ranked lists ── */
+.rankList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rankItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+}
+
+.rankNum {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted-light);
+  width: 18px;
+  text-align: right;
+}
+
+.rankName {
+  font-size: 13px;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.rankName:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.rankBar {
+  flex: 1;
+  height: 10px;
+  background: var(--surface);
+  border-radius: 1px;
+  overflow: hidden;
+  min-width: 40px;
+}
+
+.rankFill {
+  height: 100%;
+  border-radius: 1px;
+  opacity: 0.6;
+}
+
+.rankVal {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  width: 20px;
+  text-align: right;
+}
+
+/* ── Adopters (sized text) ── */
+.adopters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: baseline;
+  line-height: 1.8;
+}
+
+.adopter {
+  font-family: var(--font-sans);
+  color: var(--text);
+  white-space: nowrap;
+  transition: opacity 0.15s;
+  cursor: default;
+}
+
+.adopter:hover {
+  opacity: 0.6;
+}
+
+/* ── Heatmap ── */
+.heatmap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow-x: auto;
+}
+
+.heatmapHeader {
+  display: flex;
+  gap: 2px;
+}
+
+.heatmapCorner {
+  width: 180px;
+  flex-shrink: 0;
+}
+
+.heatmapColLabel {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  padding: 4px 0;
+}
+
+.heatmapRow {
+  display: flex;
+  gap: 2px;
+}
+
+.heatmapRowLabel {
+  width: 180px;
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  padding-right: 8px;
+  justify-content: flex-end;
+}
+
+.heatmapCell {
+  flex: 1;
+  aspect-ratio: 2.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--bg);
+  border-radius: 2px;
+  background: var(--surface);
+  min-height: 28px;
+  transition: opacity 0.2s;
+}
+
+/* ── Coda (footer stat) ── */
+.coda {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.codaStat {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  letter-spacing: -1px;
+}
+
+.codaLabel {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .triptych {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .columns {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .catName {
+    width: 120px;
+    font-size: 11px;
+  }
+
+  .heatmapRowLabel {
+    width: 100px;
+    font-size: 10px;
+  }
+
+  .heatmapCorner {
+    width: 100px;
+  }
+
+  .qualityGrid {
+    gap: 10px;
+  }
+
+  .qualityItem {
+    width: 56px;
+  }
+}

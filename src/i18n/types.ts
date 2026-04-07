@@ -139,6 +139,9 @@ export interface LocaleStrings {
   relTypeExtends: string
   relTypePrerequisite: string
 
+  // Stats
+  insights: string
+
   // Misc
   noResults: string  // uses {query} placeholder
   ai: string

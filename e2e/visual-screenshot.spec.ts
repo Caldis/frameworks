@@ -124,6 +124,13 @@ test.describe('Screenshot Capture for Design Review', () => {
     await page.screenshot({ path: `${SCREENSHOT_DIR}/paths.png`, fullPage: true })
   })
 
+  test('insights page', async ({ page }) => {
+    await page.setViewportSize({ width: 1200, height: 900 })
+    await page.goto('/insights')
+    await page.waitForTimeout(500)
+    await page.screenshot({ path: `${SCREENSHOT_DIR}/insights.png`, fullPage: true })
+  })
+
   test('homepage — dark mode', async ({ page }) => {
     await page.setViewportSize({ width: 1200, height: 900 })
     await page.goto('/')

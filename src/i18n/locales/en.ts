@@ -109,6 +109,7 @@ export const en: LocaleStrings = {
   relTypeComplement: 'Works with',
   relTypeExtends: 'Extends',
   relTypePrerequisite: 'Prerequisite',
+  insights: 'Insights',
   noResults: 'No frameworks found for "{query}"',
   ai: 'AI',
 }

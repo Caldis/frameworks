@@ -109,6 +109,7 @@ export const zh: LocaleStrings = {
   relTypeComplement: '配合使用',
   relTypeExtends: '扩展/深化',
   relTypePrerequisite: '前置知识',
+  insights: '数据洞察',
   noResults: '未找到与 "{query}" 相关的框架',
   ai: 'AI',
 }
