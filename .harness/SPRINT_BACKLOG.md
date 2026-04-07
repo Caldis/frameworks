@@ -120,6 +120,9 @@
 ### Sprint S30: Timeline Page — Frameworks by Origin Year [DONE 2026-04-08]
 ### Sprint S31: Keyboard Shortcuts Help Panel [DONE 2026-04-08]
 ### Sprint S32: PWA — Service Worker + Offline Caching [DONE 2026-04-08]
+### Sprint S33: Hero Countup Animation [DONE 2026-04-08]
+### Sprint S34: Staggered Card Entrance Animation [DONE 2026-04-08]
+### Sprint S35: Framework Fingerprint Radar on Cards [DONE 2026-04-08]
 **Contract**: Compare page shows radar chart overlay for 2-3 frameworks, 6 curated comparison suggestions on empty state, diff highlighting in table. 51 E2E tests pass.
 **Tasks**:
 - [x] Add Recharts RadarChart comparing frameworks on 5 dimensions (complexity, abstraction, maturity, quality breadth, adoption)

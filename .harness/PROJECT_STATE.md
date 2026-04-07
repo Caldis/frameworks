@@ -12,7 +12,7 @@
 - **Deploy**: GitHub Actions → GitHub Pages (custom domain)
 - **Inspired by**: pmframe.works
 
-## Current State (as of 2026-04-08, end of Sprint S32)
+## Current State (as of 2026-04-08, end of Sprint S35)
 
 ### What Exists
 - 239 software design frameworks across 13 categories, 39 fields per framework
@@ -50,6 +50,9 @@
 - S30: Timeline page (frameworks by origin year, grouped by decade)
 - S31: Keyboard shortcuts help panel (? toggle)
 - S32: PWA (service worker, manifest, offline caching)
+- S33: Hero countup animation (ease-out-quint number reveal)
+- S34: Staggered card entrance animation (CSS @keyframes + --i delay)
+- S35: Framework fingerprint radar (5-axis SVG glyph per card)
 
 ### Test Coverage
 - 54 E2E tests: smoke(9) + visual/a11y(8) + interaction(6) + data-display(8) + screenshots(14, incl. dark mode + insights)
