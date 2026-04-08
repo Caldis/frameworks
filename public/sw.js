@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sdframe-v1'
+const CACHE_NAME = 'sdframe-v2'
 
 // Cache key static assets on install
 self.addEventListener('install', event => {

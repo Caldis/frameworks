@@ -10,6 +10,8 @@ const urls = [
   '/compare',
   '/selector',
   '/paths',
+  '/insights',
+  '/timeline',
 ]
 
 // Add category pages
