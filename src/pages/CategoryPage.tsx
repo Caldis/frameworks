@@ -71,7 +71,7 @@ export default function CategoryPage() {
         {t.backToHome}
       </Link>
 
-      <div className={styles.header}>
+      <div className={styles.header} style={{ '--cat-bg': catColorVar(category.key, 'bg') } as React.CSSProperties}>
         <div className={styles.nameRow}>
           <h1 className={styles.name} style={{ color: catColorVar(category.key, 'text') }}>
             {categoryName}

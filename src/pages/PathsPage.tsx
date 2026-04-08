@@ -64,10 +64,16 @@ export default function PathsPage() {
               <div className={styles.pathName}>{localized(path, 'name')}</div>
               <div className={styles.pathDesc}>{localized(path, 'desc')}</div>
               <div className={styles.pathMeta}>
+                <svg className={styles.progressRing} width="20" height="20" viewBox="0 0 20 20">
+                  <circle cx="10" cy="10" r="8" fill="none" stroke="var(--border)" strokeWidth="2" />
+                  <circle cx="10" cy="10" r="8" fill="none" stroke="var(--viz-accent)" strokeWidth="2"
+                    strokeDasharray={`${pct * 0.5} 50`}
+                    strokeLinecap="round"
+                    transform="rotate(-90 10 10)"
+                    style={{ transition: 'stroke-dasharray 0.4s ease-out' }}
+                  />
+                </svg>
                 {t.pathProgress.replace('{done}', String(doneCount)).replace('{total}', String(total))}
-              </div>
-              <div className={styles.progressBar}>
-                <div className={styles.progressFill} style={{ width: `${pct}%` }} />
               </div>
 
               {isExpanded && (

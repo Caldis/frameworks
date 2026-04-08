@@ -9,6 +9,20 @@
   animation: fadeIn 0.5s ease-out both;
 }
 
+/* SVG stroke drawing effect */
+.animate circle,
+.animate line,
+.animate polyline,
+.animate path {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: drawStroke 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+
+@keyframes drawStroke {
+  to { stroke-dashoffset: 0; }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

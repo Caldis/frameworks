@@ -66,6 +66,12 @@
   margin: 0 auto;
   padding: 0 48px;
   width: 100%;
+  animation: routeIn 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes routeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .footer {
