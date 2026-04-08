@@ -2652,5 +2652,912 @@
         "type": "complement"
       }
     ]
+  },
+  {
+    "id": 306,
+    "name": "Data Catalog",
+    "name_zh": "数据目录",
+    "slug": "data-catalog",
+    "category": "data",
+    "desc": "Centralized metadata management system that enables data discovery, governance, and self-service analytics across an organization.",
+    "desc_zh": "集中式元数据管理系统，支持组织内的数据发现、治理和自助分析。",
+    "steps": [
+      "Ingest metadata from all data sources (databases, data lakes, BI tools, pipelines) through automated crawlers and manual annotations",
+      "Build a unified metadata store with technical metadata (schema, partitions, statistics), business metadata (owners, definitions, tags), and operational metadata (lineage, usage metrics)",
+      "Enable semantic search and browse so data consumers can discover datasets by keyword, domain, owner, or data classification",
+      "Implement governance workflows: ownership assignment, access requests, sensitivity tagging (PII, GDPR), and data quality certification",
+      "Continuously update metadata via change-event subscriptions so the catalog reflects the real-time state of the data landscape"
+    ],
+    "steps_zh": [
+      "通过自动爬虫和人工标注从所有数据源（数据库、数据湖、BI工具、管道）摄取元数据",
+      "构建统一元数据存储，包含技术元数据（模式、分区、统计）、业务元数据（所有者、定义、标签）和运营元数据（血缘、使用指标）",
+      "启用语义搜索和浏览，使数据消费者可以按关键词、领域、所有者或数据分类发现数据集",
+      "实施治理工作流：所有权分配、访问申请、敏感度标记（个人信息、GDPR）和数据质量认证",
+      "通过变更事件订阅持续更新元数据，使目录反映数据全景的实时状态"
+    ],
+    "ai_relevant": true,
+    "viz_type": "tree",
+    "related": [
+      "data-lineage",
+      "data-mesh",
+      "data-quality-framework",
+      "data-governance-framework"
+    ],
+    "tags": [
+      "metadata",
+      "data-discovery",
+      "governance",
+      "data-catalog",
+      "alation"
+    ],
+    "origin_author": "Alation",
+    "origin_source": "Alation (2012). 'The Collaborative Data Catalog'. alation.com; O'Neil, C. & Schutt, R. (2013). Doing Data Science. O'Reilly.",
+    "origin_source_zh": "Alation（2012）。「协作式数据目录」。alation.com；O'Neil, C. & Schutt, R.（2013）。《数据科学实战》。O'Reilly。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When an organization has dozens or hundreds of data sources and analysts spend significant time locating trustworthy datasets rather than analyzing them",
+      "When data governance obligations (GDPR, CCPA, HIPAA) require documented data inventories, sensitivity classifications, and lineage trails",
+      "When implementing a data mesh or data platform where domain teams need to publish, discover, and subscribe to each other's data products",
+      "When onboarding new data engineers or analysts who need to understand what data exists, who owns it, and how it has been used"
+    ],
+    "when_to_use_zh": [
+      "当组织拥有数十或数百个数据源，分析师花费大量时间定位可信数据集而非分析数据时",
+      "当数据治理义务（GDPR、CCPA、HIPAA）要求有文档化的数据清单、敏感度分类和血缘记录时",
+      "当实施数据网格或数据平台，领域团队需要发布、发现和订阅彼此的数据产品时",
+      "当入职新数据工程师或分析师，需要了解存在哪些数据、谁拥有它以及如何使用时"
+    ],
+    "core_concepts": [
+      "Technical metadata: schema definitions, column types, row counts, partition keys, and storage statistics automatically harvested from source systems",
+      "Business metadata: human-authored glossary terms, dataset descriptions, ownership assignments, and domain classifications that give technical assets business context",
+      "Data lineage integration: linking catalog entries to upstream sources and downstream consumers so impact analysis and root-cause investigation are possible",
+      "Collaborative curation: crowdsourced ratings, usage-based popularity signals, and expert endorsements that surface high-quality datasets to new consumers"
+    ],
+    "core_concepts_zh": [
+      "技术元数据：从源系统自动采集的模式定义、列类型、行数、分区键和存储统计",
+      "业务元数据：人工编写的术语词汇表、数据集描述、所有权分配和领域分类，为技术资产提供业务背景",
+      "数据血缘集成：将目录条目与上游源和下游消费者关联，支持影响分析和根本原因调查",
+      "协作管理：众包评分、基于使用情况的热度信号和专家推荐，向新消费者展示高质量数据集"
+    ],
+    "timeline": [
+      [
+        "2012",
+        "Alation founded and pioneers the modern collaborative data catalog concept, combining automated metadata harvesting with human curation"
+      ],
+      [
+        "2015",
+        "Waterline Data and Collibra enter the market, establishing data catalog as a recognized product category distinct from traditional metadata repositories"
+      ],
+      [
+        "2019",
+        "Gartner identifies data catalog as a critical capability in the modern data stack; AWS Glue Data Catalog and Azure Purview accelerate cloud adoption"
+      ],
+      [
+        "2022",
+        "Open Metadata and DataHub (LinkedIn) emerge as open-source alternatives; data catalog becomes standard infrastructure in data mesh architectures"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2012",
+        "Alation成立，开创现代协作式数据目录概念，将自动元数据采集与人工管理相结合"
+      ],
+      [
+        "2015",
+        "Waterline Data和Collibra进入市场，将数据目录确立为有别于传统元数据仓库的公认产品类别"
+      ],
+      [
+        "2019",
+        "Gartner将数据目录确定为现代数据栈的关键能力；AWS Glue数据目录和Azure Purview加速云端采用"
+      ],
+      [
+        "2022",
+        "Open Metadata和DataHub（LinkedIn）作为开源替代方案出现；数据目录成为数据网格架构中的标准基础设施"
+      ]
+    ],
+    "dos": [
+      "Do automate metadata ingestion through crawlers and API integrations because manual-only catalogs quickly become stale and lose user trust",
+      "Do assign clear dataset owners and make ownership visible in the catalog because undiscoverable ownership is the primary reason data governance programs fail",
+      "Do integrate usage analytics (query frequency, most-accessed columns, last queried) so the catalog surfaces popular and recently validated datasets prominently",
+      "Do tag datasets with sensitivity classifications at ingestion time because retrofitting PII tags across thousands of existing assets is prohibitively expensive"
+    ],
+    "dos_zh": [
+      "通过爬虫和API集成自动化元数据摄取，因为仅靠人工维护的目录会迅速过时并失去用户信任",
+      "分配清晰的数据集所有者并在目录中显示所有权，因为不可发现的所有权是数据治理计划失败的主要原因",
+      "集成使用分析（查询频率、最常访问的列、最后查询时间），使目录突出显示热门和最近验证过的数据集",
+      "在摄取时为数据集标记敏感度分类，因为在数千个现有资产中追溯个人信息标签代价极高"
+    ],
+    "donts": [
+      "Don't deploy a data catalog as a purely IT-driven project without data consumer buy-in because adoption requires analysts and data scientists to actively contribute business metadata",
+      "Don't treat the catalog as a static inventory; without continuous metadata refresh the catalog drifts from reality and users stop trusting it",
+      "Don't ignore social features like comments, ratings, and endorsements because quantitative usage signals alone cannot capture domain-specific trust",
+      "Don't attempt to catalog every field in every dataset on day one; start with the highest-traffic tables and expand coverage iteratively"
+    ],
+    "donts_zh": [
+      "不要将数据目录作为纯IT驱动的项目部署，而不获得数据消费者认可，因为采用需要分析师和数据科学家积极贡献业务元数据",
+      "不要将目录视为静态清单；没有持续元数据刷新，目录会偏离现实，用户将停止信任它",
+      "不要忽视评论、评分和推荐等社交功能，因为单纯的定量使用信号无法捕捉特定领域的信任",
+      "不要在第一天就尝试对每个数据集的每个字段进行编目；从流量最高的表开始，迭代扩展覆盖范围"
+    ],
+    "case_study_company": "LinkedIn",
+    "case_study": "LinkedIn built DataHub, an open-source metadata platform that catalogs over 500,000 datasets, 300,000 pipelines, and 100,000 ML features across its data ecosystem. DataHub uses a push-based architecture where each data system (Kafka, Hadoop, Presto, Pinot) emits metadata change events to a central metadata graph. This graph-based approach enables real-time impact analysis: engineers can instantly see all downstream dashboards and ML models affected when a schema change is proposed. LinkedIn reports that DataHub reduced mean time to discover a trusted dataset from days to under 10 minutes.",
+    "case_study_zh": "LinkedIn构建了DataHub，一个开源元数据平台，对其数据生态系统中超过50万个数据集、30万个管道和10万个ML特征进行编目。DataHub使用基于推送的架构，每个数据系统（Kafka、Hadoop、Presto、Pinot）将元数据变更事件发送到中央元数据图。这种基于图的方法支持实时影响分析：当提出模式变更时，工程师可以立即看到所有受影响的下游仪表板和ML模型。LinkedIn报告DataHub将发现可信数据集的平均时间从几天缩短到10分钟以内。",
+    "when_not_to_use": [
+      "Small teams with fewer than 10 data sources where informal documentation (a shared wiki or README files) provides sufficient discoverability without catalog overhead",
+      "When data assets are entirely managed by a single team with no cross-team sharing; the catalog's collaboration features provide no value in a single-owner environment",
+      "Highly regulated environments where metadata itself (column names, schema structure) is classified; a public-facing catalog may expose sensitive system architecture",
+      "When the organization lacks the data stewardship culture to curate and maintain metadata; a poorly maintained catalog is worse than no catalog"
+    ],
+    "when_not_to_use_zh": [
+      "数据源少于10个的小团队，非正式文档（共享wiki或README文件）在不增加目录开销的情况下提供了足够的可发现性",
+      "当数据资产完全由单个团队管理，没有跨团队共享时；在单一所有者环境中，目录的协作功能没有价值",
+      "元数据本身（列名、模式结构）被分类的高度监管环境；面向公众的目录可能暴露敏感系统架构",
+      "当组织缺乏数据管理文化来管理和维护元数据时；维护不善的目录比没有目录更糟糕"
+    ],
+    "adopters": [
+      "LinkedIn",
+      "Airbnb",
+      "Shopify",
+      "ING Bank",
+      "Lyft",
+      "Netflix"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "maintainability",
+      "observability",
+      "security"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Alation (2012). 'The Collaborative Data Catalog'. alation.com. Shi, M. et al. (2016). 'Goods: Organizing Google's Datasets'. SIGMOD 2016.",
+    "secondary_sources": [
+      "Gartner (2019). 'Magic Quadrant for Metadata Management Solutions'. Gartner Research.",
+      "Shankar, S. et al. (2022). 'We're All in This Together: The Open Metadata Standard'. openmetadata.org.",
+      "Chafi, H. et al. (2021). 'DataHub: A Generalized Metadata Search & Discovery Tool'. LinkedIn Engineering Blog."
+    ],
+    "typed_relations": [
+      {
+        "slug": "data-mesh",
+        "type": "complement"
+      },
+      {
+        "slug": "data-lineage",
+        "type": "complement"
+      },
+      {
+        "slug": "data-quality-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "data-contract",
+        "type": "prerequisite"
+      }
+    ]
+  },
+  {
+    "id": 307,
+    "name": "Schema Registry",
+    "name_zh": "模式注册表",
+    "slug": "schema-registry",
+    "category": "data",
+    "desc": "Centralized service for storing, versioning, and enforcing data schemas in streaming and event-driven architectures, ensuring producer-consumer compatibility.",
+    "desc_zh": "集中式服务，用于在流式和事件驱动架构中存储、版本化和强制执行数据模式，确保生产者与消费者的兼容性。",
+    "steps": [
+      "Register canonical schemas (Avro, Protobuf, or JSON Schema) for each Kafka topic or event stream using a compatibility-checked API",
+      "Configure compatibility rules (BACKWARD, FORWARD, FULL, or NONE) per subject so the registry auto-validates new schema versions at registration time",
+      "Integrate schema serializers/deserializers (SerDes) in producers and consumers so they look up schemas by ID at runtime instead of embedding schema in every message",
+      "Version and tag schemas alongside service releases so schema evolution is traceable and rollbacks are possible",
+      "Monitor schema usage dashboards to identify stale schemas, detect consumers blocked by incompatible changes, and track adoption of new schema versions"
+    ],
+    "steps_zh": [
+      "使用兼容性检查API为每个Kafka主题或事件流注册规范模式（Avro、Protobuf或JSON Schema）",
+      "为每个主题配置兼容性规则（向后、向前、全量或无），使注册表在注册时自动验证新模式版本",
+      "在生产者和消费者中集成模式序列化/反序列化器（SerDes），使其在运行时按ID查找模式，而非在每条消息中嵌入模式",
+      "将模式与服务发布一起版本化和标记，使模式演进可追溯且回滚成为可能",
+      "监控模式使用仪表板，识别过时模式、检测被不兼容变更阻塞的消费者，并跟踪新模式版本的采用情况"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "schema-registry-pattern",
+      "data-catalog",
+      "data-lineage",
+      "data-contract",
+      "stream-processing-patterns"
+    ],
+    "tags": [
+      "schema",
+      "kafka",
+      "avro",
+      "compatibility",
+      "confluent",
+      "streaming"
+    ],
+    "origin_author": "Confluent",
+    "origin_source": "Confluent (2015). 'Schema Registry Documentation'. docs.confluent.io; Narkhede, N. et al. (2017). Kafka: The Definitive Guide. O'Reilly.",
+    "origin_source_zh": "Confluent（2015）。「模式注册表文档」。docs.confluent.io；Narkhede, N. 等（2017）。《Kafka权威指南》。O'Reilly。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When building Kafka-based event streaming pipelines where multiple producer and consumer teams evolve independently and schema changes must not break downstream consumers",
+      "When regulatory or audit requirements mandate that the exact schema of every event published to a data stream is recorded, versioned, and retrievable",
+      "When using Avro, Protobuf, or JSON Schema serialization formats that externalize schema from payload, making a central registry essential for deserialization",
+      "When operating a data platform with dozens of topics and teams where ad-hoc schema changes without compatibility checks are a leading cause of production incidents"
+    ],
+    "when_to_use_zh": [
+      "当构建基于Kafka的事件流管道，多个生产者和消费者团队独立演进，且模式变更不得破坏下游消费者时",
+      "当监管或审计要求要求记录、版本化和检索发布到数据流的每个事件的确切模式时",
+      "当使用Avro、Protobuf或JSON Schema序列化格式时，这些格式将模式与有效负载分离，使中央注册表成为反序列化的必要条件",
+      "当在拥有数十个主题和团队的数据平台上运营，且未经兼容性检查的临时模式变更是生产事故的主要原因时"
+    ],
+    "core_concepts": [
+      "Schema subjects: named containers (typically one per Kafka topic) that hold all versions of a schema and enforce a configured compatibility policy across those versions",
+      "Compatibility modes: BACKWARD (new schema reads old data), FORWARD (old schema reads new data), FULL (both directions), allowing teams to choose the right trade-off between producer and consumer flexibility",
+      "Schema ID wire format: producers embed only a 4-byte schema ID in each message header rather than the full schema, reducing payload size by 80–95% while enabling consumers to fetch the exact schema for deserialization",
+      "SerDes integration: Confluent's Kafka serializers and deserializers query the registry at startup and cache schemas locally, making schema resolution transparent to application code"
+    ],
+    "core_concepts_zh": [
+      "模式主题：命名容器（通常每个Kafka主题一个），保存模式的所有版本并在这些版本上强制执行配置的兼容性策略",
+      "兼容性模式：向后（新模式读取旧数据）、向前（旧模式读取新数据）、全量（双向），允许团队在生产者和消费者灵活性之间选择合适的权衡",
+      "模式ID线格式：生产者在每条消息头中仅嵌入4字节的模式ID而非完整模式，将有效负载大小减少80–95%，同时使消费者能够获取反序列化的确切模式",
+      "SerDes集成：Confluent的Kafka序列化和反序列化器在启动时查询注册表并在本地缓存模式，使模式解析对应用代码透明"
+    ],
+    "timeline": [
+      [
+        "2015",
+        "Confluent releases the Schema Registry as part of the Confluent Platform, formalizing centralized schema management for Apache Kafka ecosystems"
+      ],
+      [
+        "2017",
+        "Hortonworks Schema Registry (now Apache Atlas) adds support for Kafka Streams and Flink, extending the pattern beyond Kafka to the broader streaming ecosystem"
+      ],
+      [
+        "2020",
+        "AWS Glue Schema Registry and Azure Event Hubs Schema Registry launch, making schema governance a first-class cloud platform feature"
+      ],
+      [
+        "2023",
+        "OpenAPI-based AsyncAPI specification gains traction as a schema-registry-adjacent standard for documenting event-driven APIs across brokers"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2015",
+        "Confluent作为Confluent平台的一部分发布模式注册表，为Apache Kafka生态系统正式化集中式模式管理"
+      ],
+      [
+        "2017",
+        "Hortonworks模式注册表（现为Apache Atlas）增加对Kafka Streams和Flink的支持，将该模式从Kafka扩展到更广泛的流式生态系统"
+      ],
+      [
+        "2020",
+        "AWS Glue模式注册表和Azure事件中心模式注册表推出，使模式治理成为一流云平台功能"
+      ],
+      [
+        "2023",
+        "基于OpenAPI的AsyncAPI规范作为跨消息代理文档化事件驱动API的模式注册表相邻标准获得广泛认可"
+      ]
+    ],
+    "dos": [
+      "Do set FULL compatibility on high-traffic topics shared across many consumer teams because it is the safest policy and prevents both producer and consumer from accidentally breaking each other",
+      "Do version schemas alongside your service's release tags so you can correlate production incidents to specific schema changes in the git history",
+      "Do run schema compatibility checks in CI before merging any producer code changes so incompatible schemas never reach the deployment pipeline",
+      "Do monitor consumer lag per schema version to detect consumers pinned to old schema versions that will be affected by upcoming deprecations"
+    ],
+    "dos_zh": [
+      "对在许多消费者团队之间共享的高流量主题设置全量兼容性，因为这是最安全的策略，防止生产者和消费者意外破坏对方",
+      "将模式与服务的发布标签一起版本化，以便将生产事故与git历史中的特定模式变更关联",
+      "在合并任何生产者代码变更之前在CI中运行模式兼容性检查，确保不兼容的模式不会进入部署管道",
+      "监控每个模式版本的消费者延迟，以检测固定在旧模式版本的消费者，这些消费者将受到即将弃用的影响"
+    ],
+    "donts": [
+      "Don't use NONE compatibility mode on shared topics because it removes all guardrails and allows any schema change regardless of consumer impact",
+      "Don't hardcode schema IDs in consumer code because IDs are registry-specific and will differ across environments; always resolve IDs dynamically",
+      "Don't delete schema versions that active consumers depend on; mark them as deprecated and give consumers a migration window before deletion",
+      "Don't store large binary blobs or deeply nested schemas in the registry; extreme schema complexity should be a signal to decompose the event into smaller, focused schemas"
+    ],
+    "donts_zh": [
+      "不要在共享主题上使用无兼容性模式，因为它去除所有防护措施，允许任何模式变更而不考虑对消费者的影响",
+      "不要在消费者代码中硬编码模式ID，因为ID是特定于注册表的，在不同环境中会有所不同；始终动态解析ID",
+      "不要删除活跃消费者依赖的模式版本；将其标记为已弃用，并在删除前给消费者留出迁移窗口",
+      "不要在注册表中存储大型二进制blob或深度嵌套的模式；极端的模式复杂性应该是将事件分解为更小、更集中模式的信号"
+    ],
+    "case_study_company": "Zalando",
+    "case_study": "Zalando, Europe's largest online fashion platform, enforces schema governance across 2,000+ Kafka topics using Confluent Schema Registry with FULL compatibility mode. Every event schema is authored in Avro and peer-reviewed via pull request before registration. The schema registry is integrated into Zalando's internal developer platform Nakadi, which exposes event types as REST APIs. When a producer team proposes an incompatible schema change, Nakadi's CI pipeline automatically identifies all consumer teams and opens compatibility-blocking pull requests to coordinate migration. This process has reduced schema-induced production incidents by 90% since 2018.",
+    "case_study_zh": "欧洲最大的在线时尚平台Zalando使用Confluent模式注册表和全量兼容性模式对2000多个Kafka主题强制执行模式治理。每个事件模式在注册前以Avro编写并通过拉取请求进行同行评审。模式注册表集成到Zalando的内部开发者平台Nakadi中，该平台将事件类型作为REST API公开。当生产者团队提出不兼容的模式变更时，Nakadi的CI管道自动识别所有消费者团队并开启兼容性阻塞的拉取请求以协调迁移。自2018年以来，这一流程将模式引发的生产事故减少了90%。",
+    "when_not_to_use": [
+      "When using JSON or Avro with schemas embedded in each message payload and the team explicitly prefers schema-on-read flexibility over compatibility enforcement",
+      "Small event-driven systems with fewer than 5 topics and a single team where the overhead of a separate registry service exceeds the benefit",
+      "When all producers and consumers are tightly coupled in a monolith and deploy together; schema versioning adds process overhead without the decoupling benefit",
+      "Prototyping phases where schema stability is not yet required and frequent structural changes are expected; introduce the registry when the schema stabilizes"
+    ],
+    "when_not_to_use_zh": [
+      "当使用在每条消息有效负载中嵌入模式的JSON或Avro，且团队明确偏好读取时模式灵活性而非兼容性强制时",
+      "拥有少于5个主题和单个团队的小型事件驱动系统，单独注册表服务的开销超过了收益",
+      "当所有生产者和消费者在单体中紧密耦合并一起部署时；模式版本化增加了流程开销而没有解耦收益",
+      "模式稳定性尚不需要且预期会有频繁结构变更的原型阶段；在模式稳定后引入注册表"
+    ],
+    "adopters": [
+      "Confluent",
+      "Zalando",
+      "LinkedIn",
+      "Uber",
+      "Robinhood",
+      "Goldman Sachs"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "maintainability",
+      "scalability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Confluent (2015). 'Schema Registry Documentation'. docs.confluent.io/platform/current/schema-registry/index.html.",
+    "secondary_sources": [
+      "Narkhede, N., Shapira, G. & Palino, T. (2017). Kafka: The Definitive Guide. O'Reilly Media. Chapter 9: Building Data Pipelines.",
+      "Kreps, J. (2014). 'The Log: What every software engineer should know about real-time data's unifying abstraction'. engineering.linkedin.com.",
+      "AWS (2020). 'Getting Started with AWS Glue Schema Registry'. AWS Documentation."
+    ],
+    "typed_relations": [
+      {
+        "slug": "schema-registry-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "data-contract",
+        "type": "complement"
+      },
+      {
+        "slug": "stream-processing-patterns",
+        "type": "complement"
+      },
+      {
+        "slug": "data-catalog",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 308,
+    "name": "Data Lineage",
+    "name_zh": "数据血缘",
+    "slug": "data-lineage-governance",
+    "category": "data",
+    "desc": "Systematic tracking and visualization of data flow from origin through all transformations to final consumption, enabling impact analysis and regulatory compliance.",
+    "desc_zh": "系统地追踪和可视化数据从起源经过所有转换到最终消费的流动，支持影响分析和法规合规。",
+    "steps": [
+      "Instrument data pipelines, ETL jobs, and query engines to emit lineage events (source, transformation, destination) at execution time using open standards like OpenLineage",
+      "Collect and store lineage events in a graph database where nodes represent datasets or jobs and edges represent data flow or transformation relationships",
+      "Build column-level lineage by parsing SQL and transformation code to trace individual field derivations through multi-hop pipelines",
+      "Expose lineage graphs through a visualization layer that shows upstream dependencies and downstream impact for any selected dataset or column",
+      "Integrate lineage with data catalog entries, data quality alerts, and incident management so root-cause analysis automatically surfaces the affected lineage path"
+    ],
+    "steps_zh": [
+      "使用OpenLineage等开放标准对数据管道、ETL作业和查询引擎进行插桩，在执行时发出血缘事件（源、转换、目标）",
+      "在图数据库中收集和存储血缘事件，其中节点代表数据集或作业，边代表数据流或转换关系",
+      "通过解析SQL和转换代码构建列级血缘，以跟踪多跳管道中的各个字段派生",
+      "通过可视化层展示血缘图，显示任何选定数据集或列的上游依赖和下游影响",
+      "将血缘与数据目录条目、数据质量告警和事件管理集成，使根本原因分析自动显示受影响的血缘路径"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "data-catalog",
+      "data-quality-framework",
+      "medallion-architecture",
+      "data-contract"
+    ],
+    "tags": [
+      "lineage",
+      "apache-atlas",
+      "openlineage",
+      "governance",
+      "impact-analysis",
+      "data-quality"
+    ],
+    "origin_author": "Apache Atlas",
+    "origin_source": "Apache Atlas Project (2015). 'Atlas: Data Governance and Metadata Framework for Hadoop'. atlas.apache.org; OpenLineage Specification (Astronomer, 2021).",
+    "origin_source_zh": "Apache Atlas项目（2015）。「Atlas：Hadoop的数据治理和元数据框架」。atlas.apache.org；OpenLineage规范（Astronomer，2021）。",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When GDPR, CCPA, or BCBS 239 compliance requires demonstrating exactly which source systems contributed to a regulatory report and how the data was transformed",
+      "When a data quality incident occurs and the team needs to rapidly identify all downstream dashboards, ML models, and reports consuming data from the corrupted source",
+      "When planning schema changes or decommissioning a dataset and need to assess the full blast radius before executing the change",
+      "When building a data mesh where domain teams need visibility into cross-domain data dependencies to avoid uncoordinated breaking changes"
+    ],
+    "when_to_use_zh": [
+      "当GDPR、CCPA或BCBS 239合规要求证明哪些源系统为监管报告提供了数据以及数据如何被转换时",
+      "当发生数据质量事件，团队需要快速识别所有下游仪表板、ML模型和从受损源消费数据的报告时",
+      "当计划模式变更或下线数据集时，需要在执行变更前评估完整的影响范围",
+      "当构建数据网格时，领域团队需要了解跨领域数据依赖关系以避免不协调的破坏性变更"
+    ],
+    "core_concepts": [
+      "Dataset-level lineage: a directed acyclic graph (DAG) where nodes are datasets or tables and edges represent ETL jobs or SQL queries that produced the destination from its sources",
+      "Column-level lineage: fine-grained tracking of individual column derivations through transformations, enabling precise impact analysis when a single upstream column changes",
+      "OpenLineage: an open standard (Astronomer, 2021, now Linux Foundation) that defines a vendor-neutral event spec for emitting lineage from Airflow, Spark, dbt, Flink, and other engines",
+      "Impact analysis vs. root-cause analysis: downstream traversal (what breaks if I change X) vs. upstream traversal (where did this bad data come from) — the two primary lineage use cases"
+    ],
+    "core_concepts_zh": [
+      "数据集级血缘：有向无环图（DAG），其中节点是数据集或表，边代表从源生成目标的ETL作业或SQL查询",
+      "列级血缘：通过转换对单个列派生的细粒度追踪，支持当单个上游列变更时进行精确影响分析",
+      "OpenLineage：由Astronomer于2021年创建（现为Linux基金会）的开放标准，定义了用于从Airflow、Spark、dbt、Flink和其他引擎发出血缘的厂商中立事件规范",
+      "影响分析与根本原因分析：下游遍历（如果我更改X会发生什么）与上游遍历（这些坏数据来自哪里）——两个主要的血缘用例"
+    ],
+    "timeline": [
+      [
+        "2015",
+        "Apache Atlas released as part of the Hadoop ecosystem, providing the first open-source metadata and lineage framework for Hive, HBase, and HDFS"
+      ],
+      [
+        "2018",
+        "Google Cloud Data Catalog and Collibra launch automated lineage, moving data lineage from a manual documentation practice to an automated platform feature"
+      ],
+      [
+        "2021",
+        "OpenLineage specification published by Astronomer, establishing a vendor-neutral standard for lineage event emission across Airflow, Spark, and dbt"
+      ],
+      [
+        "2023",
+        "Column-level lineage becomes table stakes in enterprise data catalogs; dbt adds native column lineage support, extending graph-level lineage to granular field derivations"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2015",
+        "Apache Atlas作为Hadoop生态系统的一部分发布，为Hive、HBase和HDFS提供第一个开源元数据和血缘框架"
+      ],
+      [
+        "2018",
+        "Google Cloud数据目录和Collibra推出自动化血缘，将数据血缘从手动文档实践转变为自动化平台功能"
+      ],
+      [
+        "2021",
+        "Astronomer发布OpenLineage规范，为Airflow、Spark和dbt的血缘事件发送建立厂商中立标准"
+      ],
+      [
+        "2023",
+        "列级血缘成为企业数据目录的标配；dbt增加原生列血缘支持，将图级血缘扩展到细粒度字段派生"
+      ]
+    ],
+    "dos": [
+      "Do adopt OpenLineage as your lineage emission standard from the start because vendor-specific lineage APIs create lock-in and prevent cross-tool lineage stitching",
+      "Do capture column-level lineage from SQL engines and dbt models because dataset-level lineage alone cannot support regulatory column-to-report tracing requirements",
+      "Do store lineage as a graph database (Neo4j, Amazon Neptune) rather than relational tables because multi-hop traversal queries are prohibitively expensive in SQL at scale",
+      "Do integrate lineage alerts into your data quality monitoring so that when an upstream dataset fails validation, all downstream consumers receive automatic impact notifications"
+    ],
+    "dos_zh": [
+      "从一开始就采用OpenLineage作为血缘发送标准，因为特定于供应商的血缘API会造成锁定并阻止跨工具血缘拼接",
+      "从SQL引擎和dbt模型捕获列级血缘，因为仅靠数据集级血缘无法支持监管列到报告的追踪要求",
+      "将血缘存储为图数据库（Neo4j、Amazon Neptune）而非关系表，因为多跳遍历查询在大规模SQL中代价极高",
+      "将血缘告警集成到数据质量监控中，当上游数据集验证失败时，所有下游消费者会自动收到影响通知"
+    ],
+    "donts": [
+      "Don't rely solely on static code parsing for lineage because dynamic SQL, stored procedures, and runtime-generated queries are invisible to static analysis",
+      "Don't attempt to capture lineage retroactively for existing pipelines by reading logs; instrument pipelines going forward and accept a lineage coverage gap for legacy systems",
+      "Don't expose raw lineage graphs to business users without abstraction because hundreds of nodes and edges overwhelm non-technical stakeholders; build purpose-specific views",
+      "Don't conflate lineage with data catalog; lineage is a dynamic, runtime-derived graph while a catalog is a curated, human-enriched metadata store — they complement each other"
+    ],
+    "donts_zh": [
+      "不要仅依赖静态代码解析进行血缘，因为动态SQL、存储过程和运行时生成的查询对静态分析不可见",
+      "不要尝试通过读取日志为现有管道追溯捕获血缘；对管道进行前向插桩，并接受遗留系统的血缘覆盖空缺",
+      "不要将原始血缘图直接暴露给业务用户而不加抽象，因为数百个节点和边会压倒非技术利益相关者；构建特定目的的视图",
+      "不要将血缘与数据目录混淆；血缘是动态的运行时派生图，而目录是精心策划的人工丰富元数据存储——它们相互补充"
+    ],
+    "case_study_company": "ING Bank",
+    "case_study": "ING Bank implemented end-to-end data lineage across 15,000 data assets to satisfy European Banking Authority (EBA) BCBS 239 data risk reporting requirements. Using Apache Atlas as the metadata backbone, ING mapped column-level lineage from operational databases through 300+ ETL pipelines to 120 regulatory reports. When the EBA requested proof of data origin for capital adequacy ratios, ING's lineage system produced a complete audit trail from source transaction records to the final reported figure in under 4 hours — a process that previously required 3 weeks of manual investigation. The lineage system now detects 85% of pipeline failures through downstream impact propagation before business users notice.",
+    "case_study_zh": "ING银行在15000个数据资产中实施端到端数据血缘，以满足欧洲银行管理局（EBA）BCBS 239数据风险报告要求。使用Apache Atlas作为元数据骨干，ING通过300多个ETL管道将列级血缘从运营数据库映射到120个监管报告。当EBA要求提供资本充足率的数据来源证明时，ING的血缘系统在4小时内从源交易记录到最终报告数字生成了完整的审计追踪——这一过程以前需要3周的人工调查。血缘系统现在通过下游影响传播在业务用户注意到之前检测到85%的管道故障。",
+    "when_not_to_use": [
+      "Small teams with fewer than 20 pipelines where a simple data flow diagram maintained in Confluence provides sufficient lineage visibility without the engineering cost",
+      "Real-time OLTP systems where data lineage tracking adds latency to transaction processing; use async audit logs instead",
+      "When all data transformations happen inside a single SQL warehouse or dbt project; native lineage tools in those platforms are sufficient without a separate lineage service",
+      "Early-stage startups where data infrastructure is volatile and lineage graphs would be outdated within weeks; invest in lineage when the data architecture stabilizes"
+    ],
+    "when_not_to_use_zh": [
+      "管道少于20个的小团队，在Confluence中维护的简单数据流图在没有工程成本的情况下提供了足够的血缘可见性",
+      "数据血缘追踪会给事务处理增加延迟的实时OLTP系统；改用异步审计日志",
+      "当所有数据转换都在单个SQL数据仓库或dbt项目内发生时；这些平台中的原生血缘工具已足够，无需单独的血缘服务",
+      "数据基础设施不稳定且血缘图会在数周内过时的早期创业公司；在数据架构稳定后再投资于血缘"
+    ],
+    "adopters": [
+      "ING Bank",
+      "Airbnb",
+      "WeWork",
+      "Spotify",
+      "Danske Bank",
+      "Astronomer"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "observability",
+      "maintainability",
+      "security"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Apache Software Foundation (2015). 'Apache Atlas: Data Governance and Metadata Framework'. atlas.apache.org.",
+    "secondary_sources": [
+      "Turki, M. et al. (2021). 'OpenLineage: An Open Standard for Metadata and Lineage Collection'. Astronomer Blog / Linux Foundation.",
+      "Collibra (2022). 'The State of Data Intelligence Report 2022'. collibra.com.",
+      "Reis, J. & Housley, M. (2022). Fundamentals of Data Engineering. O'Reilly Media. Chapter 9: Serving Data for Analytics, Machine Learning, and Reverse ETL."
+    ],
+    "typed_relations": [
+      {
+        "slug": "data-catalog",
+        "type": "complement"
+      },
+      {
+        "slug": "data-quality-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "medallion-architecture",
+        "type": "complement"
+      },
+      {
+        "slug": "data-contract",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 309,
+    "name": "Feature Store",
+    "name_zh": "特征仓库",
+    "slug": "feature-store",
+    "category": "data",
+    "desc": "Centralized repository that manages the full lifecycle of ML features — from computation and storage to serving — enabling feature reuse, consistency between training and inference, and governance.",
+    "desc_zh": "集中式存储库，管理ML特征的完整生命周期——从计算和存储到服务——支持特征复用、训练与推理之间的一致性以及治理。",
+    "steps": [
+      "Define feature transformations as versioned, reusable feature pipelines (using Spark, dbt, or Python) that compute features from raw data sources on a scheduled or streaming basis",
+      "Store computed features in a dual-store architecture: an offline store (data warehouse or object store) for historical training data, and an online store (Redis, DynamoDB) for low-latency inference serving",
+      "Register features in a feature registry with metadata (owner, data type, freshness SLA, entity key, computation logic) so data scientists can discover and reuse features without recomputing",
+      "Enforce point-in-time correct feature retrieval for training datasets so features are fetched as they would have been known at the label timestamp, preventing training-serving skew",
+      "Monitor feature freshness, drift, and usage metrics to detect stale features, model degradation signals, and unused features consuming compute budget"
+    ],
+    "steps_zh": [
+      "将特征转换定义为版本化、可复用的特征管道（使用Spark、dbt或Python），按计划或流式方式从原始数据源计算特征",
+      "将计算出的特征存储在双存储架构中：离线存储（数据仓库或对象存储）用于历史训练数据，在线存储（Redis、DynamoDB）用于低延迟推理服务",
+      "在特征注册表中注册特征，包含元数据（所有者、数据类型、新鲜度SLA、实体键、计算逻辑），使数据科学家无需重新计算即可发现和复用特征",
+      "对训练数据集强制执行时间点正确的特征检索，确保特征按标签时间戳时已知的状态获取，防止训练与服务偏差",
+      "监控特征新鲜度、漂移和使用指标，以检测过时特征、模型退化信号和消耗计算预算的未使用特征"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "feature-store-pattern",
+      "data-catalog",
+      "data-lineage-governance",
+      "data-lakehouse",
+      "data-mesh"
+    ],
+    "tags": [
+      "feature-store",
+      "machine-learning",
+      "mlops",
+      "uber",
+      "michelangelo",
+      "training-serving-skew"
+    ],
+    "origin_author": "Uber (Michelangelo)",
+    "origin_source": "Hermann, J. & Del Balso, M. (2017). 'Meet Michelangelo: Uber's Machine Learning Platform'. Uber Engineering Blog. eng.uber.com.",
+    "origin_source_zh": "Hermann, J. & Del Balso, M.（2017）。「认识Michelangelo：Uber的机器学习平台」。Uber工程博客。eng.uber.com。",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When multiple ML teams are independently computing the same features (e.g., user age, trip count, churn score) from the same raw data sources, creating duplicate computation and inconsistency",
+      "When training-serving skew is a recurring source of model performance degradation because features are computed differently in the batch training pipeline and the real-time inference path",
+      "When regulatory compliance (GDPR right-to-erasure, CCPA) requires point-in-time auditable records of which feature values were used to make a specific ML-driven decision",
+      "When the organization operates more than 10 production ML models and the total cost of per-model feature engineering is significant enough to justify a shared platform"
+    ],
+    "when_to_use_zh": [
+      "当多个ML团队从相同原始数据源独立计算相同特征（如用户年龄、行程数、流失评分），产生重复计算和不一致性时",
+      "当训练与服务偏差是模型性能退化的反复来源，因为特征在批量训练管道和实时推理路径中计算方式不同时",
+      "当监管合规（GDPR删除权、CCPA）要求对特定ML驱动决策使用的特征值进行时间点可审计记录时",
+      "当组织运营超过10个生产ML模型，且每个模型特征工程的总成本足以证明共享平台的合理性时"
+    ],
+    "core_concepts": [
+      "Offline store: the historical feature store backed by a column-oriented data warehouse (BigQuery, Snowflake) or object store (S3 + Parquet) used to generate training datasets at any historical point in time",
+      "Online store: a low-latency key-value store (Redis, DynamoDB, Bigtable) that holds the latest feature values for each entity (user ID, item ID) and serves features to real-time inference engines at p99 < 10ms",
+      "Training-serving skew: the critical problem that arises when feature computation logic differs between training time and inference time, causing the model to see different feature distributions in production than it was trained on",
+      "Point-in-time correct retrieval: the mechanism of joining feature values to training labels using only feature values that existed at or before the label timestamp, preventing data leakage and future information contamination"
+    ],
+    "core_concepts_zh": [
+      "离线存储：由列式数据仓库（BigQuery、Snowflake）或对象存储（S3 + Parquet）支持的历史特征存储，用于在任意历史时间点生成训练数据集",
+      "在线存储：低延迟键值存储（Redis、DynamoDB、Bigtable），保存每个实体（用户ID、商品ID）的最新特征值，以p99 < 10ms的速度为实时推理引擎提供特征",
+      "训练与服务偏差：当特征计算逻辑在训练时和推理时不同时出现的关键问题，导致模型在生产环境中看到与训练时不同的特征分布",
+      "时间点正确检索：使用标签时间戳时或之前存在的特征值将特征值与训练标签连接的机制，防止数据泄漏和未来信息污染"
+    ],
+    "timeline": [
+      [
+        "2017",
+        "Uber publishes Michelangelo, the first widely-documented feature store, demonstrating how a centralized platform eliminates duplicate feature engineering across 200+ ML models"
+      ],
+      [
+        "2019",
+        "Feast (Feature Store for ML) released as open source by GoJek and Google, providing the first vendor-neutral feature store implementation"
+      ],
+      [
+        "2021",
+        "Tecton, Hopsworks, and SageMaker Feature Store launch as managed feature store services; feature stores become a recognized MLOps platform category"
+      ],
+      [
+        "2023",
+        "Databricks Feature Store integrated into Unity Catalog; feature stores converge with data catalogs as organizations seek unified governance across analytics and ML assets"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2017",
+        "Uber发布Michelangelo，第一个有广泛文档记录的特征仓库，展示集中式平台如何消除200多个ML模型的重复特征工程"
+      ],
+      [
+        "2019",
+        "GoJek和Google以开源方式发布Feast（ML特征仓库），提供第一个厂商中立的特征仓库实现"
+      ],
+      [
+        "2021",
+        "Tecton、Hopsworks和SageMaker特征仓库作为托管特征仓库服务推出；特征仓库成为公认的MLOps平台类别"
+      ],
+      [
+        "2023",
+        "Databricks特征仓库集成到Unity Catalog；随着组织寻求跨分析和ML资产的统一治理，特征仓库与数据目录逐渐融合"
+      ]
+    ],
+    "dos": [
+      "Do separate the offline and online store architectures from day one because conflating historical training storage with real-time serving storage leads to unacceptable latency trade-offs",
+      "Do enforce point-in-time correct feature retrieval in all training dataset generation pipelines because even a single data leakage incident can invalidate months of model evaluation metrics",
+      "Do include feature freshness SLAs in the registry and alert when features become stale because a stale feature at inference time is equivalent to missing data from the model's perspective",
+      "Do version feature definitions alongside model versions in the model registry so that model rollbacks automatically revert to the correct feature computation logic"
+    ],
+    "dos_zh": [
+      "从第一天起就分离离线和在线存储架构，因为将历史训练存储与实时服务存储混淆会导致不可接受的延迟权衡",
+      "在所有训练数据集生成管道中强制执行时间点正确的特征检索，因为即使一次数据泄漏事件也可能使数月的模型评估指标失效",
+      "在注册表中包含特征新鲜度SLA并在特征过时时告警，因为推理时的过时特征相当于模型视角的缺失数据",
+      "将特征定义与模型注册表中的模型版本一起版本化，使模型回滚自动恢复到正确的特征计算逻辑"
+    ],
+    "donts": [
+      "Don't share the same feature pipeline for both training and real-time inference without explicit validation that the logic is identical; code duplication is safer than silent divergence",
+      "Don't store raw events in the feature store; the feature store should contain pre-aggregated features, not raw data — raw event storage belongs in the data lake",
+      "Don't allow data scientists to create ephemeral, undocumented feature transformations outside the feature store; all production features must be registered, tested, and governed",
+      "Don't deploy a feature store before you have at least two models that could share features; the platform overhead is not justified for a single model"
+    ],
+    "donts_zh": [
+      "不要在没有明确验证逻辑相同的情况下为训练和实时推理共享相同的特征管道；代码重复比无声的发散更安全",
+      "不要在特征仓库中存储原始事件；特征仓库应包含预聚合的特征，而非原始数据——原始事件存储属于数据湖",
+      "不要允许数据科学家在特征仓库外创建临时的、未记录的特征转换；所有生产特征必须注册、测试和治理",
+      "在至少有两个可以共享特征的模型之前不要部署特征仓库；对单个模型而言平台开销不合理"
+    ],
+    "case_study_company": "Airbnb",
+    "case_study": "Airbnb built Zipline, its internal feature store, to serve 150+ ML models used in search ranking, price suggestion, fraud detection, and guest trust scoring. Before Zipline, data scientists spent 60% of their time on feature engineering; after, they reported spending under 20% because most features for a new model already existed in the store. Zipline's point-in-time correct training dataset generation prevented a class of training-serving skew bugs that had caused Airbnb's search ranking model to perform 8% worse in production than in offline evaluation. The platform processes 1.5 million feature computation jobs per day and serves features at p99 latency of 4ms.",
+    "case_study_zh": "Airbnb构建了Zipline，其内部特征仓库，为搜索排名、价格建议、欺诈检测和房客信任评分中使用的150多个ML模型提供服务。在Zipline之前，数据科学家花费60%的时间在特征工程上；之后，他们报告花费不到20%，因为新模型的大多数特征已经存在于仓库中。Zipline的时间点正确训练数据集生成防止了一类训练与服务偏差错误，这些错误曾导致Airbnb的搜索排名模型在生产环境中比离线评估差8%。该平台每天处理150万个特征计算作业，以4ms的p99延迟提供特征。",
+    "when_not_to_use": [
+      "When an organization has fewer than 5 ML models in production; the operational overhead of a feature store exceeds its benefits at this scale",
+      "When all ML models are batch-inference only with no real-time serving requirements; a simple feature engineering pipeline into the data warehouse is sufficient",
+      "When data science teams are small (fewer than 5 people) and informal collaboration is sufficient to avoid duplicate feature engineering without platform overhead",
+      "When ML models use unstructured data (images, text, audio) as primary inputs; feature stores are optimized for tabular entity-based features, not embedding stores"
+    ],
+    "when_not_to_use_zh": [
+      "当组织在生产中有少于5个ML模型时；特征仓库的运营开销在此规模超过其收益",
+      "当所有ML模型仅为批量推理且没有实时服务要求时；将简单特征工程管道导入数据仓库已足够",
+      "当数据科学团队规模较小（少于5人）且非正式协作足以避免重复特征工程而无平台开销时",
+      "当ML模型以非结构化数据（图像、文本、音频）作为主要输入时；特征仓库针对基于表格实体的特征进行优化，而非嵌入存储"
+    ],
+    "adopters": [
+      "Uber",
+      "Airbnb",
+      "LinkedIn",
+      "Twitter",
+      "Stripe",
+      "DoorDash"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "scalability",
+      "maintainability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Hermann, J. & Del Balso, M. (2017). 'Meet Michelangelo: Uber's Machine Learning Platform'. Uber Engineering Blog. eng.uber.com/michelangelo-machine-learning-platform.",
+    "secondary_sources": [
+      "Ganti, R. et al. (2020). 'Feast: Bridging ML Models and Data'. GoJek Engineering Blog. medium.com/gojekengineering.",
+      "Zaharia, M. et al. (2022). 'Designing Machine Learning Systems'. O'Reilly Media. Chapter 5: Feature Engineering.",
+      "Tecton (2021). 'The Feature Store: A Guide to ML Feature Management'. tecton.ai/blog."
+    ],
+    "typed_relations": [
+      {
+        "slug": "feature-store-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "data-lakehouse",
+        "type": "complement"
+      },
+      {
+        "slug": "data-catalog",
+        "type": "complement"
+      },
+      {
+        "slug": "data-lineage-governance",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 310,
+    "name": "Data Contract",
+    "name_zh": "数据契约",
+    "slug": "data-contract",
+    "category": "data",
+    "desc": "Formal, versioned agreements between data producers and consumers that specify schema, quality expectations, SLAs, and ownership, treating data as a product with explicit interface guarantees.",
+    "desc_zh": "数据生产者和消费者之间的正式、版本化协议，规定模式、质量期望、SLA和所有权，将数据视为具有明确接口保证的产品。",
+    "steps": [
+      "Define the contract schema using a machine-readable format (YAML or JSON) specifying dataset name, owner, version, column definitions, data types, nullability, and primary key constraints",
+      "Encode quality clauses: freshness SLA (maximum allowed data age), completeness thresholds (minimum non-null percentage per column), validity rules (value ranges, regex patterns, referential integrity)",
+      "Establish semantic versioning for the contract (MAJOR for breaking changes, MINOR for additive changes) and publish to a contract registry visible to all consuming teams",
+      "Implement contract validation in the producer's pipeline CI/CD so that schema and quality rule violations block deployment before bad data reaches consumers",
+      "Monitor contract compliance at runtime with automated data quality checks and publish a contract health dashboard so consumers can assess data reliability before building dependent systems"
+    ],
+    "steps_zh": [
+      "使用机器可读格式（YAML或JSON）定义契约模式，指定数据集名称、所有者、版本、列定义、数据类型、可空性和主键约束",
+      "编码质量条款：新鲜度SLA（最大允许数据年龄）、完整性阈值（每列最低非空百分比）、有效性规则（值范围、正则表达式模式、引用完整性）",
+      "为契约建立语义版本控制（破坏性变更用MAJOR，增量变更用MINOR），并发布到对所有消费团队可见的契约注册表",
+      "在生产者的管道CI/CD中实施契约验证，使模式和质量规则违规在坏数据到达消费者之前阻止部署",
+      "通过自动化数据质量检查在运行时监控契约合规性，并发布契约健康仪表板，使消费者在构建依赖系统之前能够评估数据可靠性"
+    ],
+    "ai_relevant": true,
+    "viz_type": "matrix",
+    "related": [
+      "data-catalog",
+      "data-quality-framework",
+      "schema-registry",
+      "data-mesh",
+      "data-lineage-governance"
+    ],
+    "tags": [
+      "data-contract",
+      "data-quality",
+      "producer-consumer",
+      "data-mesh",
+      "governance",
+      "andrew-jones"
+    ],
+    "origin_author": "Andrew Jones",
+    "origin_source": "Jones, A. (2022). 'Driving Data Quality with Data Contracts'. Substack / PayPal Engineering. Andrew Jones (2023). Driving Data Quality with Data Contracts. O'Reilly.",
+    "origin_source_zh": "Jones, A.（2022）。「用数据契约驱动数据质量」。Substack / PayPal工程。Andrew Jones（2023）。《用数据契约驱动数据质量》。O'Reilly。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When data consumers (ML teams, analytics, downstream services) are repeatedly disrupted by silent schema changes or data quality regressions from upstream producer teams",
+      "When implementing a data mesh architecture where domain teams publish data products and need explicit interface contracts to decouple producers from consumers",
+      "When regulatory requirements (SOX, GDPR) demand documented data provenance and quality guarantees that can be audited independently of the producing team",
+      "When the cost of data incidents (broken dashboards, bad model predictions, failed reports) is high enough to justify investing in prevention through formal producer accountability"
+    ],
+    "when_to_use_zh": [
+      "当数据消费者（ML团队、分析、下游服务）反复因上游生产者团队的无声模式变更或数据质量回归而中断时",
+      "当实施数据网格架构时，领域团队发布数据产品并需要明确的接口契约以将生产者与消费者解耦",
+      "当监管要求（SOX、GDPR）要求有文档化的数据来源和质量保证，可以独立于生产团队进行审计时",
+      "当数据事件（损坏的仪表板、错误的模型预测、失败的报告）的成本足够高，值得通过正式的生产者责任制进行预防性投资时"
+    ],
+    "core_concepts": [
+      "Schema contract: a versioned, machine-readable specification of the dataset's structure (columns, types, nullability, primary keys) that acts as the API contract between a data producer and its consumers",
+      "Quality contract: explicit, measurable data quality obligations including freshness SLA (e.g., data must be no older than 4 hours), completeness (e.g., user_id null rate < 0.1%), and validity rules",
+      "Producer ownership model: the principle that the data producer team — not consumers — is responsible for authoring, versioning, and guaranteeing the contract, shifting accountability upstream",
+      "Semantic versioning for data: applying MAJOR.MINOR.PATCH conventions to data schemas where MAJOR changes (column removal, type change) trigger a mandatory consumer migration workflow"
+    ],
+    "core_concepts_zh": [
+      "模式契约：数据集结构（列、类型、可空性、主键）的版本化、机器可读规范，作为数据生产者与消费者之间的API契约",
+      "质量契约：明确的、可衡量的数据质量义务，包括新鲜度SLA（如数据不得超过4小时）、完整性（如user_id空值率 < 0.1%）和有效性规则",
+      "生产者所有权模型：数据生产者团队——而非消费者——负责创作、版本化和保证契约的原则，将责任向上游转移",
+      "数据语义版本控制：将MAJOR.MINOR.PATCH约定应用于数据模式，其中MAJOR变更（删除列、类型变更）触发强制性消费者迁移工作流"
+    ],
+    "timeline": [
+      [
+        "2019",
+        "Notion of 'data contracts' begins appearing in data engineering blogs as a term for informal producer-consumer agreements; not yet formalized"
+      ],
+      [
+        "2022",
+        "Andrew Jones (PayPal) publishes a seminal blog post 'Driving Data Quality with Data Contracts', popularizing the term and defining a practical framework"
+      ],
+      [
+        "2023",
+        "Open Data Contract Standard (ODCS) published by PayPal Engineering; Soda Core, Great Expectations, and dbt integrate data contract validation into their tooling"
+      ],
+      [
+        "2024",
+        "Data contracts become a cornerstone pattern of data mesh implementations; major cloud data platforms (Databricks, Snowflake) add native contract enforcement capabilities"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2019",
+        "「数据契约」概念开始出现在数据工程博客中，作为非正式生产者-消费者协议的术语；尚未正式化"
+      ],
+      [
+        "2022",
+        "Andrew Jones（PayPal）发表具有里程碑意义的博客文章「用数据契约驱动数据质量」，普及该术语并定义了实用框架"
+      ],
+      [
+        "2023",
+        "PayPal工程发布开放数据契约标准（ODCS）；Soda Core、Great Expectations和dbt将数据契约验证集成到其工具中"
+      ],
+      [
+        "2024",
+        "数据契约成为数据网格实施的基石模式；主要云数据平台（Databricks、Snowflake）增加原生契约执行能力"
+      ]
+    ],
+    "dos": [
+      "Do author contracts in a machine-readable format (YAML/JSON) stored in git alongside the producer's pipeline code so that contract changes go through the same review process as code changes",
+      "Do enforce contracts in the producer's CI/CD pipeline as a pre-deployment gate because post-deployment contract violations are already downstream incidents",
+      "Do use semantic versioning and publish breaking change notices at least one sprint before the breaking schema change lands so consumers have time to adapt",
+      "Do start with the highest-impact datasets (those feeding the most downstream consumers or regulatory reports) and expand contract coverage incrementally"
+    ],
+    "dos_zh": [
+      "以机器可读格式（YAML/JSON）编写契约，与生产者的管道代码一起存储在git中，使契约变更经过与代码变更相同的审查流程",
+      "在生产者的CI/CD管道中将契约作为部署前关卡强制执行，因为部署后的契约违规已经是下游事件",
+      "使用语义版本控制，并在破坏性模式变更落地前至少提前一个迭代发布破坏性变更通知，给消费者留出适应时间",
+      "从影响最大的数据集（那些为最多下游消费者或监管报告提供数据的数据集）开始，逐步扩展契约覆盖范围"
+    ],
+    "donts": [
+      "Don't treat data contracts as documentation artifacts divorced from enforcement; an unverified contract is just a comment that will drift from reality over time",
+      "Don't require consumers to author contracts on behalf of producers because producer-owned contracts align accountability; consumer-authored contracts create ownership ambiguity",
+      "Don't apply uniform quality thresholds across all datasets; high-traffic production datasets warrant stricter SLAs than internal experimental tables",
+      "Don't block all consumers from a dataset when a contract violation occurs; implement a tiered notification system that alerts consumers while the producer investigates"
+    ],
+    "donts_zh": [
+      "不要将数据契约视为脱离执行的文档工件；未经验证的契约只是一个会随时间偏离现实的注释",
+      "不要要求消费者代表生产者创作契约，因为生产者拥有的契约与责任一致；消费者创作的契约会产生所有权歧义",
+      "不要对所有数据集应用统一的质量阈值；高流量生产数据集比内部实验表需要更严格的SLA",
+      "不要在契约违规发生时阻止所有消费者访问数据集；实施分层通知系统，在生产者调查时告警消费者"
+    ],
+    "case_study_company": "PayPal",
+    "case_study": "PayPal pioneered data contracts at scale after a 2021 data incident where an undocumented schema change to a payments dataset broke 47 downstream dashboards and delayed a regulatory filing. The engineering team, led by Andrew Jones, formalized data contracts as YAML specifications stored in the same Git repository as the producing pipeline. Each contract specifies schema, freshness SLA (payments data must be no older than 1 hour), nullability rates, and consumer registry. PayPal now enforces contracts as a CI/CD gate: any pipeline change that violates a contract is automatically blocked, and the affected consumer teams are notified. The program reduced data-incident-related engineering time by 70% within 18 months.",
+    "case_study_zh": "PayPal在2021年一次数据事件后率先大规模推行数据契约，该事件中对支付数据集的未记录模式变更破坏了47个下游仪表板并延迟了监管申报。由Andrew Jones领导的工程团队将数据契约正式化为YAML规范，与生产管道存储在同一个Git仓库中。每个契约规定模式、新鲜度SLA（支付数据不得超过1小时）、可空性比率和消费者注册表。PayPal现在将契约作为CI/CD关卡执行：任何违反契约的管道变更都会自动被阻止，并通知受影响的消费者团队。该计划在18个月内将数据事件相关的工程时间减少了70%。",
+    "when_not_to_use": [
+      "Early-stage data exploration where schemas are intentionally fluid and imposing contract rigidity would slow down legitimate research and discovery work",
+      "Internal experimental datasets consumed by a single team; the overhead of authoring and maintaining a formal contract is not justified without cross-team consumers",
+      "When the organization lacks the tooling infrastructure to automate contract validation; manual contract checks are too unreliable to provide meaningful quality guarantees",
+      "Real-time streaming pipelines requiring sub-second schema evolution; synchronous contract validation adds latency incompatible with high-throughput event streams"
+    ],
+    "when_not_to_use_zh": [
+      "模式有意流动且强加契约刚性会减慢合理研究和发现工作的早期数据探索阶段",
+      "由单个团队消费的内部实验数据集；在没有跨团队消费者的情况下，编写和维护正式契约的开销不合理",
+      "当组织缺乏自动化契约验证的工具基础设施时；手动契约检查太不可靠，无法提供有意义的质量保证",
+      "需要亚秒级模式演进的实时流管道；同步契约验证增加的延迟与高吞吐量事件流不兼容"
+    ],
+    "adopters": [
+      "PayPal",
+      "Spotify",
+      "JPMC",
+      "Airbnb",
+      "Mercado Libre",
+      "ING Bank"
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "reliability",
+      "maintainability",
+      "testability"
+    ],
+    "maturity_ring": "emerging",
+    "primary_source": "Jones, A. (2022). 'Driving Data Quality with Data Contracts'. andrewjones.substack.com.",
+    "secondary_sources": [
+      "PayPal Engineering (2023). 'Open Data Contract Standard (ODCS)'. github.com/paypal/data-contract-template.",
+      "Majchrzak, T. et al. (2023). 'Data Contracts: A Missing Link in the Data Mesh'. SIGMOD 2023 Workshop on Data Management for End-to-End Machine Learning.",
+      "Jones, A. (2023). Driving Data Quality with Data Contracts. O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "data-mesh",
+        "type": "complement"
+      },
+      {
+        "slug": "data-quality-framework",
+        "type": "extends"
+      },
+      {
+        "slug": "schema-registry",
+        "type": "complement"
+      },
+      {
+        "slug": "data-catalog",
+        "type": "complement"
+      }
+    ]
   }
 ]
