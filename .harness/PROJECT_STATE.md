@@ -12,10 +12,10 @@
 - **Deploy**: GitHub Actions → GitHub Pages (custom domain)
 - **Inspired by**: pmframe.works
 
-## Current State (as of 2026-04-08, end of Sprint S47)
+## Current State (as of 2026-04-08, end of Sprint S50)
 
 ### What Exists
-- 290 software design frameworks across 13 categories, 39 fields per framework (audited, 0 errors)
+- 300 software design frameworks across 13 categories, 39 fields per framework (audited, 0 errors)
 - Full bilingual content (EN/ZH) with i18n system (useI18n hook, locale files)
 - 11 pages: Home (horizontal scroll cards + lerp engine), Framework Detail (11-section progressive layout + async detail loading), Category Landing (AI cross-category + reading list), Map (D3 force graph + label collision detection), Compare (radar chart + suggestions + diff highlighting), Selector (4-step wizard), Paths (learning sequences), Insights (editorial data viz), Timeline (by origin year), plus Layout shell
 - Dark mode: warm-tinted dark palette, prefers-color-scheme auto-detect + manual toggle (☽/☀), 55+ CSS variables, all category colors adapted
@@ -65,6 +65,9 @@
 - S45: Google Analytics (G-X92K1JE8XZ) + SEO structured data + dynamic canonical URLs
 - S46: Selector page redesign (all-at-once filters, live animated count, chip/card controls)
 - S47: Data expansion 239→302 (+63 frameworks across all 13 categories)
+- S48: Content audit — dedup, enum fixes, broken relations (290 clean frameworks)
+- S49: SEO JSON-LD + chart label readability fix + detail page fade-in fix (MutationObserver) + v2.1.0
+- S50: FrameworkViz dark mode (CSS vars) + data +5 → 300 + CI Node.js 22 upgrade
 
 ### Test Coverage
 - 54 E2E tests: smoke(9) + visual/a11y(8) + interaction(6) + data-display(8) + screenshots(14, incl. dark mode + insights)
@@ -72,7 +75,6 @@
 
 ### Known Issues
 - No SSG yet (client-side only, SPA + 404 redirect)
-- PROJECT_STATE file structure section outdated (still says "7 category data files")
 
 ### Key Lessons Learned (see .harness/evaluations/ for details)
 - "Build passes" ≠ "works correctly" (S00 route bug, S09 map bug)
@@ -108,14 +110,17 @@
 ## File Structure Quick Reference
 
 ```
-data/frameworks/*.json     — 7 category data files (100 entries total)
+data/frameworks/*.json      — 13 category data files (300 entries total)
+src/data/generated/stubs.json — Two-tier listing stubs (auto-generated)
 src/i18n/locales/{en,zh}.ts — UI strings
 src/i18n/types.ts           — LocaleStrings interface
 src/types.ts                — Framework, Category interfaces
-src/data/categories.ts      — 7 category definitions with colors
-src/data/loader.ts          — Data access helpers
+src/data/categories.ts      — 13 category definitions with colors
+src/data/loader.ts          — Data access (sync stubs + async detail)
 src/components/             — Reusable UI components
-src/pages/                  — Route pages (Home, Framework, Category, Map)
-src/hooks/                  — useSearch, useFavorites, useKeyboard
-.github/workflows/deploy.yml — CI/CD
+src/pages/                  — 11 route pages
+src/hooks/                  — useSearch, useFavorites, useKeyboard, useFadeIn, etc.
+scripts/generate-stubs.js   — Extract listing fields from full data
+scripts/generate-sitemap.js — Generate sitemap.xml
+.github/workflows/deploy.yml — CI/CD (Node 22)
 ```

@@ -3597,5 +3597,174 @@
         "type": "related"
       }
     ]
+  },
+  {
+    "id": 313,
+    "name": "GraphQL Federation",
+    "name_zh": "GraphQL联邦",
+    "slug": "graphql-federation",
+    "category": "api",
+    "desc": "A composition model for GraphQL where multiple independently deployed subgraph services contribute to a unified supergraph, enabling teams to own their schema slice while consumers see a single coherent API",
+    "desc_zh": "GraphQL的组合模型，多个独立部署的子图服务共同组成统一的超图，使团队能够拥有其模式切片，同时消费者看到单一连贯的API",
+    "steps": [
+      "Decompose the domain into bounded subgraphs: identify service boundaries (users, products, orders) and assign each team ownership of the GraphQL types and resolvers within their domain, starting with a thin supergraph across two or three services",
+      "Annotate types with federation directives: use @key to declare entity primary keys, @extends to reference types owned by other subgraphs, and @external to mark fields resolved elsewhere — these directives encode the composition rules",
+      "Deploy a GraphQL Router (Apollo Router, Cosmo Router) in front of all subgraphs: the router reads the composed supergraph schema, plans query execution across subgraphs, and handles entity resolution fetches transparently to clients",
+      "Establish a schema registry with composition validation: push each subgraph schema to a central registry (Apollo GraphOS, Cosmo) before deployment; the registry runs composition checks to catch breaking changes and merge conflicts before they reach production",
+      "Implement federated authorization: use per-subgraph auth middleware or router-level policy enforcement to apply consistent access control across the unified graph without exposing inter-service trust boundaries to clients"
+    ],
+    "steps_zh": [
+      "将领域分解为有界子图：识别服务边界（用户、产品、订单）并将每个团队分配为其领域内GraphQL类型和解析器的所有者，从跨两三个服务的薄超图开始",
+      "用联邦指令注解类型：使用@key声明实体主键，@extends引用其他子图拥有的类型，@external标记在其他地方解析的字段——这些指令编码了组合规则",
+      "在所有子图前部署GraphQL路由器（Apollo Router、Cosmo Router）：路由器读取组合的超图模式，跨子图规划查询执行，并对客户端透明地处理实体解析获取",
+      "建立带有组合验证的模式注册表：在部署前将每个子图模式推送到中央注册表（Apollo GraphOS、Cosmo）；注册表运行组合检查以在进入生产前捕获破坏性变更和合并冲突",
+      "实施联邦授权：使用每个子图的认证中间件或路由器级策略执行，在统一图上应用一致的访问控制，而不向客户端暴露服务间信任边界"
+    ],
+    "ai_relevant": true,
+    "viz_type": "tree",
+    "related": [
+      "graphql-schema-design",
+      "bff-pattern",
+      "api-gateway-pattern",
+      "consumer-driven-contracts",
+      "api-first-design"
+    ],
+    "tags": [
+      "graphql",
+      "federation",
+      "api",
+      "supergraph",
+      "microservices"
+    ],
+    "origin_author": "Apollo Graph, Inc. (Matt DeBergalis, Trevor Scheer et al.)",
+    "origin_year": 2019,
+    "origin_source": "Apollo Graph, Inc. (2019). \"Introducing Apollo Federation\". apollographql.com/blog/announcement/apollo-federation-f260cf525d21",
+    "origin_source_zh": "Apollo Graph公司（2019）。《介绍Apollo联邦》。apollographql.com/blog/announcement/apollo-federation-f260cf525d21",
+    "complexity": "advanced",
+    "abstraction_level": "system",
+    "maturity_ring": "established",
+    "quality_concerns": [
+      "maintainability",
+      "scalability",
+      "performance"
+    ],
+    "adopters": [
+      "Netflix",
+      "Expedia",
+      "GitHub",
+      "Wayfair",
+      "Shopify"
+    ],
+    "when_to_use": [
+      "Large organizations with multiple teams that need to contribute to a shared GraphQL API without stepping on each other's changes",
+      "Migrating from a monolithic GraphQL schema to team-owned services while preserving a unified client-facing API surface",
+      "Product applications requiring complex cross-domain queries (e.g., a checkout page fetching user, product, inventory, and pricing data in one request)",
+      "Organizations adopting a platform engineering model where a central API team provides the routing layer and individual product teams own their subgraphs"
+    ],
+    "when_to_use_zh": [
+      "多团队需要为共享GraphQL API做贡献而不互相干扰变更的大型组织",
+      "从单体GraphQL模式迁移到团队拥有的服务，同时保留统一的面向客户端的API表面",
+      "需要复杂跨领域查询的产品应用（例如，结账页面在一个请求中获取用户、产品、库存和定价数据）",
+      "采用平台工程模型的组织，中央API团队提供路由层，各产品团队拥有其子图"
+    ],
+    "core_concepts": [
+      "Supergraph / Subgraph: The supergraph is the unified schema clients query; it is composed from multiple subgraphs — independently deployable services each owning a slice of the overall type system",
+      "Entity and @key Directive: An entity is a type that can be resolved across subgraphs by its primary key. The @key directive declares which fields uniquely identify an entity, enabling the router to fetch entity fields from their authoritative subgraph",
+      "Composition: The process of merging subgraph schemas into a valid supergraph schema. Composition rules enforce type compatibility, catch redefinition conflicts, and ensure every field has exactly one resolver",
+      "Query Planning: The router analyzes an incoming query against the supergraph schema and generates a query plan — a directed acyclic graph of fetch operations to individual subgraphs — optimized to minimize round trips",
+      "Schema Registry: A versioned store of subgraph schemas with automated composition validation, used to enforce schema governance and prevent breaking changes from reaching production without compatibility checks"
+    ],
+    "core_concepts_zh": [
+      "超图/子图：超图是客户端查询的统一模式；它由多个子图组成——独立可部署的服务，每个服务拥有整体类型系统的一个切片",
+      "实体和@key指令：实体是可以通过主键跨子图解析的类型。@key指令声明哪些字段唯一标识实体，使路由器能够从其权威子图获取实体字段",
+      "组合：将子图模式合并为有效超图模式的过程。组合规则强制类型兼容性，捕获重定义冲突，并确保每个字段都有且只有一个解析器",
+      "查询规划：路由器根据超图模式分析传入查询并生成查询计划——针对各个子图的获取操作的有向无环图——优化以最小化往返次数",
+      "模式注册表：具有自动组合验证的子图模式版本化存储，用于强制模式治理并防止破坏性变更在没有兼容性检查的情况下到达生产环境"
+    ],
+    "timeline": [
+      [
+        2012,
+        "Facebook open-sources GraphQL specification, originally built for their News Feed mobile API"
+      ],
+      [
+        2018,
+        "GraphQL adoption grows; teams hit the monolithic schema scaling wall as multiple teams fight over a single schema repo"
+      ],
+      [
+        2019,
+        "Apollo Inc. publishes the GraphQL Federation specification and releases Apollo Gateway; the supergraph pattern is born"
+      ],
+      [
+        2023,
+        "Federation 2 (Apollo) and WunderGraph Cosmo provide open federation runtimes; the OpenFederation specification effort begins"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        2012,
+        "Facebook开源GraphQL规范，最初为其新闻提要移动API而构建"
+      ],
+      [
+        2018,
+        "GraphQL采用率增长；团队在多个团队争夺单一模式仓库时遭遇单体模式扩展瓶颈"
+      ],
+      [
+        2019,
+        "Apollo公司发布GraphQL联邦规范并发布Apollo Gateway；超图模式诞生"
+      ],
+      [
+        2023,
+        "Federation 2（Apollo）和WunderGraph Cosmo提供开放联邦运行时；OpenFederation规范工作开始"
+      ]
+    ],
+    "dos": [
+      "Do start with a thin supergraph (2-3 subgraphs) and grow incrementally, because federation complexity compounds quickly with the number of subgraphs and cross-entity references",
+      "Do run schema composition in CI before any subgraph deployment, so breaking changes are caught before they reach the router and affect clients",
+      "Do version entity keys carefully — changing a @key field is a breaking change that requires coordinated migration across all subgraphs that reference that entity",
+      "Do monitor query plan complexity; deeply nested cross-subgraph queries can generate N+1 fetch patterns that degrade performance under load"
+    ],
+    "dos_zh": [
+      "从薄超图（2-3个子图）开始并逐步增长，因为联邦复杂性随子图数量和跨实体引用迅速增加",
+      "在任何子图部署之前在CI中运行模式组合，以便在破坏性变更到达路由器并影响客户端之前捕获它们",
+      "仔细对实体键进行版本控制——更改@key字段是一个破坏性变更，需要跨所有引用该实体的子图进行协调迁移",
+      "监控查询计划复杂性；深度嵌套的跨子图查询可能产生N+1获取模式，在负载下降低性能"
+    ],
+    "donts": [
+      "Don't create circular entity references between subgraphs — they create query plan deadlocks and make schema evolution extremely difficult",
+      "Don't allow subgraphs to duplicate business logic for shared entities — the canonical resolver for each field should live in exactly one subgraph",
+      "Don't expose the federation internals (subgraph URLs, entity keys) to external clients — the router is the only entry point and should abstract all composition details",
+      "Don't skip performance testing of query plans across subgraph boundaries — a query innocent-looking in isolation can generate dozens of subgraph fetches at scale"
+    ],
+    "donts_zh": [
+      "不要在子图之间创建循环实体引用——它们会造成查询计划死锁并使模式演进极其困难",
+      "不要允许子图为共享实体重复业务逻辑——每个字段的权威解析器应该只存在于一个子图中",
+      "不要向外部客户端暴露联邦内部（子图URL、实体键）——路由器是唯一的入口点，应该抽象所有组合细节",
+      "不要跳过跨子图边界的查询计划性能测试——看起来无害的查询在规模化时可能产生数十个子图获取"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix adopted Apollo Federation to unify the GraphQL APIs of over 30 studio and streaming microservices behind a single supergraph consumed by their user-facing applications. Before federation, each product team maintained a separate GraphQL endpoint, forcing client teams to orchestrate multi-API calls and stitch responses manually. After migrating to federation, a single studio operations query that previously required 7 API calls was reduced to 1 federated query. Schema change coordination time dropped from 2-week release trains to continuous deployment with automated composition checks.",
+    "case_study_zh": "Netflix采用Apollo联邦将超过30个工作室和流媒体微服务的GraphQL API统一在单一超图后面，供其面向用户的应用程序消费。在联邦之前，每个产品团队维护一个单独的GraphQL端点，迫使客户端团队手动协调多API调用和拼接响应。迁移到联邦后，之前需要7次API调用的单个工作室操作查询减少为1次联邦查询。模式变更协调时间从2周发布火车下降到具有自动组合检查的持续部署。",
+    "when_not_to_use": [
+      "Small teams with a single GraphQL service — federation introduces router infrastructure and composition tooling overhead that is not justified without multiple schema owners",
+      "Teams new to GraphQL — learn core GraphQL patterns (schema design, resolvers, N+1 with DataLoader) before adding federation complexity",
+      "Read-heavy APIs with simple, non-relational data where REST or tRPC is simpler to operate and reason about",
+      "Organizations without a schema registry discipline — federation without enforced schema governance leads to accidental breaking changes that damage client trust"
+    ],
+    "when_not_to_use_zh": [
+      "只有单一GraphQL服务的小团队——联邦引入了路由器基础设施和组合工具开销，在没有多个模式所有者的情况下不合理",
+      "GraphQL新手团队——在增加联邦复杂性之前，先学习核心GraphQL模式（模式设计、解析器、使用DataLoader的N+1）",
+      "具有简单非关系型数据的读密集型API，REST或tRPC更易于操作和推理",
+      "没有模式注册表规范的组织——没有强制模式治理的联邦会导致意外的破坏性变更，损害客户端信任"
+    ],
+    "primary_source": "Apollo Graph, Inc. (2019). \"Apollo Federation Specification\". apollographql.com/docs/federation/",
+    "primary_source_zh": "Apollo Graph公司（2019）。《Apollo联邦规范》。apollographql.com/docs/federation/",
+    "secondary_sources": [
+      "Bhatt, A. (2021). \"How Netflix Scaled their API with GraphQL Federation\". Netflix Technology Blog.",
+      "Betts, J. (2020). \"GraphQL Federation: Putting the Graph in GraphQL\". InfoQ."
+    ],
+    "secondary_sources_zh": [
+      "Bhatt, A.（2021）。《Netflix如何用GraphQL联邦扩展其API》。Netflix技术博客。",
+      "Betts, J.（2020）。《GraphQL联邦：将图放入GraphQL》。InfoQ。"
+    ]
   }
 ]

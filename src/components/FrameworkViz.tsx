@@ -40,27 +40,27 @@ function shortLabel(text: string, maxLen?: number): string {
   }
 }
 
-/* ── Color palette ── */
+/* ── Color palette (CSS variables for dark mode support) ── */
 
 const COLORS = {
-  bg: '#faf9f6',
-  border: '#e8e6e1',
-  fill1: '#f0ebe5',
-  fill2: '#e8e2d9',
-  fill3: '#d4cdc4',
-  accent: '#c4a882',
-  sage: '#8faa8f',
-  slate: '#8f9faa',
-  text: '#5a5046',
-  textMuted: '#8a7e74',
+  bg: 'var(--bg)',
+  border: 'var(--border)',
+  fill1: 'var(--viz-bg)',
+  fill2: 'var(--viz-node)',
+  fill3: 'var(--viz-line)',
+  accent: 'var(--viz-accent)',
+  sage: 'var(--viz-sage)',
+  slate: 'var(--viz-slate)',
+  text: 'var(--viz-text)',
+  textMuted: 'var(--muted)',
 }
 
 const PYRAMID_COLORS = [
-  '#d4cdc4', // top - darkest
-  '#ddd7ce',
-  '#e4dfd7',
-  '#ebe7e0',
-  '#f0ebe5', // bottom - lightest
+  'var(--viz-line)',    // top - darkest
+  'var(--viz-node)',
+  'var(--viz-bg)',
+  'var(--surface)',
+  'var(--bg)',          // bottom - lightest
 ]
 
 /* ── Labeled renderers (size >= 200 with labels) ── */
@@ -360,16 +360,16 @@ function LabeledTimeline({ labels, size }: { labels: string[]; size: number }) {
 /* ── Generic (small / decorative) SVG renderers ── */
 
 const PALETTE = {
-  border: '#e8e6e1',
-  borderLight: '#f0eeea',
-  warmGray1: '#f5f3ef',
-  warmGray2: '#ede9e3',
-  warmGray3: '#e2ddd5',
-  warmGray4: '#d5cfc5',
-  warmGray5: '#c5bfb3',
-  warmWhite: '#faf9f6',
-  accent1: '#8b7e6a',
-  accent3: '#6a7a8b',
+  border: 'var(--border)',
+  borderLight: 'var(--surface)',
+  warmGray1: 'var(--bg)',
+  warmGray2: 'var(--viz-bg)',
+  warmGray3: 'var(--viz-node)',
+  warmGray4: 'var(--viz-line)',
+  warmGray5: 'var(--viz-accent)',
+  warmWhite: 'var(--bg)',
+  accent1: 'var(--viz-text)',
+  accent3: 'var(--viz-slate)',
 }
 
 function GenericFlow() {
