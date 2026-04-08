@@ -134,6 +134,46 @@
 ### Sprint S44: Site Completeness — Sitemap, Print, SW Cache [DONE 2026-04-08]
 ### Sprint S45: Google Analytics + SEO Structured Data [DONE 2026-04-08]
 ### Sprint S46: Selector Page Redesign — All-at-Once Filters [DONE 2026-04-08]
+
+### Sprint S47: Data Expansion to 300+ Frameworks [READY]
+**Priority**: Medium (content growth)
+**Contract**: 300+ total frameworks (currently 239, need +62). All with full 39-field content, bilingual. All consumer pages verified.
+**Plan**:
+- Wave 1 (5 subagents, 40 frameworks): api+5, data+5, security+5, distributed+5, observability+5, evolution+3, thinking+3, architecture+3, quality+3, coding+3
+- Wave 2 (3 subagents, 22 frameworks): team+5, ai+5, deployment+5, remaining+7
+- IDs: 240-301
+- Max 5 concurrent subagents, max 8 frameworks per agent
+- Use sonnet model for content generation
+**Post-generation**:
+- [ ] Run `node scripts/generate-stubs.js` to regenerate listing stubs
+- [ ] Run `node scripts/generate-sitemap.js` to update sitemap
+- [ ] Validate all JSON with python (enum fields: viz_type, complexity, abstraction_level, maturity_ring, quality_concerns)
+- [ ] Run `npm run build` — must pass
+- [ ] Run `npx playwright test` — all tests must pass
+- [ ] Verify homepage shows all new frameworks
+- [ ] Verify map shows correct node count
+- [ ] Verify insights page stats updated
+- [ ] Gate 5: CI green after push
+**Frameworks to add (Wave 1)**:
+```
+api: API Versioning Strategies, REST Maturity Model, API Security Patterns, Event-Driven API Design, API Composition Pattern
+data: Data Mesh, Change Data Capture (CDC), Data Lakehouse, Slowly Changing Dimensions, Data Quality Framework
+security: Security Development Lifecycle (SDL), NIST Cybersecurity Framework, DevSecOps Pipeline, Data Loss Prevention (DLP), Incident Response Framework
+distributed: Raft Consensus, CRDTs, Gossip Protocol, Service Discovery, Sidecar Pattern
+observability: Observability-as-Code, Service Level Indicators, Synthetic Monitoring, Log Aggregation Patterns, Canary Analysis
+evolution: Fitness Function-Driven Development, Expansion/Contraction Pattern, Architecture Decision Records (Y-Statements)
+thinking: Occam's Razor in Design, Architectural Kata, Theory of Constraints (TOC)
+architecture: Architecture Fitness Functions, Cell-Based Architecture, Strangler Fig for Frontends
+quality: Continuous Testing, Visual Regression Testing, Contract Testing (Pact)
+coding: Strangler Fig at Code Level, Feature Slicing, Specification Pattern
+```
+**Frameworks to add (Wave 2)**:
+```
+team: Engineering Effectiveness, Developer Onboarding Framework, Technical Mentorship Program, Architecture Guild, Decision Log Practice
+ai: AI Gateway Pattern, Prompt Caching Strategies, Multimodal Pipeline Design, AI Cost Optimization, Evaluation-Driven Development
+deployment: Progressive Delivery, GitOps, Feature Environment, Deployment Stamps, Infrastructure as Code Maturity Model
+```
+**Estimate**: Large (parallel agents needed)
 **Contract**: Compare page shows radar chart overlay for 2-3 frameworks, 6 curated comparison suggestions on empty state, diff highlighting in table. 51 E2E tests pass.
 **Tasks**:
 - [x] Add Recharts RadarChart comparing frameworks on 5 dimensions (complexity, abstraction, maturity, quality breadth, adoption)
