@@ -3,13 +3,16 @@ import { Link, Outlet } from 'react-router-dom'
 import LanguageSwitcher from './LanguageSwitcher'
 import KeyboardHelp from './KeyboardHelp'
 import BackToTop from './BackToTop'
+import MobileNav from './MobileNav'
 import { useI18n } from '../i18n'
 import { useTheme } from '../hooks/useTheme'
+import { useScrollToTop } from '../hooks/useScrollToTop'
 import styles from './Layout.module.css'
 
 export default function Layout() {
   const { t } = useI18n()
   const { theme, toggle } = useTheme()
+  useScrollToTop()
   const [showHelp, setShowHelp] = useState(false)
 
   useEffect(() => {
@@ -93,6 +96,7 @@ export default function Layout() {
           </div>
         </div>
       </footer>
+      <MobileNav />
       <BackToTop />
       <KeyboardHelp visible={showHelp} onClose={() => setShowHelp(false)} />
     </div>
