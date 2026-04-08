@@ -363,8 +363,8 @@ function LabeledTree({ labels }: { labels: string[] }) {
       </div>
       {/* Connector lines children -> leaves */}
       <svg className={styles.treeSvgLines} viewBox="0 0 200 24" preserveAspectRatio="none">
-        <line x1="60" y1="0" x2="40" y2="24" stroke={COLORS.fill3} strokeWidth="1.5" />
-        <line x1="60" y1="0" x2="80" y2="24" stroke={COLORS.fill3} strokeWidth="1.5" />
+        <line x1="60" y1="0" x2="60" y2="24" stroke={COLORS.fill3} strokeWidth="1.5" />
+        <line x1="140" y1="0" x2="140" y2="24" stroke={COLORS.fill3} strokeWidth="1.5" />
       </svg>
       {/* Leaves */}
       <div className={styles.treeLevel}>
