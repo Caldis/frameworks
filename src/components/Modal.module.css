@@ -21,14 +21,24 @@
 }
 
 @keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.overlayClosing {
+  animation: fadeOut 200ms ease-out forwards;
+}
+
+.modalClosing {
+  animation: slideDown 200ms ease-out forwards;
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; }
+}
+
+@keyframes slideDown {
+  to { transform: translateY(20px); opacity: 0; }
 }
 
 .close {

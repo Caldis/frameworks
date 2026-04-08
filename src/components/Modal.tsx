@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import type { Framework } from '../types'
 import { getCategoryByKey, catColorVar } from '../data/categories'
@@ -31,6 +31,15 @@ export default function Modal({
 }: ModalProps) {
   const { locale, t, localized } = useI18n()
   const [showHint, setShowHint] = useState(false)
+  const [closing, setClosing] = useState(false)
+
+  const handleClose = useCallback(() => {
+    setClosing(true)
+    setTimeout(onClose, 200)
+  }, [onClose])
+
+  // Reset closing state when framework changes
+  useEffect(() => { setClosing(false) }, [framework])
 
   // Touch swipe handling
   const touchStartX = useRef(0)
@@ -60,14 +69,14 @@ export default function Modal({
     if (!framework) return
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
+      if (e.key === 'Escape') handleClose()
       if (e.key === 'ArrowLeft' && hasPrev) onPrev()
       if (e.key === 'ArrowRight' && hasNext) onNext()
     }
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [framework, onClose, onPrev, onNext, hasPrev, hasNext])
+  }, [framework, handleClose, onPrev, onNext, hasPrev, hasNext])
 
   if (!framework) return null
 
@@ -76,9 +85,9 @@ export default function Modal({
   const steps = locale === 'en' ? framework.steps : framework.steps_zh
 
   return (
-    <div className={styles.overlay} onClick={onClose}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-        <button className={styles.close} onClick={onClose}>
+    <div className={`${styles.overlay} ${closing ? styles.overlayClosing : ''}`} onClick={handleClose}>
+      <div className={`${styles.modal} ${closing ? styles.modalClosing : ''}`} onClick={(e) => e.stopPropagation()} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+        <button className={styles.close} onClick={handleClose}>
           &times;
         </button>
         <div className={styles.content}>

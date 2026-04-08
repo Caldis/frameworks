@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { getFrameworkBySlug, getFrameworksByCategory, getRelatedFrameworks, getTypedRelations, getSimilarFrameworks } from '../data/loader'
 import { getCategoryByKey, catColorVar } from '../data/categories'
@@ -14,6 +15,17 @@ export default function FrameworkPage() {
   const { locale, t, localized } = useI18n()
   const framework = slug ? getFrameworkBySlug(slug) : undefined
   const { framework: fullFramework } = useFrameworkDetail(slug)
+
+  // Scroll progress
+  const [progress, setProgress] = useState(0)
+  useEffect(() => {
+    const onScroll = () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight
+      setProgress(h > 0 ? Math.min(window.scrollY / h, 1) : 0)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   usePageMeta(
     framework ? localized(framework, 'name') : 'Framework Not Found',
@@ -73,6 +85,11 @@ export default function FrameworkPage() {
 
   return (
     <div className={styles.page}>
+      {/* Scroll progress bar */}
+      <div className={styles.progressTrack}>
+        <div className={styles.progressBar} style={{ transform: `scaleX(${progress})` }} />
+      </div>
+
       {/* ── 1. Hero Section ── */}
       <nav className={styles.breadcrumb}>
         <Link to="/">{t.allFrameworks}</Link>

@@ -4,6 +4,24 @@
   padding: 32px 0;
 }
 
+/* ── Scroll progress ── */
+.progressTrack {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 50;
+  background: transparent;
+}
+
+.progressBar {
+  height: 100%;
+  background: var(--viz-accent);
+  transform-origin: left;
+  will-change: transform;
+}
+
 /* ── Breadcrumb ── */
 
 .breadcrumb {

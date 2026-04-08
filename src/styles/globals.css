@@ -65,6 +65,11 @@
   --map-col-tint: rgba(255,255,255,0.02);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* Theme transition — smooth dark/light switch */
+html[data-theme] body,
+html[data-theme] body * {
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
 html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   font-family: var(--font-sans);
