@@ -99,11 +99,17 @@ START
   │
   ├─ 6. SHIP
   │   ├─ git commit + push
-  │   ├─ Verify deployment succeeds
-  │   ├─ Update PROJECT_STATE.md
+  │   ├─ **Gate 5: CI Verification** (MANDATORY — added after S30-S42 CI blind spot)
+  │   │   ├─ Run `gh run list --limit 1` to check CI status
+  │   │   ├─ If CI fails: diagnose with `gh run view <id> --log-failed`, fix, push, re-check
+  │   │   ├─ **NEVER proceed to next sprint with red CI** — fix first
+  │   │   ├─ CI must be green before reporting delivery to user
+  │   │   └─ Root cause: S30 scrollbar CSS change broke CI for 13 consecutive commits undetected
+  │   ├─ Verify deployment succeeds (CI green = deployed)
+  │   ├─ Update PROJECT_STATE.md (every 3 sprints max)
   │   ├─ Write retrospective
   │   ├─ Push united-memory (every sprint, not just major milestones)
-  │   └─ **Report to user**: current sprint deliverables + KP progress + next sprint plan
+  │   └─ **Report to user**: current sprint deliverables + next sprint plan
 END
 
 **Mandatory report format after every sprint:**
@@ -200,6 +206,9 @@ If you see ANY of these, stop and fix before committing. Don't log as "debt for 
 - **Don't skip CJK font stacks** — System serif fallback looks broken. Always include Noto SC in font declarations.
 - **Don't hardcode data lists** — Map hardcoded 7 categories; when S02 added 6 more, it silently broke. Always import from the single source of truth.
 - **Don't add data without testing display** — When categories/frameworks are added, verify ALL consumer pages (home, map, compare, category) reflect the new data. "Build passes" ≠ "data is displayed." (Lesson: Map bug hid for 5 sprints because no test checked node count vs category count.)
+- **Don't skip CI verification after push** — Always run `gh run list --limit 1` after push and confirm CI is green before proceeding. (Lesson: S30-S42, 13 consecutive red CI commits went unnoticed because CI was never checked.)
+- **Don't mix `::-webkit-scrollbar` with `scrollbar-width`** — Chrome 121+ standard property overrides webkit pseudo-elements. Use only `scrollbar-width: thin; scrollbar-color:`.
+- **Don't use React onWheel for scroll interception** — React synthetic events are passive; `preventDefault()` is silently ignored. Use native `addEventListener('wheel', handler, { passive: false })`.
 
 ## Assumptions to Re-Test
 
