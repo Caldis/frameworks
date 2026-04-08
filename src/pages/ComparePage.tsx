@@ -6,6 +6,7 @@ import { categories } from '../data/categories'
 import { useI18n } from '../i18n'
 import { usePageMeta } from '../hooks/usePageMeta'
 import type { Framework, CategoryKey } from '../types'
+import FrameworkPicker from '../components/FrameworkPicker'
 import styles from './ComparePage.module.css'
 
 const MAX_SLOTS = 3
@@ -276,31 +277,14 @@ export default function ComparePage() {
 
       <div className={styles.selectors}>
         {Array.from({ length: slotCount }, (_, i) => (
-          <div key={i} className={styles.selector}>
-            <select
-              className={styles.select}
-              value={selected[i] ?? ''}
-              onChange={e => handleSelect(i, e.target.value)}
-            >
-              <option value="">{t.compareSelect}</option>
-              {Array.from(grouped.entries()).map(([catKey, fws]) => {
-                const cat = categories.find(c => c.key === catKey)!
-                const label = locale === 'en' ? cat.name : cat.name_zh
-                return (
-                  <optgroup key={catKey} label={label}>
-                    {fws.map(fw => {
-                      const isSelectedElsewhere = selected.includes(fw.slug) && selected[i] !== fw.slug
-                      return (
-                        <option key={fw.slug} value={fw.slug} disabled={isSelectedElsewhere}>
-                          {localized(fw, 'name')}
-                        </option>
-                      )
-                    })}
-                  </optgroup>
-                )
-              })}
-            </select>
-          </div>
+          <FrameworkPicker
+            key={i}
+            frameworks={allFrameworks}
+            value={selected[i] ?? ''}
+            onChange={slug => handleSelect(i, slug)}
+            disabledSlugs={selected.filter((_, j) => j !== i)}
+            placeholder={t.compareSelect}
+          />
         ))}
         {selected.length > 0 && (
           <button className={styles.clearBtn} onClick={handleClear}>
