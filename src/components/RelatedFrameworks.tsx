@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import type { Framework } from '../types'
 import type { TypedRelation, RelationType } from '../types'
@@ -25,8 +26,24 @@ export default function RelatedFrameworks({ frameworks, typedRelations }: Relate
     ? Object.fromEntries(typedRelations.map(r => [r.slug, r.type]))
     : {}
 
+  // Wheel → horizontal scroll, stop propagation to modal/page
+  const rowRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const el = rowRef.current
+    if (!el) return
+    const handler = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault()
+        e.stopPropagation()
+        el.scrollLeft += e.deltaY
+      }
+    }
+    el.addEventListener('wheel', handler, { passive: false })
+    return () => el.removeEventListener('wheel', handler)
+  }, [])
+
   return (
-    <div className={styles.row}>
+    <div className={styles.row} ref={rowRef}>
       {frameworks.map((fw) => {
         const category = getCategoryByKey(fw.category)
         const relType = typeMap[fw.slug] as RelationType | undefined

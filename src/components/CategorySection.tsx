@@ -92,6 +92,9 @@ export default function CategorySection({
             }
           </button>
         )}
+        <Link to={`/category/${category.slug}`} className={styles.catPageLink}>
+          {locale === 'en' ? 'View category →' : '查看分类 →'}
+        </Link>
       </div>
 
       {/* Scroll area */}

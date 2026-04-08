@@ -126,7 +126,7 @@ export default function FrameworkPage() {
 
       <div className={styles.number}>{formattedNumber}</div>
       <h1 className={styles.title}>{localized(framework, 'name')}</h1>
-      <div className={styles.subtitle}>{subtitle}</div>
+      {locale === 'zh' && <div className={styles.subtitle}>{framework.name}</div>}
 
       <div className={styles.metaBadges}>
         {framework.origin_author && (
@@ -168,7 +168,6 @@ export default function FrameworkPage() {
 
       {/* Description */}
       <p className={styles.desc}>{localized(framework, 'desc')}</p>
-      <p className={styles.descAlt}>{locale === 'en' ? framework.desc_zh : framework.desc}</p>
 
       {/* ── Sticky Navigation Bar ── */}
       <div className={styles.stickyNav}>

@@ -7,7 +7,6 @@ import { useSearch } from '../hooks/useSearch'
 import { useFavorites } from '../hooks/useFavorites'
 import { useKeyboard } from '../hooks/useKeyboard'
 import { usePageMeta } from '../hooks/usePageMeta'
-import { useCountUp } from '../hooks/useCountUp'
 import { useI18n } from '../i18n'
 import SearchBar from '../components/SearchBar'
 import CategoryFilter from '../components/CategoryFilter'
@@ -139,13 +138,6 @@ export default function HomePage() {
         >
           {t.inspiredBy}
         </a>
-        <div className={styles.heroStats}>
-          <span className={styles.heroStat}>{useCountUp(allFrameworks.length)} {t.all === 'All' ? 'frameworks' : '个框架'}</span>
-          <span className={styles.heroStatSep}>·</span>
-          <span className={styles.heroStat}>{useCountUp(categories.length, 800)} {t.all === 'All' ? 'categories' : '个分类'}</span>
-          <span className={styles.heroStatSep}>·</span>
-          <span className={styles.heroStat}>EN/中</span>
-        </div>
       </div>
 
       {/* Sticky controls bar */}
