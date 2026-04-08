@@ -1,24 +1,23 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('Framework Selector', () => {
-  test('selector wizard narrows results', async ({ page }) => {
+  test('selector filters narrow results', async ({ page }) => {
     await page.goto('/selector')
     await expect(page.locator('h1')).toBeVisible()
-    // Step 1: click a category option
-    const firstOption = page.locator('[class*="option"]').first()
-    await firstOption.click()
-    // Click Next
-    const nextBtn = page.locator('button').filter({ hasText: /Next|下一步/ })
-    await nextBtn.click()
-    // Should be on step 2
-    await expect(page.locator('text=/Step 2|第 2 步/')).toBeVisible()
+    // Click a category chip to filter
+    const chip = page.locator('[class*="chip"]').first()
+    await chip.click()
+    // Result count should be visible in the banner
+    const count = page.locator('[class*="resultCount"]')
+    await expect(count).toBeVisible()
+    // Reset button should appear
+    await expect(page.locator('button').filter({ hasText: /Start Over|重新开始/ })).toBeVisible()
   })
 
-  test('selector shows results count', async ({ page }) => {
+  test('selector shows result count', async ({ page }) => {
     await page.goto('/selector')
-    // Results count should show total initially (in the results panel)
-    await expect(page.locator('[class*="resultsCount"]')).toBeVisible()
-    const text = await page.locator('[class*="resultsCount"]').textContent()
-    expect(text).toMatch(/\d+ frameworks match|\d+ 个框架符合/)
+    // Live result count in banner
+    const count = page.locator('[class*="resultCount"]')
+    await expect(count).toBeVisible()
   })
 })
