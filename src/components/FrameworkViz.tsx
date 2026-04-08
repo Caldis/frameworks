@@ -16,18 +16,27 @@ function isChinese(text: string): boolean {
   return /[\u4e00-\u9fff]/.test(text)
 }
 
-function shortLabel(text: string): string {
+function shortLabel(text: string, maxLen?: number): string {
   const zh = isChinese(text)
   // Take text before colon if present
   const colonIdx = text.indexOf(zh ? '：' : ':')
-  let phrase = colonIdx > 0 && colonIdx <= 10 ? text.slice(0, colonIdx).trim() : text
+  let phrase = colonIdx > 0 && colonIdx <= (zh ? 12 : 20) ? text.slice(0, colonIdx).trim() : text
   if (zh) {
-    // Chinese: max 5 chars, no ellipsis
-    return phrase.length > 5 ? phrase.slice(0, 5) : phrase
+    const limit = maxLen ?? 6
+    if (phrase.length <= limit) return phrase
+    // Truncate at even boundary to preserve 2-char compound words
+    const truncLen = limit % 2 === 0 ? limit : limit - 1
+    return phrase.slice(0, truncLen)
   } else {
-    // English: first word only, max 10 chars, no ellipsis
-    const firstWord = phrase.split(/\s+/)[0]
-    return firstWord.length > 10 ? firstWord.slice(0, 10) : firstWord
+    const limit = maxLen ?? 12
+    if (phrase.length <= limit) return phrase
+    // Try first two words for better readability
+    const words = phrase.split(/\s+/)
+    const twoWords = words.slice(0, 2).join(' ')
+    if (twoWords.length <= limit) return twoWords
+    // Fall back to first word
+    const firstWord = words[0]
+    return firstWord.length > limit ? firstWord.slice(0, limit) : firstWord
   }
 }
 

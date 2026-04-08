@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 
 /**
- * Adds a 'visible' class to children as they enter the viewport.
- * Returns a ref to attach to the container element.
+ * Adds 'fade-visible' class to [data-fade] children as they enter the viewport.
+ * Uses MutationObserver to pick up dynamically rendered sections (e.g. async data).
  */
 export function useFadeIn<T extends HTMLElement>() {
   const ref = useRef<T>(null)
@@ -11,22 +11,37 @@ export function useFadeIn<T extends HTMLElement>() {
     const el = ref.current
     if (!el) return
 
-    const observer = new IntersectionObserver(
+    const io = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('fade-visible')
-            observer.unobserve(entry.target)
+            io.unobserve(entry.target)
           }
         })
       },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.1 }
     )
 
-    // Observe all direct children with data-fade attribute
-    el.querySelectorAll('[data-fade]').forEach(child => observer.observe(child))
+    const observeNew = () => {
+      el.querySelectorAll('[data-fade]').forEach(child => {
+        if (!child.classList.contains('fade-visible')) {
+          io.observe(child)
+        }
+      })
+    }
 
-    return () => observer.disconnect()
+    // Observe existing elements
+    observeNew()
+
+    // Watch for dynamically added [data-fade] elements (async data loading)
+    const mo = new MutationObserver(observeNew)
+    mo.observe(el, { childList: true, subtree: true })
+
+    return () => {
+      io.disconnect()
+      mo.disconnect()
+    }
   }, [])
 
   return ref

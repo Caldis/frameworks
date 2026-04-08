@@ -20,7 +20,7 @@ import styles from './HomePage.module.css'
 
 export default function HomePage() {
   const { t } = useI18n()
-  usePageMeta('Software Design Frameworks', '194 curated frameworks for engineers, architects, and AI agents')
+  usePageMeta('Software Design Frameworks', 'Curated frameworks for engineers, architects, and AI agents')
   const [activeCategory, setActiveCategory] = useState<CategoryKey | null>(null)
   const [modalIndex, setModalIndex] = useState<number | null>(null)
   const [showAdvanced, setShowAdvanced] = useState(false)

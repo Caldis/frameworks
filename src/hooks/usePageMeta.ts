@@ -3,7 +3,14 @@ import { useLocation } from 'react-router-dom'
 
 const BASE_URL = 'https://sdframe.caldis.me'
 
-export function usePageMeta(title: string, description?: string) {
+interface StructuredData {
+  type: 'Article' | 'WebPage'
+  name: string
+  author?: string
+  datePublished?: string
+}
+
+export function usePageMeta(title: string, description?: string, structured?: StructuredData) {
   const { pathname } = useLocation()
 
   useEffect(() => {
@@ -40,6 +47,34 @@ export function usePageMeta(title: string, description?: string) {
     const ogUrl = document.querySelector('meta[property="og:url"]') as HTMLMetaElement
     if (ogUrl) ogUrl.content = BASE_URL + pathname
 
-    return () => { document.title = prev }
-  }, [title, description, pathname])
+    // JSON-LD structured data
+    let ldScript = document.querySelector('script[data-page-ld]') as HTMLScriptElement
+    if (structured) {
+      if (!ldScript) {
+        ldScript = document.createElement('script')
+        ldScript.type = 'application/ld+json'
+        ldScript.setAttribute('data-page-ld', '')
+        document.head.appendChild(ldScript)
+      }
+      ldScript.textContent = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': structured.type,
+        name: structured.name,
+        headline: title,
+        description: description || '',
+        url: BASE_URL + pathname,
+        ...(structured.author ? { author: { '@type': 'Person', name: structured.author } } : {}),
+        ...(structured.datePublished ? { datePublished: structured.datePublished } : {}),
+        isPartOf: { '@type': 'WebSite', name: 'SDFrame', url: BASE_URL },
+      })
+    } else if (ldScript) {
+      ldScript.remove()
+    }
+
+    return () => {
+      document.title = prev
+      const ld = document.querySelector('script[data-page-ld]')
+      if (ld) ld.remove()
+    }
+  }, [title, description, pathname, structured])
 }

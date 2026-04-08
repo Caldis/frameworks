@@ -33,7 +33,8 @@ export default function FrameworkPage() {
 
   usePageMeta(
     framework ? localized(framework, 'name') : 'Framework Not Found',
-    framework ? localized(framework, 'desc') : undefined
+    framework ? localized(framework, 'desc') : undefined,
+    framework ? { type: 'Article', name: framework.name, author: framework.origin_author } : undefined
   )
 
   if (!framework) {
