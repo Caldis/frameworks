@@ -2686,5 +2686,879 @@
         "type": "related"
       }
     ]
+  },
+  {
+    "id": 264,
+    "name": "Raft Consensus Algorithm",
+    "name_zh": "Raft 共识算法",
+    "slug": "raft-consensus",
+    "category": "distributed",
+    "desc": "Understandable consensus protocol using leader election and log replication to achieve fault-tolerant distributed agreement",
+    "desc_zh": "通过领导者选举和日志复制实现容错分布式一致性的可理解共识协议",
+    "steps": [
+      "Partition time into terms: each term begins with a leader election triggered by follower timeout; terms act as logical clocks that prevent stale commands from being accepted",
+      "Elect a leader via randomized timeouts: followers wait a random interval before requesting votes; the first candidate to reach a majority quorum becomes leader for the term",
+      "Replicate log entries through AppendEntries RPCs: the leader appends a client command to its own log, then broadcasts AppendEntries to all followers and waits for majority acknowledgment",
+      "Commit entries once a quorum responds: when a majority of nodes have written the entry to stable storage, the leader marks it committed, applies it to the state machine, and responds to the client",
+      "Handle crashes and rejoin with log reconciliation: when a crashed node restarts or a new leader is elected, the leader backtracks its nextIndex for each follower until their logs align, then streams missing entries forward"
+    ],
+    "steps_zh": [
+      "将时间划分为任期：每个任期以跟随者超时触发的领导者选举开始；任期作为逻辑时钟，防止过期命令被接受",
+      "通过随机超时选举领导者：跟随者等待一个随机间隔后请求投票；第一个获得多数派的候选人成为该任期的领导者",
+      "通过 AppendEntries RPC 复制日志条目：领导者将客户端命令追加到自身日志，然后广播 AppendEntries 给所有跟随者，等待多数派确认",
+      "获得法定人数响应后提交条目：当多数节点将条目写入稳定存储后，领导者标记其为已提交，应用到状态机并响应客户端",
+      "通过日志对账处理崩溃和重新加入：当崩溃节点重启或新领导者选出时，领导者为每个跟随者回溯 nextIndex 直至日志对齐，然后向前传输缺失条目"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "consensus-protocols",
+      "leader-election",
+      "two-phase-commit",
+      "eventual-consistency"
+    ],
+    "tags": [
+      "consensus",
+      "raft",
+      "leader-election",
+      "log-replication",
+      "fault-tolerance"
+    ],
+    "origin_author": "Diego Ongaro",
+    "origin_source": "Ongaro, D. & Ousterhout, J. (2014). In Search of an Understandable Consensus Algorithm. USENIX ATC 2014; Ongaro, D. (2014). Consensus: Bridging Theory and Practice. Stanford PhD dissertation.",
+    "origin_source_zh": "Ongaro与Ousterhout（2014）《寻找一种可理解的共识算法》USENIX ATC 2014；Ongaro（2014）《共识：架桥理论与实践》斯坦福博士论文",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When building a replicated state machine that must tolerate minority node failures without data loss or split-brain",
+      "When implementing a distributed coordination service such as a configuration store, distributed lock, or cluster membership registry",
+      "When you need a consensus algorithm that your team can fully understand, audit, and implement correctly",
+      "When deploying a clustered database or message broker that requires automatic leader failover without manual operator intervention",
+      "When the write path can afford quorum latency and strong linearizability guarantees outweigh throughput maximization"
+    ],
+    "when_to_use_zh": [
+      "构建必须容忍少数节点故障且不丢失数据或产生脑裂的复制状态机时",
+      "实现配置存储、分布式锁或集群成员注册表等分布式协调服务时",
+      "需要团队能够完全理解、审计和正确实现的共识算法时",
+      "部署需要自动领导者故障转移、无需人工干预的集群数据库或消息代理时",
+      "写路径可以承受法定人数延迟且强线性一致性保证优先于吞吐量最大化时"
+    ],
+    "core_concepts": [
+      "Leader supremacy: only the current-term leader accepts client writes and replicates them; followers are read-only participants that redirect writes to the leader",
+      "Term monotonicity: every RPC carries a term number; nodes reject messages from lower terms and step down if they see a higher term, preventing stale leaders from corrupting state",
+      "Log matching property: if two logs contain an entry with the same index and term, then the logs are identical in all entries up to that index, enabling safe replication",
+      "Election safety: at most one leader can be elected per term because winning requires votes from a quorum that overlaps with any other potential quorum",
+      "Log compaction via snapshots: once logs grow too large, the state machine state is snapshotted, older log entries are discarded, and lagging followers receive snapshots instead of full log replay"
+    ],
+    "core_concepts_zh": [
+      "领导者至上：只有当前任期的领导者接受客户端写入并复制它们；跟随者是只读参与者，将写入重定向到领导者",
+      "任期单调性：每个 RPC 携带任期号；节点拒绝来自更低任期的消息，若看到更高任期则降级，防止过期领导者破坏状态",
+      "日志匹配属性：若两个日志包含相同索引和任期的条目，则这两个日志在该索引之前的所有条目完全相同，保证安全复制",
+      "选举安全性：每个任期最多选出一个领导者，因为获胜需要来自法定人数的投票，该法定人数与任何其他潜在法定人数有交集",
+      "通过快照压缩日志：日志过大时，对状态机状态打快照，丢弃旧日志条目，落后的跟随者接收快照而非完整日志回放"
+    ],
+    "timeline": [
+      [
+        "2013",
+        "Diego Ongaro presents the initial Raft design at USENIX HotOS XIII as part of his Stanford PhD research"
+      ],
+      [
+        "2014",
+        "Ongaro and Ousterhout publish 'In Search of an Understandable Consensus Algorithm' at USENIX ATC, introducing Raft to the wider community"
+      ],
+      [
+        "2014",
+        "Ongaro completes his PhD dissertation 'Consensus: Bridging Theory and Practice', providing the comprehensive Raft specification"
+      ],
+      [
+        "2015",
+        "etcd, CoreOS's Raft-based key-value store, becomes the state store for Kubernetes, making Raft the de facto consensus backbone for cloud-native infrastructure"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2013",
+        "Diego Ongaro 在 USENIX HotOS XIII 上首次展示 Raft 设计，作为其斯坦福博士研究的一部分"
+      ],
+      [
+        "2014",
+        "Ongaro 与 Ousterhout 在 USENIX ATC 发表「寻找一种可理解的共识算法」，向更广泛的社区介绍 Raft"
+      ],
+      [
+        "2014",
+        "Ongaro 完成博士论文「共识：架桥理论与实践」，提供了完整的 Raft 规范"
+      ],
+      [
+        "2015",
+        "CoreOS 基于 Raft 的键值存储 etcd 成为 Kubernetes 的状态存储，使 Raft 成为云原生基础设施的事实共识骨干"
+      ]
+    ],
+    "dos": [
+      "Do use an odd number of nodes (3, 5, 7) to guarantee a clear majority quorum and avoid split-vote deadlocks",
+      "Do persist the current term, voted-for, and log entries to stable storage before responding to any RPC to ensure correct recovery after crashes",
+      "Do implement leader lease reads or linearizable read index to serve reads without additional log entries when read-heavy workloads dominate",
+      "Do monitor election frequency and leader stability because frequent elections indicate network instability or misconfigured heartbeat intervals"
+    ],
+    "dos_zh": [
+      "使用奇数个节点（3、5、7）以保证清晰的多数派法定人数，避免分裂投票死锁",
+      "在响应任何 RPC 之前将当前任期、已投票对象和日志条目持久化到稳定存储，确保崩溃后正确恢复",
+      "在读密集型工作负载为主时实现领导者租约读取或线性一致读取索引，无需额外日志条目即可服务读请求",
+      "监控选举频率和领导者稳定性，因为频繁选举表明网络不稳定或心跳间隔配置错误"
+    ],
+    "donts": [
+      "Don't run Raft clusters across wide-area networks without accounting for inter-datacenter latency because quorum writes block on the slowest acknowledgment in the majority",
+      "Don't skip log compaction implementation because unbounded log growth will exhaust disk and make follower recovery prohibitively slow",
+      "Don't assume Raft handles sharding or partitioning — it manages a single replicated log and must be combined with a shard routing layer for horizontal scale",
+      "Don't mix Raft cluster members across significantly different hardware because persistent storage speed differences create chronic follower lag"
+    ],
+    "donts_zh": [
+      "不要在不考虑数据中心间延迟的情况下跨广域网运行 Raft 集群，因为法定人数写入会阻塞在多数派中最慢的确认上",
+      "不要跳过日志压缩实现，因为无限日志增长会耗尽磁盘并使跟随者恢复变得极慢",
+      "不要假设 Raft 处理分片或分区——它管理单个复制日志，水平扩展必须结合分片路由层",
+      "不要将 Raft 集群成员混合在差异显著的硬件上，因为持久化存储速度差异会造成长期跟随者滞后"
+    ],
+    "case_study_company": "CockroachDB",
+    "case_study": "CockroachDB uses Raft at the core of its range-based replication model. Each key range (default 64 MB) is managed by a separate Raft group of three replicas. When a node fails, the Raft group for affected ranges elects a new leader and continues accepting writes within seconds, with no operator intervention. CockroachDB's engineers specifically chose Raft over Paxos because the algorithm's clean separation of leader election, log replication, and safety invariants made it tractable to implement correctly in a production database — a decision validated by successfully passing Jepsen distributed systems testing.",
+    "case_study_zh": "CockroachDB 在其基于范围的复制模型核心使用 Raft。每个键范围（默认 64 MB）由一个独立的三副本 Raft 组管理。当节点故障时，受影响范围的 Raft 组在几秒内选出新领导者并继续接受写入，无需运维干预。CockroachDB 的工程师特别选择 Raft 而非 Paxos，因为算法对领导者选举、日志复制和安全不变量的清晰分离使其在生产数据库中正确实现成为可能——这一决定通过了 Jepsen 分布式系统测试得到验证。",
+    "when_not_to_use": [
+      "High-throughput write-heavy workloads where quorum latency per write is unacceptable and eventual consistency suffices",
+      "Geographically distributed multi-region deployments where cross-region quorum writes introduce hundreds of milliseconds of latency",
+      "Single-node embedded systems or applications with no replication requirement where consensus overhead is pure waste"
+    ],
+    "when_not_to_use_zh": [
+      "每次写入的法定人数延迟不可接受且最终一致性已足够的高吞吐写密集型工作负载",
+      "跨区域法定人数写入引入数百毫秒延迟的地理分布式多区域部署",
+      "没有复制需求的单节点嵌入式系统或应用，共识开销纯属浪费"
+    ],
+    "adopters": [
+      "CockroachDB",
+      "etcd/Kubernetes",
+      "TiKV/TiDB",
+      "Consul (HashiCorp)",
+      "Dgraph"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "scalability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Ongaro, D. & Ousterhout, J. (2014). \"In Search of an Understandable Consensus Algorithm\". Proceedings of USENIX ATC 2014.",
+    "secondary_sources": [
+      "Ongaro, D. (2014). \"Consensus: Bridging Theory and Practice\". Stanford University PhD Dissertation.",
+      "Howard, H., Schwarzkopf, M., Madhavapeddy, A. & Crowcroft, J. (2016). \"Flexible Paxos: Quorum Intersection Revisited\". arXiv:1608.06696.",
+      "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 9. O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "consensus-protocols",
+        "type": "alternative"
+      },
+      {
+        "slug": "leader-election",
+        "type": "complement"
+      },
+      {
+        "slug": "two-phase-commit",
+        "type": "alternative"
+      }
+    ]
+  },
+  {
+    "id": 265,
+    "name": "CRDTs (Conflict-free Replicated Data Types)",
+    "name_zh": "无冲突复制数据类型（CRDT）",
+    "slug": "crdts",
+    "category": "distributed",
+    "desc": "Eventual consistency without coordination using algebraic data structures that merge automatically",
+    "desc_zh": "使用可自动合并的代数数据结构实现无需协调的最终一致性",
+    "steps": [
+      "Identify data types that require multi-writer concurrent updates: shopping carts, collaborative text, counters, presence sets, or configuration flags under concurrent modification",
+      "Choose the appropriate CRDT variant: G-Counter for monotone increments, PN-Counter for increment/decrement, OR-Set for add-wins semantics, or sequence CRDTs (RGA, LSEQ) for ordered text",
+      "Implement the merge function: define a join operation that is commutative, associative, and idempotent so any two replicas converge to the same state regardless of message order or duplicates",
+      "Propagate state or operations: use state-based CRDTs that gossip full state snapshots or operation-based CRDTs that broadcast individual ops over a reliable causal delivery channel",
+      "Monitor divergence and convergence: track vector clocks or version vectors to detect out-of-order delivery, measure replica lag, and validate that all nodes eventually reach the same state"
+    ],
+    "steps_zh": [
+      "识别需要多写入方并发更新的数据类型：购物车、协作文本、计数器、在线状态集合，或并发修改下的配置标志",
+      "选择适当的 CRDT 变体：G-Counter 用于单调递增，PN-Counter 用于增减操作，OR-Set 用于添加优先语义，序列 CRDT（RGA、LSEQ）用于有序文本",
+      "实现合并函数：定义满足交换律、结合律和幂等性的 join 操作，使任意两个副本无论消息顺序或重复如何都能收敛到相同状态",
+      "传播状态或操作：使用基于状态的 CRDT（gossip 完整状态快照）或基于操作的 CRDT（通过可靠因果传递通道广播单个操作）",
+      "监控分歧与收敛：追踪向量时钟或版本向量以检测乱序投递，衡量副本滞后，验证所有节点最终达到相同状态"
+    ],
+    "ai_relevant": false,
+    "viz_type": "matrix",
+    "related": [
+      "eventual-consistency",
+      "gossip-protocol",
+      "cap-theorem",
+      "consensus-protocols"
+    ],
+    "tags": [
+      "crdt",
+      "eventual-consistency",
+      "conflict-resolution",
+      "collaborative-editing",
+      "distributed-data"
+    ],
+    "origin_author": "Marc Shapiro",
+    "origin_source": "Shapiro, M., Preguica, N., Baquero, C. & Zawirski, M. (2011). A Comprehensive Study of Convergent and Commutative Replicated Data Types. INRIA Technical Report RR-7506.",
+    "origin_source_zh": "Shapiro等（2011）《收敛与交换复制数据类型综合研究》INRIA技术报告RR-7506",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When multiple nodes or users must write to the same data concurrently without requiring coordination or locks",
+      "When network partitions must not block writes — all nodes should accept mutations and merge later",
+      "When building collaborative real-time applications such as shared documents, multiplayer games, or distributed configuration stores",
+      "When the data type has a natural monotone lattice structure (counters, sets, maps, sequences) that maps cleanly to a CRDT variant",
+      "When you want to eliminate distributed transactions for specific data types and accept the constraints of the merge semantics"
+    ],
+    "when_to_use_zh": [
+      "当多个节点或用户必须并发写入同一数据而不需要协调或锁时",
+      "当网络分区不能阻塞写入——所有节点应接受变更并在之后合并时",
+      "构建协作实时应用（如共享文档、多人游戏或分布式配置存储）时",
+      "当数据类型具有自然单调格结构（计数器、集合、映射、序列），能干净地映射到 CRDT 变体时",
+      "当你希望为特定数据类型消除分布式事务并接受合并语义约束时"
+    ],
+    "core_concepts": [
+      "Lattice: A partially ordered set with a join (least upper bound) operation; CRDT state forms a lattice where the merge function computes the join of two states",
+      "Commutativity, associativity, idempotency (CAI): The three algebraic properties a merge function must satisfy to guarantee convergence regardless of message delivery order or duplication",
+      "State-based vs. operation-based: State-based (CvRDT) replicas exchange full snapshots and apply merge; operation-based (CmRDT) replicas broadcast operations that require exactly-once or causal delivery",
+      "Causal consistency: Operation-based CRDTs often rely on causal broadcast so that a remove operation is never applied before the add it references, preventing phantom deletions",
+      "Delta CRDTs: An optimization that propagates only the state delta since the last sync rather than the full state, dramatically reducing bandwidth for large state-based CRDTs"
+    ],
+    "core_concepts_zh": [
+      "格：具有 join（最小上界）操作的偏序集；CRDT 状态形成格，合并函数计算两个状态的 join",
+      "交换律、结合律、幂等性（CAI）：合并函数必须满足的三个代数属性，保证无论消息投递顺序或重复如何都能收敛",
+      "基于状态与基于操作：基于状态（CvRDT）副本交换完整快照并应用合并；基于操作（CmRDT）副本广播操作，需要恰好一次或因果投递",
+      "因果一致性：基于操作的 CRDT 通常依赖因果广播，确保删除操作永远不会在其引用的添加操作之前应用，防止幽灵删除",
+      "Delta CRDT：一种优化，只传播自上次同步以来的状态增量而非完整状态，大幅减少大型基于状态 CRDT 的带宽消耗"
+    ],
+    "timeline": [
+      [
+        "2007",
+        "Shapiro, Preguica, and colleagues begin formalizing the mathematical foundations of CRDTs at INRIA"
+      ],
+      [
+        "2011",
+        "Shapiro et al. publish the comprehensive CRDT survey (RR-7506), establishing the theoretical taxonomy of CvRDTs and CmRDTs"
+      ],
+      [
+        "2012",
+        "Basho adopts CRDTs in Riak 2.0 for counters, sets, and maps — the first major production database to ship built-in CRDT types"
+      ],
+      [
+        "2017",
+        "Apple's iCloud Notes, Figma's multiplayer canvas, and Notion all adopt CRDT-based synchronization for real-time collaborative editing"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2007",
+        "Shapiro、Preguica 及同事开始在 INRIA 形式化 CRDT 的数学基础"
+      ],
+      [
+        "2011",
+        "Shapiro 等发表全面的 CRDT 综述（RR-7506），建立 CvRDT 和 CmRDT 的理论分类体系"
+      ],
+      [
+        "2012",
+        "Basho 在 Riak 2.0 中为计数器、集合和映射采用 CRDT——第一个内置 CRDT 类型的主要生产数据库"
+      ],
+      [
+        "2017",
+        "Apple iCloud Notes、Figma 多人画布和 Notion 均采用基于 CRDT 的同步机制实现实时协作编辑"
+      ]
+    ],
+    "dos": [
+      "Do choose the semantics carefully before selecting a CRDT: add-wins vs. remove-wins sets have different user-visible behavior that must match your product requirements",
+      "Do use delta CRDTs for state-based designs in bandwidth-constrained environments to avoid sending full state snapshots on every sync",
+      "Do combine CRDTs with version vectors or hybrid logical clocks so you can track causality and detect stale state during reconciliation",
+      "Do test your merge function algebraically with property-based testing to verify commutativity, associativity, and idempotency for all inputs"
+    ],
+    "dos_zh": [
+      "在选择 CRDT 之前仔细选择语义：添加优先与删除优先集合有不同的用户可见行为，必须与产品需求匹配",
+      "在带宽受限环境中对基于状态的设计使用 Delta CRDT，避免每次同步都发送完整状态快照",
+      "将 CRDT 与版本向量或混合逻辑时钟结合，以便在协调期间追踪因果关系并检测过期状态",
+      "使用基于属性的测试对合并函数进行代数测试，验证所有输入的交换律、结合律和幂等性"
+    ],
+    "donts": [
+      "Don't use CRDTs for financial transactions or any domain requiring strict linearizability — CRDT semantics can silently merge conflicting writes in ways that violate business invariants",
+      "Don't ignore the garbage collection problem: OR-Sets and sequence CRDTs accumulate tombstones that must be periodically pruned to prevent unbounded memory growth",
+      "Don't assume operation-based CRDTs work correctly over unreliable transports — they require causal or exactly-once delivery; using them over UDP without ordering guarantees causes corruption",
+      "Don't hand-roll complex CRDTs in production without formal verification or an established library — subtle violations of the CAI properties cause hard-to-reproduce divergence bugs"
+    ],
+    "donts_zh": [
+      "不要将 CRDT 用于金融事务或任何需要严格线性一致性的领域——CRDT 语义可能以违反业务不变量的方式静默合并冲突写入",
+      "不要忽视垃圾回收问题：OR-Set 和序列 CRDT 会积累墓碑标记，必须定期清理以防止内存无限增长",
+      "不要假设基于操作的 CRDT 能在不可靠传输上正确工作——它们需要因果或恰好一次投递；在无序序保证的 UDP 上使用会导致数据损坏",
+      "不要在生产中手动实现复杂的 CRDT 而不进行形式化验证或使用成熟库——CAI 属性的细微违反会导致难以复现的分歧缺陷"
+    ],
+    "case_study_company": "Figma",
+    "case_study": "Figma's multiplayer editing engine uses CRDT-inspired data structures to allow dozens of designers to simultaneously edit the same file without locks or coordination. Each design object (frame, layer, property) is modeled as an independent CRDT — changes to position, color, and hierarchy are represented as operation logs that merge deterministically. When a user goes offline and edits a shared component, their changes are buffered locally and merged with the server state on reconnect without conflicts. This architecture allows Figma to support real-time collaboration across 50+ simultaneous cursors in a single file, a capability that would require complex distributed locking under traditional approaches.",
+    "case_study_zh": "Figma 的多人编辑引擎使用受 CRDT 启发的数据结构，允许数十名设计师无需锁或协调地同时编辑同一文件。每个设计对象（框架、图层、属性）被建模为独立的 CRDT——位置、颜色和层级的变更表示为可确定性合并的操作日志。用户离线编辑共享组件时，变更在本地缓冲，重新连接后与服务器状态无冲突合并。这一架构使 Figma 能在单个文件中支持 50+ 个同时在线光标的实时协作，而传统方式需要复杂的分布式锁。",
+    "when_not_to_use": [
+      "Financial systems, inventory management, or any domain where concurrent writes must respect strong business invariants that cannot be expressed as a lattice join",
+      "Simple single-writer or leader-replica architectures where coordination is cheap and CRDT complexity adds no benefit",
+      "Data with complex relational integrity constraints (foreign keys, uniqueness) that cannot be expressed as monotone lattice operations"
+    ],
+    "when_not_to_use_zh": [
+      "金融系统、库存管理或任何并发写入必须遵守无法表示为格 join 的强业务不变量的领域",
+      "简单的单写入方或领导者-副本架构，协调代价低廉且 CRDT 复杂性没有收益",
+      "具有复杂关系完整性约束（外键、唯一性）且无法表示为单调格操作的数据"
+    ],
+    "adopters": [
+      "Riak (Basho)",
+      "Figma",
+      "Apple iCloud",
+      "Redis Enterprise",
+      "SoundCloud (Roshi)"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability",
+      "scalability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Shapiro, M., Preguica, N., Baquero, C. & Zawirski, M. (2011). \"A Comprehensive Study of Convergent and Commutative Replicated Data Types\". INRIA Technical Report RR-7506.",
+    "secondary_sources": [
+      "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 5. O'Reilly Media.",
+      "Almeida, P.S., Shoker, A. & Baquero, C. (2016). \"Delta State Replicated Data Types\". Journal of Parallel and Distributed Computing, 111.",
+      "Nair, S. & Zawirski, M. (2015). \"An Introduction to Conflict-Free Replicated Data Types\". INRIA Research Report."
+    ],
+    "typed_relations": [
+      {
+        "slug": "eventual-consistency",
+        "type": "complement"
+      },
+      {
+        "slug": "gossip-protocol",
+        "type": "complement"
+      },
+      {
+        "slug": "consensus-protocols",
+        "type": "alternative"
+      }
+    ]
+  },
+  {
+    "id": 266,
+    "name": "Gossip Protocol",
+    "name_zh": "Gossip 协议",
+    "slug": "gossip-epidemic-protocol",
+    "category": "distributed",
+    "desc": "Epidemic-style information dissemination achieving reliable cluster-wide propagation without central coordination",
+    "desc_zh": "无需中央协调、以流行病方式实现可靠集群范围信息传播的协议",
+    "steps": [
+      "Define the message payload and propagation goal: determine what information each node must spread (membership updates, failure detections, configuration changes) and the convergence time target",
+      "Select a gossip variant: push gossip (sender initiates and pushes state to random peers), pull gossip (receiver queries random peers for their state), or push-pull (exchange in both directions per round)",
+      "Configure fanout and interval: choose the number of peers contacted per gossip round (fanout) and the interval between rounds; fanout of log(N) provides reliable propagation in O(log N) rounds",
+      "Implement failure detection integration: combine gossip with a SWIM-style failure detector that piggybacks liveness probes on gossip messages to spread node up/down status with low overhead",
+      "Add entropy reduction: use Merkle trees or digest-based comparison so nodes only exchange differing state, preventing redundant full-state transfers as cluster size grows"
+    ],
+    "steps_zh": [
+      "定义消息载荷和传播目标：确定每个节点必须传播的信息（成员更新、故障检测、配置变更）和收敛时间目标",
+      "选择 gossip 变体：推送 gossip（发送方主动将状态推送给随机对等节点），拉取 gossip（接收方查询随机对等节点的状态），或推拉（每轮双向交换）",
+      "配置扇出和间隔：选择每轮 gossip 联系的对等节点数（扇出）和轮次间隔；log(N) 的扇出可在 O(log N) 轮内可靠传播",
+      "集成故障检测：将 gossip 与 SWIM 风格的故障检测器结合，将活性探测搭载在 gossip 消息上传播节点上线/下线状态，开销极低",
+      "添加熵减少机制：使用 Merkle 树或基于摘要的比较，使节点只交换不同的状态，防止集群规模增长时产生冗余的全状态传输"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "eventual-consistency",
+      "crdts",
+      "service-discovery",
+      "consensus-protocols"
+    ],
+    "tags": [
+      "gossip",
+      "epidemic-protocol",
+      "decentralized",
+      "membership",
+      "failure-detection"
+    ],
+    "origin_author": "Alan Demers",
+    "origin_source": "Demers, A. et al. (1987). Epidemic Algorithms for Replicated Database Maintenance. Proceedings of PODC 1987; Das, A., Gupta, I. & Motivala, A. (2002). SWIM: Scalable Weakly-consistent Infection-style Process Group Membership Protocol. DSN 2002.",
+    "origin_source_zh": "Demers等（1987）《复制数据库维护的流行病算法》PODC 1987；Das等（2002）《SWIM：可扩展弱一致感染式进程组成员协议》DSN 2002",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When you need to propagate state or membership information across a large cluster without a central coordinator or single point of failure",
+      "When eventual consistency of metadata is acceptable and O(log N) convergence time is sufficient",
+      "When building a peer-to-peer overlay, distributed hash table, or service mesh that requires decentralized health and membership tracking",
+      "When the network topology is dynamic with frequent node joins and leaves and you need a self-healing propagation mechanism"
+    ],
+    "when_to_use_zh": [
+      "需要在大型集群中传播状态或成员信息而无需中央协调器或单点故障时",
+      "元数据的最终一致性可接受且 O(log N) 收敛时间足够时",
+      "构建需要去中心化健康和成员追踪的对等覆盖网络、分布式哈希表或服务网格时",
+      "网络拓扑动态变化、节点频繁加入和离开且需要自愈传播机制时"
+    ],
+    "core_concepts": [
+      "Epidemiological model: gossip borrows from SIR disease-spread models where nodes are Susceptible (haven't seen the message), Infected (spreading it), or Removed (stopped spreading after k rounds)",
+      "Convergence bound: with fanout f and N nodes, gossip reaches all nodes in O(log N / log f) rounds with high probability, making it highly scalable without central infrastructure",
+      "SWIM failure detector: Scalable Weakly-consistent Infection-style Membership uses gossip to disseminate node up/down events detected via direct and indirect pings, replacing expensive heartbeat floods",
+      "Anti-entropy gossip: periodic full-state comparison between random pairs to repair divergence not covered by incremental gossip, typically using Merkle trees for efficient delta detection",
+      "Rumor mongering vs. anti-entropy: rumor mongering spreads new updates quickly with low message count; anti-entropy repairs lingering divergence but requires more bandwidth per exchange"
+    ],
+    "core_concepts_zh": [
+      "流行病学模型：gossip 借鉴 SIR 疾病传播模型，节点处于易感（未见过消息）、感染（正在传播）或移除（传播 k 轮后停止）状态",
+      "收敛界：扇出 f 和 N 个节点时，gossip 以高概率在 O(log N / log f) 轮内到达所有节点，无需中央基础设施即可高度扩展",
+      "SWIM 故障检测器：可扩展弱一致感染式成员协议使用 gossip 传播通过直接和间接 ping 检测到的节点上线/下线事件，取代昂贵的心跳泛洪",
+      "反熵 gossip：随机对之间的定期全状态比较，修复增量 gossip 未覆盖的分歧，通常使用 Merkle 树进行高效增量检测",
+      "谣言传播与反熵：谣言传播以低消息数快速传播新更新；反熵修复持续存在的分歧，但每次交换需要更多带宽"
+    ],
+    "timeline": [
+      [
+        "1987",
+        "Alan Demers and colleagues at Xerox PARC publish 'Epidemic Algorithms for Replicated Database Maintenance', introducing the gossip dissemination model"
+      ],
+      [
+        "2002",
+        "Das, Gupta, and Motivala introduce SWIM at DSN 2002, combining gossip with efficient failure detection for large-scale membership protocols"
+      ],
+      [
+        "2007",
+        "Amazon Dynamo paper describes gossip-based membership and failure detection as core infrastructure for a planetary-scale key-value store"
+      ],
+      [
+        "2014",
+        "HashiCorp releases Serf, a standalone gossip-based membership and failure detection tool, making the pattern accessible as a library"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "1987",
+        "Alan Demers 及 Xerox PARC 同事发表「复制数据库维护的流行病算法」，引入 gossip 传播模型"
+      ],
+      [
+        "2002",
+        "Das、Gupta 和 Motivala 在 DSN 2002 发表 SWIM，将 gossip 与高效故障检测结合用于大规模成员协议"
+      ],
+      [
+        "2007",
+        "Amazon Dynamo 论文将基于 gossip 的成员和故障检测描述为行星规模键值存储的核心基础设施"
+      ],
+      [
+        "2014",
+        "HashiCorp 发布 Serf，一个独立的基于 gossip 的成员和故障检测工具，使该模式可作为库使用"
+      ]
+    ],
+    "dos": [
+      "Do tune fanout based on cluster size: use log(N) peers per round to balance convergence speed against message overhead, and increase fanout only when you need faster convergence",
+      "Do combine gossip with a consistent hash ring or ring topology so nodes have a stable peer list to gossip with even during churn",
+      "Do piggyback metadata on gossip messages (SWIM-style) to avoid separate heartbeat floods — this dramatically reduces per-node bandwidth consumption at scale",
+      "Do implement message deduplication and seen-message filtering using bloom filters or a bounded history buffer to prevent infinite message amplification"
+    ],
+    "dos_zh": [
+      "根据集群大小调整扇出：每轮使用 log(N) 个对等节点以平衡收敛速度和消息开销，只在需要更快收敛时才增加扇出",
+      "将 gossip 与一致性哈希环或环形拓扑结合，使节点在节点流动时仍有稳定的对等列表可供 gossip",
+      "在 gossip 消息上捎带元数据（SWIM 风格）以避免单独的心跳泛洪——这在规模上大幅减少每节点带宽消耗",
+      "使用布隆过滤器或有界历史缓冲区实现消息去重和已见消息过滤，防止无限消息放大"
+    ],
+    "donts": [
+      "Don't use gossip for data that requires strong consistency — gossip provides probabilistic dissemination with no delivery guarantee or ordering, only eventual convergence",
+      "Don't gossip large payloads: gossip is designed for small state deltas and membership vectors; large messages negate the bandwidth advantage over broadcast",
+      "Don't rely solely on gossip for failure detection in latency-sensitive paths — gossip convergence time means failure information may take multiple rounds to reach all nodes",
+      "Don't neglect network partitions in gossip-based systems — a partition creates two gossip islands that diverge silently; reconciliation must be handled explicitly on partition heal"
+    ],
+    "donts_zh": [
+      "不要将 gossip 用于需要强一致性的数据——gossip 提供概率性传播，没有投递保证或顺序保证，只有最终收敛",
+      "不要 gossip 大负载：gossip 为小状态增量和成员向量设计；大消息抵消了相对广播的带宽优势",
+      "不要仅依赖 gossip 进行延迟敏感路径的故障检测——gossip 收敛时间意味着故障信息可能需要多轮才能到达所有节点",
+      "不要忽视基于 gossip 的系统中的网络分区——分区会创建两个静默分歧的 gossip 孤岛；分区修复时必须显式处理协调"
+    ],
+    "case_study_company": "Apache Cassandra",
+    "case_study": "Apache Cassandra uses gossip as its primary mechanism for cluster membership, node health monitoring, and schema propagation. Every second, each node contacts up to three random peers to exchange endpoint state — including generation number, heartbeat version, load, schema version, and rack/datacenter topology. This gossip state is then used by the token ring to route requests correctly and by the hinted handoff system to detect which nodes are unavailable. When a new node bootstraps into a 1,000-node ring, it gossips its token ranges to a seed node, and that information propagates cluster-wide in approximately log(1000) ≈ 10 rounds — roughly 10 seconds — without any central registry.",
+    "case_study_zh": "Apache Cassandra 使用 gossip 作为集群成员、节点健康监控和模式传播的主要机制。每秒，每个节点联系最多三个随机对等节点交换端点状态——包括代号、心跳版本、负载、模式版本和机架/数据中心拓扑。这些 gossip 状态被令牌环用于正确路由请求，也被提示移交系统用于检测不可用节点。当新节点引导加入 1000 节点的环时，它将令牌范围 gossip 给种子节点，该信息在大约 log(1000) ≈ 10 轮（约 10 秒）内在集群范围内传播——无需任何中央注册表。",
+    "when_not_to_use": [
+      "When strong consistency or guaranteed delivery ordering is required — use consensus protocols or message queues with ordering guarantees instead",
+      "Very small clusters (fewer than 5 nodes) where the overhead of gossip exceeds the benefit and simple broadcast or direct notification is more efficient",
+      "Latency-critical control planes where failure detection must happen in milliseconds rather than gossip convergence time"
+    ],
+    "when_not_to_use_zh": [
+      "当需要强一致性或保证投递顺序时——改用共识协议或具有顺序保证的消息队列",
+      "非常小的集群（少于 5 个节点），gossip 的开销超过收益，简单广播或直接通知更高效",
+      "故障检测必须在毫秒内完成而非 gossip 收敛时间的延迟敏感控制平面"
+    ],
+    "adopters": [
+      "Apache Cassandra",
+      "Amazon DynamoDB",
+      "HashiCorp Consul",
+      "Riak",
+      "Bitcoin / blockchain P2P networks"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "scalability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Demers, A. et al. (1987). \"Epidemic Algorithms for Replicated Database Maintenance\". Proceedings of the 6th Annual ACM Symposium on Principles of Distributed Computing (PODC).",
+    "secondary_sources": [
+      "Das, A., Gupta, I. & Motivala, A. (2002). \"SWIM: Scalable Weakly-consistent Infection-style Process Group Membership Protocol\". Proceedings of DSN 2002.",
+      "van Renesse, R. et al. (1998). \"Astrolabe: A Robust and Scalable Technology for Distributed System Monitoring\". ACM TOCS.",
+      "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 5. O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "eventual-consistency",
+        "type": "complement"
+      },
+      {
+        "slug": "crdts",
+        "type": "complement"
+      },
+      {
+        "slug": "service-discovery",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 267,
+    "name": "Service Discovery Pattern",
+    "name_zh": "服务发现模式",
+    "slug": "service-discovery-pattern",
+    "category": "distributed",
+    "desc": "DNS-based and registry-based mechanisms for services to locate each other dynamically in elastic infrastructure",
+    "desc_zh": "服务在弹性基础设施中动态定位彼此的基于 DNS 和注册表的机制",
+    "steps": [
+      "Choose a discovery strategy: client-side discovery (client queries registry and load-balances itself), server-side discovery (router or load balancer queries registry on behalf of client), or DNS-based (services resolved via DNS SRV records)",
+      "Implement service registration: on startup, each service instance registers its address, port, health check endpoint, and metadata (version, region, tags) with the service registry",
+      "Configure health checking: define liveness and readiness probes that the registry polls at a configured interval; failing checks cause the registry to deregister the instance and stop routing traffic to it",
+      "Consume the registry in clients: use a discovery client library (Consul client, Eureka client, Kubernetes service DNS) to resolve logical service names to physical addresses, applying load balancing on the returned set",
+      "Handle deregistration and graceful shutdown: ensure instances deregister before terminating; implement a grace period so in-flight requests complete before the instance is removed from the registry"
+    ],
+    "steps_zh": [
+      "选择发现策略：客户端侧发现（客户端查询注册表并自行负载均衡）、服务器侧发现（路由器或负载均衡器代表客户端查询注册表），或基于 DNS（通过 DNS SRV 记录解析服务）",
+      "实现服务注册：启动时，每个服务实例将其地址、端口、健康检查端点和元数据（版本、区域、标签）注册到服务注册表",
+      "配置健康检查：定义注册表按配置间隔轮询的活性和就绪探针；检查失败会导致注册表注销实例并停止向其路由流量",
+      "在客户端消费注册表：使用发现客户端库（Consul 客户端、Eureka 客户端、Kubernetes 服务 DNS）将逻辑服务名解析为物理地址，对返回集应用负载均衡",
+      "处理注销和优雅关闭：确保实例在终止前注销；实现宽限期使进行中的请求在实例从注册表移除前完成"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "service-discovery",
+      "gossip-protocol",
+      "circuit-breaker-with-retry",
+      "sidecar-pattern"
+    ],
+    "tags": [
+      "service-discovery",
+      "microservices",
+      "load-balancing",
+      "registry",
+      "cloud-native"
+    ],
+    "origin_author": "Chris Richardson",
+    "origin_source": "Richardson, C. (2018). Microservices Patterns, Ch. 11. Manning Publications; Fowler, M. & Lewis, J. (2014). Microservices. martinfowler.com.",
+    "origin_source_zh": "Richardson（2018）《微服务架构设计模式》第11章，Manning；Fowler与Lewis（2014）《微服务》martinfowler.com",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When running microservices on dynamic cloud infrastructure where instance IPs change on every restart, scaling event, or deployment",
+      "When you have multiple service instances behind a load balancer and need clients to discover healthy instances without hard-coded configuration",
+      "When deploying to container orchestration platforms (Kubernetes, Nomad, ECS) that natively provide service discovery primitives",
+      "When different versions of a service must be routed to different clients during canary or blue-green deployments"
+    ],
+    "when_to_use_zh": [
+      "在动态云基础设施上运行微服务，实例 IP 在每次重启、扩缩容或部署时都会改变时",
+      "在负载均衡器后有多个服务实例，需要客户端在没有硬编码配置的情况下发现健康实例时",
+      "部署到原生提供服务发现原语的容器编排平台（Kubernetes、Nomad、ECS）时",
+      "在金丝雀或蓝绿部署期间，不同版本的服务需要路由到不同客户端时"
+    ],
+    "core_concepts": [
+      "Service registry: a centralized or distributed database (Consul, Eureka, etcd, ZooKeeper) that stores the network locations of all available service instances with their metadata and health status",
+      "Client-side discovery: the consuming service queries the registry directly and applies its own load balancing algorithm; provides flexibility but couples every client to the registry API",
+      "Server-side discovery: a load balancer or API gateway queries the registry and routes traffic; decouples clients from the registry but adds a central routing hop",
+      "Self-registration vs. third-party registration: in self-registration, instances register on startup; in third-party registration, an orchestrator (Kubernetes, Registrator) handles registration and deregistration",
+      "DNS-SD: DNS Service Discovery uses SRV records to encode service name, protocol, port, and priority, enabling DNS resolvers to serve as the service registry without custom client libraries"
+    ],
+    "core_concepts_zh": [
+      "服务注册表：存储所有可用服务实例网络位置及其元数据和健康状态的集中式或分布式数据库（Consul、Eureka、etcd、ZooKeeper）",
+      "客户端侧发现：消费服务直接查询注册表并应用自己的负载均衡算法；灵活但将每个客户端与注册表 API 耦合",
+      "服务器侧发现：负载均衡器或 API 网关查询注册表并路由流量；将客户端与注册表解耦，但增加了中央路由跳转",
+      "自注册与第三方注册：自注册时，实例在启动时自行注册；第三方注册时，编排器（Kubernetes、Registrator）处理注册和注销",
+      "DNS-SD：DNS 服务发现使用 SRV 记录编码服务名、协议、端口和优先级，使 DNS 解析器无需自定义客户端库即可充当服务注册表"
+    ],
+    "timeline": [
+      [
+        "2012",
+        "Netflix open-sources Eureka, a REST-based service registry for their AWS-based microservices, establishing the self-registration pattern"
+      ],
+      [
+        "2013",
+        "HashiCorp releases Consul, combining service discovery with health checking, key-value storage, and multi-datacenter support"
+      ],
+      [
+        "2014",
+        "Kubernetes introduces kube-dns and Services as a first-class service discovery abstraction, making DNS-based discovery the cloud-native default"
+      ],
+      [
+        "2017",
+        "Istio service mesh shifts service discovery into the data plane via Envoy sidecar proxies, abstracting registry interaction away from application code"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2012",
+        "Netflix 开源 Eureka，一个用于其 AWS 微服务的基于 REST 的服务注册表，建立了自注册模式"
+      ],
+      [
+        "2013",
+        "HashiCorp 发布 Consul，将服务发现与健康检查、键值存储和多数据中心支持结合"
+      ],
+      [
+        "2014",
+        "Kubernetes 引入 kube-dns 和 Services 作为一级服务发现抽象，使基于 DNS 的发现成为云原生默认方案"
+      ],
+      [
+        "2017",
+        "Istio 服务网格通过 Envoy sidecar 代理将服务发现转移到数据平面，将注册表交互从应用代码中抽象出去"
+      ]
+    ],
+    "dos": [
+      "Do implement health checks at the application level, not just the process level, so the registry deregisters instances that are running but not serving traffic correctly",
+      "Do cache discovery results locally with a short TTL so that a registry outage does not immediately cascade into a full service outage",
+      "Do tag instances with version, environment, and capability metadata so consumers can implement fine-grained routing without separate configuration",
+      "Do test deregistration and failover paths in staging by deliberately crashing instances and verifying traffic shifts to healthy instances within your SLA"
+    ],
+    "dos_zh": [
+      "在应用层而非仅进程层实现健康检查，使注册表能注销正在运行但未正确提供流量的实例",
+      "使用短 TTL 在本地缓存发现结果，使注册表中断不会立即级联为完整服务中断",
+      "用版本、环境和能力元数据标记实例，使消费者无需单独配置即可实现细粒度路由",
+      "在预发布环境中通过故意崩溃实例并验证流量在 SLA 内切换到健康实例来测试注销和故障转移路径"
+    ],
+    "donts": [
+      "Don't hard-code service IP addresses or ports in configuration files — this defeats the purpose of service discovery and creates drift as instances change",
+      "Don't set health check intervals too long (more than 10 seconds) because stale registry entries cause traffic to be routed to failed instances for extended periods",
+      "Don't run a single-node service registry without HA configuration — the registry itself must be highly available or it becomes a single point of failure for the entire service mesh",
+      "Don't skip connection draining before deregistration — abrupt removal causes in-flight requests to fail with connection reset errors visible to end users"
+    ],
+    "donts_zh": [
+      "不要在配置文件中硬编码服务 IP 地址或端口——这违背了服务发现的目的，并在实例变化时造成配置漂移",
+      "不要将健康检查间隔设置过长（超过 10 秒），因为过期的注册表条目会导致流量在较长时间内路由到故障实例",
+      "不要在没有高可用配置的情况下运行单节点服务注册表——注册表本身必须高可用，否则它会成为整个服务网格的单点故障",
+      "不要在注销前跳过连接排空——突然移除会导致进行中的请求以对最终用户可见的连接重置错误失败"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix operates Eureka, their home-built service registry, across their global microservices fleet of thousands of instances. Every service registers with its regional Eureka cluster on startup and sends heartbeats every 30 seconds. Eureka's self-preservation mode is a particularly notable design: when it detects that more than 15% of expected heartbeats are missing (indicating a network partition rather than mass failure), it stops evicting instances from the registry rather than cascading into a blank slate. This design decision kept Netflix services discoverable and partially functional during several major AWS networking events where a registry that aggressively evicted instances would have caused complete service unavailability.",
+    "case_study_zh": "Netflix 在其数千个实例的全球微服务集群上运行自建的服务注册表 Eureka。每个服务在启动时向其区域 Eureka 集群注册，并每 30 秒发送一次心跳。Eureka 的自我保护模式是一个特别值得注意的设计：当它检测到超过 15% 的预期心跳缺失时（表明是网络分区而非大规模故障），它会停止从注册表中驱逐实例，而不是级联清空注册表。这一设计决策使 Netflix 服务在几次重大 AWS 网络事件中保持可发现性和部分可用性——若注册表激进驱逐实例，将导致完全不可用。",
+    "when_not_to_use": [
+      "Small-scale deployments with a fixed set of services on static infrastructure where DNS entries or configuration files are sufficient and the registry adds operational complexity without benefit",
+      "Monolithic applications where all components run in the same process and inter-component communication is in-process, not network-based",
+      "Serverless or FaaS architectures where the platform handles routing transparently and service discovery is abstracted away by the function runtime"
+    ],
+    "when_not_to_use_zh": [
+      "静态基础设施上具有固定服务集的小规模部署，DNS 条目或配置文件已足够，注册表只增加运维复杂性而无收益",
+      "所有组件在同一进程中运行、组件间通信是进程内而非基于网络的单体应用",
+      "平台透明处理路由、服务发现由函数运行时抽象的无服务器或 FaaS 架构"
+    ],
+    "adopters": [
+      "Netflix (Eureka)",
+      "HashiCorp Consul users",
+      "Kubernetes (kube-dns + Services)",
+      "Spring Cloud Gateway",
+      "Istio service mesh"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "scalability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Richardson, C. (2018). \"Microservices Patterns\", Ch. 11: Discovering services. Manning Publications.",
+    "secondary_sources": [
+      "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 10. O'Reilly Media.",
+      "Burns, B. et al. (2016). \"Borg, Omega, and Kubernetes\". ACM Queue.",
+      "Fowler, M. & Lewis, J. (2014). \"Microservices\". martinfowler.com."
+    ],
+    "typed_relations": [
+      {
+        "slug": "service-discovery",
+        "type": "alternative"
+      },
+      {
+        "slug": "circuit-breaker-with-retry",
+        "type": "complement"
+      },
+      {
+        "slug": "sidecar-pattern",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 268,
+    "name": "Sidecar Pattern",
+    "name_zh": "Sidecar 容器模式",
+    "slug": "sidecar-container-pattern",
+    "category": "distributed",
+    "desc": "Deploying helper containers alongside the primary service container to handle cross-cutting concerns without modifying application code",
+    "desc_zh": "在主服务容器旁部署辅助容器，无需修改应用代码即可处理横切关注点",
+    "steps": [
+      "Identify cross-cutting concerns to offload: select capabilities that apply to many services (TLS termination, service mesh proxying, log shipping, metrics collection, config sync) and are better handled outside application code",
+      "Package the sidecar as a separate container image: the sidecar should be independently versioned, replaceable, and maintained by a different team (e.g., platform team) than the business logic container",
+      "Co-locate in a shared Pod or task: deploy the sidecar and primary container as a unit (Kubernetes Pod, ECS task group) so they share network namespace, localhost access, and optionally volumes",
+      "Configure communication via localhost: because sidecar and primary share network namespace, the primary calls the sidecar on localhost (e.g., Envoy proxy on 127.0.0.1:15001) with zero network hop overhead",
+      "Implement lifecycle coordination: ensure the sidecar starts before or concurrently with the primary container, handles graceful shutdown in the correct order, and does not block primary container liveness checks"
+    ],
+    "steps_zh": [
+      "识别要卸载的横切关注点：选择适用于许多服务的能力（TLS 终止、服务网格代理、日志传输、指标收集、配置同步），这些能力在应用代码外处理更好",
+      "将 sidecar 打包为单独的容器镜像：sidecar 应独立版本控制、可替换，并由与业务逻辑容器不同的团队（如平台团队）维护",
+      "在共享 Pod 或任务中共同部署：将 sidecar 和主容器作为一个单元部署（Kubernetes Pod、ECS 任务组），共享网络命名空间、localhost 访问和可选的卷",
+      "通过 localhost 配置通信：因为 sidecar 和主容器共享网络命名空间，主容器通过 localhost 调用 sidecar（如 127.0.0.1:15001 上的 Envoy 代理），零网络跳转开销",
+      "实现生命周期协调：确保 sidecar 在主容器之前或同时启动，以正确顺序处理优雅关闭，且不阻塞主容器的活性检查"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "sidecar-pattern",
+      "service-discovery-pattern",
+      "circuit-breaker-with-retry",
+      "twelve-factor-app"
+    ],
+    "tags": [
+      "sidecar",
+      "service-mesh",
+      "containers",
+      "kubernetes",
+      "cross-cutting-concerns"
+    ],
+    "origin_author": "Microsoft Azure",
+    "origin_source": "Microsoft Azure Architecture Center. Sidecar Pattern. docs.microsoft.com/azure/architecture/patterns/sidecar; Burns, B. (2018). Designing Distributed Systems. O'Reilly Media.",
+    "origin_source_zh": "Microsoft Azure 架构中心《Sidecar 模式》docs.microsoft.com；Burns（2018）《设计分布式系统》O'Reilly",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When multiple heterogeneous services written in different languages need the same cross-cutting capabilities (logging, tracing, mTLS) without duplicating code across each service",
+      "When you want platform teams to own and upgrade infrastructure concerns (service mesh proxy, secrets agent) independently of application release cycles",
+      "When adopting a service mesh (Istio, Linkerd) that requires an Envoy or linkerd-proxy sidecar injected into each pod",
+      "When running legacy applications that cannot be modified to add observability or security features but can be wrapped by a sidecar in a container"
+    ],
+    "when_to_use_zh": [
+      "当多个用不同语言编写的异构服务需要相同的横切能力（日志、追踪、mTLS）而不在每个服务中重复代码时",
+      "当你希望平台团队独立于应用发布周期拥有和升级基础设施关注点（服务网格代理、密钥代理）时",
+      "当采用需要向每个 Pod 注入 Envoy 或 linkerd-proxy sidecar 的服务网格（Istio、Linkerd）时",
+      "当运行无法修改以添加可观测性或安全功能但可以在容器中被 sidecar 包装的遗留应用时"
+    ],
+    "core_concepts": [
+      "Network namespace sharing: containers in the same Kubernetes Pod share a network namespace, allowing the sidecar to intercept all inbound and outbound traffic via iptables rules without application-level changes",
+      "Transparent proxy injection: service meshes like Istio inject the Envoy sidecar via a mutating admission webhook, automatically installing the proxy for every new Pod without developer action",
+      "Ambassador sub-pattern: the sidecar acts as an outbound proxy, handling retries, circuit breaking, and load balancing on behalf of the application — the application makes simple calls to localhost",
+      "Adapter sub-pattern: the sidecar transforms the primary container's output (log format, metrics format) into a standard format consumed by the platform — decoupling the app from the platform contract",
+      "Init container sequencing: Kubernetes init containers run before the main container and can pre-configure the sidecar or inject configuration secrets before the application starts receiving traffic"
+    ],
+    "core_concepts_zh": [
+      "网络命名空间共享：同一 Kubernetes Pod 中的容器共享网络命名空间，允许 sidecar 通过 iptables 规则拦截所有入站和出站流量，无需应用层变更",
+      "透明代理注入：Istio 等服务网格通过 mutating admission webhook 注入 Envoy sidecar，自动为每个新 Pod 安装代理，无需开发者操作",
+      "Ambassador 子模式：sidecar 充当出站代理，代表应用处理重试、熔断和负载均衡——应用只对 localhost 进行简单调用",
+      "Adapter 子模式：sidecar 将主容器的输出（日志格式、指标格式）转换为平台消费的标准格式——将应用与平台契约解耦",
+      "Init 容器排序：Kubernetes init 容器在主容器之前运行，可在应用开始接收流量之前预配置 sidecar 或注入配置密钥"
+    ],
+    "timeline": [
+      [
+        "2016",
+        "Lyft engineers build and deploy the first version of Envoy as a sidecar proxy for their service mesh, solving polyglot observability and resilience at scale"
+      ],
+      [
+        "2017",
+        "Microsoft publishes the Sidecar Pattern in the Azure Architecture Center, formalizing the three sub-patterns: Ambassador, Adapter, and Sidecar"
+      ],
+      [
+        "2017",
+        "Google, IBM, and Lyft release Istio 0.1, making automatic sidecar injection via Envoy the default service mesh deployment model for Kubernetes"
+      ],
+      [
+        "2019",
+        "Kubernetes introduces native sidecar container support proposals to address startup ordering and graceful shutdown race conditions in production deployments"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2016",
+        "Lyft 工程师构建并部署第一版 Envoy 作为其服务网格的 sidecar 代理，解决多语言环境下的可观测性和弹性问题"
+      ],
+      [
+        "2017",
+        "Microsoft 在 Azure 架构中心发布 Sidecar 模式，正式化三个子模式：Ambassador、Adapter 和 Sidecar"
+      ],
+      [
+        "2017",
+        "Google、IBM 和 Lyft 发布 Istio 0.1，使通过 Envoy 自动注入 sidecar 成为 Kubernetes 的默认服务网格部署模型"
+      ],
+      [
+        "2019",
+        "Kubernetes 引入原生 sidecar 容器支持提案，解决生产部署中的启动顺序和优雅关闭竞争条件"
+      ]
+    ],
+    "dos": [
+      "Do ensure the sidecar and primary container have independent resource limits so a runaway sidecar cannot starve the application of CPU or memory",
+      "Do version and release the sidecar image independently from the application image so platform teams can roll out security patches without coordinating application releases",
+      "Do handle sidecar startup order explicitly using init containers or readiness gates to prevent the primary service from accepting traffic before the proxy is ready",
+      "Do test sidecar failure modes independently: verify that the primary container behaves gracefully when the sidecar crashes, restarts, or is temporarily unavailable"
+    ],
+    "dos_zh": [
+      "确保 sidecar 和主容器有独立的资源限制，使失控的 sidecar 无法耗尽应用的 CPU 或内存",
+      "独立于应用镜像版本控制和发布 sidecar 镜像，使平台团队可以在不协调应用发布的情况下推出安全补丁",
+      "使用 init 容器或就绪门明确处理 sidecar 启动顺序，防止主服务在代理就绪前接受流量",
+      "独立测试 sidecar 故障模式：验证当 sidecar 崩溃、重启或临时不可用时主容器的优雅行为"
+    ],
+    "donts": [
+      "Don't put business logic in the sidecar — it should contain only infrastructure concerns; mixing application logic into the sidecar defeats the separation of concerns that makes the pattern valuable",
+      "Don't ignore the CPU and memory overhead of the sidecar — each Envoy proxy in a large service mesh consumes 50-100 MB and measurable CPU, which multiplies across thousands of pods",
+      "Don't couple the sidecar version lifecycle to the application lifecycle — if upgrades are coordinated, you lose the ability to patch infrastructure independently",
+      "Don't use the sidecar pattern for single-service deployments without a clear growth plan — the added complexity is only justified when the cross-cutting concern spans multiple services"
+    ],
+    "donts_zh": [
+      "不要在 sidecar 中放置业务逻辑——它应只包含基础设施关注点；将应用逻辑混入 sidecar 会破坏使该模式有价值的关注点分离",
+      "不要忽视 sidecar 的 CPU 和内存开销——大型服务网格中每个 Envoy 代理消耗 50-100 MB 和可测量的 CPU，这在数千个 Pod 中累积",
+      "不要将 sidecar 版本生命周期与应用生命周期耦合——如果升级需要协调，你就失去了独立修补基础设施的能力",
+      "不要在没有明确增长计划的单服务部署中使用 sidecar 模式——只有当横切关注点跨越多个服务时，增加的复杂性才合理"
+    ],
+    "case_study_company": "Airbnb",
+    "case_study": "Airbnb migrated their service-to-service communication to an Envoy-based sidecar mesh called SmartStack 2.0 (Synapse + Nerve replaced by Envoy). Prior to the migration, each service team had to maintain custom retry logic, timeouts, and circuit breakers in application code. After injection of Envoy sidecars across their Kubernetes fleet, these policies were centralized in xDS configuration managed by the platform team. During a 2019 incident, the platform team was able to adjust timeout policies across 200 services simultaneously by pushing a single xDS config update — a change that would have required 200 separate deployments under the previous approach.",
+    "case_study_zh": "Airbnb 将其服务间通信迁移到名为 SmartStack 2.0 的基于 Envoy 的 sidecar 网格（Synapse + Nerve 被 Envoy 取代）。迁移前，每个服务团队必须在应用代码中维护自定义的重试逻辑、超时和熔断器。在其 Kubernetes 集群中注入 Envoy sidecar 后，这些策略集中在由平台团队管理的 xDS 配置中。在 2019 年的一次事故中，平台团队能够通过推送单个 xDS 配置更新同时调整 200 个服务的超时策略——在之前的方式下，这需要 200 次独立部署。",
+    "when_not_to_use": [
+      "Single-process monoliths where all services share a process and cross-cutting concerns are better addressed by middleware or aspect-oriented programming",
+      "Serverless functions where the execution model is event-driven and ephemeral, making a long-running sidecar process impractical and cost-inefficient",
+      "Resource-constrained edge or IoT deployments where the memory and CPU overhead of running an additional proxy container is prohibitive"
+    ],
+    "when_not_to_use_zh": [
+      "所有服务共享进程的单进程单体应用，横切关注点通过中间件或面向方面编程更好地处理",
+      "执行模型是事件驱动和短暂的无服务器函数，运行长期 sidecar 进程不切实际且成本效率低下",
+      "内存和 CPU 开销使运行额外代理容器不可行的资源受限边缘或 IoT 部署"
+    ],
+    "adopters": [
+      "Airbnb (Envoy sidecar mesh)",
+      "Lyft (Envoy originator)",
+      "Google (Istio + Envoy)",
+      "Microsoft (Dapr sidecar runtime)",
+      "Uber (M3 metrics via sidecar)"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability",
+      "observability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Microsoft Azure Architecture Center. \"Sidecar Pattern\". docs.microsoft.com/azure/architecture/patterns/sidecar.",
+    "secondary_sources": [
+      "Burns, B. (2018). \"Designing Distributed Systems\". O'Reilly Media.",
+      "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 13. O'Reilly Media.",
+      "Calcote, L. & Butcher, Z. (2019). \"Istio: Up and Running\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "sidecar-pattern",
+        "type": "alternative"
+      },
+      {
+        "slug": "service-discovery-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "circuit-breaker-with-retry",
+        "type": "complement"
+      }
+    ]
   }
 ]

@@ -3583,5 +3583,527 @@
         "type": "complement"
       }
     ]
+  },
+  {
+    "id": 269,
+    "name": "Continuous Testing",
+    "name_zh": "持续测试",
+    "slug": "continuous-testing",
+    "category": "quality",
+    "desc": "Automated testing at every pipeline stage to provide continuous feedback on software quality throughout the delivery lifecycle",
+    "desc_zh": "在每个流水线阶段自动化测试，在交付生命周期中持续提供软件质量反馈",
+    "steps": [
+      "Map tests to pipeline stages: assign unit tests to the commit stage, integration and contract tests to the integration stage, performance and security tests to the pre-production stage, and smoke tests to the production stage",
+      "Instrument every pipeline stage with quality gates: define pass/fail thresholds (coverage minimum, error rate maximum, performance budget) that must be met before progressing to the next stage",
+      "Shift tests left: run the fastest and cheapest tests as early as possible in the pipeline so developers receive feedback within minutes of committing, not hours",
+      "Parallelize test execution: split test suites across concurrent workers and use test impact analysis to run only the tests affected by each code change, reducing pipeline duration",
+      "Treat test failures as deployment blockers: configure the pipeline to fail fast on any test stage regression and enforce a team norm that no new work is started until the pipeline is green"
+    ],
+    "steps_zh": [
+      "将测试映射到流水线阶段：将单元测试分配到提交阶段，将集成和契约测试分配到集成阶段，将性能和安全测试分配到预生产阶段，将冒烟测试分配到生产阶段",
+      "在每个流水线阶段设置质量门：定义进入下一阶段前必须满足的通过/失败阈值（最低覆盖率、最大错误率、性能预算）",
+      "将测试左移：尽早在流水线中运行最快、最廉价的测试，使开发者在提交后数分钟内而非数小时后收到反馈",
+      "并行化测试执行：将测试套件分散到并发工作节点，并使用测试影响分析只运行受每次代码变更影响的测试，减少流水线持续时间",
+      "将测试失败视为部署阻止器：将流水线配置为在任何测试阶段回归时快速失败，并强制团队规范：在流水线变为绿色之前不启动新工作"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "test-pyramid",
+      "tdd",
+      "chaos-engineering",
+      "load-testing-patterns"
+    ],
+    "tags": [
+      "continuous-testing",
+      "ci-cd",
+      "quality-gates",
+      "shift-left",
+      "devops"
+    ],
+    "origin_author": "Wayne Ariola",
+    "origin_source": "Ariola, W. & Cois, C. (2014). Continuous Testing for DevOps Professionals. Addison-Wesley; Humble, J. & Farley, D. (2010). Continuous Delivery. Addison-Wesley.",
+    "origin_source_zh": "Ariola与Cois（2014）《DevOps专业人员的持续测试》Addison-Wesley；Humble与Farley（2010）《持续交付》Addison-Wesley",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When a team is adopting continuous delivery or continuous deployment and needs quality signals at every pipeline stage rather than only at release time",
+      "When deployment frequency is increasing and manual testing cycles can no longer keep pace with the release cadence",
+      "When production incidents frequently originate from regressions that a faster feedback loop would have caught before deployment",
+      "When multiple teams contribute to a shared codebase and you need automated quality gates to prevent integration failures from reaching downstream stages"
+    ],
+    "when_to_use_zh": [
+      "当团队采用持续交付或持续部署，需要在每个流水线阶段而非仅在发布时获得质量信号时",
+      "当部署频率增加，手动测试周期无法跟上发布节奏时",
+      "当生产事故频繁源于更快反馈循环本可在部署前捕获的回归时",
+      "当多个团队贡献同一代码库，需要自动化质量门防止集成故障到达下游阶段时"
+    ],
+    "core_concepts": [
+      "Shift-left testing: moving test execution earlier in the pipeline so defects are detected and fixed when the cost of change is lowest — at commit time, not production time",
+      "Quality gate: a defined threshold (coverage percentage, performance benchmark, security score) that the pipeline enforces as a binary pass/fail before stage promotion",
+      "Test impact analysis: static or dynamic analysis that determines which tests are affected by a code change so only relevant tests run, reducing pipeline cycle time",
+      "Environment parity: test environments at each pipeline stage must faithfully replicate production configuration, data volumes, and infrastructure to prevent environment-specific defects from escaping",
+      "Continuous feedback loop: test results are published to developer dashboards and notification channels within minutes of commit so that the team can act on quality regressions immediately"
+    ],
+    "core_concepts_zh": [
+      "测试左移：将测试执行移至流水线更早期，使缺陷在变更成本最低时被检测和修复——在提交时而非生产时",
+      "质量门：流水线在阶段晋升前强制执行的定义阈值（覆盖率百分比、性能基准、安全评分），作为二元通过/失败判断",
+      "测试影响分析：确定哪些测试受代码变更影响的静态或动态分析，只运行相关测试，减少流水线周期时间",
+      "环境一致性：每个流水线阶段的测试环境必须忠实复制生产配置、数据量和基础设施，防止环境特定缺陷逃逸",
+      "持续反馈循环：测试结果在提交后数分钟内发布到开发者仪表板和通知渠道，使团队能立即对质量回归采取行动"
+    ],
+    "timeline": [
+      [
+        "2006",
+        "ThoughtWorks and Jez Humble begin codifying continuous delivery practices that place automated testing at every pipeline stage"
+      ],
+      [
+        "2010",
+        "Humble and Farley publish 'Continuous Delivery', establishing the deployment pipeline model with testing as a first-class concern at every stage"
+      ],
+      [
+        "2014",
+        "Wayne Ariola and Cois publish 'Continuous Testing for DevOps Professionals', coining the term and defining the practice as distinct from CI test automation"
+      ],
+      [
+        "2019",
+        "AI-assisted test generation tools emerge, enabling continuous testing to automatically expand test coverage as code changes without manual test authoring"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2006",
+        "ThoughtWorks 和 Jez Humble 开始整理持续交付实践，将自动化测试置于每个流水线阶段"
+      ],
+      [
+        "2010",
+        "Humble 和 Farley 出版《持续交付》，建立了以测试为每个阶段一级关注点的部署流水线模型"
+      ],
+      [
+        "2014",
+        "Wayne Ariola 和 Cois 出版《DevOps专业人员的持续测试》，创造了该术语并将其定义为区别于 CI 测试自动化的独立实践"
+      ],
+      [
+        "2019",
+        "AI 辅助测试生成工具出现，使持续测试能随代码变更自动扩展测试覆盖率，无需手动编写测试"
+      ]
+    ],
+    "dos": [
+      "Do define quality gates with objective, measurable thresholds rather than subjective criteria so the pipeline can enforce them automatically without human judgment",
+      "Do maintain a fast commit stage (under 10 minutes) by restricting it to unit tests and static analysis — move slower tests to later pipeline stages where they run in parallel",
+      "Do track test flakiness as a first-class metric: quarantine flaky tests immediately because they erode trust in the entire pipeline and cause teams to ignore legitimate failures",
+      "Do integrate security scanning (SAST, dependency audit) as a pipeline stage gate rather than a post-release activity so vulnerabilities are caught before they reach production"
+    ],
+    "dos_zh": [
+      "用客观、可衡量的阈值而非主观标准定义质量门，使流水线能无需人工判断地自动执行",
+      "通过将提交阶段限制为单元测试和静态分析来保持其快速执行（10 分钟以内）——将较慢的测试移至后续并行运行的流水线阶段",
+      "将测试不稳定性作为一级指标追踪：立即隔离不稳定测试，因为它们侵蚀对整个流水线的信任，导致团队忽略合理失败",
+      "将安全扫描（SAST、依赖审计）集成为流水线阶段门而非发布后活动，使漏洞在到达生产前被捕获"
+    ],
+    "donts": [
+      "Don't treat test failures as optional or allow the pipeline to continue with known failures — a broken pipeline that teams work around teaches engineers to ignore quality signals",
+      "Don't run all tests at every stage — this maximizes feedback time and pipeline cost; stage-appropriate test selection is essential for sustainable continuous testing",
+      "Don't skip environment parity for lower pipeline stages — tests that pass in an under-resourced environment and fail in production provide false confidence rather than real quality assurance",
+      "Don't conflate continuous testing with continuous integration — CI ensures code integrates cleanly; continuous testing ensures quality is validated continuously at every pipeline stage"
+    ],
+    "donts_zh": [
+      "不要将测试失败视为可选的或允许流水线在已知失败的情况下继续——让团队绕过损坏流水线会训练工程师忽略质量信号",
+      "不要在每个阶段运行所有测试——这会最大化反馈时间和流水线成本；针对阶段的测试选择对可持续持续测试至关重要",
+      "不要为较低流水线阶段跳过环境一致性——在资源不足的环境中通过但在生产中失败的测试提供虚假信心而非真实质量保证",
+      "不要将持续测试与持续集成混淆——CI 确保代码干净集成；持续测试确保质量在每个流水线阶段持续验证"
+    ],
+    "case_study_company": "Etsy",
+    "case_study": "Etsy is widely cited as an early continuous delivery pioneer deploying to production over 50 times per day. Their continuous testing practice assigns different test suites to each pipeline stage: unit tests run on every commit and must complete within 8 minutes; integration tests covering critical buyer and seller flows run in parallel on dedicated workers; and a canary stage deploys the change to 1% of traffic with automated error rate monitoring acting as a production quality gate. When error rates exceed the baseline by more than 0.1%, the canary is automatically rolled back without human intervention. This architecture allowed Etsy to maintain sub-hour time-to-production for most changes while keeping incident rates lower than competitors deploying quarterly.",
+    "case_study_zh": "Etsy 被广泛引用为早期持续交付先驱，每天向生产环境部署超过 50 次。他们的持续测试实践将不同的测试套件分配到每个流水线阶段：单元测试在每次提交时运行，必须在 8 分钟内完成；覆盖关键买家和卖家流程的集成测试在专用工作节点上并行运行；金丝雀阶段将变更部署到 1% 的流量，以自动错误率监控作为生产质量门。当错误率超过基线 0.1% 时，金丝雀会自动回滚而无需人工干预。这一架构使 Etsy 能为大多数变更保持不到一小时的生产到达时间，同时使事故率低于每季度部署的竞争对手。",
+    "when_not_to_use": [
+      "Very early prototyping phases where requirements are too unstable to justify maintaining a test suite that will be completely rewritten",
+      "One-off scripts or data migration utilities with extremely short lifespans where the investment in pipeline infrastructure exceeds the risk reduction benefit",
+      "Projects with extremely low release frequency (once a year) where the infrastructure overhead of continuous testing does not justify the cycle time reduction"
+    ],
+    "when_not_to_use_zh": [
+      "需求过于不稳定、不值得维护将被完全重写的测试套件的极早期原型阶段",
+      "寿命极短的一次性脚本或数据迁移工具，流水线基础设施投入超过风险降低收益",
+      "发布频率极低（每年一次）的项目，持续测试的基础设施开销无法证明周期时间缩短的合理性"
+    ],
+    "adopters": [
+      "Etsy",
+      "Google",
+      "Amazon",
+      "Netflix",
+      "Spotify"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "testability",
+      "reliability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Ariola, W. & Cois, C. (2014). \"Continuous Testing for DevOps Professionals\". Addison-Wesley Professional.",
+    "secondary_sources": [
+      "Humble, J. & Farley, D. (2010). \"Continuous Delivery\". Addison-Wesley Professional.",
+      "Kim, G. et al. (2016). \"The DevOps Handbook\". IT Revolution Press.",
+      "Forsgren, N., Humble, J. & Kim, G. (2018). \"Accelerate: The Science of Lean Software and DevOps\". IT Revolution Press."
+    ],
+    "typed_relations": [
+      {
+        "slug": "test-pyramid",
+        "type": "complement"
+      },
+      {
+        "slug": "tdd",
+        "type": "complement"
+      },
+      {
+        "slug": "chaos-engineering",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 270,
+    "name": "Visual Regression Testing",
+    "name_zh": "视觉回归测试",
+    "slug": "visual-regression-testing",
+    "category": "quality",
+    "desc": "Screenshot comparison between baseline and current UI to catch unintended visual changes automatically",
+    "desc_zh": "通过对比基准截图与当前 UI 截图自动捕获意外视觉变更",
+    "steps": [
+      "Capture baseline screenshots: render each component or page in a controlled environment (headless browser, Storybook) and store reference images that represent the approved visual state",
+      "Run visual comparisons on every pull request: re-render the same components after code changes and use pixel-diff or perceptual hashing algorithms to detect changes above a configured tolerance threshold",
+      "Review and triage visual diffs: present detected changes to developers as annotated diff images highlighting changed pixels; require explicit approval to update baselines for intentional changes",
+      "Integrate into CI as a blocking check: configure the visual testing job as a required status check so PRs with unapproved visual changes cannot be merged until a designated reviewer approves the diff",
+      "Maintain baseline hygiene: version-control baseline images alongside code, automate stale baseline cleanup, and re-capture baselines on dependency upgrades (browser versions, rendering libraries) that cause non-functional pixel shifts"
+    ],
+    "steps_zh": [
+      "捕获基准截图：在受控环境（无头浏览器、Storybook）中渲染每个组件或页面，存储代表已批准视觉状态的参考图像",
+      "在每个拉取请求上运行视觉比较：代码变更后重新渲染相同组件，使用像素差异或感知哈希算法检测超过配置容差阈值的变更",
+      "审查和分类视觉差异：以带注释的差异图像（高亮变更像素）形式向开发者呈现检测到的变更；要求显式批准以更新有意变更的基准",
+      "作为阻止性检查集成到 CI：将视觉测试作业配置为必需的状态检查，使带有未批准视觉变更的 PR 在指定审阅者批准差异前无法合并",
+      "维护基准卫生：将基准图像与代码一起版本控制，自动清理过期基准，并在导致非功能性像素偏移的依赖升级（浏览器版本、渲染库）时重新捕获基准"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "snapshot-testing",
+      "test-pyramid",
+      "continuous-testing",
+      "bdd"
+    ],
+    "tags": [
+      "visual-testing",
+      "screenshot-comparison",
+      "ui-regression",
+      "pixel-diff",
+      "storybook"
+    ],
+    "origin_author": "Percy.io",
+    "origin_source": "Percy.io (2014, founded by Mike Fotinakis); Applitools Eyes visual AI testing platform; Perceptual Image Hash (pHash) algorithm by Zauner (2010).",
+    "origin_source_zh": "Percy.io（2014年由Mike Fotinakis创立）；Applitools Eyes 视觉 AI 测试平台；Zauner（2010）感知图像哈希（pHash）算法",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When shipping UI components that must remain visually consistent across browser updates, dependency changes, and CSS refactors",
+      "When maintaining a design system or component library where visual regressions in shared components can affect hundreds of consumer screens simultaneously",
+      "When your release process includes manual visual QA that you want to automate to reduce review time and human error",
+      "When teams work across different operating systems and browsers that can subtly affect rendering and you need cross-environment baseline comparison"
+    ],
+    "when_to_use_zh": [
+      "交付的 UI 组件必须在浏览器更新、依赖变更和 CSS 重构中保持视觉一致性时",
+      "维护设计系统或组件库，共享组件的视觉回归可能同时影响数百个消费者页面时",
+      "发布流程包含手动视觉 QA，你希望自动化以减少审查时间和人为错误时",
+      "团队跨不同操作系统和浏览器工作，这些可能微妙地影响渲染，你需要跨环境基准比较时"
+    ],
+    "core_concepts": [
+      "Pixel-level diffing: comparing rendered screenshots pixel-by-pixel and highlighting any differences; sensitive but prone to false positives from anti-aliasing, font hinting, and sub-pixel rendering variation",
+      "Perceptual hashing: converting images to compact perceptual fingerprints (pHash, dHash) that are tolerant of minor rendering variations while still detecting structural visual changes",
+      "Baseline management: the process of capturing, storing, reviewing, and updating reference screenshots that define the approved visual state of each component or page",
+      "Component-level vs. page-level testing: testing individual components in isolation (via Storybook) provides more stable baselines than full-page screenshots, which are affected by dynamic content and state",
+      "AI-powered visual matching: services like Applitools use machine learning to distinguish intentional design changes from unintentional regressions, reducing false positive rates in complex UIs"
+    ],
+    "core_concepts_zh": [
+      "像素级差异比较：逐像素比较渲染截图并高亮任何差异；灵敏但容易因抗锯齿、字体微调和次像素渲染变化产生误报",
+      "感知哈希：将图像转换为紧凑的感知指纹（pHash、dHash），对微小渲染变化容错，同时仍能检测结构性视觉变更",
+      "基准管理：捕获、存储、审查和更新定义每个组件或页面已批准视觉状态的参考截图的过程",
+      "组件级与页面级测试：在隔离环境（通过 Storybook）中测试单个组件比全页面截图提供更稳定的基准，后者受动态内容和状态影响",
+      "AI 驱动的视觉匹配：Applitools 等服务使用机器学习区分有意的设计变更和无意的回归，降低复杂 UI 中的误报率"
+    ],
+    "timeline": [
+      [
+        "2012",
+        "PhantomCSS emerges as one of the first open-source visual regression testing tools using PhantomJS for headless screenshot capture and comparison"
+      ],
+      [
+        "2014",
+        "Percy.io founded by Mike Fotinakis at Stripe, launching the first SaaS visual testing platform integrated with GitHub pull request workflows"
+      ],
+      [
+        "2017",
+        "Storybook's storyshots addon enables component-level visual testing without a full browser environment, dramatically reducing baseline stability issues"
+      ],
+      [
+        "2020",
+        "Playwright and Cypress add native screenshot comparison APIs, making visual regression testing accessible without third-party SaaS dependency"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2012",
+        "PhantomCSS 作为最早的开源视觉回归测试工具之一出现，使用 PhantomJS 进行无头截图捕获和比较"
+      ],
+      [
+        "2014",
+        "Percy.io 由 Mike Fotinakis 在 Stripe 创立，推出第一个与 GitHub 拉取请求工作流集成的 SaaS 视觉测试平台"
+      ],
+      [
+        "2017",
+        "Storybook 的 storyshots 插件实现无需完整浏览器环境的组件级视觉测试，大幅减少基准稳定性问题"
+      ],
+      [
+        "2020",
+        "Playwright 和 Cypress 添加原生截图比较 API，使视觉回归测试无需第三方 SaaS 依赖即可访问"
+      ]
+    ],
+    "dos": [
+      "Do test components in isolation via Storybook rather than full pages wherever possible — isolated components produce stable, deterministic baselines free of dynamic content noise",
+      "Do configure a pixel-difference tolerance (typically 0.1-0.5%) to account for sub-pixel rendering differences across platforms rather than requiring pixel-perfect matches",
+      "Do store baseline images in version control alongside the code they test so that baseline history is tied to code history and rollbacks are consistent",
+      "Do run visual tests in a fixed, reproducible browser environment (pinned browser version, fixed viewport, deterministic fonts) to prevent environment drift from causing false positives"
+    ],
+    "dos_zh": [
+      "尽可能通过 Storybook 在隔离环境中测试组件而非整页——隔离组件产生稳定、确定性的基准，不受动态内容噪声影响",
+      "配置像素差异容差（通常 0.1-0.5%）以适应跨平台的次像素渲染差异，而非要求像素完美匹配",
+      "将基准图像与其测试的代码一起存储在版本控制中，使基准历史与代码历史绑定，回滚保持一致",
+      "在固定、可复现的浏览器环境（固定浏览器版本、固定视口、确定性字体）中运行视觉测试，防止环境漂移导致误报"
+    ],
+    "donts": [
+      "Don't apply visual regression testing to every page without component isolation — full-page screenshots with dynamic data (dates, counts, user content) generate constant false positives",
+      "Don't auto-approve baseline updates in CI without human review — silent auto-updates are how visual regressions slip undetected into the approved baseline",
+      "Don't use visual regression as a substitute for functional testing — it catches layout and style changes but not behavioral regressions, missing logic bugs entirely",
+      "Don't neglect cross-browser baseline maintenance — Chrome and Firefox render fonts and shadows differently, requiring separate baseline sets if cross-browser fidelity is a requirement"
+    ],
+    "donts_zh": [
+      "不要在没有组件隔离的情况下将视觉回归测试应用于每个页面——包含动态数据（日期、计数、用户内容）的全页面截图会产生持续误报",
+      "不要在 CI 中不经人工审查自动批准基准更新——静默自动更新是视觉回归悄然进入已批准基准的途径",
+      "不要将视觉回归测试作为功能测试的替代——它捕获布局和样式变更而非行为回归，完全遗漏逻辑缺陷",
+      "不要忽视跨浏览器基准维护——Chrome 和 Firefox 对字体和阴影的渲染不同，若跨浏览器保真度是需求，则需要独立的基准集"
+    ],
+    "case_study_company": "Shopify",
+    "case_study": "Shopify's Polaris design system team uses visual regression testing extensively to protect the consistency of their shared component library across hundreds of Shopify products. They run Percy on every Storybook story for all 100+ Polaris components on each pull request. Before adopting visual testing, CSS refactors frequently introduced subtle regressions in border radii, spacing, or color contrast that passed code review but were only caught by QA engineers — sometimes after the regression had propagated to merchant-facing pages. After adopting Percy, the time to detect and fix visual regressions dropped from days to the same pull request cycle, and the design system team reduced their manual visual review effort by approximately 70%.",
+    "case_study_zh": "Shopify 的 Polaris 设计系统团队广泛使用视觉回归测试，保护其共享组件库在数百个 Shopify 产品中的一致性。他们在每次拉取请求时对所有 100+ Polaris 组件的每个 Storybook story 运行 Percy。采用视觉测试前，CSS 重构频繁在边框半径、间距或颜色对比度上引入细微回归，这些通过代码审查但只被 QA 工程师发现——有时在回归已传播到商家可见页面后才发现。采用 Percy 后，检测和修复视觉回归的时间从数天缩短到同一拉取请求周期，设计系统团队减少了约 70% 的手动视觉审查工作量。",
+    "when_not_to_use": [
+      "Backend services, APIs, or data processing pipelines where there is no visual output to compare",
+      "Highly dynamic UIs with real-time data, animations, or user-generated content that make stable baselines impossible without extensive mocking",
+      "Very early-stage projects with rapidly changing designs where maintaining baselines costs more than the regressions they would catch"
+    ],
+    "when_not_to_use_zh": [
+      "没有可比较视觉输出的后端服务、API 或数据处理流水线",
+      "包含实时数据、动画或用户生成内容的高度动态 UI，在没有大量 Mock 的情况下稳定基准是不可能的",
+      "设计快速变化的极早期项目，维护基准的成本超过它们能捕获的回归"
+    ],
+    "adopters": [
+      "Shopify (Polaris)",
+      "Atlassian",
+      "GitHub",
+      "Storybook community",
+      "Stripe"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "testability",
+      "reliability"
+    ],
+    "maturity_ring": "emerging",
+    "primary_source": "Percy.io Documentation. \"Visual Testing Handbook\". percy.io/docs.",
+    "secondary_sources": [
+      "Applitools (2020). \"Visual AI Testing Guide\". applitools.com/resources.",
+      "Playwright Documentation. \"Screenshots\". playwright.dev/docs/screenshots.",
+      "Cromwell, T. (2019). \"Visual Regression Testing in Practice\". CSS-Tricks."
+    ],
+    "typed_relations": [
+      {
+        "slug": "snapshot-testing",
+        "type": "complement"
+      },
+      {
+        "slug": "continuous-testing",
+        "type": "complement"
+      },
+      {
+        "slug": "test-pyramid",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 271,
+    "name": "Pact Contract Testing",
+    "name_zh": "Pact 契约测试",
+    "slug": "pact-contract-testing",
+    "category": "quality",
+    "desc": "Consumer-driven contract verification between services ensuring API compatibility without end-to-end integration environments",
+    "desc_zh": "消费者驱动的服务间契约验证，无需端到端集成环境即确保 API 兼容性",
+    "steps": [
+      "Write consumer-side interaction tests: using the Pact DSL, define the expected request the consumer will make and the minimum response it needs; run these against a Pact mock server to generate a pact file",
+      "Publish the pact file to a Pact Broker: commit the generated pact (JSON file describing the consumer's expectations) to a shared Pact Broker so provider teams can discover and verify against it",
+      "Verify the pact on the provider side: run the provider verification task that replays each interaction from the pact file against the real provider, asserting that the provider's actual response satisfies the consumer's expectations",
+      "Integrate can-i-deploy into the pipeline: before deploying either consumer or provider, query the Pact Broker's can-i-deploy tool to check that the version being deployed is compatible with the versions already in each target environment",
+      "Evolve the API safely: when the provider needs to change the API, run provider-driven contract evolution by publishing a new pact, checking whether any consumer contracts are broken, and coordinating the release order to ensure compatibility"
+    ],
+    "steps_zh": [
+      "编写消费者侧交互测试：使用 Pact DSL 定义消费者将发出的预期请求和它需要的最小响应；针对 Pact Mock 服务器运行这些测试以生成 pact 文件",
+      "将 pact 文件发布到 Pact Broker：将生成的 pact（描述消费者期望的 JSON 文件）提交到共享 Pact Broker，使提供者团队能够发现并针对其进行验证",
+      "在提供者侧验证 pact：运行提供者验证任务，将 pact 文件中的每个交互重放到真实提供者，断言提供者的实际响应满足消费者的期望",
+      "将 can-i-deploy 集成到流水线：在部署消费者或提供者之前，查询 Pact Broker 的 can-i-deploy 工具，检查要部署的版本是否与每个目标环境中已有的版本兼容",
+      "安全地演进 API：当提供者需要更改 API 时，通过发布新 pact 运行提供者驱动的契约演进，检查是否有消费者契约被破坏，并协调发布顺序以确保兼容性"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "testing-trophy",
+      "continuous-testing",
+      "service-discovery-pattern",
+      "bdd"
+    ],
+    "tags": [
+      "contract-testing",
+      "consumer-driven",
+      "microservices",
+      "api-compatibility",
+      "pact"
+    ],
+    "origin_author": "Ron Holshausen",
+    "origin_source": "Holshausen, R. & Toomey, B. (2013). Pact — A Contract Testing Framework. github.com/pact-foundation/pact-ruby; Richardson, C. (2018). Microservices Patterns, Ch. 9. Manning.",
+    "origin_source_zh": "Holshausen与Toomey（2013）Pact 契约测试框架 github.com/pact-foundation/pact-ruby；Richardson（2018）《微服务架构设计模式》第9章",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When microservices are developed by independent teams and you need confidence that API changes in one service do not break other services without deploying a full integration environment",
+      "When end-to-end integration tests are slow, expensive, or flaky and you want a faster feedback mechanism for API compatibility across service boundaries",
+      "When you practice independent service deployment and need to verify deployment compatibility between consumer and provider versions before promoting to production",
+      "When a provider serves multiple consumers with different API needs and you need visibility into which consumers depend on which parts of the API before making changes"
+    ],
+    "when_to_use_zh": [
+      "微服务由独立团队开发，需要确信一个服务中的 API 变更不会在不部署完整集成环境的情况下破坏其他服务时",
+      "端到端集成测试缓慢、昂贵或不稳定，需要更快的跨服务边界 API 兼容性反馈机制时",
+      "实践独立服务部署，需要在晋升到生产前验证消费者和提供者版本之间的部署兼容性时",
+      "提供者向具有不同 API 需求的多个消费者提供服务，在进行变更前需要了解哪些消费者依赖 API 的哪些部分时"
+    ],
+    "core_concepts": [
+      "Consumer-driven contracts: the consumer defines the contract (what requests it makes and what minimal response it needs), not the provider — ensuring the API is designed for actual consumer needs rather than hypothetical capabilities",
+      "Pact file: a JSON document generated by consumer tests recording the exact interactions (HTTP request/response pairs or message schemas) that the provider must verify",
+      "Provider verification: the provider runs all interactions from each consumer's pact file against the real service, asserting that the provider's actual behavior satisfies all consumer contracts",
+      "Pact Broker: a central store and visualisation tool for pact files that tracks which consumer version has been verified against which provider version, enabling safe independent deployments",
+      "can-i-deploy: a CLI tool and API provided by the Pact Broker that answers whether a specific version of a service is safe to deploy to a given environment based on verified pact compatibility"
+    ],
+    "core_concepts_zh": [
+      "消费者驱动的契约：消费者定义契约（它发出什么请求和需要什么最小响应），而非提供者——确保 API 为实际消费者需求而非假设能力设计",
+      "Pact 文件：消费者测试生成的 JSON 文档，记录提供者必须验证的精确交互（HTTP 请求/响应对或消息模式）",
+      "提供者验证：提供者针对真实服务运行来自每个消费者 pact 文件的所有交互，断言提供者的实际行为满足所有消费者契约",
+      "Pact Broker：pact 文件的中央存储和可视化工具，追踪哪个消费者版本已针对哪个提供者版本验证，实现安全的独立部署",
+      "can-i-deploy：Pact Broker 提供的 CLI 工具和 API，基于已验证的 pact 兼容性回答特定版本的服务是否可以安全部署到给定环境"
+    ],
+    "timeline": [
+      [
+        "2013",
+        "Ron Holshausen and Beth Toomey build the first version of Pact at REA Group in Australia to solve cross-team API compatibility testing without shared integration environments"
+      ],
+      [
+        "2015",
+        "The Pact Foundation is formed and multi-language implementations (pact-jvm, pact-js, pact-python) are released, making consumer-driven contract testing available across the polyglot microservices ecosystem"
+      ],
+      [
+        "2017",
+        "Pact Broker open-source release and PactFlow (hosted Broker) launch enable enterprise-scale deployment pipeline integration with can-i-deploy CI gates"
+      ],
+      [
+        "2021",
+        "Bi-directional contract testing (BDCT) mode added to PactFlow, allowing OpenAPI specifications to serve as provider contracts without requiring provider-side Pact verification runs"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2013",
+        "Ron Holshausen 和 Beth Toomey 在澳大利亚 REA Group 构建第一版 Pact，解决无需共享集成环境的跨团队 API 兼容性测试"
+      ],
+      [
+        "2015",
+        "Pact Foundation 成立，多语言实现（pact-jvm、pact-js、pact-python）发布，使消费者驱动的契约测试在多语言微服务生态系统中可用"
+      ],
+      [
+        "2017",
+        "Pact Broker 开源发布和 PactFlow（托管 Broker）推出，通过 can-i-deploy CI 门实现企业级部署流水线集成"
+      ],
+      [
+        "2021",
+        "PactFlow 添加双向契约测试（BDCT）模式，允许 OpenAPI 规范作为提供者契约，无需运行提供者侧 Pact 验证"
+      ]
+    ],
+    "dos": [
+      "Do write consumer tests against only the fields the consumer actually uses, not the entire response schema — minimal contracts make providers free to add fields without breaking consumers",
+      "Do run pact verification as part of the provider's CI pipeline so that a provider change that breaks a consumer contract is caught before the change is merged",
+      "Do use can-i-deploy in your deployment pipeline as a gate — it prevents deploying a service version that is incompatible with the versions already running in the target environment",
+      "Do tag pact versions with environment names (dev, staging, production) in the Pact Broker to accurately reflect what is deployed where and generate precise compatibility matrices"
+    ],
+    "dos_zh": [
+      "针对消费者实际使用的字段而非整个响应模式编写消费者测试——最小契约使提供者可以自由添加字段而不破坏消费者",
+      "将 pact 验证作为提供者 CI 流水线的一部分运行，使破坏消费者契约的提供者变更在合并前被捕获",
+      "在部署流水线中使用 can-i-deploy 作为门控——它防止部署与目标环境中已运行版本不兼容的服务版本",
+      "在 Pact Broker 中用环境名（dev、staging、production）标记 pact 版本，准确反映哪些内容部署在哪里并生成精确的兼容性矩阵"
+    ],
+    "donts": [
+      "Don't write provider-driven contracts where the provider defines what consumers should expect — this defeats the purpose of consumer-driven testing and produces contracts that verify provider capabilities rather than consumer needs",
+      "Don't use Pact for testing UI components or browser-to-API interactions — Pact is optimized for service-to-service HTTP and messaging contracts, not browser rendering behavior",
+      "Don't skip the Pact Broker and share pact files via the file system or source control — without the Broker, you lose the can-i-deploy safety check and the compatibility matrix",
+      "Don't treat Pact as a replacement for all integration testing — it verifies API shape and protocol compatibility but does not cover business logic correctness, performance, or authorization behavior"
+    ],
+    "donts_zh": [
+      "不要编写提供者驱动的契约，让提供者定义消费者应该期望什么——这违背了消费者驱动测试的目的，产生验证提供者能力而非消费者需求的契约",
+      "不要将 Pact 用于测试 UI 组件或浏览器到 API 的交互——Pact 为服务间 HTTP 和消息契约优化，不适用于浏览器渲染行为",
+      "不要跳过 Pact Broker 通过文件系统或源码控制共享 pact 文件——没有 Broker，你就失去了 can-i-deploy 安全检查和兼容性矩阵",
+      "不要将 Pact 视为所有集成测试的替代——它验证 API 形状和协议兼容性，但不覆盖业务逻辑正确性、性能或授权行为"
+    ],
+    "case_study_company": "REA Group",
+    "case_study": "REA Group, Australia's leading property marketplace, was Pact's birthplace. In 2013, their engineering teams were struggling with a 50+ microservices architecture where integration tests ran against a shared staging environment that was perpetually broken by concurrent team deployments. Ron Holshausen and Beth Toomey built the first Pact library to replace the shared staging environment dependency for API compatibility verification. Within six months, REA Group reduced their integration test suite from a 2-hour run against the shared environment to 8-minute pact verification runs per service team. The can-i-deploy tool allowed teams to deploy independently on their own cadence with confidence, increasing their deployment frequency from weekly to multiple times per day per service.",
+    "case_study_zh": "澳大利亚领先的房产交易平台 REA Group 是 Pact 的诞生地。2013 年，他们的工程团队在 50+ 微服务架构中挣扎，集成测试针对一个因并发团队部署而持续损坏的共享预发布环境运行。Ron Holshausen 和 Beth Toomey 构建了第一个 Pact 库，以替代 API 兼容性验证对共享预发布环境的依赖。六个月内，REA Group 将集成测试套件从针对共享环境的 2 小时运行缩短为每个服务团队 8 分钟的 pact 验证运行。can-i-deploy 工具使团队能够按照自己的节奏独立部署，部署频率从每周增加到每个服务每天多次。",
+    "when_not_to_use": [
+      "Monolithic applications where all services run in the same process and there are no service boundaries to test API contracts across",
+      "Third-party external APIs where you cannot run provider verification against the real service and must rely on published API documentation or SDKs",
+      "Simple single-consumer APIs where the consumer and provider are maintained by the same team and the overhead of Pact tooling exceeds the benefit of explicit contract verification"
+    ],
+    "when_not_to_use_zh": [
+      "所有服务在同一进程中运行、没有跨服务边界测试 API 契约的单体应用",
+      "无法针对真实服务运行提供者验证、必须依赖已发布 API 文档或 SDK 的第三方外部 API",
+      "简单的单消费者 API，消费者和提供者由同一团队维护，Pact 工具开销超过显式契约验证的收益"
+    ],
+    "adopters": [
+      "REA Group",
+      "Atlassian",
+      "IBM",
+      "ING Bank",
+      "Mastercard"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "testability",
+      "reliability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Pact Foundation. \"Pact Documentation\". docs.pact.io.",
+    "secondary_sources": [
+      "Richardson, C. (2018). \"Microservices Patterns\", Ch. 9. Manning Publications.",
+      "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 9. O'Reilly Media.",
+      "Holshausen, R. (2013). \"Pact: A Contract Testing Framework\". github.com/pact-foundation/pact-ruby."
+    ],
+    "typed_relations": [
+      {
+        "slug": "testing-trophy",
+        "type": "complement"
+      },
+      {
+        "slug": "continuous-testing",
+        "type": "complement"
+      },
+      {
+        "slug": "bdd",
+        "type": "complement"
+      }
+    ]
   }
 ]
