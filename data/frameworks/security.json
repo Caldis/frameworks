@@ -2713,5 +2713,902 @@
         "type": "complement"
       }
     ]
+  },
+  {
+    "id": 256,
+    "name": "Security Development Lifecycle (SDL)",
+    "name_zh": "安全开发生命周期（SDL）",
+    "slug": "security-development-lifecycle",
+    "category": "security",
+    "desc": "Microsoft's structured process for integrating security and privacy practices at every phase of software development",
+    "desc_zh": "微软在软件开发每个阶段融入安全与隐私实践的结构化流程",
+    "steps": [
+      "Training: Provide all team members with core security education covering attack patterns, secure coding standards, and privacy fundamentals before development begins",
+      "Requirements: Define security and privacy requirements alongside functional requirements, establish bug bars, and identify compliance obligations (GDPR, HIPAA, PCI-DSS)",
+      "Design: Perform threat modeling using STRIDE, define the attack surface, apply security design principles (least privilege, defense in depth, secure defaults)",
+      "Implementation: Use approved tools and banned function lists, enforce static analysis (SAST) gates, conduct mandatory peer code reviews with security checklist",
+      "Verification & Release: Execute dynamic analysis (DAST) and fuzzing, conduct penetration testing, perform final security review, document incident response plan before shipping"
+    ],
+    "steps_zh": [
+      "培训：在开发开始前为所有团队成员提供核心安全教育，涵盖攻击模式、安全编码标准和隐私基础",
+      "需求：与功能需求并行定义安全和隐私需求，建立缺陷基准，识别合规义务（GDPR、HIPAA、PCI-DSS）",
+      "设计：使用STRIDE进行威胁建模，定义攻击面，应用安全设计原则（最小权限、纵深防御、安全默认值）",
+      "实现：使用经批准的工具和禁止函数列表，强制执行静态分析（SAST）门控，进行带安全检查表的强制同行代码审查",
+      "验证与发布：执行动态分析（DAST）和模糊测试，进行渗透测试，执行最终安全审查，在发布前记录事件响应计划"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "threat-modeling-stride",
+      "owasp-top-10",
+      "defense-in-depth",
+      "devsecops-pipeline"
+    ],
+    "tags": [
+      "sdlc",
+      "secure-development",
+      "microsoft",
+      "shift-left",
+      "compliance"
+    ],
+    "origin_author": "Steve Lipner",
+    "origin_source": "Howard, M. & Lipner, S. (2006). \"The Security Development Lifecycle\". Microsoft Press.",
+    "origin_source_zh": "Howard, M. & Lipner, S.（2006）。「The Security Development Lifecycle」。微软出版社。",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When building software that handles sensitive user data, financial transactions, or critical infrastructure components",
+      "In regulated industries (healthcare, finance, government) where documented security processes are required for compliance audits",
+      "When onboarding a development organization to systematic security practices for the first time",
+      "Before a major product launch where a security breach would cause significant reputational or financial damage"
+    ],
+    "when_to_use_zh": [
+      "在构建处理敏感用户数据、金融交易或关键基础设施组件的软件时",
+      "在合规审计要求记录安全流程的受监管行业（医疗、金融、政府）中",
+      "首次让开发组织采用系统化安全实践时",
+      "在重大产品发布前，安全漏洞将造成重大声誉或财务损失时"
+    ],
+    "core_concepts": [
+      "Bug Bar: A minimum severity threshold that determines which security bugs must be fixed before release, providing consistent risk acceptance criteria",
+      "Attack Surface Reduction: Systematically minimizing the code and interfaces exposed to untrusted input, thereby reducing the number of pathways an attacker can exploit",
+      "Banned Functions: A list of APIs and library functions with known security weaknesses (e.g., strcpy, gets) that developers are prohibited from using",
+      "Final Security Review (FSR): A gate-based review performed by a security team before every product release to confirm all SDL requirements have been met",
+      "Trusted Computing Base (TCB): The subset of system components that must be correct for the security policy to be enforced, kept as small as possible"
+    ],
+    "core_concepts_zh": [
+      "缺陷基准：确定哪些安全缺陷必须在发布前修复的最低严重性阈值，提供一致的风险接受标准",
+      "攻击面缩减：系统性地最小化暴露给不受信任输入的代码和接口，从而减少攻击者可利用的路径数量",
+      "禁止函数：开发人员被禁止使用的具有已知安全弱点的API和库函数列表（如strcpy、gets）",
+      "最终安全审查（FSR）：每次产品发布前由安全团队执行的基于门控的审查，确认满足所有SDL要求",
+      "可信计算基（TCB）：为执行安全策略而必须正确的系统组件子集，尽可能保持最小化"
+    ],
+    "timeline": [
+      [
+        "2002",
+        "Microsoft launches Trustworthy Computing initiative following Bill Gates' famous memo, triggering SDL development"
+      ],
+      [
+        "2004",
+        "Microsoft mandates SDL across all Windows Server and developer tools product groups"
+      ],
+      [
+        "2006",
+        "Howard and Lipner publish「The Security Development Lifecycle」, making the process publicly available"
+      ],
+      [
+        "2012",
+        "Microsoft releases SDL as an Agile-compatible process and publishes SDL Threat Modeling Tool v3"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2002",
+        "微软在比尔·盖茨著名备忘录之后启动「可信计算」计划，触发SDL的开发"
+      ],
+      [
+        "2004",
+        "微软在所有Windows Server和开发者工具产品组强制推行SDL"
+      ],
+      [
+        "2006",
+        "Howard和Lipner出版「The Security Development Lifecycle」，使该流程公开可用"
+      ],
+      [
+        "2012",
+        "微软将SDL发布为敏捷兼容流程，并发布SDL威胁建模工具v3"
+      ]
+    ],
+    "dos": [
+      "Integrate SDL requirements as acceptance criteria in user stories so security is a first-class definition of done, not a separate audit",
+      "Automate as much of SDL as possible — static analysis, dependency scanning, and secret detection run every commit, making security invisible friction",
+      "Use metrics (mean time to fix security bugs, SAST false-positive rate) to continuously improve the SDL process itself",
+      "Train developers on the specific vulnerabilities most relevant to your stack rather than generic security awareness content"
+    ],
+    "dos_zh": [
+      "将SDL需求作为用户故事的验收标准，使安全成为一等完成定义，而非独立审计",
+      "尽可能自动化SDL——每次提交时运行静态分析、依赖扫描和密钥检测，使安全成为无摩擦的存在",
+      "使用指标（安全缺陷平均修复时间、SAST误报率）持续改进SDL流程本身",
+      "针对最与你的技术栈相关的特定漏洞培训开发人员，而非通用安全意识内容"
+    ],
+    "donts": [
+      "Don't treat SDL as a one-time checklist at the end of a project because late-stage security fixes cost 30x more than design-phase fixes",
+      "Don't assign SDL compliance solely to a security team because security is a shared responsibility that requires developer ownership",
+      "Don't skip threat modeling for 'small' features because attackers routinely exploit seemingly minor changes that alter trust boundaries",
+      "Don't implement SDL without executive sponsorship because security process adoption fails without organizational authority to enforce bug bars"
+    ],
+    "donts_zh": [
+      "不要将SDL视为项目结束时的一次性检查表，因为后期阶段的安全修复成本比设计阶段高30倍",
+      "不要将SDL合规工作仅分配给安全团队，因为安全是需要开发人员承担所有权的共同责任",
+      "不要跳过「小」功能的威胁建模，因为攻击者经常利用改变信任边界的看似微小的变更",
+      "不要在没有高管支持的情况下实施SDL，因为没有组织权威来执行缺陷基准，安全流程采用就会失败"
+    ],
+    "case_study_company": "Microsoft",
+    "case_study": "After the 2002 Trustworthy Computing initiative, Microsoft halted Windows Server 2003 development for 60 days to train 8,500 developers on secure coding and conduct the first company-wide SDL review. The result was a 45% reduction in security bulletins between Windows XP and Windows Vista, and a 91% reduction in critical vulnerabilities in Windows Server 2003 compared to Windows Server 2000. Microsoft later open-sourced the SDL process and tooling, enabling organizations like Adobe, Cisco, and SAP to adopt it. The SDL became the template for NIST SP 800-218 (Secure Software Development Framework) and ISO/IEC 27034.",
+    "case_study_zh": "在2002年「可信计算」计划之后，微软暂停Windows Server 2003的开发60天，对8,500名开发人员进行安全编码培训并进行首次全公司SDL审查。结果是Windows XP和Windows Vista之间安全公告减少了45%，Windows Server 2003与Windows Server 2000相比关键漏洞减少了91%。微软后来将SDL流程和工具开源，使Adobe、Cisco和SAP等组织能够采用它。SDL成为NIST SP 800-218（安全软件开发框架）和ISO/IEC 27034的模板。",
+    "when_not_to_use": [
+      "For throwaway prototypes or research spikes where the code will never reach production and security overhead would waste exploration time",
+      "In very early-stage startups (pre-product-market-fit) where the overhead of formal SDL phases would prevent shipping at all — adopt a lightweight version first",
+      "When the system handles only non-sensitive, publicly available data with no user authentication — full SDL overhead exceeds the actual risk"
+    ],
+    "when_not_to_use_zh": [
+      "对于一次性原型或研究性尝试，代码永远不会进入生产环境，安全开销会浪费探索时间",
+      "在极早期创业公司（产品市场契合前），正式SDL阶段的开销会完全妨碍发布——先采用精简版本",
+      "当系统仅处理非敏感、公开可用的数据且没有用户认证时——完整SDL开销超过实际风险"
+    ],
+    "adopters": [
+      "Microsoft",
+      "Adobe",
+      "Cisco",
+      "SAP",
+      "Siemens",
+      "US Department of Defense (DoD)"
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "security",
+      "reliability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Howard, M. & Lipner, S. (2006). \"The Security Development Lifecycle\". Microsoft Press.",
+    "secondary_sources": [
+      "NIST (2022). \"SP 800-218: Secure Software Development Framework (SSDF)\". NIST.",
+      "Shostack, A. (2014). \"Threat Modeling: Designing for Security\". Wiley.",
+      "Microsoft (2012). \"SDL: Agile Development\". microsoft.com/en-us/securityengineering/sdl/agile."
+    ],
+    "typed_relations": [
+      {
+        "slug": "threat-modeling-stride",
+        "type": "complement"
+      },
+      {
+        "slug": "owasp-top-10",
+        "type": "complement"
+      },
+      {
+        "slug": "devsecops-pipeline",
+        "type": "related"
+      },
+      {
+        "slug": "defense-in-depth",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 257,
+    "name": "NIST Cybersecurity Framework",
+    "name_zh": "NIST网络安全框架",
+    "slug": "nist-cybersecurity-framework",
+    "category": "security",
+    "desc": "A voluntary risk-based framework organizing cybersecurity activities into five concurrent functions: Identify, Protect, Detect, Respond, Recover",
+    "desc_zh": "一个基于风险的自愿性框架，将网络安全活动组织为五个并发功能：识别、保护、检测、响应、恢复",
+    "steps": [
+      "Identify: Develop organizational understanding of systems, assets, data, and capabilities; conduct risk assessments and establish a governance structure for cybersecurity",
+      "Protect: Implement safeguards for critical services — access control, awareness training, data security, maintenance, and protective technology deployment",
+      "Detect: Define activities to identify cybersecurity events through continuous monitoring, anomaly detection, and security event logging",
+      "Respond: Develop and implement response plans, coordinate communications, perform analysis, execute mitigation activities, and conduct post-incident reviews",
+      "Recover: Identify and prioritize recovery activities, implement improvements based on lessons learned, and coordinate restoration of services and communications"
+    ],
+    "steps_zh": [
+      "识别：建立对系统、资产、数据和能力的组织理解；进行风险评估并建立网络安全治理结构",
+      "保护：为关键服务实施保护措施——访问控制、意识培训、数据安全、维护和保护技术部署",
+      "检测：通过持续监控、异常检测和安全事件日志记录定义识别网络安全事件的活动",
+      "响应：制定和实施响应计划，协调沟通，执行分析，实施缓解活动，并进行事后审查",
+      "恢复：识别和优先处理恢复活动，基于经验教训实施改进，协调服务和通信的恢复"
+    ],
+    "ai_relevant": true,
+    "viz_type": "cycle",
+    "related": [
+      "defense-in-depth",
+      "incident-response-playbook",
+      "security-development-lifecycle",
+      "zero-trust-architecture"
+    ],
+    "tags": [
+      "nist",
+      "risk-management",
+      "governance",
+      "compliance",
+      "cybersecurity"
+    ],
+    "origin_author": "NIST",
+    "origin_source": "NIST (2014). \"Framework for Improving Critical Infrastructure Cybersecurity\". NIST, Gaithersburg, MD.",
+    "origin_source_zh": "NIST（2014）。「改善关键基础设施网络安全框架」。NIST，盖瑟斯堡，马里兰州。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When an organization needs a common language and structure to communicate cybersecurity risk to executives, boards, and regulators",
+      "During cybersecurity program maturity assessments to identify gaps between current and target security postures",
+      "In critical infrastructure sectors (energy, finance, healthcare) where the framework was originally designed and has regulatory recognition",
+      "When integrating cybersecurity requirements across a complex supply chain with multiple vendors and partners"
+    ],
+    "when_to_use_zh": [
+      "当组织需要通用语言和结构向高管、董事会和监管机构传达网络安全风险时",
+      "在网络安全计划成熟度评估期间，识别当前和目标安全态势之间的差距",
+      "在关键基础设施领域（能源、金融、医疗），框架最初为此设计并获得监管认可",
+      "在跨多个供应商和合作伙伴的复杂供应链中整合网络安全要求时"
+    ],
+    "core_concepts": [
+      "Framework Core: Five concurrent and continuous functions (Identify, Protect, Detect, Respond, Recover) each subdivided into Categories and Subcategories with informative references",
+      "Implementation Tiers: Four tiers (Partial, Risk Informed, Repeatable, Adaptive) describing the degree to which cybersecurity risk management practices exhibit key characteristics",
+      "Framework Profile: An organization's unique alignment of requirements, objectives, and resources against the Core, representing current state or desired target state",
+      "Risk-Based Approach: Prioritization of cybersecurity investments based on business impact and likelihood of threats rather than compliance checkboxes",
+      "Informative References: Mappings to existing standards (ISO 27001, COBIT, NIST SP 800-53) enabling organizations to use the CSF as a Rosetta Stone across frameworks"
+    ],
+    "core_concepts_zh": [
+      "框架核心：五个并发持续的功能（识别、保护、检测、响应、恢复），每个功能细分为带有参考信息的类别和子类别",
+      "实施层级：四个层级（部分、风险知情、可重复、自适应），描述网络安全风险管理实践展示关键特征的程度",
+      "框架概要：组织的需求、目标和资源与核心的独特对齐，代表当前状态或期望的目标状态",
+      "基于风险的方法：根据业务影响和威胁可能性而非合规清单来优先考虑网络安全投资",
+      "参考信息：映射到现有标准（ISO 27001、COBIT、NIST SP 800-53），使组织能够将CSF用作跨框架的通用语言"
+    ],
+    "timeline": [
+      [
+        "2013",
+        "Executive Order 13636 directs NIST to develop a cybersecurity framework for critical infrastructure following major grid attacks"
+      ],
+      [
+        "2014",
+        "NIST CSF v1.0 published after extensive public-private collaboration with over 3,000 stakeholders"
+      ],
+      [
+        "2018",
+        "NIST CSF v1.1 adds supply chain risk management subcategories and clarifies authentication guidance"
+      ],
+      [
+        "2024",
+        "NIST CSF v2.0 published, adding a sixth function (Govern) and expanding scope beyond critical infrastructure to all organizations"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2013",
+        "13636号行政令指示NIST在主要电网攻击后为关键基础设施制定网络安全框架"
+      ],
+      [
+        "2014",
+        "NIST CSF v1.0在与3,000多个利益相关者广泛公私合作后发布"
+      ],
+      [
+        "2018",
+        "NIST CSF v1.1增加供应链风险管理子类别并澄清认证指南"
+      ],
+      [
+        "2024",
+        "NIST CSF v2.0发布，增加第六个功能（治理）并将范围从关键基础设施扩展到所有组织"
+      ]
+    ],
+    "dos": [
+      "Use the Framework Profile to create a gap analysis between current and target states, then roadmap investments to close prioritized gaps",
+      "Map your existing controls to CSF subcategories before buying new tools — most mature organizations already cover 60-70% of the framework",
+      "Engage executives with Tier assessments rather than technical subcategory details, as Tiers communicate maturity in business language",
+      "Revisit your Framework Profile annually or after major architecture changes to keep the risk picture current"
+    ],
+    "dos_zh": [
+      "使用框架概要在当前状态和目标状态之间创建差距分析，然后制定路线图投资以缩小优先差距",
+      "在购买新工具之前将现有控制措施映射到CSF子类别——大多数成熟组织已经覆盖框架的60-70%",
+      "用层级评估而非技术子类别细节与高管互动，因为层级以商业语言传达成熟度",
+      "每年或在重大架构变更后重新审视框架概要，以保持风险图景的时效性"
+    ],
+    "donts": [
+      "Don't treat CSF as a compliance checklist — it is a risk management tool and every organization's target profile should reflect its unique risk appetite",
+      "Don't attempt to reach Tier 4 (Adaptive) across all functions simultaneously because the resource cost is prohibitive and most organizations benefit more from closing Tier 1 gaps first",
+      "Don't use CSF in isolation from other frameworks — it is explicitly designed to coexist with ISO 27001, SOC 2, and sector-specific regulations",
+      "Don't skip the Identify function to jump to Protect — you cannot protect assets you haven't inventoried and risk-rated"
+    ],
+    "donts_zh": [
+      "不要将CSF视为合规清查清单——它是一个风险管理工具，每个组织的目标概要应反映其独特的风险偏好",
+      "不要尝试在所有功能上同时达到第4层（自适应），因为资源成本过高，大多数组织从首先弥补第1层差距中受益更多",
+      "不要单独使用CSF——它明确设计为与ISO 27001、SOC 2和特定行业法规共存",
+      "不要跳过识别功能直接跳到保护——你无法保护未清点和评级风险的资产"
+    ],
+    "case_study_company": "JPMorgan Chase",
+    "case_study": "JPMorgan Chase adopted the NIST CSF following the 2014 data breach that exposed 76 million households' data. The bank used the Framework Profile to map their existing security controls across all five functions, identifying critical gaps in the Detect and Respond categories. They created a target profile aligned with Tier 3 (Repeatable) capabilities across all functions and Tier 4 (Adaptive) for their most critical trading and customer-data systems. The CSF provided a shared language that allowed the CISO to present cybersecurity investment needs to the board as business risk rather than technical jargon. JPMC now spends over $600M annually on cybersecurity and credits the structured CSF approach with enabling board-level prioritization of that investment.",
+    "case_study_zh": "摩根大通在2014年数据泄露事件（泄露7,600万户家庭数据）后采用了NIST CSF。该银行使用框架概要映射所有五个功能中的现有安全控制措施，识别出检测和响应类别中的关键差距。他们创建了一个目标概要，在所有功能上与第3层（可重复）能力对齐，在最关键的交易和客户数据系统上与第4层（自适应）对齐。CSF提供了一种共同语言，允许CISO向董事会以业务风险而非技术术语呈现网络安全投资需求。摩根大通现在每年在网络安全上花费超过6亿美元，并将投资的董事会级优先排序归功于结构化的CSF方法。",
+    "when_not_to_use": [
+      "As a technical implementation guide — CSF describes what to do, not how; supplement it with NIST SP 800-53 or CIS Controls for prescriptive controls",
+      "For very small organizations (under 50 employees) where the overhead of formal profile creation and tier assessment exceeds their entire security budget",
+      "As a substitute for sector-specific regulations (PCI-DSS, HIPAA) — use CSF as a unifying overlay, not a replacement"
+    ],
+    "when_not_to_use_zh": [
+      "作为技术实施指南——CSF描述做什么，而非如何做；用NIST SP 800-53或CIS控制措施补充规定性控制",
+      "对于非常小的组织（50人以下），正式概要创建和层级评估的开销超过其整个安全预算",
+      "作为特定行业法规（PCI-DSS、HIPAA）的替代——将CSF用作统一覆盖层，而非替代品"
+    ],
+    "adopters": [
+      "JPMorgan Chase",
+      "Verizon",
+      "Intel",
+      "Boeing",
+      "US Department of Energy",
+      "Anthem"
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "security",
+      "reliability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "NIST (2024). \"Cybersecurity Framework 2.0\". doi.org/10.6028/NIST.CSWP.29.",
+    "secondary_sources": [
+      "NIST (2018). \"Framework for Improving Critical Infrastructure Cybersecurity v1.1\". NIST.",
+      "Calder, A. (2018). \"NIST Cybersecurity Framework: A Pocket Guide\". IT Governance Publishing.",
+      "CIS (2021). \"CIS Controls v8 Mapping to NIST CSF\". cisecurity.org."
+    ],
+    "typed_relations": [
+      {
+        "slug": "defense-in-depth",
+        "type": "complement"
+      },
+      {
+        "slug": "incident-response-playbook",
+        "type": "complement"
+      },
+      {
+        "slug": "security-development-lifecycle",
+        "type": "related"
+      },
+      {
+        "slug": "threat-modeling-stride",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 258,
+    "name": "DevSecOps Pipeline",
+    "name_zh": "DevSecOps流水线",
+    "slug": "devsecops-pipeline",
+    "category": "security",
+    "desc": "The integration of security tooling and culture into every stage of a CI/CD pipeline so that security is automated, continuous, and developer-owned rather than a final gate",
+    "desc_zh": "将安全工具和文化集成到CI/CD流水线的每个阶段，使安全成为自动化、持续且由开发人员负责的工作，而非最终关卡",
+    "steps": [
+      "Shift-Left Planning: Embed security requirements in user stories, run automated dependency vulnerability scanning (SCA) on every pull request, and configure secret detection to block credentials from entering source control",
+      "Secure Build: Integrate SAST tools (Semgrep, Checkmarx, SonarQube) into the CI pipeline as blocking quality gates with developer-visible feedback within minutes of commit",
+      "Container and Infrastructure Security: Scan container images with tools like Trivy or Snyk in the registry pipeline, enforce policy-as-code (OPA, Conftest) for Kubernetes manifests and Terraform before deployment",
+      "Dynamic and Runtime Testing: Run DAST (OWASP ZAP, Burp Suite API) against staging environments in the CD pipeline, enable runtime application self-protection (RASP) and cloud workload protection in production",
+      "Continuous Feedback and Governance: Aggregate findings into a security dashboard (Defect Dojo, Veracode), route high-severity findings to developer queues, track mean time to remediation, and conduct blameless security post-mortems"
+    ],
+    "steps_zh": [
+      "左移规划：在用户故事中嵌入安全需求，在每个拉取请求上运行自动化依赖漏洞扫描（SCA），配置密钥检测以阻止凭证进入源代码管理",
+      "安全构建：将SAST工具（Semgrep、Checkmarx、SonarQube）集成到CI流水线中作为阻塞质量门控，在提交后数分钟内向开发人员提供可见反馈",
+      "容器和基础设施安全：在注册表流水线中使用Trivy或Snyk等工具扫描容器镜像，在部署前对Kubernetes清单和Terraform强制执行策略即代码（OPA、Conftest）",
+      "动态和运行时测试：在CD流水线的暂存环境中运行DAST（OWASP ZAP、Burp Suite API），在生产中启用运行时应用程序自我保护（RASP）和云工作负载保护",
+      "持续反馈和治理：将发现汇总到安全仪表板（Defect Dojo、Veracode），将高严重性发现路由到开发人员队列，跟踪平均修复时间，并进行无指责安全事后审查"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "security-development-lifecycle",
+      "owasp-top-10",
+      "threat-modeling-stride",
+      "defense-in-depth"
+    ],
+    "tags": [
+      "devsecops",
+      "ci-cd",
+      "shift-left",
+      "automation",
+      "sast",
+      "dast"
+    ],
+    "origin_author": "Shannon Lietz",
+    "origin_source": "Lietz, S. (2012). \"DevSecOps: The DevOps Evolution\". devopsagenda.techtarget.com; Gartner (2016). \"DevSecOps: How to Seamlessly Integrate Security Into DevOps\".",
+    "origin_source_zh": "Lietz, S.（2012）。「DevSecOps：DevOps的演进」。devopsagenda.techtarget.com；Gartner（2016）。「DevSecOps：如何将安全无缝集成到DevOps中」。",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When a team deploys multiple times per day and traditional security review gates create unacceptable bottlenecks in the delivery pipeline",
+      "After a production security incident caused by a vulnerability that existed in code for weeks or months before discovery",
+      "When building cloud-native or microservices architectures where the attack surface changes with every deployment",
+      "In organizations adopting platform engineering — security tooling becomes a product offering of the internal developer platform"
+    ],
+    "when_to_use_zh": [
+      "当团队每天部署多次，传统安全审查关卡在交付流水线中造成不可接受的瓶颈时",
+      "在生产安全事故发生后，该事故由发现前已在代码中存在数周或数月的漏洞引起",
+      "在构建云原生或微服务架构时，攻击面随每次部署而变化",
+      "在采用平台工程的组织中——安全工具成为内部开发平台的产品服务"
+    ],
+    "core_concepts": [
+      "Shift-Left Security: Moving security activities earlier in the SDLC so defects are caught at their cheapest fix point (design/code) rather than post-deployment",
+      "Security as Code: Expressing security policies, compliance rules, and infrastructure hardening as version-controlled code that is tested and deployed like any other software artifact",
+      "Continuous Compliance: Automated verification that every deployment meets defined security and regulatory requirements, producing audit trails without manual evidence collection",
+      "Developer Security Champions: Developers embedded in teams with additional security training who act as first-line security reviewers, reducing bottlenecks on central security teams",
+      "Software Composition Analysis (SCA): Automated scanning of open-source dependencies for known CVEs, license compliance issues, and transitive vulnerabilities in the dependency graph"
+    ],
+    "core_concepts_zh": [
+      "左移安全：将安全活动移至SDLC的早期阶段，以便在最便宜的修复点（设计/代码）而非部署后捕获缺陷",
+      "安全即代码：将安全策略、合规规则和基础设施加固表达为受版本控制的代码，像其他软件工件一样进行测试和部署",
+      "持续合规：自动化验证每次部署是否满足定义的安全和监管要求，无需手动收集证据即可生成审计跟踪",
+      "开发人员安全冠军：嵌入团队的具有额外安全培训的开发人员，充当一线安全审查员，减少对中央安全团队的瓶颈",
+      "软件组合分析（SCA）：自动扫描开源依赖项，检查已知CVE、许可证合规问题和依赖图中的传递性漏洞"
+    ],
+    "timeline": [
+      [
+        "2012",
+        "Shannon Lietz coins the term 「DevSecOps」 and launches the DevSecOps Manifesto to formalize security integration in DevOps"
+      ],
+      [
+        "2016",
+        "Gartner publishes「DevSecOps: How to Seamlessly Integrate Security Into DevOps」, driving enterprise adoption"
+      ],
+      [
+        "2018",
+        "GitLab launches built-in SAST/DAST/dependency scanning in its CI pipelines, making DevSecOps accessible out-of-the-box"
+      ],
+      [
+        "2021",
+        "Log4Shell vulnerability demonstrates DevSecOps SCA value as organizations with automated dependency scanning patched within hours versus weeks"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2012",
+        "Shannon Lietz创造「DevSecOps」一词并发布DevSecOps宣言，以正式化DevOps中的安全集成"
+      ],
+      [
+        "2016",
+        "Gartner发布「DevSecOps：如何将安全无缝集成到DevOps中」，推动企业采用"
+      ],
+      [
+        "2018",
+        "GitLab在其CI流水线中推出内置SAST/DAST/依赖扫描，使DevSecOps开箱即用"
+      ],
+      [
+        "2021",
+        "Log4Shell漏洞证明了DevSecOps SCA的价值，具有自动化依赖扫描的组织在数小时内完成修补，而非数周"
+      ]
+    ],
+    "dos": [
+      "Start with secret detection and dependency scanning as they deliver immediate value with near-zero false positives and prevent the most common production incidents",
+      "Tune SAST tools per-project to reduce false-positive rates below 10% before enabling them as blocking gates — high noise kills developer trust",
+      "Give developers fix guidance alongside findings because a vulnerability alert without a remediation path creates anxiety, not security improvement",
+      "Measure developer experience metrics (time to fix, false-positive rate, pipeline overhead) alongside security metrics to maintain developer buy-in"
+    ],
+    "dos_zh": [
+      "从密钥检测和依赖扫描开始，因为它们以几乎零误报提供即时价值，防止最常见的生产事故",
+      "在将SAST工具作为阻塞关卡启用之前，对每个项目进行调优以将误报率降至10%以下——高噪音会摧毁开发人员信任",
+      "在发现旁边给开发人员提供修复指导，因为没有补救路径的漏洞警报会产生焦虑，而非安全改进",
+      "与安全指标一起衡量开发人员体验指标（修复时间、误报率、流水线开销），以保持开发人员的认同"
+    ],
+    "donts": [
+      "Don't add every available security scanner at once — pipeline sprawl with conflicting tool outputs overwhelms developers and slows delivery without security benefit",
+      "Don't treat all findings as equally urgent — a CVSS 9.8 in a production API deserves different SLA treatment than a CVSS 3.2 in a development dependency",
+      "Don't skip the cultural transformation — tooling without developer security ownership reverts to a security-team-as-gatekeeper model that DevSecOps was designed to replace",
+      "Don't ignore runtime security in favor of pre-deployment scanning only because attackers exploit running systems, not source code"
+    ],
+    "donts_zh": [
+      "不要一次添加所有可用的安全扫描器——具有冲突工具输出的流水线扩张会压倒开发人员并减慢交付，而没有安全收益",
+      "不要将所有发现视为同等紧迫——生产API中的CVSS 9.8与开发依赖中的CVSS 3.2应得到不同的SLA处理",
+      "不要跳过文化转型——没有开发人员安全所有权的工具化会恢复到DevSecOps旨在替代的安全团队充当看门人模式",
+      "不要仅偏爱部署前扫描而忽视运行时安全，因为攻击者利用运行中的系统，而非源代码"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix's Security Monkey and later Repokid projects exemplify their DevSecOps philosophy of automating security at scale. With 700+ microservices deploying thousands of times weekly, manual security review is impossible. Netflix built Security Monkey to continuously audit AWS IAM policies and S3 bucket permissions, automatically flagging and eventually auto-remediating policy drift. Their Repokid tool uses machine learning on CloudTrail logs to detect and remove unused IAM permissions, enforcing least-privilege automatically over time. This automated, developer-owned approach enabled Netflix to maintain a strong security posture across millions of lines of code without a security team that scales with the engineering headcount.",
+    "case_study_zh": "Netflix的Security Monkey以及后来的Repokid项目体现了其大规模自动化安全的DevSecOps理念。每周部署数千次的700多个微服务使手动安全审查变得不可能。Netflix构建了Security Monkey来持续审计AWS IAM策略和S3存储桶权限，自动标记并最终自动修复策略漂移。他们的Repokid工具使用机器学习分析CloudTrail日志来检测和删除未使用的IAM权限，随着时间推移自动执行最小权限。这种自动化、开发人员拥有的方法使Netflix能够在数百万行代码中保持强大的安全态势，而无需随工程人员规模扩展的安全团队。",
+    "when_not_to_use": [
+      "For systems with very infrequent releases (quarterly or annual) where the overhead of pipeline security tooling exceeds the risk reduction — manual security reviews are more cost-effective",
+      "When the team lacks the DevOps maturity for CI/CD itself — implement basic pipeline practices before layering security automation on top",
+      "In air-gapped classified environments where commercial security scanning SaaS tools cannot be used and open-source alternatives require significant maintenance overhead"
+    ],
+    "when_not_to_use_zh": [
+      "对于发布非常不频繁（季度或年度）的系统，流水线安全工具的开销超过风险降低——手动安全审查更具成本效益",
+      "当团队缺乏CI/CD本身的DevOps成熟度时——在其上叠加安全自动化之前先实施基本流水线实践",
+      "在商业安全扫描SaaS工具无法使用且开源替代方案需要大量维护开销的隔离机密环境中"
+    ],
+    "adopters": [
+      "Netflix",
+      "Etsy",
+      "Capital One",
+      "Spotify",
+      "Atlassian",
+      "GitLab"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "security",
+      "maintainability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Kim, G., Humble, J., Debois, P. & Willis, J. (2016). \"The DevOps Handbook\". IT Revolution Press.",
+    "secondary_sources": [
+      "OWASP (2020). \"DevSecOps Guideline\". owasp.org/www-project-devsecops-guideline.",
+      "Gartner (2016). \"DevSecOps: How to Seamlessly Integrate Security Into DevOps\". Gartner Research.",
+      "NIST (2022). \"SP 800-218: Secure Software Development Framework\". NIST."
+    ],
+    "typed_relations": [
+      {
+        "slug": "security-development-lifecycle",
+        "type": "related"
+      },
+      {
+        "slug": "owasp-top-10",
+        "type": "complement"
+      },
+      {
+        "slug": "threat-modeling-stride",
+        "type": "complement"
+      },
+      {
+        "slug": "defense-in-depth",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 259,
+    "name": "Data Loss Prevention (DLP)",
+    "name_zh": "数据防泄漏（DLP）",
+    "slug": "data-loss-prevention",
+    "category": "security",
+    "desc": "A strategy and toolset for detecting, monitoring, and preventing the unauthorized transmission of sensitive data outside organizational boundaries",
+    "desc_zh": "检测、监控和防止敏感数据未经授权传输到组织边界之外的策略和工具集",
+    "steps": [
+      "Data Discovery and Classification: Inventory all data stores (databases, file shares, cloud storage, endpoints) and classify content by sensitivity level (public, internal, confidential, restricted) using automated scanning and pattern matching",
+      "Policy Definition: Define DLP rules aligned to business risk — patterns for PII (SSN, credit card, passport), PHI, intellectual property, and source code, specifying monitor, alert, or block actions by data type and channel",
+      "Channel Coverage: Deploy DLP controls across all exfiltration vectors — email (O365 DLP, Proofpoint), endpoint (Symantec DLP, CrowdStrike), cloud (CASB — Netskope, MCAS), and network (proxy inspection)",
+      "Incident Response Integration: Route DLP alerts to a SIEM with enriched context (user risk score, data sensitivity, destination), define escalation workflows, and integrate with HR and legal for insider-threat cases",
+      "Tuning and Governance: Measure false-positive rates per policy, tune regex patterns and ML classifiers, conduct quarterly reviews of classification schema against evolving data landscape, and report DLP effectiveness to security leadership"
+    ],
+    "steps_zh": [
+      "数据发现和分类：清点所有数据存储（数据库、文件共享、云存储、端点）并使用自动扫描和模式匹配按敏感级别（公开、内部、机密、受限）对内容进行分类",
+      "策略定义：定义与业务风险对齐的DLP规则——PII（社会安全号、信用卡、护照）、PHI、知识产权和源代码的模式，按数据类型和渠道指定监控、告警或阻止操作",
+      "渠道覆盖：在所有泄漏向量上部署DLP控制——电子邮件（O365 DLP、Proofpoint）、端点（Symantec DLP、CrowdStrike）、云（CASB——Netskope、MCAS）和网络（代理检查）",
+      "事件响应集成：将DLP告警路由到带有丰富上下文（用户风险评分、数据敏感性、目的地）的SIEM，定义升级工作流，并与HR和法律部门集成处理内部威胁案例",
+      "调优和治理：测量每个策略的误报率，调整正则表达式模式和ML分类器，对照不断演变的数据格局进行季度分类模式审查，并向安全领导层报告DLP有效性"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "defense-in-depth",
+      "nist-cybersecurity-framework",
+      "zero-trust-architecture",
+      "threat-modeling-stride"
+    ],
+    "tags": [
+      "dlp",
+      "data-protection",
+      "insider-threat",
+      "compliance",
+      "pii"
+    ],
+    "origin_author": "Gartner",
+    "origin_source": "Gartner (2006). \"Magic Quadrant for Data Loss Prevention\". Gartner Research; Securosis (2007). \"Understanding and Selecting a DLP Solution\".",
+    "origin_source_zh": "Gartner（2006）。「数据防泄漏魔力象限」。Gartner研究；Securosis（2007）。「理解和选择DLP解决方案」。",
+    "complexity": "advanced",
+    "when_to_use": [
+      "In regulated industries (finance, healthcare, legal) where data residency and exfiltration prevention are mandated by PCI-DSS, HIPAA, GDPR, or SOX",
+      "When insider threat is a significant risk — departing employees, contractors with broad access, or mergers and acquisitions where data sovereignty matters",
+      "After a data breach investigation reveals exfiltration occurred via email, USB, or cloud sync without detection",
+      "When a cloud migration moves sensitive data to SaaS platforms (Salesforce, O365) requiring CASB-integrated DLP to maintain visibility"
+    ],
+    "when_to_use_zh": [
+      "在PCI-DSS、HIPAA、GDPR或SOX强制要求数据驻留和防泄漏的受监管行业（金融、医疗、法律）",
+      "当内部威胁是重大风险时——离职员工、拥有广泛访问权限的承包商，或数据主权重要的并购情况",
+      "在数据泄露调查发现通过电子邮件、USB或云同步未被检测到的泄漏发生后",
+      "当云迁移将敏感数据移至SaaS平台（Salesforce、O365），需要集成CASB的DLP来保持可见性时"
+    ],
+    "core_concepts": [
+      "Data Classification: The categorization of data by sensitivity, regulatory obligation, and business value, which determines the DLP policy applied to each data asset",
+      "Content Inspection: Deep examination of data in motion (network), at rest (storage), and in use (endpoint) using regular expressions, data fingerprinting, and ML classifiers",
+      "Contextual Analysis: Evaluating not just content but context — who is sending, to where, via what channel, at what time — to reduce false positives and catch anomalous behavior",
+      "CASB (Cloud Access Security Broker): A security policy enforcement point between cloud service users and providers that extends DLP visibility to SaaS and IaaS environments",
+      "Insider Threat Integration: Combining DLP telemetry with user behavior analytics (UEBA) to distinguish accidental data handling mistakes from malicious exfiltration attempts"
+    ],
+    "core_concepts_zh": [
+      "数据分类：按敏感性、监管义务和业务价值对数据进行分类，决定应用于每个数据资产的DLP策略",
+      "内容检查：使用正则表达式、数据指纹和ML分类器深入检查传输中（网络）、静止中（存储）和使用中（端点）的数据",
+      "上下文分析：不仅评估内容，还评估上下文——谁在发送、发往何处、通过什么渠道、在什么时间——以减少误报并捕获异常行为",
+      "CASB（云访问安全代理）：云服务用户和提供商之间的安全策略执行点，将DLP可见性扩展到SaaS和IaaS环境",
+      "内部威胁集成：将DLP遥测与用户行为分析（UEBA）相结合，以区分意外数据处理错误和恶意数据泄漏尝试"
+    ],
+    "timeline": [
+      [
+        "2003",
+        "Vontu (later acquired by Symantec) launches one of the first commercial DLP products focusing on email and network inspection"
+      ],
+      [
+        "2006",
+        "Gartner formally defines the DLP market category, triggering enterprise adoption and vendor consolidation"
+      ],
+      [
+        "2017",
+        "Microsoft launches Office 365 DLP natively in the platform, making DLP accessible to organizations without dedicated DLP infrastructure"
+      ],
+      [
+        "2022",
+        "CASB-integrated DLP becomes the dominant architecture as SaaS and cloud storage overtake on-premise as the primary data exfiltration surface"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2003",
+        "Vontu（后被Symantec收购）推出首批专注于电子邮件和网络检查的商业DLP产品之一"
+      ],
+      [
+        "2006",
+        "Gartner正式定义DLP市场类别，推动企业采用和供应商整合"
+      ],
+      [
+        "2017",
+        "微软在平台中原生推出Office 365 DLP，使没有专用DLP基础设施的组织能够访问DLP"
+      ],
+      [
+        "2022",
+        "随着SaaS和云存储超越本地部署成为主要数据泄漏面，集成CASB的DLP成为主流架构"
+      ]
+    ],
+    "dos": [
+      "Start with monitor-only mode for all new policies for 30 days to measure false-positive rates before enabling blocking actions that could disrupt legitimate workflows",
+      "Involve business data owners in classification schema design because IT-defined classification schemas frequently misalign with how business units actually use and value data",
+      "Integrate DLP alerts into user awareness at the point of violation — a real-time educational pop-up is more effective than a security team email days later",
+      "Build a dedicated DLP tuning team rather than treating DLP as a set-and-forget tool, as data patterns and workflows evolve constantly"
+    ],
+    "dos_zh": [
+      "在启用可能中断合法工作流的阻止操作之前，对所有新策略以仅监控模式运行30天以测量误报率",
+      "让业务数据所有者参与分类模式设计，因为IT定义的分类模式经常与业务单元实际使用和评估数据的方式不一致",
+      "在违规时将DLP告警整合到用户意识中——实时教育弹出窗口比几天后发来的安全团队电子邮件更有效",
+      "建立专门的DLP调优团队，而非将DLP视为一次性设置工具，因为数据模式和工作流不断演变"
+    ],
+    "donts": [
+      "Don't attempt to classify and protect all data at once — a phased approach starting with the highest-sensitivity data (PCI, PHI, IP) prevents program failure from scope overload",
+      "Don't rely solely on regex-based detection for modern DLP because attackers obfuscate sensitive data (steganography, encoding) and ML-based contextual analysis is essential",
+      "Don't deploy endpoint DLP without change management and employee communication — covert monitoring without transparency creates legal risk in many jurisdictions",
+      "Don't treat DLP as a substitute for encryption — DLP detects exfiltration attempts but encryption ensures data is useless if exfiltrated"
+    ],
+    "donts_zh": [
+      "不要试图一次分类和保护所有数据——从最高敏感度数据（PCI、PHI、IP）开始的分阶段方法可防止因范围过载导致计划失败",
+      "不要仅依赖基于正则表达式的检测来进行现代DLP，因为攻击者会混淆敏感数据（隐写术、编码），基于ML的上下文分析是必不可少的",
+      "不要在没有变更管理和员工沟通的情况下部署端点DLP——在许多司法管辖区，没有透明度的隐蔽监控会产生法律风险",
+      "不要将DLP视为加密的替代品——DLP检测泄漏尝试，但加密确保即使数据被泄漏也毫无用处"
+    ],
+    "case_study_company": "Morgan Stanley",
+    "case_study": "In 2019, Morgan Stanley faced a significant insider threat incident when a financial advisor exfiltrated data belonging to approximately 900 clients before departing. The bank's DLP system detected the anomalous bulk download from a wealth management system and flagged it within hours, enabling rapid legal response. The incident led Morgan Stanley to overhaul its DLP program with enhanced UEBA integration, tighter controls on bulk data exports, and a dedicated insider threat team. The UEBA-DLP integration reduced mean time to detect insider exfiltration from 78 days (industry average) to under 48 hours for high-risk departing employees, and the program became a benchmark for financial services sector DLP implementation.",
+    "case_study_zh": "2019年，摩根士丹利面临严重的内部威胁事件，一名理财顾问在离职前泄漏了约900名客户的数据。该银行的DLP系统在数小时内检测到从财富管理系统异常批量下载的行为并标记，从而实现快速法律响应。该事件促使摩根士丹利彻底改革其DLP计划，增强UEBA集成，对批量数据导出实施更严格的控制，并建立专门的内部威胁团队。UEBA-DLP集成将内部泄漏的平均检测时间从78天（行业平均）缩短至高风险离职员工的48小时以内，该计划成为金融服务行业DLP实施的标杆。",
+    "when_not_to_use": [
+      "As a replacement for a data minimization strategy — the best DLP control is not collecting sensitive data in the first place",
+      "For organizations processing only non-sensitive, publicly available data where classification overhead exceeds any risk reduction value",
+      "As the only insider threat control — DLP must be layered with privileged access management (PAM), zero-trust network access, and HR process controls"
+    ],
+    "when_not_to_use_zh": [
+      "作为数据最小化策略的替代——最好的DLP控制是首先不收集敏感数据",
+      "对于仅处理非敏感公开可用数据的组织，分类开销超过任何风险降低价值",
+      "作为唯一的内部威胁控制——DLP必须与特权访问管理（PAM）、零信任网络访问和HR流程控制分层使用"
+    ],
+    "adopters": [
+      "Morgan Stanley",
+      "Bank of America",
+      "Pfizer",
+      "Lockheed Martin",
+      "US Department of Defense",
+      "Deutsche Bank"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "security"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Securosis (2007). \"Understanding and Selecting a DLP Solution\". securosis.com.",
+    "secondary_sources": [
+      "Gartner (2022). \"Magic Quadrant for Data Loss Prevention\". Gartner Research.",
+      "NIST (2018). \"SP 800-188: De-Identification of Government Datasets\". NIST.",
+      "Cole, E. (2017). \"Advanced Persistent Threat: Understanding the Danger and How to Protect Your Organization\". Syngress."
+    ],
+    "typed_relations": [
+      {
+        "slug": "defense-in-depth",
+        "type": "complement"
+      },
+      {
+        "slug": "nist-cybersecurity-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "threat-modeling-stride",
+        "type": "complement"
+      },
+      {
+        "slug": "incident-response-playbook",
+        "type": "related"
+      }
+    ]
+  },
+  {
+    "id": 260,
+    "name": "Incident Response Playbook",
+    "name_zh": "事件响应手册",
+    "slug": "incident-response-playbook",
+    "category": "security",
+    "desc": "SANS Institute's six-step structured process for handling cybersecurity incidents from preparation through post-incident lessons learned",
+    "desc_zh": "SANS研究所的六步结构化流程，用于处理从准备到事后经验总结的网络安全事件",
+    "steps": [
+      "Preparation: Establish incident response team (IRT) with defined roles, communication trees, and legal/HR contacts; deploy SIEM, EDR, and forensic tooling; run tabletop exercises quarterly to validate playbooks",
+      "Identification: Detect anomalous events through SIEM correlation rules, EDR alerts, threat intelligence feeds, or user reports; triage to confirm the event is a security incident and classify severity (P1-P4)",
+      "Containment: Implement short-term containment (isolate affected systems, revoke compromised credentials) followed by long-term containment (patch, rebuild, segment network) without destroying forensic evidence",
+      "Eradication: Remove the root cause — malware, backdoors, unauthorized accounts, misconfigured services — and validate that all affected systems are clean through forensic verification",
+      "Recovery: Restore services in a controlled sequence, monitor for signs of re-infection, verify business functions, and declare the incident closed only after sustained clean monitoring period",
+      "Lessons Learned: Conduct a blameless post-mortem within 2 weeks, document a timeline, root cause, dwell time, and detection gaps, and produce actionable improvements to prevention and detection controls"
+    ],
+    "steps_zh": [
+      "准备：建立具有明确角色、通信树和法律/HR联系人的事件响应团队（IRT）；部署SIEM、EDR和取证工具；每季度进行桌面演练以验证手册",
+      "识别：通过SIEM关联规则、EDR告警、威胁情报源或用户报告检测异常事件；分类确认该事件为安全事件并分类严重程度（P1-P4）",
+      "遏制：实施短期遏制（隔离受影响系统、撤销被入侵凭证），然后是长期遏制（修补、重建、网络分段），同时不破坏取证证据",
+      "根除：删除根本原因——恶意软件、后门、未授权账户、配置错误的服务——并通过取证验证确认所有受影响系统已清除",
+      "恢复：按受控顺序恢复服务，监控再感染迹象，验证业务功能，仅在持续干净的监控期后宣布事件关闭",
+      "经验总结：在2周内进行无指责事后审查，记录时间线、根本原因、驻留时间和检测差距，并提出改进预防和检测控制的可操作建议"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "nist-cybersecurity-framework",
+      "defense-in-depth",
+      "threat-modeling-stride",
+      "data-loss-prevention"
+    ],
+    "tags": [
+      "incident-response",
+      "sans",
+      "forensics",
+      "playbook",
+      "breach"
+    ],
+    "origin_author": "SANS Institute",
+    "origin_source": "SANS Institute (2004). \"Incident Handler's Handbook\". SANS Reading Room; Northcutt, S. (2003). \"Computer Security Incident Handling: Step by Step\". SANS Institute.",
+    "origin_source_zh": "SANS研究所（2004）。「事件处理人员手册」。SANS阅读室；Northcutt, S.（2003）。「计算机安全事件处理：一步一步」。SANS研究所。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Before an incident occurs — playbooks must be built and tested in tabletop exercises before they are needed under pressure",
+      "When a security alert is confirmed as a genuine incident requiring coordinated organizational response beyond individual analyst actions",
+      "In regulated environments (finance, healthcare, critical infrastructure) where documented incident handling procedures are required for compliance",
+      "When standing up a new security operations center (SOC) that needs standardized procedures for consistent incident handling across shifts and analysts"
+    ],
+    "when_to_use_zh": [
+      "在事件发生之前——手册必须在需要在压力下使用之前建立并通过桌面演练进行测试",
+      "当安全告警被确认为需要超出单个分析师行动的协调组织响应的真实事件时",
+      "在要求记录事件处理程序以实现合规的受监管环境（金融、医疗、关键基础设施）中",
+      "在建立需要跨班次和分析师进行一致事件处理的标准化程序的新安全运营中心（SOC）时"
+    ],
+    "core_concepts": [
+      "Dwell Time: The duration between initial compromise and detection, a critical metric revealing detection capability gaps — the industry average is 21 days, top-tier SOCs achieve under 1 day",
+      "Chain of Custody: The documented, unbroken record of who accessed forensic evidence and when, required for evidence admissibility in legal proceedings",
+      "Indicators of Compromise (IoC): Artifacts of intrusion (IP addresses, file hashes, registry keys, domain names) used to detect and attribute attack activity across the environment",
+      "Tabletop Exercise: A discussion-based simulation where team members walk through an incident scenario to test plan completeness, communication paths, and decision authority without real-world system impact",
+      "RACI Matrix for IR: A responsibility assignment defining who is Responsible, Accountable, Consulted, and Informed for each step of the playbook, preventing coordination failures under pressure"
+    ],
+    "core_concepts_zh": [
+      "驻留时间：初始入侵与检测之间的时长，是揭示检测能力差距的关键指标——行业平均为21天，顶级SOC可实现1天以内",
+      "监管链：记录谁在何时访问取证证据的完整记录，是证据在法律诉讼中可采性的必要条件",
+      "入侵指标（IoC）：入侵的痕迹（IP地址、文件哈希、注册表键、域名），用于在整个环境中检测和归因攻击活动",
+      "桌面演练：基于讨论的模拟，团队成员演练事件场景以测试计划完整性、通信路径和决策权力，不影响真实系统",
+      "IR的RACI矩阵：定义手册每个步骤中谁负责（Responsible）、谁问责（Accountable）、谁咨询（Consulted）、谁知情（Informed）的责任分配，防止在压力下出现协调失败"
+    ],
+    "timeline": [
+      [
+        "1991",
+        "CERT/CC at Carnegie Mellon publishes foundational incident response guidelines following the Morris Worm incident"
+      ],
+      [
+        "2003",
+        "SANS Institute codifies the six-step incident handling process in「Computer Security Incident Handling: Step by Step」"
+      ],
+      [
+        "2012",
+        "NIST SP 800-61 Rev 2 formalizes computer security incident handling guidance, aligning with and extending the SANS model"
+      ],
+      [
+        "2020",
+        "SolarWinds supply chain attack demonstrates the need for playbooks covering nation-state threat actors and multi-tenant compromise scenarios"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "1991",
+        "卡内基梅隆大学的CERT/CC在莫里斯蠕虫事件后发布基础事件响应指南"
+      ],
+      [
+        "2003",
+        "SANS研究所在「计算机安全事件处理：一步一步」中编纂六步事件处理流程"
+      ],
+      [
+        "2012",
+        "NIST SP 800-61 Rev 2正式化计算机安全事件处理指南，与SANS模型对齐并进行扩展"
+      ],
+      [
+        "2020",
+        "SolarWinds供应链攻击证明了需要涵盖国家级威胁行为者和多租户入侵场景的手册"
+      ]
+    ],
+    "dos": [
+      "Conduct tabletop exercises at least quarterly with realistic scenarios (ransomware, insider threat, supply chain compromise) and include legal, PR, and HR in the exercise — incidents are not just technical events",
+      "Pre-authorize containment actions (isolate a server, revoke a service account) to specific roles so responders don't lose hours seeking approval during an active incident",
+      "Preserve forensic evidence before containment where possible — memory dumps, network captures, and log snapshots taken before isolation are often more valuable than post-containment forensics",
+      "Maintain a war room communication channel (Slack #incident-response, Teams bridge) separate from production systems so a compromised environment doesn't impede communication"
+    ],
+    "dos_zh": [
+      "至少每季度使用现实场景（勒索软件、内部威胁、供应链入侵）进行桌面演练，并在演练中纳入法律、公关和HR——事件不仅仅是技术事件",
+      "预先授权特定角色执行遏制操作（隔离服务器、撤销服务账户），以便响应人员在活跃事件中不会浪费数小时寻求批准",
+      "在可能的情况下在遏制前保存取证证据——隔离前获取的内存转储、网络捕获和日志快照通常比遏制后取证更有价值",
+      "维护独立于生产系统的战情室通信渠道（Slack #incident-response、Teams桥接），以防受感染环境阻碍通信"
+    ],
+    "donts": [
+      "Don't skip the Preparation phase and try to build the playbook during an active incident because decisions made under pressure without pre-defined procedures are error-prone and legally risky",
+      "Don't communicate breach details over potentially compromised channels (corporate email, Slack) during containment because attackers monitoring those channels gain advance warning of response actions",
+      "Don't eradicate before completing forensic preservation because destroying the attacker's artifacts before imaging affected systems permanently loses evidence needed for root cause analysis and attribution",
+      "Don't declare incidents closed prematurely — many attackers establish persistence mechanisms that survive initial eradication; monitor for at least 30 days post-recovery for sophisticated threats"
+    ],
+    "donts_zh": [
+      "不要跳过准备阶段，试图在活跃事件中建立手册，因为在没有预定义程序的压力下做出的决策容易出错且有法律风险",
+      "在遏制期间不要通过可能受感染的渠道（公司电子邮件、Slack）传达泄漏细节，因为监控这些渠道的攻击者会提前获得响应行动的警告",
+      "不要在完成取证保存之前进行根除，因为在对受影响系统进行镜像之前销毁攻击者的痕迹会永久丢失根本原因分析和归因所需的证据",
+      "不要过早宣布事件关闭——许多攻击者建立能够在初始根除后存活的持久化机制；对复杂威胁在恢复后监控至少30天"
+    ],
+    "case_study_company": "Equifax",
+    "case_study": "The 2017 Equifax breach, which exposed 147 million individuals' data, became the canonical case study for incident response failure. Equifax's IR process failed at multiple phases: a misconfigured security scanner missed the Apache Struts vulnerability for 78 days (Identification failure); once detected, the incident was not escalated to the executive team for six days (Communication failure); and eradication was incomplete, with the attacker maintaining access during initial remediation attempts. The subsequent Congressional investigation found that Equifax lacked a formal, tested incident response playbook. Post-breach, Equifax invested $1.4B in security overhaul including a formal IR program with quarterly tabletop exercises, pre-authorized containment procedures, and an external forensics retainer.",
+    "case_study_zh": "2017年Equifax数据泄露（暴露1.47亿人数据）成为事件响应失败的典型案例。Equifax的IR流程在多个阶段失败：配置错误的安全扫描器遗漏了Apache Struts漏洞长达78天（识别失败）；一旦检测到，事件在六天内未升级到执行团队（通信失败）；根除不完整，攻击者在初始修复尝试期间维持访问。随后的国会调查发现Equifax缺乏正式的、经过测试的事件响应手册。泄露后，Equifax投资14亿美元进行安全改造，包括带季度桌面演练的正式IR计划、预先授权的遏制程序和外部取证顾问。",
+    "when_not_to_use": [
+      "A rigid six-step playbook may not fit nation-state APT scenarios where multiple simultaneous intrusion vectors require parallel workstreams rather than sequential phases — use adaptive IR frameworks for advanced threats",
+      "For low-severity events (single user phishing click, no credential compromise) — a lightweight security ticket workflow is more appropriate than full IR activation to avoid alert fatigue",
+      "Without legal counsel involvement in playbook design — incident response decisions (public disclosure, law enforcement notification, ransom consideration) carry significant legal obligations that vary by jurisdiction"
+    ],
+    "when_not_to_use_zh": [
+      "刚性的六步手册可能不适合国家级APT场景，其中多个同时入侵向量需要并行工作流而非顺序阶段——对高级威胁使用自适应IR框架",
+      "对于低严重性事件（单个用户钓鱼点击，无凭证泄露）——轻量级安全工单工作流比完整IR激活更合适，以避免告警疲劳",
+      "在没有法律顾问参与手册设计的情况下——事件响应决策（公开披露、执法通知、赎金考虑）承载着因司法管辖区而异的重大法律义务"
+    ],
+    "adopters": [
+      "US-CERT",
+      "Microsoft DART",
+      "CrowdStrike Services",
+      "Mandiant",
+      "PwC Cybersecurity",
+      "Goldman Sachs"
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "security",
+      "reliability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "SANS Institute (2004). \"Incident Handler's Handbook\". SANS Reading Room. sans.org/reading-room/whitepapers/incident.",
+    "secondary_sources": [
+      "NIST (2012). \"SP 800-61 Rev 2: Computer Security Incident Handling Guide\". NIST.",
+      "Cichonski, P., Millar, T., Grance, T. & Scarfone, K. (2012). \"Computer Security Incident Handling Guide\". NIST SP 800-61.",
+      "Luttgens, J., Pepe, M. & Mandia, K. (2014). \"Incident Response & Computer Forensics\", 3rd ed. McGraw-Hill."
+    ],
+    "typed_relations": [
+      {
+        "slug": "nist-cybersecurity-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "defense-in-depth",
+        "type": "complement"
+      },
+      {
+        "slug": "data-loss-prevention",
+        "type": "related"
+      },
+      {
+        "slug": "threat-modeling-stride",
+        "type": "complement"
+      }
+    ]
   }
 ]
