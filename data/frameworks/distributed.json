@@ -2358,8 +2358,7 @@
     "related": [
       "bulkhead-service-level",
       "service-discovery",
-      "idempotency-pattern",
-      "backpressure"
+      "idempotency-pattern"
     ],
     "tags": [
       "circuit-breaker",
@@ -2502,10 +2501,6 @@
       {
         "slug": "idempotency-pattern",
         "type": "complement"
-      },
-      {
-        "slug": "backpressure",
-        "type": "complement"
       }
     ]
   },
@@ -2535,7 +2530,6 @@
     "viz_type": "matrix",
     "related": [
       "circuit-breaker-with-retry",
-      "backpressure",
       "service-discovery",
       "consistent-hashing"
     ],
@@ -2671,10 +2665,6 @@
     "typed_relations": [
       {
         "slug": "circuit-breaker-with-retry",
-        "type": "complement"
-      },
-      {
-        "slug": "backpressure",
         "type": "complement"
       },
       {

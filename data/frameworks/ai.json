@@ -3297,7 +3297,6 @@
     "ai_relevant": true,
     "viz_type": "flow",
     "related": [
-      "rag-pattern",
       "prompt-chaining",
       "multi-agent-orchestration-pattern",
       "llm-evaluation-framework"
@@ -3435,10 +3434,6 @@
     ],
     "typed_relations": [
       {
-        "slug": "rag-pattern",
-        "type": "complement"
-      },
-      {
         "slug": "prompt-chaining",
         "type": "complement"
       },
@@ -3477,7 +3472,6 @@
     "ai_relevant": true,
     "viz_type": "matrix",
     "related": [
-      "rag-pattern",
       "prompt-chaining",
       "llm-evaluation-framework",
       "multimodal-pipeline-design"
@@ -3615,10 +3609,6 @@
     ],
     "typed_relations": [
       {
-        "slug": "rag-pattern",
-        "type": "complement"
-      },
-      {
         "slug": "llm-evaluation-framework",
         "type": "complement"
       },
@@ -3657,10 +3647,8 @@
     "ai_relevant": true,
     "viz_type": "flow",
     "related": [
-      "rag-pattern",
       "ai-cost-optimization",
-      "llm-evaluation-framework",
-      "vector-database-pattern"
+      "llm-evaluation-framework"
     ],
     "tags": [
       "semantic-caching",
@@ -3795,10 +3783,6 @@
     ],
     "typed_relations": [
       {
-        "slug": "rag-pattern",
-        "type": "complement"
-      },
-      {
         "slug": "ai-cost-optimization",
         "type": "complement"
       },
@@ -3834,9 +3818,7 @@
     "viz_type": "cycle",
     "related": [
       "llm-evaluation-framework",
-      "responsible-ai-framework",
-      "ai-cost-optimization",
-      "rag-pattern"
+      "ai-cost-optimization"
     ],
     "tags": [
       "red-teaming",
@@ -3973,14 +3955,6 @@
       {
         "slug": "llm-evaluation-framework",
         "type": "complement"
-      },
-      {
-        "slug": "responsible-ai-framework",
-        "type": "complement"
-      },
-      {
-        "slug": "rag-pattern",
-        "type": "related"
       }
     ]
   },
@@ -4201,7 +4175,7 @@
     "origin_author": "OpenAI",
     "origin_source": "OpenAI Platform Documentation — Prompt Caching (2024); Anthropic API Docs — Prompt Caching (2024)",
     "origin_source_zh": "OpenAI 平台文档——提示词缓存（2024）；Anthropic API 文档——提示词缓存（2024）",
-    "complexity": "basic",
+    "complexity": "beginner",
     "when_to_use": [
       "Chatbot and conversational AI applications with long system prompts repeated verbatim across thousands of turns",
       "Document Q&A systems where the same large document context is queried many times per session or across users",

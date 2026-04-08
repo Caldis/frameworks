@@ -1,6 +1,6 @@
 # SDFrame
 
-239 Software Design Frameworks — a curated, bilingual knowledge base for engineers, architects, and AI agents.
+290 Software Design Frameworks — a curated, bilingual knowledge base for engineers, architects, and AI agents.
 
 **[sdframe.caldis.me](https://sdframe.caldis.me/)** | Inspired by [PMFrame.works](https://pmframe.works/)
 
@@ -18,24 +18,24 @@ SDFrame organizes 239 software design frameworks across 13 categories, spanning 
 
 | # | Category | Frameworks | Description |
 |---|----------|-----------|-------------|
-| 1 | Design Thinking | 20 | Mental models, design philosophies, problem framing |
-| 2 | Architecture Decisions | 20 | Architectural patterns, trade-off analysis, system decomposition |
-| 3 | Coding Practices | 27 | Code-level design, GoF patterns, implementation |
-| 4 | Quality Engineering | 20 | Testing strategies, reliability, observability |
-| 5 | Deployment & Operations | 18 | DevOps, SRE, infrastructure patterns |
-| 6 | Evolution & Iteration | 15 | Refactoring, tech debt, migration, team scaling |
-| 7 | AI Collaboration | 18 | Agent architecture, LLM design, human-AI workflows |
+| 1 | Design Thinking | 23 | Mental models, design philosophies, problem framing |
+| 2 | Architecture Decisions | 23 | Architectural patterns, trade-off analysis, system decomposition |
+| 3 | Coding Practices | 39 | Code-level design, GoF patterns, implementation |
+| 4 | Quality Engineering | 25 | Testing strategies, reliability, observability |
+| 5 | Deployment & Operations | 20 | DevOps, SRE, infrastructure patterns |
+| 6 | Evolution & Iteration | 20 | Refactoring, tech debt, migration, team scaling |
+| 7 | AI Collaboration | 25 | Agent architecture, LLM design, human-AI workflows |
 | 8 | Data Architecture | 15 | Storage, streaming, data modeling patterns |
-| 9 | Security & Privacy | 15 | Threat modeling, zero trust, privacy by design |
-| 10 | Distributed Systems | 15 | Consensus, consistency, fault tolerance |
-| 11 | API Design & Integration | 13 | REST, GraphQL, gRPC, versioning |
-| 12 | Team & Organization | 15 | Team topologies, engineering culture, inner source |
-| 13 | Observability & DX | 15 | Tracing, SLOs, developer experience |
+| 9 | Security & Privacy | 20 | Threat modeling, zero trust, privacy by design |
+| 10 | Distributed Systems | 20 | Consensus, consistency, fault tolerance |
+| 11 | API Design & Integration | 20 | REST, GraphQL, gRPC, versioning |
+| 12 | Team & Organization | 20 | Team topologies, engineering culture, inner source |
+| 13 | Observability & DX | 20 | Tracing, SLOs, developer experience |
 
 ## Features
 
 ### Knowledge Base
-- **239 frameworks** with 39 fields each — bilingual, authoritative, cross-referenced
+- **290 frameworks** with 39 fields each — bilingual, authoritative, cross-referenced
 - **Multi-dimensional taxonomy** — filter by abstraction level (Code/Component/System/Organization), maturity ring, quality concerns (ISO 25010)
 - **Typed relationships** — 5 relation types: alternative, complement, extends, prerequisite, related
 - **Provenance** — primary source citations and recommended reading per category

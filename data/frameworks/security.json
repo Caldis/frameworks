@@ -2029,7 +2029,6 @@
     "viz_type": "flow",
     "related": [
       "zero-trust-architecture",
-      "least-privilege-principle",
       "security-by-design",
       "identity-federation"
     ],
@@ -2165,10 +2164,6 @@
     "typed_relations": [
       {
         "slug": "zero-trust-architecture",
-        "type": "complement"
-      },
-      {
-        "slug": "least-privilege-principle",
         "type": "complement"
       },
       {
@@ -2385,9 +2380,7 @@
     "viz_type": "flow",
     "related": [
       "zero-trust-architecture",
-      "least-privilege-principle",
-      "secrets-management",
-      "oauth-authorization"
+      "secrets-management"
     ],
     "tags": [
       "identity-federation",
@@ -2524,16 +2517,8 @@
         "type": "complement"
       },
       {
-        "slug": "least-privilege-principle",
-        "type": "complement"
-      },
-      {
         "slug": "secrets-management",
         "type": "complement"
-      },
-      {
-        "slug": "oauth-authorization",
-        "type": "related"
       }
     ]
   },
@@ -3443,16 +3428,14 @@
       "Identification: Detect anomalous events through SIEM correlation rules, EDR alerts, threat intelligence feeds, or user reports; triage to confirm the event is a security incident and classify severity (P1-P4)",
       "Containment: Implement short-term containment (isolate affected systems, revoke compromised credentials) followed by long-term containment (patch, rebuild, segment network) without destroying forensic evidence",
       "Eradication: Remove the root cause — malware, backdoors, unauthorized accounts, misconfigured services — and validate that all affected systems are clean through forensic verification",
-      "Recovery: Restore services in a controlled sequence, monitor for signs of re-infection, verify business functions, and declare the incident closed only after sustained clean monitoring period",
-      "Lessons Learned: Conduct a blameless post-mortem within 2 weeks, document a timeline, root cause, dwell time, and detection gaps, and produce actionable improvements to prevention and detection controls"
+      "Recovery: Restore services in a controlled sequence, monitor for signs of re-infection, verify business functions, and declare the incident closed only after sustained clean monitoring period"
     ],
     "steps_zh": [
       "准备：建立具有明确角色、通信树和法律/HR联系人的事件响应团队（IRT）；部署SIEM、EDR和取证工具；每季度进行桌面演练以验证手册",
       "识别：通过SIEM关联规则、EDR告警、威胁情报源或用户报告检测异常事件；分类确认该事件为安全事件并分类严重程度（P1-P4）",
       "遏制：实施短期遏制（隔离受影响系统、撤销被入侵凭证），然后是长期遏制（修补、重建、网络分段），同时不破坏取证证据",
       "根除：删除根本原因——恶意软件、后门、未授权账户、配置错误的服务——并通过取证验证确认所有受影响系统已清除",
-      "恢复：按受控顺序恢复服务，监控再感染迹象，验证业务功能，仅在持续干净的监控期后宣布事件关闭",
-      "经验总结：在2周内进行无指责事后审查，记录时间线、根本原因、驻留时间和检测差距，并提出改进预防和检测控制的可操作建议"
+      "恢复：按受控顺序恢复服务，监控再感染迹象，验证业务功能，仅在持续干净的监控期后宣布事件关闭"
     ],
     "ai_relevant": true,
     "viz_type": "flow",

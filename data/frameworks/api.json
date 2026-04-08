@@ -2033,8 +2033,7 @@
     "viz_type": "matrix",
     "related": [
       "graphql-schema-design",
-      "openapi-specification",
-      "rate-limiting"
+      "openapi-specification"
     ],
     "tags": [
       "pagination",
@@ -2184,10 +2183,6 @@
       {
         "slug": "openapi-specification",
         "type": "complement"
-      },
-      {
-        "slug": "rate-limiting",
-        "type": "related"
       }
     ]
   },
@@ -2217,8 +2212,7 @@
     "viz_type": "matrix",
     "related": [
       "openapi-specification",
-      "api-first-design",
-      "rate-limiting"
+      "api-first-design"
     ],
     "tags": [
       "error-handling",
@@ -2230,7 +2224,7 @@
     "origin_author": "Mark Nottingham & Erik Wilde, IETF RFC 7807, 2016",
     "origin_source": "IETF RFC 7807: Problem Details for HTTP APIs (Nottingham & Wilde, 2016); API Design Patterns (JJ Geewax, 2021, Ch. 6)",
     "origin_source_zh": "IETF RFC 7807：HTTP API的问题详情（Nottingham & Wilde，2016）；「API设计模式」（JJ Geewax，2021，第6章）",
-    "complexity": "basic",
+    "complexity": "beginner",
     "when_to_use": [
       "When building any HTTP API that needs to communicate errors to clients in a consistent, machine-parseable format",
       "When multiple API services need a unified error format so that client error-handling code can be shared across services",
@@ -2368,10 +2362,6 @@
       {
         "slug": "api-first-design",
         "type": "complement"
-      },
-      {
-        "slug": "rate-limiting",
-        "type": "related"
       }
     ]
   },
@@ -2585,7 +2575,6 @@
     "viz_type": "flow",
     "related": [
       "api-gateway-pattern",
-      "rate-limiting",
       "api-first-design"
     ],
     "tags": [
@@ -2732,10 +2721,6 @@
       {
         "slug": "api-gateway-pattern",
         "type": "extends"
-      },
-      {
-        "slug": "rate-limiting",
-        "type": "complement"
       },
       {
         "slug": "api-first-design",
@@ -3117,7 +3102,6 @@
     "viz_type": "matrix",
     "related": [
       "api-gateway-pattern",
-      "rate-limiting",
       "zero-trust-architecture"
     ],
     "tags": [
@@ -3260,10 +3244,6 @@
         "type": "complement"
       },
       {
-        "slug": "rate-limiting",
-        "type": "complement"
-      },
-      {
         "slug": "zero-trust-architecture",
         "type": "extends"
       }
@@ -3295,7 +3275,6 @@
     "viz_type": "flow",
     "related": [
       "api-gateway-pattern",
-      "event-driven-architecture",
       "api-security-patterns"
     ],
     "tags": [
@@ -3436,10 +3415,6 @@
       {
         "slug": "api-gateway-pattern",
         "type": "complement"
-      },
-      {
-        "slug": "event-driven-architecture",
-        "type": "extends"
       },
       {
         "slug": "api-security-patterns",

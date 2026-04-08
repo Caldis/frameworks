@@ -1887,7 +1887,6 @@
     "viz_type": "flow",
     "related": [
       "architecture-review-board",
-      "tech-debt-management",
       "engineering-ladder"
     ],
     "tags": [
@@ -1900,7 +1899,7 @@
     "origin_author": "Popularized by Rust language team (2014) and React team (2017); inspired by IETF RFC process (1969)",
     "origin_source": "Rust RFC Book (github.com/rust-lang/rfcs); React RFC process (github.com/reactjs/rfcs); Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 1.",
     "origin_source_zh": "Rust RFC手册（github.com/rust-lang/rfcs）；React RFC流程（github.com/reactjs/rfcs）；Kleppmann, M.（2017）「数据密集型应用系统设计」，第1章",
-    "complexity": "basic",
+    "complexity": "beginner",
     "when_to_use": [
       "When a technical decision will affect multiple teams or cannot be easily reversed once implemented",
       "When the team needs a structured way to gather diverse perspectives before committing to an architectural direction",
@@ -2035,10 +2034,6 @@
         "type": "complement"
       },
       {
-        "slug": "tech-debt-management",
-        "type": "related"
-      },
-      {
         "slug": "engineering-ladder",
         "type": "complement"
       }
@@ -2070,8 +2065,7 @@
     "viz_type": "matrix",
     "related": [
       "spotify-model",
-      "platform-engineering",
-      "developer-experience"
+      "platform-engineering"
     ],
     "tags": [
       "guild",
@@ -2083,7 +2077,7 @@
     "origin_author": "Etienne Wenger, Communities of Practice (1998); popularized in software by the Spotify Model (2012)",
     "origin_source": "Wenger, E. (1998). \"Communities of Practice: Learning, Meaning, and Identity\". Cambridge University Press; Kniberg, H. & Ivarsson, A. (2012). \"Scaling Agile @ Spotify\".",
     "origin_source_zh": "Wenger, E.（1998）「实践社区：学习、意义与认同」，剑桥大学出版社；Kniberg, H. & Ivarsson, A.（2012）「Spotify的规模化敏捷」",
-    "complexity": "basic",
+    "complexity": "beginner",
     "when_to_use": [
       "When the organization has grown beyond 3-4 teams and domain expertise is siloed within individual squads rather than shared across the organization",
       "When the same technical problems (security vulnerabilities, performance issues, accessibility failures) are solved independently by multiple teams with inconsistent outcomes",
@@ -2219,10 +2213,6 @@
       },
       {
         "slug": "platform-engineering",
-        "type": "complement"
-      },
-      {
-        "slug": "developer-experience",
         "type": "complement"
       }
     ]
@@ -2435,9 +2425,7 @@
     "ai_relevant": true,
     "viz_type": "matrix",
     "related": [
-      "developer-experience",
-      "blameless-postmortems",
-      "tech-debt-management"
+      "blameless-postmortems"
     ],
     "tags": [
       "dora",
@@ -2581,16 +2569,8 @@
     ],
     "typed_relations": [
       {
-        "slug": "developer-experience",
-        "type": "complement"
-      },
-      {
         "slug": "blameless-postmortems",
         "type": "complement"
-      },
-      {
-        "slug": "tech-debt-management",
-        "type": "related"
       }
     ]
   },
@@ -2620,7 +2600,6 @@
     "viz_type": "flow",
     "related": [
       "platform-engineering",
-      "developer-experience",
       "rfc-process"
     ],
     "tags": [
@@ -2633,7 +2612,7 @@
     "origin_author": "Divio documentation system (Daniele Procida, 2017); docs-as-code popularized by Anne Gentle (2015)",
     "origin_source": "Procida, D. (2017). \"The Documentation System\". divio.com; Gentle, A. (2015). \"Docs Like Code\". lulu.com; Diataxis framework (diataxis.fr).",
     "origin_source_zh": "Procida, D.（2017）「文档系统」，divio.com；Gentle, A.（2015）「像代码一样的文档」；Diataxis框架（diataxis.fr）",
-    "complexity": "basic",
+    "complexity": "beginner",
     "when_to_use": [
       "When engineering teams spend significant time answering the same questions repeatedly because documentation is absent, outdated, or hard to find",
       "When onboarding new engineers takes weeks longer than expected because institutional knowledge lives in people's heads rather than written documentation",
@@ -2765,10 +2744,6 @@
     "typed_relations": [
       {
         "slug": "platform-engineering",
-        "type": "complement"
-      },
-      {
-        "slug": "developer-experience",
         "type": "complement"
       },
       {

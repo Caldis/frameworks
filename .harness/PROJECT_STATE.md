@@ -15,7 +15,7 @@
 ## Current State (as of 2026-04-08, end of Sprint S47)
 
 ### What Exists
-- 302 software design frameworks across 13 categories, 39 fields per framework
+- 290 software design frameworks across 13 categories, 39 fields per framework (audited, 0 errors)
 - Full bilingual content (EN/ZH) with i18n system (useI18n hook, locale files)
 - 11 pages: Home (horizontal scroll cards + lerp engine), Framework Detail (11-section progressive layout + async detail loading), Category Landing (AI cross-category + reading list), Map (D3 force graph + label collision detection), Compare (radar chart + suggestions + diff highlighting), Selector (4-step wizard), Paths (learning sequences), Insights (editorial data viz), Timeline (by origin year), plus Layout shell
 - Dark mode: warm-tinted dark palette, prefers-color-scheme auto-detect + manual toggle (☽/☀), 55+ CSS variables, all category colors adapted
