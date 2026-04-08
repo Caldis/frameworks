@@ -12,10 +12,10 @@
 - **Deploy**: GitHub Actions → GitHub Pages (custom domain)
 - **Inspired by**: pmframe.works
 
-## Current State (as of 2026-04-08, end of Sprint S46)
+## Current State (as of 2026-04-08, end of Sprint S47)
 
 ### What Exists
-- 239 software design frameworks across 13 categories, 39 fields per framework
+- 302 software design frameworks across 13 categories, 39 fields per framework
 - Full bilingual content (EN/ZH) with i18n system (useI18n hook, locale files)
 - 11 pages: Home (horizontal scroll cards + lerp engine), Framework Detail (11-section progressive layout + async detail loading), Category Landing (AI cross-category + reading list), Map (D3 force graph + label collision detection), Compare (radar chart + suggestions + diff highlighting), Selector (4-step wizard), Paths (learning sequences), Insights (editorial data viz), Timeline (by origin year), plus Layout shell
 - Dark mode: warm-tinted dark palette, prefers-color-scheme auto-detect + manual toggle (☽/☀), 55+ CSS variables, all category colors adapted
@@ -64,6 +64,7 @@
 - S44: Site completeness (sitemap +2 pages, print styles, SW cache v2)
 - S45: Google Analytics (G-X92K1JE8XZ) + SEO structured data + dynamic canonical URLs
 - S46: Selector page redesign (all-at-once filters, live animated count, chip/card controls)
+- S47: Data expansion 239→302 (+63 frameworks across all 13 categories)
 
 ### Test Coverage
 - 54 E2E tests: smoke(9) + visual/a11y(8) + interaction(6) + data-display(8) + screenshots(14, incl. dark mode + insights)

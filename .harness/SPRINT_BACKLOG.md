@@ -135,7 +135,7 @@
 ### Sprint S45: Google Analytics + SEO Structured Data [DONE 2026-04-08]
 ### Sprint S46: Selector Page Redesign — All-at-Once Filters [DONE 2026-04-08]
 
-### Sprint S47: Data Expansion to 300+ Frameworks [READY]
+### Sprint S47: Data Expansion to 302 Frameworks [DONE 2026-04-08]
 **Priority**: Medium (content growth)
 **Contract**: 300+ total frameworks (currently 239, need +62). All with full 39-field content, bilingual. All consumer pages verified.
 **Plan**:
