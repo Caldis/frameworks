@@ -131,6 +131,9 @@
 ### Sprint S41: Loading Skeleton + 404 Page + Detail Transition [DONE 2026-04-08]
 ### Sprint S42: Footer Version + CI Fix + README v2.0.0 [DONE 2026-04-08]
 ### Sprint S43: Motion Polish — Route Fade, Viz Draw, Progress Ring, Category Gradient [DONE 2026-04-08]
+### Sprint S44: Site Completeness — Sitemap, Print, SW Cache [DONE 2026-04-08]
+### Sprint S45: Google Analytics + SEO Structured Data [DONE 2026-04-08]
+### Sprint S46: Selector Page Redesign — All-at-Once Filters [DONE 2026-04-08]
 **Contract**: Compare page shows radar chart overlay for 2-3 frameworks, 6 curated comparison suggestions on empty state, diff highlighting in table. 51 E2E tests pass.
 **Tasks**:
 - [x] Add Recharts RadarChart comparing frameworks on 5 dimensions (complexity, abstraction, maturity, quality breadth, adoption)

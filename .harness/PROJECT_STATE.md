@@ -12,7 +12,7 @@
 - **Deploy**: GitHub Actions → GitHub Pages (custom domain)
 - **Inspired by**: pmframe.works
 
-## Current State (as of 2026-04-08, end of Sprint S43)
+## Current State (as of 2026-04-08, end of Sprint S46)
 
 ### What Exists
 - 239 software design frameworks across 13 categories, 39 fields per framework
@@ -61,6 +61,9 @@
 - S41: Loading skeleton + 404 page + detail page fade transition
 - S42: Footer version/build date + CI overflow fix + README v2.0.0
 - S43: Motion polish (route fade, FrameworkViz stroke draw, Paths progress ring, Category gradient)
+- S44: Site completeness (sitemap +2 pages, print styles, SW cache v2)
+- S45: Google Analytics (G-X92K1JE8XZ) + SEO structured data + dynamic canonical URLs
+- S46: Selector page redesign (all-at-once filters, live animated count, chip/card controls)
 
 ### Test Coverage
 - 54 E2E tests: smoke(9) + visual/a11y(8) + interaction(6) + data-display(8) + screenshots(14, incl. dark mode + insights)
