@@ -3266,5 +3266,901 @@
         "type": "complement"
       }
     ]
+  },
+  {
+    "id": 288,
+    "name": "Progressive Delivery",
+    "name_zh": "渐进式交付",
+    "slug": "progressive-delivery",
+    "category": "deployment",
+    "desc": "Gradual feature rollout with automated analysis and gated promotion",
+    "desc_zh": "通过自动化分析和门控晋升实现功能的渐进式发布",
+    "steps": [
+      "Define feature gates and rollout segments — start with internal users or a 1% traffic slice",
+      "Instrument the feature with metrics that will be used for automated analysis (error rates, latency, conversion)",
+      "Deploy behind a feature flag and incrementally expose to wider audiences based on metric health",
+      "Run automated canary analysis at each rollout stage; block promotion if any metric degrades",
+      "Promote to 100% once all health gates pass; archive flag and clean up code after stabilization"
+    ],
+    "steps_zh": [
+      "定义功能门控和发布分段——从内部用户或1%流量切片开始",
+      "为功能埋入用于自动化分析的指标（错误率、延迟、转化率）",
+      "在功能标志后部署，依据指标健康状况逐步向更广泛受众开放",
+      "在每个发布阶段执行自动化金丝雀分析；若任何指标恶化则阻止晋升",
+      "所有健康门控通过后晋升至100%；稳定后归档标志并清理代码"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "canary-deployment",
+      "feature-flags",
+      "gitops",
+      "dora-metrics"
+    ],
+    "tags": [
+      "progressive-delivery",
+      "feature-flags",
+      "rollout",
+      "automated-analysis",
+      "deployment"
+    ],
+    "origin_author": "James Governor",
+    "origin_source": "James Governor (2018). \"Progressive Delivery: Shipping Code Faster and Safer\". Redmonk blog.",
+    "origin_source_zh": "James Governor（2018）。《渐进式交付：更快更安全地发布代码》。Redmonk 博客。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Consumer-facing features where you want to validate business impact before full exposure",
+      "Teams practicing continuous deployment who need automated safety gates to replace manual release approval",
+      "Services with well-defined SLIs where metric-driven promotion decisions are feasible",
+      "Organizations that want to decouple code deployment from feature activation for independent control"
+    ],
+    "when_to_use_zh": [
+      "需要在全量曝光前验证业务影响的面向消费者的功能",
+      "实践持续部署、需要自动化安全门控替代人工发布审批的团队",
+      "拥有明确SLI、可基于指标驱动晋升决策的服务",
+      "希望将代码部署与功能激活解耦以实现独立控制的组织"
+    ],
+    "core_concepts": [
+      "Deployment vs. Release Decoupling: Code is deployed continuously but features are activated separately via flags, removing big-bang release risk",
+      "Automated Canary Analysis: Statistical comparison of new vs. baseline metrics gates every promotion step without human judgment",
+      "Segment-Based Exposure: Rollout targets specific user cohorts (internal, beta, geography, percentage) to control blast radius",
+      "Continuous Verification: Observability signals drive the promotion pipeline, making deployment a data-driven process"
+    ],
+    "core_concepts_zh": [
+      "部署与发布解耦：代码持续部署，但功能通过标志单独激活，消除大爆炸式发布风险",
+      "自动化金丝雀分析：对新版本与基线指标的统计比较为每个晋升步骤把关，无需人工判断",
+      "基于分段的曝光：发布针对特定用户群体（内部、Beta、地区、百分比）以控制爆炸半径",
+      "持续验证：可观测性信号驱动晋升流水线，使部署成为数据驱动的过程"
+    ],
+    "timeline": [
+      [
+        "2017",
+        "Feature flag platforms (LaunchDarkly, Split.io) gain traction as deployment-release decoupling becomes mainstream"
+      ],
+      [
+        "2018",
+        "James Governor coins the term Progressive Delivery to describe the evolution beyond continuous delivery"
+      ],
+      [
+        "2019",
+        "Flagger and Argo Rollouts bring automated metric-driven promotion to Kubernetes workloads"
+      ],
+      [
+        "2022",
+        "Progressive delivery becomes a standard capability in major CI/CD platforms including GitHub Actions and GitLab"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2017",
+        "功能标志平台（LaunchDarkly、Split.io）因部署-发布解耦成为主流而获得广泛采用"
+      ],
+      [
+        "2018",
+        "James Governor 创造「渐进式交付」一词，描述超越持续交付的演进方向"
+      ],
+      [
+        "2019",
+        "Flagger 和 Argo Rollouts 将自动化指标驱动晋升引入 Kubernetes 工作负载"
+      ],
+      [
+        "2022",
+        "渐进式交付成为包括 GitHub Actions 和 GitLab 在内的主要 CI/CD 平台的标准能力"
+      ]
+    ],
+    "dos": [
+      "Do define metric thresholds and success criteria before starting a rollout, because moving goalposts mid-flight leads to biased decisions",
+      "Do integrate feature flag cleanup into your definition of done, because long-lived flags accumulate technical debt and increase combinatorial test complexity",
+      "Do use cohort-based targeting for early rings to get qualitatively representative feedback before percentage-based exposure",
+      "Do alert on the rate of flag-protected code paths, because too many simultaneous rollouts create metric interference and obscure causality"
+    ],
+    "dos_zh": [
+      "务必在开始发布前定义指标阈值和成功标准，因为中途移动目标会导致带有偏见的决策",
+      "务必将功能标志清理纳入完成定义，因为长期存在的标志会积累技术债务并增加组合测试复杂性",
+      "务必在百分比曝光前使用基于群体的定向为早期环提供定性代表性反馈",
+      "务必对受标志保护的代码路径比例发出告警，因为过多同时进行的发布会产生指标干扰并模糊因果关系"
+    ],
+    "donts": [
+      "Don't rely on time-based promotion schedules instead of metric health gates, because elapsed time does not indicate correctness",
+      "Don't skip the internal or beta ring to save time, because each ring catches a different class of defect at a lower blast radius",
+      "Don't use progressive delivery as a substitute for proper testing, because it reduces risk at scale but cannot replace pre-production quality gates",
+      "Don't allow feature flags to accumulate indefinitely — a flag older than one release cycle is a code smell requiring immediate cleanup"
+    ],
+    "donts_zh": [
+      "不要依赖基于时间的晋升排程而非指标健康门控，因为经过时间不能证明正确性",
+      "不要为了节省时间跳过内部或Beta环，因为每个环以更低爆炸半径捕获不同类型的缺陷",
+      "不要将渐进式交付用作适当测试的替代品，因为它在规模上降低风险但无法替代预生产质量门控",
+      "不要让功能标志无限期积累——超过一个发布周期的标志是需要立即清理的代码异味"
+    ],
+    "case_study_company": "Netflix",
+    "case_study": "Netflix applies progressive delivery across all significant feature launches through their internal experimentation platform. Every major UI change, recommendation algorithm update, or infrastructure migration is gated behind automated canary analysis comparing error rates, streaming start failures, and rebuffer ratios between the canary cohort and a matched control group. Automated rollback is triggered within minutes if any key metric degrades beyond defined thresholds, allowing Netflix to deploy hundreds of changes per day with confidence.",
+    "case_study_zh": "Netflix 通过其内部实验平台将渐进式交付应用于所有重大功能发布。每一个重大UI变更、推荐算法更新或基础设施迁移都通过自动化金丝雀分析进行门控，比较金丝雀群体与匹配对照组之间的错误率、流播放启动失败率和重缓冲率。如果任何关键指标超出定义阈值发生恶化，自动回滚将在数分钟内触发，使Netflix能够每天自信地部署数百个变更。",
+    "when_not_to_use": [
+      "Simple internal tooling where a full-traffic bad deploy is immediately visible and easily rolled back by hand",
+      "Low-traffic services where statistical canary analysis lacks sufficient sample size to produce reliable comparisons",
+      "Emergency hotfixes where the speed of full deployment outweighs the risk of gradual exposure",
+      "Features with a binary all-or-nothing semantic where partial activation creates incoherent user experiences"
+    ],
+    "when_not_to_use_zh": [
+      "简单的内部工具——全流量错误部署立即可见且可手动轻松回滚",
+      "流量极低的服务——统计金丝雀分析样本量不足以产生可靠比较",
+      "全量部署速度超过渐进曝光风险的紧急热修复",
+      "具有二元全有或全无语义、部分激活会产生不连贯用户体验的功能"
+    ],
+    "adopters": [
+      "Netflix",
+      "LinkedIn",
+      "Spotify",
+      "Etsy",
+      "Shopify",
+      "Dropbox"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "maintainability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "James Governor (2018). \"Progressive Delivery: Shipping Code Faster and Safer\". Redmonk blog. redmonk.com.",
+    "secondary_sources": [
+      "Adam Zimman (2019). \"Progressive Delivery\". LaunchDarkly blog. launchdarkly.com.",
+      "Weaveworks (2020). \"GitOps and Progressive Delivery\". weaveworks.io.",
+      "Cindy Sridharan (2017). \"Monitoring in the Time of Cloud Native\". Medium."
+    ],
+    "typed_relations": [
+      {
+        "slug": "canary-deployment",
+        "type": "extends"
+      },
+      {
+        "slug": "feature-flags",
+        "type": "uses"
+      },
+      {
+        "slug": "gitops",
+        "type": "complement"
+      },
+      {
+        "slug": "dora-metrics",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 289,
+    "name": "GitOps",
+    "name_zh": "GitOps",
+    "slug": "gitops",
+    "category": "deployment",
+    "desc": "Git as the single source of truth for infrastructure and application state",
+    "desc_zh": "以 Git 作为基础设施与应用状态的唯一事实来源",
+    "steps": [
+      "Store all infrastructure and application configuration declaratively in a Git repository",
+      "Configure an operator or agent to continuously reconcile the live cluster state with the desired state in Git",
+      "Make all changes via pull requests — no manual kubectl, console, or SSH access to production",
+      "Automate CI pipelines to validate changes before merge; the operator handles deployment post-merge",
+      "Monitor drift between desired state (Git) and actual state (cluster); trigger alerts and auto-remediation on divergence"
+    ],
+    "steps_zh": [
+      "将所有基础设施和应用配置以声明式方式存储在 Git 仓库中",
+      "配置 Operator 或代理持续将实际集群状态与 Git 中的期望状态进行协调",
+      "所有变更均通过拉取请求进行——禁止对生产环境直接执行 kubectl、控制台或 SSH 操作",
+      "自动化 CI 流水线在合并前验证变更；Operator 在合并后处理部署",
+      "监控期望状态（Git）与实际状态（集群）之间的漂移；在发生偏差时触发告警和自动修复"
+    ],
+    "ai_relevant": false,
+    "viz_type": "cycle",
+    "related": [
+      "infrastructure-as-code",
+      "progressive-delivery",
+      "platform-engineering",
+      "blue-green-deployment"
+    ],
+    "tags": [
+      "gitops",
+      "infrastructure",
+      "kubernetes",
+      "declarative",
+      "continuous-deployment"
+    ],
+    "origin_author": "Alexis Richardson",
+    "origin_source": "Alexis Richardson (2017). \"GitOps - Operations by Pull Request\". Weaveworks blog. weave.works.",
+    "origin_source_zh": "Alexis Richardson（2017）。《GitOps——通过拉取请求运维》。Weaveworks 博客。weave.works。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Kubernetes-based platforms where declarative configuration and continuous reconciliation are native paradigms",
+      "Organizations that want a complete audit trail of every infrastructure change through Git history",
+      "Teams that want to enforce separation of concerns between CI (build/test) and CD (deploy/reconcile)",
+      "Multi-cluster or multi-environment setups where drift prevention and consistent desired-state enforcement are critical"
+    ],
+    "when_to_use_zh": [
+      "声明式配置和持续协调是原生范式的基于 Kubernetes 的平台",
+      "希望通过 Git 历史对每次基础设施变更留下完整审计轨迹的组织",
+      "希望在 CI（构建/测试）与 CD（部署/协调）之间实施关注点分离的团队",
+      "漂移预防和一致期望状态强制至关重要的多集群或多环境设置"
+    ],
+    "core_concepts": [
+      "Declarative Infrastructure: The entire system state is described as code in Git; the actual cluster state must converge to match this description",
+      "Git as Audit Log: Every change is a commit with author, timestamp, and diff — providing an immutable record of who changed what and when",
+      "Continuous Reconciliation: An operator (Argo CD, Flux) runs a control loop that constantly compares desired state with actual state and corrects divergence",
+      "Pull-Based Deployment: The operator pulls from Git rather than CI pushing to the cluster, reducing the blast radius of a compromised CI system"
+    ],
+    "core_concepts_zh": [
+      "声明式基础设施：整个系统状态以代码形式存储在 Git 中；实际集群状态必须收敛以匹配此描述",
+      "Git 作为审计日志：每次变更都是一个带有作者、时间戳和差异的提交——提供了谁在何时做了什么变更的不可变记录",
+      "持续协调：Operator（Argo CD、Flux）运行控制循环，持续比较期望状态与实际状态并纠正偏差",
+      "拉取式部署：Operator 从 Git 拉取而非 CI 推送到集群，降低了 CI 系统被攻破的爆炸半径"
+    ],
+    "timeline": [
+      [
+        "2017",
+        "Alexis Richardson at Weaveworks publishes the GitOps manifesto and releases Flux, the first GitOps operator"
+      ],
+      [
+        "2019",
+        "Argo CD from Intuit becomes the second major GitOps operator and is donated to the CNCF"
+      ],
+      [
+        "2021",
+        "CNCF forms the GitOps Working Group to formalize the GitOps Principles specification"
+      ],
+      [
+        "2022",
+        "Flux v2 graduates as a CNCF project; GitOps becomes the de facto CD pattern for Kubernetes"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2017",
+        "Weaveworks 的 Alexis Richardson 发布 GitOps 宣言并发布第一个 GitOps Operator Flux"
+      ],
+      [
+        "2019",
+        "来自 Intuit 的 Argo CD 成为第二个主要 GitOps Operator 并捐赠给 CNCF"
+      ],
+      [
+        "2021",
+        "CNCF 成立 GitOps 工作组以正式化 GitOps 原则规范"
+      ],
+      [
+        "2022",
+        "Flux v2 作为 CNCF 项目毕业；GitOps 成为 Kubernetes 事实上的 CD 模式"
+      ]
+    ],
+    "dos": [
+      "Do separate application manifests from application source code into distinct repositories, because mixing them couples release cadences and pollutes Git history",
+      "Do enforce branch protection rules and required code reviews on the GitOps repo, because it is effectively a production change control system",
+      "Do store secrets references (not values) in Git and use an external secrets manager (Vault, External Secrets Operator) to inject them at runtime",
+      "Do implement drift detection alerts so that out-of-band changes to the cluster are immediately visible and can be reverted"
+    ],
+    "dos_zh": [
+      "务必将应用清单与应用源代码分离到不同仓库，因为混合会耦合发布节奏并污染 Git 历史",
+      "务必在 GitOps 仓库上强制执行分支保护规则和代码审查要求，因为它实际上是一个生产变更控制系统",
+      "务必在 Git 中存储机密引用（而非值），并使用外部机密管理器（Vault、External Secrets Operator）在运行时注入",
+      "务必实施漂移检测告警，使对集群的带外变更立即可见并可回滚"
+    ],
+    "donts": [
+      "Don't store plaintext secrets in Git — even in private repos — because credential exposure via Git history is a frequent and severe security incident",
+      "Don't allow CI pipelines to push directly to the cluster, because it bypasses the GitOps control loop and creates state that is invisible to the reconciler",
+      "Don't apply GitOps to stateful workloads without a separate strategy for persistent data, because declarative reconciliation can accidentally delete PVCs",
+      "Don't create overly large monorepo GitOps configs that reconcile thousands of resources at once, because reconciliation time and blast radius both grow"
+    ],
+    "donts_zh": [
+      "不要在 Git 中存储明文机密——即使在私有仓库中——因为通过 Git 历史泄露凭证是频繁且严重的安全事故",
+      "不要允许 CI 流水线直接推送到集群，因为这会绕过 GitOps 控制循环并创建对协调器不可见的状态",
+      "不要在没有持久数据独立策略的情况下将 GitOps 应用于有状态工作负载，因为声明式协调可能会意外删除 PVC",
+      "不要创建一次性协调数千个资源的过大 MonoRepo GitOps 配置，因为协调时间和爆炸半径都会增长"
+    ],
+    "case_study_company": "Weaveworks",
+    "case_study": "Weaveworks created GitOps while solving their own internal deployment problem in 2016. After their SRE accidentally broke production by applying an untested configuration change manually, the team decided that all changes to production must go through Git. They built Flux as an internal tool, open-sourced it in 2017, and published the GitOps principles. By 2019 Weaveworks' entire production infrastructure — Kubernetes clusters, networking, and application config — was managed exclusively through pull requests, giving them complete rollback capability and a full audit trail for every change.",
+    "case_study_zh": "Weaveworks 在2016年解决自身内部部署问题时创造了 GitOps。在一位 SRE 手动应用未经测试的配置变更意外破坏生产环境后，团队决定所有对生产环境的变更必须通过 Git 进行。他们将 Flux 作为内部工具构建，于2017年开源，并发布了 GitOps 原则。到2019年，Weaveworks 的整个生产基础设施——Kubernetes 集群、网络和应用配置——完全通过拉取请求管理，为每次变更提供了完整的回滚能力和审计轨迹。",
+    "when_not_to_use": [
+      "Legacy VM-based infrastructure where declarative Kubernetes-style reconciliation operators are not available",
+      "Rapid prototyping phases where the friction of PRs and reconciliation loops slows experimentation unacceptably",
+      "Organizations without Git-literate operations teams, where the tooling overhead creates more errors than it prevents",
+      "Highly stateful applications with complex database migration requirements that cannot be safely modeled as declarative desired state"
+    ],
+    "when_not_to_use_zh": [
+      "声明式 Kubernetes 风格协调 Operator 不可用的传统基于 VM 的基础设施",
+      "PR 和协调循环的摩擦使实验速度不可接受地减慢的快速原型阶段",
+      "没有熟悉 Git 的运维团队的组织，工具开销产生的错误多于预防的错误",
+      "具有复杂数据库迁移需求且无法安全建模为声明式期望状态的高度有状态应用"
+    ],
+    "adopters": [
+      "Weaveworks",
+      "Intuit",
+      "Mercedes-Benz",
+      "Plex Systems",
+      "Adobe",
+      "Zalando"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "security",
+      "maintainability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Alexis Richardson (2017). \"GitOps - Operations by Pull Request\". Weaveworks blog. weave.works.",
+    "secondary_sources": [
+      "CNCF GitOps Working Group (2021). \"GitOps Principles v1.0\". opengitops.dev.",
+      "Jesse Suen et al. (2022). \"Argo CD: Declarative Continuous Delivery for Kubernetes\". CNCF project documentation.",
+      "Cornelia Davis (2019). \"Cloud Native Patterns\". Manning Publications."
+    ],
+    "typed_relations": [
+      {
+        "slug": "infrastructure-as-code",
+        "type": "extends"
+      },
+      {
+        "slug": "progressive-delivery",
+        "type": "complement"
+      },
+      {
+        "slug": "platform-engineering",
+        "type": "complement"
+      },
+      {
+        "slug": "blue-green-deployment",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 290,
+    "name": "Feature Environments",
+    "name_zh": "功能环境",
+    "slug": "feature-environments",
+    "category": "deployment",
+    "desc": "Ephemeral full-stack environments provisioned per pull request or branch",
+    "desc_zh": "为每个拉取请求或分支自动创建临时全栈环境",
+    "steps": [
+      "Configure CI/CD to automatically provision a named environment on pull request open, using the branch name as a namespace or subdomain",
+      "Deploy the full application stack (frontend, backend, database seed) into the isolated environment within the CI pipeline",
+      "Post the environment URL as a PR comment so reviewers and QA can access it without local setup",
+      "Run automated tests (smoke, E2E, visual regression) against the ephemeral environment as part of the PR checks",
+      "Automatically tear down the environment on PR close or merge to reclaim infrastructure resources"
+    ],
+    "steps_zh": [
+      "配置 CI/CD 在拉取请求打开时使用分支名作为命名空间或子域名自动创建命名环境",
+      "在 CI 流水线中将完整应用栈（前端、后端、数据库种子）部署到隔离环境",
+      "将环境 URL 作为 PR 评论发布，使审查者和 QA 无需本地设置即可访问",
+      "在 PR 检查中对临时环境执行自动化测试（冒烟测试、E2E 测试、视觉回归测试）",
+      "在 PR 关闭或合并时自动销毁环境以回收基础设施资源"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "gitops",
+      "progressive-delivery",
+      "blue-green-deployment",
+      "infrastructure-as-code"
+    ],
+    "tags": [
+      "ephemeral-environments",
+      "preview-environments",
+      "pull-request",
+      "ci-cd",
+      "deployment"
+    ],
+    "origin_author": "Vercel",
+    "origin_source": "Vercel (2018). \"Preview Deployments\". vercel.com/docs.",
+    "origin_source_zh": "Vercel（2018）。《预览部署》。vercel.com/docs。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Frontend and full-stack teams that want product managers and designers to review changes without running code locally",
+      "Projects with complex integration dependencies where local development environment setup is costly and error-prone",
+      "Teams practicing trunk-based development where frequent PRs need isolated validation before merge",
+      "Organizations that want to shift QA and stakeholder review earlier in the development cycle"
+    ],
+    "when_to_use_zh": [
+      "希望产品经理和设计师无需本地运行代码即可审查变更的前端和全栈团队",
+      "本地开发环境搭建成本高且容易出错的复杂集成依赖项目",
+      "实践主干开发、频繁 PR 需要在合并前进行隔离验证的团队",
+      "希望将 QA 和利益相关者评审提前到开发周期更早阶段的组织"
+    ],
+    "core_concepts": [
+      "Ephemeral Namespace Isolation: Each PR gets a dedicated namespace, subdomain, or cluster namespace that is fully isolated from staging and production",
+      "Infrastructure-on-Demand: Environments are created and destroyed programmatically by CI events, treating compute as a disposable resource",
+      "Shift-Left Review: Product stakeholders, designers, and QA can validate running software early, catching requirement gaps before merging",
+      "Hermetic Test Execution: E2E and integration tests run against a realistic stack that mirrors production, eliminating environment parity bugs"
+    ],
+    "core_concepts_zh": [
+      "临时命名空间隔离：每个 PR 获得一个专用命名空间、子域名或集群命名空间，与暂存和生产环境完全隔离",
+      "按需基础设施：环境由 CI 事件以编程方式创建和销毁，将计算视为可丢弃资源",
+      "左移评审：产品利益相关者、设计师和 QA 可以在早期验证运行中的软件，在合并前发现需求差距",
+      "密封测试执行：E2E 和集成测试在镜像生产环境的真实栈上运行，消除环境一致性错误"
+    ],
+    "timeline": [
+      [
+        "2016",
+        "Heroku introduces Review Apps — per-PR ephemeral environments — as a first-class platform feature"
+      ],
+      [
+        "2018",
+        "Vercel launches Preview Deployments, making per-PR frontend environments the default for Jamstack projects"
+      ],
+      [
+        "2020",
+        "Netlify, Render, and Railway popularize the pattern across the full-stack ecosystem"
+      ],
+      [
+        "2023",
+        "GitHub Environments and tools like Uffizzi, Bunnyshell, and Qovery extend ephemeral environments to full Kubernetes stacks"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2016",
+        "Heroku 推出 Review Apps——每个 PR 的临时环境——作为平台一等功能"
+      ],
+      [
+        "2018",
+        "Vercel 推出预览部署，使每个 PR 的前端环境成为 Jamstack 项目的默认选项"
+      ],
+      [
+        "2020",
+        "Netlify、Render 和 Railway 在全栈生态系统中普及了这一模式"
+      ],
+      [
+        "2023",
+        "GitHub Environments 和 Uffizzi、Bunnyshell、Qovery 等工具将临时环境扩展到完整的 Kubernetes 栈"
+      ]
+    ],
+    "dos": [
+      "Do seed ephemeral databases with anonymized production snapshots or realistic fixtures so that reviewers test against representative data",
+      "Do set TTLs and maximum lifetime limits on environments to prevent zombie environments that consume resources indefinitely",
+      "Do cache container image layers and dependency installs aggressively to keep provisioning time under 2 minutes",
+      "Do post the environment URL and a teardown timestamp directly in the PR comment so reviewers know both where to test and how long they have"
+    ],
+    "dos_zh": [
+      "务必使用匿名化生产快照或真实数据填充临时数据库，使审查者在具有代表性的数据上测试",
+      "务必为环境设置 TTL 和最大生命周期限制，防止僵尸环境无限期消耗资源",
+      "务必积极缓存容器镜像层和依赖安装，使配置时间保持在2分钟以内",
+      "务必在 PR 评论中直接发布环境 URL 和销毁时间戳，使审查者知道在哪里测试以及还有多长时间"
+    ],
+    "donts": [
+      "Don't give ephemeral environments access to production databases or secrets — use isolated seed data to prevent accidental data mutation",
+      "Don't run ephemeral environments against shared staging backends, because concurrent PRs will interfere with each other's test state",
+      "Don't ignore environment provisioning failures in CI — a silent environment creation error means reviewers test against stale or nonexistent deployments",
+      "Don't skip environment teardown automation — manual cleanup creates a long tail of forgotten environments that silently inflate cloud bills"
+    ],
+    "donts_zh": [
+      "不要让临时环境访问生产数据库或机密——使用隔离的种子数据防止意外数据变更",
+      "不要在共享暂存后端上运行临时环境，因为并发 PR 会相互干扰测试状态",
+      "不要忽略 CI 中的环境创建失败——静默的环境创建错误意味着审查者在过时或不存在的部署上测试",
+      "不要跳过环境销毁自动化——手动清理会产生被遗忘的环境长尾，悄悄推高云账单"
+    ],
+    "case_study_company": "Vercel",
+    "case_study": "Vercel made feature environments a core product differentiator by giving every Git push to a non-production branch its own unique preview URL. When a PR is opened on a Next.js project hosted on Vercel, a full deployment is triggered within 30–60 seconds, the URL is posted as a GitHub status check, and the deployment is automatically cleaned up on PR merge. This workflow became so popular that it effectively set the industry standard for frontend preview environments, with Netlify, Cloudflare Pages, and AWS Amplify all shipping equivalent capabilities within two years.",
+    "case_study_zh": "Vercel 通过为每次推送到非生产分支的 Git 提交提供独特预览 URL，将功能环境打造为核心产品差异化优势。当在 Vercel 托管的 Next.js 项目上打开 PR 时，30–60 秒内触发完整部署，URL 作为 GitHub 状态检查发布，部署在 PR 合并时自动清理。这一工作流大受欢迎，有效地设定了前端预览环境的行业标准，Netlify、Cloudflare Pages 和 AWS Amplify 均在两年内推出了同等能力。",
+    "when_not_to_use": [
+      "Applications with extremely expensive infrastructure stacks where provisioning a full environment per PR is cost-prohibitive",
+      "Monoliths with long build times where environment provisioning exceeds 15 minutes, creating more friction than value",
+      "Teams with very low PR volume where the overhead of building and maintaining the ephemeral environment pipeline exceeds the review benefit",
+      "Regulated environments where ephemeral environments cannot meet compliance requirements for data residency or access control"
+    ],
+    "when_not_to_use_zh": [
+      "基础设施栈极其昂贵、为每个 PR 创建完整环境成本过高的应用",
+      "构建时间过长、环境配置超过15分钟的单体应用——产生的摩擦多于价值",
+      "PR 量极低的团队——构建和维护临时环境流水线的开销超过评审收益",
+      "临时环境无法满足数据驻留或访问控制合规要求的受监管环境"
+    ],
+    "adopters": [
+      "Vercel",
+      "Netlify",
+      "Heroku",
+      "Shopify",
+      "GitHub",
+      "Stripe"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "usability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Vercel (2018). \"Preview Deployments\". vercel.com/docs.",
+    "secondary_sources": [
+      "Heroku (2016). \"Review Apps Documentation\". devcenter.heroku.com.",
+      "Nader Dabit (2021). \"Preview Environments for Every Pull Request\". AWS Amplify blog.",
+      "Adam Zimman (2022). \"What Are Feature Environments?\". LaunchDarkly blog."
+    ],
+    "typed_relations": [
+      {
+        "slug": "gitops",
+        "type": "uses"
+      },
+      {
+        "slug": "progressive-delivery",
+        "type": "complement"
+      },
+      {
+        "slug": "infrastructure-as-code",
+        "type": "uses"
+      },
+      {
+        "slug": "blue-green-deployment",
+        "type": "alternative"
+      }
+    ]
+  },
+  {
+    "id": 291,
+    "name": "Deployment Stamps Pattern",
+    "name_zh": "部署印章模式",
+    "slug": "deployment-stamps-pattern",
+    "category": "deployment",
+    "desc": "Scale by deploying multiple isolated copies of the application stack per tenant or region",
+    "desc_zh": "通过为每个租户或地区部署多个隔离的应用栈副本来扩展规模",
+    "steps": [
+      "Define the stamp unit — the full set of resources (compute, database, cache, networking) that constitutes one isolated deployment",
+      "Templatize the stamp using infrastructure-as-code so that each stamp is provisioned identically from the same template",
+      "Build a routing layer (geo-DNS, tenant lookup service) that maps each customer or region to their assigned stamp",
+      "Deploy new stamps for new tenants or regions; scale within a stamp until it reaches its defined capacity ceiling",
+      "Operate stamps independently — updates, incidents, and capacity changes on one stamp do not affect others"
+    ],
+    "steps_zh": [
+      "定义印章单元——构成一个隔离部署的完整资源集合（计算、数据库、缓存、网络）",
+      "使用基础设施即代码对印章进行模板化，使每个印章从相同模板以相同方式创建",
+      "构建路由层（地理 DNS、租户查找服务）将每个客户或地区映射到其分配的印章",
+      "为新租户或地区部署新印章；在印章内扩展直到达到其定义的容量上限",
+      "独立运营印章——一个印章上的更新、事故和容量变更不影响其他印章"
+    ],
+    "ai_relevant": false,
+    "viz_type": "matrix",
+    "related": [
+      "infrastructure-as-code",
+      "gitops",
+      "blue-green-deployment",
+      "platform-engineering"
+    ],
+    "tags": [
+      "stamps",
+      "multi-tenant",
+      "scaling",
+      "isolation",
+      "cloud-architecture"
+    ],
+    "origin_author": "Microsoft Azure",
+    "origin_source": "Microsoft Azure Architecture Center (2019). \"Deployment Stamps pattern\". learn.microsoft.com.",
+    "origin_source_zh": "微软 Azure 架构中心（2019）。《部署印章模式》。learn.microsoft.com。",
+    "complexity": "advanced",
+    "when_to_use": [
+      "SaaS applications requiring strong data isolation between enterprise customers for compliance or contractual reasons",
+      "Global services where latency requirements mandate co-locating compute and data near each customer region",
+      "Systems that must scale beyond the limits of a single database or infrastructure stack without re-architecting the application",
+      "Applications with highly variable per-tenant load profiles where noisy-neighbor effects on a shared stack would degrade SLAs"
+    ],
+    "when_to_use_zh": [
+      "出于合规或合同原因需要在企业客户之间强隔离数据的 SaaS 应用",
+      "延迟要求强制在每个客户地区附近部署计算和数据的全球服务",
+      "必须在不重新架构应用的情况下扩展超过单一数据库或基础设施栈限制的系统",
+      "每租户负载特征高度可变、共享栈上的吵闹邻居效应会降低 SLA 的应用"
+    ],
+    "core_concepts": [
+      "Stamp Unit: A stamp is the smallest independently deployable unit of the full application stack; it is self-contained and shares no mutable state with other stamps",
+      "Template Consistency: Every stamp is provisioned from the same IaC template, ensuring configuration parity and eliminating stamp-specific drift",
+      "Tenant-to-Stamp Routing: A routing layer maps each tenant or region identifier to its assigned stamp; this layer is the only shared component",
+      "Blast Radius Containment: Incidents, performance degradation, or failed deployments on one stamp are fully contained and do not propagate to other stamps"
+    ],
+    "core_concepts_zh": [
+      "印章单元：印章是完整应用栈中最小的独立可部署单元；它是自包含的，与其他印章不共享可变状态",
+      "模板一致性：每个印章从相同的 IaC 模板创建，确保配置一致性并消除印章特有漂移",
+      "租户到印章路由：路由层将每个租户或地区标识符映射到其分配的印章；该层是唯一共享的组件",
+      "爆炸半径控制：一个印章上的事故、性能降级或失败部署完全被隔离，不会传播到其他印章"
+    ],
+    "timeline": [
+      [
+        "2010",
+        "Large SaaS providers (Salesforce, Workday) use isolated tenant stacks informally to meet enterprise data isolation requirements"
+      ],
+      [
+        "2019",
+        "Microsoft Azure Architecture Center formalizes and publishes the Deployment Stamps pattern with reference implementations"
+      ],
+      [
+        "2021",
+        "Kubernetes multi-tenancy tooling (vcluster, Capsule) enables lightweight stamp-per-tenant isolation within shared clusters"
+      ],
+      [
+        "2023",
+        "Cell-based architecture (Amazon, Slack) emerges as a variant of the stamps pattern optimized for fault isolation at scale"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2010",
+        "大型 SaaS 提供商（Salesforce、Workday）非正式地使用隔离租户栈满足企业数据隔离要求"
+      ],
+      [
+        "2019",
+        "微软 Azure 架构中心正式化并发布部署印章模式及参考实现"
+      ],
+      [
+        "2021",
+        "Kubernetes 多租户工具（vcluster、Capsule）在共享集群内实现轻量级每租户印章隔离"
+      ],
+      [
+        "2023",
+        "基于单元的架构（Amazon、Slack）作为印章模式的变体出现，针对规模故障隔离进行了优化"
+      ]
+    ],
+    "dos": [
+      "Do automate stamp provisioning end-to-end from IaC templates so that a new stamp can be deployed in minutes without manual steps",
+      "Do implement a centralized stamp registry that tracks which tenant maps to which stamp, their capacity utilization, and health status",
+      "Do version stamp templates independently from application code so infrastructure changes can be applied across stamps in controlled waves",
+      "Do design stamps to be horizontally scalable within their bounds so you can right-size before provisioning a new stamp"
+    ],
+    "dos_zh": [
+      "务必从 IaC 模板端到端自动化印章配置，使新印章可以在数分钟内无需手动步骤地部署",
+      "务必实现一个集中式印章注册表，跟踪哪个租户映射到哪个印章、其容量利用率和健康状态",
+      "务必独立于应用代码对印章模板进行版本控制，使基础设施变更可以以受控方式应用于各印章",
+      "务必将印章设计为在其边界内水平可扩展，以便在创建新印章前进行适当调整"
+    ],
+    "donts": [
+      "Don't allow stamps to share mutable state (databases, caches, message queues) — shared state defeats the isolation guarantee and reintroduces noisy-neighbor risk",
+      "Don't manually configure individual stamps — every deviation from the template becomes undocumented drift that causes future incidents",
+      "Don't over-provision stamps from day one — use capacity modeling to right-size the stamp unit and grow the number of stamps rather than the size",
+      "Don't use the stamps pattern as a substitute for good application architecture — it scales isolation, not poorly-written code"
+    ],
+    "donts_zh": [
+      "不要让印章共享可变状态（数据库、缓存、消息队列）——共享状态破坏了隔离保证并重新引入吵闹邻居风险",
+      "不要手动配置单个印章——每个与模板的偏差都成为未记录的漂移，导致未来事故",
+      "不要从第一天就过度配置印章——使用容量建模适当调整印章单元大小，通过增加印章数量而非印章大小来扩展",
+      "不要将印章模式用作良好应用架构的替代品——它扩展的是隔离，而非编写糟糕的代码"
+    ],
+    "case_study_company": "GitHub",
+    "case_study": "GitHub uses a stamps-like deployment model for GitHub Enterprise Server, where each enterprise customer runs their own isolated stack — compute, storage, and networking — deployed from the same release artifact. This architecture ensures that a performance problem or infrastructure incident at one enterprise installation has zero impact on other customers. GitHub also uses this pattern internally for its own reliability zones, with independent stacks per region that can absorb a full zone failure without cross-zone blast radius.",
+    "case_study_zh": "GitHub 为 GitHub Enterprise Server 使用类印章的部署模型，每个企业客户运行自己独立的栈——计算、存储和网络——从相同的发布制品部署。此架构确保一个企业安装中的性能问题或基础设施事故对其他客户零影响。GitHub 内部也将此模式用于其自身的可靠性区域，每个地区有独立的栈，可以在无跨区域爆炸半径的情况下吸收整个区域故障。",
+    "when_not_to_use": [
+      "Consumer SaaS with millions of end-user accounts where per-user stamp isolation is economically infeasible",
+      "Applications with strong cross-tenant data sharing requirements where isolation prevents legitimate data access patterns",
+      "Small teams without the platform engineering maturity to build, operate, and version the stamp provisioning pipeline",
+      "Systems with uniform, predictable load where a single well-scaled stack is more cost-effective than many small stamps"
+    ],
+    "when_not_to_use_zh": [
+      "拥有数百万终端用户账户的消费者 SaaS——每用户印章隔离在经济上不可行",
+      "具有强跨租户数据共享需求、隔离阻止合法数据访问模式的应用",
+      "缺乏构建、运营和版本化印章配置流水线的平台工程成熟度的小团队",
+      "负载均匀可预测的系统——单一良好扩展的栈比许多小印章更具成本效益"
+    ],
+    "adopters": [
+      "Microsoft Azure",
+      "GitHub",
+      "Salesforce",
+      "SAP",
+      "Workday",
+      "Twilio"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "security"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Microsoft Azure Architecture Center (2019). \"Deployment Stamps pattern\". learn.microsoft.com/azure/architecture/patterns/deployment-stamp.",
+    "secondary_sources": [
+      "Colm MacCarthaigh (2022). \"Avoiding fallback in distributed systems\". AWS builder's library. aws.amazon.com.",
+      "Slack Engineering (2022). \"Cell-based architecture\". slack.engineering.",
+      "Gregor Hohpe (2020). \"The Software Architect Elevator\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "infrastructure-as-code",
+        "type": "uses"
+      },
+      {
+        "slug": "gitops",
+        "type": "complement"
+      },
+      {
+        "slug": "blue-green-deployment",
+        "type": "complement"
+      },
+      {
+        "slug": "platform-engineering",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 292,
+    "name": "Infrastructure as Code Maturity Model",
+    "name_zh": "基础设施即代码成熟度模型",
+    "slug": "iac-maturity-model",
+    "category": "deployment",
+    "desc": "Staged progression from manual infrastructure to fully automated self-service IaC",
+    "desc_zh": "从手动基础设施到完全自动化自服务 IaC 的阶段性演进",
+    "steps": [
+      "Assess current state: audit how infrastructure is provisioned today — manual console, scripts, partial IaC, or full automation",
+      "Define target maturity level and identify the gaps between current and desired state for each infrastructure domain",
+      "Introduce declarative IaC tooling (Terraform, Pulumi, CloudFormation) for net-new resources while coexisting with manual legacy",
+      "Build CI/CD pipelines that plan, validate, and apply infrastructure changes automatically on merge",
+      "Evolve toward self-service: platform teams publish reusable modules; product teams consume them without infrastructure knowledge"
+    ],
+    "steps_zh": [
+      "评估当前状态：审计当前基础设施的配置方式——手动控制台、脚本、部分 IaC 或完全自动化",
+      "定义目标成熟度级别，识别每个基础设施域当前状态与期望状态之间的差距",
+      "对净新资源引入声明式 IaC 工具（Terraform、Pulumi、CloudFormation），同时与手动遗留系统共存",
+      "构建在合并时自动计划、验证和应用基础设施变更的 CI/CD 流水线",
+      "向自服务演进：平台团队发布可复用模块；产品团队无需基础设施知识即可使用"
+    ],
+    "ai_relevant": false,
+    "viz_type": "pyramid",
+    "related": [
+      "infrastructure-as-code",
+      "gitops",
+      "platform-engineering",
+      "deployment-stamps-pattern"
+    ],
+    "tags": [
+      "iac",
+      "maturity-model",
+      "infrastructure",
+      "automation",
+      "self-service"
+    ],
+    "origin_author": "Kief Morris",
+    "origin_source": "Kief Morris (2020). \"Infrastructure as Code: Dynamic Systems for the Cloud Age\" (2nd ed.). O'Reilly Media.",
+    "origin_source_zh": "Kief Morris（2020）。《基础设施即代码：云时代的动态系统》（第2版）。O'Reilly Media。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Organizations beginning or deepening an IaC adoption journey who need a roadmap to guide investment and measure progress",
+      "Platform engineering teams building a developer self-service layer who want to articulate the maturity levels to leadership",
+      "Engineering managers conducting infrastructure capability audits before a cloud migration or re-platforming initiative",
+      "Teams struggling with IaC drift, snowflake servers, or inconsistent environments who need a structured improvement path"
+    ],
+    "when_to_use_zh": [
+      "开始或深化 IaC 采用旅程的组织，需要指导投资和衡量进展的路线图",
+      "构建开发者自服务层的平台工程团队，希望向领导层阐明成熟度级别",
+      "在云迁移或重新平台化举措前进行基础设施能力审计的工程经理",
+      "在 IaC 漂移、雪花服务器或不一致环境方面挣扎、需要结构化改进路径的团队"
+    ],
+    "core_concepts": [
+      "Maturity Levels: Typically five stages from Level 0 (fully manual) through Level 4 (dynamic self-service), each with defined characteristics and exit criteria",
+      "Idempotency Principle: IaC at maturity means running the same script repeatedly produces the same outcome; drift is impossible by design",
+      "Module Abstraction: Higher maturity levels abstract infrastructure complexity into reusable, versioned modules that encode organizational standards",
+      "Policy as Code: Advanced maturity incorporates automated compliance validation (Open Policy Agent, Sentinel) into the IaC pipeline"
+    ],
+    "core_concepts_zh": [
+      "成熟度级别：通常从0级（完全手动）到4级（动态自服务）分五个阶段，每个阶段都有明确的特征和退出标准",
+      "幂等性原则：成熟的 IaC 意味着重复运行相同脚本产生相同结果；漂移在设计上不可能发生",
+      "模块抽象：更高成熟度级别将基础设施复杂性抽象为可复用的、版本化的模块，这些模块编码了组织标准",
+      "策略即代码：高级成熟度将自动化合规验证（Open Policy Agent、Sentinel）集成到 IaC 流水线中"
+    ],
+    "timeline": [
+      [
+        "2006",
+        "CFEngine and early configuration management tools (Puppet, Chef) establish the principle of describing desired state as code"
+      ],
+      [
+        "2014",
+        "Terraform 0.1 released by HashiCorp; declarative cloud infrastructure provisioning becomes accessible to the broader engineering community"
+      ],
+      [
+        "2016",
+        "Kief Morris publishes the first edition of Infrastructure as Code, articulating maturity stages and engineering practices"
+      ],
+      [
+        "2021",
+        "Platform engineering movement frames IaC maturity as a prerequisite for developer self-service; CNCF publishes the Platform Engineering maturity model"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2006",
+        "CFEngine 和早期配置管理工具（Puppet、Chef）确立了将期望状态描述为代码的原则"
+      ],
+      [
+        "2014",
+        "HashiCorp 发布 Terraform 0.1；声明式云基础设施配置对更广泛的工程社区变得可及"
+      ],
+      [
+        "2016",
+        "Kief Morris 出版《基础设施即代码》第一版，阐述成熟度阶段和工程实践"
+      ],
+      [
+        "2021",
+        "平台工程运动将 IaC 成熟度定位为开发者自服务的先决条件；CNCF 发布平台工程成熟度模型"
+      ]
+    ],
+    "dos": [
+      "Do start by codifying one well-understood, low-risk infrastructure domain (e.g., DNS records or S3 buckets) to prove the workflow before expanding scope",
+      "Do enforce IaC linting and static analysis (tflint, checkov) in CI to catch configuration errors and security misconfigurations before apply",
+      "Do use remote state backends with state locking to prevent concurrent apply operations from corrupting infrastructure state",
+      "Do build a module registry with versioned, documented modules so that teams consume approved patterns rather than writing ad-hoc resources"
+    ],
+    "dos_zh": [
+      "务必从编码一个易于理解、低风险的基础设施域（如 DNS 记录或 S3 存储桶）开始，在扩大范围前验证工作流",
+      "务必在 CI 中强制执行 IaC 代码检查和静态分析（tflint、checkov），在应用前捕获配置错误和安全错误配置",
+      "务必使用带状态锁定的远程状态后端，防止并发应用操作损坏基础设施状态",
+      "务必构建带有版本化、文档化模块的模块注册表，使团队使用已批准的模式而非编写临时资源"
+    ],
+    "donts": [
+      "Don't import existing manually-created resources into IaC state without first auditing and documenting their configuration, because undocumented resources become IaC liabilities",
+      "Don't apply infrastructure changes directly from developer workstations in production — all changes must flow through CI/CD with plan review",
+      "Don't treat IaC maturity as a binary milestone — incremental progress is more sustainable than attempting a big-bang migration of all infrastructure at once",
+      "Don't confuse configuration management (Ansible, Chef) with infrastructure provisioning (Terraform, Pulumi) — they solve different problems at different layers"
+    ],
+    "donts_zh": [
+      "不要在未先审计和记录配置的情况下将现有手动创建的资源导入 IaC 状态——未记录的资源成为 IaC 负担",
+      "不要在生产环境中从开发者工作站直接应用基础设施变更——所有变更必须通过带计划审查的 CI/CD",
+      "不要将 IaC 成熟度视为二元里程碑——增量进展比一次性迁移所有基础设施的大爆炸方式更可持续",
+      "不要混淆配置管理（Ansible、Chef）与基础设施配置（Terraform、Pulumi）——它们在不同层解决不同问题"
+    ],
+    "case_study_company": "Monzo",
+    "case_study": "Monzo, the UK digital bank, progressed from a manual AWS console-based setup in 2015 to a fully automated Terraform-based IaC platform by 2019. Their journey followed the maturity model closely: starting with scripts, moving to Terraform modules managed by a central platform team, and eventually enabling product engineers to self-provision infrastructure via an internal catalog. By Level 4, Monzo engineers could spin up a new microservice with a complete networking, IAM, and observability stack in under 10 minutes via a self-service portal.",
+    "case_study_zh": "英国数字银行 Monzo 从2015年基于手动 AWS 控制台的设置，到2019年发展为完全自动化的基于 Terraform 的 IaC 平台。他们的旅程紧密遵循成熟度模型：从脚本开始，转向由中央平台团队管理的 Terraform 模块，最终通过内部目录使产品工程师能够自服务配置基础设施。到达4级时，Monzo 工程师可以通过自服务门户在10分钟内创建一个具有完整网络、IAM 和可观测性栈的新微服务。",
+    "when_not_to_use": [
+      "Proof-of-concept or hackathon environments where the overhead of IaC setup outweighs the short lifecycle of the infrastructure",
+      "Organizations with a single engineer managing infrastructure where formalized maturity levels add bureaucratic overhead without team benefit",
+      "Legacy infrastructure with undocumented, bespoke configurations where a maturity model assessment is premature before a discovery audit",
+      "Environments locked to a single cloud provider's proprietary tooling where generic IaC maturity models may not map cleanly"
+    ],
+    "when_not_to_use_zh": [
+      "IaC 设置开销超过基础设施短暂生命周期的概念验证或黑客马拉松环境",
+      "只有一名工程师管理基础设施的组织——正式化成熟度级别增加官僚开销而无团队收益",
+      "在发现审计之前，成熟度模型评估为时过早的具有未记录的、定制配置的遗留基础设施",
+      "锁定于单一云提供商专有工具的环境——通用 IaC 成熟度模型可能无法干净映射"
+    ],
+    "adopters": [
+      "HashiCorp",
+      "Monzo",
+      "Spotify",
+      "Thoughtworks",
+      "Atlassian",
+      "Cloudflare"
+    ],
+    "abstraction_level": "organization",
+    "quality_concerns": [
+      "maintainability",
+      "reliability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Kief Morris (2020). \"Infrastructure as Code: Dynamic Systems for the Cloud Age\" (2nd ed.). O'Reilly Media.",
+    "secondary_sources": [
+      "HashiCorp (2021). \"Infrastructure as Code Maturity Model\". hashicorp.com.",
+      "Thoughtworks Technology Radar (2021). \"Evolving Infrastructure as Code practices\". thoughtworks.com/radar.",
+      "CNCF (2022). \"Platform Engineering Maturity Model\". tag-app-delivery.cncf.io."
+    ],
+    "typed_relations": [
+      {
+        "slug": "infrastructure-as-code",
+        "type": "extends"
+      },
+      {
+        "slug": "gitops",
+        "type": "complement"
+      },
+      {
+        "slug": "platform-engineering",
+        "type": "complement"
+      },
+      {
+        "slug": "deployment-stamps-pattern",
+        "type": "complement"
+      }
+    ]
   }
 ]

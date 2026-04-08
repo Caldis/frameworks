@@ -3271,5 +3271,365 @@
         "type": "complement"
       }
     ]
+  },
+  {
+    "id": 293,
+    "name": "Multimodal Pipeline Design",
+    "name_zh": "多模态流水线设计",
+    "slug": "multimodal-pipeline-design",
+    "category": "ai",
+    "desc": "Architecture for processing text, image, audio, and video in unified AI pipelines",
+    "desc_zh": "在统一 AI 流水线中处理文本、图像、音频和视频的架构",
+    "steps": [
+      "Identify the modalities required by the task and select or fine-tune a backbone model capable of handling each modality",
+      "Design modality-specific preprocessing stages: tokenization for text, patch embeddings for images, spectrograms for audio",
+      "Define a fusion strategy — early fusion (concatenate inputs), late fusion (merge outputs), or cross-attention across modalities",
+      "Build a shared embedding space so representations from different modalities can be compared, retrieved, or jointly reasoned over",
+      "Evaluate pipeline output with modality-specific and cross-modal metrics; iterate on fusion strategy and preprocessing based on failure analysis"
+    ],
+    "steps_zh": [
+      "识别任务所需的模态，选择或微调能够处理每种模态的骨干模型",
+      "设计针对各模态的预处理阶段：文本的分词、图像的块嵌入、音频的频谱图",
+      "定义融合策略——早期融合（拼接输入）、晚期融合（合并输出）或跨模态注意力",
+      "构建共享嵌入空间，使不同模态的表示可以被比较、检索或联合推理",
+      "使用特定模态和跨模态指标评估流水线输出；根据失败分析迭代融合策略和预处理"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "rag-pattern",
+      "prompt-chaining",
+      "multi-agent-orchestration-pattern",
+      "llm-evaluation-framework"
+    ],
+    "tags": [
+      "multimodal",
+      "pipeline",
+      "vision",
+      "audio",
+      "embeddings",
+      "llm"
+    ],
+    "origin_author": "Google DeepMind",
+    "origin_source": "Google DeepMind (2023). \"Gemini: A Family of Highly Capable Multimodal Models\". arXiv:2312.11805.",
+    "origin_source_zh": "Google DeepMind（2023）。《Gemini：高能力多模态模型家族》。arXiv:2312.11805。",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Applications where the input is inherently multimodal — e.g., document understanding (PDF text + images), video captioning, or audio transcription with speaker diarization",
+      "AI assistants that need to accept arbitrary file uploads and reason over mixed content types in a single context",
+      "Retrieval systems that must index and search across modalities — finding images by text query or audio clips by semantic description",
+      "Production systems where different modality models must be orchestrated reliably with shared observability and error handling"
+    ],
+    "when_to_use_zh": [
+      "输入本质上是多模态的应用——如文档理解（PDF 文本 + 图像）、视频字幕或带说话人区分的音频转录",
+      "需要接受任意文件上传并在单一上下文中对混合内容类型进行推理的 AI 助手",
+      "必须跨模态索引和搜索的检索系统——通过文本查询查找图像或通过语义描述查找音频片段",
+      "不同模态模型必须与共享可观测性和错误处理可靠协调的生产系统"
+    ],
+    "core_concepts": [
+      "Modality Encoding: Each input type is converted to a dense vector representation using a modality-specific encoder (CLIP for images, Whisper for audio, transformer for text)",
+      "Fusion Architecture: Early fusion combines raw or encoded inputs before the reasoning model; late fusion combines independent model outputs; cross-attention enables modalities to attend to each other",
+      "Shared Embedding Space: Contrastive training (CLIP-style) aligns representations from different modalities so semantic similarity is comparable across modality boundaries",
+      "Modality Routing: A dispatcher determines which modality encoder, preprocessor, and downstream model handles each segment of a mixed input"
+    ],
+    "core_concepts_zh": [
+      "模态编码：每种输入类型使用特定模态编码器转换为密集向量表示（图像用 CLIP、音频用 Whisper、文本用 Transformer）",
+      "融合架构：早期融合在推理模型之前合并原始或编码输入；晚期融合合并独立模型输出；交叉注意力使模态之间相互关注",
+      "共享嵌入空间：对比训练（CLIP 风格）对齐不同模态的表示，使跨模态边界的语义相似性可以比较",
+      "模态路由：调度器确定哪个模态编码器、预处理器和下游模型处理混合输入的每个片段"
+    ],
+    "timeline": [
+      [
+        "2021",
+        "OpenAI releases CLIP, demonstrating that contrastive pretraining can align image and text in a shared embedding space"
+      ],
+      [
+        "2022",
+        "DeepMind's Flamingo and Google's PaLI establish large-scale vision-language models as a viable architecture for joint reasoning"
+      ],
+      [
+        "2023",
+        "GPT-4V and Gemini Ultra launch as general-purpose multimodal models capable of native image, text, and audio understanding"
+      ],
+      [
+        "2024",
+        "Multimodal models become standard in production AI applications; frameworks like LangChain and LlamaIndex add native multimodal pipeline support"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2021",
+        "OpenAI 发布 CLIP，证明对比预训练可以在共享嵌入空间中对齐图像和文本"
+      ],
+      [
+        "2022",
+        "DeepMind 的 Flamingo 和 Google 的 PaLI 确立了大规模视觉语言模型作为联合推理可行架构"
+      ],
+      [
+        "2023",
+        "GPT-4V 和 Gemini Ultra 作为具备原生图像、文本和音频理解能力的通用多模态模型发布"
+      ],
+      [
+        "2024",
+        "多模态模型成为生产 AI 应用的标准；LangChain 和 LlamaIndex 等框架添加原生多模态流水线支持"
+      ]
+    ],
+    "dos": [
+      "Do evaluate each modality encoder independently before integration so that performance regressions can be attributed to a specific pipeline stage",
+      "Do design modality preprocessing as stateless, composable functions so individual encoders can be swapped or upgraded without re-architecting the pipeline",
+      "Do include cross-modal evaluation benchmarks (e.g., VQA for vision-language, AudioCaps for audio-text) alongside single-modality metrics",
+      "Do instrument modality routing decisions in production so you can analyze which modalities are actually used and optimize pipeline cost accordingly"
+    ],
+    "dos_zh": [
+      "务必在集成前独立评估每个模态编码器，使性能回归可以归因于特定流水线阶段",
+      "务必将模态预处理设计为无状态的、可组合的函数，使单个编码器可以在不重新架构流水线的情况下替换或升级",
+      "务必在单模态指标旁边包含跨模态评估基准（如视觉语言的 VQA、音频文本的 AudioCaps）",
+      "务必在生产中记录模态路由决策，以便分析实际使用了哪些模态并相应优化流水线成本"
+    ],
+    "donts": [
+      "Don't assume a multimodal model handles all modalities equally well — benchmark each modality independently and set separate quality thresholds",
+      "Don't pass raw binary file bytes directly to an LLM API without explicit preprocessing — unstructured blobs produce unpredictable model behavior",
+      "Don't neglect per-modality latency profiling — image encoding can dominate pipeline latency and must be optimized separately from the text generation step",
+      "Don't conflate multimodal input with multimodal output — generating images, audio, or video requires separate output decoders and a distinct safety review"
+    ],
+    "donts_zh": [
+      "不要假设多模态模型在所有模态上表现同等出色——独立对每种模态进行基准测试并设置单独的质量阈值",
+      "不要在没有明确预处理的情况下直接将原始二进制文件字节传递给 LLM API——非结构化二进制块产生不可预测的模型行为",
+      "不要忽视按模态的延迟分析——图像编码可能主导流水线延迟，必须与文本生成步骤分开优化",
+      "不要混淆多模态输入与多模态输出——生成图像、音频或视频需要单独的输出解码器和独立的安全审查"
+    ],
+    "case_study_company": "Google DeepMind",
+    "case_study": "Google DeepMind's Gemini architecture demonstrated the first natively multimodal large model trained jointly across text, image, audio, and video from scratch rather than stitching together separate models. The Gemini Ultra pipeline uses a unified Transformer that accepts interleaved multimodal tokens, enabling tasks like reading a chart and answering a verbal question about it in a single forward pass. This architecture achieved state-of-the-art results on 30 of 32 multimodal benchmarks at launch, validating the joint-training approach over late-fusion ensemble alternatives.",
+    "case_study_zh": "Google DeepMind 的 Gemini 架构展示了第一个从头在文本、图像、音频和视频上联合训练的原生多模态大模型，而非拼接独立模型。Gemini Ultra 流水线使用统一的 Transformer 接受交织的多模态 Token，支持在单次前向传播中完成读取图表并回答口头问题等任务。此架构在发布时在32个多模态基准中的30个上达到了最先进的结果，验证了联合训练方法优于晚期融合集成替代方案。",
+    "when_not_to_use": [
+      "Applications that are genuinely text-only where multimodal complexity adds cost and latency without any benefit",
+      "Prototypes or MVPs where a single-modality model is sufficient to validate the core product hypothesis before investing in multimodal infrastructure",
+      "Low-latency real-time applications where the sequential preprocessing overhead of multiple modality encoders violates latency SLAs",
+      "Teams without the ML engineering expertise to debug cross-modal embedding alignment issues and modality-specific preprocessing failures"
+    ],
+    "when_not_to_use_zh": [
+      "真正纯文本的应用——多模态复杂性增加了成本和延迟而没有任何收益",
+      "单模态模型足以验证核心产品假设的原型或 MVP——在投资多模态基础设施前",
+      "多个模态编码器的顺序预处理开销违反延迟 SLA 的低延迟实时应用",
+      "缺乏调试跨模态嵌入对齐问题和特定模态预处理失败的 ML 工程专业知识的团队"
+    ],
+    "adopters": [
+      "Google DeepMind",
+      "OpenAI",
+      "Anthropic",
+      "Meta AI",
+      "Microsoft",
+      "Hugging Face"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "performance",
+      "reliability"
+    ],
+    "maturity_ring": "emerging",
+    "primary_source": "Google DeepMind (2023). \"Gemini: A Family of Highly Capable Multimodal Models\". arXiv:2312.11805.",
+    "secondary_sources": [
+      "Alec Radford et al. (2021). \"Learning Transferable Visual Models From Natural Language Supervision (CLIP)\". OpenAI. arXiv:2103.00020.",
+      "Jean-Baptiste Alayrac et al. (2022). \"Flamingo: a Visual Language Model for Few-Shot Learning\". DeepMind. arXiv:2204.14198.",
+      "Haotian Liu et al. (2023). \"Visual Instruction Tuning (LLaVA)\". arXiv:2304.08485."
+    ],
+    "typed_relations": [
+      {
+        "slug": "rag-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "prompt-chaining",
+        "type": "complement"
+      },
+      {
+        "slug": "multi-agent-orchestration-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "llm-evaluation-framework",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 294,
+    "name": "AI Cost Optimization",
+    "name_zh": "AI 成本优化",
+    "slug": "ai-cost-optimization",
+    "category": "ai",
+    "desc": "Systematic strategies for managing and reducing LLM inference costs at production scale",
+    "desc_zh": "在生产规模下系统性管理和降低大模型推理成本的策略",
+    "steps": [
+      "Instrument your LLM usage: capture token counts, model tier, latency, and cost per request to establish a baseline cost profile",
+      "Classify requests by complexity and route to the cheapest model tier that meets the quality threshold for each task type",
+      "Reduce input token volume through prompt compression, context summarization, and retrieval-augmented generation over full context injection",
+      "Cache deterministic or near-deterministic LLM responses using semantic caching to eliminate redundant inference calls",
+      "Evaluate output quality vs. cost tradeoffs continuously using automated eval frameworks to ensure cost reduction does not degrade user outcomes"
+    ],
+    "steps_zh": [
+      "对 LLM 使用情况进行监控：捕获每次请求的 Token 数、模型层级、延迟和成本，建立成本基线",
+      "按复杂度对请求分类，并路由到满足每种任务类型质量阈值的最低成本模型层级",
+      "通过提示词压缩、上下文摘要和检索增强生成替代完整上下文注入来减少输入 Token 量",
+      "使用语义缓存对确定性或近确定性的 LLM 响应进行缓存，消除冗余推理调用",
+      "使用自动化评估框架持续评估输出质量与成本的权衡，确保降低成本不会降低用户体验"
+    ],
+    "ai_relevant": true,
+    "viz_type": "matrix",
+    "related": [
+      "rag-pattern",
+      "prompt-chaining",
+      "llm-evaluation-framework",
+      "multimodal-pipeline-design"
+    ],
+    "tags": [
+      "cost-optimization",
+      "llm",
+      "inference",
+      "caching",
+      "model-routing",
+      "production-ai"
+    ],
+    "origin_author": "a16z",
+    "origin_source": "a16z (2023). \"The Economics of AI: How to Cut Your Costs by 80% Without Sacrificing Quality\". a16z.com.",
+    "origin_source_zh": "a16z（2023）。《AI 经济学：如何在不牺牲质量的情况下降低80%成本》。a16z.com。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Production AI applications with significant monthly LLM spend where cost is becoming a margin concern",
+      "Systems with heterogeneous request types where some tasks can be handled by smaller, cheaper models without quality loss",
+      "Applications with high query repetition rates where semantic caching can dramatically reduce redundant inference calls",
+      "Teams preparing to scale from prototype to production who want to right-size inference costs before traffic grows"
+    ],
+    "when_to_use_zh": [
+      "每月 LLM 支出显著、成本成为利润问题的生产 AI 应用",
+      "请求类型异构、某些任务可由更小、更便宜的模型处理而不损失质量的系统",
+      "查询重复率高、语义缓存可以大幅减少冗余推理调用的应用",
+      "正在从原型扩展到生产、希望在流量增长前合理调整推理成本的团队"
+    ],
+    "core_concepts": [
+      "Model Tiering: Match request complexity to model capability — use small fast models (GPT-4o-mini, Claude Haiku) for classification and extraction; reserve frontier models for complex reasoning",
+      "Semantic Caching: Store LLM response embeddings and retrieve cached answers for semantically similar future queries, bypassing inference for repeated or near-identical requests",
+      "Context Window Economy: Every input token has a cost; prompt compression, RAG, and conversation summarization reduce the average context length per request",
+      "Batch Inference: Non-real-time workloads can use asynchronous batch APIs at 50–80% lower cost per token than synchronous endpoints"
+    ],
+    "core_concepts_zh": [
+      "模型分层：将请求复杂度与模型能力匹配——对分类和提取使用小型快速模型（GPT-4o-mini、Claude Haiku）；为复杂推理保留前沿模型",
+      "语义缓存：存储 LLM 响应嵌入，并为语义相似的未来查询检索缓存答案，对重复或近乎相同的请求绕过推理",
+      "上下文窗口经济：每个输入 Token 都有成本；提示词压缩、RAG 和对话摘要降低每次请求的平均上下文长度",
+      "批处理推理：非实时工作负载可以使用异步批处理 API，每 Token 成本比同步端点低50–80%"
+    ],
+    "timeline": [
+      [
+        "2020",
+        "GPT-3 API pricing introduces per-token billing, making LLM cost a first-class engineering concern for the first time"
+      ],
+      [
+        "2022",
+        "Model distillation and fine-tuning of smaller models (Alpaca, Dolly) emerge as cost-reduction strategies for specialized tasks"
+      ],
+      [
+        "2023",
+        "a16z publishes the \"AI economics\" framework; semantic caching tools (GPTCache) and model routing libraries emerge as dedicated solutions"
+      ],
+      [
+        "2024",
+        "OpenAI and Anthropic introduce prompt caching as a native API feature, reducing repeated context costs by up to 90%"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2020",
+        "GPT-3 API 定价引入按 Token 计费，首次使 LLM 成本成为工程领域的一等问题"
+      ],
+      [
+        "2022",
+        "较小模型的知识蒸馏和微调（Alpaca、Dolly）作为专业任务的成本降低策略出现"
+      ],
+      [
+        "2023",
+        "a16z 发布「AI 经济学」框架；语义缓存工具（GPTCache）和模型路由库作为专用解决方案出现"
+      ],
+      [
+        "2024",
+        "OpenAI 和 Anthropic 将提示词缓存作为原生 API 功能引入，将重复上下文成本降低高达90%"
+      ]
+    ],
+    "dos": [
+      "Do measure cost per user outcome (e.g., cost per successful task completion) rather than cost per API call, because optimizing raw token spend can inadvertently increase total cost via higher retry rates",
+      "Do establish quality floor metrics before cost optimization so you have a defensible threshold below which cost cuts are blocked",
+      "Do test model downgrades on a representative sample of production traffic before full rollout, because benchmark performance does not always predict production quality",
+      "Do use prompt caching for system prompts and long static context that is reused across many requests, because this is typically the highest-ROI optimization available"
+    ],
+    "dos_zh": [
+      "务必衡量每个用户结果的成本（如每次成功任务完成的成本）而非每次 API 调用的成本，因为优化原始 Token 支出可能通过更高的重试率无意中增加总成本",
+      "务必在成本优化前建立质量下限指标，使你有一个可防御的阈值，低于该阈值则阻止成本削减",
+      "务必在全量推广前对具有代表性的生产流量样本测试模型降级，因为基准性能并不总能预测生产质量",
+      "务必对跨多个请求重用的系统提示词和长静态上下文使用提示词缓存，因为这通常是最高投资回报率的优化"
+    ],
+    "donts": [
+      "Don't optimize LLM costs before you understand your usage profile — premature optimization targets the wrong bottlenecks and wastes engineering time",
+      "Don't cache non-deterministic or personalized responses, because stale cached answers to user-specific queries degrade response quality and can expose one user's data to another",
+      "Don't switch to a cheaper model without running an A/B evaluation on real traffic — lab benchmarks systematically underestimate quality gaps on production query distributions",
+      "Don't neglect infrastructure costs (embedding generation, vector DB storage, reranking) when calculating total AI system cost — inference is often not the largest line item"
+    ],
+    "donts_zh": [
+      "不要在了解使用情况前优化 LLM 成本——过早优化针对错误的瓶颈，浪费工程时间",
+      "不要缓存非确定性或个性化响应，因为对用户特定查询的过期缓存答案会降低响应质量，并可能将一个用户的数据暴露给另一个用户",
+      "不要在没有对真实流量进行 A/B 评估的情况下切换到更便宜的模型——实验室基准系统性地低估了生产查询分布上的质量差距",
+      "不要在计算 AI 系统总成本时忽视基础设施成本（嵌入生成、向量数据库存储、重排序）——推理通常不是最大的成本项"
+    ],
+    "case_study_company": "Notion",
+    "case_study": "Notion reduced their AI feature inference costs by over 80% between 2023 and 2024 through a combination of model routing, prompt compression, and caching. They implemented a complexity classifier that routes simple autocomplete and summarization requests to GPT-3.5-class models while reserving GPT-4-class models for complex drafting and Q&A. Prompt compression using LLMLingua reduced their average context length by 40%. A semantic cache for their AI search feature achieved a 35% cache hit rate in production, eliminating over a third of all inference calls. These combined optimizations allowed Notion to offer unlimited AI features at no additional charge while maintaining profitability.",
+    "case_study_zh": "Notion 通过模型路由、提示词压缩和缓存的组合，在2023年至2024年间将其 AI 功能推理成本降低了超过80%。他们实现了一个复杂度分类器，将简单的自动补全和摘要请求路由到 GPT-3.5 级别的模型，同时为复杂的起草和问答保留 GPT-4 级别的模型。使用 LLMLingua 进行的提示词压缩将其平均上下文长度减少了40%。其 AI 搜索功能的语义缓存在生产中实现了35%的缓存命中率，消除了超过三分之一的推理调用。这些综合优化使 Notion 能够在不增加额外费用的情况下提供无限 AI 功能，同时保持盈利能力。",
+    "when_not_to_use": [
+      "Early-stage AI products in the quality discovery phase where cost optimization introduces risk before the product has found its quality bar",
+      "Applications with inherently unique, non-cacheable queries (e.g., real-time analysis of live data streams) where caching and batching strategies have negligible impact",
+      "Safety-critical AI applications where model downgrading carries unacceptable quality risk that outweighs cost savings",
+      "Teams spending under $1,000/month on LLM inference where optimization engineering effort exceeds projected savings over any reasonable payback period"
+    ],
+    "when_not_to_use_zh": [
+      "质量探索阶段的早期 AI 产品——在产品找到其质量标准前，成本优化引入风险",
+      "查询本质上唯一且不可缓存的应用（如对实时数据流的实时分析）——缓存和批处理策略影响微乎其微",
+      "模型降级带来不可接受的质量风险、超过成本节省的安全关键 AI 应用",
+      "每月 LLM 推理支出不足1000美元的团队——优化工程工作量超过任何合理回收周期内的预期节省"
+    ],
+    "adopters": [
+      "Notion",
+      "Jasper",
+      "Cursor",
+      "Perplexity AI",
+      "Cohere",
+      "Scale AI"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "performance",
+      "maintainability"
+    ],
+    "maturity_ring": "emerging",
+    "primary_source": "a16z (2023). \"The Economics of Generative AI\". a16z.com/2023/04/the-economics-of-generative-ai/.",
+    "secondary_sources": [
+      "Zhenzhong Jiang et al. (2023). \"LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models\". arXiv:2310.05736.",
+      "Bang Liu et al. (2023). \"GPTCache: An Open-Source Semantic Cache for LLM Applications\". arXiv:2306.03799.",
+      "Simon Willison (2024). \"Pricing and the economics of running LLMs in production\". simonwillison.net."
+    ],
+    "typed_relations": [
+      {
+        "slug": "rag-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "llm-evaluation-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "prompt-chaining",
+        "type": "complement"
+      },
+      {
+        "slug": "multimodal-pipeline-design",
+        "type": "complement"
+      }
+    ]
   }
 ]
