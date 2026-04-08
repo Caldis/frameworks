@@ -481,6 +481,47 @@
 
 /* ── Navigation ── */
 
+/* ── Similar / You Might Also Like ── */
+.similarGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.similarCard {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.similarCard:hover {
+  border-color: var(--muted);
+  background: var(--surface);
+}
+
+.similarDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.similarName {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.similarCat {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted-light);
+}
+
 .nav {
   display: flex;
   justify-content: space-between;

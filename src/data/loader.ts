@@ -54,3 +54,29 @@ export async function getFrameworkFull(slug: string): Promise<Framework | undefi
 export async function getFrameworksFullByCategory(cat: CategoryKey): Promise<Framework[]> {
   return loadCategoryDetail(cat)
 }
+
+/** Find frameworks similar to `fw` by shared dimensions, excluding explicit relations. */
+export function getSimilarFrameworks(fw: Framework, limit = 5): Framework[] {
+  const excluded = new Set([fw.slug, ...fw.related])
+  const fwQuality = new Set(fw.quality_concerns ?? [])
+  const fwTags = new Set(fw.tags ?? [])
+
+  return allStubs
+    .filter(f => !excluded.has(f.slug))
+    .map(f => {
+      let score = 0
+      if (f.category === fw.category) score += 3
+      if (f.abstraction_level === fw.abstraction_level) score += 2
+      if (f.complexity === fw.complexity) score += 1
+      if (f.maturity_ring === fw.maturity_ring) score += 1
+      const sharedQuality = (f.quality_concerns ?? []).filter(q => fwQuality.has(q)).length
+      score += sharedQuality * 1.5
+      const sharedTags = (f.tags ?? []).filter(t => fwTags.has(t)).length
+      score += sharedTags * 0.5
+      return { fw: f, score }
+    })
+    .filter(x => x.score > 2)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map(x => x.fw)
+}

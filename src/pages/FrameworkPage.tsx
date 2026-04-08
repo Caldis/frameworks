@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
-import { getFrameworkBySlug, getFrameworksByCategory, getRelatedFrameworks, getTypedRelations } from '../data/loader'
+import { getFrameworkBySlug, getFrameworksByCategory, getRelatedFrameworks, getTypedRelations, getSimilarFrameworks } from '../data/loader'
 import { getCategoryByKey, catColorVar } from '../data/categories'
 import { useI18n } from '../i18n'
 import { usePageMeta } from '../hooks/usePageMeta'
@@ -303,6 +303,33 @@ export default function FrameworkPage() {
           <RelatedFrameworks frameworks={related} typedRelations={typedRelations} />
         </section>
       )}
+
+      {/* ── You Might Also Like ── */}
+      {(() => {
+        const similar = getSimilarFrameworks(framework)
+        if (similar.length === 0) return null
+        return (
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle} style={sectionBorderStyle}>
+              {locale === 'en' ? 'You Might Also Like' : '你可能也感兴趣'}
+            </h2>
+            <div className={styles.similarGrid}>
+              {similar.map(s => {
+                const sCat = getCategoryByKey(s.category)
+                return (
+                  <Link key={s.slug} to={`/frameworks/${s.slug}`} className={styles.similarCard}>
+                    <span className={styles.similarDot} style={{ backgroundColor: catColorVar(s.category, 'text') }} />
+                    <span className={styles.similarName}>{localized(s, 'name')}</span>
+                    {sCat && (
+                      <span className={styles.similarCat}>{localized(sCat, 'name')}</span>
+                    )}
+                  </Link>
+                )
+              })}
+            </div>
+          </section>
+        )
+      })()}
 
       {/* ── 12. Prev/Next Navigation ── */}
       <nav className={styles.nav}>
