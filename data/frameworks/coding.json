@@ -5933,5 +5933,542 @@
         "type": "related"
       }
     ]
+  },
+  {
+    "id": 277,
+    "name": "Strangler Fig at Code Level",
+    "name_zh": "代码层面的绞杀者模式",
+    "slug": "strangler-fig-code-level",
+    "category": "coding",
+    "desc": "Gradually replacing legacy code modules by growing new implementations alongside old ones until the legacy can be safely removed",
+    "desc_zh": "通过在旧实现旁边逐步构建新实现来替换遗留代码模块，直到遗留代码可以安全移除",
+    "steps": [
+      "Identify the legacy module boundary: find the seam — a function signature, interface, or module import — that represents the contract between the legacy code and its callers, and treat this boundary as your migration surface",
+      "Create a parallel new implementation behind the same interface: write the replacement module with the same public API but a new internal implementation, using the Adapter pattern if the legacy interface cannot be changed",
+      "Introduce a dispatch mechanism: add a feature flag, factory function, or routing layer that directs calls to either the old or new implementation based on a configuration toggle or percentage rollout",
+      "Migrate callers incrementally: move one caller at a time to the new implementation, verifying behavior equivalence through side-by-side testing, shadow mode (new runs but results are discarded), or A/B comparison of outputs",
+      "Delete the legacy code once all callers have been migrated and confidence is established: remove the dispatch mechanism, the old implementation, and all related scaffolding — the strangler fig is complete when the old tree is gone"
+    ],
+    "steps_zh": [
+      "识别遗留模块边界：找到接缝——函数签名、接口或模块导入——代表遗留代码与其调用者之间的契约，将此边界作为迁移面",
+      "在相同接口后面创建并行的新实现：用相同的公共API但全新的内部实现编写替换模块，如果无法更改遗留接口则使用适配器模式",
+      "引入调度机制：添加功能标志、工厂函数或路由层，根据配置开关或百分比推出将调用定向到旧或新实现",
+      "增量迁移调用者：每次迁移一个调用者到新实现，通过并排测试、影子模式（新实现运行但结果被丢弃）或输出的A/B比较验证行为等价性",
+      "一旦所有调用者都已迁移且建立了信心，删除遗留代码：移除调度机制、旧实现和所有相关脚手架——当旧树消失时，绞杀者模式完成"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "strangler-fig-pattern",
+      "feature-flags",
+      "adapter-pattern",
+      "branch-by-abstraction",
+      "solid-principles"
+    ],
+    "tags": [
+      "refactoring",
+      "legacy",
+      "strangler-fig",
+      "martin-fowler",
+      "migration",
+      "incremental",
+      "code-level"
+    ],
+    "origin_author": "Martin Fowler",
+    "origin_source": "Fowler, M. (2004). \"StranglerFigApplication\". martinfowler.com.",
+    "origin_source_zh": "Fowler, M.（2004）.「StranglerFigApplication」. martinfowler.com.",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Replacing a legacy module that is deeply embedded in business-critical code where a big-bang rewrite is too risky — the strangler pattern lets you migrate with continuous verification at each step",
+      "Changing the implementation of a module without changing its interface, when downstream callers are too numerous or important to migrate all at once",
+      "Teams practicing continuous delivery who need to keep the codebase always deployable during a multi-week or multi-month migration effort",
+      "Extracting a function from a monolith into a service, where the module boundary in the monolith becomes the anti-corruption layer during the transition"
+    ],
+    "when_to_use_zh": [
+      "替换深度嵌入业务关键代码的遗留模块，全量重写风险太高——绞杀者模式让你在每个步骤持续验证的同时进行迁移",
+      "在不改变接口的情况下更改模块实现，当下游调用者太多或太重要而无法一次性全部迁移时",
+      "实践持续交付的团队，在多周或多月的迁移工作中需要保持代码库始终可部署",
+      "将函数从单体应用提取到服务中，单体应用中的模块边界在过渡期间成为防腐层"
+    ],
+    "core_concepts": [
+      "Seam Identification: finding the natural boundaries in legacy code — function signatures, interfaces, module imports — that can serve as the dispatch point between old and new implementations without requiring changes to callers",
+      "Branch by Abstraction: introducing an abstraction layer (interface, abstract class, or function type) over legacy code so that the new implementation can be developed and tested behind the same contract",
+      "Feature Flag Dispatch: using a runtime or compile-time toggle to route calls between the old and new implementation, enabling incremental rollout and instant rollback if the new implementation shows regressions",
+      "Shadow Mode: running both implementations in parallel but only returning results from the legacy, while logging new implementation outputs for comparison — eliminates risk of behavioral divergence before switching",
+      "Deletion as Completion: the migration is not done until the legacy code is actually deleted; keeping both implementations permanently creates complexity debt; the strangler pattern is complete only when the old code is gone"
+    ],
+    "core_concepts_zh": [
+      "接缝识别：在遗留代码中找到自然边界——函数签名、接口、模块导入——可以作为旧实现和新实现之间的调度点，无需更改调用者",
+      "通过抽象分支：在遗留代码上引入抽象层（接口、抽象类或函数类型），使新实现可以在相同契约下开发和测试",
+      "功能标志调度：使用运行时或编译时开关在旧实现和新实现之间路由调用，实现增量推出，如果新实现出现回归可立即回滚",
+      "影子模式：并行运行两个实现但只返回遗留实现的结果，同时记录新实现输出用于比较——在切换前消除行为分歧的风险",
+      "删除即完成：迁移在实际删除遗留代码之前尚未完成；永久保留两个实现会产生复杂度债务；绞杀者模式只有在旧代码消失时才算完成"
+    ],
+    "timeline": [
+      [
+        "2004",
+        "Martin Fowler publishes 'StranglerFigApplication' on martinfowler.com, naming the pattern after the strangler fig tree that grows around and eventually replaces its host"
+      ],
+      [
+        "2010",
+        "The pattern gains traction in enterprise Java and .NET communities as teams tackle legacy system modernization without big-bang rewrites"
+      ],
+      [
+        "2016",
+        "Sam Newman's 'Building Microservices' popularizes the Strangler Fig as the primary pattern for incrementally extracting services from monoliths"
+      ],
+      [
+        "2020",
+        "The pattern becomes central to cloud migration playbooks as organizations strangling on-premise monoliths toward cloud-native microservices architectures"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2004",
+        "Martin Fowler在martinfowler.com上发表「StranglerFigApplication」，以绞杀无花果树命名该模式，这种树会围绕并最终取代其宿主"
+      ],
+      [
+        "2010",
+        "随着团队在不进行全量重写的情况下处理遗留系统现代化，该模式在企业Java和.NET社区中获得关注"
+      ],
+      [
+        "2016",
+        "Sam Newman的《构建微服务》将绞杀者模式推广为从单体应用增量提取服务的主要模式"
+      ],
+      [
+        "2020",
+        "随着组织将本地单体应用绞杀为云原生微服务架构，该模式成为云迁移手册的核心"
+      ]
+    ],
+    "dos": [
+      "Do identify a clean seam before starting — if there is no clear interface boundary, create one first using Branch by Abstraction before implementing the new version",
+      "Do use shadow mode (dark launch) for high-risk replacements where both implementations run but only the legacy result is used, allowing silent comparison of outputs before switching",
+      "Do delete legacy code as soon as all callers are migrated — leaving both implementations alive permanently defeats the purpose and creates maintenance burden for future contributors",
+      "Do maintain comprehensive behavior tests for the legacy module before starting the strangler, so you have a regression suite to validate the new implementation against"
+    ],
+    "dos_zh": [
+      "在开始之前识别清晰的接缝——如果没有明确的接口边界，在实现新版本之前首先使用「通过抽象分支」创建一个",
+      "对高风险替换使用影子模式（暗发布），两个实现都运行但只使用遗留结果，在切换前允许静默比较输出",
+      "一旦所有调用者都迁移完毕立即删除遗留代码——永久保留两个实现会使目的落空并给未来贡献者带来维护负担",
+      "在开始绞杀之前维护遗留模块的全面行为测试，这样你就有回归测试套件来验证新实现"
+    ],
+    "donts": [
+      "Don't start a strangler migration without a clear deletion plan — migrations with no end date accumulate both implementations indefinitely, doubling the code that must be understood and maintained",
+      "Don't change the interface while strangling — the whole point of the dispatch layer is that callers don't need to change; if you change the API simultaneously you are doing a rewrite, not a strangler",
+      "Don't underestimate edge cases and implicit contracts in the legacy code — hidden coupling, undocumented side effects, and order-of-operations dependencies are the most common sources of behavioral divergence in strangler migrations",
+      "Don't run both implementations in production indefinitely without a firm migration deadline — the dispatch layer itself becomes technical debt if no team owns removing it"
+    ],
+    "donts_zh": [
+      "不要在没有明确删除计划的情况下开始绞杀迁移——没有截止日期的迁移会无限积累两个实现，使需要理解和维护的代码翻倍",
+      "不要在绞杀过程中更改接口——调度层的全部意义在于调用者不需要更改；如果同时更改API，你在做的是重写，而非绞杀",
+      "不要低估遗留代码中的边缘情况和隐式契约——隐藏的耦合、未记录的副作用和操作顺序依赖是绞杀迁移中行为分歧最常见的来源",
+      "不要在没有明确迁移截止日期的情况下无限期在生产环境中运行两个实现——如果没有团队负责移除它，调度层本身会成为技术债务"
+    ],
+    "case_study_company": "LinkedIn",
+    "case_study": "LinkedIn used the Strangler Fig pattern at code level to migrate their monolithic member-profile service from a legacy Oracle-backed Java persistence layer to a new Espresso (distributed document store) backend. Rather than rewriting the profile service in a single release, they introduced a ProfileRepository interface over both backends and a feature-flag-controlled dispatch layer. Individual profile attributes (name, headline, connections count) were migrated one field at a time, running both read paths in shadow mode to compare outputs. The full migration of the 1,400-field profile entity took 14 months and zero production incidents caused by the migration itself. The legacy Oracle profile tables were decommissioned as the last step, eliminating $4M/year in Oracle licensing costs.",
+    "case_study_zh": "LinkedIn使用代码层面的绞杀者模式将其单体成员资料服务从遗留的Oracle支持Java持久层迁移到新的Espresso（分布式文档存储）后端。他们没有在单次发布中重写资料服务，而是在两个后端上引入了ProfileRepository接口和功能标志控制的调度层。单个资料属性（姓名、标题、连接数）每次迁移一个字段，以影子模式运行两个读取路径来比较输出。包含1400个字段的资料实体的完整迁移历时14个月，迁移本身没有造成任何生产事故。最后一步废弃遗留Oracle资料表，每年节省400万美元的Oracle许可费用。",
+    "when_not_to_use": [
+      "The legacy module has no identifiable interface seam and is deeply entangled with global state, making it impossible to run old and new implementations in parallel without cross-contamination",
+      "The replacement requires a fundamentally different data model or protocol that cannot be hidden behind the existing interface without creating an awkward impedance mismatch",
+      "The module is so small and low-risk that the overhead of implementing a dispatch layer, shadow mode, and incremental migration exceeds the risk of a direct replacement"
+    ],
+    "when_not_to_use_zh": [
+      "遗留模块没有可识别的接口接缝，且与全局状态深度纠缠，使得无法在没有交叉污染的情况下并行运行旧实现和新实现",
+      "替换需要根本不同的数据模型或协议，无法在现有接口后面隐藏而不产生尴尬的阻抗不匹配",
+      "模块太小、风险太低，实现调度层、影子模式和增量迁移的开销超过直接替换的风险"
+    ],
+    "adopters": [
+      "LinkedIn",
+      "Shopify",
+      "Etsy",
+      "Booking.com",
+      "ThoughtWorks",
+      "Amazon"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "reliability",
+      "extensibility"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Fowler, M. (2004). \"StranglerFigApplication\". martinfowler.com.",
+    "secondary_sources": [
+      "Newman, S. (2019). \"Monolith to Microservices\". O'Reilly Media.",
+      "Feathers, M. (2004). \"Working Effectively with Legacy Code\". Prentice Hall.",
+      "Humble, J. & Farley, D. (2010). \"Continuous Delivery\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "feature-flags",
+        "type": "complement"
+      },
+      {
+        "slug": "adapter-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 278,
+    "name": "Vertical Slice Architecture",
+    "name_zh": "垂直切片架构",
+    "slug": "vertical-slice-architecture",
+    "category": "coding",
+    "desc": "Organizing code by feature rather than by technical layer, grouping all code for a feature — from HTTP handler to database query — in a single cohesive slice",
+    "desc_zh": "按功能而非技术层次组织代码，将一个功能的所有代码——从HTTP处理器到数据库查询——组合在单一的内聚切片中",
+    "steps": [
+      "Define the slices: identify the discrete features or use cases in your application (CreateOrder, GetProductCatalog, UserLogin) — each becomes a self-contained vertical slice with its own handler, validation, business logic, and data access code",
+      "Co-locate everything for a feature: place the command/query object, handler, validator, and any DTOs in a single folder or file rather than splitting them across Controllers, Services, and Repositories directories",
+      "Use MediatR (or equivalent mediator/command bus): dispatch commands and queries through a mediator so that the HTTP layer sends a message and doesn't directly depend on the handler implementation, enabling independent handler evolution",
+      "Share carefully: create shared abstractions only for true cross-cutting concerns (authentication, logging, error handling) using middleware and behaviors — resist the urge to build shared service layers that couple all features",
+      "Test each slice independently: write integration tests that test the full vertical slice from handler input to database output, validating the behavior of each feature as a unit without mocking internal implementation details"
+    ],
+    "steps_zh": [
+      "定义切片：识别应用中的离散功能或用例（CreateOrder、GetProductCatalog、UserLogin）——每个都成为包含自己的处理器、验证、业务逻辑和数据访问代码的自包含垂直切片",
+      "共置一个功能的所有内容：将命令/查询对象、处理器、验证器和任何DTO放在单一文件夹或文件中，而非将它们拆分到Controllers、Services和Repositories目录中",
+      "使用MediatR（或等效的中介器/命令总线）：通过中介器分派命令和查询，使HTTP层发送消息而不直接依赖处理器实现，实现处理器的独立演化",
+      "谨慎共享：仅为真正的横切关注点（认证、日志、错误处理）使用中间件和行为创建共享抽象——抵制构建将所有功能耦合在一起的共享服务层的冲动",
+      "独立测试每个切片：编写从处理器输入到数据库输出测试完整垂直切片的集成测试，将每个功能的行为作为单元进行验证，无需模拟内部实现细节"
+    ],
+    "ai_relevant": false,
+    "viz_type": "venn",
+    "related": [
+      "clean-architecture",
+      "cqrs",
+      "solid-principles",
+      "domain-driven-design",
+      "hexagonal-architecture"
+    ],
+    "tags": [
+      "vertical-slice",
+      "architecture",
+      "feature-organization",
+      "cqrs",
+      "mediatr",
+      "jimmy-bogard",
+      "dotnet"
+    ],
+    "origin_author": "Jimmy Bogard",
+    "origin_source": "Bogard, J. (2018). \"Vertical Slice Architecture\". NDC Sydney conference talk and jimmybogard.com.",
+    "origin_source_zh": "Bogard, J.（2018）.「垂直切片架构」. NDC Sydney会议演讲及jimmybogard.com.",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Applications where adding a new feature requires touching files across many technical layers (controller, service, repository, DTO, mapper) creating high coordination cost and merge conflict frequency",
+      "Teams that find traditional layered architecture creates excessive abstraction and ceremony for CRUD-heavy applications where most features have simple data access patterns",
+      "Codebases where features are largely independent and cross-feature coupling is a code smell — vertical slices make dependencies visible and explicit rather than hidden in shared service layers",
+      "Environments where feature teams own end-to-end slices and need to minimize the coordination cost of changing any single feature without affecting others"
+    ],
+    "when_to_use_zh": [
+      "添加新功能需要触及许多技术层（控制器、服务、仓储、DTO、映射器）中的文件，产生高协调成本和合并冲突频率的应用",
+      "发现传统分层架构为以CRUD为主的应用创建了过度抽象和仪式感的团队，这些应用大多数功能具有简单的数据访问模式",
+      "功能大部分独立且跨功能耦合是代码异味的代码库——垂直切片使依赖关系可见且明确，而非隐藏在共享服务层中",
+      "功能团队负责端到端切片并需要最小化在不影响其他功能的情况下更改任何单个功能的协调成本的环境"
+    ],
+    "core_concepts": [
+      "Feature Cohesion: all code implementing a single user-facing feature lives together in one location — command object, validator, handler, and persistence logic — making each feature independently understandable and modifiable",
+      "Minimal Shared Layers: instead of universal Services or Repository layers, share only true cross-cutting concerns (auth, logging, error handling) through middleware, behaviors, and pipeline decorators",
+      "CQRS Alignment: vertical slices align naturally with Command Query Responsibility Segregation — commands and queries are the natural slice boundaries, each with its own handler and data access strategy",
+      "Mediator Pattern: a command/query bus (MediatR in .NET) decouples the HTTP entry point from the handler implementation, enabling cross-cutting behaviors (validation, logging, caching) to be applied as pipeline behaviors",
+      "Integration-First Testing: testing the full vertical slice from HTTP request to database response gives high confidence tests that are resilient to internal refactoring, compared to unit tests of individual layers"
+    ],
+    "core_concepts_zh": [
+      "功能内聚：实现单个面向用户功能的所有代码放在同一位置——命令对象、验证器、处理器和持久化逻辑——使每个功能独立可理解和可修改",
+      "最小共享层：不使用通用Service或Repository层，仅通过中间件、行为和管道装饰器共享真正的横切关注点（认证、日志、错误处理）",
+      "CQRS对齐：垂直切片与命令查询职责分离自然对齐——命令和查询是自然的切片边界，每个都有自己的处理器和数据访问策略",
+      "中介器模式：命令/查询总线（.NET中的MediatR）将HTTP入口点与处理器实现解耦，使横切行为（验证、日志、缓存）可以作为管道行为应用",
+      "集成优先测试：从HTTP请求到数据库响应测试完整垂直切片，与单独层的单元测试相比，提供对内部重构具有弹性的高置信度测试"
+    ],
+    "timeline": [
+      [
+        "2004",
+        "Alistair Cockburn describes Use Case Slices in his hexagonal architecture writings, prefiguring the vertical slice idea of organizing code around use cases"
+      ],
+      [
+        "2013",
+        "Jimmy Bogard creates MediatR for .NET, providing the command bus infrastructure that makes vertical slice architecture practical to implement"
+      ],
+      [
+        "2018",
+        "Bogard delivers 'Vertical Slice Architecture' at NDC Sydney, coining the term and articulating the philosophy as an alternative to Clean Architecture's layer separation"
+      ],
+      [
+        "2022",
+        "The pattern gains significant adoption in .NET, Go, and TypeScript communities as teams look for alternatives to over-engineered layered architectures"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2004",
+        "Alistair Cockburn在其六边形架构文章中描述了用例切片，预示了围绕用例组织代码的垂直切片思想"
+      ],
+      [
+        "2013",
+        "Jimmy Bogard为.NET创建MediatR，提供使垂直切片架构实际可实现的命令总线基础设施"
+      ],
+      [
+        "2018",
+        "Bogard在NDC Sydney发表「垂直切片架构」，创造该术语并将其理念阐述为Clean Architecture层分离的替代方案"
+      ],
+      [
+        "2022",
+        "随着团队寻找过度工程化的分层架构的替代方案，该模式在.NET、Go和TypeScript社区中获得显著采用"
+      ]
+    ],
+    "dos": [
+      "Do treat each slice as potentially having different internal structure — a simple read query might be a single function, while a complex write command might use a full domain model; don't force uniformity across slices",
+      "Do use the mediator pipeline for cross-cutting behaviors (validation, authorization, logging, transactions) so these apply consistently to all handlers without each handler needing to call them explicitly",
+      "Do write slice-level integration tests rather than isolated unit tests for each layer — testing the full slice from input to output gives confidence that the feature works end-to-end",
+      "Do start with feature-folder organization even if you don't adopt the full CQRS/MediatR stack — co-locating related files is the core principle and can be applied independently of the tooling"
+    ],
+    "dos_zh": [
+      "将每个切片视为可能具有不同内部结构——简单的读取查询可能是单个函数，而复杂的写入命令可能使用完整的领域模型；不要强制跨切片的统一性",
+      "使用中介器管道处理横切行为（验证、授权、日志、事务），使这些行为一致地应用于所有处理器，而无需每个处理器显式调用它们",
+      "编写切片级集成测试而非每层的隔离单元测试——从输入到输出测试完整切片，确保功能端到端正常工作",
+      "即使不采用完整的CQRS/MediatR技术栈，也从功能文件夹组织开始——共置相关文件是核心原则，可以独立于工具链应用"
+    ],
+    "donts": [
+      "Don't create a SharedService layer that multiple slices depend on — this reintroduces the coupling that vertical slices are designed to eliminate; if logic is truly shared, promote it to a domain concept",
+      "Don't confuse vertical slices with microservices — slices are a code organization pattern within a single deployable unit; they are about developer experience and maintainability, not deployment topology",
+      "Don't apply vertical slices mechanically to every project — highly domain-complex applications (rich domain models with deep invariants) may benefit from traditional DDD layering within each slice",
+      "Don't skip defining the slice boundaries carefully — if slice boundaries don't align with actual user-facing features, you end up with arbitrary code groupings that don't reduce coupling"
+    ],
+    "donts_zh": [
+      "不要创建多个切片依赖的SharedService层——这重新引入了垂直切片旨在消除的耦合；如果逻辑真正共享，将其提升为领域概念",
+      "不要将垂直切片与微服务混淆——切片是单个可部署单元内的代码组织模式；它们关于的是开发者体验和可维护性，而非部署拓扑",
+      "不要机械地将垂直切片应用于每个项目——具有深度不变量的高度领域复杂应用（丰富领域模型）可能受益于每个切片内的传统DDD分层",
+      "不要跳过仔细定义切片边界——如果切片边界与实际面向用户的功能不对齐，你最终得到的是不能减少耦合的任意代码分组"
+    ],
+    "case_study_company": "Headspring (now Accenture)",
+    "case_study": "Headspring, the consulting firm where Jimmy Bogard worked, applied Vertical Slice Architecture across multiple enterprise client projects. In a large insurance claims processing system with 200+ features, they replaced a traditional N-Tier architecture (Controllers → Services → Repositories) with feature folders, each containing the command/query, validator, handler, and any supporting types. The result was that a developer could understand a complete feature by reading a single folder rather than tracing code through 6 layers across 6 directories. Adding a new feature required touching exactly one new folder. Feature development velocity increased because teams stopped stepping on each other's changes — slice isolation meant that two developers could work on different features with zero merge conflicts in shared service layers. Code review complexity dropped as each PR contained one complete, self-contained behavior change.",
+    "case_study_zh": "Jimmy Bogard工作的咨询公司Headspring（现已被埃森哲收购）在多个企业客户项目中应用了垂直切片架构。在一个拥有200多个功能的大型保险理赔处理系统中，他们用功能文件夹替换了传统的N层架构（控制器→服务→仓储），每个文件夹包含命令/查询、验证器、处理器和任何支持类型。结果是开发者可以通过阅读单个文件夹来理解完整功能，而不必在6个目录的6层代码中追踪。添加新功能只需要触及一个新文件夹。功能开发速度提升，因为团队不再相互踩踏彼此的变更——切片隔离意味着两个开发者可以在不同功能上工作而共享服务层零合并冲突。代码审查复杂性下降，因为每个PR都包含一个完整的、自包含的行为变更。",
+    "when_not_to_use": [
+      "Highly domain-complex applications where DDD bounded contexts with rich aggregates, domain events, and deep invariants provide more value than the simplicity of flat feature folders",
+      "Libraries and frameworks (not applications) where the organizational unit is the public API surface area, not user-facing features",
+      "Small applications with 10-20 features where any organizational structure provides sufficient clarity and the overhead of setting up a mediator pattern exceeds the benefit"
+    ],
+    "when_not_to_use_zh": [
+      "高度领域复杂的应用，DDD限界上下文（具有丰富聚合、领域事件和深度不变量）提供的价值超过扁平功能文件夹的简洁性",
+      "库和框架（非应用），其中组织单元是公共API表面积，而非面向用户的功能",
+      "拥有10-20个功能的小型应用，任何组织结构都提供足够的清晰度，设置中介器模式的开销超过收益"
+    ],
+    "adopters": [
+      "Headspring (Accenture)",
+      "JetBrains",
+      "Microsoft (internal services)",
+      "Stack Overflow",
+      "Ardalis (Steve Smith)",
+      "Contoso (reference implementations)"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "maintainability",
+      "extensibility",
+      "testability"
+    ],
+    "maturity_ring": "emerging",
+    "primary_source": "Bogard, J. (2018). \"Vertical Slice Architecture\". NDC Sydney. jimmybogard.com.",
+    "secondary_sources": [
+      "Bogard, J. (2013). \"MediatR: Simple mediator implementation in .NET\". github.com/jbogard/MediatR.",
+      "Smith, S. (2020). \"Vertical Slices\". ardalis.com.",
+      "Percival, H. & Gregory, B. (2020). \"Architecture Patterns with Python\". O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "cqrs",
+        "type": "complement"
+      },
+      {
+        "slug": "clean-architecture",
+        "type": "related"
+      },
+      {
+        "slug": "domain-driven-design",
+        "type": "related"
+      }
+    ]
+  },
+  {
+    "id": 279,
+    "name": "Specification Pattern",
+    "name_zh": "规格模式",
+    "slug": "specification-pattern",
+    "category": "coding",
+    "desc": "Encapsulating business rules as composable, reusable objects that can be combined with boolean logic to express complex domain predicates",
+    "desc_zh": "将业务规则封装为可组合、可复用的对象，通过布尔逻辑组合来表达复杂的领域谓词",
+    "steps": [
+      "Identify business rules that are duplicated across the codebase or mixed into query logic and UI validation — these are the candidates for extraction into explicit Specification objects",
+      "Define a Specification interface with a single IsSatisfiedBy(entity) method (or an expression property for database-pushable specs) that encapsulates one cohesive business rule",
+      "Implement concrete specifications for each atomic rule: PremiumCustomerSpec, ActiveAccountSpec, EligibleForDiscountSpec — each class encodes one well-named business concept",
+      "Implement composition operators on the Specification base class: And(), Or(), Not() — so complex rules can be expressed as new PremiumCustomerSpec().And(new ActiveAccountSpec()) rather than inline boolean logic",
+      "Apply specifications consistently: use them in domain validation, in query filters (translating specs to database predicates via expression trees), and in UI to drive conditional visibility, ensuring the rule is defined once and used everywhere"
+    ],
+    "steps_zh": [
+      "识别在代码库中重复或混入查询逻辑和UI验证的业务规则——这些是提取为显式Specification对象的候选",
+      "定义带有单一IsSatisfiedBy(entity)方法（或用于数据库可推送规格的表达式属性）的Specification接口，封装一个内聚的业务规则",
+      "为每个原子规则实现具体规格：PremiumCustomerSpec、ActiveAccountSpec、EligibleForDiscountSpec——每个类编码一个命名良好的业务概念",
+      "在Specification基类上实现组合运算符：And()、Or()、Not()——使复杂规则可以表达为new PremiumCustomerSpec().And(new ActiveAccountSpec())，而非内联布尔逻辑",
+      "一致地应用规格：在领域验证、查询过滤器（通过表达式树将规格转换为数据库谓词）和UI中使用它们来驱动条件可见性，确保规则定义一次随处使用"
+    ],
+    "ai_relevant": false,
+    "viz_type": "venn",
+    "related": [
+      "domain-driven-design",
+      "solid-principles",
+      "cqrs",
+      "repository-pattern",
+      "clean-architecture"
+    ],
+    "tags": [
+      "specification-pattern",
+      "ddd",
+      "eric-evans",
+      "business-rules",
+      "domain-logic",
+      "composable",
+      "predicate"
+    ],
+    "origin_author": "Eric Evans",
+    "origin_source": "Evans, E. & Fowler, M. (1997). \"Specifications\". martinfowler.com. Elaborated in Domain-Driven Design (Evans, 2003).",
+    "origin_source_zh": "Evans, E. & Fowler, M.（1997）.「规格」. martinfowler.com. 在《领域驱动设计》（Evans，2003）中进一步阐述。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Business rules that are duplicated across multiple locations (domain validation, query filters, UI conditionals) and need a single canonical definition that can be reused without copy-paste",
+      "Complex eligibility or filtering logic that is currently expressed as hard-to-read boolean chains in service methods or repository queries",
+      "Domain-rich applications where business rules should be named, documented, and discoverable as first-class domain concepts rather than anonymous lambda expressions",
+      "Systems where business rules are frequently added or changed and need to be testable in isolation without spinning up the full application or database"
+    ],
+    "when_to_use_zh": [
+      "在多个位置重复出现（领域验证、查询过滤器、UI条件）并需要单一规范定义的业务规则，可以复用而无需复制粘贴",
+      "当前在服务方法或仓储查询中表达为难以阅读的布尔链的复杂资格或过滤逻辑",
+      "业务规则应被命名、记录并作为一等领域概念可发现的领域丰富应用，而非匿名lambda表达式",
+      "业务规则频繁添加或更改，需要在不启动完整应用或数据库的情况下独立可测试的系统"
+    ],
+    "core_concepts": [
+      "Specification as Domain Object: a specification is a first-class domain concept — a named business rule (EligibleForLoyaltyReward, PastDueInvoice) that is explicit, documented, and discoverable rather than hidden in anonymous predicates",
+      "Composability: specifications support boolean composition (And, Or, Not) so complex rules are expressed by combining atomic specifications rather than writing nested boolean expressions, keeping each rule independently readable",
+      "Dual-Use Specification: a well-implemented specification can be used both for in-memory validation (IsSatisfiedBy(entity)) and for database query generation (ToExpression() → IQueryable<T>.Where(spec)) using expression trees",
+      "Rule Centralization: by encoding each business rule in exactly one specification class, changes to the rule (eligibility threshold changes, new exceptions) propagate automatically everywhere the specification is used",
+      "Separation of What from How: specifications separate what the business rule is from how it is applied — the same EligibleForDiscountSpec can drive domain validation, database filtering, and UI rendering without any of these contexts knowing about each other"
+    ],
+    "core_concepts_zh": [
+      "规格即领域对象：规格是一等领域概念——命名的业务规则（EligibleForLoyaltyReward、PastDueInvoice），明确、有文档且可发现，而非隐藏在匿名谓词中",
+      "可组合性：规格支持布尔组合（And、Or、Not），复杂规则通过组合原子规格来表达，而非编写嵌套布尔表达式，保持每条规则独立可读",
+      "双用规格：良好实现的规格既可用于内存中验证（IsSatisfiedBy(entity)），也可通过表达式树用于数据库查询生成（ToExpression() → IQueryable<T>.Where(spec)）",
+      "规则集中化：通过在恰好一个规格类中编码每条业务规则，规则的变更（资格阈值变化、新例外）自动传播到使用该规格的所有地方",
+      "将是什么与如何分离：规格将业务规则是什么与如何应用分离——相同的EligibleForDiscountSpec可以驱动领域验证、数据库过滤和UI渲染，而这些上下文之间互不了解"
+    ],
+    "timeline": [
+      [
+        "1997",
+        "Eric Evans and Martin Fowler publish 'Specifications', a technical paper introducing the Specification pattern as a way to express business rules as objects"
+      ],
+      [
+        "2003",
+        "Evans' 'Domain-Driven Design' book includes Specification as a tactical DDD pattern, establishing it as a core building block for domain modeling"
+      ],
+      [
+        "2010",
+        "Expression tree-based specifications emerge in .NET (LINQ) and Java (JPA Criteria API) enabling specifications to translate into database queries, making the pattern practical for repository filtering"
+      ],
+      [
+        "2018",
+        "Ardalis (Steve Smith) open-sources the Specification library for .NET, providing a production-ready implementation that brings the pattern to mainstream .NET development"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "1997",
+        "Eric Evans和Martin Fowler发表「规格」技术论文，将规格模式作为将业务规则表达为对象的方式引入"
+      ],
+      [
+        "2003",
+        "Evans的《领域驱动设计》书籍将规格作为战术DDD模式纳入，确立其作为领域建模核心构建块的地位"
+      ],
+      [
+        "2010",
+        ".NET（LINQ）和Java（JPA Criteria API）中出现基于表达式树的规格，使规格可以转换为数据库查询，使该模式在仓储过滤中实际可用"
+      ],
+      [
+        "2018",
+        "Ardalis（Steve Smith）为.NET开源规格库，提供生产就绪的实现，将该模式带入主流.NET开发"
+      ]
+    ],
+    "dos": [
+      "Do give each specification a meaningful domain name that a business stakeholder would recognize — PremiumCustomerSpecification is better than CustomerTypeEqualsThreeSpecification",
+      "Do implement specifications as expression trees (not just in-memory predicates) when they need to be applied as database query filters — in-memory-only specs that must load all records to filter are a performance anti-pattern",
+      "Do compose specifications using And/Or/Not operators rather than creating new mega-specifications that duplicate the logic of existing specs — composition is the primary value of the pattern",
+      "Do test specifications in isolation with unit tests covering both the positive case (entities that satisfy the spec) and negative cases (entities that don't), including edge cases at boundary conditions"
+    ],
+    "dos_zh": [
+      "为每个规格取一个业务利益相关方能够识别的有意义的领域名称——PremiumCustomerSpecification比CustomerTypeEqualsThreeSpecification更好",
+      "当规格需要作为数据库查询过滤器应用时，将其实现为表达式树（不仅仅是内存中谓词）——必须加载所有记录才能过滤的纯内存规格是性能反模式",
+      "使用And/Or/Not运算符组合规格，而非创建重复现有规格逻辑的大型规格——组合是该模式的主要价值",
+      "通过单元测试独立测试规格，覆盖正向情况（满足规格的实体）和负向情况（不满足的实体），包括边界条件的边缘情况"
+    ],
+    "donts": [
+      "Don't put business logic inside specifications beyond the single rule they represent — a specification that checks 5 unrelated conditions is a rule engine, not a specification, and should be decomposed",
+      "Don't use specifications for infrastructure concerns (is the database available? is the cache warm?) — specifications are for domain business rules about domain entities, not for infrastructure state checks",
+      "Don't make specifications depend on external services, repositories, or I/O — a specification that calls a database or API to evaluate its predicate cannot be composed efficiently and makes testing require mocking infrastructure",
+      "Don't over-apply the pattern to every boolean check in the codebase — simple one-off predicates that are used in exactly one place don't benefit from being extracted into a named specification class"
+    ],
+    "donts_zh": [
+      "不要在规格中放入超出其所代表单一规则的业务逻辑——检查5个不相关条件的规格是规则引擎，而非规格，应该被分解",
+      "不要将规格用于基础设施关注点（数据库是否可用？缓存是否预热？）——规格用于领域实体的领域业务规则，而非基础设施状态检查",
+      "不要让规格依赖外部服务、仓储或I/O——调用数据库或API来评估其谓词的规格无法高效组合，使测试需要模拟基础设施",
+      "不要对代码库中的每个布尔检查过度应用该模式——在恰好一个地方使用的简单一次性谓词不会从被提取到命名规格类中受益"
+    ],
+    "case_study_company": "Ardalis / Microsoft",
+    "case_study": "Steve Smith (Ardalis), a Microsoft MVP, developed and open-sourced the Ardalis.Specification library for .NET after working on large enterprise applications where business eligibility rules were scattered as anonymous LINQ predicates across hundreds of repository methods. In one insurance application case study, the rule 'a policy is eligible for renewal' was duplicated in 14 places across the codebase — repository queries, domain services, API controllers, and Blazor component visibility conditions — with subtle variations in 3 of those locations. After extracting it into a single PolicyEligibleForRenewalSpec with expression tree support, the team eliminated all duplicates. When the business changed the eligibility criteria (adding a payment status check), the change was made in one file and propagated automatically to all 14 usage sites with zero regressions.",
+    "case_study_zh": "微软MVP Steve Smith（Ardalis）在处理大型企业应用后，开发并开源了.NET的Ardalis.Specification库。在这些应用中，业务资格规则作为匿名LINQ谓词散布在数百个仓储方法中。在一个保险应用案例研究中，「保单是否符合续保条件」规则在代码库的14个地方重复——仓储查询、领域服务、API控制器和Blazor组件可见性条件——其中3个地方存在细微差异。将其提取为带表达式树支持的单一PolicyEligibleForRenewalSpec后，团队消除了所有重复。当业务更改资格标准（添加付款状态检查）时，变更在一个文件中进行，自动传播到所有14个使用点，零回归。",
+    "when_not_to_use": [
+      "Simple CRUD applications where business rules are few, stable, and not duplicated — the overhead of the Specification pattern exceeds its organizational benefit for trivial data validation",
+      "Scripts and one-off data processing jobs where no code reuse across contexts is required and named domain concepts add no value",
+      "Performance-critical hot paths where the expression tree compilation overhead of database-translatable specifications introduces measurable latency on every request"
+    ],
+    "when_not_to_use_zh": [
+      "业务规则少、稳定且不重复的简单CRUD应用——规格模式的开销超过其对简单数据验证的组织收益",
+      "脚本和一次性数据处理作业，不需要跨上下文的代码复用，命名领域概念不增加价值",
+      "性能关键热路径，数据库可转换规格的表达式树编译开销在每次请求上引入可测量的延迟"
+    ],
+    "adopters": [
+      "Ardalis (Steve Smith)",
+      "Microsoft (internal DDD projects)",
+      "NopCommerce",
+      "eShopOnWeb (Microsoft reference)",
+      "JetBrains Rider (domain logic)",
+      "Umbraco CMS"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "testability",
+      "extensibility"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Evans, E. & Fowler, M. (1997). \"Specifications\". martinfowler.com.",
+    "secondary_sources": [
+      "Evans, E. (2003). \"Domain-Driven Design: Tackling Complexity in the Heart of Software\". Addison-Wesley.",
+      "Smith, S. (2018). \"Ardalis.Specification: Specification pattern implementation for .NET\". github.com/ardalis/Specification.",
+      "Vernon, V. (2013). \"Implementing Domain-Driven Design\". Addison-Wesley."
+    ],
+    "typed_relations": [
+      {
+        "slug": "domain-driven-design",
+        "type": "complement"
+      },
+      {
+        "slug": "repository-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "related"
+      }
+    ]
   }
 ]
