@@ -123,6 +123,9 @@
 ### Sprint S33: Hero Countup Animation [DONE 2026-04-08]
 ### Sprint S34: Staggered Card Entrance Animation [DONE 2026-04-08]
 ### Sprint S35: Framework Fingerprint Radar on Cards [DONE 2026-04-08]
+### Sprint S36: Compare Deep Links + Search Highlighting [DONE 2026-04-08]
+### Sprint S37: Similar Frameworks Recommendation [DONE 2026-04-08]
+### Sprint S38: UI Interaction Polish — 6 Refinements [DONE 2026-04-08]
 **Contract**: Compare page shows radar chart overlay for 2-3 frameworks, 6 curated comparison suggestions on empty state, diff highlighting in table. 51 E2E tests pass.
 **Tasks**:
 - [x] Add Recharts RadarChart comparing frameworks on 5 dimensions (complexity, abstraction, maturity, quality breadth, adoption)
