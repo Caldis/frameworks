@@ -31,9 +31,11 @@ for (const cat of CATEGORIES) {
     for (const field of STUB_FIELDS) {
       stub[field] = fw[field] ?? (Array.isArray(DETAIL_DEFAULTS[field]) ? [] : '')
     }
-    // Extract origin year from timeline first entry
+    // Extract origin year from timeline first entry (handles "~350 BC", "c.1323", etc.)
     const tl = fw.timeline || []
-    stub.origin_year = tl.length > 0 ? parseInt(tl[0][0], 10) || 0 : 0
+    const rawYear = tl.length > 0 ? String(tl[0][0]) : ''
+    const parsed = parseInt(rawYear.replace(/[^0-9-]/g, ''), 10)
+    stub.origin_year = !isNaN(parsed) ? (rawYear.toLowerCase().includes('bc') ? -parsed : parsed) : 0
     Object.assign(stub, DETAIL_DEFAULTS)
     allStubs.push(stub)
   }

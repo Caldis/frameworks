@@ -2182,8 +2182,8 @@
     "name_zh": "Web应用防火墙模式",
     "slug": "waf-patterns",
     "category": "security",
-    "desc": "Application-layer traffic filtering strategies",
-    "desc_zh": "应用层流量过滤策略",
+    "desc": "Application-layer traffic filtering strategies that inspect, filter, and block malicious HTTP/S requests before they reach web applications",
+    "desc_zh": "在应用层检查、过滤和拦截恶意HTTP/S请求的流量防护策略，保护Web应用免受注入、跨站脚本等攻击",
     "steps": [
       "Deploy a WAF in front of web-facing applications by placing it between the internet edge (CDN or load balancer) and the application origin, ensuring all HTTP/HTTPS traffic passes through inspection",
       "Configure rule sets starting with managed rule groups (OWASP Core Rule Set, AWS Managed Rules, Cloudflare OWASP) in detection-only mode to observe false positives before enabling blocking mode",
