@@ -128,6 +128,7 @@
 ### Sprint S38: UI Interaction Polish — 6 Refinements [DONE 2026-04-08]
 ### Sprint S39: Sticky Section Nav + Back to Top + Autocomplete Stagger [DONE 2026-04-08]
 ### Sprint S40: Scroll Reset + Section Entrance + Mobile Nav + Compare Picker [DONE 2026-04-08]
+### Sprint S41: Loading Skeleton + 404 Page + Detail Transition [DONE 2026-04-08]
 **Contract**: Compare page shows radar chart overlay for 2-3 frameworks, 6 curated comparison suggestions on empty state, diff highlighting in table. 51 E2E tests pass.
 **Tasks**:
 - [x] Add Recharts RadarChart comparing frameworks on 5 dimensions (complexity, abstraction, maturity, quality breadth, adoption)
