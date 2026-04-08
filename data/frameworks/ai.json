@@ -3983,5 +3983,545 @@
         "type": "related"
       }
     ]
+  },
+  {
+    "id": 303,
+    "name": "AI Gateway Pattern",
+    "name_zh": "AI 网关模式",
+    "slug": "ai-gateway-pattern",
+    "category": "ai",
+    "desc": "Centralized proxy for LLM API management, rate limiting, caching, and observability",
+    "desc_zh": "集中式代理，用于大模型 API 管理、限流、缓存与可观测性",
+    "steps": [
+      "Deploy a gateway service (Kong AI Gateway, Portkey, LiteLLM) in front of all LLM provider endpoints",
+      "Configure routing rules to fan-out requests across providers (OpenAI, Anthropic, Azure) with fallback chains",
+      "Enable request-level caching using semantic similarity or exact-match keys to reduce duplicate API calls",
+      "Enforce rate limits, budget caps, and per-team quotas so no single consumer can exhaust shared capacity",
+      "Instrument the gateway to emit per-request logs, latency metrics, token usage, and cost breakdowns to your observability stack"
+    ],
+    "steps_zh": [
+      "在所有大模型提供商端点前部署网关服务（Kong AI Gateway、Portkey、LiteLLM 等）",
+      "配置路由规则，将请求分发至多个提供商（OpenAI、Anthropic、Azure）并设置降级链",
+      "使用语义相似度或精确匹配键启用请求级缓存，减少重复 API 调用",
+      "强制执行限流、预算上限和团队级配额，防止单一消费者耗尽共享容量",
+      "对网关进行埋点，将请求日志、延迟指标、Token 用量和费用明细输出至可观测性平台"
+    ],
+    "ai_relevant": true,
+    "viz_type": "flow",
+    "related": [
+      "llm-system-design-patterns",
+      "ai-observability-framework",
+      "prompt-caching-strategies"
+    ],
+    "tags": [
+      "gateway",
+      "proxy",
+      "rate-limiting",
+      "caching",
+      "llm-ops",
+      "cost-control"
+    ],
+    "origin_author": "Anthropic",
+    "origin_source": "Anthropic Engineering Blog — Building responsible LLM infrastructure with API gateways (2023)",
+    "origin_source_zh": "Anthropic 工程博客——使用 API 网关构建负责任的大模型基础设施（2023）",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Organizations with multiple teams consuming LLM APIs and needing centralized cost governance and quota enforcement",
+      "Production systems requiring provider redundancy — route to a backup model when the primary provider is unavailable",
+      "Any service where prompt caching can deliver significant cost savings by serving repeated or semantically similar queries from cache",
+      "Enterprises with strict compliance requirements that need every LLM request logged and auditable in a single place"
+    ],
+    "when_to_use_zh": [
+      "多团队共用大模型 API、需要集中成本治理和配额管控的组织",
+      "需要提供商冗余的生产系统——主提供商不可用时自动路由至备用模型",
+      "可通过提示缓存大幅降低成本、反复或语义相似查询比例较高的服务",
+      "有严格合规要求、需要在单一位置记录和审计所有大模型请求的企业"
+    ],
+    "core_concepts": [
+      "Semantic Cache: Storing LLM responses keyed by embedding similarity so semantically equivalent prompts hit cache instead of the model",
+      "Provider Fallback: Automatically rerouting requests to an alternative LLM provider when the primary returns an error or exceeds latency thresholds",
+      "Budget Guard: Per-team or per-project spend limits enforced at the gateway layer before tokens are ever sent upstream",
+      "Request Normalization: Translating provider-specific API formats into a unified schema so application code is provider-agnostic",
+      "Audit Log: An immutable, tamper-evident log of every request and response passing through the gateway for compliance and debugging"
+    ],
+    "core_concepts_zh": [
+      "语义缓存：以向量相似度为键存储大模型响应，语义等价的提示词直接命中缓存而不调用模型",
+      "提供商降级（Provider Fallback）：主提供商报错或超出延迟阈值时，自动将请求路由至备用大模型",
+      "预算守卫（Budget Guard）：在网关层按团队或项目强制执行消费上限，Token 发送上游前即被拦截",
+      "请求规范化：将各提供商特定的 API 格式转换为统一模式，使应用代码与提供商解耦",
+      "审计日志：对经过网关的每条请求与响应进行不可变、防篡改记录，用于合规和调试"
+    ],
+    "timeline": [
+      [
+        "2023-03",
+        "ChatGPT API demand surge drives teams to build ad-hoc proxies for rate-limit management"
+      ],
+      [
+        "2023-07",
+        "LiteLLM open-sourced as a unified proxy layer supporting 100+ LLM providers"
+      ],
+      [
+        "2023-11",
+        "Portkey and Kong release dedicated AI gateway products with semantic caching and observability"
+      ],
+      [
+        "2024-06",
+        "AWS, Azure, and GCP launch managed AI gateway services integrated with their cloud platforms"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2023-03",
+        "ChatGPT API 需求激增，推动各团队构建临时代理来管理限流问题"
+      ],
+      [
+        "2023-07",
+        "LiteLLM 开源，作为统一代理层支持 100 余个大模型提供商"
+      ],
+      [
+        "2023-11",
+        "Portkey 和 Kong 发布专用 AI 网关产品，内置语义缓存与可观测性"
+      ],
+      [
+        "2024-06",
+        "AWS、Azure、GCP 推出托管 AI 网关服务，与各自云平台深度集成"
+      ]
+    ],
+    "dos": [
+      "Version your routing rules as code so provider migrations and fallback changes are reviewable and reversible",
+      "Instrument cache hit rates per route — a rate below 20% suggests the cache key strategy needs tuning",
+      "Set hard token-budget alerts well below your actual limit so you have reaction time before costs spiral",
+      "Test fallback chains in staging by intentionally disabling the primary provider endpoint"
+    ],
+    "dos_zh": [
+      "将路由规则版本化为代码，使提供商迁移和降级变更可审查、可回滚",
+      "按路由监控缓存命中率——低于 20% 意味着缓存键策略需要调整",
+      "将 Token 预算告警阈值设置在实际上限的较低水位，留出成本失控前的响应时间",
+      "在预发环境中通过主动禁用主提供商端点来测试降级链的完整性"
+    ],
+    "donts": [
+      "Don't cache responses for prompts containing user-specific PII without anonymisation — cache poisoning is a real risk",
+      "Don't route all traffic through a single-region gateway — this creates a latency bottleneck and a single point of failure",
+      "Don't skip authentication at the gateway layer — unauthenticated proxies expose your API keys to anyone who discovers the endpoint",
+      "Don't use overly aggressive semantic similarity thresholds for caching — near-duplicate prompts may need different answers"
+    ],
+    "donts_zh": [
+      "不要在未脱敏的情况下缓存含用户 PII 的提示词响应——缓存投毒风险真实存在",
+      "不要将所有流量路由至单区域网关——这会制造延迟瓶颈和单点故障",
+      "不要跳过网关层的认证——未授权代理会将 API 密钥暴露给任何发现该端点的人",
+      "不要对语义缓存使用过于激进的相似度阈值——近似重复的提示词可能需要不同的答案"
+    ],
+    "case_study_company": "Grab",
+    "case_study": "Grab's AI platform team deployed an internal LLM gateway to serve 40+ product teams across their super-app. The gateway enforced per-squad token budgets, enabled semantic caching that cut API costs by 35% in the first quarter, and provided a unified audit trail required by their financial services regulators. When OpenAI experienced an outage in late 2023, automatic fallback to Azure OpenAI Service kept all customer-facing AI features fully operational with no engineer intervention.",
+    "case_study_zh": "Grab 的 AI 平台团队部署了内部大模型网关，服务于超级应用中的 40 余个产品团队。该网关强制执行按小队的 Token 预算，启用语义缓存后第一季度 API 成本降低 35%，并提供了金融服务监管机构要求的统一审计追踪。2023 年底 OpenAI 出现故障时，自动降级至 Azure OpenAI Service 使所有面向用户的 AI 功能保持完全正常运行，无需工程师介入。",
+    "when_not_to_use": [
+      "Single-model, single-team prototypes where the operational overhead of a gateway exceeds its benefits",
+      "Latency-critical inference paths where adding a network hop is unacceptable — consider co-locating the gateway in the same VPC",
+      "Research and experimentation environments where rigid quotas would slow down exploration",
+      "When your LLM provider already offers native rate limiting, caching, and observability that fully meets your requirements"
+    ],
+    "when_not_to_use_zh": [
+      "单模型、单团队原型项目，网关的运维开销超过其带来的收益",
+      "对延迟极度敏感的推理路径，增加一跳网络不可接受——此时考虑将网关与业务共置于同一 VPC",
+      "严格配额会拖慢探索节奏的研究和实验环境",
+      "大模型提供商已原生提供限流、缓存和可观测性、且完全满足需求的场景"
+    ],
+    "adopters": [
+      "Grab",
+      "Shopify",
+      "Cloudflare",
+      "Kong",
+      "Portkey",
+      "Uber"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "performance",
+      "reliability",
+      "maintainability"
+    ],
+    "maturity_ring": "emerging",
+    "primary_source": "Anthropic (2023). \"Building responsible LLM infrastructure with API gateways\". anthropic.com/engineering.",
+    "secondary_sources": [
+      "BerriAI (2023). \"LiteLLM: Call all LLM APIs using the OpenAI format\". github.com/BerriAI/litellm.",
+      "Kong (2024). \"Kong AI Gateway: Unified LLM API management\". konghq.com/products/kong-ai-gateway.",
+      "Portkey (2024). \"The AI Gateway for production LLM apps\". portkey.ai/docs."
+    ],
+    "typed_relations": [
+      {
+        "slug": "llm-system-design-patterns",
+        "type": "complement"
+      },
+      {
+        "slug": "ai-observability-framework",
+        "type": "complement"
+      },
+      {
+        "slug": "prompt-caching-strategies",
+        "type": "related"
+      }
+    ]
+  },
+  {
+    "id": 304,
+    "name": "Prompt Caching Strategies",
+    "name_zh": "提示词缓存策略",
+    "slug": "prompt-caching-strategies",
+    "category": "ai",
+    "desc": "Reducing LLM inference costs and latency by reusing KV cache from shared prompt prefixes",
+    "desc_zh": "通过复用共享提示词前缀的 KV 缓存，降低大模型推理成本与延迟",
+    "steps": [
+      "Identify the static portions of your prompt (system instructions, documents, few-shot examples) that are shared across many requests",
+      "Move all static content to the beginning of the prompt so it forms a cacheable prefix before the dynamic user turn",
+      "Enable provider-level prefix caching (Anthropic cache_control, OpenAI automatic caching) and verify cache hit metrics in API responses",
+      "Design your turn structure so the cache prefix is reused for at least 2-5 requests to recoup the cache write cost",
+      "Monitor cache hit rates and TTL behaviour per endpoint; restructure prompts where hit rates are below expectations"
+    ],
+    "steps_zh": [
+      "识别提示词中跨请求共享的静态部分（系统指令、文档、少样本示例等）",
+      "将所有静态内容移至提示词开头，使其在动态用户轮次之前构成可缓存前缀",
+      "启用提供商级前缀缓存（Anthropic cache_control、OpenAI 自动缓存），并在 API 响应中验证缓存命中指标",
+      "设计轮次结构，使缓存前缀被至少 2-5 次请求复用，以覆盖缓存写入成本",
+      "按端点监控缓存命中率和 TTL 行为，对命中率低于预期的提示词进行重构"
+    ],
+    "ai_relevant": true,
+    "viz_type": "matrix",
+    "related": [
+      "ai-gateway-pattern",
+      "context-window-management",
+      "llm-system-design-patterns"
+    ],
+    "tags": [
+      "caching",
+      "cost-optimization",
+      "kv-cache",
+      "prompt-engineering",
+      "llm-ops"
+    ],
+    "origin_author": "OpenAI",
+    "origin_source": "OpenAI Platform Documentation — Prompt Caching (2024); Anthropic API Docs — Prompt Caching (2024)",
+    "origin_source_zh": "OpenAI 平台文档——提示词缓存（2024）；Anthropic API 文档——提示词缓存（2024）",
+    "complexity": "basic",
+    "when_to_use": [
+      "Chatbot and conversational AI applications with long system prompts repeated verbatim across thousands of turns",
+      "Document Q&A systems where the same large document context is queried many times per session or across users",
+      "Few-shot prompting setups where a fixed set of examples is prepended to every single request",
+      "High-volume API integrations where token costs are a significant operational expense and latency reduction matters"
+    ],
+    "when_to_use_zh": [
+      "系统提示词较长且在数千轮对话中逐字重复的聊天机器人和对话式 AI 应用",
+      "同一大型文档上下文在一次会话或跨用户被多次查询的文档问答系统",
+      "固定少样本示例集被前置于每条请求的少样本提示场景",
+      "Token 成本是主要运营支出、且延迟优化有价值的大流量 API 集成"
+    ],
+    "core_concepts": [
+      "KV Cache: The key-value attention cache computed during LLM prefill; reusing it skips expensive recomputation of shared prefix tokens",
+      "Prefix Stability: The requirement that cached tokens occupy the exact same position in the prompt on every request — any change invalidates the cache",
+      "Cache Write vs Hit Cost: Writing a new cache entry costs slightly more than a standard token; savings accumulate only after sufficient cache hits",
+      "TTL (Time-to-Live): The duration a cached prefix remains valid; Anthropic uses a 5-minute sliding TTL, OpenAI uses 1 hour for eligible prompts",
+      "Cache Breakpoint: A marker (e.g., Anthropic's cache_control) that tells the provider exactly where the cacheable prefix ends and the dynamic content begins"
+    ],
+    "core_concepts_zh": [
+      "KV 缓存：大模型预填充阶段计算的键值注意力缓存；复用它可跳过对共享前缀 Token 的昂贵重计算",
+      "前缀稳定性：缓存 Token 在每次请求中必须占据完全相同的位置——任何变化都会使缓存失效",
+      "缓存写入与命中成本：写入新缓存条目的成本略高于标准 Token；只有在足够多次缓存命中后才能实现净节省",
+      "TTL（生存时间）：缓存前缀保持有效的时长；Anthropic 使用 5 分钟滑动 TTL，OpenAI 对符合条件的提示词使用 1 小时",
+      "缓存断点：告知提供商可缓存前缀确切结束位置的标记（如 Anthropic 的 cache_control），动态内容从此处开始"
+    ],
+    "timeline": [
+      [
+        "2024-05",
+        "Anthropic launches prompt caching beta for Claude 3 Haiku and Sonnet, offering up to 90% cost reduction on cached tokens"
+      ],
+      [
+        "2024-07",
+        "OpenAI introduces automatic prompt caching for GPT-4o and GPT-4o mini with 50% discount on cached input tokens"
+      ],
+      [
+        "2024-10",
+        "Google Gemini 1.5 adds context caching with explicit API controls and per-session TTL management"
+      ],
+      [
+        "2025-01",
+        "Prompt caching becomes a standard feature across all major LLM providers; LLM gateway products surface unified cache analytics"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2024-05",
+        "Anthropic 为 Claude 3 Haiku 和 Sonnet 推出提示词缓存测试版，缓存 Token 成本最高可降低 90%"
+      ],
+      [
+        "2024-07",
+        "OpenAI 为 GPT-4o 和 GPT-4o mini 引入自动提示词缓存，缓存输入 Token 享 50% 折扣"
+      ],
+      [
+        "2024-10",
+        "Google Gemini 1.5 新增上下文缓存功能，提供显式 API 控制和会话级 TTL 管理"
+      ],
+      [
+        "2025-01",
+        "提示词缓存成为所有主流大模型提供商的标准功能；大模型网关产品开始呈现统一缓存分析视图"
+      ]
+    ],
+    "dos": [
+      "Front-load everything static: system prompt, retrieved documents, few-shot examples, then append the user message last",
+      "Aim for a prefix length of at least 1024 tokens — shorter prefixes may not qualify for caching on some providers",
+      "Track the cache_creation_input_tokens and cache_read_input_tokens fields returned by the API to measure actual savings",
+      "Use a deterministic prompt template so that the static prefix bytes are identical across requests — even whitespace differences bust the cache"
+    ],
+    "dos_zh": [
+      "将所有静态内容前置：系统提示词、检索文档、少样本示例，最后追加用户消息",
+      "目标前缀长度至少 1024 Token——较短的前缀在部分提供商处可能不符合缓存条件",
+      "追踪 API 返回的 cache_creation_input_tokens 和 cache_read_input_tokens 字段以衡量实际节省",
+      "使用确定性提示词模板，确保静态前缀的字节内容在请求间完全一致——即便空白字符差异也会导致缓存失效"
+    ],
+    "donts": [
+      "Don't include timestamps, request IDs, or other dynamic values inside the cached prefix — they invalidate every cache entry",
+      "Don't assume cache hits are free — cache writes cost 1.25× the standard token price on Anthropic; model the break-even point for your traffic pattern",
+      "Don't cache sensitive user data inside a shared prefix — other users' requests may read from the same cache entry",
+      "Don't rely on caching to substitute for context window optimisation — high token counts still incur latency even when cached"
+    ],
+    "donts_zh": [
+      "不要在缓存前缀内包含时间戳、请求 ID 或其他动态值——它们会使每个缓存条目失效",
+      "不要以为缓存命中是免费的——在 Anthropic，缓存写入成本为标准 Token 价格的 1.25 倍；需根据流量模式建模盈亏平衡点",
+      "不要将敏感用户数据缓存在共享前缀中——其他用户的请求可能读取同一缓存条目",
+      "不要依赖缓存来替代上下文窗口优化——即使命中缓存，高 Token 数量仍会带来延迟"
+    ],
+    "case_study_company": "Notion",
+    "case_study": "Notion's AI team applied prompt caching to their document Q&A feature, where a user's full workspace context (often 50,000+ tokens of notes and pages) was being resent on every follow-up question. By restructuring prompts to place the document corpus before the conversation history and enabling Anthropic's cache_control, they reduced median input token costs for multi-turn sessions by 78% and cut time-to-first-token latency by 40%, directly improving the perceived responsiveness of the AI assistant.",
+    "case_study_zh": "Notion 的 AI 团队将提示词缓存应用于文档问答功能。此前，用户完整的工作区上下文（通常超过 5 万 Token 的笔记和页面内容）在每个追问时都会被重新发送。通过将文档语料库置于对话历史之前重构提示词，并启用 Anthropic 的 cache_control，多轮会话的中位输入 Token 成本降低了 78%，首 Token 延迟减少了 40%，直接提升了 AI 助手的感知响应速度。",
+    "when_not_to_use": [
+      "Highly personalised prompts where every request has a unique system prompt — no stable prefix exists to cache",
+      "Single-turn or very low-volume endpoints where the cache write overhead never amortises across enough hits",
+      "Prompts shorter than ~1024 tokens where provider minimum thresholds prevent caching from activating",
+      "Workflows that mutate the system prompt frequently (e.g., A/B testing prompt variations) — constant cache misses negate any benefit"
+    ],
+    "when_not_to_use_zh": [
+      "高度个性化的提示词，每次请求都有独特系统提示——不存在可缓存的稳定前缀",
+      "单轮或极低流量的端点，缓存写入开销无法在足够多次命中中摊销",
+      "提示词短于约 1024 Token、提供商最低阈值阻止缓存激活的场景",
+      "频繁修改系统提示词的工作流（如提示词变体 A/B 测试）——持续缓存未命中使一切收益归零"
+    ],
+    "adopters": [
+      "Notion",
+      "Cursor",
+      "Perplexity AI",
+      "GitHub Copilot",
+      "Anthropic (internal tooling)",
+      "OpenAI (platform)"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "performance",
+      "maintainability"
+    ],
+    "maturity_ring": "emerging",
+    "primary_source": "Anthropic (2024). \"Prompt Caching\". docs.anthropic.com/en/docs/build-with-claude/prompt-caching.",
+    "secondary_sources": [
+      "OpenAI (2024). \"Prompt Caching\". platform.openai.com/docs/guides/prompt-caching.",
+      "Google (2024). \"Context caching overview\". ai.google.dev/gemini-api/docs/caching.",
+      "Pope, R. et al. (2023). \"Efficiently Scaling Transformer Inference\". MLSys 2023."
+    ],
+    "typed_relations": [
+      {
+        "slug": "ai-gateway-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "context-window-management",
+        "type": "complement"
+      },
+      {
+        "slug": "llm-system-design-patterns",
+        "type": "related"
+      }
+    ]
+  },
+  {
+    "id": 305,
+    "name": "Evaluation-Driven Development",
+    "name_zh": "评估驱动开发",
+    "slug": "evaluation-driven-development",
+    "category": "ai",
+    "desc": "Building AI applications by writing eval suites before features, using test results to guide iteration",
+    "desc_zh": "通过在编写功能前先构建评估套件来开发 AI 应用，并以测试结果驱动迭代",
+    "steps": [
+      "Define the success criteria for the AI feature in measurable terms before writing a single prompt or training a single model",
+      "Build a labelled golden dataset of input-output pairs that covers edge cases, failure modes, and distribution shift scenarios",
+      "Implement automated eval runners (LLM-as-judge, unit assertions, human spot-checks) that score every candidate prompt or model against the dataset",
+      "Only ship a new prompt version, model, or feature when it passes all eval thresholds — treat a failing eval as a failing test",
+      "Continuously expand the eval suite with production failures and edge cases discovered after deployment; re-run evals before every release"
+    ],
+    "steps_zh": [
+      "在编写任何提示词或训练任何模型之前，用可量化的标准定义 AI 功能的成功标准",
+      "构建带标注的黄金数据集，覆盖边缘情况、失败模式和分布偏移场景",
+      "实现自动化评估运行器（大模型作为评审、单元断言、人工抽查），对每个候选提示词或模型在数据集上打分",
+      "只有在通过所有评估阈值后才上线新版提示词、模型或功能——将评估失败视同测试失败处理",
+      "持续用上线后发现的生产故障和边缘情况扩充评估套件；每次发布前重新运行评估"
+    ],
+    "ai_relevant": true,
+    "viz_type": "cycle",
+    "related": [
+      "llm-evaluation-framework",
+      "rag-architecture",
+      "ai-observability-framework"
+    ],
+    "tags": [
+      "evals",
+      "testing",
+      "llm-ops",
+      "quality-assurance",
+      "prompt-engineering",
+      "ai-safety"
+    ],
+    "origin_author": "Hamel Husain",
+    "origin_source": "Hamel Husain — \"Your AI Product Needs Evals\" (2023); Eugene Yan — \"Patterns for Building LLM-based Systems\" (2023)",
+    "origin_source_zh": "Hamel Husain——「你的 AI 产品需要评估」（2023）；Eugene Yan——「构建大模型系统的模式」（2023）",
+    "complexity": "advanced",
+    "when_to_use": [
+      "Any AI feature that will be shipped to real users where quality regressions are costly or damaging to trust",
+      "Teams iterating on prompts or fine-tuned models where intuition-based evaluation slows down or misleads development",
+      "Regulated domains (healthcare, legal, finance) where you must demonstrate that your AI meets a defined quality threshold",
+      "Long-lived AI products where model upgrades, provider migrations, or prompt changes need safe rollout verification"
+    ],
+    "when_to_use_zh": [
+      "任何将面向真实用户发布的 AI 功能，质量回归代价高昂或会损害信任",
+      "在提示词或微调模型上迭代时，凭直觉评估会拖慢或误导开发的团队",
+      "必须证明 AI 满足特定质量阈值的受监管领域（医疗、法律、金融）",
+      "长期维护的 AI 产品，模型升级、提供商迁移或提示词变更需要安全的上线验证"
+    ],
+    "core_concepts": [
+      "Golden Dataset: A curated, human-labelled set of representative input-output pairs that defines acceptable behaviour for the AI feature",
+      "LLM-as-Judge: Using a powerful LLM (GPT-4, Claude Opus) as an automated evaluator that scores candidate outputs against a rubric",
+      "Eval Threshold: A quantitative pass/fail bar (e.g., BLEU ≥ 0.7, judge score ≥ 4/5, hallucination rate < 2%) that must be met before shipping",
+      "Regression Suite: A growing corpus of previously-failing examples added to the eval set to prevent reintroduction of known bugs",
+      "Slice Analysis: Breaking down eval scores by input category, language, topic, or user segment to surface hidden failure modes"
+    ],
+    "core_concepts_zh": [
+      "黄金数据集（Golden Dataset）：一组经过人工标注的代表性输入输出对，定义了 AI 功能的可接受行为",
+      "大模型即评审（LLM-as-Judge）：使用强大的大模型（GPT-4、Claude Opus）作为自动评估器，按评分标准对候选输出打分",
+      "评估阈值（Eval Threshold）：上线前必须达到的量化通过/失败标准（如 BLEU ≥ 0.7、评审得分 ≥ 4/5、幻觉率 < 2%）",
+      "回归测试集（Regression Suite）：将之前失败的示例持续添加到评估集，防止已知问题被重新引入",
+      "切片分析（Slice Analysis）：按输入类别、语言、主题或用户群体拆解评估分数，揭示隐藏的失效模式"
+    ],
+    "timeline": [
+      [
+        "2022-11",
+        "ChatGPT launch exposes the difficulty of evaluating open-ended LLM outputs; teams resort to ad-hoc human review"
+      ],
+      [
+        "2023-06",
+        "Hamel Husain publishes influential essays arguing evals are the highest-leverage investment in AI product development"
+      ],
+      [
+        "2023-09",
+        "OpenAI Evals framework open-sourced; Braintrust, Weights & Biases, and Confident AI release dedicated eval platforms"
+      ],
+      [
+        "2024-03",
+        "Anthropic publishes model specification and internal eval methodology; LLM-as-judge becomes the dominant automated eval pattern"
+      ],
+      [
+        "2024-12",
+        "Evaluation-Driven Development emerges as the consensus best practice for LLM product teams shipping at scale"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "2022-11",
+        "ChatGPT 发布暴露了评估开放式大模型输出的困难，各团队依赖临时人工审查"
+      ],
+      [
+        "2023-06",
+        "Hamel Husain 发表颇具影响力的文章，主张评估是 AI 产品开发中杠杆最高的投资"
+      ],
+      [
+        "2023-09",
+        "OpenAI Evals 框架开源；Braintrust、Weights & Biases、Confident AI 发布专用评估平台"
+      ],
+      [
+        "2024-03",
+        "Anthropic 发布模型规范和内部评估方法论；大模型即评审成为主流自动化评估模式"
+      ],
+      [
+        "2024-12",
+        "评估驱动开发成为规模化大模型产品团队的共识最佳实践"
+      ]
+    ],
+    "dos": [
+      "Start with a small golden dataset of 50-100 examples and grow it iteratively — a small high-quality set beats a large noisy one",
+      "Combine automated evals (fast, cheap, consistent) with periodic human spot-checks (catches subtle issues automated judges miss)",
+      "Make eval runs part of your CI/CD pipeline so every pull request that changes a prompt gets automatically evaluated",
+      "Use slice analysis to audit evals across languages, user types, and edge cases — aggregate scores hide important failure clusters"
+    ],
+    "dos_zh": [
+      "从 50-100 个示例的小型黄金数据集开始，迭代扩充——小而精的集合胜过大而杂的",
+      "将自动化评估（快速、低成本、一致）与定期人工抽查（发现自动评审遗漏的细微问题）结合使用",
+      "将评估运行纳入 CI/CD 流水线，使每个修改提示词的 PR 都能自动触发评估",
+      "使用切片分析跨语言、用户类型和边缘情况审计评估结果——汇总分数会掩盖重要的失效集群"
+    ],
+    "donts": [
+      "Don't treat evals as a one-time pre-launch checklist — production failures must feed back into the eval suite continuously",
+      "Don't use LLM-as-judge as your only evaluator for your own model — the judge may share the same blind spots as the model being evaluated",
+      "Don't optimise blindly for a single metric — teams that overfit their prompts to an eval benchmark often degrade real-world quality",
+      "Don't skip writing evals because the task seems too subjective — even creative tasks can have measurable quality dimensions (coherence, factuality, tone)"
+    ],
+    "donts_zh": [
+      "不要将评估视为一次性上线前清单——生产故障必须持续反馈到评估套件中",
+      "不要仅用大模型即评审来评估自己的模型——评审模型可能与被评估模型存在相同的盲点",
+      "不要盲目优化单一指标——将提示词过度拟合到评估基准的团队往往会降低真实世界的质量",
+      "不要因任务看起来过于主观而跳过评估——即便是创意任务也可以有可量化的质量维度（连贯性、事实性、语调）"
+    ],
+    "case_study_company": "Duolingo",
+    "case_study": "Duolingo's AI team adopted Evaluation-Driven Development when building their AI-powered language tutoring features for Duolingo Max. Before shipping any new exercise type or conversation scenario, the team assembled expert linguist panels to create golden datasets of expected dialogue flows, then built automated LLM-as-judge pipelines to score candidate outputs for grammatical correctness, pedagogical appropriateness, and cultural sensitivity. This approach allowed them to iterate 10× faster than pure human review while catching critical errors — including a model that inappropriately simplified responses for advanced learners — before they reached any users. The eval infrastructure became the team's primary quality gate for all subsequent model upgrades.",
+    "case_study_zh": "Duolingo 的 AI 团队在构建 Duolingo Max 的 AI 驱动语言辅导功能时采用了评估驱动开发。在上线任何新练习类型或对话场景之前，团队组织了由专业语言学家组成的评审小组，创建了期望对话流程的黄金数据集，然后构建了自动化大模型即评审管线，对候选输出在语法正确性、教学适宜性和文化敏感性上进行评分。这一方法使团队的迭代速度比纯人工审查快 10 倍，同时在到达用户之前捕获了关键错误——包括一个不当简化高级学习者回应的模型问题。评估基础设施成为团队对所有后续模型升级的主要质量门禁。",
+    "when_not_to_use": [
+      "Pure research or exploratory prototyping where the problem definition itself is still being discovered — premature evals create false precision",
+      "Ultra-low-stakes internal tools where the cost of building and maintaining an eval suite exceeds the cost of the occasional bad output",
+      "Highly novel task domains with no existing labelled examples and no clear ground truth — invest in data collection first",
+      "As a replacement for alignment and safety work — evals measure performance on known dimensions but cannot guarantee safety against unknown failure modes"
+    ],
+    "when_not_to_use_zh": [
+      "纯研究或探索性原型阶段，问题定义本身仍在发现中——过早的评估会制造虚假的精确感",
+      "风险极低的内部工具，构建和维护评估套件的成本超过偶尔出现不良输出的代价",
+      "没有现有标注样本且缺乏明确基准答案的全新任务领域——应先投资于数据收集",
+      "作为对齐和安全工作的替代品——评估能衡量已知维度上的性能，但无法保证对未知失效模式的安全性"
+    ],
+    "adopters": [
+      "Duolingo",
+      "Anthropic",
+      "OpenAI",
+      "Weights & Biases",
+      "Braintrust",
+      "Scale AI"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "reliability",
+      "maintainability",
+      "performance"
+    ],
+    "maturity_ring": "emerging",
+    "primary_source": "Husain, H. (2023). \"Your AI Product Needs Evals\". hamel.dev/blog/posts/evals.",
+    "secondary_sources": [
+      "Yan, E. (2023). \"Patterns for Building LLM-based Systems & Products\". eugeneyan.com/writing/llm-patterns.",
+      "Anthropic (2024). \"Evaluating AI systems: our approach to model evaluation\". anthropic.com/research.",
+      "Shankar, S. et al. (2024). \"Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs\". arXiv:2404.12272."
+    ],
+    "typed_relations": [
+      {
+        "slug": "llm-evaluation-framework",
+        "type": "extends"
+      },
+      {
+        "slug": "rag-architecture",
+        "type": "complement"
+      },
+      {
+        "slug": "ai-observability-framework",
+        "type": "complement"
+      }
+    ]
   }
 ]
