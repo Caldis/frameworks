@@ -41,20 +41,25 @@ SDFrame organizes 239 software design frameworks across 13 categories, spanning 
 - **Provenance** — primary source citations and recommended reading per category
 
 ### Pages
-- **Home** — card grid with search, category filter, dimension filter, favorites
-- **Framework Detail** — 11-section progressive layout with SVG visualization
+- **Home** — horizontal scroll card rows with lerp engine, staggered entrance, fingerprint radars
+- **Framework Detail** — 11-section layout, scroll progress bar, section nav dots, entrance animations, similarity recommendations
 - **Category Landing** — category overview with AI cross-reference and reading list
-- **Relationship Map** — D3 force graph with typed edges, search, category filter, side panel
-- **Compare** — side-by-side comparison with radar chart overlay and curated suggestions
+- **Relationship Map** — D3 force graph with label collision detection, typed edges, search, side panel
+- **Compare** — searchable framework picker, radar chart overlay, deep links, diff highlighting
 - **Selector** — 4-step wizard to find frameworks matching your situation
 - **Learning Paths** — curated sequences to master software design step by step
+- **Insights** — editorial data visualizations (category bars, dimension triptych, quality grid, heatmap, adopter sizing)
+- **Timeline** — frameworks plotted by origin year, grouped by decade
 
 ### Technical
-- **Two-tier data loading** — listing stubs loaded upfront; detail data lazy-loaded per category
-- **Full-text search** — name, description, tags, author, adopters
+- **Dark mode** — warm-tinted palette, auto-detect + manual toggle, 55+ CSS variables
+- **Two-tier data loading** — listing stubs (603KB) upfront; detail data lazy-loaded per category (76% reduction)
+- **Search autocomplete** — dropdown suggestions with keyboard navigation and text highlighting
+- **PWA** — service worker, manifest, offline caching
 - **i18n** — full language switching with browser auto-detection
 - **SEO** — Open Graph meta tags, sitemap, per-page titles
-- **51 E2E tests** — smoke, visual/a11y, interaction state, data display, screenshots
+- **54 E2E tests** — smoke, visual/a11y, interaction state, data display, screenshots
+- **Mobile** — bottom tab navigation, responsive layouts, touch scroll snap
 
 ## Tech Stack
 

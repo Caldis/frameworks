@@ -95,6 +95,9 @@ export default function Layout() {
             </a>
           </div>
         </div>
+        <div className={styles.footerVersion}>
+          v{__APP_VERSION__} · {__BUILD_DATE__}
+        </div>
       </footer>
       <MobileNav />
       <BackToTop />
