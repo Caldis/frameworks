@@ -118,18 +118,6 @@ a { color: inherit; text-decoration: none; }
   50% { opacity: 0.8; }
 }
 
-/* ── Viewport entrance animation ── */
-[data-fade] {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-[data-fade].fade-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* ── Scrollbar (standard property — works in Chrome 121+, Firefox, Safari) ── */
 html {
   scrollbar-width: thin;

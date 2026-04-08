@@ -9,7 +9,7 @@ import FrameworkViz from '../components/FrameworkViz'
 import StepsList from '../components/StepsList'
 import RelatedFrameworks from '../components/RelatedFrameworks'
 import SectionNav from '../components/SectionNav'
-import { useFadeIn } from '../hooks/useFadeIn'
+import FadeIn from '../components/FadeIn'
 import styles from './FrameworkPage.module.css'
 
 export default function FrameworkPage() {
@@ -18,7 +18,7 @@ export default function FrameworkPage() {
   const framework = slug ? getFrameworkBySlug(slug) : undefined
   const { framework: fullFramework } = useFrameworkDetail(slug)
 
-  const fadeRef = useFadeIn<HTMLDivElement>()
+  // Removed useFadeIn — replaced by <FadeIn> component (react-intersection-observer)
 
   // Scroll progress
   const [progress, setProgress] = useState(0)
@@ -89,7 +89,7 @@ export default function FrameworkPage() {
   const whenIcons = ['\u26A1', '\uD83C\uDFAF', '\uD83D\uDD04', '\uD83D\uDCA1', '\uD83D\uDE80']
 
   return (
-    <div className={styles.page} ref={fadeRef} key={slug}>
+    <div className={styles.page} key={slug}>
       {/* Scroll progress bar */}
       <div className={styles.progressTrack}>
         <div className={styles.progressBar} style={{ transform: `scaleX(${progress})` }} />
@@ -174,7 +174,7 @@ export default function FrameworkPage() {
 
       {/* ── 2. When to Use ── */}
       {whenToUse?.length > 0 && (
-        <section id="sec-when" className={styles.section} data-fade>
+        <FadeIn as="section" id="sec-when" className={styles.section}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.whenToUse}</h2>
           <div className={styles.whenGrid}>
             {whenToUse.map((item, i) => (
@@ -184,12 +184,12 @@ export default function FrameworkPage() {
               </div>
             ))}
           </div>
-        </section>
+        </FadeIn>
       )}
 
       {/* ── 3. When NOT to Use (decision pair with When to Use) ── */}
       {whenNotToUse?.length > 0 && (
-        <section id="sec-not" className={styles.section} data-fade>
+        <FadeIn as="section" id="sec-not" className={styles.section}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.whenNotToUse}</h2>
           <div className={styles.warningList}>
             {whenNotToUse.map((item, i) => (
@@ -199,12 +199,12 @@ export default function FrameworkPage() {
               </div>
             ))}
           </div>
-        </section>
+        </FadeIn>
       )}
 
       {/* ── 4. Core Concepts ── */}
       {coreConcepts?.length > 0 && (
-        <section id="sec-concepts" className={styles.section} data-fade>
+        <FadeIn as="section" id="sec-concepts" className={styles.section}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.coreConceptsTitle}</h2>
           <div className={styles.conceptsList}>
             {coreConcepts.map((concept, i) => {
@@ -222,12 +222,12 @@ export default function FrameworkPage() {
               )
             })}
           </div>
-        </section>
+        </FadeIn>
       )}
 
       {/* ── 4. Origin & Evolution ── */}
       {timeline?.length > 0 && (
-        <section id="sec-origin" className={styles.section} data-fade>
+        <FadeIn as="section" id="sec-origin" className={styles.section}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.originAndEvolution}</h2>
           <div className={styles.timeline}>
             {timeline.map(([year, event], i) => (
@@ -238,11 +238,11 @@ export default function FrameworkPage() {
               </div>
             ))}
           </div>
-        </section>
+        </FadeIn>
       )}
 
       {/* ── 5. How It Works ── */}
-      <section id="sec-how" className={styles.section} data-fade>
+      <FadeIn as="section" id="sec-how" className={styles.section}>
         <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.howItWorks}</h2>
         <StepsList steps={steps} />
 
@@ -276,11 +276,11 @@ export default function FrameworkPage() {
             )}
           </div>
         )}
-      </section>
+      </FadeIn>
 
       {/* ── 6. Case Study ── */}
       {caseStudyText && (
-        <section id="sec-case" className={styles.section} data-fade>
+        <FadeIn as="section" id="sec-case" className={styles.section}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.caseStudy}</h2>
           {fw.case_study_company && (
             <span className={styles.caseStudyCompany}>{fw.case_study_company}</span>
@@ -291,24 +291,24 @@ export default function FrameworkPage() {
           >
             {caseStudyText}
           </div>
-        </section>
+        </FadeIn>
       )}
 
       {/* ── 8. Notable Adopters ── */}
       {framework.adopters?.length > 0 && (
-        <section id="sec-adopters" className={styles.section} data-fade>
+        <FadeIn as="section" id="sec-adopters" className={styles.section}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.notableAdopters}</h2>
           <div className={styles.adoptersRow}>
             {framework.adopters.map((name, i) => (
               <span className={styles.adopterPill} key={i}>{name}</span>
             ))}
           </div>
-        </section>
+        </FadeIn>
       )}
 
       {/* ── 9. Sources ── */}
       {(fw.primary_source || fw.secondary_sources?.length) && (
-        <section id="sec-sources" className={styles.section} data-fade>
+        <FadeIn as="section" id="sec-sources" className={styles.section}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>
             📚 {t.primarySource}
           </h2>
@@ -327,7 +327,7 @@ export default function FrameworkPage() {
               </ul>
             </>
           )}
-        </section>
+        </FadeIn>
       )}
 
       {/* ── Related Frameworks ── */}
