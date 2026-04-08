@@ -6470,5 +6470,357 @@
         "type": "related"
       }
     ]
+  },
+  {
+    "id": 299,
+    "name": "Flyweight Pattern",
+    "name_zh": "享元模式",
+    "slug": "flyweight-pattern",
+    "category": "coding",
+    "desc": "GoF structural pattern that minimises memory usage by sharing fine-grained objects whose state can be externalised, enabling large numbers of similar objects to be represented efficiently.",
+    "desc_zh": "GoF 结构型模式，通过共享可外化状态的细粒度对象来最小化内存使用，使大量相似对象得以高效表示。",
+    "steps": [
+      "Analyse the large collection of objects to separate intrinsic state (immutable, shareable, context-independent — e.g., the glyph shape of a character) from extrinsic state (context-dependent — e.g., the position and colour of each character on screen)",
+      "Create a Flyweight interface that defines the operation method accepting extrinsic state as a parameter, so shared flyweight objects do not store it internally",
+      "Implement Concrete Flyweight classes that store only intrinsic state; multiple client contexts can share the same Concrete Flyweight instance without conflict",
+      "Build a Flyweight Factory that maintains a pool of existing flyweight instances keyed by their intrinsic state — the factory returns an existing instance when the key matches, or creates and caches a new one",
+      "Replace direct object instantiation in client code with factory calls; pass extrinsic state as arguments to flyweight operations at call time rather than storing it in each flyweight instance"
+    ],
+    "steps_zh": [
+      "分析大量对象集合，将内部状态（不可变、可共享、与上下文无关——如字符的字形）与外部状态（依赖上下文——如每个字符在屏幕上的位置和颜色）分离",
+      "创建 Flyweight 接口，定义接受外部状态作为参数的操作方法，使共享的享元对象不在内部存储外部状态",
+      "实现只存储内部状态的具体 Flyweight 类；多个客户端上下文可以共享同一具体享元实例而不产生冲突",
+      "构建 Flyweight 工厂，维护以内部状态为键的现有享元实例池——当键匹配时工厂返回现有实例，否则创建并缓存新实例",
+      "在客户端代码中用工厂调用替换直接对象实例化；在调用时将外部状态作为参数传递给享元操作，而不是将其存储在每个享元实例中"
+    ],
+    "ai_relevant": false,
+    "viz_type": "tree",
+    "related": [
+      "singleton-pattern",
+      "object-pool-pattern",
+      "composite-pattern",
+      "proxy-pattern"
+    ],
+    "tags": [
+      "flyweight",
+      "gof",
+      "structural-pattern",
+      "memory-optimization",
+      "object-sharing",
+      "design-patterns"
+    ],
+    "origin_author": "Gang of Four",
+    "origin_source": "Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+    "origin_source_zh": "Gamma, E., Helm, R., Johnson, R., & Vlissides, J.（1994）.《设计模式：可复用面向对象软件的基础》. Addison-Wesley.",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Applications that create large numbers of fine-grained objects — thousands or millions — where memory footprint is a critical constraint and many objects share common state",
+      "Rendering engines, text editors, game engines, and CAD applications where visual elements (glyphs, sprites, tiles) are repeated many times with only position and colour varying",
+      "Systems where object creation cost (memory allocation, GC pressure) is measurably degrading performance and profiling confirms that object count is the root cause",
+      "Domain models with many instances of value-like objects (e.g., product SKUs, currency instances, tax codes) where identity equality is not required and shared instances are semantically correct"
+    ],
+    "when_to_use_zh": [
+      "创建大量细粒度对象（成千上万甚至数百万）的应用，内存占用是关键约束，且许多对象共享公共状态",
+      "渲染引擎、文本编辑器、游戏引擎和 CAD 应用，其中视觉元素（字形、精灵、瓦片）被重复多次，仅位置和颜色不同",
+      "对象创建成本（内存分配、GC 压力）可测量地降低了性能，且性能分析确认对象数量是根本原因的系统",
+      "拥有许多值类型对象实例（如产品 SKU、货币实例、税码）的领域模型，不需要标识相等性且共享实例在语义上正确"
+    ],
+    "core_concepts": [
+      "Intrinsic vs Extrinsic State: intrinsic state is stored inside the flyweight and is immutable and shared; extrinsic state is context-dependent and must be passed to the flyweight operations by the caller — this separation is the structural foundation of the pattern",
+      "Flyweight Factory: a factory or registry that ensures only one flyweight instance exists per unique intrinsic state; clients always go through the factory rather than directly instantiating flyweights to guarantee sharing",
+      "Shared Identity: because flyweights are shared, they must not be treated as having object identity — two references to the same flyweight represent different logical objects that happen to share implementation; equality checks on flyweight identity are a common bug",
+      "Memory-Time Trade-off: the pattern trades CPU time (extrinsic state must be computed or passed at every operation call) for memory (fewer objects on the heap); this trade-off is only worthwhile when object count is the dominant memory consumer"
+    ],
+    "core_concepts_zh": [
+      "内部状态与外部状态：内部状态存储在享元内部，是不可变且共享的；外部状态依赖上下文，必须由调用方传递给享元操作——这种分离是该模式的结构基础",
+      "享元工厂：确保每个唯一内部状态只存在一个享元实例的工厂或注册表；客户端始终通过工厂而非直接实例化享元来保证共享",
+      "共享标识：由于享元是共享的，不能将其视为具有对象标识——对同一享元的两个引用代表碰巧共享实现的不同逻辑对象；对享元标识的相等性检查是常见的 bug",
+      "内存-时间权衡：该模式以 CPU 时间（每次操作调用时必须计算或传递外部状态）换取内存（堆上更少的对象）；仅当对象数量是主要内存消耗者时这种权衡才值得"
+    ],
+    "timeline": [
+      [
+        "1990",
+        "Paul Calder and Mark Linton introduce the Flyweight concept in the Unidraw graphical editing framework for X Windows, where thousands of identical glyph objects motivated sharing"
+      ],
+      [
+        "1994",
+        "Gang of Four canonise Flyweight as one of the 23 design patterns in Design Patterns: Elements of Reusable Object-Oriented Software, popularising it across the industry"
+      ],
+      [
+        "2002",
+        "Java String interning and Integer cache implement implicit flyweight sharing in the JVM standard library, embedding the pattern in the language runtime"
+      ],
+      [
+        "2015",
+        "JavaScript engines implement hidden class sharing and string interning as implicit flyweights; React virtual DOM key reconciliation uses flyweight-like object reuse to minimise allocations"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "1990",
+        "Paul Calder 和 Mark Linton 在 X Windows 的 Unidraw 图形编辑框架中引入享元概念，其中成千上万个相同字形对象促使了共享机制的诞生"
+      ],
+      [
+        "1994",
+        "Gang of Four 在《设计模式：可复用面向对象软件的基础》中将享元模式规范化为 23 种设计模式之一，在业界广泛推广"
+      ],
+      [
+        "2002",
+        "Java 字符串内部化和 Integer 缓存在 JVM 标准库中实现了隐式享元共享，将该模式嵌入语言运行时"
+      ],
+      [
+        "2015",
+        "JavaScript 引擎实现隐藏类共享和字符串内部化作为隐式享元；React 虚拟 DOM 键调和使用类享元的对象复用来最小化内存分配"
+      ]
+    ],
+    "dos": [
+      "Do profile memory usage before applying Flyweight — the pattern adds significant architectural complexity and is only justified when object count is measurably consuming too much heap memory",
+      "Do make flyweight intrinsic state truly immutable — any mutation of shared state causes subtle, hard-to-debug corruption that affects all clients sharing the same flyweight instance",
+      "Do design the Flyweight Factory as a thread-safe singleton when flyweights are shared across concurrent threads — double-checked locking or ConcurrentHashMap-based caching prevents race conditions on the factory",
+      "Do document which fields are intrinsic and which are extrinsic clearly in code and tests — confusion about the intrinsic/extrinsic boundary is the most common source of flyweight bugs"
+    ],
+    "dos_zh": [
+      "在应用享元模式之前先分析内存使用情况——该模式会增加显著的架构复杂性，仅在对象数量可测量地消耗过多堆内存时才合理",
+      "确保享元的内部状态真正不可变——对共享状态的任何修改都会导致微妙且难以调试的损坏，影响共享同一享元实例的所有客户端",
+      "当享元在并发线程间共享时，将享元工厂设计为线程安全的单例——双重检查锁定或基于 ConcurrentHashMap 的缓存可防止工厂中的竞争条件",
+      "在代码和测试中清楚地记录哪些字段是内部状态、哪些是外部状态——对内部/外部边界的混淆是享元 bug 最常见的来源"
+    ],
+    "donts": [
+      "Do not apply Flyweight prematurely as an optimisation strategy — it dramatically increases code complexity through the intrinsic/extrinsic split and factory indirection; use it only after profiling confirms memory pressure from excessive object count",
+      "Do not share flyweights across isolation boundaries in multi-tenant systems without careful access control — shared flyweight instances can become a cross-tenant data leakage vector if extrinsic state is accidentally stored inside them",
+      "Do not confuse Flyweight with Singleton — Singleton allows exactly one instance of an object regardless of state; Flyweight allows one instance per unique intrinsic state value, so multiple flyweight instances can exist",
+      "Do not store extrinsic state in flyweight fields as an optimisation shortcut — this defeats the sharing guarantee and gradually converts flyweights into regular heavyweight objects as the codebase evolves"
+    ],
+    "donts_zh": [
+      "不要将享元模式作为优化策略过早应用——内部/外部分离和工厂间接层会大幅增加代码复杂性；仅在性能分析确认过多对象数量导致内存压力后才使用",
+      "在多租户系统中不要在没有仔细访问控制的情况下跨隔离边界共享享元——如果外部状态被意外存储在享元内部，共享的享元实例可能成为跨租户数据泄漏的向量",
+      "不要将享元与单例混淆——单例允许恰好一个对象实例而不考虑状态；享元允许每个唯一内部状态值一个实例，因此可以存在多个享元实例",
+      "不要将外部状态作为优化捷径存储在享元字段中——这会破坏共享保证，并随着代码库的演进逐渐将享元转变为普通的重量级对象"
+    ],
+    "case_study_company": "Java JDK / OpenJDK",
+    "case_study": "The Java Development Kit implements the Flyweight pattern implicitly in several core library features. Integer.valueOf(int) in Java 5+ caches Integer instances for values between -128 and 127, the range most frequently used in loops and indexing — rather than creating a new Integer object for every boxing operation, the JVM returns a shared flyweight instance from a pre-populated cache array. For String, Java maintains a string intern pool: String.intern() returns the canonical flyweight instance for any given string value. These JVM-level flyweights have a measurable impact at scale: in high-throughput services processing millions of short integer counters or repeated string tokens, the Integer cache alone can reduce GC pressure by eliminating tens of millions of short-lived allocations per second, meaningfully reducing pause times in applications running on JVMs with concurrent garbage collectors.",
+    "case_study_zh": "Java 开发工具包在多个核心库功能中隐式实现了享元模式。Java 5+ 中的 Integer.valueOf(int) 为 -128 到 127 之间的值（最常用于循环和索引的范围）缓存 Integer 实例——JVM 从预填充的缓存数组返回共享享元实例，而非为每次装箱操作创建新的 Integer 对象。对于 String，Java 维护一个字符串内部化池：String.intern() 返回任意字符串值的规范享元实例。这些 JVM 级享元在大规模场景下具有可测量的影响：在处理数百万个短整数计数器或重复字符串标记的高吞吐量服务中，Integer 缓存本身可以通过每秒消除数千万个短暂分配来减轻 GC 压力，有效降低使用并发垃圾收集器的 JVM 上的应用停顿时间。",
+    "when_not_to_use": [
+      "Applications with relatively few objects where the memory savings do not justify the architectural overhead of separating intrinsic from extrinsic state and routing all creation through a factory",
+      "Objects with mostly unique state where the intrinsic state is too fine-grained to enable sharing — if every instance has different intrinsic state, the Flyweight Factory becomes a plain object cache with no sharing benefit",
+      "Performance-critical paths where passing extrinsic state as a parameter on every operation call introduces function call overhead that outweighs the memory savings",
+      "Mutable objects where the shared state must be modified independently per client — mutability and sharing are fundamentally incompatible in Flyweight"
+    ],
+    "when_not_to_use_zh": [
+      "对象数量相对较少的应用，内存节省不足以证明将内部状态与外部状态分离以及通过工厂路由所有创建操作的架构开销是合理的",
+      "大多数状态唯一的对象，内部状态粒度太细无法实现共享——如果每个实例都有不同的内部状态，享元工厂就变成了没有共享优势的普通对象缓存",
+      "每次操作调用时将外部状态作为参数传递引入的函数调用开销超过内存节省的性能关键路径",
+      "必须按客户端独立修改共享状态的可变对象——可变性和共享在享元中是根本不相容的"
+    ],
+    "adopters": [
+      "Java JDK (Integer cache, String intern)",
+      "JavaScript V8 engine (hidden classes)",
+      "Microsoft Word (glyph rendering)",
+      "Unity (sprite atlas sharing)",
+      "Unreal Engine (static mesh instances)",
+      "Apache POI (cell style sharing)"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "performance",
+      "maintainability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+    "secondary_sources": [
+      "Freeman, E. & Freeman, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+      "Bloch, J. (2018). \"Effective Java\", 3rd ed., Item 6: Avoid creating unnecessary objects. Addison-Wesley.",
+      "Calder, P. & Linton, M. (1990). \"Glyphs: Flyweight Objects for User Interfaces\". UIST 1990 Proceedings."
+    ],
+    "typed_relations": [
+      {
+        "slug": "singleton-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "composite-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "factory-method-pattern",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 300,
+    "name": "State Pattern",
+    "name_zh": "状态模式",
+    "slug": "state-pattern",
+    "category": "coding",
+    "desc": "GoF behavioural pattern that allows an object to alter its behaviour when its internal state changes, encapsulating state-specific logic into separate state classes to eliminate conditional branching.",
+    "desc_zh": "GoF 行为型模式，允许对象在内部状态改变时改变其行为，将特定于状态的逻辑封装到独立的状态类中以消除条件分支。",
+    "steps": [
+      "Identify the object whose behaviour varies based on internal state and enumerate all possible states it can be in — look for large switch/case or if-else chains keyed on an internal status field",
+      "Define a State interface (or abstract class) declaring all behaviour methods that vary by state; these are the same operations that currently have state-conditional branches in the Context class",
+      "Implement a Concrete State class for each state, encapsulating the state-specific behaviour for every operation — each class handles only the logic appropriate for its state and transitions to other states when needed",
+      "Refactor the Context class to hold a reference to the current State object; delegate all state-dependent operations to the current state rather than implementing them with conditionals inside the Context",
+      "Implement state transitions either inside the Concrete State classes (each state knows what state to transition to on each event) or inside the Context (centralised transition table) — choose based on whether transition logic is simple or complex"
+    ],
+    "steps_zh": [
+      "识别行为基于内部状态变化的对象，枚举其所有可能的状态——寻找以内部状态字段为键的大型 switch/case 或 if-else 链",
+      "定义 State 接口（或抽象类），声明所有随状态变化的行为方法；这些方法与当前在 Context 类中具有状态条件分支的操作相同",
+      "为每个状态实现一个具体 State 类，封装每个操作的特定于状态的行为——每个类只处理适合其状态的逻辑，并在需要时转换到其他状态",
+      "重构 Context 类以持有对当前 State 对象的引用；将所有依赖状态的操作委托给当前状态，而不是在 Context 内部用条件语句实现它们",
+      "在具体 State 类内部（每个状态知道在每个事件上转换到哪个状态）或在 Context 内部（集中式转换表）实现状态转换——根据转换逻辑是简单还是复杂来选择"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "strategy-pattern",
+      "command-pattern",
+      "finite-state-machine",
+      "observer-pattern"
+    ],
+    "tags": [
+      "state-pattern",
+      "gof",
+      "behavioural-pattern",
+      "finite-state-machine",
+      "design-patterns",
+      "oop"
+    ],
+    "origin_author": "Gang of Four",
+    "origin_source": "Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+    "origin_source_zh": "Gamma, E., Helm, R., Johnson, R., & Vlissides, J.（1994）.《设计模式：可复用面向对象软件的基础》. Addison-Wesley.",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "Objects whose behaviour changes significantly based on internal state and where the number of states and state-dependent operations makes large conditional chains in the Context class hard to maintain",
+      "Workflow and order management systems where entities (orders, documents, tickets) transition through a well-defined lifecycle with distinct behaviour at each stage",
+      "UI components and interactive systems where user interface elements change their appearance and interaction behaviour based on mode (editing, viewing, loading, error states)",
+      "Protocol implementations and communication state machines (connection established, handshaking, data transfer, closing) where each phase has distinct message handling rules"
+    ],
+    "when_to_use_zh": [
+      "行为基于内部状态显著变化的对象，其中状态数量和依赖状态的操作数量使 Context 类中的大型条件链难以维护",
+      "工作流和订单管理系统，其中实体（订单、文档、工单）按明确定义的生命周期转换，每个阶段具有不同的行为",
+      "UI 组件和交互系统，其中用户界面元素根据模式（编辑、查看、加载、错误状态）改变其外观和交互行为",
+      "协议实现和通信状态机（连接已建立、握手、数据传输、关闭），每个阶段具有不同的消息处理规则"
+    ],
+    "core_concepts": [
+      "Context: the object whose behaviour varies; it maintains a reference to the current State object and delegates all state-dependent method calls to it — the Context is unaware of which specific state it is in",
+      "State Interface: defines the contract for all state-specific behaviours; every Concrete State must implement this interface, ensuring the Context can use any state interchangeably via polymorphism",
+      "Concrete States: each class encapsulates the full behaviour for one state and handles state transition logic — behaviour that previously lived in one big switch statement is now distributed across small, cohesive classes",
+      "State Transition: states change by replacing the Context's current state reference — transitions can be triggered by events, conditions, or time; they can be encoded in state classes (decentralised) or in the Context (centralised FSM table)"
+    ],
+    "core_concepts_zh": [
+      "Context（上下文）：行为变化的对象；它维护对当前 State 对象的引用，并将所有依赖状态的方法调用委托给它——Context 不知道自己处于哪个具体状态",
+      "State 接口：定义所有特定于状态的行为的契约；每个具体 State 必须实现此接口，确保 Context 可以通过多态性互换使用任何状态",
+      "具体状态：每个类封装一个状态的完整行为并处理状态转换逻辑——以前存在于一个大型 switch 语句中的行为现在分布在小而内聚的类中",
+      "状态转换：通过替换 Context 的当前状态引用来改变状态——转换可由事件、条件或时间触发；可以编码在状态类中（去中心化）或在 Context 中（集中式 FSM 表）"
+    ],
+    "timeline": [
+      [
+        "1987",
+        "The concept of finite state machines formalised in automata theory by Mealy and Moore is applied to object-oriented design in early Smalltalk systems at Xerox PARC"
+      ],
+      [
+        "1994",
+        "Gang of Four canonise the State pattern in Design Patterns, providing a concrete OOP implementation template distinct from generic FSM theory"
+      ],
+      [
+        "2010",
+        "XState and statechart libraries emerge in JavaScript ecosystem, extending the basic State pattern with hierarchical states (statecharts) for complex frontend application state management"
+      ],
+      [
+        "2019",
+        "XState v4 gains widespread adoption in React and Vue ecosystems; statecharts become the recommended pattern for managing complex UI state, bringing State pattern principles to frontend architecture"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "1987",
+        "由 Mealy 和 Moore 在自动机理论中形式化的有限状态机概念被应用于施乐 PARC 早期 Smalltalk 系统的面向对象设计中"
+      ],
+      [
+        "1994",
+        "Gang of Four 在《设计模式》中将状态模式规范化，提供了区别于通用 FSM 理论的具体 OOP 实现模板"
+      ],
+      [
+        "2010",
+        "XState 和状态图库在 JavaScript 生态系统中出现，通过分层状态（状态图）扩展了基本状态模式，用于复杂前端应用状态管理"
+      ],
+      [
+        "2019",
+        "XState v4 在 React 和 Vue 生态系统中获得广泛采用；状态图成为管理复杂 UI 状态的推荐模式，将状态模式原则带入前端架构"
+      ]
+    ],
+    "dos": [
+      "Do keep each Concrete State class small and focused on a single state — if a state class grows to handle many operations and sub-states it is a signal that the state should be decomposed into a sub-state machine",
+      "Do consider using the State pattern alongside the Command pattern for undo/redo — recording state transitions as commands enables history and rollback without complex snapshot logic in the Context",
+      "Do make state transitions explicit and visible — whether encoded in state classes or a centralized table, document the full state transition diagram as part of the code review process",
+      "Do consider statechart libraries (XState, Spring State Machine) instead of hand-rolling State pattern when the state machine has guard conditions, parallel states, or history states"
+    ],
+    "dos_zh": [
+      "保持每个具体 State 类小巧且专注于单一状态——如果一个状态类增长到处理许多操作和子状态，这是该状态应该分解为子状态机的信号",
+      "考虑将状态模式与命令模式结合用于撤销/重做——将状态转换记录为命令，无需在 Context 中使用复杂的快照逻辑即可实现历史记录和回滚",
+      "使状态转换明确可见——无论是编码在状态类中还是集中式表中，在代码审查过程中将完整的状态转换图记录为文档",
+      "当状态机具有守卫条件、并行状态或历史状态时，考虑使用状态图库（XState、Spring State Machine）而非手动实现状态模式"
+    ],
+    "donts": [
+      "Do not implement the State pattern for objects with only two or three states and simple boolean conditionals — the overhead of separate state classes and the context-state delegation adds complexity without benefit at small scale",
+      "Do not create deep inheritance hierarchies of State classes — prefer composition over inheritance within state classes; concrete states should implement the State interface, not extend each other",
+      "Do not let states hold references to each other directly for transition purposes — this creates tight coupling between states; transitions should be mediated by the Context or a centralized event table",
+      "Do not confuse State pattern with Strategy pattern — both use object composition to delegate behaviour, but Strategy selects the algorithm based on external configuration, while State transitions autonomously based on internal event processing"
+    ],
+    "donts_zh": [
+      "对于只有两三个状态和简单布尔条件的对象，不要实现状态模式——单独状态类和上下文-状态委托的开销在小规模下增加复杂性而没有好处",
+      "不要创建状态类的深层继承层次结构——在状态类中优先使用组合而非继承；具体状态应实现 State 接口，而非相互继承",
+      "不要让状态为转换目的直接持有对彼此的引用——这会在状态之间创建紧耦合；转换应由 Context 或集中式事件表来调解",
+      "不要将状态模式与策略模式混淆——两者都使用对象组合来委托行为，但策略基于外部配置选择算法，而状态基于内部事件处理自主转换"
+    ],
+    "case_study_company": "Stripe",
+    "case_study": "Stripe's payment processing engine uses the State pattern extensively to model the lifecycle of payment intents and charges. A PaymentIntent transitions through states: created, requires_payment_method, requires_confirmation, requires_action, processing, succeeded, and cancelled. Each state encapsulates the permitted operations (e.g., only a payment intent in requires_confirmation state can be confirmed; attempting to confirm a payment already in processing raises an explicit state transition error rather than a silent failure). Stripe's API design surfaces these states as first-class fields in API responses, and their server-side implementation uses state objects to enforce invariants — a charge in succeeded state cannot be re-captured, only refunded — without scattered conditional logic across service methods. This state machine architecture allowed Stripe to add 3D Secure 2.0 authentication as a new requires_action state transition without modifying existing state handling code in consumer integrations.",
+    "case_study_zh": "Stripe 的支付处理引擎广泛使用状态模式来建模支付意图和收费的生命周期。PaymentIntent 经历多个状态转换：created、requires_payment_method、requires_confirmation、requires_action、processing、succeeded 和 cancelled。每个状态封装了允许的操作（例如，只有 requires_confirmation 状态的支付意图才能被确认；尝试确认已处于 processing 状态的支付会引发明确的状态转换错误而非静默失败）。Stripe 的 API 设计将这些状态作为 API 响应中的一等字段暴露，其服务器端实现使用状态对象来执行不变量——succeeded 状态的收费不能重新捕获，只能退款——而无需在服务方法中分散条件逻辑。这种状态机架构使 Stripe 能够将 3D Secure 2.0 身份验证作为新的 requires_action 状态转换添加，而无需修改消费方集成中现有的状态处理代码。",
+    "when_not_to_use": [
+      "Simple objects with two or three boolean flags where conventional if-else logic is clearer and more readable than a full State pattern implementation with multiple classes",
+      "Performance-critical tight loops where the virtual dispatch overhead of polymorphic state delegation is measurable and an explicit switch statement or lookup table is faster",
+      "Functional programming codebases where algebraic data types (sum types, discriminated unions) and pattern matching provide a more natural and type-safe way to model state-dependent behaviour",
+      "Transient state that is only relevant within a single method execution and does not persist across multiple calls — local variables and early returns are more appropriate than a state machine for this scope"
+    ],
+    "when_not_to_use_zh": [
+      "只有两三个布尔标志的简单对象，传统的 if-else 逻辑比具有多个类的完整状态模式实现更清晰易读",
+      "多态状态委托的虚拟分派开销可测量，且显式 switch 语句或查找表更快的性能关键紧循环",
+      "函数式编程代码库，其中代数数据类型（和类型、判别联合）和模式匹配提供了更自然且类型安全的方式来建模依赖状态的行为",
+      "仅在单次方法执行中相关且不在多次调用间持久化的瞬态——局部变量和提前返回比状态机更适合这种范围"
+    ],
+    "adopters": [
+      "Stripe (payment lifecycle)",
+      "Spring Framework (Spring State Machine)",
+      "Unity (Animator state machine)",
+      "AWS Step Functions",
+      "XState (frontend)",
+      "Apache Kafka (consumer group states)"
+    ],
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "maintainability",
+      "extensibility"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+    "secondary_sources": [
+      "Freeman, E. & Freeman, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+      "Harel, D. (1987). \"Statecharts: A visual formalism for complex systems\". Science of Computer Programming, 8(3), 231-274.",
+      "Khanlian, D. (2020). \"XState: State machines and statecharts for JavaScript\". stately.ai."
+    ],
+    "typed_relations": [
+      {
+        "slug": "strategy-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "command-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "observer-pattern",
+        "type": "complement"
+      }
+    ]
   }
 ]
