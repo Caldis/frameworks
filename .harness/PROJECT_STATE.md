@@ -12,21 +12,23 @@
 - **Deploy**: GitHub Actions → GitHub Pages (custom domain)
 - **Inspired by**: pmframe.works
 
-## Current State (as of 2026-04-08, end of Sprint S50)
+## Current State (as of 2026-04-09, end of Sprint S53)
 
 ### What Exists
 - 300 software design frameworks across 13 categories, 39 fields per framework (audited, 0 errors)
 - Full bilingual content (EN/ZH) with i18n system (useI18n hook, locale files)
 - 11 pages: Home (horizontal scroll cards + lerp engine), Framework Detail (11-section progressive layout + async detail loading), Category Landing (AI cross-category + reading list), Map (D3 force graph + label collision detection), Compare (radar chart + suggestions + diff highlighting), Selector (4-step wizard), Paths (learning sequences), Insights (editorial data viz), Timeline (by origin year), plus Layout shell
 - Dark mode: warm-tinted dark palette, prefers-color-scheme auto-detect + manual toggle (☽/☀), 55+ CSS variables, all category colors adapted
-- Two-tier data loading: stubs upfront (603KB), 13 per-category detail chunks loaded on demand
+- Two-tier data loading: stubs upfront (800KB), 13 per-category detail chunks loaded on demand
+- AI-native skill package: SKILL.md (meta skill with 2-mode interaction protocol) + 300 framework references + 13 category overviews + catalog index + llms.txt
+- Single source of truth build pipeline: validate → generate-all (stubs, sitemap, skill package, llms.txt) → vite build. Schema-driven, template-driven, zero manual sync.
 - Search autocomplete: dropdown suggestions with keyboard nav (↑/↓/Enter/Esc), category dots, author tags
 - PWA: Service worker (cache-first assets, network-first navigation), manifest.json, offline support
 - Keyboard shortcuts: ? toggle help panel
 - LanguageSwitcher + ThemeToggle in header
-- FrameworkViz: Recharts RadarChart + HTML/CSS layouts for 8 viz types
+- FrameworkViz: Recharts RadarChart + HTML/CSS layouts for 8 viz types (dark mode adapted)
 - Code splitting: lazy routes + manual chunks (vendor, charts, d3)
-- GitHub Actions CI/CD, SPA 404 redirect, CNAME for custom domain
+- GitHub Actions CI/CD (no Playwright — E2E runs locally), SPA 404 redirect, CNAME for custom domain
 
 ### Completed Sprints
 - S00: Initial build (100 frameworks, 7 categories)
@@ -68,6 +70,9 @@
 - S48: Content audit — dedup, enum fixes, broken relations (290 clean frameworks)
 - S49: SEO JSON-LD + chart label readability fix + detail page fade-in fix (MutationObserver) + v2.1.0
 - S50: FrameworkViz dark mode (CSS vars) + data +5 → 300 + CI Node.js 22 upgrade
+- S51: Data completeness audit (299/300 clean, 1 broken relation fixed, BC year handling)
+- S52: Mobile UX (unstick controls, horizontal pills, hide nav links) + detail page info hierarchy (When Not moved up) + tree viz fix + FadeIn → react-intersection-observer + 5 UI refinements
+- S53: AI-native architecture — single source build pipeline (schema + data-loader + validate + generate-all) + skill package (SKILL.md + 300 framework refs + catalog + categories + llms.txt)
 
 ### Test Coverage
 - 54 E2E tests: smoke(9) + visual/a11y(8) + interaction(6) + data-display(8) + screenshots(14, incl. dark mode + insights)
