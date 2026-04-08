@@ -188,8 +188,15 @@
 
 @media (max-width: 600px) {
   .controls {
+    position: static;
     flex-direction: column;
     align-items: stretch;
+    box-shadow: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mapLink {
+    display: none;
   }
 
   .count {

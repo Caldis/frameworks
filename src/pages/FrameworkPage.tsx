@@ -97,11 +97,11 @@ export default function FrameworkPage() {
 
       <SectionNav sections={[
         { id: 'sec-when', label: locale === 'en' ? 'When to Use' : '何时使用' },
-        { id: 'sec-concepts', label: locale === 'en' ? 'Core Concepts' : '核心概念' },
-        { id: 'sec-origin', label: locale === 'en' ? 'Origin' : '起源' },
-        { id: 'sec-how', label: locale === 'en' ? 'How It Works' : '实施方法' },
-        { id: 'sec-case', label: locale === 'en' ? 'Case Study' : '真实案例' },
         { id: 'sec-not', label: locale === 'en' ? 'When Not' : '何时不该' },
+        { id: 'sec-concepts', label: locale === 'en' ? 'Core Concepts' : '核心概念' },
+        { id: 'sec-how', label: locale === 'en' ? 'How It Works' : '实施方法' },
+        { id: 'sec-origin', label: locale === 'en' ? 'Origin' : '起源' },
+        { id: 'sec-case', label: locale === 'en' ? 'Case Study' : '真实案例' },
         { id: 'sec-adopters', label: locale === 'en' ? 'Adopters' : '采用者' },
         { id: 'sec-sources', label: locale === 'en' ? 'Sources' : '来源' },
         { id: 'sec-related', label: locale === 'en' ? 'Related' : '关联' },
@@ -187,7 +187,22 @@ export default function FrameworkPage() {
         </section>
       )}
 
-      {/* ── 3. Core Concepts ── */}
+      {/* ── 3. When NOT to Use (decision pair with When to Use) ── */}
+      {whenNotToUse?.length > 0 && (
+        <section id="sec-not" className={styles.section} data-fade>
+          <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.whenNotToUse}</h2>
+          <div className={styles.warningList}>
+            {whenNotToUse.map((item, i) => (
+              <div className={styles.warningItem} key={i}>
+                <span className={styles.warningMarker}>{'\u26A0'}</span>
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ── 4. Core Concepts ── */}
       {coreConcepts?.length > 0 && (
         <section id="sec-concepts" className={styles.section} data-fade>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.coreConceptsTitle}</h2>
@@ -275,21 +290,6 @@ export default function FrameworkPage() {
             style={category ? { borderLeftColor: catColorVar(framework.category, 'text') } : undefined}
           >
             {caseStudyText}
-          </div>
-        </section>
-      )}
-
-      {/* ── 7. When NOT to Use ── */}
-      {whenNotToUse?.length > 0 && (
-        <section id="sec-not" className={styles.section} data-fade>
-          <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.whenNotToUse}</h2>
-          <div className={styles.warningList}>
-            {whenNotToUse.map((item, i) => (
-              <div className={styles.warningItem} key={i}>
-                <span className={styles.warningMarker}>{'\u26A0'}</span>
-                <span>{item}</span>
-              </div>
-            ))}
           </div>
         </section>
       )}

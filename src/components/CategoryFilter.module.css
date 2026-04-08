@@ -4,6 +4,25 @@
   flex-wrap: wrap;
 }
 
+@media (max-width: 600px) {
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+  }
+
+  .filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+
 .btn {
   padding: 8px 14px;
   border-radius: 20px;
