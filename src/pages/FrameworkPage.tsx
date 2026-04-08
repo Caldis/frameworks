@@ -88,7 +88,7 @@ export default function FrameworkPage() {
   const whenIcons = ['\u26A1', '\uD83C\uDFAF', '\uD83D\uDD04', '\uD83D\uDCA1', '\uD83D\uDE80']
 
   return (
-    <div className={styles.page} ref={fadeRef}>
+    <div className={styles.page} ref={fadeRef} key={slug}>
       {/* Scroll progress bar */}
       <div className={styles.progressTrack}>
         <div className={styles.progressBar} style={{ transform: `scaleX(${progress})` }} />

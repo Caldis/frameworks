@@ -82,6 +82,12 @@ body {
 h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; }
 a { color: inherit; text-decoration: none; }
 
+/* ── Loading skeleton pulse ── */
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
 /* ── Viewport entrance animation ── */
 [data-fade] {
   opacity: 0;
