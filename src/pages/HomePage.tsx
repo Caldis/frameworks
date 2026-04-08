@@ -243,6 +243,7 @@ export default function HomePage() {
           onCardClick={handleCardClick}
           favorites={favorites}
           onToggleFavorite={toggleFavorite}
+          query={query}
         />
       )}
 

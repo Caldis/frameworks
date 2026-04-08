@@ -2,6 +2,7 @@ import type { Framework } from '../types'
 import { getCategoryByKey, catColorVar } from '../data/categories'
 import { useI18n } from '../i18n'
 import Fingerprint from './Fingerprint'
+import Highlight from './Highlight'
 import styles from './FrameworkCard.module.css'
 
 interface FrameworkCardProps {
@@ -10,6 +11,7 @@ interface FrameworkCardProps {
   isFavorite: boolean
   onToggleFavorite: (slug: string) => void
   hideCategoryTag?: boolean
+  query?: string
 }
 
 export default function FrameworkCard({
@@ -18,6 +20,7 @@ export default function FrameworkCard({
   isFavorite,
   onToggleFavorite,
   hideCategoryTag = false,
+  query = '',
 }: FrameworkCardProps) {
   const { localized } = useI18n()
   const category = getCategoryByKey(framework.category)
@@ -47,7 +50,9 @@ export default function FrameworkCard({
         {isFavorite ? '★' : '☆'}
       </button>
 
-      <div className={styles.name}>{localized(framework, 'name')}</div>
+      <div className={styles.name}>
+        <Highlight text={localized(framework, 'name')} query={query} />
+      </div>
 
       <div className={styles.tagRow}>
         {category && !hideCategoryTag && (
@@ -66,7 +71,9 @@ export default function FrameworkCard({
         )}
       </div>
 
-      <div className={styles.desc}>{localized(framework, 'desc')}</div>
+      <div className={styles.desc}>
+        <Highlight text={localized(framework, 'desc')} query={query} />
+      </div>
 
       <div className={styles.meta}>
         <span className={`${styles.complexity} ${

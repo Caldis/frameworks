@@ -8,6 +8,7 @@ interface CardGridProps {
   favorites: string[]
   onToggleFavorite: (slug: string) => void
   hideCategoryTag?: boolean
+  query?: string
 }
 
 export default function CardGrid({
@@ -16,6 +17,7 @@ export default function CardGrid({
   favorites,
   onToggleFavorite,
   hideCategoryTag = false,
+  query = '',
 }: CardGridProps) {
   if (frameworks.length === 0) {
     return (
@@ -35,6 +37,7 @@ export default function CardGrid({
           isFavorite={favorites.includes(fw.slug)}
           onToggleFavorite={onToggleFavorite}
           hideCategoryTag={hideCategoryTag}
+          query={query}
         />
       ))}
     </div>

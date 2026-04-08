@@ -1,4 +1,5 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useCallback } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer, Legend } from 'recharts'
 import { getAllFrameworks, getFrameworkFull } from '../data/loader'
 import { categories } from '../data/categories'
@@ -31,7 +32,26 @@ function toRadarScore(fw: Framework) {
 export default function ComparePage() {
   const { locale, t, localized } = useI18n()
   usePageMeta('Compare Frameworks', 'Compare 2-3 software design frameworks side by side')
-  const [selected, setSelected] = useState<string[]>([])
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  // Read initial selection from URL (?fw=slug1,slug2)
+  const [selected, setSelectedState] = useState<string[]>(() => {
+    const param = searchParams.get('fw')
+    return param ? param.split(',').filter(Boolean).slice(0, MAX_SLOTS) : []
+  })
+
+  // Sync selection to URL
+  const setSelected = useCallback((updater: string[] | ((prev: string[]) => string[])) => {
+    setSelectedState(prev => {
+      const next = typeof updater === 'function' ? updater(prev) : updater
+      if (next.length > 0) {
+        setSearchParams({ fw: next.join(',') }, { replace: true })
+      } else {
+        setSearchParams({}, { replace: true })
+      }
+      return next
+    })
+  }, [setSearchParams])
 
   const allFrameworks = useMemo(() => getAllFrameworks(), [])
 
