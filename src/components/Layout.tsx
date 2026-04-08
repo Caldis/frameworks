@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import LanguageSwitcher from './LanguageSwitcher'
 import KeyboardHelp from './KeyboardHelp'
+import BackToTop from './BackToTop'
 import { useI18n } from '../i18n'
 import { useTheme } from '../hooks/useTheme'
 import styles from './Layout.module.css'
@@ -92,6 +93,7 @@ export default function Layout() {
           </div>
         </div>
       </footer>
+      <BackToTop />
       <KeyboardHelp visible={showHelp} onClose={() => setShowHelp(false)} />
     </div>
   )

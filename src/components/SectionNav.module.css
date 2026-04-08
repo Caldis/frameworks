@@ -1,0 +1,37 @@
+.nav {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 30;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: none;
+  background: var(--border);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.dot:hover {
+  background: var(--muted);
+  transform: scale(1.5);
+}
+
+.dotActive {
+  background: var(--viz-accent);
+  transform: scale(1.5);
+}
+
+@media (max-width: 1100px) {
+  .nav {
+    display: none;
+  }
+}

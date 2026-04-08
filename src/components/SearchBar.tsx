@@ -113,6 +113,7 @@ export default function SearchBar({ value, onChange, inputRef }: SearchBarProps)
             <li
               key={fw.slug}
               className={`${styles.suggestion} ${i === active ? styles.suggestionActive : ''}`}
+              style={{ '--i': i } as React.CSSProperties}
               role="option"
               aria-selected={i === active}
               onMouseEnter={() => setActive(i)}

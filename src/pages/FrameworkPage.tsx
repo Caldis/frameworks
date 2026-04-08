@@ -8,6 +8,7 @@ import { useFrameworkDetail } from '../hooks/useFrameworkDetail'
 import FrameworkViz from '../components/FrameworkViz'
 import StepsList from '../components/StepsList'
 import RelatedFrameworks from '../components/RelatedFrameworks'
+import SectionNav from '../components/SectionNav'
 import styles from './FrameworkPage.module.css'
 
 export default function FrameworkPage() {
@@ -90,6 +91,18 @@ export default function FrameworkPage() {
         <div className={styles.progressBar} style={{ transform: `scaleX(${progress})` }} />
       </div>
 
+      <SectionNav sections={[
+        { id: 'sec-when', label: locale === 'en' ? 'When to Use' : '何时使用' },
+        { id: 'sec-concepts', label: locale === 'en' ? 'Core Concepts' : '核心概念' },
+        { id: 'sec-origin', label: locale === 'en' ? 'Origin' : '起源' },
+        { id: 'sec-how', label: locale === 'en' ? 'How It Works' : '实施方法' },
+        { id: 'sec-case', label: locale === 'en' ? 'Case Study' : '真实案例' },
+        { id: 'sec-not', label: locale === 'en' ? 'When Not' : '何时不该' },
+        { id: 'sec-adopters', label: locale === 'en' ? 'Adopters' : '采用者' },
+        { id: 'sec-sources', label: locale === 'en' ? 'Sources' : '来源' },
+        { id: 'sec-related', label: locale === 'en' ? 'Related' : '关联' },
+      ]} />
+
       {/* ── 1. Hero Section ── */}
       <nav className={styles.breadcrumb}>
         <Link to="/">{t.allFrameworks}</Link>
@@ -157,7 +170,7 @@ export default function FrameworkPage() {
 
       {/* ── 2. When to Use ── */}
       {whenToUse?.length > 0 && (
-        <section className={styles.section}>
+        <section id="sec-when" className={styles.section}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.whenToUse}</h2>
           <div className={styles.whenGrid}>
             {whenToUse.map((item, i) => (
@@ -172,7 +185,7 @@ export default function FrameworkPage() {
 
       {/* ── 3. Core Concepts ── */}
       {coreConcepts?.length > 0 && (
-        <section className={styles.section}>
+        <section id="sec-concepts" className={styles.section}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.coreConceptsTitle}</h2>
           <div className={styles.conceptsList}>
             {coreConcepts.map((concept, i) => {
@@ -195,7 +208,7 @@ export default function FrameworkPage() {
 
       {/* ── 4. Origin & Evolution ── */}
       {timeline?.length > 0 && (
-        <section className={styles.section}>
+        <section id="sec-origin" className={styles.section}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.originAndEvolution}</h2>
           <div className={styles.timeline}>
             {timeline.map(([year, event], i) => (
@@ -210,7 +223,7 @@ export default function FrameworkPage() {
       )}
 
       {/* ── 5. How It Works ── */}
-      <section className={styles.section}>
+      <section id="sec-how" className={styles.section}>
         <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.howItWorks}</h2>
         <StepsList steps={steps} />
 
@@ -248,7 +261,7 @@ export default function FrameworkPage() {
 
       {/* ── 6. Case Study ── */}
       {caseStudyText && (
-        <section className={styles.section}>
+        <section id="sec-case" className={styles.section}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.caseStudy}</h2>
           {fw.case_study_company && (
             <span className={styles.caseStudyCompany}>{fw.case_study_company}</span>
@@ -264,7 +277,7 @@ export default function FrameworkPage() {
 
       {/* ── 7. When NOT to Use ── */}
       {whenNotToUse?.length > 0 && (
-        <section className={styles.section}>
+        <section id="sec-not" className={styles.section}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.whenNotToUse}</h2>
           <div className={styles.warningList}>
             {whenNotToUse.map((item, i) => (
@@ -279,7 +292,7 @@ export default function FrameworkPage() {
 
       {/* ── 8. Notable Adopters ── */}
       {framework.adopters?.length > 0 && (
-        <section className={styles.section}>
+        <section id="sec-adopters" className={styles.section}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.notableAdopters}</h2>
           <div className={styles.adoptersRow}>
             {framework.adopters.map((name, i) => (
@@ -291,7 +304,7 @@ export default function FrameworkPage() {
 
       {/* ── 9. Sources ── */}
       {(fw.primary_source || fw.secondary_sources?.length) && (
-        <section className={styles.section}>
+        <section id="sec-sources" className={styles.section}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>
             📚 {t.primarySource}
           </h2>
@@ -315,7 +328,7 @@ export default function FrameworkPage() {
 
       {/* ── Related Frameworks ── */}
       {related.length > 0 && (
-        <section className={styles.relatedSection}>
+        <section id="sec-related" className={styles.relatedSection}>
           <h2 className={styles.sectionTitle} style={sectionBorderStyle}>{t.relatedFrameworks}</h2>
           <RelatedFrameworks frameworks={related} typedRelations={typedRelations} />
         </section>
