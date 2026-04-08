@@ -18,25 +18,83 @@ function isChinese(text: string): boolean {
 
 function shortLabel(text: string, maxLen?: number): string {
   const zh = isChinese(text)
-  // Take text before colon if present
-  const colonIdx = text.indexOf(zh ? '：' : ':')
-  let phrase = colonIdx > 0 && colonIdx <= (zh ? 12 : 20) ? text.slice(0, colonIdx).trim() : text
+  // Strip parenthetical content
+  let cleaned = text.replace(/[（(][^）)]*[）)]/g, '').trim()
+
   if (zh) {
     const limit = maxLen ?? 6
-    if (phrase.length <= limit) return phrase
-    // Truncate at even boundary to preserve 2-char compound words
-    const truncLen = limit % 2 === 0 ? limit : limit - 1
-    return phrase.slice(0, truncLen)
+    if (cleaned.length <= limit) return cleaned
+
+    // Visual width: Chinese char ≈ 1.0, Latin/digit ≈ 0.6
+    const vw = (s: string) => {
+      let w = 0
+      for (let i = 0; i < s.length; i++)
+        w += /[\u4e00-\u9fff]/.test(s[i]) ? 1 : 0.6
+      return w
+    }
+    const vPos = (s: string, maxW: number) => {
+      let w = 0, p = 0
+      for (let i = 0; i < s.length; i++) {
+        const c = /[\u4e00-\u9fff]/.test(s[i]) ? 1 : 0.6
+        if (w + c > maxW) break
+        w += c; p = i + 1
+      }
+      return p
+    }
+    const vLimit = vPos(cleaned, limit)
+
+    // 1. Colon split (min 2 — intentional labels like 红灯：)
+    const colonIdx = cleaned.indexOf('：')
+    if (colonIdx >= 2 && colonIdx <= vLimit) return cleaned.slice(0, colonIdx).trim()
+
+    // 2. Delimiter splits (min 3 — avoid generic 2-char verbs)
+    const seps = ['，', '、', '；', '——', '从而', '直至', '以便', '以确保', '用于', '并将', '并对', '并', '及']
+    let best = ''
+    for (const d of seps) {
+      const idx = cleaned.indexOf(d)
+      if (idx >= 3 && idx <= vLimit && idx > best.length) best = cleaned.slice(0, idx).trim()
+    }
+    if (best) return best.replace(/[，、；：]$/, '')
+
+    // 3. Truncate at visual limit, try to keep complete English words
+    let pos = vLimit
+    if (pos < cleaned.length && /[a-zA-Z0-9]/.test(cleaned[pos])) {
+      let wordEnd = pos
+      while (wordEnd < cleaned.length && /[a-zA-Z0-9]/.test(cleaned[wordEnd])) wordEnd++
+      if (vw(cleaned.slice(0, wordEnd)) <= limit + 1.2) {
+        pos = wordEnd
+      } else {
+        let ws = pos
+        while (ws > 0 && /[a-zA-Z0-9]/.test(cleaned[ws - 1])) ws--
+        if (ws >= 4) { pos = ws; while (pos > 0 && cleaned[pos - 1] === ' ') pos-- }
+      }
+    }
+    return cleaned.slice(0, pos).trim().replace(/[，、；：]$/, '')
   } else {
-    const limit = maxLen ?? 12
-    if (phrase.length <= limit) return phrase
-    // Try first two words for better readability
-    const words = phrase.split(/\s+/)
-    const twoWords = words.slice(0, 2).join(' ')
-    if (twoWords.length <= limit) return twoWords
-    // Fall back to first word
-    const firstWord = words[0]
-    return firstWord.length > limit ? firstWord.slice(0, limit) : firstWord
+    const limit = maxLen ?? 14
+    const colonIdx = cleaned.indexOf(':')
+    if (colonIdx > 0 && colonIdx <= limit) {
+      const r = cleaned.slice(0, colonIdx).trim()
+      if (r.length >= 3) return r
+    }
+    if (cleaned.length <= limit) return cleaned
+
+    const tokens = cleaned.split(/\s+/).map(t => t.replace(/[,;:]$/, ''))
+    const skip = (['the', 'a', 'an'] as string[]).includes(tokens[0]?.toLowerCase()) ? 1 : 0
+    for (let n = 3; n >= 2; n--) {
+      const p = tokens.slice(skip, skip + n).join(' ')
+      if (p.length <= limit) return p
+    }
+    const first = tokens[skip] || ''
+    const genericVerbs = ['add', 'use', 'run', 'set', 'map', 'for', 'get', 'put', 'if']
+    if (genericVerbs.includes(first.toLowerCase()) && tokens.length > skip + 1) {
+      const obj = tokens[skip + 1]
+      const verbObj = first + ' ' + obj.split('-')[0]
+      if (verbObj.length <= limit) return verbObj
+      const objPart = obj.split('-')[0]
+      if (objPart.length >= 4 && objPart.length <= limit) return objPart
+    }
+    return first.length > limit ? first.slice(0, limit) : first
   }
 }
 
