@@ -18,7 +18,11 @@ export default function FrameworkPage() {
   const framework = slug ? getFrameworkBySlug(slug) : undefined
   const { framework: fullFramework } = useFrameworkDetail(slug)
 
-  // Removed useFadeIn — replaced by <FadeIn> component (react-intersection-observer)
+  // Scroll to top on slug change (critical for FadeIn — otherwise sections above
+  // the preserved scroll position never enter viewport and stay invisible)
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [slug])
 
   // Scroll progress
   const [progress, setProgress] = useState(0)
