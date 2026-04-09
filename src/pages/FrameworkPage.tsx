@@ -333,6 +333,9 @@ export default function FrameworkPage() {
         </FadeIn>
       )}
 
+      {/* ── AI Agent Integration ── */}
+      <AgentSection slug={framework.slug} name={localized(framework, 'name')} locale={locale} />
+
       {/* ── Related Frameworks ── */}
       {related.length > 0 && (
         <section id="sec-related" className={styles.relatedSection}>
@@ -393,5 +396,74 @@ export default function FrameworkPage() {
         </Link>
       )}
     </div>
+  )
+}
+
+/* ── AI Agent Integration Section ── */
+
+function AgentSection({ slug, name, locale }: { slug: string; name: string; locale: string }) {
+  const zh = locale === 'zh'
+  const [copied, setCopied] = useState<string | null>(null)
+
+  const skillUrl = `https://sdframe.caldis.me/skill/references/frameworks/${slug}.md`
+  const applyPrompt = zh
+    ? `请阅读 ${skillUrl} 作为指引，帮我在当前项目中应用「${name}」框架。`
+    : `Read ${skillUrl} as your guide and help me apply the ${name} framework to my project.`
+  const selectPrompt = zh
+    ? `请阅读 https://sdframe.caldis.me/skill/SKILL.md 作为技能指引，帮我评估「${name}」是否适合我的项目，并推荐替代方案。`
+    : `Read https://sdframe.caldis.me/skill/SKILL.md as your skill guide, help me evaluate if ${name} fits my project, and suggest alternatives.`
+
+  const copy = (text: string, key: string) => {
+    navigator.clipboard.writeText(text)
+    setCopied(key)
+    setTimeout(() => setCopied(null), 2000)
+  }
+
+  return (
+    <section className={styles.section}>
+      <h2 className={styles.sectionTitle}>
+        {zh ? '接入 AI Agent' : 'Use with AI Agent'}
+      </h2>
+      <p className={styles.agentDesc}>
+        {zh
+          ? '将这个框架的知识分享给你的 AI 助手，让它帮你实施或评估。'
+          : 'Share this framework with your AI assistant to help you apply or evaluate it.'}
+      </p>
+
+      <div className={styles.agentCards}>
+        <div className={styles.agentCard}>
+          <div className={styles.agentCardTitle}>
+            {zh ? '模式 A：直接应用' : 'Mode A: Apply This Framework'}
+          </div>
+          <pre className={styles.agentPrompt}>{applyPrompt}</pre>
+          <button
+            className={styles.agentCopyBtn}
+            onClick={() => copy(applyPrompt, 'apply')}
+          >
+            {copied === 'apply' ? '✓' : (zh ? '复制' : 'Copy')}
+          </button>
+        </div>
+
+        <div className={styles.agentCard}>
+          <div className={styles.agentCardTitle}>
+            {zh ? '模式 B：评估适用性' : 'Mode B: Evaluate Fit'}
+          </div>
+          <pre className={styles.agentPrompt}>{selectPrompt}</pre>
+          <button
+            className={styles.agentCopyBtn}
+            onClick={() => copy(selectPrompt, 'select')}
+          >
+            {copied === 'select' ? '✓' : (zh ? '复制' : 'Copy')}
+          </button>
+        </div>
+      </div>
+
+      <a href={skillUrl} target="_blank" rel="noopener noreferrer" className={styles.agentFileLink}>
+        {zh ? '查看 Skill 原始文件' : 'View skill reference file'} &rarr;
+      </a>
+      <Link to="/agent" className={styles.agentFileLink}>
+        {zh ? '完整集成指南' : 'Full integration guide'} &rarr;
+      </Link>
+    </section>
   )
 }
