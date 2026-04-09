@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import type { Framework } from '../types'
 import { getCategoryByKey, catColorVar } from '../data/categories'
@@ -6,6 +6,7 @@ import { useI18n } from '../i18n'
 import FrameworkViz from './FrameworkViz'
 import StepsList from './StepsList'
 import RelatedFrameworks from './RelatedFrameworks'
+import ShaderCanvas from './ShaderCanvas'
 import styles from './Modal.module.css'
 
 interface ModalProps {
@@ -16,6 +17,23 @@ interface ModalProps {
   hasPrev: boolean
   hasNext: boolean
   relatedFrameworks: Framework[]
+}
+
+// Category key → approximate RGB for shader tinting
+const CAT_COLORS: Record<string, [number, number, number]> = {
+  thinking:      [0.45, 0.73, 0.58],
+  architecture:  [0.35, 0.58, 0.82],
+  coding:        [0.64, 0.48, 0.80],
+  quality:       [0.82, 0.35, 0.35],
+  deployment:    [0.78, 0.72, 0.38],
+  evolution:     [0.35, 0.72, 0.48],
+  ai:            [0.82, 0.55, 0.32],
+  data:          [0.35, 0.52, 0.72],
+  security:      [0.72, 0.35, 0.52],
+  distributed:   [0.35, 0.48, 0.68],
+  api:           [0.55, 0.55, 0.32],
+  team:          [0.72, 0.52, 0.32],
+  observability: [0.35, 0.65, 0.55],
 }
 
 const HINT_KEY = 'modal-nav-hint-shown'
@@ -38,24 +56,20 @@ export default function Modal({
     setTimeout(onClose, 200)
   }, [onClose])
 
-  // Reset closing state when framework changes
   useEffect(() => { setClosing(false) }, [framework])
 
-  // Touch swipe handling
+  // Touch swipe
   const touchStartX = useRef(0)
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX
-  }
-
+  const handleTouchStart = (e: React.TouchEvent) => { touchStartX.current = e.touches[0].clientX }
   const handleTouchEnd = (e: React.TouchEvent) => {
     const diff = touchStartX.current - e.changedTouches[0].clientX
     if (Math.abs(diff) > 60) {
-      if (diff > 0 && hasNext) onNext()  // swipe left = next
-      if (diff < 0 && hasPrev) onPrev()  // swipe right = prev
+      if (diff > 0 && hasNext) onNext()
+      if (diff < 0 && hasPrev) onPrev()
     }
   }
 
+  // Navigation hint
   useEffect(() => {
     if (framework && !sessionStorage.getItem(HINT_KEY)) {
       sessionStorage.setItem(HINT_KEY, '1')
@@ -65,103 +79,113 @@ export default function Modal({
     }
   }, [framework])
 
+  // Keyboard navigation
   useEffect(() => {
     if (!framework) return
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') handleClose()
       if (e.key === 'ArrowLeft' && hasPrev) onPrev()
       if (e.key === 'ArrowRight' && hasNext) onNext()
     }
-
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [framework, handleClose, onPrev, onNext, hasPrev, hasNext])
 
+  const shaderColor = useMemo(
+    () => framework ? (CAT_COLORS[framework.category] || [0.6, 0.6, 0.6]) : [0.6, 0.6, 0.6],
+    [framework?.category]
+  )
+
   if (!framework) return null
 
   const category = getCategoryByKey(framework.category)
-  const subtitle = locale === 'en' ? framework.name_zh : framework.name
   const steps = locale === 'en' ? framework.steps : framework.steps_zh
+  const formattedNumber = String(framework.id).padStart(2, '0')
 
   return (
     <div className={`${styles.overlay} ${closing ? styles.overlayClosing : ''}`} onClick={handleClose}>
-      <div className={`${styles.modal} ${closing ? styles.modalClosing : ''}`} onClick={(e) => e.stopPropagation()} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-        <button className={styles.close} onClick={handleClose}>
-          &times;
-        </button>
-        <div className={styles.content}>
-          <div className={styles.header}>
-            <span className={styles.number}>
-              # {String(framework.id).padStart(2, '0')}
-            </span>
-            <h2 className={styles.title}>{localized(framework, 'name')}</h2>
-            <span className={styles.titleZh}>{subtitle}</span>
+      <div
+        className={`${styles.modal} ${closing ? styles.modalClosing : ''}`}
+        onClick={e => e.stopPropagation()}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        {/* Close button */}
+        <button className={styles.close} onClick={handleClose}>&times;</button>
+
+        {/* Left panel: shader + viz */}
+        <div className={styles.leftPanel}>
+          <div
+            className={styles.catAccent}
+            style={{ backgroundColor: catColorVar(framework.category, 'text') }}
+          />
+          <ShaderCanvas color={shaderColor} className={styles.shader} />
+          <span className={styles.numberWatermark}>{formattedNumber}</span>
+          <div className={styles.vizWrap}>
+            <FrameworkViz type={framework.viz_type} size={260} animate labels={steps} />
+          </div>
+        </div>
+
+        {/* Right panel: content */}
+        <div className={styles.rightPanel}>
+          {/* Meta line */}
+          <div className={styles.meta}>
+            <span className={styles.number}># {formattedNumber}</span>
             {category && (
               <span
+                className={styles.catPill}
                 style={{
-                  fontSize: '10px',
-                  fontFamily: 'var(--font-mono)',
-                  padding: '2px 8px',
-                  borderRadius: '10px',
                   backgroundColor: catColorVar(framework.category, 'bg'),
                   color: catColorVar(framework.category, 'text'),
-                  display: 'inline-block',
                 }}
               >
                 {localized(category, 'name')}
               </span>
             )}
-            {framework.ai_relevant && (
-              <span className={styles.aiTag}>AI</span>
-            )}
+            {framework.ai_relevant && <span className={styles.aiTag}>AI</span>}
           </div>
-          <div className={styles.vizPlaceholder}>
-            <FrameworkViz type={framework.viz_type} size={300} animate labels={steps} />
-          </div>
+
+          {/* Title */}
+          <h2 className={styles.title}>{localized(framework, 'name')}</h2>
+          {locale === 'zh' && <div className={styles.subtitle}>{framework.name}</div>}
+
+          {/* Description */}
           <p className={styles.desc}>{localized(framework, 'desc')}</p>
-          <StepsList steps={steps} />
+
+          {/* Steps */}
+          <div className={styles.stepsWrap}>
+            <StepsList steps={steps} />
+          </div>
+
+          {/* Related */}
           {relatedFrameworks.length > 0 && (
             <div className={styles.related}>
               <h3>{t.relatedFrameworks}</h3>
               <RelatedFrameworks frameworks={relatedFrameworks} />
             </div>
           )}
-          <Link
-            to={`/frameworks/${framework.slug}`}
-            className={styles.detailLink}
-          >
-            {t.viewDetails}
+
+          {/* CTA */}
+          <Link to={`/frameworks/${framework.slug}`} className={styles.detailLink}>
+            {t.viewDetails} &rarr;
           </Link>
         </div>
       </div>
+
+      {/* Prev/Next navigation */}
       {hasPrev && (
-        <button
-          className={styles.navPrev}
-          onClick={(e) => {
-            e.stopPropagation()
-            onPrev()
-          }}
-        >
+        <button className={styles.navPrev} onClick={e => { e.stopPropagation(); onPrev() }}>
           &larr;
         </button>
       )}
       {hasNext && (
-        <button
-          className={styles.navNext}
-          onClick={(e) => {
-            e.stopPropagation()
-            onNext()
-          }}
-        >
+        <button className={styles.navNext} onClick={e => { e.stopPropagation(); onNext() }}>
           &rarr;
         </button>
       )}
-      {showHint && (
-        <div className={styles.hint}>
-          ⌨️ ← → to navigate
-        </div>
-      )}
+
+      {/* Keyboard hint */}
+      {showHint && <div className={styles.hint}>← → navigate &middot; esc close</div>}
     </div>
   )
 }
