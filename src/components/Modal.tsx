@@ -167,7 +167,7 @@ export default function Modal({
 
           {/* CTA */}
           <Link to={`/frameworks/${framework.slug}`} className={styles.detailLink}>
-            {t.viewDetails} &rarr;
+            {t.viewDetails}
           </Link>
         </div>
       </div>

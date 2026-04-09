@@ -12,6 +12,7 @@ const FRAG = `precision mediump float;
 uniform float u_time;
 uniform vec2 u_res;
 uniform vec3 u_color;
+uniform float u_dark;
 
 vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}
 vec2 mod289(vec2 x){return x-floor(x*(1./289.))*289.;}
@@ -41,14 +42,31 @@ float snoise(vec2 v){
 
 void main(){
   vec2 uv=gl_FragCoord.xy/u_res;
-  float n1=snoise(uv*2.5+u_time*.08)*.5+.5;
-  float n2=snoise(uv*4.-u_time*.04+3.7)*.5+.5;
-  float n3=snoise(uv*1.5+u_time*.12+7.3)*.5+.5;
-  float n=n1*.5+n2*.3+n3*.2;
 
-  vec3 warm=vec3(.96,.949,.925);
-  vec3 col=mix(warm,u_color,n*.18);
-  col+=.012*snoise(uv*80.+u_time*.5);
+  // Flowing ink wash — large slow undulations
+  float flow1=snoise(vec2(uv.x*1.2+u_time*.06, uv.y*1.8+u_time*.04))*.5+.5;
+  float flow2=snoise(vec2(uv.x*2.5-u_time*.08, uv.y*1.5+u_time*.05+5.))*.5+.5;
+  float flow3=snoise(vec2(uv.x*.8+u_time*.03, uv.y*3.+u_time*.07+10.))*.5+.5;
+
+  // Combine flows into organic ink pattern
+  float ink=flow1*.45+flow2*.35+flow3*.2;
+  ink=smoothstep(.25,.75,ink);
+
+  // Secondary detail layer — finer texture
+  float detail=snoise(uv*6.+u_time*.1+20.)*.5+.5;
+  ink=mix(ink,detail,.15);
+
+  // Color mixing — strong enough to be visible
+  vec3 base=mix(vec3(.965,.955,.935),vec3(.12,.11,.10),u_dark);
+  vec3 tint=mix(u_color,u_color*.6,u_dark);
+  vec3 col=mix(base,tint,ink*.55);
+
+  // Subtle edge darkening (vignette)
+  float vig=1.-.35*length((uv-.5)*vec2(1.,.7));
+  col*=vig;
+
+  // Film grain
+  col+=.008*snoise(uv*120.+u_time*2.);
 
   gl_FragColor=vec4(col,1.);
 }`
@@ -91,6 +109,7 @@ export default function ShaderCanvas({ color, className }: ShaderCanvasProps) {
       time: gl.getUniformLocation(prog, 'u_time'),
       res: gl.getUniformLocation(prog, 'u_res'),
       color: gl.getUniformLocation(prog, 'u_color'),
+      dark: gl.getUniformLocation(prog, 'u_dark'),
     }
 
     const start = performance.now()
@@ -105,10 +124,12 @@ export default function ShaderCanvas({ color, className }: ShaderCanvasProps) {
         gl.viewport(0, 0, w, h)
       }
 
+      const isDark = document.documentElement.dataset.theme === 'dark' ? 1.0 : 0.0
       const t = (performance.now() - start) / 1000
       gl.uniform1f(locs.time, t)
       gl.uniform2f(locs.res, w, h)
       gl.uniform3f(locs.color, color[0], color[1], color[2])
+      gl.uniform1f(locs.dark, isDark)
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
 
       raf = requestAnimationFrame(render)
