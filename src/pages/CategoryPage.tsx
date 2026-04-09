@@ -46,15 +46,7 @@ export default function CategoryPage() {
   const nameSubtitle = locale === 'en' ? category.name_zh : category.name
 
   // Build nth-child selectors for AI-relevant cards in the grid
-  const aiIndices = frameworks
-    .map((fw, i) => (fw.ai_relevant ? i + 1 : null))
-    .filter((i): i is number => i !== null)
-  const aiBorderCSS = aiIndices.length > 0
-    ? `.${styles.gridWrap} > div > div { border-left: 3px solid transparent; }\n` +
-      aiIndices
-        .map(n => `.${styles.gridWrap} > div > div:nth-child(${n})`)
-        .join(',\n') + ` { border-left-color: var(--cat-ai-bg); }`
-    : ''
+  // AI border removed — AI badge on cards is sufficient, border caused alignment issues
 
   const handleCardClick = (fw: Framework) => {
     navigate(`/frameworks/${fw.slug}`)
@@ -87,7 +79,6 @@ export default function CategoryPage() {
         </div>
       </div>
 
-      {aiBorderCSS && <style>{aiBorderCSS}</style>}
       <div className={styles.gridWrap}>
         <CardGrid
           frameworks={frameworks}
