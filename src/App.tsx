@@ -11,6 +11,7 @@ const SelectorPage = lazy(() => import('./pages/SelectorPage'))
 const PathsPage = lazy(() => import('./pages/PathsPage'))
 const StatsPage = lazy(() => import('./pages/StatsPage'))
 const TimelinePage = lazy(() => import('./pages/TimelinePage'))
+const AgentPage = lazy(() => import('./pages/AgentPage'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 
 function Loading() {
@@ -37,6 +38,7 @@ export default function App() {
         <Route path="/paths" element={<Suspense fallback={<Loading />}><PathsPage /></Suspense>} />
         <Route path="/insights" element={<Suspense fallback={<Loading />}><StatsPage /></Suspense>} />
         <Route path="/timeline" element={<Suspense fallback={<Loading />}><TimelinePage /></Suspense>} />
+        <Route path="/agent" element={<Suspense fallback={<Loading />}><AgentPage /></Suspense>} />
         <Route path="*" element={<Suspense fallback={<Loading />}><NotFoundPage /></Suspense>} />
       </Route>
     </Routes>

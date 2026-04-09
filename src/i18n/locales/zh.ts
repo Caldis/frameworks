@@ -111,6 +111,7 @@ export const zh: LocaleStrings = {
   relTypePrerequisite: '前置知识',
   insights: '数据洞察',
   timeline: '时间线',
+  agent: 'AI Agent',
   noResults: '未找到与 "{query}" 相关的框架',
   ai: 'AI',
 }

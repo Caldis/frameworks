@@ -5,7 +5,7 @@ const BASE_URL = 'https://sdframe.caldis.me'
 
 module.exports = function generateSitemap(data, categories) {
   const urls = [
-    '/', '/map', '/compare', '/selector', '/paths', '/insights', '/timeline',
+    '/', '/map', '/compare', '/selector', '/paths', '/insights', '/timeline', '/agent',
   ]
 
   categories.forEach(c => urls.push(`/category/${c.slug}`))

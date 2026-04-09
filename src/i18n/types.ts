@@ -142,6 +142,7 @@ export interface LocaleStrings {
   // Stats
   insights: string
   timeline: string
+  agent: string
 
   // Misc
   noResults: string  // uses {query} placeholder

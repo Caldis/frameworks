@@ -111,6 +111,7 @@ export const en: LocaleStrings = {
   relTypePrerequisite: 'Prerequisite',
   insights: 'Insights',
   timeline: 'Timeline',
+  agent: 'AI Agent',
   noResults: 'No frameworks found for "{query}"',
   ai: 'AI',
 }
