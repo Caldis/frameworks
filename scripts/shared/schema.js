@@ -9,7 +9,7 @@ module.exports = {
     'team', 'observability'
   ],
 
-  VIZ_TYPES: ['flow', 'cycle', 'pyramid', 'matrix', 'venn', 'radar', 'tree', 'timeline'],
+  VIZ_TYPES: ['flow', 'cycle', 'pyramid', 'matrix', 'venn', 'radar', 'tree', 'timeline', 'concentric', 'quadrant', 'sankey', 'hexgrid'],
 
   COMPLEXITY: ['beginner', 'intermediate', 'advanced'],
 

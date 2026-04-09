@@ -128,12 +128,12 @@ function LabeledFlow({ labels }: { labels: string[] }) {
   return (
     <div className={styles.flowContainer}>
       {steps.map((label, i) => (
-        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+        <div key={i} className={styles.flowItem}>
           <div className={styles.flowStep}>
             <span className={styles.stepBadge}>{i + 1}</span>
             <span className={styles.stepLabel}>{shortLabel(label)}</span>
           </div>
-          {i < steps.length - 1 && <span className={styles.flowArrow}>{'\u2192'}</span>}
+          {i < steps.length - 1 && <span className={styles.flowArrowDown}>{'\u2193'}</span>}
         </div>
       ))}
     </div>
@@ -540,6 +540,146 @@ function GenericTimeline() {
   )
 }
 
+/* ── New chart types: Concentric, Quadrant, Sankey, HexGrid ── */
+
+function LabeledConcentric({ labels, size }: { labels: string[]; size: number }) {
+  const steps = labels.slice(0, 5)
+  const cx = size / 2, cy = size / 2
+  const maxR = size * 0.42
+  const n = steps.length
+  return (
+    <div className={styles.concentricContainer} style={{ width: size, height: size }}>
+      <svg viewBox={`0 0 ${size} ${size}`} width="100%" height="100%">
+        {steps.map((label, i) => {
+          const r = maxR - (maxR * 0.65 * i / (n - 1 || 1))
+          const opacity = 0.12 + 0.06 * i
+          return (
+            <g key={i}>
+              <circle cx={cx} cy={cy} r={r} fill={COLORS.accent} fillOpacity={opacity} stroke={COLORS.fill3} strokeWidth={1} />
+              <text x={cx} y={cy - r + 14} textAnchor="middle" fontSize={9} fill={COLORS.text} fontFamily="system-ui, sans-serif">
+                {shortLabel(label, isChinese(label) ? 6 : 10)}
+              </text>
+            </g>
+          )
+        })}
+      </svg>
+    </div>
+  )
+}
+
+function LabeledQuadrant({ labels, size }: { labels: string[]; size: number }) {
+  const items = labels.slice(0, 4)
+  const pad = 8
+  const half = size / 2
+  const positions = [
+    { x: pad, y: pad, w: half - pad * 1.5, h: half - pad * 1.5 },
+    { x: half + pad * 0.5, y: pad, w: half - pad * 1.5, h: half - pad * 1.5 },
+    { x: pad, y: half + pad * 0.5, w: half - pad * 1.5, h: half - pad * 1.5 },
+    { x: half + pad * 0.5, y: half + pad * 0.5, w: half - pad * 1.5, h: half - pad * 1.5 },
+  ]
+  const fills = [COLORS.fill1, COLORS.fill2, COLORS.fill2, COLORS.fill3]
+  return (
+    <div className={styles.quadrantContainer} style={{ width: size, height: size }}>
+      <svg viewBox={`0 0 ${size} ${size}`} width="100%" height="100%">
+        <line x1={half} y1={4} x2={half} y2={size - 4} stroke={COLORS.border} strokeWidth={1} />
+        <line x1={4} y1={half} x2={size - 4} y2={half} stroke={COLORS.border} strokeWidth={1} />
+        {items.map((label, i) => {
+          const p = positions[i]
+          return (
+            <g key={i}>
+              <rect x={p.x} y={p.y} width={p.w} height={p.h} rx={6} fill={fills[i]} fillOpacity={0.6} />
+              <text x={p.x + p.w / 2} y={p.y + p.h / 2 + 4} textAnchor="middle" fontSize={10} fill={COLORS.text} fontFamily="system-ui, sans-serif">
+                {shortLabel(label, isChinese(label) ? 6 : 10)}
+              </text>
+            </g>
+          )
+        })}
+      </svg>
+    </div>
+  )
+}
+
+function LabeledSankey({ labels }: { labels: string[] }) {
+  const steps = labels.slice(0, 5)
+  return (
+    <div className={styles.sankeyContainer}>
+      {steps.map((label, i) => (
+        <div key={i} className={styles.sankeyRow}>
+          <div className={styles.sankeyBar} style={{ width: `${90 - i * 8}%`, opacity: 0.85 - i * 0.1 }}>
+            <span className={styles.stepBadge}>{i + 1}</span>
+            <span className={styles.sankeyLabel}>{shortLabel(label, isChinese(label) ? 8 : 14)}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function LabeledHexGrid({ labels }: { labels: string[] }) {
+  const steps = labels.slice(0, 6)
+  return (
+    <div className={styles.hexContainer}>
+      {steps.map((label, i) => (
+        <div key={i} className={styles.hexCell}>
+          <span className={styles.stepBadge}>{i + 1}</span>
+          <span className={styles.hexLabel}>{shortLabel(label, isChinese(label) ? 4 : 8)}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function GenericConcentric() {
+  return (
+    <svg className={styles.genericSvg} viewBox="0 0 100 100" width="100%" height="100%">
+      <circle cx={50} cy={50} r={40} fill={PALETTE.warmGray2} stroke={PALETTE.border} strokeWidth={0.6} />
+      <circle cx={50} cy={50} r={28} fill={PALETTE.warmGray3} stroke={PALETTE.border} strokeWidth={0.6} />
+      <circle cx={50} cy={50} r={16} fill={PALETTE.warmGray4} stroke={PALETTE.border} strokeWidth={0.6} />
+      <circle cx={50} cy={50} r={6} fill={PALETTE.warmGray5} stroke={PALETTE.border} strokeWidth={0.6} />
+    </svg>
+  )
+}
+
+function GenericQuadrant() {
+  return (
+    <svg className={styles.genericSvg} viewBox="0 0 100 100" width="100%" height="100%">
+      <line x1={50} y1={10} x2={50} y2={90} stroke={PALETTE.warmGray3} strokeWidth={1.5} />
+      <line x1={10} y1={50} x2={90} y2={50} stroke={PALETTE.warmGray3} strokeWidth={1.5} />
+      <rect x={14} y={14} width={32} height={32} rx={4} fill={PALETTE.warmGray2} />
+      <rect x={54} y={14} width={32} height={32} rx={4} fill={PALETTE.warmGray3} />
+      <rect x={14} y={54} width={32} height={32} rx={4} fill={PALETTE.warmGray3} />
+      <rect x={54} y={54} width={32} height={32} rx={4} fill={PALETTE.warmGray4} />
+    </svg>
+  )
+}
+
+function GenericSankey() {
+  return (
+    <svg className={styles.genericSvg} viewBox="0 0 100 100" width="100%" height="100%">
+      <rect x={10} y={15} width={80} height={12} rx={3} fill={PALETTE.warmGray2} />
+      <rect x={10} y={33} width={65} height={12} rx={3} fill={PALETTE.warmGray3} />
+      <rect x={10} y={51} width={50} height={12} rx={3} fill={PALETTE.warmGray3} />
+      <rect x={10} y={69} width={35} height={12} rx={3} fill={PALETTE.warmGray4} />
+    </svg>
+  )
+}
+
+function GenericHexGrid() {
+  const hexR = 14
+  const positions = [[30,28],[58,28],[44,50],[72,50],[30,72],[58,72]]
+  return (
+    <svg className={styles.genericSvg} viewBox="0 0 100 100" width="100%" height="100%">
+      {positions.map(([cx,cy], i) => {
+        const pts = Array.from({length:6}, (_,j) => {
+          const a = Math.PI/3*j - Math.PI/6
+          return `${cx+hexR*Math.cos(a)},${cy+hexR*Math.sin(a)}`
+        }).join(' ')
+        return <polygon key={i} points={pts} fill={i===2?PALETTE.warmGray4:PALETTE.warmGray2} stroke={PALETTE.border} strokeWidth={0.6} />
+      })}
+    </svg>
+  )
+}
+
 const genericRenderers: Record<VizType, () => React.JSX.Element> = {
   flow: GenericFlow,
   cycle: GenericCycle,
@@ -549,6 +689,10 @@ const genericRenderers: Record<VizType, () => React.JSX.Element> = {
   radar: GenericRadar,
   tree: GenericTree,
   timeline: GenericTimeline,
+  concentric: GenericConcentric,
+  quadrant: GenericQuadrant,
+  sankey: GenericSankey,
+  hexgrid: GenericHexGrid,
 }
 
 /* ── Main Component ── */
@@ -584,6 +728,10 @@ export default function FrameworkViz({
         {type === 'radar' && <LabeledRadar labels={labels} size={size} />}
         {type === 'tree' && <LabeledTree labels={labels} />}
         {type === 'timeline' && <LabeledTimeline labels={labels} size={size} />}
+        {type === 'concentric' && <LabeledConcentric labels={labels} size={size} />}
+        {type === 'quadrant' && <LabeledQuadrant labels={labels} size={size} />}
+        {type === 'sankey' && <LabeledSankey labels={labels} />}
+        {type === 'hexgrid' && <LabeledHexGrid labels={labels} />}
       </div>
     )
   }

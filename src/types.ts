@@ -1,5 +1,5 @@
 export type CategoryKey = 'thinking' | 'architecture' | 'coding' | 'quality' | 'deployment' | 'evolution' | 'ai' | 'data' | 'security' | 'distributed' | 'api' | 'team' | 'observability'
-export type VizType = 'matrix' | 'flow' | 'pyramid' | 'cycle' | 'venn' | 'radar' | 'tree' | 'timeline'
+export type VizType = 'matrix' | 'flow' | 'pyramid' | 'cycle' | 'venn' | 'radar' | 'tree' | 'timeline' | 'concentric' | 'quadrant' | 'sankey' | 'hexgrid'
 
 export type RelationType = 'related' | 'alternative' | 'complement' | 'extends' | 'prerequisite'
 

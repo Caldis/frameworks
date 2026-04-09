@@ -34,30 +34,41 @@
   }
 }
 
-/* ── Flow ── */
+/* ── Flow (vertical) ── */
 
 .flowContainer {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 4px;
-  padding: 8px 4px;
+  gap: 0;
+  padding: 4px;
   width: 100%;
-  justify-content: center;
-  flex-wrap: nowrap;
+}
+
+.flowItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .flowStep {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 3px;
+  gap: 6px;
   background: var(--viz-bg);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 6px 8px;
+  padding: 5px 10px;
   min-width: 0;
-  flex: 0 1 auto;
-  max-width: 72px;
+  width: 100%;
+  max-width: 180px;
+}
+
+.flowArrowDown {
+  color: var(--viz-accent);
+  font-size: 12px;
+  line-height: 1;
+  padding: 1px 0;
 }
 
 .flowArrow {
@@ -356,6 +367,87 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* ── Concentric Rings ── */
+
+.concentricContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Quadrant (2x2) ── */
+
+.quadrantContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Sankey ── */
+
+.sankeyContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  padding: 8px;
+}
+
+.sankeyRow {
+  display: flex;
+}
+
+.sankeyBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--viz-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  min-height: 28px;
+}
+
+.sankeyLabel {
+  font-size: 10px;
+  color: var(--viz-text);
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Hex Grid ── */
+
+.hexContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  width: 100%;
+  padding: 6px;
+}
+
+.hexCell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 8px 4px;
+  background: var(--viz-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  min-height: 52px;
+}
+
+.hexLabel {
+  font-size: 9px;
+  color: var(--viz-text);
+  text-align: center;
+  line-height: 1.2;
 }
 
 /* ── Generic (small / decorative) versions ── */
