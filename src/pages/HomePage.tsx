@@ -171,8 +171,8 @@ export default function HomePage() {
           </nav>
         </div>
 
-        {/* Advanced filters panel */}
-        {showAdvanced && (
+        {/* Advanced filters panel — grid-rows transition */}
+        <div className={`${styles.advancedWrap} ${showAdvanced ? styles.advancedOpen : ''}`}>
           <div className={styles.advancedFilters}>
             <DimensionFilter
               label={t.filterAbstraction}
@@ -193,7 +193,7 @@ export default function HomePage() {
               onChange={setQualFilter}
             />
           </div>
-        )}
+        </div>
       </div>
 
       {/* Favorites section */}
