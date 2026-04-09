@@ -12,10 +12,10 @@
 - **Deploy**: GitHub Actions → GitHub Pages (custom domain)
 - **Inspired by**: pmframe.works
 
-## Current State (as of 2026-04-09, end of Sprint S53)
+## Current State (as of 2026-04-09, end of Sprint S55)
 
 ### What Exists
-- 300 software design frameworks across 13 categories, 39 fields per framework (audited, 0 errors)
+- 317 software design frameworks across 13 categories, 39 fields per framework (audited, 0 errors)
 - Full bilingual content (EN/ZH) with i18n system (useI18n hook, locale files)
 - 11 pages: Home (horizontal scroll cards + lerp engine), Framework Detail (11-section progressive layout + async detail loading), Category Landing (AI cross-category + reading list), Map (D3 force graph + label collision detection), Compare (radar chart + suggestions + diff highlighting), Selector (4-step wizard), Paths (learning sequences), Insights (editorial data viz), Timeline (by origin year), plus Layout shell
 - Dark mode: warm-tinted dark palette, prefers-color-scheme auto-detect + manual toggle (☽/☀), 55+ CSS variables, all category colors adapted
@@ -73,6 +73,8 @@
 - S51: Data completeness audit (299/300 clean, 1 broken relation fixed, BC year handling)
 - S52: Mobile UX (unstick controls, horizontal pills, hide nav links) + detail page info hierarchy (When Not moved up) + tree viz fix + FadeIn → react-intersection-observer + 5 UI refinements
 - S53: AI-native architecture — single source build pipeline (schema + data-loader + validate + generate-all) + skill package (SKILL.md + 300 framework refs + catalog + categories + llms.txt)
+- S54: +15 fundamental frameworks (MVC, MVVM, MVP, Clean Architecture, DRY, KISS, YAGNI, etc.)
+- S55: Decision-point taxonomy (19 points, all covered) + 34 alternative relations + SKILL.md decision routing
 
 ### Test Coverage
 - 54 E2E tests: smoke(9) + visual/a11y(8) + interaction(6) + data-display(8) + screenshots(14, incl. dark mode + insights)
