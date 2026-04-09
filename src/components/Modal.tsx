@@ -114,7 +114,7 @@ export default function Modal({
         <button className={styles.close} onClick={handleClose}>&times;</button>
 
         {/* Left panel: shader + viz */}
-        <div className={styles.leftPanel}>
+        <div className={styles.leftPanel} key={`left-${framework.slug}`}>
           <div
             className={styles.catAccent}
             style={{ backgroundColor: catColorVar(framework.category, 'text') }}
@@ -127,7 +127,7 @@ export default function Modal({
         </div>
 
         {/* Right panel: content */}
-        <div className={styles.rightPanel}>
+        <div className={styles.rightPanel} key={`right-${framework.slug}`}>
           {/* Meta line */}
           <div className={styles.meta}>
             <span className={styles.number}># {formattedNumber}</span>
