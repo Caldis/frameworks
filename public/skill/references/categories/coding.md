@@ -4,7 +4,7 @@ Implementation-level design — structuring code, managing complexity, writing m
 
 实现层面的设计——代码结构、复杂性管理、可维护软件编写。
 
-**45 frameworks** in this category.
+**46 frameworks** in this category.
 
 ## Frameworks
 
@@ -322,3 +322,10 @@ Implementation-level design — structuring code, managing complexity, writing m
 - **Quality**: maintainability, testability
 - **Author**: Karl Lieberherr, Ian Holland, Arthur Riel — Northeastern University, 1987
 - A module should not know about the internal workings of the objects it manipulates. An object should only call methods on: itself, its parameters, objects it creates, and its direct component objects — never on objects returned by those calls.
+
+### Active Record Pattern / 活动记录模式
+- **Slug**: active-record-pattern
+- **Complexity**: beginner
+- **Quality**: usability, maintainability
+- **Author**: Martin Fowler, 2002
+- Domain object that wraps a database row and encapsulates CRUD logic within itself

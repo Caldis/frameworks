@@ -85,6 +85,10 @@ Ask the user about their specific context:
 - dependency-injection (complement)
 - ddd-tactical-patterns (complement)
 - clean-code-principles (complement)
+- clean-architecture (alternative)
+- onion-architecture (alternative)
+- n-tier-layered (alternative)
+- ports-and-adapters (alternative)
 
 ## Source
 

@@ -3801,7 +3801,11 @@
     "viz_type": "venn",
     "related": [
       "domain-driven-design",
-      "cell-based-architecture"
+      "cell-based-architecture",
+      "clean-architecture",
+      "hexagonal-architecture",
+      "onion-architecture",
+      "n-tier-layered"
     ],
     "tags": [
       "hexagonal",
@@ -3941,6 +3945,22 @@
       {
         "slug": "cell-based-architecture",
         "type": "related"
+      },
+      {
+        "slug": "clean-architecture",
+        "type": "alternative"
+      },
+      {
+        "slug": "hexagonal-architecture",
+        "type": "alternative"
+      },
+      {
+        "slug": "onion-architecture",
+        "type": "alternative"
+      },
+      {
+        "slug": "n-tier-layered",
+        "type": "alternative"
       }
     ]
   },
@@ -4141,7 +4161,10 @@
     "related": [
       "separation-of-concerns",
       "observer-pattern",
-      "solid-principles"
+      "solid-principles",
+      "mvvm",
+      "mvp",
+      "flux-unidirectional"
     ],
     "tags": [
       "ui-pattern",
@@ -4180,16 +4203,40 @@
       "单向依赖：视图和控制器依赖模型，但模型不依赖任何一方"
     ],
     "timeline": [
-      ["1979", "Trygve Reenskaug introduces Model-View-Controller at Xerox PARC while working on Smalltalk-76"],
-      ["1988", "MVC is formalized and published in the Smalltalk-80 system as described by Krasner and Pope"],
-      ["2004", "Ruby on Rails popularizes MVC for web applications, triggering widespread framework adoption"],
-      ["2009", "MVC dominates web frameworks — Spring MVC, ASP.NET MVC, and Django all establish MVC as the standard web pattern"]
+      [
+        "1979",
+        "Trygve Reenskaug introduces Model-View-Controller at Xerox PARC while working on Smalltalk-76"
+      ],
+      [
+        "1988",
+        "MVC is formalized and published in the Smalltalk-80 system as described by Krasner and Pope"
+      ],
+      [
+        "2004",
+        "Ruby on Rails popularizes MVC for web applications, triggering widespread framework adoption"
+      ],
+      [
+        "2009",
+        "MVC dominates web frameworks — Spring MVC, ASP.NET MVC, and Django all establish MVC as the standard web pattern"
+      ]
     ],
     "timeline_zh": [
-      ["1979", "Trygve Reenskaug在Xerox PARC研究Smalltalk-76期间引入模型-视图-控制器"],
-      ["1988", "MVC在Smalltalk-80系统中由Krasner和Pope正式发表"],
-      ["2004", "Ruby on Rails将MVC普及用于Web应用程序，引发广泛的框架采用浪潮"],
-      ["2009", "MVC主导Web框架——Spring MVC、ASP.NET MVC和Django均将MVC确立为标准Web模式"]
+      [
+        "1979",
+        "Trygve Reenskaug在Xerox PARC研究Smalltalk-76期间引入模型-视图-控制器"
+      ],
+      [
+        "1988",
+        "MVC在Smalltalk-80系统中由Krasner和Pope正式发表"
+      ],
+      [
+        "2004",
+        "Ruby on Rails将MVC普及用于Web应用程序，引发广泛的框架采用浪潮"
+      ],
+      [
+        "2009",
+        "MVC主导Web框架——Spring MVC、ASP.NET MVC和Django均将MVC确立为标准Web模式"
+      ]
     ],
     "dos": [
       "Keep the Model completely ignorant of the View and Controller so it can be tested in isolation without any UI scaffolding",
@@ -4248,9 +4295,30 @@
       "Apple Inc. (2009). Cocoa Application Layer — MVC. Apple Developer Documentation."
     ],
     "typed_relations": [
-      {"slug": "separation-of-concerns", "type": "extends"},
-      {"slug": "observer-pattern", "type": "complement"},
-      {"slug": "solid-principles", "type": "complement"}
+      {
+        "slug": "separation-of-concerns",
+        "type": "extends"
+      },
+      {
+        "slug": "observer-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "mvvm",
+        "type": "alternative"
+      },
+      {
+        "slug": "mvp",
+        "type": "alternative"
+      },
+      {
+        "slug": "flux-unidirectional",
+        "type": "alternative"
+      }
     ]
   },
   {
@@ -4280,7 +4348,10 @@
     "related": [
       "separation-of-concerns",
       "observer-pattern",
-      "solid-principles"
+      "solid-principles",
+      "mvc",
+      "mvp",
+      "flux-unidirectional"
     ],
     "tags": [
       "ui-pattern",
@@ -4319,16 +4390,40 @@
       "与模型分离：视图模型将模型数据适配用于显示——格式化、聚合、过滤——将原始领域对象排除在视图之外"
     ],
     "timeline": [
-      ["2005", "John Gossman of Microsoft's WPF team publishes the MVVM pattern to exploit WPF's data binding engine"],
-      ["2010", "Knockout.js brings MVVM to the browser with observable data binding for JavaScript UIs"],
-      ["2014", "Angular (AngularJS 1.x) and Vue.js popularize MVVM-style two-way binding in web SPAs"],
-      ["2019", "SwiftUI launches on Apple platforms, making MVVM the idiomatic architecture for Swift UI development"]
+      [
+        "2005",
+        "John Gossman of Microsoft's WPF team publishes the MVVM pattern to exploit WPF's data binding engine"
+      ],
+      [
+        "2010",
+        "Knockout.js brings MVVM to the browser with observable data binding for JavaScript UIs"
+      ],
+      [
+        "2014",
+        "Angular (AngularJS 1.x) and Vue.js popularize MVVM-style two-way binding in web SPAs"
+      ],
+      [
+        "2019",
+        "SwiftUI launches on Apple platforms, making MVVM the idiomatic architecture for Swift UI development"
+      ]
     ],
     "timeline_zh": [
-      ["2005", "微软WPF团队的John Gossman发布MVVM模式，充分利用WPF的数据绑定引擎"],
-      ["2010", "Knockout.js将MVVM带入浏览器，为JavaScript UI提供可观察数据绑定"],
-      ["2014", "Angular（AngularJS 1.x）和Vue.js在Web单页应用中普及MVVM风格的双向绑定"],
-      ["2019", "SwiftUI在苹果平台发布，使MVVM成为Swift UI开发的惯用架构"]
+      [
+        "2005",
+        "微软WPF团队的John Gossman发布MVVM模式，充分利用WPF的数据绑定引擎"
+      ],
+      [
+        "2010",
+        "Knockout.js将MVVM带入浏览器，为JavaScript UI提供可观察数据绑定"
+      ],
+      [
+        "2014",
+        "Angular（AngularJS 1.x）和Vue.js在Web单页应用中普及MVVM风格的双向绑定"
+      ],
+      [
+        "2019",
+        "SwiftUI在苹果平台发布，使MVVM成为Swift UI开发的惯用架构"
+      ]
     ],
     "dos": [
       "Keep ViewModels free of any import from UI frameworks — a ViewModel that imports UIKit or WPF types is immediately harder to unit-test",
@@ -4387,9 +4482,30 @@
       "Google (2022). Guide to app architecture — MVVM. Android Developers Documentation."
     ],
     "typed_relations": [
-      {"slug": "separation-of-concerns", "type": "extends"},
-      {"slug": "observer-pattern", "type": "complement"},
-      {"slug": "solid-principles", "type": "complement"}
+      {
+        "slug": "separation-of-concerns",
+        "type": "extends"
+      },
+      {
+        "slug": "observer-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "mvc",
+        "type": "alternative"
+      },
+      {
+        "slug": "mvp",
+        "type": "alternative"
+      },
+      {
+        "slug": "flux-unidirectional",
+        "type": "alternative"
+      }
     ]
   },
   {
@@ -4419,7 +4535,10 @@
     "related": [
       "separation-of-concerns",
       "solid-principles",
-      "observer-pattern"
+      "observer-pattern",
+      "mvc",
+      "mvvm",
+      "flux-unidirectional"
     ],
     "tags": [
       "ui-pattern",
@@ -4458,16 +4577,40 @@
       "一对一关系：每个视图通常只有一个呈现者；呈现者感知生命周期并管理视图的完整状态"
     ],
     "timeline": [
-      ["1996", "Mike Potel at Taligent publishes the MVP white paper, positioning it as an evolution of MVC for C++ and Java applications"],
-      ["2006", "Martin Fowler refines and publishes the Passive View and Supervising Controller variants of MVP on martinfowler.com"],
-      ["2008", "Android adopts Activity-based architecture that closely resembles MVP; community gravitates toward explicit MVP frameworks"],
-      ["2015", "MVP becomes the dominant Android architecture pattern with frameworks like Mosby; eventually superseded by MVVM with Architecture Components in 2017"]
+      [
+        "1996",
+        "Mike Potel at Taligent publishes the MVP white paper, positioning it as an evolution of MVC for C++ and Java applications"
+      ],
+      [
+        "2006",
+        "Martin Fowler refines and publishes the Passive View and Supervising Controller variants of MVP on martinfowler.com"
+      ],
+      [
+        "2008",
+        "Android adopts Activity-based architecture that closely resembles MVP; community gravitates toward explicit MVP frameworks"
+      ],
+      [
+        "2015",
+        "MVP becomes the dominant Android architecture pattern with frameworks like Mosby; eventually superseded by MVVM with Architecture Components in 2017"
+      ]
     ],
     "timeline_zh": [
-      ["1996", "Taligent的Mike Potel发布MVP白皮书，将其定位为面向C++和Java应用的MVC演进"],
-      ["2006", "Martin Fowler在martinfowler.com上细化并发布MVP的被动视图和监督控制器变体"],
-      ["2008", "Android采用类似MVP的基于Activity的架构；社区转向明确的MVP框架"],
-      ["2015", "MVP成为主流Android架构模式（Mosby等框架）；2017年最终被架构组件中的MVVM取代"]
+      [
+        "1996",
+        "Taligent的Mike Potel发布MVP白皮书，将其定位为面向C++和Java应用的MVC演进"
+      ],
+      [
+        "2006",
+        "Martin Fowler在martinfowler.com上细化并发布MVP的被动视图和监督控制器变体"
+      ],
+      [
+        "2008",
+        "Android采用类似MVP的基于Activity的架构；社区转向明确的MVP框架"
+      ],
+      [
+        "2015",
+        "MVP成为主流Android架构模式（Mosby等框架）；2017年最终被架构组件中的MVVM取代"
+      ]
     ],
     "dos": [
       "Define the View as an interface with the minimum surface area needed — every extra method on the View interface is a method you must mock in tests",
@@ -4525,9 +4668,30 @@
       "Google (2015). Android Architecture Blueprints — MVP sample. github.com/android/architecture-samples."
     ],
     "typed_relations": [
-      {"slug": "separation-of-concerns", "type": "extends"},
-      {"slug": "solid-principles", "type": "complement"},
-      {"slug": "observer-pattern", "type": "related"}
+      {
+        "slug": "separation-of-concerns",
+        "type": "extends"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "observer-pattern",
+        "type": "related"
+      },
+      {
+        "slug": "mvc",
+        "type": "alternative"
+      },
+      {
+        "slug": "mvvm",
+        "type": "alternative"
+      },
+      {
+        "slug": "flux-unidirectional",
+        "type": "alternative"
+      }
     ]
   },
   {
@@ -4557,7 +4721,10 @@
     "related": [
       "hexagonal-architecture",
       "solid-principles",
-      "domain-driven-design"
+      "domain-driven-design",
+      "onion-architecture",
+      "n-tier-layered",
+      "ports-and-adapters"
     ],
     "tags": [
       "dependency-inversion",
@@ -4596,16 +4763,40 @@
       "边界处的依赖倒置：内层环定义接口（仓储、呈现者接口）；外层环提供实现——控制流向内但依赖指向外部，朝向内层环的接口"
     ],
     "timeline": [
-      ["2012", "Robert C. Martin publishes the Clean Architecture blog post, synthesizing prior work on Hexagonal, Onion, and BCE architectures"],
-      ["2017", "Martin publishes 「Clean Architecture: A Craftsman's Guide to Software Structure and Design」, formalizing the ring diagram"],
-      ["2018", "The Android community adopts Clean Architecture as the de-facto standard, influencing Google's official Architecture Components guidance"],
-      ["2020", "Clean Architecture becomes a standard teaching pattern in Go, Kotlin, and .NET communities with framework-specific adaptations"]
+      [
+        "2012",
+        "Robert C. Martin publishes the Clean Architecture blog post, synthesizing prior work on Hexagonal, Onion, and BCE architectures"
+      ],
+      [
+        "2017",
+        "Martin publishes 「Clean Architecture: A Craftsman's Guide to Software Structure and Design」, formalizing the ring diagram"
+      ],
+      [
+        "2018",
+        "The Android community adopts Clean Architecture as the de-facto standard, influencing Google's official Architecture Components guidance"
+      ],
+      [
+        "2020",
+        "Clean Architecture becomes a standard teaching pattern in Go, Kotlin, and .NET communities with framework-specific adaptations"
+      ]
     ],
     "timeline_zh": [
-      ["2012", "Robert C. Martin发布整洁架构博客文章，综合了六边形、洋葱和BCE架构的先前工作"],
-      ["2017", "Martin出版《整洁架构：软件结构与设计匠艺指南》，正式确立环形图"],
-      ["2018", "Android社区将整洁架构采纳为事实标准，影响谷歌官方架构组件指南"],
-      ["2020", "整洁架构成为Go、Kotlin和.NET社区的标准教学模式，具有框架特定的适配"]
+      [
+        "2012",
+        "Robert C. Martin发布整洁架构博客文章，综合了六边形、洋葱和BCE架构的先前工作"
+      ],
+      [
+        "2017",
+        "Martin出版《整洁架构：软件结构与设计匠艺指南》，正式确立环形图"
+      ],
+      [
+        "2018",
+        "Android社区将整洁架构采纳为事实标准，影响谷歌官方架构组件指南"
+      ],
+      [
+        "2020",
+        "整洁架构成为Go、Kotlin和.NET社区的标准教学模式，具有框架特定的适配"
+      ]
     ],
     "dos": [
       "Define all repository and external service interfaces inside the Use Case ring — the Use Case owns the contract, the outer ring provides the implementation",
@@ -4664,9 +4855,30 @@
       "Cockburn, A. (2005). Hexagonal Architecture (Ports and Adapters). alistair.cockburn.us."
     ],
     "typed_relations": [
-      {"slug": "hexagonal-architecture", "type": "related"},
-      {"slug": "solid-principles", "type": "prerequisite"},
-      {"slug": "domain-driven-design", "type": "complement"}
+      {
+        "slug": "hexagonal-architecture",
+        "type": "related"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "prerequisite"
+      },
+      {
+        "slug": "domain-driven-design",
+        "type": "complement"
+      },
+      {
+        "slug": "onion-architecture",
+        "type": "alternative"
+      },
+      {
+        "slug": "n-tier-layered",
+        "type": "alternative"
+      },
+      {
+        "slug": "ports-and-adapters",
+        "type": "alternative"
+      }
     ]
   },
   {
@@ -4696,7 +4908,10 @@
     "related": [
       "hexagonal-architecture",
       "domain-driven-design",
-      "solid-principles"
+      "solid-principles",
+      "clean-architecture",
+      "n-tier-layered",
+      "ports-and-adapters"
     ],
     "tags": [
       "domain-model",
@@ -4735,16 +4950,40 @@
       "外围的基础设施：所有接触外部世界的内容（数据库、文件系统、外部API、UI）都隔离在最外层环，可以独立替换"
     ],
     "timeline": [
-      ["2008", "Jeffrey Palermo publishes the four-part Onion Architecture series on his blog, coining the term and the ring diagram"],
-      ["2010", "The pattern gains traction in the .NET community as an alternative to traditional N-Tier that enables domain-centric design"],
-      ["2012", "Robert C. Martin acknowledges Onion Architecture as a predecessor when publishing Clean Architecture, noting their shared Dependency Rule"],
-      ["2015", "Onion Architecture becomes a standard recommendation in .NET enterprise development circles and DDD-oriented project templates"]
+      [
+        "2008",
+        "Jeffrey Palermo publishes the four-part Onion Architecture series on his blog, coining the term and the ring diagram"
+      ],
+      [
+        "2010",
+        "The pattern gains traction in the .NET community as an alternative to traditional N-Tier that enables domain-centric design"
+      ],
+      [
+        "2012",
+        "Robert C. Martin acknowledges Onion Architecture as a predecessor when publishing Clean Architecture, noting their shared Dependency Rule"
+      ],
+      [
+        "2015",
+        "Onion Architecture becomes a standard recommendation in .NET enterprise development circles and DDD-oriented project templates"
+      ]
     ],
     "timeline_zh": [
-      ["2008", "Jeffrey Palermo在其博客上发布四部分洋葱架构系列，创造该术语和环形图"],
-      ["2010", "该模式在.NET社区获得牵引力，作为传统N层架构的替代方案，实现领域中心设计"],
-      ["2012", "Robert C. Martin在发布整洁架构时承认洋葱架构是其前身，指出它们共享的依赖规则"],
-      ["2015", "洋葱架构成为.NET企业开发圈和面向DDD项目模板的标准推荐"]
+      [
+        "2008",
+        "Jeffrey Palermo在其博客上发布四部分洋葱架构系列，创造该术语和环形图"
+      ],
+      [
+        "2010",
+        "该模式在.NET社区获得牵引力，作为传统N层架构的替代方案，实现领域中心设计"
+      ],
+      [
+        "2012",
+        "Robert C. Martin在发布整洁架构时承认洋葱架构是其前身，指出它们共享的依赖规则"
+      ],
+      [
+        "2015",
+        "洋葱架构成为.NET企业开发圈和面向DDD项目模板的标准推荐"
+      ]
     ],
     "dos": [
       "Define all repository and service interfaces inside the Domain Services ring, never in the Infrastructure ring, so that domain code never imports from infrastructure",
@@ -4801,9 +5040,30 @@
       "Smith, S. (2020). Clean Architecture solution template for ASP.NET Core. github.com/ardalis/CleanArchitecture."
     ],
     "typed_relations": [
-      {"slug": "hexagonal-architecture", "type": "related"},
-      {"slug": "domain-driven-design", "type": "complement"},
-      {"slug": "solid-principles", "type": "prerequisite"}
+      {
+        "slug": "hexagonal-architecture",
+        "type": "related"
+      },
+      {
+        "slug": "domain-driven-design",
+        "type": "complement"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "prerequisite"
+      },
+      {
+        "slug": "clean-architecture",
+        "type": "alternative"
+      },
+      {
+        "slug": "n-tier-layered",
+        "type": "alternative"
+      },
+      {
+        "slug": "ports-and-adapters",
+        "type": "alternative"
+      }
     ]
   },
   {
@@ -4833,7 +5093,11 @@
     "related": [
       "layered-architecture",
       "separation-of-concerns",
-      "solid-principles"
+      "solid-principles",
+      "clean-architecture",
+      "hexagonal-architecture",
+      "onion-architecture",
+      "ports-and-adapters"
     ],
     "tags": [
       "enterprise-architecture",
@@ -4872,16 +5136,40 @@
       "污水孔反模式：当一层只是将请求传递到下方层而不增加价值时，架构相对其收益变得不必要地复杂"
     ],
     "timeline": [
-      ["1992", "The three-tier client-server model emerges as a mainstream enterprise architecture pattern, separating mainframe presentation, business logic, and data"],
-      ["2002", "Martin Fowler codifies Layered Architecture in Patterns of Enterprise Application Architecture, providing a canonical reference"],
-      ["2004", "Java EE (J2EE) and Spring Framework cement layered architecture as the dominant enterprise Java pattern"],
-      ["2010", "N-Tier becomes the default starting architecture for ASP.NET MVC, Django, and Rails applications across the industry"]
+      [
+        "1992",
+        "The three-tier client-server model emerges as a mainstream enterprise architecture pattern, separating mainframe presentation, business logic, and data"
+      ],
+      [
+        "2002",
+        "Martin Fowler codifies Layered Architecture in Patterns of Enterprise Application Architecture, providing a canonical reference"
+      ],
+      [
+        "2004",
+        "Java EE (J2EE) and Spring Framework cement layered architecture as the dominant enterprise Java pattern"
+      ],
+      [
+        "2010",
+        "N-Tier becomes the default starting architecture for ASP.NET MVC, Django, and Rails applications across the industry"
+      ]
     ],
     "timeline_zh": [
-      ["1992", "三层客户端-服务器模型作为主流企业架构模式出现，分离主机表示、业务逻辑和数据"],
-      ["2002", "Martin Fowler在《企业应用架构模式》中编纂分层架构，提供规范参考"],
-      ["2004", "Java EE（J2EE）和Spring框架将分层架构确立为主流企业Java模式"],
-      ["2010", "N层成为行业中ASP.NET MVC、Django和Rails应用程序的默认起始架构"]
+      [
+        "1992",
+        "三层客户端-服务器模型作为主流企业架构模式出现，分离主机表示、业务逻辑和数据"
+      ],
+      [
+        "2002",
+        "Martin Fowler在《企业应用架构模式》中编纂分层架构，提供规范参考"
+      ],
+      [
+        "2004",
+        "Java EE（J2EE）和Spring框架将分层架构确立为主流企业Java模式"
+      ],
+      [
+        "2010",
+        "N层成为行业中ASP.NET MVC、Django和Rails应用程序的默认起始架构"
+      ]
     ],
     "dos": [
       "Define explicit service interfaces between layers so each layer can be tested with a mock of the layer below — this is the key to making a layered application testable",
@@ -4940,9 +5228,34 @@
       "Gamma, E. et al. (1994). Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley."
     ],
     "typed_relations": [
-      {"slug": "layered-architecture", "type": "related"},
-      {"slug": "separation-of-concerns", "type": "extends"},
-      {"slug": "modular-monolith", "type": "related"}
+      {
+        "slug": "layered-architecture",
+        "type": "related"
+      },
+      {
+        "slug": "separation-of-concerns",
+        "type": "extends"
+      },
+      {
+        "slug": "modular-monolith",
+        "type": "related"
+      },
+      {
+        "slug": "clean-architecture",
+        "type": "alternative"
+      },
+      {
+        "slug": "hexagonal-architecture",
+        "type": "alternative"
+      },
+      {
+        "slug": "onion-architecture",
+        "type": "alternative"
+      },
+      {
+        "slug": "ports-and-adapters",
+        "type": "alternative"
+      }
     ]
   },
   {
@@ -5011,16 +5324,40 @@
       "版本化契约：插件契约必须有版本控制，允许核心在不破坏现有插件的情况下演进——扩展API的语义版本控制"
     ],
     "timeline": [
-      ["1985", "The Mach microkernel at Carnegie Mellon formalizes the core-plugin concept at the OS level, influencing subsequent software architecture thinking"],
-      ["2001", "Eclipse IDE launches its OSGi-based plugin system, becoming the canonical software engineering example of microkernel architecture"],
-      ["2015", "Mark Richards codifies Microkernel Architecture as a named software architecture pattern in Software Architecture Patterns"],
-      ["2016", "VS Code launches with a language-server protocol extension model, demonstrating microkernel principles for modern developer tools"]
+      [
+        "1985",
+        "The Mach microkernel at Carnegie Mellon formalizes the core-plugin concept at the OS level, influencing subsequent software architecture thinking"
+      ],
+      [
+        "2001",
+        "Eclipse IDE launches its OSGi-based plugin system, becoming the canonical software engineering example of microkernel architecture"
+      ],
+      [
+        "2015",
+        "Mark Richards codifies Microkernel Architecture as a named software architecture pattern in Software Architecture Patterns"
+      ],
+      [
+        "2016",
+        "VS Code launches with a language-server protocol extension model, demonstrating microkernel principles for modern developer tools"
+      ]
     ],
     "timeline_zh": [
-      ["1985", "卡内基梅隆大学的Mach微内核在操作系统层面正式确立核心-插件概念，影响了后续的软件架构思维"],
-      ["2001", "Eclipse IDE推出基于OSGi的插件系统，成为微内核架构的标准软件工程示例"],
-      ["2015", "Mark Richards在《软件架构模式》中将微内核架构编纂为命名的软件架构模式"],
-      ["2016", "VS Code推出语言服务器协议扩展模型，展示现代开发者工具的微内核原则"]
+      [
+        "1985",
+        "卡内基梅隆大学的Mach微内核在操作系统层面正式确立核心-插件概念，影响了后续的软件架构思维"
+      ],
+      [
+        "2001",
+        "Eclipse IDE推出基于OSGi的插件系统，成为微内核架构的标准软件工程示例"
+      ],
+      [
+        "2015",
+        "Mark Richards在《软件架构模式》中将微内核架构编纂为命名的软件架构模式"
+      ],
+      [
+        "2016",
+        "VS Code推出语言服务器协议扩展模型，展示现代开发者工具的微内核原则"
+      ]
     ],
     "dos": [
       "Design the plugin contract for stability from the beginning — breaking changes to the contract require coordinated updates across all plugins, which is expensive",
@@ -5079,9 +5416,18 @@
       "Eclipse Foundation (2003). Eclipse Platform Architecture Overview. eclipse.org."
     ],
     "typed_relations": [
-      {"slug": "separation-of-concerns", "type": "extends"},
-      {"slug": "ports-and-adapters", "type": "related"},
-      {"slug": "modular-monolith", "type": "related"}
+      {
+        "slug": "separation-of-concerns",
+        "type": "extends"
+      },
+      {
+        "slug": "ports-and-adapters",
+        "type": "related"
+      },
+      {
+        "slug": "modular-monolith",
+        "type": "related"
+      }
     ]
   },
   {
@@ -5111,7 +5457,10 @@
     "related": [
       "observer-pattern",
       "eda",
-      "separation-of-concerns"
+      "separation-of-concerns",
+      "mvc",
+      "mvvm",
+      "mvp"
     ],
     "tags": [
       "state-management",
@@ -5150,16 +5499,40 @@
       "单一数据源：每片应用程序状态恰好存在于一个存储中——视图从存储派生其显示状态而非维护自己的副本"
     ],
     "timeline": [
-      ["2014", "Facebook's Jing Chen introduces Flux at the F8 developer conference as the solution to cascading MVC update bugs in Facebook Chat"],
-      ["2015", "Dan Abramov releases Redux, a simplified Flux implementation with a single immutable Store and pure reducer functions, which becomes the dominant React state library"],
-      ["2016", "Vue.js releases Vuex, bringing Flux-inspired unidirectional state management to the Vue ecosystem"],
-      ["2019", "React introduces the useReducer hook and Context API, making lightweight Flux-style state management available natively without external libraries"]
+      [
+        "2014",
+        "Facebook's Jing Chen introduces Flux at the F8 developer conference as the solution to cascading MVC update bugs in Facebook Chat"
+      ],
+      [
+        "2015",
+        "Dan Abramov releases Redux, a simplified Flux implementation with a single immutable Store and pure reducer functions, which becomes the dominant React state library"
+      ],
+      [
+        "2016",
+        "Vue.js releases Vuex, bringing Flux-inspired unidirectional state management to the Vue ecosystem"
+      ],
+      [
+        "2019",
+        "React introduces the useReducer hook and Context API, making lightweight Flux-style state management available natively without external libraries"
+      ]
     ],
     "timeline_zh": [
-      ["2014", "Facebook的Jing Chen在F8开发者大会上介绍Flux，作为解决Facebook Chat中级联MVC更新错误的方案"],
-      ["2015", "Dan Abramov发布Redux，一个具有单一不可变存储和纯reducer函数的简化Flux实现，成为主流React状态库"],
-      ["2016", "Vue.js发布Vuex，为Vue生态系统带来受Flux启发的单向状态管理"],
-      ["2019", "React引入useReducer钩子和Context API，使轻量级Flux风格的状态管理无需外部库即可原生使用"]
+      [
+        "2014",
+        "Facebook的Jing Chen在F8开发者大会上介绍Flux，作为解决Facebook Chat中级联MVC更新错误的方案"
+      ],
+      [
+        "2015",
+        "Dan Abramov发布Redux，一个具有单一不可变存储和纯reducer函数的简化Flux实现，成为主流React状态库"
+      ],
+      [
+        "2016",
+        "Vue.js发布Vuex，为Vue生态系统带来受Flux启发的单向状态管理"
+      ],
+      [
+        "2019",
+        "React引入useReducer钩子和Context API，使轻量级Flux风格的状态管理无需外部库即可原生使用"
+      ]
     ],
     "dos": [
       "Keep Actions as plain, serializable data objects with a type field — this makes them loggable, replayable, and easy to test",
@@ -5218,9 +5591,30 @@
       "Abramov, D. & Clark, A. (2016). Getting Started with Redux (Egghead.io course). egghead.io."
     ],
     "typed_relations": [
-      {"slug": "observer-pattern", "type": "extends"},
-      {"slug": "eda", "type": "related"},
-      {"slug": "separation-of-concerns", "type": "complement"}
+      {
+        "slug": "observer-pattern",
+        "type": "extends"
+      },
+      {
+        "slug": "eda",
+        "type": "related"
+      },
+      {
+        "slug": "separation-of-concerns",
+        "type": "complement"
+      },
+      {
+        "slug": "mvc",
+        "type": "alternative"
+      },
+      {
+        "slug": "mvvm",
+        "type": "alternative"
+      },
+      {
+        "slug": "mvp",
+        "type": "alternative"
+      }
     ]
   }
 ]

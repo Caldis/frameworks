@@ -40,7 +40,26 @@ Determine which mode based on user intent:
 User is unsure what to use. They say things like "help me choose an architecture",
 "what patterns should I use for X", "best practices for building Y".
 
-**Phase 1 — Clarify requirements.** Ask the user one question at a time:
+**Phase 1 — Identify the decision.** What is the user actually deciding?
+
+Common decision points (if the user's question maps to one, skip to Phase 2
+with the alternatives pre-loaded):
+
+| Decision | Alternatives (pick one) |
+|----------|------------------------|
+| UI architecture? | mvc, mvvm, mvp, flux-unidirectional |
+| System layering? | clean-architecture, hexagonal-architecture, onion-architecture, n-tier-layered, ports-and-adapters |
+| Data access? | active-record-pattern, repository-pattern, data-mapper-pattern |
+| Data pipeline? | lambda-architecture, kappa-architecture |
+| Testing approach? | tdd, bdd |
+| Test shape? | test-pyramid, testing-trophy |
+| Monitoring method? | four-golden-signals, red-method, use-method |
+| Release strategy? | blue-green-deployment, canary-deployment |
+| Team organization? | team-topologies, spotify-model, amazon-two-pizza-teams |
+
+If the decision is clear, go directly to Phase 3 with the alternatives.
+
+If the decision is NOT clear, clarify with these questions (one at a time):
 
 1. Describe your system in 1-2 sentences. What does it do?
 2. What quality attributes matter most?

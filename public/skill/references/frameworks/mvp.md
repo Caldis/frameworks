@@ -82,6 +82,9 @@ Ask the user about their specific context:
 - separation-of-concerns (extends)
 - solid-principles (complement)
 - observer-pattern (related)
+- mvc (alternative)
+- mvvm (alternative)
+- flux-unidirectional (alternative)
 
 ## Source
 

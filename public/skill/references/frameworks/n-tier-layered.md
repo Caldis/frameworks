@@ -82,6 +82,10 @@ Ask the user about their specific context:
 - layered-architecture (related)
 - separation-of-concerns (extends)
 - solid-principles (related)
+- clean-architecture (alternative)
+- hexagonal-architecture (alternative)
+- onion-architecture (alternative)
+- ports-and-adapters (alternative)
 
 ## Source
 

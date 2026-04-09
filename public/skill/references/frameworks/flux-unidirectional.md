@@ -82,6 +82,9 @@ Ask the user about their specific context:
 - observer-pattern (extends)
 - eda (related)
 - separation-of-concerns (complement)
+- mvc (alternative)
+- mvvm (alternative)
+- mvp (alternative)
 
 ## Source
 

@@ -1,6 +1,6 @@
 # SDFrame Framework Catalog
 
-> 315 frameworks across 13 categories.
+> 317 frameworks across 13 categories.
 > Use this to search and filter. Each row: slug | name | category | quality concerns | description.
 
 ## Design Thinking / 设计思考 (23)
@@ -67,7 +67,7 @@
 | microkernel-architecture | Microkernel (Plugin) Architecture | intermediate | maintainability, portability | Separates a minimal stable core system from interchangeable plug-in modules, enabling feature extension without modifying the core — the core provides services and a registry; plugins contribute functionality through a defined contract. |
 | flux-unidirectional | Flux / Unidirectional Data Flow | intermediate | maintainability, testability | Enforces a strict one-way data cycle — Action → Dispatcher → Store → View → Action — eliminating the cascading update problems of two-way binding by making state changes predictable and traceable. |
 
-## Coding Practices / 编码实践 (45)
+## Coding Practices / 编码实践 (46)
 
 | slug | name | complexity | quality | description |
 |------|------|-----------|---------|-------------|
@@ -116,6 +116,7 @@
 | yagni-principle | YAGNI (You Aren't Gonna Need It) | beginner | maintainability, performance | Always implement things when you actually need them, never when you just foresee that you might need them. Premature generalization is as harmful as premature optimization. |
 | composition-over-inheritance | Composition over Inheritance | intermediate | maintainability, testability | Favor object composition over class inheritance to achieve code reuse and polymorphism. Inheritance creates tight coupling between parent and child classes; composition assembles behavior from interchangeable parts, making systems more flexible and testable. |
 | law-of-demeter | Law of Demeter (Principle of Least Knowledge) | intermediate | maintainability, testability | A module should not know about the internal workings of the objects it manipulates. An object should only call methods on: itself, its parameters, objects it creates, and its direct component objects — never on objects returned by those calls. |
+| active-record-pattern | Active Record Pattern | beginner | usability, maintainability | Domain object that wraps a database row and encapsulates CRUD logic within itself |
 
 ## Quality Engineering / 质量保障 (25)
 
@@ -279,7 +280,7 @@
 | incident-response-playbook | Incident Response Playbook | intermediate | security, reliability | SANS Institute's six-step structured process for handling cybersecurity incidents from preparation through post-incident lessons learned |
 | runtime-application-self-protection | Runtime Application Self-Protection (RASP) | intermediate | security, reliability, observability | A security technology that instruments application runtimes to detect and block attacks from within the running application context, with access to call stacks, data flows, and execution context that perimeter controls cannot see |
 
-## Distributed Systems / 分布式系统 (21)
+## Distributed Systems / 分布式系统 (22)
 
 | slug | name | complexity | quality | description |
 |------|------|-----------|---------|-------------|
@@ -304,6 +305,7 @@
 | service-discovery-pattern | Service Discovery Pattern | intermediate | reliability, scalability | DNS-based and registry-based mechanisms for services to locate each other dynamically in elastic infrastructure |
 | sidecar-container-pattern | Sidecar Pattern | intermediate | reliability, observability | Deploying helper containers alongside the primary service container to handle cross-cutting concerns without modifying application code |
 | publish-subscribe-pattern | Publish-Subscribe Pattern | intermediate | scalability, maintainability | Decoupled messaging pattern where publishers emit events to named topics and subscribers receive only the messages matching their subscriptions, eliminating direct coupling between producers and consumers |
+| retry-pattern | Retry Pattern | beginner | reliability | Automatically re-attempt a failed operation with configurable delay and limits to handle transient faults |
 
 ## API Design & Integration / API 设计与集成 (21)
 

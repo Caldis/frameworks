@@ -83,6 +83,9 @@ Ask the user about their specific context:
 - hexagonal-architecture (related)
 - solid-principles (prerequisite)
 - domain-driven-design (complement)
+- onion-architecture (alternative)
+- n-tier-layered (alternative)
+- ports-and-adapters (alternative)
 
 ## Source
 

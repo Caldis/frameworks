@@ -82,6 +82,9 @@ Ask the user about their specific context:
 - hexagonal-architecture (related)
 - domain-driven-design (complement)
 - solid-principles (prerequisite)
+- clean-architecture (alternative)
+- n-tier-layered (alternative)
+- ports-and-adapters (alternative)
 
 ## Source
 

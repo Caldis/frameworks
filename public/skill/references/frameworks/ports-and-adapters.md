@@ -81,6 +81,10 @@ Ask the user about their specific context:
 
 - domain-driven-design (complement)
 - cell-based-architecture (related)
+- clean-architecture (alternative)
+- hexagonal-architecture (alternative)
+- onion-architecture (alternative)
+- n-tier-layered (alternative)
 
 ## Source
 

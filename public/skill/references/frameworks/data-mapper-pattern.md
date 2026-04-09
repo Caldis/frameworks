@@ -78,6 +78,7 @@ Ask the user about their specific context:
 - repository-pattern (complement)
 - unit-of-work-pattern (complement)
 - solid-principles (complement)
+- active-record-pattern (alternative)
 
 ## Source
 

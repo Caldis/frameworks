@@ -4,7 +4,7 @@ Patterns for building reliable, scalable systems across multiple nodes.
 
 跨多节点构建可靠、可扩展系统的模式。
 
-**21 frameworks** in this category.
+**22 frameworks** in this category.
 
 ## Frameworks
 
@@ -154,3 +154,10 @@ Patterns for building reliable, scalable systems across multiple nodes.
 - **Quality**: scalability, maintainability
 - **Author**: CORBA Event Service specification (OMG, 1994); popularized through JMS (Java Message Service, 1998) and academic distributed systems literature of the 1980s–1990s
 - Decoupled messaging pattern where publishers emit events to named topics and subscribers receive only the messages matching their subscriptions, eliminating direct coupling between producers and consumers
+
+### Retry Pattern / 重试模式
+- **Slug**: retry-pattern
+- **Complexity**: beginner
+- **Quality**: reliability
+- **Author**: Distributed systems best practice; formalized by Microsoft Azure patterns, 2014
+- Automatically re-attempt a failed operation with configurable delay and limits to handle transient faults

@@ -83,6 +83,8 @@ Ask the user about their specific context:
 - conways-law (complement)
 - inverse-conway-maneuver (complement)
 - calms-framework (complement)
+- spotify-model (alternative)
+- amazon-two-pizza-teams (alternative)
 
 ## Source
 

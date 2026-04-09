@@ -3732,5 +3732,174 @@
         "type": "complement"
       }
     ]
+  },
+  {
+    "id": 332,
+    "name": "Retry Pattern",
+    "name_zh": "重试模式",
+    "slug": "retry-pattern",
+    "category": "distributed",
+    "desc": "Automatically re-attempt a failed operation with configurable delay and limits to handle transient faults",
+    "desc_zh": "对失败操作以可配置的延迟和次数限制自动重试，以应对瞬时故障",
+    "steps": [
+      "Classify the error: determine whether the failure is transient (network blip, throttling, temporary unavailability) or permanent (bad request, not found) — only retry transient errors",
+      "Choose a retry strategy: select immediate retry for very short blips, fixed-delay retry for simple backoff, or exponential backoff with jitter to reduce thundering-herd pressure on recovering services",
+      "Set a retry budget: define a maximum attempt count and a total timeout ceiling so that retry loops cannot run indefinitely or cascade into overall request timeouts",
+      "Add jitter to delays: introduce randomised variance (±30%) into wait intervals so that multiple clients retrying simultaneously do not synchronise and overwhelm a recovering service",
+      "Log and surface retry metrics: emit a counter for each retry attempt and an event on final failure so operations teams can distinguish transient noise from systemic degradation"
+    ],
+    "steps_zh": [
+      "对错误分类：判断故障是瞬时性的（网络抖动、限流、临时不可用）还是永久性的（请求错误、资源不存在）——只对瞬时性错误重试",
+      "选择重试策略：对极短抖动使用立即重试，对简单退避使用固定延迟重试，或使用带抖动的指数退避以减轻对恢复中服务的羊群压力",
+      "设置重试预算：定义最大重试次数和总超时上限，防止重试循环无限运行或级联导致整体请求超时",
+      "为延迟添加抖动：在等待间隔中引入随机变化（±30%），防止多个客户端同步重试并压垮正在恢复的服务",
+      "记录并暴露重试指标：为每次重试发出计数器、为最终失败发出事件，使运维团队能区分瞬时噪声与系统性降级"
+    ],
+    "ai_relevant": false,
+    "viz_type": "cycle",
+    "related": [
+      "circuit-breaker-pattern",
+      "circuit-breaker-with-retry",
+      "bulkhead-pattern"
+    ],
+    "tags": [
+      "retry",
+      "resilience",
+      "fault-tolerance",
+      "transient-faults"
+    ],
+    "origin_author": "Distributed systems best practice; formalized by Microsoft Azure patterns, 2014",
+    "origin_source": "Cloud Design Patterns: Prescriptive Architecture Guidance for Cloud Applications (Microsoft patterns & practices, 2014)",
+    "origin_source_zh": "《云设计模式：云应用规范架构指南》（微软 patterns & practices，2014）",
+    "complexity": "beginner",
+    "when_to_use": [
+      "Calling remote services over a network where transient failures (timeouts, connection resets, 503s) are expected and recoverable",
+      "Integrating with third-party APIs that enforce rate limits and return 429 Too Many Requests responses",
+      "Accessing cloud-managed resources (databases, object stores, message brokers) that may experience brief unavailability during maintenance or scaling",
+      "Any idempotent operation where repeating the call produces the same outcome and does not create duplicate side-effects"
+    ],
+    "when_to_use_zh": [
+      "通过网络调用远程服务，预期会出现可恢复的瞬时故障（超时、连接重置、503）时",
+      "与执行速率限制并返回 429 Too Many Requests 响应的第三方 API 集成时",
+      "访问可能在维护或扩展期间短暂不可用的云托管资源（数据库、对象存储、消息代理）时",
+      "任何幂等操作，重复调用产生相同结果且不会产生重复副作用时"
+    ],
+    "core_concepts": [
+      "Transient fault detection: distinguishing recoverable errors (timeouts, throttling, 5xx) from permanent failures (4xx, schema errors) that should never be retried",
+      "Exponential backoff: doubling the wait interval between attempts so that retries back off progressively and reduce load on a stressed service",
+      "Jitter: randomising delay intervals so that many concurrent clients do not synchronise their retries and create a thundering herd",
+      "Retry budget: a hard cap on attempt count and elapsed time that guarantees the retry loop terminates and preserves overall system latency",
+      "Idempotency: the property of an operation that it can be executed multiple times without changing the result beyond the first successful execution"
+    ],
+    "core_concepts_zh": [
+      "瞬时故障检测：区分可恢复错误（超时、限流、5xx）与永久性故障（4xx、模式错误），永久性故障不应重试",
+      "指数退避：在每次尝试之间将等待间隔加倍，使重试逐渐退避并降低对压力服务的负载",
+      "抖动：随机化延迟间隔，防止大量并发客户端同步重试引发羊群效应",
+      "重试预算：对尝试次数和已用时间设置硬性上限，保证重试循环终止并维持整体系统延迟",
+      "幂等性：操作可多次执行而不改变首次成功执行之外结果的特性"
+    ],
+    "timeline": [
+      [
+        "1990s",
+        "TCP/IP and RPC middleware incorporate automatic retransmission and retry semantics as foundational reliability mechanisms"
+      ],
+      [
+        "2008",
+        "Amazon and Google publish internal guidelines on exponential backoff with jitter for AWS and GCP service clients"
+      ],
+      [
+        "2014",
+        "Microsoft formalizes the Retry pattern in 'Cloud Design Patterns', giving the practice a canonical name and taxonomy"
+      ],
+      [
+        "2016",
+        "Resilience libraries (Polly, Resilience4j, Spring Retry) make configurable retry pipelines a first-class concern in every major language ecosystem"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "1990年代",
+        "TCP/IP 和 RPC 中间件将自动重传与重试语义作为基础可靠性机制纳入"
+      ],
+      [
+        "2008",
+        "亚马逊和谷歌发布内部指南，为 AWS 和 GCP 服务客户端规定带抖动的指数退避"
+      ],
+      [
+        "2014",
+        "微软在《云设计模式》中正式化重试模式，为该实践赋予规范名称和分类体系"
+      ],
+      [
+        "2016",
+        "弹性库（Polly、Resilience4j、Spring Retry）使可配置重试管道成为各主流语言生态系统的一等关注点"
+      ]
+    ],
+    "dos": [
+      "Do retry only on transient, idempotent operations because retrying non-idempotent calls risks duplicate side-effects such as duplicate charges or duplicate messages",
+      "Do use exponential backoff with jitter because it reduces thundering-herd load on recovering services far better than fixed-interval retry",
+      "Do cap total retry duration as well as attempt count because unbounded retries can cause cascading timeouts across dependent services",
+      "Do pair retry with a circuit breaker so that after a threshold of consecutive failures the circuit opens and stops retrying until the downstream recovers"
+    ],
+    "dos_zh": [
+      "仅对瞬时性、幂等操作重试，因为重试非幂等调用有产生重复副作用（如重复扣款或重复消息）的风险",
+      "使用带抖动的指数退避，因为它比固定间隔重试更能降低恢复中服务的羊群压力",
+      "同时限制重试总时长和尝试次数，因为无限制重试可能导致跨依赖服务的级联超时",
+      "将重试与熔断器配合使用，在连续失败达到阈值后打开熔断，停止重试直至下游恢复"
+    ],
+    "donts": [
+      "Don't retry non-idempotent writes (e.g., POST create-order) without first verifying idempotency keys because duplicate processing causes data corruption",
+      "Don't use fixed-interval retry without jitter in high-concurrency systems because all clients will synchronise retries and amplify load on an already-struggling service",
+      "Don't set an unlimited retry count because it masks systemic failures and starves the caller of resources while the downstream remains unavailable",
+      "Don't retry on 4xx client errors (bad request, unauthorised, not found) because these indicate a logic problem that more retries cannot fix"
+    ],
+    "donts_zh": [
+      "不要在未验证幂等键的情况下重试非幂等写入（如 POST 创建订单），因为重复处理会导致数据损坏",
+      "不要在高并发系统中使用无抖动的固定间隔重试，因为所有客户端会同步重试，对已经压力较大的服务雪上加霜",
+      "不要设置无限重试次数，因为这会掩盖系统性故障，并在下游持续不可用期间耗尽调用方资源",
+      "不要对 4xx 客户端错误（错误请求、未授权、未找到）进行重试，因为这些表示更多重试无法修复的逻辑问题"
+    ],
+    "case_study_company": "AWS SDK",
+    "case_study": "Every AWS SDK implements the Retry pattern with exponential backoff and jitter as its default error-handling strategy. When a DynamoDB call returns a ProvisionedThroughputExceededException, the SDK automatically retries up to three times using decorrelated jitter backoff. This behaviour is documented in the AWS architecture blog post 'Exponential Backoff And Jitter' (2015), which showed that decorrelated jitter reduced completion time by 28% compared to a naive fixed-interval retry under contention. The SDK's configurable RetryMode (legacy, standard, adaptive) lets teams tune the retry budget to match their application's latency tolerance, demonstrating how a well-implemented retry policy is transparent to application code yet dramatically improves resilience.",
+    "case_study_zh": "每个 AWS SDK 都将带指数退避和抖动的重试模式作为默认错误处理策略。当 DynamoDB 调用返回 ProvisionedThroughputExceededException 时，SDK 会自动使用解相关抖动退避最多重试三次。这一行为记录在 AWS 架构博客文章《指数退避与抖动》（2015）中，文章显示在竞争条件下，解相关抖动比朴素固定间隔重试将完成时间缩短了 28%。SDK 可配置的 RetryMode（传统、标准、自适应）让团队能够根据应用的延迟容忍度调整重试预算，展示了一个实现良好的重试策略对应用代码透明，却能显著提升弹性。",
+    "when_not_to_use": [
+      "Non-idempotent operations that create side-effects on each call (e.g., payment processing, email sending) unless an idempotency key mechanism is in place",
+      "Permanent error conditions such as authentication failures, invalid input, or resource-not-found where retrying wastes resources without any chance of recovery",
+      "Real-time latency-sensitive paths (e.g., live audio/video streams, HFT order execution) where the added latency of even one retry exceeds acceptable response-time budgets",
+      "When the downstream service is clearly overloaded and not recovering — use a circuit breaker to halt all calls rather than continuing to retry and amplifying the overload"
+    ],
+    "when_not_to_use_zh": [
+      "每次调用都会产生副作用的非幂等操作（如支付处理、发送电子邮件），除非已有幂等键机制",
+      "永久性错误条件，如身份验证失败、无效输入或资源不存在，重试会浪费资源且没有恢复可能",
+      "实时延迟敏感路径（如直播音视频流、高频交易订单执行），即使一次重试的附加延迟也超出可接受响应时间预算",
+      "当下游服务明显过载且未恢复时——使用熔断器停止所有调用，而非继续重试放大过载"
+    ],
+    "adopters": [
+      "AWS SDK",
+      "Azure SDK",
+      "Spring Retry",
+      "Polly (.NET)",
+      "Resilience4j"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "reliability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Microsoft patterns & practices team (2014). \"Cloud Design Patterns: Prescriptive Architecture Guidance for Cloud Applications\". Microsoft Press. Retry Pattern chapter.",
+    "secondary_sources": [
+      "Brooker, M. (2015). \"Exponential Backoff And Jitter\". AWS Architecture Blog. aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/",
+      "Nygard, M. (2007). \"Release It! Design and Deploy Production-Ready Software\". Pragmatic Bookshelf.",
+      "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 8: The Trouble with Distributed Systems. O'Reilly Media."
+    ],
+    "typed_relations": [
+      {
+        "slug": "circuit-breaker-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "bulkhead-pattern",
+        "type": "complement"
+      }
+    ]
   }
 ]

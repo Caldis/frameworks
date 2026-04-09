@@ -77,6 +77,7 @@ Ask the user about their specific context:
 - unit-of-work-pattern (complement)
 - data-mapper-pattern (complement)
 - dependency-injection (complement)
+- active-record-pattern (alternative)
 
 ## Source
 
