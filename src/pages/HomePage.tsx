@@ -148,36 +148,30 @@ export default function HomePage() {
           onChange={setActiveCategory}
           counts={counts}
         />
-        <span className={styles.count}>
-          {t.showingXofY.replace('{shown}', String(filtered.length)).replace('{total}', String(allFrameworks.length))}
-        </span>
-        <button
-          className={styles.filterToggle}
-          onClick={() => setShowAdvanced(prev => !prev)}
-        >
-          Filters {showAdvanced ? '\u25b4' : '\u25be'}
-        </button>
-        <Link to="/map" className={styles.mapLink}>
-          {t.map}
-        </Link>
-        <Link to="/compare" className={styles.mapLink}>
-          {t.compare}
-        </Link>
-        <Link to="/selector" className={styles.mapLink}>
-          {t.selector}
-        </Link>
-        <Link to="/paths" className={styles.mapLink}>
-          {t.learningPaths}
-        </Link>
-        <Link to="/insights" className={styles.mapLink}>
-          {t.insights}
-        </Link>
-        <Link to="/timeline" className={styles.mapLink}>
-          {t.timeline}
-        </Link>
-        <Link to="/agent" className={styles.mapLink}>
-          {t.agent}
-        </Link>
+        {/* Toolbar: count + filters + nav */}
+        <div className={styles.toolbar}>
+          <span className={styles.count}>
+            {t.showingXofY.replace('{shown}', String(filtered.length)).replace('{total}', String(allFrameworks.length))}
+          </span>
+          <button
+            className={`${styles.filterToggle} ${showAdvanced ? styles.filterToggleActive : ''}`}
+            onClick={() => setShowAdvanced(prev => !prev)}
+          >
+            Filters {showAdvanced ? '\u25b4' : '\u25be'}
+          </button>
+          <span className={styles.toolbarSep} />
+          <nav className={styles.navLinks}>
+            <Link to="/map" className={styles.mapLink}>{t.map}</Link>
+            <Link to="/compare" className={styles.mapLink}>{t.compare}</Link>
+            <Link to="/selector" className={styles.mapLink}>{t.selector}</Link>
+            <Link to="/paths" className={styles.mapLink}>{t.learningPaths}</Link>
+            <Link to="/insights" className={styles.mapLink}>{t.insights}</Link>
+            <Link to="/timeline" className={styles.mapLink}>{t.timeline}</Link>
+            <Link to="/agent" className={styles.mapLink}>{t.agent}</Link>
+          </nav>
+        </div>
+
+        {/* Advanced filters panel */}
         {showAdvanced && (
           <div className={styles.advancedFilters}>
             <DimensionFilter

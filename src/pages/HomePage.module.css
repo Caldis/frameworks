@@ -93,45 +93,26 @@
   top: 0;
   z-index: 10;
   background: var(--bg);
-  padding: 16px 0;
+  padding: 12px 0;
   margin-bottom: 24px;
-  border-bottom: none;
   box-shadow: 0 1px 0 var(--border);
   display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── Toolbar row ── */
+
+.toolbar {
+  display: flex;
   align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .count {
   font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--muted);
-  margin-left: auto;
-}
-
-.mapLink {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--muted);
-  border: 1px solid var(--border);
-  padding: 4px 12px;
-  border-radius: 20px;
-  transition: all 0.15s;
-  text-decoration: none;
-}
-
-.mapLink:hover {
-  background: var(--text);
-  color: var(--bg);
-}
-
-.advancedFilters {
-  border-top: 1px solid var(--border);
-  padding: 12px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  font-size: 11px;
+  color: var(--muted-light);
 }
 
 .filterToggle {
@@ -139,13 +120,68 @@
   font-size: 11px;
   color: var(--muted);
   background: none;
-  border: none;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 3px 10px;
   cursor: pointer;
-  padding: 4px 0;
+  transition: all 0.15s;
 }
 
 .filterToggle:hover {
   color: var(--text);
+  border-color: var(--text);
+}
+
+.filterToggleActive {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.toolbarSep {
+  width: 1px;
+  height: 16px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.navLinks::-webkit-scrollbar {
+  display: none;
+}
+
+.mapLink {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  padding: 3px 10px;
+  border-radius: 14px;
+  transition: all 0.15s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.mapLink:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* ── Advanced filters panel ── */
+
+.advancedFilters {
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .empty {
@@ -189,14 +225,16 @@
 @media (max-width: 600px) {
   .controls {
     position: static;
-    flex-direction: column;
-    align-items: stretch;
     box-shadow: none;
     border-bottom: 1px solid var(--border);
     overflow: hidden;
   }
 
-  .mapLink {
+  .navLinks {
+    display: none;
+  }
+
+  .toolbarSep {
     display: none;
   }
 
