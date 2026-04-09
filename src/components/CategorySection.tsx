@@ -33,6 +33,8 @@ export default function CategorySection({
     if (containerRef.current) {
       const rects = new Map<string, DOMRect>()
       containerRef.current.querySelectorAll<HTMLElement>('[data-card]').forEach(el => {
+        // Clear entrance animation so it doesn't override FLIP transforms
+        el.style.animation = 'none'
         rects.set(el.dataset.card!, el.getBoundingClientRect())
       })
       flipRef.current = rects
