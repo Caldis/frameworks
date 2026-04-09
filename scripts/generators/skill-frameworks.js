@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 
 function formatList(items, prefix = '-') {
-  if (!items || items.length === 0) return '_No data available._\n'
+  if (!items || !Array.isArray(items) || items.length === 0) return '_No data available._\n'
   return items.map(item => `${prefix} ${item}`).join('\n') + '\n'
 }
 

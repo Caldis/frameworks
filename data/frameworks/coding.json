@@ -6606,5 +6606,948 @@
         "type": "complement"
       }
     ]
+  },
+  {
+    "id": 330,
+    "name": "Data Transfer Object (DTO)",
+    "name_zh": "数据传输对象（DTO）",
+    "slug": "data-transfer-object",
+    "category": "coding",
+    "desc": "A simple object that carries data between processes or layers, containing no business logic — its sole purpose is to reduce the number of method calls by bundling data into a single transfer unit",
+    "desc_zh": "在进程或层之间传递数据的简单对象，不包含任何业务逻辑——其唯一目的是通过将数据打包成单一传输单元来减少方法调用次数",
+    "steps": [
+      "Identify the data boundary: locate the interface between two layers or processes (controller ↔ service, service ↔ database, microservice ↔ microservice) where multiple data fields are exchanged repeatedly in a chatty interaction",
+      "Define the DTO class: create a plain object (no business logic, no database references) containing only the fields needed by the consumer of that interface; give it a name that reflects the operation context (CreateOrderRequest, ProductSummaryResponse)",
+      "Map between domain model and DTO: implement explicit mapping code (or use a mapping library such as MapStruct, AutoMapper, or class-transformer) to convert between rich domain objects and thin DTOs at the boundary — never expose domain internals directly",
+      "Validate at ingress: apply input validation to DTOs arriving from external callers (HTTP request bodies, gRPC messages) before mapping them to domain objects; use validation annotations or schema validators to enforce constraints early",
+      "Version and evolve DTOs independently: treat DTOs as a public API contract; add fields with defaults for backward compatibility, deprecate fields explicitly, and use versioned DTO classes or API versioning to prevent breaking existing consumers during evolution"
+    ],
+    "steps_zh": [
+      "识别数据边界：定位两层或两个进程之间的接口（控制器 ↔ 服务、服务 ↔ 数据库、微服务 ↔ 微服务），在那里多个数据字段在频繁的交互中被反复交换",
+      "定义 DTO 类：创建一个普通对象（无业务逻辑、无数据库引用），仅包含该接口消费者所需的字段；给它一个反映操作上下文的名称（CreateOrderRequest、ProductSummaryResponse）",
+      "在领域模型和 DTO 之间映射：实现显式映射代码（或使用 MapStruct、AutoMapper、class-transformer 等映射库）在边界处在富领域对象和精简 DTO 之间转换——永远不要直接暴露领域内部",
+      "在入口处验证：在将来自外部调用者的 DTO（HTTP 请求体、gRPC 消息）映射到领域对象之前，对其应用输入验证；使用验证注解或模式验证器尽早强制约束",
+      "独立地对 DTO 进行版本控制和演进：将 DTO 视为公共 API 契约；为向后兼容添加带默认值的字段，明确弃用字段，并使用版本化 DTO 类或 API 版本控制，以防止在演进过程中破坏现有消费者"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "repository-pattern",
+      "data-mapper-pattern",
+      "solid-principles",
+      "clean-code-principles"
+    ],
+    "tags": [
+      "data-transfer",
+      "layered-architecture",
+      "api-design",
+      "decoupling",
+      "serialization"
+    ],
+    "origin_author": "Martin Fowler, \"Patterns of Enterprise Application Architecture\", 2002",
+    "origin_source": "Fowler, M. (2002). \"Patterns of Enterprise Application Architecture\". Addison-Wesley. Pattern: Data Transfer Object, pp. 401–415.",
+    "origin_source_zh": "Fowler（2002）《企业应用架构模式》，Addison-Wesley，模式：数据传输对象，第 401–415 页",
+    "complexity": "beginner",
+    "abstraction_level": "code",
+    "quality_concerns": [
+      "performance",
+      "maintainability"
+    ],
+    "maturity_ring": "foundational",
+    "when_to_use": [
+      "When calling remote services or crossing process boundaries where each method call is expensive and batching multiple fields into a single round trip reduces network overhead",
+      "When you need to expose only a subset of a domain model to an API consumer — the DTO acts as a projection that hides sensitive fields, computed properties, and ORM-managed relationships",
+      "When different consumers (mobile app, admin dashboard, public API) need different shapes of the same underlying data, requiring separate response DTOs rather than a single bloated domain object",
+      "When decoupling the public API contract from internal domain model refactoring is important — changing a domain entity should not force a breaking API change for consumers",
+      "When validating and deserializing structured input from HTTP bodies, gRPC messages, or message queue payloads before passing data into domain logic"
+    ],
+    "when_to_use_zh": [
+      "当调用远程服务或跨越进程边界时，每次方法调用都很昂贵，将多个字段打包成单一往返可减少网络开销",
+      "当你需要仅向 API 消费者暴露领域模型的子集时——DTO 充当隐藏敏感字段、计算属性和 ORM 管理关系的投影",
+      "当不同消费者（移动应用、管理仪表板、公共 API）需要相同底层数据的不同形状，需要单独的响应 DTO 而非单一膨胀的领域对象时",
+      "当将公共 API 契约与内部领域模型重构解耦很重要时——更改领域实体不应强制消费者进行破坏性 API 更改",
+      "当在将数据传入领域逻辑之前，验证和反序列化来自 HTTP 请求体、gRPC 消息或消息队列负载的结构化输入时"
+    ],
+    "core_concepts": [
+      "Anemic object: a DTO is intentionally anemic — it holds data fields and possibly simple getters/setters but contains zero business logic; this is a feature, not a violation of OOP principles, because its purpose is transport, not behaviour",
+      "Boundary mapping: explicit code that converts a rich domain object (with business rules, invariants, and ORM associations) to a flat DTO and back; the mapping layer is where field selection, renaming, and format conversion happen",
+      "Serialization contract: DTOs are the objects that get serialized to JSON, XML, Protobuf, or Avro for transmission; their structure defines the wire format and must be evolved carefully to maintain backward compatibility",
+      "Request vs. response DTO: inbound DTOs (requests/commands) carry client-supplied data into the application and are subject to validation; outbound DTOs (responses/views) carry application-computed data to clients and are shaped for consumer convenience",
+      "Projection: a DTO that represents a subset or reshaping of the domain model for a specific use case — similar to a database view but at the application layer"
+    ],
+    "core_concepts_zh": [
+      "贫血对象：DTO 是有意贫血的——它持有数据字段和可能的简单 getter/setter，但不包含任何业务逻辑；这是一个特性，而非 OOP 原则的违反，因为它的目的是传输而非行为",
+      "边界映射：将富领域对象（具有业务规则、不变量和 ORM 关联）转换为扁平 DTO 并反向转换的显式代码；映射层是字段选择、重命名和格式转换发生的地方",
+      "序列化契约：DTO 是被序列化为 JSON、XML、Protobuf 或 Avro 进行传输的对象；它们的结构定义了线格式，必须谨慎演进以保持向后兼容性",
+      "请求与响应 DTO：入站 DTO（请求/命令）将客户端提供的数据带入应用程序并需经过验证；出站 DTO（响应/视图）将应用程序计算的数据传递给客户端，并为消费者方便而塑形",
+      "投影：表示特定用例的领域模型子集或重塑的 DTO——类似于数据库视图，但在应用层"
+    ],
+    "timeline": [
+      [
+        "1998",
+        "Java EE (J2EE) 1.2 introduces Remote Method Invocation and Enterprise JavaBeans; developers discover that fine-grained RMI calls are prohibitively slow, motivating the Transfer Object (then called Value Object) pattern to batch data"
+      ],
+      [
+        "2002",
+        "Martin Fowler formalizes the Data Transfer Object pattern in \"Patterns of Enterprise Application Architecture\", distinguishing it from Value Object and documenting the mapping layer as a first-class concern"
+      ],
+      [
+        "2006",
+        "Sun Microsystems renames the J2EE pattern from 「Transfer Object」 to 「Data Transfer Object」 in the updated Java EE patterns catalog to resolve naming conflicts with Value Object"
+      ],
+      [
+        "2011",
+        "The rise of RESTful APIs and later gRPC/Protobuf cements DTOs as the universal mechanism for defining API request and response shapes across languages and frameworks"
+      ]
+    ],
+    "timeline_zh": [
+      [
+        "1998",
+        "Java EE（J2EE）1.2 引入远程方法调用和企业级 JavaBeans；开发者发现细粒度 RMI 调用速度极慢，促使开发传输对象（当时称为值对象）模式来批量处理数据"
+      ],
+      [
+        "2002",
+        "Martin Fowler 在《企业应用架构模式》中正式化了数据传输对象模式，将其与值对象区分开来，并将映射层记录为一等关注点"
+      ],
+      [
+        "2006",
+        "Sun Microsystems 在更新的 Java EE 模式目录中将 J2EE 模式从「Transfer Object」重命名为「Data Transfer Object」，以解决与值对象的命名冲突"
+      ],
+      [
+        "2011",
+        "RESTful API 的兴起以及后来的 gRPC/Protobuf 使 DTO 成为跨语言和框架定义 API 请求和响应形状的通用机制"
+      ]
+    ],
+    "dos": [
+      "Do name DTOs after the operation context rather than the domain entity: use OrderCreationRequest and OrderSummaryResponse instead of OrderDTO — the operation name communicates intent and makes it obvious which direction the data flows",
+      "Do keep DTOs flat and serialization-friendly: avoid nested domain objects or lazy-loaded ORM collections; map everything to primitives, value types, or explicit nested DTO classes before the boundary",
+      "Do validate DTO input at the entry point using declarative validators (Bean Validation annotations in Java, class-validator in TypeScript, Pydantic in Python) before mapping to domain objects — fail fast with descriptive error messages",
+      "Do use a dedicated mapping layer or library: centralize all DTO ↔ domain mappings in assembler classes, mapper functions, or a mapping library rather than embedding mapping logic in controllers or service methods"
+    ],
+    "dos_zh": [
+      "以操作上下文而非领域实体命名 DTO：使用 OrderCreationRequest 和 OrderSummaryResponse 而非 OrderDTO——操作名称传达意图并明确显示数据流向",
+      "保持 DTO 扁平化且序列化友好：避免嵌套领域对象或惰性加载的 ORM 集合；在边界之前将所有内容映射为基本类型、值类型或显式嵌套 DTO 类",
+      "在入口点使用声明式验证器验证 DTO 输入（Java 中的 Bean Validation 注解、TypeScript 中的 class-validator、Python 中的 Pydantic），然后再映射到领域对象——以描述性错误消息快速失败",
+      "使用专用映射层或库：将所有 DTO ↔ 领域映射集中在组装器类、映射函数或映射库中，而不是将映射逻辑嵌入控制器或服务方法中"
+    ],
+    "donts": [
+      "Don't add business logic or validation rules to DTOs: a DTO that enforces invariants, calculates derived fields, or calls services has become a domain object in disguise — move all logic to domain entities or application services",
+      "Don't reuse the same DTO for multiple unrelated operations: a single UserDTO shared between registration, profile update, and admin audit endpoints accumulates fields from all contexts, resulting in a nullable field soup that confuses every consumer",
+      "Don't skip the mapping layer by returning domain entities or ORM models directly from APIs: this exposes internal structure, leaks ORM-managed fields (like database IDs, version columns, audit timestamps), and couples the API contract to database schema changes",
+      "Don't create DTOs for purely in-process method calls within the same layer: DTOs solve the remote call cost problem; adding them to local service-to-service calls in the same process adds boilerplate with no performance or decoupling benefit"
+    ],
+    "donts_zh": [
+      "不要向 DTO 添加业务逻辑或验证规则：强制执行不变量、计算派生字段或调用服务的 DTO 已经变成了伪装的领域对象——将所有逻辑移动到领域实体或应用服务",
+      "不要为多个不相关的操作重用同一个 DTO：在注册、个人资料更新和管理员审计端点之间共享的单个 UserDTO 会积累所有上下文的字段，导致混淆每个消费者的可空字段汤",
+      "不要通过直接从 API 返回领域实体或 ORM 模型来跳过映射层：这会暴露内部结构，泄漏 ORM 管理的字段（如数据库 ID、版本列、审计时间戳），并将 API 契约与数据库模式变更耦合",
+      "不要为同一层内的纯进程内方法调用创建 DTO：DTO 解决的是远程调用成本问题；将它们添加到同一进程内的本地服务间调用会增加样板代码，而不带来任何性能或解耦优势"
+    ],
+    "case_study_company": "Spring Framework / Java EE ecosystem",
+    "case_study": "The J2EE (Java EE) pattern catalog documented the Transfer Object (later renamed Data Transfer Object) in response to a pervasive performance problem discovered by enterprise Java developers in the late 1990s: Entity EJBs exposed fine-grained remote interfaces where fetching an Order with 10 fields required 10 separate RMI calls, each incurring network round-trip overhead. Sun Microsystems and ThoughtWorks consultants, observing this anti-pattern across dozens of projects, codified the solution — bundle all required fields into a single serializable Transfer Object returned by a coarse-grained Session Facade — and published it in the J2EE Patterns catalog (2001) and Fowler's PoEAA (2002). The pattern subsequently propagated through the Spring Framework's layered architecture recommendations, becoming the standard way to structure controller request/response objects in Spring MVC applications, NestJS decorators, and gRPC Protobuf message definitions — all of which are DTOs under different names.",
+    "case_study_zh": "J2EE（Java EE）模式目录记录了传输对象（后来重命名为数据传输对象），以回应 1990 年代末企业级 Java 开发者发现的普遍性能问题：实体 EJB 暴露了细粒度远程接口，获取一个具有 10 个字段的 Order 需要 10 次单独的 RMI 调用，每次都会产生网络往返开销。Sun Microsystems 和 ThoughtWorks 顾问在数十个项目中观察到这种反模式后，将解决方案编成规范——将所有必需字段打包到由粗粒度 Session Facade 返回的单个可序列化传输对象中——并在 J2EE 模式目录（2001）和 Fowler 的 PoEAA（2002）中发布。该模式随后通过 Spring Framework 的分层架构建议传播开来，成为在 Spring MVC 应用程序、NestJS 装饰器和 gRPC Protobuf 消息定义中构建控制器请求/响应对象的标准方式——所有这些都是不同名称下的 DTO。",
+    "when_not_to_use": [
+      "Simple CRUD endpoints in small applications where domain model and API shape are identical and are unlikely to diverge — the mapping boilerplate adds no value when the domain entity and API contract are the same object",
+      "In-process function calls within a single bounded context where both caller and callee are in the same deployment unit — DTOs solve remote call cost; using them locally adds classes without any performance or isolation benefit",
+      "Rapid prototyping and early-stage development where the domain model is changing rapidly — introducing DTO mapping before the model stabilizes creates a maintenance burden that slows down iteration without improving quality",
+      "GraphQL APIs where field selection is handled by the query itself — the GraphQL resolver can project fields directly from domain objects, making a separate DTO layer redundant in most cases"
+    ],
+    "when_not_to_use_zh": [
+      "小型应用程序中的简单 CRUD 端点，其中领域模型和 API 形状相同且不太可能分歧——当领域实体和 API 契约是同一对象时，映射样板不会增加任何价值",
+      "单个有界上下文内的进程内函数调用，调用者和被调用者都在同一部署单元中——DTO 解决远程调用成本；在本地使用它们只会增加类而不带来任何性能或隔离优势",
+      "领域模型快速变化的快速原型和早期开发阶段——在模型稳定之前引入 DTO 映射会产生维护负担，在不提高质量的情况下减缓迭代速度",
+      "GraphQL API，其中字段选择由查询本身处理——GraphQL 解析器可以直接从领域对象投影字段，在大多数情况下使单独的 DTO 层变得多余"
+    ],
+    "adopters": [
+      "Java EE / Spring Framework",
+      ".NET / ASP.NET Core (with AutoMapper)",
+      "NestJS (TypeScript class-validator DTOs)",
+      "gRPC (Protobuf message definitions)",
+      "Django REST Framework (Serializers)"
+    ],
+    "primary_source": "Fowler, M. (2002). \"Patterns of Enterprise Application Architecture\". Addison-Wesley. Chapter: Distribution Patterns — Data Transfer Object.",
+    "secondary_sources": [
+      "Alur, D., Crupi, J. & Malks, D. (2001). \"Core J2EE Patterns: Best Practices and Design Strategies\". Sun Microsystems Press. Transfer Object pattern.",
+      "Vernon, V. (2013). \"Implementing Domain-Driven Design\". Addison-Wesley. Chapter 4: Architecture.",
+      "Nygard, M. (2007). \"Release It!\". Pragmatic Programmers. Chapter on stability patterns at service boundaries."
+    ],
+    "typed_relations": [
+      {
+        "slug": "repository-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "data-mapper-pattern",
+        "type": "complement"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "related"
+      }
+    ]
+  },
+  {
+    "id": 324,
+    "name": "DRY (Don't Repeat Yourself)",
+    "name_zh": "DRY 原则（不要重复自己）",
+    "slug": "dry-principle",
+    "category": "coding",
+    "desc": "Every piece of knowledge must have a single, unambiguous, authoritative representation within a system. When you find yourself writing the same code in two places, extract it into one canonical source.",
+    "desc_zh": "系统中的每一条知识都必须有唯一、明确、权威性的表述。当你在两个地方写相同的代码时，就应该将其提取为唯一的权威来源。",
+    "steps": [
+      "Identify duplicated logic, data, or knowledge across the codebase",
+      "Find the canonical location or create a single source of truth",
+      "Extract the duplication into a shared abstraction (function, class, constant, template)",
+      "Update all call sites to reference the single source",
+      "Verify tests still pass; ensure the abstraction is not over-generalized"
+    ],
+    "steps_zh": [
+      "识别代码库中重复的逻辑、数据或知识",
+      "找到权威位置，或创建唯一信源",
+      "将重复部分提取为共享抽象（函数、类、常量、模板）",
+      "更新所有调用处引用唯一来源",
+      "验证测试仍通过；确保抽象没有过度泛化"
+    ],
+    "viz_type": "venn",
+    "complexity": "beginner",
+    "origin_author": "Andy Hunt & Dave Thomas, 1999",
+    "adopters": [
+      "Ruby on Rails（核心设计哲学）",
+      "Django",
+      "Spring Boot",
+      "Terraform",
+      "GraphQL"
+    ],
+    "related": ["solid-principles", "clean-code-principles", "functional-core-imperative-shell"],
+    "tags": ["dry", "code-quality", "maintainability", "abstraction", "refactoring"],
+    "ai_relevant": false,
+    "abstraction_level": "code",
+    "quality_concerns": ["maintainability"],
+    "maturity_ring": "foundational",
+    "when_to_use": "When you notice the same logic appears in two or more places, or when a constant, formula, or business rule is hard-coded in multiple files. Apply DRY during refactoring sprints or when onboarding reveals confusion about which copy is canonical.",
+    "when_to_use_zh": "当相同逻辑出现在两个或更多地方时，或当常量、公式、业务规则被硬编码在多个文件中时。在重构冲刺或入职发现混乱时应用。",
+    "core_concepts": [
+      "Single Source of Truth",
+      "Abstraction",
+      "Knowledge Duplication vs Code Duplication",
+      "Canonical Representation",
+      "Rule of Three"
+    ],
+    "core_concepts_zh": [
+      "唯一信源",
+      "抽象化",
+      "知识重复 vs 代码重复",
+      "权威性表述",
+      "三次则则"
+    ],
+    "timeline": [
+      {
+        "year": 1999,
+        "event": "Andy Hunt and Dave Thomas coin the term in 「The Pragmatic Programmer」"
+      },
+      {
+        "year": 2000,
+        "event": "Ruby on Rails adopts DRY as a core design principle, popularizing it widely"
+      },
+      {
+        "year": 2005,
+        "event": "Concept expanded to infrastructure: Terraform and config-as-code embrace DRY"
+      },
+      {
+        "year": 2015,
+        "event": "GraphQL's single schema serves as the DRY contract between client and server"
+      },
+      {
+        "year": 2020,
+        "event": "DRY tension with micro-services discussed: shared libraries vs. duplication across services"
+      }
+    ],
+    "timeline_zh": [
+      {
+        "year": 1999,
+        "event": "Andy Hunt 和 Dave Thomas 在《务实的程序员》中提出该术语"
+      },
+      {
+        "year": 2000,
+        "event": "Ruby on Rails 将 DRY 作为核心设计哲学，广泛推广"
+      },
+      {
+        "year": 2005,
+        "event": "DRY 理念延伸到基础设施：Terraform 和配置即代码拥抱 DRY"
+      },
+      {
+        "year": 2015,
+        "event": "GraphQL 的单一 Schema 作为客户端与服务端间的 DRY 契约"
+      },
+      {
+        "year": 2020,
+        "event": "微服务中 DRY 的张力被讨论：共享库 vs 跨服务重复"
+      }
+    ],
+    "dos": [
+      "Extract shared logic into well-named functions or modules",
+      "Use configuration or constants for repeated values",
+      "Apply templates or code generation to eliminate structural duplication",
+      "Review for duplication at the knowledge level, not just syntactic level",
+      "Follow the Rule of Three: abstract on the third repetition"
+    ],
+    "dos_zh": [
+      "将共享逻辑提取到命名良好的函数或模块中",
+      "对重复的值使用配置或常量",
+      "应用模板或代码生成消除结构性重复",
+      "在知识层面而不仅仅是语法层面审查重复",
+      "遵循三次则则：第三次重复时再抽象"
+    ],
+    "donts": [
+      "Don't abstract too early — duplication is cheaper than the wrong abstraction",
+      "Don't merge unrelated things just because they look similar",
+      "Don't apply DRY across microservice boundaries at the cost of coupling",
+      "Don't confuse DRY with removing all redundancy — tests intentionally repeat setup",
+      "Don't DRY-up accidental duplication that may diverge in the future"
+    ],
+    "donts_zh": [
+      "不要过早抽象 —— 重复比错误的抽象代价更低",
+      "不要仅因为看起来相似就将无关的东西合并",
+      "不要以小类服务共耐为代价跨服务应用 DRY",
+      "不要把 DRY 与消除所有冗余混淆 —— 测试有意地重复设置",
+      "不要小印偶然重复的部分，它们未来可能会分岐"
+    ],
+    "case_study": "Ruby on Rails embodies DRY through its convention-over-configuration philosophy. The ActiveRecord ORM eliminates duplicated SQL and model definitions; Action Pack routes map URLs to controllers without repetitive wiring; Rails generators produce standard scaffolding so developers never manually repeat boilerplate. The result: a new Rails app has almost no duplicated setup code compared to raw PHP or early Java web apps.",
+    "case_study_zh": "Ruby on Rails 通过「约定优于配置」的哲学深刻体现了 DRY 原则。ActiveRecord ORM 消除了重复的 SQL 和模型定义；Action Pack 路由无需重复配线就能将 URL 映射到控制器；Rails 生成器自动生产标准脚手架代码。结果：一个新的 Rails 应用几乎没有重复的设置代码。",
+    "case_study_company": "Ruby on Rails",
+    "when_not_to_use": "Avoid forced DRY across microservice boundaries where coupling would be worse than duplication. Don't apply it to test setup code — explicit repetition in tests aids readability. Early-stage prototypes may be better off with duplicate code that's easier to delete.",
+    "when_not_to_use_zh": "避免在微服务边界强制应用 DRY，耦合的代价将大于重复。不要应用于测试设置代码 —— 测试中显式重复有助于可读性。早期原型可能适合保留重复代码，便于删除。",
+    "primary_source": "Hunt, A. & Thomas, D. (1999). 「The Pragmatic Programmer: From Journeyman to Master.」 Addison-Wesley.",
+    "secondary_sources": [
+      "Fowler, M. (1999). 「Refactoring: Improving the Design of Existing Code.」 Addison-Wesley.",
+      "Martin, R.C. (2008). 「Clean Code.」 Prentice Hall."
+    ],
+    "origin_source": "Coined in 「The Pragmatic Programmer」 (1999) by Andy Hunt and Dave Thomas as one of the most important principles of software development.",
+    "origin_source_zh": "来自 Andy Hunt 和 Dave Thomas《务实的程序员》（1999），被列为软件开发最重要原则之一。",
+    "typed_relations": [
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "clean-code-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "functional-core-imperative-shell",
+        "type": "related"
+      }
+    ]
+  },
+  {
+    "id": 325,
+    "name": "KISS (Keep It Simple, Stupid)",
+    "name_zh": "KISS 原则（保持简单，不要复杂）",
+    "slug": "kiss-principle",
+    "category": "coding",
+    "desc": "Most systems work best if they are kept simple rather than made complicated. Complexity is the enemy of reliability. Design the simplest thing that could possibly work, and resist the temptation to add cleverness.",
+    "desc_zh": "大多数系统保持简单比过度设计更有效。复杂性是可靠性的敌人。设计最简单可能工作的方案，抗拒过度巧妙的诱惑。",
+    "steps": [
+      "Define the minimum requirement: what must this actually do?",
+      "Design the simplest solution that satisfies those requirements",
+      "Remove any element that is not essential to the core requirement",
+      "Ask 「would a new team member understand this in 5 minutes?」",
+      "Prefer standard patterns over custom cleverness"
+    ],
+    "steps_zh": [
+      "定义最小需求：这个实际上需要做什么？",
+      "设计满足这些需求的最简单方案",
+      "删除不是核心需求必需的任何元素",
+      "问「新团队成员能在 5 分钟内理解这个吗？」",
+      "优先使用标准模式而非自定义巧妙设计"
+    ],
+    "viz_type": "pyramid",
+    "complexity": "beginner",
+    "origin_author": "Kelly Johnson, Lockheed Skunk Works, 1960s",
+    "adopters": [
+      "Google 搜索",
+      "Basecamp",
+      "Unix/Linux 生态系统",
+      "Go 编程语言",
+      "SQLite"
+    ],
+    "related": ["clean-code-principles", "solid-principles", "functional-core-imperative-shell"],
+    "tags": ["kiss", "simplicity", "code-quality", "maintainability", "design-principles"],
+    "ai_relevant": false,
+    "abstraction_level": "code",
+    "quality_concerns": ["maintainability", "usability"],
+    "maturity_ring": "foundational",
+    "when_to_use": "When designing APIs, internal modules, or user interfaces where cognitive load matters. Apply KISS when you catch yourself adding layers of abstraction, configuration options, or extensibility hooks that the current use-case does not require.",
+    "when_to_use_zh": "当设计 API、内部模块或认知负荷重要的用户界面时。当你发现自己在添加当前用例不需要的抽象层、配置项或扩展性指容时应用。",
+    "core_concepts": [
+      "Simplicity",
+      "Cognitive Load",
+      "Minimal Design",
+      "Readability",
+      "Occam's Razor in Engineering"
+    ],
+    "core_concepts_zh": [
+      "简单性",
+      "认知负荷",
+      "最小化设计",
+      "可读性",
+      "工程界的奥卡姆剃刀"
+    ],
+    "timeline": [
+      {
+        "year": 1960,
+        "event": "Kelly Johnson coins 「Keep It Simple, Stupid」 as a design principle at Lockheed Skunk Works"
+      },
+      {
+        "year": 1978,
+        "event": "Unix philosophy echoes KISS: 「Do one thing and do it well」"
+      },
+      {
+        "year": 1998,
+        "event": "Google Search launches with deliberately minimal UI, defying portal-era complexity"
+      },
+      {
+        "year": 2009,
+        "event": "Go language designed with KISS in mind: no generics, no exceptions, explicit error handling"
+      },
+      {
+        "year": 2012,
+        "event": "KISS resurfaces in API design debates: REST vs SOAP simplicity argument resolved by industry"
+      }
+    ],
+    "timeline_zh": [
+      {
+        "year": 1960,
+        "event": "Kelly Johnson 在洛克希德黄色作品部提出「保持简单」设计原则"
+      },
+      {
+        "year": 1978,
+        "event": "Unix 哲学呼应 KISS：「只做一件事并做好」"
+      },
+      {
+        "year": 1998,
+        "event": "Google 搜索以故意简洁的界面上线，挑战了门户网站时代的复杂性"
+      },
+      {
+        "year": 2009,
+        "event": "Go 语言以 KISS 为理念设计：无泛型、无异常、显式错误处理"
+      },
+      {
+        "year": 2012,
+        "event": "KISS 在 API 设计论争中再度兴起：REST vs SOAP 简单性之争由行业内部定论"
+      }
+    ],
+    "dos": [
+      "Start with the simplest possible implementation",
+      "Prefer standard library solutions over custom implementations",
+      "Write code that reads like prose — minimize indirection",
+      "Limit function parameters; prefer small, focused functions",
+      "Question every layer of abstraction: does it genuinely reduce complexity?"
+    ],
+    "dos_zh": [
+      "从最简单的实现开始",
+      "优先使用标准库解决方案而非自定义实现",
+      "写出像散文一样可读的代码 —— 减少间接层",
+      "限制函数参数数量；优先小而专注的函数",
+      "质疑每一个抽象层：它真的降低了复杂性吗？"
+    ],
+    "donts": [
+      "Don't add flexibility 「just in case」 — build for now, refactor later",
+      "Don't use complex design patterns when a plain function would suffice",
+      "Don't mistake terseness for simplicity — one-liners can be hard to read",
+      "Don't build framework-like abstractions inside application code",
+      "Don't let tooling complexity (CI, Docker) negate the simplicity gains in code"
+    ],
+    "donts_zh": [
+      "不要「以防万一」为由添加灵活性 —— 先满足当前，局后再重构",
+      "当一个普通函数就能解决时，不要使用复杂的设计模式",
+      "不要把简洁和简短混淆 —— 一行式代码可能难以阅读",
+      "不要在应用程序代码内部构建类似框架的抽象",
+      "不要让工具复杂性（CI、Docker）抗消代码中的简单性收益"
+    ],
+    "case_study": "Google Search launched in 1998 with a single text box on a white page — a radical departure from Yahoo and AltaVista's crowded portal homepages. This KISS-driven design reduced cognitive load, focused user intent, and became iconic. Internally, Google's PageRank algorithm was also conceptually simple: count links as votes. The combination of simple UI and simple-to-explain algorithm built the world's dominant search engine.",
+    "case_study_zh": "Google 搜索于 1998 年以白页上一个文本框上线 —— 这与 Yahoo 和 AltaVista 拥挤的门户页形成强烈对比。这一符合 KISS 的设计降低了认知负荷，聚焦用户意图，成为标志性设计。PageRank 算法也概念简单：将链接计为投票。简单 UI 与可解释算法的结合造就了全球最强搜索引擎。",
+    "case_study_company": "Google Search",
+    "when_not_to_use": "KISS should not be used to justify under-engineering. Security, concurrency, and fault-tolerance genuinely require complexity. Don't apply KISS to dismiss necessary abstractions that protect long-term maintainability.",
+    "when_not_to_use_zh": "KISS 不应被用来为欠工进行辩护。安全性、并发和容错能力确实需要复杂性。不要用 KISS 来屈新必要的抽象。",
+    "primary_source": "Kelly Johnson's design principle documented in Lockheed Skunk Works engineering history (1960s). Popularized in software by McIlroy's Unix philosophy (1978).",
+    "secondary_sources": [
+      "Raymond, E.S. (2003). 「The Art of Unix Programming.」 Addison-Wesley.",
+      "Martin, R.C. (2008). 「Clean Code.」 Prentice Hall."
+    ],
+    "origin_source": "Coined by Kelly Johnson at Lockheed Skunk Works in the 1960s as an aerospace engineering design guideline; adapted to software through Unix philosophy.",
+    "origin_source_zh": "由 Kelly Johnson 在 20 世纪 60 年代洛克希德黄色作品部提出，最初为航空工程设计准则，后通过 Unix 哲学应用于软件领域。",
+    "typed_relations": [
+      {
+        "slug": "clean-code-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "solid-principles",
+        "type": "related"
+      },
+      {
+        "slug": "functional-core-imperative-shell",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 326,
+    "name": "YAGNI (You Aren't Gonna Need It)",
+    "name_zh": "YAGNI 原则（你不会用到它的）",
+    "slug": "yagni-principle",
+    "category": "coding",
+    "desc": "Always implement things when you actually need them, never when you just foresee that you might need them. Premature generalization is as harmful as premature optimization.",
+    "desc_zh": "只在真正需要时才实现功能，不要因为预见未来可能需要就提前实现。过早泛化与过早优化同样有害。",
+    "steps": [
+      "Identify what the current story or requirement actually specifies",
+      "Implement only that requirement — nothing more",
+      "Resist adding hooks, extension points, or config flags 「for later」",
+      "Review your PR: is every line driven by a real, current requirement?",
+      "Trust that the codebase will be refactorable when the need actually arises"
+    ],
+    "steps_zh": [
+      "确认当前用户故事或需求实际指定了什么",
+      "只实现该需求 —— 不多不少",
+      "抗拒为「日后」添加钩子、扩展点或配置开关",
+      "审查你的 PR：每一行是否都有真实的当前需求驱动？",
+      "相信当需求真正来临时代码库可以重构"
+    ],
+    "viz_type": "flow",
+    "complexity": "beginner",
+    "origin_author": "Ron Jeffries, Extreme Programming community, late 1990s",
+    "adopters": [
+      "Basecamp / 37signals",
+      "ThoughtWorks",
+      "Pivotal Labs",
+      "Shopify",
+      "Stack Overflow"
+    ],
+    "related": ["solid-principles", "clean-code-principles", "gof-design-patterns"],
+    "tags": ["yagni", "xp", "agile", "over-engineering", "simplicity"],
+    "ai_relevant": false,
+    "abstraction_level": "code",
+    "quality_concerns": ["maintainability", "performance"],
+    "maturity_ring": "foundational",
+    "when_to_use": "Apply YAGNI whenever you catch yourself adding code that is not required by the current iteration. Especially useful in agile teams where requirements are refined over time and future needs are uncertain.",
+    "when_to_use_zh": "当你发现自己正在添加当前迭代不需要的代码时应用。在需求随时间深化、未来不确定的敏捷团队中尤为适用。",
+    "core_concepts": [
+      "Incremental Development",
+      "Premature Generalization",
+      "Cost of Unused Code",
+      "Iterative Delivery",
+      "Extreme Programming (XP)"
+    ],
+    "core_concepts_zh": [
+      "增量开发",
+      "过早泛化",
+      "无用代码的成本",
+      "迭代交付",
+      "极限编程（XP）"
+    ],
+    "timeline": [
+      {
+        "year": 1999,
+        "event": "Ron Jeffries introduces YAGNI as a core Extreme Programming practice"
+      },
+      {
+        "year": 2001,
+        "event": "Agile Manifesto formally embraces incremental delivery, reinforcing YAGNI"
+      },
+      {
+        "year": 2004,
+        "event": "Basecamp / 37signals publish 「Getting Real」 — anti-over-engineering manifesto echoing YAGNI"
+      },
+      {
+        "year": 2010,
+        "event": "Lean Startup popularizes 「MVP」 — YAGNI at product level"
+      },
+      {
+        "year": 2018,
+        "event": "GitHub study on feature usage: ~64% of features in enterprise software rarely or never used"
+      }
+    ],
+    "timeline_zh": [
+      {
+        "year": 1999,
+        "event": "Ron Jeffries 将 YAGNI 作为极限编程的核心实践引入"
+      },
+      {
+        "year": 2001,
+        "event": "敏捷宣言正式拥抱增量交付，强化 YAGNI"
+      },
+      {
+        "year": 2004,
+        "event": "Basecamp / 37signals 出版《回归真实》—— 反过度工程宣言，呼应 YAGNI"
+      },
+      {
+        "year": 2010,
+        "event": "精益创业推广「MVP」—— YAGNI 在产品层面的体现"
+      },
+      {
+        "year": 2018,
+        "event": "GitHub 研究显示：企业软件中约64%的功能很少使用或从未使用"
+      }
+    ],
+    "dos": [
+      "Implement only what the current requirement demands",
+      "Delete speculative code when cleaning up branches",
+      "Use feature flags to defer decisions rather than building unused paths",
+      "Communicate trade-offs to stakeholders: 「we can add X when we need it」",
+      "Review PRs for 「just in case」 code and flag it"
+    ],
+    "dos_zh": [
+      "只实现当前需求所要求的功能",
+      "清理分支时删除投机性代码",
+      "用功能开关推迟决策，而不是构建无用路径",
+      "就权衡进行沟通：「需要时我们再加 X」",
+      "审查 PR 中的「以备不时之需」代码并指出"
+    ],
+    "donts": [
+      "Don't add plugin systems, strategy hooks, or 「extensible」 layers before they're requested",
+      "Don't write adapter code for hypothetical future data sources",
+      "Don't generalize to N cases when only 1 or 2 are needed today",
+      "Don't keep dead code paths 「in case we need them later」",
+      "Don't confuse YAGNI with avoiding good architecture — basic layering is not premature"
+    ],
+    "donts_zh": [
+      "不要在尚未请求前添加插件系统、策略钩子或「可扩展」层",
+      "不要为假设的未来数据源编写适配器代码",
+      "当只需要 1 或 2 个情况时，不要泛化为 N 种情况",
+      "不要保留死代码路径「以防后来需要」",
+      "不要把 YAGNI 与避免良好架构混淆 —— 基础分层不是过早优化"
+    ],
+    "case_study": "Basecamp (formerly 37signals) built its project management product by religiously following YAGNI. Their book 「Getting Real」 documents how features were only built when customers demanded them, not anticipated. The result was a lean product that shipped faster, had fewer bugs, and cost less to maintain. Competitor products loaded with 「maybe useful」 features were harder to learn and slower to develop.",
+    "case_study_zh": "Basecamp（前身 37signals）在构建项目管理产品时严格遵循 YAGNI。其《回归真实》记录了只有当客户明确要求时才构建功能的做法。结果是一个交付更快、缺陷更少、维护成本更低的精类产品。",
+    "case_study_company": "Basecamp (37signals)",
+    "when_not_to_use": "Security and compliance requirements must be built in from the start — YAGNI does not apply. Infrastructure choices (database engine, message queue) have high switching costs and deserve some forethought. YAGNI applies to feature code, not foundational architectural decisions.",
+    "when_not_to_use_zh": "安全合规需求必须从一开始就内置——YAGNI 不适用于此。基础设施选择（数据库引擎、消息队列）切换成本高，应有一定先见。YAGNI 针对功能代码，而非基础架构决策。",
+    "primary_source": "Jeffries, R. (1999). Extreme Programming Installed. Addison-Wesley.",
+    "secondary_sources": [
+      "Fried, J. & Heinemeier Hansson, D. (2010). 「Rework.」 Crown Business.",
+      "Beck, K. (2000). 「Extreme Programming Explained.」 Addison-Wesley."
+    ],
+    "origin_source": "Coined by Ron Jeffries as part of Extreme Programming (XP) in the late 1990s; popularized through the XP community and the Agile movement.",
+    "origin_source_zh": "由 Ron Jeffries 在 20 世纪 90 年代末作为极限编程（XP）的一部分提出，并通过 XP 社区和敏捷运动广泛传播。",
+    "typed_relations": [
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "clean-code-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "gof-design-patterns",
+        "type": "related"
+      }
+    ]
+  },
+  {
+    "id": 327,
+    "name": "Composition over Inheritance",
+    "name_zh": "组合优于继承",
+    "slug": "composition-over-inheritance",
+    "category": "coding",
+    "desc": "Favor object composition over class inheritance to achieve code reuse and polymorphism. Inheritance creates tight coupling between parent and child classes; composition assembles behavior from interchangeable parts, making systems more flexible and testable.",
+    "desc_zh": "为了实现代码复用和多态，应优先采用对象组合而非类继承。继承在父子类之间建立紧耦合；组合则将行为从可互换的部件中组装，使系统更灵活、可测试。",
+    "steps": [
+      "Identify behavior that is being shared via inheritance",
+      "Extract that behavior into a small, focused interface or class (a 「component」)",
+      "Compose the target class by holding a reference to that component",
+      "Inject the component via constructor or setter for testability",
+      "Verify that the composed class can swap implementations at runtime or test time"
+    ],
+    "steps_zh": [
+      "识别通过继承共享的行为",
+      "将该行为提取为小而专注的接口或类（一个「组件」）",
+      "通过持有该组件的引用来组合目标类",
+      "通过构造函数或 setter 注入组件以提高可测试性",
+      "验证组合类可在运行时或测试时替换实现"
+    ],
+    "viz_type": "tree",
+    "complexity": "intermediate",
+    "origin_author": "Gang of Four (Gamma, Helm, Johnson, Vlissides), 1994",
+    "adopters": [
+      "React / Meta（组件模型）",
+      "Go（无类继承）",
+      "Rust（trait 组合）",
+      "Spring Framework",
+      "Unity 游戏引擎"
+    ],
+    "related": ["solid-principles", "gof-design-patterns", "decorator-pattern"],
+    "tags": ["composition", "inheritance", "oop", "design-principles", "testability"],
+    "ai_relevant": false,
+    "abstraction_level": "code",
+    "quality_concerns": ["maintainability", "testability"],
+    "maturity_ring": "foundational",
+    "when_to_use": "When you find yourself duplicating methods across sibling classes, or when deep inheritance hierarchies make changes risky. Apply when you need to mix and match behaviors dynamically, or when unit testing is made difficult by inherited state.",
+    "when_to_use_zh": "当你发现自己在兄弟类之间重复方法，或当深层继承层次使变更变得危险时。当需要动态混合行为，或继承的状态妨碍了单元测试时应用。",
+    "core_concepts": [
+      "Has-a vs Is-a",
+      "Delegation",
+      "Interface Segregation",
+      "Dependency Injection",
+      "Mixin / Trait Pattern"
+    ],
+    "core_concepts_zh": [
+      "Has-a vs Is-a 关系",
+      "委托",
+      "接口隔离",
+      "依赖注入",
+      "Mixin / Trait 模式"
+    ],
+    "timeline": [
+      {
+        "year": 1994,
+        "event": "Gang of Four formally states 「Favor composition over inheritance」 in Design Patterns"
+      },
+      {
+        "year": 2000,
+        "event": "Java's interface + delegation pattern becomes the standard way to avoid deep hierarchies"
+      },
+      {
+        "year": 2009,
+        "event": "Go launches without class inheritance — composition is the only mechanism"
+      },
+      {
+        "year": 2013,
+        "event": "React introduces component composition model, making it mainstream in UI development"
+      },
+      {
+        "year": 2015,
+        "event": "Rust stabilizes, proving trait composition can replace inheritance across systems programming"
+      }
+    ],
+    "timeline_zh": [
+      {
+        "year": 1994,
+        "event": "GoF 在《设计模式》中正式提出「组合优于继承」"
+      },
+      {
+        "year": 2000,
+        "event": "Java 接口 + 委托模式成为避免深层次继承的标准方式"
+      },
+      {
+        "year": 2009,
+        "event": "Go 在没有类继承的情况下发布 —— 组合是唯一机制"
+      },
+      {
+        "year": 2013,
+        "event": "React 引入组件组合模型，使其在 UI 开发中成为主流"
+      },
+      {
+        "year": 2015,
+        "event": "Rust 稳定发布，证明 trait 组合可在系统编程中取代继承"
+      }
+    ],
+    "dos": [
+      "Model 「has-a」 relationships with composition, 「is-a」 with inheritance",
+      "Keep composed components small and single-purpose",
+      "Use dependency injection to supply composed parts — aids testability",
+      "Prefer interfaces/protocols over concrete base classes",
+      "Use mixins or traits for horizontal behavior sharing"
+    ],
+    "dos_zh": [
+      "用组合建模「has-a」关系，用继承建模「is-a」关系",
+      "保持组合组件小而单一职责",
+      "使用依赖注入提供组合部分 —— 有助于可测试性",
+      "优先使用接口/协议而非具体基类",
+      "使用 mixin 或 trait 进行水平行为共享"
+    ],
+    "donts": [
+      "Don't inherit just to reuse a few methods — extract and compose instead",
+      "Don't create inheritance hierarchies deeper than 2-3 levels",
+      "Don't use composition just to avoid thinking about the domain model",
+      "Don't over-decompose: too many tiny components create their own complexity",
+      "Don't forget that some 「is-a」 relationships are genuine and inheritance is correct"
+    ],
+    "donts_zh": [
+      "不要仅为了复用少数方法就继承 —— 提取并组合",
+      "不要创建超过 2-3 层的继承层次",
+      "不要仅为了避免思考领域模型而使用组合",
+      "不要过度拆分：太多小组件会产生其自身的复杂性",
+      "不要忘记有些「is-a」关系是真实存在的，这种情况下继承是正确的"
+    ],
+    "case_study": "React's component model is the most mainstream example of composition over inheritance in UI development. Prior frameworks like Backbone used inheritance chains; React replaced this with composable functional components. A 「Button」 can compose an 「Icon」 and a 「Label」 without any class hierarchy. React's own documentation explicitly states 「At Facebook, we use React in thousands of components, and we haven't found any use cases where we would recommend creating component inheritance hierarchies.」",
+    "case_study_zh": "React 的组件模型是 UI 开发中组合优于继承最主流的范例。Backbone 等早期框架使用继承链；React 将其替换为可组合的函数式组件。一个「Button」可以组合「Icon」和「Label」，无需任何类层次。React 官方文档明确表示：「在 Facebook，我们在数千个组件中使用 React，未发现任何需要创建组件继承层次的场景。」",
+    "case_study_company": "React (Meta)",
+    "when_not_to_use": "Don't avoid inheritance dogmatically. When the 「is-a」 relationship is stable and domain-accurate (Animal → Dog), shallow inheritance is simpler. Language-level constructs like abstract base classes in Python or interfaces in Java are often the right tool.",
+    "when_not_to_use_zh": "不要教条地排斥继承。当「is-a」关系稳定且领域准确时（如动物→狗），浅层继承更简单。Python 抽象基类或 Java 接口等语言级构造往往是正确选择。",
+    "primary_source": "Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (1994). 「Design Patterns: Elements of Reusable Object-Oriented Software.」 Addison-Wesley.",
+    "secondary_sources": [
+      "Martin, R.C. (2008). 「Clean Code.」 Prentice Hall.",
+      "React Documentation (2023). 「Composition vs Inheritance.」 https://react.dev"
+    ],
+    "origin_source": "Formally stated by the Gang of Four in Design Patterns (1994): 「Favor object composition over class inheritance.」",
+    "origin_source_zh": "由 GoF 在《设计模式》（1994）中正式表述：「优先采用对象组合而非类继承。」",
+    "typed_relations": [
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "gof-design-patterns",
+        "type": "extends"
+      },
+      {
+        "slug": "decorator-pattern",
+        "type": "complement"
+      }
+    ]
+  },
+  {
+    "id": 328,
+    "name": "Law of Demeter (Principle of Least Knowledge)",
+    "name_zh": "迪米特得法则（最少知识原则）",
+    "slug": "law-of-demeter",
+    "category": "coding",
+    "desc": "A module should not know about the internal workings of the objects it manipulates. An object should only call methods on: itself, its parameters, objects it creates, and its direct component objects — never on objects returned by those calls.",
+    "desc_zh": "模块不应该了解其操作对象的内部运作。一个对象只应调用：它自身、它的参数、它创建的对象以及它直接的组件对象的方法——而不是这些调用返回的对象。",
+    "steps": [
+      "Review each method call chain (a.b().c().d()) and flag violations",
+      "Identify what knowledge is being reached through the chain",
+      "Add a method to the intermediate object that performs the required operation internally",
+      "Have the caller invoke that new method instead of traversing the chain",
+      "Verify the caller no longer knows about the internal structure"
+    ],
+    "steps_zh": [
+      "审查每个方法调用链（a.b().c().d()）并标记违规",
+      "识别通过调用链访问了什么知识",
+      "向中间对象添加一个在内部执行所需操作的方法",
+      "让调用方调用该新方法而非遍历调用链",
+      "验证调用方不再知道内部结构"
+    ],
+    "viz_type": "tree",
+    "complexity": "intermediate",
+    "origin_author": "Karl Lieberherr, Ian Holland, Arthur Riel — Northeastern University, 1987",
+    "adopters": [
+      "Java 最佳实践（Spring、JPA）",
+      "C# / .NET",
+      "Python",
+      "Ruby on Rails",
+      "AWS SDK v2"
+    ],
+    "related": ["solid-principles", "clean-code-principles", "strategy-pattern"],
+    "tags": ["law-of-demeter", "coupling", "encapsulation", "oop", "maintainability"],
+    "ai_relevant": false,
+    "abstraction_level": "code",
+    "quality_concerns": ["maintainability", "testability"],
+    "maturity_ring": "foundational",
+    "when_to_use": "When you see long method chains that reach deep into object graphs. Apply when changing an internal object requires updating many call sites. Essential when designing APIs intended for external consumption where encapsulation is critical.",
+    "when_to_use_zh": "当你看到深入对象图调用链时。当修改内部对象需要更新大量调用处时应用。在设计外部 API 时，封装至关重要。",
+    "core_concepts": [
+      "Coupling",
+      "Encapsulation",
+      "Tell, Don't Ask",
+      "Information Hiding",
+      "Structural Coupling"
+    ],
+    "core_concepts_zh": [
+      "耦合",
+      "封装",
+      "「命令，而非查询」",
+      "信息隐藏",
+      "结构耦合"
+    ],
+    "timeline": [
+      {
+        "year": 1987,
+        "event": "Karl Lieberherr, Ian Holland, and Arthur Riel publish 「Object-Oriented Programming: An Objective Sense of Style」 at OOPSLA, introducing the Law of Demeter"
+      },
+      {
+        "year": 1989,
+        "event": "Lieberherr and Holland formalize it as a style rule for object-oriented design"
+      },
+      {
+        "year": 1999,
+        "event": "Hunt & Thomas reframe it in 「The Pragmatic Programmer」 as 「Principle of Least Knowledge」"
+      },
+      {
+        "year": 2004,
+        "event": "Martin Fowler discusses 「Tell, Don't Ask」 as the complementary behavioral pattern"
+      },
+      {
+        "year": 2008,
+        "event": "Robert Martin cites LoD in 「Clean Code」, cementing it in mainstream software craftsmanship"
+      }
+    ],
+    "timeline_zh": [
+      {
+        "year": 1987,
+        "event": "Karl Lieberherr、Ian Holland 和 Arthur Riel 在 OOPSLA 发表论文，引入迪米特得法则"
+      },
+      {
+        "year": 1989,
+        "event": "Lieberherr 和 Holland 将其正式化为面向对象设计的样式规则"
+      },
+      {
+        "year": 1999,
+        "event": "Hunt & Thomas 在《务实的程序员》中将其重新表述为「最小知识原则」"
+      },
+      {
+        "year": 2004,
+        "event": "Martin Fowler 讨论「命令，而非查询」作为补充的行为模式"
+      },
+      {
+        "year": 2008,
+        "event": "Robert Martin 在《洁净代码》中引用 LoD，将其巩固入主流软件工艺"
+      }
+    ],
+    "dos": [
+      "Add 「tell」 methods to intermediate objects that encapsulate the traversal",
+      "Use the 「Tell, Don't Ask」 principle to command objects rather than query their internals",
+      "Keep object graphs shallow — deep graphs signal design problems",
+      "Design APIs that return value objects or DTOs instead of exposing internal references",
+      "Write unit tests that expose chain violations by requiring complex mock setups"
+    ],
+    "dos_zh": [
+      "向中间对象添加封装遍历的「命令」方法",
+      "用「命令，而非查询」原则指挥对象而非查询其内部状态",
+      "保持对象图浅层 —— 深层结构暗示设计问题",
+      "设计返回值对象或 DTO 而非暴露内部引用的 API",
+      "编写单元测试以展露链式调用违规（复杂模拟设置为信号）"
+    ],
+    "donts": [
+      "Don't write 「train wrecks」: a.getB().getC().doSomething()",
+      "Don't expose internal collections directly — return views or copies",
+      "Don't violate LoD just for convenience in scripts or one-off code",
+      "Don't confuse LoD with avoiding all chaining — fluent builders on the same object are fine",
+      "Don't add trivial delegate methods just to satisfy the law — use judgment"
+    ],
+    "donts_zh": [
+      "不要写「火车炸毁」式调用：a.getB().getC().doSomething()",
+      "不要直接暴露内部集合 —— 返回视图或副本",
+      "不要仅为了便利就在脚本或一次性代码中违反 LoD",
+      "不要把 LoD 与避免所有链式调用混淆 —— 对同一对象的流式构建器是允许的",
+      "不要仅为满足该法则就添加琐小的委托方法 —— 需要判断"
+    ],
+    "case_study": "The AWS SDK v2 for Java was redesigned with LoD in mind. The v1 SDK exposed deeply nested configuration objects, leading to call chains like client.getConfig().getCredentials().getAWSAccessKeyId(). SDK v2 replaced this with immutable builder objects and explicit credential providers, so callers interact only with the top-level client. This made the SDK far easier to mock in unit tests and eliminated coupling to internal AWS service structures.",
+    "case_study_zh": "Java AWS SDK v2 就是考虑到 LoD 而重设计的。v1 SDK 暴露了深层嵌套的配置对象，导致如 client.getConfig().getCredentials().getAWSAccessKeyId() 的调用链。SDK v2 用不可变构建器对象和显式凭证提供者取代了这些，调用方只需与顶层客户端交互。这使 SDK 在单元测试中更易于 mock，并消除了对内部 AWS 服务结构的耦合。",
+    "case_study_company": "Amazon (AWS SDK)",
+    "when_not_to_use": "Don't apply LoD so strictly that you create 「wrapper hell」 — dozens of trivial delegate methods. In data pipeline or ETL code, chained transformations on the same object are idiomatic. Framework internals often need direct graph access for performance.",
+    "when_not_to_use_zh": "不要将 LoD 应用得如此严格以至创造「包装地狱」——数十个琐小的委托方法。在数据流水线或 ETL 代码中，对同一对象进行链式转换是惯用写法。框架内部组件出于性能考虑通常需要直接访问图结构。",
+    "primary_source": "Lieberherr, K., Holland, I., & Riel, A. (1988). 「Object-Oriented Programming: An Objective Sense of Style.」 OOPSLA '87 Proceedings.",
+    "secondary_sources": [
+      "Hunt, A. & Thomas, D. (1999). 「The Pragmatic Programmer.」 Addison-Wesley.",
+      "Martin, R.C. (2008). 「Clean Code.」 Prentice Hall."
+    ],
+    "origin_source": "Presented at OOPSLA 1987 by Lieberherr, Holland, and Riel at Northeastern University. Named 「Demeter」 after the Greek goddess of agriculture and a research project at Northeastern.",
+    "origin_source_zh": "由 Lieberherr、Holland 和 Riel 在东北大学于 1987 年 OOPSLA 上发表。名称「迪米特」源自希腊农业女神和东北大学的一个研究项目。",
+    "typed_relations": [
+      {
+        "slug": "solid-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "clean-code-principles",
+        "type": "complement"
+      },
+      {
+        "slug": "strategy-pattern",
+        "type": "related"
+      }
+    ]
   }
 ]

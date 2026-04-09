@@ -4113,5 +4113,1114 @@
         "type": "complement"
       }
     ]
+  },
+  {
+    "id": 316,
+    "name": "MVC (Model-View-Controller)",
+    "name_zh": "MVC（模型-视图-控制器）",
+    "slug": "mvc",
+    "category": "architecture",
+    "desc": "Separates an application into three interconnected components — Model (data/logic), View (UI), and Controller (input handling) — to decouple presentation from business logic.",
+    "desc_zh": "将应用程序分为三个相互关联的组件——模型（数据/逻辑）、视图（界面）和控制器（输入处理）——以解耦表示层与业务逻辑。",
+    "steps": [
+      "Define the Model layer: data structures, business rules, and persistence logic; the Model notifies observers when its state changes",
+      "Define the View layer: all UI rendering and presentation logic, subscribing to Model changes to update the display without containing business logic",
+      "Define the Controller layer: intercepts user input, translates it into commands for the Model or View, and orchestrates the interaction flow",
+      "Wire the triad together: Controllers reference the Model and View; Views observe the Model; Models have no knowledge of Views or Controllers",
+      "Validate separation by ensuring business logic changes require only Model modifications and UI redesigns require only View modifications"
+    ],
+    "steps_zh": [
+      "定义模型层：数据结构、业务规则和持久化逻辑；模型在状态变化时通知观察者",
+      "定义视图层：所有UI渲染和表示逻辑，订阅模型变化以更新显示，不包含业务逻辑",
+      "定义控制器层：拦截用户输入，将其转化为对模型或视图的命令，并协调交互流程",
+      "连接三元组：控制器引用模型和视图；视图观察模型；模型不了解视图或控制器",
+      "通过确保业务逻辑变更只需修改模型、UI重设计只需修改视图来验证分离是否彻底"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "separation-of-concerns",
+      "observer-pattern",
+      "solid-principles"
+    ],
+    "tags": [
+      "ui-pattern",
+      "separation-of-concerns",
+      "component-architecture",
+      "presentation-pattern"
+    ],
+    "origin_author": "Trygve Reenskaug, 1979, Xerox PARC",
+    "origin_source": "Reenskaug, T. (1979). Thing-Model-View-Editor — an example from a planningsystem. Xerox PARC technical note.",
+    "origin_source_zh": "Reenskaug, T.（1979）。《Thing-Model-View-Editor——规划系统示例》。Xerox PARC技术备忘录。",
+    "complexity": "beginner",
+    "when_to_use": [
+      "When building applications with rich user interfaces that need clean separation between business logic and presentation",
+      "When the same underlying data must be rendered in multiple different views simultaneously",
+      "When working within frameworks that enforce or encourage MVC structure (Rails, Spring MVC, ASP.NET MVC, Django)",
+      "When teams need to work in parallel on UI and backend logic with minimal conflicts"
+    ],
+    "when_to_use_zh": [
+      "构建具有复杂用户界面且需要将业务逻辑与表示层清晰分离的应用程序时",
+      "同一底层数据需要同时以多种不同视图呈现时",
+      "在强制或鼓励MVC结构的框架（Rails、Spring MVC、ASP.NET MVC、Django）中工作时",
+      "团队需要并行开发UI和后端逻辑且冲突最小化时"
+    ],
+    "core_concepts": [
+      "Model: encapsulates application data, business rules, and state; completely independent of the UI layer",
+      "View: renders the Model's state visually; ideally contains no logic beyond formatting and display",
+      "Controller: mediates between user input and the Model; translates raw events into domain actions",
+      "Observer relationship: Views subscribe to Model changes via the Observer pattern to stay synchronized without tight coupling",
+      "Unidirectional dependency: Views and Controllers depend on the Model, but the Model depends on neither"
+    ],
+    "core_concepts_zh": [
+      "模型：封装应用程序数据、业务规则和状态，完全独立于UI层",
+      "视图：以可视方式呈现模型状态；理想情况下除格式化和显示外不包含任何逻辑",
+      "控制器：在用户输入和模型之间进行调解；将原始事件转化为领域操作",
+      "观察者关系：视图通过观察者模式订阅模型变化，无需紧耦合即可保持同步",
+      "单向依赖：视图和控制器依赖模型，但模型不依赖任何一方"
+    ],
+    "timeline": [
+      ["1979", "Trygve Reenskaug introduces Model-View-Controller at Xerox PARC while working on Smalltalk-76"],
+      ["1988", "MVC is formalized and published in the Smalltalk-80 system as described by Krasner and Pope"],
+      ["2004", "Ruby on Rails popularizes MVC for web applications, triggering widespread framework adoption"],
+      ["2009", "MVC dominates web frameworks — Spring MVC, ASP.NET MVC, and Django all establish MVC as the standard web pattern"]
+    ],
+    "timeline_zh": [
+      ["1979", "Trygve Reenskaug在Xerox PARC研究Smalltalk-76期间引入模型-视图-控制器"],
+      ["1988", "MVC在Smalltalk-80系统中由Krasner和Pope正式发表"],
+      ["2004", "Ruby on Rails将MVC普及用于Web应用程序，引发广泛的框架采用浪潮"],
+      ["2009", "MVC主导Web框架——Spring MVC、ASP.NET MVC和Django均将MVC确立为标准Web模式"]
+    ],
+    "dos": [
+      "Keep the Model completely ignorant of the View and Controller so it can be tested in isolation without any UI scaffolding",
+      "Place all business validation in the Model, not in Controllers or Views, so that validation is enforced regardless of the entry point",
+      "Use thin Controllers that delegate complex logic to the Model or service layer — fat controllers are a sign that business logic has leaked into the wrong layer",
+      "Allow multiple Views to observe the same Model so data changes propagate consistently without duplication"
+    ],
+    "dos_zh": [
+      "保持模型完全不了解视图和控制器，使其可以在没有任何UI脚手架的情况下独立测试",
+      "将所有业务验证放在模型中而非控制器或视图中，确保无论从哪个入口点都强制执行验证",
+      "使用精简的控制器，将复杂逻辑委托给模型或服务层——臃肿的控制器表明业务逻辑已泄漏到错误的层",
+      "允许多个视图观察同一模型，使数据变化能够一致传播而不重复"
+    ],
+    "donts": [
+      "Don't put database queries or business rules directly in Controllers — this creates untestable, framework-coupled logic",
+      "Don't let Views directly manipulate Model state — all mutations must flow through the Controller",
+      "Don't share mutable state between Views without going through the Model — direct View-to-View communication breaks the pattern",
+      "Don't confuse MVC's Controller with the Front Controller pattern — MVC Controllers handle specific user interactions, not all HTTP routing"
+    ],
+    "donts_zh": [
+      "不要将数据库查询或业务规则直接放在控制器中——这会产生无法测试、与框架耦合的逻辑",
+      "不要让视图直接操纵模型状态——所有变更必须通过控制器流转",
+      "不要在不经过模型的情况下在视图之间共享可变状态——视图间直接通信会破坏该模式",
+      "不要将MVC的控制器与前端控制器模式混淆——MVC控制器处理特定的用户交互，而非所有HTTP路由"
+    ],
+    "case_study_company": "Apple",
+    "case_study": "Apple's Cocoa framework for macOS and iOS enforces MVC as its primary application architecture pattern. In Cocoa, NSDocument (Model), NSView (View), and NSViewController (Controller) form the triad. By enforcing strict MVC separation, Apple enabled developers to swap entire UI implementations (e.g., migrating from AppKit to SwiftUI views) without touching model layer code. The iOS UIKit framework's adoption of MVC enabled a thriving ecosystem of third-party apps because developers could share Model code between iPhone and iPad view hierarchies with minimal changes.",
+    "case_study_zh": "苹果的Cocoa框架将MVC作为macOS和iOS的主要应用架构模式强制推行。在Cocoa中，NSDocument（模型）、NSView（视图）和NSViewController（控制器）构成三元组。通过强制执行严格的MVC分离，苹果使开发者能够在不修改模型层代码的情况下替换整个UI实现（例如从AppKit视图迁移到SwiftUI视图）。iOS UIKit框架对MVC的采用催生了繁荣的第三方应用生态系统，因为开发者只需少量修改即可在iPhone和iPad视图层次结构之间共享模型代码。",
+    "when_not_to_use": [
+      "For simple scripts or single-screen utilities where the overhead of three layers adds complexity without benefit",
+      "When building highly reactive UIs with complex two-way data binding, where MVVM provides a more natural fit",
+      "For purely data-processing backend services with no user interface, where layered or hexagonal architecture is more appropriate"
+    ],
+    "when_not_to_use_zh": [
+      "对于简单脚本或单屏幕工具，三层结构的开销只会增加复杂性而无收益",
+      "构建具有复杂双向数据绑定的高度响应式UI时，MVVM提供更自然的契合",
+      "对于没有用户界面的纯数据处理后端服务，分层架构或六边形架构更为合适"
+    ],
+    "adopters": [
+      "Apple (Cocoa / UIKit)",
+      "Ruby on Rails",
+      "Spring MVC",
+      "ASP.NET MVC",
+      "Django"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "maintainability",
+      "testability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Reenskaug, T. (1979). Models-Views-Controllers. Xerox PARC technical note, December 10.",
+    "secondary_sources": [
+      "Krasner, G. & Pope, S. (1988). A Description of the Model-View-Controller User Interface Paradigm in the Smalltalk-80 System. Journal of Object-Oriented Programming, 1(3), 26–49.",
+      "Fowler, M. (2006). GUI Architectures. martinfowler.com.",
+      "Apple Inc. (2009). Cocoa Application Layer — MVC. Apple Developer Documentation."
+    ],
+    "typed_relations": [
+      {"slug": "separation-of-concerns", "type": "extends"},
+      {"slug": "observer-pattern", "type": "complement"},
+      {"slug": "solid-principles", "type": "complement"}
+    ]
+  },
+  {
+    "id": 317,
+    "name": "MVVM (Model-View-ViewModel)",
+    "name_zh": "MVVM（模型-视图-视图模型）",
+    "slug": "mvvm",
+    "category": "architecture",
+    "desc": "Separates UI from business logic by introducing a ViewModel that exposes data streams and commands for two-way data binding, enabling declarative view construction and high testability.",
+    "desc_zh": "通过引入ViewModel将UI与业务逻辑分离，ViewModel暴露数据流和命令用于双向数据绑定，从而实现声明式视图构建和高度可测试性。",
+    "steps": [
+      "Define the Model layer: domain entities, repositories, and business logic with no awareness of the UI",
+      "Define the ViewModel: a presentation-layer class that exposes observable properties and commands; it queries the Model and transforms data into a format the View can bind to directly",
+      "Define the View: a declarative UI that binds to ViewModel properties using the data-binding framework; the View contains no logic beyond rendering and user gesture forwarding",
+      "Establish two-way data binding: ViewModel properties update the View automatically; user interactions in the View invoke ViewModel commands that update the Model",
+      "Test the ViewModel in isolation: write unit tests that set ViewModel inputs and assert on output properties without instantiating any UI components"
+    ],
+    "steps_zh": [
+      "定义模型层：领域实体、仓储和业务逻辑，不感知UI",
+      "定义视图模型：表示层类，暴露可观察属性和命令；查询模型并将数据转换为视图可直接绑定的格式",
+      "定义视图：声明式UI，使用数据绑定框架绑定到视图模型属性；视图除渲染和用户手势转发外不包含任何逻辑",
+      "建立双向数据绑定：视图模型属性自动更新视图；视图中的用户交互调用视图模型命令来更新模型",
+      "隔离测试视图模型：编写单元测试，设置视图模型输入并对输出属性进行断言，无需实例化任何UI组件"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "separation-of-concerns",
+      "observer-pattern",
+      "solid-principles"
+    ],
+    "tags": [
+      "ui-pattern",
+      "data-binding",
+      "component-architecture",
+      "reactive"
+    ],
+    "origin_author": "John Gossman, 2005, Microsoft (WPF team)",
+    "origin_source": "Gossman, J. (2005). Introduction to Model/View/ViewModel pattern for building WPF apps. Microsoft MSDN blogs, October 8.",
+    "origin_source_zh": "Gossman, J.（2005）。《构建WPF应用的模型/视图/视图模型模式介绍》。微软MSDN博客，10月8日。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When building rich-client applications (desktop or mobile) with complex UI state that maps naturally to observable data streams",
+      "When the testing strategy requires verifying UI behavior without running the full UI stack — ViewModels are plain classes testable in milliseconds",
+      "When using a framework with first-class data binding support such as WPF, SwiftUI, Angular, or Vue.js",
+      "When the same ViewModel needs to drive multiple Views — e.g., a phone layout and a tablet layout backed by the same presentation logic"
+    ],
+    "when_to_use_zh": [
+      "构建具有复杂UI状态的富客户端应用（桌面或移动），其状态自然映射到可观察数据流时",
+      "测试策略要求在不运行完整UI堆栈的情况下验证UI行为时——视图模型是可在毫秒内测试的普通类",
+      "使用具有一流数据绑定支持的框架（如WPF、SwiftUI、Angular或Vue.js）时",
+      "同一视图模型需要驱动多个视图时——例如，手机布局和平板布局由相同的表示逻辑支撑"
+    ],
+    "core_concepts": [
+      "ViewModel: the pivot of the pattern — a plain, UI-framework-agnostic class that exposes the view's state as observable properties",
+      "Data binding: the mechanism by which View elements automatically reflect ViewModel property changes and ViewModel commands receive View events",
+      "Command pattern: user actions (button clicks, form submissions) are exposed as command objects on the ViewModel, keeping the View passive",
+      "Observable properties: property-change notifications (INotifyPropertyChanged, @Observable, reactive streams) allow the View to react without polling",
+      "Separation from Model: the ViewModel adapts Model data for display — formatting, aggregation, filtering — keeping raw domain objects out of the View"
+    ],
+    "core_concepts_zh": [
+      "视图模型：该模式的核心——一个普通的、与UI框架无关的类，将视图状态作为可观察属性暴露",
+      "数据绑定：视图元素自动反映视图模型属性变化、视图模型命令接收视图事件的机制",
+      "命令模式：用户操作（按钮点击、表单提交）作为命令对象暴露在视图模型上，使视图保持被动",
+      "可观察属性：属性变更通知（INotifyPropertyChanged、@Observable、响应流）使视图无需轮询即可响应",
+      "与模型分离：视图模型将模型数据适配用于显示——格式化、聚合、过滤——将原始领域对象排除在视图之外"
+    ],
+    "timeline": [
+      ["2005", "John Gossman of Microsoft's WPF team publishes the MVVM pattern to exploit WPF's data binding engine"],
+      ["2010", "Knockout.js brings MVVM to the browser with observable data binding for JavaScript UIs"],
+      ["2014", "Angular (AngularJS 1.x) and Vue.js popularize MVVM-style two-way binding in web SPAs"],
+      ["2019", "SwiftUI launches on Apple platforms, making MVVM the idiomatic architecture for Swift UI development"]
+    ],
+    "timeline_zh": [
+      ["2005", "微软WPF团队的John Gossman发布MVVM模式，充分利用WPF的数据绑定引擎"],
+      ["2010", "Knockout.js将MVVM带入浏览器，为JavaScript UI提供可观察数据绑定"],
+      ["2014", "Angular（AngularJS 1.x）和Vue.js在Web单页应用中普及MVVM风格的双向绑定"],
+      ["2019", "SwiftUI在苹果平台发布，使MVVM成为Swift UI开发的惯用架构"]
+    ],
+    "dos": [
+      "Keep ViewModels free of any import from UI frameworks — a ViewModel that imports UIKit or WPF types is immediately harder to unit-test",
+      "Expose commands rather than event handlers from the ViewModel so that the View remains a passive, bindable shell",
+      "Use one ViewModel per logical screen or component — god ViewModels that serve many unrelated Views accumulate unmanageable state",
+      "Validate input inside the ViewModel, not in the View, so validation logic is exercisable in unit tests"
+    ],
+    "dos_zh": [
+      "保持视图模型不导入任何UI框架——导入UIKit或WPF类型的视图模型立即变得难以单元测试",
+      "从视图模型暴露命令而非事件处理器，使视图保持为被动的可绑定外壳",
+      "每个逻辑屏幕或组件使用一个视图模型——为许多不相关视图服务的上帝视图模型会积累难以管理的状态",
+      "在视图模型内部验证输入而非在视图中验证，使验证逻辑可在单元测试中执行"
+    ],
+    "donts": [
+      "Don't reference the View from the ViewModel — this breaks testability and creates circular dependencies",
+      "Don't put navigation logic directly in the View — navigation decisions belong in the ViewModel or a dedicated Router so they can be tested",
+      "Don't use MVVM in simple screens where a straightforward MVC or direct state management is sufficient — the binding overhead adds complexity without payoff",
+      "Don't let data binding become bidirectional for write-heavy forms without explicit validation gating — unconstrained two-way binding leads to cascading update loops"
+    ],
+    "donts_zh": [
+      "不要从视图模型引用视图——这会破坏可测试性并创建循环依赖",
+      "不要将导航逻辑直接放在视图中——导航决策属于视图模型或专用路由器，以便可以测试",
+      "不要在简单屏幕中使用MVVM，直接的MVC或状态管理就足够时——绑定开销会增加复杂性而无收益",
+      "不要让数据绑定在写密集型表单中不经过显式验证就成为双向——无约束的双向绑定会导致级联更新循环"
+    ],
+    "case_study_company": "Microsoft",
+    "case_study": "Microsoft introduced MVVM to solve a fundamental problem with WPF development: UI designers working in Blend and developers writing C# code were constantly stepping on each other's work. By introducing ViewModels as the design-test boundary, the WPF team enabled a clean Blend-to-Visual-Studio handoff where designers manipulated XAML Views while developers wrote testable ViewModel classes. This workflow was later adopted by the Windows Phone platform and became the dominant mobile architecture pattern across the Microsoft ecosystem, reducing UI-related bug rates by enabling ViewModel-level unit testing without requiring device simulators.",
+    "case_study_zh": "微软引入MVVM是为了解决WPF开发中的一个根本问题：在Blend中工作的UI设计师和编写C#代码的开发者经常相互干扰对方的工作。通过引入视图模型作为设计-测试边界，WPF团队实现了清晰的Blend到Visual Studio交接——设计师操作XAML视图，开发者编写可测试的视图模型类。这种工作流程后来被Windows Phone平台采用，成为整个微软生态系统中主流的移动架构模式，通过启用无需设备模拟器的视图模型级单元测试，降低了与UI相关的缺陷率。",
+    "when_not_to_use": [
+      "For simple read-only displays with no user interaction — the ViewModel and binding overhead is disproportionate",
+      "In frameworks without data binding support, where implementing the binding infrastructure manually negates the pattern's advantages",
+      "For server-rendered web applications where state lives on the server — MVVM is fundamentally a client-side pattern"
+    ],
+    "when_not_to_use_zh": [
+      "对于没有用户交互的简单只读显示——视图模型和绑定开销与收益不成比例",
+      "在没有数据绑定支持的框架中，手动实现绑定基础设施会消除该模式的优势",
+      "对于状态存储在服务器端的服务器渲染Web应用——MVVM本质上是客户端模式"
+    ],
+    "adopters": [
+      "Microsoft (WPF, UWP, Xamarin)",
+      "SwiftUI (Apple)",
+      "Vue.js",
+      "Angular",
+      "Knockout.js"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "maintainability",
+      "testability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Gossman, J. (2005). Introduction to Model/View/ViewModel pattern for building WPF apps. Microsoft MSDN blogs.",
+    "secondary_sources": [
+      "Smith, J. (2009). WPF Apps With The Model-View-ViewModel Design Pattern. MSDN Magazine, February.",
+      "Fowler, M. (2006). Presentation Model. martinfowler.com.",
+      "Google (2022). Guide to app architecture — MVVM. Android Developers Documentation."
+    ],
+    "typed_relations": [
+      {"slug": "separation-of-concerns", "type": "extends"},
+      {"slug": "observer-pattern", "type": "complement"},
+      {"slug": "solid-principles", "type": "complement"}
+    ]
+  },
+  {
+    "id": 318,
+    "name": "MVP (Model-View-Presenter)",
+    "name_zh": "MVP（模型-视图-呈现者）",
+    "slug": "mvp",
+    "category": "architecture",
+    "desc": "Evolves MVC by replacing the Controller with a Presenter that holds all UI logic, while the View becomes a passive interface that delegates every user gesture to the Presenter.",
+    "desc_zh": "在MVC基础上演进，将控制器替换为持有全部UI逻辑的呈现者，同时视图成为被动接口，将所有用户手势委托给呈现者处理。",
+    "steps": [
+      "Define the Model: domain data, persistence, and business rules with no UI dependencies",
+      "Define a thin View interface: declare a minimal contract (interface/protocol) specifying only what the View can display and what events it can fire — no logic lives here",
+      "Implement the Presenter: a plain class that implements the full UI decision logic; it holds a reference to the View interface and the Model, and orchestrates all interactions",
+      "Implement the concrete View (Activity, Form, Widget): wire all user gestures to Presenter method calls and implement the View interface methods to update the display",
+      "Write unit tests against the Presenter using a mock View — verify that given a specific user action, the Presenter calls the correct View methods with the correct data"
+    ],
+    "steps_zh": [
+      "定义模型：领域数据、持久化和业务规则，不依赖UI",
+      "定义精简的视图接口：声明最小化契约（接口/协议），仅指定视图可以显示什么以及可以触发什么事件——这里不存放任何逻辑",
+      "实现呈现者：持有完整UI决策逻辑的普通类；持有视图接口和模型的引用，协调所有交互",
+      "实现具体视图（Activity、Form、Widget）：将所有用户手势连接到呈现者方法调用，并实现视图接口方法以更新显示",
+      "使用模拟视图对呈现者编写单元测试——验证给定特定用户操作时，呈现者用正确数据调用正确的视图方法"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "separation-of-concerns",
+      "solid-principles",
+      "observer-pattern"
+    ],
+    "tags": [
+      "ui-pattern",
+      "testability",
+      "component-architecture",
+      "presentation-pattern"
+    ],
+    "origin_author": "Mike Potel / Taligent, 1996",
+    "origin_source": "Potel, M. (1996). MVP: Model-View-Presenter — The Taligent Programming Model for C++ and Java. Taligent Inc. white paper.",
+    "origin_source_zh": "Potel, M.（1996）。《MVP：模型-视图-呈现者——C++和Java的Taligent编程模型》。Taligent Inc.白皮书。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When UI logic must be fully unit-tested without launching the actual UI — the Presenter's View interface can be mocked trivially",
+      "When working with UI frameworks (Android Activities, Windows Forms) where the View class is difficult to instantiate in tests",
+      "When multiple Views need to share identical UI logic — the same Presenter can back different platform-specific View implementations",
+      "When the team wants to enforce a strict passive-View constraint to prevent ad-hoc logic accumulating in UI components"
+    ],
+    "when_to_use_zh": [
+      "UI逻辑必须在不启动实际UI的情况下完整单元测试时——呈现者的视图接口可以轻松模拟",
+      "使用UI框架（Android Activity、Windows Forms）时，其中视图类难以在测试中实例化",
+      "多个视图需要共享相同UI逻辑时——同一呈现者可以支撑不同平台特定的视图实现",
+      "团队希望强制执行严格的被动视图约束，防止临时逻辑在UI组件中积累时"
+    ],
+    "core_concepts": [
+      "Passive View: the View implements a minimal interface and contains zero logic — it delegates every event to the Presenter and renders exactly what it is told",
+      "Presenter: the mediator between View and Model; it owns all UI decision logic and communicates with the View only through the View interface",
+      "View interface: a contract (Java interface, Swift protocol, .NET interface) that decouples the Presenter from the concrete UI framework class",
+      "Testability by mock: because the Presenter depends only on the View interface, tests replace the real View with a mock object to verify behavior",
+      "One-to-one relationship: each View typically has exactly one Presenter; the Presenter is lifecycle-aware and manages the View's full state"
+    ],
+    "core_concepts_zh": [
+      "被动视图：视图实现最小化接口且包含零逻辑——它将每个事件委托给呈现者，并精确渲染被告知的内容",
+      "呈现者：视图和模型之间的中介；拥有所有UI决策逻辑，仅通过视图接口与视图通信",
+      "视图接口：将呈现者与具体UI框架类解耦的契约（Java接口、Swift协议、.NET接口）",
+      "通过模拟实现可测试性：因为呈现者仅依赖视图接口，测试用模拟对象替换真实视图来验证行为",
+      "一对一关系：每个视图通常只有一个呈现者；呈现者感知生命周期并管理视图的完整状态"
+    ],
+    "timeline": [
+      ["1996", "Mike Potel at Taligent publishes the MVP white paper, positioning it as an evolution of MVC for C++ and Java applications"],
+      ["2006", "Martin Fowler refines and publishes the Passive View and Supervising Controller variants of MVP on martinfowler.com"],
+      ["2008", "Android adopts Activity-based architecture that closely resembles MVP; community gravitates toward explicit MVP frameworks"],
+      ["2015", "MVP becomes the dominant Android architecture pattern with frameworks like Mosby; eventually superseded by MVVM with Architecture Components in 2017"]
+    ],
+    "timeline_zh": [
+      ["1996", "Taligent的Mike Potel发布MVP白皮书，将其定位为面向C++和Java应用的MVC演进"],
+      ["2006", "Martin Fowler在martinfowler.com上细化并发布MVP的被动视图和监督控制器变体"],
+      ["2008", "Android采用类似MVP的基于Activity的架构；社区转向明确的MVP框架"],
+      ["2015", "MVP成为主流Android架构模式（Mosby等框架）；2017年最终被架构组件中的MVVM取代"]
+    ],
+    "dos": [
+      "Define the View as an interface with the minimum surface area needed — every extra method on the View interface is a method you must mock in tests",
+      "Keep Presenters stateless where possible, or clearly document the state they manage, so that tests can set up known preconditions",
+      "One Presenter per View screen — splitting a large screen into sub-Views each with their own Presenter improves cohesion and makes tests focused",
+      "Inject dependencies (Model, services) into the Presenter constructor so tests can provide substitutes without service locators"
+    ],
+    "dos_zh": [
+      "将视图定义为具有最小所需接口面积的接口——视图接口上的每个额外方法都是必须在测试中模拟的方法",
+      "尽可能保持呈现者无状态，或清楚记录其管理的状态，以便测试可以设置已知前置条件",
+      "每个视图屏幕一个呈现者——将大型屏幕拆分为各自具有呈现者的子视图可以提高内聚性并使测试更聚焦",
+      "将依赖项（模型、服务）注入呈现者构造函数，以便测试可以提供替代品而无需服务定位器"
+    ],
+    "donts": [
+      "Don't let the Presenter hold a direct reference to a concrete View class — this prevents mocking and couples the Presenter to the UI framework",
+      "Don't call View methods from background threads without marshalling back to the UI thread — threading bugs create intermittent, hard-to-reproduce failures",
+      "Don't put navigation logic in the View — navigation belongs in the Presenter or a Router so the routing decision is testable",
+      "Don't skip the View interface because it seems like overhead — skipping it is the single most common mistake that makes MVP code untestable"
+    ],
+    "donts_zh": [
+      "不要让呈现者持有对具体视图类的直接引用——这会阻止模拟并将呈现者与UI框架耦合",
+      "不要从后台线程调用视图方法而不回调到UI线程——线程错误会产生间歇性、难以重现的故障",
+      "不要将导航逻辑放在视图中——导航属于呈现者或路由器，使路由决策可测试",
+      "不要因为视图接口看似额外开销就跳过它——跳过它是使MVP代码无法测试的最常见错误"
+    ],
+    "case_study_company": "Google (Android)",
+    "case_study": "Google's Android team published the Android MVP sample in 2015 as part of the android-architecture repository to demonstrate how to write testable Android applications. Prior to MVP adoption, Android code was concentrated in Activities that mixed UI, business logic, and data access — making unit testing nearly impossible without Robolectric's slow JVM-based Android simulation. By extracting all UI decisions into plain Java Presenters backed by View interfaces, teams achieved Presenter test suites that ran in under 100ms on the JVM, compared to 30+ seconds with instrumented tests on emulators.",
+    "case_study_zh": "谷歌Android团队在2015年作为android-architecture仓库的一部分发布了Android MVP示例，展示如何编写可测试的Android应用程序。在采用MVP之前，Android代码集中在混合了UI、业务逻辑和数据访问的Activity中——使得单元测试在没有Robolectric慢速JVM-based Android模拟的情况下几乎不可能。通过将所有UI决策提取到由视图接口支撑的普通Java呈现者中，团队在JVM上实现了100ms以内运行的呈现者测试套件，而在模拟器上的仪表化测试需要30秒以上。",
+    "when_not_to_use": [
+      "For simple CRUD screens where the UI logic is trivial — the View interface boilerplate adds more code than it saves in testing effort",
+      "When using reactive frameworks (RxJava, Kotlin Flow, Combine) that naturally enable MVVM with less ceremony than MVP",
+      "For highly dynamic UIs where the View must frequently update its own structure — the passive View constraint becomes a bottleneck"
+    ],
+    "when_not_to_use_zh": [
+      "对于UI逻辑微不足道的简单CRUD屏幕——视图接口样板代码增加的代码量超过了在测试工作中节省的量",
+      "使用响应式框架（RxJava、Kotlin Flow、Combine）时，这些框架自然地以比MVP更少的仪式实现MVVM",
+      "对于视图必须频繁更新自身结构的高度动态UI——被动视图约束会成为瓶颈"
+    ],
+    "adopters": [
+      "Android (early community standard)",
+      "Google Web Toolkit (GWT)",
+      "Windows Forms (.NET)",
+      "Vaadin (Java web)"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "testability",
+      "maintainability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Potel, M. (1996). MVP: Model-View-Presenter. Taligent Inc. white paper.",
+    "secondary_sources": [
+      "Fowler, M. (2006). Passive View. martinfowler.com.",
+      "Fowler, M. (2006). Supervising Controller. martinfowler.com.",
+      "Google (2015). Android Architecture Blueprints — MVP sample. github.com/android/architecture-samples."
+    ],
+    "typed_relations": [
+      {"slug": "separation-of-concerns", "type": "extends"},
+      {"slug": "solid-principles", "type": "complement"},
+      {"slug": "observer-pattern", "type": "related"}
+    ]
+  },
+  {
+    "id": 319,
+    "name": "Clean Architecture",
+    "name_zh": "整洁架构",
+    "slug": "clean-architecture",
+    "category": "architecture",
+    "desc": "Organizes code into concentric dependency rings — Entities, Use Cases, Interface Adapters, Frameworks — where the Dependency Rule mandates all source-code dependencies point inward, making the system independent of UI, database, and frameworks.",
+    "desc_zh": "将代码组织为同心依赖环——实体、用例、接口适配器、框架——依赖规则规定所有源代码依赖指向内部，使系统独立于UI、数据库和框架。",
+    "steps": [
+      "Identify the core Entities: business objects and rules that exist independent of any application — these form the innermost ring and have zero external dependencies",
+      "Define Use Cases (Interactors): application-specific business rules that orchestrate Entities; each Use Case captures one piece of user-facing functionality and depends only on Entities",
+      "Define Interface Adapters: Controllers, Presenters, and Gateways that convert data between the format convenient for Use Cases and the format required by external systems (DB, web, UI)",
+      "Place all external concerns (frameworks, drivers, UI) in the outermost ring: these are implementation details that can be swapped without affecting any inner ring",
+      "Enforce the Dependency Rule mechanically: use dependency inversion (interfaces defined in inner rings, implemented in outer rings) to ensure no inner ring ever imports from an outer ring"
+    ],
+    "steps_zh": [
+      "识别核心实体：独立于任何应用程序存在的业务对象和规则——这些形成最内层环，零外部依赖",
+      "定义用例（交互器）：协调实体的应用程序特定业务规则；每个用例捕获一项面向用户的功能，仅依赖实体",
+      "定义接口适配器：控制器、呈现者和网关，在用例方便的格式和外部系统（数据库、Web、UI）所需格式之间转换数据",
+      "将所有外部关注点（框架、驱动程序、UI）放在最外层环：这些是可以在不影响任何内层环的情况下替换的实现细节",
+      "机械地强制执行依赖规则：使用依赖倒置（在内层环中定义接口，在外层环中实现）确保内层环永远不从外层环导入"
+    ],
+    "ai_relevant": false,
+    "viz_type": "cycle",
+    "related": [
+      "hexagonal-architecture",
+      "solid-principles",
+      "domain-driven-design"
+    ],
+    "tags": [
+      "dependency-inversion",
+      "testability",
+      "framework-independence",
+      "enterprise-architecture"
+    ],
+    "origin_author": "Robert C. Martin (Uncle Bob), 2012",
+    "origin_source": "Martin, R.C. (2012). The Clean Architecture. The Clean Coder Blog, August 13. blog.cleancoder.com.",
+    "origin_source_zh": "Martin, R.C.（2012）。《整洁架构》。The Clean Coder博客，8月13日。blog.cleancoder.com。",
+    "complexity": "advanced",
+    "when_to_use": [
+      "When the application must remain testable without any external infrastructure — databases, web servers, or UI frameworks should be optional at test time",
+      "When the team anticipates replacing or upgrading the database, web framework, or UI technology during the system's lifetime",
+      "When domain rules are complex enough to justify the overhead — Clean Architecture pays dividends when business logic has many rules and variations",
+      "When building a long-lived enterprise application where multiple teams need clear, enforced boundaries between concerns"
+    ],
+    "when_to_use_zh": [
+      "应用程序必须在没有任何外部基础设施的情况下可测试时——数据库、Web服务器或UI框架在测试时应该是可选的",
+      "团队预期在系统生命周期内替换或升级数据库、Web框架或UI技术时",
+      "领域规则足够复杂以证明开销合理时——当业务逻辑有许多规则和变体时，整洁架构带来回报",
+      "构建多团队需要清晰、强制执行关注点边界的长寿命企业应用程序时"
+    ],
+    "core_concepts": [
+      "The Dependency Rule: source code dependencies must always point inward — outer rings know about inner rings, never the reverse",
+      "Entities: enterprise-wide business rules encapsulated as objects; the most stable, rarely-changing core of the system",
+      "Use Cases: application-specific business rules that define the system's behavior; they direct data flow to and from Entities",
+      "Interface Adapters: the translation layer — Controllers convert web requests to Use Case inputs; Presenters convert Use Case outputs to View models; Gateways implement Repository interfaces defined by Use Cases",
+      "Dependency Inversion at the boundary: inner rings define interfaces (Repository, Presenter interface); outer rings provide implementations — control flows inward but dependency points outward, toward the inner ring's interface"
+    ],
+    "core_concepts_zh": [
+      "依赖规则：源代码依赖必须始终指向内部——外层环了解内层环，反之则不然",
+      "实体：封装为对象的企业范围业务规则；系统中最稳定、最少变化的核心",
+      "用例：定义系统行为的应用程序特定业务规则；它们指导数据流向和来自实体",
+      "接口适配器：翻译层——控制器将Web请求转换为用例输入；呈现者将用例输出转换为视图模型；网关实现由用例定义的仓储接口",
+      "边界处的依赖倒置：内层环定义接口（仓储、呈现者接口）；外层环提供实现——控制流向内但依赖指向外部，朝向内层环的接口"
+    ],
+    "timeline": [
+      ["2012", "Robert C. Martin publishes the Clean Architecture blog post, synthesizing prior work on Hexagonal, Onion, and BCE architectures"],
+      ["2017", "Martin publishes 「Clean Architecture: A Craftsman's Guide to Software Structure and Design」, formalizing the ring diagram"],
+      ["2018", "The Android community adopts Clean Architecture as the de-facto standard, influencing Google's official Architecture Components guidance"],
+      ["2020", "Clean Architecture becomes a standard teaching pattern in Go, Kotlin, and .NET communities with framework-specific adaptations"]
+    ],
+    "timeline_zh": [
+      ["2012", "Robert C. Martin发布整洁架构博客文章，综合了六边形、洋葱和BCE架构的先前工作"],
+      ["2017", "Martin出版《整洁架构：软件结构与设计匠艺指南》，正式确立环形图"],
+      ["2018", "Android社区将整洁架构采纳为事实标准，影响谷歌官方架构组件指南"],
+      ["2020", "整洁架构成为Go、Kotlin和.NET社区的标准教学模式，具有框架特定的适配"]
+    ],
+    "dos": [
+      "Define all repository and external service interfaces inside the Use Case ring — the Use Case owns the contract, the outer ring provides the implementation",
+      "Pass simple data structures (DTOs, primitives) across ring boundaries rather than rich domain objects — this prevents leaking inner-ring types into outer rings",
+      "Write Use Case unit tests that supply all dependencies as in-memory fakes — a Use Case test that touches a real database or network is not a unit test",
+      "Use package/module naming that reflects the ring — e.g., domain, application, infrastructure — so that import direction violations are immediately visible"
+    ],
+    "dos_zh": [
+      "在用例环内定义所有仓储和外部服务接口——用例拥有契约，外层环提供实现",
+      "跨环边界传递简单数据结构（DTO、基本类型）而非丰富领域对象——这防止内层环类型泄漏到外层环",
+      "编写将所有依赖项作为内存假实现提供的用例单元测试——接触真实数据库或网络的用例测试不是单元测试",
+      "使用反映环层的包/模块命名——例如domain、application、infrastructure——使导入方向违规立即可见"
+    ],
+    "donts": [
+      "Don't let framework annotations (Spring @Entity, JPA annotations) leak into the Entity ring — this couples your most stable code to your most volatile dependency",
+      "Don't create a single monolithic Use Case class that handles an entire feature area — each Use Case should do one thing and express one business intention",
+      "Don't cross ring boundaries in tests to save setup time — testing an outer ring object by letting it call into the real inner ring defeats the isolation purpose",
+      "Don't apply Clean Architecture to small scripts or microservices with trivial logic — the indirection overhead outweighs the benefits for simple CRUD operations"
+    ],
+    "donts_zh": [
+      "不要让框架注解（Spring @Entity、JPA注解）泄漏到实体环——这将最稳定的代码与最易变的依赖耦合",
+      "不要创建处理整个功能区域的单一整体用例类——每个用例应该做一件事并表达一个业务意图",
+      "不要在测试中跨越环边界以节省设置时间——通过让外层环对象调用真实内层环来测试它会破坏隔离目的",
+      "不要将整洁架构应用于具有微不足道逻辑的小型脚本或微服务——对于简单的CRUD操作，间接开销超过收益"
+    ],
+    "case_study_company": "Nubank",
+    "case_study": "Nubank, the Brazilian fintech serving over 90 million customers, adopted Clean Architecture across its Clojure and Kotlin microservices to enforce strict separation between rapidly-changing business rules and stable infrastructure choices. By placing all financial calculation and compliance rules in the innermost Entity and Use Case rings, Nubank's engineering team was able to replace their persistence layer (migrating from Datomic to PostgreSQL for specific services) without touching business logic code. Their Use Case test suites run in under 5 seconds with in-memory repositories, enabling a TDD workflow that catches business rule regressions before any infrastructure is involved.",
+    "case_study_zh": "服务超过9000万客户的巴西金融科技公司Nubank在其Clojure和Kotlin微服务中采用整洁架构，强制在快速变化的业务规则和稳定的基础设施选择之间严格分离。通过将所有财务计算和合规规则放在最内层的实体和用例环中，Nubank的工程团队能够在不接触业务逻辑代码的情况下替换其持久化层（将特定服务从Datomic迁移到PostgreSQL）。他们的用例测试套件使用内存仓储在5秒内运行，实现了在涉及任何基础设施之前捕获业务规则退化的TDD工作流。",
+    "when_not_to_use": [
+      "For simple CRUD microservices where the business logic is thin and the value of the pattern's indirection layers is negative",
+      "For quick prototypes or MVPs where time-to-market matters more than long-term maintainability",
+      "For teams unfamiliar with dependency inversion — misapplied Clean Architecture creates complexity without the promised testability benefits"
+    ],
+    "when_not_to_use_zh": [
+      "对于业务逻辑单薄的简单CRUD微服务，该模式间接层的价值为负",
+      "对于上市时间比长期可维护性更重要的快速原型或MVP",
+      "对于不熟悉依赖倒置的团队——错误应用的整洁架构会创建复杂性而没有承诺的可测试性收益"
+    ],
+    "adopters": [
+      "Nubank",
+      "Android community (standard pattern)",
+      ".NET community (Clean Architecture template)",
+      "Go microservices community"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "maintainability",
+      "testability",
+      "portability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Martin, R.C. (2012). The Clean Architecture. blog.cleancoder.com, August 13.",
+    "secondary_sources": [
+      "Martin, R.C. (2017). Clean Architecture: A Craftsman's Guide to Software Structure and Design. Prentice Hall.",
+      "Palermo, J. (2008). The Onion Architecture. jeffreypalermo.com.",
+      "Cockburn, A. (2005). Hexagonal Architecture (Ports and Adapters). alistair.cockburn.us."
+    ],
+    "typed_relations": [
+      {"slug": "hexagonal-architecture", "type": "related"},
+      {"slug": "solid-principles", "type": "prerequisite"},
+      {"slug": "domain-driven-design", "type": "complement"}
+    ]
+  },
+  {
+    "id": 320,
+    "name": "Onion Architecture",
+    "name_zh": "洋葱架构",
+    "slug": "onion-architecture",
+    "category": "architecture",
+    "desc": "Structures applications as concentric rings around a Domain Model core, where all dependencies flow inward and infrastructure lives in the outermost ring, making the domain model completely independent of persistence and UI concerns.",
+    "desc_zh": "将应用程序构建为围绕领域模型核心的同心环，所有依赖指向内部，基础设施位于最外层环，使领域模型完全独立于持久化和UI关注点。",
+    "steps": [
+      "Place the Domain Model at the core: pure domain objects (entities, value objects, aggregates) with no dependencies on any outer ring or external library",
+      "Wrap with Domain Services: interfaces and services that operate on the Domain Model but remain framework-independent; repository interfaces are defined here",
+      "Add Application Services: orchestration logic that coordinates domain objects to fulfill use cases; this ring depends on Domain Model and Domain Services but not on infrastructure",
+      "Implement the Infrastructure ring: concrete implementations of repository interfaces, ORM mappings, external API clients, and UI frameworks — all pointing inward",
+      "Wire via dependency injection: the application entry point (e.g., startup class) instantiates infrastructure implementations and injects them into application services through the interfaces defined in inner rings"
+    ],
+    "steps_zh": [
+      "将领域模型置于核心：纯领域对象（实体、值对象、聚合），不依赖任何外层环或外部库",
+      "用领域服务包裹：在领域模型上操作但保持框架无关的接口和服务；仓储接口在此处定义",
+      "添加应用服务：协调领域对象以完成用例的编排逻辑；此环依赖领域模型和领域服务，但不依赖基础设施",
+      "实现基础设施环：仓储接口的具体实现、ORM映射、外部API客户端和UI框架——全部指向内部",
+      "通过依赖注入连接：应用程序入口点（例如启动类）实例化基础设施实现，并通过内层环定义的接口将其注入应用服务"
+    ],
+    "ai_relevant": false,
+    "viz_type": "cycle",
+    "related": [
+      "hexagonal-architecture",
+      "domain-driven-design",
+      "solid-principles"
+    ],
+    "tags": [
+      "domain-model",
+      "dependency-inversion",
+      "testability",
+      "enterprise-architecture"
+    ],
+    "origin_author": "Jeffrey Palermo, 2008",
+    "origin_source": "Palermo, J. (2008). The Onion Architecture: part 1–4. jeffreypalermo.com, July–August.",
+    "origin_source_zh": "Palermo, J.（2008）。《洋葱架构：第1-4部分》。jeffreypalermo.com，7月至8月。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When domain logic is complex and must remain insulated from framework churn — changing the ORM or web framework should not touch domain code",
+      "When practicing Domain-Driven Design and needing an architectural pattern that enforces the domain model's primacy",
+      "When the team needs to test domain and application logic in isolation from databases and external services",
+      "When building .NET enterprise applications where the pattern has strong tooling and community support"
+    ],
+    "when_to_use_zh": [
+      "领域逻辑复杂且必须与框架更迭隔离时——更换ORM或Web框架不应接触领域代码",
+      "实践领域驱动设计且需要强制执行领域模型首要地位的架构模式时",
+      "团队需要在与数据库和外部服务隔离的情况下测试领域和应用逻辑时",
+      "构建该模式具有强大工具和社区支持的.NET企业应用程序时"
+    ],
+    "core_concepts": [
+      "Domain Model at the core: the innermost ring contains pure domain objects — no framework dependencies, no infrastructure imports, maximum stability",
+      "Inward dependency rule: every ring depends only on rings closer to the center, never on rings farther out",
+      "Repository interfaces inward: repository interfaces are defined inside the Domain Services ring; concrete implementations live in the outermost Infrastructure ring",
+      "Application Services ring: thin orchestration layer that calls domain services and repositories to fulfill use cases; does not contain business rules",
+      "Infrastructure at the periphery: everything that touches the outside world (databases, file systems, external APIs, UI) is isolated in the outermost ring and can be replaced independently"
+    ],
+    "core_concepts_zh": [
+      "核心处的领域模型：最内层环包含纯领域对象——无框架依赖，无基础设施导入，最高稳定性",
+      "向内依赖规则：每个环仅依赖更靠近中心的环，从不依赖更远的环",
+      "仓储接口指向内部：仓储接口在领域服务环内定义；具体实现位于最外层基础设施环",
+      "应用服务环：调用领域服务和仓储以完成用例的精简编排层；不包含业务规则",
+      "外围的基础设施：所有接触外部世界的内容（数据库、文件系统、外部API、UI）都隔离在最外层环，可以独立替换"
+    ],
+    "timeline": [
+      ["2008", "Jeffrey Palermo publishes the four-part Onion Architecture series on his blog, coining the term and the ring diagram"],
+      ["2010", "The pattern gains traction in the .NET community as an alternative to traditional N-Tier that enables domain-centric design"],
+      ["2012", "Robert C. Martin acknowledges Onion Architecture as a predecessor when publishing Clean Architecture, noting their shared Dependency Rule"],
+      ["2015", "Onion Architecture becomes a standard recommendation in .NET enterprise development circles and DDD-oriented project templates"]
+    ],
+    "timeline_zh": [
+      ["2008", "Jeffrey Palermo在其博客上发布四部分洋葱架构系列，创造该术语和环形图"],
+      ["2010", "该模式在.NET社区获得牵引力，作为传统N层架构的替代方案，实现领域中心设计"],
+      ["2012", "Robert C. Martin在发布整洁架构时承认洋葱架构是其前身，指出它们共享的依赖规则"],
+      ["2015", "洋葱架构成为.NET企业开发圈和面向DDD项目模板的标准推荐"]
+    ],
+    "dos": [
+      "Define all repository and service interfaces inside the Domain Services ring, never in the Infrastructure ring, so that domain code never imports from infrastructure",
+      "Keep the Domain Model ring free of all annotations and framework-specific base classes — a pure POCO/POJO domain model can be tested without bootstrapping the framework",
+      "Use dependency injection containers configured at the application entry point to bind infrastructure implementations to inner-ring interfaces",
+      "Separate Application Services (use case orchestration) from Domain Services (business rules applied to domain objects) — conflating them erodes the ring structure"
+    ],
+    "dos_zh": [
+      "在领域服务环内定义所有仓储和服务接口，绝不在基础设施环中，以确保领域代码永不从基础设施导入",
+      "保持领域模型环不含所有注解和框架特定的基类——纯POCO/POJO领域模型可以不启动框架即可测试",
+      "使用在应用程序入口点配置的依赖注入容器将基础设施实现绑定到内层环接口",
+      "将应用服务（用例编排）与领域服务（应用于领域对象的业务规则）分开——混淆它们会侵蚀环结构"
+    ],
+    "donts": [
+      "Don't place Entity Framework or Hibernate entity classes in the Domain Model ring — ORM-decorated entities couple the domain to the persistence framework",
+      "Don't skip the Application Services ring and call domain objects directly from the UI or API layer — this bypasses authorization, validation, and orchestration logic",
+      "Don't allow infrastructure concerns (connection strings, retry policies) to bleed into application services — infrastructure configuration belongs in the outermost ring",
+      "Don't treat Onion Architecture as simply renaming N-Tier layers — the critical difference is the direction of dependencies and where interfaces are defined"
+    ],
+    "donts_zh": [
+      "不要将Entity Framework或Hibernate实体类放在领域模型环中——ORM装饰的实体将领域与持久化框架耦合",
+      "不要跳过应用服务环直接从UI或API层调用领域对象——这会绕过授权、验证和编排逻辑",
+      "不要让基础设施关注点（连接字符串、重试策略）渗入应用服务——基础设施配置属于最外层环",
+      "不要将洋葱架构视为简单地重命名N层架构层——关键区别在于依赖方向和接口定义位置"
+    ],
+    "case_study_company": "ThoughtWorks",
+    "case_study": "ThoughtWorks consultants adopted Onion Architecture on a large UK insurance platform migration project, replacing a fragile N-Tier monolith where business rules were scattered across stored procedures, service classes, and UI code. By restructuring around a domain model core, the team isolated all premium calculation and policy validation rules in a pure domain ring that could be unit-tested in milliseconds without database or web server dependencies. After six months, the domain ring had 94% unit test coverage with test suites running in 8 seconds, enabling confident refactoring of the 12-year-old business rules.",
+    "case_study_zh": "ThoughtWorks顾问在一个大型英国保险平台迁移项目中采用洋葱架构，替换一个脆弱的N层单体系统——业务规则分散在存储过程、服务类和UI代码中。通过围绕领域模型核心重构，团队将所有保费计算和保单验证规则隔离在纯领域环中，可以在不依赖数据库或Web服务器的情况下在毫秒内进行单元测试。六个月后，领域环达到94%的单元测试覆盖率，测试套件在8秒内运行，实现了对12年历史业务规则的自信重构。",
+    "when_not_to_use": [
+      "For microservices with thin business logic where a simple three-layer structure (API, Service, Repository) provides sufficient separation",
+      "When the team is not practicing DDD — the Onion Architecture's ring structure maps naturally to DDD concepts; without DDD fluency the rings tend to collapse",
+      "For frontend applications — the pattern is server-side focused and does not translate cleanly to UI component architectures"
+    ],
+    "when_not_to_use_zh": [
+      "对于业务逻辑单薄的微服务，简单的三层结构（API、服务、仓储）提供了足够的分离",
+      "当团队不实践DDD时——洋葱架构的环结构自然映射到DDD概念；没有DDD流畅度，环往往会塌陷",
+      "对于前端应用程序——该模式以服务器端为中心，不能清晰地转化为UI组件架构"
+    ],
+    "adopters": [
+      ".NET enterprise community",
+      "Java Spring community",
+      "ThoughtWorks client projects"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "maintainability",
+      "testability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Palermo, J. (2008). The Onion Architecture: parts 1–4. jeffreypalermo.com.",
+    "secondary_sources": [
+      "Martin, R.C. (2017). Clean Architecture: A Craftsman's Guide to Software Structure and Design. Prentice Hall.",
+      "Evans, E. (2003). Domain-Driven Design: Tackling Complexity in the Heart of Software. Addison-Wesley.",
+      "Smith, S. (2020). Clean Architecture solution template for ASP.NET Core. github.com/ardalis/CleanArchitecture."
+    ],
+    "typed_relations": [
+      {"slug": "hexagonal-architecture", "type": "related"},
+      {"slug": "domain-driven-design", "type": "complement"},
+      {"slug": "solid-principles", "type": "prerequisite"}
+    ]
+  },
+  {
+    "id": 321,
+    "name": "N-Tier / Layered Architecture",
+    "name_zh": "N层/分层架构",
+    "slug": "n-tier-layered",
+    "category": "architecture",
+    "desc": "Organizes software into horizontal layers — typically Presentation, Business Logic, and Data Access — where each layer depends only on the layer directly below it, establishing clear separation of concerns across the entire application.",
+    "desc_zh": "将软件组织为水平层次——通常是表示层、业务逻辑层和数据访问层——其中每层仅依赖其正下方的层，在整个应用程序中建立清晰的关注点分离。",
+    "steps": [
+      "Identify the layers appropriate to the application: minimally Presentation (UI/API), Business Logic (domain/service), and Data Access (repository/ORM); large enterprise systems may add Security, Integration, and Messaging layers",
+      "Define the contract between adjacent layers: each layer exposes a service interface to the layer above; the implementation details of each layer are hidden from higher layers",
+      "Implement each layer independently: Presentation handles HTTP requests and view rendering; Business Logic applies rules and orchestrates operations; Data Access manages persistence",
+      "Enforce the constraint that each layer may only call the layer immediately below it — Presentation must not access Data Access directly, bypassing Business Logic",
+      "Deploy and scale layers independently where needed: web tier can be scaled horizontally while the database tier uses vertical scaling"
+    ],
+    "steps_zh": [
+      "确定适合应用程序的层次：最小为表示层（UI/API）、业务逻辑层（领域/服务）和数据访问层（仓储/ORM）；大型企业系统可能添加安全、集成和消息传递层",
+      "定义相邻层之间的契约：每层向其上方的层暴露服务接口；每层的实现细节对高层隐藏",
+      "独立实现每层：表示层处理HTTP请求和视图渲染；业务逻辑层应用规则并协调操作；数据访问层管理持久化",
+      "强制执行每层只能调用其正下方层的约束——表示层不得绕过业务逻辑层直接访问数据访问层",
+      "在需要时独立部署和扩展各层：Web层可以水平扩展，而数据库层使用垂直扩展"
+    ],
+    "ai_relevant": false,
+    "viz_type": "pyramid",
+    "related": [
+      "layered-architecture",
+      "separation-of-concerns",
+      "solid-principles"
+    ],
+    "tags": [
+      "enterprise-architecture",
+      "separation-of-concerns",
+      "layering",
+      "scalability"
+    ],
+    "origin_author": "1990s enterprise computing; formalized by Microsoft and Sun Microsystems",
+    "origin_source": "Fowler, M. (2002). Patterns of Enterprise Application Architecture. Addison-Wesley (Layered Architecture pattern).",
+    "origin_source_zh": "Fowler, M.（2002）。《企业应用架构模式》。Addison-Wesley（分层架构模式）。",
+    "complexity": "beginner",
+    "when_to_use": [
+      "When building a standard business application — CRUD-heavy systems, content management, or transactional backends — where simplicity and team familiarity matter",
+      "When the team is new to software architecture and needs a pattern with clear, enforceable rules that are easy to communicate",
+      "When using enterprise frameworks (Java EE, Spring, ASP.NET, PHP Laravel) that are built around layered conventions",
+      "When organizational separation of concerns maps naturally to layers — e.g., separate teams own the UI, services, and database schemas"
+    ],
+    "when_to_use_zh": [
+      "构建标准业务应用程序——以CRUD为主的系统、内容管理或事务后端——简洁性和团队熟悉度很重要时",
+      "团队对软件架构陌生，需要具有清晰、可执行且易于传达规则的模式时",
+      "使用围绕分层约定构建的企业框架（Java EE、Spring、ASP.NET、PHP Laravel）时",
+      "当组织关注点分离自然映射到层次时——例如，独立团队拥有UI、服务和数据库模式"
+    ],
+    "core_concepts": [
+      "Horizontal layers: each layer groups related responsibilities — Presentation (what users see), Business Logic (what the system does), Data Access (how data is stored)",
+      "Layer contract: each layer exposes a well-defined API surface to the layer above and hides its implementation — swapping a layer should not affect layers above it",
+      "Strict vs. relaxed layering: strict layering forbids skipping layers; relaxed layering allows a layer to call any layer below it for performance reasons",
+      "Physical vs. logical tiers: layers are a logical separation; tiers are the physical deployment — a two-tier deployment can implement a three-layer logical design",
+      "Sinkholes anti-pattern: when a layer simply passes a request through to the layer below without adding value, the architecture becomes unnecessarily complex for its benefit"
+    ],
+    "core_concepts_zh": [
+      "水平层次：每层分组相关职责——表示层（用户所见）、业务逻辑层（系统所做）、数据访问层（数据存储方式）",
+      "层次契约：每层向其上方的层暴露定义良好的API接口并隐藏其实现——替换一层不应影响其上方的层",
+      "严格与宽松分层：严格分层禁止跳层；宽松分层允许一层出于性能原因调用其下方的任何层",
+      "物理层与逻辑层：层次是逻辑分离；层级是物理部署——两层部署可以实现三层逻辑设计",
+      "污水孔反模式：当一层只是将请求传递到下方层而不增加价值时，架构相对其收益变得不必要地复杂"
+    ],
+    "timeline": [
+      ["1992", "The three-tier client-server model emerges as a mainstream enterprise architecture pattern, separating mainframe presentation, business logic, and data"],
+      ["2002", "Martin Fowler codifies Layered Architecture in Patterns of Enterprise Application Architecture, providing a canonical reference"],
+      ["2004", "Java EE (J2EE) and Spring Framework cement layered architecture as the dominant enterprise Java pattern"],
+      ["2010", "N-Tier becomes the default starting architecture for ASP.NET MVC, Django, and Rails applications across the industry"]
+    ],
+    "timeline_zh": [
+      ["1992", "三层客户端-服务器模型作为主流企业架构模式出现，分离主机表示、业务逻辑和数据"],
+      ["2002", "Martin Fowler在《企业应用架构模式》中编纂分层架构，提供规范参考"],
+      ["2004", "Java EE（J2EE）和Spring框架将分层架构确立为主流企业Java模式"],
+      ["2010", "N层成为行业中ASP.NET MVC、Django和Rails应用程序的默认起始架构"]
+    ],
+    "dos": [
+      "Define explicit service interfaces between layers so each layer can be tested with a mock of the layer below — this is the key to making a layered application testable",
+      "Keep each layer focused on a single concern — a Business Logic layer that also builds SQL queries or HTML is no longer a proper layer",
+      "Document which layer owns each responsibility explicitly at project start — ambiguity leads to logic leaking across layers as the team grows",
+      "Use dependency injection to supply lower-layer implementations to higher layers — avoid static method calls across layer boundaries which create untestable coupling"
+    ],
+    "dos_zh": [
+      "在层之间定义明确的服务接口，使每层可以用其下方层的模拟进行测试——这是使分层应用程序可测试的关键",
+      "保持每层专注于单一关注点——同时构建SQL查询或HTML的业务逻辑层不再是适当的层",
+      "在项目开始时明确记录每层拥有哪些职责——歧义会导致随着团队成长逻辑跨层泄漏",
+      "使用依赖注入将低层实现供应给高层——避免跨层边界的静态方法调用，这会创建无法测试的耦合"
+    ],
+    "donts": [
+      "Don't allow the Presentation layer to query the database directly — this shortcut erodes the architecture and creates security and maintainability risks",
+      "Don't create a single shared domain model that all layers reference — this shared kernel becomes a change magnet that couples all layers to each other",
+      "Don't mistake physical deployment tiers for logical layers — a monolith deployed as a single process can still have three clean logical layers",
+      "Don't keep adding layers for every new concern — excessive layering (six or more layers) creates sinkhole anti-patterns where most calls pass through unchanged"
+    ],
+    "donts_zh": [
+      "不要允许表示层直接查询数据库——这种捷径侵蚀架构并造成安全和可维护性风险",
+      "不要创建所有层都引用的单一共享领域模型——这个共享内核成为变更磁铁，将所有层相互耦合",
+      "不要将物理部署层级误认为逻辑层次——作为单个进程部署的单体系统仍然可以有三个清晰的逻辑层",
+      "不要为每个新关注点不断添加层次——过度分层（六层或更多层）会产生大多数调用不加改变地传递的污水孔反模式"
+    ],
+    "case_study_company": "Stack Overflow",
+    "case_study": "Stack Overflow famously runs on a classic three-tier layered architecture — ASP.NET MVC presentation layer, C# service layer with business logic, and a SQL Server data layer via Dapper — rather than adopting microservices. This deliberate simplicity, with strict layer discipline, allowed a team of fewer than 20 developers to serve over 100 million monthly visitors. The transparency of the layered model enabled rapid diagnosis of performance bottlenecks (which were almost always in the data layer) and simplified capacity planning. Their architecture has been cited repeatedly as evidence that layered monoliths, when carefully maintained, can dramatically outperform distributed alternatives in developer productivity.",
+    "case_study_zh": "Stack Overflow以其经典三层分层架构著称——ASP.NET MVC表示层、包含业务逻辑的C#服务层和通过Dapper的SQL Server数据层——而非采用微服务。这种有意的简洁性，配合严格的层次纪律，使少于20名开发者的团队能够为超过1亿月活访客提供服务。分层模型的透明性使性能瓶颈的快速诊断成为可能（几乎总是在数据层），并简化了容量规划。他们的架构被反复引用为证据，证明经过精心维护的分层单体系统在开发者生产力方面可以大幅超越分布式替代方案。",
+    "when_not_to_use": [
+      "When the application has fundamentally different scalability requirements per component — e.g., a read-heavy reporting service alongside a write-heavy transaction processor; microservices or CQRS fit better",
+      "When business logic is domain-rich and complex — layered architecture tends to produce anemic domain models; Clean Architecture or DDD is more appropriate",
+      "When deployment agility is critical — a layered monolith requires coordinated deployments; teams needing independent deploy cadences should consider modular or service-based decomposition"
+    ],
+    "when_not_to_use_zh": [
+      "当应用程序每个组件有根本不同的可扩展性要求时——例如，读取密集型报告服务与写入密集型事务处理器并存；微服务或CQRS更合适",
+      "当业务逻辑领域丰富且复杂时——分层架构倾向于产生贫血领域模型；整洁架构或DDD更为合适",
+      "当部署敏捷性至关重要时——分层单体需要协调部署；需要独立部署节奏的团队应考虑模块化或基于服务的分解"
+    ],
+    "adopters": [
+      "Java EE / Jakarta EE",
+      ".NET / ASP.NET MVC",
+      "PHP Laravel / Symfony",
+      "Python Django",
+      "Stack Overflow"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "maintainability",
+      "scalability"
+    ],
+    "maturity_ring": "foundational",
+    "primary_source": "Fowler, M. (2002). Patterns of Enterprise Application Architecture, Chapter 1: Layering. Addison-Wesley.",
+    "secondary_sources": [
+      "Richards, M. (2015). Software Architecture Patterns. O'Reilly Media.",
+      "Microsoft (2010). N-Tier Application Architecture. Microsoft Developer Network (MSDN).",
+      "Gamma, E. et al. (1994). Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley."
+    ],
+    "typed_relations": [
+      {"slug": "layered-architecture", "type": "related"},
+      {"slug": "separation-of-concerns", "type": "extends"},
+      {"slug": "modular-monolith", "type": "related"}
+    ]
+  },
+  {
+    "id": 322,
+    "name": "Microkernel (Plugin) Architecture",
+    "name_zh": "微内核（插件）架构",
+    "slug": "microkernel-architecture",
+    "category": "architecture",
+    "desc": "Separates a minimal stable core system from interchangeable plug-in modules, enabling feature extension without modifying the core — the core provides services and a registry; plugins contribute functionality through a defined contract.",
+    "desc_zh": "将最小稳定核心系统与可互换插件模块分离，使功能扩展无需修改核心——核心提供服务和注册表；插件通过定义的契约贡献功能。",
+    "steps": [
+      "Define the core system: the minimal set of functionality required for the system to run — plugin registry, service locator, inter-plugin communication bus, and any essential baseline services",
+      "Define the plugin contract: an interface or API specification that all plugins must implement to register with and be invoked by the core — this contract must be stable and versioned",
+      "Implement the plugin registry: a mechanism for the core to discover, load, and activate plugins at startup or runtime — this may be class-path scanning, a manifest file, or a service registry",
+      "Develop plugins as isolated modules: each plugin implements the defined contract, carries its own dependencies, and performs a specific feature — plugins must not depend on other plugins directly",
+      "Define inter-plugin communication: if plugins need to collaborate, they do so through the core's message bus or extension points — never through direct plugin-to-plugin imports"
+    ],
+    "steps_zh": [
+      "定义核心系统：系统运行所需的最小功能集——插件注册表、服务定位器、插件间通信总线和任何基本基线服务",
+      "定义插件契约：所有插件必须实现才能向核心注册并被调用的接口或API规范——此契约必须稳定且有版本控制",
+      "实现插件注册表：核心在启动或运行时发现、加载和激活插件的机制——这可能是类路径扫描、清单文件或服务注册表",
+      "将插件开发为隔离模块：每个插件实现定义的契约，携带自己的依赖项，并执行特定功能——插件不得直接依赖其他插件",
+      "定义插件间通信：如果插件需要协作，通过核心的消息总线或扩展点进行——永不通过直接的插件到插件导入"
+    ],
+    "ai_relevant": false,
+    "viz_type": "tree",
+    "related": [
+      "separation-of-concerns",
+      "ports-and-adapters",
+      "modular-monolith"
+    ],
+    "tags": [
+      "extensibility",
+      "plugin-system",
+      "open-closed-principle",
+      "modularity"
+    ],
+    "origin_author": "OS design lineage (Mach microkernel, 1985, Carnegie Mellon); applied to software architecture by Richards and Ford (2015)",
+    "origin_source": "Richards, M. (2015). Software Architecture Patterns. O'Reilly Media. (Microkernel Architecture chapter).",
+    "origin_source_zh": "Richards, M.（2015）。《软件架构模式》。O'Reilly Media。（微内核架构章节）。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When the system must support extensibility by third parties who should not have access to the core codebase — IDEs, editors, CMS platforms",
+      "When different customers or deployments need different feature sets assembled from a common component catalog",
+      "When the core functionality is stable and well-understood but the peripheral feature set is expected to grow or change frequently",
+      "When wanting to enforce the Open-Closed Principle at an architectural level — the core is closed for modification, open for extension via plugins"
+    ],
+    "when_to_use_zh": [
+      "系统必须支持第三方扩展而第三方不应访问核心代码库时——IDE、编辑器、CMS平台",
+      "不同客户或部署需要从通用组件目录中组装不同功能集时",
+      "核心功能稳定且被充分理解，但外围功能集预计会频繁增长或更改时",
+      "希望在架构级别强制执行开闭原则时——核心对修改封闭，通过插件开放扩展"
+    ],
+    "core_concepts": [
+      "Core system: the minimal, stable host application that provides the plugin registry, lifecycle management, and shared services that plugins depend on",
+      "Plugin contract: the versioned interface (API, extension point, manifest schema) that defines how plugins register themselves and what services they must provide",
+      "Plugin registry: the mechanism by which the core discovers and manages plugins — file-system scanning, dependency injection containers, OSGi bundles, or a remote registry",
+      "Isolation: plugins should not share mutable state or import each other's classes directly — communication happens through the core's mediation layer",
+      "Versioned contracts: the plugin contract must be versioned to allow the core to evolve without breaking existing plugins — semantic versioning of extension APIs"
+    ],
+    "core_concepts_zh": [
+      "核心系统：最小、稳定的宿主应用程序，提供插件注册表、生命周期管理和插件所依赖的共享服务",
+      "插件契约：定义插件如何注册自身以及必须提供哪些服务的版本化接口（API、扩展点、清单模式）",
+      "插件注册表：核心发现和管理插件的机制——文件系统扫描、依赖注入容器、OSGi包或远程注册表",
+      "隔离：插件不应共享可变状态或直接导入彼此的类——通信通过核心的中介层进行",
+      "版本化契约：插件契约必须有版本控制，允许核心在不破坏现有插件的情况下演进——扩展API的语义版本控制"
+    ],
+    "timeline": [
+      ["1985", "The Mach microkernel at Carnegie Mellon formalizes the core-plugin concept at the OS level, influencing subsequent software architecture thinking"],
+      ["2001", "Eclipse IDE launches its OSGi-based plugin system, becoming the canonical software engineering example of microkernel architecture"],
+      ["2015", "Mark Richards codifies Microkernel Architecture as a named software architecture pattern in Software Architecture Patterns"],
+      ["2016", "VS Code launches with a language-server protocol extension model, demonstrating microkernel principles for modern developer tools"]
+    ],
+    "timeline_zh": [
+      ["1985", "卡内基梅隆大学的Mach微内核在操作系统层面正式确立核心-插件概念，影响了后续的软件架构思维"],
+      ["2001", "Eclipse IDE推出基于OSGi的插件系统，成为微内核架构的标准软件工程示例"],
+      ["2015", "Mark Richards在《软件架构模式》中将微内核架构编纂为命名的软件架构模式"],
+      ["2016", "VS Code推出语言服务器协议扩展模型，展示现代开发者工具的微内核原则"]
+    ],
+    "dos": [
+      "Design the plugin contract for stability from the beginning — breaking changes to the contract require coordinated updates across all plugins, which is expensive",
+      "Give each plugin its own classloader or process sandbox where possible to prevent one plugin's dependency conflicts from affecting others",
+      "Version the plugin API semantically and provide compatibility layers for deprecated extension points so that older plugins continue to work across core upgrades",
+      "Build an integration test suite that verifies each plugin against the core contract — regression-test the contract, not just the plugin implementations"
+    ],
+    "dos_zh": [
+      "从一开始就为稳定性设计插件契约——对契约的破坏性更改需要跨所有插件的协调更新，代价高昂",
+      "尽可能为每个插件提供自己的类加载器或进程沙箱，防止一个插件的依赖冲突影响其他插件",
+      "对插件API进行语义版本控制，并为已弃用的扩展点提供兼容层，使旧插件在核心升级后继续工作",
+      "构建集成测试套件，验证每个插件是否符合核心契约——对契约进行回归测试，而非仅测试插件实现"
+    ],
+    "donts": [
+      "Don't allow plugins to communicate directly with each other — plugin-to-plugin coupling defeats the extensibility goal and creates hidden dependency graphs",
+      "Don't put significant business logic in the core — the core should be minimal; business logic belongs in plugins which can be independently versioned and replaced",
+      "Don't neglect plugin lifecycle management — plugins that are not properly initialized, paused, or shut down leak resources and create unstable system states",
+      "Don't design the plugin API in a rush — a poorly designed, leaked plugin contract is extremely difficult to evolve because it is effectively a public API commitment"
+    ],
+    "donts_zh": [
+      "不要允许插件直接相互通信——插件间耦合会破坏可扩展性目标并创建隐藏的依赖图",
+      "不要在核心中放入重要的业务逻辑——核心应该是最小的；业务逻辑属于插件，可以独立版本化和替换",
+      "不要忽视插件生命周期管理——未适当初始化、暂停或关闭的插件会泄漏资源并创建不稳定的系统状态",
+      "不要仓促设计插件API——设计不良、泄漏的插件契约极难演进，因为它实际上是公共API承诺"
+    ],
+    "case_study_company": "Microsoft (VS Code)",
+    "case_study": "Visual Studio Code launched in 2016 with a microkernel architecture centered on the Language Server Protocol (LSP). The core VS Code provides editor infrastructure — text rendering, file management, the extension host process — while all language intelligence (IntelliSense, diagnostics, refactoring) is delivered through the extension API. By 2024, the VS Code Marketplace hosts over 50,000 extensions built by third parties. Critically, each extension runs in a separate Node.js process (the Extension Host), preventing a misbehaving extension from crashing the editor core. This isolation model enabled Microsoft to ship language support for over 200 programming languages without any core code changes.",
+    "case_study_zh": "Visual Studio Code于2016年推出，采用以语言服务器协议（LSP）为中心的微内核架构。核心VS Code提供编辑器基础设施——文本渲染、文件管理、扩展宿主进程——而所有语言智能（IntelliSense、诊断、重构）通过扩展API提供。到2024年，VS Code市场拥有第三方构建的超过50,000个扩展。关键的是，每个扩展在独立的Node.js进程（扩展宿主）中运行，防止行为异常的扩展使编辑器核心崩溃。这种隔离模型使微软能够在不进行任何核心代码更改的情况下为200多种编程语言提供语言支持。",
+    "when_not_to_use": [
+      "For simple applications with a fixed, well-known feature set that will not need third-party extensibility — the plugin infrastructure adds complexity without payoff",
+      "When tight integration between features is required — the loose coupling between plugins makes cross-plugin workflows awkward and difficult to optimize",
+      "When performance is critical and the plugin dispatch overhead (registry lookups, interface calls) is not acceptable — highly optimized systems often need direct coupling"
+    ],
+    "when_not_to_use_zh": [
+      "对于具有固定、已知功能集且不需要第三方可扩展性的简单应用程序——插件基础设施增加复杂性而无收益",
+      "当功能之间需要紧密集成时——插件之间的松耦合使跨插件工作流程变得笨拙且难以优化",
+      "当性能至关重要且插件分发开销（注册表查找、接口调用）不可接受时——高度优化的系统通常需要直接耦合"
+    ],
+    "adopters": [
+      "Eclipse IDE",
+      "Visual Studio Code",
+      "Webpack",
+      "WordPress",
+      "Google Chrome"
+    ],
+    "abstraction_level": "system",
+    "quality_concerns": [
+      "maintainability",
+      "portability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Richards, M. (2015). Software Architecture Patterns. O'Reilly Media.",
+    "secondary_sources": [
+      "Ford, N. & Richards, M. (2020). Fundamentals of Software Architecture. O'Reilly Media.",
+      "Microsoft (2016). VS Code Extension API. code.visualstudio.com/api.",
+      "Eclipse Foundation (2003). Eclipse Platform Architecture Overview. eclipse.org."
+    ],
+    "typed_relations": [
+      {"slug": "separation-of-concerns", "type": "extends"},
+      {"slug": "ports-and-adapters", "type": "related"},
+      {"slug": "modular-monolith", "type": "related"}
+    ]
+  },
+  {
+    "id": 323,
+    "name": "Flux / Unidirectional Data Flow",
+    "name_zh": "Flux / 单向数据流",
+    "slug": "flux-unidirectional",
+    "category": "architecture",
+    "desc": "Enforces a strict one-way data cycle — Action → Dispatcher → Store → View → Action — eliminating the cascading update problems of two-way binding by making state changes predictable and traceable.",
+    "desc_zh": "强制执行严格的单向数据循环——动作→调度器→存储→视图→动作——通过使状态变更可预测和可追踪，消除双向绑定的级联更新问题。",
+    "steps": [
+      "Define Actions: plain data objects (or objects with a type string) that describe what happened in the system — user interactions, API responses, timer events",
+      "Implement a Dispatcher: a singleton registry that receives all Actions and broadcasts them sequentially to all registered Stores — no action may dispatch another action synchronously",
+      "Implement Stores: modules that hold application state and business logic; each Store registers with the Dispatcher, handles the Actions it cares about, and emits a change event when its state updates",
+      "Implement Views: React components or UI elements that subscribe to Store change events, re-render from Store state, and emit new Actions in response to user gestures",
+      "Close the loop: user interaction → View emits Action → Dispatcher broadcasts → Stores update → Views re-render; debug by inspecting the Action log for the full state history"
+    ],
+    "steps_zh": [
+      "定义动作：描述系统中发生了什么的普通数据对象（或带有类型字符串的对象）——用户交互、API响应、定时器事件",
+      "实现调度器：接收所有动作并将其顺序广播到所有注册存储的单例注册表——任何动作不得同步分发另一个动作",
+      "实现存储：持有应用程序状态和业务逻辑的模块；每个存储向调度器注册，处理其关心的动作，并在状态更新时发出变更事件",
+      "实现视图：订阅存储变更事件、从存储状态重新渲染、并响应用户手势发出新动作的React组件或UI元素",
+      "闭合循环：用户交互→视图发出动作→调度器广播→存储更新→视图重新渲染；通过检查动作日志获取完整状态历史来调试"
+    ],
+    "ai_relevant": false,
+    "viz_type": "flow",
+    "related": [
+      "observer-pattern",
+      "eda",
+      "separation-of-concerns"
+    ],
+    "tags": [
+      "state-management",
+      "unidirectional",
+      "react",
+      "frontend-architecture"
+    ],
+    "origin_author": "Facebook (Jing Chen, Bill Fisher), 2014",
+    "origin_source": "Chen, J. & Fisher, B. (2014). Flux: An Application Architecture for React. Facebook Engineering talk at F8 conference, May.",
+    "origin_source_zh": "Chen, J. & Fisher, B.（2014）。《Flux：React的应用架构》。Facebook工程师在F8大会上的演讲，5月。",
+    "complexity": "intermediate",
+    "when_to_use": [
+      "When a complex client-side application has shared state that multiple UI components read and mutate, leading to synchronization bugs with two-way binding",
+      "When debugging complex UI bugs that stem from unclear data flow — Flux's action log makes the sequence of state changes fully auditable",
+      "When using React or a similar component-based framework where unidirectional data flow is the idiomatic state management approach",
+      "When the team needs to implement time-travel debugging or undo/redo — the action log is a natural event source for replaying state"
+    ],
+    "when_to_use_zh": [
+      "复杂客户端应用程序具有多个UI组件读写的共享状态，导致双向绑定的同步错误时",
+      "调试源于不清晰数据流的复杂UI错误时——Flux的动作日志使状态变更序列完全可审计",
+      "使用React或类似基于组件的框架时，单向数据流是惯用的状态管理方法",
+      "团队需要实现时间旅行调试或撤销/重做时——动作日志是重放状态的自然事件源"
+    ],
+    "core_concepts": [
+      "Unidirectional flow: data moves in one direction only — Action → Dispatcher → Store → View → Action — eliminating the feedback loops that make bidirectional binding hard to debug",
+      "Actions: the only mechanism for changing state — explicit, serializable objects that describe what happened, never how the state should change",
+      "Dispatcher: the global event bus that serializes all Actions and broadcasts them to every registered Store — enforcing that only one Action is processed at a time",
+      "Stores: stateful modules that own specific slices of application state; they respond to Actions by computing new state and notifying Views",
+      "Single source of truth: each piece of application state lives in exactly one Store — Views derive their display state from Stores rather than maintaining their own copies"
+    ],
+    "core_concepts_zh": [
+      "单向流：数据仅在一个方向移动——动作→调度器→存储→视图→动作——消除使双向绑定难以调试的反馈循环",
+      "动作：改变状态的唯一机制——明确的、可序列化的描述发生了什么的对象，而非状态应如何改变",
+      "调度器：将所有动作序列化并广播到每个注册存储的全局事件总线——强制一次只处理一个动作",
+      "存储：拥有特定应用程序状态切片的有状态模块；通过计算新状态并通知视图来响应动作",
+      "单一数据源：每片应用程序状态恰好存在于一个存储中——视图从存储派生其显示状态而非维护自己的副本"
+    ],
+    "timeline": [
+      ["2014", "Facebook's Jing Chen introduces Flux at the F8 developer conference as the solution to cascading MVC update bugs in Facebook Chat"],
+      ["2015", "Dan Abramov releases Redux, a simplified Flux implementation with a single immutable Store and pure reducer functions, which becomes the dominant React state library"],
+      ["2016", "Vue.js releases Vuex, bringing Flux-inspired unidirectional state management to the Vue ecosystem"],
+      ["2019", "React introduces the useReducer hook and Context API, making lightweight Flux-style state management available natively without external libraries"]
+    ],
+    "timeline_zh": [
+      ["2014", "Facebook的Jing Chen在F8开发者大会上介绍Flux，作为解决Facebook Chat中级联MVC更新错误的方案"],
+      ["2015", "Dan Abramov发布Redux，一个具有单一不可变存储和纯reducer函数的简化Flux实现，成为主流React状态库"],
+      ["2016", "Vue.js发布Vuex，为Vue生态系统带来受Flux启发的单向状态管理"],
+      ["2019", "React引入useReducer钩子和Context API，使轻量级Flux风格的状态管理无需外部库即可原生使用"]
+    ],
+    "dos": [
+      "Keep Actions as plain, serializable data objects with a type field — this makes them loggable, replayable, and easy to test",
+      "Make Store update logic pure and synchronous — asynchronous operations belong in Action creators or middleware, not inside Store handlers",
+      "Define all possible Actions as an explicit set (string enum or constant map) so that typos in action type strings are caught at development time",
+      "Derive computed state in Views (or selectors) rather than storing redundant derived data in Stores — storing derived data creates synchronization bugs"
+    ],
+    "dos_zh": [
+      "将动作保持为带有类型字段的普通、可序列化数据对象——这使其可记录、可重放且易于测试",
+      "使存储更新逻辑纯粹且同步——异步操作属于动作创建器或中间件，而非存储处理器内部",
+      "将所有可能的动作定义为明确集合（字符串枚举或常量映射），以便在开发时捕获动作类型字符串中的拼写错误",
+      "在视图（或选择器）中派生计算状态，而非在存储中存储冗余派生数据——存储派生数据会创建同步错误"
+    ],
+    "donts": [
+      "Don't dispatch Actions from within a Store's Action handler — the Dispatcher enforces that only one Action is in-flight at a time; nested dispatches throw errors",
+      "Don't let Views mutate Store state directly — all state changes must go through the Action → Dispatcher → Store cycle, even for local UI state",
+      "Don't create one mega-Store for all application state — split Stores by domain boundary (UserStore, CartStore, NotificationStore) to limit the scope of re-renders",
+      "Don't perform async operations (API calls, timers) inside the Dispatcher's callback chain — use Action creators with async/await or middleware for side effects"
+    ],
+    "donts_zh": [
+      "不要在存储的动作处理器内分发动作——调度器强制一次只有一个动作在处理中；嵌套分发会抛出错误",
+      "不要让视图直接修改存储状态——所有状态变更必须经过动作→调度器→存储循环，即使对于本地UI状态",
+      "不要为所有应用程序状态创建一个巨型存储——按领域边界拆分存储（UserStore、CartStore、NotificationStore）以限制重新渲染范围",
+      "不要在调度器回调链内执行异步操作（API调用、定时器）——为副作用使用带async/await的动作创建器或中间件"
+    ],
+    "case_study_company": "Facebook",
+    "case_study": "Facebook developed Flux to solve a specific, devastating bug in Facebook Chat: messages would be marked as read, but an unread count badge would persist showing incorrect counts. Root cause analysis revealed MVC's bidirectional data flow allowed controller updates to trigger cascading model updates, which triggered further controller updates — creating an unpredictable cycle of state changes. By replacing the bidirectional flow with a strict Action → Dispatcher → Store → View cycle, Facebook engineers made the data flow explicit and debuggable. After Flux adoption, the Chat unread count bug was eliminated and the team reported a significant reduction in state-synchronization bugs across the Facebook web application.",
+    "case_study_zh": "Facebook开发Flux是为了解决Facebook Chat中一个特定的严重错误：消息被标记为已读，但未读计数徽章持续显示错误计数。根因分析揭示MVC的双向数据流允许控制器更新触发级联模型更新，后者又触发进一步的控制器更新——创建不可预测的状态变更循环。通过用严格的动作→调度器→存储→视图循环替换双向流，Facebook工程师使数据流变得明确且可调试。采用Flux后，Chat未读计数错误被消除，团队报告Facebook Web应用程序中状态同步错误显著减少。",
+    "when_not_to_use": [
+      "For simple applications with local component state only — React's useState hook or Vue's reactive data handles this without the Flux overhead",
+      "When the team is not using a component-based UI framework — Flux's View layer assumes a component model; it does not translate well to server-rendered HTML",
+      "For applications with predominantly server-side state — Flux manages client-side state; server state libraries (React Query, SWR) are a better fit for data fetching"
+    ],
+    "when_not_to_use_zh": [
+      "对于仅有本地组件状态的简单应用程序——React的useState钩子或Vue的响应式数据可以处理这些而无需Flux开销",
+      "当团队不使用基于组件的UI框架时——Flux的视图层假定组件模型；它不能很好地转化为服务器渲染的HTML",
+      "对于以服务器端状态为主的应用程序——Flux管理客户端状态；服务器状态库（React Query、SWR）更适合数据获取"
+    ],
+    "adopters": [
+      "Facebook / Meta",
+      "React + Redux ecosystem",
+      "Vuex (Vue.js)",
+      "NgRx (Angular)",
+      "Elm (inspired by Flux)"
+    ],
+    "abstraction_level": "component",
+    "quality_concerns": [
+      "maintainability",
+      "testability"
+    ],
+    "maturity_ring": "established",
+    "primary_source": "Chen, J. & Fisher, B. (2014). Flux: An Application Architecture for React. Facebook Engineering, F8 Conference.",
+    "secondary_sources": [
+      "Abramov, D. (2015). Redux Documentation — Motivation. redux.js.org.",
+      "Facebook (2014). Flux — Application Architecture for Building User Interfaces. github.com/facebook/flux.",
+      "Abramov, D. & Clark, A. (2016). Getting Started with Redux (Egghead.io course). egghead.io."
+    ],
+    "typed_relations": [
+      {"slug": "observer-pattern", "type": "extends"},
+      {"slug": "eda", "type": "related"},
+      {"slug": "separation-of-concerns", "type": "complement"}
+    ]
   }
 ]

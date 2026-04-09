@@ -4,7 +4,7 @@ Implementation-level design — structuring code, managing complexity, writing m
 
 实现层面的设计——代码结构、复杂性管理、可维护软件编写。
 
-**39 frameworks** in this category.
+**45 frameworks** in this category.
 
 ## Frameworks
 
@@ -280,3 +280,45 @@ Implementation-level design — structuring code, managing complexity, writing m
 - **Quality**: performance, maintainability
 - **Author**: Gang of Four
 - GoF structural pattern that minimises memory usage by sharing fine-grained objects whose state can be externalised, enabling large numbers of similar objects to be represented efficiently.
+
+### Data Transfer Object (DTO) / 数据传输对象（DTO）
+- **Slug**: data-transfer-object
+- **Complexity**: beginner
+- **Quality**: performance, maintainability
+- **Author**: Martin Fowler, "Patterns of Enterprise Application Architecture", 2002
+- A simple object that carries data between processes or layers, containing no business logic — its sole purpose is to reduce the number of method calls by bundling data into a single transfer unit
+
+### DRY (Don't Repeat Yourself) / DRY 原则（不要重复自己）
+- **Slug**: dry-principle
+- **Complexity**: beginner
+- **Quality**: maintainability
+- **Author**: Andy Hunt & Dave Thomas, 1999
+- Every piece of knowledge must have a single, unambiguous, authoritative representation within a system. When you find yourself writing the same code in two places, extract it into one canonical source.
+
+### KISS (Keep It Simple, Stupid) / KISS 原则（保持简单，不要复杂）
+- **Slug**: kiss-principle
+- **Complexity**: beginner
+- **Quality**: maintainability, usability
+- **Author**: Kelly Johnson, Lockheed Skunk Works, 1960s
+- Most systems work best if they are kept simple rather than made complicated. Complexity is the enemy of reliability. Design the simplest thing that could possibly work, and resist the temptation to add cleverness.
+
+### YAGNI (You Aren't Gonna Need It) / YAGNI 原则（你不会用到它的）
+- **Slug**: yagni-principle
+- **Complexity**: beginner
+- **Quality**: maintainability, performance
+- **Author**: Ron Jeffries, Extreme Programming community, late 1990s
+- Always implement things when you actually need them, never when you just foresee that you might need them. Premature generalization is as harmful as premature optimization.
+
+### Composition over Inheritance / 组合优于继承
+- **Slug**: composition-over-inheritance
+- **Complexity**: intermediate
+- **Quality**: maintainability, testability
+- **Author**: Gang of Four (Gamma, Helm, Johnson, Vlissides), 1994
+- Favor object composition over class inheritance to achieve code reuse and polymorphism. Inheritance creates tight coupling between parent and child classes; composition assembles behavior from interchangeable parts, making systems more flexible and testable.
+
+### Law of Demeter (Principle of Least Knowledge) / 迪米特得法则（最少知识原则）
+- **Slug**: law-of-demeter
+- **Complexity**: intermediate
+- **Quality**: maintainability, testability
+- **Author**: Karl Lieberherr, Ian Holland, Arthur Riel — Northeastern University, 1987
+- A module should not know about the internal workings of the objects it manipulates. An object should only call methods on: itself, its parameters, objects it creates, and its direct component objects — never on objects returned by those calls.

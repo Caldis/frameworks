@@ -4,7 +4,7 @@ Making and documenting architectural decisions — choosing patterns, evaluating
 
 架构决策的制定与记录——模式选择、权衡评估、系统宏观结构。
 
-**23 frameworks** in this category.
+**31 frameworks** in this category.
 
 ## Frameworks
 
@@ -168,3 +168,59 @@ Making and documenting architectural decisions — choosing patterns, evaluating
 - **Quality**: maintainability, scalability, reliability
 - **Author**: Neal Ford
 - Neal Ford's approach to designing software systems that support incremental, guided change across all dimensions through fitness functions and architectural coupling analysis
+
+### MVC (Model-View-Controller) / MVC（模型-视图-控制器）
+- **Slug**: mvc
+- **Complexity**: beginner
+- **Quality**: maintainability, testability
+- **Author**: Trygve Reenskaug, 1979, Xerox PARC
+- Separates an application into three interconnected components — Model (data/logic), View (UI), and Controller (input handling) — to decouple presentation from business logic.
+
+### MVVM (Model-View-ViewModel) / MVVM（模型-视图-视图模型）
+- **Slug**: mvvm
+- **Complexity**: intermediate
+- **Quality**: maintainability, testability
+- **Author**: John Gossman, 2005, Microsoft (WPF team)
+- Separates UI from business logic by introducing a ViewModel that exposes data streams and commands for two-way data binding, enabling declarative view construction and high testability.
+
+### MVP (Model-View-Presenter) / MVP（模型-视图-呈现者）
+- **Slug**: mvp
+- **Complexity**: intermediate
+- **Quality**: testability, maintainability
+- **Author**: Mike Potel / Taligent, 1996
+- Evolves MVC by replacing the Controller with a Presenter that holds all UI logic, while the View becomes a passive interface that delegates every user gesture to the Presenter.
+
+### Clean Architecture / 整洁架构
+- **Slug**: clean-architecture
+- **Complexity**: advanced
+- **Quality**: maintainability, testability, portability
+- **Author**: Robert C. Martin (Uncle Bob), 2012
+- Organizes code into concentric dependency rings — Entities, Use Cases, Interface Adapters, Frameworks — where the Dependency Rule mandates all source-code dependencies point inward, making the system independent of UI, database, and frameworks.
+
+### Onion Architecture / 洋葱架构
+- **Slug**: onion-architecture
+- **Complexity**: intermediate
+- **Quality**: maintainability, testability
+- **Author**: Jeffrey Palermo, 2008
+- Structures applications as concentric rings around a Domain Model core, where all dependencies flow inward and infrastructure lives in the outermost ring, making the domain model completely independent of persistence and UI concerns.
+
+### N-Tier / Layered Architecture / N层/分层架构
+- **Slug**: n-tier-layered
+- **Complexity**: beginner
+- **Quality**: maintainability, scalability
+- **Author**: 1990s enterprise computing; formalized by Microsoft and Sun Microsystems
+- Organizes software into horizontal layers — typically Presentation, Business Logic, and Data Access — where each layer depends only on the layer directly below it, establishing clear separation of concerns across the entire application.
+
+### Microkernel (Plugin) Architecture / 微内核（插件）架构
+- **Slug**: microkernel-architecture
+- **Complexity**: intermediate
+- **Quality**: maintainability, portability
+- **Author**: OS design lineage (Mach microkernel, 1985, Carnegie Mellon); applied to software architecture by Richards and Ford (2015)
+- Separates a minimal stable core system from interchangeable plug-in modules, enabling feature extension without modifying the core — the core provides services and a registry; plugins contribute functionality through a defined contract.
+
+### Flux / Unidirectional Data Flow / Flux / 单向数据流
+- **Slug**: flux-unidirectional
+- **Complexity**: intermediate
+- **Quality**: maintainability, testability
+- **Author**: Facebook (Jing Chen, Bill Fisher), 2014
+- Enforces a strict one-way data cycle — Action → Dispatcher → Store → View → Action — eliminating the cascading update problems of two-way binding by making state changes predictable and traceable.

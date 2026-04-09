@@ -4,7 +4,7 @@ Patterns for building reliable, scalable systems across multiple nodes.
 
 跨多节点构建可靠、可扩展系统的模式。
 
-**20 frameworks** in this category.
+**21 frameworks** in this category.
 
 ## Frameworks
 
@@ -147,3 +147,10 @@ Patterns for building reliable, scalable systems across multiple nodes.
 - **Quality**: reliability, observability
 - **Author**: Microsoft Azure
 - Deploying helper containers alongside the primary service container to handle cross-cutting concerns without modifying application code
+
+### Publish-Subscribe Pattern / 发布-订阅模式
+- **Slug**: publish-subscribe-pattern
+- **Complexity**: intermediate
+- **Quality**: scalability, maintainability
+- **Author**: CORBA Event Service specification (OMG, 1994); popularized through JMS (Java Message Service, 1998) and academic distributed systems literature of the 1980s–1990s
+- Decoupled messaging pattern where publishers emit events to named topics and subscribers receive only the messages matching their subscriptions, eliminating direct coupling between producers and consumers

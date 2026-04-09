@@ -1,6 +1,6 @@
 # SDFrame Framework Catalog
 
-> 300 frameworks across 13 categories.
+> 315 frameworks across 13 categories.
 > Use this to search and filter. Each row: slug | name | category | quality concerns | description.
 
 ## Design Thinking / 设计思考 (23)
@@ -31,7 +31,7 @@
 | architectural-kata | Architectural Kata | intermediate | maintainability | Structured practice exercises where architects design systems for fictional scenarios to build architectural intuition and decision-making skills |
 | theory-of-constraints | Theory of Constraints (TOC) | intermediate | performance, maintainability | Identify and systematically exploit the binding constraint in a system to maximize throughput, then elevate or break it |
 
-## Architecture Decisions / 架构决策 (23)
+## Architecture Decisions / 架构决策 (31)
 
 | slug | name | complexity | quality | description |
 |------|------|-----------|---------|-------------|
@@ -58,8 +58,16 @@
 | cell-based-architecture | Cell-Based Architecture | advanced | reliability, scalability, security | An architectural pattern where a system is divided into independent, self-contained cells that own their data, compute, and network resources, enabling granular scaling, fault isolation, and independent deployability |
 | ports-and-adapters | Ports and Adapters (Hexagonal Architecture) | intermediate | maintainability, testability | Alistair Cockburn's architectural pattern that isolates the application core from external technology concerns by defining explicit ports (interfaces) and adapters (technology-specific implementations) |
 | evolutionary-architecture | Evolutionary Architecture | advanced | maintainability, scalability, reliability | Neal Ford's approach to designing software systems that support incremental, guided change across all dimensions through fitness functions and architectural coupling analysis |
+| mvc | MVC (Model-View-Controller) | beginner | maintainability, testability | Separates an application into three interconnected components — Model (data/logic), View (UI), and Controller (input handling) — to decouple presentation from business logic. |
+| mvvm | MVVM (Model-View-ViewModel) | intermediate | maintainability, testability | Separates UI from business logic by introducing a ViewModel that exposes data streams and commands for two-way data binding, enabling declarative view construction and high testability. |
+| mvp | MVP (Model-View-Presenter) | intermediate | testability, maintainability | Evolves MVC by replacing the Controller with a Presenter that holds all UI logic, while the View becomes a passive interface that delegates every user gesture to the Presenter. |
+| clean-architecture | Clean Architecture | advanced | maintainability, testability, portability | Organizes code into concentric dependency rings — Entities, Use Cases, Interface Adapters, Frameworks — where the Dependency Rule mandates all source-code dependencies point inward, making the system independent of UI, database, and frameworks. |
+| onion-architecture | Onion Architecture | intermediate | maintainability, testability | Structures applications as concentric rings around a Domain Model core, where all dependencies flow inward and infrastructure lives in the outermost ring, making the domain model completely independent of persistence and UI concerns. |
+| n-tier-layered | N-Tier / Layered Architecture | beginner | maintainability, scalability | Organizes software into horizontal layers — typically Presentation, Business Logic, and Data Access — where each layer depends only on the layer directly below it, establishing clear separation of concerns across the entire application. |
+| microkernel-architecture | Microkernel (Plugin) Architecture | intermediate | maintainability, portability | Separates a minimal stable core system from interchangeable plug-in modules, enabling feature extension without modifying the core — the core provides services and a registry; plugins contribute functionality through a defined contract. |
+| flux-unidirectional | Flux / Unidirectional Data Flow | intermediate | maintainability, testability | Enforces a strict one-way data cycle — Action → Dispatcher → Store → View → Action — eliminating the cascading update problems of two-way binding by making state changes predictable and traceable. |
 
-## Coding Practices / 编码实践 (39)
+## Coding Practices / 编码实践 (45)
 
 | slug | name | complexity | quality | description |
 |------|------|-----------|---------|-------------|
@@ -102,6 +110,12 @@
 | vertical-slice-architecture | Vertical Slice Architecture | intermediate | maintainability, testability | Organizing code by feature rather than by technical layer, grouping all code for a feature — from HTTP handler to database query — in a single cohesive slice |
 | specification-pattern | Specification Pattern | intermediate | maintainability, testability | Encapsulating business rules as composable, reusable objects that can be combined with boolean logic to express complex domain predicates |
 | flyweight-pattern | Flyweight Pattern | intermediate | performance, maintainability | GoF structural pattern that minimises memory usage by sharing fine-grained objects whose state can be externalised, enabling large numbers of similar objects to be represented efficiently. |
+| data-transfer-object | Data Transfer Object (DTO) | beginner | performance, maintainability | A simple object that carries data between processes or layers, containing no business logic — its sole purpose is to reduce the number of method calls by bundling data into a single transfer unit |
+| dry-principle | DRY (Don't Repeat Yourself) | beginner | maintainability | Every piece of knowledge must have a single, unambiguous, authoritative representation within a system. When you find yourself writing the same code in two places, extract it into one canonical source. |
+| kiss-principle | KISS (Keep It Simple, Stupid) | beginner | maintainability, usability | Most systems work best if they are kept simple rather than made complicated. Complexity is the enemy of reliability. Design the simplest thing that could possibly work, and resist the temptation to add cleverness. |
+| yagni-principle | YAGNI (You Aren't Gonna Need It) | beginner | maintainability, performance | Always implement things when you actually need them, never when you just foresee that you might need them. Premature generalization is as harmful as premature optimization. |
+| composition-over-inheritance | Composition over Inheritance | intermediate | maintainability, testability | Favor object composition over class inheritance to achieve code reuse and polymorphism. Inheritance creates tight coupling between parent and child classes; composition assembles behavior from interchangeable parts, making systems more flexible and testable. |
+| law-of-demeter | Law of Demeter (Principle of Least Knowledge) | intermediate | maintainability, testability | A module should not know about the internal workings of the objects it manipulates. An object should only call methods on: itself, its parameters, objects it creates, and its direct component objects — never on objects returned by those calls. |
 
 ## Quality Engineering / 质量保障 (25)
 
@@ -265,7 +279,7 @@
 | incident-response-playbook | Incident Response Playbook | intermediate | security, reliability | SANS Institute's six-step structured process for handling cybersecurity incidents from preparation through post-incident lessons learned |
 | runtime-application-self-protection | Runtime Application Self-Protection (RASP) | intermediate | security, reliability, observability | A security technology that instruments application runtimes to detect and block attacks from within the running application context, with access to call stacks, data flows, and execution context that perimeter controls cannot see |
 
-## Distributed Systems / 分布式系统 (20)
+## Distributed Systems / 分布式系统 (21)
 
 | slug | name | complexity | quality | description |
 |------|------|-----------|---------|-------------|
@@ -289,6 +303,7 @@
 | gossip-epidemic-protocol | Gossip Protocol | intermediate | reliability, scalability | Epidemic-style information dissemination achieving reliable cluster-wide propagation without central coordination |
 | service-discovery-pattern | Service Discovery Pattern | intermediate | reliability, scalability | DNS-based and registry-based mechanisms for services to locate each other dynamically in elastic infrastructure |
 | sidecar-container-pattern | Sidecar Pattern | intermediate | reliability, observability | Deploying helper containers alongside the primary service container to handle cross-cutting concerns without modifying application code |
+| publish-subscribe-pattern | Publish-Subscribe Pattern | intermediate | scalability, maintainability | Decoupled messaging pattern where publishers emit events to named topics and subscribers receive only the messages matching their subscriptions, eliminating direct coupling between producers and consumers |
 
 ## API Design & Integration / API 设计与集成 (21)
 

@@ -1,7 +1,7 @@
 ---
 name: sdframe
 description: >
-  Software design framework knowledge base with 300 curated frameworks
+  Software design framework knowledge base with 315 curated frameworks
   across 13 categories. Use this skill when users need to: select
   frameworks for a project, compare architectural approaches, implement a specific
   design pattern, or find best practices for reliability, security, performance,
@@ -13,7 +13,7 @@ description: >
 
 # SDFrame — Software Design Framework Skill
 
-300 curated frameworks for software engineers, architects, and AI agents.
+315 curated frameworks for software engineers, architects, and AI agents.
 Bilingual (EN/ZH), 13 categories. Source: https://sdframe.caldis.me/
 
 ## Two Modes of Operation
@@ -84,9 +84,9 @@ foundational, established, emerging, experimental
 ### Categories
 thinking (23) | Design Thinking | 设计思考
     Mental models, philosophies, and thinking tools for approaching software design problems.
-  architecture (23) | Architecture Decisions | 架构决策
+  architecture (31) | Architecture Decisions | 架构决策
     Making and documenting architectural decisions — choosing patterns, evaluating trade-offs.
-  coding (39) | Coding Practices | 编码实践
+  coding (45) | Coding Practices | 编码实践
     Implementation-level design — structuring code, managing complexity, writing maintainable software.
   quality (25) | Quality Engineering | 质量保障
     Testing strategies, reliability patterns, observability, and verification approaches.
@@ -100,7 +100,7 @@ thinking (23) | Design Thinking | 设计思考
     Patterns for data-intensive systems — storage, processing, streaming, and data modeling.
   security (21) | Security & Privacy | 安全与隐私
     Threat modeling, secure design, privacy patterns, and zero-trust architectures.
-  distributed (20) | Distributed Systems | 分布式系统
+  distributed (21) | Distributed Systems | 分布式系统
     Patterns for building reliable, scalable systems across multiple nodes.
   api (21) | API Design & Integration | API 设计与集成
     Designing, versioning, and integrating APIs across service boundaries.
