@@ -331,52 +331,59 @@ function LabeledRadar({ labels, size }: { labels: string[]; size: number }) {
 }
 
 function LabeledTree({ labels }: { labels: string[] }) {
-  const steps = labels.slice(0, 5)
-  // Tree layout: root at top, 2 children in middle, 2 leaves at bottom
-  // root = step 0
-  // children = steps 1, 2
-  // leaves = steps 3, 4
+  const n = Math.min(labels.length, 5)
+  // Dynamic tree: root + children + optional leaves
+  // 3 labels: root → 2 children
+  // 4 labels: root → child → 2 leaves, root → child
+  // 5 labels: root → 2 children → 2 leaves
+  const root = labels[0]
+  const children = labels.slice(1, n <= 3 ? n : 3)
+  const leaves = n > 3 ? labels.slice(3, n) : []
+
   return (
     <div className={styles.treeContainer}>
       {/* Root */}
       <div className={styles.treeLevel}>
         <div className={`${styles.treeNode} ${styles.treeNodeRoot}`}>
           <span className={styles.stepBadge}>1</span>
-          <span className={styles.treeNodeLabel}>{shortLabel(steps[0] ?? '')}</span>
+          <span className={styles.treeNodeLabel}>{shortLabel(root)}</span>
         </div>
       </div>
       {/* Connector lines root -> children */}
       <svg className={styles.treeSvgLines} viewBox="0 0 200 24" preserveAspectRatio="none">
-        <line x1="100" y1="0" x2="60" y2="24" stroke={COLORS.fill3} strokeWidth="1.5" />
-        <line x1="100" y1="0" x2="140" y2="24" stroke={COLORS.fill3} strokeWidth="1.5" />
+        {children.length === 1 && <line x1="100" y1="0" x2="100" y2="24" stroke={COLORS.fill3} strokeWidth="1.5" />}
+        {children.length >= 2 && <>
+          <line x1="100" y1="0" x2="60" y2="24" stroke={COLORS.fill3} strokeWidth="1.5" />
+          <line x1="100" y1="0" x2="140" y2="24" stroke={COLORS.fill3} strokeWidth="1.5" />
+        </>}
       </svg>
       {/* Children */}
       <div className={styles.treeLevel}>
-        <div className={styles.treeNode}>
-          <span className={styles.stepBadge}>2</span>
-          <span className={styles.treeNodeLabel}>{shortLabel(steps[1] ?? '')}</span>
-        </div>
-        <div className={styles.treeNode}>
-          <span className={styles.stepBadge}>3</span>
-          <span className={styles.treeNodeLabel}>{shortLabel(steps[2] ?? '')}</span>
-        </div>
+        {children.map((label, i) => (
+          <div key={i} className={styles.treeNode}>
+            <span className={styles.stepBadge}>{i + 2}</span>
+            <span className={styles.treeNodeLabel}>{shortLabel(label)}</span>
+          </div>
+        ))}
       </div>
-      {/* Connector lines children -> leaves */}
-      <svg className={styles.treeSvgLines} viewBox="0 0 200 24" preserveAspectRatio="none">
-        <line x1="60" y1="0" x2="60" y2="24" stroke={COLORS.fill3} strokeWidth="1.5" />
-        <line x1="140" y1="0" x2="140" y2="24" stroke={COLORS.fill3} strokeWidth="1.5" />
-      </svg>
-      {/* Leaves */}
-      <div className={styles.treeLevel}>
-        <div className={styles.treeNode}>
-          <span className={styles.stepBadge}>4</span>
-          <span className={styles.treeNodeLabel}>{shortLabel(steps[3] ?? '')}</span>
+      {/* Leaves (if any) */}
+      {leaves.length > 0 && <>
+        <svg className={styles.treeSvgLines} viewBox="0 0 200 24" preserveAspectRatio="none">
+          {leaves.length === 1 && <line x1="60" y1="0" x2="100" y2="24" stroke={COLORS.fill3} strokeWidth="1.5" />}
+          {leaves.length >= 2 && <>
+            <line x1="60" y1="0" x2="60" y2="24" stroke={COLORS.fill3} strokeWidth="1.5" />
+            <line x1="140" y1="0" x2="140" y2="24" stroke={COLORS.fill3} strokeWidth="1.5" />
+          </>}
+        </svg>
+        <div className={styles.treeLevel}>
+          {leaves.map((label, i) => (
+            <div key={i} className={styles.treeNode}>
+              <span className={styles.stepBadge}>{children.length + i + 2}</span>
+              <span className={styles.treeNodeLabel}>{shortLabel(label)}</span>
+            </div>
+          ))}
         </div>
-        <div className={styles.treeNode}>
-          <span className={styles.stepBadge}>5</span>
-          <span className={styles.treeNodeLabel}>{shortLabel(steps[4] ?? '')}</span>
-        </div>
-      </div>
+      </>}
     </div>
   )
 }
