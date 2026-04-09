@@ -23,6 +23,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "State Machine",
+      "Leader Election",
+      "Log Replication",
+      "Commit",
+      "Failure Recovery"
+    ],
+    "viz_labels_zh": [
+      "状态机",
+      "领导者选举",
+      "日志复制",
+      "提交",
+      "故障恢复"
+    ],
     "related": [
       "cap-theorem",
       "leader-election",
@@ -203,6 +217,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Classify Data",
+      "Replication",
+      "Conflict Resolution",
+      "Read Consistency",
+      "Convergence"
+    ],
+    "viz_labels_zh": [
+      "数据分类",
+      "数据复制",
+      "冲突解决",
+      "读一致性",
+      "收敛延迟"
+    ],
     "related": [
       "cap-theorem",
       "consensus-protocols",
@@ -388,6 +416,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Bottleneck",
+      "Buffer Metrics",
+      "Signal Mechanism",
+      "End-to-End",
+      "Overflow Strategy"
+    ],
+    "viz_labels_zh": [
+      "瓶颈识别",
+      "缓冲监控",
+      "背压信号",
+      "端到端传播",
+      "溢出策略"
+    ],
     "related": [
       "circuit-breaker-pattern",
       "bulkhead-pattern",
@@ -567,6 +609,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "tree",
+    "viz_labels": [
+      "App Container",
+      "Sidecar",
+      "Shared Network",
+      "Traffic Route",
+      "Lifecycle"
+    ],
+    "viz_labels_zh": [
+      "应用容器",
+      "Sidecar",
+      "共享网络",
+      "流量路由",
+      "生命周期"
+    ],
     "related": [
       "service-mesh-pattern",
       "hexagonal-architecture",
@@ -747,6 +803,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Leadership Scope",
+      "Election Mechanism",
+      "Heartbeat",
+      "Failure Detect",
+      "Fencing Token"
+    ],
+    "viz_labels_zh": [
+      "领导范围",
+      "选举机制",
+      "心跳",
+      "故障检测",
+      "隔离令牌"
+    ],
     "related": [
       "consensus-protocols",
       "cap-theorem",
@@ -926,6 +996,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Hash Ring",
+      "Key Assign",
+      "Virtual Nodes",
+      "Node Add",
+      "Node Remove"
+    ],
+    "viz_labels_zh": [
+      "哈希环",
+      "键分配",
+      "虚拟节点",
+      "节点加入",
+      "节点移除"
+    ],
     "related": [
       "sharding-strategies",
       "gossip-protocol",
@@ -1104,7 +1188,21 @@
       "检测故障：使用累积的心跳信息，在可配置数量的gossip轮次未收到响应后将节点标记为疑似或确认宕机"
     ],
     "ai_relevant": false,
-    "viz_type": "matrix",
+    "viz_type": "cycle",
+    "viz_labels": [
+      "Membership List",
+      "Gossip Targets",
+      "State Digest",
+      "Delta Reconcile",
+      "Failure Detect"
+    ],
+    "viz_labels_zh": [
+      "成员列表",
+      "Gossip目标",
+      "状态摘要",
+      "差量同步",
+      "故障检测"
+    ],
     "related": [
       "consistent-hashing",
       "eventual-consistency",
@@ -1284,6 +1382,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Prepare",
+      "Vote",
+      "Coordinator Decision",
+      "Commit / Abort",
+      "Recovery"
+    ],
+    "viz_labels_zh": [
+      "准备阶段",
+      "投票",
+      "协调者决定",
+      "提交中止",
+      "故障恢复"
+    ],
     "related": [
       "saga-pattern",
       "eventual-consistency",
@@ -1462,7 +1574,21 @@
       "规划重新平衡：设计分割热分片或在添加节点时重新分配数据的迁移策略，使用一致性哈希或逻辑分片等技术"
     ],
     "ai_relevant": false,
-    "viz_type": "matrix",
+    "viz_type": "tree",
+    "viz_labels": [
+      "Hash Shard",
+      "Range Shard",
+      "Directory Shard",
+      "Query Router",
+      "Rebalance"
+    ],
+    "viz_labels_zh": [
+      "哈希分片",
+      "范围分片",
+      "目录分片",
+      "查询路由",
+      "再平衡"
+    ],
     "related": [
       "consistent-hashing",
       "cap-theorem",
@@ -1642,6 +1768,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Idempotency Key",
+      "Check Prior",
+      "Execute and Store",
+      "Return Cached",
+      "Expire Keys"
+    ],
+    "viz_labels_zh": [
+      "幂等键",
+      "重复检查",
+      "执行存储",
+      "返回缓存",
+      "过期清理"
+    ],
     "related": [
       "saga-pattern",
       "eventual-consistency",
@@ -1821,6 +1961,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Use Case",
+      "CRDT Type",
+      "Merge Function",
+      "Propagation",
+      "Convergence Test"
+    ],
+    "viz_labels_zh": [
+      "使用场景",
+      "CRDT类型",
+      "合并函数",
+      "状态传播",
+      "收敛验证"
+    ],
     "related": [
       "eventual-consistency",
       "gossip-protocol",
@@ -1999,6 +2153,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Outbox Table",
+      "Atomic Write",
+      "Message Relay",
+      "At-Least-Once",
+      "Idempotent Consumer"
+    ],
+    "viz_labels_zh": [
+      "发件箱表",
+      "原子写入",
+      "消息中继",
+      "至少一次",
+      "幂等消费"
+    ],
     "related": [
       "change-data-capture",
       "saga-pattern",
@@ -2177,6 +2345,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Service Registry",
+      "Registration",
+      "Health Checks",
+      "Service Lookup",
+      "Failover Test"
+    ],
+    "viz_labels_zh": [
+      "服务注册表",
+      "服务注册",
+      "健康检查",
+      "服务发现",
+      "故障切换"
+    ],
     "related": [
       "consensus-protocols",
       "leader-election",
@@ -2355,6 +2537,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Retry Policy",
+      "Circuit Breaker",
+      "Wrap Retry",
+      "Fallback",
+      "Monitor"
+    ],
+    "viz_labels_zh": [
+      "重试策略",
+      "熔断器",
+      "包装重试",
+      "降级策略",
+      "状态监控"
+    ],
     "related": [
       "bulkhead-service-level",
       "service-discovery",
@@ -2528,6 +2724,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Resource Pools",
+      "Partition Pools",
+      "Capacity Limits",
+      "Tenant Bulkhead",
+      "Monitor"
+    ],
+    "viz_labels_zh": [
+      "资源池",
+      "分区隔离",
+      "容量限制",
+      "租户隔离",
+      "使用监控"
+    ],
     "related": [
       "circuit-breaker-with-retry",
       "service-discovery",
@@ -2701,6 +2911,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Terms",
+      "Leader Election",
+      "AppendEntries",
+      "Commit Quorum",
+      "Log Reconcile"
+    ],
+    "viz_labels_zh": [
+      "任期",
+      "领导选举",
+      "日志追加",
+      "多数提交",
+      "日志对齐"
+    ],
     "related": [
       "consensus-protocols",
       "leader-election",
@@ -2877,6 +3101,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Concurrent Writes",
+      "CRDT Variant",
+      "Merge Function",
+      "Propagation",
+      "Divergence Monitor"
+    ],
+    "viz_labels_zh": [
+      "并发写入",
+      "CRDT变体",
+      "合并函数",
+      "状态传播",
+      "收敛监控"
+    ],
     "related": [
       "eventual-consistency",
       "gossip-protocol",
@@ -3053,6 +3291,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Message Payload",
+      "Gossip Variant",
+      "Fanout Interval",
+      "Failure Detect",
+      "Entropy Reduce"
+    ],
+    "viz_labels_zh": [
+      "消息内容",
+      "Gossip变体",
+      "扇出间隔",
+      "故障检测",
+      "熵减少"
+    ],
     "related": [
       "eventual-consistency",
       "crdts",
@@ -3227,6 +3479,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Discovery Strategy",
+      "Registration",
+      "Health Check",
+      "Client Consume",
+      "Graceful Shutdown"
+    ],
+    "viz_labels_zh": [
+      "发现策略",
+      "服务注册",
+      "健康检查",
+      "客户端消费",
+      "优雅下线"
+    ],
     "related": [
       "service-discovery",
       "gossip-protocol",
@@ -3401,6 +3667,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Cross-Cutting",
+      "Sidecar Image",
+      "Co-locate Pod",
+      "Localhost Comm",
+      "Lifecycle Coord"
+    ],
+    "viz_labels_zh": [
+      "横切关注点",
+      "独立镜像",
+      "共同部署",
+      "本地通信",
+      "生命周期协调"
+    ],
     "related": [
       "sidecar-pattern",
       "service-discovery-pattern",
@@ -3575,6 +3855,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "tree",
+    "viz_labels": [
+      "Publisher",
+      "Topic",
+      "Broker",
+      "Subscriber",
+      "Delivery Semantics"
+    ],
+    "viz_labels_zh": [
+      "发布者",
+      "主题",
+      "消息代理",
+      "订阅者",
+      "投递语义"
+    ],
     "related": [
       "outbox-pattern",
       "backpressure-pattern",
@@ -3757,6 +4051,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Transient Error",
+      "Retry Strategy",
+      "Retry Budget",
+      "Jitter",
+      "Retry Metrics"
+    ],
+    "viz_labels_zh": [
+      "瞬时错误",
+      "重试策略",
+      "重试预算",
+      "抖动",
+      "重试指标"
+    ],
     "related": [
       "circuit-breaker-pattern",
       "circuit-breaker-with-retry",

@@ -4,7 +4,7 @@ const path = require('path')
 const STUB_FIELDS = [
   'id', 'name', 'name_zh', 'slug', 'category', 'desc', 'desc_zh', 'ai_relevant', 'tags',
   'complexity', 'abstraction_level', 'maturity_ring', 'quality_concerns', 'related',
-  'typed_relations', 'origin_author', 'viz_type', 'steps', 'steps_zh', 'adopters'
+  'typed_relations', 'origin_author', 'viz_type', 'viz_labels', 'viz_labels_zh', 'steps', 'steps_zh', 'adopters'
 ]
 
 const DETAIL_DEFAULTS = {

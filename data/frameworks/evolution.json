@@ -23,6 +23,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Legacy",
+      "Facade",
+      "New Service",
+      "Decommission"
+    ],
+    "viz_labels_zh": [
+      "遗留系统",
+      "外观层",
+      "新服务",
+      "下线旧系统"
+    ],
     "related": [
       "branch-by-abstraction",
       "parallel-run",
@@ -203,6 +215,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Abstraction",
+      "Old Impl",
+      "New Impl",
+      "Switch"
+    ],
+    "viz_labels_zh": [
+      "抽象层",
+      "旧实现",
+      "新实现",
+      "切换"
+    ],
     "related": [
       "strangler-fig-pattern",
       "feature-flags",
@@ -383,6 +407,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Input",
+      "Old Path",
+      "New Path",
+      "Compare"
+    ],
+    "viz_labels_zh": [
+      "输入",
+      "旧路径",
+      "新路径",
+      "结果对比"
+    ],
     "related": [
       "strangler-fig-pattern",
       "canary-deployment",
@@ -562,7 +598,19 @@
       "记录主动承担技术债务的决策，明确偿还计划与负责人"
     ],
     "ai_relevant": false,
-    "viz_type": "matrix",
+    "viz_type": "quadrant",
+    "viz_labels": [
+      "Reckless",
+      "Prudent",
+      "Deliberate",
+      "Inadvertent"
+    ],
+    "viz_labels_zh": [
+      "鲁莽",
+      "谨慎",
+      "刻意",
+      "无意"
+    ],
     "related": [
       "mikado-method",
       "continuous-architecture",
@@ -743,6 +791,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "radar",
+    "viz_labels": [
+      "Scalability",
+      "Security",
+      "Reliability",
+      "Performance",
+      "Maintainability"
+    ],
+    "viz_labels_zh": [
+      "可扩展性",
+      "安全性",
+      "可靠性",
+      "性能",
+      "可维护性"
+    ],
     "related": [
       "continuous-architecture",
       "technical-debt-quadrant",
@@ -924,6 +986,14 @@
     ],
     "ai_relevant": false,
     "viz_type": "venn",
+    "viz_labels": [
+      "Team Structure",
+      "System Design"
+    ],
+    "viz_labels_zh": [
+      "团队结构",
+      "系统设计"
+    ],
     "related": [
       "inverse-conway-maneuver",
       "team-topologies",
@@ -1104,6 +1174,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Target Arch",
+      "Org Design",
+      "Team Align",
+      "System"
+    ],
+    "viz_labels_zh": [
+      "目标架构",
+      "组织设计",
+      "团队对齐",
+      "系统演进"
+    ],
     "related": [
       "conways-law",
       "team-topologies",
@@ -1285,6 +1367,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "tree",
+    "viz_labels": [
+      "Stream-Aligned",
+      "Platform",
+      "Enabling",
+      "Subsystem"
+    ],
+    "viz_labels_zh": [
+      "流动对齐团队",
+      "平台团队",
+      "赋能团队",
+      "复杂子系统"
+    ],
     "related": [
       "conways-law",
       "inverse-conway-maneuver",
@@ -1476,6 +1570,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "timeline",
+    "viz_labels": [
+      "Schema v1",
+      "Expand",
+      "Migrate Data",
+      "Contract"
+    ],
+    "viz_labels_zh": [
+      "初始模式",
+      "扩展字段",
+      "迁移数据",
+      "收缩旧字段"
+    ],
     "related": [
       "strangler-fig-pattern",
       "branch-by-abstraction",
@@ -1657,6 +1763,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Analyze",
+      "Suggest",
+      "Apply",
+      "Verify"
+    ],
+    "viz_labels_zh": [
+      "分析代码",
+      "AI建议",
+      "应用变更",
+      "验证"
+    ],
     "related": [
       "mikado-method",
       "technical-debt-quadrant",
@@ -1837,6 +1955,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Decide",
+      "Implement",
+      "Evaluate",
+      "Adapt"
+    ],
+    "viz_labels_zh": [
+      "架构决策",
+      "实施",
+      "评估",
+      "适应演进"
+    ],
     "related": [
       "adr",
       "architectural-fitness-functions",
@@ -2017,6 +2147,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Deploy",
+      "Observe",
+      "Retrain",
+      "Evolve"
+    ],
+    "viz_labels_zh": [
+      "部署",
+      "观测",
+      "重训练",
+      "演化"
+    ],
     "related": [
       "agent-deployment-patterns",
       "agent-reliability-patterns",
@@ -2198,6 +2340,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "tree",
+    "viz_labels": [
+      "Goal",
+      "Prerequisite",
+      "Leaf Node",
+      "Revert"
+    ],
+    "viz_labels_zh": [
+      "目标变更",
+      "前置条件",
+      "叶子节点",
+      "回滚"
+    ],
     "related": [
       "technical-debt-quadrant",
       "ai-assisted-refactoring",
@@ -2378,6 +2532,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Migration",
+      "Backward Compat",
+      "Deploy",
+      "Cleanup"
+    ],
+    "viz_labels_zh": [
+      "数据迁移",
+      "向后兼容",
+      "部署",
+      "清理旧字段"
+    ],
     "related": [
       "strangler-fig-pattern",
       "branch-by-abstraction",
@@ -2562,6 +2728,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Branch",
+      "Develop",
+      "Review",
+      "Merge"
+    ],
+    "viz_labels_zh": [
+      "功能分支",
+      "开发",
+      "代码审查",
+      "合并"
+    ],
     "related": [
       "gitops",
       "feature-flags",
@@ -2741,6 +2919,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Announce",
+      "Warn",
+      "Sunset",
+      "Remove"
+    ],
+    "viz_labels_zh": [
+      "宣告废弃",
+      "警告期",
+      "日落期",
+      "移除"
+    ],
     "related": [
       "api-versioning-strategies",
       "strangler-fig-pattern",
@@ -2920,6 +3110,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Code",
+      "Generate",
+      "Publish",
+      "Review"
+    ],
+    "viz_labels_zh": [
+      "代码",
+      "生成文档",
+      "发布",
+      "审阅"
+    ],
     "related": [
       "bdd",
       "domain-driven-design",
@@ -3105,6 +3307,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Define",
+      "Automate",
+      "Measure",
+      "Evolve"
+    ],
+    "viz_labels_zh": [
+      "定义函数",
+      "自动化",
+      "度量",
+      "架构演化"
+    ],
     "related": [
       "adr-y-statements",
       "living-documentation",
@@ -3280,6 +3494,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Expand",
+      "Dual Support",
+      "Migrate",
+      "Contract"
+    ],
+    "viz_labels_zh": [
+      "扩展阶段",
+      "双写兼容",
+      "迁移阶段",
+      "收缩阶段"
+    ],
     "related": [
       "strangler-fig-pattern",
       "api-versioning-strategies",
@@ -3456,6 +3682,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Context",
+      "Decision",
+      "Consequences",
+      "Status"
+    ],
+    "viz_labels_zh": [
+      "背景",
+      "决策",
+      "后果",
+      "状态"
+    ],
     "related": [
       "fitness-function-driven-development",
       "living-documentation",
@@ -3632,6 +3870,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Identify",
+      "Extract",
+      "Route",
+      "Decommission"
+    ],
+    "viz_labels_zh": [
+      "识别边界",
+      "提取服务",
+      "路由切换",
+      "下线模块"
+    ],
     "related": [
       "strangler-fig-pattern",
       "branch-by-abstraction",

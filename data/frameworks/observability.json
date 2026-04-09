@@ -23,6 +23,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Instrument",
+      "Resource Model",
+      "Exporters",
+      "OTel Collector",
+      "Correlate Signals"
+    ],
+    "viz_labels_zh": [
+      "埋点",
+      "资源模型",
+      "导出器",
+      "收集器",
+      "信号关联"
+    ],
     "related": [
       "distributed-tracing",
       "structured-logging",
@@ -222,6 +236,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Trace ID",
+      "Spans",
+      "Async Context",
+      "Trace Backend",
+      "Waterfall Analysis"
+    ],
+    "viz_labels_zh": [
+      "追踪ID",
+      "Span",
+      "异步上下文",
+      "追踪后端",
+      "瀑布分析"
+    ],
     "related": [
       "opentelemetry",
       "structured-logging",
@@ -416,6 +444,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "matrix",
+    "viz_labels": [
+      "JSON Fields",
+      "Log Schema",
+      "Context Enrich",
+      "Log Aggregation",
+      "Queryable Dashboards"
+    ],
+    "viz_labels_zh": [
+      "JSON字段",
+      "日志模式",
+      "上下文丰富",
+      "日志聚合",
+      "可查询看板"
+    ],
     "related": [
       "opentelemetry",
       "distributed-tracing",
@@ -604,6 +646,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
+    "viz_labels": [
+      "SLI",
+      "SLO Target",
+      "Burn Rate Alert",
+      "Error Budget Policy",
+      "SLO Review"
+    ],
+    "viz_labels_zh": [
+      "SLI指标",
+      "SLO目标",
+      "燃烧率告警",
+      "错误预算策略",
+      "SLO评审"
+    ],
     "related": [
       "sli-slo-sla",
       "error-budget-policy",
@@ -797,6 +853,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Error Budget",
+      "Budget Tracking",
+      "Tiered Policy",
+      "Escalation Matrix",
+      "Budget Retro"
+    ],
+    "viz_labels_zh": [
+      "错误预算",
+      "预算追踪",
+      "分级策略",
+      "升级矩阵",
+      "预算回顾"
+    ],
     "related": [
       "slo-as-practice",
       "sli-slo-sla",
@@ -990,6 +1060,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Audit Runbooks",
+      "Prioritize",
+      "Codify Scripts",
+      "Alert Integration",
+      "Validate Iterate"
+    ],
+    "viz_labels_zh": [
+      "审计手册",
+      "优先排序",
+      "代码化脚本",
+      "告警集成",
+      "持续验证"
+    ],
     "related": [
       "on-call-engineering",
       "error-budget-policy",
@@ -1183,6 +1267,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Rotation Design",
+      "Escalation Policy",
+      "Equip Engineers",
+      "Post-Incident Review",
+      "On-Call Health"
+    ],
+    "viz_labels_zh": [
+      "轮值设计",
+      "升级策略",
+      "工具准备",
+      "事后复盘",
+      "健康度量"
+    ],
     "related": [
       "runbook-automation",
       "error-budget-policy",
@@ -1371,6 +1469,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Flag Evaluation",
+      "Attach to Signals",
+      "Variant Dashboard",
+      "Auto Rollback",
+      "Lifecycle Analyze"
+    ],
+    "viz_labels_zh": [
+      "标志评估",
+      "信号附加",
+      "变体看板",
+      "自动回滚",
+      "生命周期分析"
+    ],
     "related": [
       "feature-flags",
       "opentelemetry",
@@ -1564,6 +1676,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "tree",
+    "viz_labels": [
+      "Deploy Portal",
+      "Software Catalog",
+      "Tool Plugins",
+      "Service Templates",
+      "DevEx Metrics"
+    ],
+    "viz_labels_zh": [
+      "部署门户",
+      "软件目录",
+      "工具插件",
+      "服务模板",
+      "开发体验"
+    ],
     "related": [
       "documentation-as-code",
       "dora-metrics",
@@ -1753,6 +1879,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Docs in Repo",
+      "Engineering Workflow",
+      "Auto-Generate",
+      "CI/CD Deploy",
+      "Test Accuracy"
+    ],
+    "viz_labels_zh": [
+      "文档入仓",
+      "工程化流程",
+      "自动生成",
+      "CI/CD发布",
+      "准确性测试"
+    ],
     "related": [
       "developer-portal-backstage",
       "gitops",
@@ -1936,6 +2076,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Point Anomaly",
+      "Detection Algorithm",
+      "Baseline Training",
+      "Alert Pipeline",
+      "Validate Retrain"
+    ],
+    "viz_labels_zh": [
+      "点异常",
+      "检测算法",
+      "基线训练",
+      "告警管道",
+      "持续验证"
+    ],
     "related": [
       "structured-logging",
       "slo-as-practice",
@@ -2120,6 +2274,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Profiler Select",
+      "Low-Overhead Sampling",
+      "Profile Metadata",
+      "Trace Correlate",
+      "Diff Flamegraph"
+    ],
+    "viz_labels_zh": [
+      "分析器选择",
+      "低开销采样",
+      "性能元数据",
+      "与追踪关联",
+      "差量火焰图"
+    ],
     "related": [
       "distributed-tracing",
       "opentelemetry",
@@ -2304,6 +2472,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Severity Levels",
+      "Incident Commander",
+      "Response Cycle",
+      "Live Timeline",
+      "Post-Incident Review"
+    ],
+    "viz_labels_zh": [
+      "严重等级",
+      "事件指挥官",
+      "响应周期",
+      "实时时间线",
+      "事后复盘"
+    ],
     "related": [
       "blameless-postmortems",
       "runbook-automation",
@@ -2488,6 +2670,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Baseline Snapshot",
+      "Steady-State Hypothesis",
+      "Instrument Experiment",
+      "Abort Trigger",
+      "Post-Analysis"
+    ],
+    "viz_labels_zh": [
+      "基线快照",
+      "稳态假设",
+      "实验埋点",
+      "中止触发",
+      "事后分析"
+    ],
     "related": [
       "slo-as-practice",
       "opentelemetry"
@@ -2667,6 +2863,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Cost Tagging",
+      "Cost Dashboard",
+      "Unit Economics",
+      "Cost Anomaly Alert",
+      "FinOps Review"
+    ],
+    "viz_labels_zh": [
+      "成本标签",
+      "成本看板",
+      "单位经济",
+      "异常告警",
+      "FinOps评审"
+    ],
     "related": [
       "slo-as-practice",
       "platform-engineering"
@@ -2846,6 +3056,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Codify Dashboards",
+      "GitOps Workflow",
+      "DRY Templates",
+      "Auto-Provision",
+      "Env Promotion"
+    ],
+    "viz_labels_zh": [
+      "代码化看板",
+      "GitOps流程",
+      "复用模板",
+      "自动供给",
+      "环境晋级"
+    ],
     "related": [
       "opentelemetry",
       "sli-slo-sla",
@@ -3023,7 +3247,21 @@
       "将SLI与SLO关联：每个SLI必须有对应的SLO目标（例如SLI=请求成功率，SLO=成功率≥99.9%），并纳入错误预算计算"
     ],
     "ai_relevant": true,
-    "viz_type": "matrix",
+    "viz_type": "pyramid",
+    "viz_labels": [
+      "User Journey",
+      "SLI Metrics",
+      "SLO Target",
+      "Error Budget",
+      "Review"
+    ],
+    "viz_labels_zh": [
+      "用户旅程",
+      "SLI指标",
+      "SLO目标",
+      "错误预算",
+      "定期评审"
+    ],
     "related": [
       "sli-slo-sla",
       "four-golden-signals",
@@ -3199,6 +3437,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Critical Journeys",
+      "Interaction Scripts",
+      "Multi-Region",
+      "Alert Thresholds",
+      "SLO Integrate"
+    ],
+    "viz_labels_zh": [
+      "关键旅程",
+      "交互脚本",
+      "多地域",
+      "告警阈值",
+      "SLO集成"
+    ],
     "related": [
       "service-level-indicators",
       "sli-slo-sla",
@@ -3376,6 +3628,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Standardize Format",
+      "Aggregation Stack",
+      "Log Shippers",
+      "Retention Policy",
+      "Trace Correlate"
+    ],
+    "viz_labels_zh": [
+      "标准格式",
+      "聚合栈",
+      "日志采集",
+      "保留策略",
+      "与追踪关联"
+    ],
     "related": [
       "opentelemetry",
       "distributed-tracing",
@@ -3554,7 +3820,21 @@
       "根据分析结果采取行动：自动将健康金丝雀（得分高于阈值）晋级到100%流量，暂停不确定的金丝雀供人工审查，自动回滚得分低于失败阈值的金丝雀"
     ],
     "ai_relevant": true,
-    "viz_type": "matrix",
+    "viz_type": "flow",
+    "viz_labels": [
+      "Canary Deploy",
+      "Metric Compare",
+      "Auto Analysis",
+      "Scoring Model",
+      "Promote / Rollback"
+    ],
+    "viz_labels_zh": [
+      "金丝雀部署",
+      "指标对比",
+      "自动分析",
+      "评分模型",
+      "晋级回滚"
+    ],
     "related": [
       "feature-flags",
       "blue-green-deployment",
@@ -3735,6 +4015,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Deploy Mesh",
+      "Telemetry Pipeline",
+      "Traffic Policies",
+      "Topology View",
+      "SLO Alerts"
+    ],
+    "viz_labels_zh": [
+      "部署网格",
+      "遥测管道",
+      "流量策略",
+      "拓扑视图",
+      "SLO告警"
+    ],
     "related": [
       "opentelemetry",
       "distributed-tracing",

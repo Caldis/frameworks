@@ -162,7 +162,9 @@ export default function FrameworkPage() {
       {/* ── Visualization (first, before text content) ── */}
       <section className={styles.vizSection}>
         <div className={styles.viz}>
-          <FrameworkViz type={framework.viz_type} size={300} animate labels={steps} />
+          <FrameworkViz type={framework.viz_type} size={300} animate labels={
+            (locale === 'en' ? framework.viz_labels : framework.viz_labels_zh) || steps
+          } />
         </div>
       </section>
 

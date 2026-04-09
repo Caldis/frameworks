@@ -23,6 +23,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Spoofing",
+      "Tampering",
+      "Repudiation",
+      "Info Disclosure",
+      "Privilege Escalation"
+    ],
+    "viz_labels_zh": [
+      "欺骗",
+      "篡改",
+      "否认",
+      "信息泄露",
+      "权限提升"
+    ],
     "related": [
       "defense-in-depth",
       "security-by-design",
@@ -206,6 +220,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Protect Surface",
+      "Transaction Flow",
+      "Policy Engine",
+      "Micro-Segment",
+      "Monitor"
+    ],
+    "viz_labels_zh": [
+      "保护面",
+      "事务流",
+      "策略引擎",
+      "微隔离",
+      "持续监控"
+    ],
     "related": [
       "principle-of-least-privilege",
       "defense-in-depth",
@@ -388,6 +416,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Client",
+      "Auth Server",
+      "Auth Code",
+      "Access Token",
+      "Resource Server"
+    ],
+    "viz_labels_zh": [
+      "客户端",
+      "授权服务器",
+      "授权码",
+      "访问令牌",
+      "资源服务器"
+    ],
     "related": [
       "zero-trust-architecture",
       "principle-of-least-privilege",
@@ -572,6 +614,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "pyramid",
+    "viz_labels": [
+      "Physical",
+      "Network",
+      "Host",
+      "Application",
+      "Data"
+    ],
+    "viz_labels_zh": [
+      "物理层",
+      "网络层",
+      "主机层",
+      "应用层",
+      "数据层"
+    ],
     "related": [
       "threat-modeling-stride",
       "zero-trust-architecture",
@@ -754,6 +810,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "PIA",
+      "Data Minimization",
+      "PETs",
+      "User Consent",
+      "Privacy Governance"
+    ],
+    "viz_labels_zh": [
+      "隐私评估",
+      "数据最小化",
+      "隐私技术",
+      "用户同意",
+      "隐私治理"
+    ],
     "related": [
       "security-by-design",
       "principle-of-least-privilege",
@@ -936,7 +1006,21 @@
       "随 OWASP Top 10 根据社区新数据演进，每年审查并更新对齐情况"
     ],
     "ai_relevant": false,
-    "viz_type": "matrix",
+    "viz_type": "radar",
+    "viz_labels": [
+      "Broken Access",
+      "Injection",
+      "Cryptographic",
+      "Misconfiguration",
+      "Outdated Comp"
+    ],
+    "viz_labels_zh": [
+      "访问控制",
+      "注入攻击",
+      "加密缺陷",
+      "安全配置",
+      "过期组件"
+    ],
     "related": [
       "threat-modeling-stride",
       "security-by-design",
@@ -1118,6 +1202,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Inventory",
+      "Min Permissions",
+      "RBAC / ABAC",
+      "JIT Access",
+      "Audit"
+    ],
+    "viz_labels_zh": [
+      "资产清单",
+      "最小权限",
+      "访问控制",
+      "即时访问",
+      "权限审计"
+    ],
     "related": [
       "zero-trust-architecture",
       "oauth2-openid-connect",
@@ -1301,6 +1399,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Requirements",
+      "Secure Design",
+      "Secure Coding",
+      "CI Security",
+      "Security Review"
+    ],
+    "viz_labels_zh": [
+      "安全需求",
+      "安全设计",
+      "安全编码",
+      "CI安全",
+      "安全审查"
+    ],
     "related": [
       "threat-modeling-stride",
       "owasp-top-10",
@@ -1483,6 +1595,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "pyramid",
+    "viz_labels": [
+      "Source Integrity",
+      "Secure Build",
+      "Provenance",
+      "Verify Provenance",
+      "SLSA Levels"
+    ],
+    "viz_labels_zh": [
+      "源码完整性",
+      "安全构建",
+      "供应链证明",
+      "验证来源",
+      "SLSA等级"
+    ],
     "related": [
       "security-by-design",
       "owasp-top-10",
@@ -1667,6 +1793,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Sensitive Workload",
+      "TEE Platform",
+      "Partition Design",
+      "Remote Attestation",
+      "Monitor"
+    ],
+    "viz_labels_zh": [
+      "敏感工作负载",
+      "可信执行环境",
+      "隔离设计",
+      "远程认证",
+      "部署监控"
+    ],
     "related": [
       "zero-trust-architecture",
       "defense-in-depth",
@@ -1849,7 +1989,21 @@
       "通过指标衡量计划效果：每个团队在生产前发现的安全问题数量、冠军参与率、培训完成情况以及安全债务随时间的减少"
     ],
     "ai_relevant": false,
-    "viz_type": "matrix",
+    "viz_type": "cycle",
+    "viz_labels": [
+      "Recruit",
+      "Define Role",
+      "Community",
+      "Tooling",
+      "Metrics"
+    ],
+    "viz_labels_zh": [
+      "招募成员",
+      "角色定义",
+      "安全社区",
+      "工具培训",
+      "效果度量"
+    ],
     "related": [
       "security-by-design",
       "threat-modeling-stride",
@@ -2027,6 +2181,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Centralize",
+      "Dynamic Secrets",
+      "Least Privilege",
+      "Auto Rotation",
+      "CI Inject"
+    ],
+    "viz_labels_zh": [
+      "集中管理",
+      "动态密钥",
+      "最小权限",
+      "自动轮换",
+      "CI注入"
+    ],
     "related": [
       "zero-trust-architecture",
       "security-by-design",
@@ -2200,6 +2368,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "WAF Placement",
+      "Rule Sets",
+      "Rule Tuning",
+      "Rate Limiting",
+      "SIEM Monitor"
+    ],
+    "viz_labels_zh": [
+      "WAF部署",
+      "规则集",
+      "规则调优",
+      "速率限制",
+      "SIEM监控"
+    ],
     "related": [
       "defense-in-depth",
       "zero-trust-architecture",
@@ -2378,6 +2560,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "IdP",
+      "Federation Protocol",
+      "Metadata Exchange",
+      "Attribute Mapping",
+      "SSO Test"
+    ],
+    "viz_labels_zh": [
+      "身份提供者",
+      "联邦协议",
+      "元数据交换",
+      "属性映射",
+      "SSO测试"
+    ],
     "related": [
       "zero-trust-architecture",
       "secrets-management"
@@ -2546,6 +2742,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Scope",
+      "Reconnaissance",
+      "Attack Surface",
+      "Exploitation",
+      "Report"
+    ],
+    "viz_labels_zh": [
+      "测试范围",
+      "侦察",
+      "攻击面",
+      "漏洞利用",
+      "报告修复"
+    ],
     "related": [
       "threat-modeling-stride",
       "owasp-top-10",
@@ -2723,6 +2933,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Training",
+      "Requirements",
+      "Design",
+      "Implementation",
+      "Verification"
+    ],
+    "viz_labels_zh": [
+      "安全培训",
+      "安全需求",
+      "安全设计",
+      "安全实现",
+      "安全验证"
+    ],
     "related": [
       "threat-modeling-stride",
       "owasp-top-10",
@@ -2902,6 +3126,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Identify",
+      "Protect",
+      "Detect",
+      "Respond",
+      "Recover"
+    ],
+    "viz_labels_zh": [
+      "识别",
+      "保护",
+      "检测",
+      "响应",
+      "恢复"
+    ],
     "related": [
       "defense-in-depth",
       "incident-response-playbook",
@@ -3081,6 +3319,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Shift-Left",
+      "Secure Build",
+      "Container Security",
+      "DAST Runtime",
+      "Feedback Loop"
+    ],
+    "viz_labels_zh": [
+      "左移安全",
+      "安全构建",
+      "容器安全",
+      "动态测试",
+      "持续反馈"
+    ],
     "related": [
       "security-development-lifecycle",
       "owasp-top-10",
@@ -3261,6 +3513,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Data Discovery",
+      "Policy Define",
+      "Channel Coverage",
+      "IR Integration",
+      "Tuning"
+    ],
+    "viz_labels_zh": [
+      "数据发现",
+      "策略定义",
+      "通道覆盖",
+      "事件响应",
+      "规则调优"
+    ],
     "related": [
       "defense-in-depth",
       "nist-cybersecurity-framework",
@@ -3439,6 +3705,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Preparation",
+      "Identification",
+      "Containment",
+      "Eradication",
+      "Recovery"
+    ],
+    "viz_labels_zh": [
+      "准备",
+      "识别",
+      "遏制",
+      "消除",
+      "恢复"
+    ],
     "related": [
       "nist-cybersecurity-framework",
       "defense-in-depth",
@@ -3618,6 +3898,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Instrument Runtime",
+      "Detection Rules",
+      "Validate Accuracy",
+      "Block Mode",
+      "SIEM Integrate"
+    ],
+    "viz_labels_zh": [
+      "运行时埋点",
+      "检测规则",
+      "精度验证",
+      "阻断模式",
+      "SIEM集成"
+    ],
     "related": [
       "waf-patterns",
       "defense-in-depth",

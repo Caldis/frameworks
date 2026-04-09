@@ -23,6 +23,16 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Reason",
+      "Act",
+      "Observe"
+    ],
+    "viz_labels_zh": [
+      "推理",
+      "行动",
+      "观察"
+    ],
     "related": [
       "tool-use-design-pattern",
       "prompt-chaining",
@@ -204,6 +214,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Chunk",
+      "Embed",
+      "Retrieve",
+      "Augment",
+      "Generate"
+    ],
+    "viz_labels_zh": [
+      "分块",
+      "向量化",
+      "检索",
+      "增强",
+      "生成"
+    ],
     "related": [
       "llm-system-design-patterns",
       "context-window-management",
@@ -386,6 +410,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "tree",
+    "viz_labels": [
+      "Orchestrator",
+      "Planner",
+      "Worker",
+      "Tool"
+    ],
+    "viz_labels_zh": [
+      "编排器",
+      "规划器",
+      "执行Agent",
+      "工具"
+    ],
     "related": [
       "react-framework",
       "agent-communication-protocol",
@@ -567,6 +603,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "AI Output",
+      "Human Review",
+      "Approve",
+      "Correct"
+    ],
+    "viz_labels_zh": [
+      "AI输出",
+      "人工审核",
+      "批准",
+      "纠错"
+    ],
     "related": [
       "human-ai-interaction-design",
       "guardrails-framework",
@@ -748,6 +796,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Prompt 1",
+      "Output 1",
+      "Prompt 2",
+      "Final Output"
+    ],
+    "viz_labels_zh": [
+      "提示1",
+      "输出1",
+      "提示2",
+      "最终输出"
+    ],
     "related": [
       "react-framework",
       "prompt-engineering-patterns",
@@ -929,6 +989,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Write",
+      "Suggest",
+      "Accept",
+      "Iterate"
+    ],
+    "viz_labels_zh": [
+      "编写代码",
+      "AI建议",
+      "采纳",
+      "迭代"
+    ],
     "related": [
       "human-ai-interaction-design",
       "ai-assisted-refactoring",
@@ -1110,6 +1182,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Input Guard",
+      "LLM",
+      "Output Guard",
+      "Response"
+    ],
+    "viz_labels_zh": [
+      "输入护栏",
+      "大模型",
+      "输出护栏",
+      "响应"
+    ],
     "related": [
       "responsible-ai-design",
       "ai-output-verification",
@@ -1292,6 +1376,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "pyramid",
+    "viz_labels": [
+      "System",
+      "History",
+      "Retrieved",
+      "User Input"
+    ],
+    "viz_labels_zh": [
+      "系统提示",
+      "历史对话",
+      "检索内容",
+      "用户输入"
+    ],
     "related": [
       "rag-architecture",
       "prompt-chaining",
@@ -1473,6 +1569,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "tree",
+    "viz_labels": [
+      "Agent",
+      "Tool Router",
+      "Tool A",
+      "Tool B"
+    ],
+    "viz_labels_zh": [
+      "Agent",
+      "工具路由",
+      "工具A",
+      "工具B"
+    ],
     "related": [
       "react-framework",
       "ai-first-api-design",
@@ -1654,6 +1762,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Schema",
+      "Context",
+      "Actions",
+      "Auth"
+    ],
+    "viz_labels_zh": [
+      "模式定义",
+      "上下文",
+      "可执行动作",
+      "鉴权"
+    ],
     "related": [
       "tool-use-design-pattern",
       "richardson-maturity-model",
@@ -1835,6 +1955,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Monitor",
+      "Detect",
+      "Diagnose",
+      "Remediate"
+    ],
+    "viz_labels_zh": [
+      "监控",
+      "检测",
+      "诊断",
+      "自动修复"
+    ],
     "related": [
       "chaos-engineering",
       "circuit-breaker-pattern",
@@ -2016,6 +2148,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "radar",
+    "viz_labels": [
+      "Traces",
+      "Metrics",
+      "Evals",
+      "Costs",
+      "Safety"
+    ],
+    "viz_labels_zh": [
+      "链路追踪",
+      "指标",
+      "评估",
+      "成本",
+      "安全"
+    ],
     "related": [
       "llmops",
       "llm-evaluation-framework",
@@ -2198,6 +2344,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "radar",
+    "viz_labels": [
+      "Fairness",
+      "Transparency",
+      "Privacy",
+      "Safety",
+      "Accountability"
+    ],
+    "viz_labels_zh": [
+      "公平性",
+      "透明度",
+      "隐私",
+      "安全",
+      "问责"
+    ],
     "related": [
       "guardrails-framework",
       "human-in-the-loop",
@@ -2380,6 +2540,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Message",
+      "Protocol",
+      "Agent A",
+      "Agent B"
+    ],
+    "viz_labels_zh": [
+      "消息",
+      "协议",
+      "Agent A",
+      "Agent B"
+    ],
     "related": [
       "multi-agent-orchestration-pattern",
       "actor-model",
@@ -2561,6 +2733,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Plan",
+      "Execute",
+      "Reflect",
+      "Adapt"
+    ],
+    "viz_labels_zh": [
+      "规划",
+      "执行",
+      "反思",
+      "适应"
+    ],
     "related": [
       "react-framework",
       "multi-agent-orchestration-pattern",
@@ -2746,6 +2930,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Client",
+      "MCP Server",
+      "Resource",
+      "Tool"
+    ],
+    "viz_labels_zh": [
+      "客户端",
+      "MCP服务器",
+      "资源",
+      "工具"
+    ],
     "related": [
       "tool-use-design-pattern",
       "react-framework",
@@ -2931,6 +3127,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Dataset",
+      "Distract Docs",
+      "Fine-tune",
+      "Evaluate"
+    ],
+    "viz_labels_zh": [
+      "训练数据",
+      "干扰文档",
+      "微调",
+      "评估"
+    ],
     "related": [
       "rag-architecture",
       "prompt-chaining",
@@ -3111,6 +3319,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "pyramid",
+    "viz_labels": [
+      "Model Safety",
+      "App Guard",
+      "Infra",
+      "Human"
+    ],
+    "viz_labels_zh": [
+      "模型安全",
+      "应用护栏",
+      "基础设施",
+      "人工监管"
+    ],
     "related": [
       "responsible-ai-design",
       "guardrails-framework",
@@ -3296,6 +3516,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Input",
+      "Encode",
+      "Fuse",
+      "Generate"
+    ],
+    "viz_labels_zh": [
+      "多模态输入",
+      "编码",
+      "模态融合",
+      "生成输出"
+    ],
     "related": [
       "prompt-chaining",
       "multi-agent-orchestration-pattern",
@@ -3471,6 +3703,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Model Size",
+      "Caching",
+      "Batching",
+      "Routing"
+    ],
+    "viz_labels_zh": [
+      "模型规模",
+      "缓存策略",
+      "批量处理",
+      "智能路由"
+    ],
     "related": [
       "prompt-chaining",
       "llm-evaluation-framework",
@@ -3646,6 +3890,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Query",
+      "Embed",
+      "Cache Hit",
+      "LLM Call"
+    ],
+    "viz_labels_zh": [
+      "查询",
+      "向量化",
+      "缓存命中",
+      "模型调用"
+    ],
     "related": [
       "ai-cost-optimization",
       "llm-evaluation-framework"
@@ -3816,6 +4072,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Attack",
+      "Evaluate",
+      "Harden",
+      "Retest"
+    ],
+    "viz_labels_zh": [
+      "攻击尝试",
+      "评估漏洞",
+      "加固防护",
+      "回归测试"
+    ],
     "related": [
       "llm-evaluation-framework",
       "ai-cost-optimization"
@@ -3982,6 +4250,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Client",
+      "Gateway",
+      "Auth/Rate",
+      "Model"
+    ],
+    "viz_labels_zh": [
+      "客户端",
+      "AI网关",
+      "鉴权限流",
+      "模型服务"
+    ],
     "related": [
       "llm-system-design-patterns",
       "ai-observability-framework",
@@ -4160,6 +4440,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Static Cache",
+      "Dynamic Cache",
+      "Prefix",
+      "TTL"
+    ],
+    "viz_labels_zh": [
+      "静态缓存",
+      "动态缓存",
+      "前缀缓存",
+      "过期策略"
+    ],
     "related": [
       "ai-gateway-pattern",
       "context-window-management",
@@ -4336,6 +4628,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Define Evals",
+      "Build",
+      "Run Evals",
+      "Improve"
+    ],
+    "viz_labels_zh": [
+      "定义评估",
+      "构建",
+      "运行评估",
+      "持续改进"
+    ],
     "related": [
       "llm-evaluation-framework",
       "rag-architecture",

@@ -23,6 +23,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Squad",
+      "Tribe",
+      "Chapter",
+      "Guild",
+      "Autonomy"
+    ],
+    "viz_labels_zh": [
+      "小队",
+      "部落",
+      "分会",
+      "协会",
+      "自治"
+    ],
     "related": [
       "team-topologies",
       "conways-law",
@@ -210,6 +224,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Service Boundary",
+      "Small Team",
+      "End-to-End Ownership",
+      "Fitness Function",
+      "API Contract"
+    ],
+    "viz_labels_zh": [
+      "服务边界",
+      "小团队",
+      "端到端所有权",
+      "适应性函数",
+      "API契约"
+    ],
     "related": [
       "conways-law",
       "team-topologies",
@@ -397,6 +425,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Inner Source Repo",
+      "Contribution Guide",
+      "Trusted Committer",
+      "Cross-Team PR",
+      "Metrics"
+    ],
+    "viz_labels_zh": [
+      "内部源码库",
+      "贡献指南",
+      "受信提交者",
+      "跨团队PR",
+      "度量指标"
+    ],
     "related": [
       "platform-engineering",
       "conways-law",
@@ -584,6 +626,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "tree",
+    "viz_labels": [
+      "Pain Points",
+      "Platform Team",
+      "Golden Paths",
+      "Adoption Metrics",
+      "Iteration"
+    ],
+    "viz_labels_zh": [
+      "痛点",
+      "平台团队",
+      "黄金路径",
+      "采用度",
+      "持续迭代"
+    ],
     "related": [
       "team-topologies",
       "inner-source",
@@ -772,6 +828,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "pyramid",
+    "viz_labels": [
+      "IC Track",
+      "Management Track",
+      "Level Behaviors",
+      "Calibration",
+      "Annual Review"
+    ],
+    "viz_labels_zh": [
+      "IC通道",
+      "管理通道",
+      "级别行为",
+      "校准",
+      "年度评审"
+    ],
     "related": [
       "developer-experience-framework",
       "blameless-postmortems",
@@ -954,6 +1024,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Timeline",
+      "Facilitated Review",
+      "5 Whys Analysis",
+      "Action Items",
+      "Publish Learnings"
+    ],
+    "viz_labels_zh": [
+      "事件时间线",
+      "复盘会议",
+      "五问分析",
+      "改进项",
+      "发布学习"
+    ],
     "related": [
       "technical-debt-management-framework",
       "developer-experience-framework",
@@ -1137,6 +1221,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Mandate",
+      "Board Composition",
+      "RFC Submission",
+      "Collaborative Review",
+      "Publish Decision"
+    ],
+    "viz_labels_zh": [
+      "职责范围",
+      "委员会组成",
+      "RFC提交",
+      "协作评审",
+      "决策发布"
+    ],
     "related": [
       "conways-law",
       "technical-debt-management-framework",
@@ -1323,7 +1421,19 @@
       "通过技术债务仪表板追踪债务趋势，每季度向利益相关者报告进展"
     ],
     "ai_relevant": true,
-    "viz_type": "matrix",
+    "viz_type": "quadrant",
+    "viz_labels": [
+      "High Impact",
+      "High Effort",
+      "Low Impact",
+      "Low Effort"
+    ],
+    "viz_labels_zh": [
+      "高影响",
+      "高成本",
+      "低影响",
+      "低成本"
+    ],
     "related": [
       "technical-debt-quadrant",
       "blameless-postmortems",
@@ -1511,6 +1621,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "radar",
+    "viz_labels": [
+      "Feedback Loop",
+      "Cognitive Load",
+      "Flow State",
+      "Friction Workflows",
+      "DevEx Metrics"
+    ],
+    "viz_labels_zh": [
+      "反馈循环",
+      "认知负荷",
+      "心流状态",
+      "高摩擦工作流",
+      "DevEx指标"
+    ],
     "related": [
       "platform-engineering",
       "engineering-ladder",
@@ -1698,6 +1822,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Driver",
+      "Navigators",
+      "Rotation Timer",
+      "Design Discussion",
+      "Retrospective"
+    ],
+    "viz_labels_zh": [
+      "驾驶员",
+      "导航员",
+      "轮换计时",
+      "设计讨论",
+      "回顾"
+    ],
     "related": [
       "team-topologies",
       "blameless-postmortems",
@@ -1885,6 +2023,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "RFC Draft",
+      "Comment Period",
+      "Author Revision",
+      "Shepherd Decision",
+      "Merge Archive"
+    ],
+    "viz_labels_zh": [
+      "RFC草稿",
+      "评论期",
+      "作者修订",
+      "决策人",
+      "归档"
+    ],
     "related": [
       "architecture-review-board",
       "engineering-ladder"
@@ -2062,7 +2214,21 @@
       "通过成员满意度调查每年评估行会健康状况，并跟踪行会制定标准的采用情况以向领导层证明价值"
     ],
     "ai_relevant": false,
-    "viz_type": "matrix",
+    "viz_type": "cycle",
+    "viz_labels": [
+      "Domain Identify",
+      "Guild Lead",
+      "Recurring Touchpoints",
+      "Output Artifacts",
+      "Health Metrics"
+    ],
+    "viz_labels_zh": [
+      "领域识别",
+      "组长",
+      "定期活动",
+      "输出产物",
+      "健康指标"
+    ],
     "related": [
       "spotify-model",
       "platform-engineering"
@@ -2241,6 +2407,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Service Scope",
+      "Rotation Schedule",
+      "Escalation Policy",
+      "Compensation Norms",
+      "Retrospective"
+    ],
+    "viz_labels_zh": [
+      "服务范围",
+      "轮值计划",
+      "升级策略",
+      "补偿规范",
+      "定期回顾"
+    ],
     "related": [
       "blameless-postmortems",
       "runbook-automation",
@@ -2423,7 +2603,21 @@
       "与团队进行月度指标回顾，解读趋势，为下一季度设定改进目标，并将指标改进与工程投资联系起来"
     ],
     "ai_relevant": true,
-    "viz_type": "matrix",
+    "viz_type": "radar",
+    "viz_labels": [
+      "Deployment Freq",
+      "Lead Time",
+      "Change Failure Rate",
+      "MTTR",
+      "Satisfaction"
+    ],
+    "viz_labels_zh": [
+      "部署频率",
+      "交付周期",
+      "变更失败率",
+      "恢复时间",
+      "满意度"
+    ],
     "related": [
       "blameless-postmortems"
     ],
@@ -2598,6 +2792,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Tutorials",
+      "How-To Guides",
+      "Explanations",
+      "Reference",
+      "Quality Metrics"
+    ],
+    "viz_labels_zh": [
+      "教程",
+      "操作指南",
+      "解释说明",
+      "参考文档",
+      "质量度量"
+    ],
     "related": [
       "platform-engineering",
       "rfc-process"
@@ -2776,6 +2984,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "radar",
+    "viz_labels": [
+      "DORA Baseline",
+      "Friction Sources",
+      "Investment Roadmap",
+      "Effectiveness Team",
+      "Quarterly Review"
+    ],
+    "viz_labels_zh": [
+      "DORA基线",
+      "摩擦点",
+      "投资路线图",
+      "效能团队",
+      "季度评审"
+    ],
     "related": [
       "engineering-metrics-dashboard",
       "developer-experience-framework",
@@ -2953,6 +3175,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "timeline",
+    "viz_labels": [
+      "30/60/90 Plan",
+      "Onboarding Buddy",
+      "First Commit",
+      "Context Maps",
+      "Check-in Retro"
+    ],
+    "viz_labels_zh": [
+      "入职计划",
+      "入职伙伴",
+      "首次提交",
+      "架构地图",
+      "定期回顾"
+    ],
     "related": [
       "engineering-ladder",
       "technical-mentorship-program",
@@ -3129,6 +3365,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Scope Define",
+      "Matching Process",
+      "Operating Cadence",
+      "Mentor Training",
+      "Outcome Survey"
+    ],
+    "viz_labels_zh": [
+      "范围定义",
+      "匹配机制",
+      "运作节奏",
+      "导师培训",
+      "效果调查"
+    ],
     "related": [
       "engineering-ladder",
       "developer-onboarding-framework",
@@ -3305,6 +3555,16 @@
     ],
     "ai_relevant": false,
     "viz_type": "venn",
+    "viz_labels": [
+      "Guild",
+      "Architecture Review Board",
+      "ADR / RFC"
+    ],
+    "viz_labels_zh": [
+      "技术公会",
+      "架构评审委员会",
+      "决策记录"
+    ],
     "related": [
       "architecture-review-board",
       "guilds-communities-of-practice",
@@ -3481,6 +3741,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "timeline",
+    "viz_labels": [
+      "Decision Format",
+      "Canonical Location",
+      "Intake Trigger",
+      "Quarterly Review",
+      "Link Artifacts"
+    ],
+    "viz_labels_zh": [
+      "记录格式",
+      "统一位置",
+      "触发条件",
+      "季度回顾",
+      "关联制品"
+    ],
     "related": [
       "adr",
       "rfc-process",
@@ -3657,6 +3931,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "pyramid",
+    "viz_labels": [
+      "Gather Input",
+      "Synthesize",
+      "Ratify",
+      "Embed in Decisions",
+      "Annual Review"
+    ],
+    "viz_labels_zh": [
+      "收集输入",
+      "综合提炼",
+      "批准发布",
+      "决策嵌入",
+      "年度评审"
+    ],
     "related": [
       "adr",
       "rfc-process",

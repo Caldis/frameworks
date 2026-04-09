@@ -122,7 +122,9 @@ export default function Modal({
           <ShaderCanvas color={shaderColor} className={styles.shader} />
           <span className={styles.numberWatermark}>{formattedNumber}</span>
           <div className={styles.vizWrap}>
-            <FrameworkViz type={framework.viz_type} size={260} animate labels={steps} />
+            <FrameworkViz type={framework.viz_type} size={260} animate labels={
+              (locale === 'en' ? framework.viz_labels : framework.viz_labels_zh) || steps
+            } />
           </div>
         </div>
 

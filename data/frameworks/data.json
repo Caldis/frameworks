@@ -22,7 +22,21 @@
       "建立数据产品目录和网格范围的可观测性，使消费者能够跨领域发现、信任和组合数据产品"
     ],
     "ai_relevant": true,
-    "viz_type": "matrix",
+    "viz_type": "hexgrid",
+    "viz_labels": [
+      "Domain Ownership",
+      "Data Product",
+      "Self-Serve Infra",
+      "Federated Gov",
+      "Data Catalog"
+    ],
+    "viz_labels_zh": [
+      "域所有权",
+      "数据产品",
+      "自助基础设施",
+      "联邦治理",
+      "数据目录"
+    ],
     "related": [
       "domain-driven-design",
       "microservices-decomposition",
@@ -201,6 +215,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Ingest",
+      "Batch Layer",
+      "Speed Layer",
+      "Serving Layer",
+      "Query"
+    ],
+    "viz_labels_zh": [
+      "摄入",
+      "批处理层",
+      "速度层",
+      "服务层",
+      "查询"
+    ],
     "related": [
       "kappa-architecture",
       "stream-processing-patterns",
@@ -374,6 +402,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Event Log",
+      "Stream Process",
+      "Serving Store",
+      "Replay",
+      "Reprocess"
+    ],
+    "viz_labels_zh": [
+      "事件日志",
+      "流处理",
+      "服务存储",
+      "重放",
+      "再处理"
+    ],
     "related": [
       "lambda-architecture",
       "eda",
@@ -552,6 +594,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Window",
+      "Join",
+      "Exactly-Once",
+      "Watermark",
+      "Backpressure"
+    ],
+    "viz_labels_zh": [
+      "时间窗口",
+      "流连接",
+      "精确一次",
+      "水位线",
+      "背压"
+    ],
     "related": [
       "kappa-architecture",
       "lambda-architecture",
@@ -731,6 +787,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "WAL / Binlog",
+      "Change Event",
+      "Stream Transform",
+      "Target Sync",
+      "Monitor"
+    ],
+    "viz_labels_zh": [
+      "事务日志",
+      "变更事件",
+      "流转换",
+      "目标同步",
+      "监控"
+    ],
     "related": [
       "kappa-architecture",
       "stream-processing-patterns",
@@ -908,6 +978,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "pyramid",
+    "viz_labels": [
+      "Raw Storage",
+      "Table Format",
+      "Unified Catalog",
+      "Query Perf",
+      "Governance"
+    ],
+    "viz_labels_zh": [
+      "原始存储",
+      "表格式",
+      "统一目录",
+      "查询优化",
+      "数据治理"
+    ],
     "related": [
       "star-schema",
       "data-mesh",
@@ -1086,6 +1170,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "tree",
+    "viz_labels": [
+      "Fact Table",
+      "Dimension",
+      "Grain",
+      "Surrogate Key",
+      "Star Join"
+    ],
+    "viz_labels_zh": [
+      "事实表",
+      "维度表",
+      "粒度",
+      "代理键",
+      "星型连接"
+    ],
     "related": [
       "data-vault-2",
       "data-lakehouse",
@@ -1259,6 +1357,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "tree",
+    "viz_labels": [
+      "Hub",
+      "Link",
+      "Satellite",
+      "Raw Vault",
+      "Info Mart"
+    ],
+    "viz_labels_zh": [
+      "核心表",
+      "关联表",
+      "附属表",
+      "原始库",
+      "信息集市"
+    ],
     "related": [
       "star-schema",
       "data-lakehouse",
@@ -1436,6 +1548,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Relational DB",
+      "Document DB",
+      "Graph DB",
+      "Key-Value",
+      "Time-Series"
+    ],
+    "viz_labels_zh": [
+      "关系数据库",
+      "文档数据库",
+      "图数据库",
+      "键值存储",
+      "时序数据库"
+    ],
     "related": [
       "microservices-decomposition",
       "data-mesh",
@@ -1613,6 +1739,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Feature Registry",
+      "Pipeline",
+      "Offline Store",
+      "Online Store",
+      "Monitoring"
+    ],
+    "viz_labels_zh": [
+      "特征注册",
+      "特征管道",
+      "离线存储",
+      "在线存储",
+      "特征监控"
+    ],
     "related": [
       "mlops",
       "data-lakehouse",
@@ -1791,6 +1931,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Type 1 Overwrite",
+      "Type 2 History",
+      "Type 3 Add Col",
+      "Surrogate Key",
+      "SCD Pipeline"
+    ],
+    "viz_labels_zh": [
+      "类型1覆盖",
+      "类型2历史",
+      "类型3追加",
+      "代理键",
+      "SCD管道"
+    ],
     "related": [
       "star-schema",
       "change-data-capture",
@@ -1964,6 +2118,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Instrument",
+      "Lineage Graph",
+      "Auto-Capture",
+      "Lineage UI",
+      "Impact Analysis"
+    ],
+    "viz_labels_zh": [
+      "埋点",
+      "血缘图",
+      "自动采集",
+      "血缘界面",
+      "影响分析"
+    ],
     "related": [
       "data-mesh",
       "data-quality-framework",
@@ -2142,6 +2310,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Producer",
+      "Schema ID",
+      "Compatibility",
+      "Consumer",
+      "CI Validation"
+    ],
+    "viz_labels_zh": [
+      "生产者",
+      "模式ID",
+      "兼容性",
+      "消费者",
+      "CI验证"
+    ],
     "related": [
       "change-data-capture",
       "data-lineage",
@@ -2319,7 +2501,21 @@
       "通过将质量告警路由给数据生产者并在数据契约中建立数据质量SLA来形成反馈闭环，使质量成为生产者和消费者的共同责任"
     ],
     "ai_relevant": true,
-    "viz_type": "matrix",
+    "viz_type": "radar",
+    "viz_labels": [
+      "Accuracy",
+      "Completeness",
+      "Consistency",
+      "Timeliness",
+      "Validity"
+    ],
+    "viz_labels_zh": [
+      "准确性",
+      "完整性",
+      "一致性",
+      "时效性",
+      "有效性"
+    ],
     "related": [
       "data-lineage",
       "schema-registry-pattern",
@@ -2498,6 +2694,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Bronze Layer",
+      "Silver Layer",
+      "Gold Layer",
+      "Quality Gates",
+      "Incremental"
+    ],
+    "viz_labels_zh": [
+      "铜层",
+      "银层",
+      "金层",
+      "质量门",
+      "增量处理"
+    ],
     "related": [
       "data-lakehouse",
       "data-quality-framework",
@@ -2677,6 +2887,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "tree",
+    "viz_labels": [
+      "Crawler",
+      "Metadata Store",
+      "Discovery",
+      "Governance",
+      "Change Sync"
+    ],
+    "viz_labels_zh": [
+      "元数据爬取",
+      "元数据存储",
+      "数据发现",
+      "数据治理",
+      "变更同步"
+    ],
     "related": [
       "data-lineage",
       "data-mesh",
@@ -2857,6 +3081,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Schema Register",
+      "Compatibility",
+      "SerDes",
+      "Versioning",
+      "Usage Monitor"
+    ],
+    "viz_labels_zh": [
+      "模式注册",
+      "兼容性",
+      "序列化器",
+      "版本管理",
+      "使用监控"
+    ],
     "related": [
       "schema-registry-pattern",
       "data-catalog",
@@ -3039,6 +3277,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Lineage Events",
+      "Graph Store",
+      "Column Lineage",
+      "Visualization",
+      "Impact Alert"
+    ],
+    "viz_labels_zh": [
+      "血缘事件",
+      "图存储",
+      "列级血缘",
+      "可视化",
+      "影响告警"
+    ],
     "related": [
       "data-catalog",
       "data-quality-framework",
@@ -3220,6 +3472,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Feature Pipeline",
+      "Dual Store",
+      "Feature Registry",
+      "Point-in-Time",
+      "Drift Monitor"
+    ],
+    "viz_labels_zh": [
+      "特征管道",
+      "双存储",
+      "特征注册",
+      "时间点回溯",
+      "漂移监控"
+    ],
     "related": [
       "feature-store-pattern",
       "data-catalog",
@@ -3402,6 +3668,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Schema Contract",
+      "Quality Clauses",
+      "Versioning",
+      "CI Validation",
+      "Runtime Monitor"
+    ],
+    "viz_labels_zh": [
+      "模式契约",
+      "质量条款",
+      "版本控制",
+      "CI验证",
+      "运行时监控"
+    ],
     "related": [
       "data-catalog",
       "data-quality-framework",

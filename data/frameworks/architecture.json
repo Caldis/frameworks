@@ -23,6 +23,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "timeline",
+    "viz_labels": [
+      "Context",
+      "Decision",
+      "Consequences",
+      "Status"
+    ],
+    "viz_labels_zh": [
+      "背景",
+      "决策",
+      "结果影响",
+      "状态"
+    ],
     "related": [
       "continuous-architecture",
       "atam",
@@ -201,6 +213,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "radar",
+    "viz_labels": [
+      "Performance",
+      "Availability",
+      "Security",
+      "Modifiability",
+      "Usability"
+    ],
+    "viz_labels_zh": [
+      "性能",
+      "可用性",
+      "安全",
+      "可修改性",
+      "易用性"
+    ],
     "related": [
       "qaw",
       "trade-off-sliders",
@@ -380,6 +406,16 @@
     ],
     "ai_relevant": false,
     "viz_type": "venn",
+    "viz_labels": [
+      "Consistency",
+      "Availability",
+      "Partition Tolerance"
+    ],
+    "viz_labels_zh": [
+      "一致性",
+      "可用性",
+      "分区容错"
+    ],
     "related": [
       "cqrs-pattern",
       "saga-pattern",
@@ -559,6 +595,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "tree",
+    "viz_labels": [
+      "System Context",
+      "Container",
+      "Component",
+      "Code"
+    ],
+    "viz_labels_zh": [
+      "系统上下文",
+      "容器",
+      "组件",
+      "代码"
+    ],
     "related": [
       "adr",
       "togaf-adm",
@@ -737,6 +785,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Command",
+      "Query",
+      "Write Model",
+      "Read Model"
+    ],
+    "viz_labels_zh": [
+      "命令",
+      "查询",
+      "写模型",
+      "读模型"
+    ],
     "related": [
       "event-sourcing-pattern",
       "eda",
@@ -921,6 +981,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Producer",
+      "Event Bus",
+      "Consumer",
+      "Event Store"
+    ],
+    "viz_labels_zh": [
+      "事件生产者",
+      "事件总线",
+      "事件消费者",
+      "事件存储"
+    ],
     "related": [
       "cqrs-pattern",
       "event-sourcing-pattern",
@@ -1106,6 +1178,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "tree",
+    "viz_labels": [
+      "Domain Service",
+      "API Gateway",
+      "Data Store",
+      "Boundary"
+    ],
+    "viz_labels_zh": [
+      "领域服务",
+      "API网关",
+      "数据存储",
+      "服务边界"
+    ],
     "related": [
       "domain-driven-design",
       "eda",
@@ -1290,6 +1374,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Step",
+      "Compensate",
+      "Choreograph",
+      "Orchestrate"
+    ],
+    "viz_labels_zh": [
+      "事务步骤",
+      "补偿操作",
+      "编排协调",
+      "集中控制"
+    ],
     "related": [
       "eda",
       "cqrs-pattern",
@@ -1474,6 +1570,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Preliminary",
+      "Vision",
+      "Architecture",
+      "Migration",
+      "Governance"
+    ],
+    "viz_labels_zh": [
+      "预备阶段",
+      "架构愿景",
+      "架构开发",
+      "迁移规划",
+      "架构治理"
+    ],
     "related": [
       "c4-model",
       "adr",
@@ -1652,6 +1762,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "radar",
+    "viz_labels": [
+      "Performance",
+      "Security",
+      "Availability",
+      "Modifiability",
+      "Testability"
+    ],
+    "viz_labels_zh": [
+      "性能",
+      "安全",
+      "可用性",
+      "可修改性",
+      "可测试性"
+    ],
     "related": [
       "atam",
       "trade-off-sliders",
@@ -1831,6 +1955,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "tree",
+    "viz_labels": [
+      "Actor",
+      "Message",
+      "Mailbox",
+      "Behavior",
+      "Spawn"
+    ],
+    "viz_labels_zh": [
+      "Actor",
+      "消息",
+      "邮箱",
+      "行为",
+      "派生"
+    ],
     "related": [
       "eda",
       "reactive-extensions",
@@ -2010,7 +2148,19 @@
       "验证依赖图：使用容器的诊断工具或测试检测循环依赖、缺失注册和捕获依赖"
     ],
     "ai_relevant": false,
-    "viz_type": "tree",
+    "viz_type": "flow",
+    "viz_labels": [
+      "Client",
+      "Interface",
+      "Injector",
+      "Service"
+    ],
+    "viz_labels_zh": [
+      "客户端",
+      "抽象接口",
+      "注入器",
+      "服务实现"
+    ],
     "related": [
       "solid-principles",
       "hexagonal-architecture",
@@ -2190,6 +2340,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Service",
+      "Sidecar Proxy",
+      "Control Plane",
+      "Data Plane"
+    ],
+    "viz_labels_zh": [
+      "服务实例",
+      "Sidecar代理",
+      "控制平面",
+      "数据平面"
+    ],
     "related": [
       "microservices-decomposition",
       "circuit-breaker-pattern",
@@ -2370,6 +2532,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "matrix",
+    "viz_labels": [
+      "RAG",
+      "Agent Loop",
+      "Tool Use",
+      "Guardrails"
+    ],
+    "viz_labels_zh": [
+      "检索增强",
+      "智能体循环",
+      "工具调用",
+      "安全护栏"
+    ],
     "related": [
       "rag-architecture",
       "react-framework",
@@ -2554,7 +2728,19 @@
       "验证层隔离性，确保不存在循环依赖，且一层的变更不会波及其他层"
     ],
     "ai_relevant": false,
-    "viz_type": "flow",
+    "viz_type": "pyramid",
+    "viz_labels": [
+      "Presentation",
+      "Business Logic",
+      "Data Access",
+      "Database"
+    ],
+    "viz_labels_zh": [
+      "展示层",
+      "业务逻辑层",
+      "数据访问层",
+      "数据库层"
+    ],
     "related": [
       "modular-monolith",
       "c4-model",
@@ -2734,6 +2920,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Module",
+      "Boundary",
+      "Public API",
+      "Shared Kernel"
+    ],
+    "viz_labels_zh": [
+      "模块",
+      "边界",
+      "公共API",
+      "共享内核"
+    ],
     "related": [
       "layered-architecture",
       "microservices-decomposition",
@@ -2914,6 +3112,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Processing Unit",
+      "Tuple Space",
+      "Messaging Grid",
+      "Data Grid"
+    ],
+    "viz_labels_zh": [
+      "处理单元",
+      "元组空间",
+      "消息网格",
+      "数据网格"
+    ],
     "related": [
       "microservices-decomposition",
       "eda",
@@ -3094,6 +3304,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Source",
+      "Filter",
+      "Pipe",
+      "Sink"
+    ],
+    "viz_labels_zh": [
+      "数据源",
+      "过滤器",
+      "管道",
+      "数据汇"
+    ],
     "related": [
       "eda",
       "space-based-architecture",
@@ -3274,6 +3496,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "radar",
+    "viz_labels": [
+      "Coupling",
+      "Cohesion",
+      "Performance",
+      "Security",
+      "Drift"
+    ],
+    "viz_labels_zh": [
+      "耦合度",
+      "内聚度",
+      "性能",
+      "安全",
+      "架构漂移"
+    ],
     "related": [
       "adr",
       "atam",
@@ -3454,6 +3690,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Option",
+      "Criteria",
+      "Weight",
+      "Score"
+    ],
+    "viz_labels_zh": [
+      "方案选项",
+      "评估标准",
+      "权重",
+      "得分"
+    ],
     "related": [
       "atam",
       "trade-off-sliders",
@@ -3633,6 +3881,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "tree",
+    "viz_labels": [
+      "Cell",
+      "Gateway",
+      "Data Plane",
+      "Control Plane"
+    ],
+    "viz_labels_zh": [
+      "单元格",
+      "网关",
+      "数据平面",
+      "控制平面"
+    ],
     "related": [
       "ports-and-adapters"
     ],
@@ -3799,6 +4059,16 @@
     ],
     "ai_relevant": false,
     "viz_type": "venn",
+    "viz_labels": [
+      "Core Domain",
+      "Port",
+      "Adapter"
+    ],
+    "viz_labels_zh": [
+      "核心领域",
+      "端口",
+      "适配器"
+    ],
     "related": [
       "domain-driven-design",
       "cell-based-architecture",
@@ -3988,6 +4258,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Fitness Function",
+      "Incremental Change",
+      "Coupling",
+      "Versioning"
+    ],
+    "viz_labels_zh": [
+      "适应度函数",
+      "增量变更",
+      "架构耦合",
+      "版本管理"
+    ],
     "related": [
       "domain-driven-design",
       "ports-and-adapters"
@@ -4158,6 +4440,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Model",
+      "View",
+      "Controller",
+      "User Input",
+      "Update"
+    ],
+    "viz_labels_zh": [
+      "模型",
+      "视图",
+      "控制器",
+      "用户输入",
+      "状态更新"
+    ],
     "related": [
       "separation-of-concerns",
       "observer-pattern",
@@ -4345,6 +4641,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Model",
+      "View",
+      "ViewModel",
+      "Data Binding",
+      "Command"
+    ],
+    "viz_labels_zh": [
+      "模型",
+      "视图",
+      "视图模型",
+      "数据绑定",
+      "命令"
+    ],
     "related": [
       "separation-of-concerns",
       "observer-pattern",
@@ -4532,6 +4842,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Model",
+      "View",
+      "Presenter",
+      "User Event",
+      "Update"
+    ],
+    "viz_labels_zh": [
+      "模型",
+      "视图",
+      "表示器",
+      "用户事件",
+      "更新"
+    ],
     "related": [
       "separation-of-concerns",
       "solid-principles",
@@ -4717,7 +5041,21 @@
       "机械地强制执行依赖规则：使用依赖倒置（在内层环中定义接口，在外层环中实现）确保内层环永远不从外层环导入"
     ],
     "ai_relevant": false,
-    "viz_type": "cycle",
+    "viz_type": "concentric",
+    "viz_labels": [
+      "Entities",
+      "Use Cases",
+      "Adapters",
+      "Frameworks",
+      "Dependency Rule"
+    ],
+    "viz_labels_zh": [
+      "实体",
+      "用例",
+      "适配器",
+      "框架层",
+      "依赖规则"
+    ],
     "related": [
       "hexagonal-architecture",
       "solid-principles",
@@ -4904,7 +5242,19 @@
       "通过依赖注入连接：应用程序入口点（例如启动类）实例化基础设施实现，并通过内层环定义的接口将其注入应用服务"
     ],
     "ai_relevant": false,
-    "viz_type": "cycle",
+    "viz_type": "concentric",
+    "viz_labels": [
+      "Domain Model",
+      "Domain Services",
+      "Application",
+      "Infrastructure"
+    ],
+    "viz_labels_zh": [
+      "领域模型",
+      "领域服务",
+      "应用服务",
+      "基础设施"
+    ],
     "related": [
       "hexagonal-architecture",
       "domain-driven-design",
@@ -5090,6 +5440,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "pyramid",
+    "viz_labels": [
+      "Presentation",
+      "Application",
+      "Business",
+      "Data"
+    ],
+    "viz_labels_zh": [
+      "展示层",
+      "应用层",
+      "业务层",
+      "数据层"
+    ],
     "related": [
       "layered-architecture",
       "separation-of-concerns",
@@ -5282,6 +5644,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "tree",
+    "viz_labels": [
+      "Core System",
+      "Plugin Registry",
+      "Plugin",
+      "Extension Point"
+    ],
+    "viz_labels_zh": [
+      "核心系统",
+      "插件注册表",
+      "插件模块",
+      "扩展点"
+    ],
     "related": [
       "separation-of-concerns",
       "ports-and-adapters",
@@ -5453,7 +5827,19 @@
       "闭合循环：用户交互→视图发出动作→调度器广播→存储更新→视图重新渲染；通过检查动作日志获取完整状态历史来调试"
     ],
     "ai_relevant": false,
-    "viz_type": "flow",
+    "viz_type": "cycle",
+    "viz_labels": [
+      "Action",
+      "Dispatcher",
+      "Store",
+      "View"
+    ],
+    "viz_labels_zh": [
+      "动作",
+      "调度器",
+      "数据仓库",
+      "视图"
+    ],
     "related": [
       "observer-pattern",
       "eda",

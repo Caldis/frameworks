@@ -22,7 +22,21 @@
       "根据客户端需求验证模式，为所有类型添加描述文档，并向前端团队发布模式"
     ],
     "ai_relevant": true,
-    "viz_type": "matrix",
+    "viz_type": "tree",
+    "viz_labels": [
+      "Schema Types",
+      "Client Queries",
+      "Resolvers",
+      "Pagination",
+      "Documentation"
+    ],
+    "viz_labels_zh": [
+      "类型定义",
+      "客户端查询",
+      "解析器",
+      "分页",
+      "文档"
+    ],
     "related": [
       "bff-pattern",
       "api-gateway-pattern",
@@ -206,6 +220,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Proto Contract",
+      "Code Generate",
+      "Server Logic",
+      "Channel Config",
+      "Monitor"
+    ],
+    "viz_labels_zh": [
+      "Proto契约",
+      "代码生成",
+      "服务逻辑",
+      "通道配置",
+      "监控"
+    ],
     "related": [
       "api-gateway-pattern",
       "consumer-driven-contracts",
@@ -389,6 +417,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Routing Table",
+      "Cross-Cutting",
+      "Load Balance",
+      "Aggregation",
+      "Circuit Breaker"
+    ],
+    "viz_labels_zh": [
+      "路由表",
+      "横切关注点",
+      "负载均衡",
+      "响应聚合",
+      "熔断"
+    ],
     "related": [
       "bff-pattern",
       "api-rate-limiting-throttling",
@@ -572,6 +614,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Client Types",
+      "BFF Service",
+      "Data Aggregate",
+      "Team Ownership",
+      "Thin Orchestrator"
+    ],
+    "viz_labels_zh": [
+      "客户端类型",
+      "BFF服务",
+      "数据聚合",
+      "团队所有权",
+      "轻量编排"
+    ],
     "related": [
       "api-gateway-pattern",
       "graphql-schema-design",
@@ -754,6 +810,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Consumer Contract",
+      "Contract Broker",
+      "Provider Verify",
+      "Resolve Conflict",
+      "CI Gate"
+    ],
+    "viz_labels_zh": [
+      "消费者契约",
+      "契约代理",
+      "提供者验证",
+      "冲突解决",
+      "CI门控"
+    ],
     "related": [
       "openapi-specification",
       "api-gateway-pattern",
@@ -935,7 +1005,21 @@
       "使用lint工具（Spectral、openapi-generator）验证规范，然后生成文档、客户端SDK和服务端存根"
     ],
     "ai_relevant": true,
-    "viz_type": "matrix",
+    "viz_type": "tree",
+    "viz_labels": [
+      "Info Metadata",
+      "Path Object",
+      "Schema Components",
+      "Response Codes",
+      "Generate Lint"
+    ],
+    "viz_labels_zh": [
+      "信息元数据",
+      "路径对象",
+      "模式组件",
+      "响应码",
+      "生成验证"
+    ],
     "related": [
       "consumer-driven-contracts",
       "asyncapi",
@@ -1118,6 +1202,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Event Types",
+      "Subscription API",
+      "Dispatch System",
+      "Retry and DLQ",
+      "Delivery Log"
+    ],
+    "viz_labels_zh": [
+      "事件类型",
+      "订阅管理",
+      "事件分发",
+      "重试队列",
+      "投递日志"
+    ],
     "related": [
       "asyncapi",
       "api-rate-limiting-throttling",
@@ -1300,6 +1398,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Rate Policy",
+      "Algorithm",
+      "Distributed Counter",
+      "429 Response",
+      "Monitor"
+    ],
+    "viz_labels_zh": [
+      "速率策略",
+      "算法",
+      "分布式计数",
+      "429响应",
+      "监控"
+    ],
     "related": [
       "api-gateway-pattern",
       "webhook-pattern",
@@ -1483,6 +1595,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Resource",
+      "Media Type",
+      "Link Generation",
+      "Client Follows",
+      "Rel Types"
+    ],
+    "viz_labels_zh": [
+      "资源",
+      "媒体类型",
+      "链接生成",
+      "客户端发现",
+      "关系类型"
+    ],
     "related": [
       "openapi-specification",
       "graphql-schema-design",
@@ -1665,6 +1791,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Servers",
+      "Channels",
+      "Message Schema",
+      "Protocol Bindings",
+      "Generate Validate"
+    ],
+    "viz_labels_zh": [
+      "服务器",
+      "通道",
+      "消息模式",
+      "协议绑定",
+      "生成验证"
+    ],
     "related": [
       "webhook-pattern",
       "openapi-specification",
@@ -1847,6 +1987,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "API Contract",
+      "Stakeholder Review",
+      "Generate Stubs",
+      "Contract Lint",
+      "Parallel Impl"
+    ],
+    "viz_labels_zh": [
+      "API契约",
+      "评审",
+      "生成桩代码",
+      "契约检查",
+      "并行实现"
+    ],
     "related": [
       "openapi-specification",
       "consumer-driven-contracts",
@@ -2031,6 +2185,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Offset Pagination",
+      "Cursor Pagination",
+      "Keyset Pagination",
+      "Response Envelope",
+      "Spec Doc"
+    ],
+    "viz_labels_zh": [
+      "偏移分页",
+      "游标分页",
+      "键集分页",
+      "响应封装",
+      "文档规范"
+    ],
     "related": [
       "graphql-schema-design",
       "openapi-specification"
@@ -2210,6 +2378,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
+    "viz_labels": [
+      "RFC 7807",
+      "Error Registry",
+      "HTTP Status Codes",
+      "Error Extensions",
+      "OpenAPI Spec"
+    ],
+    "viz_labels_zh": [
+      "RFC 7807",
+      "错误注册",
+      "HTTP状态码",
+      "错误扩展",
+      "规范文档"
+    ],
     "related": [
       "openapi-specification",
       "api-first-design"
@@ -2389,6 +2571,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Deprecation Notice",
+      "Migration Guide",
+      "Sunset Headers",
+      "Traffic Monitor",
+      "HTTP 410"
+    ],
+    "viz_labels_zh": [
+      "废弃通知",
+      "迁移指南",
+      "废弃响应头",
+      "流量监控",
+      "HTTP 410"
+    ],
     "related": [
       "openapi-specification",
       "api-first-design",
@@ -2573,6 +2769,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Edge Candidates",
+      "Edge Functions",
+      "Cache Patterns",
+      "Edge KV Store",
+      "Edge Observ"
+    ],
+    "viz_labels_zh": [
+      "边缘候选",
+      "边缘函数",
+      "缓存策略",
+      "边缘KV存储",
+      "边缘可观测"
+    ],
     "related": [
       "api-gateway-pattern",
       "api-first-design"
@@ -2752,6 +2962,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "timeline",
+    "viz_labels": [
+      "Version Scheme",
+      "Lifecycle Policy",
+      "Version Routing",
+      "Semantic Versioning",
+      "Sunset"
+    ],
+    "viz_labels_zh": [
+      "版本方案",
+      "生命周期",
+      "版本路由",
+      "语义版本",
+      "下线策略"
+    ],
     "related": [
       "openapi-specification",
       "api-gateway-pattern",
@@ -2927,6 +3151,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "pyramid",
+    "viz_labels": [
+      "Level 0 RPC",
+      "Level 1 Resources",
+      "Level 2 Verbs",
+      "Level 3 HATEOAS",
+      "Target Level"
+    ],
+    "viz_labels_zh": [
+      "L0 RPC",
+      "L1 资源",
+      "L2 动词",
+      "L3 超媒体",
+      "目标级别"
+    ],
     "related": [
       "openapi-specification",
       "api-versioning-strategies",
@@ -3099,7 +3337,21 @@
       "应用 OWASP API 安全 Top 10 缓解措施：对每个资源执行对象级授权（BOLA）、实施速率限制和配额执行、用严格模式验证所有输入载荷，以及记录所有认证事件用于审计和异常检测"
     ],
     "ai_relevant": true,
-    "viz_type": "matrix",
+    "viz_type": "radar",
+    "viz_labels": [
+      "Auth Mechanism",
+      "OAuth2 Scopes",
+      "JWT Validation",
+      "CORS Config",
+      "OWASP API Top 10"
+    ],
+    "viz_labels_zh": [
+      "认证机制",
+      "OAuth2范围",
+      "JWT验证",
+      "CORS配置",
+      "API Top 10"
+    ],
     "related": [
       "api-gateway-pattern",
       "zero-trust-architecture"
@@ -3273,6 +3525,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Protocol Select",
+      "Event Schema",
+      "Connection Lifecycle",
+      "Backpressure",
+      "Secure Channel"
+    ],
+    "viz_labels_zh": [
+      "协议选择",
+      "事件模式",
+      "连接管理",
+      "背压控制",
+      "通道安全"
+    ],
     "related": [
       "api-gateway-pattern",
       "api-security-patterns"
@@ -3446,6 +3712,20 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Identify Query",
+      "Fan-Out",
+      "Merge Transform",
+      "Partial Failure",
+      "Optimize Cache"
+    ],
+    "viz_labels_zh": [
+      "识别查询",
+      "扇出请求",
+      "合并转换",
+      "部分失败",
+      "缓存优化"
+    ],
     "related": [
       "api-gateway-pattern",
       "bff-pattern",
@@ -3622,6 +3902,20 @@
     ],
     "ai_relevant": true,
     "viz_type": "tree",
+    "viz_labels": [
+      "Subgraphs",
+      "Federation Directives",
+      "GraphQL Router",
+      "Schema Registry",
+      "Federated Auth"
+    ],
+    "viz_labels_zh": [
+      "子图",
+      "联邦指令",
+      "路由器",
+      "模式注册",
+      "联邦鉴权"
+    ],
     "related": [
       "graphql-schema-design",
       "bff-pattern",

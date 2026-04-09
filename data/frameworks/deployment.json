@@ -23,6 +23,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Blue Env",
+      "Switch",
+      "Green Env",
+      "Rollback"
+    ],
+    "viz_labels_zh": [
+      "蓝环境",
+      "流量切换",
+      "绿环境",
+      "快速回滚"
+    ],
     "related": [
       "canary-deployment",
       "feature-flags",
@@ -201,6 +213,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Canary",
+      "Monitor",
+      "Expand",
+      "Full Deploy"
+    ],
+    "viz_labels_zh": [
+      "金丝雀",
+      "监控",
+      "扩量",
+      "全量发布"
+    ],
     "related": [
       "blue-green-deployment",
       "feature-flags",
@@ -379,6 +403,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "tree",
+    "viz_labels": [
+      "Flag Store",
+      "Targeting",
+      "Rollout",
+      "Override"
+    ],
+    "viz_labels_zh": [
+      "标志仓库",
+      "定向规则",
+      "发布比例",
+      "强制覆盖"
+    ],
     "related": [
       "canary-deployment",
       "blue-green-deployment",
@@ -559,6 +595,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Commit",
+      "Detect",
+      "Reconcile",
+      "Deploy"
+    ],
+    "viz_labels_zh": [
+      "代码提交",
+      "变更检测",
+      "状态同步",
+      "部署"
+    ],
     "related": [
       "infrastructure-as-code",
       "three-ways-devops",
@@ -738,6 +786,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "radar",
+    "viz_labels": [
+      "Deploy Freq",
+      "Lead Time",
+      "MTTR",
+      "Change Fail Rate"
+    ],
+    "viz_labels_zh": [
+      "部署频率",
+      "交付前置时间",
+      "故障恢复时间",
+      "变更失败率"
+    ],
     "related": [
       "three-ways-devops",
       "calms-framework",
@@ -918,7 +978,21 @@
       "共享：建立内部知识库、运维手册，开展跨团队学习交流"
     ],
     "ai_relevant": false,
-    "viz_type": "pyramid",
+    "viz_type": "radar",
+    "viz_labels": [
+      "Culture",
+      "Automation",
+      "Lean",
+      "Measurement",
+      "Sharing"
+    ],
+    "viz_labels_zh": [
+      "文化",
+      "自动化",
+      "精益",
+      "度量",
+      "分享"
+    ],
     "related": [
       "three-ways-devops",
       "dora-metrics",
@@ -1100,6 +1174,16 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Flow",
+      "Feedback",
+      "Learning"
+    ],
+    "viz_labels_zh": [
+      "流动",
+      "反馈",
+      "持续学习"
+    ],
     "related": [
       "calms-framework",
       "dora-metrics",
@@ -1281,6 +1365,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "tree",
+    "viz_labels": [
+      "Code",
+      "Plan",
+      "Apply",
+      "State"
+    ],
+    "viz_labels_zh": [
+      "声明代码",
+      "变更计划",
+      "执行应用",
+      "状态管理"
+    ],
     "related": [
       "gitops",
       "three-ways-devops",
@@ -1463,6 +1559,16 @@
     ],
     "ai_relevant": false,
     "viz_type": "pyramid",
+    "viz_labels": [
+      "Build",
+      "Release",
+      "Run"
+    ],
+    "viz_labels_zh": [
+      "构建",
+      "发布",
+      "运行"
+    ],
     "related": [
       "infrastructure-as-code",
       "gitops",
@@ -1645,6 +1751,16 @@
     ],
     "ai_relevant": true,
     "viz_type": "pyramid",
+    "viz_labels": [
+      "SLI",
+      "SLO",
+      "SLA"
+    ],
+    "viz_labels_zh": [
+      "服务指标",
+      "服务目标",
+      "服务协议"
+    ],
     "related": [
       "four-golden-signals",
       "dora-metrics",
@@ -1827,6 +1943,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Develop",
+      "Train",
+      "Deploy",
+      "Monitor"
+    ],
+    "viz_labels_zh": [
+      "开发",
+      "训练",
+      "部署",
+      "监控"
+    ],
     "related": [
       "llmops",
       "dora-metrics",
@@ -2008,6 +2136,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Prompt",
+      "Evaluate",
+      "Fine-tune",
+      "Deploy"
+    ],
+    "viz_labels_zh": [
+      "提示工程",
+      "评估",
+      "微调",
+      "部署"
+    ],
     "related": [
       "mlops",
       "prompt-testing",
@@ -2190,6 +2330,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Orchestrate",
+      "Invoke",
+      "Observe",
+      "Scale"
+    ],
+    "viz_labels_zh": [
+      "编排",
+      "调用",
+      "观测",
+      "扩缩容"
+    ],
     "related": [
       "agent-reliability-patterns",
       "llmops",
@@ -2372,6 +2524,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Feature Flag",
+      "Canary",
+      "A/B Test",
+      "Full Release"
+    ],
+    "viz_labels_zh": [
+      "功能标志",
+      "金丝雀",
+      "A/B测试",
+      "全量发布"
+    ],
     "related": [
       "canary-deployment",
       "feature-flags",
@@ -2556,6 +2720,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Image Build",
+      "Provision",
+      "Replace",
+      "Retire"
+    ],
+    "viz_labels_zh": [
+      "镜像构建",
+      "预置",
+      "替换",
+      "下线"
+    ],
     "related": [
       "infrastructure-as-code",
       "gitops",
@@ -2736,6 +2912,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "cycle",
+    "viz_labels": [
+      "Steady State",
+      "Inject",
+      "Observe",
+      "Restore"
+    ],
+    "viz_labels_zh": [
+      "稳态基准",
+      "注入故障",
+      "观测",
+      "恢复"
+    ],
     "related": [
       "chaos-engineering",
       "slo-as-practice",
@@ -2925,6 +3113,18 @@
     ],
     "ai_relevant": true,
     "viz_type": "flow",
+    "viz_labels": [
+      "Discover",
+      "Build",
+      "Deliver",
+      "Measure"
+    ],
+    "viz_labels_zh": [
+      "需求发现",
+      "平台构建",
+      "交付使用",
+      "效果度量"
+    ],
     "related": [
       "team-topologies",
       "developer-experience-framework",
@@ -3110,6 +3310,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "flow",
+    "viz_labels": [
+      "Branch",
+      "Spin Up",
+      "Test",
+      "Tear Down"
+    ],
+    "viz_labels_zh": [
+      "功能分支",
+      "环境创建",
+      "测试验证",
+      "环境销毁"
+    ],
     "related": [
       "gitops",
       "progressive-delivery",
@@ -3289,6 +3501,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "matrix",
+    "viz_labels": [
+      "Region A",
+      "Region B",
+      "Stamp Config",
+      "Routing"
+    ],
+    "viz_labels_zh": [
+      "区域A",
+      "区域B",
+      "印模配置",
+      "路由"
+    ],
     "related": [
       "infrastructure-as-code",
       "gitops",
@@ -3468,6 +3692,18 @@
     ],
     "ai_relevant": false,
     "viz_type": "pyramid",
+    "viz_labels": [
+      "Manual",
+      "Scripted",
+      "Automated",
+      "Policy-Driven"
+    ],
+    "viz_labels_zh": [
+      "手动操作",
+      "脚本化",
+      "自动化",
+      "策略驱动"
+    ],
     "related": [
       "infrastructure-as-code",
       "gitops",
