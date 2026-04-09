@@ -50,9 +50,10 @@ export default function CategoryPage() {
     .map((fw, i) => (fw.ai_relevant ? i + 1 : null))
     .filter((i): i is number => i !== null)
   const aiBorderCSS = aiIndices.length > 0
-    ? aiIndices
+    ? `.${styles.gridWrap} > div > div { border-left: 3px solid transparent; }\n` +
+      aiIndices
         .map(n => `.${styles.gridWrap} > div > div:nth-child(${n})`)
-        .join(',\n') + ` { border-left: 3px solid #f8e8e3; }`
+        .join(',\n') + ` { border-left-color: var(--cat-ai-bg); }`
     : ''
 
   const handleCardClick = (fw: Framework) => {
