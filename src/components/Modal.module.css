@@ -259,10 +259,10 @@
   position: fixed;
   top: 50%;
   background: var(--bg);
-  border: 1px solid var(--border);
+  border: 2px solid var(--muted);
   font-size: 18px;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -270,12 +270,16 @@
   justify-content: center;
   z-index: 101;
   color: var(--muted);
-  transition: color 0.15s, border-color 0.15s;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  padding: 0;
+  line-height: 1;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .navPrev:hover,
 .navNext:hover {
-  color: var(--text);
+  color: var(--bg);
+  background: var(--text);
   border-color: var(--text);
 }
 

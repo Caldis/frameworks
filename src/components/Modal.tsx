@@ -174,13 +174,13 @@ export default function Modal({
 
       {/* Prev/Next navigation */}
       {hasPrev && (
-        <button className={styles.navPrev} onClick={e => { e.stopPropagation(); onPrev() }}>
-          &larr;
+        <button className={styles.navPrev} onClick={e => { e.stopPropagation(); onPrev() }} aria-label="Previous">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 4L6 9L11 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </button>
       )}
       {hasNext && (
-        <button className={styles.navNext} onClick={e => { e.stopPropagation(); onNext() }}>
-          &rarr;
+        <button className={styles.navNext} onClick={e => { e.stopPropagation(); onNext() }} aria-label="Next">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 4L12 9L7 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </button>
       )}
 
