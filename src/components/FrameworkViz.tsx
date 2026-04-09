@@ -18,8 +18,8 @@ function isChinese(text: string): boolean {
 
 function shortLabel(text: string, maxLen?: number): string {
   const zh = isChinese(text)
-  // Strip parenthetical content
-  let cleaned = text.replace(/[（(][^）)]*[）)]/g, '').trim()
+  // Strip parenthetical and quoted content
+  let cleaned = text.replace(/[（(][^）)]*[）)]/g, '').replace(/「[^」]*」/g, '').trim()
 
   if (zh) {
     const limit = maxLen ?? 6
