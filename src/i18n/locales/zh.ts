@@ -114,4 +114,10 @@ export const zh: LocaleStrings = {
   agent: 'AI Agent',
   noResults: '未找到与 "{query}" 相关的框架',
   ai: 'AI',
+  synthesisSummary: '总结',
+  previousFramework: '上一个',
+  nextFramework: '下一个',
+  challenge: '挑战',
+  approach: '方法',
+  result: '成果',
 }

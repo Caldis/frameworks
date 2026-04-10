@@ -147,4 +147,12 @@ export interface LocaleStrings {
   // Misc
   noResults: string  // uses {query} placeholder
   ai: string
+
+  // Detail page redesign
+  synthesisSummary: string
+  previousFramework: string
+  nextFramework: string
+  challenge: string
+  approach: string
+  result: string
 }

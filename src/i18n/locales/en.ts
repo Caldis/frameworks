@@ -114,4 +114,10 @@ export const en: LocaleStrings = {
   agent: 'AI Agent',
   noResults: 'No frameworks found for "{query}"',
   ai: 'AI',
+  synthesisSummary: 'Summary',
+  previousFramework: 'Previous',
+  nextFramework: 'Next',
+  challenge: 'Challenge',
+  approach: 'Approach',
+  result: 'Result',
 }
