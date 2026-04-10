@@ -183,10 +183,15 @@ export default function FrameworkPage() {
     return () => cs.removeEventListener('mousemove', handler)
   }, [])
 
+  // Compute counts safely for counter animations (framework may be undefined)
+  const stepsCount = framework ? (locale === 'en' ? framework.steps : framework.steps_zh)?.length ?? 0 : 0
+  const adoptersCount = framework?.adopters?.length ?? 0
+  const relatedCount = framework?.related?.length ?? 0
+
   // Counter animations for case study metrics
-  useCounterAnimation(metricRef1, steps.length, '', '')
-  useCounterAnimation(metricRef2, framework.adopters?.length || 0, '', '')
-  useCounterAnimation(metricRef3, framework.related?.length || 0, '', '')
+  useCounterAnimation(metricRef1, stepsCount, '', '')
+  useCounterAnimation(metricRef2, adoptersCount, '', '')
+  useCounterAnimation(metricRef3, relatedCount, '', '')
 
   usePageMeta(
     framework ? localized(framework, 'name') : 'Framework Not Found',
