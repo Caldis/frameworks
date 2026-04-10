@@ -10,7 +10,7 @@ import StepsList from '../components/StepsList'
 import RelatedFrameworks from '../components/RelatedFrameworks'
 import SectionNav from '../components/SectionNav'
 import FadeIn from '../components/FadeIn'
-import HeroShader from '../components/HeroShader'
+// import HeroShader from '../components/HeroShader'
 import FilmGrain from '../components/FilmGrain'
 import { Zap, Target, RefreshCw, Lightbulb, Rocket, XCircle, AlertTriangle } from 'lucide-react'
 import styles from './FrameworkPage.module.css'
@@ -275,7 +275,7 @@ export default function FrameworkPage() {
   return (
     <div className={styles.page} key={slug}>
       <FilmGrain />
-      <HeroShader color={shaderColor} className={styles.heroShader} />
+      {/* HeroShader removed — WebGL too heavy for smooth scrolling */}
 
       {/* Scroll progress bar */}
       <div className={styles.progressTrack}>
