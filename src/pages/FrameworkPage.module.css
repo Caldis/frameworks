@@ -40,7 +40,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
   padding: 0 24px 180px;
   position: relative;
   overflow: hidden;
@@ -49,9 +48,12 @@
 /* Fixed ambient shader layer */
 .heroShader {
   position: fixed;
-  inset: 0;
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   z-index: 0;
+  pointer-events: none;
 }
 
 /* Gradient orbs — parallax via --mx/--my */
@@ -175,7 +177,29 @@
 .heroContent {
   position: relative;
   z-index: 2;
-  max-width: 600px;
+  width: 100%;
+  max-width: 960px;
+}
+
+/* Hero grid — text left, viz right */
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: center;
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.heroText {
+  min-width: 0;
+}
+
+.heroVizCol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Breadcrumb */
@@ -208,25 +232,17 @@
   animation: heroCharIn 0.6s ease-out 0.2s forwards;
 }
 
-/* Staggered title */
+/* Title — simple fade-in */
 .heroTitle {
   font-family: var(--font-serif);
-  font-size: clamp(64px, 15vw, 148px);
-  line-height: 0.86;
-  letter-spacing: -5px;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.15;
+  letter-spacing: -1px;
   margin-bottom: 10px;
   font-weight: 400;
-}
-
-.heroTitleChar {
-  display: inline-block;
   opacity: 0;
-  transform: translateY(20px);
-  animation: heroCharIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.heroTitleChar2 {
-  margin-left: 0.15em;
+  transform: translateY(16px);
+  animation: heroCharIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
 }
 
 @keyframes heroCharIn {
@@ -250,9 +266,8 @@
 .heroBadges {
   display: flex;
   gap: 8px;
-  justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 72px;
+  margin-bottom: 32px;
   opacity: 0;
   animation: heroCharIn 0.5s ease-out 0.9s forwards;
 }
@@ -378,7 +393,7 @@
   font-size: 19px;
   line-height: 1.95;
   max-width: 480px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 /* Scroll cue */
@@ -483,8 +498,8 @@
 .thesis p {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(22px, 3.4vw, 34px);
-  line-height: 1.5;
+  font-size: clamp(16px, 2vw, 22px);
+  line-height: 1.6;
   max-width: 620px;
   margin: 0 auto;
   position: relative;
@@ -794,10 +809,10 @@
 
 .conceptName {
   font-family: var(--font-serif);
-  font-size: 44px;
+  font-size: clamp(22px, 3vw, 30px);
   font-weight: 400;
   margin-bottom: 20px;
-  line-height: 1.05;
+  line-height: 1.2;
 }
 
 .conceptDesc {
@@ -1737,9 +1752,27 @@
     padding-bottom: 140px;
   }
 
+  .heroGrid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 32px;
+  }
+
+  .heroText {
+    text-align: center;
+  }
+
+  .heroBadges {
+    justify-content: center;
+  }
+
+  .heroDesc {
+    margin: 0 auto;
+  }
+
   .heroTitle {
-    font-size: clamp(48px, 15vw, 80px);
-    letter-spacing: -2px;
+    font-size: clamp(28px, 7vw, 42px);
+    letter-spacing: -1px;
   }
 
   .heroViz {
@@ -1894,7 +1927,7 @@
   }
 
   .conceptName {
-    font-size: 32px;
+    font-size: clamp(20px, 5vw, 26px);
   }
 
   .conceptVisNum {
@@ -1977,7 +2010,7 @@
     animation: none;
   }
 
-  .heroTitleChar {
+  .heroTitle {
     animation: none;
     opacity: 1;
     transform: none;

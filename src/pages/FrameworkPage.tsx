@@ -246,9 +246,6 @@ export default function FrameworkPage() {
   // Shader color from category
   const shaderColor: [number, number, number] = category ? hexToGL(category.colorText) : [0.5, 0.45, 0.4]
 
-  // Character stagger for title
-  const titleChars = localized(framework, 'name').split('')
-
   // Dynamic section nav
   const navSections = [
     ...(whenToUse?.length || whenNotToUse?.length ? [{ id: 'sec-decision', label: locale === 'en' ? 'Decision' : '\u51B3\u7B56' }] : []),
@@ -330,74 +327,72 @@ export default function FrameworkPage() {
             <span>{localized(framework, 'name')}</span>
           </div>
 
-          {/* Category label */}
-          <div className={styles.heroCat} style={{ color: catTextColor }}>
-            {category ? localized(category, 'name') : framework.category}
-          </div>
+          <div className={styles.heroGrid}>
+            <div className={styles.heroText}>
+              {/* Category label */}
+              <div className={styles.heroCat} style={{ color: catTextColor }}>
+                {category ? localized(category, 'name') : framework.category}
+              </div>
 
-          {/* Title — char staggered */}
-          <h1 className={styles.heroTitle}>
-            {titleChars.map((ch, i) => (
-              <span
-                key={i}
-                className={`${styles.heroTitleChar}${ch === ' ' ? ` ${styles.heroTitleChar2}` : ''}`}
-                style={{ animationDelay: `${0.3 + i * 0.04}s` }}
-              >
-                {ch === ' ' ? '\u00A0' : ch}
-              </span>
-            ))}
-          </h1>
+              {/* Title — single block fade-in */}
+              <h1 className={styles.heroTitle}>
+                {localized(framework, 'name')}
+              </h1>
 
-          {/* Subtitle */}
-          <div className={styles.heroSub}>{subtitle}</div>
+              {/* Subtitle */}
+              <div className={styles.heroSub}>{subtitle}</div>
 
-          {/* Badges */}
-          <div className={styles.heroBadges}>
-            {framework.origin_author && (
-              <span className={styles.badge}>
-                {t.originBy.replace('{author}', framework.origin_author)}
-              </span>
-            )}
-            {framework.complexity && (
-              <span className={`${styles.badge} ${complexityClass}`}>
-                {complexityLabel}
-              </span>
-            )}
-            {category && (
-              <span className={`${styles.badge} ${styles.badgeCat}`} style={{
-                background: catBgColor,
-                color: catTextColor,
-                borderColor: catBgColor,
-              }}>
-                {localized(category, 'name')}
-              </span>
-            )}
-            {framework.ai_relevant && (
-              <span className={styles.aiBadge}>{t.ai}</span>
-            )}
-          </div>
+              {/* Badges */}
+              <div className={styles.heroBadges}>
+                {framework.origin_author && (
+                  <span className={styles.badge}>
+                    {t.originBy.replace('{author}', framework.origin_author)}
+                  </span>
+                )}
+                {framework.complexity && (
+                  <span className={`${styles.badge} ${complexityClass}`}>
+                    {complexityLabel}
+                  </span>
+                )}
+                {category && (
+                  <span className={`${styles.badge} ${styles.badgeCat}`} style={{
+                    background: catBgColor,
+                    color: catTextColor,
+                    borderColor: catBgColor,
+                  }}>
+                    {localized(category, 'name')}
+                  </span>
+                )}
+                {framework.ai_relevant && (
+                  <span className={styles.aiBadge}>{t.ai}</span>
+                )}
+              </div>
 
-          {/* Visualization in frosted glass circle */}
-          <div className={styles.heroVizWrap}>
-            <div className={styles.heroVizGlow} />
-            <div className={styles.heroViz}>
-              <FrameworkViz
-                type={framework.viz_type}
-                size={280}
-                animate
-                labels={(locale === 'en' ? (framework as any).viz_labels : (framework as any).viz_labels_zh) || steps}
-              />
+              {/* Origin source */}
+              {originSource && (
+                <div className={styles.heroOrigin}>{originSource}</div>
+              )}
+
+              {/* Description */}
+              <div className={styles.heroDescWrap}>
+                <p className={styles.heroDesc}>{localized(framework, 'desc')}</p>
+              </div>
             </div>
-          </div>
 
-          {/* Origin source */}
-          {originSource && (
-            <div className={styles.heroOrigin}>{originSource}</div>
-          )}
-
-          {/* Description */}
-          <div className={styles.heroDescWrap}>
-            <p className={styles.heroDesc}>{localized(framework, 'desc')}</p>
+            <div className={styles.heroVizCol}>
+              {/* Visualization in frosted glass circle */}
+              <div className={styles.heroVizWrap}>
+                <div className={styles.heroVizGlow} />
+                <div className={styles.heroViz}>
+                  <FrameworkViz
+                    type={framework.viz_type}
+                    size={280}
+                    animate
+                    labels={(locale === 'en' ? (framework as any).viz_labels : (framework as any).viz_labels_zh) || steps}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
