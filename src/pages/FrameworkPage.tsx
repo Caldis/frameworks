@@ -162,6 +162,11 @@ export default function FrameworkPage() {
     return () => el.removeEventListener('mousemove', handler)
   }, [])
 
+  // Counter animation refs (case study metrics)
+  const metricRef1 = useRef<HTMLSpanElement>(null)
+  const metricRef2 = useRef<HTMLSpanElement>(null)
+  const metricRef3 = useRef<HTMLSpanElement>(null)
+
   // Cursor glow effect (case study)
   const caseRef = useRef<HTMLElement>(null)
   const glowRef = useRef<HTMLDivElement>(null)
@@ -177,6 +182,11 @@ export default function FrameworkPage() {
     cs.addEventListener('mousemove', handler)
     return () => cs.removeEventListener('mousemove', handler)
   }, [])
+
+  // Counter animations for case study metrics
+  useCounterAnimation(metricRef1, steps.length, '', '')
+  useCounterAnimation(metricRef2, framework.adopters?.length || 0, '', '')
+  useCounterAnimation(metricRef3, framework.related?.length || 0, '', '')
 
   usePageMeta(
     framework ? localized(framework, 'name') : 'Framework Not Found',
@@ -595,13 +605,13 @@ export default function FrameworkPage() {
           INSIGHT — Pull Quote Break
          ══════════════════════════════════════════ */}
       {coreConcepts?.length > 0 && (
-        <div className={styles.insight}>
+        <blockquote className={styles.insight}>
           <span className={styles.insightMark}>{'\u201C'}</span>
           <p>{localized(framework, 'desc')}</p>
           {framework.origin_author && (
             <cite>{'\u2014'} {framework.origin_author}</cite>
           )}
-        </div>
+        </blockquote>
       )}
 
       {/* ══════════════════════════════════════════
@@ -631,6 +641,47 @@ export default function FrameworkPage() {
                 </div>
               )}
 
+              {/* Metric counters */}
+              <div className={styles.metricRow}>
+                <div className={styles.metric}>
+                  <div className={styles.metricNum}><span ref={metricRef1}>{steps.length}</span></div>
+                  <div className={styles.metricBar}><div className={styles.metricBarFill} style={{ width: `${Math.min(steps.length / 7 * 100, 100)}%` }} /></div>
+                  <div className={styles.metricLabel}>{locale === 'en' ? 'Steps' : '\u6B65\u9AA4'}</div>
+                </div>
+                <div className={styles.metric}>
+                  <div className={styles.metricNum}><span ref={metricRef2}>{framework.adopters?.length || 0}</span></div>
+                  <div className={styles.metricBar}><div className={styles.metricBarFill} style={{ width: `${Math.min((framework.adopters?.length || 0) / 10 * 100, 100)}%` }} /></div>
+                  <div className={styles.metricLabel}>{t.notableAdopters}</div>
+                </div>
+                <div className={styles.metric}>
+                  <div className={styles.metricNum}><span ref={metricRef3}>{framework.related?.length || 0}</span></div>
+                  <div className={styles.metricBar}><div className={styles.metricBarFill} style={{ width: `${Math.min((framework.related?.length || 0) / 8 * 100, 100)}%` }} /></div>
+                  <div className={styles.metricLabel}>{t.relatedFrameworks}</div>
+                </div>
+              </div>
+
+              {/* Sprint week bar — maps framework steps to a 5-day visual */}
+              {steps.length >= 3 && (
+                <div className={styles.sprintWeek}>
+                  {steps.slice(0, 5).map((step, i) => {
+                    const dayLabels = locale === 'en'
+                      ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+                      : ['\u5468\u4E00', '\u5468\u4E8C', '\u5468\u4E09', '\u5468\u56DB', '\u5468\u4E94']
+                    return (
+                      <div
+                        key={i}
+                        className={`${styles.sprintDay}${i === Math.min(3, steps.length - 1) ? ` ${styles.sprintDayActive}` : ''}`}
+                      >
+                        <div className={styles.sprintDayName}>{dayLabels[i] || `D${i + 1}`}</div>
+                        <div className={styles.sprintDayLabel}>
+                          {step.split(/[：:,.，]/)[0].replace(/^\d+\.\s*/, '').slice(0, 12)}
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
+
               {/* Structured case study: triptych */}
               {hasStructuredCase && (
                 <div className={styles.triptych}>
@@ -657,10 +708,10 @@ export default function FrameworkPage() {
 
               {/* Pull quote */}
               {(caseQuote || (!hasStructuredCase && caseStudyText)) && (
-                <div className={styles.caseQuote}>
+                <blockquote className={styles.caseQuote}>
                   <span className={styles.caseQuoteMark}>{'\u201C'}</span>
                   <p>{caseQuote || caseStudyText}</p>
-                </div>
+                </blockquote>
               )}
             </div>
           </section>
