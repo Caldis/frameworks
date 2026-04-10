@@ -736,11 +736,6 @@ export default function FrameworkPage() {
         {/* Pipeline circles */}
         {steps.length <= 7 && (
           <div className={styles.pipeline}>
-            <div style={{
-              position: 'absolute', top: 40, left: 60, right: 60, height: 2,
-              background: `linear-gradient(to right, ${catBgColor}, ${catTextColor}, ${catBgColor})`,
-              zIndex: 0,
-            }} />
             {steps.map((step, i) => (
               <div className={styles.pipeStep} key={i}>
                 <div className={styles.pipeDot} style={{

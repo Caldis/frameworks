@@ -35,6 +35,8 @@
    HERO — Cinematic Full-Viewport Portal
    ══════════════════════════════════════════════════════ */
 .hero {
+  --mx: 0;
+  --my: 0;
   min-height: 120vh;
   display: flex;
   flex-direction: column;
@@ -219,6 +221,11 @@
 
 .heroCrumb a:hover {
   color: var(--text);
+}
+
+.heroCrumbSep {
+  color: var(--border);
+  margin: 0 6px;
 }
 
 /* Category label */
@@ -1203,7 +1210,7 @@
   position: absolute;
   inset: 0;
   background: #0c0c0b;
-  clip-path: polygon(0 0, 100% 0, 100% 55%, 0 0);
+  clip-path: polygon(0 0, 100% 0, 100% 55%, 0 100%);
 }
 
 /* ══════════════════════════════════════════════════════
@@ -1230,6 +1237,7 @@
   right: 60px;
   height: 2px;
   z-index: 0;
+  background: linear-gradient(to right, var(--cat-thinking-bg), var(--cat-thinking-text), var(--cat-thinking-bg));
 }
 
 .pipeStep {
@@ -1266,12 +1274,6 @@
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 4px;
-}
-
-.pipeDesc {
-  font-size: 11px;
-  color: var(--muted);
-  line-height: 1.4;
 }
 
 /* ══════════════════════════════════════════════════════
@@ -1741,6 +1743,123 @@
   @keyframes revealScale {
     to { opacity: 1; transform: scale(1); }
   }
+}
+
+/* ══════════════════════════════════════════════════════
+   DARK MODE OVERRIDES
+   ══════════════════════════════════════════════════════ */
+:global([data-theme="dark"]) .badge {
+  background: rgba(35, 34, 31, 0.65);
+  border-color: rgba(58, 56, 53, 0.6);
+}
+
+:global([data-theme="dark"]) .heroViz {
+  background: radial-gradient(circle at 35% 28%, rgba(35, 34, 31, 0.92), rgba(42, 40, 37, 0.88));
+  border-color: rgba(58, 56, 53, 0.4);
+  box-shadow: 0 24px 140px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+:global([data-theme="dark"]) .conceptOrb {
+  background: rgba(35, 34, 31, 0.55);
+  border-color: rgba(58, 56, 53, 0.5);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+:global([data-theme="dark"]) .case {
+  background: #e8e5df;
+  color: #1a1916;
+}
+
+:global([data-theme="dark"]) .case::before {
+  background:
+    radial-gradient(ellipse at 8% 15%, rgba(45, 106, 79, 0.08) 0%, transparent 35%),
+    radial-gradient(ellipse at 92% 80%, rgba(196, 168, 130, 0.06) 0%, transparent 30%);
+}
+
+:global([data-theme="dark"]) .case::after {
+  display: none;
+}
+
+:global([data-theme="dark"]) .caseEdgeBg {
+  background: #e8e5df;
+}
+
+:global([data-theme="dark"]) .caseEdgeBottomBg {
+  background: #e8e5df;
+}
+
+:global([data-theme="dark"]) .caseInner h2,
+:global([data-theme="dark"]) .caseCompanyName {
+  color: #1a1916;
+}
+
+:global([data-theme="dark"]) .caseLabel {
+  color: var(--viz-accent);
+}
+
+:global([data-theme="dark"]) .caseCompanyMeta {
+  color: rgba(26, 25, 22, 0.4);
+}
+
+:global([data-theme="dark"]) .caseLogo {
+  background: rgba(26, 25, 22, 0.04);
+  border-color: rgba(26, 25, 22, 0.08);
+}
+
+:global([data-theme="dark"]) .sprintDay {
+  background: rgba(26, 25, 22, 0.03);
+}
+
+:global([data-theme="dark"]) .sprintDayActive {
+  background: rgba(26, 25, 22, 0.06);
+}
+
+:global([data-theme="dark"]) .sprintDayName {
+  color: rgba(26, 25, 22, 0.3);
+}
+
+:global([data-theme="dark"]) .sprintDayLabel {
+  color: rgba(26, 25, 22, 0.5);
+}
+
+:global([data-theme="dark"]) .sprintDayActive .sprintDayLabel {
+  color: var(--viz-accent);
+}
+
+:global([data-theme="dark"]) .metric {
+  background: #e8e5df;
+}
+
+:global([data-theme="dark"]) .metricBar {
+  background: rgba(196, 168, 130, 0.2);
+}
+
+:global([data-theme="dark"]) .metricLabel {
+  color: rgba(26, 25, 22, 0.3);
+}
+
+:global([data-theme="dark"]) .triPanel {
+  background: #e8e5df;
+}
+
+:global([data-theme="dark"]) .triPanel p {
+  color: rgba(26, 25, 22, 0.7);
+}
+
+:global([data-theme="dark"]) .caseQuote {
+  background: none;
+}
+
+:global([data-theme="dark"]) .caseQuote p {
+  color: rgba(26, 25, 22, 0.5);
+}
+
+:global([data-theme="dark"]) .caseQuoteMark {
+  color: rgba(196, 168, 130, 0.15);
+}
+
+:global([data-theme="dark"]) .caseGlow {
+  background: radial-gradient(circle, rgba(196, 168, 130, 0.06) 0%, transparent 70%);
 }
 
 /* ══════════════════════════════════════════════════════
