@@ -37,14 +37,21 @@
 .hero {
   --mx: 0;
   --my: 0;
-  min-height: 120vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 24px 180px;
+  padding: 0 24px 80px;
   position: relative;
   overflow: hidden;
+  /* Break out of .main container to reach viewport edges and top */
+  margin-left: -48px;
+  margin-right: -48px;
+  margin-top: -100px;
+  padding-top: 100px;
+  padding-left: 72px;
+  padding-right: 72px;
 }
 
 /* Fixed ambient shader layer */
@@ -1841,6 +1848,10 @@
   .hero {
     min-height: 100vh;
     padding-bottom: 140px;
+    margin-left: -48px;
+    margin-right: -48px;
+    padding-left: 72px;
+    padding-right: 72px;
   }
 
   .heroGrid {
@@ -1984,7 +1995,9 @@
    ══════════════════════════════════════════════════════ */
 @media (max-width: 600px) {
   .hero {
-    padding: 0 16px 120px;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 0 36px 120px;
   }
 
   .heroSub {
