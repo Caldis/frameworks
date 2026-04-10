@@ -167,6 +167,21 @@ export default function FrameworkPage() {
   const metricRef2 = useRef<HTMLSpanElement>(null)
   const metricRef3 = useRef<HTMLSpanElement>(null)
 
+  // Timeline horizontal scroll — convert vertical wheel to horizontal
+  const timelineRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const el = timelineRef.current
+    if (!el) return
+    const handler = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault()
+        el.scrollLeft += e.deltaY
+      }
+    }
+    el.addEventListener('wheel', handler, { passive: false })
+    return () => el.removeEventListener('wheel', handler)
+  }, [])
+
   // Cursor glow effect (case study)
   const caseRef = useRef<HTMLElement>(null)
   const glowRef = useRef<HTMLDivElement>(null)
@@ -657,27 +672,7 @@ export default function FrameworkPage() {
                 </div>
               </div>
 
-              {/* Sprint week bar — maps framework steps to a 5-day visual */}
-              {steps.length >= 3 && (
-                <div className={styles.sprintWeek}>
-                  {steps.slice(0, 5).map((step, i) => {
-                    const dayLabels = locale === 'en'
-                      ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
-                      : ['\u5468\u4E00', '\u5468\u4E8C', '\u5468\u4E09', '\u5468\u56DB', '\u5468\u4E94']
-                    return (
-                      <div
-                        key={i}
-                        className={`${styles.sprintDay}${i === Math.min(3, steps.length - 1) ? ` ${styles.sprintDayActive}` : ''}`}
-                      >
-                        <div className={styles.sprintDayName}>{dayLabels[i] || `D${i + 1}`}</div>
-                        <div className={styles.sprintDayLabel}>
-                          {step.split(/[：:,.，]/)[0].replace(/^\d+\.\s*/, '').slice(0, 12)}
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-              )}
+              {/* Sprint week bar removed — confusing without clear purpose */}
 
               {/* Structured case study: triptych */}
               {hasStructuredCase && (
@@ -789,7 +784,7 @@ export default function FrameworkPage() {
               {locale === 'en' ? 'HISTORY' : '\u5386\u53F2\u6F14\u8FDB'}
             </div>
           </FadeIn>
-          <div className={styles.timelineScroll}>
+          <div className={styles.timelineScroll} ref={timelineRef}>
             {timeline.map(([year, event], i) => (
               <div className={styles.timelineCard} key={i}>
                 <div className={styles.timelineLine} style={{ background: catTextColor }} />

@@ -185,6 +185,21 @@ deployment: Progressive Delivery, GitOps, Feature Environment, Deployment Stamps
 - [x] 51/51 tests pass, build clean
 **Estimate**: Small
 
+### Sprint S58: FrameworkViz Rewrite — D3-based Auto-Layout [READY]
+**Priority**: High (visual quality debt)
+**Contract**: All 12 viz types re-rendered with auto-layout. Connection lines follow actual node positions. Labels never truncate. Chinese/English switch produces correct layout. No new dependencies (use existing D3).
+**Problem**: Current FrameworkViz is hand-written HTML/CSS with hardcoded SVG coordinates. Connection lines don't follow nodes. Labels truncate. Layout doesn't adapt to CJK text width.
+**Approach**: Rewrite using D3-hierarchy (tree/flow) and pure SVG with text measurement (geometric types). Keep Recharts for radar only.
+**Tasks**:
+- [ ] Audit all 12 viz types and their usage counts across 317 frameworks
+- [ ] Rewrite tree type using d3-hierarchy + d3-tree layout with auto text measurement
+- [ ] Rewrite flow type using d3 vertical layout with proper edge routing
+- [ ] Rewrite cycle, pyramid, matrix, venn, concentric, quadrant, sankey, hexgrid, timeline types as auto-measured SVG
+- [ ] Verify all 317 frameworks render correctly in both EN and ZH
+- [ ] Verify dark mode, responsive sizing, stroke-draw animation preserved
+- [ ] Run E2E tests — all pass
+**Estimate**: Large
+
 ---
 
 ## Completed Sprints

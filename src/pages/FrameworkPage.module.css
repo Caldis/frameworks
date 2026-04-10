@@ -915,9 +915,8 @@
 .case {
   background: #0c0c0b;
   color: #e8e5df;
-  padding: 80px 24px 80px;
-  margin-top: 64px;
-  margin-bottom: 64px;
+  padding: 80px 72px 80px;
+  margin: 64px -48px;
   position: relative;
   overflow: hidden;
   clip-path: polygon(0 60px, 100% 0, 100% calc(100% - 60px), 0 100%);
@@ -1522,6 +1521,8 @@
   border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .agentCardTitle {
@@ -1543,6 +1544,7 @@
   margin: 0;
   color: var(--text);
   min-height: 60px;
+  flex: 1;
 }
 
 .agentCopyBtn {
@@ -1998,6 +2000,12 @@
     margin-left: -20px;
     margin-right: -20px;
     padding: 0 36px 120px;
+  }
+
+  .case {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 80px 36px 80px;
   }
 
   .heroSub {
