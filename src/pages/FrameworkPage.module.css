@@ -42,16 +42,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 24px 80px;
-  position: relative;
+  padding: 0 48px 80px;
   overflow: hidden;
-  /* Break out of .main container to reach viewport edges and top */
-  margin-left: -48px;
-  margin-right: -48px;
+  /* Break out of any parent container to full viewport width */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
   margin-top: -100px;
   padding-top: 100px;
-  padding-left: 72px;
-  padding-right: 72px;
 }
 
 /* Fixed ambient shader layer */
@@ -915,11 +914,16 @@
 .case {
   background: #0c0c0b;
   color: #e8e5df;
-  padding: 80px 72px 80px;
-  margin: 64px -48px;
-  position: relative;
+  padding: 80px 48px 80px;
+  margin-top: 64px;
+  margin-bottom: 64px;
   overflow: hidden;
   clip-path: polygon(0 60px, 100% 0, 100% calc(100% - 60px), 0 100%);
+  /* Break out to full viewport width */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .case::before {
@@ -1850,10 +1854,6 @@
   .hero {
     min-height: 100vh;
     padding-bottom: 140px;
-    margin-left: -48px;
-    margin-right: -48px;
-    padding-left: 72px;
-    padding-right: 72px;
   }
 
   .heroGrid {
@@ -1997,15 +1997,11 @@
    ══════════════════════════════════════════════════════ */
 @media (max-width: 600px) {
   .hero {
-    margin-left: -20px;
-    margin-right: -20px;
-    padding: 0 36px 120px;
+    padding: 0 20px 120px;
   }
 
   .case {
-    margin-left: -20px;
-    margin-right: -20px;
-    padding: 80px 36px 80px;
+    padding: 80px 20px 80px;
   }
 
   .heroSub {
