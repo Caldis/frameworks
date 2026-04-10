@@ -49,6 +49,15 @@ export interface Framework {
   case_study_company: string
   case_study: string
   case_study_zh: string
+  // Structured case study (optional, backward-compatible)
+  case_study_challenge?: string
+  case_study_challenge_zh?: string
+  case_study_approach?: string
+  case_study_approach_zh?: string
+  case_study_result?: string
+  case_study_result_zh?: string
+  case_study_quote?: string
+  case_study_quote_zh?: string
   when_not_to_use: string[]
   when_not_to_use_zh: string[]
   adopters: string[]
