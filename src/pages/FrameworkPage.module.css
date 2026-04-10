@@ -904,27 +904,16 @@
    CASE STUDY — Dark Cinematic Zone
    ══════════════════════════════════════════════════════ */
 
-/* Angled entrance */
-.caseEdge {
-  height: 140px;
-  position: relative;
-  overflow: hidden;
-}
-
-.caseEdgeBg {
-  position: absolute;
-  inset: 0;
-  background: #0c0c0b;
-  clip-path: polygon(0 45%, 100% 0, 100% 100%, 0 100%);
-}
-
-/* Dark zone */
+/* Dark zone — single element with angled edges via clip-path */
 .case {
   background: #0c0c0b;
   color: #e8e5df;
-  padding: 0 24px;
+  padding: 80px 24px 80px;
+  margin-top: 64px;
+  margin-bottom: 64px;
   position: relative;
   overflow: hidden;
+  clip-path: polygon(0 60px, 100% 0, 100% calc(100% - 60px), 0 100%);
 }
 
 .case::before {
@@ -1201,18 +1190,7 @@
 }
 
 /* Angled exit */
-.caseEdgeBottom {
-  height: 140px;
-  position: relative;
-  overflow: hidden;
-}
-
-.caseEdgeBottomBg {
-  position: absolute;
-  inset: 0;
-  background: #0c0c0b;
-  clip-path: polygon(0 0, 100% 0, 100% 55%, 0 100%);
-}
+/* caseEdge divs removed — angles handled by .case clip-path */
 
 /* ══════════════════════════════════════════════════════
    PIPELINE — How It Works Steps
@@ -1284,6 +1262,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
+  margin-top: 48px;
 }
 
 .doDontCol {
@@ -1779,14 +1758,6 @@
 
 :global([data-theme="dark"]) .case::after {
   display: none;
-}
-
-:global([data-theme="dark"]) .caseEdgeBg {
-  background: #e8e5df;
-}
-
-:global([data-theme="dark"]) .caseEdgeBottomBg {
-  background: #e8e5df;
 }
 
 :global([data-theme="dark"]) .caseInner h2,

@@ -6,7 +6,7 @@
 
 ## Overview
 
-SDFrame organizes 239 software design frameworks across 13 categories, spanning the full software lifecycle from design thinking to AI-native collaboration patterns. Each framework includes:
+SDFrame organizes software design frameworks across 13 categories, spanning the full software lifecycle from design thinking to AI-native collaboration patterns. Each framework includes:
 
 - Bilingual content (EN/ZH) with natural translations
 - 5 actionable implementation steps with visual diagrams

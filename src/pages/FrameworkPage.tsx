@@ -619,9 +619,6 @@ export default function FrameworkPage() {
          ══════════════════════════════════════════ */}
       {caseStudyText && (
         <>
-          <div className={styles.caseEdge}>
-            <div className={styles.caseEdgeBg} />
-          </div>
           <section className={styles.case} id="sec-case" ref={caseRef}>
             <div className={styles.caseGlow} ref={glowRef} />
             <div className={styles.caseInner}>
@@ -715,9 +712,6 @@ export default function FrameworkPage() {
               )}
             </div>
           </section>
-          <div className={styles.caseEdgeBottom}>
-            <div className={styles.caseEdgeBottomBg} />
-          </div>
         </>
       )}
 
