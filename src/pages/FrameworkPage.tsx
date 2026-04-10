@@ -339,8 +339,8 @@ export default function FrameworkPage() {
                 {localized(framework, 'name')}
               </h1>
 
-              {/* Subtitle */}
-              <div className={styles.heroSub}>{subtitle}</div>
+              {/* Subtitle — only show alternate language in Chinese mode */}
+              {locale === 'zh' && <div className={styles.heroSub}>{framework.name}</div>}
 
               {/* Badges */}
               <div className={styles.heroBadges}>
@@ -819,8 +819,7 @@ export default function FrameworkPage() {
         <p>{localized(framework, 'desc')}</p>
         <div className={styles.synthMeta}>
           {framework.origin_author && `${framework.origin_author} \u00B7 `}
-          {framework.name}
-          {framework.name_zh && ` \u00B7 ${framework.name_zh}`}
+          {localized(framework, 'name')}
         </div>
       </div>
 

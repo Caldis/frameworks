@@ -69,7 +69,7 @@ export default function CategoryPage() {
           <h1 className={styles.name} style={{ color: catColorVar(category.key, 'text') }}>
             {categoryName}
           </h1>
-          <span className={styles.nameZh}>{nameSubtitle}</span>
+          {locale === 'zh' && <span className={styles.nameZh}>{category.name}</span>}
         </div>
         <p className={styles.desc}>
           {localized(category, 'description')}

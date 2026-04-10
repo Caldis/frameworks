@@ -82,9 +82,9 @@ export default function CategorySection({
         <Link to={`/category/${category.slug}`} className={styles.nameLink}>
           {localized(category, 'name')}
         </Link>
-        <span className={styles.nameAlt}>
-          {locale === 'en' ? category.name_zh : category.name}
-        </span>
+        {locale === 'zh' && (
+          <span className={styles.nameAlt}>{category.name}</span>
+        )}
         <span className={styles.count}>{frameworks.length}</span>
         {showToggle && (
           <button className={styles.toggle} onClick={handleToggle}>

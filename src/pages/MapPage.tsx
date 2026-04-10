@@ -482,7 +482,7 @@ export default function MapPage() {
         if (tooltip) {
           tooltip.innerHTML = `
             <div class="${styles.tooltipName}">${localized(d, 'name')}</div>
-            <div class="${styles.tooltipNameZh}">${localized(d, 'name') === d.name ? d.name_zh : d.name}</div>
+            ${lang === 'zh' ? `<div class="${styles.tooltipNameZh}">${d.name}</div>` : ''}
             <div class="${styles.tooltipDesc}">${localized(d, 'desc')}</div>
           `
           tooltip.classList.add(styles.tooltipVisible)
@@ -582,7 +582,7 @@ export default function MapPage() {
         if (tooltip) {
           tooltip.innerHTML = `
             <div class="${styles.tooltipName}">${localized(d, 'name')}</div>
-            <div class="${styles.tooltipNameZh}">${localized(d, 'name') === d.name ? d.name_zh : d.name}</div>
+            ${lang === 'zh' ? `<div class="${styles.tooltipNameZh}">${d.name}</div>` : ''}
             <div class="${styles.tooltipDesc}">${localized(d, 'desc')}</div>
           `
           tooltip.classList.add(styles.tooltipVisible)
@@ -769,11 +769,9 @@ export default function MapPage() {
               &times;
             </button>
             <div className={styles.panelName}>{localized(selectedFramework, 'name')}</div>
-            <div className={styles.panelNameZh}>
-              {localized(selectedFramework, 'name') === selectedFramework.name
-                ? selectedFramework.name_zh
-                : selectedFramework.name}
-            </div>
+            {locale === 'zh' && (
+              <div className={styles.panelNameZh}>{selectedFramework.name}</div>
+            )}
             <div className={styles.panelMeta}>
               <span className={styles.panelCategoryPill}>
                 <span className={styles.connectionDot} style={{ background: catColorVar(selectedCategory.key, 'text') }} />
