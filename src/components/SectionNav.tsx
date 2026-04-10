@@ -50,11 +50,13 @@ export default function SectionNav({ sections }: SectionNavProps) {
       {sections.map(s => (
         <button
           key={s.id}
-          className={`${styles.dot} ${active === s.id ? styles.dotActive : ''}`}
+          className={`${styles.item} ${active === s.id ? styles.itemActive : ''}`}
           onClick={() => handleClick(s.id)}
-          title={s.label}
           aria-label={s.label}
-        />
+        >
+          <span className={styles.dot} />
+          <span className={styles.label}>{s.label}</span>
+        </button>
       ))}
     </nav>
   )
