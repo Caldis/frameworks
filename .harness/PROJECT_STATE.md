@@ -12,7 +12,7 @@
 - **Deploy**: GitHub Actions → GitHub Pages (custom domain)
 - **Inspired by**: pmframe.works
 
-## Current State (as of 2026-04-10, end of Sprint S56)
+## Current State (as of 2026-04-10, end of Sprint S57)
 
 ### What Exists
 - 317 software design frameworks across 13 categories, 41 fields per framework (39 + viz_labels + viz_labels_zh)
@@ -76,6 +76,7 @@
 - S54: +15 fundamental frameworks (MVC, MVVM, MVP, Clean Architecture, DRY, KISS, YAGNI, etc.)
 - S55: Decision-point taxonomy (19 points, all covered) + 34 alternative relations + SKILL.md decision routing
 - S56: Chart system overhaul — 4 new viz types (concentric, quadrant, sankey, hexgrid) + flow→vertical + viz_labels for all 317 frameworks + 25 viz_type corrections + dynamic tree renderer
+- S57: Detail page Luxury Journal redesign — cinematic hero (WebGL topology shader + concentric rings + mouse parallax + character stagger), film grain overlay, DNA fingerprint strip, thesis band, asymmetric decision panel (Lucide icons), alternating magazine concept spreads (frosted glass orbs + per-concept gradients), insight pull quote, dark cinematic case study zone (angled edges + star particles + cursor glow + counter animation + sprint week bar + challenge/approach/result triptych), horizontal pipeline steps, horizontal scroll timeline, synthesis closing, DESIGN.md design system
 
 ### UI/UX Milestones (S52-S56)
 - Modal redesign: split layout with WebGL simplex noise shader (category-tinted)
@@ -85,6 +86,10 @@
 - Framework detail pages: per-framework AI Agent integration section
 - Mobile: unstick controls, horizontal category pills, hide redundant nav
 - Category page: card alignment fix, category links from homepage
+- Detail page Luxury Journal redesign: 7 visual zones, WebGL shader, film grain, mouse parallax, Lucide icons
+- DESIGN.md design system: 11-section specification guiding all future page redesigns
+- Structured case study data (10 pilot frameworks): challenge/approach/result triptych format
+- lucide-react added for SVG icon system (replacing emoji)
 
 ### Test Coverage
 - 54 E2E tests: smoke(9) + visual/a11y(8) + interaction(6) + data-display(8) + screenshots(14, incl. dark mode + insights)
