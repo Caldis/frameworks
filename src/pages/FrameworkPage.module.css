@@ -6,7 +6,7 @@
 .page {
   overflow-x: hidden;
   animation: pageIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  /* Neutralize .main padding so full-bleed sections work */
+  /* Full-bleed sections (hero, case) use negative margins to break out of .main padding */
   margin: 0 -48px;
 }
 
