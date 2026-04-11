@@ -6,6 +6,8 @@
 .page {
   overflow-x: hidden;
   animation: pageIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  /* Neutralize .main padding so full-bleed sections work */
+  margin: 0 -48px;
 }
 
 @keyframes pageIn {
@@ -43,14 +45,8 @@
   justify-content: center;
   align-items: center;
   padding: 0 48px 80px;
-  overflow: hidden;
-  /* Break out of any parent container to full viewport width */
-  width: 100vw;
   position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: -100px;
-  padding-top: 100px;
+  overflow: hidden;
 }
 
 /* Fixed ambient shader layer */
@@ -917,13 +913,9 @@
   padding: 80px 48px 80px;
   margin-top: 64px;
   margin-bottom: 64px;
+  position: relative;
   overflow: hidden;
   clip-path: polygon(0 60px, 100% 0, 100% calc(100% - 60px), 0 100%);
-  /* Break out to full viewport width */
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .case::before {
@@ -1996,6 +1988,10 @@
    RESPONSIVE — Mobile (600px)
    ══════════════════════════════════════════════════════ */
 @media (max-width: 600px) {
+  .page {
+    margin: 0 -20px;
+  }
+
   .hero {
     padding: 0 20px 120px;
   }
