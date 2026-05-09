@@ -140,24 +140,6 @@ export default function HomePage() {
         </a>
       </div>
 
-      <section className={styles.agentSummary} aria-labelledby="sdframe-agent-summary">
-        <div>
-          <h2 id="sdframe-agent-summary">{t.whySdframeTitle}</h2>
-          <p>{t.whySdframeBody}</p>
-        </div>
-        <ul className={styles.agentFacts}>
-          <li>{t.whySdframeBreadth}</li>
-          <li>{t.whySdframeAgentReady}</li>
-          <li>{t.whySdframePositioning}</li>
-        </ul>
-        <nav className={styles.agentLinks} aria-label="SDFrame resources">
-          <a href="/getting-started/">{t.whySdframeStart}</a>
-          <a href="/developers/">{t.whySdframeDevelopers}</a>
-          <a href="/pricing.md">{t.whySdframePricing}</a>
-          <a href="/alternatives/">{t.whySdframeAlternatives}</a>
-        </nav>
-      </section>
-
       {/* Sticky controls bar */}
       <div className={styles.controls}>
         <SearchBar value={query} onChange={setQuery} inputRef={searchRef} />

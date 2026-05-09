@@ -12,6 +12,16 @@ test.describe('SDFrame Smoke Tests', () => {
     await expect(page.locator('text=/Showing \\d+ of \\d+/')).toBeVisible()
   })
 
+  test('homepage hides AI readiness summary from normal UI but keeps raw agent content', async ({ page }) => {
+    const raw = await page.request.get('/')
+    const html = await raw.text()
+    expect(html).toContain('agent-readable-summary')
+    expect(html).toContain('/llms-full.txt')
+
+    await page.goto('/')
+    await expect(page.getByRole('heading', { name: /Why SDFrame|为什么用 SDFrame/ })).toHaveCount(0)
+  })
+
   test('search filters frameworks', async ({ page }) => {
     await page.goto('/')
     const searchInput = page.locator('input[type="text"]')
