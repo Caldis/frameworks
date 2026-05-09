@@ -1,0 +1,194 @@
+{
+  "id": 67,
+  "name": "Twelve-Factor App",
+  "name_zh": "十二要素应用",
+  "slug": "twelve-factor-app",
+  "category": "deployment",
+  "desc": "12 principles for building scalable, maintainable cloud services",
+  "desc_zh": "构建可扩展、可维护云服务的12条原则",
+  "steps": [
+    "Audit the codebase: one codebase in version control, with all dependencies explicitly declared and isolated",
+    "Externalize all configuration into environment variables; never commit secrets or environment-specific config to code",
+    "Treat backing services (databases, queues, caches) as attached resources swappable via config",
+    "Enforce strict separation of build, release, and run stages; build once, deploy the artifact to many environments",
+    "Design for disposability and horizontal scale: stateless processes, fast startup, graceful shutdown, dev/prod parity"
+  ],
+  "steps_zh": [
+    "审计代码库：单一代码库纳入版本控制，所有依赖显式声明并隔离",
+    "将所有配置外部化为环境变量；不将密钥或环境特定配置提交到代码",
+    "将后端服务（数据库、队列、缓存）视为可通过配置替换的附加资源",
+    "严格分离构建、发布和运行阶段；一次构建，将制品部署到多个环境",
+    "为可处置性和水平扩展而设计：无状态进程、快速启动、优雅关闭、开发与生产环境对等"
+  ],
+  "ai_relevant": false,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "Build",
+    "Release",
+    "Run"
+  ],
+  "viz_labels_zh": [
+    "构建",
+    "发布",
+    "运行"
+  ],
+  "related": [
+    "infrastructure-as-code",
+    "gitops",
+    "calms-framework"
+  ],
+  "tags": [
+    "twelve-factor",
+    "cloud-native",
+    "saas",
+    "principles",
+    "scalability"
+  ],
+  "origin_author": "Adam Wiggins / Heroku, 2011",
+  "origin_source": "12factor.net manifesto (Adam Wiggins, 2011); influenced by Heroku's experience running hundreds of thousands of SaaS applications",
+  "origin_source_zh": "12factor.net宣言（Adam Wiggins，2011）；受Heroku运行数十万SaaS应用经验的影响",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Building new cloud-native applications or SaaS services that will run on PaaS or container platforms",
+    "Modernizing legacy monoliths to prepare them for containerization and cloud deployment",
+    "Evaluating application architecture readiness for horizontal scaling and multi-environment deployment",
+    "Onboarding new developers to cloud-native best practices with a concise, memorable checklist"
+  ],
+  "when_to_use_zh": [
+    "构建将在PaaS或容器平台上运行的新云原生应用或SaaS服务",
+    "现代化遗留单体应用，为容器化和云部署做准备",
+    "评估应用架构对水平扩展和多环境部署的就绪程度",
+    "使用简洁易记的清单为新开发者提供云原生最佳实践入门指导"
+  ],
+  "core_concepts": [
+    "Codebase: One codebase tracked in version control, with many deploys to different environments from the same artifact",
+    "Config in Environment: Store configuration that varies between environments in environment variables, strictly separated from code",
+    "Backing Services as Attached Resources: Treat databases, message queues, and caches as pluggable resources swappable without code changes",
+    "Stateless Processes: Application processes should be stateless and share-nothing, storing persistent data in backing services",
+    "Dev/Prod Parity: Keep development, staging, and production environments as similar as possible to reduce deployment surprises"
+  ],
+  "core_concepts_zh": [
+    "代码库：一个代码库纳入版本控制，从同一制品多次部署到不同环境",
+    "配置在环境中：将不同环境间变化的配置存储在环境变量中，与代码严格分离",
+    "后端服务作为附加资源：将数据库、消息队列和缓存视为可插拔资源，无需代码变更即可替换",
+    "无状态进程：应用进程应为无状态和无共享的，将持久数据存储在后端服务中",
+    "开发/生产对等：保持开发、预发布和生产环境尽可能相似，以减少部署意外"
+  ],
+  "timeline": [
+    [
+      "2011",
+      "Adam Wiggins publishes the Twelve-Factor App manifesto at 12factor.net based on Heroku's operational experience"
+    ],
+    [
+      "2013",
+      "Docker's rise makes several twelve-factor principles (dependency isolation, disposability) natural defaults"
+    ],
+    [
+      "2015",
+      "Kubernetes adoption accelerates twelve-factor practices: config via ConfigMaps/Secrets, stateless pods, horizontal pod autoscaling"
+    ],
+    [
+      "2019",
+      "Kevin Hoffman publishes Beyond the Twelve-Factor App adding three new factors for modern cloud-native development"
+    ],
+    [
+      "2023",
+      "Twelve-factor principles are deeply embedded in cloud-native frameworks and PaaS offerings as default patterns"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2011",
+      "Adam Wiggins基于Heroku的运维经验在12factor.net发布十二要素应用宣言"
+    ],
+    [
+      "2013",
+      "Docker的兴起使多项十二要素原则（依赖隔离、可处置性）成为自然默认"
+    ],
+    [
+      "2015",
+      "Kubernetes的采用加速了十二要素实践：通过ConfigMaps/Secrets管理配置、无状态Pod、水平Pod自动扩展"
+    ],
+    [
+      "2019",
+      "Kevin Hoffman出版《超越十二要素应用》，为现代云原生开发新增三个要素"
+    ],
+    [
+      "2023",
+      "十二要素原则深度嵌入云原生框架和PaaS产品中，成为默认模式"
+    ]
+  ],
+  "dos": [
+    "Do explicitly declare and isolate all dependencies, because implicit dependencies cause deployment failures across environments",
+    "Do use environment variables for all environment-specific configuration, because this enables the same build artifact to deploy anywhere",
+    "Do design processes to be stateless and disposable with fast startup, because this enables horizontal scaling",
+    "Do treat logs as event streams written to stdout, because centralized log aggregation works best without self-managed log files"
+  ],
+  "dos_zh": [
+    "务必显式声明并隔离所有依赖，因为隐式依赖会导致跨环境部署失败",
+    "务必对所有环境特定配置使用环境变量，因为这使同一构建制品能部署到任何地方",
+    "务必将进程设计为无状态和可处置的并快速启动，因为这支持水平扩展",
+    "务必将日志视为写入stdout的事件流，因为集中式日志聚合在应用不自行管理日志文件时效果最佳"
+  ],
+  "donts": [
+    "Don't store state in local filesystem or in-memory between requests, because horizontal scaling will lose that data",
+    "Don't embed environment-specific configuration in source code, because this prevents deploying the same artifact to multiple environments",
+    "Don't create long-running background workers tightly coupled to the web process, because they should scale independently",
+    "Don't rely on sticky sessions at the load balancer level, because this couples users to specific instances and prevents true statelessness"
+  ],
+  "donts_zh": [
+    "不要在请求之间将状态存储在本地文件系统或内存中，因为水平扩展会丢失这些数据",
+    "不要在源代码中嵌入环境特定配置，因为这阻止将同一制品部署到多个环境",
+    "不要创建与Web进程紧密耦合的长期运行后台工作进程，因为它们应独立扩展",
+    "不要依赖负载均衡器层面的粘性会话，因为这将用户绑定到特定实例并阻止真正的无状态化"
+  ],
+  "case_study_company": "Heroku",
+  "case_study": "Heroku itself is the canonical case study, having developed the Twelve-Factor methodology from observing patterns across hundreds of thousands of applications deployed on their platform. Applications that adhered to twelve-factor principles consistently achieved higher uptime, faster scaling response, and easier debugging. The methodology became the intellectual foundation for an entire generation of PaaS and container platforms.",
+  "case_study_zh": "Heroku本身就是经典案例，其十二要素方法论源于观察在其平台上部署的数十万应用的模式。遵循十二要素原则的应用始终实现更高的可用性、更快的扩展响应和更容易的调试。该方法论成为整整一代PaaS和容器平台的思想基础。",
+  "when_not_to_use": [
+    "Desktop or mobile applications that inherently require local state and filesystem access",
+    "High-performance computing or GPU-bound workloads where statelessness conflicts with long-running computation",
+    "Legacy enterprise applications with deep dependencies on specific OS features or middleware",
+    "Embedded systems or IoT devices where environment variables and attached backing services are impractical"
+  ],
+  "when_not_to_use_zh": [
+    "本质上需要本地状态和文件系统访问的桌面或移动应用",
+    "无状态与长期运行计算冲突的高性能计算或GPU密集型工作负载",
+    "深度依赖特定操作系统特性或中间件的遗留企业应用",
+    "环境变量和附加后端服务不切实际的嵌入式系统或IoT设备"
+  ],
+  "adopters": [
+    "Heroku (Salesforce)",
+    "Netflix",
+    "Spotify",
+    "Shopify",
+    "Airbnb"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "scalability",
+    "portability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Adam Wiggins (2011). \"The Twelve-Factor App\". 12factor.net.",
+  "secondary_sources": [
+    "Kevin Hoffman (2016). \"Beyond the Twelve-Factor App\". O'Reilly Media.",
+    "Cornelia Davis (2019). \"Cloud Native Patterns\". Manning Publications."
+  ],
+  "typed_relations": [
+    {
+      "slug": "infrastructure-as-code",
+      "type": "complement"
+    },
+    {
+      "slug": "gitops",
+      "type": "complement"
+    },
+    {
+      "slug": "calms-framework",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/twelve-factor-app",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/twelve-factor-app.md"
+}

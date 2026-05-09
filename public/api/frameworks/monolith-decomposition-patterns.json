@@ -1,0 +1,183 @@
+{
+  "id": 314,
+  "name": "Monolith Decomposition Patterns",
+  "name_zh": "单体分解模式",
+  "slug": "monolith-decomposition-patterns",
+  "category": "evolution",
+  "desc": "A catalog of proven strategies for systematically extracting microservices from a monolithic codebase while maintaining system stability and team velocity throughout the migration",
+  "desc_zh": "从单体代码库系统化提取微服务的成熟策略目录，在整个迁移过程中保持系统稳定性和团队速度",
+  "steps": [
+    "Map the decomposition surface: analyze the monolith's module dependency graph, identify seam boundaries (packages with low coupling to the rest), and rank extraction candidates by business value, team ownership clarity, and change frequency",
+    "Select a decomposition pattern per seam: apply Strangler Fig for greenfield functionality, Branch by Abstraction for in-place refactoring of hot paths, or Parallel Run for high-risk data migrations — match the pattern to the risk and reversibility needs",
+    "Establish data ownership boundaries before code boundaries: identify which tables belong to each candidate service, implement an anti-corruption layer for cross-boundary data access, and set a timeline for migrating shared tables to owned schemas",
+    "Extract incrementally with dual-write phases: run extracted services in shadow mode alongside the monolith, compare outputs to validate correctness, then progressively shift traffic using feature flags before retiring the monolith code path",
+    "Measure decomposition health: track monolith code coverage removal rate, inter-service coupling index, deployment frequency per extracted service, and P99 latency delta post-extraction to confirm each extraction delivers tangible improvement"
+  ],
+  "steps_zh": [
+    "绘制分解面：分析单体的模块依赖图，识别接缝边界（与其余部分耦合度低的包），并按业务价值、团队所有权清晰度和变更频率对提取候选项排名",
+    "为每个接缝选择分解模式：对绿地功能应用绞杀者无花果，对热路径的原地重构应用抽象分支，对高风险数据迁移应用并行运行——根据风险和可逆性需求匹配模式",
+    "在代码边界之前建立数据所有权边界：识别哪些表属于每个候选服务，为跨边界数据访问实现防腐层，并设定将共享表迁移到自有模式的时间表",
+    "通过双写阶段增量提取：以影子模式运行提取的服务与单体并行，比较输出以验证正确性，然后在停用单体代码路径前使用特性标志逐步转移流量",
+    "衡量分解健康状况：追踪单体代码覆盖移除率、服务间耦合指数、每个提取服务的部署频率以及提取后P99延迟增量，以确认每次提取都带来实质性改善"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Identify",
+    "Extract",
+    "Route",
+    "Decommission"
+  ],
+  "viz_labels_zh": [
+    "识别边界",
+    "提取服务",
+    "路由切换",
+    "下线模块"
+  ],
+  "related": [
+    "strangler-fig-pattern",
+    "branch-by-abstraction",
+    "parallel-run",
+    "database-migration-patterns",
+    "expansion-contraction-pattern"
+  ],
+  "tags": [
+    "migration",
+    "microservices",
+    "decomposition",
+    "monolith",
+    "evolution"
+  ],
+  "origin_author": "Sam Newman (Building Microservices); Martin Fowler (StranglerFig, BranchByAbstraction)",
+  "origin_year": 2015,
+  "origin_source": "Newman, S. (2019). \"Monolith to Microservices\". O'Reilly Media.",
+  "origin_source_zh": "Newman, S.（2019）。《从单体到微服务》。O'Reilly Media。",
+  "complexity": "advanced",
+  "abstraction_level": "system",
+  "maturity_ring": "established",
+  "quality_concerns": [
+    "maintainability",
+    "scalability",
+    "reliability"
+  ],
+  "adopters": [
+    "Amazon",
+    "Uber",
+    "Twitter",
+    "Stack Overflow",
+    "Shopify"
+  ],
+  "when_to_use": [
+    "Monoliths where deployment bottlenecks — all teams must coordinate releases — are measurably reducing team autonomy and delivery speed",
+    "Specific bounded contexts within the monolith experiencing scaling problems that cannot be addressed without isolated deployment and resource allocation",
+    "Organizations growing past 50 engineers where Conway's Law pressure makes a single codebase a social coordination problem as much as a technical one",
+    "Acquisitions or platform migrations where the target architecture is services-based and the monolith must be incrementally replaced rather than big-bang rewritten"
+  ],
+  "when_to_use_zh": [
+    "部署瓶颈处（所有团队必须协调发布）可量化地降低团队自主性和交付速度的单体",
+    "单体内特定有界上下文遇到无法在没有隔离部署和资源分配的情况下解决的扩展问题",
+    "工程师超过50人的组织，康威定律压力使单一代码库既是技术问题也是社会协调问题",
+    "目标架构基于服务的收购或平台迁移，单体必须增量替换而非大爆炸式重写"
+  ],
+  "core_concepts": [
+    "Seam: A natural boundary within the monolith where code can be separated with minimal changes — identified by analyzing import graphs, database table access patterns, and team ownership clusters",
+    "Anti-Corruption Layer (ACL): An adapter layer that translates between the monolith's data model and the extracted service's model, preventing the old model from leaking into the new service's domain",
+    "Dual-Write / Parallel Run: A transitional phase where both the monolith and the extracted service write to their respective data stores simultaneously, enabling comparison validation before full cutover",
+    "Data Decomposition: The process of separating shared database tables into service-owned schemas, typically via the Database-per-Service pattern, which is often harder and riskier than code extraction",
+    "Seam Catalogue: A living inventory of identified decomposition candidates, ranked by extraction priority, current coupling metrics, and assigned owning team — the primary planning artifact for a decomposition programme"
+  ],
+  "core_concepts_zh": [
+    "接缝：单体内的自然边界，代码可以在最小变更下分离——通过分析导入图、数据库表访问模式和团队所有权集群来识别",
+    "防腐层（ACL）：在单体数据模型和提取服务模型之间转换的适配器层，防止旧模型泄漏到新服务的领域中",
+    "双写/并行运行：单体和提取的服务同时向各自数据存储写入的过渡阶段，在完全切换前启用比较验证",
+    "数据分解：将共享数据库表分离到服务自有模式的过程，通常通过每服务数据库模式实现，这往往比代码提取更难且风险更高",
+    "接缝目录：已识别的分解候选项的活体清单，按提取优先级、当前耦合指标和分配的所有团队排名——分解项目的主要规划产物"
+  ],
+  "timeline": [
+    [
+      2004,
+      "Martin Fowler coins 'StranglerFig Application' pattern on martinfowler.com, inspired by strangler fig vines"
+    ],
+    [
+      2014,
+      "Sam Newman publishes 'Building Microservices' (O'Reilly), the first comprehensive treatment of decomposition strategies"
+    ],
+    [
+      2019,
+      "Newman publishes 'Monolith to Microservices' consolidating decomposition patterns into a formal catalogue with data migration guidance"
+    ],
+    [
+      2022,
+      "Modular monolith pattern gains traction as teams recognize that seam identification is valuable independent of microservice extraction"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      2004,
+      "Martin Fowler在martinfowler.com上创造「绞杀者无花果应用」模式，灵感来自绞杀无花果藤"
+    ],
+    [
+      2014,
+      "Sam Newman出版《构建微服务》（O'Reilly），首次全面处理分解策略"
+    ],
+    [
+      2019,
+      "Newman出版《从单体到微服务》，将分解模式整合为带有数据迁移指导的正式目录"
+    ],
+    [
+      2022,
+      "模块化单体模式获得关注，团队认识到接缝识别独立于微服务提取具有价值"
+    ]
+  ],
+  "dos": [
+    "Do decompose data boundaries before or in parallel with code boundaries — a microservice that shares a database with the monolith is a distributed monolith, not a microservice",
+    "Do measure the monolith's seam graph before starting — teams that skip this analysis tend to extract services along team lines rather than domain lines, creating chatty inter-service APIs",
+    "Do use feature flags to control traffic migration to extracted services so you can roll back instantly without a deployment if correctness problems are discovered",
+    "Do define done criteria for each extraction: ownership of the data store, zero cross-database joins, independent deployment pipeline, and team autonomy over technology choices"
+  ],
+  "dos_zh": [
+    "在代码边界之前或与之同步分解数据边界——与单体共享数据库的微服务是分布式单体，而非微服务",
+    "在开始前测量单体的接缝图——跳过此分析的团队倾向于沿团队边界而非领域边界提取服务，创建冗长的服务间API",
+    "使用特性标志控制到提取服务的流量迁移，以便在发现正确性问题时可以立即回滚而无需部署",
+    "为每次提取定义完成标准：数据存储所有权、零跨数据库联接、独立部署管道以及团队对技术选择的自主权"
+  ],
+  "donts": [
+    "Don't start with a big-bang rewrite — the historical failure rate of full rewrites is over 80%; incremental extraction preserves working software throughout",
+    "Don't extract services for technical reasons alone (language preference, framework modernity) — only extract when there is a concrete team autonomy or scaling problem to solve",
+    "Don't ignore the distributed systems tax: extracted services introduce network latency, partial failure modes, and distributed transactions that add complexity the monolith did not have",
+    "Don't underestimate the data decomposition problem — shared database tables with foreign keys, triggers, and implicit ownership are the hardest part of most decompositions"
+  ],
+  "donts_zh": [
+    "不要从大爆炸式重写开始——完整重写的历史失败率超过80%；增量提取在整个过程中保留可工作的软件",
+    "不要仅出于技术原因（语言偏好、框架现代性）提取服务——只有在有具体的团队自主权或扩展问题需要解决时才提取",
+    "不要忽视分布式系统的代价：提取的服务引入了单体没有的网络延迟、部分故障模式和分布式事务，增加了复杂性",
+    "不要低估数据分解问题——具有外键、触发器和隐式所有权的共享数据库表是大多数分解中最难的部分"
+  ],
+  "case_study_company": "Uber",
+  "case_study": "Uber's 2016-2019 decomposition of their original Node.js monolith ('God') into domain microservices is one of the most documented large-scale monolith decompositions. They applied Strangler Fig at the API gateway level, routing specific endpoints to new Go-based services while the Node.js monolith continued handling the remainder. Their key learning: database decomposition was 3-5x more effort than code decomposition. Teams that extracted services without migrating data ownership created 'nano-monoliths' — services that still required coordinated deployment due to shared schema dependencies.",
+  "case_study_zh": "Uber 2016-2019年将其原始Node.js单体（「God」）分解为领域微服务是记录最为详尽的大规模单体分解之一。他们在API网关层应用绞杀者无花果，将特定端点路由到新的Go服务，同时Node.js单体继续处理其余部分。他们的关键学习：数据库分解的工作量是代码分解的3-5倍。在没有迁移数据所有权的情况下提取服务的团队创建了「纳米单体」——由于共享模式依赖仍需协调部署的服务。",
+  "when_not_to_use": [
+    "Monoliths with fewer than 10 engineers where coordination overhead is manageable and the deployment bottleneck does not yet manifest",
+    "Well-structured modular monoliths where internal module boundaries are clean — the right answer may be to preserve the monolith and strengthen its internal structure",
+    "Systems under active business pressure where engineering bandwidth cannot absorb the productivity dip that accompanies any large-scale decomposition",
+    "Teams lacking observability infrastructure — decomposing a monolith without distributed tracing and service-level metrics makes debugging regressions extremely difficult"
+  ],
+  "when_not_to_use_zh": [
+    "工程师少于10人的单体，协调开销可控，部署瓶颈尚未显现",
+    "内部模块边界清晰的结构良好的模块化单体——正确答案可能是保留单体并加强其内部结构",
+    "处于活跃业务压力下的系统，工程带宽无法吸收任何大规模分解所带来的生产力下降",
+    "缺乏可观测性基础设施的团队——在没有分布式追踪和服务级别指标的情况下分解单体使调试回归极其困难"
+  ],
+  "primary_source": "Newman, S. (2019). \"Monolith to Microservices\". O'Reilly Media. ISBN 978-1-492-04714-1",
+  "primary_source_zh": "Newman, S.（2019）。《从单体到微服务》。O'Reilly Media。ISBN 978-1-492-04714-1",
+  "secondary_sources": [
+    "Fowler, M. (2004). \"StranglerFigApplication\". martinfowler.com/bliki/StranglerFigApplication.html",
+    "Richardson, C. (2019). \"Microservices Patterns\". Manning Publications. Chapter 13: Refactoring to Microservices."
+  ],
+  "secondary_sources_zh": [
+    "Fowler, M.（2004）。《绞杀者无花果应用》。martinfowler.com/bliki/StranglerFigApplication.html",
+    "Richardson, C.（2019）。《微服务模式》。Manning出版社。第13章：重构为微服务。"
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/monolith-decomposition-patterns",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/monolith-decomposition-patterns.md"
+}

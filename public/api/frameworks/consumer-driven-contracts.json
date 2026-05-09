@@ -1,0 +1,198 @@
+{
+  "id": 135,
+  "name": "Consumer-Driven Contracts",
+  "name_zh": "消费者驱动契约",
+  "slug": "consumer-driven-contracts",
+  "category": "api",
+  "desc": "API testing approach where consumers define the expectations providers must satisfy",
+  "desc_zh": "消费者定义期望、提供者必须满足的API测试方法",
+  "steps": [
+    "Each consumer team writes contract tests that specify the exact requests they send and the response shape they expect from the provider",
+    "Contracts are published to a shared broker (e.g., Pact Broker) where providers can discover all consumer expectations",
+    "The provider team runs all published consumer contracts against their implementation to verify compatibility",
+    "When contract verification fails, the provider team and affected consumer team collaborate to resolve the incompatibility before deployment",
+    "Integrate contract verification into CI/CD pipelines so that breaking changes are caught before they reach production"
+  ],
+  "steps_zh": [
+    "每个消费者团队编写契约测试，指定其发送的确切请求和期望从提供者获得的响应结构",
+    "契约发布到共享代理（如Pact Broker），提供者可在此发现所有消费者期望",
+    "提供者团队针对其实现运行所有已发布的消费者契约以验证兼容性",
+    "当契约验证失败时，提供者团队与受影响的消费者团队协作，在部署前解决不兼容问题",
+    "将契约验证集成到CI/CD流水线中，确保在到达生产环境之前捕获破坏性变更"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Consumer Contract",
+    "Contract Broker",
+    "Provider Verify",
+    "Resolve Conflict",
+    "CI Gate"
+  ],
+  "viz_labels_zh": [
+    "消费者契约",
+    "契约代理",
+    "提供者验证",
+    "冲突解决",
+    "CI门控"
+  ],
+  "related": [
+    "openapi-specification",
+    "api-gateway-pattern",
+    "grpc-protocol-buffers"
+  ],
+  "tags": [
+    "contracts",
+    "testing",
+    "consumer-driven",
+    "pact",
+    "compatibility"
+  ],
+  "origin_author": "Ian Robinson, 2006; tooling popularized by Pact (2013, DiUS/Beth Skurrie)",
+  "origin_source": "Consumer-Driven Contracts: A Service Evolution Pattern (Ian Robinson, 2006); Building Microservices (Sam Newman, 2nd ed., 2021, Ch. 6)",
+  "origin_source_zh": "《消费者驱动契约：服务演进模式》（Ian Robinson，2006）；《构建微服务》（Sam Newman，第2版，2021，第6章）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When multiple independent teams build services that depend on each other's APIs and need confidence in compatibility",
+    "When integration tests are too slow, brittle, or expensive to run against live downstream services",
+    "When deploying microservices independently requires assurance that API changes won't break existing consumers",
+    "When evolving a shared API that serves many consumers, each with different usage patterns"
+  ],
+  "when_to_use_zh": [
+    "当多个独立团队构建相互依赖API的服务，需要对兼容性有信心时",
+    "当集成测试对活跃下游服务运行太慢、太脆弱或成本太高时",
+    "当独立部署微服务需要确保API变更不会破坏现有消费者时",
+    "当演进一个服务多个消费者的共享API，且每个消费者有不同使用模式时"
+  ],
+  "core_concepts": [
+    "Consumer Contracts: Each consumer defines a lightweight test that captures exactly what it needs from the provider — no more, no less",
+    "Provider Verification: The provider runs all consumer contracts as tests against its own codebase, ensuring it satisfies every consumer's expectations",
+    "Contract Broker: A shared registry (e.g., Pact Broker) stores and versions contracts, enabling providers to discover consumer expectations without direct communication",
+    "Can-I-Deploy: An automated check in CI/CD that verifies whether a specific version of a service is compatible with all its consumers before deployment",
+    "Postel's Law in Practice: Providers are liberal in what they accept and conservative in what they produce, guided by actual consumer usage rather than assumed usage"
+  ],
+  "core_concepts_zh": [
+    "消费者契约：每个消费者定义一个轻量测试，精确捕获其从提供者所需的内容——不多不少",
+    "提供者验证：提供者针对自身代码库运行所有消费者契约作为测试，确保满足每个消费者的期望",
+    "契约代理：共享注册中心（如Pact Broker）存储和版本化契约，使提供者无需直接沟通即可发现消费者期望",
+    "可否部署检查：CI/CD中的自动化检查，在部署前验证服务的特定版本是否与所有消费者兼容",
+    "Postel定律实践：提供者在接受时宽松、在产出时严格，以实际消费者使用而非假设使用为指导"
+  ],
+  "timeline": [
+    [
+      "2006",
+      "Ian Robinson publishes the seminal paper 'Consumer-Driven Contracts: A Service Evolution Pattern'"
+    ],
+    [
+      "2013",
+      "Pact framework created at DiUS (Australia), becoming the de facto tool for consumer-driven contract testing"
+    ],
+    [
+      "2016",
+      "Pact Broker released, enabling centralized contract storage and cross-service compatibility verification"
+    ],
+    [
+      "2018",
+      "Spring Cloud Contract provides JVM-native consumer-driven contract testing for Spring Boot microservices"
+    ],
+    [
+      "2021",
+      "PactFlow (commercial SaaS) and Pact v4 specification unify HTTP, messaging, and plugin-based contract types"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2006",
+      "Ian Robinson发表开创性论文「消费者驱动契约：服务演进模式」"
+    ],
+    [
+      "2013",
+      "Pact框架在DiUS（澳大利亚）创建，成为消费者驱动契约测试的事实标准工具"
+    ],
+    [
+      "2016",
+      "Pact Broker发布，支持集中化契约存储和跨服务兼容性验证"
+    ],
+    [
+      "2018",
+      "Spring Cloud Contract为Spring Boot微服务提供JVM原生的消费者驱动契约测试"
+    ],
+    [
+      "2021",
+      "PactFlow（商业SaaS）和Pact v4规范统一了HTTP、消息和基于插件的契约类型"
+    ]
+  ],
+  "dos": [
+    "Do write contracts from the consumer's perspective, specifying only what the consumer actually uses, because over-specifying creates false coupling",
+    "Do integrate contract verification into both consumer and provider CI pipelines because manual verification is error-prone and unsustainable",
+    "Do version contracts and use the can-i-deploy check before every deployment because it prevents incompatible services from reaching production",
+    "Do start with the most critical service boundaries because retrofitting contracts everywhere at once is overwhelming"
+  ],
+  "dos_zh": [
+    "从消费者视角编写契约，仅指定消费者实际使用的内容，因为过度指定会产生虚假耦合",
+    "将契约验证集成到消费者和提供者的CI流水线中，因为手动验证容易出错且不可持续",
+    "版本化契约并在每次部署前使用可否部署检查，因为这能防止不兼容的服务到达生产环境",
+    "从最关键的服务边界开始，因为一次性在所有地方改造契约会令人不堪重负"
+  ],
+  "donts": [
+    "Don't let consumers over-specify contracts by asserting on fields they don't use because it creates brittle tests that break on benign provider changes",
+    "Don't use consumer-driven contracts as a replacement for end-to-end integration tests because they verify interface compatibility, not business workflow correctness",
+    "Don't ignore contract test failures in CI because a green build with failing contracts means broken consumers in production",
+    "Don't let contracts become stale by failing to update them when consumer behavior changes because outdated contracts provide false confidence"
+  ],
+  "donts_zh": [
+    "不要让消费者对其不使用的字段进行断言来过度指定契约，因为这会创建脆弱的测试，在提供者进行无害变更时也会失败",
+    "不要将消费者驱动契约作为端到端集成测试的替代品，因为它们验证的是接口兼容性而非业务流程正确性",
+    "不要忽略CI中的契约测试失败，因为带有失败契约的绿色构建意味着生产中的消费者会出问题",
+    "不要因消费者行为变更时未更新契约而让契约过时，因为过时的契约提供虚假的信心"
+  ],
+  "case_study_company": "Atlassian",
+  "case_study": "Atlassian adopted Pact-based consumer-driven contracts across its microservices powering Jira and Confluence. With over 200 services and dozens of teams, integration testing had become a multi-hour bottleneck in their CI pipeline. By shifting to consumer-driven contracts, each service could verify API compatibility in under 2 minutes without standing up dependent services. This reduced their integration test feedback cycle from hours to minutes and eliminated 70% of integration-related production incidents.",
+  "case_study_zh": "Atlassian在驱动Jira和Confluence的微服务中全面采用基于Pact的消费者驱动契约。拥有超过200个服务和数十个团队，集成测试已成为CI流水线中数小时的瓶颈。通过转向消费者驱动契约，每个服务可以在不启动依赖服务的情况下在2分钟内验证API兼容性。这将集成测试反馈周期从数小时缩短至分钟，并消除了70%的集成相关生产事故。",
+  "when_not_to_use": [
+    "Monolithic applications where all components are deployed together and internal API compatibility is guaranteed by the build",
+    "Rapidly prototyping a new service where the API surface is changing daily and contracts would need constant rewriting",
+    "When there is only one consumer per provider, making direct integration tests simpler and equally effective",
+    "Third-party APIs where you have no influence over the provider's implementation and cannot share contracts"
+  ],
+  "when_not_to_use_zh": [
+    "所有组件一起部署的单体应用，构建已保证内部API兼容性",
+    "快速原型开发新服务时，API表面每天变化，契约需要不断重写",
+    "每个提供者只有一个消费者时，直接集成测试更简单且同样有效",
+    "第三方API，你无法影响提供者的实现且无法共享契约"
+  ],
+  "adopters": [
+    "Atlassian",
+    "ING Bank",
+    "DiUS",
+    "Spotify",
+    "REA Group"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "testability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Robinson, I. (2006). \"Consumer-Driven Contracts: A Service Evolution Pattern\". martinfowler.com.",
+  "secondary_sources": [
+    "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 6. O'Reilly Media.",
+    "Skurrie, B. (2013). \"Pact: A Contract Testing Tool\". pact.io."
+  ],
+  "typed_relations": [
+    {
+      "slug": "openapi-specification",
+      "type": "complement"
+    },
+    {
+      "slug": "api-gateway-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "grpc-protocol-buffers",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/consumer-driven-contracts",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/consumer-driven-contracts.md"
+}

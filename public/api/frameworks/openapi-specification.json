@@ -1,0 +1,198 @@
+{
+  "id": 136,
+  "name": "OpenAPI Specification",
+  "name_zh": "OpenAPI规范",
+  "slug": "openapi-specification",
+  "category": "api",
+  "desc": "Machine-readable API description standard for RESTful services",
+  "desc_zh": "面向RESTful服务的机器可读API描述标准",
+  "steps": [
+    "Define the OpenAPI document structure: info metadata, server URLs, and global security schemes in YAML or JSON format",
+    "Describe each API endpoint as a path object with HTTP methods, parameters (path, query, header), and request bodies",
+    "Define reusable schemas in the components section using JSON Schema for request/response models, reducing duplication",
+    "Add response definitions for each status code including error responses, linking to component schemas where appropriate",
+    "Validate the specification using linting tools (Spectral, openapi-generator), then generate documentation, client SDKs, and server stubs"
+  ],
+  "steps_zh": [
+    "定义OpenAPI文档结构：以YAML或JSON格式描述info元数据、服务器URL和全局安全方案",
+    "将每个API端点描述为路径对象，包含HTTP方法、参数（路径、查询、头部）和请求体",
+    "在components部分使用JSON Schema定义可复用的请求/响应模型模式，减少重复",
+    "为每个状态码添加响应定义（包括错误响应），在适当处链接到组件模式",
+    "使用lint工具（Spectral、openapi-generator）验证规范，然后生成文档、客户端SDK和服务端存根"
+  ],
+  "ai_relevant": true,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Info Metadata",
+    "Path Object",
+    "Schema Components",
+    "Response Codes",
+    "Generate Lint"
+  ],
+  "viz_labels_zh": [
+    "信息元数据",
+    "路径对象",
+    "模式组件",
+    "响应码",
+    "生成验证"
+  ],
+  "related": [
+    "consumer-driven-contracts",
+    "asyncapi",
+    "hateoas"
+  ],
+  "tags": [
+    "openapi",
+    "swagger",
+    "specification",
+    "documentation",
+    "code-generation"
+  ],
+  "origin_author": "Tony Tam / Swagger (2011); donated to OpenAPI Initiative / Linux Foundation (2015)",
+  "origin_source": "OpenAPI Specification (spec.openapis.org); RESTful Web APIs (Leonard Richardson & Mike Amundsen, 2013, Ch. 9)",
+  "origin_source_zh": "OpenAPI规范（spec.openapis.org）；《RESTful Web API》（Leonard Richardson & Mike Amundsen，2013，第9章）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "When designing REST APIs that need a single source of truth for documentation, client generation, and testing",
+    "When multiple teams consume your API and need unambiguous, machine-readable interface documentation",
+    "When enforcing API design standards across an organization using automated linting in CI pipelines",
+    "When building developer portals where interactive API exploration (try-it-out) is essential for adoption"
+  ],
+  "when_to_use_zh": [
+    "当设计REST API需要文档、客户端生成和测试的单一事实来源时",
+    "当多个团队消费你的API并需要明确的、机器可读的接口文档时",
+    "当在组织中通过CI流水线的自动化lint来执行API设计标准时",
+    "当构建开发者门户，交互式API探索（试用功能）对采用至关重要时"
+  ],
+  "core_concepts": [
+    "Design-First Approach: Write the OpenAPI specification before implementing the API, using it as a contract between frontend and backend teams",
+    "Path and Operation Objects: Each API endpoint is defined by its URL path and HTTP method, with typed parameters, request bodies, and response schemas",
+    "Components and Reuse: Shared schemas, security schemes, parameters, and response objects are defined once in the components section and referenced via $ref",
+    "Code Generation: Tools like openapi-generator and swagger-codegen produce type-safe client SDKs, server stubs, and mock servers from the specification",
+    "Linting and Governance: Rulesets (e.g., Spectral) enforce naming conventions, pagination standards, and error formats across all API specifications in an organization"
+  ],
+  "core_concepts_zh": [
+    "设计优先方法：在实现API之前编写OpenAPI规范，将其作为前后端团队之间的契约",
+    "路径和操作对象：每个API端点由URL路径和HTTP方法定义，包含类型化的参数、请求体和响应模式",
+    "组件与复用：共享的模式、安全方案、参数和响应对象在components部分定义一次，通过$ref引用",
+    "代码生成：openapi-generator和swagger-codegen等工具从规范生成类型安全的客户端SDK、服务端存根和模拟服务器",
+    "Lint与治理：规则集（如Spectral）在组织内所有API规范中强制执行命名约定、分页标准和错误格式"
+  ],
+  "timeline": [
+    [
+      "2011",
+      "Tony Tam creates Swagger specification and tooling for REST API documentation at Wordnik"
+    ],
+    [
+      "2015",
+      "Swagger specification donated to the OpenAPI Initiative under the Linux Foundation, renamed to OpenAPI Specification 2.0"
+    ],
+    [
+      "2017",
+      "OpenAPI 3.0 released with major improvements: components, links, callbacks, and multiple server support"
+    ],
+    [
+      "2021",
+      "OpenAPI 3.1 aligns fully with JSON Schema 2020-12, enabling complete schema compatibility"
+    ],
+    [
+      "2024",
+      "OpenAPI 3.1 becomes the dominant API specification format; AI coding assistants use OpenAPI specs for tool/function calling"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2011",
+      "Tony Tam在Wordnik创建Swagger规范和工具用于REST API文档"
+    ],
+    [
+      "2015",
+      "Swagger规范捐赠给Linux基金会下的OpenAPI倡议，更名为OpenAPI规范2.0"
+    ],
+    [
+      "2017",
+      "OpenAPI 3.0发布，带来重大改进：组件、链接、回调和多服务器支持"
+    ],
+    [
+      "2021",
+      "OpenAPI 3.1与JSON Schema 2020-12完全对齐，实现完整的模式兼容性"
+    ],
+    [
+      "2024",
+      "OpenAPI 3.1成为主流API规范格式；AI编码助手使用OpenAPI规范进行工具/函数调用"
+    ]
+  ],
+  "dos": [
+    "Do adopt a design-first workflow where the OpenAPI spec is written and reviewed before any code because it catches API design issues before implementation",
+    "Do use $ref extensively for schema reuse because duplicated schemas inevitably drift and cause inconsistencies",
+    "Do integrate Spectral or similar linting into CI because it enforces organizational API standards automatically",
+    "Do include example values for all request and response schemas because they power interactive documentation and mock servers"
+  ],
+  "dos_zh": [
+    "采用设计优先的工作流，在编写任何代码之前编写并审查OpenAPI规范，因为这能在实现前发现API设计问题",
+    "广泛使用$ref进行模式复用，因为重复的模式不可避免地会漂移并导致不一致",
+    "将Spectral或类似的lint工具集成到CI中，因为它能自动执行组织的API标准",
+    "为所有请求和响应模式包含示例值，因为它们驱动交互式文档和模拟服务器"
+  ],
+  "donts": [
+    "Don't generate the OpenAPI spec from code as the primary workflow because code-first approaches produce specs that mirror implementation rather than design intent",
+    "Don't ignore the components section and inline all schemas because it leads to massive duplication and maintenance burden",
+    "Don't treat the OpenAPI spec as documentation only because its greatest value is in code generation, testing, and contract enforcement",
+    "Don't skip error response schemas because undocumented error formats force consumers to handle errors through guesswork"
+  ],
+  "donts_zh": [
+    "不要将从代码生成OpenAPI规范作为主要工作流，因为代码优先的方法产生的规范反映的是实现而非设计意图",
+    "不要忽略components部分并内联所有模式，因为这会导致大量重复和维护负担",
+    "不要仅将OpenAPI规范视为文档，因为其最大价值在于代码生成、测试和契约执行",
+    "不要跳过错误响应模式，因为未文档化的错误格式迫使消费者通过猜测来处理错误"
+  ],
+  "case_study_company": "Stripe",
+  "case_study": "Stripe maintains one of the most comprehensive OpenAPI specifications in the industry, covering every endpoint of their payment API. The specification drives automatic generation of client libraries in 7+ languages, interactive API documentation on their developer portal, and internal contract testing. By treating the OpenAPI spec as the single source of truth, Stripe ensures that documentation, SDKs, and the live API never diverge, which has been a key factor in their industry-leading developer experience.",
+  "case_study_zh": "Stripe维护着业界最全面的OpenAPI规范之一，覆盖其支付API的每个端点。该规范驱动着7种以上语言的客户端库自动生成、开发者门户上的交互式API文档以及内部契约测试。通过将OpenAPI规范作为单一事实来源，Stripe确保文档、SDK和实时API永不偏离，这是其行业领先的开发者体验的关键因素。",
+  "when_not_to_use": [
+    "GraphQL APIs where the schema itself serves as the specification and OpenAPI adds no value",
+    "Event-driven or asynchronous APIs where AsyncAPI is the appropriate specification standard",
+    "Internal gRPC services where Protocol Buffer definitions already serve as the machine-readable contract",
+    "Extremely experimental APIs that change multiple times per day, where spec maintenance overhead exceeds its benefits"
+  ],
+  "when_not_to_use_zh": [
+    "GraphQL API，其模式本身就是规范，OpenAPI不增加价值",
+    "事件驱动或异步API，AsyncAPI是适当的规范标准",
+    "内部gRPC服务，Protocol Buffer定义已作为机器可读契约",
+    "每天变更多次的极端实验性API，规范维护开销超过其收益"
+  ],
+  "adopters": [
+    "Stripe",
+    "Twilio",
+    "GitHub",
+    "Microsoft",
+    "Google"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "usability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "OpenAPI Initiative (2021). \"OpenAPI Specification v3.1.0\". spec.openapis.org.",
+  "secondary_sources": [
+    "Richardson, L. & Amundsen, M. (2013). \"RESTful Web APIs\", Ch. 9. O'Reilly Media.",
+    "Tam, T. (2011). \"Swagger: A Simple, Open Standard for Describing REST APIs\". swagger.io."
+  ],
+  "typed_relations": [
+    {
+      "slug": "consumer-driven-contracts",
+      "type": "complement"
+    },
+    {
+      "slug": "asyncapi",
+      "type": "alternative"
+    },
+    {
+      "slug": "hateoas",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/openapi-specification",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/openapi-specification.md"
+}

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documentation - SDFrame</title>
+  <meta name="description" content="Documentation for using SDFrame as a human reference and as an AI-agent-readable software design framework catalog.">
+  <link rel="canonical" href="https://sdframe.caldis.me/docs/">
+  <style>
+    :root { color-scheme: light dark; --fg: #1d1b18; --muted: #5f5a52; --line: #ddd6cb; --bg: #faf8f3; --panel: #fffdf8; --accent: #345c8c; }
+    body { margin: 0; font: 16px/1.65 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--fg); }
+    main { max-width: 900px; margin: 0 auto; padding: 40px 20px 72px; }
+    nav { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; font-size: 14px; }
+    a { color: var(--accent); }
+    h1 { font-size: clamp(2rem, 6vw, 4rem); line-height: 1.05; margin: 0 0 16px; }
+    h2 { font-size: 1.35rem; margin: 32px 0 8px; }
+    p { margin: 0 0 14px; color: var(--muted); }
+    ul, ol { color: var(--muted); padding-left: 22px; }
+    li { margin: 4px 0; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    pre { overflow: auto; padding: 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    th, td { border: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
+    .lede { font-size: 1.15rem; max-width: 760px; }
+  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Documentation","description":"Documentation for using SDFrame as a human reference and as an AI-agent-readable software design framework catalog.","url":"https://sdframe.caldis.me/docs/","isPartOf":{"@type":"WebSite","name":"SDFrame","url":"https://sdframe.caldis.me"},"publisher":{"@type":"Person","name":"Caldis","url":"https://github.com/Caldis"},"dateModified":"2026-05-09"}</script>
+</head>
+<body>
+  <main>
+    <nav aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/docs/">Docs</a>
+      <a href="/developers/">Developers</a>
+      <a href="/api/">API</a>
+      <a href="/pricing/">Pricing</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/agent">Agent guide</a>
+    </nav>
+    <h1>SDFrame Documentation</h1>
+    <p class="lede">Documentation for using SDFrame as a human reference and as an AI-agent-readable software design framework catalog.</p>
+
+    <section>
+      <h2>Overview</h2>
+      <p>SDFrame organizes 317 software design frameworks into 13 categories. Each framework record includes bilingual descriptions, implementation steps, source metadata, adopters, quality concerns, abstraction level, maturity, and related framework links.</p>
+    </section>
+
+    <section>
+      <h2>Core workflows</h2>
+      <ol><li>Browse all frameworks and filter by category or dimension.</li><li>Use the selector to answer project-context questions and narrow the framework list.</li><li>Compare two or three frameworks side by side.</li><li>Open a framework detail page for steps, do/dont guidance, source links, and related frameworks.</li><li>Use the AI skill package when an agent needs a repeatable framework selection protocol.</li></ol>
+    </section>
+
+    <section>
+      <h2>Documentation files</h2>
+      <ul><li><a href="/index.md">/index.md</a> is the Markdown homepage.</li><li><a href="/llms.txt">/llms.txt</a> is a compact AI entry point.</li><li><a href="/llms-full.txt">/llms-full.txt</a> is the full agent context.</li><li><a href="/skill/SKILL.md">/skill/SKILL.md</a> is the agent interaction protocol.</li></ul>
+    </section>
+  </main>
+</body>
+</html>

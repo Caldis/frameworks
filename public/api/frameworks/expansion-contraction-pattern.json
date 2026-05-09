@@ -1,0 +1,190 @@
+{
+  "id": 246,
+  "name": "Expansion/Contraction Pattern",
+  "name_zh": "扩展/收缩模式",
+  "slug": "expansion-contraction-pattern",
+  "category": "evolution",
+  "desc": "Safe API and schema migration technique that introduces new capabilities before removing old ones, allowing all clients to migrate without downtime",
+  "desc_zh": "安全的 API 和模式迁移技术，在移除旧能力之前引入新能力，让所有客户端无需停机即可完成迁移",
+  "steps": [
+    "Expansion phase: add the new API shape, field, or behavior alongside the existing one without removing anything; both old and new forms are simultaneously supported so no client is broken by the deployment",
+    "Migrate consumers: update all known consumers (internal services, mobile clients, partner integrations) to use the new form, using telemetry to track the percentage of traffic still using the old form",
+    "Validate migration completeness: confirm through API usage metrics and consumer-driven contract tests that traffic on the old form has dropped to zero or acceptable residual levels",
+    "Contraction phase: remove the old form once all consumers have migrated; publish a deprecation notice with the planned removal date before contraction, providing the agreed sunset window",
+    "Monitor after contraction: watch for unexpected 400/404 errors from any consumers that were missed in the migration audit, and maintain a rollback plan for the first 72 hours post-contraction"
+  ],
+  "steps_zh": [
+    "扩展阶段：在保留现有 API 形态、字段或行为的同时添加新的形态，不删除任何内容；新旧两种形式同时支持，部署不会破坏任何客户端",
+    "迁移消费者：更新所有已知消费者（内部服务、移动客户端、合作伙伴集成）以使用新形式，使用遥测跟踪仍在使用旧形式的流量占比",
+    "验证迁移完整性：通过 API 使用指标和消费者驱动的契约测试确认旧形式的流量已降至零或可接受的残余水平",
+    "收缩阶段：一旦所有消费者完成迁移，移除旧形式；在收缩之前发布带计划移除日期的废弃通知，提供约定的下线窗口",
+    "收缩后监控：观察来自迁移审计中遗漏的消费者产生的意外 400/404 错误，并在收缩后最初 72 小时内维护回滚计划"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Expand",
+    "Dual Support",
+    "Migrate",
+    "Contract"
+  ],
+  "viz_labels_zh": [
+    "扩展阶段",
+    "双写兼容",
+    "迁移阶段",
+    "收缩阶段"
+  ],
+  "related": [
+    "strangler-fig-pattern",
+    "api-versioning-strategies",
+    "branch-by-abstraction"
+  ],
+  "tags": [
+    "migration",
+    "backward-compatibility",
+    "api-evolution",
+    "zero-downtime",
+    "deprecation"
+  ],
+  "origin_author": "Sam Newman",
+  "origin_source": "Newman, S. (2019). \"Monolith to Microservices\". O'Reilly Media, Ch. 3 (Splitting Apart the Database); Parallel Change pattern (Danilo Sato, martinfowler.com)",
+  "origin_source_zh": "Newman, S.（2019）。《从单体到微服务》，O'Reilly，第 3 章（拆分数据库）；并行变更模式（Danilo Sato，martinfowler.com）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When renaming a database column, API field, or service endpoint that is consumed by multiple services or clients that cannot be updated atomically",
+    "When changing the type or structure of a shared API contract (splitting a field into two, merging two endpoints) where a flag-day cutover would require coordinated deployment of multiple teams",
+    "When migrating a database schema in a system that must remain online during the migration, requiring the application to read/write both old and new column formats simultaneously",
+    "When a public API field needs to be removed after deprecation and you need a safe, observable migration path that does not require client downtime"
+  ],
+  "when_to_use_zh": [
+    "当重命名被多个服务或客户端消费的数据库列、API 字段或服务端点，且这些客户端无法原子性更新时",
+    "当更改共享 API 契约的类型或结构（将字段拆分为两个、合并两个端点），标志日切换需要多个团队协调部署时",
+    "当在必须保持在线的系统中迁移数据库模式，要求应用同时读写新旧两种列格式时",
+    "当公共 API 字段在废弃后需要被移除，你需要一个不要求客户端停机的安全、可观察的迁移路径时"
+  ],
+  "core_concepts": [
+    "Parallel Change (Expand): The first phase adds the new form alongside the old without removing anything, creating a temporary period where both forms exist and are valid — a structural backward-compatibility guarantee",
+    "Consumer Migration Window: The period between expansion and contraction during which all consumers are expected to migrate; this window's length is determined by consumer SLAs, communication lead time, and organizational change velocity",
+    "Usage-Based Contraction Gating: Contraction should be triggered by data (zero or near-zero usage of the old form as confirmed by metrics) rather than by calendar date alone, reducing the risk of premature removal",
+    "Database Dual-Write/Dual-Read: When expanding a database schema (splitting a column), the application must write to both old and new columns and read from the new column with fallback to old, until the old column is confirmed empty",
+    "Contract Tests as Migration Proof: Consumer-driven contract tests (Pact) serve as automated proof that consumers have migrated to the new form; a green contract test suite is a precondition for the contraction phase"
+  ],
+  "core_concepts_zh": [
+    "并行变更（扩展）：第一阶段在不删除旧形式的情况下添加新形式，创造一个新旧两种形式都存在且有效的临时期——一种结构性向后兼容性保证",
+    "消费者迁移窗口：扩展和收缩之间的期间，期间所有消费者应完成迁移；该窗口长度由消费者 SLA、沟通提前期和组织变更速度决定",
+    "基于使用量的收缩门禁：收缩应由数据触发（指标确认旧形式使用量为零或接近零），而非仅依据日历日期，降低过早移除的风险",
+    "数据库双写/双读：当扩展数据库模式（拆分列）时，应用必须同时写入新旧两列，并从新列读取（回退到旧列），直到确认旧列为空",
+    "契约测试作为迁移证明：消费者驱动的契约测试（Pact）作为消费者已迁移到新形式的自动化证明；契约测试套件通过是收缩阶段的前提条件"
+  ],
+  "timeline": [
+    [
+      "2010",
+      "Martin Fowler describes 'Parallel Change' on martinfowler.com as a refactoring technique for safely changing API signatures"
+    ],
+    [
+      "2015",
+      "Danilo Sato formalizes the Parallel Change pattern with expand/migrate/contract phases as a named structural refactoring pattern"
+    ],
+    [
+      "2019",
+      "Sam Newman applies the expansion/contraction technique explicitly to database schema migrations in 'Monolith to Microservices', popularizing it for zero-downtime schema evolution"
+    ],
+    [
+      "2022",
+      "Consumer-driven contract testing tools (Pact, Spring Contract) integrate migration tracking, providing automated migration completeness verification before contraction"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2010",
+      "Martin Fowler 在 martinfowler.com 上将「并行变更」描述为安全更改 API 签名的重构技术"
+    ],
+    [
+      "2015",
+      "Danilo Sato 将并行变更模式正式确立为具有扩展/迁移/收缩阶段的命名结构重构模式"
+    ],
+    [
+      "2019",
+      "Sam Newman 在《从单体到微服务》中将扩展/收缩技术明确应用于数据库模式迁移，推广了零停机模式演进"
+    ],
+    [
+      "2022",
+      "消费者驱动的契约测试工具（Pact、Spring Contract）集成了迁移跟踪，在收缩前提供自动化的迁移完整性验证"
+    ]
+  ],
+  "dos": [
+    "Do instrument both old and new API forms with request counters from day one of expansion, so you have data-driven confidence that migration is complete before contracting",
+    "Do communicate the expansion and planned contraction date to all known consumers at the start of the expansion phase, giving them the full migration window to plan and execute updates",
+    "Do write a consumer-driven contract test for the new form before contraction — a passing contract test is the strongest automated proof that a consumer has migrated",
+    "Do maintain the dual-write/dual-read pattern in database migrations for at least one full deployment cycle after the last write to the old column, allowing rollback if unexpected consumers appear"
+  ],
+  "dos_zh": [
+    "从扩展第一天起就为新旧两种 API 形式配置请求计数器，以便在收缩前有数据驱动的信心确认迁移已完成",
+    "在扩展阶段开始时将扩展和计划收缩日期告知所有已知消费者，给予他们完整的迁移窗口来规划和执行更新",
+    "在收缩前为新形式编写消费者驱动的契约测试——通过的契约测试是消费者已迁移的最强自动化证明",
+    "在数据库迁移中，在最后一次写入旧列后至少保持一个完整部署周期的双写/双读模式，以便在出现意外消费者时可以回滚"
+  ],
+  "donts": [
+    "Don't skip the instrumentation step and contract the old form based on assumed migration completion — unknown consumers using the old form will generate errors that are difficult to diagnose post-contraction",
+    "Don't make the expansion and contraction happen in the same deployment — the consumer migration window must span at least one release cycle so consumers have time to discover and adopt the new form",
+    "Don't remove the old form while any production traffic is still using it, even if it is less than 1% — unknown consumers may be internal monitoring scripts, scheduled jobs, or partner integrations with infrequent call patterns",
+    "Don't use expansion/contraction for purely additive changes (adding a new optional field) — it is only necessary for changes where the old form will eventually be removed or is actively harmful"
+  ],
+  "donts_zh": [
+    "不要跳过监控步骤，基于假设的迁移完成来收缩旧形式——使用旧形式的未知消费者将产生难以在收缩后诊断的错误",
+    "不要让扩展和收缩发生在同一次部署中——消费者迁移窗口必须跨越至少一个发布周期，让消费者有时间发现并采用新形式",
+    "不要在任何生产流量仍在使用旧形式时移除它，即使不足 1%——未知消费者可能是内部监控脚本、定时任务或调用模式不频繁的合作伙伴集成",
+    "不要对纯新增变更（添加新的可选字段）使用扩展/收缩——它仅在旧形式最终将被移除或主动有害的变更中才有必要"
+  ],
+  "case_study_company": "Booking.com",
+  "case_study": "Booking.com applied the expansion/contraction pattern to migrate their property search API from a legacy flat response model to a structured hierarchical model across 200+ internal consumer services. The expansion phase ran for 8 weeks with both response formats served simultaneously, instrumented with per-consumer call counters. Migration was tracked on a team dashboard showing each consumer's adoption percentage. Contraction was blocked until all 200+ consumers showed 100% usage of the new format, confirmed by automated contract tests. The migration completed without a single client-visible error and without requiring any coordinated deployment freeze, enabling 15 separate engineering teams to migrate on their own schedule.",
+  "case_study_zh": "Booking.com 应用扩展/收缩模式，将其房源搜索 API 从旧版扁平响应模型迁移到结构化分层模型，涉及 200 多个内部消费者服务。扩展阶段运行了 8 周，两种响应格式同时提供服务，并配置了按消费者的调用计数器。迁移通过显示每个消费者采用百分比的团队仪表板进行跟踪。收缩被阻止，直到所有 200 多个消费者显示 100% 使用新格式（通过自动化契约测试确认）。迁移完成时没有任何客户端可见的错误，也不需要任何协调部署冻结，让 15 个独立工程团队按照自己的时间表完成迁移。",
+  "when_not_to_use": [
+    "Security-critical changes (removing a vulnerable endpoint, fixing an authentication bypass) that must be deployed immediately without a migration window",
+    "Changes where the old and new forms cannot coexist due to resource constraints (storage cost of maintaining two column formats is prohibitive, or the old behavior is actively insecure)",
+    "New feature additions with no existing consumers — expansion/contraction is a migration pattern for changing existing contracts, not for introducing new capabilities",
+    "Environments where deployment velocity is so high (multiple deploys per hour) that migration windows can be extremely short and consumer migration happens naturally within hours"
+  ],
+  "when_not_to_use_zh": [
+    "必须立即部署而不能有迁移窗口的安全关键变更（移除有漏洞的端点、修复认证绕过）",
+    "由于资源限制新旧两种形式无法共存的变更（维护两种列格式的存储成本过高，或旧行为主动不安全）",
+    "没有现有消费者的新功能添加——扩展/收缩是用于更改现有契约的迁移模式，而非引入新能力",
+    "部署速度极高（每小时多次部署）以至于迁移窗口可以极短、消费者迁移在数小时内自然发生的环境"
+  ],
+  "adopters": [
+    "Booking.com",
+    "Stripe",
+    "Netflix",
+    "Etsy",
+    "SoundCloud"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "maintainability",
+    "reliability",
+    "portability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Newman, S. (2019). \"Monolith to Microservices\". O'Reilly Media.",
+  "secondary_sources": [
+    "Sato, D. (2014). \"Parallel Change\". martinfowler.com.",
+    "Fowler, M. (2012). \"Tolerant Reader\". martinfowler.com.",
+    "Humble, J. & Farley, D. (2010). \"Continuous Delivery\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "strangler-fig-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "api-versioning-strategies",
+      "type": "related"
+    },
+    {
+      "slug": "branch-by-abstraction",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/expansion-contraction-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/expansion-contraction-pattern.md"
+}

@@ -1,0 +1,200 @@
+{
+  "id": 221,
+  "name": "Continuous Profiling",
+  "name_zh": "持续性能分析",
+  "slug": "continuous-profiling",
+  "category": "observability",
+  "desc": "Always-on production profiling using pprof, Pyroscope, and Datadog Continuous Profiler",
+  "desc_zh": "使用pprof、Pyroscope和Datadog持续性能分析器进行始终开启的生产性能分析",
+  "steps": [
+    "Select a continuous profiling platform compatible with your language runtime: pprof for Go/C++, async-profiler for JVM, py-spy for Python, perf for native code, or a managed service (Pyroscope, Datadog Continuous Profiler, Grafana Phlare)",
+    "Instrument the application with a low-overhead sampling profiler (typically 1-10% CPU overhead) using sampling rates of 100Hz or lower so that profiling data can be collected continuously in production without significant performance impact",
+    "Attach profile metadata (service name, version, environment, region, pod ID) to each profile so that flamegraphs can be filtered and compared across deployments, versions, and infrastructure dimensions",
+    "Integrate profile data with your existing observability stack: correlate high-latency traces with CPU profiles collected at the same time window, and link profiling dashboards from your APM tool",
+    "Use differential flamegraph comparison between two time windows or versions to identify performance regressions introduced by recent deployments"
+  ],
+  "steps_zh": [
+    "选择与您的语言运行时兼容的持续性能分析平台：Go/C++使用pprof，JVM使用async-profiler，Python使用py-spy，原生代码使用perf，或使用托管服务（Pyroscope、Datadog持续性能分析器、Grafana Phlare）",
+    "使用低开销采样性能分析器（通常1-10%的CPU开销）对应用程序进行仪器化，使用100Hz或更低的采样率，以便可以在生产中持续收集性能分析数据而不产生显著性能影响",
+    "将配置文件元数据（服务名称、版本、环境、区域、Pod ID）附加到每个配置文件，以便可以跨部署、版本和基础设施维度过滤和比较火焰图",
+    "将配置文件数据与现有可观测性栈集成：将高延迟追踪与同一时间窗口收集的CPU配置文件关联，并从APM工具链接性能分析仪表板",
+    "使用两个时间窗口或版本之间的差分火焰图比较，以识别最近部署引入的性能回归"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Profiler Select",
+    "Low-Overhead Sampling",
+    "Profile Metadata",
+    "Trace Correlate",
+    "Diff Flamegraph"
+  ],
+  "viz_labels_zh": [
+    "分析器选择",
+    "低开销采样",
+    "性能元数据",
+    "与追踪关联",
+    "差量火焰图"
+  ],
+  "related": [
+    "distributed-tracing",
+    "opentelemetry",
+    "slo-as-practice"
+  ],
+  "tags": [
+    "profiling",
+    "flamegraph",
+    "pprof",
+    "pyroscope",
+    "performance"
+  ],
+  "origin_author": "Brendan Gregg (flamegraph inventor, 2011); Go pprof (Google, 2012); Pyroscope (2020)",
+  "origin_source": "Gregg, B. (2016). \"Systems Performance\", Ch. 2. Prentice Hall; Gregg, B. (2011). \"Flame Graphs\". brendangregg.com.",
+  "origin_source_zh": "Gregg, B.（2016）「系统性能」，第2章，Prentice Hall；Gregg, B.（2011）「火焰图」，brendangregg.com",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When distributed traces show high latency but don't point to a specific external call — the bottleneck is CPU-bound computation within a service rather than downstream I/O",
+    "When infrastructure costs are rising unexpectedly and the team needs to identify which functions are consuming the most CPU or memory across the fleet",
+    "When a performance regression is suspected after a deployment but APM metrics and logs don't provide sufficient resolution to identify the changed code path",
+    "When optimizing ML inference or data processing pipelines where function-level CPU profiling can identify the top-5 hot paths that dominate runtime"
+  ],
+  "when_to_use_zh": [
+    "当分布式追踪显示高延迟但不指向特定的外部调用时——瓶颈是服务内的CPU密集型计算而不是下游I/O",
+    "当基础设施成本意外上升，团队需要识别哪些函数在整个集群中消耗最多CPU或内存时",
+    "当部署后怀疑存在性能回归，但APM指标和日志没有提供足够的分辨率来识别更改的代码路径时",
+    "当优化ML推断或数据处理流水线时，函数级CPU性能分析可以识别主导运行时的前5个热路径"
+  ],
+  "core_concepts": [
+    "Flamegraph: A visualization of stack traces where the x-axis represents the total time spent in a function (width) and the y-axis represents the call stack depth; the widest frames are the biggest performance contributors",
+    "Sampling Profiler: Interrupts the process at a fixed frequency (e.g., 100Hz), captures the current call stack, and aggregates samples over time; produces statistically accurate profiles with minimal overhead (~1-5%)",
+    "Instrumentation Profiler: Injects timing code into every function call; produces exact measurements but incurs significant overhead (10-100x slowdown) that makes it unsuitable for production use",
+    "Differential Flamegraph: A comparison of two flamegraphs (before vs. after a deployment) where blue frames represent performance improvements and red frames represent regressions",
+    "Always-On Profiling: Unlike traditional profiling triggered during incidents, continuous profiling collects profiles at all times so that data is available retrospectively when investigating an issue"
+  ],
+  "core_concepts_zh": [
+    "火焰图：堆栈跟踪的可视化，x轴表示函数花费的总时间（宽度），y轴表示调用堆栈深度；最宽的帧是最大的性能贡献者",
+    "采样性能分析器：以固定频率（如100Hz）中断进程，捕获当前调用堆栈，并随时间聚合样本；以最小开销（约1-5%）产生统计上准确的配置文件",
+    "插桩性能分析器：将计时代码注入每个函数调用；产生精确测量，但会产生显著开销（10-100倍减速），使其不适合生产使用",
+    "差分火焰图：两个火焰图的比较（部署前后），蓝色帧表示性能改进，红色帧表示回归",
+    "始终开启的性能分析：与传统的在事故期间触发的性能分析不同，持续性能分析始终收集配置文件，以便在调查问题时可以回溯获取数据"
+  ],
+  "timeline": [
+    [
+      "2011",
+      "Brendan Gregg invents the flamegraph visualization at Sun Microsystems, revolutionizing how engineers interpret profiling data"
+    ],
+    [
+      "2012",
+      "Go 1.0 ships with pprof integration, making heap and CPU profiling a first-class feature of the Go standard library"
+    ],
+    [
+      "2018",
+      "Datadog Continuous Profiler launches in beta, becoming one of the first commercial always-on production profiling services"
+    ],
+    [
+      "2020",
+      "Pyroscope open-sourced by Grafana Labs predecessor; Grafana acquires and integrates it as Grafana Phlare in 2022"
+    ],
+    [
+      "2024",
+      "OpenTelemetry Profiling Signal reaches beta, standardizing profile data collection alongside traces, metrics, and logs in a unified observability pipeline"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2011",
+      "Brendan Gregg在Sun Microsystems发明火焰图可视化，彻底改变了工程师解读性能分析数据的方式"
+    ],
+    [
+      "2012",
+      "Go 1.0附带pprof集成，使堆和CPU性能分析成为Go标准库的一级特性"
+    ],
+    [
+      "2018",
+      "Datadog持续性能分析器以beta版推出，成为最早的商业始终开启生产性能分析服务之一"
+    ],
+    [
+      "2020",
+      "Pyroscope由Grafana Labs前身开源；Grafana于2022年收购并将其集成为Grafana Phlare"
+    ],
+    [
+      "2024",
+      "OpenTelemetry性能分析信号达到beta，在统一的可观测性流水线中标准化配置文件数据收集，与追踪、指标和日志并列"
+    ]
+  ],
+  "dos": [
+    "Do attach deployment metadata (version, commit SHA, environment) to profiles so that differential flamegraphs can immediately isolate the code change responsible for a regression",
+    "Do correlate profiles with traces by linking high-latency trace spans to CPU profiles collected in the same time window using trace ID as the correlation key",
+    "Do store profiles with sufficient retention (30+ days) to enable retrospective investigation of production incidents without requiring a live reproduction",
+    "Do review profiling data during capacity planning cycles to identify optimization opportunities that can defer infrastructure scaling"
+  ],
+  "dos_zh": [
+    "将部署元数据（版本、提交SHA、环境）附加到配置文件，以便差分火焰图可以立即隔离导致回归的代码变更",
+    "通过使用追踪ID作为关联键将高延迟追踪span与同一时间窗口收集的CPU配置文件链接，将配置文件与追踪关联",
+    "以足够的保留期（30天以上）存储配置文件，以便在不需要实时重现的情况下对生产事故进行回溯调查",
+    "在容量规划周期中审查性能分析数据，以识别可以推迟基础设施扩展的优化机会"
+  ],
+  "donts": [
+    "Don't use instrumentation profilers (full function tracing) in production because the overhead will cause the profiler to become the primary performance bottleneck",
+    "Don't profile only during incidents because you need historical baselines to understand what 'normal' looks like for meaningful comparison",
+    "Don't discard profiling data after 7 days because performance regressions are often not noticed until weeks after a deployment when the cumulative cost becomes visible",
+    "Don't treat profiling as a reactive tool used only by performance engineers — instrument all production services by default and democratize access to flamegraphs for all engineers"
+  ],
+  "donts_zh": [
+    "不要在生产中使用插桩性能分析器（完整函数追踪），因为开销会导致性能分析器本身成为主要性能瓶颈",
+    "不要只在事故期间进行性能分析，因为您需要历史基线来理解「正常」是什么样的以进行有意义的比较",
+    "不要在7天后丢弃性能分析数据，因为性能回归通常在部署后数周才被注意到，当累积成本变得可见时",
+    "不要将性能分析视为仅由性能工程师使用的反应性工具——默认对所有生产服务进行仪器化，并为所有工程师开放火焰图访问"
+  ],
+  "case_study_company": "Shopify",
+  "case_study": "Shopify deployed continuous profiling across its Ruby on Rails monolith using Datadog Continuous Profiler, attaching profile data to every deployment event. After a Black Friday traffic spike caused unexpected CPU saturation, engineers used differential flamegraphs to compare profiles from the week before and after the previous major release. The analysis revealed that a seemingly innocuous change to the cart serialization logic had increased CPU usage by 18% due to a missing memoization. The fix was deployed within 4 hours of identifying the flamegraph regression. Without always-on profiling, the investigation would have required reproducing the issue in a load test environment, which Shopify estimated would take 2-3 days.",
+  "case_study_zh": "Shopify使用Datadog持续性能分析器在其Ruby on Rails单体中部署了持续性能分析，将配置文件数据附加到每个部署事件。在黑色星期五流量峰值导致意外的CPU饱和后，工程师使用差分火焰图比较上一个主要版本前后一周的配置文件。分析揭示了一个看似无害的购物车序列化逻辑变更，由于缺少记忆化导致CPU使用率增加了18%。在识别火焰图回归后4小时内部署了修复。如果没有始终开启的性能分析，调查将需要在负载测试环境中重现问题，Shopify估计这将需要2-3天。",
+  "when_not_to_use": [
+    "Serverless functions with execution durations under 100ms where profiling overhead per invocation exceeds the function's runtime",
+    "Services with fewer than 5 RPS where sampling profilers produce too few samples to generate statistically meaningful flamegraphs",
+    "Organizations that have not yet established basic metrics and tracing observability, where profiling would address symptoms before identifying the root cause signals",
+    "Early-stage prototypes where the code is rewritten frequently and profile data becomes stale before engineers can act on it"
+  ],
+  "when_not_to_use_zh": [
+    "执行时长低于100ms的无服务器函数，每次调用的性能分析开销超过函数运行时",
+    "RPS低于5的服务，采样性能分析器产生的样本太少，无法生成统计上有意义的火焰图",
+    "尚未建立基本指标和追踪可观测性的组织，在识别根本原因信号之前，性能分析会解决症状",
+    "早期原型，代码被频繁重写，工程师采取行动之前配置文件数据已过时"
+  ],
+  "adopters": [
+    "Shopify",
+    "Google",
+    "Datadog",
+    "Grafana Labs",
+    "Cloudflare"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "performance",
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Gregg, B. (2011). \"Flame Graphs\". brendangregg.com; Gregg, B. (2016). \"Systems Performance\", Ch. 2. Prentice Hall.",
+  "secondary_sources": [
+    "Kalman, G. et al. (2020). \"Pyroscope: Open Source Continuous Profiling\". pyroscope.io.",
+    "Datadog (2018). \"Continuous Profiler Documentation\". docs.datadoghq.com.",
+    "OpenTelemetry (2024). \"Profiling Signal Specification\". opentelemetry.io."
+  ],
+  "typed_relations": [
+    {
+      "slug": "distributed-tracing",
+      "type": "complement"
+    },
+    {
+      "slug": "opentelemetry",
+      "type": "complement"
+    },
+    {
+      "slug": "slo-as-practice",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/continuous-profiling",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/continuous-profiling.md"
+}

@@ -1,0 +1,192 @@
+{
+  "id": 303,
+  "name": "AI Gateway Pattern",
+  "name_zh": "AI 网关模式",
+  "slug": "ai-gateway-pattern",
+  "category": "ai",
+  "desc": "Centralized proxy for LLM API management, rate limiting, caching, and observability",
+  "desc_zh": "集中式代理，用于大模型 API 管理、限流、缓存与可观测性",
+  "steps": [
+    "Deploy a gateway service (Kong AI Gateway, Portkey, LiteLLM) in front of all LLM provider endpoints",
+    "Configure routing rules to fan-out requests across providers (OpenAI, Anthropic, Azure) with fallback chains",
+    "Enable request-level caching using semantic similarity or exact-match keys to reduce duplicate API calls",
+    "Enforce rate limits, budget caps, and per-team quotas so no single consumer can exhaust shared capacity",
+    "Instrument the gateway to emit per-request logs, latency metrics, token usage, and cost breakdowns to your observability stack"
+  ],
+  "steps_zh": [
+    "在所有大模型提供商端点前部署网关服务（Kong AI Gateway、Portkey、LiteLLM 等）",
+    "配置路由规则，将请求分发至多个提供商（OpenAI、Anthropic、Azure）并设置降级链",
+    "使用语义相似度或精确匹配键启用请求级缓存，减少重复 API 调用",
+    "强制执行限流、预算上限和团队级配额，防止单一消费者耗尽共享容量",
+    "对网关进行埋点，将请求日志、延迟指标、Token 用量和费用明细输出至可观测性平台"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Client",
+    "Gateway",
+    "Auth/Rate",
+    "Model"
+  ],
+  "viz_labels_zh": [
+    "客户端",
+    "AI网关",
+    "鉴权限流",
+    "模型服务"
+  ],
+  "related": [
+    "llm-system-design-patterns",
+    "ai-observability-framework",
+    "prompt-caching-strategies"
+  ],
+  "tags": [
+    "gateway",
+    "proxy",
+    "rate-limiting",
+    "caching",
+    "llm-ops",
+    "cost-control"
+  ],
+  "origin_author": "Anthropic",
+  "origin_source": "Anthropic Engineering Blog — Building responsible LLM infrastructure with API gateways (2023)",
+  "origin_source_zh": "Anthropic 工程博客——使用 API 网关构建负责任的大模型基础设施（2023）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Organizations with multiple teams consuming LLM APIs and needing centralized cost governance and quota enforcement",
+    "Production systems requiring provider redundancy — route to a backup model when the primary provider is unavailable",
+    "Any service where prompt caching can deliver significant cost savings by serving repeated or semantically similar queries from cache",
+    "Enterprises with strict compliance requirements that need every LLM request logged and auditable in a single place"
+  ],
+  "when_to_use_zh": [
+    "多团队共用大模型 API、需要集中成本治理和配额管控的组织",
+    "需要提供商冗余的生产系统——主提供商不可用时自动路由至备用模型",
+    "可通过提示缓存大幅降低成本、反复或语义相似查询比例较高的服务",
+    "有严格合规要求、需要在单一位置记录和审计所有大模型请求的企业"
+  ],
+  "core_concepts": [
+    "Semantic Cache: Storing LLM responses keyed by embedding similarity so semantically equivalent prompts hit cache instead of the model",
+    "Provider Fallback: Automatically rerouting requests to an alternative LLM provider when the primary returns an error or exceeds latency thresholds",
+    "Budget Guard: Per-team or per-project spend limits enforced at the gateway layer before tokens are ever sent upstream",
+    "Request Normalization: Translating provider-specific API formats into a unified schema so application code is provider-agnostic",
+    "Audit Log: An immutable, tamper-evident log of every request and response passing through the gateway for compliance and debugging"
+  ],
+  "core_concepts_zh": [
+    "语义缓存：以向量相似度为键存储大模型响应，语义等价的提示词直接命中缓存而不调用模型",
+    "提供商降级（Provider Fallback）：主提供商报错或超出延迟阈值时，自动将请求路由至备用大模型",
+    "预算守卫（Budget Guard）：在网关层按团队或项目强制执行消费上限，Token 发送上游前即被拦截",
+    "请求规范化：将各提供商特定的 API 格式转换为统一模式，使应用代码与提供商解耦",
+    "审计日志：对经过网关的每条请求与响应进行不可变、防篡改记录，用于合规和调试"
+  ],
+  "timeline": [
+    [
+      "2023-03",
+      "ChatGPT API demand surge drives teams to build ad-hoc proxies for rate-limit management"
+    ],
+    [
+      "2023-07",
+      "LiteLLM open-sourced as a unified proxy layer supporting 100+ LLM providers"
+    ],
+    [
+      "2023-11",
+      "Portkey and Kong release dedicated AI gateway products with semantic caching and observability"
+    ],
+    [
+      "2024-06",
+      "AWS, Azure, and GCP launch managed AI gateway services integrated with their cloud platforms"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2023-03",
+      "ChatGPT API 需求激增，推动各团队构建临时代理来管理限流问题"
+    ],
+    [
+      "2023-07",
+      "LiteLLM 开源，作为统一代理层支持 100 余个大模型提供商"
+    ],
+    [
+      "2023-11",
+      "Portkey 和 Kong 发布专用 AI 网关产品，内置语义缓存与可观测性"
+    ],
+    [
+      "2024-06",
+      "AWS、Azure、GCP 推出托管 AI 网关服务，与各自云平台深度集成"
+    ]
+  ],
+  "dos": [
+    "Version your routing rules as code so provider migrations and fallback changes are reviewable and reversible",
+    "Instrument cache hit rates per route — a rate below 20% suggests the cache key strategy needs tuning",
+    "Set hard token-budget alerts well below your actual limit so you have reaction time before costs spiral",
+    "Test fallback chains in staging by intentionally disabling the primary provider endpoint"
+  ],
+  "dos_zh": [
+    "将路由规则版本化为代码，使提供商迁移和降级变更可审查、可回滚",
+    "按路由监控缓存命中率——低于 20% 意味着缓存键策略需要调整",
+    "将 Token 预算告警阈值设置在实际上限的较低水位，留出成本失控前的响应时间",
+    "在预发环境中通过主动禁用主提供商端点来测试降级链的完整性"
+  ],
+  "donts": [
+    "Don't cache responses for prompts containing user-specific PII without anonymisation — cache poisoning is a real risk",
+    "Don't route all traffic through a single-region gateway — this creates a latency bottleneck and a single point of failure",
+    "Don't skip authentication at the gateway layer — unauthenticated proxies expose your API keys to anyone who discovers the endpoint",
+    "Don't use overly aggressive semantic similarity thresholds for caching — near-duplicate prompts may need different answers"
+  ],
+  "donts_zh": [
+    "不要在未脱敏的情况下缓存含用户 PII 的提示词响应——缓存投毒风险真实存在",
+    "不要将所有流量路由至单区域网关——这会制造延迟瓶颈和单点故障",
+    "不要跳过网关层的认证——未授权代理会将 API 密钥暴露给任何发现该端点的人",
+    "不要对语义缓存使用过于激进的相似度阈值——近似重复的提示词可能需要不同的答案"
+  ],
+  "case_study_company": "Grab",
+  "case_study": "Grab's AI platform team deployed an internal LLM gateway to serve 40+ product teams across their super-app. The gateway enforced per-squad token budgets, enabled semantic caching that cut API costs by 35% in the first quarter, and provided a unified audit trail required by their financial services regulators. When OpenAI experienced an outage in late 2023, automatic fallback to Azure OpenAI Service kept all customer-facing AI features fully operational with no engineer intervention.",
+  "case_study_zh": "Grab 的 AI 平台团队部署了内部大模型网关，服务于超级应用中的 40 余个产品团队。该网关强制执行按小队的 Token 预算，启用语义缓存后第一季度 API 成本降低 35%，并提供了金融服务监管机构要求的统一审计追踪。2023 年底 OpenAI 出现故障时，自动降级至 Azure OpenAI Service 使所有面向用户的 AI 功能保持完全正常运行，无需工程师介入。",
+  "when_not_to_use": [
+    "Single-model, single-team prototypes where the operational overhead of a gateway exceeds its benefits",
+    "Latency-critical inference paths where adding a network hop is unacceptable — consider co-locating the gateway in the same VPC",
+    "Research and experimentation environments where rigid quotas would slow down exploration",
+    "When your LLM provider already offers native rate limiting, caching, and observability that fully meets your requirements"
+  ],
+  "when_not_to_use_zh": [
+    "单模型、单团队原型项目，网关的运维开销超过其带来的收益",
+    "对延迟极度敏感的推理路径，增加一跳网络不可接受——此时考虑将网关与业务共置于同一 VPC",
+    "严格配额会拖慢探索节奏的研究和实验环境",
+    "大模型提供商已原生提供限流、缓存和可观测性、且完全满足需求的场景"
+  ],
+  "adopters": [
+    "Grab",
+    "Shopify",
+    "Cloudflare",
+    "Kong",
+    "Portkey",
+    "Uber"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "performance",
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Anthropic (2023). \"Building responsible LLM infrastructure with API gateways\". anthropic.com/engineering.",
+  "secondary_sources": [
+    "BerriAI (2023). \"LiteLLM: Call all LLM APIs using the OpenAI format\". github.com/BerriAI/litellm.",
+    "Kong (2024). \"Kong AI Gateway: Unified LLM API management\". konghq.com/products/kong-ai-gateway.",
+    "Portkey (2024). \"The AI Gateway for production LLM apps\". portkey.ai/docs."
+  ],
+  "typed_relations": [
+    {
+      "slug": "llm-system-design-patterns",
+      "type": "complement"
+    },
+    {
+      "slug": "ai-observability-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "prompt-caching-strategies",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/ai-gateway-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/ai-gateway-pattern.md"
+}

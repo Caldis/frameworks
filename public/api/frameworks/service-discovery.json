@@ -1,0 +1,194 @@
+{
+  "id": 207,
+  "name": "Service Discovery",
+  "name_zh": "服务发现",
+  "slug": "service-discovery",
+  "category": "distributed",
+  "desc": "Dynamic registration and lookup of service instances (Consul, etcd)",
+  "desc_zh": "服务实例的动态注册与查找（Consul、etcd）",
+  "steps": [
+    "Choose a service registry (Consul, etcd, ZooKeeper, Eureka, or Kubernetes Service + CoreDNS) and deploy it as a highly available cluster with at least 3 nodes to survive node failures without losing the registry",
+    "Implement service registration: when a service instance starts, it registers its network address (IP, port, protocol) and health check endpoint with the registry; on shutdown, it deregisters to remove stale entries",
+    "Configure health checks in the registry so that the registry actively monitors instance health and automatically removes instances that fail checks, preventing traffic from routing to unhealthy endpoints",
+    "Implement service lookup in client services using either client-side discovery (the client queries the registry and load-balances across healthy instances) or server-side discovery (the client sends requests to a load balancer or service mesh proxy that performs registry lookup)",
+    "Test failure scenarios: kill a service instance and verify that the registry removes it within the health check timeout and that clients stop routing traffic to the dead instance within the acceptable failover window"
+  ],
+  "steps_zh": [
+    "选择服务注册表（Consul、etcd、ZooKeeper、Eureka或Kubernetes Service + CoreDNS）并将其部署为至少3个节点的高可用集群，以在节点故障后存活而不丢失注册表",
+    "实施服务注册：当服务实例启动时，向注册表注册其网络地址（IP、端口、协议）和健康检查端点；关闭时注销以删除过期条目",
+    "在注册表中配置健康检查，使注册表主动监控实例健康状况，并自动删除未通过检查的实例，防止流量路由到不健康的端点",
+    "在客户端服务中使用客户端发现（客户端查询注册表并在健康实例间负载均衡）或服务器端发现（客户端向执行注册表查找的负载均衡器或服务网格代理发送请求）来实施服务查找",
+    "测试故障场景：终止服务实例并验证注册表在健康检查超时内删除它，以及客户端在可接受的故障转移窗口内停止路由流量到死亡实例"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Service Registry",
+    "Registration",
+    "Health Checks",
+    "Service Lookup",
+    "Failover Test"
+  ],
+  "viz_labels_zh": [
+    "服务注册表",
+    "服务注册",
+    "健康检查",
+    "服务发现",
+    "故障切换"
+  ],
+  "related": [
+    "consensus-protocols",
+    "leader-election",
+    "circuit-breaker-with-retry",
+    "bulkhead-service-level"
+  ],
+  "tags": [
+    "service-discovery",
+    "consul",
+    "etcd",
+    "kubernetes",
+    "load-balancing"
+  ],
+  "origin_author": "Netflix (Eureka, 2012); HashiCorp (Consul, 2014); Kubernetes (CoreDNS-based, 2015)",
+  "origin_source": "Richardson, C. (2018). \"Microservices Patterns\", Ch. 3. Manning; consul.io documentation; Kubernetes Service documentation",
+  "origin_source_zh": "Richardson, C.（2018）。《微服务模式》第3章，Manning；consul.io文档；Kubernetes Service文档",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When microservices are deployed on dynamic infrastructure where IP addresses change on every deployment, container restart, or auto-scaling event",
+    "When a service mesh is not in use and services must directly discover the network locations of their dependencies without hard-coded configuration",
+    "When the number of service instances varies dynamically based on load and clients must route only to currently healthy instances",
+    "When multi-datacenter or multi-cloud deployments require services to discover peers across network segments with different address spaces"
+  ],
+  "when_to_use_zh": [
+    "当微服务部署在每次部署、容器重启或自动扩展事件都会更改IP地址的动态基础设施上时",
+    "当没有使用服务网格，服务必须直接发现其依赖项的网络位置而不使用硬编码配置时",
+    "当服务实例数量根据负载动态变化，客户端必须仅路由到当前健康的实例时",
+    "当多数据中心或多云部署要求服务在具有不同地址空间的网络段之间发现对等节点时"
+  ],
+  "core_concepts": [
+    "Service registry: the centralized (or distributed) store that maintains the mapping from service name to healthy instance network addresses",
+    "Client-side discovery: the calling service queries the registry directly, selects an instance using a load-balancing algorithm (round-robin, least-connections), and makes the request directly to the chosen instance",
+    "Server-side discovery: the calling service sends requests to a stable proxy (load balancer, API gateway, or service mesh sidecar) that performs registry lookup and routing, hiding infrastructure dynamism from the application",
+    "Health check: a mechanism by which the registry (or a sidecar) periodically probes service instances (HTTP endpoint, TCP ping, or script) and removes those that fail"
+  ],
+  "core_concepts_zh": [
+    "服务注册表：维护服务名称到健康实例网络地址映射的集中（或分布式）存储",
+    "客户端发现：调用服务直接查询注册表，使用负载均衡算法（轮询、最少连接）选择实例，并直接向所选实例发送请求",
+    "服务器端发现：调用服务向稳定代理（负载均衡器、API网关或服务网格Sidecar）发送请求，该代理执行注册表查找和路由，向应用程序隐藏基础设施动态性",
+    "健康检查：注册表（或Sidecar）定期探测服务实例（HTTP端点、TCP ping或脚本）并删除失败实例的机制"
+  ],
+  "timeline": [
+    [
+      "2012",
+      "Netflix open-sources Eureka, one of the first widely-used service registries built for cloud-native microservices at scale"
+    ],
+    [
+      "2014",
+      "HashiCorp releases Consul with built-in service discovery, health checking, key-value store, and multi-datacenter support"
+    ],
+    [
+      "2015",
+      "Kubernetes Services and CoreDNS provide DNS-based service discovery as a first-class primitive in the container orchestration platform"
+    ],
+    [
+      "2018",
+      "Service meshes (Istio, Linkerd) supersede explicit service discovery for many use cases by embedding discovery in the sidecar proxy"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2012",
+      "Netflix开源Eureka，这是最早为大规模云原生微服务构建的广泛使用的服务注册表之一"
+    ],
+    [
+      "2014",
+      "HashiCorp发布Consul，内置服务发现、健康检查、键值存储和多数据中心支持"
+    ],
+    [
+      "2015",
+      "Kubernetes Services和CoreDNS在容器编排平台中提供基于DNS的服务发现作为一等原语"
+    ],
+    [
+      "2018",
+      "服务网格（Istio、Linkerd）通过将发现嵌入Sidecar代理，在许多用例中取代了显式服务发现"
+    ]
+  ],
+  "dos": [
+    "Do deploy the service registry as a clustered, highly available service with at least 3 nodes because the registry is a critical infrastructure dependency that every service relies on",
+    "Do implement graceful deregistration in shutdown hooks so that instances remove themselves from the registry before stopping, minimizing the window where the registry routes to a dead instance",
+    "Do tune health check intervals and failure thresholds to balance detection speed against false-positive deregistrations because overly sensitive health checks deregister healthy instances under load",
+    "Do cache registry lookups with a short TTL in client services because querying the registry on every request creates a bottleneck at the registry and adds latency to every service call"
+  ],
+  "dos_zh": [
+    "将服务注册表部署为至少3个节点的集群高可用服务，因为注册表是每个服务都依赖的关键基础设施依赖项",
+    "在关闭钩子中实施优雅注销，使实例在停止前从注册表中删除自身，最小化注册表路由到死亡实例的窗口",
+    "调整健康检查间隔和失败阈值以平衡检测速度与误报注销，因为过于敏感的健康检查会在负载下注销健康实例",
+    "在客户端服务中以短TTL缓存注册表查找，因为每次请求都查询注册表会在注册表处产生瓶颈，并为每次服务调用增加延迟"
+  ],
+  "donts": [
+    "Don't hard-code service instance addresses in configuration files or environment variables because they change with every deployment and become stale immediately",
+    "Don't skip health checks on registered services because the registry will route traffic to instances that are up but serving errors if health checks are absent",
+    "Don't make the service registry a single point of failure by running it as a single instance — a registry outage means no service can discover any other service",
+    "Don't use service discovery for databases or stateful services that require sticky connections because round-robin instance selection breaks connection pooling and stateful session affinity"
+  ],
+  "donts_zh": [
+    "不要在配置文件或环境变量中硬编码服务实例地址，因为它们在每次部署时都会更改，立即变得过时",
+    "不要跳过已注册服务的健康检查，因为如果没有健康检查，注册表将向运行中但提供错误服务的实例路由流量",
+    "不要通过将服务注册表作为单实例运行使其成为单点故障——注册表中断意味着没有服务可以发现任何其他服务",
+    "不要将服务发现用于需要粘性连接的数据库或有状态服务，因为轮询实例选择会破坏连接池和有状态会话亲和性"
+  ],
+  "case_study_company": "Airbnb",
+  "case_study": "Airbnb runs a service discovery infrastructure built on Consul, managing over 5,000 service instances across multiple AWS availability zones. When an Airbnb service deploys a new version, the old instances deregister and new instances register with Consul automatically via their deployment system. Consul's health checks probe each instance's /health endpoint every 10 seconds, removing failed instances within 30 seconds. Client services use a local Consul agent for cached lookups, making service resolution sub-millisecond. During Airbnb's 2020 AWS availability zone failures, Consul's multi-datacenter federation automatically shifted traffic to healthy availability zones with under 2 minutes of detection-to-failover latency.",
+  "case_study_zh": "Airbnb运行基于Consul构建的服务发现基础设施，管理跨多个AWS可用区的5,000多个服务实例。当Airbnb服务部署新版本时，旧实例注销，新实例通过其部署系统自动向Consul注册。Consul的健康检查每10秒探测每个实例的/health端点，在30秒内删除失败的实例。客户端服务使用本地Consul代理进行缓存查找，使服务解析达到亚毫秒级。在Airbnb 2020年AWS可用区故障期间，Consul的多数据中心联合自动将流量转移到健康的可用区，检测到故障转移的延迟不到2分钟。",
+  "when_not_to_use": [
+    "Monolithic applications where all components run in the same process or on a fixed set of known servers with static IP addresses",
+    "Small deployments with a fixed number of service instances where a static load balancer configuration is sufficient and the overhead of a service registry is not justified",
+    "When a service mesh (Istio, Linkerd) is already in use because the mesh sidecar handles service discovery transparently without a separate registry client in the application",
+    "Serverless or FaaS architectures where the platform manages instance routing and developers do not need to implement service discovery"
+  ],
+  "when_not_to_use_zh": [
+    "所有组件在同一进程中运行或在具有静态IP地址的固定已知服务器集上运行的单体应用程序",
+    "具有固定服务实例数量的小型部署，静态负载均衡器配置已足够且服务注册表的开销不合理",
+    "当服务网格（Istio、Linkerd）已在使用时，因为网格Sidecar透明地处理服务发现，应用程序中不需要单独的注册表客户端",
+    "平台管理实例路由且开发者不需要实现服务发现的无服务器或FaaS架构"
+  ],
+  "adopters": [
+    "Airbnb",
+    "Lyft",
+    "Shopify",
+    "HashiCorp customers",
+    "Kubernetes ecosystem"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "scalability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Richardson, C. (2018). \"Microservices Patterns\", Ch. 3. Manning Publications.",
+  "secondary_sources": [
+    "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 10. O'Reilly Media.",
+    "HashiCorp (2014). \"Consul Documentation\". consul.io.",
+    "Kubernetes Project (2015). \"Kubernetes Services Documentation\". kubernetes.io/docs/concepts/services-networking/service."
+  ],
+  "typed_relations": [
+    {
+      "slug": "consensus-protocols",
+      "type": "complement"
+    },
+    {
+      "slug": "leader-election",
+      "type": "complement"
+    },
+    {
+      "slug": "circuit-breaker-with-retry",
+      "type": "complement"
+    },
+    {
+      "slug": "bulkhead-service-level",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/service-discovery",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/service-discovery.md"
+}

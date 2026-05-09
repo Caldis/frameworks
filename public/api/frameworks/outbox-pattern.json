@@ -1,0 +1,194 @@
+{
+  "id": 206,
+  "name": "Outbox Pattern",
+  "name_zh": "发件箱模式",
+  "slug": "outbox-pattern",
+  "category": "distributed",
+  "desc": "Reliable event publishing from database transactions",
+  "desc_zh": "从数据库事务中可靠地发布事件",
+  "steps": [
+    "Add an outbox table to the service's database schema alongside the primary business entities; the table stores pending domain events with columns for event type, payload, destination topic, and publication status",
+    "Modify the service's transactional write path to insert domain events into the outbox table within the same database transaction as the business entity mutation, guaranteeing atomicity between state change and event recording",
+    "Deploy a message relay process (Debezium CDC connector, polling relay, or Transactional Outbox relay) that reads unpublished events from the outbox table and publishes them to the message broker (Kafka, SQS, RabbitMQ)",
+    "Mark events as published after successful broker acknowledgment; implement at-least-once delivery semantics since the relay may publish an event, crash before marking it, and republish on restart",
+    "Consumers must be idempotent to handle duplicate events produced by the at-least-once relay; use deduplication keys or idempotent operations to ensure duplicate publications have no additional effect"
+  ],
+  "steps_zh": [
+    "在服务的数据库模式中，在主要业务实体旁边添加发件箱表；该表存储待处理的领域事件，包含事件类型、负载、目标主题和发布状态的列",
+    "修改服务的事务写入路径，在与业务实体变更相同的数据库事务中将领域事件插入发件箱表，保证状态变更和事件记录之间的原子性",
+    "部署消息中继进程（Debezium CDC连接器、轮询中继或事务性发件箱中继），从发件箱表读取未发布的事件并将其发布到消息代理（Kafka、SQS、RabbitMQ）",
+    "成功获得代理确认后将事件标记为已发布；实施至少一次交付语义，因为中继可能发布事件、在标记前崩溃，并在重启时重新发布",
+    "消费者必须是幂等的以处理至少一次中继产生的重复事件；使用去重键或幂等操作确保重复发布没有额外影响"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Outbox Table",
+    "Atomic Write",
+    "Message Relay",
+    "At-Least-Once",
+    "Idempotent Consumer"
+  ],
+  "viz_labels_zh": [
+    "发件箱表",
+    "原子写入",
+    "消息中继",
+    "至少一次",
+    "幂等消费"
+  ],
+  "related": [
+    "change-data-capture",
+    "saga-pattern",
+    "idempotency-pattern",
+    "crdt"
+  ],
+  "tags": [
+    "outbox",
+    "reliable-messaging",
+    "transactional-outbox",
+    "event-driven",
+    "at-least-once"
+  ],
+  "origin_author": "Chris Richardson (microservices.io); popularized by Udi Dahan and Greg Young in CQRS/event sourcing contexts",
+  "origin_source": "Richardson, C. (2018). \"Microservices Patterns\". Manning; microservices.io/patterns/data/transactional-outbox.html",
+  "origin_source_zh": "Richardson, C.（2018）。《微服务模式》，Manning；microservices.io/patterns/data/transactional-outbox.html",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When a microservice must atomically update its database and publish a domain event without using distributed transactions, preventing the dual-write problem",
+    "When message broker publish failures (network partition, broker unavailability) must not cause data inconsistencies between the service database and the event log",
+    "When event-driven architectures require guaranteed at-least-once event delivery even if the publishing service crashes immediately after committing a transaction",
+    "When implementing the Saga pattern where each saga step must reliably publish the event that triggers the next step in the compensating transaction chain"
+  ],
+  "when_to_use_zh": [
+    "当微服务必须在不使用分布式事务的情况下原子性地更新其数据库并发布领域事件，防止双写问题时",
+    "当消息代理发布失败（网络分区、代理不可用）不得导致服务数据库和事件日志之间数据不一致时",
+    "当事件驱动架构需要保证至少一次事件交付，即使发布服务在提交事务后立即崩溃时",
+    "当实现Saga模式时，每个Saga步骤必须可靠地发布触发补偿事务链中下一步的事件"
+  ],
+  "core_concepts": [
+    "Dual-write problem: the impossibility of atomically updating a database and publishing to a message broker in two separate operations — one will succeed and the other can fail, creating inconsistency",
+    "Transactional outbox: a staging table within the same database that acts as a durable event queue, allowing a single database transaction to atomically commit both the business state and the event record",
+    "Message relay: a background process that polls or tails the outbox table and publishes events to the broker, decoupling the business transaction from the publish operation",
+    "At-least-once delivery: the guarantee that every event in the outbox will eventually be published to the broker, potentially more than once; consumers must handle duplicates"
+  ],
+  "core_concepts_zh": [
+    "双写问题：在两个独立操作中原子性地更新数据库和发布到消息代理的不可能性——一个会成功而另一个可能失败，造成不一致",
+    "事务性发件箱：同一数据库中作为持久事件队列的暂存表，允许单个数据库事务原子性地提交业务状态和事件记录",
+    "消息中继：轮询或跟踪发件箱表并将事件发布到代理的后台进程，将业务事务与发布操作解耦",
+    "至少一次交付：保证发件箱中的每个事件最终将发布到代理（可能不止一次）；消费者必须处理重复项"
+  ],
+  "timeline": [
+    [
+      "2010",
+      "Udi Dahan and Greg Young discuss the dual-write problem and outbox as part of NServiceBus and CQRS/event sourcing patterns"
+    ],
+    [
+      "2015",
+      "Debezium project released by Red Hat, providing a CDC-based implementation of the outbox relay using database transaction logs"
+    ],
+    [
+      "2018",
+      "Chris Richardson formalizes the Transactional Outbox pattern in 'Microservices Patterns' and on microservices.io, giving it a canonical name and reference implementation"
+    ],
+    [
+      "2020",
+      "Debezium's Outbox Event Router SMT (Single Message Transform) provides a turnkey outbox implementation without polling, using log-based CDC"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2010",
+      "Udi Dahan和Greg Young在NServiceBus和CQRS/事件溯源模式的背景下讨论双写问题和发件箱"
+    ],
+    [
+      "2015",
+      "Red Hat发布Debezium项目，提供使用数据库事务日志的基于CDC的发件箱中继实现"
+    ],
+    [
+      "2018",
+      "Chris Richardson在《微服务模式》和microservices.io中正式化事务性发件箱模式，为其提供规范名称和参考实现"
+    ],
+    [
+      "2020",
+      "Debezium的发件箱事件路由器SMT（单消息转换）提供无需轮询的即用型发件箱实现，使用基于日志的CDC"
+    ]
+  ],
+  "dos": [
+    "Do use CDC-based outbox relay (Debezium) rather than polling where possible because CDC has lower database load and sub-second relay latency compared to polling intervals of seconds or minutes",
+    "Do include a correlation ID in every outbox event so that distributed traces can be reconstructed across service boundaries from the originating request to the eventual event consumer",
+    "Do partition the outbox table by service or aggregate type to prevent a high-volume event stream from a single aggregate from blocking events of other types",
+    "Do set a maximum event age and alert when events remain unpublished beyond it because stuck events in the outbox indicate a relay failure that may cause business-critical delays"
+  ],
+  "dos_zh": [
+    "尽可能使用基于CDC的发件箱中继（Debezium）而非轮询，因为与数秒或数分钟的轮询间隔相比，CDC具有更低的数据库负载和亚秒中继延迟",
+    "在每个发件箱事件中包含关联ID，使分布式追踪可以跨服务边界从原始请求到最终事件消费者进行重建",
+    "按服务或聚合类型对发件箱表进行分区，以防止单个聚合的大量事件流阻塞其他类型的事件",
+    "设置最大事件年龄并在事件超出该时间未发布时发出告警，因为发件箱中的卡住事件表明可能导致业务关键延迟的中继失败"
+  ],
+  "donts": [
+    "Don't use the outbox as a long-term event store because it is a short-lived staging area — events should be published within seconds and the outbox should be trimmed regularly",
+    "Don't skip consumer idempotency because at-least-once delivery is a fundamental outbox guarantee and consumers that process duplicates non-idempotently will produce incorrect results",
+    "Don't implement the outbox in a separate database from the business entity because the entire point of the pattern is to use a single database transaction to atomically write both",
+    "Don't forget to monitor outbox table growth because an accumulating backlog indicates a relay outage or broker connectivity issue that requires immediate attention"
+  ],
+  "donts_zh": [
+    "不要将发件箱用作长期事件存储，因为它是短期暂存区——事件应在几秒内发布，发件箱应定期清理",
+    "不要跳过消费者幂等性，因为至少一次交付是发件箱的基本保证，非幂等处理重复项的消费者将产生不正确的结果",
+    "不要在与业务实体不同的数据库中实现发件箱，因为该模式的整个意义在于使用单个数据库事务原子性地写入两者",
+    "不要忘记监控发件箱表增长，因为积累的积压表明中继中断或代理连接问题，需要立即关注"
+  ],
+  "case_study_company": "Uber",
+  "case_study": "Uber uses the Outbox Pattern across many of its microservices to ensure reliable event publishing without distributed transactions. In their trip dispatch service, when a driver accepts a trip, the service atomically updates the trip state in its PostgreSQL database and inserts a TripAccepted domain event into the outbox table in the same transaction. A Debezium CDC relay reads the outbox events from the PostgreSQL WAL and publishes them to Apache Kafka topics consumed by the rider notification service, pricing engine, and analytics pipeline. This design ensures that a TripAccepted event is always published exactly once — even if the trip service crashes between committing the trip state and publishing the event — eliminating ghost trips and missed notifications.",
+  "case_study_zh": "Uber在其许多微服务中使用发件箱模式，以确保在没有分布式事务的情况下可靠地发布事件。在其行程调度服务中，当司机接受行程时，服务在同一事务中原子性地更新其PostgreSQL数据库中的行程状态，并将TripAccepted领域事件插入发件箱表。Debezium CDC中继从PostgreSQL WAL读取发件箱事件，并将其发布到乘客通知服务、定价引擎和分析管道消费的Apache Kafka主题。这种设计确保TripAccepted事件始终被发布一次——即使行程服务在提交行程状态和发布事件之间崩溃——消除了幽灵行程和错过的通知。",
+  "when_not_to_use": [
+    "When the message broker and database can participate in an XA distributed transaction and the operational overhead of XA is acceptable",
+    "Simple single-service applications without downstream event consumers where the overhead of maintaining an outbox table is unnecessary",
+    "When event loss is acceptable (fire-and-forget telemetry, non-critical notifications) and the complexity of the outbox pattern is not justified by the reliability requirement",
+    "Greenfield services where an event streaming architecture with event sourcing (Kafka as the system of record) eliminates the dual-write problem entirely at the architecture level"
+  ],
+  "when_not_to_use_zh": [
+    "当消息代理和数据库可以参与XA分布式事务，且XA的运维开销可以接受时",
+    "没有下游事件消费者的简单单服务应用程序，维护发件箱表的开销是不必要的",
+    "当事件丢失可以接受（即发即忘遥测、非关键通知）且发件箱模式的复杂性不被可靠性要求所证明时",
+    "采用事件溯源的事件流架构（Kafka作为记录系统）在架构级别完全消除双写问题的绿地服务"
+  ],
+  "adopters": [
+    "Uber",
+    "Netflix",
+    "Shopify",
+    "Red Hat (Debezium)",
+    "Eventuate.io"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Richardson, C. (2018). \"Microservices Patterns\", Ch. 3. Manning Publications.",
+  "secondary_sources": [
+    "Richardson, C. (2018). \"Pattern: Transactional outbox\". microservices.io/patterns/data/transactional-outbox.html.",
+    "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 11. O'Reilly Media.",
+    "Debezium Project (2020). \"Outbox Event Router Transformation\". debezium.io/documentation."
+  ],
+  "typed_relations": [
+    {
+      "slug": "change-data-capture",
+      "type": "complement"
+    },
+    {
+      "slug": "saga-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "idempotency-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "crdt",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/outbox-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/outbox-pattern.md"
+}

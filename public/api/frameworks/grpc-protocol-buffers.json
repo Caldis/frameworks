@@ -1,0 +1,199 @@
+{
+  "id": 132,
+  "name": "gRPC & Protocol Buffers",
+  "name_zh": "gRPC与Protocol Buffers",
+  "slug": "grpc-protocol-buffers",
+  "category": "api",
+  "desc": "High-performance RPC framework using HTTP/2 and binary serialization",
+  "desc_zh": "基于HTTP/2和二进制序列化的高性能RPC框架",
+  "steps": [
+    "Define service contracts and message types in .proto files using Protocol Buffer IDL (Interface Definition Language)",
+    "Generate client and server stubs from .proto files using the protoc compiler for your target languages",
+    "Implement the server-side service logic by overriding the generated stub methods with business logic",
+    "Configure gRPC channels with appropriate load balancing, TLS, and deadline/timeout policies",
+    "Deploy and monitor the service using gRPC health checking protocol and observability interceptors for tracing and metrics"
+  ],
+  "steps_zh": [
+    "使用Protocol Buffer IDL（接口定义语言）在.proto文件中定义服务契约和消息类型",
+    "使用protoc编译器为目标语言从.proto文件生成客户端和服务端存根",
+    "通过在生成的存根方法中实现业务逻辑来完成服务端逻辑",
+    "配置gRPC通道，设置适当的负载均衡、TLS以及截止时间/超时策略",
+    "使用gRPC健康检查协议和可观测性拦截器（追踪与指标）部署并监控服务"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Proto Contract",
+    "Code Generate",
+    "Server Logic",
+    "Channel Config",
+    "Monitor"
+  ],
+  "viz_labels_zh": [
+    "Proto契约",
+    "代码生成",
+    "服务逻辑",
+    "通道配置",
+    "监控"
+  ],
+  "related": [
+    "api-gateway-pattern",
+    "consumer-driven-contracts",
+    "asyncapi"
+  ],
+  "tags": [
+    "grpc",
+    "protobuf",
+    "rpc",
+    "http2",
+    "binary-serialization"
+  ],
+  "origin_author": "Google, 2015 (built on internal Stubby RPC framework)",
+  "origin_source": "gRPC: A High-Performance Open-Source Universal RPC Framework (grpc.io); referenced in Building Microservices (Sam Newman, 2nd ed., 2021, Ch. 4)",
+  "origin_source_zh": "《gRPC：高性能开源通用RPC框架》（grpc.io）；参见《构建微服务》（Sam Newman，第2版，2021，第4章）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When low-latency, high-throughput inter-service communication is critical in a microservices architecture",
+    "When services are built in multiple programming languages and need a shared contract with code generation",
+    "When bidirectional streaming is required for real-time data flows between client and server",
+    "When payload size and bandwidth efficiency matter, such as mobile clients on constrained networks"
+  ],
+  "when_to_use_zh": [
+    "在微服务架构中需要低延迟、高吞吐量的服务间通信时",
+    "当服务使用多种编程语言构建，需要带代码生成的共享契约时",
+    "当需要双向流式传输用于客户端与服务端之间的实时数据流时",
+    "当负载大小和带宽效率很重要时，如受限网络上的移动客户端"
+  ],
+  "core_concepts": [
+    "Protocol Buffers: A language-neutral, platform-neutral binary serialization format that is 3-10x smaller and faster than JSON",
+    "HTTP/2 Transport: Multiplexed streams over a single TCP connection with header compression, enabling concurrent RPCs without head-of-line blocking",
+    "Code Generation: The protoc compiler generates type-safe client stubs and server interfaces from .proto files, eliminating manual serialization code",
+    "Streaming Modes: Four communication patterns — unary, server streaming, client streaming, and bidirectional streaming — cover all real-time use cases",
+    "Deadlines and Cancellation: Built-in propagation of timeouts and cancellation signals across the entire call chain prevents resource leaks in distributed systems"
+  ],
+  "core_concepts_zh": [
+    "Protocol Buffers：语言无关、平台无关的二进制序列化格式，比JSON小3-10倍且速度更快",
+    "HTTP/2传输：通过单个TCP连接上的多路复用流和头部压缩，实现并发RPC且无队头阻塞",
+    "代码生成：protoc编译器从.proto文件生成类型安全的客户端存根和服务端接口，消除手动序列化代码",
+    "流式模式：四种通信模式——一元、服务端流、客户端流和双向流——覆盖所有实时用例",
+    "截止时间与取消：内置的超时和取消信号在整个调用链中传播，防止分布式系统中的资源泄漏"
+  ],
+  "timeline": [
+    [
+      "2001",
+      "Google internally develops Stubby, the precursor to gRPC, for inter-datacenter communication"
+    ],
+    [
+      "2015",
+      "Google open-sources gRPC 1.0 with support for 10+ programming languages"
+    ],
+    [
+      "2017",
+      "gRPC becomes a Cloud Native Computing Foundation (CNCF) incubating project"
+    ],
+    [
+      "2019",
+      "gRPC-Web enables browser clients to call gRPC services via an Envoy proxy translation layer"
+    ],
+    [
+      "2023",
+      "gRPC adoption surges in AI/ML inference pipelines for low-latency model serving (e.g., TensorFlow Serving, Triton)"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2001",
+      "Google内部开发Stubby——gRPC的前身，用于跨数据中心通信"
+    ],
+    [
+      "2015",
+      "Google开源gRPC 1.0，支持10多种编程语言"
+    ],
+    [
+      "2017",
+      "gRPC成为云原生计算基金会（CNCF）孵化项目"
+    ],
+    [
+      "2019",
+      "gRPC-Web使浏览器客户端能通过Envoy代理转换层调用gRPC服务"
+    ],
+    [
+      "2023",
+      "gRPC在AI/ML推理管线中的采用激增，用于低延迟模型服务（如TensorFlow Serving、Triton）"
+    ]
+  ],
+  "dos": [
+    "Do use proto3 syntax and follow the Protocol Buffer style guide because consistent naming and conventions simplify cross-team collaboration",
+    "Do set explicit deadlines on every RPC call because missing deadlines cause cascading timeouts across the entire service mesh",
+    "Do version .proto files carefully using reserved fields and field number preservation because binary compatibility depends on stable field numbers",
+    "Do implement gRPC interceptors for cross-cutting concerns (auth, logging, tracing) because they provide a clean middleware pattern"
+  ],
+  "dos_zh": [
+    "使用proto3语法并遵循Protocol Buffer风格指南，因为一致的命名和约定简化了跨团队协作",
+    "为每次RPC调用设置明确的截止时间，因为缺失截止时间会在整个服务网格中引发级联超时",
+    "使用保留字段和字段号保持来仔细管理.proto文件版本，因为二进制兼容性依赖于稳定的字段号",
+    "为横切关注点（认证、日志、追踪）实现gRPC拦截器，因为它们提供了清晰的中间件模式"
+  ],
+  "donts": [
+    "Don't expose gRPC directly to browser clients without a proxy because browsers cannot natively speak HTTP/2 trailers required by gRPC",
+    "Don't use gRPC for public-facing APIs where developer ergonomics and curl-testability matter because JSON/REST is far more accessible",
+    "Don't ignore backward compatibility when evolving .proto files because removing or renumbering fields breaks all existing clients",
+    "Don't skip implementing health checks because orchestrators like Kubernetes depend on them for readiness and liveness probes"
+  ],
+  "donts_zh": [
+    "不要在没有代理的情况下将gRPC直接暴露给浏览器客户端，因为浏览器不能原生支持gRPC所需的HTTP/2 trailers",
+    "不要在开发者易用性和curl可测试性很重要的公共API中使用gRPC，因为JSON/REST的可访问性远高于此",
+    "不要在演进.proto文件时忽视向后兼容性，因为删除或重编号字段会破坏所有现有客户端",
+    "不要跳过健康检查的实现，因为Kubernetes等编排器依赖它们进行就绪和存活探测"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix migrated its inter-service communication from REST/JSON to gRPC in 2019 to reduce latency in its microservices architecture of over 700 services. The binary serialization of Protocol Buffers reduced payload sizes by approximately 60%, and HTTP/2 multiplexing eliminated the connection overhead that had plagued their REST-based service mesh. Netflix reported a 30-40% reduction in inter-service latency and significant CPU savings from avoiding JSON parsing at scale.",
+  "case_study_zh": "Netflix于2019年将其超过700个微服务间的通信从REST/JSON迁移到gRPC，以降低延迟。Protocol Buffers的二进制序列化将负载大小减少了约60%，HTTP/2多路复用消除了困扰其REST服务网格的连接开销。Netflix报告服务间延迟降低了30-40%，并因避免大规模JSON解析而显著节省了CPU资源。",
+  "when_not_to_use": [
+    "Public developer-facing APIs where ease of testing with curl and browser tools is a priority",
+    "Simple request-response services where the overhead of proto compilation and code generation is unjustified",
+    "Environments where firewall or proxy infrastructure does not support HTTP/2",
+    "Teams without polyglot service needs, where REST with OpenAPI provides sufficient contract enforcement"
+  ],
+  "when_not_to_use_zh": [
+    "面向外部开发者的公共API，在这种场景中用curl和浏览器工具的易测试性是优先考虑的",
+    "简单的请求-响应服务，proto编译和代码生成的开销不合理",
+    "防火墙或代理基础设施不支持HTTP/2的环境",
+    "不需要多语言服务的团队，REST加OpenAPI已提供足够的契约保障"
+  ],
+  "adopters": [
+    "Google",
+    "Netflix",
+    "Square",
+    "Cisco",
+    "CoreOS"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "performance",
+    "scalability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Google (2015). \"gRPC: A High-Performance, Open Source Universal RPC Framework\". grpc.io.",
+  "secondary_sources": [
+    "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 4. O'Reilly Media.",
+    "Indrasiri, K. & Kuruppu, D. (2020). \"gRPC: Up and Running\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "api-gateway-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "consumer-driven-contracts",
+      "type": "complement"
+    },
+    {
+      "slug": "asyncapi",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/grpc-protocol-buffers",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/grpc-protocol-buffers.md"
+}

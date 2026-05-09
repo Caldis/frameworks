@@ -1,0 +1,183 @@
+{
+  "id": 299,
+  "name": "Flyweight Pattern",
+  "name_zh": "享元模式",
+  "slug": "flyweight-pattern",
+  "category": "coding",
+  "desc": "GoF structural pattern that minimises memory usage by sharing fine-grained objects whose state can be externalised, enabling large numbers of similar objects to be represented efficiently.",
+  "desc_zh": "GoF 结构型模式，通过共享可外化状态的细粒度对象来最小化内存使用，使大量相似对象得以高效表示。",
+  "steps": [
+    "Analyse the large collection of objects to separate intrinsic state (immutable, shareable, context-independent — e.g., the glyph shape of a character) from extrinsic state (context-dependent — e.g., the position and colour of each character on screen)",
+    "Create a Flyweight interface that defines the operation method accepting extrinsic state as a parameter, so shared flyweight objects do not store it internally",
+    "Implement Concrete Flyweight classes that store only intrinsic state; multiple client contexts can share the same Concrete Flyweight instance without conflict",
+    "Build a Flyweight Factory that maintains a pool of existing flyweight instances keyed by their intrinsic state — the factory returns an existing instance when the key matches, or creates and caches a new one",
+    "Replace direct object instantiation in client code with factory calls; pass extrinsic state as arguments to flyweight operations at call time rather than storing it in each flyweight instance"
+  ],
+  "steps_zh": [
+    "分析大量对象集合，将内部状态（不可变、可共享、与上下文无关——如字符的字形）与外部状态（依赖上下文——如每个字符在屏幕上的位置和颜色）分离",
+    "创建 Flyweight 接口，定义接受外部状态作为参数的操作方法，使共享的享元对象不在内部存储外部状态",
+    "实现只存储内部状态的具体 Flyweight 类；多个客户端上下文可以共享同一具体享元实例而不产生冲突",
+    "构建 Flyweight 工厂，维护以内部状态为键的现有享元实例池——当键匹配时工厂返回现有实例，否则创建并缓存新实例",
+    "在客户端代码中用工厂调用替换直接对象实例化；在调用时将外部状态作为参数传递给享元操作，而不是将其存储在每个享元实例中"
+  ],
+  "ai_relevant": false,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Flyweight",
+    "Intrinsic State",
+    "Extrinsic State",
+    "Factory"
+  ],
+  "viz_labels_zh": [
+    "享元",
+    "内部状态",
+    "外部状态",
+    "享元工厂"
+  ],
+  "related": [
+    "singleton-pattern"
+  ],
+  "tags": [
+    "flyweight",
+    "gof",
+    "structural-pattern",
+    "memory-optimization",
+    "object-sharing",
+    "design-patterns"
+  ],
+  "origin_author": "Gang of Four",
+  "origin_source": "Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+  "origin_source_zh": "Gamma, E., Helm, R., Johnson, R., & Vlissides, J.（1994）.《设计模式：可复用面向对象软件的基础》. Addison-Wesley.",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Applications that create large numbers of fine-grained objects — thousands or millions — where memory footprint is a critical constraint and many objects share common state",
+    "Rendering engines, text editors, game engines, and CAD applications where visual elements (glyphs, sprites, tiles) are repeated many times with only position and colour varying",
+    "Systems where object creation cost (memory allocation, GC pressure) is measurably degrading performance and profiling confirms that object count is the root cause",
+    "Domain models with many instances of value-like objects (e.g., product SKUs, currency instances, tax codes) where identity equality is not required and shared instances are semantically correct"
+  ],
+  "when_to_use_zh": [
+    "创建大量细粒度对象（成千上万甚至数百万）的应用，内存占用是关键约束，且许多对象共享公共状态",
+    "渲染引擎、文本编辑器、游戏引擎和 CAD 应用，其中视觉元素（字形、精灵、瓦片）被重复多次，仅位置和颜色不同",
+    "对象创建成本（内存分配、GC 压力）可测量地降低了性能，且性能分析确认对象数量是根本原因的系统",
+    "拥有许多值类型对象实例（如产品 SKU、货币实例、税码）的领域模型，不需要标识相等性且共享实例在语义上正确"
+  ],
+  "core_concepts": [
+    "Intrinsic vs Extrinsic State: intrinsic state is stored inside the flyweight and is immutable and shared; extrinsic state is context-dependent and must be passed to the flyweight operations by the caller — this separation is the structural foundation of the pattern",
+    "Flyweight Factory: a factory or registry that ensures only one flyweight instance exists per unique intrinsic state; clients always go through the factory rather than directly instantiating flyweights to guarantee sharing",
+    "Shared Identity: because flyweights are shared, they must not be treated as having object identity — two references to the same flyweight represent different logical objects that happen to share implementation; equality checks on flyweight identity are a common bug",
+    "Memory-Time Trade-off: the pattern trades CPU time (extrinsic state must be computed or passed at every operation call) for memory (fewer objects on the heap); this trade-off is only worthwhile when object count is the dominant memory consumer"
+  ],
+  "core_concepts_zh": [
+    "内部状态与外部状态：内部状态存储在享元内部，是不可变且共享的；外部状态依赖上下文，必须由调用方传递给享元操作——这种分离是该模式的结构基础",
+    "享元工厂：确保每个唯一内部状态只存在一个享元实例的工厂或注册表；客户端始终通过工厂而非直接实例化享元来保证共享",
+    "共享标识：由于享元是共享的，不能将其视为具有对象标识——对同一享元的两个引用代表碰巧共享实现的不同逻辑对象；对享元标识的相等性检查是常见的 bug",
+    "内存-时间权衡：该模式以 CPU 时间（每次操作调用时必须计算或传递外部状态）换取内存（堆上更少的对象）；仅当对象数量是主要内存消耗者时这种权衡才值得"
+  ],
+  "timeline": [
+    [
+      "1990",
+      "Paul Calder and Mark Linton introduce the Flyweight concept in the Unidraw graphical editing framework for X Windows, where thousands of identical glyph objects motivated sharing"
+    ],
+    [
+      "1994",
+      "Gang of Four canonise Flyweight as one of the 23 design patterns in Design Patterns: Elements of Reusable Object-Oriented Software, popularising it across the industry"
+    ],
+    [
+      "2002",
+      "Java String interning and Integer cache implement implicit flyweight sharing in the JVM standard library, embedding the pattern in the language runtime"
+    ],
+    [
+      "2015",
+      "JavaScript engines implement hidden class sharing and string interning as implicit flyweights; React virtual DOM key reconciliation uses flyweight-like object reuse to minimise allocations"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1990",
+      "Paul Calder 和 Mark Linton 在 X Windows 的 Unidraw 图形编辑框架中引入享元概念，其中成千上万个相同字形对象促使了共享机制的诞生"
+    ],
+    [
+      "1994",
+      "Gang of Four 在《设计模式：可复用面向对象软件的基础》中将享元模式规范化为 23 种设计模式之一，在业界广泛推广"
+    ],
+    [
+      "2002",
+      "Java 字符串内部化和 Integer 缓存在 JVM 标准库中实现了隐式享元共享，将该模式嵌入语言运行时"
+    ],
+    [
+      "2015",
+      "JavaScript 引擎实现隐藏类共享和字符串内部化作为隐式享元；React 虚拟 DOM 键调和使用类享元的对象复用来最小化内存分配"
+    ]
+  ],
+  "dos": [
+    "Do profile memory usage before applying Flyweight — the pattern adds significant architectural complexity and is only justified when object count is measurably consuming too much heap memory",
+    "Do make flyweight intrinsic state truly immutable — any mutation of shared state causes subtle, hard-to-debug corruption that affects all clients sharing the same flyweight instance",
+    "Do design the Flyweight Factory as a thread-safe singleton when flyweights are shared across concurrent threads — double-checked locking or ConcurrentHashMap-based caching prevents race conditions on the factory",
+    "Do document which fields are intrinsic and which are extrinsic clearly in code and tests — confusion about the intrinsic/extrinsic boundary is the most common source of flyweight bugs"
+  ],
+  "dos_zh": [
+    "在应用享元模式之前先分析内存使用情况——该模式会增加显著的架构复杂性，仅在对象数量可测量地消耗过多堆内存时才合理",
+    "确保享元的内部状态真正不可变——对共享状态的任何修改都会导致微妙且难以调试的损坏，影响共享同一享元实例的所有客户端",
+    "当享元在并发线程间共享时，将享元工厂设计为线程安全的单例——双重检查锁定或基于 ConcurrentHashMap 的缓存可防止工厂中的竞争条件",
+    "在代码和测试中清楚地记录哪些字段是内部状态、哪些是外部状态——对内部/外部边界的混淆是享元 bug 最常见的来源"
+  ],
+  "donts": [
+    "Do not apply Flyweight prematurely as an optimisation strategy — it dramatically increases code complexity through the intrinsic/extrinsic split and factory indirection; use it only after profiling confirms memory pressure from excessive object count",
+    "Do not share flyweights across isolation boundaries in multi-tenant systems without careful access control — shared flyweight instances can become a cross-tenant data leakage vector if extrinsic state is accidentally stored inside them",
+    "Do not confuse Flyweight with Singleton — Singleton allows exactly one instance of an object regardless of state; Flyweight allows one instance per unique intrinsic state value, so multiple flyweight instances can exist",
+    "Do not store extrinsic state in flyweight fields as an optimisation shortcut — this defeats the sharing guarantee and gradually converts flyweights into regular heavyweight objects as the codebase evolves"
+  ],
+  "donts_zh": [
+    "不要将享元模式作为优化策略过早应用——内部/外部分离和工厂间接层会大幅增加代码复杂性；仅在性能分析确认过多对象数量导致内存压力后才使用",
+    "在多租户系统中不要在没有仔细访问控制的情况下跨隔离边界共享享元——如果外部状态被意外存储在享元内部，共享的享元实例可能成为跨租户数据泄漏的向量",
+    "不要将享元与单例混淆——单例允许恰好一个对象实例而不考虑状态；享元允许每个唯一内部状态值一个实例，因此可以存在多个享元实例",
+    "不要将外部状态作为优化捷径存储在享元字段中——这会破坏共享保证，并随着代码库的演进逐渐将享元转变为普通的重量级对象"
+  ],
+  "case_study_company": "Java JDK / OpenJDK",
+  "case_study": "The Java Development Kit implements the Flyweight pattern implicitly in several core library features. Integer.valueOf(int) in Java 5+ caches Integer instances for values between -128 and 127, the range most frequently used in loops and indexing — rather than creating a new Integer object for every boxing operation, the JVM returns a shared flyweight instance from a pre-populated cache array. For String, Java maintains a string intern pool: String.intern() returns the canonical flyweight instance for any given string value. These JVM-level flyweights have a measurable impact at scale: in high-throughput services processing millions of short integer counters or repeated string tokens, the Integer cache alone can reduce GC pressure by eliminating tens of millions of short-lived allocations per second, meaningfully reducing pause times in applications running on JVMs with concurrent garbage collectors.",
+  "case_study_zh": "Java 开发工具包在多个核心库功能中隐式实现了享元模式。Java 5+ 中的 Integer.valueOf(int) 为 -128 到 127 之间的值（最常用于循环和索引的范围）缓存 Integer 实例——JVM 从预填充的缓存数组返回共享享元实例，而非为每次装箱操作创建新的 Integer 对象。对于 String，Java 维护一个字符串内部化池：String.intern() 返回任意字符串值的规范享元实例。这些 JVM 级享元在大规模场景下具有可测量的影响：在处理数百万个短整数计数器或重复字符串标记的高吞吐量服务中，Integer 缓存本身可以通过每秒消除数千万个短暂分配来减轻 GC 压力，有效降低使用并发垃圾收集器的 JVM 上的应用停顿时间。",
+  "when_not_to_use": [
+    "Applications with relatively few objects where the memory savings do not justify the architectural overhead of separating intrinsic from extrinsic state and routing all creation through a factory",
+    "Objects with mostly unique state where the intrinsic state is too fine-grained to enable sharing — if every instance has different intrinsic state, the Flyweight Factory becomes a plain object cache with no sharing benefit",
+    "Performance-critical paths where passing extrinsic state as a parameter on every operation call introduces function call overhead that outweighs the memory savings",
+    "Mutable objects where the shared state must be modified independently per client — mutability and sharing are fundamentally incompatible in Flyweight"
+  ],
+  "when_not_to_use_zh": [
+    "对象数量相对较少的应用，内存节省不足以证明将内部状态与外部状态分离以及通过工厂路由所有创建操作的架构开销是合理的",
+    "大多数状态唯一的对象，内部状态粒度太细无法实现共享——如果每个实例都有不同的内部状态，享元工厂就变成了没有共享优势的普通对象缓存",
+    "每次操作调用时将外部状态作为参数传递引入的函数调用开销超过内存节省的性能关键路径",
+    "必须按客户端独立修改共享状态的可变对象——可变性和共享在享元中是根本不相容的"
+  ],
+  "adopters": [
+    "Java JDK (Integer cache, String intern)",
+    "JavaScript V8 engine (hidden classes)",
+    "Microsoft Word (glyph rendering)",
+    "Unity (sprite atlas sharing)",
+    "Unreal Engine (static mesh instances)",
+    "Apache POI (cell style sharing)"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "performance",
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+  "secondary_sources": [
+    "Freeman, E. & Freeman, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+    "Bloch, J. (2018). \"Effective Java\", 3rd ed., Item 6: Avoid creating unnecessary objects. Addison-Wesley.",
+    "Calder, P. & Linton, M. (1990). \"Glyphs: Flyweight Objects for User Interfaces\". UIST 1990 Proceedings."
+  ],
+  "typed_relations": [
+    {
+      "slug": "singleton-pattern",
+      "type": "related"
+    },
+    {
+      "slug": "factory-method-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/flyweight-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/flyweight-pattern.md"
+}

@@ -1,0 +1,192 @@
+{
+  "id": 46,
+  "name": "Test-Driven Development (TDD)",
+  "name_zh": "测试驱动开发",
+  "slug": "tdd",
+  "category": "quality",
+  "desc": "Write failing tests first, then code to pass, then refactor",
+  "desc_zh": "先写失败测试，再编写代码使之通过，最后重构",
+  "steps": [
+    "Red: write a small, focused test that describes the next behavior increment; run it and confirm it fails for the right reason",
+    "Green: write the minimum amount of production code needed to make the failing test pass — no more, no less",
+    "Refactor: improve the code's structure, naming, and duplication while keeping all tests green; apply clean code principles",
+    "Repeat the cycle: pick the next simplest behavior, write a failing test, make it pass, and refactor — in cycles of 1-5 minutes",
+    "Build a regression suite: as TDD cycles accumulate, the test suite becomes a living specification and safety net for future changes"
+  ],
+  "steps_zh": [
+    "红灯：编写一个小而专注的测试描述下一个行为增量；运行并确认它因正确的原因失败",
+    "绿灯：编写刚好使失败测试通过所需的最少生产代码——不多不少",
+    "重构：在保持所有测试通过的前提下改善代码结构、命名和重复；应用整洁代码原则",
+    "重复循环：选择下一个最简单的行为，编写失败测试，使其通过并重构——以1-5分钟为周期",
+    "构建回归套件：随TDD周期累积，测试套件成为活的规格说明和未来变更的安全网"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Red",
+    "Green",
+    "Refactor"
+  ],
+  "viz_labels_zh": [
+    "红灯",
+    "绿灯",
+    "重构"
+  ],
+  "related": [
+    "test-pyramid",
+    "bdd",
+    "clean-code-principles"
+  ],
+  "tags": [
+    "tdd",
+    "red-green-refactor",
+    "test-first",
+    "design",
+    "feedback"
+  ],
+  "origin_author": "Kent Beck, 1999",
+  "origin_source": "Extreme Programming Explained: Embrace Change",
+  "origin_source_zh": "《解析极限编程：拥抱变化》",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Implementing well-understood business logic where requirements can be expressed as clear assertions",
+    "Refactoring legacy code where you need a safety net of tests before making changes",
+    "Developing library or API code where correctness and contracts are paramount",
+    "Coaching developers on incremental design and YAGNI thinking"
+  ],
+  "when_to_use_zh": [
+    "实现需求明确的业务逻辑，能用清晰的断言表达",
+    "重构遗留代码，在修改前需要测试安全网",
+    "开发正确性和契约至关重要的库或API代码",
+    "指导开发者学习增量设计和YAGNI思维"
+  ],
+  "core_concepts": [
+    "Red-Green-Refactor: The three-step cycle of writing a failing test, making it pass, then improving the code",
+    "Baby Steps: Making the smallest possible increment in each cycle to maintain continuous progress",
+    "Emergent Design: Letting the architecture emerge from the refactoring step rather than up-front big design",
+    "YAGNI: Only writing code needed to pass the current test, avoiding speculative features",
+    "Triangulation: Using multiple test cases to drive toward a general solution instead of hard-coding"
+  ],
+  "core_concepts_zh": [
+    "红-绿-重构：编写失败测试、使其通过、改善代码的三步循环",
+    "小步前进：每个循环中做最小可能的增量，保持持续进展",
+    "浮现式设计：让架构从重构步骤中自然浮现，而非前期大规模设计",
+    "YAGNI：只编写使当前测试通过所需的代码，避免推测性功能",
+    "三角测量：使用多个测试用例驱动通用解决方案，而非硬编码"
+  ],
+  "timeline": [
+    [
+      "1999",
+      "Kent Beck introduces TDD as a core practice of Extreme Programming"
+    ],
+    [
+      "2002",
+      "Beck publishes 'Test-Driven Development: By Example' as a standalone guide"
+    ],
+    [
+      "2005",
+      "TDD becomes a mainstream practice adopted by agile teams worldwide"
+    ],
+    [
+      "2014",
+      "David Heinemeier Hansson sparks the 'TDD is Dead' debate, leading to deeper community discussion"
+    ],
+    [
+      "2020",
+      "TDD experiences resurgence with AI-assisted coding, as tests serve as specifications for code generation"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1999",
+      "Kent Beck将TDD作为极限编程的核心实践引入"
+    ],
+    [
+      "2002",
+      "Beck出版《测试驱动开发：实战与模式解析》作为独立指南"
+    ],
+    [
+      "2005",
+      "TDD成为全球敏捷团队广泛采用的主流实践"
+    ],
+    [
+      "2014",
+      "David Heinemeier Hansson发起'TDD已死'辩论，引发社区深入讨论"
+    ],
+    [
+      "2020",
+      "随着AI辅助编码兴起，TDD迎来复兴，测试充当代码生成的规格说明"
+    ]
+  ],
+  "dos": [
+    "Do write the test before the production code because the test-first discipline drives better design",
+    "Do keep cycles short (1-5 minutes) because long cycles lose the feedback benefit of TDD",
+    "Do refactor aggressively in the green phase because skipping refactoring leads to test-passing spaghetti",
+    "Do test behavior not implementation because behavior tests survive refactoring"
+  ],
+  "dos_zh": [
+    "在生产代码之前编写测试，因为测试优先的纪律能驱动更好的设计",
+    "保持短周期（1-5分钟），因为过长的周期会失去TDD的反馈优势",
+    "在绿灯阶段积极重构，因为跳过重构会导致虽然通过测试但代码混乱",
+    "测试行为而非实现，因为行为测试能在重构中存活"
+  ],
+  "donts": [
+    "Don't write multiple failing tests at once because it breaks the one-step-at-a-time discipline",
+    "Don't skip the refactor step because accumulated technical debt defeats the purpose of TDD",
+    "Don't test private methods directly because it couples tests to implementation details",
+    "Don't pursue 100% coverage as a goal because it leads to low-value tests and false confidence"
+  ],
+  "donts_zh": [
+    "不要同时编写多个失败测试，因为这破坏了一步一步前进的纪律",
+    "不要跳过重构步骤，因为累积的技术债会违背TDD的初衷",
+    "不要直接测试私有方法，因为这将测试与实现细节耦合",
+    "不要把100%覆盖率作为目标，因为这会导致低价值测试和虚假信心"
+  ],
+  "case_study_company": "Pivotal Labs",
+  "case_study": "Pivotal Labs (now part of VMware Tanzu) built their entire consulting practice around TDD and pair programming. Their client engagements consistently showed that TDD-practiced teams delivered code with 40-60% fewer production defects compared to non-TDD teams. The discipline also reduced debugging time significantly, as most bugs were caught within minutes of introduction.",
+  "case_study_zh": "Pivotal Labs（现为VMware Tanzu的一部分）围绕TDD和结对编程建立了整个咨询实践。他们的客户项目一致表明，采用TDD的团队交付的代码比未采用TDD的团队减少了40-60%的生产缺陷。该方法还显著减少了调试时间，因为大多数缺陷在引入后几分钟内就被捕获。",
+  "when_not_to_use": [
+    "Rapid prototyping where requirements are unknown and code will be thrown away",
+    "Exploratory UI design where visual outcomes are subjective and hard to assert",
+    "Highly concurrent or distributed systems where deterministic unit testing is difficult"
+  ],
+  "when_not_to_use_zh": [
+    "需求不明确且代码将被丢弃的快速原型开发",
+    "视觉效果主观且难以断言的探索性UI设计",
+    "确定性单元测试困难的高并发或分布式系统"
+  ],
+  "adopters": [
+    "Pivotal Labs",
+    "ThoughtWorks",
+    "8th Light",
+    "Industrial Logic",
+    "Spotify"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "testability",
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Kent Beck (2002). \"Test-Driven Development: By Example\". Addison-Wesley.",
+  "secondary_sources": [
+    "Kent Beck (1999). \"Extreme Programming Explained: Embrace Change\". Addison-Wesley.",
+    "Robert C. Martin (2007). \"Professionalism and Test-Driven Development\". IEEE Software, 24(3)."
+  ],
+  "typed_relations": [
+    {
+      "slug": "test-pyramid",
+      "type": "complement"
+    },
+    {
+      "slug": "bdd",
+      "type": "complement"
+    },
+    {
+      "slug": "clean-code-principles",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/tdd",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/tdd.md"
+}

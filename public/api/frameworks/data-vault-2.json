@@ -1,0 +1,193 @@
+{
+  "id": 108,
+  "name": "Data Vault 2.0",
+  "name_zh": "Data Vault 2.0",
+  "slug": "data-vault-2",
+  "category": "data",
+  "desc": "Agile, auditable data warehousing with hubs, links, and satellites",
+  "desc_zh": "以Hub、Link和Satellite实现敏捷可审计的数据仓库方法论",
+  "steps": [
+    "Identify business keys from source systems and model them as Hub tables, each representing a core business concept (customer, product, order) with a hash key and load metadata",
+    "Model relationships between hubs as Link tables that capture associations (customer-places-order) with their own hash keys and load metadata",
+    "Attach descriptive and contextual attributes to hubs and links as Satellite tables, each timestamped to track the full history of changes",
+    "Load the raw vault from source systems using pattern-based, parallelizable ETL that inserts without updating, preserving full auditability",
+    "Build business vault and information marts on top of the raw vault to apply business rules and present data in star schema form for consumption"
+  ],
+  "steps_zh": [
+    "从源系统识别业务键并建模为Hub表，每个代表一个核心业务概念（客户、产品、订单），包含哈希键和加载元数据",
+    "将Hub之间的关系建模为Link表，捕获关联（客户-下-订单），有自己的哈希键和加载元数据",
+    "将描述性和上下文属性作为Satellite表附加到Hub和Link上，每条带时间戳以追踪完整变更历史",
+    "使用基于模式的、可并行化的ETL从源系统加载原始库，仅插入不更新，保留完整可审计性",
+    "在原始库之上构建业务库和信息集市，应用业务规则并以星型模式形式呈现数据供消费"
+  ],
+  "ai_relevant": false,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Hub",
+    "Link",
+    "Satellite",
+    "Raw Vault",
+    "Info Mart"
+  ],
+  "viz_labels_zh": [
+    "核心表",
+    "关联表",
+    "附属表",
+    "原始库",
+    "信息集市"
+  ],
+  "related": [
+    "star-schema",
+    "data-lakehouse",
+    "data-mesh",
+    "database-migration-patterns"
+  ],
+  "tags": [
+    "data-vault",
+    "agile-warehouse",
+    "auditability",
+    "hub-link-satellite"
+  ],
+  "origin_author": "Dan Linstedt, 2000 (formalized as 2.0 in 2013)",
+  "origin_source": "Building a Scalable Data Warehouse with Data Vault 2.0 (Morgan Kaufmann, 2015)",
+  "origin_source_zh": "《使用Data Vault 2.0构建可扩展数据仓库》（Morgan Kaufmann，2015）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When multiple source systems with overlapping business keys need to be integrated into a single warehouse",
+    "When full historical auditability and traceability of every data change is a regulatory or business requirement",
+    "When the data warehouse must accommodate frequent source system changes without major rework",
+    "When agile, incremental delivery of warehouse functionality is needed with parallel development across teams"
+  ],
+  "when_to_use_zh": [
+    "当多个具有重叠业务键的源系统需要集成到单一仓库时",
+    "当每个数据变更的完整历史可审计性和可追溯性是监管或业务要求时",
+    "当数据仓库必须适应频繁的源系统变更而无需大规模返工时",
+    "当需要敏捷、增量交付仓库功能且跨团队并行开发时"
+  ],
+  "core_concepts": [
+    "Hubs: tables anchored on business keys representing core business entities, providing a stable integration point across source systems",
+    "Links: tables capturing relationships between hubs, modeling the associations and transactions between business entities",
+    "Satellites: tables containing descriptive attributes and context for hubs and links, timestamped to maintain full change history",
+    "Insert-only loading: all data is appended, never updated or deleted in the raw vault, ensuring complete auditability and reproducibility"
+  ],
+  "core_concepts_zh": [
+    "Hub：以业务键为锚点的表，代表核心业务实体，提供跨源系统的稳定集成点",
+    "Link：捕获Hub之间关系的表，建模业务实体之间的关联和事务",
+    "Satellite：包含Hub和Link描述性属性和上下文的表，带时间戳以维护完整变更历史",
+    "仅插入加载：原始库中所有数据仅追加，不更新或删除，确保完整的可审计性和可重现性"
+  ],
+  "timeline": [
+    [
+      "2000",
+      "Dan Linstedt introduces the original Data Vault modeling methodology"
+    ],
+    [
+      "2013",
+      "Data Vault 2.0 formalized with hash keys, pattern-based loading, and NoSQL support"
+    ],
+    [
+      "2015",
+      "Linstedt publishes 'Building a Scalable Data Warehouse with Data Vault 2.0' as the definitive guide"
+    ],
+    [
+      "2020",
+      "Data Vault 2.0 gains renewed interest as cloud data warehouses (Snowflake, BigQuery) make its patterns more performant"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2000",
+      "Dan Linstedt引入最初的Data Vault建模方法论"
+    ],
+    [
+      "2013",
+      "Data Vault 2.0通过哈希键、基于模式的加载和NoSQL支持正式化"
+    ],
+    [
+      "2015",
+      "Linstedt出版《使用Data Vault 2.0构建可扩展数据仓库》作为权威指南"
+    ],
+    [
+      "2020",
+      "随着云数据仓库（Snowflake、BigQuery）提升其模式性能，Data Vault 2.0获得新的关注"
+    ]
+  ],
+  "dos": [
+    "Do use hash keys for hub and link primary keys because they enable parallel loading and deterministic key generation across distributed systems",
+    "Do keep the raw vault free of business rules because it should be a pure, auditable reflection of source system data",
+    "Do apply business rules in a separate business vault layer because mixing integration and interpretation creates fragile, hard-to-maintain models",
+    "Do generate ETL code from metadata templates because the repetitive hub/link/satellite loading patterns are ideal for automation"
+  ],
+  "dos_zh": [
+    "使用哈希键作为Hub和Link的主键，因为它们支持并行加载和跨分布式系统的确定性键生成",
+    "保持原始库不含业务规则，因为它应该是源系统数据的纯净、可审计的反映",
+    "在单独的业务库层应用业务规则，因为混合集成和解释会创建脆弱、难以维护的模型",
+    "从元数据模板生成ETL代码，因为重复的Hub/Link/Satellite加载模式非常适合自动化"
+  ],
+  "donts": [
+    "Don't expose raw vault tables directly to business users because the hub-link-satellite structure is not intuitive for analysis",
+    "Don't update or delete records in the raw vault because it destroys the audit trail and historical traceability",
+    "Don't skip the information mart layer because business users need star schema or flat table views for their BI tools",
+    "Don't create point-to-point links between satellites because all relationships must flow through properly modeled link tables"
+  ],
+  "donts_zh": [
+    "不要将原始库表直接暴露给业务用户，因为Hub-Link-Satellite结构对分析而言不直观",
+    "不要更新或删除原始库中的记录，因为这会破坏审计追踪和历史可追溯性",
+    "不要跳过信息集市层，因为业务用户需要星型模式或扁平表视图用于BI工具",
+    "不要在Satellite之间创建点对点链接，因为所有关系必须通过正确建模的Link表流转"
+  ],
+  "case_study_company": "ING Bank",
+  "case_study": "ING Bank adopted Data Vault 2.0 to integrate data from over 40 source systems across its global banking operations. The hub-link-satellite model allowed regulatory reporting teams to trace every data point back to its source system and exact load timestamp, meeting strict European banking audit requirements. Parallel loading patterns reduced their nightly ETL window from 12 hours to under 3 hours.",
+  "case_study_zh": "ING银行采用Data Vault 2.0集成其全球银行业务中超过40个源系统的数据。Hub-Link-Satellite模型使监管报告团队能够将每个数据点追溯到其源系统和确切加载时间戳，满足严格的欧洲银行审计要求。并行加载模式将夜间ETL窗口从12小时缩短到不到3小时。",
+  "when_not_to_use": [
+    "When the organization has a single source system and integration across heterogeneous sources is not needed",
+    "When the team lacks data modeling expertise and the learning curve of Data Vault 2.0 is too steep",
+    "When real-time analytics are the primary use case and the multi-layer architecture adds unacceptable latency",
+    "When data volumes are small and a simple star schema directly loaded from sources is sufficient"
+  ],
+  "when_not_to_use_zh": [
+    "当组织只有单一源系统且不需要跨异构源集成时",
+    "当团队缺乏数据建模专业知识且Data Vault 2.0学习曲线过陡时",
+    "当实时分析是主要用例且多层架构增加不可接受的延迟时",
+    "当数据量较小且从源直接加载的简单星型模式即可满足时"
+  ],
+  "adopters": [
+    "ING Bank",
+    "Pfizer",
+    "USAA",
+    "DirectTV",
+    "Department of Defense (US)"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "scalability",
+    "maintainability",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Linstedt, D. & Olschimke, M. (2015). \"Building a Scalable Data Warehouse with Data Vault 2.0\". Morgan Kaufmann.",
+  "secondary_sources": [
+    "Linstedt, D. (2002). \"Data Vault Series\". The Data Administration Newsletter (TDAN.com).",
+    "Linstedt, D. (2010). \"Super Charge Your Data Warehouse\". CreateSpace."
+  ],
+  "typed_relations": [
+    {
+      "slug": "star-schema",
+      "type": "alternative"
+    },
+    {
+      "slug": "data-lakehouse",
+      "type": "complement"
+    },
+    {
+      "slug": "data-mesh",
+      "type": "complement"
+    },
+    {
+      "slug": "database-migration-patterns",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/data-vault-2",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/data-vault-2.md"
+}

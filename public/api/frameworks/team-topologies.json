@@ -1,0 +1,205 @@
+{
+  "id": 80,
+  "name": "Team Topologies",
+  "name_zh": "团队拓扑",
+  "slug": "team-topologies",
+  "category": "evolution",
+  "desc": "Four team types and three interaction modes for fast, sustainable software delivery",
+  "desc_zh": "通过四种团队类型与三种交互模式实现快速可持续的软件交付",
+  "steps": [
+    "Classify all existing teams into the four types: Stream-aligned, Platform, Enabling, Complicated-subsystem",
+    "Identify current interaction modes: Collaboration, X-as-a-Service, or Facilitating",
+    "Detect anti-patterns such as overloaded stream-aligned teams or absent platform teams",
+    "Redesign team interactions to minimize cognitive load and maximize flow for stream-aligned teams",
+    "Set trigger conditions (team size, cognitive load signals) for evolving team topology over time"
+  ],
+  "steps_zh": [
+    "将现有团队分类为四种类型：流式对齐团队、平台团队、赋能团队、复杂子系统团队",
+    "识别当前交互模式：协作、X即服务或促进",
+    "检测反模式，如过载的流式对齐团队或缺失的平台团队",
+    "重新设计团队交互方式，最小化认知负荷，最大化流式对齐团队的交付流",
+    "设定触发条件（团队规模、认知负荷信号），驱动团队拓扑随时间持续演进"
+  ],
+  "ai_relevant": false,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Stream-Aligned",
+    "Platform",
+    "Enabling",
+    "Subsystem"
+  ],
+  "viz_labels_zh": [
+    "流动对齐团队",
+    "平台团队",
+    "赋能团队",
+    "复杂子系统"
+  ],
+  "related": [
+    "conways-law",
+    "inverse-conway-maneuver",
+    "calms-framework",
+    "spotify-model",
+    "amazon-two-pizza-teams"
+  ],
+  "tags": [
+    "team-topologies",
+    "cognitive-load",
+    "org-design",
+    "stream-aligned"
+  ],
+  "origin_author": "Matthew Skelton & Manuel Pais, 2019",
+  "origin_source": "Team Topologies: Organizing Business and Technology Teams for Fast Flow (IT Revolution Press)",
+  "origin_source_zh": "《团队拓扑：以业务与技术团队组织实现快速流动》（IT Revolution 出版）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Scaling engineering from 3-5 teams to 10+ teams and needing a coherent organizational model",
+    "Reducing cross-team dependencies that are slowing down delivery across multiple product streams",
+    "Designing a platform engineering organization to support self-service developer experience",
+    "Diagnosing cognitive overload in teams that own too many domains or too much infrastructure"
+  ],
+  "when_to_use_zh": [
+    "工程团队从 3-5 个扩展到 10+ 个，需要连贯的组织模型",
+    "减少跨团队依赖，这些依赖正在拖慢多个产品流的交付",
+    "设计平台工程组织以支撑自助式开发者体验",
+    "诊断因拥有过多领域或过多基础设施而导致的团队认知过载"
+  ],
+  "core_concepts": [
+    "Stream-aligned team: The primary team type, organized around a flow of work from a business domain or user journey",
+    "Platform team: Provides self-service internal capabilities that reduce cognitive load for stream-aligned teams",
+    "Enabling team: Helps stream-aligned teams adopt new technologies or practices, then steps back",
+    "Complicated-subsystem team: Owns components requiring deep specialist knowledge that would overload a stream-aligned team",
+    "Cognitive load: The core constraint — team topology must be designed to keep each team's cognitive load manageable"
+  ],
+  "core_concepts_zh": [
+    "流式对齐团队：主要团队类型，围绕业务领域或用户旅程的工作流组织",
+    "平台团队：提供自助式内部能力，减轻流式对齐团队的认知负荷",
+    "赋能团队：帮助流式对齐团队采用新技术或实践，然后退出",
+    "复杂子系统团队：拥有需要深度专业知识的组件，这些知识会过载流式对齐团队",
+    "认知负荷：核心约束——团队拓扑必须设计为使每个团队的认知负荷保持在可控范围"
+  ],
+  "timeline": [
+    [
+      "2013",
+      "Skelton and Pais begin writing about DevOps team patterns on their blog"
+    ],
+    [
+      "2016",
+      "The term 'Team Topologies' appears in conference talks and early publications"
+    ],
+    [
+      "2019",
+      "The book 'Team Topologies' is published by IT Revolution Press and becomes an instant bestseller"
+    ],
+    [
+      "2021",
+      "Team Topologies Academy launches, offering certified training and workshops"
+    ],
+    [
+      "2023",
+      "The framework is widely adopted by enterprises worldwide, with translations into 10+ languages"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2013",
+      "Skelton 和 Pais 开始在博客上撰写关于 DevOps 团队模式的文章"
+    ],
+    [
+      "2016",
+      "「团队拓扑」一词出现在会议演讲和早期出版物中"
+    ],
+    [
+      "2019",
+      "《团队拓扑》由 IT Revolution 出版，迅速成为畅销书"
+    ],
+    [
+      "2021",
+      "团队拓扑学院成立，提供认证培训和工作坊"
+    ],
+    [
+      "2023",
+      "该框架被全球企业广泛采用，已翻译成 10 多种语言"
+    ]
+  ],
+  "dos": [
+    "Start by assessing each team's cognitive load — this is the fundamental constraint to optimize for",
+    "Ensure most teams are stream-aligned — platform and enabling teams exist to support them, not the reverse",
+    "Define explicit interaction modes between every pair of teams and review them quarterly",
+    "Use team topology evolution triggers (growing team size, rising lead time) to know when to restructure"
+  ],
+  "dos_zh": [
+    "从评估每个团队的认知负荷开始——这是需要优化的根本约束",
+    "确保大多数团队是流式对齐的——平台和赋能团队的存在是为了支持它们，而非反过来",
+    "为每对团队之间定义明确的交互模式，并每季度审查",
+    "使用团队拓扑演进触发条件（团队规模增长、前置时间上升）来判断何时重组"
+  ],
+  "donts": [
+    "Don't create platform teams too early — wait until the need is clear from cognitive load signals",
+    "Don't let enabling teams become permanent dependencies — they should upskill and move on",
+    "Don't force-fit every team into one of four types — some teams may be transitioning between types",
+    "Don't apply the framework without executive buy-in — team topology changes require organizational authority"
+  ],
+  "donts_zh": [
+    "不要过早创建平台团队——等到认知负荷信号明确显示需要时再行动",
+    "不要让赋能团队成为永久依赖——他们应该赋能后撤出",
+    "不要强行将每个团队归入四种类型之一——有些团队可能正在类型之间过渡",
+    "不要在没有高管支持的情况下应用该框架——团队拓扑变更需要组织层面的授权"
+  ],
+  "case_study_company": "Adidas",
+  "case_study": "Adidas adopted Team Topologies to restructure their engineering organization during their digital transformation in 2020. They reorganized over 30 teams into stream-aligned squads mapped to customer journeys (browse, purchase, returns), supported by a platform team providing a shared Kubernetes-based developer platform. The restructuring reduced their average lead time for changes from weeks to days and eliminated most cross-team handoffs that had been blocking releases.",
+  "case_study_zh": "Adidas 在 2020 年数字化转型期间采用团队拓扑重组其工程组织。他们将 30 多个团队重组为映射到客户旅程（浏览、购买、退货）的流式对齐小队，并由一个提供共享 Kubernetes 开发者平台的平台团队提供支撑。重组将变更的平均前置时间从数周缩短到数天，并消除了大部分阻碍发布的跨团队交接。",
+  "when_not_to_use": [
+    "Organizations with fewer than 3 teams — the overhead of formal topology classification is not justified",
+    "Teams that are fully cross-functional and self-sufficient with no cognitive load issues",
+    "Short-term project-based work where teams disband after delivery",
+    "The organizational culture resists any form of team classification or prescribed interaction modes"
+  ],
+  "when_not_to_use_zh": [
+    "少于 3 个团队的组织——正式拓扑分类的开销不合理",
+    "团队已完全跨职能且自给自足，没有认知负荷问题",
+    "短期项目制工作，交付后团队即解散",
+    "组织文化抵制任何形式的团队分类或规定的交互模式"
+  ],
+  "adopters": [
+    "Adidas",
+    "PureGym",
+    "uSwitch",
+    "Nationwide Building Society",
+    "Condé Nast"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability",
+    "scalability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Matthew Skelton and Manuel Pais (2019). \"Team Topologies: Organizing Business and Technology Teams for Fast Flow\". IT Revolution Press.",
+  "secondary_sources": [
+    "Melvin Conway (1968). \"How Do Committees Invent?\". Datamation, 14(4).",
+    "Nicole Forsgren, Jez Humble, and Gene Kim (2018). \"Accelerate: The Science of Lean Software and DevOps\". IT Revolution Press."
+  ],
+  "typed_relations": [
+    {
+      "slug": "conways-law",
+      "type": "complement"
+    },
+    {
+      "slug": "inverse-conway-maneuver",
+      "type": "complement"
+    },
+    {
+      "slug": "calms-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "spotify-model",
+      "type": "alternative"
+    },
+    {
+      "slug": "amazon-two-pizza-teams",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/team-topologies",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/team-topologies.md"
+}

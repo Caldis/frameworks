@@ -1,0 +1,196 @@
+{
+  "id": 55,
+  "name": "LLM Evaluation Framework",
+  "name_zh": "大模型评估框架",
+  "slug": "llm-evaluation-framework",
+  "category": "quality",
+  "desc": "Systematically evaluate LLM output quality and reliability",
+  "desc_zh": "系统化评估大语言模型输出的质量与可靠性",
+  "steps": [
+    "Build golden datasets: curate labeled examples with expected outputs covering core use cases, edge cases, and known failure modes",
+    "Define quality dimensions: establish metrics for accuracy, relevance, faithfulness (no hallucination), format compliance, and safety",
+    "Implement automated evaluators: use LLM-as-judge, embedding similarity, regex validators, and custom rubrics to score each dimension",
+    "Run regression suites: execute evaluations automatically on every prompt change, model upgrade, or RAG pipeline modification",
+    "Analyze and iterate: review score trends, investigate regressions, and use failure analysis to drive prompt, retrieval, or model improvements"
+  ],
+  "steps_zh": [
+    "构建黄金数据集：整理覆盖核心用例、边界情况和已知故障模式的标注示例及期望输出",
+    "定义质量维度：建立准确性、相关性、忠实度（无幻觉）、格式合规性和安全性的指标",
+    "实现自动化评估器：使用LLM作为裁判、嵌入相似度、正则验证器和自定义评分准则对每个维度打分",
+    "运行回归套件：在每次提示词变更、模型升级或RAG管道修改时自动执行评估",
+    "分析与迭代：审查分数趋势，调查回归问题，利用失败分析驱动提示词、检索或模型改进"
+  ],
+  "ai_relevant": true,
+  "viz_type": "radar",
+  "viz_labels": [
+    "Accuracy",
+    "Safety",
+    "Latency",
+    "Cost",
+    "Coherence"
+  ],
+  "viz_labels_zh": [
+    "准确性",
+    "安全性",
+    "延迟",
+    "成本",
+    "连贯性"
+  ],
+  "related": [
+    "ai-output-verification",
+    "prompt-testing",
+    "ai-observability-framework"
+  ],
+  "tags": [
+    "llm-eval",
+    "benchmarks",
+    "quality-metrics",
+    "automated-evaluation",
+    "ai"
+  ],
+  "origin_author": "OpenAI / Anthropic / Google, 2023",
+  "origin_source": "HELM: Holistic Evaluation of Language Models (Stanford CRFM, 2022) and industry eval frameworks",
+  "origin_source_zh": "《HELM：语言模型整体评估》（斯坦福CRFM，2022）及行业评估框架",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Deploying LLM-powered features to production where output quality must be measurable and tracked",
+    "Comparing model versions or providers to make data-driven upgrade decisions",
+    "Building RAG pipelines where retrieval and generation quality both need monitoring",
+    "Establishing quality gates in CI/CD for prompt engineering workflows"
+  ],
+  "when_to_use_zh": [
+    "将LLM功能部署到输出质量必须可衡量和可追踪的生产环境",
+    "比较模型版本或供应商以做出数据驱动的升级决策",
+    "构建检索和生成质量都需要监控的RAG管道",
+    "在提示词工程工作流的CI/CD中建立质量门控"
+  ],
+  "core_concepts": [
+    "Golden Dataset: A curated set of input-output pairs used as ground truth for evaluation",
+    "LLM-as-Judge: Using a language model to evaluate another model's output against defined criteria",
+    "Faithfulness: The degree to which generated content is grounded in provided source material without hallucination",
+    "Evaluation Rubric: A structured scoring guide defining what constitutes good, acceptable, and poor output",
+    "Regression Testing: Running evaluations on every change to detect quality degradation before deployment"
+  ],
+  "core_concepts_zh": [
+    "黄金数据集：作为评估基准真相的精选输入-输出对集合",
+    "LLM作为裁判：使用语言模型根据定义的标准评估另一个模型的输出",
+    "忠实度：生成内容基于提供的源材料且无幻觉的程度",
+    "评估准则：定义优良、可接受和差劣输出的结构化评分指南",
+    "回归测试：在每次变更时运行评估以在部署前检测质量退化"
+  ],
+  "timeline": [
+    [
+      "2020",
+      "OpenAI introduces early evaluation benchmarks for GPT-3 measuring accuracy across tasks"
+    ],
+    [
+      "2022",
+      "Stanford CRFM releases HELM providing holistic multi-metric evaluation of language models"
+    ],
+    [
+      "2023",
+      "Braintrust, Langsmith, and Promptfoo emerge as dedicated LLM evaluation platforms"
+    ],
+    [
+      "2024",
+      "LLM-as-Judge becomes the dominant evaluation pattern, validated by research from Anthropic and Google"
+    ],
+    [
+      "2025",
+      "Evaluation frameworks mature to include multi-turn agent evaluation and tool-use correctness"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2020",
+      "OpenAI为GPT-3引入早期评估基准，衡量跨任务准确性"
+    ],
+    [
+      "2022",
+      "斯坦福CRFM发布HELM，提供语言模型的整体多指标评估"
+    ],
+    [
+      "2023",
+      "Braintrust、Langsmith和Promptfoo作为专用LLM评估平台涌现"
+    ],
+    [
+      "2024",
+      "LLM作为裁判成为主导评估模式，经Anthropic和Google研究验证"
+    ],
+    [
+      "2025",
+      "评估框架成熟到包含多轮智能体评估和工具使用正确性"
+    ]
+  ],
+  "dos": [
+    "Do build diverse golden datasets because biased test sets produce misleading evaluation scores",
+    "Do evaluate multiple quality dimensions because a model can be accurate but unsafe or unfaithful",
+    "Do version evaluations alongside prompts because evaluation criteria must evolve with the application",
+    "Do include adversarial test cases because edge cases and attacks reveal real-world failure modes"
+  ],
+  "dos_zh": [
+    "构建多样化的黄金数据集，因为有偏差的测试集会产生误导性评估分数",
+    "评估多个质量维度，因为模型可能准确但不安全或不忠实",
+    "将评估与提示词一起版本化，因为评估标准必须随应用演进",
+    "包含对抗性测试用例，因为边界情况和攻击揭示了真实世界的失败模式"
+  ],
+  "donts": [
+    "Don't rely solely on LLM-as-Judge because model judges have their own biases and failure modes",
+    "Don't use a single metric because reducing quality to one number hides important failure dimensions",
+    "Don't evaluate only happy paths because production failures occur on unexpected and adversarial inputs",
+    "Don't skip human evaluation entirely because automated metrics can miss nuanced quality issues"
+  ],
+  "donts_zh": [
+    "不要仅依赖LLM作为裁判，因为模型裁判有自身的偏见和失败模式",
+    "不要使用单一指标，因为将质量压缩为一个数字会隐藏重要的失败维度",
+    "不要只评估正向路径，因为生产故障发生在意外和对抗性输入上",
+    "不要完全跳过人工评估，因为自动化指标可能遗漏细微的质量问题"
+  ],
+  "case_study_company": "Anthropic",
+  "case_study": "Anthropic built extensive evaluation frameworks for Claude, including automated benchmarks across helpfulness, harmlessness, and honesty dimensions. Their evaluation suite runs thousands of test cases on every model iteration, enabling rapid detection of capability regressions and safety issues. This systematic approach allows them to ship model updates with high confidence that quality has not degraded.",
+  "case_study_zh": "Anthropic为Claude构建了广泛的评估框架，包括跨有用性、无害性和诚实性维度的自动化基准。他们的评估套件在每次模型迭代时运行数千个测试用例，能快速检测能力回归和安全问题。这种系统化方法使他们能高信心地发布模型更新，确保质量未退化。",
+  "when_not_to_use": [
+    "Simple rule-based systems where deterministic output validation is sufficient",
+    "One-off exploratory uses of LLMs where systematic evaluation adds overhead without ongoing value",
+    "Early prototyping phases where the evaluation criteria themselves are not yet defined"
+  ],
+  "when_not_to_use_zh": [
+    "确定性输出验证足够的简单规则系统",
+    "LLM的一次性探索使用，系统评估增加开销但无持续价值",
+    "评估标准本身尚未定义的早期原型阶段"
+  ],
+  "adopters": [
+    "Anthropic",
+    "OpenAI",
+    "Google DeepMind",
+    "Microsoft",
+    "Braintrust"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "testability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Percy Liang et al. (2022). \"Holistic Evaluation of Language Models (HELM)\". Stanford CRFM.",
+  "secondary_sources": [
+    "Yuntao Bai et al. (2022). \"Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback\". Anthropic.",
+    "Dan Hendrycks et al. (2021). \"Measuring Massive Multitask Language Understanding (MMLU)\". ICLR 2021."
+  ],
+  "typed_relations": [
+    {
+      "slug": "ai-output-verification",
+      "type": "complement"
+    },
+    {
+      "slug": "prompt-testing",
+      "type": "complement"
+    },
+    {
+      "slug": "ai-observability-framework",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/llm-evaluation-framework",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/llm-evaluation-framework.md"
+}

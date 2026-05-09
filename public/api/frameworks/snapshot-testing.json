@@ -1,0 +1,188 @@
+{
+  "id": 179,
+  "name": "Snapshot Testing",
+  "name_zh": "快照测试",
+  "slug": "snapshot-testing",
+  "category": "quality",
+  "desc": "Capture output snapshots for regression detection by comparing current output against stored baselines",
+  "desc_zh": "通过将当前输出与存储的基线进行比较，捕获输出快照以检测回归",
+  "steps": [
+    "Identify outputs suitable for snapshotting: rendered UI components, serialized data structures, API responses, or CLI outputs",
+    "Generate initial snapshots: run the test suite to capture baseline outputs and commit the snapshot files to version control",
+    "Write snapshot assertions in tests: compare current output against the stored snapshot and fail on any diff",
+    "Review snapshot diffs carefully during code review: treat snapshot updates as production changes that require explicit approval",
+    "Update snapshots intentionally when changes are expected: use the update flag deliberately, never blindly accept all snapshot changes"
+  ],
+  "steps_zh": [
+    "识别适合快照的输出：渲染的UI组件、序列化数据结构、API响应或CLI输出",
+    "生成初始快照：运行测试套件以捕获基线输出并将快照文件提交到版本控制",
+    "在测试中编写快照断言：将当前输出与存储的快照进行比较，有差异则失败",
+    "在代码审查中仔细审查快照差异：将快照更新视为需要明确批准的生产变更",
+    "在预期变更时有意更新快照：刻意使用更新标志，永远不要盲目接受所有快照变更"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Render",
+    "Snapshot",
+    "Compare",
+    "Update"
+  ],
+  "viz_labels_zh": [
+    "渲染",
+    "快照",
+    "对比",
+    "更新"
+  ],
+  "related": [
+    "test-pyramid",
+    "mutation-testing"
+  ],
+  "tags": [
+    "testing",
+    "snapshot-testing",
+    "regression",
+    "ui-testing",
+    "baseline"
+  ],
+  "origin_author": "Jest team at Facebook, 2016",
+  "origin_source": "Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation (Humble & Farley, 2010)",
+  "origin_source_zh": "《持续交付：通过构建、测试和部署自动化可靠发布软件》（Humble & Farley，2010）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Testing UI component rendering to catch unintended visual or structural changes across releases",
+    "Validating serialized data formats like JSON or XML outputs where exact structure matters",
+    "Detecting regressions in CLI tool output where users depend on stable formatting",
+    "Guarding API response schemas against accidental changes that could break downstream consumers"
+  ],
+  "when_to_use_zh": [
+    "测试UI组件渲染以捕获跨版本的意外视觉或结构变化",
+    "验证序列化数据格式（如JSON或XML输出），其中精确结构很重要",
+    "检测CLI工具输出中的回归，用户依赖稳定的格式",
+    "防止API响应模式的意外变更，这些变更可能破坏下游消费者"
+  ],
+  "core_concepts": [
+    "Snapshot File: A stored representation of expected output, committed to version control alongside test code",
+    "Snapshot Diff: The comparison between current output and the stored baseline, highlighting any changes",
+    "Inline Snapshot: A snapshot stored directly within the test file rather than in a separate snapshot file",
+    "Snapshot Update: The deliberate act of regenerating baselines when intentional changes are made to output",
+    "Snapshot Bloat: The accumulation of large or orphaned snapshot files that slow tests and obscure meaningful diffs"
+  ],
+  "core_concepts_zh": [
+    "快照文件：预期输出的存储表示，与测试代码一起提交到版本控制",
+    "快照差异：当前输出与存储基线之间的比较，突出显示任何变化",
+    "内联快照：直接存储在测试文件中而非单独快照文件中的快照",
+    "快照更新：当对输出进行有意更改时，刻意重新生成基线的行为",
+    "快照膨胀：大型或孤立快照文件的累积，减慢测试速度并模糊有意义的差异"
+  ],
+  "timeline": [
+    [
+      "2010",
+      "Humble and Farley advocate baseline comparison strategies for deployment validation in Continuous Delivery"
+    ],
+    [
+      "2016",
+      "Jest introduces built-in snapshot testing for React components, popularizing the technique widely"
+    ],
+    [
+      "2018",
+      "Snapshot testing extends beyond UI to API contracts, configuration files, and data serialization"
+    ],
+    [
+      "2020",
+      "Inline snapshots gain adoption, reducing file sprawl and improving test readability"
+    ],
+    [
+      "2023",
+      "Snapshot testing adapts to AI-generated content, capturing LLM output baselines for regression detection"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2010",
+      "Humble和Farley在《持续交付》中倡导基线比较策略用于部署验证"
+    ],
+    [
+      "2016",
+      "Jest为React组件引入内置快照测试，广泛普及了该技术"
+    ],
+    [
+      "2018",
+      "快照测试从UI扩展到API契约、配置文件和数据序列化"
+    ],
+    [
+      "2020",
+      "内联快照获得采用，减少文件蔓延并提高测试可读性"
+    ],
+    [
+      "2023",
+      "快照测试适应AI生成内容，捕获LLM输出基线以进行回归检测"
+    ]
+  ],
+  "dos": [
+    "Do review snapshot diffs with the same rigor as code changes because unreviewed snapshot updates hide regressions",
+    "Do keep snapshots small and focused because large snapshots make diffs unreadable and reviews perfunctory",
+    "Do use inline snapshots for small outputs because they keep the expected value co-located with the test logic",
+    "Do delete orphaned snapshot files because stale snapshots waste CI time and confuse new team members"
+  ],
+  "dos_zh": [
+    "以与代码变更相同的严格程度审查快照差异，因为未经审查的快照更新会隐藏回归",
+    "保持快照小而集中，因为大型快照使差异不可读且审查流于形式",
+    "对小型输出使用内联快照，因为它们将预期值与测试逻辑放在一起",
+    "删除孤立的快照文件，因为过时的快照浪费CI时间并困扰新团队成员"
+  ],
+  "donts": [
+    "Don't blindly update all snapshots when tests fail because this defeats the purpose of regression detection entirely",
+    "Don't snapshot non-deterministic output like timestamps or random IDs because they cause false failures on every run",
+    "Don't use snapshots as a substitute for specific assertions because snapshots test shape not behavior",
+    "Don't let snapshot files grow unbounded because massive snapshots slow down test execution and version control operations"
+  ],
+  "donts_zh": [
+    "不要在测试失败时盲目更新所有快照，因为这完全违背了回归检测的目的",
+    "不要快照非确定性输出（如时间戳或随机ID），因为它们每次运行都会导致误报",
+    "不要用快照替代具体断言，因为快照测试的是结构而非行为",
+    "不要让快照文件无限增长，因为巨大的快照会拖慢测试执行和版本控制操作"
+  ],
+  "case_study_company": "Facebook",
+  "case_study": "Facebook developed snapshot testing within Jest to manage the rapid pace of React component changes across thousands of engineers. Before snapshots, UI regressions frequently slipped through code review because reviewers could not visualize rendering changes from code diffs alone. After adopting snapshot testing, unintended UI changes became visible in pull request diffs, reducing UI regression reports by 40% and significantly improving code review quality for frontend changes.",
+  "case_study_zh": "Facebook在Jest中开发了快照测试，以管理数千名工程师快速变化的React组件。在引入快照之前，UI回归经常在代码审查中遗漏，因为审查者无法仅从代码差异中可视化渲染变化。采用快照测试后，意外的UI变化在拉取请求差异中变得可见，将UI回归报告减少了40%，并显著提高了前端变更的代码审查质量。",
+  "when_not_to_use": [
+    "Highly dynamic outputs where the content changes frequently by design, making snapshots constantly stale",
+    "Complex stateful interactions where behavior matters more than output shape and snapshot diffs are misleading",
+    "Early-stage prototyping where UI and data formats are changing rapidly and snapshot maintenance creates drag"
+  ],
+  "when_not_to_use_zh": [
+    "设计上内容频繁变化的高度动态输出，使快照持续过时",
+    "复杂的有状态交互，行为比输出结构更重要，快照差异具有误导性",
+    "UI和数据格式快速变化的早期原型阶段，快照维护造成拖累"
+  ],
+  "adopters": [
+    "Facebook",
+    "Airbnb",
+    "Shopify",
+    "Stripe",
+    "Vercel"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "testability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Facebook/Meta (2016). \"Jest Snapshot Testing\". jestjs.io.",
+  "secondary_sources": [
+    "Christoph Nakazawa (2016). \"Snapshot Testing in Jest\". jestjs.io/blog.",
+    "Kent C. Dodds (2018). \"Effective Snapshot Testing\". kentcdodds.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "test-pyramid",
+      "type": "complement"
+    },
+    {
+      "slug": "mutation-testing",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/snapshot-testing",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/snapshot-testing.md"
+}

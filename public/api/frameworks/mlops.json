@@ -1,0 +1,195 @@
+{
+  "id": 70,
+  "name": "MLOps",
+  "name_zh": "MLOps",
+  "slug": "mlops",
+  "category": "deployment",
+  "desc": "Apply DevOps practices to ML model lifecycle in production",
+  "desc_zh": "将DevOps实践应用于机器学习模型的生产全生命周期",
+  "steps": [
+    "Version data, code, and model artifacts together; use a feature store for reproducibility",
+    "Automate training pipelines triggered by new data or code changes with experiment tracking",
+    "Validate model quality with offline metrics (AUC, RMSE) and fairness/bias checks before promotion",
+    "Deploy models via A/B testing or shadow mode; monitor data drift and prediction distribution",
+    "Trigger automated retraining pipelines when drift or performance degradation is detected"
+  ],
+  "steps_zh": [
+    "对数据、代码和模型制品进行联合版本管理，使用特征存储保障可复现性",
+    "以新数据或代码变更为触发器自动化训练流水线，并跟踪实验记录",
+    "在模型晋升前通过离线指标（AUC、RMSE）和公平性/偏差检查验证质量",
+    "通过A/B测试或影子模式部署模型，监控数据漂移和预测分布变化",
+    "检测到漂移或性能劣化时触发自动化重训练流水线"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Develop",
+    "Train",
+    "Deploy",
+    "Monitor"
+  ],
+  "viz_labels_zh": [
+    "开发",
+    "训练",
+    "部署",
+    "监控"
+  ],
+  "related": [
+    "llmops",
+    "dora-metrics",
+    "canary-deployment"
+  ],
+  "tags": [
+    "mlops",
+    "machine-learning",
+    "model-lifecycle",
+    "training-pipeline"
+  ],
+  "origin_author": "D. Sculley et al. (Google), 2015; term MLOps coined ~2018",
+  "origin_source": "Hidden Technical Debt in Machine Learning Systems (D. Sculley et al., NeurIPS 2015); Google Cloud MLOps guide (2020)",
+  "origin_source_zh": "《机器学习系统中的隐性技术债》（D. Sculley等，NeurIPS 2015）；Google Cloud MLOps指南（2020）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Organizations deploying ML models to production that need reproducibility, monitoring, and automated retraining",
+    "Teams managing multiple models across different lifecycle stages",
+    "Regulated industries requiring model governance, audit trails, and bias validation",
+    "Data science teams transitioning from notebook-based experimentation to production-grade model serving"
+  ],
+  "when_to_use_zh": [
+    "将ML模型部署到生产并需要可复现性、监控和自动化重训练的组织",
+    "管理处于不同生命周期阶段的多个模型的团队",
+    "需要模型治理、审计轨迹和偏差验证的受监管行业",
+    "从Notebook实验过渡到生产级模型服务的数据科学团队"
+  ],
+  "core_concepts": [
+    "Data Versioning: Track and version datasets alongside code and model artifacts to ensure reproducibility",
+    "Feature Store: A centralized repository of reusable features ensuring consistency between training and serving",
+    "Experiment Tracking: Log hyperparameters, metrics, and artifacts for every training run for reproducible comparisons",
+    "Model Registry: A versioned catalog of trained models with metadata governing promotion from staging to production",
+    "Data Drift Detection: Continuous monitoring of input data distributions to detect when production data diverges from training data"
+  ],
+  "core_concepts_zh": [
+    "数据版本化：将数据集与代码和模型制品一起跟踪和版本化，确保可复现性",
+    "特征存储：集中管理的可复用特征仓库，确保训练和服务之间的一致性",
+    "实验追踪：记录每次训练运行的超参数、指标和制品，支持可复现的比较",
+    "模型注册中心：带元数据的训练模型版本化目录，管理从预发布到生产的晋升",
+    "数据漂移检测：持续监控输入数据分布，检测生产数据何时偏离训练数据"
+  ],
+  "timeline": [
+    [
+      "2015",
+      "Google publishes Hidden Technical Debt in Machine Learning Systems, highlighting ML operational challenges"
+    ],
+    [
+      "2018",
+      "The term MLOps gains traction; MLflow released by Databricks"
+    ],
+    [
+      "2020",
+      "Google Cloud publishes MLOps maturity model (Levels 0-2) defining automation stages"
+    ],
+    [
+      "2021",
+      "Feature stores (Feast, Tecton) and model registries mature as essential MLOps components"
+    ],
+    [
+      "2023",
+      "MLOps platforms consolidate (Weights & Biases, MLflow, Vertex AI, SageMaker) with integrated capabilities"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2015",
+      "Google发表《机器学习系统中的隐性技术债》，揭示ML运维挑战"
+    ],
+    [
+      "2018",
+      "MLOps一词获得广泛关注；Databricks发布MLflow"
+    ],
+    [
+      "2020",
+      "Google Cloud发布MLOps成熟度模型（0-2级）"
+    ],
+    [
+      "2021",
+      "特征存储（Feast、Tecton）和模型注册中心日趋成熟"
+    ],
+    [
+      "2023",
+      "MLOps平台整合（Weights & Biases、MLflow、Vertex AI、SageMaker）"
+    ]
+  ],
+  "dos": [
+    "Do version data, code, and model artifacts as a unified lineage, because reproducibility requires knowing exactly which data trained which model",
+    "Do automate model validation gates with offline metrics and bias checks before any model reaches production",
+    "Do monitor production model performance continuously, because data drift causes silent accuracy degradation",
+    "Do implement automated retraining pipelines triggered by drift detection, because model freshness directly impacts prediction quality"
+  ],
+  "dos_zh": [
+    "务必将数据、代码和模型制品作为统一血缘进行版本化，因为可复现性需要知道哪些数据训练了哪个模型",
+    "务必在模型到达生产前自动化模型验证门控，因为手动审查无法规模化",
+    "务必持续监控生产模型性能，因为数据漂移会导致无声的准确率劣化",
+    "务必实施由漂移检测触发的自动化重训练流水线，因为模型新鲜度直接影响预测质量"
+  ],
+  "donts": [
+    "Don't deploy models without a rollback strategy, because ML models can degrade subtly",
+    "Don't train on production data without proper data governance, because PII leakage has severe legal consequences",
+    "Don't ignore training-serving skew, because feature computation differences cause silent prediction errors",
+    "Don't let data scientists deploy directly from notebooks to production, because notebooks lack testing and monitoring"
+  ],
+  "donts_zh": [
+    "不要在没有回滚策略的情况下部署模型，因为ML模型可能微妙劣化",
+    "不要在没有数据治理的情况下使用生产数据训练，因为PII泄露有严重法律后果",
+    "不要忽视训练-服务偏差，因为特征计算差异会导致无声的预测错误",
+    "不要让数据科学家直接从Notebook部署到生产，因为Notebook缺乏测试和监控"
+  ],
+  "case_study_company": "Uber",
+  "case_study": "Uber built Michelangelo, their internal MLOps platform, to manage the full lifecycle of thousands of ML models powering ride pricing, ETA predictions, fraud detection, and driver matching. Michelangelo provides a feature store, automated training pipelines, a model registry, and real-time serving infrastructure. By standardizing the ML workflow, Uber reduced model development-to-production time from months to days.",
+  "case_study_zh": "Uber构建了内部MLOps平台Michelangelo，管理驱动乘车定价、ETA预测、欺诈检测和司机匹配的数千个ML模型的全生命周期。Michelangelo提供特征存储、自动化训练流水线、模型注册中心和实时服务基础设施。通过标准化ML工作流，Uber将模型从开发到生产的时间从数月缩短到数天。",
+  "when_not_to_use": [
+    "One-off data analysis or research projects where models are not deployed to production",
+    "Simple rule-based systems where ML models are not involved",
+    "Very early ML exploration where the team is still evaluating whether ML adds value",
+    "Tiny teams with a single model where MLOps tooling overhead exceeds the benefit"
+  ],
+  "when_not_to_use_zh": [
+    "模型不部署到生产的一次性数据分析或研究项目",
+    "不涉及ML模型的简单规则系统",
+    "团队仍在评估ML是否有价值的极早期探索",
+    "MLOps工具开销超过收益的单模型小团队"
+  ],
+  "adopters": [
+    "Uber",
+    "Airbnb",
+    "Spotify",
+    "Netflix",
+    "Lyft"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "D. Sculley et al. (2015). \"Hidden Technical Debt in Machine Learning Systems\". NeurIPS 2015.",
+  "secondary_sources": [
+    "Google Cloud (2020). \"MLOps: Continuous Delivery and Automation Pipelines in Machine Learning\". cloud.google.com.",
+    "Noah Gift (2021). \"Practical MLOps: Operationalizing Machine Learning Models\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "llmops",
+      "type": "extends"
+    },
+    {
+      "slug": "dora-metrics",
+      "type": "complement"
+    },
+    {
+      "slug": "canary-deployment",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/mlops",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/mlops.md"
+}

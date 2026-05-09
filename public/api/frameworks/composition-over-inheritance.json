@@ -1,0 +1,180 @@
+{
+  "id": 327,
+  "name": "Composition over Inheritance",
+  "name_zh": "组合优于继承",
+  "slug": "composition-over-inheritance",
+  "category": "coding",
+  "desc": "Favor object composition over class inheritance to achieve code reuse and polymorphism. Inheritance creates tight coupling between parent and child classes; composition assembles behavior from interchangeable parts, making systems more flexible and testable.",
+  "desc_zh": "为了实现代码复用和多态，应优先采用对象组合而非类继承。继承在父子类之间建立紧耦合；组合则将行为从可互换的部件中组装，使系统更灵活、可测试。",
+  "steps": [
+    "Identify behavior that is being shared via inheritance",
+    "Extract that behavior into a small, focused interface or class (a 「component」)",
+    "Compose the target class by holding a reference to that component",
+    "Inject the component via constructor or setter for testability",
+    "Verify that the composed class can swap implementations at runtime or test time"
+  ],
+  "steps_zh": [
+    "识别通过继承共享的行为",
+    "将该行为提取为小而专注的接口或类（一个「组件」）",
+    "通过持有该组件的引用来组合目标类",
+    "通过构造函数或 setter 注入组件以提高可测试性",
+    "验证组合类可在运行时或测试时替换实现"
+  ],
+  "viz_type": "tree",
+  "viz_labels": [
+    "Base Type",
+    "Composed Part",
+    "Behavior",
+    "Flexibility"
+  ],
+  "viz_labels_zh": [
+    "基础类型",
+    "组合部件",
+    "行为",
+    "灵活性"
+  ],
+  "complexity": "intermediate",
+  "origin_author": "Gang of Four (Gamma, Helm, Johnson, Vlissides), 1994",
+  "adopters": [
+    "React / Meta（组件模型）",
+    "Go（无类继承）",
+    "Rust（trait 组合）",
+    "Spring Framework",
+    "Unity 游戏引擎"
+  ],
+  "related": [
+    "solid-principles",
+    "gof-design-patterns",
+    "decorator-pattern"
+  ],
+  "tags": [
+    "composition",
+    "inheritance",
+    "oop",
+    "design-principles",
+    "testability"
+  ],
+  "ai_relevant": false,
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability",
+    "testability"
+  ],
+  "maturity_ring": "foundational",
+  "when_to_use": "When you find yourself duplicating methods across sibling classes, or when deep inheritance hierarchies make changes risky. Apply when you need to mix and match behaviors dynamically, or when unit testing is made difficult by inherited state.",
+  "when_to_use_zh": "当你发现自己在兄弟类之间重复方法，或当深层继承层次使变更变得危险时。当需要动态混合行为，或继承的状态妨碍了单元测试时应用。",
+  "core_concepts": [
+    "Has-a vs Is-a",
+    "Delegation",
+    "Interface Segregation",
+    "Dependency Injection",
+    "Mixin / Trait Pattern"
+  ],
+  "core_concepts_zh": [
+    "Has-a vs Is-a 关系",
+    "委托",
+    "接口隔离",
+    "依赖注入",
+    "Mixin / Trait 模式"
+  ],
+  "timeline": [
+    {
+      "year": 1994,
+      "event": "Gang of Four formally states 「Favor composition over inheritance」 in Design Patterns"
+    },
+    {
+      "year": 2000,
+      "event": "Java's interface + delegation pattern becomes the standard way to avoid deep hierarchies"
+    },
+    {
+      "year": 2009,
+      "event": "Go launches without class inheritance — composition is the only mechanism"
+    },
+    {
+      "year": 2013,
+      "event": "React introduces component composition model, making it mainstream in UI development"
+    },
+    {
+      "year": 2015,
+      "event": "Rust stabilizes, proving trait composition can replace inheritance across systems programming"
+    }
+  ],
+  "timeline_zh": [
+    {
+      "year": 1994,
+      "event": "GoF 在《设计模式》中正式提出「组合优于继承」"
+    },
+    {
+      "year": 2000,
+      "event": "Java 接口 + 委托模式成为避免深层次继承的标准方式"
+    },
+    {
+      "year": 2009,
+      "event": "Go 在没有类继承的情况下发布 —— 组合是唯一机制"
+    },
+    {
+      "year": 2013,
+      "event": "React 引入组件组合模型，使其在 UI 开发中成为主流"
+    },
+    {
+      "year": 2015,
+      "event": "Rust 稳定发布，证明 trait 组合可在系统编程中取代继承"
+    }
+  ],
+  "dos": [
+    "Model 「has-a」 relationships with composition, 「is-a」 with inheritance",
+    "Keep composed components small and single-purpose",
+    "Use dependency injection to supply composed parts — aids testability",
+    "Prefer interfaces/protocols over concrete base classes",
+    "Use mixins or traits for horizontal behavior sharing"
+  ],
+  "dos_zh": [
+    "用组合建模「has-a」关系，用继承建模「is-a」关系",
+    "保持组合组件小而单一职责",
+    "使用依赖注入提供组合部分 —— 有助于可测试性",
+    "优先使用接口/协议而非具体基类",
+    "使用 mixin 或 trait 进行水平行为共享"
+  ],
+  "donts": [
+    "Don't inherit just to reuse a few methods — extract and compose instead",
+    "Don't create inheritance hierarchies deeper than 2-3 levels",
+    "Don't use composition just to avoid thinking about the domain model",
+    "Don't over-decompose: too many tiny components create their own complexity",
+    "Don't forget that some 「is-a」 relationships are genuine and inheritance is correct"
+  ],
+  "donts_zh": [
+    "不要仅为了复用少数方法就继承 —— 提取并组合",
+    "不要创建超过 2-3 层的继承层次",
+    "不要仅为了避免思考领域模型而使用组合",
+    "不要过度拆分：太多小组件会产生其自身的复杂性",
+    "不要忘记有些「is-a」关系是真实存在的，这种情况下继承是正确的"
+  ],
+  "case_study": "React's component model is the most mainstream example of composition over inheritance in UI development. Prior frameworks like Backbone used inheritance chains; React replaced this with composable functional components. A 「Button」 can compose an 「Icon」 and a 「Label」 without any class hierarchy. React's own documentation explicitly states 「At Facebook, we use React in thousands of components, and we haven't found any use cases where we would recommend creating component inheritance hierarchies.」",
+  "case_study_zh": "React 的组件模型是 UI 开发中组合优于继承最主流的范例。Backbone 等早期框架使用继承链；React 将其替换为可组合的函数式组件。一个「Button」可以组合「Icon」和「Label」，无需任何类层次。React 官方文档明确表示：「在 Facebook，我们在数千个组件中使用 React，未发现任何需要创建组件继承层次的场景。」",
+  "case_study_company": "React (Meta)",
+  "when_not_to_use": "Don't avoid inheritance dogmatically. When the 「is-a」 relationship is stable and domain-accurate (Animal → Dog), shallow inheritance is simpler. Language-level constructs like abstract base classes in Python or interfaces in Java are often the right tool.",
+  "when_not_to_use_zh": "不要教条地排斥继承。当「is-a」关系稳定且领域准确时（如动物→狗），浅层继承更简单。Python 抽象基类或 Java 接口等语言级构造往往是正确选择。",
+  "primary_source": "Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (1994). 「Design Patterns: Elements of Reusable Object-Oriented Software.」 Addison-Wesley.",
+  "secondary_sources": [
+    "Martin, R.C. (2008). 「Clean Code.」 Prentice Hall.",
+    "React Documentation (2023). 「Composition vs Inheritance.」 https://react.dev"
+  ],
+  "origin_source": "Formally stated by the Gang of Four in Design Patterns (1994): 「Favor object composition over class inheritance.」",
+  "origin_source_zh": "由 GoF 在《设计模式》（1994）中正式表述：「优先采用对象组合而非类继承。」",
+  "typed_relations": [
+    {
+      "slug": "solid-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "gof-design-patterns",
+      "type": "extends"
+    },
+    {
+      "slug": "decorator-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/composition-over-inheritance",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/composition-over-inheritance.md"
+}

@@ -1,0 +1,176 @@
+{
+  "id": 232,
+  "name": "Command Pattern",
+  "name_zh": "命令模式",
+  "slug": "command-pattern",
+  "category": "coding",
+  "desc": "Encapsulate a request as an object for undo, queue, or logging",
+  "desc_zh": "将请求封装为对象，从而支持撤销、排队或日志记录等操作",
+  "steps": [
+    "Define the Command interface: declare an execute() method (and optionally undo()) that all command objects must implement",
+    "Implement Concrete Commands: create one class per operation, storing the Receiver reference and any parameters needed to carry out the action",
+    "Build the Invoker: hold a Command reference (or queue), call execute() at the appropriate time, and optionally maintain a history stack for undo",
+    "Configure the Receiver: the Receiver contains the actual business logic; Concrete Commands delegate to it rather than implementing the operation themselves",
+    "Compose macro commands: combine multiple Commands into a CompositeCommand to execute complex workflows atomically or with unified undo support"
+  ],
+  "steps_zh": [
+    "定义命令接口：声明所有命令对象必须实现的 execute() 方法（以及可选的 undo()）",
+    "实现具体命令：为每个操作创建一个类，存储接收者引用和执行操作所需的任何参数",
+    "构建调用者：持有命令引用（或队列），在适当时机调用 execute()，并可选地维护用于撤销的历史栈",
+    "配置接收者：接收者包含实际的业务逻辑；具体命令委托给它而非自己实现操作",
+    "组合宏命令：将多个命令组合成复合命令，以原子方式或统一撤销支持执行复杂工作流"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Client",
+    "Invoker",
+    "Command",
+    "Receiver"
+  ],
+  "viz_labels_zh": [
+    "客户端",
+    "调用者",
+    "命令",
+    "接收者"
+  ],
+  "related": [
+    "strategy-pattern",
+    "observer-pattern",
+    "solid-principles"
+  ],
+  "tags": [
+    "gof",
+    "behavioral",
+    "design-patterns",
+    "undo",
+    "queue",
+    "oop"
+  ],
+  "origin_author": "Gamma, Helm, Johnson, Vlissides, 1994",
+  "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
+  "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "You need undoable operations — encapsulating each action with an undo() method enables a full undo/redo history",
+    "Operations must be queued, scheduled, or transmitted across a network as serializable objects",
+    "An AI agent needs to plan, validate, and selectively execute or roll back a sequence of actions"
+  ],
+  "when_to_use_zh": [
+    "需要可撤销操作——将每个动作与 undo() 方法封装，实现完整的撤销/重做历史",
+    "操作必须作为可序列化对象进行排队、调度或通过网络传输",
+    "AI 智能体需要规划、验证并选择性地执行或回滚一系列动作"
+  ],
+  "core_concepts": [
+    "Command object: encapsulates an operation as a first-class object, decoupling the sender from the receiver and the timing of execution",
+    "Invoker: triggers command execution and can maintain a command history for undo/redo, retry, or audit logging",
+    "Receiver: the object that knows how to perform the actual work; commands delegate to it, keeping themselves thin"
+  ],
+  "core_concepts_zh": [
+    "命令对象：将操作封装为一等对象，将发送者与接收者及执行时机解耦",
+    "调用者：触发命令执行，可维护命令历史以支持撤销/重做、重试或审计日志",
+    "接收者：知道如何执行实际工作的对象；命令委托给它，使自身保持精简"
+  ],
+  "timeline": [
+    [
+      "1994",
+      "GoF formalize Command as a behavioral pattern, unifying transactions, macros, and UI actions under one concept"
+    ],
+    [
+      "2003",
+      "Command becomes the backbone of GUI undo/redo in editors like Eclipse and IntelliJ IDEA"
+    ],
+    [
+      "2014",
+      "Event sourcing architectures adopt Command as the write model, storing commands as an immutable audit log"
+    ],
+    [
+      "2023",
+      "LLM agent frameworks (LangChain, AutoGen) model tool calls as Command objects enabling replay and rollback"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1994",
+      "GoF 将命令正式化为行为型模式，将事务、宏和 UI 动作统一在一个概念下"
+    ],
+    [
+      "2003",
+      "命令成为 Eclipse 和 IntelliJ IDEA 等编辑器中 GUI 撤销/重做的核心"
+    ],
+    [
+      "2014",
+      "事件溯源架构将命令作为写模型，将命令存储为不可变的审计日志"
+    ],
+    [
+      "2023",
+      "LLM 智能体框架（LangChain、AutoGen）将工具调用建模为命令对象，支持重放和回滚"
+    ]
+  ],
+  "dos": [
+    "Do implement undo() alongside execute() from the start if reversibility is a requirement — retrofitting it later is painful",
+    "Do keep Command objects immutable and serializable so they can be logged, transmitted, and replayed reliably",
+    "Do use Command queues for rate limiting, retry logic, and background processing to decouple production from consumption"
+  ],
+  "dos_zh": [
+    "如果需要可逆性，从一开始就与 execute() 一起实现 undo()——事后补加很痛苦",
+    "保持命令对象不可变且可序列化，以便可靠地记录、传输和重放",
+    "使用命令队列进行速率限制、重试逻辑和后台处理，将生产与消费解耦"
+  ],
+  "donts": [
+    "Don't put business logic in the Command itself — delegate to the Receiver and keep the Command as a thin action descriptor",
+    "Don't create a Command class for every single trivial method call; overhead is only justified when queuing, undo, or logging is needed",
+    "Don't neglect failure handling in undo() — a partial undo that leaves the system in an inconsistent state is worse than no undo"
+  ],
+  "donts_zh": [
+    "不要将业务逻辑放在命令本身——委托给接收者，保持命令作为精简的动作描述符",
+    "不要为每个简单的方法调用创建命令类；只有在需要排队、撤销或日志记录时开销才是合理的",
+    "不要忽视 undo() 中的失败处理——将系统置于不一致状态的部分撤销比没有撤销更糟糕"
+  ],
+  "case_study_company": "Microsoft Word",
+  "case_study": "Microsoft Word's undo/redo system is a canonical Command pattern implementation. Every user action — typing a character, changing font size, inserting an image — is encapsulated as a Command object stored in a history stack. Ctrl+Z pops and calls undo(); Ctrl+Y pushes and calls execute() again. This architecture allows Word to maintain a 100-step undo history across arbitrarily complex nested formatting operations, and the same Command objects are reused for macro recording and the Track Changes feature.",
+  "case_study_zh": "Microsoft Word 的撤销/重做系统是命令模式的典型实现。每个用户操作——输入字符、更改字体大小、插入图片——都被封装为存储在历史栈中的命令对象。Ctrl+Z 弹出并调用 undo()；Ctrl+Y 压入并再次调用 execute()。这种架构使 Word 能够在任意复杂的嵌套格式化操作中维护 100 步的撤销历史，同样的命令对象被复用于宏录制和修订追踪功能。",
+  "when_not_to_use": [
+    "Simple request-response flows with no need for undo, queuing, or logging overhead",
+    "High-frequency operations (millions per second) where object allocation per-command is a measurable bottleneck",
+    "Purely functional codebases where immutable data transformations are already first-class and eliminate the need for Command objects"
+  ],
+  "when_not_to_use_zh": [
+    "无需撤销、排队或日志开销的简单请求-响应流",
+    "高频操作（每秒数百万次），每个命令的对象分配是可测量的瓶颈",
+    "纯函数式代码库，不可变数据转换已是一等公民，无需命令对象"
+  ],
+  "adopters": [
+    "Microsoft Word / Office",
+    "Eclipse IDE",
+    "Git (commits as commands)",
+    "Apache Kafka (log as command store)"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability",
+    "reliability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+  "secondary_sources": [
+    "Freeman, E., Robson, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+    "Martin, R. C. (2002). \"Agile Software Development, Principles, Patterns, and Practices\". Prentice Hall."
+  ],
+  "typed_relations": [
+    {
+      "slug": "strategy-pattern",
+      "type": "related"
+    },
+    {
+      "slug": "observer-pattern",
+      "type": "related"
+    },
+    {
+      "slug": "solid-principles",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/command-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/command-pattern.md"
+}

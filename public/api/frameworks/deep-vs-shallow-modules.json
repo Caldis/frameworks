@@ -1,0 +1,191 @@
+{
+  "id": 162,
+  "name": "Deep vs Shallow Modules",
+  "name_zh": "深模块与浅模块",
+  "slug": "deep-vs-shallow-modules",
+  "category": "thinking",
+  "desc": "Prefer deep modules (simple interface, complex implementation) over shallow ones (complex interface, simple implementation)",
+  "desc_zh": "优先选择深模块（简单接口、复杂实现）而非浅模块（复杂接口、简单实现）",
+  "steps": [
+    "Identify Module Boundaries: map the system's current module structure and catalog each module's public interface (methods, parameters, return types, exceptions)",
+    "Measure Depth Ratio: for each module, compare the interface complexity (number of public methods, parameters, configuration options) against the implementation complexity it hides",
+    "Flag Shallow Modules: identify modules where the interface is nearly as complex as the implementation — these are shallow modules that push complexity onto their callers",
+    "Redesign for Depth: merge shallow modules or expand their scope so that each module's simple interface hides significant implementation complexity, providing more value per abstraction",
+    "Validate with Caller Simplicity: confirm that callers of the redesigned modules are simpler than before — if caller code hasn't gotten simpler, the deepening hasn't achieved its purpose"
+  ],
+  "steps_zh": [
+    "识别模块边界：映射系统当前的模块结构，编目每个模块的公共接口（方法、参数、返回类型、异常）",
+    "衡量深度比：为每个模块比较接口复杂度（公共方法数量、参数、配置选项）与其隐藏的实现复杂度",
+    "标记浅模块：识别接口几乎与实现一样复杂的模块——这些浅模块将复杂度推给了调用者",
+    "为深度重新设计：合并浅模块或扩展其范围，使每个模块的简单接口隐藏显著的实现复杂度，提供更高的抽象价值",
+    "用调用者简化来验证：确认重新设计后模块的调用者比之前更简单——如果调用者代码没有变简单，深化就没有达到目的"
+  ],
+  "ai_relevant": true,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Deep Module",
+    "Shallow Module",
+    "Interface Width",
+    "Implementation Depth"
+  ],
+  "viz_labels_zh": [
+    "深模块",
+    "浅模块",
+    "接口宽度",
+    "实现深度"
+  ],
+  "related": [
+    "complexity-budget",
+    "leaky-abstractions",
+    "separation-of-concerns",
+    "design-by-contract"
+  ],
+  "tags": [
+    "abstraction",
+    "interface-design",
+    "modularity",
+    "software-architecture",
+    "information-hiding"
+  ],
+  "origin_author": "John Ousterhout, 2018",
+  "origin_source": "A Philosophy of Software Design (John Ousterhout, 2018)",
+  "origin_source_zh": "《软件设计哲学》（John Ousterhout，2018年）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When your codebase has many small classes or functions that each do very little, forcing callers to orchestrate numerous tiny pieces",
+    "When developers complain that using an internal API requires understanding too many parameters and configuration options",
+    "When you notice that module interfaces mirror their implementations, providing no real abstraction benefit",
+    "When refactoring a system and deciding how to draw module boundaries for maximum developer productivity"
+  ],
+  "when_to_use_zh": [
+    "当代码库有许多小类或函数，每个做的事很少，迫使调用者编排大量微小组件时",
+    "当开发者抱怨使用内部API需要理解太多参数和配置选项时",
+    "当你注意到模块接口镜像其实现，没有提供真正的抽象收益时",
+    "当重构系统并决定如何划分模块边界以最大化开发者生产力时"
+  ],
+  "core_concepts": [
+    "Information Hiding: The primary purpose of a module is to hide implementation details behind a simple interface, reducing the knowledge callers need",
+    "Interface-to-Implementation Ratio: A deep module provides a high ratio of hidden complexity to exposed interface, giving callers maximum benefit per abstraction",
+    "Shallow Module Anti-Pattern: Modules that expose nearly as much complexity as they hide add abstraction layers without reducing overall system complexity",
+    "Default-Rich Interfaces: Deep modules provide sensible defaults so that the common case requires minimal configuration, while still allowing advanced customization"
+  ],
+  "core_concepts_zh": [
+    "信息隐藏：模块的首要目的是在简单接口背后隐藏实现细节，减少调用者所需的知识",
+    "接口与实现比：深模块提供隐藏复杂度与暴露接口的高比率，为调用者带来最大的抽象收益",
+    "浅模块反模式：暴露的复杂度与隐藏的几乎一样多的模块增加了抽象层但未减少整体系统复杂度",
+    "默认值丰富的接口：深模块提供合理的默认值，使常见场景只需最小配置，同时仍允许高级定制"
+  ],
+  "timeline": [
+    [
+      "1972",
+      "David Parnas publishes 'On the Criteria To Be Used in Decomposing Systems into Modules', establishing information hiding as the foundation of modular design"
+    ],
+    [
+      "2018",
+      "John Ousterhout publishes 'A Philosophy of Software Design', coining the deep vs shallow module distinction and making it a central design principle"
+    ],
+    [
+      "2020",
+      "The concept gains traction in the Go community, where the standard library is frequently cited as an exemplar of deep module design"
+    ],
+    [
+      "2023",
+      "AI code generation tools begin evaluating generated code for module depth, preferring to produce deep modules with minimal interface surface"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1972",
+      "David Parnas发表《系统分解为模块的准则》，确立信息隐藏作为模块化设计的基础"
+    ],
+    [
+      "2018",
+      "John Ousterhout出版《软件设计哲学》，创造深模块与浅模块的区分，将其作为核心设计原则"
+    ],
+    [
+      "2020",
+      "该概念在Go社区获得广泛关注，Go标准库被频繁引用为深模块设计的典范"
+    ],
+    [
+      "2023",
+      "AI代码生成工具开始评估生成代码的模块深度，倾向于生成具有最小接口面的深模块"
+    ]
+  ],
+  "dos": [
+    "Do design interfaces around common use cases, providing sensible defaults that make the simple case trivial and the complex case possible",
+    "Do measure module depth by asking 'how much does a caller need to know to use this correctly?' — less is deeper",
+    "Do consider merging clusters of shallow modules into a single deep module when they are always used together",
+    "Do look at the Unix file I/O API (open, read, write, close) as the canonical example of deep module design"
+  ],
+  "dos_zh": [
+    "围绕常见用例设计接口，提供合理的默认值使简单场景极简而复杂场景可行",
+    "通过问「调用者需要知道多少才能正确使用它？」来衡量模块深度——越少越深",
+    "当一组浅模块总是一起使用时，考虑将它们合并为一个深模块",
+    "以Unix文件I/O API（open、read、write、close）作为深模块设计的经典范例"
+  ],
+  "donts": [
+    "Don't equate small classes with good design, because many tiny classes with pass-through methods create shallow module sprawl that increases total system complexity",
+    "Don't create wrapper classes that merely forward calls to an underlying implementation, because they add an abstraction layer that hides nothing",
+    "Don't expose implementation details through your interface (e.g., requiring callers to manage internal state), because that defeats the purpose of having a module boundary",
+    "Don't over-parameterize interfaces to handle every possible case, because a 15-parameter constructor is a shallow interface that pushes complexity onto every caller"
+  ],
+  "donts_zh": [
+    "不要将小类等同于好设计，因为许多只有透传方法的微小类造成浅模块蔓延，增加整体系统复杂度",
+    "不要创建仅仅转发调用到底层实现的包装类，因为它们增加了不隐藏任何东西的抽象层",
+    "不要通过接口暴露实现细节（如要求调用者管理内部状态），因为这违背了模块边界的目的",
+    "不要为处理每种可能情况而过度参数化接口，因为15参数构造函数是将复杂度推给每个调用者的浅接口"
+  ],
+  "case_study_company": "Unix/POSIX",
+  "case_study": "The Unix file system API is the textbook example of deep module design. The interface consists of just five calls — open(), read(), write(), close(), and lseek() — yet it hides enormous implementation complexity: file system types (ext4, NFS, ZFS), block allocation, caching, journaling, permissions, locking, and device driver interactions. A developer writing a program that reads a file needs to know almost nothing about these internals. This deep design has remained stable for over 50 years and has been implemented across hundreds of operating systems, proving that a well-designed deep interface can absorb decades of implementation evolution without changing its surface.",
+  "case_study_zh": "Unix文件系统API是深模块设计的教科书范例。接口仅由五个调用组成——open()、read()、write()、close()和lseek()——却隐藏了巨大的实现复杂度：文件系统类型（ext4、NFS、ZFS）、块分配、缓存、日志、权限、锁定和设备驱动交互。编写读取文件的程序的开发者几乎不需要了解这些内部细节。这种深层设计已稳定了超过50年，并在数百个操作系统上实现，证明了设计良好的深接口可以吸收数十年的实现演进而不改变其表面。",
+  "when_not_to_use": [
+    "When building a thin adapter or integration layer whose sole purpose is to translate between two APIs, where the module is inherently shallow by design",
+    "When performance requirements demand that callers have fine-grained control over implementation behavior, making a deep abstraction a bottleneck",
+    "When the team is building a DSL or configuration system where expressiveness at the interface is the primary value proposition",
+    "When prototyping rapidly and the overhead of designing deep interfaces would slow down exploration disproportionately"
+  ],
+  "when_not_to_use_zh": [
+    "当构建薄适配器或集成层，其唯一目的是在两个API之间转换，模块设计上就是浅的时",
+    "当性能要求调用者对实现行为有细粒度控制，使深层抽象成为瓶颈时",
+    "当团队构建DSL或配置系统，接口的表达力是首要价值主张时",
+    "当快速原型设计时，设计深接口的开销会不成比例地减慢探索速度时"
+  ],
+  "adopters": [
+    "Unix/Linux Kernel",
+    "Go Standard Library",
+    "Java Collections Framework",
+    "Redis",
+    "SQLite"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability",
+    "usability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "John Ousterhout (2018). \"A Philosophy of Software Design\". Yaknyam Press.",
+  "secondary_sources": [
+    "David Parnas (1972). \"On the Criteria to Be Used in Decomposing Systems into Modules\". Communications of the ACM, 15(12).",
+    "Robert C. Martin (2017). \"Clean Architecture: A Craftsman's Guide to Software Structure and Design\". Prentice Hall."
+  ],
+  "typed_relations": [
+    {
+      "slug": "complexity-budget",
+      "type": "complement"
+    },
+    {
+      "slug": "leaky-abstractions",
+      "type": "related"
+    },
+    {
+      "slug": "separation-of-concerns",
+      "type": "related"
+    },
+    {
+      "slug": "design-by-contract",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/deep-vs-shallow-modules",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/deep-vs-shallow-modules.md"
+}

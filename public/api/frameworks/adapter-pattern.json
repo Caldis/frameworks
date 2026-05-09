@@ -1,0 +1,175 @@
+{
+  "id": 230,
+  "name": "Adapter Pattern",
+  "name_zh": "适配器模式",
+  "slug": "adapter-pattern",
+  "category": "coding",
+  "desc": "Convert one interface to another that clients expect",
+  "desc_zh": "将一个类的接口转换为客户期望的另一个接口，使原本不兼容的类可以协作",
+  "steps": [
+    "Identify the Target interface: define the interface that the client code is written against and expects to interact with",
+    "Identify the Adaptee: locate the existing class with a useful but incompatible interface that you cannot or do not want to modify",
+    "Create the Adapter class: implement the Target interface and hold a reference to the Adaptee (object adapter) or inherit from it (class adapter)",
+    "Delegate in each Target method: implement each Target method by translating the call and its parameters into the equivalent Adaptee call",
+    "Use the Adapter transparently: configure or inject the Adapter where the client expects a Target; the client remains unaware of the Adaptee"
+  ],
+  "steps_zh": [
+    "确定目标接口：定义客户端代码所针对并期望交互的接口",
+    "确定被适配者：找到拥有有用但不兼容接口的现有类，您无法或不想修改它",
+    "创建适配器类：实现目标接口，持有被适配者的引用（对象适配器）或继承它（类适配器）",
+    "在每个目标方法中委托：通过将调用及其参数转换为等效的被适配者调用来实现每个目标方法",
+    "透明使用适配器：在客户端期望目标的地方配置或注入适配器；客户端对被适配者一无所知"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Client",
+    "Target Interface",
+    "Adapter",
+    "Adaptee"
+  ],
+  "viz_labels_zh": [
+    "客户端",
+    "目标接口",
+    "适配器",
+    "被适配者"
+  ],
+  "related": [
+    "decorator-pattern",
+    "solid-principles"
+  ],
+  "tags": [
+    "gof",
+    "structural",
+    "design-patterns",
+    "interface",
+    "integration",
+    "oop"
+  ],
+  "origin_author": "Gamma, Helm, Johnson, Vlissides, 1994",
+  "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
+  "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Integrating a third-party library or legacy component whose interface is incompatible with your system's expectations",
+    "You want to reuse existing classes without modifying their source code",
+    "Building an anti-corruption layer to translate between external and internal domain models"
+  ],
+  "when_to_use_zh": [
+    "集成第三方库或遗留组件，其接口与系统期望不兼容",
+    "希望复用现有类而不修改其源代码",
+    "构建防腐层以在外部和内部领域模型之间进行转换"
+  ],
+  "core_concepts": [
+    "Target: the interface clients expect; adapters implement this to become drop-in replacements",
+    "Adaptee: the existing class with incompatible interface being wrapped by the adapter",
+    "Object vs Class adapter: object adapters use composition (preferred); class adapters use multiple inheritance (language-dependent)"
+  ],
+  "core_concepts_zh": [
+    "目标：客户端期望的接口；适配器实现此接口以成为可替换的插入式组件",
+    "被适配者：被适配器包装的、具有不兼容接口的现有类",
+    "对象适配器 vs 类适配器：对象适配器使用组合（推荐）；类适配器使用多重继承（取决于语言）"
+  ],
+  "timeline": [
+    [
+      "1994",
+      "GoF formalize Adapter as a structural pattern for interface translation and legacy integration"
+    ],
+    [
+      "2002",
+      "Adapter becomes the standard approach for wrapping SOAP services behind clean Java interfaces in J2EE"
+    ],
+    [
+      "2014",
+      "Anti-Corruption Layer in DDD is widely recognized as a strategic application of the Adapter pattern"
+    ],
+    [
+      "2023",
+      "LLM tool/function adapters translate between agent tool schemas and underlying API signatures"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1994",
+      "GoF 将适配器正式化为用于接口转换和遗留集成的结构型模式"
+    ],
+    [
+      "2002",
+      "适配器成为在 J2EE 中将 SOAP 服务包装在整洁 Java 接口后面的标准方法"
+    ],
+    [
+      "2014",
+      "DDD 中的防腐层被广泛认可为适配器模式的战略应用"
+    ],
+    [
+      "2023",
+      "LLM 工具/函数适配器在智能体工具模式和底层 API 签名之间进行转换"
+    ]
+  ],
+  "dos": [
+    "Do prefer object adapters (composition) over class adapters (inheritance) for better flexibility and testability",
+    "Do keep the adapter thin — its only job is interface translation, not additional business logic",
+    "Do create an adapter per external system boundary to isolate integration concerns and simplify testing with mock adaptees"
+  ],
+  "dos_zh": [
+    "优先使用对象适配器（组合）而非类适配器（继承），以获得更好的灵活性和可测试性",
+    "保持适配器精简——其唯一职责是接口转换，而非额外的业务逻辑",
+    "为每个外部系统边界创建一个适配器，以隔离集成关注点并简化使用模拟被适配者的测试"
+  ],
+  "donts": [
+    "Don't put business logic in the adapter; it should only translate, not transform semantics",
+    "Don't create adapters for interfaces that could simply be updated; only adapt what you cannot change",
+    "Don't chain multiple adapters together — it signals a deeper design problem that should be addressed structurally"
+  ],
+  "donts_zh": [
+    "不要在适配器中放置业务逻辑；它只应翻译，而非转换语义",
+    "不要为可以直接更新的接口创建适配器；只适配您无法更改的内容",
+    "不要将多个适配器链接在一起——这表明存在应从结构上解决的更深层设计问题"
+  ],
+  "case_study_company": "AWS SDK",
+  "case_study": "The AWS SDK for Java uses Adapter extensively in its service client wrappers. The SDK exposes clean, idiomatic Java interfaces (S3Client, DynamoDbClient) that serve as Targets, while internally adapting the raw HTTP request/response cycle of each AWS service API. Application teams depend only on the idiomatic Target interface; when AWS changes the underlying HTTP protocol or authentication mechanism, only the adapter layer changes, insulating all business logic from API churn.",
+  "case_study_zh": "Java 版 AWS SDK 在其服务客户端包装器中广泛使用适配器。SDK 暴露整洁的、符合 Java 惯用法的接口（S3Client、DynamoDbClient）作为目标，同时在内部适配每个 AWS 服务 API 的原始 HTTP 请求/响应周期。应用团队只依赖惯用目标接口；当 AWS 更改底层 HTTP 协议或认证机制时，只有适配器层发生变化，使所有业务逻辑免受 API 变动的影响。",
+  "when_not_to_use": [
+    "When you control both interfaces and can simply unify them without an adapter",
+    "When the semantic gap between Adaptee and Target is so large that translation would be complex and error-prone",
+    "When extensive data transformation is required — consider a dedicated mapper or anti-corruption layer with richer logic instead"
+  ],
+  "when_not_to_use_zh": [
+    "当您控制两个接口且可以直接统一它们而无需适配器时",
+    "当被适配者和目标之间的语义差距如此之大，以至于转换会变得复杂且容易出错时",
+    "当需要大量数据转换时——考虑使用具有更丰富逻辑的专用映射器或防腐层"
+  ],
+  "adopters": [
+    "AWS SDK",
+    "Spring Data",
+    "SLF4J",
+    "Jakarta EE Connectors"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability",
+    "portability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+  "secondary_sources": [
+    "Freeman, E., Robson, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+    "Evans, E. (2003). \"Domain-Driven Design\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "decorator-pattern",
+      "type": "related"
+    },
+    {
+      "slug": "solid-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "hexagonal-architecture",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/adapter-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/adapter-pattern.md"
+}

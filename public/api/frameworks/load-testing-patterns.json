@@ -1,0 +1,194 @@
+{
+  "id": 180,
+  "name": "Load Testing Patterns",
+  "name_zh": "负载测试模式",
+  "slug": "load-testing-patterns",
+  "category": "quality",
+  "desc": "Stress, spike, soak testing methodologies to validate system behavior under varying load conditions",
+  "desc_zh": "压力测试、尖峰测试、浸泡测试方法论，验证系统在不同负载条件下的行为",
+  "steps": [
+    "Define performance baselines: establish normal traffic patterns, acceptable response times, throughput targets, and error rate thresholds",
+    "Design load test scenarios: create stress tests (gradual ramp to breaking point), spike tests (sudden traffic surges), and soak tests (sustained load over hours)",
+    "Build realistic test scripts: use production traffic patterns, representative data sets, and proper think times to avoid artificial load profiles",
+    "Execute tests in a production-like environment: match infrastructure, data volume, and network topology to avoid misleading results",
+    "Analyze results and establish regression gates: compare against baselines, identify bottlenecks, and integrate performance thresholds into CI/CD"
+  ],
+  "steps_zh": [
+    "定义性能基线：建立正常流量模式、可接受的响应时间、吞吐量目标和错误率阈值",
+    "设计负载测试场景：创建压力测试（逐步增加到断裂点）、尖峰测试（突然流量激增）和浸泡测试（持续数小时的负载）",
+    "构建真实的测试脚本：使用生产流量模式、代表性数据集和适当的思考时间，避免人为的负载配置",
+    "在类生产环境中执行测试：匹配基础设施、数据量和网络拓扑以避免误导性结果",
+    "分析结果并建立回归门禁：与基线比较、识别瓶颈，并将性能阈值集成到CI/CD中"
+  ],
+  "ai_relevant": false,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Load Test",
+    "Stress Test",
+    "Spike Test",
+    "Soak Test"
+  ],
+  "viz_labels_zh": [
+    "负载测试",
+    "压力测试",
+    "峰值测试",
+    "浸泡测试"
+  ],
+  "related": [
+    "chaos-engineering",
+    "sli-slo-sla",
+    "circuit-breaker-pattern"
+  ],
+  "tags": [
+    "testing",
+    "load-testing",
+    "performance",
+    "stress-testing",
+    "soak-testing"
+  ],
+  "origin_author": "Michael Nygard, 2007",
+  "origin_source": "Release It! Design and Deploy Production-Ready Software (Nygard, 2018)",
+  "origin_source_zh": "《发布！设计与部署生产就绪软件》（Nygard，2018）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Before major launches or marketing events that will significantly increase traffic volume",
+    "After architectural changes like database migrations, service splits, or infrastructure moves",
+    "When establishing SLAs or SLOs that require empirical evidence of system capacity",
+    "During capacity planning to determine scaling limits and cost projections for growth"
+  ],
+  "when_to_use_zh": [
+    "在将显著增加流量的重大发布或营销活动之前",
+    "在架构变更（如数据库迁移、服务拆分或基础设施迁移）之后",
+    "在建立需要系统容量经验证据的SLA或SLO时",
+    "在容量规划期间确定扩展限制和增长成本预测时"
+  ],
+  "core_concepts": [
+    "Stress Testing: Gradually increasing load beyond normal capacity to find the system's breaking point and failure modes",
+    "Spike Testing: Applying sudden, extreme load increases to test auto-scaling, queuing, and graceful degradation under bursts",
+    "Soak Testing: Running sustained load for extended periods to detect memory leaks, connection pool exhaustion, and resource degradation",
+    "Baseline Profile: The established normal performance characteristics (latency, throughput, error rate) used as comparison benchmarks",
+    "Think Time: Realistic pauses between user actions in test scripts that prevent artificial concurrency inflation"
+  ],
+  "core_concepts_zh": [
+    "压力测试：逐步增加超出正常容量的负载，找到系统的断裂点和故障模式",
+    "尖峰测试：施加突然的极端负载增加，测试自动扩展、排队和突发情况下的优雅降级",
+    "浸泡测试：长时间运行持续负载以检测内存泄漏、连接池耗尽和资源退化",
+    "基线配置：作为比较基准的已建立的正常性能特征（延迟、吞吐量、错误率）",
+    "思考时间：测试脚本中用户操作之间的真实停顿，防止人为的并发膨胀"
+  ],
+  "timeline": [
+    [
+      "2007",
+      "Nygard's Release It! establishes load testing as essential for production-ready software"
+    ],
+    [
+      "2011",
+      "Apache JMeter becomes the dominant open-source load testing tool for enterprise applications"
+    ],
+    [
+      "2014",
+      "Gatling introduces code-based load test scripting with detailed HTML reports and Scala DSL"
+    ],
+    [
+      "2017",
+      "k6 launches with a developer-friendly JavaScript API, making load tests feel like writing unit tests"
+    ],
+    [
+      "2021",
+      "Cloud-native load testing tools integrate with Kubernetes and serverless, enabling distributed test execution at scale"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2007",
+      "Nygard的《发布！》将负载测试确立为生产就绪软件的必需"
+    ],
+    [
+      "2011",
+      "Apache JMeter成为企业应用最主要的开源负载测试工具"
+    ],
+    [
+      "2014",
+      "Gatling引入基于代码的负载测试脚本，提供详细的HTML报告和Scala DSL"
+    ],
+    [
+      "2017",
+      "k6以开发者友好的JavaScript API推出，使负载测试感觉像编写单元测试"
+    ],
+    [
+      "2021",
+      "云原生负载测试工具与Kubernetes和无服务器集成，实现大规模分布式测试执行"
+    ]
+  ],
+  "dos": [
+    "Do use production-like data volumes because testing against empty databases produces dangerously optimistic results",
+    "Do include think times in test scripts because removing them creates unrealistic concurrency that masks true capacity",
+    "Do test individual services in isolation and the full system together because bottlenecks shift depending on the scope",
+    "Do run soak tests for at least 4-8 hours because memory leaks and connection pool issues often take hours to manifest"
+  ],
+  "dos_zh": [
+    "使用类生产数据量，因为对空数据库的测试会产生危险的乐观结果",
+    "在测试脚本中包含思考时间，因为移除它们会创建不真实的并发，掩盖真实容量",
+    "分别对单个服务和完整系统进行测试，因为瓶颈会根据范围而转移",
+    "浸泡测试至少运行4-8小时，因为内存泄漏和连接池问题通常需要数小时才能显现"
+  ],
+  "donts": [
+    "Don't run load tests against production without circuit breakers because uncontrolled load can cause real outages",
+    "Don't assume linear scaling because most systems hit non-linear bottlenecks at specific concurrency thresholds",
+    "Don't test only happy paths because error handling under load often consumes more resources than normal operations",
+    "Don't ignore client-side metrics because server response times alone miss network latency and rendering bottlenecks"
+  ],
+  "donts_zh": [
+    "不要在没有断路器的情况下对生产运行负载测试，因为不受控的负载可能导致真实故障",
+    "不要假设线性扩展，因为大多数系统在特定并发阈值处会遇到非线性瓶颈",
+    "不要仅测试正常路径，因为负载下的错误处理通常比正常操作消耗更多资源",
+    "不要忽视客户端指标，因为仅靠服务器响应时间会遗漏网络延迟和渲染瓶颈"
+  ],
+  "case_study_company": "Amazon",
+  "case_study": "Amazon runs comprehensive load testing before every Prime Day using a combination of stress, spike, and soak tests across their entire microservice fleet. In preparation for Prime Day 2022, they simulated traffic 3x above projected peak, discovering that their recommendation service's connection pool configuration would exhaust under sustained spike load. Fixing this pre-production issue prevented an estimated $12M in lost revenue from degraded product recommendations during the actual event.",
+  "case_study_zh": "Amazon在每次Prime Day之前对其整个微服务架构进行全面的负载测试，综合使用压力、尖峰和浸泡测试。在准备2022年Prime Day时，他们模拟了预计峰值3倍的流量，发现推荐服务的连接池配置在持续尖峰负载下会耗尽。在生产前修复此问题避免了实际活动期间因产品推荐降级而造成的估计1200万美元收入损失。",
+  "when_not_to_use": [
+    "Internal tools with a small, predictable user base where load is never a realistic concern",
+    "Early MVPs where functional correctness is the primary risk and performance optimization is premature",
+    "Batch processing systems with fixed workloads where throughput is inherently bounded and predictable"
+  ],
+  "when_not_to_use_zh": [
+    "用户群小且可预测的内部工具，负载从来不是现实的关注点",
+    "功能正确性是主要风险且性能优化为时过早的早期MVP",
+    "具有固定工作负载的批处理系统，吞吐量本质上是有界且可预测的"
+  ],
+  "adopters": [
+    "Amazon",
+    "Google",
+    "Netflix",
+    "Uber",
+    "Cloudflare"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "performance"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Michael Nygard (2007). \"Release It! Design and Deploy Production-Ready Software\". Pragmatic Bookshelf.",
+  "secondary_sources": [
+    "Michael Nygard (2018). \"Release It! Design and Deploy Production-Ready Software, 2nd Edition\". Pragmatic Bookshelf.",
+    "Scott Barber (2004). \"Web Load Testing for Dummies\". Wiley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "chaos-engineering",
+      "type": "complement"
+    },
+    {
+      "slug": "sli-slo-sla",
+      "type": "complement"
+    },
+    {
+      "slug": "circuit-breaker-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/load-testing-patterns",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/load-testing-patterns.md"
+}

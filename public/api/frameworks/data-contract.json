@@ -1,0 +1,198 @@
+{
+  "id": 310,
+  "name": "Data Contract",
+  "name_zh": "数据契约",
+  "slug": "data-contract",
+  "category": "data",
+  "desc": "Formal, versioned agreements between data producers and consumers that specify schema, quality expectations, SLAs, and ownership, treating data as a product with explicit interface guarantees.",
+  "desc_zh": "数据生产者和消费者之间的正式、版本化协议，规定模式、质量期望、SLA和所有权，将数据视为具有明确接口保证的产品。",
+  "steps": [
+    "Define the contract schema using a machine-readable format (YAML or JSON) specifying dataset name, owner, version, column definitions, data types, nullability, and primary key constraints",
+    "Encode quality clauses: freshness SLA (maximum allowed data age), completeness thresholds (minimum non-null percentage per column), validity rules (value ranges, regex patterns, referential integrity)",
+    "Establish semantic versioning for the contract (MAJOR for breaking changes, MINOR for additive changes) and publish to a contract registry visible to all consuming teams",
+    "Implement contract validation in the producer's pipeline CI/CD so that schema and quality rule violations block deployment before bad data reaches consumers",
+    "Monitor contract compliance at runtime with automated data quality checks and publish a contract health dashboard so consumers can assess data reliability before building dependent systems"
+  ],
+  "steps_zh": [
+    "使用机器可读格式（YAML或JSON）定义契约模式，指定数据集名称、所有者、版本、列定义、数据类型、可空性和主键约束",
+    "编码质量条款：新鲜度SLA（最大允许数据年龄）、完整性阈值（每列最低非空百分比）、有效性规则（值范围、正则表达式模式、引用完整性）",
+    "为契约建立语义版本控制（破坏性变更用MAJOR，增量变更用MINOR），并发布到对所有消费团队可见的契约注册表",
+    "在生产者的管道CI/CD中实施契约验证，使模式和质量规则违规在坏数据到达消费者之前阻止部署",
+    "通过自动化数据质量检查在运行时监控契约合规性，并发布契约健康仪表板，使消费者在构建依赖系统之前能够评估数据可靠性"
+  ],
+  "ai_relevant": true,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Schema Contract",
+    "Quality Clauses",
+    "Versioning",
+    "CI Validation",
+    "Runtime Monitor"
+  ],
+  "viz_labels_zh": [
+    "模式契约",
+    "质量条款",
+    "版本控制",
+    "CI验证",
+    "运行时监控"
+  ],
+  "related": [
+    "data-catalog",
+    "data-quality-framework",
+    "schema-registry",
+    "data-mesh",
+    "data-lineage-governance"
+  ],
+  "tags": [
+    "data-contract",
+    "data-quality",
+    "producer-consumer",
+    "data-mesh",
+    "governance",
+    "andrew-jones"
+  ],
+  "origin_author": "Andrew Jones",
+  "origin_source": "Jones, A. (2022). 'Driving Data Quality with Data Contracts'. Substack / PayPal Engineering. Andrew Jones (2023). Driving Data Quality with Data Contracts. O'Reilly.",
+  "origin_source_zh": "Jones, A.（2022）。「用数据契约驱动数据质量」。Substack / PayPal工程。Andrew Jones（2023）。《用数据契约驱动数据质量》。O'Reilly。",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When data consumers (ML teams, analytics, downstream services) are repeatedly disrupted by silent schema changes or data quality regressions from upstream producer teams",
+    "When implementing a data mesh architecture where domain teams publish data products and need explicit interface contracts to decouple producers from consumers",
+    "When regulatory requirements (SOX, GDPR) demand documented data provenance and quality guarantees that can be audited independently of the producing team",
+    "When the cost of data incidents (broken dashboards, bad model predictions, failed reports) is high enough to justify investing in prevention through formal producer accountability"
+  ],
+  "when_to_use_zh": [
+    "当数据消费者（ML团队、分析、下游服务）反复因上游生产者团队的无声模式变更或数据质量回归而中断时",
+    "当实施数据网格架构时，领域团队发布数据产品并需要明确的接口契约以将生产者与消费者解耦",
+    "当监管要求（SOX、GDPR）要求有文档化的数据来源和质量保证，可以独立于生产团队进行审计时",
+    "当数据事件（损坏的仪表板、错误的模型预测、失败的报告）的成本足够高，值得通过正式的生产者责任制进行预防性投资时"
+  ],
+  "core_concepts": [
+    "Schema contract: a versioned, machine-readable specification of the dataset's structure (columns, types, nullability, primary keys) that acts as the API contract between a data producer and its consumers",
+    "Quality contract: explicit, measurable data quality obligations including freshness SLA (e.g., data must be no older than 4 hours), completeness (e.g., user_id null rate < 0.1%), and validity rules",
+    "Producer ownership model: the principle that the data producer team — not consumers — is responsible for authoring, versioning, and guaranteeing the contract, shifting accountability upstream",
+    "Semantic versioning for data: applying MAJOR.MINOR.PATCH conventions to data schemas where MAJOR changes (column removal, type change) trigger a mandatory consumer migration workflow"
+  ],
+  "core_concepts_zh": [
+    "模式契约：数据集结构（列、类型、可空性、主键）的版本化、机器可读规范，作为数据生产者与消费者之间的API契约",
+    "质量契约：明确的、可衡量的数据质量义务，包括新鲜度SLA（如数据不得超过4小时）、完整性（如user_id空值率 < 0.1%）和有效性规则",
+    "生产者所有权模型：数据生产者团队——而非消费者——负责创作、版本化和保证契约的原则，将责任向上游转移",
+    "数据语义版本控制：将MAJOR.MINOR.PATCH约定应用于数据模式，其中MAJOR变更（删除列、类型变更）触发强制性消费者迁移工作流"
+  ],
+  "timeline": [
+    [
+      "2019",
+      "Notion of 'data contracts' begins appearing in data engineering blogs as a term for informal producer-consumer agreements; not yet formalized"
+    ],
+    [
+      "2022",
+      "Andrew Jones (PayPal) publishes a seminal blog post 'Driving Data Quality with Data Contracts', popularizing the term and defining a practical framework"
+    ],
+    [
+      "2023",
+      "Open Data Contract Standard (ODCS) published by PayPal Engineering; Soda Core, Great Expectations, and dbt integrate data contract validation into their tooling"
+    ],
+    [
+      "2024",
+      "Data contracts become a cornerstone pattern of data mesh implementations; major cloud data platforms (Databricks, Snowflake) add native contract enforcement capabilities"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2019",
+      "「数据契约」概念开始出现在数据工程博客中，作为非正式生产者-消费者协议的术语；尚未正式化"
+    ],
+    [
+      "2022",
+      "Andrew Jones（PayPal）发表具有里程碑意义的博客文章「用数据契约驱动数据质量」，普及该术语并定义了实用框架"
+    ],
+    [
+      "2023",
+      "PayPal工程发布开放数据契约标准（ODCS）；Soda Core、Great Expectations和dbt将数据契约验证集成到其工具中"
+    ],
+    [
+      "2024",
+      "数据契约成为数据网格实施的基石模式；主要云数据平台（Databricks、Snowflake）增加原生契约执行能力"
+    ]
+  ],
+  "dos": [
+    "Do author contracts in a machine-readable format (YAML/JSON) stored in git alongside the producer's pipeline code so that contract changes go through the same review process as code changes",
+    "Do enforce contracts in the producer's CI/CD pipeline as a pre-deployment gate because post-deployment contract violations are already downstream incidents",
+    "Do use semantic versioning and publish breaking change notices at least one sprint before the breaking schema change lands so consumers have time to adapt",
+    "Do start with the highest-impact datasets (those feeding the most downstream consumers or regulatory reports) and expand contract coverage incrementally"
+  ],
+  "dos_zh": [
+    "以机器可读格式（YAML/JSON）编写契约，与生产者的管道代码一起存储在git中，使契约变更经过与代码变更相同的审查流程",
+    "在生产者的CI/CD管道中将契约作为部署前关卡强制执行，因为部署后的契约违规已经是下游事件",
+    "使用语义版本控制，并在破坏性模式变更落地前至少提前一个迭代发布破坏性变更通知，给消费者留出适应时间",
+    "从影响最大的数据集（那些为最多下游消费者或监管报告提供数据的数据集）开始，逐步扩展契约覆盖范围"
+  ],
+  "donts": [
+    "Don't treat data contracts as documentation artifacts divorced from enforcement; an unverified contract is just a comment that will drift from reality over time",
+    "Don't require consumers to author contracts on behalf of producers because producer-owned contracts align accountability; consumer-authored contracts create ownership ambiguity",
+    "Don't apply uniform quality thresholds across all datasets; high-traffic production datasets warrant stricter SLAs than internal experimental tables",
+    "Don't block all consumers from a dataset when a contract violation occurs; implement a tiered notification system that alerts consumers while the producer investigates"
+  ],
+  "donts_zh": [
+    "不要将数据契约视为脱离执行的文档工件；未经验证的契约只是一个会随时间偏离现实的注释",
+    "不要要求消费者代表生产者创作契约，因为生产者拥有的契约与责任一致；消费者创作的契约会产生所有权歧义",
+    "不要对所有数据集应用统一的质量阈值；高流量生产数据集比内部实验表需要更严格的SLA",
+    "不要在契约违规发生时阻止所有消费者访问数据集；实施分层通知系统，在生产者调查时告警消费者"
+  ],
+  "case_study_company": "PayPal",
+  "case_study": "PayPal pioneered data contracts at scale after a 2021 data incident where an undocumented schema change to a payments dataset broke 47 downstream dashboards and delayed a regulatory filing. The engineering team, led by Andrew Jones, formalized data contracts as YAML specifications stored in the same Git repository as the producing pipeline. Each contract specifies schema, freshness SLA (payments data must be no older than 1 hour), nullability rates, and consumer registry. PayPal now enforces contracts as a CI/CD gate: any pipeline change that violates a contract is automatically blocked, and the affected consumer teams are notified. The program reduced data-incident-related engineering time by 70% within 18 months.",
+  "case_study_zh": "PayPal在2021年一次数据事件后率先大规模推行数据契约，该事件中对支付数据集的未记录模式变更破坏了47个下游仪表板并延迟了监管申报。由Andrew Jones领导的工程团队将数据契约正式化为YAML规范，与生产管道存储在同一个Git仓库中。每个契约规定模式、新鲜度SLA（支付数据不得超过1小时）、可空性比率和消费者注册表。PayPal现在将契约作为CI/CD关卡执行：任何违反契约的管道变更都会自动被阻止，并通知受影响的消费者团队。该计划在18个月内将数据事件相关的工程时间减少了70%。",
+  "when_not_to_use": [
+    "Early-stage data exploration where schemas are intentionally fluid and imposing contract rigidity would slow down legitimate research and discovery work",
+    "Internal experimental datasets consumed by a single team; the overhead of authoring and maintaining a formal contract is not justified without cross-team consumers",
+    "When the organization lacks the tooling infrastructure to automate contract validation; manual contract checks are too unreliable to provide meaningful quality guarantees",
+    "Real-time streaming pipelines requiring sub-second schema evolution; synchronous contract validation adds latency incompatible with high-throughput event streams"
+  ],
+  "when_not_to_use_zh": [
+    "模式有意流动且强加契约刚性会减慢合理研究和发现工作的早期数据探索阶段",
+    "由单个团队消费的内部实验数据集；在没有跨团队消费者的情况下，编写和维护正式契约的开销不合理",
+    "当组织缺乏自动化契约验证的工具基础设施时；手动契约检查太不可靠，无法提供有意义的质量保证",
+    "需要亚秒级模式演进的实时流管道；同步契约验证增加的延迟与高吞吐量事件流不兼容"
+  ],
+  "adopters": [
+    "PayPal",
+    "Spotify",
+    "JPMC",
+    "Airbnb",
+    "Mercado Libre",
+    "ING Bank"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "reliability",
+    "maintainability",
+    "testability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Jones, A. (2022). 'Driving Data Quality with Data Contracts'. andrewjones.substack.com.",
+  "secondary_sources": [
+    "PayPal Engineering (2023). 'Open Data Contract Standard (ODCS)'. github.com/paypal/data-contract-template.",
+    "Majchrzak, T. et al. (2023). 'Data Contracts: A Missing Link in the Data Mesh'. SIGMOD 2023 Workshop on Data Management for End-to-End Machine Learning.",
+    "Jones, A. (2023). Driving Data Quality with Data Contracts. O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "data-mesh",
+      "type": "complement"
+    },
+    {
+      "slug": "data-quality-framework",
+      "type": "extends"
+    },
+    {
+      "slug": "schema-registry",
+      "type": "complement"
+    },
+    {
+      "slug": "data-catalog",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/data-contract",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/data-contract.md"
+}

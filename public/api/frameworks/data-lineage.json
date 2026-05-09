@@ -1,0 +1,194 @@
+{
+  "id": 196,
+  "name": "Data Lineage",
+  "name_zh": "数据血缘",
+  "slug": "data-lineage",
+  "category": "data",
+  "desc": "Tracking data origin, transformations, and consumption across pipelines",
+  "desc_zh": "追踪数据在管道中的来源、转换过程和消费情况",
+  "steps": [
+    "Instrument data pipelines to capture lineage metadata: record source datasets, transformation logic, output datasets, execution timestamps, and job identifiers at each processing step",
+    "Store lineage metadata in a dedicated lineage graph (directed acyclic graph) where nodes represent datasets or transformation steps and edges represent data flow relationships",
+    "Integrate lineage capture with orchestration tools (Airflow, dbt, Spark) using native hooks or OpenLineage-compatible APIs to automate metadata collection without manual instrumentation",
+    "Build a lineage UI or API that allows data consumers, data owners, and compliance teams to trace any dataset upstream to its origin and downstream to all its consumers",
+    "Use lineage for impact analysis: when a source schema changes or a data quality issue is detected, automatically identify all downstream datasets, dashboards, and models that are affected"
+  ],
+  "steps_zh": [
+    "对数据管道进行埋点以捕获血缘元数据：在每个处理步骤记录源数据集、转换逻辑、输出数据集、执行时间戳和作业标识符",
+    "将血缘元数据存储在专用血缘图（有向无环图）中，其中节点代表数据集或转换步骤，边代表数据流关系",
+    "使用原生钩子或兼容OpenLineage的API将血缘捕获与编排工具（Airflow、dbt、Spark）集成，实现自动化元数据采集",
+    "构建血缘UI或API，允许数据消费者、数据所有者和合规团队将任何数据集追溯到其上游来源和所有下游消费者",
+    "使用血缘进行影响分析：当源模式变更或检测到数据质量问题时，自动识别所有受影响的下游数据集、仪表板和模型"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Instrument",
+    "Lineage Graph",
+    "Auto-Capture",
+    "Lineage UI",
+    "Impact Analysis"
+  ],
+  "viz_labels_zh": [
+    "埋点",
+    "血缘图",
+    "自动采集",
+    "血缘界面",
+    "影响分析"
+  ],
+  "related": [
+    "data-mesh",
+    "data-quality-framework",
+    "schema-registry-pattern",
+    "medallion-architecture"
+  ],
+  "tags": [
+    "lineage",
+    "metadata",
+    "governance",
+    "observability",
+    "openlineage"
+  ],
+  "origin_author": "Industry-wide practice; standardized by OpenLineage (Astronomer/Linux Foundation, 2021)",
+  "origin_source": "OpenLineage specification (openlineage.io, 2021); Apache Atlas documentation; Marquez project (WeWork, 2019)",
+  "origin_source_zh": "OpenLineage规范（openlineage.io，2021）；Apache Atlas文档；Marquez项目（WeWork，2019）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When data quality issues in downstream reports need to be traced back to their root cause in source systems or intermediate transformations",
+    "When regulatory compliance (GDPR, CCPA, BCBS 239) requires demonstrating where personal or financial data originates and how it is processed",
+    "When schema changes in source systems need impact analysis to identify which downstream pipelines, models, and dashboards will break",
+    "When a data mesh or data lakehouse architecture spans many teams and datasets, making manual tracking of data provenance infeasible"
+  ],
+  "when_to_use_zh": [
+    "当下游报告中的数据质量问题需要追溯到源系统或中间转换的根本原因时",
+    "当监管合规（GDPR、CCPA、BCBS 239）要求证明个人或财务数据的来源及其处理方式时",
+    "当源系统模式变更需要影响分析以识别哪些下游管道、模型和仪表板将受影响时",
+    "当数据网格或数据湖仓架构跨越许多团队和数据集，使手动追踪数据来源变得不可行时"
+  ],
+  "core_concepts": [
+    "Column-level lineage: tracking data flow at the column granularity so that a single field in a report can be traced through all joins, aggregations, and transformations to the source column",
+    "Operational lineage: metadata about pipeline runs including execution time, row counts, and job IDs captured alongside structural lineage",
+    "OpenLineage: an open standard for lineage metadata collection providing a common API that tools like Airflow, Spark, and dbt emit events to",
+    "Impact analysis: using the lineage graph in reverse (downstream traversal) to predict which datasets and consumers are affected by an upstream change"
+  ],
+  "core_concepts_zh": [
+    "列级血缘：在列粒度追踪数据流，使报告中的单个字段可以通过所有连接、聚合和转换追溯到源列",
+    "操作血缘：管道运行的元数据，包括执行时间、行数和作业ID，与结构性血缘一起捕获",
+    "OpenLineage：血缘元数据采集的开放标准，提供Airflow、Spark和dbt等工具发送事件的通用API",
+    "影响分析：反向使用血缘图（下游遍历）预测哪些数据集和消费者受上游变更影响"
+  ],
+  "timeline": [
+    [
+      "2012",
+      "Apache Atlas (originally Falcon) introduced for Hadoop ecosystem metadata and lineage tracking at Hortonworks"
+    ],
+    [
+      "2019",
+      "WeWork open-sources Marquez, an early OpenLineage-compatible metadata server for Airflow pipelines"
+    ],
+    [
+      "2021",
+      "OpenLineage specification reaches v1.0 under Linux Foundation, standardizing lineage event schemas across tools"
+    ],
+    [
+      "2023",
+      "dbt, Apache Airflow 2.7, and Apache Spark natively emit OpenLineage events, making automated lineage mainstream"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2012",
+      "Apache Atlas（最初为Falcon）在Hortonworks为Hadoop生态系统引入元数据和血缘追踪"
+    ],
+    [
+      "2019",
+      "WeWork开源Marquez，这是Airflow管道的早期OpenLineage兼容元数据服务器"
+    ],
+    [
+      "2021",
+      "OpenLineage规范在Linux基金会下达到v1.0，标准化跨工具的血缘事件模式"
+    ],
+    [
+      "2023",
+      "dbt、Apache Airflow 2.7和Apache Spark原生发送OpenLineage事件，使自动化血缘成为主流"
+    ]
+  ],
+  "dos": [
+    "Do capture lineage at the column level wherever possible because table-level lineage is insufficient for regulatory compliance and root cause analysis",
+    "Do use OpenLineage-compatible tooling to avoid vendor lock-in and enable lineage aggregation across heterogeneous pipeline tools",
+    "Do store lineage in a graph database or dedicated lineage store rather than a relational table because traversal queries are natural graph operations",
+    "Do automate lineage capture through instrumentation rather than manual documentation because manual lineage goes stale immediately after the first pipeline change"
+  ],
+  "dos_zh": [
+    "尽可能在列级别捕获血缘，因为表级血缘不足以满足监管合规和根本原因分析",
+    "使用兼容OpenLineage的工具以避免供应商锁定，并在异构管道工具中聚合血缘",
+    "将血缘存储在图数据库或专用血缘存储中，而非关系表中，因为遍历查询是天然的图操作",
+    "通过埋点自动化血缘捕获，而非手动文档化，因为手动血缘在第一次管道变更后立即过时"
+  ],
+  "donts": [
+    "Don't conflate data lineage with data catalog documentation because lineage is runtime-captured provenance, not manually authored descriptions",
+    "Don't capture only successful pipeline runs because failed runs and partial writes can cause data quality issues that require lineage to diagnose",
+    "Don't expose raw lineage graphs to business users without a purpose-built UI because raw DAG structures are incomprehensible to non-engineers",
+    "Don't rely solely on static code analysis for lineage because dynamic SQL generation and runtime table routing cannot be resolved statically"
+  ],
+  "donts_zh": [
+    "不要将数据血缘与数据目录文档混为一谈，因为血缘是运行时捕获的来源证明，而非手动编写的描述",
+    "不要只捕获成功的管道运行，因为失败的运行和部分写入可能导致需要血缘才能诊断的数据质量问题",
+    "不要在没有专用UI的情况下将原始血缘图暴露给业务用户，因为原始DAG结构对非工程师来说难以理解",
+    "不要仅依赖静态代码分析来获取血缘，因为动态SQL生成和运行时表路由无法静态解析"
+  ],
+  "case_study_company": "ING Bank",
+  "case_study": "ING Bank implemented column-level data lineage across its enterprise data platform to satisfy BCBS 239 regulatory requirements for risk data aggregation and reporting. By instrumenting Spark jobs and dbt models with OpenLineage, ING can trace any figure in a regulatory capital report back to its source transaction in the core banking system, through every join and aggregation, in under five minutes. This replaced a previously manual documentation process that took compliance teams weeks per report.",
+  "case_study_zh": "ING银行在其企业数据平台中实施列级数据血缘，以满足BCBS 239风险数据汇总和报告的监管要求。通过使用OpenLineage对Spark作业和dbt模型进行埋点，ING可以在五分钟内将监管资本报告中的任何数字追溯到核心银行系统中的源交易，经过每一个连接和聚合。这取代了之前需要合规团队每份报告花费数周的手动文档化流程。",
+  "when_not_to_use": [
+    "Small single-pipeline projects where all transformations are visible in one place and lineage tracking adds overhead without benefit",
+    "Pure real-time streaming pipelines where event-level lineage generates prohibitive metadata volume and sampling-based observability is sufficient",
+    "When the organization has not yet established basic data catalog and data ownership practices, as lineage without governance context provides limited value",
+    "Throwaway analytics scripts and ad-hoc queries where the cost of instrumenting lineage outweighs the benefit"
+  ],
+  "when_not_to_use_zh": [
+    "所有转换都在一处可见的小型单管道项目，血缘追踪会增加开销而没有收益",
+    "纯实时流管道，事件级血缘会产生难以承受的元数据量，基于采样的可观测性已足够",
+    "当组织尚未建立基本的数据目录和数据所有权实践时，没有治理背景的血缘价值有限",
+    "一次性分析脚本和临时查询，埋点血缘的成本超过收益"
+  ],
+  "adopters": [
+    "ING Bank",
+    "LinkedIn (DataHub)",
+    "Netflix (Metacat)",
+    "Airbnb (Dataportal)",
+    "Lyft (Amundsen)"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "OpenLineage Project (2021). \"OpenLineage: An Open Standard for Data Lineage\". openlineage.io.",
+  "secondary_sources": [
+    "Deeleman, J. et al. (2022). \"Data Governance: The Definitive Guide\". O'Reilly Media.",
+    "Spirent (2022). \"BCBS 239: Principles for Effective Risk Data Aggregation and Risk Reporting\". Basel Committee on Banking Supervision.",
+    "Ehrlinger, L. & Woss, W. (2016). \"Towards a Definition of Knowledge Graphs\". Proceedings of the SEMANTICS 2016 Poster & Demo Track."
+  ],
+  "typed_relations": [
+    {
+      "slug": "data-mesh",
+      "type": "complement"
+    },
+    {
+      "slug": "data-quality-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "schema-registry-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "medallion-architecture",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/data-lineage",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/data-lineage.md"
+}

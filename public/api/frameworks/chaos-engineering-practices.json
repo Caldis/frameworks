@@ -1,0 +1,203 @@
+{
+  "id": 185,
+  "name": "Chaos Engineering Practices",
+  "name_zh": "混沌工程实践",
+  "slug": "chaos-engineering-practices",
+  "category": "deployment",
+  "desc": "Operational practices for controlled failure injection: GameDays, blast radius control, and resilience validation",
+  "desc_zh": "受控故障注入的运维实践：GameDay 演练、爆炸半径控制与韧性验证",
+  "steps": [
+    "Define steady-state hypotheses based on business-critical SLIs and expected system behavior",
+    "Design experiments with explicit blast radius limits (scope, duration, rollback triggers)",
+    "Run GameDay exercises where cross-functional teams inject failures in production or pre-production",
+    "Observe system behavior under failure, comparing actual outcomes against steady-state hypotheses",
+    "Document findings, fix weaknesses, and schedule recurring chaos experiments to prevent regression"
+  ],
+  "steps_zh": [
+    "基于业务关键 SLI 和预期系统行为定义稳态假设",
+    "设计带有明确爆炸半径限制（范围、持续时间、回滚触发器）的实验",
+    "运行 GameDay 演练，跨职能团队在生产或预生产环境中注入故障",
+    "观察故障下的系统行为，将实际结果与稳态假设进行比较",
+    "记录发现、修复弱点并安排定期混沌实验以防止回归"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Steady State",
+    "Inject",
+    "Observe",
+    "Restore"
+  ],
+  "viz_labels_zh": [
+    "稳态基准",
+    "注入故障",
+    "观测",
+    "恢复"
+  ],
+  "related": [
+    "chaos-engineering",
+    "slo-as-practice",
+    "on-call-engineering",
+    "runbook-automation",
+    "progressive-delivery"
+  ],
+  "tags": [
+    "chaos-engineering",
+    "gameday",
+    "blast-radius",
+    "resilience",
+    "operational-practice"
+  ],
+  "origin_author": "Netflix (Casey Rosenthal, Nora Jones), 2011-2017",
+  "origin_source": "Chaos Engineering: System Resiliency in Practice (Casey Rosenthal & Nora Jones, O'Reilly 2020)",
+  "origin_source_zh": "《混沌工程：实践中的系统韧性》（Casey Rosenthal & Nora Jones，O'Reilly 2020）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Production systems where unknown failure modes pose significant business risk",
+    "Organizations building confidence in disaster recovery and failover mechanisms",
+    "Teams that have mature monitoring and incident response but lack proactive resilience validation",
+    "Pre-event hardening (before peak traffic seasons, major launches, or compliance audits)"
+  ],
+  "when_to_use_zh": [
+    "未知故障模式对业务构成重大风险的生产系统",
+    "正在建立灾难恢复和故障转移机制信心的组织",
+    "拥有成熟监控和事件响应但缺少主动韧性验证的团队",
+    "活动前加固（高峰流量季、重大发布或合规审计之前）"
+  ],
+  "core_concepts": [
+    "Steady-State Hypothesis: A measurable definition of normal system behavior that experiments aim to disprove under failure conditions",
+    "Blast Radius Control: Limiting the scope of chaos experiments through targeted injection, short durations, and automated kill switches",
+    "GameDay: A structured, time-boxed event where teams deliberately inject failures and practice incident response in a controlled setting",
+    "Resilience Regression: Without recurring chaos experiments, systems silently lose resilience as code and infrastructure change over time"
+  ],
+  "core_concepts_zh": [
+    "稳态假设：对正常系统行为的可量化定义，实验旨在故障条件下证伪该假设",
+    "爆炸半径控制：通过针对性注入、短持续时间和自动终止开关限制混沌实验的范围",
+    "GameDay：结构化的限时演练，团队在受控环境中故意注入故障并练习事件响应",
+    "韧性退化：缺少定期混沌实验时，随着代码和基础设施的变更，系统会悄然失去韧性"
+  ],
+  "timeline": [
+    [
+      "2011",
+      "Netflix launches Chaos Monkey to randomly terminate production instances in AWS"
+    ],
+    [
+      "2014",
+      "Netflix introduces Chaos Kong for simulating entire AWS region failures"
+    ],
+    [
+      "2017",
+      "Gremlin founded as the first commercial chaos engineering platform"
+    ],
+    [
+      "2020",
+      "Casey Rosenthal and Nora Jones publish Chaos Engineering (O'Reilly), formalizing GameDay and blast radius practices"
+    ],
+    [
+      "2023",
+      "Chaos engineering extends to AI/ML systems, testing model fallback and graceful degradation under inference failures"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2011",
+      "Netflix 推出 Chaos Monkey，随机终止 AWS 中的生产实例"
+    ],
+    [
+      "2014",
+      "Netflix 引入 Chaos Kong，模拟整个 AWS 区域故障"
+    ],
+    [
+      "2017",
+      "Gremlin 成立，成为首个商业混沌工程平台"
+    ],
+    [
+      "2020",
+      "Casey Rosenthal 和 Nora Jones 出版《混沌工程》（O'Reilly），正式化 GameDay 和爆炸半径实践"
+    ],
+    [
+      "2023",
+      "混沌工程扩展至 AI/ML 系统，测试推理故障下的模型回退和优雅降级"
+    ]
+  ],
+  "dos": [
+    "Start with the smallest possible blast radius and expand gradually as team confidence grows",
+    "Always have a clear rollback plan and kill switch before starting any chaos experiment",
+    "Involve on-call engineers and SREs in GameDay planning to build real incident response muscle memory",
+    "Document every experiment's hypothesis, execution, findings, and follow-up actions in a shared runbook"
+  ],
+  "dos_zh": [
+    "从最小可能的爆炸半径开始，随着团队信心增长逐步扩大",
+    "在启动任何混沌实验前始终准备好明确的回滚计划和终止开关",
+    "让值班工程师和 SRE 参与 GameDay 规划，建立真实的事件响应肌肉记忆",
+    "在共享运行手册中记录每个实验的假设、执行、发现和后续行动"
+  ],
+  "donts": [
+    "Don't run chaos experiments without stakeholder buy-in — surprise failures erode organizational trust",
+    "Don't inject failures during known peak traffic or business-critical windows without explicit approval",
+    "Don't treat chaos engineering as a one-time exercise — resilience degrades continuously and must be tested regularly",
+    "Don't skip the hypothesis step — running random failures without a measurable hypothesis yields noise, not insight"
+  ],
+  "donts_zh": [
+    "不要在没有利益相关者认可的情况下运行混沌实验——意外故障会侵蚀组织信任",
+    "不要在已知高峰流量或业务关键窗口期注入故障而未获得明确批准",
+    "不要将混沌工程视为一次性活动——韧性会持续退化，必须定期测试",
+    "不要跳过假设步骤——没有可量化假设的随机故障注入产生的是噪音而非洞察"
+  ],
+  "case_study_company": "Amazon",
+  "case_study": "Amazon runs regular GameDay exercises across its retail and AWS infrastructure, simulating region-level failures and dependency outages. During a 2019 GameDay, teams discovered that a critical payment service had an undocumented dependency on a caching layer that would cause cascading failures during an AZ outage. The finding was fixed before Prime Day, preventing what could have been a multi-million dollar incident during peak shopping hours.",
+  "case_study_zh": "亚马逊在其零售和 AWS 基础设施中定期运行 GameDay 演练，模拟区域级故障和依赖中断。在 2019 年的一次 GameDay 中，团队发现一个关键支付服务对缓存层有未记录的依赖，在可用区故障期间会导致级联失败。该问题在 Prime Day 之前被修复，避免了高峰购物时段可能造成的数百万美元级事故。",
+  "when_not_to_use": [
+    "Systems with no monitoring or observability — you cannot learn from chaos you cannot observe",
+    "Early-stage startups where basic reliability engineering (CI/CD, testing, monitoring) is not yet in place",
+    "Environments with no rollback capability where injected failures could cause unrecoverable damage",
+    "Highly regulated systems where unplanned outages, even controlled ones, violate compliance requirements"
+  ],
+  "when_not_to_use_zh": [
+    "没有监控或可观测性的系统——无法从观测不到的混沌中学习",
+    "基础可靠性工程（CI/CD、测试、监控）尚未建立的早期创业公司",
+    "没有回滚能力、注入故障可能造成不可恢复损坏的环境",
+    "非计划中断（即使是受控的）违反合规要求的强监管系统"
+  ],
+  "adopters": [
+    "Netflix",
+    "Amazon",
+    "Google",
+    "Gremlin",
+    "Shopify"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Casey Rosenthal and Nora Jones (2020). \"Chaos Engineering: System Resiliency in Practice\". O'Reilly Media.",
+  "secondary_sources": [
+    "Netflix Technology Blog (2011). \"The Netflix Simian Army\". netflixtechblog.com.",
+    "Ali Basiri et al. (2016). \"Chaos Engineering\". IEEE Software, 33(3)."
+  ],
+  "typed_relations": [
+    {
+      "slug": "chaos-engineering",
+      "type": "extends"
+    },
+    {
+      "slug": "slo-as-practice",
+      "type": "complement"
+    },
+    {
+      "slug": "on-call-engineering",
+      "type": "complement"
+    },
+    {
+      "slug": "runbook-automation",
+      "type": "complement"
+    },
+    {
+      "slug": "progressive-delivery",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/chaos-engineering-practices",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/chaos-engineering-practices.md"
+}

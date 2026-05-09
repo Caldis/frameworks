@@ -1,0 +1,209 @@
+{
+  "id": 155,
+  "name": "Error Budget Policy",
+  "name_zh": "错误预算策略",
+  "slug": "error-budget-policy",
+  "category": "observability",
+  "desc": "Managing reliability vs velocity trade-offs through quantified error budgets and escalation policies",
+  "desc_zh": "通过量化的错误预算和升级策略管理可靠性与开发速度的权衡",
+  "steps": [
+    "Calculate the error budget from SLO targets: if the SLO is 99.9% availability, the error budget is 0.1% of total requests (or ~43 minutes of downtime per 30-day window)",
+    "Define budget consumption tracking: instrument real-time dashboards showing remaining budget as a percentage, burn rate, and projected exhaustion date",
+    "Establish tiered policy actions: specify what happens at each threshold (e.g., 50% consumed: weekly review, 75%: halt risky deploys, 100%: reliability-only sprint)",
+    "Create an escalation matrix: define who has authority to override the policy, under what circumstances, and what documentation is required",
+    "Run retrospectives when budgets are exhausted or replenished: analyze what consumed the budget, whether the policy actions were effective, and adjust thresholds for the next period"
+  ],
+  "steps_zh": [
+    "根据SLO目标计算错误预算：若SLO为99.9%可用性，错误预算为总请求的0.1%（或30天窗口内约43分钟停机时间）",
+    "定义预算消耗追踪：构建实时仪表盘显示剩余预算百分比、燃烧率和预计耗尽日期",
+    "建立分级策略行动：规定每个阈值处的行动（如消耗50%：每周审查，75%：暂停高风险部署，100%：纯可靠性冲刺）",
+    "创建升级矩阵：定义谁有权覆盖策略、在什么情况下以及需要什么文档记录",
+    "在预算耗尽或补充时进行回顾：分析什么消耗了预算、策略行动是否有效，并为下一周期调整阈值"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Error Budget",
+    "Budget Tracking",
+    "Tiered Policy",
+    "Escalation Matrix",
+    "Budget Retro"
+  ],
+  "viz_labels_zh": [
+    "错误预算",
+    "预算追踪",
+    "分级策略",
+    "升级矩阵",
+    "预算回顾"
+  ],
+  "related": [
+    "slo-as-practice",
+    "sli-slo-sla",
+    "on-call-engineering",
+    "dora-metrics",
+    "chaos-engineering"
+  ],
+  "tags": [
+    "observability",
+    "error-budget",
+    "reliability",
+    "velocity",
+    "sre",
+    "policy"
+  ],
+  "origin_author": "Google SRE team (Ben Treynor Sloss), ~2003; formalized in SRE Book",
+  "origin_source": "Site Reliability Engineering: How Google Runs Production Systems (Beyer et al., 2016); The Site Reliability Workbook (Beyer et al., 2018)",
+  "origin_source_zh": "《SRE：Google运维解密》（Beyer等，2016）；《SRE工作手册》（Beyer等，2018）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Teams locked in perpetual conflict between product managers pushing features and SREs demanding stability",
+    "Organizations that need an objective, data-driven mechanism to decide when to freeze deploys vs ship faster",
+    "Services where past incidents trace back to shipping too many risky changes without reliability investment",
+    "Engineering leadership seeking to quantify the cost of unreliability in terms product teams understand"
+  ],
+  "when_to_use_zh": [
+    "产品经理推动功能和SRE要求稳定之间长期冲突的团队",
+    "需要客观、数据驱动机制来决定何时冻结部署与加速交付的组织",
+    "过往事故根因追溯到在没有可靠性投入的情况下发布过多高风险变更的服务",
+    "寻求用产品团队能理解的方式量化不可靠性成本的工程领导层"
+  ],
+  "core_concepts": [
+    "Error Budget: The mathematically derived tolerance for unreliability (1 - SLO); a 99.9% SLO yields a 0.1% error budget, approximately 43 minutes per month",
+    "Burn Rate: The speed at which the error budget is being consumed; a burn rate of 2x means the budget will exhaust in half the window period",
+    "Policy Tiers: Predefined escalation levels triggered at specific budget consumption percentages, ranging from increased review to full deployment freezes",
+    "Budget Replenishment: Error budgets reset at the start of each rolling window (typically 30 days), giving teams a fresh allocation to spend on innovation",
+    "Override Authority: A documented exception process for cases where business-critical launches must proceed despite an exhausted budget, with mandatory post-mortems"
+  ],
+  "core_concepts_zh": [
+    "错误预算：从不可靠性容忍度数学推导的值（1 - SLO）；99.9%的SLO产生0.1%的错误预算，约每月43分钟",
+    "燃烧率：错误预算被消耗的速度；2倍燃烧率意味着预算将在窗口期的一半时间内耗尽",
+    "策略层级：在特定预算消耗百分比处触发的预定义升级级别，从加强审查到完全冻结部署",
+    "预算补充：错误预算在每个滚动窗口（通常30天）开始时重置，为团队提供新的创新配额",
+    "覆盖权限：一个文档化的例外流程，用于业务关键发布必须在预算耗尽时仍然进行的情况，附带强制事后回顾"
+  ],
+  "timeline": [
+    [
+      "2003",
+      "Google SRE introduces error budgets as an internal mechanism to resolve the tension between development and operations"
+    ],
+    [
+      "2016",
+      "The SRE Book publishes Google's error budget model, establishing it as an industry-recognized practice"
+    ],
+    [
+      "2018",
+      "The SRE Workbook provides detailed error budget policy templates and implementation examples"
+    ],
+    [
+      "2020",
+      "Implementing SLOs book formalizes error budget policies as the critical link between SLOs and organizational behavior"
+    ],
+    [
+      "2023",
+      "Error budget policies are integrated into observability platforms (Nobl9, Datadog SLO) as automated policy engines"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2003",
+      "Google SRE引入错误预算作为解决开发与运维间张力的内部机制"
+    ],
+    [
+      "2016",
+      "《SRE：Google运维解密》发布Google的错误预算模型，将其确立为行业认可的实践"
+    ],
+    [
+      "2018",
+      "《SRE工作手册》提供详细的错误预算策略模板和实施示例"
+    ],
+    [
+      "2020",
+      "《实施服务水平目标》将错误预算策略正式化为连接SLO与组织行为的关键环节"
+    ],
+    [
+      "2023",
+      "错误预算策略被集成到可观测性平台（Nobl9、Datadog SLO）中作为自动化策略引擎"
+    ]
+  ],
+  "dos": [
+    "Do make the error budget policy a written, signed document agreed upon by engineering, product, and management before incidents occur",
+    "Do automate budget tracking and alerting so that policy actions are triggered by data, not by someone remembering to check a dashboard",
+    "Do include positive incentives for teams with remaining budget (more experimental deployments, hack time) alongside the restrictive actions for exhaustion",
+    "Do treat error budget policy violations (shipping despite exhaustion without override) as a process failure warranting retrospective"
+  ],
+  "dos_zh": [
+    "将错误预算策略制定为书面、签署的文档，在事故发生前由工程、产品和管理层共同同意",
+    "自动化预算追踪和告警，使策略行动由数据触发，而非依赖于某人记得去检查仪表盘",
+    "在预算耗尽的限制性行动之外，为仍有预算剩余的团队设置正向激励（更多实验性部署、黑客时间）",
+    "将错误预算策略违反（在没有覆盖授权的情况下耗尽后仍发布）视为需要回顾的流程失败"
+  ],
+  "donts": [
+    "Don't set error budget policies without executive buy-in, because a policy that product leadership can ignore at will provides no value",
+    "Don't make the budget window too short (e.g., 7 days), because short windows are too volatile and trigger false deployment freezes from single incidents",
+    "Don't use error budgets to punish teams, because it creates incentives to hide incidents or inflate SLO targets to make budgets artificially large",
+    "Don't apply the same policy rigidity to all services, because a 0.1% budget for a payment service has different business impact than 0.1% for a recommendations widget"
+  ],
+  "donts_zh": [
+    "不要在没有高管支持的情况下设定错误预算策略，因为产品领导可以随意忽略的策略毫无价值",
+    "不要将预算窗口设置过短（如7天），因为短窗口波动性太大，单个事故就会触发错误的部署冻结",
+    "不要用错误预算惩罚团队，因为这会产生隐瞒事故或虚高SLO目标以人为扩大预算的动机",
+    "不要对所有服务应用同样严格的策略，因为支付服务0.1%预算的业务影响与推荐组件的0.1%截然不同"
+  ],
+  "case_study_company": "Google",
+  "case_study": "Google's internal error budget policy is the canonical example: when a service like Gmail exhausts its error budget, the development team must halt feature launches and dedicate the next sprint to reliability improvements -- fixing flaky tests, addressing tech debt, and hardening infrastructure. This policy resolved a decades-old organizational tension by making reliability investment automatic rather than political. Teams that consistently stay within budget earn more autonomy for risky experiments, creating a positive feedback loop. The model's success at Google led to widespread industry adoption after the SRE Book's publication in 2016.",
+  "case_study_zh": "Google的内部错误预算策略是经典案例：当Gmail等服务耗尽错误预算时，开发团队必须暂停功能发布，将下一个冲刺专注于可靠性改进——修复不稳定测试、解决技术债和加固基础设施。这一策略通过使可靠性投入自动化而非政治化，解决了长达数十年的组织张力。持续保持在预算范围内的团队获得更多进行风险实验的自主权，形成正向反馈循环。该模型在Google的成功导致2016年SRE Book出版后被行业广泛采用。",
+  "when_not_to_use": [
+    "Small teams without dedicated SRE function where the policy overhead exceeds the coordination benefit",
+    "Systems with legal zero-tolerance requirements for errors where error budgets are conceptually inapplicable",
+    "Pre-product-market-fit startups where speed is existential and any deployment friction could be fatal",
+    "Organizations lacking basic SLO measurement infrastructure -- you cannot enforce budgets you cannot measure"
+  ],
+  "when_not_to_use_zh": [
+    "没有专门SRE职能的小型团队——策略开销超过协调收益",
+    "对错误有法律零容忍要求的系统——错误预算在概念上不适用",
+    "尚未达到产品-市场契合的初创公司——速度关乎生存，任何部署摩擦都可能是致命的",
+    "缺乏基础SLO度量基础设施的组织——无法执行无法度量的预算"
+  ],
+  "adopters": [
+    "Google",
+    "Netflix",
+    "Uber",
+    "Dropbox",
+    "LinkedIn"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "reliability",
+    "observability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Beyer, B. et al. (2016). \"Site Reliability Engineering: How Google Runs Production Systems\", Ch. 3. O'Reilly Media.",
+  "secondary_sources": [
+    "Beyer, B. et al. (2018). \"The Site Reliability Workbook\", Ch. 3. O'Reilly Media.",
+    "Hidalgo, A. (2020). \"Implementing Service Level Objectives\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "slo-as-practice",
+      "type": "extends"
+    },
+    {
+      "slug": "sli-slo-sla",
+      "type": "prerequisite"
+    },
+    {
+      "slug": "on-call-engineering",
+      "type": "complement"
+    },
+    {
+      "slug": "dora-metrics",
+      "type": "complement"
+    },
+    {
+      "slug": "chaos-engineering",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/error-budget-policy",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/error-budget-policy.md"
+}

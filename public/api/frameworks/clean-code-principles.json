@@ -1,0 +1,189 @@
+{
+  "id": 32,
+  "name": "Clean Code Principles",
+  "name_zh": "整洁代码原则",
+  "slug": "clean-code-principles",
+  "category": "coding",
+  "desc": "Write readable, simple, expressive code that minimizes surprise",
+  "desc_zh": "编写可读、简洁、表达力强且最小化意外的代码",
+  "steps": [
+    "Name with intent: choose variable, function, and class names that reveal purpose; avoid abbreviations and misleading names",
+    "Keep functions small and focused: each function should do one thing, have few parameters, and operate at a single level of abstraction",
+    "Eliminate duplication: extract shared logic into well-named helper functions; apply the DRY principle without over-abstracting",
+    "Write self-documenting code: structure code so it reads like prose; use comments only for 'why' not 'what'",
+    "Refactor continuously: apply the Boy Scout Rule — leave code cleaner than you found it with each commit"
+  ],
+  "steps_zh": [
+    "意图命名：选择能揭示目的的变量、函数和类名；避免缩写和误导性名称",
+    "保持函数小而专注：每个函数只做一件事，参数少，在单一抽象层级上操作",
+    "消除重复：将共享逻辑提取到命名良好的辅助函数中；在不过度抽象的前提下应用DRY原则",
+    "编写自文档化代码：组织代码使其如散文般可读；注释只用于解释「为什么」而非「做什么」",
+    "持续重构：应用童子军规则——每次提交都让代码比发现时更整洁"
+  ],
+  "ai_relevant": false,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "Naming",
+    "Functions",
+    "Comments",
+    "Formatting",
+    "Error Handling"
+  ],
+  "viz_labels_zh": [
+    "命名",
+    "函数",
+    "注释",
+    "格式",
+    "错误处理"
+  ],
+  "related": [
+    "solid-principles",
+    "conventional-comments",
+    "grasp-patterns"
+  ],
+  "tags": [
+    "clean-code",
+    "readability",
+    "naming",
+    "refactoring",
+    "simplicity"
+  ],
+  "origin_author": "Robert C. Martin, 2008",
+  "origin_source": "Clean Code: A Handbook of Agile Software Craftsmanship",
+  "origin_source_zh": "《代码整洁之道》",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Writing any production code that will be read and maintained by others",
+    "Onboarding new team members who need to understand existing code quickly",
+    "Refactoring legacy code to reduce cognitive load and bug density",
+    "Code reviews where readability and maintainability are primary concerns"
+  ],
+  "when_to_use_zh": [
+    "编写任何将被他人阅读和维护的生产代码",
+    "新团队成员入职时需要快速理解已有代码",
+    "重构遗留代码以降低认知负荷和缺陷密度",
+    "以可读性和可维护性为主要关注点的代码评审"
+  ],
+  "core_concepts": [
+    "Meaningful Names: names should reveal intent, avoid disinformation, and be pronounceable and searchable",
+    "Small Functions: functions should do one thing, do it well, and do it only — ideally under 20 lines",
+    "DRY (Don't Repeat Yourself): every piece of knowledge should have a single, unambiguous representation in the system",
+    "Boy Scout Rule: always leave the codebase cleaner than you found it through incremental improvements",
+    "Comments as Last Resort: well-written code should be self-explanatory; comments should explain 'why', not 'what'"
+  ],
+  "core_concepts_zh": [
+    "有意义的命名：名称应揭示意图、避免误导，且可发音、可搜索",
+    "小函数：函数应只做一件事，做好它，只做这一件——理想情况下不超过 20 行",
+    "DRY（不要重复自己）：系统中每条知识都应有唯一、明确的表示",
+    "童子军规则：通过渐进式改进，始终让代码库比你发现时更整洁",
+    "注释是最后手段：写得好的代码应该是自解释的；注释应解释「为什么」而非「做什么」"
+  ],
+  "timeline": [
+    [
+      "1999",
+      "The Pragmatic Programmer by Hunt and Thomas introduces DRY and related code quality ideas"
+    ],
+    [
+      "2008",
+      "Robert C. Martin publishes 'Clean Code', codifying readability-first principles"
+    ],
+    [
+      "2011",
+      "Martin follows up with 'The Clean Coder', extending principles to professional conduct"
+    ],
+    [
+      "2017",
+      "Clean Code ideas merge with modern practices like pull request reviews and automated linting"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1999",
+      "Hunt 和 Thomas 的《程序员修炼之道》引入 DRY 及相关代码质量理念"
+    ],
+    [
+      "2008",
+      "Robert C. Martin 出版《代码整洁之道》，将可读性优先的原则系统化"
+    ],
+    [
+      "2011",
+      "Martin 出版后续作品《程序员的职业素养》，将原则扩展到职业行为"
+    ],
+    [
+      "2017",
+      "整洁代码理念与拉取请求评审和自动化 lint 等现代实践融合"
+    ]
+  ],
+  "dos": [
+    "Do choose descriptive names even if they are longer because clarity beats brevity",
+    "Do extract functions at different levels of abstraction because it makes the code read like a narrative",
+    "Do write unit tests for every behavior because tests are the best documentation of intent",
+    "Do refactor in small steps because large refactors introduce risk and are hard to review"
+  ],
+  "dos_zh": [
+    "即使名称较长也要选择描述性命名，因为清晰胜于简短",
+    "在不同抽象层级提取函数，因为这让代码读起来像叙事文",
+    "为每个行为编写单元测试，因为测试是意图的最佳文档",
+    "以小步骤进行重构，因为大规模重构引入风险且难以评审"
+  ],
+  "donts": [
+    "Don't use magic numbers or strings because they hide intent and create maintenance landmines",
+    "Don't write functions with more than three parameters because they are hard to understand and test",
+    "Don't leave dead code commented out because version control preserves history",
+    "Don't obsess over code aesthetics at the expense of shipping because perfect is the enemy of done"
+  ],
+  "donts_zh": [
+    "不要使用魔法数字或字符串，因为它们隐藏意图并埋下维护隐患",
+    "不要编写超过三个参数的函数，因为它们难以理解和测试",
+    "不要将死代码注释保留，因为版本控制已保存了历史",
+    "不要为追求代码美观而牺牲交付速度，因为完美是完成的敌人"
+  ],
+  "case_study_company": "Basecamp",
+  "case_study": "Basecamp (formerly 37signals) built their entire Ruby on Rails codebase around Clean Code principles. DHH and the team maintained strict naming conventions and small method sizes, which allowed a team of fewer than 20 programmers to build and maintain a product used by millions. Their emphasis on readable code over clever code became a core tenet of the Rails community.",
+  "case_study_zh": "Basecamp（前身为 37signals）围绕整洁代码原则构建了整个 Ruby on Rails 代码库。DHH 和团队保持了严格的命名约定和小方法规模，使得不到 20 人的团队能够构建和维护数百万用户使用的产品。他们对可读代码而非聪明代码的强调成为 Rails 社区的核心信条。",
+  "when_not_to_use": [
+    "Competitive programming or algorithmic contests where execution speed is the only metric",
+    "Quick throwaway scripts that will never be maintained or shared",
+    "Performance-critical hot paths where micro-optimizations require less readable code",
+    "Exploratory data analysis notebooks where iteration speed trumps code structure"
+  ],
+  "when_not_to_use_zh": [
+    "竞技编程或算法竞赛，执行速度是唯一指标",
+    "永远不会维护或共享的快速一次性脚本",
+    "性能关键的热路径，微优化需要牺牲代码可读性",
+    "探索性数据分析笔记本，迭代速度优先于代码结构"
+  ],
+  "adopters": [
+    "Basecamp",
+    "Pivotal Labs",
+    "Thoughtworks",
+    "Shopify",
+    "GitHub"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Robert C. Martin (2008). \"Clean Code: A Handbook of Agile Software Craftsmanship\". Prentice Hall.",
+  "secondary_sources": [
+    "Martin Fowler (2018). \"Refactoring: Improving the Design of Existing Code, 2nd Edition\". Addison-Wesley.",
+    "Robert C. Martin (2011). \"The Clean Coder: A Code of Conduct for Professional Programmers\". Prentice Hall."
+  ],
+  "typed_relations": [
+    {
+      "slug": "solid-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "conventional-comments",
+      "type": "complement"
+    },
+    {
+      "slug": "grasp-patterns",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/clean-code-principles",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/clean-code-principles.md"
+}

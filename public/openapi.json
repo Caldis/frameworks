@@ -1,0 +1,517 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SDFrame Public Read API",
+    "version": "1.0.0",
+    "summary": "Read-only static API for SDFrame software design frameworks.",
+    "description": "SDFrame exposes framework and category data through static JSON endpoints. The API is public, read-only, and does not require authentication.",
+    "contact": {
+      "name": "Caldis",
+      "email": "mail@caldis.me",
+      "url": "https://github.com/Caldis/frameworks"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/Caldis/frameworks/blob/master/README.md"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sdframe.caldis.me",
+      "description": "Production static API"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Frameworks",
+      "description": "Software design framework records and metadata."
+    },
+    {
+      "name": "Categories",
+      "description": "Framework category metadata."
+    },
+    {
+      "name": "Operations",
+      "description": "Operational status and metadata."
+    }
+  ],
+  "paths": {
+    "/api/frameworks.json": {
+      "get": {
+        "tags": [
+          "Frameworks"
+        ],
+        "operationId": "listFrameworks",
+        "summary": "List all software design frameworks",
+        "description": "Returns all SDFrame framework records with taxonomy fields, bilingual descriptions, quality concerns, source metadata, and relationships. Clients can filter locally by category, complexity, abstraction level, maturity, quality concern, or ai_relevant.",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "thinking",
+                "architecture",
+                "coding",
+                "quality",
+                "deployment",
+                "evolution",
+                "ai",
+                "data",
+                "security",
+                "distributed",
+                "api",
+                "team",
+                "observability"
+              ]
+            },
+            "description": "Optional client-side filter hint. Static endpoint returns the complete list."
+          },
+          {
+            "name": "quality",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "reliability",
+                "security",
+                "performance",
+                "maintainability",
+                "scalability",
+                "usability",
+                "testability",
+                "observability",
+                "portability"
+              ]
+            },
+            "description": "Optional client-side filter hint for quality concerns."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Framework list.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Framework"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/frameworks.index.json": {
+      "get": {
+        "tags": [
+          "Frameworks"
+        ],
+        "operationId": "listFrameworkSummaries",
+        "summary": "List compact framework summaries",
+        "description": "Returns a compact framework index suitable for search, ranking, and quick agent retrieval.",
+        "responses": {
+          "200": {
+            "description": "Compact framework summaries.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FrameworkSummary"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/frameworks/{slug}.json": {
+      "get": {
+        "tags": [
+          "Frameworks"
+        ],
+        "operationId": "getFrameworkBySlug",
+        "summary": "Get one framework by slug",
+        "description": "Returns one framework record. Use slugs from /api/frameworks.index.json or /skill/references/catalog.md.",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Framework slug, for example domain-driven-design or clean-architecture."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Framework record.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Framework"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Framework not found on the static host.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/categories.json": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "listCategories",
+        "summary": "List framework categories",
+        "description": "Returns the 13 SDFrame category records with names, slugs, descriptions, and framework counts.",
+        "responses": {
+          "200": {
+            "description": "Category list.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/status.json": {
+      "get": {
+        "tags": [
+          "Operations"
+        ],
+        "operationId": "getStatus",
+        "summary": "Get public site status metadata",
+        "description": "Returns static operational metadata for the public SDFrame site and read API.",
+        "responses": {
+          "200": {
+            "description": "Current static status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {},
+    "schemas": {
+      "FrameworkSummary": {
+        "type": "object",
+        "required": [
+          "slug",
+          "name",
+          "url",
+          "category",
+          "description"
+        ],
+        "properties": {
+          "slug": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "name_zh": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "api_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "thinking",
+              "architecture",
+              "coding",
+              "quality",
+              "deployment",
+              "evolution",
+              "ai",
+              "data",
+              "security",
+              "distributed",
+              "api",
+              "team",
+              "observability"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "description_zh": {
+            "type": "string"
+          },
+          "complexity": {
+            "type": "string",
+            "enum": [
+              "beginner",
+              "intermediate",
+              "advanced"
+            ]
+          },
+          "abstraction_level": {
+            "type": "string",
+            "enum": [
+              "code",
+              "component",
+              "system",
+              "organization"
+            ]
+          },
+          "maturity_ring": {
+            "type": "string",
+            "enum": [
+              "foundational",
+              "established",
+              "emerging",
+              "experimental"
+            ]
+          },
+          "quality_concerns": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "reliability",
+                "security",
+                "performance",
+                "maintainability",
+                "scalability",
+                "usability",
+                "testability",
+                "observability",
+                "portability"
+              ]
+            }
+          },
+          "ai_relevant": {
+            "type": "boolean"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "origin_author": {
+            "type": "string"
+          },
+          "origin_year": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "primary_source": {
+            "type": "string"
+          }
+        }
+      },
+      "Framework": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/FrameworkSummary"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "steps": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "steps_zh": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "when_to_use": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "when_not_to_use": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "dos": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "donts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "related": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "typed_relations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "slug": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "Category": {
+        "type": "object",
+        "required": [
+          "key",
+          "name",
+          "slug",
+          "description",
+          "framework_count"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "enum": [
+              "thinking",
+              "architecture",
+              "coding",
+              "quality",
+              "deployment",
+              "evolution",
+              "ai",
+              "data",
+              "security",
+              "distributed",
+              "api",
+              "team",
+              "observability"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "name_zh": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "description_zh": {
+            "type": "string"
+          },
+          "framework_count": {
+            "type": "integer"
+          }
+        }
+      },
+      "Status": {
+        "type": "object",
+        "required": [
+          "status",
+          "service",
+          "generated_at",
+          "components"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "operational"
+            ]
+          },
+          "service": {
+            "type": "string"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "required": [
+          "status",
+          "code",
+          "message"
+        ],
+        "properties": {
+          "status": {
+            "type": "integer"
+          },
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "documentation_url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
+    }
+  }
+}

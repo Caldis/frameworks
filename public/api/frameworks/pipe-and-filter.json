@@ -1,0 +1,194 @@
+{
+  "id": 170,
+  "name": "Pipe and Filter Architecture",
+  "name_zh": "管道与过滤器架构",
+  "slug": "pipe-and-filter",
+  "category": "architecture",
+  "desc": "Architecture pattern that decomposes data processing into independent, composable stages connected by data channels",
+  "desc_zh": "将数据处理分解为通过数据通道连接的独立可组合阶段的架构模式",
+  "steps": [
+    "Identify the end-to-end data processing workflow and break it into discrete transformation stages (filters)",
+    "Define the data format for pipes: establish a uniform or compatible data contract between filters",
+    "Implement each filter as a self-contained component that reads from an input pipe, transforms data, and writes to an output pipe",
+    "Connect filters with pipes (queues, streams, or in-memory channels) to form a processing pipeline",
+    "Add monitoring, error handling, and backpressure mechanisms to ensure pipeline resilience under varying load"
+  ],
+  "steps_zh": [
+    "识别端到端的数据处理工作流，将其分解为离散的转换阶段（过滤器）",
+    "定义管道的数据格式：在过滤器之间建立统一或兼容的数据契约",
+    "将每个过滤器实现为自包含的组件，从输入管道读取、转换数据并写入输出管道",
+    "使用管道（队列、流或内存通道）连接过滤器，形成处理流水线",
+    "添加监控、错误处理和背压机制，确保流水线在不同负载下的韧性"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Source",
+    "Filter",
+    "Pipe",
+    "Sink"
+  ],
+  "viz_labels_zh": [
+    "数据源",
+    "过滤器",
+    "管道",
+    "数据汇"
+  ],
+  "related": [
+    "eda",
+    "space-based-architecture",
+    "layered-architecture"
+  ],
+  "tags": [
+    "data-processing",
+    "composability",
+    "streaming",
+    "pipeline",
+    "transformation"
+  ],
+  "origin_author": "Doug McIlroy, 1964; formalized by Mary Shaw and David Garlan, 1996",
+  "origin_source": "Software Architecture: Perspectives on an Emerging Discipline (Shaw & Garlan, Prentice Hall, 1996)",
+  "origin_source_zh": "《软件架构：一门新兴学科的观点》（Shaw和Garlan，Prentice Hall，1996年）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When data must flow through a series of transformation, validation, or enrichment steps in a defined sequence",
+    "When individual processing stages need to be developed, tested, and scaled independently",
+    "When building ETL pipelines, data ingestion systems, or stream processing applications",
+    "When processing logic benefits from reusable, composable components that can be rearranged into different pipelines"
+  ],
+  "when_to_use_zh": [
+    "当数据必须按定义的顺序经过一系列转换、验证或富化步骤时",
+    "当各处理阶段需要独立开发、测试和扩展时",
+    "当构建ETL管道、数据摄取系统或流处理应用时",
+    "当处理逻辑受益于可重用、可组合、可重新排列到不同管道中的组件时"
+  ],
+  "core_concepts": [
+    "Filter: An independent processing component that receives input, applies a transformation, and produces output without knowledge of adjacent filters",
+    "Pipe: A connector that transports data between filters, which can be synchronous (function calls) or asynchronous (message queues)",
+    "Composability: Filters can be rearranged, added, or removed to create new processing workflows without modifying existing components",
+    "Backpressure: A flow control mechanism that prevents fast producers from overwhelming slow consumers in the pipeline",
+    "Fan-out and fan-in: Patterns for splitting a pipeline into parallel branches and merging results back together"
+  ],
+  "core_concepts_zh": [
+    "过滤器：接收输入、应用转换并产生输出的独立处理组件，不感知相邻过滤器",
+    "管道：在过滤器之间传输数据的连接器，可以是同步的（函数调用）或异步的（消息队列）",
+    "可组合性：过滤器可以重新排列、添加或移除以创建新的处理工作流，而无需修改现有组件",
+    "背压：防止快速生产者压垮管道中慢速消费者的流控机制",
+    "扇出与扇入：将管道分裂为并行分支并将结果合并回来的模式"
+  ],
+  "timeline": [
+    [
+      "1964",
+      "Doug McIlroy proposes the concept of connecting programs like garden hoses at Bell Labs"
+    ],
+    [
+      "1973",
+      "Unix pipes implement the pipe-and-filter pattern at the operating system level"
+    ],
+    [
+      "1996",
+      "Shaw and Garlan formalize pipe-and-filter as a fundamental architectural style"
+    ],
+    [
+      "2011",
+      "Apache Kafka popularizes distributed streaming pipelines at scale"
+    ],
+    [
+      "2020",
+      "Richards and Ford analyze pipe-and-filter trade-offs for modern distributed architectures in Fundamentals of Software Architecture"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1964",
+      "Doug McIlroy在贝尔实验室提出像连接花园水管一样连接程序的概念"
+    ],
+    [
+      "1973",
+      "Unix管道在操作系统层面实现管道与过滤器模式"
+    ],
+    [
+      "1996",
+      "Shaw和Garlan将管道与过滤器正式定义为基本架构风格"
+    ],
+    [
+      "2011",
+      "Apache Kafka将分布式流式管道大规模普及"
+    ],
+    [
+      "2020",
+      "Richards和Ford在《软件架构基础》中分析现代分布式架构的管道与过滤器权衡"
+    ]
+  ],
+  "dos": [
+    "Do keep filters stateless because stateless filters can be parallelized, restarted, and scaled independently",
+    "Do define a uniform data format between filters because incompatible formats require costly adapter layers",
+    "Do implement backpressure handling because without it, pipeline failures cascade from the slowest filter outward",
+    "Do make filters idempotent because retries after failure should not produce duplicate or corrupted results"
+  ],
+  "dos_zh": [
+    "保持过滤器无状态，因为无状态过滤器可以被并行化、重启和独立扩展",
+    "定义过滤器之间的统一数据格式，因为不兼容的格式需要昂贵的适配器层",
+    "实现背压处理，因为没有背压时管道故障会从最慢的过滤器向外级联",
+    "使过滤器具有幂等性，因为失败后的重试不应产生重复或损坏的结果"
+  ],
+  "donts": [
+    "Don't share state between filters through side channels because it creates hidden coupling and makes the pipeline non-deterministic",
+    "Don't create overly fine-grained filters because the overhead of serialization and transport between too many stages degrades throughput",
+    "Don't ignore error handling in intermediate filters because a silent failure mid-pipeline corrupts all downstream data",
+    "Don't build circular pipelines because feedback loops in filter chains create debugging nightmares and potential infinite loops"
+  ],
+  "donts_zh": [
+    "不要通过旁路在过滤器间共享状态，因为这会造成隐性耦合并使管道不确定",
+    "不要创建过于细粒度的过滤器，因为太多阶段间的序列化和传输开销会降低吞吐量",
+    "不要忽略中间过滤器的错误处理，因为管道中部的静默故障会损坏所有下游数据",
+    "不要构建循环管道，因为过滤器链中的反馈循环会造成调试噩梦和潜在的无限循环"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix's data pipeline platform processes over a trillion events per day using a pipe-and-filter architecture built on Apache Kafka and Apache Flink. Each filter stage handles a specific responsibility: ingestion, deduplication, enrichment with user metadata, aggregation for analytics, and routing to downstream data stores. The composability of the pipeline allows Netflix to add new filters (such as real-time anomaly detection) without disrupting existing processing stages. This architecture processes petabytes of streaming data daily with sub-second latency for real-time analytics.",
+  "case_study_zh": "Netflix的数据管道平台使用基于Apache Kafka和Apache Flink构建的管道与过滤器架构，每天处理超过一万亿个事件。每个过滤器阶段处理特定职责：摄取、去重、用户元数据富化、分析聚合以及路由到下游数据存储。管道的可组合性允许Netflix在不干扰现有处理阶段的情况下添加新过滤器（如实时异常检测）。该架构每天处理PB级的流式数据，实时分析延迟不到一秒。",
+  "when_not_to_use": [
+    "Interactive applications requiring synchronous request-response patterns where pipeline latency is unacceptable",
+    "Systems where processing steps are tightly interdependent and cannot operate on data independently",
+    "Small applications where the overhead of defining pipes and filters exceeds the benefit of modularity"
+  ],
+  "when_not_to_use_zh": [
+    "需要同步请求-响应模式、管道延迟不可接受的交互式应用",
+    "处理步骤紧密相互依赖、无法独立操作数据的系统",
+    "定义管道和过滤器的开销超过模块化收益的小型应用"
+  ],
+  "adopters": [
+    "Netflix",
+    "LinkedIn",
+    "Uber",
+    "Confluent",
+    "Spotify"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "maintainability",
+    "portability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Mary Shaw and David Garlan (1996). \"Software Architecture: Perspectives on an Emerging Discipline\". Prentice Hall.",
+  "secondary_sources": [
+    "Doug McIlroy (1964). \"Summary of Unix Philosophy\". Bell System Technical Journal.",
+    "Frank Buschmann et al. (1996). \"Pattern-Oriented Software Architecture, Volume 1: A System of Patterns\". Wiley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "eda",
+      "type": "complement"
+    },
+    {
+      "slug": "space-based-architecture",
+      "type": "related"
+    },
+    {
+      "slug": "layered-architecture",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/pipe-and-filter",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/pipe-and-filter.md"
+}

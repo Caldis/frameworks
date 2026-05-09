@@ -1,0 +1,195 @@
+{
+  "id": 38,
+  "name": "Event Sourcing Pattern",
+  "name_zh": "事件溯源模式",
+  "slug": "event-sourcing-pattern",
+  "category": "coding",
+  "desc": "Persist state as an immutable append-only sequence of events",
+  "desc_zh": "将状态持久化为不可变的追加事件序列而非当前快照",
+  "steps": [
+    "Model domain events: define immutable event types that capture every meaningful state change (OrderPlaced, ItemShipped, PaymentReceived)",
+    "Build the event store: implement an append-only log (EventStoreDB, Kafka, or custom) that stores events with sequence numbers and metadata",
+    "Reconstruct state by replay: load an entity's current state by replaying its event stream from the beginning or from a snapshot",
+    "Create projections: build read-optimized views by subscribing to the event stream and materializing data into query-friendly shapes",
+    "Implement snapshotting: periodically save aggregate state snapshots to avoid replaying the full event history for long-lived entities"
+  ],
+  "steps_zh": [
+    "建模领域事件：定义不可变的事件类型，捕获每个有意义的状态变更（订单创建、物品发货、收款完成）",
+    "构建事件存储：实现追加式日志（EventStoreDB、Kafka或自定义），存储带序列号和元数据的事件",
+    "通过回放重建状态：从头或从快照开始回放实体的事件流以加载其当前状态",
+    "创建投影：通过订阅事件流并将数据物化为查询友好的形态来构建读优化视图",
+    "实现快照：定期保存聚合状态快照，避免对长期存活的实体回放完整事件历史"
+  ],
+  "ai_relevant": false,
+  "viz_type": "timeline",
+  "viz_labels": [
+    "Command",
+    "Event",
+    "Event Store",
+    "Projection",
+    "Snapshot"
+  ],
+  "viz_labels_zh": [
+    "命令",
+    "事件",
+    "事件存储",
+    "投影",
+    "快照"
+  ],
+  "related": [
+    "cqrs-pattern",
+    "eda",
+    "ddd-tactical-patterns",
+    "domain-driven-design"
+  ],
+  "tags": [
+    "event-sourcing",
+    "immutable",
+    "append-only",
+    "replay",
+    "audit-trail"
+  ],
+  "origin_author": "Greg Young, 2005",
+  "origin_source": "CQRS and Event Sourcing (series of conference talks and papers)",
+  "origin_source_zh": "《CQRS 与事件溯源》（系列会议演讲和论文）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Systems requiring a complete audit trail of every state change for compliance or debugging",
+    "Financial systems where transaction history must be immutable and reconstructable",
+    "Domains with complex temporal queries (what was the state at time T?)",
+    "Event-driven architectures where derived read models need to be rebuilt from source events"
+  ],
+  "when_to_use_zh": [
+    "出于合规或调试需要完整审计跟踪每个状态变更的系统",
+    "交易历史必须不可变且可重建的金融系统",
+    "具有复杂时态查询（T 时刻的状态是什么？）的领域",
+    "派生读模型需要从源事件重建的事件驱动架构"
+  ],
+  "core_concepts": [
+    "Event Store: an append-only log that persists domain events in order, serving as the single source of truth",
+    "Event Replay: reconstructing an entity's current state by sequentially applying all its past events",
+    "Projections: read-optimized materialized views built by processing the event stream into query-friendly data structures",
+    "Snapshotting: periodically persisting the current aggregate state to optimize replay performance for long event streams",
+    "Temporal Queries: the ability to reconstruct the state of the system at any point in time by replaying events up to that moment"
+  ],
+  "core_concepts_zh": [
+    "事件存储：按顺序持久化领域事件的追加式日志，作为唯一的真相来源",
+    "事件回放：通过顺序应用实体的所有过去事件来重建其当前状态",
+    "投影：通过将事件流处理为查询友好的数据结构来构建的读优化物化视图",
+    "快照：定期持久化当前聚合状态，以优化长事件流的回放性能",
+    "时态查询：通过回放到某一时刻的事件来重建系统在任意时间点的状态的能力"
+  ],
+  "timeline": [
+    [
+      "2005",
+      "Greg Young begins advocating event sourcing alongside CQRS in DDD community talks"
+    ],
+    [
+      "2010",
+      "EventStore (now EventStoreDB) is released as a purpose-built event sourcing database"
+    ],
+    [
+      "2014",
+      "Martin Fowler publishes his event sourcing overview, bringing the pattern to mainstream attention"
+    ],
+    [
+      "2018",
+      "Apache Kafka becomes widely adopted as an event store backbone in microservice architectures"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2005",
+      "Greg Young 在 DDD 社区演讲中开始倡导事件溯源与 CQRS"
+    ],
+    [
+      "2010",
+      "EventStore（现 EventStoreDB）作为专门构建的事件溯源数据库发布"
+    ],
+    [
+      "2014",
+      "Martin Fowler 发表事件溯源概述文章，将该模式带入主流视野"
+    ],
+    [
+      "2018",
+      "Apache Kafka 被广泛采用为微服务架构中的事件存储骨干"
+    ]
+  ],
+  "dos": [
+    "Do design events as immutable facts about what happened because they are the source of truth",
+    "Do version your event schemas because event structure will evolve and old events must remain readable",
+    "Do implement snapshotting for aggregates with long histories because replay performance degrades linearly",
+    "Do separate write and read models because event-sourced writes are append-only and reads need materialized views"
+  ],
+  "dos_zh": [
+    "将事件设计为关于已发生事实的不可变记录，因为它们是真相来源",
+    "对事件 schema 进行版本控制，因为事件结构会演进而旧事件必须保持可读",
+    "为历史记录较长的聚合实现快照，因为回放性能随事件数量线性下降",
+    "分离写模型和读模型，因为事件溯源的写入是追加式的而读取需要物化视图"
+  ],
+  "donts": [
+    "Don't delete or modify events because immutability is the foundational guarantee of event sourcing",
+    "Don't use event sourcing for simple CRUD domains because the complexity overhead is not justified",
+    "Don't forget to handle event schema evolution because breaking changes to events can corrupt the entire stream",
+    "Don't build a single monolithic projection because different read concerns need different optimized views"
+  ],
+  "donts_zh": [
+    "不要删除或修改事件，因为不可变性是事件溯源的基础保证",
+    "不要对简单 CRUD 领域使用事件溯源，因为复杂性开销不值得",
+    "不要忘记处理事件 schema 演进，因为事件的破坏性变更可能损坏整个流",
+    "不要构建单个巨型投影，因为不同的读取关注点需要不同的优化视图"
+  ],
+  "case_study_company": "LMAX Exchange",
+  "case_study": "LMAX Exchange, a high-frequency trading platform, built its entire trading engine on event sourcing. Every order, trade, and market movement is captured as an immutable event. The system can replay the full trading day in minutes for audit purposes, and the event-sourced architecture enables LMAX to process over 6 million transactions per second with consistent latency under 1 millisecond.",
+  "case_study_zh": "高频交易平台 LMAX Exchange 将其整个交易引擎构建在事件溯源之上。每个订单、交易和市场变动都被捕获为不可变事件。系统可在数分钟内回放全天交易数据用于审计，事件溯源架构使 LMAX 能以低于 1 毫秒的一致延迟每秒处理超过 600 万笔交易。",
+  "when_not_to_use": [
+    "Simple CRUD applications where current state is the only concern",
+    "Systems with very high write volumes where event storage costs become prohibitive",
+    "Teams without experience in event-driven architecture who would struggle with eventual consistency",
+    "Domains where regulatory requirements mandate data deletion (right to be forgotten) incompatible with immutable logs"
+  ],
+  "when_not_to_use_zh": [
+    "只关心当前状态的简单 CRUD 应用",
+    "写入量极高、事件存储成本变得难以承受的系统",
+    "没有事件驱动架构经验、难以应对最终一致性的团队",
+    "法规要求数据删除（被遗忘权）与不可变日志不兼容的领域"
+  ],
+  "adopters": [
+    "LMAX Exchange",
+    "Walmart",
+    "Capital One",
+    "Jet.com",
+    "EventStore Ltd"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Greg Young (2010). \"CQRS and Event Sourcing\". cqrs.files.wordpress.com.",
+  "secondary_sources": [
+    "Martin Fowler (2005). \"Event Sourcing\". martinfowler.com.",
+    "Vaughn Vernon (2013). \"Implementing Domain-Driven Design\". Addison-Wesley. Chapter 8."
+  ],
+  "typed_relations": [
+    {
+      "slug": "cqrs-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "eda",
+      "type": "complement"
+    },
+    {
+      "slug": "ddd-tactical-patterns",
+      "type": "complement"
+    },
+    {
+      "slug": "domain-driven-design",
+      "type": "prerequisite"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/event-sourcing-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/event-sourcing-pattern.md"
+}

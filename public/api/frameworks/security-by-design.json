@@ -1,0 +1,198 @@
+{
+  "id": 118,
+  "name": "Security by Design",
+  "name_zh": "安全设计",
+  "slug": "security-by-design",
+  "category": "security",
+  "desc": "Integrate security considerations into every phase of the software development lifecycle from requirements through deployment",
+  "desc_zh": "将安全考量集成到从需求到部署的软件开发生命周期的每个阶段",
+  "steps": [
+    "Elicit security requirements alongside functional requirements: define abuse cases, compliance needs, and trust assumptions",
+    "Apply secure design patterns: input validation, secure defaults, fail-secure behavior, and separation of privilege",
+    "Implement secure coding practices: parameterized queries, output encoding, safe memory management, dependency scanning",
+    "Integrate security testing into CI/CD: SAST, DAST, SCA, secrets scanning, and fuzz testing on every build",
+    "Conduct security reviews (architecture review, code audit, penetration test) at each milestone and feed findings back into the design"
+  ],
+  "steps_zh": [
+    "在功能需求旁引出安全需求：定义滥用用例、合规需要和信任假设",
+    "应用安全设计模式：输入验证、安全默认值、安全失败行为和权限分离",
+    "实施安全编码实践：参数化查询、输出编码、安全内存管理、依赖扫描",
+    "将安全测试集成到 CI/CD：SAST、DAST、SCA、密钥扫描和模糊测试在每次构建中运行",
+    "在每个里程碑进行安全审查（架构审查、代码审计、渗透测试）并将发现反馈到设计中"
+  ],
+  "ai_relevant": false,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Requirements",
+    "Secure Design",
+    "Secure Coding",
+    "CI Security",
+    "Security Review"
+  ],
+  "viz_labels_zh": [
+    "安全需求",
+    "安全设计",
+    "安全编码",
+    "CI安全",
+    "安全审查"
+  ],
+  "related": [
+    "threat-modeling-stride",
+    "owasp-top-10",
+    "privacy-by-design"
+  ],
+  "tags": [
+    "secure-sdlc",
+    "security-by-design",
+    "shift-left",
+    "secure-coding",
+    "devsecops"
+  ],
+  "origin_author": "Dan Bergh Johnsson, Daniel Deogun, Daniel Sawano (book); Microsoft SDL (process)",
+  "origin_source": "Johnsson, Deogun & Sawano「Secure by Design」(Manning, 2019); Microsoft Security Development Lifecycle (SDL); NIST SP 800-160「Systems Security Engineering」",
+  "origin_source_zh": "Johnsson, Deogun & Sawano「Secure by Design」(Manning, 2019)；微软安全开发生命周期（SDL）；NIST SP 800-160「系统安全工程」",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Greenfield projects where security can be baked in from day one at minimal marginal cost",
+    "Organizations adopting DevSecOps and shifting security left in the development pipeline",
+    "Products in regulated industries (finance, healthcare, defense) where secure SDLC is mandated",
+    "After security incidents reveal that vulnerabilities were introduced during design or implementation phases"
+  ],
+  "when_to_use_zh": [
+    "可以从第一天以最小边际成本植入安全的新建项目",
+    "采用 DevSecOps 并将安全左移到开发管道的组织",
+    "安全 SDLC 是强制要求的受监管行业（金融、医疗、国防）产品",
+    "安全事件揭示漏洞是在设计或实现阶段引入后"
+  ],
+  "core_concepts": [
+    "Secure Defaults: Systems ship with the most secure configuration out of the box; users must explicitly opt into less secure settings",
+    "Input Validation: All data entering the system is treated as untrusted and validated against strict schemas before processing",
+    "Fail-Secure: When a component fails, it denies access rather than failing open — preventing security bypass through error conditions",
+    "Domain-Driven Security: Using the type system and domain primitives to make invalid or insecure states unrepresentable in code",
+    "Shift Left: Moving security activities (threat modeling, SAST, code review) earlier in the SDLC where fixes are cheapest"
+  ],
+  "core_concepts_zh": [
+    "安全默认值：系统以最安全的配置出厂；用户必须显式选择降低安全设置",
+    "输入验证：进入系统的所有数据被视为不可信，在处理前按严格模式验证",
+    "安全失败：组件故障时拒绝访问而非开放失败——防止通过错误条件绕过安全",
+    "领域驱动安全：使用类型系统和领域原语使无效或不安全状态在代码中不可表达",
+    "左移：将安全活动（威胁建模、SAST、代码审查）前移到修复成本最低的 SDLC 早期"
+  ],
+  "timeline": [
+    [
+      "2004",
+      "Microsoft launches the Security Development Lifecycle (SDL) after the Trustworthy Computing memo"
+    ],
+    [
+      "2008",
+      "Gary McGraw publishes「Software Security: Building Security In」, establishing the building security in movement"
+    ],
+    [
+      "2016",
+      "DevSecOps movement formalizes security integration into CI/CD pipelines with automated tooling"
+    ],
+    [
+      "2019",
+      "Johnsson, Deogun & Sawano publish「Secure by Design」, introducing domain-driven security patterns"
+    ],
+    [
+      "2022",
+      "CISA launches the Secure by Design initiative, urging software vendors to take responsibility for product security"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2004",
+      "微软在「可信计算」备忘录后启动安全开发生命周期（SDL）"
+    ],
+    [
+      "2008",
+      "Gary McGraw 出版「Software Security: Building Security In」，建立内建安全运动"
+    ],
+    [
+      "2016",
+      "DevSecOps 运动通过自动化工具将安全集成正式化到 CI/CD 管道中"
+    ],
+    [
+      "2019",
+      "Johnsson、Deogun 和 Sawano 出版「Secure by Design」，引入领域驱动安全模式"
+    ],
+    [
+      "2022",
+      "CISA 发起 Secure by Design 倡议，敦促软件供应商对产品安全负责"
+    ]
+  ],
+  "dos": [
+    "Use strong type systems and domain primitives to encode security invariants — let the compiler catch violations",
+    "Automate security gates in CI/CD: fail the build on critical SAST findings or known vulnerable dependencies",
+    "Maintain a security champions program — embed security-minded developers in every team",
+    "Treat security bugs with the same priority as functional bugs — they are not second-class issues"
+  ],
+  "dos_zh": [
+    "使用强类型系统和领域原语编码安全不变量——让编译器捕获违规",
+    "在 CI/CD 中自动化安全门禁：在关键 SAST 发现或已知漏洞依赖时构建失败",
+    "维护安全冠军计划——在每个团队中嵌入有安全意识的开发者",
+    "以与功能缺陷同等优先级对待安全缺陷——它们不是二等问题"
+  ],
+  "donts": [
+    "Don't bolt on security as a final phase — the cost of fixing vulnerabilities increases 30x from design to production",
+    "Don't rely solely on penetration testing — it finds symptoms, not root causes in the design",
+    "Don't assume frameworks handle all security — ORM doesn't prevent all injection; HTTPS doesn't prevent all data exposure",
+    "Don't treat security as solely the security team's responsibility — every developer writes security-sensitive code"
+  ],
+  "donts_zh": [
+    "不要将安全作为最终阶段附加——修复漏洞的成本从设计到生产增加 30 倍",
+    "不要仅依赖渗透测试——它发现症状而非设计中的根本原因",
+    "不要假设框架处理所有安全——ORM 不能防止所有注入；HTTPS 不能防止所有数据泄露",
+    "不要把安全视为仅安全团队的责任——每个开发者都在编写安全敏感代码"
+  ],
+  "case_study_company": "Microsoft",
+  "case_study": "Microsoft's Security Development Lifecycle (SDL), mandated company-wide after Bill Gates' 2002 Trustworthy Computing memo, transformed how the company builds software. By requiring threat modeling, static analysis, fuzz testing, and security reviews at defined checkpoints, Microsoft reduced the vulnerability count in Windows by over 50% between Windows XP and Windows 7. The SDL became the template for secure SDLC practices adopted across the industry.",
+  "case_study_zh": "微软的安全开发生命周期（SDL）在 2002 年比尔·盖茨「可信计算」备忘录后在全公司强制推行，彻底改变了公司构建软件的方式。通过要求在规定检查点进行威胁建模、静态分析、模糊测试和安全审查，微软将 Windows 从 XP 到 Windows 7 的漏洞数量减少了 50% 以上。SDL 成为全行业采用的安全 SDLC 实践模板。",
+  "when_not_to_use": [
+    "Disposable prototypes built purely to validate a business hypothesis with zero real user data",
+    "When retrofitting security into a massive legacy codebase — start with threat modeling and risk-based prioritization instead of full redesign",
+    "Extremely time-constrained emergency patches where the priority is stopping active exploitation",
+    "Open-source hobby projects with no users and no sensitive data"
+  ],
+  "when_not_to_use_zh": [
+    "仅用于验证商业假设、零真实用户数据的一次性原型",
+    "为大型遗留代码库补装安全时——应从威胁建模和基于风险的优先级排序开始，而非全面重设计",
+    "优先级是阻止活跃利用的极度时间紧迫的紧急补丁",
+    "无用户和无敏感数据的开源业余项目"
+  ],
+  "adopters": [
+    "Microsoft (SDL)",
+    "Google (Project Zero drives secure-by-design improvements)",
+    "CISA (Secure by Design initiative)",
+    "SAFECode",
+    "Cisco (Cisco Secure Development Lifecycle)"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "security",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Johnsson, D.B., Deogun, D. & Sawano, D. (2019). \"Secure by Design\". Manning Publications.",
+  "secondary_sources": [
+    "Microsoft (2010). \"Security Development Lifecycle (SDL)\". microsoft.com/sdl.",
+    "NIST (2018). \"Systems Security Engineering: Considerations for a Multidisciplinary Approach in the Engineering of Trustworthy Secure Systems\". NIST SP 800-160, Vol. 1."
+  ],
+  "typed_relations": [
+    {
+      "slug": "threat-modeling-stride",
+      "type": "complement"
+    },
+    {
+      "slug": "owasp-top-10",
+      "type": "complement"
+    },
+    {
+      "slug": "privacy-by-design",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/security-by-design",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/security-by-design.md"
+}

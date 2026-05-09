@@ -1,0 +1,186 @@
+{
+  "id": 35,
+  "name": "Functional Core / Imperative Shell",
+  "name_zh": "函数式核心 / 命令式外壳",
+  "slug": "functional-core-imperative-shell",
+  "category": "coding",
+  "desc": "Pure logic in the center, side effects only at the boundaries",
+  "desc_zh": "纯逻辑居于核心，副作用仅存在于边界层",
+  "steps": [
+    "Identify side effects: catalog all I/O, database calls, network requests, and mutations in the current codebase",
+    "Extract pure functions: move all decision-making and transformation logic into pure functions with no side effects",
+    "Design the imperative shell: create a thin outer layer that reads input, calls the pure core, and writes output",
+    "Pass data, not dependencies: the pure core receives plain data and returns plain data — no injected services or callbacks",
+    "Test the core exhaustively: unit-test pure functions with simple input/output assertions; integration-test only the shell"
+  ],
+  "steps_zh": [
+    "识别副作用：编目当前代码库中所有I/O、数据库调用、网络请求和状态变更",
+    "提取纯函数：将所有决策和转换逻辑移入无副作用的纯函数中",
+    "设计命令式外壳：创建薄外层，负责读取输入、调用纯核心并写出结果",
+    "传递数据而非依赖：纯核心接收普通数据并返回普通数据——不注入服务或回调",
+    "穷尽测试核心：用简单的输入输出断言对纯函数做单元测试；仅对外壳做集成测试"
+  ],
+  "ai_relevant": false,
+  "viz_type": "venn",
+  "viz_labels": [
+    "Functional Core",
+    "Imperative Shell",
+    "Pure Logic"
+  ],
+  "viz_labels_zh": [
+    "函数核心",
+    "命令式外壳",
+    "纯函数逻辑"
+  ],
+  "related": [
+    "hexagonal-architecture",
+    "clean-code-principles",
+    "property-based-testing"
+  ],
+  "tags": [
+    "functional-programming",
+    "pure-functions",
+    "side-effects",
+    "testability",
+    "architecture"
+  ],
+  "origin_author": "Gary Bernhardt, 2012",
+  "origin_source": "Boundaries (talk at RubyConf and Destroy All Software screencasts)",
+  "origin_source_zh": "《Boundaries》（RubyConf 演讲及 Destroy All Software 系列视频）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Applications with complex business logic that needs thorough testing without infrastructure dependencies",
+    "Codebases with tangled side effects that make unit testing slow and flaky",
+    "Multi-language systems where the pure core can be shared or ported across platforms",
+    "Data pipelines where transformation logic should be independent of I/O mechanisms"
+  ],
+  "when_to_use_zh": [
+    "业务逻辑复杂、需要彻底测试而不依赖基础设施的应用",
+    "副作用交织导致单元测试缓慢且不稳定的代码库",
+    "纯核心可在平台间共享或移植的多语言系统",
+    "转换逻辑应独立于 I/O 机制的数据管道"
+  ],
+  "core_concepts": [
+    "Pure Functions: functions that always return the same output for the same input and produce no side effects",
+    "Imperative Shell: the thin boundary layer that performs all I/O, state mutations, and external communications",
+    "Data In, Data Out: the pure core communicates through plain data structures, not interfaces or service objects",
+    "Testability by Design: pure functions can be tested with simple assertions; no mocks, stubs, or test doubles needed",
+    "Push Effects to the Edges: move all side-effectful code as far outward as possible so the core remains pure"
+  ],
+  "core_concepts_zh": [
+    "纯函数：对相同输入始终返回相同输出、不产生副作用的函数",
+    "命令式外壳：执行所有 I/O、状态变更和外部通信的薄边界层",
+    "数据进，数据出：纯核心通过普通数据结构通信，而非接口或服务对象",
+    "设计即可测试：纯函数可用简单断言测试；不需要 mock、stub 或测试替身",
+    "将副作用推向边缘：将所有副作用代码尽可能推向外层，保持核心纯净"
+  ],
+  "timeline": [
+    [
+      "2012",
+      "Gary Bernhardt presents 'Boundaries' at RubyConf, articulating the Functional Core / Imperative Shell pattern"
+    ],
+    [
+      "2013",
+      "The pattern gains traction in the Ruby and Elixir communities through Destroy All Software screencasts"
+    ],
+    [
+      "2016",
+      "Redux architecture in React popularizes a similar pattern: pure reducers (core) with side-effect middleware (shell)"
+    ],
+    [
+      "2020",
+      "The pattern becomes standard in serverless architectures where pure business logic is separated from handler wiring"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2012",
+      "Gary Bernhardt 在 RubyConf 发表《Boundaries》演讲，阐述函数式核心/命令式外壳模式"
+    ],
+    [
+      "2013",
+      "该模式通过 Destroy All Software 系列视频在 Ruby 和 Elixir 社区中获得关注"
+    ],
+    [
+      "2016",
+      "React 中的 Redux 架构推广了类似模式：纯 reducer（核心）配合副作用中间件（外壳）"
+    ],
+    [
+      "2020",
+      "该模式成为无服务器架构的标准做法，纯业务逻辑与处理程序装配分离"
+    ]
+  ],
+  "dos": [
+    "Do pass all needed data as function arguments because implicit state access breaks purity",
+    "Do return new data structures from pure functions instead of mutating inputs because immutability prevents bugs",
+    "Do keep the shell as thin as possible because the less imperative code you have, the fewer integration tests you need",
+    "Do use value objects to pass structured data between shell and core because they enforce type safety"
+  ],
+  "dos_zh": [
+    "将所有所需数据作为函数参数传递，因为隐式状态访问破坏纯净性",
+    "从纯函数返回新数据结构而非修改输入，因为不可变性防止缺陷",
+    "保持外壳尽可能薄，因为命令式代码越少，需要的集成测试就越少",
+    "使用值对象在外壳和核心之间传递结构化数据，因为它们强制类型安全"
+  ],
+  "donts": [
+    "Don't inject services or repositories into the pure core because it reintroduces side-effect dependencies",
+    "Don't perform logging or metrics collection inside pure functions because those are side effects",
+    "Don't let the shell grow to contain business logic because it should only orchestrate I/O and delegation",
+    "Don't test pure functions with mocks because they should be testable with plain input/output assertions"
+  ],
+  "donts_zh": [
+    "不要向纯核心注入服务或仓储，因为这重新引入了副作用依赖",
+    "不要在纯函数内执行日志记录或指标收集，因为这些是副作用",
+    "不要让外壳膨胀到包含业务逻辑，因为它应仅编排 I/O 和委托",
+    "不要用 mock 测试纯函数，因为它们应该可以用简单的输入/输出断言来测试"
+  ],
+  "case_study_company": "Shopify",
+  "case_study": "Shopify's checkout system uses the Functional Core / Imperative Shell pattern in its Ruby codebase. All pricing, discount, and tax calculation logic lives in pure functions that receive cart data and return pricing results. The imperative shell handles payment gateway calls and database persistence. This separation enabled Shopify to achieve sub-100ms test suites for pricing logic and confidently handle Black Friday traffic spikes.",
+  "case_study_zh": "Shopify 的结账系统在其 Ruby 代码库中使用了函数式核心/命令式外壳模式。所有定价、折扣和税费计算逻辑都在纯函数中，接收购物车数据并返回定价结果。命令式外壳处理支付网关调用和数据库持久化。这种分离使 Shopify 的定价逻辑测试套件达到了低于 100 毫秒的执行速度，并能自信地应对黑色星期五的流量高峰。",
+  "when_not_to_use": [
+    "Highly interactive UI applications where state management is inherently stateful",
+    "Systems dominated by I/O with very little business logic (e.g., proxy servers)",
+    "Legacy codebases where extracting pure functions would require a massive rewrite",
+    "Real-time systems where the overhead of data copying affects latency requirements"
+  ],
+  "when_not_to_use_zh": [
+    "高度交互式的 UI 应用，状态管理本质上是有状态的",
+    "以 I/O 为主、业务逻辑极少的系统（如代理服务器）",
+    "提取纯函数需要大规模重写的遗留代码库",
+    "数据拷贝开销影响延迟要求的实时系统"
+  ],
+  "adopters": [
+    "Shopify",
+    "Stripe",
+    "GitHub",
+    "Jane Street",
+    "Nubank"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "testability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Gary Bernhardt (2012). \"Boundaries\". Destroy All Software Screencasts / RubyConf Talk.",
+  "secondary_sources": [
+    "Scott Wlaschin (2018). \"Domain Modeling Made Functional\". Pragmatic Bookshelf.",
+    "Mark Seemann (2021). \"Code That Fits in Your Head: Heuristics for Software Engineering\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "hexagonal-architecture",
+      "type": "complement"
+    },
+    {
+      "slug": "clean-code-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "property-based-testing",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/functional-core-imperative-shell",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/functional-core-imperative-shell.md"
+}

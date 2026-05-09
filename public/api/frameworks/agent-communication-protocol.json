@@ -1,0 +1,195 @@
+{
+  "id": 100,
+  "name": "Agent Communication Protocol",
+  "name_zh": "代理通信协议模式",
+  "slug": "agent-communication-protocol",
+  "category": "ai",
+  "desc": "Standardize message contracts between autonomous AI agents",
+  "desc_zh": "标准化自主 AI 代理之间的消息契约",
+  "steps": [
+    "Define a canonical message envelope: sender, receiver, intent, payload, correlation ID",
+    "Adopt or implement a shared registry where agents advertise their capabilities and schemas",
+    "Use async message queues for decoupled agent communication to avoid tight coupling",
+    "Implement acknowledgment and retry semantics with idempotency keys for reliability",
+    "Version all message schemas and enforce backward-compatibility rules as agents evolve"
+  ],
+  "steps_zh": [
+    "定义规范消息信封：发送方、接收方、意图、载荷、关联 ID",
+    "采用或实现共享注册中心，供代理广播自身能力和消息模式",
+    "使用异步消息队列进行松耦合的代理通信，避免强依赖",
+    "实现带有幂等键的确认与重试语义以保障可靠性",
+    "对所有消息模式进行版本管理，并在代理演进时强制向后兼容"
+  ],
+  "ai_relevant": true,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Message",
+    "Protocol",
+    "Agent A",
+    "Agent B"
+  ],
+  "viz_labels_zh": [
+    "消息",
+    "协议",
+    "Agent A",
+    "Agent B"
+  ],
+  "related": [
+    "multi-agent-orchestration-pattern",
+    "actor-model",
+    "eda"
+  ],
+  "tags": [
+    "agent-protocol",
+    "messaging",
+    "interoperability",
+    "standards"
+  ],
+  "origin_author": "FIPA (Foundation for Intelligent Physical Agents), 1996; modern: Agent Protocol (e2b), 2023; Anthropic MCP, 2024",
+  "origin_source": "FIPA Agent Communication Language Specifications (IEEE, 2002) and Agent Protocol open standard (e2b.dev, 2023)",
+  "origin_source_zh": "FIPA 代理通信语言规范（IEEE，2002）及 Agent Protocol 开放标准（e2b.dev，2023）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Multi-agent systems where agents from different frameworks or vendors must interoperate",
+    "Enterprise deployments where agent-to-agent communication needs auditability and reliability guarantees",
+    "Marketplaces or ecosystems where third-party agents connect to a shared platform",
+    "Systems requiring asynchronous, durable communication between long-running agents"
+  ],
+  "when_to_use_zh": [
+    "来自不同框架或供应商的代理必须互操作的多代理系统",
+    "代理间通信需要可审计性和可靠性保证的企业部署",
+    "第三方代理连接到共享平台的市场或生态系统",
+    "需要长运行代理间异步持久通信的系统"
+  ],
+  "core_concepts": [
+    "Message Envelope: A standardized wrapper containing sender, receiver, intent, payload, timestamp, and correlation ID",
+    "Capability Registry: A shared directory where agents publish their available skills and the message schemas they accept",
+    "Intent: A typed action descriptor (e.g., request, inform, propose, confirm) that classifies the purpose of a message",
+    "Idempotency Key: A unique identifier ensuring that retried messages don't cause duplicate side effects",
+    "Schema Versioning: A backward-compatible evolution strategy for message formats as agents are updated independently"
+  ],
+  "core_concepts_zh": [
+    "消息信封（Message Envelope）：包含发送方、接收方、意图、载荷、时间戳和关联 ID 的标准化包装",
+    "能力注册中心（Capability Registry）：代理发布可用技能和接受的消息模式的共享目录",
+    "意图（Intent）：分类消息目的的类型化动作描述符（如请求、通知、提议、确认）",
+    "幂等键（Idempotency Key）：确保重试消息不会导致重复副作用的唯一标识符",
+    "模式版本管理（Schema Versioning）：代理独立更新时消息格式的向后兼容演进策略"
+  ],
+  "timeline": [
+    [
+      "1996",
+      "FIPA founded to standardize agent communication; publishes the ACL (Agent Communication Language)"
+    ],
+    [
+      "2002",
+      "FIPA-ACL adopted as IEEE standard for multi-agent system interoperability"
+    ],
+    [
+      "2023-08",
+      "e2b.dev launches Agent Protocol, an open REST-based standard for AI agent communication"
+    ],
+    [
+      "2024-04",
+      "Anthropic publishes Model Context Protocol (MCP), establishing tool-server communication standards"
+    ],
+    [
+      "2024-11",
+      "Google A2A (Agent-to-Agent) protocol announced; industry converges on agent interoperability standards"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1996",
+      "FIPA 成立以标准化代理通信；发布 ACL（代理通信语言）"
+    ],
+    [
+      "2002",
+      "FIPA-ACL 作为多代理系统互操作性的 IEEE 标准被采纳"
+    ],
+    [
+      "2023-08",
+      "e2b.dev 发布 Agent Protocol——基于 REST 的 AI 代理通信开放标准"
+    ],
+    [
+      "2024-04",
+      "Anthropic 发布模型上下文协议（MCP），建立工具服务器通信标准"
+    ],
+    [
+      "2024-11",
+      "Google 宣布 A2A（Agent-to-Agent）协议；行业在代理互操作性标准上趋于融合"
+    ]
+  ],
+  "dos": [
+    "Use correlation IDs to trace request-response chains across multi-agent conversations",
+    "Design messages as immutable events -- append-only logs make debugging and replay easy",
+    "Implement schema validation at both sender and receiver to catch contract violations early",
+    "Plan for backward compatibility from day one -- agents will be updated at different times"
+  ],
+  "dos_zh": [
+    "使用关联 ID 追踪多代理对话中的请求-响应链",
+    "将消息设计为不可变事件——仅追加日志使调试和重放变得简单",
+    "在发送方和接收方都实现模式验证以尽早捕获契约违规",
+    "从第一天就规划向后兼容——代理会在不同时间更新"
+  ],
+  "donts": [
+    "Don't rely on natural language for inter-agent messaging -- use structured schemas to prevent misinterpretation",
+    "Don't assume all agents are online simultaneously -- design for async communication with message persistence",
+    "Don't create custom protocols when an established standard (MCP, Agent Protocol, A2A) fits your use case",
+    "Don't skip authentication between agents -- unauthorized agent communication is a security risk"
+  ],
+  "donts_zh": [
+    "不要依赖自然语言进行代理间消息传递——使用结构化模式防止误解",
+    "不要假设所有代理同时在线——设计支持消息持久化的异步通信",
+    "不要在已有标准（MCP、Agent Protocol、A2A）适用时创建自定义协议",
+    "不要跳过代理间的身份认证——未授权的代理通信是安全风险"
+  ],
+  "case_study_company": "Anthropic",
+  "case_study": "Anthropic's Model Context Protocol (MCP) standardized how AI agents communicate with tool servers, creating a universal interface that replaced fragmented custom integrations. Within months of release, MCP was adopted by Cursor, Windsurf, Replit, and dozens of other developer tools. The protocol's simple JSON-RPC-based design and capability negotiation mechanism enabled any tool to be exposed to any MCP-compatible agent without custom glue code.",
+  "case_study_zh": "Anthropic 的模型上下文协议（MCP）标准化了 AI 代理与工具服务器的通信方式，创建了取代碎片化自定义集成的通用接口。发布数月内，MCP 被 Cursor、Windsurf、Replit 及数十个其他开发者工具采用。该协议基于 JSON-RPC 的简洁设计和能力协商机制使任何工具都能无需自定义粘合代码即可暴露给任何 MCP 兼容代理。",
+  "when_not_to_use": [
+    "Single-agent systems with no need for inter-agent communication",
+    "Tightly coupled agent pairs where direct function calls are simpler than message passing",
+    "Rapid prototypes where protocol overhead slows down experimentation",
+    "Homogeneous agent deployments where all agents share the same framework and internal communication suffices"
+  ],
+  "when_not_to_use_zh": [
+    "无需代理间通信的单代理系统",
+    "直接函数调用比消息传递更简单的紧耦合代理对",
+    "协议开销减慢实验速度的快速原型",
+    "所有代理共享同一框架、内部通信即可满足需求的同质代理部署"
+  ],
+  "adopters": [
+    "Anthropic (MCP)",
+    "Google (A2A Protocol)",
+    "e2b.dev (Agent Protocol)",
+    "Microsoft (AutoGen)",
+    "Fetch.ai"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "scalability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "FIPA (2002). \"FIPA Agent Communication Language Specifications\". IEEE Foundation for Intelligent Physical Agents.",
+  "secondary_sources": [
+    "E2B (2023). \"Agent Protocol: Open Standard for AI Agent Communication\". agentprotocol.ai.",
+    "Anthropic (2024). \"Model Context Protocol Specification\". modelcontextprotocol.io."
+  ],
+  "typed_relations": [
+    {
+      "slug": "multi-agent-orchestration-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "actor-model",
+      "type": "complement"
+    },
+    {
+      "slug": "eda",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/agent-communication-protocol",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/agent-communication-protocol.md"
+}

@@ -1,0 +1,198 @@
+{
+  "id": 98,
+  "name": "AI Observability Framework",
+  "name_zh": "AI 系统可观测性框架",
+  "slug": "ai-observability-framework",
+  "category": "ai",
+  "desc": "Trace, monitor, and explain LLM system behavior in prod",
+  "desc_zh": "在生产环境中追踪、监控并解释大模型系统行为",
+  "steps": [
+    "Instrument every LLM call with trace IDs linking prompt, model version, and raw output",
+    "Collect latency, token cost, and quality metrics per call and aggregate into dashboards",
+    "Implement an LLM-as-judge evaluator that scores output quality on sampled traffic",
+    "Set up drift alerts when quality or distribution metrics deviate from baseline",
+    "Store prompt-response pairs in an evaluation dataset for offline regression testing"
+  ],
+  "steps_zh": [
+    "为每次大模型调用打上关联提示词、模型版本和原始输出的追踪 ID",
+    "收集每次调用的延迟、Token 成本和质量指标并汇总至仪表盘",
+    "实现 LLM-as-Judge 评估器，对采样流量的输出质量打分",
+    "当质量或分布指标偏离基线时触发漂移告警",
+    "将提示词-响应对存入评估数据集，用于离线回归测试"
+  ],
+  "ai_relevant": true,
+  "viz_type": "radar",
+  "viz_labels": [
+    "Traces",
+    "Metrics",
+    "Evals",
+    "Costs",
+    "Safety"
+  ],
+  "viz_labels_zh": [
+    "链路追踪",
+    "指标",
+    "评估",
+    "成本",
+    "安全"
+  ],
+  "related": [
+    "llmops",
+    "llm-evaluation-framework",
+    "four-golden-signals"
+  ],
+  "tags": [
+    "observability",
+    "tracing",
+    "monitoring",
+    "llm-metrics",
+    "drift"
+  ],
+  "origin_author": "Arize AI (founding team), 2020; LangSmith (LangChain), 2023",
+  "origin_source": "ML Observability concepts (Arize AI, 2021) and LangSmith: LLM Application Tracing and Evaluation Platform (LangChain, 2023)",
+  "origin_source_zh": "ML 可观测性概念（Arize AI，2021）及 LangSmith：大模型应用追踪与评估平台（LangChain，2023）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Production LLM applications where you need to monitor quality, cost, and latency continuously",
+    "Multi-step agent pipelines where you must trace which step caused a quality degradation",
+    "A/B testing new prompts or models where before/after quality comparison requires metrics",
+    "Regulated environments requiring audit trails of all AI-generated outputs"
+  ],
+  "when_to_use_zh": [
+    "需要持续监控质量、成本和延迟的生产大模型应用",
+    "需要追踪哪个步骤导致质量退化的多步代理管线",
+    "需要前后质量对比指标的新提示词或模型 A/B 测试",
+    "需要所有 AI 生成输出审计追踪的受监管环境"
+  ],
+  "core_concepts": [
+    "LLM Trace: A structured record of a single LLM call including prompt, completion, model ID, latency, and token counts",
+    "Span: A unit of work within a multi-step agent trace (e.g., retrieval span, LLM span, tool span)",
+    "LLM-as-Judge: Using a separate LLM to evaluate the quality of another model's outputs on dimensions like relevance and faithfulness",
+    "Quality Drift: A gradual degradation in output quality detected via statistical monitoring of evaluation scores over time",
+    "Evaluation Dataset: A curated set of prompt-expected_output pairs used for regression testing after prompt or model changes"
+  ],
+  "core_concepts_zh": [
+    "LLM 追踪（LLM Trace）：单次大模型调用的结构化记录，包含提示词、补全、模型 ID、延迟和 Token 计数",
+    "Span（跨度）：多步代理追踪中的一个工作单元（如检索 span、LLM span、工具 span）",
+    "LLM-as-Judge（大模型评委）：使用独立大模型在相关性和忠实度等维度评估另一个模型的输出质量",
+    "质量漂移（Quality Drift）：通过统计监控评估分数随时间推移检测到的输出质量逐渐退化",
+    "评估数据集（Evaluation Dataset）：用于提示词或模型变更后回归测试的精选提示词-预期输出对集合"
+  ],
+  "timeline": [
+    [
+      "2021",
+      "Arize AI pioneers ML observability with embedding drift detection and model monitoring"
+    ],
+    [
+      "2023-03",
+      "Weights & Biases launches Prompts, extending experiment tracking to LLM applications"
+    ],
+    [
+      "2023-07",
+      "LangSmith launches as a dedicated LLM tracing and evaluation platform"
+    ],
+    [
+      "2023-12",
+      "OpenTelemetry community begins standardizing semantic conventions for GenAI/LLM spans"
+    ],
+    [
+      "2024-06",
+      "Braintrust, Helicone, and Langfuse emerge as specialized LLM observability platforms"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2021",
+      "Arize AI 以嵌入漂移检测和模型监控开创 ML 可观测性领域"
+    ],
+    [
+      "2023-03",
+      "Weights & Biases 推出 Prompts 功能，将实验追踪扩展到大模型应用"
+    ],
+    [
+      "2023-07",
+      "LangSmith 作为专用大模型追踪和评估平台上线"
+    ],
+    [
+      "2023-12",
+      "OpenTelemetry 社区开始标准化 GenAI/LLM span 的语义约定"
+    ],
+    [
+      "2024-06",
+      "Braintrust、Helicone 和 Langfuse 作为专业 LLM 可观测性平台涌现"
+    ]
+  ],
+  "dos": [
+    "Log full prompt-response pairs, not just metrics -- you'll need the actual text to debug quality issues",
+    "Implement LLM-as-judge evaluation on sampled production traffic for continuous quality monitoring",
+    "Set up cost dashboards broken down by feature, user segment, and model to optimize spend",
+    "Create golden evaluation datasets and run regression tests before deploying prompt changes"
+  ],
+  "dos_zh": [
+    "记录完整提示词-响应对而不只是指标——调试质量问题时需要实际文本",
+    "在采样生产流量上实现 LLM-as-Judge 评估以进行持续质量监控",
+    "按功能、用户群和模型细分设置成本仪表盘以优化支出",
+    "创建黄金评估数据集，在部署提示词变更前运行回归测试"
+  ],
+  "donts": [
+    "Don't log only errors -- quality drift is often subtle and only visible through continuous evaluation",
+    "Don't ignore token cost tracking -- LLM costs can spike unpredictably when usage patterns change",
+    "Don't evaluate solely with automated metrics -- periodically review samples manually for nuanced issues",
+    "Don't store PII in observability logs without proper anonymization and access controls"
+  ],
+  "donts_zh": [
+    "不要仅记录错误——质量漂移通常很微妙，只有通过持续评估才能发现",
+    "不要忽视 Token 成本追踪——使用模式变化时 LLM 成本可能不可预测地飙升",
+    "不要仅依赖自动化指标评估——定期手动审查样本以发现细微问题",
+    "不要在未进行适当脱敏和访问控制的情况下在可观测性日志中存储 PII"
+  ],
+  "case_study_company": "LangChain (LangSmith)",
+  "case_study": "LangChain built LangSmith as a dedicated observability platform for LLM applications after recognizing that traditional APM tools couldn't capture prompt-level traces. LangSmith provides end-to-end tracing of multi-step chains, automatic evaluation scoring, and dataset management. Within a year of launch, over 100,000 developers used LangSmith to debug and optimize their LLM applications, making it the de facto tracing standard for the LangChain ecosystem.",
+  "case_study_zh": "LangChain 在认识到传统 APM 工具无法捕获提示词级追踪后，构建了 LangSmith 作为大模型应用专用可观测性平台。LangSmith 提供多步链路的端到端追踪、自动评估打分和数据集管理。上线一年内超过 10 万名开发者使用 LangSmith 调试和优化大模型应用，使其成为 LangChain 生态系统的事实追踪标准。",
+  "when_not_to_use": [
+    "One-off scripts or experiments where formal observability infrastructure is overkill",
+    "Applications with no production users where monitoring provides no actionable signal",
+    "Prototypes where the cost of observability tooling exceeds the value of the insights",
+    "Systems with strict data sovereignty requirements that prohibit sending traces to third-party platforms"
+  ],
+  "when_not_to_use_zh": [
+    "正式可观测性基础设施过度的一次性脚本或实验",
+    "没有生产用户、监控无法提供可操作信号的应用",
+    "可观测性工具成本超过洞察价值的原型",
+    "严格数据主权要求禁止向第三方平台发送追踪数据的系统"
+  ],
+  "adopters": [
+    "LangChain (LangSmith)",
+    "Arize AI (Phoenix)",
+    "Helicone",
+    "Braintrust",
+    "Weights & Biases"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "observability",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Arize AI (2021). \"ML Observability: Monitoring, Troubleshooting, and Explaining Machine Learning Models\". arize.com.",
+  "secondary_sources": [
+    "Harrison Chase (2023). \"LangSmith: LLM Application Tracing and Evaluation\". langchain.com.",
+    "Shreya Shankar et al. (2022). \"Operationalizing Machine Learning: An Interview Study\". arXiv:2209.09125."
+  ],
+  "typed_relations": [
+    {
+      "slug": "llmops",
+      "type": "complement"
+    },
+    {
+      "slug": "llm-evaluation-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "four-golden-signals",
+      "type": "extends"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/ai-observability-framework",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/ai-observability-framework.md"
+}

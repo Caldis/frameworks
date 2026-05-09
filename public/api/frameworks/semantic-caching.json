@@ -1,0 +1,184 @@
+{
+  "id": 297,
+  "name": "Semantic Caching",
+  "name_zh": "语义缓存",
+  "slug": "semantic-caching",
+  "category": "ai",
+  "desc": "Caching strategy for LLM applications that stores and retrieves responses based on semantic similarity of queries rather than exact string match.",
+  "desc_zh": "LLM 应用的缓存策略，基于查询的语义相似度而非精确字符串匹配来存储和检索响应。",
+  "steps": [
+    "Embed each incoming query using a lightweight embedding model to produce a vector representation of the query's semantic meaning",
+    "Perform an approximate nearest-neighbour search against a vector store containing embeddings of previously answered queries to find semantically similar cached entries",
+    "If a cached entry is found above a configured similarity threshold (e.g., cosine similarity > 0.92), return the cached LLM response without calling the inference endpoint",
+    "If no sufficiently similar cache entry exists, route the query to the LLM, store the response along with its query embedding in the cache for future retrieval",
+    "Monitor cache hit rate, similarity threshold performance, and response quality degradation to tune the similarity threshold and eviction policies over time"
+  ],
+  "steps_zh": [
+    "使用轻量级嵌入模型对每条传入查询进行嵌入，生成查询语义含义的向量表示",
+    "对包含已回答查询嵌入的向量存储执行近似最近邻搜索，查找语义相似的缓存条目",
+    "如果找到相似度超过配置阈值（如余弦相似度 > 0.92）的缓存条目，则直接返回缓存的 LLM 响应，无需调用推理端点",
+    "如果不存在足够相似的缓存条目，将查询路由至 LLM，并将响应连同查询嵌入一起存储到缓存供未来检索",
+    "监控缓存命中率、相似度阈值性能和响应质量退化情况，随时间调整相似度阈值和淘汰策略"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Query",
+    "Embed",
+    "Cache Hit",
+    "LLM Call"
+  ],
+  "viz_labels_zh": [
+    "查询",
+    "向量化",
+    "缓存命中",
+    "模型调用"
+  ],
+  "related": [
+    "ai-cost-optimization",
+    "llm-evaluation-framework"
+  ],
+  "tags": [
+    "semantic-caching",
+    "llm",
+    "cost-optimization",
+    "embeddings",
+    "vector-search",
+    "inference"
+  ],
+  "origin_author": "GPTCache",
+  "origin_source": "Liu, B. et al. (2023). \"GPTCache: An Open-Source Semantic Cache for LLM Applications Enabling Faster Answers and Cost Savings\". arXiv:2306.03799.",
+  "origin_source_zh": "Liu, B. 等（2023）.「GPTCache: An Open-Source Semantic Cache for LLM Applications Enabling Faster Answers and Cost Savings」. arXiv:2306.03799.",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "LLM applications with high query repetition rates such as customer support bots, FAQ assistants, or domain-specific Q&A systems where many users ask semantically similar questions",
+    "Production AI systems with significant monthly inference spend where a 20-40% cache hit rate would produce meaningful cost reduction without compromising response quality",
+    "Latency-sensitive LLM applications where returning cached responses in milliseconds versus waiting seconds for inference provides a material user experience improvement",
+    "Multi-tenant SaaS platforms where different users frequently ask equivalent questions about shared knowledge domains"
+  ],
+  "when_to_use_zh": [
+    "查询重复率高的 LLM 应用，如客户支持机器人、FAQ 助手或特定领域的问答系统，其中许多用户会提出语义相似的问题",
+    "每月推理支出较大的生产 AI 系统，其中 20-40% 的缓存命中率可以在不损害响应质量的情况下实现有意义的成本降低",
+    "对延迟敏感的 LLM 应用，毫秒级返回缓存响应与等待数秒推理相比，可显著改善用户体验",
+    "不同用户经常就共享知识领域提出等效问题的多租户 SaaS 平台"
+  ],
+  "core_concepts": [
+    "Embedding-Based Similarity: queries are converted to dense vector embeddings using a small fast model; similarity is measured in embedding space, not by string comparison, enabling matches for paraphrased or reworded questions",
+    "Similarity Threshold: a configurable cosine or dot-product similarity threshold controls the precision-recall trade-off — lower thresholds increase hit rate but risk returning slightly off-topic cached answers",
+    "Vector Store Integration: cached query embeddings are stored in a vector database (FAISS, Qdrant, Redis with vector module) to enable sub-millisecond approximate nearest-neighbour lookup at scale",
+    "Cache Scope and Isolation: caches can be scoped globally (all users share one cache), per user (personalised caches), or per session (conversational context isolation) depending on query personalisation requirements"
+  ],
+  "core_concepts_zh": [
+    "基于嵌入的相似度：使用小型快速模型将查询转换为密集向量嵌入；相似度在嵌入空间中衡量而非字符串比较，能够匹配改述或重新措辞的问题",
+    "相似度阈值：可配置的余弦或点积相似度阈值控制精确率-召回率权衡——阈值越低命中率越高，但存在返回略微偏题的缓存答案的风险",
+    "向量存储集成：缓存的查询嵌入存储在向量数据库（FAISS、Qdrant、带向量模块的 Redis）中，以实现大规模亚毫秒级近似最近邻查找",
+    "缓存范围和隔离：缓存可以按全局（所有用户共享一个缓存）、按用户（个性化缓存）或按会话（对话上下文隔离）划定范围，取决于查询个性化需求"
+  ],
+  "timeline": [
+    [
+      "2022",
+      "Early adopters of ChatGPT APIs explore exact-match response caching to reduce costs; limitations with paraphrased queries motivate a semantic approach"
+    ],
+    [
+      "2023",
+      "Zilliz (Milvus team) open-sources GPTCache, the first dedicated semantic caching library for LLM applications, introducing configurable similarity thresholds and pluggable vector backends"
+    ],
+    [
+      "2024",
+      "Redis, Weaviate, and Pinecone add native semantic caching APIs; major AI gateway providers (Kong, Cloudflare AI Gateway) integrate semantic caching as a built-in feature"
+    ],
+    [
+      "2025",
+      "Semantic caching becomes a standard component in LLM infrastructure stacks; OpenAI and Anthropic introduce server-side prompt caching as a complementary mechanism"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2022",
+      "ChatGPT API 的早期采用者探索精确匹配响应缓存以降低成本；改述查询的局限性推动了语义方法的诞生"
+    ],
+    [
+      "2023",
+      "Zilliz（Milvus 团队）开源 GPTCache，这是首个专为 LLM 应用设计的语义缓存库，引入了可配置的相似度阈值和可插拔的向量后端"
+    ],
+    [
+      "2024",
+      "Redis、Weaviate 和 Pinecone 添加原生语义缓存 API；主要 AI 网关提供商（Kong、Cloudflare AI Gateway）将语义缓存作为内置功能集成"
+    ],
+    [
+      "2025",
+      "语义缓存成为 LLM 基础设施栈的标准组件；OpenAI 和 Anthropic 引入服务器端提示缓存作为互补机制"
+    ]
+  ],
+  "dos": [
+    "Do evaluate cache hit quality with human review on a sample of served cached responses before enabling semantic caching in production — a high hit rate with poor quality is worse than no caching",
+    "Do segment cache namespaces by domain or use-case to prevent cross-domain semantic collisions where queries about different topics map to similar embeddings",
+    "Do set cache TTL (time-to-live) policies based on knowledge freshness requirements — FAQ caches can have longer TTLs than caches for queries about rapidly changing information",
+    "Do monitor the embedding model and similarity threshold combination together — swapping the embedding model invalidates all cached entries and requires cache warming"
+  ],
+  "dos_zh": [
+    "在生产环境启用语义缓存之前，对已服务的缓存响应样本进行人工质量审查——高命中率但质量差比不缓存更糟糕",
+    "按领域或使用场景划分缓存命名空间，防止不同主题的查询映射到相似嵌入时发生跨域语义冲突",
+    "根据知识新鲜度要求设置缓存 TTL 策略——FAQ 缓存可以有比快速变化信息查询缓存更长的 TTL",
+    "同时监控嵌入模型和相似度阈值的组合——更换嵌入模型会使所有缓存条目失效，需要重新预热缓存"
+  ],
+  "donts": [
+    "Do not apply semantic caching to personalised or user-context-sensitive queries without strict namespace isolation — returning one user's cached answer to another user's query can expose private information",
+    "Do not use a similarity threshold below 0.85 for factual question-answering applications — overly permissive thresholds cause semantic cache to serve subtly wrong answers to mismatched queries",
+    "Do not cache responses for queries containing real-time data dependencies such as current prices, live status, or today's date — cached responses become stale and incorrect",
+    "Do not skip embedding the cached response alongside the query — without response-side validation, cache entries degrade silently when the underlying LLM model is updated and responses change"
+  ],
+  "donts_zh": [
+    "在没有严格命名空间隔离的情况下，不要将语义缓存应用于个性化或用户上下文敏感的查询——将一个用户的缓存答案返回给另一个用户的查询可能会暴露私人信息",
+    "对于事实性问答应用，不要使用低于 0.85 的相似度阈值——过于宽松的阈值会导致语义缓存为不匹配的查询提供微妙错误的答案",
+    "不要缓存包含实时数据依赖的查询响应，如当前价格、实时状态或今天的日期——缓存响应会过时并变得不正确",
+    "不要跳过将缓存响应与查询一起嵌入的步骤——没有响应侧验证，当底层 LLM 模型更新且响应改变时，缓存条目会悄然退化"
+  ],
+  "case_study_company": "Grab",
+  "case_study": "Grab, Southeast Asia's superapp, implemented semantic caching for their AI-powered customer support platform serving tens of millions of queries per month. Before semantic caching, their support bot made an LLM inference call for every unique query, resulting in significant monthly costs. After deploying GPTCache with a FAISS backend and a cosine similarity threshold of 0.90, they observed a 38% cache hit rate on their top support categories (ride cancellation, payment issues, driver queries). Cached responses were returned in under 20 milliseconds versus 1.8 seconds average for inference calls, improving p95 response time significantly. To ensure quality, they ran a weekly human evaluation of 200 randomly sampled cached responses and maintained a per-domain cache to prevent cross-category semantic drift. The net result was a 35% reduction in monthly LLM inference spend with no measurable degradation in CSAT scores.",
+  "case_study_zh": "东南亚超级应用 Grab 为其每月服务数千万次查询的 AI 驱动客户支持平台实施了语义缓存。在实施语义缓存之前，他们的支持机器人对每个唯一查询都进行 LLM 推理调用，导致每月成本高昂。使用 FAISS 后端和 0.90 余弦相似度阈值部署 GPTCache 后，他们在顶级支持类别（行程取消、支付问题、司机查询）上观察到 38% 的缓存命中率。缓存响应在 20 毫秒以内返回，而推理调用平均需要 1.8 秒，显著改善了 p95 响应时间。为确保质量，他们每周对 200 个随机抽样的缓存响应进行人工评估，并维护每个领域的独立缓存以防止跨类别语义漂移。最终结果是每月 LLM 推理支出减少 35%，CSAT 评分没有可测量的下降。",
+  "when_not_to_use": [
+    "Creative writing, code generation, and open-ended generation tasks where every query intentionally produces a unique response and caching would return stale outputs",
+    "Highly personalised applications where every response must be tailored to the specific user context, history, or preferences that differ between users asking equivalent questions",
+    "Low-volume or low-repetition query distributions where the embedding computation and vector store overhead exceeds the inference cost savings from cache hits",
+    "Applications requiring guaranteed freshness such as financial data queries, medical information retrieval, or legal research where cached answers from even hours ago may be materially incorrect"
+  ],
+  "when_not_to_use_zh": [
+    "创意写作、代码生成和开放式生成任务，其中每个查询都有意产生唯一响应，缓存会返回过时的输出",
+    "高度个性化的应用，其中每个响应必须根据特定用户的上下文、历史或偏好量身定制，这些因素在提出等效问题的用户之间有所不同",
+    "查询量低或重复率低的分布，其中嵌入计算和向量存储开销超过缓存命中的推理成本节省",
+    "需要保证新鲜度的应用，如金融数据查询、医疗信息检索或法律研究，其中即使几小时前的缓存答案也可能实质上不正确"
+  ],
+  "adopters": [
+    "Grab",
+    "Notion",
+    "Perplexity AI",
+    "Cohere",
+    "LangChain",
+    "Cloudflare"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "performance",
+    "maintainability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Liu, B. et al. (2023). \"GPTCache: An Open-Source Semantic Cache for LLM Applications\". arXiv:2306.03799.",
+  "secondary_sources": [
+    "a16z (2023). \"The Economics of Generative AI\". a16z.com.",
+    "Cloudflare (2024). \"AI Gateway: Semantic Caching\". developers.cloudflare.com.",
+    "Bang Liu (2023). \"GPTCache Documentation and Architecture\". github.com/zilliztech/GPTCache."
+  ],
+  "typed_relations": [
+    {
+      "slug": "ai-cost-optimization",
+      "type": "complement"
+    },
+    {
+      "slug": "llm-evaluation-framework",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/semantic-caching",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/semantic-caching.md"
+}

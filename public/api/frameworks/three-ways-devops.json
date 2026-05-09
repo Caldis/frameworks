@@ -1,0 +1,193 @@
+{
+  "id": 65,
+  "name": "Three Ways of DevOps",
+  "name_zh": "DevOps三步法",
+  "slug": "three-ways-devops",
+  "category": "deployment",
+  "desc": "Flow, Feedback, and Continual Learning as DevOps foundations",
+  "desc_zh": "以流动、反馈、持续学习为核心的DevOps基础原则",
+  "steps": [
+    "First Way - Flow: optimize end-to-end delivery pipeline from dev to ops, minimizing batch size and WIP",
+    "Map the value stream and eliminate handoffs, queues, and rework that slow throughput",
+    "Second Way - Feedback: build fast feedback loops at every stage with automated testing and monitoring",
+    "Create telemetry and alerting so problems are detected and fixed at the source quickly",
+    "Third Way - Continual Learning: institutionalize blameless retrospectives, experimentation, and knowledge sharing"
+  ],
+  "steps_zh": [
+    "第一步——流动：优化从开发到运维的端到端交付流水线，最小化批次大小和在制品数量",
+    "绘制价值流图，消除拖慢吞吐量的交接、排队和返工环节",
+    "第二步——反馈：在每个阶段通过自动化测试和监控构建快速反馈环路",
+    "建立遥测和告警体系，在源头快速发现并修复问题",
+    "第三步——持续学习：将无责任回顾、实验文化和知识共享制度化"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Flow",
+    "Feedback",
+    "Learning"
+  ],
+  "viz_labels_zh": [
+    "流动",
+    "反馈",
+    "持续学习"
+  ],
+  "related": [
+    "calms-framework",
+    "dora-metrics",
+    "continuous-architecture"
+  ],
+  "tags": [
+    "devops",
+    "flow",
+    "feedback",
+    "continual-learning"
+  ],
+  "origin_author": "Gene Kim, 2013",
+  "origin_source": "The Phoenix Project (Gene Kim, Kevin Behr, George Spafford, 2013); The DevOps Handbook (Gene Kim et al., 2016)",
+  "origin_source_zh": "《凤凰项目》（Gene Kim、Kevin Behr、George Spafford，2013）；《DevOps实践指南》（Gene Kim等，2016）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Organizations seeking a foundational mental model for why DevOps practices work together",
+    "Teams experiencing slow delivery pipelines, poor visibility into failures, or repeated incidents",
+    "DevOps coaches and leaders who need a narrative framework to explain the philosophy behind specific practices",
+    "Value stream mapping exercises where the goal is to identify which Way is weakest and needs investment"
+  ],
+  "when_to_use_zh": [
+    "寻求一个基础心智模型来理解DevOps实践为何协同运作的组织",
+    "正在经历交付流水线缓慢、故障可见性差或重复性事故的团队",
+    "需要叙事框架来解释具体实践背后理念的DevOps教练和领导者",
+    "旨在识别哪个步法最薄弱并需要投入的价值流图绘制活动"
+  ],
+  "core_concepts": [
+    "First Way - Flow: Accelerate the left-to-right flow of work from Development to Operations by reducing batch sizes, eliminating waste, and making work visible",
+    "Second Way - Feedback: Create right-to-left feedback loops at every stage so that problems are detected and corrected at their source before propagating downstream",
+    "Third Way - Continual Learning: Foster a culture of experimentation, mastery, and knowledge sharing where failures become learning opportunities and improvements are systemic",
+    "Systems Thinking: The Three Ways encourage optimizing the entire value stream rather than local silos, recognizing that local optimization often harms global throughput",
+    "Theory of Constraints: Inspired by Goldratt's work, the Three Ways focus on identifying and elevating the constraint in the delivery pipeline"
+  ],
+  "core_concepts_zh": [
+    "第一步——流动：通过缩小批次、消除浪费和使工作可视化，加速工作从开发到运维的从左到右流动",
+    "第二步——反馈：在每个阶段创建从右到左的反馈环路，在问题向下游传播前在源头检测并纠正",
+    "第三步——持续学习：培育实验、精进和知识共享的文化，将失败转化为学习机会，实现系统性改进",
+    "系统思维：三步法鼓励优化整个价值流而非局部竖井，认识到局部优化往往损害全局吞吐量",
+    "约束理论：受Goldratt工作的启发，三步法聚焦于识别并提升交付流水线中的约束点"
+  ],
+  "timeline": [
+    [
+      "2013",
+      "Gene Kim publishes The Phoenix Project, introducing the Three Ways as a narrative framework"
+    ],
+    [
+      "2016",
+      "The DevOps Handbook provides prescriptive guidance on implementing each of the Three Ways with specific practices and case studies"
+    ],
+    [
+      "2018",
+      "Accelerate by Forsgren, Humble, and Kim provides statistical evidence supporting the effectiveness of practices aligned with the Three Ways"
+    ],
+    [
+      "2019",
+      "Gene Kim publishes The Unicorn Project adding the Five Ideals as a complementary framework to the Three Ways"
+    ],
+    [
+      "2021",
+      "The Three Ways become a foundational element of DevOps certification curricula and enterprise transformation playbooks worldwide"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2013",
+      "Gene Kim出版《凤凰项目》，通过虚构IT转型故事以叙事框架方式介绍三步法"
+    ],
+    [
+      "2016",
+      "《DevOps实践指南》提供实施三步法的规定性指导，包含具体实践和案例研究"
+    ],
+    [
+      "2018",
+      "Forsgren、Humble和Kim的《Accelerate》为三步法相关实践的有效性提供统计证据"
+    ],
+    [
+      "2019",
+      "Gene Kim出版《独角兽项目》，新增五大理想作为三步法的补充框架"
+    ],
+    [
+      "2021",
+      "三步法成为全球DevOps认证课程和企业转型手册的基础要素"
+    ]
+  ],
+  "dos": [
+    "Do work on all three Ways simultaneously rather than sequentially, because Flow without Feedback creates fast but fragile pipelines",
+    "Do use value stream mapping to visualize where work waits in queues, because most lead time is wait time, not work time",
+    "Do invest in production telemetry and monitoring as a feedback mechanism, because you cannot improve what you cannot see",
+    "Do celebrate learning from failures in blameless post-mortems, because fear of blame suppresses the Continual Learning loop"
+  ],
+  "dos_zh": [
+    "务必同时推进三步法而非顺序执行，因为没有反馈的流动会造成快速但脆弱的流水线",
+    "务必使用价值流图可视化工作在队列中等待的位置，因为大部分前置时间是等待时间而非工作时间",
+    "务必投资生产遥测和监控作为反馈机制，因为看不见的东西无法改进",
+    "务必在无责任事后复盘中庆祝从失败中学习，因为对责罚的恐惧会抑制持续学习环路"
+  ],
+  "donts": [
+    "Don't focus only on the First Way (Flow/speed) and ignore quality feedback loops, because deploying fast without catching defects amplifies risk",
+    "Don't treat the Three Ways as abstract philosophy without connecting them to concrete practices like CI/CD, monitoring, and blameless post-mortems",
+    "Don't optimize individual team handoffs without looking at the end-to-end value stream, because local optimizations create upstream and downstream bottlenecks",
+    "Don't skip the Third Way (Continual Learning) because it seems less urgent -- culture is the foundation"
+  ],
+  "donts_zh": [
+    "不要只关注第一步（流动/速度）而忽视质量反馈环路，因为快速部署但不捕获缺陷会放大风险",
+    "不要将三步法作为抽象哲学而不与CI/CD、监控和无责任复盘等具体实践关联",
+    "不要只优化单个团队的交接而不看端到端价值流，因为局部优化会造成上下游瓶颈",
+    "不要因为第三步（持续学习）看似不如技术实践紧迫就跳过——文化才是根基"
+  ],
+  "case_study_company": "Nordstrom",
+  "case_study": "Nordstrom's technology division applied the Three Ways during their 2015-2017 DevOps transformation. For Flow, they moved from biweekly releases to continuous deployment. For Feedback, they implemented full-stack observability with real-time dashboards visible to all teams. For Continual Learning, they established Game Day exercises simulating production failures. The result was a 3x improvement in deployment frequency and a 60% reduction in change failure rate.",
+  "case_study_zh": "Nordstrom技术部门在2015-2017年的DevOps转型中应用了三步法。在流动方面，他们从双周发布转变为持续部署。在反馈方面，他们实施了全栈可观测性，所有团队可见的实时仪表盘。在持续学习方面，他们建立了模拟生产故障的Game Day演练。成果是部署频率提升3倍，变更失败率降低60%。",
+  "when_not_to_use": [
+    "Teams looking for specific prescriptive tooling recommendations rather than a philosophical framework",
+    "Organizations that need a maturity assessment model with scoring (use CALMS or DORA instead)",
+    "Contexts where the manufacturing metaphors (Theory of Constraints, Lean) don't resonate with the audience",
+    "Very small teams already practicing continuous delivery who need advanced patterns rather than foundational philosophy"
+  ],
+  "when_not_to_use_zh": [
+    "寻求具体规定性工具推荐而非哲学框架的团队",
+    "需要带评分的成熟度评估模型的组织（应使用CALMS或DORA替代）",
+    "制造业隐喻（约束理论、精益）无法引起受众共鸣的场景",
+    "已在实践持续交付、需要高级模式而非基础理念的极小团队"
+  ],
+  "adopters": [
+    "Nordstrom",
+    "Nike",
+    "Capital One",
+    "Target",
+    "CSG International"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Gene Kim, Kevin Behr, and George Spafford (2013). \"The Phoenix Project: A Novel about IT, DevOps, and Helping Your Business Win\". IT Revolution Press.",
+  "secondary_sources": [
+    "Gene Kim, Jez Humble, Patrick Debois, and John Willis (2016). \"The DevOps Handbook\". IT Revolution Press.",
+    "Eliyahu M. Goldratt (1984). \"The Goal: A Process of Ongoing Improvement\". North River Press."
+  ],
+  "typed_relations": [
+    {
+      "slug": "calms-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "dora-metrics",
+      "type": "complement"
+    },
+    {
+      "slug": "continuous-architecture",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/three-ways-devops",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/three-ways-devops.md"
+}

@@ -1,0 +1,190 @@
+{
+  "id": 164,
+  "name": "Separation of Concerns",
+  "name_zh": "关注点分离",
+  "slug": "separation-of-concerns",
+  "category": "thinking",
+  "desc": "The foundational principle of modular design: each module should address a single, well-defined concern",
+  "desc_zh": "模块化设计的基础原则：每个模块应解决一个定义明确的关注点",
+  "steps": [
+    "Identify Concerns: enumerate all distinct responsibilities in the system — business logic, data access, presentation, authentication, logging, error handling, etc.",
+    "Map Current Coupling: audit the existing codebase to find where multiple concerns are interleaved within single modules, classes, or functions",
+    "Define Concern Boundaries: draw clear boundaries between concerns and decide which module owns each concern, creating a responsibility map",
+    "Refactor to Isolate: extract interleaved concerns into dedicated modules with well-defined interfaces, using patterns like middleware, dependency injection, or layered architecture",
+    "Enforce Boundaries: establish architectural rules (via linting, module dependency analysis, or code review checklists) that prevent cross-concern coupling from creeping back"
+  ],
+  "steps_zh": [
+    "识别关注点：列出系统中所有不同的职责——业务逻辑、数据访问、展示、认证、日志记录、错误处理等",
+    "映射当前耦合：审计现有代码库，找出多个关注点在单个模块、类或函数中交织的位置",
+    "定义关注点边界：在关注点之间画出清晰的边界，决定哪个模块拥有每个关注点，创建职责映射",
+    "重构以隔离：将交织的关注点提取到具有明确接口的专用模块中，使用中间件、依赖注入或分层架构等模式",
+    "执行边界：建立架构规则（通过linting、模块依赖分析或代码审查清单），防止跨关注点耦合再次蔓延"
+  ],
+  "ai_relevant": true,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Concern",
+    "Module",
+    "Interface",
+    "Dependency"
+  ],
+  "viz_labels_zh": [
+    "关注点",
+    "模块",
+    "接口",
+    "依赖关系"
+  ],
+  "related": [
+    "deep-vs-shallow-modules",
+    "complexity-budget",
+    "domain-driven-design",
+    "design-by-contract"
+  ],
+  "tags": [
+    "modularity",
+    "architecture",
+    "software-design",
+    "coupling",
+    "cohesion"
+  ],
+  "origin_author": "Edsger W. Dijkstra, 1974",
+  "origin_source": "On the role of scientific thought (Edsger W. Dijkstra, 1974, EWD447)",
+  "origin_source_zh": "《论科学思想的角色》（Edsger W. Dijkstra，1974年，EWD447）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "When a single change to business logic requires modifications in database queries, UI templates, and API controllers simultaneously",
+    "When different team members cannot work on different features without merge conflicts because concerns are tangled together in shared files",
+    "When testing a module requires setting up unrelated infrastructure (e.g., testing business logic requires a running database) because concerns are not isolated",
+    "When onboarding engineers struggle to find where a specific type of logic lives because it is scattered across multiple layers"
+  ],
+  "when_to_use_zh": [
+    "当对业务逻辑的单一更改需要同时修改数据库查询、UI模板和API控制器时",
+    "当不同团队成员无法在不同功能上工作而不产生合并冲突，因为关注点在共享文件中纠缠在一起时",
+    "当测试一个模块需要设置不相关的基础设施（如测试业务逻辑需要运行数据库），因为关注点未被隔离时",
+    "当入职工程师难以找到特定类型逻辑的位置，因为它分散在多个层中时"
+  ],
+  "core_concepts": [
+    "Single Responsibility per Module: Each module should have one reason to change — when a concern changes, only the modules responsible for that concern should need modification",
+    "Cohesion and Coupling: Separation of concerns maximizes cohesion (related code together) and minimizes coupling (unrelated code apart), the twin goals of good modular design",
+    "Concern as an Axis of Change: A 'concern' is best identified by what changes together — if business rules and UI always change for different reasons, they are separate concerns",
+    "Layered Independence: Properly separated concerns can evolve independently — you can swap a database layer without touching business logic, or redesign UI without altering domain models"
+  ],
+  "core_concepts_zh": [
+    "每个模块单一职责：每个模块应只有一个变更原因——当一个关注点变化时，只有负责该关注点的模块需要修改",
+    "内聚与耦合：关注点分离最大化内聚（相关代码在一起）并最小化耦合（不相关代码分开），这是良好模块化设计的双重目标",
+    "关注点作为变化轴：「关注点」最好通过什么一起变化来识别——如果业务规则和UI总是因不同原因而变化，它们是不同的关注点",
+    "分层独立性：适当分离的关注点可以独立演进——可以替换数据库层而不触及业务逻辑，或重新设计UI而不更改领域模型"
+  ],
+  "timeline": [
+    [
+      "1968",
+      "Dijkstra's 'Go To Statement Considered Harmful' introduces structured programming, laying the groundwork for disciplined concern separation"
+    ],
+    [
+      "1974",
+      "Dijkstra coins the term 'separation of concerns' in EWD447, framing it as a technique for managing intellectual complexity"
+    ],
+    [
+      "1996",
+      "The Gang of Four's design patterns (Strategy, Observer, Decorator) provide reusable templates for separating concerns in object-oriented systems"
+    ],
+    [
+      "2003",
+      "Aspect-Oriented Programming (AspectJ) formalizes cross-cutting concern separation, addressing logging, security, and transactions that cut across traditional module boundaries"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1968",
+      "Dijkstra的《Go To语句有害论》引入结构化编程，为规范的关注点分离奠定基础"
+    ],
+    [
+      "1974",
+      "Dijkstra在EWD447中创造「关注点分离」一词，将其定义为管理智识复杂度的技术"
+    ],
+    [
+      "1996",
+      "四人帮的设计模式（策略、观察者、装饰器）为面向对象系统中的关注点分离提供可复用模板"
+    ],
+    [
+      "2003",
+      "面向切面编程（AspectJ）将横切关注点分离正式化，解决跨越传统模块边界的日志、安全和事务问题"
+    ]
+  ],
+  "dos": [
+    "Do identify concerns by asking 'what changes together and why?' rather than by following rigid architectural templates, because real concerns are domain-specific",
+    "Do use dependency injection to wire separated concerns together, because it keeps modules unaware of each other's implementations while allowing collaboration",
+    "Do separate cross-cutting concerns (logging, auth, metrics) using middleware or aspect-oriented techniques rather than scattering them through business logic",
+    "Do enforce separation through automated dependency analysis in CI, because manual discipline erodes over time as deadlines create pressure to take shortcuts"
+  ],
+  "dos_zh": [
+    "通过问「什么一起变化以及为什么？」来识别关注点，而非遵循刚性架构模板，因为真正的关注点是领域特定的",
+    "使用依赖注入将分离的关注点连接在一起，因为它让模块不知道彼此的实现同时允许协作",
+    "使用中间件或面向切面技术分离横切关注点（日志、认证、指标），而非将它们散落在业务逻辑中",
+    "通过CI中的自动依赖分析来执行分离，因为手动纪律会随着截止日期创造的走捷径压力而逐渐侵蚀"
+  ],
+  "donts": [
+    "Don't separate concerns so aggressively that simple operations require tracing through 10 layers of indirection, because over-separation creates its own complexity",
+    "Don't treat every function as a separate concern, because the goal is meaningful separation of distinct responsibilities, not maximum granularity",
+    "Don't mix separation of concerns with code organization (file structure), because two concerns can live in the same file if they are logically distinct and small",
+    "Don't ignore the cost of the abstractions needed to separate concerns, because interfaces, adapters, and dependency injection add cognitive overhead that must be justified"
+  ],
+  "donts_zh": [
+    "不要过度激进地分离关注点以至于简单操作需要追踪10层间接调用，因为过度分离会产生自身的复杂度",
+    "不要将每个函数都视为独立的关注点，因为目标是不同职责的有意义分离，而非最大粒度",
+    "不要将关注点分离与代码组织（文件结构）混为一谈，因为如果两个关注点逻辑上不同且较小，它们可以在同一文件中",
+    "不要忽视分离关注点所需抽象的成本，因为接口、适配器和依赖注入增加的认知开销必须被证明是合理的"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix's migration from a monolithic Java application to a microservices architecture is a large-scale application of separation of concerns. The original monolith interleaved recommendation logic, streaming protocols, user authentication, billing, and content metadata in tightly coupled modules. By separating each into independent services with clear API boundaries, Netflix enabled independent deployment (over 1,000 production changes per day), independent scaling (the recommendation engine scales differently from the streaming CDN), and independent team ownership. The separation was so thorough that when the recommendation algorithm was completely rewritten in 2016, no other service required any changes.",
+  "case_study_zh": "Netflix从单体Java应用到微服务架构的迁移是关注点分离的大规模应用。原始单体在紧耦合的模块中交织了推荐逻辑、流媒体协议、用户认证、计费和内容元数据。通过将每个关注点分离为具有清晰API边界的独立服务，Netflix实现了独立部署（每天超过1,000次生产变更）、独立扩展（推荐引擎与流媒体CDN不同地扩展）和独立的团队所有权。分离如此彻底，以至于当推荐算法在2016年被完全重写时，没有任何其他服务需要任何更改。",
+  "when_not_to_use": [
+    "When building a small script or utility where the overhead of modular separation exceeds the complexity of the entire program",
+    "When concerns are genuinely inseparable in the domain (e.g., real-time physics simulation where rendering and physics must be tightly coupled for performance)",
+    "When the team is in a rapid prototyping phase and premature separation would slow down learning — you can always separate later when boundaries become clear",
+    "When the system has only one concern, such as a single-purpose data transformation pipeline, where separation would create artificial boundaries"
+  ],
+  "when_not_to_use_zh": [
+    "当构建小型脚本或工具，模块化分离的开销超过整个程序的复杂度时",
+    "当关注点在领域中确实不可分离时（如实时物理模拟中渲染和物理必须紧耦合以保证性能）",
+    "当团队处于快速原型阶段，过早分离会减慢学习——可以在边界变得清晰后再分离",
+    "当系统只有一个关注点时，如单一用途的数据转换管道，分离会创造人为的边界"
+  ],
+  "adopters": [
+    "Netflix",
+    "Linux Kernel",
+    "React (UI/State separation)",
+    "Spring Framework",
+    "Django"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Edsger W. Dijkstra (1974). \"On the Role of Scientific Thought\". EWD447.",
+  "secondary_sources": [
+    "David Parnas (1972). \"On the Criteria to Be Used in Decomposing Systems into Modules\". Communications of the ACM, 15(12).",
+    "Gregor Kiczales et al. (1997). \"Aspect-Oriented Programming\". ECOOP 1997, Springer."
+  ],
+  "typed_relations": [
+    {
+      "slug": "deep-vs-shallow-modules",
+      "type": "complement"
+    },
+    {
+      "slug": "complexity-budget",
+      "type": "complement"
+    },
+    {
+      "slug": "domain-driven-design",
+      "type": "complement"
+    },
+    {
+      "slug": "design-by-contract",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/separation-of-concerns",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/separation-of-concerns.md"
+}

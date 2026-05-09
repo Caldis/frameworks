@@ -1,0 +1,195 @@
+{
+  "id": 130,
+  "name": "Idempotency Pattern",
+  "name_zh": "幂等性模式",
+  "slug": "idempotency-pattern",
+  "category": "distributed",
+  "desc": "Design operations to be safely retried without causing duplicate effects",
+  "desc_zh": "将操作设计为可安全重试且不产生重复效果",
+  "steps": [
+    "Assign a unique idempotency key: the client generates a UUID or deterministic key for each logical operation and includes it in every request and retry",
+    "Check for prior execution: before processing, the server looks up the idempotency key in a durable store to determine if this operation has already been processed",
+    "Execute and store the result: if the key is new, process the operation, persist the result alongside the idempotency key in the same transaction, and return the response",
+    "Return the cached result for duplicates: if the key already exists, skip processing and return the previously stored response, ensuring the client sees the same outcome",
+    "Expire old keys: implement a TTL-based cleanup policy for idempotency records because storing them indefinitely would consume unbounded storage"
+  ],
+  "steps_zh": [
+    "分配唯一幂等键：客户端为每个逻辑操作生成UUID或确定性键，并在每次请求和重试中包含该键",
+    "检查是否已执行：处理前，服务器在持久化存储中查找幂等键以确定该操作是否已被处理",
+    "执行并存储结果：如果键是新的，处理操作，在同一事务中将结果与幂等键一起持久化，返回响应",
+    "对重复请求返回缓存结果：如果键已存在，跳过处理并返回先前存储的响应，确保客户端看到相同结果",
+    "过期旧键：为幂等记录实现基于TTL的清理策略，因为无限期存储会消耗无界的存储空间"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Idempotency Key",
+    "Check Prior",
+    "Execute and Store",
+    "Return Cached",
+    "Expire Keys"
+  ],
+  "viz_labels_zh": [
+    "幂等键",
+    "重复检查",
+    "执行存储",
+    "返回缓存",
+    "过期清理"
+  ],
+  "related": [
+    "saga-pattern",
+    "eventual-consistency",
+    "two-phase-commit"
+  ],
+  "tags": [
+    "reliability",
+    "retries",
+    "deduplication",
+    "at-least-once"
+  ],
+  "origin_author": "Concept from mathematics and HTTP specification (RFC 7231); applied to distributed systems by Helland (2012) and Kleppmann (2017)",
+  "origin_source": "Kleppmann, Designing Data-Intensive Applications, Ch. 11; Nygard, Release It!, Ch. 5; Helland, Idempotence Is Not a Medical Condition (ACM Queue, 2012)",
+  "origin_source_zh": "Kleppmann《数据密集型应用系统设计》第11章；Nygard《Release It!》第5章；Helland「幂等性不是一种疾病」（ACM Queue，2012）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When network failures or timeouts cause clients to retry requests, and duplicate execution would cause data corruption or financial loss",
+    "When at-least-once message delivery semantics require deduplication at the consumer to achieve effectively-once processing",
+    "When designing payment or order APIs where a duplicate charge or double order creation would be a critical business error",
+    "When building webhook receivers that may receive the same event notification multiple times from an external provider"
+  ],
+  "when_to_use_zh": [
+    "当网络故障或超时导致客户端重试请求，且重复执行会导致数据损坏或财务损失时",
+    "当至少一次消息投递语义要求消费者进行去重以实现有效的恰好一次处理时",
+    "当设计支付或订单API，重复扣款或重复创建订单是严重业务错误时",
+    "当构建可能从外部提供者多次收到相同事件通知的webhook接收器时"
+  ],
+  "core_concepts": [
+    "Idempotency key: A client-generated unique identifier (typically a UUID) sent with each request that allows the server to detect and deduplicate retries",
+    "At-least-once to effectively-once: Combining at-least-once delivery with server-side idempotency achieves the effect of exactly-once processing without the complexity of true exactly-once protocols",
+    "Natural vs. artificial idempotency: Some operations are naturally idempotent (SET x=5) while others require artificial idempotency (tracking that a specific payment was already processed)",
+    "Idempotency window: The time period during which the server retains idempotency records; retries after the window has expired may be processed as new operations",
+    "Side-effect isolation: External side effects (sending emails, calling third-party APIs) must be guarded separately because the idempotency store only protects the local state change"
+  ],
+  "core_concepts_zh": [
+    "幂等键：客户端生成的唯一标识符（通常是UUID），随每个请求发送，允许服务器检测和去重重试",
+    "从至少一次到有效恰好一次：将至少一次投递与服务端幂等性结合，实现恰好一次处理的效果而无需真正恰好一次协议的复杂性",
+    "自然幂等与人工幂等：某些操作天然幂等（SET x=5），而其他操作需要人工幂等性（追踪特定支付是否已处理）",
+    "幂等窗口：服务器保留幂等记录的时间段；窗口过期后的重试可能被作为新操作处理",
+    "副作用隔离：外部副作用（发送邮件、调用第三方API）必须单独保护，因为幂等存储只保护本地状态变更"
+  ],
+  "timeline": [
+    [
+      "1999",
+      "HTTP/1.1 (RFC 2616) formalizes idempotency for PUT and DELETE methods, establishing the concept in web API design"
+    ],
+    [
+      "2007",
+      "Amazon's Dynamo paper discusses idempotent operations as a requirement for safe retries in eventually consistent systems"
+    ],
+    [
+      "2012",
+      "Pat Helland publishes Idempotence Is Not a Medical Condition in ACM Queue, advocating for idempotent API design"
+    ],
+    [
+      "2016",
+      "Stripe introduces the Idempotency-Key header for payment APIs, setting an industry standard for financial API design"
+    ],
+    [
+      "2017",
+      "Kleppmann's DDIA discusses idempotency in the context of stream processing and exactly-once semantics"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1999",
+      "HTTP/1.1（RFC 2616）为PUT和DELETE方法形式化幂等性，在Web API设计中确立该概念"
+    ],
+    [
+      "2007",
+      "Amazon的Dynamo论文讨论幂等操作作为最终一致系统中安全重试的需求"
+    ],
+    [
+      "2012",
+      "Pat Helland在ACM Queue发表「幂等性不是一种疾病」，倡导幂等API设计"
+    ],
+    [
+      "2016",
+      "Stripe为支付API引入Idempotency-Key头部，为金融API设计树立行业标准"
+    ],
+    [
+      "2017",
+      "Kleppmann的《数据密集型应用系统设计》在流处理和恰好一次语义的背景下讨论幂等性"
+    ]
+  ],
+  "dos": [
+    "Do store the idempotency key and result in the same atomic transaction as the business operation because separate stores can become inconsistent after crashes",
+    "Do let the client generate the idempotency key because server-generated keys cannot be correlated with retries of the same logical operation",
+    "Do return the same HTTP status code and response body for duplicate requests because clients rely on consistent responses to determine success",
+    "Do set a reasonable TTL for idempotency records (e.g., 24-72 hours) because indefinite retention creates unbounded storage growth"
+  ],
+  "dos_zh": [
+    "将幂等键和结果与业务操作存储在同一原子事务中，因为分开存储在崩溃后可能变得不一致",
+    "让客户端生成幂等键，因为服务端生成的键无法与同一逻辑操作的重试相关联",
+    "对重复请求返回相同的HTTP状态码和响应体，因为客户端依赖一致的响应来判断成功",
+    "为幂等记录设置合理的TTL（如24-72小时），因为无限期保留会产生无界的存储增长"
+  ],
+  "donts": [
+    "Don't treat all API endpoints as automatically idempotent because POST operations with side effects need explicit idempotency key handling",
+    "Don't use timestamps or sequential IDs as idempotency keys because they are not unique across distributed clients and can collide",
+    "Don't forget to handle the race condition where two identical requests arrive simultaneously because both may pass the 'key not found' check concurrently",
+    "Don't assume idempotency keys protect against different operations because a key is bound to a specific operation — changing the request body with the same key should be rejected"
+  ],
+  "donts_zh": [
+    "不要将所有API端点视为自动幂等的，因为带有副作用的POST操作需要显式的幂等键处理",
+    "不要使用时间戳或顺序ID作为幂等键，因为它们在分布式客户端间不唯一且可能冲突",
+    "不要忘记处理两个相同请求同时到达的竞态条件，因为两者可能同时通过「键未找到」检查",
+    "不要假设幂等键能保护不同的操作，因为键绑定到特定操作——使用相同键但更改请求体应被拒绝"
+  ],
+  "case_study_company": "Stripe",
+  "case_study": "Stripe pioneered the industry-standard approach to API idempotency with their Idempotency-Key header. When a client creates a payment intent, it includes an Idempotency-Key header with a client-generated UUID. Stripe stores this key alongside the payment result in a database. If a network timeout occurs and the client retries with the same key, Stripe returns the original response without charging the customer again. Stripe's implementation handles a subtle edge case: if a retry arrives while the original request is still processing, Stripe returns a 409 Conflict rather than processing it in parallel, preventing race conditions. This pattern has been adopted across the payments industry, with companies like PayPal, Square, and Adyen implementing similar idempotency key mechanisms inspired by Stripe's design.",
+  "case_study_zh": "Stripe通过其Idempotency-Key头部开创了API幂等性的行业标准方法。当客户端创建支付意图时，在请求中包含一个带有客户端生成UUID的Idempotency-Key头部。Stripe将此键与支付结果一起存储在数据库中。如果发生网络超时且客户端使用相同键重试，Stripe返回原始响应而不再次向客户收费。Stripe的实现处理了一个微妙的边缘情况：如果在原始请求仍在处理时收到重试，Stripe返回409 Conflict而非并行处理，防止竞态条件。该模式已被支付行业广泛采用，PayPal、Square和Adyen等公司都实现了类似的幂等键机制，灵感源自Stripe的设计。",
+  "when_not_to_use": [
+    "Read-only GET endpoints that are naturally idempotent and need no special handling",
+    "Fire-and-forget telemetry ingestion where occasional duplicates are acceptable and the deduplication overhead is not justified",
+    "Internal service calls within a single transaction boundary where the database already provides atomicity guarantees"
+  ],
+  "when_not_to_use_zh": [
+    "天然幂等且不需要特殊处理的只读GET端点",
+    "偶尔重复可接受且去重开销不值得的即发即忘遥测数据摄入",
+    "单一事务边界内的内部服务调用，数据库已提供原子性保证"
+  ],
+  "adopters": [
+    "Stripe",
+    "PayPal",
+    "Shopify",
+    "Square",
+    "AWS (SQS deduplication)"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Helland, P. (2012). \"Idempotence Is Not a Medical Condition\". ACM Queue, 10(4).",
+  "secondary_sources": [
+    "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 11. O'Reilly Media.",
+    "Nygard, M.T. (2018). \"Release It!\", 2nd ed., Ch. 5. Pragmatic Bookshelf."
+  ],
+  "typed_relations": [
+    {
+      "slug": "saga-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "eventual-consistency",
+      "type": "complement"
+    },
+    {
+      "slug": "two-phase-commit",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/idempotency-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/idempotency-pattern.md"
+}

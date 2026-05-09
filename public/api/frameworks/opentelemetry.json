@@ -1,0 +1,215 @@
+{
+  "id": 151,
+  "name": "OpenTelemetry",
+  "name_zh": "OpenTelemetry统一可观测性标准",
+  "slug": "opentelemetry",
+  "category": "observability",
+  "desc": "Unified observability standard for traces, metrics, and logs across services",
+  "desc_zh": "跨服务的追踪、指标和日志统一可观测性标准",
+  "steps": [
+    "Instrument applications with OpenTelemetry SDK: add auto-instrumentation agents or manual spans to capture traces, metrics, and logs at service boundaries",
+    "Define a consistent resource model: tag every telemetry signal with service.name, service.version, deployment.environment, and other semantic conventions",
+    "Configure exporters to send telemetry data to your chosen backend (Jaeger, Prometheus, Grafana, Datadog) via OTLP protocol",
+    "Deploy the OpenTelemetry Collector as a central pipeline: receive, process (batch, filter, enrich), and export telemetry data with vendor-agnostic routing",
+    "Correlate the three signals: link trace IDs in logs, attach exemplars to metrics, and build dashboards that let you pivot from a metric anomaly to the exact trace and log"
+  ],
+  "steps_zh": [
+    "使用OpenTelemetry SDK对应用进行埋点：添加自动埋点代理或手动Span，在服务边界捕获追踪、指标和日志",
+    "定义一致的资源模型：为每个遥测信号打上service.name、service.version、deployment.environment等语义约定标签",
+    "配置导出器，通过OTLP协议将遥测数据发送到所选后端（Jaeger、Prometheus、Grafana、Datadog）",
+    "部署OpenTelemetry Collector作为中心管道：以厂商无关的路由方式接收、处理（批处理、过滤、丰富）和导出遥测数据",
+    "关联三大信号：在日志中嵌入Trace ID，为指标附加Exemplar，构建仪表盘实现从指标异常到精确追踪和日志的跳转"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Instrument",
+    "Resource Model",
+    "Exporters",
+    "OTel Collector",
+    "Correlate Signals"
+  ],
+  "viz_labels_zh": [
+    "埋点",
+    "资源模型",
+    "导出器",
+    "收集器",
+    "信号关联"
+  ],
+  "related": [
+    "distributed-tracing",
+    "structured-logging",
+    "four-golden-signals",
+    "use-method",
+    "red-method",
+    "sli-slo-sla"
+  ],
+  "tags": [
+    "observability",
+    "opentelemetry",
+    "otel",
+    "traces",
+    "metrics",
+    "logs",
+    "cncf"
+  ],
+  "origin_author": "CNCF (merger of OpenTracing & OpenCensus), 2019",
+  "origin_source": "Observability Engineering (Charity Majors, Liz Fong-Jones, George Miranda, O'Reilly, 2022)",
+  "origin_source_zh": "《可观测性工程》（Charity Majors、Liz Fong-Jones、George Miranda，O'Reilly，2022）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Building or migrating to microservices where cross-service visibility is essential for debugging",
+    "Organizations wanting vendor-neutral instrumentation to avoid lock-in to a single observability backend",
+    "Teams consolidating fragmented telemetry (separate tracing, metrics, and logging libraries) into one standard",
+    "Cloud-native environments on Kubernetes where auto-instrumentation and sidecar collectors reduce manual effort"
+  ],
+  "when_to_use_zh": [
+    "构建或迁移微服务架构时，跨服务可见性对调试至关重要",
+    "希望采用厂商中立的埋点方案以避免被单一可观测性后端锁定的组织",
+    "将碎片化遥测（独立的追踪、指标和日志库）整合为统一标准的团队",
+    "Kubernetes上的云原生环境中，自动埋点和Sidecar采集器可减少手工工作"
+  ],
+  "core_concepts": [
+    "Three Pillars Unification: OpenTelemetry provides a single SDK and API for traces, metrics, and logs, eliminating the need for separate instrumentation libraries",
+    "Semantic Conventions: Standardized attribute naming (http.method, db.system, rpc.service) ensures consistent telemetry across languages and frameworks",
+    "OTLP (OpenTelemetry Protocol): A vendor-neutral wire protocol for transmitting telemetry data efficiently between applications, collectors, and backends",
+    "Collector Pipeline: A standalone agent/gateway that receives, processes, and exports telemetry with pluggable receivers, processors, and exporters",
+    "Context Propagation: Automatically passes trace context (trace ID, span ID) across service boundaries via HTTP headers (W3C Trace Context) or messaging metadata"
+  ],
+  "core_concepts_zh": [
+    "三大信号统一：OpenTelemetry为追踪、指标和日志提供单一SDK和API，消除对独立埋点库的需求",
+    "语义约定：标准化的属性命名（http.method、db.system、rpc.service）确保跨语言和框架的遥测一致性",
+    "OTLP（OpenTelemetry协议）：厂商中立的传输协议，在应用、采集器和后端之间高效传输遥测数据",
+    "Collector管道：独立的代理/网关，通过可插拔的接收器、处理器和导出器接收、处理和导出遥测数据",
+    "上下文传播：通过HTTP头（W3C Trace Context）或消息元数据自动在服务边界间传递追踪上下文（Trace ID、Span ID）"
+  ],
+  "timeline": [
+    [
+      "2010",
+      "Google publishes the Dapper paper, establishing foundational concepts for distributed tracing"
+    ],
+    [
+      "2016",
+      "OpenTracing (CNCF) and OpenCensus (Google) emerge as competing open-source instrumentation standards"
+    ],
+    [
+      "2019",
+      "OpenTracing and OpenCensus merge to form OpenTelemetry under CNCF governance"
+    ],
+    [
+      "2021",
+      "OpenTelemetry tracing specification reaches 1.0 stability; adopted by major cloud providers"
+    ],
+    [
+      "2023",
+      "OpenTelemetry becomes the second most active CNCF project after Kubernetes; log signal reaches stability"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2010",
+      "Google发表Dapper论文，奠定分布式追踪的基础概念"
+    ],
+    [
+      "2016",
+      "OpenTracing（CNCF）和OpenCensus（Google）作为竞争性开源埋点标准出现"
+    ],
+    [
+      "2019",
+      "OpenTracing和OpenCensus在CNCF治理下合并为OpenTelemetry"
+    ],
+    [
+      "2021",
+      "OpenTelemetry追踪规范达到1.0稳定版；被主要云提供商采用"
+    ],
+    [
+      "2023",
+      "OpenTelemetry成为仅次于Kubernetes的第二活跃CNCF项目；日志信号达到稳定"
+    ]
+  ],
+  "dos": [
+    "Do adopt auto-instrumentation first for quick wins, then add manual spans for business-critical paths that need richer context",
+    "Do use the OpenTelemetry Collector instead of sending directly from apps to backends, because it decouples your application from the export destination",
+    "Do follow semantic conventions strictly, because inconsistent attribute names make cross-service queries unreliable",
+    "Do implement sampling strategies (head-based or tail-based) to control costs while retaining interesting traces"
+  ],
+  "dos_zh": [
+    "优先采用自动埋点以快速见效，然后为需要丰富上下文的业务关键路径添加手动Span",
+    "使用OpenTelemetry Collector而非直接从应用发送到后端，因为它将应用与导出目标解耦",
+    "严格遵循语义约定，因为不一致的属性命名会使跨服务查询不可靠",
+    "实施采样策略（头部采样或尾部采样）以控制成本同时保留有价值的追踪"
+  ],
+  "donts": [
+    "Don't instrument everything at maximum detail from day one, because the telemetry volume and cost will be unmanageable",
+    "Don't mix OpenTelemetry with legacy tracing libraries (Zipkin client, Jaeger client) in the same service, because conflicting context propagation causes broken traces",
+    "Don't skip resource attribute configuration, because telemetry without service identity is impossible to filter or route",
+    "Don't ignore collector health monitoring, because a failing collector silently drops all telemetry data"
+  ],
+  "donts_zh": [
+    "不要从第一天就以最大粒度对所有内容埋点，因为遥测数据量和成本将难以管理",
+    "不要在同一服务中混用OpenTelemetry和遗留追踪库（Zipkin客户端、Jaeger客户端），因为冲突的上下文传播会导致追踪链断裂",
+    "不要跳过资源属性配置，因为没有服务标识的遥测数据无法过滤或路由",
+    "不要忽视Collector健康监控，因为故障的Collector会静默丢弃所有遥测数据"
+  ],
+  "case_study_company": "Shopify",
+  "case_study": "Shopify migrated from a patchwork of Datadog APM, StatsD, and custom tracing to OpenTelemetry across their Ruby on Rails monolith and surrounding microservices. By standardizing on OTel's auto-instrumentation and deploying a fleet of OTel Collectors, they reduced instrumentation maintenance burden by 40% and gained the ability to switch between observability backends without changing application code. During Black Friday 2023, correlated traces and metrics enabled their SRE team to identify and resolve a database connection pool bottleneck in under 5 minutes.",
+  "case_study_zh": "Shopify将其Ruby on Rails单体应用及周边微服务从Datadog APM、StatsD和自定义追踪的拼凑方案迁移到OpenTelemetry。通过标准化OTel自动埋点并部署OTel Collector集群，他们将埋点维护负担降低了40%，并获得了在不修改应用代码的情况下切换可观测性后端的能力。2023年黑色星期五期间，关联的追踪和指标使其SRE团队在5分钟内定位并解决了数据库连接池瓶颈。",
+  "when_not_to_use": [
+    "Simple single-service applications where built-in logging and basic APM provide sufficient visibility",
+    "Teams deeply invested in a vendor-specific SDK (e.g., Datadog native) that already provides superior auto-instrumentation for their stack",
+    "Embedded or IoT systems with extreme resource constraints where the OTel SDK overhead is prohibitive",
+    "Short-lived prototypes where the instrumentation setup time exceeds the project's lifespan"
+  ],
+  "when_not_to_use_zh": [
+    "内置日志和基础APM即可提供足够可见性的简单单服务应用",
+    "已深度使用特定厂商SDK（如Datadog原生SDK）且该SDK已为其技术栈提供优秀自动埋点的团队",
+    "资源极度受限的嵌入式或物联网系统，OTel SDK开销不可承受",
+    "埋点搭建时间超过项目生命周期的短期原型"
+  ],
+  "adopters": [
+    "Shopify",
+    "GitHub",
+    "eBay",
+    "Splunk",
+    "Grafana Labs"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "observability",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Majors, C., Fong-Jones, L. & Miranda, G. (2022). \"Observability Engineering\". O'Reilly Media.",
+  "secondary_sources": [
+    "CNCF (2019). \"OpenTelemetry Specification\". opentelemetry.io.",
+    "Sigelman, B.H. et al. (2010). \"Dapper, a Large-Scale Distributed Systems Tracing Infrastructure\". Google Technical Report."
+  ],
+  "typed_relations": [
+    {
+      "slug": "distributed-tracing",
+      "type": "complement"
+    },
+    {
+      "slug": "structured-logging",
+      "type": "complement"
+    },
+    {
+      "slug": "four-golden-signals",
+      "type": "complement"
+    },
+    {
+      "slug": "use-method",
+      "type": "alternative"
+    },
+    {
+      "slug": "red-method",
+      "type": "alternative"
+    },
+    {
+      "slug": "sli-slo-sla",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/opentelemetry",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/opentelemetry.md"
+}

@@ -1,0 +1,192 @@
+{
+  "id": 47,
+  "name": "Behavior-Driven Development (BDD)",
+  "name_zh": "行为驱动开发",
+  "slug": "bdd",
+  "category": "quality",
+  "desc": "Specify behavior in Given-When-Then shared by all stakeholders",
+  "desc_zh": "用 Given-When-Then 格式描述行为，所有干系人共享理解",
+  "steps": [
+    "Discovery workshop: collaborate with product, QA, and dev to discover scenarios using Example Mapping (rules, examples, questions)",
+    "Write scenarios in Gherkin: express each behavior as Given [context], When [action], Then [outcome] in a .feature file",
+    "Automate step definitions: implement the Given/When/Then steps in code that drives the system under test (Cucumber, SpecFlow, Behave)",
+    "Run as living documentation: execute BDD scenarios in CI and publish results as human-readable reports that serve as up-to-date specs",
+    "Refine continuously: review scenarios in sprint planning, prune obsolete ones, and add new scenarios for newly discovered edge cases"
+  ],
+  "steps_zh": [
+    "发现工作坊：与产品、QA和开发协作，使用示例映射（规则、示例、问题）发现场景",
+    "用Gherkin编写场景：将每个行为表达为Given [上下文]、When [动作]、Then [结果]，保存在.feature文件中",
+    "自动化步骤定义：用代码实现Given/When/Then步骤以驱动被测系统（Cucumber、SpecFlow、Behave）",
+    "作为活文档运行：在CI中执行BDD场景并发布人类可读的报告，作为始终最新的规格说明",
+    "持续精化：在迭代计划中评审场景，修剪过时场景，为新发现的边界情况添加新场景"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Given",
+    "When",
+    "Then"
+  ],
+  "viz_labels_zh": [
+    "前置条件",
+    "触发动作",
+    "预期结果"
+  ],
+  "related": [
+    "tdd",
+    "test-pyramid",
+    "domain-driven-design"
+  ],
+  "tags": [
+    "bdd",
+    "gherkin",
+    "given-when-then",
+    "living-documentation",
+    "collaboration"
+  ],
+  "origin_author": "Dan North, 2006",
+  "origin_source": "Introducing BDD (blog post on dannorth.net)",
+  "origin_source_zh": "《BDD介绍》（dannorth.net博客文章）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Projects where miscommunication between business and development causes frequent rework",
+    "Domain-heavy applications where business rules need executable documentation",
+    "Teams with non-technical stakeholders who need to read and validate test specifications",
+    "Regulated industries requiring traceable specification-to-test coverage"
+  ],
+  "when_to_use_zh": [
+    "业务与开发之间的沟通不畅导致频繁返工的项目",
+    "业务规则需要可执行文档的领域密集型应用",
+    "有非技术干系人需要阅读和验证测试规格的团队",
+    "需要可追溯的规格到测试覆盖的受监管行业"
+  ],
+  "core_concepts": [
+    "Given-When-Then: A structured format for expressing scenarios as context, action, and expected outcome",
+    "Gherkin: A domain-specific language for writing human-readable executable specifications",
+    "Example Mapping: A collaborative workshop technique to discover rules, examples, and open questions",
+    "Living Documentation: Automated scenarios that serve as always-up-to-date system documentation",
+    "Ubiquitous Language: Using the same domain terms in scenarios, code, and conversations with stakeholders"
+  ],
+  "core_concepts_zh": [
+    "Given-When-Then：用上下文、动作和预期结果表达场景的结构化格式",
+    "Gherkin：用于编写人类可读的可执行规格的领域特定语言",
+    "示例映射：发现规则、示例和开放问题的协作工作坊技术",
+    "活文档：作为始终最新系统文档的自动化场景",
+    "通用语言：在场景、代码和干系人对话中使用相同的领域术语"
+  ],
+  "timeline": [
+    [
+      "2003",
+      "Dan North begins exploring alternatives to TDD terminology to improve communication"
+    ],
+    [
+      "2006",
+      "North publishes 'Introducing BDD' establishing the Given-When-Then format"
+    ],
+    [
+      "2008",
+      "Cucumber is released by Aslak Hellesoy, making BDD automation practical in Ruby"
+    ],
+    [
+      "2012",
+      "SpecFlow brings BDD to .NET; Behave brings it to Python; BDD goes cross-platform"
+    ],
+    [
+      "2015",
+      "Example Mapping technique by Matt Wynne formalizes the BDD discovery workshop process"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2003",
+      "Dan North开始探索TDD术语的替代方案以改善沟通"
+    ],
+    [
+      "2006",
+      "North发表「BDD介绍」，确立Given-When-Then格式"
+    ],
+    [
+      "2008",
+      "Aslak Hellesoy发布Cucumber，使BDD自动化在Ruby中变得实用"
+    ],
+    [
+      "2012",
+      "SpecFlow将BDD带入.NET；Behave将其带入Python；BDD走向跨平台"
+    ],
+    [
+      "2015",
+      "Matt Wynne的示例映射技术正式化了BDD发现工作坊流程"
+    ]
+  ],
+  "dos": [
+    "Do involve the whole team in writing scenarios because BDD is a collaboration tool, not just a testing tool",
+    "Do keep scenarios at the business behavior level because technical details belong in step definitions",
+    "Do use Example Mapping before writing Gherkin because it prevents writing scenarios for unclear requirements",
+    "Do prune outdated scenarios regularly because stale scenarios undermine trust in living documentation"
+  ],
+  "dos_zh": [
+    "让整个团队参与编写场景，因为BDD是协作工具而不仅是测试工具",
+    "保持场景在业务行为层面，因为技术细节属于步骤定义",
+    "在编写Gherkin之前使用示例映射，因为这能防止为不清晰的需求编写场景",
+    "定期修剪过时场景，因为陈旧场景会破坏对活文档的信任"
+  ],
+  "donts": [
+    "Don't write scenarios in isolation without business stakeholders because it defeats the collaboration purpose",
+    "Don't include UI selectors or technical details in Gherkin because it makes scenarios brittle and unreadable",
+    "Don't treat BDD as merely a test automation framework because the real value is in the discovery conversations",
+    "Don't write too many scenarios per feature because it creates a maintenance burden that slows development"
+  ],
+  "donts_zh": [
+    "不要在没有业务干系人参与的情况下孤立编写场景，因为这违背了协作的目的",
+    "不要在Gherkin中包含UI选择器或技术细节，因为这使场景脆弱且难以阅读",
+    "不要将BDD仅视为测试自动化框架，因为真正的价值在于发现对话",
+    "不要为每个功能编写过多场景，因为这会产生拖慢开发的维护负担"
+  ],
+  "case_study_company": "GOV.UK",
+  "case_study": "The UK Government Digital Service (GDS) adopted BDD with Cucumber for building GOV.UK services. The Given-When-Then scenarios served as a shared language between policy teams and developers, ensuring that government services correctly implemented complex regulatory requirements. This approach reduced requirement misunderstandings by over 50% in their first year of adoption.",
+  "case_study_zh": "英国政府数字服务部（GDS）在构建GOV.UK服务时采用了BDD与Cucumber。Given-When-Then场景作为政策团队和开发人员之间的共享语言，确保政府服务正确实现了复杂的监管要求。这一方法在采用的第一年将需求误解减少了50%以上。",
+  "when_not_to_use": [
+    "Small teams where developers and stakeholders communicate directly and frequently",
+    "Purely technical infrastructure projects without business-facing behavior",
+    "Rapid prototyping phases where specifications change too fast for Gherkin to keep up"
+  ],
+  "when_not_to_use_zh": [
+    "开发人员与干系人直接频繁沟通的小型团队",
+    "没有面向业务行为的纯技术基础设施项目",
+    "规格变化太快以至于Gherkin跟不上的快速原型阶段"
+  ],
+  "adopters": [
+    "GOV.UK",
+    "BBC",
+    "Booking.com",
+    "Ryanair",
+    "Commonwealth Bank of Australia"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "testability",
+    "usability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Dan North (2006). \"Introducing BDD\". dannorth.net.",
+  "secondary_sources": [
+    "Matt Wynne and Aslak Hellesoy (2012). \"The Cucumber Book: Behaviour-Driven Development for Testers and Developers\". Pragmatic Bookshelf.",
+    "Gojko Adzic (2011). \"Specification by Example: How Successful Teams Deliver the Right Software\". Manning Publications."
+  ],
+  "typed_relations": [
+    {
+      "slug": "tdd",
+      "type": "complement"
+    },
+    {
+      "slug": "test-pyramid",
+      "type": "complement"
+    },
+    {
+      "slug": "domain-driven-design",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/bdd",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/bdd.md"
+}

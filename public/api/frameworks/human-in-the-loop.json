@@ -1,0 +1,195 @@
+{
+  "id": 90,
+  "name": "Human-in-the-Loop Design",
+  "name_zh": "人机协同回路设计",
+  "slug": "human-in-the-loop",
+  "category": "ai",
+  "desc": "Insert human checkpoints into automated AI workflows",
+  "desc_zh": "在自动化 AI 工作流中插入人工审核节点",
+  "steps": [
+    "Map the workflow and identify high-risk or high-uncertainty decision points",
+    "Define escalation criteria that trigger human review (confidence threshold, risk score)",
+    "Design low-friction review UIs that surface AI reasoning alongside the decision",
+    "Capture human feedback as labeled training signal for continuous model improvement",
+    "Instrument approval latency and human override rates to tune automation thresholds"
+  ],
+  "steps_zh": [
+    "梳理工作流，识别高风险或高不确定性的决策节点",
+    "定义触发人工审核的升级条件（置信度阈值、风险评分）",
+    "设计低摩擦的审核界面，将 AI 推理过程与决策并排呈现",
+    "将人工反馈作为标注训练信号用于持续模型优化",
+    "监控审批延迟与人工覆盖率，动态调整自动化阈值"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "AI Output",
+    "Human Review",
+    "Approve",
+    "Correct"
+  ],
+  "viz_labels_zh": [
+    "AI输出",
+    "人工审核",
+    "批准",
+    "纠错"
+  ],
+  "related": [
+    "human-ai-interaction-design",
+    "guardrails-framework",
+    "responsible-ai-design"
+  ],
+  "tags": [
+    "human-in-the-loop",
+    "oversight",
+    "escalation",
+    "feedback"
+  ],
+  "origin_author": "DARPA / Weng et al., 2003 (concept); modern AI-HITL formalized by Monarch (Google), 2020",
+  "origin_source": "Human-in-the-Loop Machine Learning: Active Learning and Annotation (Robert Munro, O'Reilly, 2021)",
+  "origin_source_zh": "人在回路机器学习：主动学习与标注（Robert Munro，O'Reilly，2021）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "High-stakes decisions where AI errors carry legal, financial, or safety consequences",
+    "Domains with evolving policies where automated rules alone cannot cover all edge cases",
+    "Model training pipelines that benefit from expert-labeled corrections as feedback signals",
+    "Regulated industries (healthcare, finance, legal) requiring auditable human oversight"
+  ],
+  "when_to_use_zh": [
+    "AI 错误会带来法律、财务或安全后果的高风险决策",
+    "政策不断演变、自动化规则无法覆盖所有边缘情况的领域",
+    "受益于专家标注纠正作为反馈信号的模型训练管线",
+    "需要可审计人工监督的受监管行业（医疗、金融、法律）"
+  ],
+  "core_concepts": [
+    "Confidence Threshold: A model-reported score below which outputs are routed to human review",
+    "Escalation Path: The defined route from automated decision to human reviewer, including SLAs",
+    "Active Learning: Strategically selecting the most uncertain samples for human labeling to maximize model improvement",
+    "Override Rate: The percentage of AI decisions reversed by humans -- a key calibration metric",
+    "Feedback Loop: The mechanism that converts human corrections into training data for model retraining"
+  ],
+  "core_concepts_zh": [
+    "置信度阈值（Confidence Threshold）：模型报告的分数低于该值时将输出路由至人工审核",
+    "升级路径（Escalation Path）：从自动化决策到人工审核者的既定路由，包括 SLA 约定",
+    "主动学习（Active Learning）：策略性选择最不确定的样本交由人工标注以最大化模型改进",
+    "覆盖率（Override Rate）：被人工推翻的 AI 决策百分比——关键的校准指标",
+    "反馈回路（Feedback Loop）：将人工纠正转化为模型再训练数据的机制"
+  ],
+  "timeline": [
+    [
+      "2003",
+      "DARPA programs formalize human-in-the-loop concepts for autonomous military systems"
+    ],
+    [
+      "2016",
+      "Tesla Autopilot incidents highlight the critical need for human oversight in AI-driven systems"
+    ],
+    [
+      "2020",
+      "Google's Monarch system implements HITL for large-scale ML model monitoring"
+    ],
+    [
+      "2021",
+      "Robert Munro publishes the definitive O'Reilly book on HITL machine learning"
+    ],
+    [
+      "2024",
+      "EU AI Act mandates human oversight for high-risk AI systems, making HITL a legal requirement"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2003",
+      "DARPA 项目为自主军事系统正式确立人在回路概念"
+    ],
+    [
+      "2016",
+      "特斯拉自动驾驶事故凸显 AI 驱动系统中人工监督的关键需求"
+    ],
+    [
+      "2020",
+      "Google 的 Monarch 系统为大规模 ML 模型监控实现人在回路"
+    ],
+    [
+      "2021",
+      "Robert Munro 出版关于人在回路机器学习的权威 O'Reilly 图书"
+    ],
+    [
+      "2024",
+      "欧盟 AI 法案强制要求高风险 AI 系统具备人工监督，使 HITL 成为法律要求"
+    ]
+  ],
+  "dos": [
+    "Design review UIs that show the AI's reasoning and confidence, not just the final decision",
+    "Track override rates over time -- a rising rate signals model degradation or policy drift",
+    "Set SLAs for human review turnaround to prevent HITL from becoming a bottleneck",
+    "Use human corrections as high-quality labels to continuously retrain and improve the model"
+  ],
+  "dos_zh": [
+    "设计审核界面时展示 AI 的推理过程和置信度，而非仅展示最终决策",
+    "跟踪一段时间内的人工覆盖率——上升趋势意味着模型退化或政策漂移",
+    "为人工审核设定 SLA 响应时限，防止 HITL 成为瓶颈",
+    "将人工纠正作为高质量标注数据持续再训练和改进模型"
+  ],
+  "donts": [
+    "Don't create review fatigue by sending too many low-risk items to humans -- it degrades review quality",
+    "Don't skip the feedback loop -- human reviews that never improve the model are wasted effort",
+    "Don't assume human reviewers are always correct -- build in inter-annotator agreement checks",
+    "Don't make HITL an afterthought -- design it into the system architecture from the start"
+  ],
+  "donts_zh": [
+    "不要将过多低风险项目发送至人工审核——审核疲劳会降低审核质量",
+    "不要跳过反馈回路——从不改进模型的人工审核是浪费精力",
+    "不要假设人工审核者永远正确——内置标注者一致性检查",
+    "不要把 HITL 当作事后补救——从系统架构设计之初就纳入"
+  ],
+  "case_study_company": "Scale AI",
+  "case_study": "Scale AI built its core business around human-in-the-loop data labeling for AI training. Their platform routes ML model predictions through expert human reviewers who correct labels, creating a virtuous cycle where each correction improves the next model iteration. This approach powers autonomous vehicle training data for Waymo, Toyota, and GM Cruise with 99.5%+ label accuracy.",
+  "case_study_zh": "Scale AI 围绕人在回路数据标注构建核心业务。其平台将 ML 模型预测路由至专家人工审核者进行标签纠正，形成良性循环——每次纠正都改进下一次模型迭代。该方法为 Waymo、丰田和 GM Cruise 的自动驾驶训练数据提供 99.5% 以上的标注准确率。",
+  "when_not_to_use": [
+    "Fully autonomous real-time systems where human review latency is physically impossible (e.g., high-frequency trading)",
+    "Low-risk, high-volume tasks where the cost of human review exceeds the cost of occasional errors",
+    "Prototyping phases where rapid iteration matters more than production-grade oversight",
+    "Tasks where model accuracy already exceeds human performance on the same task"
+  ],
+  "when_not_to_use_zh": [
+    "人工审核延迟在物理上不可行的全自主实时系统（如高频交易）",
+    "人工审核成本超过偶发错误成本的低风险高吞吐量任务",
+    "快速迭代比生产级监督更重要的原型阶段",
+    "模型在同一任务上准确率已超过人类表现的场景"
+  ],
+  "adopters": [
+    "Scale AI",
+    "Google (Monarch)",
+    "Waymo",
+    "Tesla",
+    "Amazon Mechanical Turk / SageMaker Ground Truth"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "security"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Robert Munro (2021). \"Human-in-the-Loop Machine Learning: Active Learning and Annotation\". O'Reilly Media.",
+  "secondary_sources": [
+    "Burr Settles (2012). \"Active Learning\". Synthesis Lectures on Artificial Intelligence and Machine Learning, Morgan & Claypool.",
+    "Saleema Amershi et al. (2014). \"Power to the People: The Role of Humans in Interactive Machine Learning\". AI Magazine, 35(4)."
+  ],
+  "typed_relations": [
+    {
+      "slug": "human-ai-interaction-design",
+      "type": "complement"
+    },
+    {
+      "slug": "guardrails-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "responsible-ai-design",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/human-in-the-loop",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/human-in-the-loop.md"
+}

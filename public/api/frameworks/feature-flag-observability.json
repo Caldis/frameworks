@@ -1,0 +1,209 @@
+{
+  "id": 158,
+  "name": "Feature Flag Observability",
+  "name_zh": "功能开关可观测性",
+  "slug": "feature-flag-observability",
+  "category": "observability",
+  "desc": "Monitoring feature rollout impact by correlating flag state with system and business metrics",
+  "desc_zh": "通过关联功能开关状态与系统和业务指标来监控功能发布的影响",
+  "steps": [
+    "Instrument feature flag evaluations: emit telemetry events for every flag evaluation including flag name, variant, user segment, and evaluation context",
+    "Attach flag state to observability signals: add active feature flag variants as attributes on traces, metrics, and logs so all telemetry becomes flag-aware",
+    "Build comparative dashboards: display key metrics (error rate, latency, conversion rate) split by flag variant to detect impact in real time",
+    "Set automated rollback triggers: define metric thresholds per flag that automatically disable a flag variant when it degrades system health beyond tolerance",
+    "Analyze flag lifecycle impact: after full rollout, compare before/after metrics to validate the feature's value and generate evidence for stakeholder reviews"
+  ],
+  "steps_zh": [
+    "对功能开关评估进行埋点：为每次开关评估发出遥测事件，包含开关名、变体、用户分组和评估上下文",
+    "将开关状态附加到可观测性信号：将激活的功能开关变体作为属性添加到追踪、指标和日志中，使所有遥测具备开关感知能力",
+    "构建比较仪表盘：按开关变体拆分显示关键指标（错误率、延迟、转化率），实时检测影响",
+    "设置自动回滚触发器：为每个开关定义指标阈值，当系统健康度下降超过容忍范围时自动禁用该开关变体",
+    "分析开关生命周期影响：全量发布后比较前后指标以验证功能价值，为利益相关者审查生成证据"
+  ],
+  "ai_relevant": true,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Flag Evaluation",
+    "Attach to Signals",
+    "Variant Dashboard",
+    "Auto Rollback",
+    "Lifecycle Analyze"
+  ],
+  "viz_labels_zh": [
+    "标志评估",
+    "信号附加",
+    "变体看板",
+    "自动回滚",
+    "生命周期分析"
+  ],
+  "related": [
+    "feature-flags",
+    "opentelemetry",
+    "canary-deployment",
+    "slo-as-practice",
+    "red-method"
+  ],
+  "tags": [
+    "observability",
+    "feature-flags",
+    "rollout",
+    "experimentation",
+    "metrics-correlation",
+    "progressive-delivery"
+  ],
+  "origin_author": "LaunchDarkly, Split.io, and progressive delivery community, ~2017",
+  "origin_source": "Observability Engineering (Majors, Fong-Jones, Miranda, 2022); OpenFeature specification (CNCF, 2022)",
+  "origin_source_zh": "《可观测性工程》（Majors、Fong-Jones、Miranda，2022）；OpenFeature规范（CNCF，2022）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Progressive delivery workflows where features are rolled out incrementally and must be monitored for impact at each stage",
+    "A/B testing and experimentation programs that need statistical rigor in measuring feature impact on business metrics",
+    "Services with multiple concurrent feature flags where interactions between flags can cause unexpected behavior",
+    "Regulated environments where every feature change must be auditable with before/after metric evidence"
+  ],
+  "when_to_use_zh": [
+    "功能逐步发布且需在每个阶段监控影响的渐进式交付工作流",
+    "需要统计严谨性来衡量功能对业务指标影响的A/B测试和实验计划",
+    "具有多个并发功能开关且开关间交互可能导致意外行为的服务",
+    "每次功能变更必须有前后指标证据可审计的受监管环境"
+  ],
+  "core_concepts": [
+    "Flag-Aware Telemetry: Every trace, metric, and log entry carries the active feature flag variants as attributes, enabling filtering and grouping by flag state across all observability tools",
+    "Metric Correlation: Statistical comparison of key metrics (error rate, latency, conversion) between flag-on and flag-off cohorts to isolate feature impact from background noise",
+    "Automated Guardrails: Predefined metric thresholds per flag that trigger automatic rollback when a feature causes degradation beyond acceptable limits",
+    "Flag Interaction Detection: Monitoring for unexpected metric changes when multiple flags are active simultaneously, since flag combinations can produce emergent behaviors not seen in isolation",
+    "Experimentation Analytics: Applying statistical significance testing (chi-squared, t-test) to flag variant metrics to distinguish real feature impact from random variation"
+  ],
+  "core_concepts_zh": [
+    "开关感知遥测：每个追踪、指标和日志条目携带激活的功能开关变体作为属性，支持跨所有可观测性工具按开关状态过滤和分组",
+    "指标关联：对开关开启和关闭群组的关键指标（错误率、延迟、转化率）进行统计比较，从背景噪音中隔离功能影响",
+    "自动护栏：每个开关的预定义指标阈值，当功能导致超出可接受限度的劣化时触发自动回滚",
+    "开关交互检测：监控多个开关同时激活时的意外指标变化，因为开关组合可能产生孤立测试中未见的涌现行为",
+    "实验分析：对开关变体指标应用统计显著性检验（卡方、t检验），区分真实功能影响与随机变异"
+  ],
+  "timeline": [
+    [
+      "2013",
+      "LaunchDarkly launches with the vision of connecting feature flags to operational metrics"
+    ],
+    [
+      "2017",
+      "Progressive delivery movement formalizes the link between feature flags, canary deployments, and observability"
+    ],
+    [
+      "2019",
+      "Split.io pioneers feature experimentation platforms that combine flag management with statistical analysis"
+    ],
+    [
+      "2022",
+      "OpenFeature (CNCF) standardizes feature flag APIs with built-in hooks for telemetry emission"
+    ],
+    [
+      "2024",
+      "Major observability platforms (Datadog, Grafana) add native feature flag correlation to their trace and metric views"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2013",
+      "LaunchDarkly以将功能开关与运营指标连接的愿景创立"
+    ],
+    [
+      "2017",
+      "渐进式交付运动正式化了功能开关、金丝雀部署和可观测性之间的联系"
+    ],
+    [
+      "2019",
+      "Split.io开创功能实验平台，将开关管理与统计分析相结合"
+    ],
+    [
+      "2022",
+      "OpenFeature（CNCF）标准化功能开关API，内置遥测发射钩子"
+    ],
+    [
+      "2024",
+      "主要可观测性平台（Datadog、Grafana）在追踪和指标视图中添加原生功能开关关联"
+    ]
+  ],
+  "dos": [
+    "Do emit flag evaluation events as first-class telemetry so every observability query can be filtered by flag variant",
+    "Do define rollback thresholds before enabling a flag, because deciding what constitutes failure during an incident is too late",
+    "Do monitor flag interactions when multiple flags are active, because two individually safe flags can produce harmful combinations",
+    "Do track flag staleness and enforce cleanup, because unmonitored long-lived flags accumulate risk and observability blind spots"
+  ],
+  "dos_zh": [
+    "将开关评估事件作为一等遥测发射，使每个可观测性查询都能按开关变体过滤",
+    "在启用开关前定义回滚阈值，因为在事故期间决定什么构成失败已经太晚",
+    "在多个开关同时激活时监控开关交互，因为两个单独安全的开关可能产生有害组合",
+    "追踪开关过期状态并强制清理，因为未监控的长寿命开关会积累风险和可观测性盲区"
+  ],
+  "donts": [
+    "Don't roll out feature flags without metric baselines, because you cannot detect regression without knowing what normal looks like",
+    "Don't rely on manual dashboard watching for flag rollouts, because automated guardrails catch problems faster than human monitoring at 2am",
+    "Don't ignore the observability cost of high-cardinality flag attributes, because attaching 50 flag variants to every span explodes storage and query costs",
+    "Don't treat feature flag observability as optional for 'small' flags, because small changes cause big incidents when they hit unexpected code paths"
+  ],
+  "donts_zh": [
+    "不要在没有指标基线的情况下发布功能开关，因为不知道正常状态就无法检测回归",
+    "不要在开关发布时依赖手动仪表盘监看，因为自动护栏比凌晨2点的人类监控更快发现问题",
+    "不要忽视高基数开关属性的可观测性成本，因为在每个Span上附加50个开关变体会使存储和查询成本爆炸",
+    "不要将功能开关可观测性视为「小」开关的可选项，因为小变更在触及意外代码路径时会引发大事故"
+  ],
+  "case_study_company": "LaunchDarkly",
+  "case_study": "LaunchDarkly's own platform exemplifies feature flag observability. When rolling out their real-time streaming architecture to replace polling-based flag delivery, they used their own flag-aware metrics to monitor latency, error rates, and flag evaluation consistency across both variants. By attaching flag state to every trace via OpenTelemetry, they detected a 15ms latency regression in the streaming path that only affected customers with more than 500 flags. The automated guardrail paused the rollout at 5% traffic, giving the team time to optimize the streaming protocol before resuming. Without flag-correlated observability, this long-tail performance issue would have reached 100% of customers.",
+  "case_study_zh": "LaunchDarkly自己的平台是功能开关可观测性的典范。在推出实时流架构以替代基于轮询的开关分发时，他们使用自己的开关感知指标监控两个变体的延迟、错误率和开关评估一致性。通过OpenTelemetry将开关状态附加到每个追踪上，他们检测到流路径中仅影响拥有500个以上开关的客户的15毫秒延迟回归。自动护栏在5%流量时暂停了发布，给团队时间在恢复前优化流协议。如果没有开关关联的可观测性，这个长尾性能问题将影响100%的客户。",
+  "when_not_to_use": [
+    "Simple boolean kill-switches that are either fully on or fully off with no gradual rollout",
+    "Feature flags used only in development/staging environments where production observability is irrelevant",
+    "Systems with very low traffic where statistical comparison between flag cohorts lacks sufficient sample size",
+    "Short-lived feature flags that will be removed within a single sprint before meaningful metric data accumulates"
+  ],
+  "when_not_to_use_zh": [
+    "简单的布尔熔断开关，完全开启或完全关闭，没有渐进式发布",
+    "仅在开发/预发布环境中使用的功能开关——生产可观测性不相关",
+    "流量极低的系统——开关群组之间的统计比较缺乏足够样本量",
+    "将在单个冲刺内移除、有意义的指标数据尚未积累的短寿命功能开关"
+  ],
+  "adopters": [
+    "LaunchDarkly",
+    "Split.io",
+    "Spotify",
+    "Atlassian",
+    "Booking.com"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "observability",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Majors, C., Fong-Jones, L. & Miranda, G. (2022). \"Observability Engineering\". O'Reilly Media.",
+  "secondary_sources": [
+    "CNCF (2022). \"OpenFeature Specification\". openfeature.dev.",
+    "Fitz, P. (2010). \"Feature Flags (Flippers)\". flickr.com (Flickr Engineering Blog)."
+  ],
+  "typed_relations": [
+    {
+      "slug": "feature-flags",
+      "type": "extends"
+    },
+    {
+      "slug": "opentelemetry",
+      "type": "complement"
+    },
+    {
+      "slug": "canary-deployment",
+      "type": "complement"
+    },
+    {
+      "slug": "slo-as-practice",
+      "type": "complement"
+    },
+    {
+      "slug": "red-method",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/feature-flag-observability",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/feature-flag-observability.md"
+}

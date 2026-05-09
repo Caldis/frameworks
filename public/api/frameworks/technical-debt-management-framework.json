@@ -1,0 +1,201 @@
+{
+  "id": 148,
+  "name": "Technical Debt Management Framework",
+  "name_zh": "技术债务管理框架",
+  "slug": "technical-debt-management-framework",
+  "category": "team",
+  "desc": "A systematic approach to identifying, quantifying, prioritizing, and paying down technical debt across an engineering organization",
+  "desc_zh": "在工程组织中系统性地识别、量化、优先排序和偿还技术债务的方法",
+  "steps": [
+    "Create a shared tech debt inventory: catalog known debt items with their type (code, architecture, infrastructure, test), impact, and estimated remediation cost",
+    "Quantify debt impact using metrics: developer friction (time lost), incident correlation, deployment frequency impact, and customer-facing effects",
+    "Prioritize using a cost-of-delay model: rank debt items by the ongoing cost of not fixing them versus the one-time cost of remediation",
+    "Allocate a consistent capacity budget (typically 15-20% of sprint capacity) dedicated to debt reduction each iteration",
+    "Track debt trends over time with a tech debt dashboard and report progress to stakeholders quarterly"
+  ],
+  "steps_zh": [
+    "创建共享的技术债务清单：按类型（代码、架构、基础设施、测试）、影响和估计修复成本记录已知债务项",
+    "使用指标量化债务影响：开发者摩擦（浪费的时间）、事故相关性、部署频率影响和面向客户的效果",
+    "使用延迟成本模型优先排序：按不修复的持续成本与一次性修复成本的比值对债务项排名",
+    "每个迭代分配固定的容量预算（通常为冲刺容量的 15-20%）专门用于债务削减",
+    "通过技术债务仪表板追踪债务趋势，每季度向利益相关者报告进展"
+  ],
+  "ai_relevant": true,
+  "viz_type": "quadrant",
+  "viz_labels": [
+    "High Impact",
+    "High Effort",
+    "Low Impact",
+    "Low Effort"
+  ],
+  "viz_labels_zh": [
+    "高影响",
+    "高成本",
+    "低影响",
+    "低成本"
+  ],
+  "related": [
+    "technical-debt-quadrant",
+    "blameless-postmortems",
+    "architecture-review-board",
+    "continuous-architecture"
+  ],
+  "tags": [
+    "technical-debt",
+    "sustainability",
+    "prioritization",
+    "engineering-excellence",
+    "maintenance"
+  ],
+  "origin_author": "Ward Cunningham, 1992 (debt metaphor); Martin Fowler, 2009 (Technical Debt Quadrant)",
+  "origin_source": "Technical Debt Quadrant (Fowler, 2009); The Mythical Man-Month (Brooks, 1975, on system entropy); Accelerate (Forsgren, Humble & Kim, 2018)",
+  "origin_source_zh": "技术债务象限（Fowler，2009）；《人月神话》（Brooks，1975，关于系统熵增）；《加速》（Forsgren、Humble & Kim，2018）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Engineering velocity is declining despite stable team size, suggesting accumulated debt is creating drag",
+    "Teams spend more than 30% of their time on unplanned rework, workarounds, or fighting fragile systems",
+    "Product leadership needs a data-driven argument for investing in technical improvements over new features",
+    "Post-acquisition or post-rapid-growth phases where shortcuts taken during growth need systematic remediation"
+  ],
+  "when_to_use_zh": [
+    "在团队规模稳定的情况下工程速度下降，表明累积的债务正在产生阻力",
+    "团队超过 30% 的时间花在计划外返工、变通方案或处理脆弱系统上",
+    "产品领导层需要数据驱动的论据来支持投资技术改进而非新功能",
+    "收购后或快速增长后阶段，增长期间的捷径需要系统性修复"
+  ],
+  "core_concepts": [
+    "Debt as a financial metaphor: Technical debt accrues 'interest' — the longer it remains, the more ongoing cost it imposes through slower development, more incidents, and harder onboarding",
+    "Fowler's Quadrant: Debt is classified along two axes — deliberate/inadvertent and reckless/prudent — helping teams distinguish strategic shortcuts from careless code",
+    "Capacity allocation: Rather than occasional 'tech debt sprints', sustainable teams reserve a consistent percentage of each iteration for debt reduction",
+    "Cost of delay: The most effective prioritization metric — debt items that cause daily developer friction should be fixed before items with only occasional impact",
+    "Brooks's Law of System Entropy: As described in The Mythical Man-Month, without active maintenance, software systems tend toward increasing disorder and reduced conceptual integrity"
+  ],
+  "core_concepts_zh": [
+    "债务即金融隐喻：技术债务会累积「利息」——存在越久，通过降低开发速度、增加事故和加大入职难度施加的持续成本就越高",
+    "Fowler 象限：按两个轴对债务分类——有意/无意和鲁莽/审慎——帮助团队区分战略性捷径和粗心代码",
+    "容量分配：可持续的团队在每个迭代中保留固定百分比用于债务削减，而非偶尔的「技术债务冲刺」",
+    "延迟成本：最有效的优先排序指标——每天造成开发者摩擦的债务项应优先于仅偶尔产生影响的项目",
+    "布鲁克斯的系统熵增定律：如《人月神话》所述，没有积极维护，软件系统会趋向日益增加的无序和降低的概念完整性"
+  ],
+  "timeline": [
+    [
+      "1975",
+      "Fred Brooks describes system entropy and the tendency of software to degrade over time in The Mythical Man-Month"
+    ],
+    [
+      "1992",
+      "Ward Cunningham coins the 'technical debt' metaphor at OOPSLA to explain why refactoring is an investment, not a cost"
+    ],
+    [
+      "2009",
+      "Martin Fowler publishes the Technical Debt Quadrant, providing a framework for categorizing different types of debt"
+    ],
+    [
+      "2018",
+      "Accelerate research demonstrates that teams with low technical debt deploy 46x more frequently with 7x lower change failure rate"
+    ],
+    [
+      "2023",
+      "AI-assisted debt identification tools (SonarQube AI, CodeScene) automate detection and prioritization of technical debt"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1975",
+      "Fred Brooks 在《人月神话》中描述系统熵增和软件随时间退化的趋势"
+    ],
+    [
+      "1992",
+      "Ward Cunningham 在 OOPSLA 上创造「技术债务」隐喻，解释为什么重构是投资而非成本"
+    ],
+    [
+      "2009",
+      "Martin Fowler 发表技术债务象限，提供对不同类型债务进行分类的框架"
+    ],
+    [
+      "2018",
+      "《加速》的研究表明低技术债务的团队部署频率高 46 倍，变更失败率低 7 倍"
+    ],
+    [
+      "2023",
+      "AI 辅助的债务识别工具（SonarQube AI、CodeScene）自动化技术债务的检测和优先排序"
+    ]
+  ],
+  "dos": [
+    "Make tech debt visible to product stakeholders using business impact metrics (incidents caused, features delayed), not just engineering jargon",
+    "Allocate a consistent 15-20% of sprint capacity to debt reduction every iteration, rather than scheduling sporadic 'debt sprints'",
+    "Tie debt remediation to incidents — every postmortem should identify whether technical debt was a contributing factor",
+    "Track debt trends quarterly to demonstrate whether the organization is gaining or losing ground"
+  ],
+  "dos_zh": [
+    "使用业务影响指标（导致的事故、延迟的功能）而非纯工程术语让产品利益相关者看到技术债务",
+    "每个迭代固定分配 15-20% 的冲刺容量用于债务削减，而非安排零散的「债务冲刺」",
+    "将债务修复与事故关联——每次事后复盘都应识别技术债务是否为促成因素",
+    "每季度跟踪债务趋势，展示组织是在缩小还是扩大债务差距"
+  ],
+  "donts": [
+    "Don't treat all technical debt as equally urgent — reckless debt and prudent debt require different responses",
+    "Don't promise zero tech debt — some debt is a deliberate, rational tradeoff for speed to market",
+    "Don't let tech debt become a catch-all label — vague items like 'refactor everything' are not actionable debt items",
+    "Don't schedule debt reduction only when there is 'spare time' — it will never happen because spare time does not exist"
+  ],
+  "donts_zh": [
+    "不要将所有技术债务视为同等紧急——鲁莽的债务和审慎的债务需要不同的应对",
+    "不要承诺零技术债务——某些债务是为了加快上市速度而做出的审慎合理权衡",
+    "不要让技术债务成为万能标签——「重构所有东西」这类模糊条目不是可执行的债务项",
+    "不要只在有「空闲时间」时才安排债务削减——空闲时间不存在，所以永远不会发生"
+  ],
+  "case_study_company": "Spotify",
+  "case_study": "Spotify implemented a systematic tech debt management approach in 2017 after teams reported that accumulated debt was slowing feature delivery by an estimated 25%. They introduced a 'Tech Health' scoring system where each squad assessed their codebase on a traffic-light scale (green/yellow/red) across dimensions like test coverage, deployment ease, and code clarity. Red scores triggered automatic allocation of 20% sprint capacity to remediation. Within 18 months, the percentage of red-scored components dropped from 34% to 12%, and the Accelerate metrics (deploy frequency and lead time) improved by 40% across the organization. The approach was cited in internal talks as making the case for sustained platform investment.",
+  "case_study_zh": "Spotify 在 2017 年实施了系统化的技术债务管理方法，此前团队报告累积的债务使功能交付速度降低了约 25%。他们引入了「技术健康」评分系统，每个小队在测试覆盖率、部署便利性和代码清晰度等维度上使用交通灯标度（绿/黄/红）评估其代码库。红色评分自动触发 20% 冲刺容量用于修复。在 18 个月内，红色评分组件的比例从 34% 降至 12%，整个组织的加速指标（部署频率和前置时间）提升了 40%。该方法在内部分享中被引用为支持持续平台投资的有力依据。",
+  "when_not_to_use": [
+    "Pre-product-market-fit startups where the codebase may be thrown away — speed to learning matters more than code quality",
+    "One-off projects or prototypes with a defined end date where long-term maintenance is not a concern",
+    "Teams already practicing continuous refactoring (e.g., TDD with aggressive refactoring) where debt rarely accumulates",
+    "Situations where the system is scheduled for decommission — paying down debt on a system being replaced is wasteful"
+  ],
+  "when_not_to_use_zh": [
+    "尚未找到产品市场契合的创业公司，代码库可能被丢弃——学习速度比代码质量更重要",
+    "有明确结束日期的一次性项目或原型，长期维护不是关切",
+    "已在实践持续重构（如 TDD 配合积极重构）的团队，债务很少累积",
+    "系统已计划退役——为即将被替换的系统偿还债务是浪费"
+  ],
+  "adopters": [
+    "Spotify",
+    "Google",
+    "Shopify",
+    "Atlassian",
+    "ThoughtWorks"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Cunningham, W. (1992). \"The WyCash Portfolio Management System\". OOPSLA Experience Report.",
+  "secondary_sources": [
+    "Fowler, M. (2009). \"Technical Debt Quadrant\". martinfowler.com.",
+    "Forsgren, N., Humble, J. & Kim, G. (2018). \"Accelerate: The Science of Lean Software and DevOps\". IT Revolution Press.",
+    "Kruchten, P., Nord, R.L. & Ozkaya, I. (2019). \"Managing Technical Debt: Reducing Friction in Software Development\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "technical-debt-quadrant",
+      "type": "complement"
+    },
+    {
+      "slug": "blameless-postmortems",
+      "type": "complement"
+    },
+    {
+      "slug": "architecture-review-board",
+      "type": "complement"
+    },
+    {
+      "slug": "continuous-architecture",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/technical-debt-management-framework",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/technical-debt-management-framework.md"
+}

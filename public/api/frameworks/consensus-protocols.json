@@ -1,0 +1,196 @@
+{
+  "id": 121,
+  "name": "Consensus Protocols (Raft/Paxos)",
+  "name_zh": "共识协议（Raft/Paxos）",
+  "slug": "consensus-protocols",
+  "category": "distributed",
+  "desc": "Algorithms for achieving agreement among distributed nodes despite failures",
+  "desc_zh": "在节点可能故障的分布式系统中达成一致的算法",
+  "steps": [
+    "Define the replicated state machine: identify what state must be consistently replicated across all nodes in the cluster",
+    "Elect a leader: use randomized timeouts (Raft) or proposal numbers (Paxos) to select a single node responsible for coordinating writes",
+    "Replicate log entries: the leader appends client requests to its log and sends AppendEntries RPCs to followers, waiting for a majority quorum to acknowledge",
+    "Commit and apply: once a majority of nodes have persisted the entry, the leader marks it committed and all nodes apply it to their state machines",
+    "Handle leader failure: when followers detect a missing heartbeat, they increment the term, start a new election, and the cluster converges on a new leader"
+  ],
+  "steps_zh": [
+    "定义复制状态机：确定集群中所有节点需要一致复制的状态内容",
+    "选举领导者：使用随机超时（Raft）或提案编号（Paxos）选出一个负责协调写入的节点",
+    "复制日志条目：领导者将客户端请求追加到日志中，并向跟随者发送AppendEntries RPC，等待多数派确认",
+    "提交并应用：一旦多数节点持久化了该条目，领导者将其标记为已提交，所有节点将其应用到状态机",
+    "处理领导者故障：当跟随者检测到心跳缺失时，递增任期号，发起新选举，集群收敛到新领导者"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "State Machine",
+    "Leader Election",
+    "Log Replication",
+    "Commit",
+    "Failure Recovery"
+  ],
+  "viz_labels_zh": [
+    "状态机",
+    "领导者选举",
+    "日志复制",
+    "提交",
+    "故障恢复"
+  ],
+  "related": [
+    "cap-theorem",
+    "leader-election",
+    "two-phase-commit"
+  ],
+  "tags": [
+    "consensus",
+    "replication",
+    "fault-tolerance",
+    "distributed-state"
+  ],
+  "origin_author": "Leslie Lamport (Paxos, 1998); Diego Ongaro & John Ousterhout (Raft, 2014)",
+  "origin_source": "The Part-Time Parliament (ACM TOCS 1998); In Search of an Understandable Consensus Algorithm (USENIX ATC 2014); Kleppmann, Designing Data-Intensive Applications, Ch. 9",
+  "origin_source_zh": "《兼职议会》（ACM TOCS 1998）；《寻找一种可理解的共识算法》（USENIX ATC 2014）；Kleppmann《数据密集型应用系统设计》第9章",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When building a replicated log or replicated state machine that must tolerate node failures without data loss",
+    "When implementing a distributed coordination service like a lock manager, configuration store, or membership registry",
+    "When strong consistency guarantees are required and the system can tolerate the latency of quorum writes",
+    "When you need automatic leader failover without manual intervention in a clustered database or message broker"
+  ],
+  "when_to_use_zh": [
+    "当构建必须容忍节点故障且不丢失数据的复制日志或复制状态机时",
+    "当实现锁管理器、配置存储或成员注册表等分布式协调服务时",
+    "当需要强一致性保证，且系统可以容忍法定人数写入的延迟时",
+    "当需要在集群数据库或消息代理中实现无需人工干预的自动领导者故障转移时"
+  ],
+  "core_concepts": [
+    "Quorum: A majority of nodes (e.g., 3 of 5) must agree before a value is committed, ensuring any two quorums overlap",
+    "Term/epoch: A monotonically increasing logical clock that partitions time into leadership periods, preventing stale leaders from issuing writes",
+    "Log replication: The leader maintains an ordered log of commands and ensures all followers converge to the same log sequence",
+    "Safety property: Once a log entry is committed, no future leader can overwrite it, guaranteeing linearizable reads and writes",
+    "Liveness property: As long as a majority of nodes are reachable and can communicate, the system will eventually elect a leader and make progress"
+  ],
+  "core_concepts_zh": [
+    "法定人数：多数节点（如5中的3）必须同意后值才能提交，确保任意两个法定人数有交集",
+    "任期/纪元：单调递增的逻辑时钟，将时间划分为领导期，防止过期领导者发出写入",
+    "日志复制：领导者维护有序的命令日志，确保所有跟随者收敛到相同的日志序列",
+    "安全性：一旦日志条目被提交，未来的领导者都无法覆盖它，保证线性一致的读写",
+    "活性：只要多数节点可达且能通信，系统最终会选出领导者并继续处理请求"
+  ],
+  "timeline": [
+    [
+      "1989",
+      "Leslie Lamport writes the original Paxos paper using the metaphor of a Greek parliament"
+    ],
+    [
+      "1998",
+      "The Part-Time Parliament is finally published in ACM Transactions on Computer Systems"
+    ],
+    [
+      "2001",
+      "Lamport publishes Paxos Made Simple to make the algorithm more accessible"
+    ],
+    [
+      "2014",
+      "Diego Ongaro and John Ousterhout publish Raft as a more understandable alternative to Paxos"
+    ],
+    [
+      "2017",
+      "Kleppmann's DDIA synthesizes consensus protocols in the context of modern data systems"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1989",
+      "Leslie Lamport使用希腊议会的比喻撰写了最初的Paxos论文"
+    ],
+    [
+      "1998",
+      "《兼职议会》最终发表在ACM计算机系统汇刊上"
+    ],
+    [
+      "2001",
+      "Lamport发表《Paxos Made Simple》使算法更易理解"
+    ],
+    [
+      "2014",
+      "Diego Ongaro和John Ousterhout发表Raft作为比Paxos更易理解的替代方案"
+    ],
+    [
+      "2017",
+      "Kleppmann的《数据密集型应用系统设计》在现代数据系统背景下综合介绍共识协议"
+    ]
+  ],
+  "dos": [
+    "Do deploy an odd number of nodes (3, 5, 7) because even numbers increase the chance of split votes without improving fault tolerance",
+    "Do persist log entries and term metadata to stable storage before responding because in-memory-only state leads to data loss on restart",
+    "Do implement pre-vote protocol extensions because they prevent disruptive elections from partitioned nodes rejoining the cluster",
+    "Do benchmark your quorum latency under realistic network conditions because consensus adds round-trip overhead to every write"
+  ],
+  "dos_zh": [
+    "部署奇数个节点（3、5、7），因为偶数节点增加了分裂投票的概率而不提升容错能力",
+    "在响应前将日志条目和任期元数据持久化到稳定存储，因为仅内存状态在重启时会导致数据丢失",
+    "实现预投票协议扩展，防止被分区隔离的节点重新加入集群时引发破坏性选举",
+    "在真实网络条件下对法定人数延迟进行基准测试，因为共识会为每次写入增加往返开销"
+  ],
+  "donts": [
+    "Don't run consensus across wide-area networks without accounting for latency because cross-datacenter round trips can make quorum writes unacceptably slow",
+    "Don't use consensus for high-throughput data that tolerates eventual consistency because the overhead of quorum writes is unnecessary",
+    "Don't ignore log compaction and snapshotting because unbounded log growth will exhaust disk space and slow down follower recovery",
+    "Don't assume consensus alone solves all distributed problems because it handles replication but not sharding, load balancing, or schema evolution"
+  ],
+  "donts_zh": [
+    "不要在不考虑延迟的情况下跨广域网运行共识，因为跨数据中心的往返可能使法定人数写入慢到不可接受",
+    "不要对可容忍最终一致性的高吞吐数据使用共识，因为法定人数写入的开销是不必要的",
+    "不要忽视日志压缩和快照，因为无限增长的日志会耗尽磁盘空间并减慢跟随者恢复速度",
+    "不要假设共识能解决所有分布式问题，它处理复制但不处理分片、负载均衡或模式演进"
+  ],
+  "case_study_company": "etcd / Kubernetes",
+  "case_study": "Kubernetes relies on etcd, a distributed key-value store implementing the Raft consensus protocol, as its single source of truth for all cluster state. Every API server write (pod scheduling, config changes, secret updates) is committed through Raft to an etcd cluster of typically 3 or 5 nodes. This design ensures that even if a minority of etcd nodes fail, the cluster state remains consistent and recoverable. When CoreOS (later acquired by Red Hat) originally built etcd in 2013, they chose Raft over Paxos specifically for its understandability, which allowed a broader contributor base to verify correctness.",
+  "case_study_zh": "Kubernetes依赖etcd——一个实现Raft共识协议的分布式键值存储——作为所有集群状态的唯一事实来源。每个API服务器写入（Pod调度、配置变更、密钥更新）都通过Raft提交到通常由3或5个节点组成的etcd集群。这种设计确保即使少数etcd节点故障，集群状态仍然一致且可恢复。当CoreOS（后被Red Hat收购）在2013年构建etcd时，他们选择Raft而非Paxos，正是因为其可理解性，这使得更广泛的贡献者能够验证正确性。",
+  "when_not_to_use": [
+    "High-throughput write-heavy workloads where eventual consistency is acceptable and quorum latency is a bottleneck",
+    "Single-node or embedded systems where there is no replication requirement",
+    "Systems where availability during network partitions is more important than consistency, favoring AP designs instead"
+  ],
+  "when_not_to_use_zh": [
+    "最终一致性可接受且法定人数延迟成为瓶颈的高吞吐写密集型工作负载",
+    "没有复制需求的单节点或嵌入式系统",
+    "网络分区期间可用性比一致性更重要的系统，应改用AP设计"
+  ],
+  "adopters": [
+    "etcd/Kubernetes",
+    "CockroachDB",
+    "TiKV/TiDB",
+    "Consul (HashiCorp)",
+    "Apache ZooKeeper (ZAB)"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "scalability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Lamport, L. (1998). \"The Part-Time Parliament\". ACM Transactions on Computer Systems, 16(2).",
+  "secondary_sources": [
+    "Ongaro, D. & Ousterhout, J. (2014). \"In Search of an Understandable Consensus Algorithm\". Proceedings of USENIX ATC.",
+    "Lamport, L. (2001). \"Paxos Made Simple\". ACM SIGACT News, 32(4).",
+    "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 9. O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "cap-theorem",
+      "type": "prerequisite"
+    },
+    {
+      "slug": "leader-election",
+      "type": "complement"
+    },
+    {
+      "slug": "two-phase-commit",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/consensus-protocols",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/consensus-protocols.md"
+}

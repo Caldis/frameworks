@@ -1,0 +1,192 @@
+{
+  "id": 60,
+  "name": "Canary Deployment",
+  "name_zh": "金丝雀发布",
+  "slug": "canary-deployment",
+  "category": "deployment",
+  "desc": "Gradually roll out changes to a small user subset first",
+  "desc_zh": "先向小部分用户灰度发布变更，再逐步全量推送",
+  "steps": [
+    "Deploy the new version alongside the stable version in production",
+    "Route a small percentage (1-5%) of real traffic to the canary instance",
+    "Monitor key metrics: error rates, latency, and business KPIs for the canary",
+    "Incrementally increase traffic percentage if metrics remain healthy",
+    "Promote canary to 100% or roll back automatically based on threshold alerts"
+  ],
+  "steps_zh": [
+    "在生产环境中将新版本与稳定版本并行部署",
+    "将少量真实流量（1-5%）路由到金丝雀实例",
+    "监控金丝雀的关键指标：错误率、延迟及业务KPI",
+    "若指标正常则逐步提高流量比例",
+    "依据阈值告警决定将金丝雀全量推送或自动回滚"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Canary",
+    "Monitor",
+    "Expand",
+    "Full Deploy"
+  ],
+  "viz_labels_zh": [
+    "金丝雀",
+    "监控",
+    "扩量",
+    "全量发布"
+  ],
+  "related": [
+    "blue-green-deployment",
+    "feature-flags",
+    "dora-metrics"
+  ],
+  "tags": [
+    "deployment",
+    "canary",
+    "gradual-rollout",
+    "progressive-delivery"
+  ],
+  "origin_author": "Google / early site reliability engineering teams, ~2004",
+  "origin_source": "Inspired by coal mining canary practice; formalized in Google's SRE practices and later in Site Reliability Engineering (Betsy Beyer et al., 2016)",
+  "origin_source_zh": "灵感源于煤矿金丝雀实践；由Google SRE实践正式化，后收录于《SRE：Google运维解密》（Betsy Beyer等，2016）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "High-traffic services where a full rollout failure would impact millions of users",
+    "Deployments requiring real production traffic validation before full promotion",
+    "Services with well-defined SLIs that can be automatically compared between canary and baseline",
+    "Teams practicing progressive delivery and wanting automated rollback based on metrics"
+  ],
+  "when_to_use_zh": [
+    "高流量服务——全量发布失败会影响数百万用户",
+    "需要在全量推广前通过真实生产流量进行验证的部署",
+    "拥有明确定义的SLI、可在金丝雀与基线之间自动比较的服务",
+    "实践渐进式交付并希望基于指标自动回滚的团队"
+  ],
+  "core_concepts": [
+    "Progressive Traffic Shifting: Gradually increase the percentage of traffic routed to the new version in controlled increments (1% -> 5% -> 25% -> 100%)",
+    "Automated Analysis: Use statistical comparison of canary vs. baseline metrics to make promotion/rollback decisions without human judgment",
+    "Blast Radius Containment: Only a small subset of users is exposed to potential issues, limiting the impact of defective releases",
+    "Metric-Driven Promotion: Deployment progression is gated by objective health signals rather than time-based schedules"
+  ],
+  "core_concepts_zh": [
+    "渐进式流量切换：以受控的增量方式逐步提高路由到新版本的流量百分比（1% -> 5% -> 25% -> 100%）",
+    "自动化分析：通过统计对比金丝雀与基线的指标数据，无需人工判断即可做出晋升/回滚决策",
+    "爆炸半径控制：仅有少量用户暴露于潜在问题，限制了缺陷发布的影响范围",
+    "指标驱动晋升：部署推进由客观健康信号把关，而非基于时间的排程"
+  ],
+  "timeline": [
+    [
+      "2004",
+      "Google implements canary analysis as part of internal deployment tooling for web search"
+    ],
+    [
+      "2013",
+      "Netflix develops Kayenta, an open-source automated canary analysis tool"
+    ],
+    [
+      "2017",
+      "Spinnaker integrates automated canary analysis as a first-class pipeline stage"
+    ],
+    [
+      "2019",
+      "Flagger brings canary deployment automation to Kubernetes with Istio and Linkerd integration"
+    ],
+    [
+      "2022",
+      "Argo Rollouts matures canary strategy with customizable traffic management and analysis templates"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2004",
+      "Google在内部部署工具中为Web搜索服务实现金丝雀分析"
+    ],
+    [
+      "2013",
+      "Netflix开发Kayenta——一款开源自动化金丝雀分析工具"
+    ],
+    [
+      "2017",
+      "Spinnaker将自动化金丝雀分析集成为一等流水线阶段"
+    ],
+    [
+      "2019",
+      "Flagger通过集成Istio和Linkerd将金丝雀部署自动化引入Kubernetes"
+    ],
+    [
+      "2022",
+      "Argo Rollouts通过可定制的流量管理和分析模板完善金丝雀策略"
+    ]
+  ],
+  "dos": [
+    "Do define clear success/failure metrics and thresholds before starting the canary, because ad-hoc evaluation leads to subjective decisions",
+    "Do ensure canary and baseline receive comparable traffic samples to avoid skewed comparisons",
+    "Do automate the rollback process so that metric breaches trigger instant traffic drain from the canary",
+    "Do allow sufficient bake time at each traffic tier to capture slow-burning issues like memory leaks"
+  ],
+  "dos_zh": [
+    "务必在启动金丝雀前定义清晰的成功/失败指标和阈值，因为临时评估会导致主观判断",
+    "务必确保金丝雀和基线接收可比的流量样本，以避免比较偏差",
+    "务必自动化回滚流程，使指标突破阈值时立即从金丝雀排空流量",
+    "务必在每个流量层级留出足够的烘烤时间，以捕获内存泄漏等缓慢暴露的问题"
+  ],
+  "donts": [
+    "Don't route all sticky sessions to the canary, because this biases the sample and hides issues that affect fresh users",
+    "Don't promote based solely on absence of errors -- also check latency percentiles and business metrics, because silent degradation is common",
+    "Don't run canary analysis for too short a period, because some defects only manifest under sustained load or time-dependent conditions",
+    "Don't ignore infrastructure-level differences between canary and baseline instances, because CPU/memory asymmetry skews results"
+  ],
+  "donts_zh": [
+    "不要将所有粘性会话路由到金丝雀，因为这会使样本产生偏差并隐藏影响新用户的问题",
+    "不要仅凭没有错误就晋升——还需检查延迟百分位和业务指标，因为无声劣化很常见",
+    "不要将金丝雀分析运行时间设置得过短，因为某些缺陷只在持续负载或时间相关条件下才会显现",
+    "不要忽视金丝雀和基线实例之间的基础设施差异，因为CPU/内存不对称会歪曲结果"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix built and open-sourced Kayenta in 2017 as their automated canary analysis platform integrated with Spinnaker. Every production deployment at Netflix goes through canary analysis, where a new build serves a small percentage of traffic while Kayenta statistically compares hundreds of metrics against a baseline. This system catches roughly 80% of production-impacting issues before they reach general availability, enabling Netflix to deploy hundreds of times per day with confidence.",
+  "case_study_zh": "Netflix于2017年构建并开源了Kayenta，作为与Spinnaker集成的自动化金丝雀分析平台。Netflix的每次生产部署都要经过金丝雀分析，新构建服务于少量流量，同时Kayenta将数百个指标与基线进行统计比较。该系统在问题到达全量发布前捕获约80%的生产影响缺陷，使Netflix每天能够自信地部署数百次。",
+  "when_not_to_use": [
+    "Low-traffic services where the canary subset is too small to produce statistically significant metric comparisons",
+    "Deployments involving breaking API changes that cannot coexist with the previous version",
+    "Systems lacking sufficient observability to compare canary and baseline health signals",
+    "Batch processing systems where there is no continuous request stream to analyze"
+  ],
+  "when_not_to_use_zh": [
+    "低流量服务——金丝雀子集过小，无法产生具有统计显著性的指标比较",
+    "涉及无法与前一版本共存的破坏性API变更的部署",
+    "缺乏足够可观测性来比较金丝雀与基线健康信号的系统",
+    "没有可供分析的持续请求流的批处理系统"
+  ],
+  "adopters": [
+    "Netflix",
+    "Google",
+    "Facebook",
+    "Uber",
+    "Lyft"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Betsy Beyer, Chris Jones, Jennifer Petoff, and Niall Richard Murphy (2016). \"Site Reliability Engineering: How Google Runs Production Systems\". O'Reilly Media.",
+  "secondary_sources": [
+    "Jez Humble and David Farley (2010). \"Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation\". Addison-Wesley.",
+    "Danilo Sato, Arjan Schaaf, and Daniel Bryant (2019). \"Canary Releases\". martinfowler.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "blue-green-deployment",
+      "type": "alternative"
+    },
+    {
+      "slug": "feature-flags",
+      "type": "complement"
+    },
+    {
+      "slug": "dora-metrics",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/canary-deployment",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/canary-deployment.md"
+}

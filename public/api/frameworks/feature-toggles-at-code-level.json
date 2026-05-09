@@ -1,0 +1,192 @@
+{
+  "id": 174,
+  "name": "Feature Toggles at Code Level",
+  "name_zh": "代码级功能开关",
+  "slug": "feature-toggles-at-code-level",
+  "category": "coding",
+  "desc": "Control code execution paths using conditional branching to enable or disable features without redeployment",
+  "desc_zh": "使用条件分支控制代码执行路径，无需重新部署即可启用或禁用功能",
+  "steps": [
+    "Define toggle points: identify the exact locations in your code where behavior should diverge based on a feature flag, keeping them at the highest possible level",
+    "Implement toggle infrastructure: create a simple toggle router or use a library that reads flag values from configuration, environment variables, or a remote service",
+    "Guard new code paths: wrap the new feature code behind conditional checks that consult the toggle router, keeping the old path as the default fallback",
+    "Test both paths: write tests that exercise the code with the toggle on and off to ensure both branches behave correctly",
+    "Clean up expired toggles: once a feature is fully rolled out, remove the toggle and its conditional branching to prevent toggle debt accumulation"
+  ],
+  "steps_zh": [
+    "定义开关点：确定代码中行为应基于功能标志产生分歧的精确位置，尽量将其放在最高层级",
+    "实现开关基础设施：创建简单的开关路由器或使用从配置、环境变量或远程服务读取标志值的库",
+    "保护新代码路径：将新功能代码包裹在查询开关路由器的条件检查后面，保持旧路径作为默认回退",
+    "测试两条路径：编写在开关打开和关闭状态下都执行代码的测试，确保两个分支行为正确",
+    "清理过期开关：功能完全上线后，移除开关及其条件分支以防止开关债务累积"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Toggle Point",
+    "Toggle Config",
+    "Release Flag",
+    "Kill Switch"
+  ],
+  "viz_labels_zh": [
+    "开关点",
+    "配置管理",
+    "发布标志",
+    "紧急关闭"
+  ],
+  "related": [
+    "strangler-fig-at-code-level",
+    "branch-by-abstraction",
+    "feature-branch-strategy",
+    "clean-code-principles"
+  ],
+  "tags": [
+    "feature-toggles",
+    "feature-flags",
+    "branching-in-code",
+    "conditional-logic",
+    "trunk-based"
+  ],
+  "origin_author": "Martin Fowler, 2010; Pete Hodgson, 2017",
+  "origin_source": "Refactoring (Fowler, 2018); Feature Toggles (Pete Hodgson, martinfowler.com)",
+  "origin_source_zh": "《重构》（Fowler，2018）；《功能开关》（Pete Hodgson，martinfowler.com）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Practicing trunk-based development where long-lived feature branches are avoided",
+    "Releasing partially complete features to production safely hidden behind a flag",
+    "Performing A/B testing or gradual rollouts by toggling features for specific user segments",
+    "Enabling operations teams to disable problematic features instantly without a code deployment"
+  ],
+  "when_to_use_zh": [
+    "实践主干开发，避免长生命周期的功能分支",
+    "将部分完成的功能安全地隐藏在标志后面发布到生产环境",
+    "通过为特定用户群体切换功能来进行A/B测试或渐进式发布",
+    "使运维团队能够无需代码部署即可即时禁用有问题的功能"
+  ],
+  "core_concepts": [
+    "Release Toggle: a short-lived flag that hides incomplete features in production until they are ready for launch",
+    "Experiment Toggle: a flag used for A/B testing that routes different users to different code paths to measure outcomes",
+    "Ops Toggle: a long-lived flag that allows operations to degrade or disable features under load without redeploying",
+    "Toggle Router: the decision engine that evaluates toggle state based on configuration, user context, or percentage rollout",
+    "Toggle Debt: the technical debt that accumulates when expired toggles and their conditional branches are not cleaned up"
+  ],
+  "core_concepts_zh": [
+    "发布开关：短生命周期的标志，在功能准备好发布前将未完成的功能隐藏在生产环境中",
+    "实验开关：用于A/B测试的标志，将不同用户路由到不同代码路径以衡量结果",
+    "运维开关：长生命周期的标志，允许运维在负载下降级或禁用功能而无需重新部署",
+    "开关路由器：根据配置、用户上下文或百分比发布评估开关状态的决策引擎",
+    "开关债务：过期开关及其条件分支未被清理时累积的技术债务"
+  ],
+  "timeline": [
+    [
+      "2010",
+      "Martin Fowler publishes 'FeatureToggle' on his blog, defining the core concept of branching in code"
+    ],
+    [
+      "2013",
+      "Release toggles become standard practice in continuous delivery pipelines at companies like Flickr and Etsy"
+    ],
+    [
+      "2017",
+      "Pete Hodgson publishes a comprehensive taxonomy of feature toggle types on martinfowler.com"
+    ],
+    [
+      "2020",
+      "Feature flag platforms like LaunchDarkly and Unleash achieve widespread adoption, making toggle management a first-class concern"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2010",
+      "Martin Fowler 在其博客上发表《FeatureToggle》，定义了代码中分支的核心概念"
+    ],
+    [
+      "2013",
+      "发布开关在 Flickr 和 Etsy 等公司的持续交付管道中成为标准实践"
+    ],
+    [
+      "2017",
+      "Pete Hodgson 在 martinfowler.com 上发表了功能开关类型的全面分类"
+    ],
+    [
+      "2020",
+      "LaunchDarkly 和 Unleash 等功能标志平台获得广泛采用，使开关管理成为一等关注点"
+    ]
+  ],
+  "dos": [
+    "Do place toggle points at the highest level possible because deeply nested toggles make code harder to reason about",
+    "Do set expiration dates for release toggles because forgotten flags become permanent complexity",
+    "Do test both toggle states in your test suite because untested paths will break silently in production",
+    "Do use a toggle naming convention because consistent names make it easy to search for and audit active flags"
+  ],
+  "dos_zh": [
+    "将开关点放在尽可能高的层级，因为深层嵌套的开关使代码更难理解",
+    "为发布开关设置过期日期，因为被遗忘的标志会成为永久的复杂性",
+    "在测试套件中测试两种开关状态，因为未测试的路径会在生产环境中默默失败",
+    "使用开关命名约定，因为一致的名称便于搜索和审计活跃的标志"
+  ],
+  "donts": [
+    "Don't nest multiple toggles in the same code path because the combinatorial explosion of states becomes untestable",
+    "Don't use toggles as a permanent branching mechanism because they should be temporary by design",
+    "Don't store toggle state only in code because it eliminates the ability to change flags without redeployment",
+    "Don't skip toggle cleanup after rollout because accumulated toggle debt degrades codebase readability"
+  ],
+  "donts_zh": [
+    "不要在同一代码路径中嵌套多个开关，因为状态的组合爆炸使其无法测试",
+    "不要将开关用作永久分支机制，因为它们在设计上应该是临时的",
+    "不要仅在代码中存储开关状态，因为这消除了无需重新部署即可更改标志的能力",
+    "不要在发布后跳过开关清理，因为累积的开关债务会降低代码库的可读性"
+  ],
+  "case_study_company": "Etsy",
+  "case_study": "Etsy pioneered the use of code-level feature toggles as part of their continuous deployment culture. With over 50 deployments per day, feature flags allowed engineers to merge incomplete features to trunk and deploy safely. Their internal 'Feature' API let developers toggle features per user, per percentage, or per employee group. When a new search ranking algorithm caused unexpected results, the ops team disabled it within seconds via a toggle without rolling back the deployment. Etsy's disciplined toggle cleanup process ensured that expired flags were removed within two weeks of full rollout.",
+  "case_study_zh": "Etsy 作为其持续部署文化的一部分，率先使用了代码级功能开关。每天超过 50 次部署，功能标志允许工程师将未完成的功能合并到主干并安全部署。他们内部的 'Feature' API 让开发者可以按用户、按百分比或按员工组切换功能。当新的搜索排序算法导致意外结果时，运维团队在几秒内通过开关禁用了它，而无需回滚部署。Etsy 严格的开关清理流程确保过期标志在完全发布后两周内被移除。",
+  "when_not_to_use": [
+    "Simple applications with a single deployment target and no need for gradual rollout",
+    "Code paths where the toggle conditional would add more complexity than the feature itself",
+    "Performance-critical hot paths where even a simple conditional check is unacceptable overhead",
+    "Teams without the discipline to clean up expired toggles, as toggle debt will degrade the codebase"
+  ],
+  "when_not_to_use_zh": [
+    "只有单一部署目标且无需渐进式发布的简单应用",
+    "开关条件会增加比功能本身更多复杂性的代码路径",
+    "即使简单条件检查也会带来不可接受开销的性能关键热路径",
+    "缺乏清理过期开关纪律的团队，因为开关债务会降低代码库质量"
+  ],
+  "adopters": [
+    "Etsy",
+    "Netflix",
+    "Facebook",
+    "Google",
+    "LaunchDarkly"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Pete Hodgson (2017). \"Feature Toggles (aka Feature Flags)\". martinfowler.com.",
+  "secondary_sources": [
+    "Martin Fowler (2010). \"FeatureToggle\". martinfowler.com.",
+    "Jez Humble and David Farley (2010). \"Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "strangler-fig-at-code-level",
+      "type": "complement"
+    },
+    {
+      "slug": "branch-by-abstraction",
+      "type": "complement"
+    },
+    {
+      "slug": "feature-branch-strategy",
+      "type": "alternative"
+    },
+    {
+      "slug": "clean-code-principles",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/feature-toggles-at-code-level",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/feature-toggles-at-code-level.md"
+}

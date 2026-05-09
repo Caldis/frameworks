@@ -1,0 +1,193 @@
+{
+  "id": 280,
+  "name": "Engineering Effectiveness",
+  "name_zh": "工程效能",
+  "slug": "engineering-effectiveness",
+  "category": "team",
+  "desc": "Measuring and improving developer productivity through evidence-based metrics, tooling investment, and systemic friction removal",
+  "desc_zh": "通过基于证据的指标、工具投资和系统性摩擦消除来衡量并提升开发者生产力",
+  "steps": [
+    "Baseline current state by collecting DORA metrics (deployment frequency, lead time, change failure rate, MTTR) alongside developer satisfaction surveys to understand both system throughput and human experience",
+    "Identify top friction sources through structured developer interviews and workflow analysis — common culprits are slow CI pipelines, manual toil, unclear ownership, and environment setup delays",
+    "Define a prioritized investment roadmap that targets the highest-leverage friction points: fast CI (<10 min), self-service environments, automated onboarding, and reliable test infrastructure",
+    "Establish an Engineering Effectiveness function or team (1-2 engineers per 100 developers) responsible for toolchain health, internal developer tooling, and periodic effectiveness surveys",
+    "Review metrics quarterly, share dashboards transparently with teams, and treat improvements as team-owned goals rather than top-down mandates"
+  ],
+  "steps_zh": [
+    "通过收集 DORA 指标（部署频率、前置时间、变更失败率、MTTR）以及开发者满意度调查建立基准，了解系统吞吐量和人员体验",
+    "通过结构化开发者访谈和工作流分析识别主要摩擦来源——常见问题包括缓慢的 CI 流水线、手动重复劳动、职责不清和环境搭建延迟",
+    "制定优先级投资路线图，针对最具杠杆效应的摩擦点：快速 CI（<10 分钟）、自助服务环境、自动化入职和可靠的测试基础设施",
+    "建立工程效能职能或团队（每 100 名开发者配置 1-2 名工程师），负责工具链健康、内部开发者工具和定期效能调查",
+    "每季度审查指标，向团队透明共享仪表板，将改进视为团队自主目标而非自上而下的指令"
+  ],
+  "ai_relevant": true,
+  "viz_type": "radar",
+  "viz_labels": [
+    "DORA Baseline",
+    "Friction Sources",
+    "Investment Roadmap",
+    "Effectiveness Team",
+    "Quarterly Review"
+  ],
+  "viz_labels_zh": [
+    "DORA基线",
+    "摩擦点",
+    "投资路线图",
+    "效能团队",
+    "季度评审"
+  ],
+  "related": [
+    "engineering-metrics-dashboard",
+    "developer-experience-framework",
+    "platform-engineering",
+    "blameless-postmortems"
+  ],
+  "tags": [
+    "developer-productivity",
+    "dora-metrics",
+    "space-framework",
+    "developer-experience",
+    "measurement"
+  ],
+  "origin_author": "Nicole Forsgren",
+  "origin_source": "Forsgren, N., Humble, J. & Kim, G. (2018). \"Accelerate\". IT Revolution Press; Forsgren, N. et al. (2021). \"The SPACE of Developer Productivity\". ACM Queue, Vol. 19.",
+  "origin_source_zh": "Forsgren, N., Humble, J. & Kim, G.（2018）「加速」，IT Revolution Press；Forsgren, N. 等（2021）「开发者生产力的 SPACE 框架」，ACM Queue，第 19 卷",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When engineering leadership needs objective evidence to justify tooling or platform investments beyond anecdotal developer complaints",
+    "When the organization is scaling past 50 engineers and delivery velocity is perceived to be slowing despite headcount growth",
+    "When developer attrition surveys cite frustrating tooling or slow feedback loops as a reason for leaving",
+    "When there is tension between product and engineering over whether engineering capacity is being used effectively"
+  ],
+  "when_to_use_zh": [
+    "当工程领导层需要客观证据来证明工具或平台投资合理，而不只是依赖开发者的感性抱怨时",
+    "当组织规模超过 50 名工程师，尽管人员增加但交付速度被认为在下降时",
+    "当开发者离职调查将令人沮丧的工具或缓慢的反馈循环列为离职原因时",
+    "当产品与工程之间对于工程容量是否被有效使用存在张力时"
+  ],
+  "core_concepts": [
+    "DORA Metrics: Four evidence-backed delivery metrics — Deployment Frequency, Lead Time for Changes, Change Failure Rate, and Mean Time to Restore — that predict both team performance and organizational outcomes",
+    "SPACE Framework: A multidimensional productivity model covering Satisfaction & wellbeing, Performance, Activity, Communication & collaboration, and Efficiency & flow — preventing over-reliance on any single throughput metric",
+    "Developer Cognitive Load: The mental overhead imposed by tooling complexity, unclear processes, and context switching; reducing it is the primary lever for improving individual effectiveness",
+    "Toil Elimination: Systematically identifying and automating repetitive, manual, undifferentiated work (build babysitting, manual deployments, ticket triaging) to return engineering time to impactful work",
+    "Effectiveness Function: A dedicated internal team or role that owns developer toolchain health, measures friction, and ships productivity improvements — treating developer experience as a first-class product"
+  ],
+  "core_concepts_zh": [
+    "DORA 指标：四个有证据支持的交付指标——部署频率、变更前置时间、变更失败率和平均恢复时间——可预测团队绩效和组织结果",
+    "SPACE 框架：多维生产力模型，涵盖满意度与幸福感、性能、活动、沟通与协作、效率与心流——防止过度依赖单一吞吐量指标",
+    "开发者认知负荷：工具复杂度、流程不清晰和上下文切换带来的心理开销；降低认知负荷是提升个人效能的主要杠杆",
+    "消除重复劳动：系统性识别并自动化重复的、手动的、无差异化的工作（构建监控、手动部署、工单分类），将工程时间还给有影响力的工作",
+    "效能职能：专门的内部团队或角色，负责开发者工具链健康、摩擦度量和效能改进交付，将开发者体验视为一等产品"
+  ],
+  "timeline": [
+    [
+      "2014",
+      "DORA (DevOps Research and Assessment) founded by Nicole Forsgren, Jez Humble, and Gene Kim — the first large-scale empirical study linking software delivery practices to organizational performance"
+    ],
+    [
+      "2018",
+      "Accelerate published, establishing the four DORA metrics as the canonical measure of software delivery performance and sparking the engineering effectiveness movement"
+    ],
+    [
+      "2021",
+      "SPACE framework published in ACM Queue, extending productivity measurement to include developer wellbeing and flow alongside pipeline metrics"
+    ],
+    [
+      "2023",
+      "McKinsey Developer Productivity report controversy prompts broad industry response; leading engineering orgs reaffirm multi-dimensional, team-level measurement over individual activity counting"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2014",
+      "DORA 由 Nicole Forsgren、Jez Humble 和 Gene Kim 创立——首次大规模实证研究将软件交付实践与组织绩效相关联"
+    ],
+    [
+      "2018",
+      "「加速」出版，将四个 DORA 指标确立为软件交付性能的权威衡量标准，引发工程效能运动"
+    ],
+    [
+      "2021",
+      "SPACE 框架发表于 ACM Queue，将生产力测量扩展到包括开发者幸福感和心流，而不仅限于流水线指标"
+    ],
+    [
+      "2023",
+      "麦肯锡开发者生产力报告引发争议，促使业界广泛回应；领先工程组织重申多维度、团队层级的测量，而非个人活动计数"
+    ]
+  ],
+  "dos": [
+    "Do measure at the team level rather than the individual level — engineering effectiveness metrics are systems indicators, not performance scorecards for individuals",
+    "Do combine quantitative pipeline metrics with qualitative developer surveys because neither alone gives the full picture of what is slowing teams down",
+    "Do share effectiveness dashboards directly with engineering teams so they can self-diagnose and own improvements rather than waiting for leadership to act",
+    "Do invest in the highest-leverage friction points first — slow CI and unreliable tests typically yield the largest productivity gains per dollar invested"
+  ],
+  "dos_zh": [
+    "在团队层面而非个人层面进行测量——工程效能指标是系统性指标，而非针对个人的绩效评分卡",
+    "将定量流水线指标与定性开发者调查相结合，因为两者单独都无法全面呈现团队减速的原因",
+    "直接向工程团队共享效能仪表板，使其能够自我诊断并主导改进，而不是等待领导层行动",
+    "优先投资最具杠杆效应的摩擦点——缓慢的 CI 和不可靠的测试通常能带来每投资元最大的生产力收益"
+  ],
+  "donts": [
+    "Don't use DORA metrics or any effectiveness metrics as individual performance evaluation — it drives gaming, destroys psychological safety, and corrupts the measurement",
+    "Don't track activity metrics (commits, PRs, lines of code) as proxies for productivity — they incentivize busywork and penalize high-impact, high-complexity changes",
+    "Don't compare effectiveness metrics across teams without accounting for domain complexity, team tenure, and system maturity",
+    "Don't launch an engineering effectiveness program without leadership commitment to act on the findings — measuring without improving erodes trust"
+  ],
+  "donts_zh": [
+    "不要将 DORA 指标或任何效能指标用于个人绩效评估——这会导致博弈行为、破坏心理安全感并污染测量本身",
+    "不要将活动指标（提交次数、PR 数量、代码行数）作为生产力的代理——它们激励无效忙碌，并惩罚高影响力、高复杂度的变更",
+    "不要在不考虑领域复杂度、团队年限和系统成熟度的情况下跨团队比较效能指标",
+    "不要在没有领导层承诺根据发现采取行动的情况下启动工程效能项目——测量而不改进会侵蚀信任"
+  ],
+  "case_study_company": "Shopify",
+  "case_study": "Shopify's engineering effectiveness team, described in public engineering blog posts from 2020-2022, applied the SPACE framework to diagnose that their primary productivity bottleneck was not headcount or tooling complexity but CI pipeline reliability and duration. After investing in hermetic build environments and parallelized test execution, their median CI time dropped from 22 minutes to under 8 minutes. Developer satisfaction scores (measured quarterly) improved by 18 percentage points. The team tracked Deployment Frequency as a leading indicator and observed it increase from 40 to over 200 deploys per day across the organization within 18 months of the initiative — a direct outcome of reduced cycle time and increased developer confidence in fast feedback.",
+  "case_study_zh": "Shopify 的工程效能团队在 2020-2022 年的公开工程博客中描述，他们运用 SPACE 框架诊断出主要生产力瓶颈不是人员不足或工具复杂度，而是 CI 流水线的可靠性和时长。在对密封构建环境和并行化测试执行进行投资后，中位 CI 时间从 22 分钟降至 8 分钟以内。季度测量的开发者满意度评分提升了 18 个百分点。团队将部署频率作为先导指标进行跟踪，在该计划启动后 18 个月内，组织每日部署次数从 40 次增加到 200 次以上——这是缩短周期时间和增强开发者对快速反馈信心的直接结果。",
+  "when_not_to_use": [
+    "Teams fewer than 10 engineers where the overhead of formal measurement programs exceeds the benefit and direct conversation is sufficient",
+    "Short-lived project teams (under 3 months) where there is insufficient baseline data to trend meaningful improvements",
+    "Organizations where metrics data is routinely used punitively — introducing measurement in low-trust environments causes gaming rather than improvement",
+    "Research or innovation teams where exploration velocity is the goal and pipeline throughput metrics are irrelevant"
+  ],
+  "when_not_to_use_zh": [
+    "少于 10 名工程师的团队，正式测量项目的开销超过其收益，直接沟通已足够",
+    "短期项目团队（少于 3 个月），缺乏足够基准数据来追踪有意义的改进趋势",
+    "指标数据惯常被用于惩罚性目的的组织——在低信任环境中引入测量会导致博弈而非改进",
+    "以探索速度为目标的研究或创新团队，流水线吞吐量指标在此无关紧要"
+  ],
+  "adopters": [
+    "Shopify",
+    "Google",
+    "LinkedIn",
+    "Stripe",
+    "Spotify"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability",
+    "usability",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Forsgren, N., Humble, J. & Kim, G. (2018). \"Accelerate: The Science of Lean Software and DevOps\". IT Revolution Press.",
+  "secondary_sources": [
+    "Forsgren, N. et al. (2021). \"The SPACE of Developer Productivity\". ACM Queue, Vol. 19.",
+    "DORA (2023). \"State of DevOps Report 2023\". dora.dev.",
+    "Greening, D. & Keane, S. (2021). \"Engineering Effectiveness at Shopify\". shopify.engineering."
+  ],
+  "typed_relations": [
+    {
+      "slug": "engineering-metrics-dashboard",
+      "type": "complement"
+    },
+    {
+      "slug": "developer-experience-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "platform-engineering",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/engineering-effectiveness",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/engineering-effectiveness.md"
+}

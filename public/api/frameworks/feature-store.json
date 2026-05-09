@@ -1,0 +1,198 @@
+{
+  "id": 309,
+  "name": "Feature Store",
+  "name_zh": "特征仓库",
+  "slug": "feature-store",
+  "category": "data",
+  "desc": "Centralized repository that manages the full lifecycle of ML features — from computation and storage to serving — enabling feature reuse, consistency between training and inference, and governance.",
+  "desc_zh": "集中式存储库，管理ML特征的完整生命周期——从计算和存储到服务——支持特征复用、训练与推理之间的一致性以及治理。",
+  "steps": [
+    "Define feature transformations as versioned, reusable feature pipelines (using Spark, dbt, or Python) that compute features from raw data sources on a scheduled or streaming basis",
+    "Store computed features in a dual-store architecture: an offline store (data warehouse or object store) for historical training data, and an online store (Redis, DynamoDB) for low-latency inference serving",
+    "Register features in a feature registry with metadata (owner, data type, freshness SLA, entity key, computation logic) so data scientists can discover and reuse features without recomputing",
+    "Enforce point-in-time correct feature retrieval for training datasets so features are fetched as they would have been known at the label timestamp, preventing training-serving skew",
+    "Monitor feature freshness, drift, and usage metrics to detect stale features, model degradation signals, and unused features consuming compute budget"
+  ],
+  "steps_zh": [
+    "将特征转换定义为版本化、可复用的特征管道（使用Spark、dbt或Python），按计划或流式方式从原始数据源计算特征",
+    "将计算出的特征存储在双存储架构中：离线存储（数据仓库或对象存储）用于历史训练数据，在线存储（Redis、DynamoDB）用于低延迟推理服务",
+    "在特征注册表中注册特征，包含元数据（所有者、数据类型、新鲜度SLA、实体键、计算逻辑），使数据科学家无需重新计算即可发现和复用特征",
+    "对训练数据集强制执行时间点正确的特征检索，确保特征按标签时间戳时已知的状态获取，防止训练与服务偏差",
+    "监控特征新鲜度、漂移和使用指标，以检测过时特征、模型退化信号和消耗计算预算的未使用特征"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Feature Pipeline",
+    "Dual Store",
+    "Feature Registry",
+    "Point-in-Time",
+    "Drift Monitor"
+  ],
+  "viz_labels_zh": [
+    "特征管道",
+    "双存储",
+    "特征注册",
+    "时间点回溯",
+    "漂移监控"
+  ],
+  "related": [
+    "feature-store-pattern",
+    "data-catalog",
+    "data-lineage-governance",
+    "data-lakehouse",
+    "data-mesh"
+  ],
+  "tags": [
+    "feature-store",
+    "machine-learning",
+    "mlops",
+    "uber",
+    "michelangelo",
+    "training-serving-skew"
+  ],
+  "origin_author": "Uber (Michelangelo)",
+  "origin_source": "Hermann, J. & Del Balso, M. (2017). 'Meet Michelangelo: Uber's Machine Learning Platform'. Uber Engineering Blog. eng.uber.com.",
+  "origin_source_zh": "Hermann, J. & Del Balso, M.（2017）。「认识Michelangelo：Uber的机器学习平台」。Uber工程博客。eng.uber.com。",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When multiple ML teams are independently computing the same features (e.g., user age, trip count, churn score) from the same raw data sources, creating duplicate computation and inconsistency",
+    "When training-serving skew is a recurring source of model performance degradation because features are computed differently in the batch training pipeline and the real-time inference path",
+    "When regulatory compliance (GDPR right-to-erasure, CCPA) requires point-in-time auditable records of which feature values were used to make a specific ML-driven decision",
+    "When the organization operates more than 10 production ML models and the total cost of per-model feature engineering is significant enough to justify a shared platform"
+  ],
+  "when_to_use_zh": [
+    "当多个ML团队从相同原始数据源独立计算相同特征（如用户年龄、行程数、流失评分），产生重复计算和不一致性时",
+    "当训练与服务偏差是模型性能退化的反复来源，因为特征在批量训练管道和实时推理路径中计算方式不同时",
+    "当监管合规（GDPR删除权、CCPA）要求对特定ML驱动决策使用的特征值进行时间点可审计记录时",
+    "当组织运营超过10个生产ML模型，且每个模型特征工程的总成本足以证明共享平台的合理性时"
+  ],
+  "core_concepts": [
+    "Offline store: the historical feature store backed by a column-oriented data warehouse (BigQuery, Snowflake) or object store (S3 + Parquet) used to generate training datasets at any historical point in time",
+    "Online store: a low-latency key-value store (Redis, DynamoDB, Bigtable) that holds the latest feature values for each entity (user ID, item ID) and serves features to real-time inference engines at p99 < 10ms",
+    "Training-serving skew: the critical problem that arises when feature computation logic differs between training time and inference time, causing the model to see different feature distributions in production than it was trained on",
+    "Point-in-time correct retrieval: the mechanism of joining feature values to training labels using only feature values that existed at or before the label timestamp, preventing data leakage and future information contamination"
+  ],
+  "core_concepts_zh": [
+    "离线存储：由列式数据仓库（BigQuery、Snowflake）或对象存储（S3 + Parquet）支持的历史特征存储，用于在任意历史时间点生成训练数据集",
+    "在线存储：低延迟键值存储（Redis、DynamoDB、Bigtable），保存每个实体（用户ID、商品ID）的最新特征值，以p99 < 10ms的速度为实时推理引擎提供特征",
+    "训练与服务偏差：当特征计算逻辑在训练时和推理时不同时出现的关键问题，导致模型在生产环境中看到与训练时不同的特征分布",
+    "时间点正确检索：使用标签时间戳时或之前存在的特征值将特征值与训练标签连接的机制，防止数据泄漏和未来信息污染"
+  ],
+  "timeline": [
+    [
+      "2017",
+      "Uber publishes Michelangelo, the first widely-documented feature store, demonstrating how a centralized platform eliminates duplicate feature engineering across 200+ ML models"
+    ],
+    [
+      "2019",
+      "Feast (Feature Store for ML) released as open source by GoJek and Google, providing the first vendor-neutral feature store implementation"
+    ],
+    [
+      "2021",
+      "Tecton, Hopsworks, and SageMaker Feature Store launch as managed feature store services; feature stores become a recognized MLOps platform category"
+    ],
+    [
+      "2023",
+      "Databricks Feature Store integrated into Unity Catalog; feature stores converge with data catalogs as organizations seek unified governance across analytics and ML assets"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2017",
+      "Uber发布Michelangelo，第一个有广泛文档记录的特征仓库，展示集中式平台如何消除200多个ML模型的重复特征工程"
+    ],
+    [
+      "2019",
+      "GoJek和Google以开源方式发布Feast（ML特征仓库），提供第一个厂商中立的特征仓库实现"
+    ],
+    [
+      "2021",
+      "Tecton、Hopsworks和SageMaker特征仓库作为托管特征仓库服务推出；特征仓库成为公认的MLOps平台类别"
+    ],
+    [
+      "2023",
+      "Databricks特征仓库集成到Unity Catalog；随着组织寻求跨分析和ML资产的统一治理，特征仓库与数据目录逐渐融合"
+    ]
+  ],
+  "dos": [
+    "Do separate the offline and online store architectures from day one because conflating historical training storage with real-time serving storage leads to unacceptable latency trade-offs",
+    "Do enforce point-in-time correct feature retrieval in all training dataset generation pipelines because even a single data leakage incident can invalidate months of model evaluation metrics",
+    "Do include feature freshness SLAs in the registry and alert when features become stale because a stale feature at inference time is equivalent to missing data from the model's perspective",
+    "Do version feature definitions alongside model versions in the model registry so that model rollbacks automatically revert to the correct feature computation logic"
+  ],
+  "dos_zh": [
+    "从第一天起就分离离线和在线存储架构，因为将历史训练存储与实时服务存储混淆会导致不可接受的延迟权衡",
+    "在所有训练数据集生成管道中强制执行时间点正确的特征检索，因为即使一次数据泄漏事件也可能使数月的模型评估指标失效",
+    "在注册表中包含特征新鲜度SLA并在特征过时时告警，因为推理时的过时特征相当于模型视角的缺失数据",
+    "将特征定义与模型注册表中的模型版本一起版本化，使模型回滚自动恢复到正确的特征计算逻辑"
+  ],
+  "donts": [
+    "Don't share the same feature pipeline for both training and real-time inference without explicit validation that the logic is identical; code duplication is safer than silent divergence",
+    "Don't store raw events in the feature store; the feature store should contain pre-aggregated features, not raw data — raw event storage belongs in the data lake",
+    "Don't allow data scientists to create ephemeral, undocumented feature transformations outside the feature store; all production features must be registered, tested, and governed",
+    "Don't deploy a feature store before you have at least two models that could share features; the platform overhead is not justified for a single model"
+  ],
+  "donts_zh": [
+    "不要在没有明确验证逻辑相同的情况下为训练和实时推理共享相同的特征管道；代码重复比无声的发散更安全",
+    "不要在特征仓库中存储原始事件；特征仓库应包含预聚合的特征，而非原始数据——原始事件存储属于数据湖",
+    "不要允许数据科学家在特征仓库外创建临时的、未记录的特征转换；所有生产特征必须注册、测试和治理",
+    "在至少有两个可以共享特征的模型之前不要部署特征仓库；对单个模型而言平台开销不合理"
+  ],
+  "case_study_company": "Airbnb",
+  "case_study": "Airbnb built Zipline, its internal feature store, to serve 150+ ML models used in search ranking, price suggestion, fraud detection, and guest trust scoring. Before Zipline, data scientists spent 60% of their time on feature engineering; after, they reported spending under 20% because most features for a new model already existed in the store. Zipline's point-in-time correct training dataset generation prevented a class of training-serving skew bugs that had caused Airbnb's search ranking model to perform 8% worse in production than in offline evaluation. The platform processes 1.5 million feature computation jobs per day and serves features at p99 latency of 4ms.",
+  "case_study_zh": "Airbnb构建了Zipline，其内部特征仓库，为搜索排名、价格建议、欺诈检测和房客信任评分中使用的150多个ML模型提供服务。在Zipline之前，数据科学家花费60%的时间在特征工程上；之后，他们报告花费不到20%，因为新模型的大多数特征已经存在于仓库中。Zipline的时间点正确训练数据集生成防止了一类训练与服务偏差错误，这些错误曾导致Airbnb的搜索排名模型在生产环境中比离线评估差8%。该平台每天处理150万个特征计算作业，以4ms的p99延迟提供特征。",
+  "when_not_to_use": [
+    "When an organization has fewer than 5 ML models in production; the operational overhead of a feature store exceeds its benefits at this scale",
+    "When all ML models are batch-inference only with no real-time serving requirements; a simple feature engineering pipeline into the data warehouse is sufficient",
+    "When data science teams are small (fewer than 5 people) and informal collaboration is sufficient to avoid duplicate feature engineering without platform overhead",
+    "When ML models use unstructured data (images, text, audio) as primary inputs; feature stores are optimized for tabular entity-based features, not embedding stores"
+  ],
+  "when_not_to_use_zh": [
+    "当组织在生产中有少于5个ML模型时；特征仓库的运营开销在此规模超过其收益",
+    "当所有ML模型仅为批量推理且没有实时服务要求时；将简单特征工程管道导入数据仓库已足够",
+    "当数据科学团队规模较小（少于5人）且非正式协作足以避免重复特征工程而无平台开销时",
+    "当ML模型以非结构化数据（图像、文本、音频）作为主要输入时；特征仓库针对基于表格实体的特征进行优化，而非嵌入存储"
+  ],
+  "adopters": [
+    "Uber",
+    "Airbnb",
+    "LinkedIn",
+    "Twitter",
+    "Stripe",
+    "DoorDash"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "scalability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Hermann, J. & Del Balso, M. (2017). 'Meet Michelangelo: Uber's Machine Learning Platform'. Uber Engineering Blog. eng.uber.com/michelangelo-machine-learning-platform.",
+  "secondary_sources": [
+    "Ganti, R. et al. (2020). 'Feast: Bridging ML Models and Data'. GoJek Engineering Blog. medium.com/gojekengineering.",
+    "Zaharia, M. et al. (2022). 'Designing Machine Learning Systems'. O'Reilly Media. Chapter 5: Feature Engineering.",
+    "Tecton (2021). 'The Feature Store: A Guide to ML Feature Management'. tecton.ai/blog."
+  ],
+  "typed_relations": [
+    {
+      "slug": "feature-store-pattern",
+      "type": "related"
+    },
+    {
+      "slug": "data-lakehouse",
+      "type": "complement"
+    },
+    {
+      "slug": "data-catalog",
+      "type": "complement"
+    },
+    {
+      "slug": "data-lineage-governance",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/feature-store",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/feature-store.md"
+}

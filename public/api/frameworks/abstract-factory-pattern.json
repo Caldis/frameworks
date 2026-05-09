@@ -1,0 +1,174 @@
+{
+  "id": 228,
+  "name": "Abstract Factory Pattern",
+  "name_zh": "抽象工厂模式",
+  "slug": "abstract-factory-pattern",
+  "category": "coding",
+  "desc": "Create families of related objects without specifying concrete classes",
+  "desc_zh": "在不指定具体类的情况下创建一系列相关或相互依赖的对象",
+  "steps": [
+    "Identify product families: group related product types (e.g., Button + Checkbox for a UI toolkit) into coherent families per platform or variant",
+    "Define Abstract Product interfaces: declare an interface for each product type in the family so clients depend on abstractions",
+    "Define the Abstract Factory interface: declare creation methods for each product type, returning Abstract Product interfaces",
+    "Implement Concrete Factories: create one factory class per product family, implementing all creation methods to produce the matching product variants",
+    "Configure the application with a Concrete Factory: inject or select the appropriate Concrete Factory at startup; all downstream code uses only the Abstract Factory"
+  ],
+  "steps_zh": [
+    "识别产品族：将相关产品类型（如 UI 工具包的按钮和复选框）按平台或变体分组为连贯的产品族",
+    "定义抽象产品接口：为族中每种产品类型声明接口，使客户端依赖抽象",
+    "定义抽象工厂接口：为每种产品类型声明创建方法，返回抽象产品接口",
+    "实现具体工厂：为每个产品族创建一个工厂类，实现所有创建方法以生产匹配的产品变体",
+    "用具体工厂配置应用：在启动时注入或选择合适的具体工厂；所有下游代码只使用抽象工厂"
+  ],
+  "ai_relevant": false,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Abstract Factory",
+    "Concrete Factory",
+    "Product A",
+    "Product B"
+  ],
+  "viz_labels_zh": [
+    "抽象工厂",
+    "具体工厂",
+    "产品A",
+    "产品B"
+  ],
+  "related": [
+    "factory-method-pattern",
+    "solid-principles",
+    "dependency-injection"
+  ],
+  "tags": [
+    "gof",
+    "creational",
+    "design-patterns",
+    "object-creation",
+    "oop"
+  ],
+  "origin_author": "Gamma, Helm, Johnson, Vlissides, 1994",
+  "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
+  "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "A system must be independent of how its products are created and composed, and must work with multiple product families",
+    "You want to enforce consistency across a family of related products (e.g., all UI widgets must match the same theme)",
+    "You need to swap entire product families at runtime — e.g., switching between a cloud provider's SDK implementations"
+  ],
+  "when_to_use_zh": [
+    "系统必须独立于其产品的创建和组合方式，且必须与多个产品族协作",
+    "希望强制一系列相关产品之间的一致性（如所有 UI 控件必须符合同一主题）",
+    "需要在运行时切换整个产品族——例如切换云服务商的 SDK 实现"
+  ],
+  "core_concepts": [
+    "Abstract Factory: the interface declaring creation methods for all product types in a family",
+    "Concrete Factory: implements the Abstract Factory to produce a coherent set of product variants for one platform or theme",
+    "Product family consistency: the pattern guarantees that products from the same factory are designed to work together"
+  ],
+  "core_concepts_zh": [
+    "抽象工厂：声明为族中所有产品类型创建方法的接口",
+    "具体工厂：实现抽象工厂，为一个平台或主题生产一套连贯的产品变体",
+    "产品族一致性：该模式保证来自同一工厂的产品被设计为协同工作"
+  ],
+  "timeline": [
+    [
+      "1994",
+      "GoF introduce Abstract Factory as an extension of Factory Method for product families"
+    ],
+    [
+      "1998",
+      "Abstract Factory becomes the canonical solution for Java Look-and-Feel (PLAF) in Swing"
+    ],
+    [
+      "2010",
+      "Cloud SDKs adopt Abstract Factory to let applications switch between AWS, Azure, and GCP implementations"
+    ],
+    [
+      "2020",
+      "Abstract Factory influences plugin architectures in VS Code and IntelliJ for multi-platform extension APIs"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1994",
+      "GoF 将抽象工厂作为工厂方法针对产品族的扩展引入"
+    ],
+    [
+      "1998",
+      "抽象工厂成为 Swing 中 Java 外观（PLAF）的标准解决方案"
+    ],
+    [
+      "2010",
+      "云 SDK 采用抽象工厂，使应用可在 AWS、Azure 和 GCP 实现间切换"
+    ],
+    [
+      "2020",
+      "抽象工厂影响 VS Code 和 IntelliJ 的插件架构，用于多平台扩展 API"
+    ]
+  ],
+  "dos": [
+    "Do introduce Abstract Factory only when you genuinely need multiple families; premature abstraction is costly",
+    "Do keep each Concrete Factory cohesive — every product it creates should belong to the same family or theme",
+    "Do inject the Abstract Factory at the application composition root so the rest of the code never knows which family is active"
+  ],
+  "dos_zh": [
+    "仅在真正需要多个产品族时引入抽象工厂；过早抽象代价高昂",
+    "保持每个具体工厂的内聚性——它创建的每个产品都应属于同一族或主题",
+    "在应用组合根处注入抽象工厂，使其余代码永远不知道哪个产品族处于激活状态"
+  ],
+  "donts": [
+    "Don't add new product types to an existing Abstract Factory lightly — it forces changes to all Concrete Factories",
+    "Don't use Abstract Factory when Factory Method is sufficient; the added layer of abstraction has a real cost",
+    "Don't let Concrete Factories hold mutable state; they should be stateless creation services"
+  ],
+  "donts_zh": [
+    "不要轻易向现有抽象工厂添加新产品类型——这会迫使所有具体工厂做出修改",
+    "当工厂方法已足够时，不要使用抽象工厂；额外的抽象层有真实代价",
+    "不要让具体工厂持有可变状态；它们应该是无状态的创建服务"
+  ],
+  "case_study_company": "Java Swing",
+  "case_study": "Java Swing's Pluggable Look-and-Feel (PLAF) architecture is Abstract Factory in action. The LookAndFeel class acts as the Abstract Factory, declaring creation methods for every UI component (Button, TextField, ScrollBar). Concrete factories like MetalLookAndFeel and WindowsLookAndFeel implement all methods, ensuring every widget produced in a session is visually consistent. Switching the entire UI theme requires changing only a single factory at startup.",
+  "case_study_zh": "Java Swing 的可插拔外观（PLAF）架构是抽象工厂的实际应用。LookAndFeel 类充当抽象工厂，为每个 UI 组件（按钮、文本框、滚动条）声明创建方法。MetalLookAndFeel 和 WindowsLookAndFeel 等具体工厂实现所有方法，确保会话中产生的每个控件在视觉上保持一致。切换整个 UI 主题只需在启动时更换一个工厂。",
+  "when_not_to_use": [
+    "When the application only has one product family and no plans to support others",
+    "Small projects where the interface hierarchy adds more boilerplate than it saves",
+    "When dependency injection containers already manage multi-implementation selection, making an explicit factory redundant"
+  ],
+  "when_not_to_use_zh": [
+    "应用只有一个产品族且没有支持其他族的计划时",
+    "小型项目中，接口层次结构增加的样板代码多于节省的代码",
+    "依赖注入容器已管理多实现选择，使显式工厂变得多余时"
+  ],
+  "adopters": [
+    "Java Swing (PLAF)",
+    "AWS SDK",
+    "Qt Framework",
+    "IntelliJ Plugin API"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+  "secondary_sources": [
+    "Freeman, E., Robson, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+    "Larman, C. (2004). \"Applying UML and Patterns\". Prentice Hall."
+  ],
+  "typed_relations": [
+    {
+      "slug": "factory-method-pattern",
+      "type": "extends"
+    },
+    {
+      "slug": "solid-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "dependency-injection",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/abstract-factory-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/abstract-factory-pattern.md"
+}

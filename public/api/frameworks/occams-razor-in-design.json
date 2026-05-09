@@ -1,0 +1,187 @@
+{
+  "id": 253,
+  "name": "Occam's Razor in Design",
+  "name_zh": "奥卡姆剃刀原则（设计应用）",
+  "slug": "occams-razor-in-design",
+  "category": "thinking",
+  "desc": "Among competing design solutions, prefer the simplest one that fully satisfies the requirements",
+  "desc_zh": "在相互竞争的设计方案中，优先选择能完全满足需求的最简单方案",
+  "steps": [
+    "Enumerate all candidate solutions to the design problem without filtering, including both simple and complex options, to ensure the simplest solution is visible and not prematurely discarded",
+    "Identify the minimum set of requirements that any solution must satisfy: functional requirements (what it must do), non-functional requirements (performance, reliability), and constraints (team skill, timeline)",
+    "For each candidate solution, verify it satisfies all minimum requirements and identify any additional assumptions, dependencies, or entities it introduces beyond what the problem strictly requires",
+    "Apply Occam's Razor: select the solution that satisfies all requirements while introducing the fewest additional entities, assumptions, and moving parts — not the most elegant solution, but the most parsimonious one",
+    "Document which requirements the chosen solution satisfies and which optional complexity was deliberately omitted, so future teams understand what was simplified and can revisit when complexity becomes justified"
+  ],
+  "steps_zh": [
+    "在不过滤的情况下列举设计问题的所有候选方案，包括简单和复杂的选项，确保最简单的方案可见且不被过早丢弃",
+    "识别任何方案必须满足的最小需求集合：功能需求（必须做什么）、非功能需求（性能、可靠性）和约束条件（团队技能、时间线）",
+    "对每个候选方案验证其是否满足所有最小需求，并识别其引入的超出问题严格所需的额外假设、依赖或实体",
+    "应用奥卡姆剃刀：选择在满足所有需求的同时引入最少额外实体、假设和活动部件的方案——不是最优雅的方案，而是最简约的方案",
+    "记录所选方案满足的需求以及被刻意省略的可选复杂性，使未来的团队了解什么被简化了，并在复杂性变得合理时可以重新审视"
+  ],
+  "ai_relevant": true,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "Complex",
+    "Simplified",
+    "Minimal",
+    "Essential"
+  ],
+  "viz_labels_zh": [
+    "复杂方案",
+    "简化方案",
+    "精简方案",
+    "最简本质"
+  ],
+  "related": [
+    "worse-is-better",
+    "complexity-budget",
+    "first-principles-thinking",
+    "trade-off-sliders"
+  ],
+  "tags": [
+    "simplicity",
+    "parsimony",
+    "decision-making",
+    "design-philosophy",
+    "complexity"
+  ],
+  "origin_author": "William of Ockham (c. 1287-1347); design application by various authors",
+  "origin_source": "Summa Logicae (William of Ockham, c. 1323); applied to software: 'The Art of Unix Programming' (Eric S. Raymond, Addison-Wesley, 2003)",
+  "origin_source_zh": "《逻辑大全》（奥卡姆的威廉，约1323年）；软件领域应用：《Unix编程艺术》（Eric S. Raymond，Addison-Wesley，2003）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "When evaluating multiple architectural approaches that all satisfy requirements and you need a principled way to choose between them",
+    "When a proposed solution introduces abstractions, patterns, or infrastructure that are not required by any current or near-term requirement",
+    "When reviewing code or design proposals where added complexity is justified by theoretical future scenarios rather than demonstrated present need",
+    "When debugging a system by choosing the simplest explanation for observed behavior before testing more complex hypotheses"
+  ],
+  "when_to_use_zh": [
+    "当评估多个都满足需求的架构方案，需要有原则的方式在它们之间做出选择时",
+    "当提议的方案引入了任何当前或近期需求都不需要的抽象、模式或基础设施时",
+    "当审查代码或设计提案，其中增加的复杂性是由理论上的未来场景而非已证明的当前需求来证明的时",
+    "当调试系统时，在测试更复杂的假设之前，为观察到的行为选择最简单的解释"
+  ],
+  "core_concepts": [
+    "Parsimony principle: the razor does not mean 'always choose the simplest solution' but 'do not multiply entities beyond necessity' — a more complex solution is justified only when simpler alternatives genuinely fail to meet requirements",
+    "Entity multiplication: in software design, 'entities' are abstractions, services, dependencies, configuration points, and moving parts; each additional entity adds cognitive overhead, failure modes, and maintenance cost",
+    "Sufficiency threshold: Occam's Razor applies after a solution crosses the sufficiency threshold (satisfies all requirements); among sufficient solutions, prefer the simplest — it does not justify choosing an insufficient simple solution over a sufficient complex one",
+    "Explanatory power: in debugging and root cause analysis, Occam's Razor favors the hypothesis that explains all observed symptoms with the fewest independent assumptions, guiding investigation toward the most likely root cause first"
+  ],
+  "core_concepts_zh": [
+    "简约原则：奥卡姆剃刀并不意味着「总是选择最简单的方案」，而是「不要在不必要的情况下增加实体」——只有当更简单的替代方案确实无法满足需求时，更复杂的方案才是合理的",
+    "实体乘增：在软件设计中，「实体」是抽象、服务、依赖、配置点和活动部件；每个额外实体都会增加认知开销、故障模式和维护成本",
+    "充分性阈值：奥卡姆剃刀在方案越过充分性阈值（满足所有需求）后才适用；在充分的方案中，优先选择最简单的——它不能证明选择不充分的简单方案优于充分的复杂方案",
+    "解释力：在调试和根因分析中，奥卡姆剃刀支持用最少独立假设解释所有观察症状的假设，引导调查首先朝向最可能的根本原因"
+  ],
+  "timeline": [
+    [
+      "c.1323",
+      "William of Ockham articulates 'entia non sunt multiplicanda praeter necessitatem' (entities must not be multiplied beyond necessity) in Summa Logicae, formalizing the parsimony principle"
+    ],
+    [
+      "1960s",
+      "Software engineering pioneers including Dijkstra and Wirth apply parsimony to program design; 'structured programming' is partly an expression of Occam's Razor applied to control flow"
+    ],
+    [
+      "2003",
+      "Eric S. Raymond's 'The Art of Unix Programming' codifies the Rule of Parsimony as one of 17 Unix design rules, explicitly connecting Occam's Razor to software architecture decisions"
+    ],
+    [
+      "2010s",
+      "Lean startup and agile movements reinforce Occam's Razor through YAGNI (You Ain't Gonna Need It) and minimal viable product thinking, applying parsimony to feature decisions"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "约1323",
+      "奥卡姆的威廉在《逻辑大全》中阐述「实体不应超出必要而增加」，将简约原则系统化"
+    ],
+    [
+      "1960年代",
+      "包括Dijkstra和Wirth在内的软件工程先驱将简约原则应用于程序设计；「结构化编程」部分是奥卡姆剃刀应用于控制流的体现"
+    ],
+    [
+      "2003",
+      "Eric S. Raymond的《Unix编程艺术》将简约规则编入17条Unix设计原则之一，明确将奥卡姆剃刀与软件架构决策相连"
+    ],
+    [
+      "2010年代",
+      "精益创业和敏捷运动通过YAGNI（你不会需要它）和最小可行产品思维强化了奥卡姆剃刀，将简约原则应用于功能决策"
+    ]
+  ],
+  "dos": [
+    "Do require that any added complexity demonstrate a concrete, present requirement it satisfies, not a hypothetical future scenario, because most hypothetical requirements never materialize",
+    "Do use the razor as a tiebreaker between solutions that all satisfy requirements, not as a way to justify choosing an insufficient solution because it is simpler",
+    "Do apply the razor recursively: after choosing the simplest solution, look for simplifications within the chosen solution that preserve all requirements",
+    "Do count dependencies, configuration parameters, and abstractions as entities that must be justified, not just classes and services"
+  ],
+  "dos_zh": [
+    "要求任何增加的复杂性证明它满足的是具体的当前需求，而非假设性的未来场景，因为大多数假设性需求从未实现",
+    "将奥卡姆剃刀用作满足需求的方案之间的决胜因素，而不是用来证明选择不充分方案因为它更简单的理由",
+    "递归应用奥卡姆剃刀：在选择最简单的方案后，在所选方案内寻找保留所有需求的简化空间",
+    "将依赖项、配置参数和抽象计为必须证明其合理性的实体，而不仅仅是类和服务"
+  ],
+  "donts": [
+    "Don't conflate Occam's Razor with 'simpler is always better'; a simple solution that fails to meet a required non-functional property (latency, fault tolerance) is not parsimonious, it is incomplete",
+    "Don't apply the razor to rule out legitimate complexity driven by genuine requirements such as security, compliance, or reliability constraints that the domain actually imposes",
+    "Don't use the razor as a rhetorical device to dismiss architectural concerns without engaging with them; 'this is too complex' is not an application of Occam's Razor without a simpler sufficient alternative",
+    "Don't apply the razor only at design time; revisit it during code review and refactoring to remove complexity that was once necessary but is no longer justified by current requirements"
+  ],
+  "donts_zh": [
+    "不要将奥卡姆剃刀与「越简单越好」混为一谈；无法满足必要非功能属性（延迟、容错）的简单方案不是简约，而是不完整",
+    "不要将奥卡姆剃刀用于排除由安全、合规或可靠性约束等领域实际施加的真实需求所驱动的合理复杂性",
+    "不要将奥卡姆剃刀用作不经过充分讨论就驳回架构关切的修辞手段；「这太复杂了」在没有更简单的充分替代方案时，并不是奥卡姆剃刀的应用",
+    "不要只在设计时应用奥卡姆剃刀；在代码审查和重构期间重新审视它，删除曾经必要但当前需求不再证明其合理性的复杂性"
+  ],
+  "case_study_company": "Amazon Web Services",
+  "case_study": "Amazon's S3 API design is a canonical example of Occam's Razor applied to cloud service design. When designing S3 in 2006, Amazon chose the simplest possible object storage model: buckets containing flat key-value pairs with no directory hierarchy, no transactions, and eventually-consistent reads. Every feature request for POSIX filesystem semantics, atomic operations, or strong consistency was rejected as unnecessary complexity for the primary use case of durable object storage. This parsimonious design scaled to trillions of objects and enabled S3 to become the foundational storage primitive for the entire cloud industry.",
+  "case_study_zh": "Amazon S3的API设计是奥卡姆剃刀应用于云服务设计的典范。2006年设计S3时，Amazon选择了尽可能简单的对象存储模型：包含扁平键值对的存储桶，没有目录层次结构、没有事务、最终一致性读取。每个要求POSIX文件系统语义、原子操作或强一致性的功能请求都被拒绝，认为对于持久对象存储这个主要用例来说是不必要的复杂性。这种简约的设计扩展到了数万亿个对象，并使S3成为整个云行业的基础存储原语。",
+  "when_not_to_use": [
+    "When 'simplicity' conflicts with safety in safety-critical domains (aviation, medical devices, financial clearing); correctness and fault tolerance requirements justify complexity that Occam's Razor would otherwise prune",
+    "When simplicity is being used to avoid necessary complexity that the problem domain genuinely imposes (e.g., arguing that distributed systems should be 'simpler' when the requirements demand distribution)",
+    "When the team is using the principle to resist learning or adopting established patterns that are more complex than familiar approaches but are well-justified",
+    "When evaluating solutions at different abstraction levels; the razor applies within a given abstraction level, not across levels (a database is 'more complex' than a text file, but the complexity is justified by its functional capabilities)"
+  ],
+  "when_not_to_use_zh": [
+    "当「简单」与安全关键领域（航空、医疗设备、金融清算）的安全性相冲突时；正确性和容错要求证明了奥卡姆剃刀原本会削减的复杂性的合理性",
+    "当简单性被用于回避问题领域真正施加的必要复杂性时（例如：在需求要求分布式的情况下，主张分布式系统应该「更简单」）",
+    "当团队使用该原则来抵制学习或采用比熟悉方法更复杂但有充分理由的既定模式时",
+    "当在不同抽象层次上评估方案时；奥卡姆剃刀适用于给定抽象层次内，而非跨层次（数据库比文本文件「更复杂」，但其功能能力证明了这种复杂性的合理性）"
+  ],
+  "adopters": [
+    "Amazon Web Services — S3's flat key-value model, SQS's at-least-once queue, and Lambda's stateless function model all embody parsimonious design",
+    "Unix/Linux — each tool does one thing well; pipes compose simple tools into complex workflows rather than building monolithic complex tools",
+    "JSON — replaced XML for most REST APIs by being a simpler, less expressive format that was sufficient for the majority of use cases",
+    "SQLite — deliberately omits features like network access, user management, and stored procedures to remain the simplest embeddable relational database",
+    "Go programming language — designed with explicit parsimony (no generics until 1.18, no exceptions, no inheritance) based on Google's experience that simplicity improves large-team maintainability"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Ockham, W. (c. 1323). Summa Logicae. Translated in: Spade, P. V. (1995). Five Texts on the Mediaeval Problem of Universals. Hackett.",
+  "secondary_sources": [
+    "Raymond, E. S. (2003). The Art of Unix Programming. Addison-Wesley. Chapter 1: The Rule of Parsimony.",
+    "Gall, J. (1975). Systemantics: How Systems Work and Especially How They Fail. Quadrangle. (Source of 'A complex system that works is invariably found to have evolved from a simple system that worked.')",
+    "Spolsky, J. (2002). 'The Law of Leaky Abstractions.' Joel on Software. joelonsoftware.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "worse-is-better",
+      "type": "complement"
+    },
+    {
+      "slug": "complexity-budget",
+      "type": "complement"
+    },
+    {
+      "slug": "first-principles-thinking",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/occams-razor-in-design",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/occams-razor-in-design.md"
+}

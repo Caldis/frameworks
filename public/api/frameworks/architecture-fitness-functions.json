@@ -1,0 +1,196 @@
+{
+  "id": 171,
+  "name": "Architecture Fitness Functions",
+  "name_zh": "架构适应度函数",
+  "slug": "architecture-fitness-functions",
+  "category": "architecture",
+  "desc": "Automated, objective compliance checks that continuously validate whether an architecture meets its defined characteristics",
+  "desc_zh": "自动化的客观合规检查，持续验证架构是否满足其定义的特征",
+  "steps": [
+    "Identify the critical architecture characteristics (e.g., modularity, performance, security) that must be preserved as the system evolves",
+    "For each characteristic, define a measurable fitness function with a clear threshold or acceptance criterion",
+    "Implement the fitness functions as automated tests: unit-level (dependency checks), integration-level (latency budgets), or holistic (deployment frequency)",
+    "Integrate fitness functions into the CI/CD pipeline so they run automatically on every build or deployment",
+    "Review and update fitness functions regularly as architecture goals evolve, removing obsolete checks and adding new ones"
+  ],
+  "steps_zh": [
+    "识别系统演进中必须保持的关键架构特征（如模块性、性能、安全性）",
+    "为每个特征定义可度量的适应度函数，带有明确的阈值或验收标准",
+    "将适应度函数实现为自动化测试：单元级（依赖检查）、集成级（延迟预算）或全局级（部署频率）",
+    "将适应度函数集成到CI/CD管道中，使其在每次构建或部署时自动运行",
+    "随着架构目标的演进定期审查和更新适应度函数，移除过时的检查并添加新的"
+  ],
+  "ai_relevant": true,
+  "viz_type": "radar",
+  "viz_labels": [
+    "Coupling",
+    "Cohesion",
+    "Performance",
+    "Security",
+    "Drift"
+  ],
+  "viz_labels_zh": [
+    "耦合度",
+    "内聚度",
+    "性能",
+    "安全",
+    "架构漂移"
+  ],
+  "related": [
+    "adr",
+    "atam",
+    "continuous-architecture"
+  ],
+  "tags": [
+    "governance",
+    "automation",
+    "compliance",
+    "evolutionary-architecture",
+    "metrics"
+  ],
+  "origin_author": "Neal Ford, Rebecca Parsons, Patrick Kua, 2017",
+  "origin_source": "Building Evolutionary Architectures (O'Reilly, Ford, Parsons & Kua, 2017)",
+  "origin_source_zh": "《演进式架构》（O'Reilly，Ford、Parsons和Kua，2017年）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When architectural principles need to be enforced automatically because manual reviews are too slow or inconsistent",
+    "When a system is evolving rapidly and there is a risk of architectural drift as new features are added",
+    "When multiple teams contribute to a shared codebase and consistent architectural standards must be maintained",
+    "When migrating or modernizing a system and you need guardrails to ensure the target architecture is being achieved"
+  ],
+  "when_to_use_zh": [
+    "当架构原则需要自动执行，因为人工评审太慢或不一致时",
+    "当系统快速演进，新功能增加时存在架构漂移风险时",
+    "当多个团队贡献同一代码库，需要维持一致的架构标准时",
+    "当迁移或现代化系统时，需要护栏确保目标架构正在实现"
+  ],
+  "core_concepts": [
+    "Fitness function: An objective, automated assessment that measures how well the architecture meets a specific characteristic",
+    "Atomic fitness function: Tests a single architecture dimension in isolation, such as cyclic dependency detection or response time",
+    "Holistic fitness function: Evaluates a combination of architecture characteristics together, such as deployment pipeline throughput",
+    "Triggered vs. continuous: Some fitness functions run on each commit (triggered) while others monitor production metrics continuously",
+    "Evolutionary architecture: The overarching principle that architecture should support guided, incremental change rather than big upfront design"
+  ],
+  "core_concepts_zh": [
+    "适应度函数：度量架构满足特定特征程度的客观自动化评估",
+    "原子适应度函数：孤立测试单一架构维度，如循环依赖检测或响应时间",
+    "全局适应度函数：综合评估多个架构特征的组合，如部署管道吞吐量",
+    "触发式与持续式：某些适应度函数在每次提交时运行（触发式），另一些持续监控生产指标",
+    "演进式架构：架构应支持有引导的增量变更而非大规模预先设计的总体原则"
+  ],
+  "timeline": [
+    [
+      "2015",
+      "Neal Ford and Rebecca Parsons begin presenting evolutionary architecture concepts at conferences"
+    ],
+    [
+      "2017",
+      "Ford, Parsons, and Kua publish Building Evolutionary Architectures introducing fitness functions formally"
+    ],
+    [
+      "2018",
+      "ArchUnit (Java) gains popularity as a tool for implementing architectural fitness functions as unit tests"
+    ],
+    [
+      "2020",
+      "Richards and Ford incorporate fitness functions into Fundamentals of Software Architecture as a governance mechanism"
+    ],
+    [
+      "2023",
+      "Second edition of Building Evolutionary Architectures expands coverage of fitness functions for cloud-native and AI systems"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2015",
+      "Neal Ford和Rebecca Parsons开始在会议上演讲演进式架构概念"
+    ],
+    [
+      "2017",
+      "Ford、Parsons和Kua出版《演进式架构》，正式引入适应度函数"
+    ],
+    [
+      "2018",
+      "ArchUnit（Java）作为将架构适应度函数实现为单元测试的工具流行起来"
+    ],
+    [
+      "2020",
+      "Richards和Ford将适应度函数作为治理机制纳入《软件架构基础》"
+    ],
+    [
+      "2023",
+      "《演进式架构》第二版扩展了适应度函数在云原生和AI系统中的覆盖"
+    ]
+  ],
+  "dos": [
+    "Do start with the most critical architecture characteristics because trying to measure everything at once leads to alert fatigue",
+    "Do make fitness functions fast and deterministic because flaky or slow checks undermine developer trust in the pipeline",
+    "Do treat fitness function thresholds as living documents because acceptable ranges change as the system matures",
+    "Do visualize fitness function trends over time because trends reveal architectural drift before thresholds are breached"
+  ],
+  "dos_zh": [
+    "从最关键的架构特征开始，因为试图同时度量所有东西会导致告警疲劳",
+    "使适应度函数快速且确定性，因为不稳定或缓慢的检查会破坏开发者对管道的信任",
+    "将适应度函数阈值视为活文档，因为可接受范围会随系统成熟而变化",
+    "可视化适应度函数随时间的趋势，因为趋势能在阈值被突破之前揭示架构漂移"
+  ],
+  "donts": [
+    "Don't write fitness functions that are too strict initially because they block development and get disabled rather than refined",
+    "Don't rely solely on code-level checks because many architecture characteristics (latency, availability) require runtime measurement",
+    "Don't forget to test the fitness functions themselves because a broken fitness function provides false confidence",
+    "Don't use fitness functions as a substitute for architecture discussion because they enforce decisions but do not make them"
+  ],
+  "donts_zh": [
+    "初始不要将适应度函数设置得过于严格，因为它们会阻塞开发并被禁用而非优化",
+    "不要仅依赖代码级检查，因为许多架构特征（延迟、可用性）需要运行时度量",
+    "不要忘记测试适应度函数本身，因为损坏的适应度函数会提供虚假的信心",
+    "不要用适应度函数替代架构讨论，因为它们执行决策但不做决策"
+  ],
+  "case_study_company": "ThoughtWorks",
+  "case_study": "ThoughtWorks, the company where fitness functions originated, uses them extensively in client engagements to prevent architectural erosion during long-running modernization projects. On one large financial services client, they implemented fitness functions using ArchUnit to enforce that no module in the new microservices-ready codebase could depend on legacy shared libraries. They also added latency budget fitness functions that failed the build if any API endpoint exceeded 200ms at the p95 level. Over 18 months, these automated checks caught 47 architectural violations that would have otherwise slipped into production unnoticed.",
+  "case_study_zh": "ThoughtWorks作为适应度函数的发源公司，在客户项目中广泛使用适应度函数防止长期现代化项目中的架构侵蚀。在一个大型金融服务客户项目中，他们使用ArchUnit实现适应度函数，确保新的微服务就绪代码库中没有模块依赖遗留共享库。他们还添加了延迟预算适应度函数，当任何API端点在p95级别超过200毫秒时构建失败。在18个月内，这些自动化检查捕获了47个架构违规，否则这些违规将悄无声息地进入生产环境。",
+  "when_not_to_use": [
+    "Very early-stage prototypes where the architecture is intentionally fluid and constraints would slow exploration",
+    "Small teams with strong shared understanding where the overhead of automated checks exceeds their governance value",
+    "Throwaway systems with a planned short lifespan where architectural longevity is not a concern"
+  ],
+  "when_not_to_use_zh": [
+    "架构有意保持流动性、约束会减慢探索速度的早期原型阶段",
+    "具有强烈共识的小型团队，自动化检查的开销超过其治理价值时",
+    "计划短生命周期的一次性系统，架构持久性不是关注点时"
+  ],
+  "adopters": [
+    "ThoughtWorks",
+    "Netflix",
+    "Spotify",
+    "Zalando",
+    "ING Bank"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Neal Ford, Rebecca Parsons, and Patrick Kua (2017). \"Building Evolutionary Architectures: Support Constant Change\". O'Reilly Media.",
+  "secondary_sources": [
+    "Neal Ford, Rebecca Parsons, and Patrick Kua (2023). \"Building Evolutionary Architectures, 2nd Edition\". O'Reilly Media.",
+    "ThoughtWorks (2017). \"Fitness Functions\". thoughtworks.com/radar/techniques."
+  ],
+  "typed_relations": [
+    {
+      "slug": "adr",
+      "type": "complement"
+    },
+    {
+      "slug": "atam",
+      "type": "related"
+    },
+    {
+      "slug": "continuous-architecture",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/architecture-fitness-functions",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/architecture-fitness-functions.md"
+}

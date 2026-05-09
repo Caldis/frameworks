@@ -1,0 +1,194 @@
+{
+  "id": 103,
+  "name": "Kappa Architecture",
+  "name_zh": "Kappa 架构",
+  "slug": "kappa-architecture",
+  "category": "data",
+  "desc": "Stream-first architecture eliminating the batch layer entirely",
+  "desc_zh": "以流为核心、完全消除批处理层的数据架构",
+  "steps": [
+    "Ingest all data as immutable events into a durable, replayable log such as Apache Kafka with configurable retention",
+    "Process all data through a single stream processing layer using frameworks like Apache Flink, Kafka Streams, or Apache Beam",
+    "Materialize stream processing results into serving stores (databases, caches, search indices) optimized for query patterns",
+    "When logic changes or reprocessing is needed, deploy a new version of the stream processor and replay the log from the desired offset",
+    "Retire the old materialized views once the new processor has caught up, achieving zero-downtime schema evolution"
+  ],
+  "steps_zh": [
+    "将所有数据作为不可变事件摄入持久化、可重放的日志（如Apache Kafka），配置合适的保留策略",
+    "通过单一流处理层使用Apache Flink、Kafka Streams或Apache Beam等框架处理所有数据",
+    "将流处理结果物化到针对查询模式优化的服务存储（数据库、缓存、搜索索引）",
+    "当逻辑变更或需要重处理时，部署新版本流处理器并从期望偏移量重放日志",
+    "新处理器追上进度后淘汰旧的物化视图，实现零停机模式演进"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Event Log",
+    "Stream Process",
+    "Serving Store",
+    "Replay",
+    "Reprocess"
+  ],
+  "viz_labels_zh": [
+    "事件日志",
+    "流处理",
+    "服务存储",
+    "重放",
+    "再处理"
+  ],
+  "related": [
+    "lambda-architecture",
+    "eda",
+    "change-data-capture",
+    "stream-processing-patterns"
+  ],
+  "tags": [
+    "streaming",
+    "kappa",
+    "event-log",
+    "real-time",
+    "simplicity"
+  ],
+  "origin_author": "Jay Kreps, 2014",
+  "origin_source": "Questioning the Lambda Architecture (O'Reilly blog post, 2014)",
+  "origin_source_zh": "「质疑Lambda架构」（O'Reilly博客文章，2014）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When your use case is primarily real-time and batch recomputation adds unnecessary complexity",
+    "When you want a single processing codebase to reduce maintenance and eliminate semantic drift between layers",
+    "When your event log can be retained long enough to enable full reprocessing when logic changes",
+    "When your stream processing framework supports exactly-once semantics and stateful operations"
+  ],
+  "when_to_use_zh": [
+    "当用例主要是实时的，批量重算增加了不必要的复杂性时",
+    "当希望使用单一处理代码库以减少维护并消除层间语义漂移时",
+    "当事件日志能够保留足够长时间以支持逻辑变更时的全量重处理时",
+    "当流处理框架支持精确一次语义和有状态操作时"
+  ],
+  "core_concepts": [
+    "Immutable event log: all data enters as an append-only log that can be replayed from any point in time",
+    "Single processing layer: one stream processing engine handles both real-time and historical reprocessing",
+    "Log replay for reprocessing: when business logic changes, replay the event log through an updated processor instead of maintaining a separate batch system",
+    "Materialized views: stream results are written into purpose-built serving stores optimized for specific query patterns"
+  ],
+  "core_concepts_zh": [
+    "不可变事件日志：所有数据以追加日志形式进入，可从任意时间点重放",
+    "单一处理层：一个流处理引擎同时处理实时和历史重处理",
+    "日志重放实现重处理：当业务逻辑变更时，通过更新后的处理器重放事件日志，而非维护独立的批处理系统",
+    "物化视图：流处理结果写入为特定查询模式优化的专用服务存储"
+  ],
+  "timeline": [
+    [
+      "2011",
+      "Apache Kafka created at LinkedIn establishes the durable replayable log as a core infrastructure primitive"
+    ],
+    [
+      "2014",
+      "Jay Kreps publishes 'Questioning the Lambda Architecture' proposing Kappa as a simpler alternative"
+    ],
+    [
+      "2017",
+      "Apache Flink matures with exactly-once semantics, making Kappa viable for mission-critical workloads"
+    ],
+    [
+      "2020",
+      "Kappa Architecture becomes the default pattern for cloud-native streaming platforms like Confluent and Amazon Kinesis"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2011",
+      "LinkedIn创建的Apache Kafka将持久可重放日志确立为核心基础设施原语"
+    ],
+    [
+      "2014",
+      "Jay Kreps发表「质疑Lambda架构」，提出Kappa作为更简单的替代方案"
+    ],
+    [
+      "2017",
+      "Apache Flink成熟并支持精确一次语义，使Kappa适用于关键任务工作负载"
+    ],
+    [
+      "2020",
+      "Kappa架构成为Confluent和Amazon Kinesis等云原生流平台的默认模式"
+    ]
+  ],
+  "dos": [
+    "Do size your event log retention to cover the longest reprocessing window you anticipate because insufficient retention breaks the replay mechanism",
+    "Do use a framework with exactly-once processing guarantees because at-least-once can produce incorrect materialized views",
+    "Do version your stream processing jobs so old and new versions can run in parallel during migrations",
+    "Do monitor consumer lag closely because growing lag indicates the stream processor cannot keep up with input volume"
+  ],
+  "dos_zh": [
+    "将事件日志保留期设置为能覆盖预期最长重处理窗口，因为保留不足会破坏重放机制",
+    "使用具有精确一次处理保证的框架，因为至少一次可能产生不正确的物化视图",
+    "对流处理作业进行版本管理，使新旧版本可在迁移期间并行运行",
+    "密切监控消费者滞后，因为滞后增长表明流处理器无法跟上输入量"
+  ],
+  "donts": [
+    "Don't assume infinite log retention is free because storage costs and compaction strategies must be planned",
+    "Don't use Kappa when you genuinely need periodic full-dataset recomputation that exceeds your log retention window",
+    "Don't neglect state management in stream processors because stateful operations require checkpointing and recovery",
+    "Don't ignore backpressure signals because unhandled backpressure leads to cascading failures"
+  ],
+  "donts_zh": [
+    "不要假设无限日志保留是免费的，因为存储成本和压缩策略必须规划",
+    "当确实需要超出日志保留窗口的周期性全数据集重算时不要使用Kappa",
+    "不要忽视流处理器中的状态管理，因为有状态操作需要检查点和恢复",
+    "不要忽视背压信号，因为未处理的背压会导致级联故障"
+  ],
+  "case_study_company": "LinkedIn",
+  "case_study": "LinkedIn pioneered the Kappa Architecture pattern through its creation of Apache Kafka and its internal stream processing infrastructure. By replacing batch ETL pipelines with Kafka-based streaming, LinkedIn unified its activity tracking, metrics, and feed generation into a single real-time processing paradigm. This reduced infrastructure complexity by eliminating the dual batch-speed codebases and enabled sub-second data freshness for features like 'Who Viewed Your Profile'.",
+  "case_study_zh": "LinkedIn通过创建Apache Kafka及其内部流处理基础设施开创了Kappa架构模式。通过用基于Kafka的流处理替代批量ETL管道，LinkedIn将活动追踪、指标和信息流生成统一为单一实时处理范式。这通过消除双重批处理-速度代码库降低了基础设施复杂性，并为「谁查看了你的档案」等功能实现了亚秒级数据时效性。",
+  "when_not_to_use": [
+    "When log retention costs are prohibitive for the data volumes and retention periods required",
+    "When complex analytical queries require full-dataset joins that are impractical in a streaming context",
+    "When existing batch infrastructure is well-established and the team lacks streaming expertise",
+    "When regulatory requirements mandate periodic full recomputation from source systems rather than log replay"
+  ],
+  "when_not_to_use_zh": [
+    "当所需数据量和保留期的日志保留成本过高时",
+    "当复杂分析查询需要在流上下文中不切实际的全数据集连接时",
+    "当现有批处理基础设施成熟且团队缺乏流处理专业知识时",
+    "当监管要求从源系统定期全量重算而非日志重放时"
+  ],
+  "adopters": [
+    "LinkedIn",
+    "Confluent",
+    "Uber",
+    "The New York Times",
+    "Wix"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "scalability",
+    "maintainability",
+    "performance"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Kreps, J. (2014). \"Questioning the Lambda Architecture\". O'Reilly Radar.",
+  "secondary_sources": [
+    "Kreps, J. (2013). \"The Log: What Every Software Engineer Should Know About Real-Time Data's Unifying Abstraction\". LinkedIn Engineering.",
+    "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 11. O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "lambda-architecture",
+      "type": "alternative"
+    },
+    {
+      "slug": "eda",
+      "type": "complement"
+    },
+    {
+      "slug": "change-data-capture",
+      "type": "complement"
+    },
+    {
+      "slug": "stream-processing-patterns",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/kappa-architecture",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/kappa-architecture.md"
+}

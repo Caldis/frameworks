@@ -1,0 +1,194 @@
+{
+  "id": 54,
+  "name": "Four Golden Signals",
+  "name_zh": "四大黄金信号",
+  "slug": "four-golden-signals",
+  "category": "quality",
+  "desc": "Monitor Latency, Traffic, Errors, Saturation for any service",
+  "desc_zh": "对任何服务监控延迟、流量、错误率和饱和度",
+  "steps": [
+    "Instrument Latency: measure the time it takes to serve a request, separating successful and failed request latencies",
+    "Track Traffic: measure the demand on your system — requests per second, transactions per minute, or messages consumed",
+    "Monitor Errors: count the rate of requests that fail, distinguishing explicit errors (500s) from implicit ones (wrong content, slow responses)",
+    "Measure Saturation: track how close the service is to capacity — CPU usage, memory pressure, queue depths, thread pool exhaustion",
+    "Correlate signals: build dashboards that show all four signals together so you can quickly identify whether an issue is load, code, or resource-related"
+  ],
+  "steps_zh": [
+    "埋点延迟：测量服务请求的处理时间，区分成功请求和失败请求的延迟",
+    "追踪流量：衡量系统承受的需求——每秒请求数、每分钟事务数或消费的消息数",
+    "监控错误：统计失败请求的速率，区分显式错误（500）和隐式错误（内容错误、响应过慢）",
+    "测量饱和度：追踪服务距离容量上限的距离——CPU使用率、内存压力、队列深度、线程池耗尽",
+    "关联信号：构建同时展示四个信号的仪表盘，以快速判断问题源于负载、代码还是资源"
+  ],
+  "ai_relevant": false,
+  "viz_type": "radar",
+  "viz_labels": [
+    "Latency",
+    "Traffic",
+    "Errors",
+    "Saturation"
+  ],
+  "viz_labels_zh": [
+    "延迟",
+    "流量",
+    "错误",
+    "饱和度"
+  ],
+  "related": [
+    "red-method",
+    "use-method",
+    "sli-slo-sla"
+  ],
+  "tags": [
+    "golden-signals",
+    "latency",
+    "traffic",
+    "errors",
+    "saturation"
+  ],
+  "origin_author": "Google SRE Team, 2016",
+  "origin_source": "Site Reliability Engineering: How Google Runs Production Systems (O'Reilly)",
+  "origin_source_zh": "《SRE：Google运维解密》（O'Reilly）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Establishing foundational monitoring for any production service regardless of architecture",
+    "Training new SRE or DevOps team members on what to monitor first",
+    "Creating on-call dashboards that need to surface problems quickly for incident responders",
+    "Defining SLIs when you need a starting point for service level indicators"
+  ],
+  "when_to_use_zh": [
+    "为任何生产服务建立基础监控，不论架构如何",
+    "培训新SRE或DevOps团队成员首先应监控什么",
+    "创建需要为值班人员快速呈现问题的事件响应仪表盘",
+    "需要服务级别指标起点时定义SLI"
+  ],
+  "core_concepts": [
+    "Latency: The time it takes to service a request, differentiated between success and failure responses",
+    "Traffic: A measure of demand being placed on the system (requests per second, I/O rates, sessions)",
+    "Errors: The rate of requests that fail either explicitly (HTTP 5xx) or implicitly (wrong content, policy violations)",
+    "Saturation: How full the service is, measuring the most constrained resource and predicting impending capacity limits",
+    "Signal Correlation: Analyzing all four signals together to distinguish between load, code, and infrastructure issues"
+  ],
+  "core_concepts_zh": [
+    "延迟：服务请求所花时间，区分成功和失败响应",
+    "流量：系统所承受的需求度量（每秒请求数、I/O速率、会话数）",
+    "错误：显式（HTTP 5xx）或隐式（内容错误、策略违规）失败的请求速率",
+    "饱和度：服务有多满，测量最受限的资源并预测即将到来的容量上限",
+    "信号关联：同时分析四个信号以区分负载、代码和基础设施问题"
+  ],
+  "timeline": [
+    [
+      "2003",
+      "Google's internal SRE practices begin crystallizing around key monitoring signals"
+    ],
+    [
+      "2016",
+      "Google publishes the SRE book featuring the Four Golden Signals as Chapter 6"
+    ],
+    [
+      "2017",
+      "The SRE Workbook provides detailed implementation guidance for golden signals"
+    ],
+    [
+      "2019",
+      "Major observability platforms (Datadog, New Relic, Grafana) build golden signals templates"
+    ],
+    [
+      "2022",
+      "Four Golden Signals becomes the most widely cited monitoring framework in the industry"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2003",
+      "Google的内部SRE实践开始围绕关键监控信号固化"
+    ],
+    [
+      "2016",
+      "Google出版SRE书籍，在第6章介绍四大黄金信号"
+    ],
+    [
+      "2017",
+      "SRE工作手册为黄金信号提供了详细的实施指南"
+    ],
+    [
+      "2019",
+      "主要可观测性平台（Datadog、New Relic、Grafana）构建黄金信号模板"
+    ],
+    [
+      "2022",
+      "四大黄金信号成为业界引用最广泛的监控框架"
+    ]
+  ],
+  "dos": [
+    "Do separate latency for successful and failed requests because failed requests can be artificially fast",
+    "Do track saturation proactively because it predicts future problems before they cause incidents",
+    "Do build a single dashboard showing all four signals per service because correlation enables faster diagnosis",
+    "Do define explicit error budgets for each signal because thresholds without budgets lead to alert fatigue"
+  ],
+  "dos_zh": [
+    "分别统计成功和失败请求的延迟，因为失败请求可能人为地很快",
+    "主动追踪饱和度，因为它能在引发事故前预测未来问题",
+    "为每个服务构建展示全部四个信号的单一仪表盘，因为关联性能加速诊断",
+    "为每个信号定义明确的错误预算，因为没有预算的阈值会导致告警疲劳"
+  ],
+  "donts": [
+    "Don't monitor only latency and errors because saturation and traffic provide essential context for interpreting them",
+    "Don't use averages exclusively because they hide the tail latency experienced by the worst-affected users",
+    "Don't create separate unrelated dashboards for each signal because the power is in seeing them correlated",
+    "Don't treat all errors equally because client errors (4xx) and server errors (5xx) have very different implications"
+  ],
+  "donts_zh": [
+    "不要仅监控延迟和错误，因为饱和度和流量为解读它们提供了重要上下文",
+    "不要只使用平均值，因为平均值隐藏了受影响最严重用户经历的尾延迟",
+    "不要为每个信号创建独立的不相关仪表盘，因为关联展示才有力量",
+    "不要平等对待所有错误，因为客户端错误（4xx）和服务端错误（5xx）含义非常不同"
+  ],
+  "case_study_company": "Google",
+  "case_study": "Google developed the Four Golden Signals from over a decade of running production services at massive scale. The approach proved its value during a Gmail latency incident where traffic metrics showed normal request rates but saturation metrics revealed thread pool exhaustion on a specific cluster. Without the saturation signal, the team would have spent hours chasing code-level bugs instead of the resource constraint.",
+  "case_study_zh": "Google从十多年大规模运行生产服务的经验中发展出四大黄金信号。该方法在一次Gmail延迟事故中证明了其价值：流量指标显示请求率正常，但饱和度指标揭示了特定集群的线程池耗尽。如果没有饱和度信号，团队会花数小时追查代码级缺陷，而非资源约束。",
+  "when_not_to_use": [
+    "Low-level hardware debugging where OS-level metrics (USE Method) provide more granular signals",
+    "Client-side performance monitoring where Web Vitals and user experience metrics are more appropriate",
+    "Offline batch processing where request-oriented signals do not apply"
+  ],
+  "when_not_to_use_zh": [
+    "操作系统级指标（USE方法）能提供更细粒度信号的底层硬件调试",
+    "Web Vitals和用户体验指标更合适的客户端性能监控",
+    "面向请求的信号不适用的离线批处理"
+  ],
+  "adopters": [
+    "Google",
+    "Dropbox",
+    "Twitter",
+    "Uber",
+    "Stripe"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "observability",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Betsy Beyer, Chris Jones, Jennifer Petoff, and Niall Richard Murphy (2016). \"Site Reliability Engineering: How Google Runs Production Systems\". O'Reilly Media. Chapter 6.",
+  "secondary_sources": [
+    "Betsy Beyer et al. (2018). \"The Site Reliability Workbook: Practical Ways to Implement SRE\". O'Reilly Media.",
+    "Niall Richard Murphy et al. (2020). \"Monitoring and Observability\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "red-method",
+      "type": "alternative"
+    },
+    {
+      "slug": "use-method",
+      "type": "alternative"
+    },
+    {
+      "slug": "sli-slo-sla",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/four-golden-signals",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/four-golden-signals.md"
+}

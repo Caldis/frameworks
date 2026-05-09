@@ -1,0 +1,190 @@
+{
+  "id": 11,
+  "name": "Analogical Thinking",
+  "name_zh": "类比思维",
+  "slug": "analogical-thinking",
+  "category": "thinking",
+  "desc": "Transfer structural solutions from source domains to software",
+  "desc_zh": "将源领域的结构性解决方案迁移到软件设计问题中",
+  "steps": [
+    "Abstract the Problem Structure: strip away domain-specific details to reveal the underlying relational pattern of the problem",
+    "Identify Source Domains: brainstorm non-software domains (biology, logistics, city planning, etc.) that exhibit similar structural patterns",
+    "Extract the Structural Mapping: articulate the precise correspondence between source domain elements and target software elements",
+    "Adapt the Solution: translate the source domain's solution mechanism into software constructs, adjusting for domain differences",
+    "Validate the Analogy: test where the analogy breaks down and ensure those gaps are addressed in the final design"
+  ],
+  "steps_zh": [
+    "抽象问题结构：剥离领域特定细节，揭示问题的底层关系模式",
+    "识别源领域：在非软件领域（生物学、物流、城市规划等）中寻找具有相似结构模式的案例",
+    "提取结构映射：清晰阐明源领域元素与目标软件元素之间的精确对应关系",
+    "改造解决方案：将源领域的解决机制转化为软件构件，并针对领域差异进行调整",
+    "验证类比有效性：测试类比在何处失效，确保最终设计中这些缺口已被充分处理"
+  ],
+  "ai_relevant": false,
+  "viz_type": "venn",
+  "viz_labels": [
+    "Source Domain",
+    "Target Domain",
+    "Structural Mapping"
+  ],
+  "viz_labels_zh": [
+    "源域",
+    "目标域",
+    "结构映射"
+  ],
+  "related": [
+    "first-principles-thinking",
+    "design-thinking-ideo",
+    "gof-design-patterns"
+  ],
+  "tags": [
+    "analogy",
+    "cross-domain",
+    "pattern-transfer",
+    "creative-thinking"
+  ],
+  "origin_author": "Dedre Gentner, 1983 (Structure-Mapping Theory); broadly rooted in cognitive science",
+  "origin_source": "Structure-Mapping: A Theoretical Framework for Analogy (Dedre Gentner, Cognitive Science, 1983)",
+  "origin_source_zh": "《结构映射：类比的理论框架》（Dedre Gentner，《认知科学》，1983年）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When the team is stuck on a design problem and exhausted all obvious approaches within the software domain",
+    "When explaining a complex technical architecture to non-technical stakeholders who need intuitive understanding",
+    "When designing a novel system and you want to leverage proven patterns from biology, urban planning, or other mature domains",
+    "When creating developer documentation or API naming and you need metaphors that make abstract concepts immediately graspable"
+  ],
+  "when_to_use_zh": [
+    "当团队在设计问题上陷入困境，已耗尽软件领域内所有显而易见的方法时",
+    "当向需要直观理解的非技术利益相关者解释复杂技术架构时",
+    "当设计新系统并希望利用生物学、城市规划或其他成熟领域的经验证模式时",
+    "当创建开发者文档或API命名，需要能使抽象概念立即可理解的比喻时"
+  ],
+  "core_concepts": [
+    "Structure Mapping: Analogical reasoning works by mapping relational structures (not surface features) from a well-understood source domain to a less-understood target domain",
+    "Source Domain Selection: The power of an analogy depends on choosing a source domain with deep structural similarity to the target, not just superficial resemblance",
+    "Analogical Distance: Far analogies (biology to software) tend to produce more creative breakthroughs than near analogies (web app to mobile app), but require more validation",
+    "Analogy Limits: Every analogy eventually breaks down, and identifying where the mapping fails is as important as identifying where it works, because unexamined analogies mislead"
+  ],
+  "core_concepts_zh": [
+    "结构映射：类比推理通过将关系结构（而非表面特征）从被充分理解的源领域映射到较少理解的目标领域来工作",
+    "源领域选择：类比的力量取决于选择与目标具有深层结构相似性的源领域，而非仅仅表面相似",
+    "类比距离：远距类比（生物学到软件）往往比近距类比（Web应用到移动应用）产生更多创造性突破，但需要更多验证",
+    "类比局限：每个类比最终都会失效，识别映射在哪里失败与识别在哪里有效同样重要，因为未经检验的类比会产生误导"
+  ],
+  "timeline": [
+    [
+      "1983",
+      "Dedre Gentner publishes Structure-Mapping Theory, providing the first rigorous cognitive science framework for how analogical reasoning works"
+    ],
+    [
+      "1994",
+      "The Gang of Four publishes 'Design Patterns', which is fundamentally analogical thinking applied to software — patterns named after architectural and real-world analogies"
+    ],
+    [
+      "2004",
+      "Keith Holyoak and Paul Thagard publish research on analogical reasoning in innovation, showing how cross-domain analogies drive breakthrough inventions"
+    ],
+    [
+      "2010s",
+      "Biomimicry becomes a recognized design discipline, systematically applying biological analogies to engineering and software design problems"
+    ],
+    [
+      "2020s",
+      "AI/ML systems increasingly use analogical reasoning (few-shot learning, transfer learning) as a core mechanism, renewing interest in the cognitive foundations"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1983",
+      "Dedre Gentner发表结构映射理论，提供了第一个关于类比推理如何工作的严谨认知科学框架"
+    ],
+    [
+      "1994",
+      "四人帮出版《设计模式》，本质上是类比思维在软件中的应用——模式以建筑和现实世界类比命名"
+    ],
+    [
+      "2004",
+      "Keith Holyoak和Paul Thagard发表关于创新中类比推理的研究，展示跨领域类比如何驱动突破性发明"
+    ],
+    [
+      "2010年代",
+      "仿生学成为公认的设计学科，系统性地将生物类比应用于工程和软件设计问题"
+    ],
+    [
+      "2020年代",
+      "AI/ML系统越来越多地使用类比推理（小样本学习、迁移学习）作为核心机制，重新引发了对认知基础的兴趣"
+    ]
+  ],
+  "dos": [
+    "Do map the structural relationships precisely, because vague analogies ('it's like a city') are useless — specify exactly which elements correspond to what",
+    "Do seek analogies from distant domains, because cross-domain analogies (biology, logistics, ecology) produce more creative solutions than within-domain comparisons",
+    "Do explicitly document where the analogy breaks down, because every analogy has limits and unexamined breakpoints become hidden design flaws",
+    "Do use analogies to communicate as well as design, because a well-chosen analogy can make a complex architecture immediately understandable to new team members"
+  ],
+  "dos_zh": [
+    "精确映射结构关系，因为模糊的类比（「它像一座城市」）毫无用处——要具体说明哪些元素对应什么",
+    "从远距领域寻找类比，因为跨领域类比（生物学、物流、生态学）比领域内比较产生更多创造性方案",
+    "明确记录类比在哪里失效，因为每个类比都有局限，未被检查的断裂点会成为隐藏的设计缺陷",
+    "将类比同时用于沟通和设计，因为恰当选择的类比能使复杂架构立即为新团队成员所理解"
+  ],
+  "donts": [
+    "Don't fall in love with the analogy and force-fit the target domain into the source domain's structure, because the map is not the territory",
+    "Don't use surface-level analogies for design decisions, because similar-sounding domains can have fundamentally different structural properties",
+    "Don't stop at one analogy, because comparing multiple source domains highlights which structural features are robust and which are artifacts of a particular analogy",
+    "Don't assume the analogy communicates the same thing to everyone, because different team members may interpret the same metaphor differently based on their domain knowledge"
+  ],
+  "donts_zh": [
+    "不要迷恋类比并将目标领域强行套入源领域的结构，因为地图不是领土",
+    "不要用表面层次的类比来做设计决策，因为听起来相似的领域可能具有根本不同的结构属性",
+    "不要满足于一个类比，因为比较多个源领域能揭示哪些结构特征是稳健的，哪些只是特定类比的产物",
+    "不要假设类比对每个人传达相同的含义，因为不同团队成员可能根据其领域知识对同一比喻做出不同解读"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix's Chaos Engineering practice originated from an analogy to immunology. Just as the immune system strengthens through controlled exposure to pathogens, Netflix designed Chaos Monkey (2011) to randomly terminate production instances, building system resilience through controlled failure injection. This biological analogy guided the design of increasingly sophisticated tools (Chaos Kong, FIT) that simulate progressively larger failures, directly mirroring how immune systems develop from handling small antigens to mounting complex immune responses.",
+  "case_study_zh": "Netflix的混沌工程实践源于对免疫学的类比。正如免疫系统通过受控接触病原体来增强，Netflix设计了Chaos Monkey（2011年）来随机终止生产实例，通过受控故障注入来构建系统韧性。这个生物学类比指导了越来越复杂的工具（Chaos Kong、FIT）的设计，模拟逐渐更大的故障，直接映射了免疫系统从处理小抗原到发起复杂免疫反应的发展过程。",
+  "when_not_to_use": [
+    "When the problem has a well-known solution within the software domain and cross-domain exploration would add unnecessary complexity",
+    "When precision is required and an analogy's inherent imprecision would lead to specification errors in safety-critical systems",
+    "When the team lacks shared knowledge of the source domain, making the analogy confusing rather than illuminating",
+    "When the problem is primarily a quantitative optimization (latency reduction, memory efficiency) where mathematical analysis is more appropriate than structural analogy"
+  ],
+  "when_not_to_use_zh": [
+    "当问题在软件领域内有公认的解决方案，跨领域探索会增加不必要的复杂性时",
+    "当需要精确性，类比固有的不精确性会在安全关键系统中导致规格错误时",
+    "当团队缺乏对源领域的共同知识，使类比造成困惑而非启发时",
+    "当问题主要是定量优化（延迟降低、内存效率），数学分析比结构类比更合适时"
+  ],
+  "adopters": [
+    "Netflix",
+    "Google (MapReduce analogy from functional programming)",
+    "Kubernetes (ship steering/helmsman analogy)",
+    "Docker (shipping container analogy)",
+    "Apache Kafka (commit log analogy from databases)"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Dedre Gentner (1983). \"Structure-Mapping: A Theoretical Framework for Analogy\". Cognitive Science, 7(2).",
+  "secondary_sources": [
+    "Douglas Hofstadter and Emmanuel Sander (2013). \"Surfaces and Essences: Analogy as the Fuel and Fire of Thinking\". Basic Books.",
+    "Keith Holyoak and Paul Thagard (1995). \"Mental Leaps: Analogy in Creative Thought\". MIT Press."
+  ],
+  "typed_relations": [
+    {
+      "slug": "first-principles-thinking",
+      "type": "complement"
+    },
+    {
+      "slug": "design-thinking-ideo",
+      "type": "related"
+    },
+    {
+      "slug": "gof-design-patterns",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/analogical-thinking",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/analogical-thinking.md"
+}

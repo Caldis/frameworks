@@ -1,0 +1,192 @@
+{
+  "id": 44,
+  "name": "Test Pyramid",
+  "name_zh": "测试金字塔",
+  "slug": "test-pyramid",
+  "category": "quality",
+  "desc": "Balance unit, integration, and E2E tests by cost and speed",
+  "desc_zh": "按成本与速度平衡单元测试、集成测试和端到端测试",
+  "steps": [
+    "Build a wide base of unit tests: fast, isolated tests covering business logic, pure functions, and edge cases with high coverage",
+    "Add a middle layer of integration tests: verify that modules, services, and databases work together correctly at boundaries",
+    "Write a thin top layer of E2E tests: cover critical user journeys only, accepting slower execution and higher maintenance cost",
+    "Enforce the pyramid shape in CI: set coverage gates per layer and fail builds when the ratio inverts (too many E2E, too few unit)",
+    "Review and rebalance quarterly: analyze flaky tests, slow suites, and coverage gaps to maintain the pyramid's health over time"
+  ],
+  "steps_zh": [
+    "构建宽广的单元测试基础：快速、隔离的测试覆盖业务逻辑、纯函数和边界情况",
+    "添加中间层集成测试：验证模块、服务和数据库在边界处正确协作",
+    "编写薄顶层端到端测试：仅覆盖关键用户旅程，接受较慢的执行速度和较高的维护成本",
+    "在CI中强制金字塔形状：为每层设置覆盖率门槛，比例倒置时构建失败",
+    "季度审查与再平衡：分析不稳定测试、慢速套件和覆盖盲区，维持金字塔长期健康"
+  ],
+  "ai_relevant": true,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "Unit Tests",
+    "Integration",
+    "E2E"
+  ],
+  "viz_labels_zh": [
+    "单元测试",
+    "集成测试",
+    "端到端"
+  ],
+  "related": [
+    "testing-trophy",
+    "tdd",
+    "property-based-testing"
+  ],
+  "tags": [
+    "testing",
+    "test-pyramid",
+    "unit-tests",
+    "integration-tests",
+    "e2e"
+  ],
+  "origin_author": "Mike Cohn, 2009",
+  "origin_source": "Succeeding with Agile: Software Development Using Scrum",
+  "origin_source_zh": "《Scrum敏捷软件开发》",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Designing a test strategy for a new project or service from scratch",
+    "Auditing an existing test suite that has become slow or flaky",
+    "Onboarding a team to testing best practices with a simple mental model",
+    "Balancing CI pipeline speed against test coverage confidence"
+  ],
+  "when_to_use_zh": [
+    "为新项目或服务从零开始设计测试策略",
+    "审计已变得缓慢或不稳定的现有测试套件",
+    "用简单的心智模型引导团队学习测试最佳实践",
+    "在CI流水线速度和测试覆盖信心之间取得平衡"
+  ],
+  "core_concepts": [
+    "Unit Tests: Fast, isolated tests of individual functions or classes with no external dependencies",
+    "Integration Tests: Tests verifying that multiple components, services, or databases work correctly together",
+    "End-to-End Tests: Full-stack tests simulating real user journeys through the entire system",
+    "Pyramid Shape: More unit tests at the base, fewer integration in the middle, fewest E2E at the top",
+    "Cost-Speed Tradeoff: Higher-level tests provide more confidence but are slower, more expensive, and more brittle"
+  ],
+  "core_concepts_zh": [
+    "单元测试：对单个函数或类进行快速、隔离的测试，不依赖外部资源",
+    "集成测试：验证多个组件、服务或数据库正确协作的测试",
+    "端到端测试：模拟真实用户旅程、贯穿整个系统的全栈测试",
+    "金字塔形状：底部大量单元测试，中间较少集成测试，顶部最少端到端测试",
+    "成本-速度权衡：层级越高的测试提供更高信心，但更慢、更贵且更脆弱"
+  ],
+  "timeline": [
+    [
+      "2003",
+      "Mike Cohn begins advocating layered test strategies in agile teams"
+    ],
+    [
+      "2009",
+      "Cohn publishes the Test Pyramid in 'Succeeding with Agile'"
+    ],
+    [
+      "2012",
+      "Martin Fowler popularizes the concept with his influential blog post 'TestPyramid'"
+    ],
+    [
+      "2018",
+      "Ham Vocke writes the comprehensive 'Practical Test Pyramid' guide on martinfowler.com"
+    ],
+    [
+      "2020",
+      "Test Pyramid becomes the de facto mental model taught in most testing courses"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2003",
+      "Mike Cohn开始在敏捷团队中倡导分层测试策略"
+    ],
+    [
+      "2009",
+      "Cohn在《Scrum敏捷软件开发》中发表测试金字塔"
+    ],
+    [
+      "2012",
+      "Martin Fowler通过其影响力博客文章'TestPyramid'普及了这一概念"
+    ],
+    [
+      "2018",
+      "Ham Vocke在martinfowler.com上撰写了全面的「实用测试金字塔」指南"
+    ],
+    [
+      "2020",
+      "测试金字塔成为大多数测试课程中教授的事实标准心智模型"
+    ]
+  ],
+  "dos": [
+    "Do keep unit tests fast (under 10ms each) because slow unit tests discourage frequent runs",
+    "Do isolate layers with test doubles so each level validates its own concerns independently",
+    "Do track the ratio of tests per layer because an inverted pyramid signals structural problems",
+    "Do invest in deterministic tests because flaky tests erode team confidence in the entire suite"
+  ],
+  "dos_zh": [
+    "保持单元测试的快速执行（每个不超过10毫秒），因为慢速单元测试会阻碍频繁运行",
+    "用测试替身隔离各层，使每个层级独立验证自身关注点",
+    "追踪每层的测试数量比例，因为倒金字塔意味着结构性问题",
+    "投入精力确保测试的确定性，因为不稳定测试会侵蚀团队对整个套件的信心"
+  ],
+  "donts": [
+    "Don't write E2E tests for every feature because they are slow, brittle, and expensive to maintain",
+    "Don't mock everything in integration tests because over-mocking hides real integration bugs",
+    "Don't ignore flaky tests because they train teams to dismiss legitimate failures",
+    "Don't treat the pyramid as a rigid rule because some architectures need a different shape"
+  ],
+  "donts_zh": [
+    "不要为每个功能都编写端到端测试，因为它们缓慢、脆弱且维护成本高",
+    "不要在集成测试中过度使用Mock，因为过度Mock会隐藏真实的集成缺陷",
+    "不要忽视不稳定测试，因为它们会训练团队习惯性地忽略合理的失败",
+    "不要将金字塔视为死板规则，因为某些架构需要不同的形状"
+  ],
+  "case_study_company": "Google",
+  "case_study": "Google's engineering teams maintain a roughly 70/20/10 split between unit, integration, and E2E tests across their monorepo. This ratio keeps their CI pipeline fast while still catching integration issues. When teams deviated toward too many E2E tests, build times spiked and flaky test rates increased, prompting internal tooling to enforce pyramid ratios.",
+  "case_study_zh": "Google的工程团队在其单一代码仓库中大致维持着70/20/10的单元测试、集成测试和端到端测试比例。这一比例保证了CI流水线的速度，同时仍能捕获集成问题。当团队偏向过多的端到端测试时，构建时间激增、不稳定测试率上升，促使内部工具开始强制执行金字塔比例。",
+  "when_not_to_use": [
+    "Highly UI-driven applications where visual correctness matters more than logic coverage",
+    "Simple CRUD apps with minimal business logic where integration tests provide more value",
+    "Exploratory prototyping phases where tests would be immediately rewritten"
+  ],
+  "when_not_to_use_zh": [
+    "以UI为核心的应用，视觉正确性比逻辑覆盖更重要",
+    "业务逻辑极少的简单CRUD应用，集成测试能提供更多价值",
+    "探索性原型阶段，测试很快就会被重写"
+  ],
+  "adopters": [
+    "Google",
+    "Microsoft",
+    "Spotify",
+    "Atlassian",
+    "ThoughtWorks"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "testability",
+    "reliability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Mike Cohn (2009). \"Succeeding with Agile: Software Development Using Scrum\". Addison-Wesley.",
+  "secondary_sources": [
+    "Martin Fowler (2012). \"TestPyramid\". martinfowler.com.",
+    "Ham Vocke (2018). \"The Practical Test Pyramid\". martinfowler.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "testing-trophy",
+      "type": "alternative"
+    },
+    {
+      "slug": "tdd",
+      "type": "complement"
+    },
+    {
+      "slug": "property-based-testing",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/test-pyramid",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/test-pyramid.md"
+}

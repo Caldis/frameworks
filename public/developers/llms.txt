@@ -1,0 +1,17 @@
+# SDFrame Developer Context
+
+## API
+
+- OpenAPI: https://sdframe.caldis.me/openapi.json
+- Framework index: https://sdframe.caldis.me/api/frameworks.index.json
+- Full framework records: https://sdframe.caldis.me/api/frameworks.json
+- Categories: https://sdframe.caldis.me/api/categories.json
+- Status: https://sdframe.caldis.me/status.json
+
+## Auth
+
+No authentication is required. SDFrame exposes read-only public static data.
+
+## Error recovery
+
+Validate framework slugs against /api/frameworks.index.json before fetching /api/frameworks/{slug}.json. Retry transient static-host failures with exponential backoff and cache successful responses.

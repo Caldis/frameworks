@@ -1,0 +1,180 @@
+{
+  "id": 328,
+  "name": "Law of Demeter (Principle of Least Knowledge)",
+  "name_zh": "迪米特得法则（最少知识原则）",
+  "slug": "law-of-demeter",
+  "category": "coding",
+  "desc": "A module should not know about the internal workings of the objects it manipulates. An object should only call methods on: itself, its parameters, objects it creates, and its direct component objects — never on objects returned by those calls.",
+  "desc_zh": "模块不应该了解其操作对象的内部运作。一个对象只应调用：它自身、它的参数、它创建的对象以及它直接的组件对象的方法——而不是这些调用返回的对象。",
+  "steps": [
+    "Review each method call chain (a.b().c().d()) and flag violations",
+    "Identify what knowledge is being reached through the chain",
+    "Add a method to the intermediate object that performs the required operation internally",
+    "Have the caller invoke that new method instead of traversing the chain",
+    "Verify the caller no longer knows about the internal structure"
+  ],
+  "steps_zh": [
+    "审查每个方法调用链（a.b().c().d()）并标记违规",
+    "识别通过调用链访问了什么知识",
+    "向中间对象添加一个在内部执行所需操作的方法",
+    "让调用方调用该新方法而非遍历调用链",
+    "验证调用方不再知道内部结构"
+  ],
+  "viz_type": "tree",
+  "viz_labels": [
+    "Object",
+    "Direct Neighbor",
+    "Method Call",
+    "Coupling"
+  ],
+  "viz_labels_zh": [
+    "对象",
+    "直接邻居",
+    "方法调用",
+    "耦合度"
+  ],
+  "complexity": "intermediate",
+  "origin_author": "Karl Lieberherr, Ian Holland, Arthur Riel — Northeastern University, 1987",
+  "adopters": [
+    "Java 最佳实践（Spring、JPA）",
+    "C# / .NET",
+    "Python",
+    "Ruby on Rails",
+    "AWS SDK v2"
+  ],
+  "related": [
+    "solid-principles",
+    "clean-code-principles",
+    "strategy-pattern"
+  ],
+  "tags": [
+    "law-of-demeter",
+    "coupling",
+    "encapsulation",
+    "oop",
+    "maintainability"
+  ],
+  "ai_relevant": false,
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability",
+    "testability"
+  ],
+  "maturity_ring": "foundational",
+  "when_to_use": "When you see long method chains that reach deep into object graphs. Apply when changing an internal object requires updating many call sites. Essential when designing APIs intended for external consumption where encapsulation is critical.",
+  "when_to_use_zh": "当你看到深入对象图调用链时。当修改内部对象需要更新大量调用处时应用。在设计外部 API 时，封装至关重要。",
+  "core_concepts": [
+    "Coupling",
+    "Encapsulation",
+    "Tell, Don't Ask",
+    "Information Hiding",
+    "Structural Coupling"
+  ],
+  "core_concepts_zh": [
+    "耦合",
+    "封装",
+    "「命令，而非查询」",
+    "信息隐藏",
+    "结构耦合"
+  ],
+  "timeline": [
+    {
+      "year": 1987,
+      "event": "Karl Lieberherr, Ian Holland, and Arthur Riel publish 「Object-Oriented Programming: An Objective Sense of Style」 at OOPSLA, introducing the Law of Demeter"
+    },
+    {
+      "year": 1989,
+      "event": "Lieberherr and Holland formalize it as a style rule for object-oriented design"
+    },
+    {
+      "year": 1999,
+      "event": "Hunt & Thomas reframe it in 「The Pragmatic Programmer」 as 「Principle of Least Knowledge」"
+    },
+    {
+      "year": 2004,
+      "event": "Martin Fowler discusses 「Tell, Don't Ask」 as the complementary behavioral pattern"
+    },
+    {
+      "year": 2008,
+      "event": "Robert Martin cites LoD in 「Clean Code」, cementing it in mainstream software craftsmanship"
+    }
+  ],
+  "timeline_zh": [
+    {
+      "year": 1987,
+      "event": "Karl Lieberherr、Ian Holland 和 Arthur Riel 在 OOPSLA 发表论文，引入迪米特得法则"
+    },
+    {
+      "year": 1989,
+      "event": "Lieberherr 和 Holland 将其正式化为面向对象设计的样式规则"
+    },
+    {
+      "year": 1999,
+      "event": "Hunt & Thomas 在《务实的程序员》中将其重新表述为「最小知识原则」"
+    },
+    {
+      "year": 2004,
+      "event": "Martin Fowler 讨论「命令，而非查询」作为补充的行为模式"
+    },
+    {
+      "year": 2008,
+      "event": "Robert Martin 在《洁净代码》中引用 LoD，将其巩固入主流软件工艺"
+    }
+  ],
+  "dos": [
+    "Add 「tell」 methods to intermediate objects that encapsulate the traversal",
+    "Use the 「Tell, Don't Ask」 principle to command objects rather than query their internals",
+    "Keep object graphs shallow — deep graphs signal design problems",
+    "Design APIs that return value objects or DTOs instead of exposing internal references",
+    "Write unit tests that expose chain violations by requiring complex mock setups"
+  ],
+  "dos_zh": [
+    "向中间对象添加封装遍历的「命令」方法",
+    "用「命令，而非查询」原则指挥对象而非查询其内部状态",
+    "保持对象图浅层 —— 深层结构暗示设计问题",
+    "设计返回值对象或 DTO 而非暴露内部引用的 API",
+    "编写单元测试以展露链式调用违规（复杂模拟设置为信号）"
+  ],
+  "donts": [
+    "Don't write 「train wrecks」: a.getB().getC().doSomething()",
+    "Don't expose internal collections directly — return views or copies",
+    "Don't violate LoD just for convenience in scripts or one-off code",
+    "Don't confuse LoD with avoiding all chaining — fluent builders on the same object are fine",
+    "Don't add trivial delegate methods just to satisfy the law — use judgment"
+  ],
+  "donts_zh": [
+    "不要写「火车炸毁」式调用：a.getB().getC().doSomething()",
+    "不要直接暴露内部集合 —— 返回视图或副本",
+    "不要仅为了便利就在脚本或一次性代码中违反 LoD",
+    "不要把 LoD 与避免所有链式调用混淆 —— 对同一对象的流式构建器是允许的",
+    "不要仅为满足该法则就添加琐小的委托方法 —— 需要判断"
+  ],
+  "case_study": "The AWS SDK v2 for Java was redesigned with LoD in mind. The v1 SDK exposed deeply nested configuration objects, leading to call chains like client.getConfig().getCredentials().getAWSAccessKeyId(). SDK v2 replaced this with immutable builder objects and explicit credential providers, so callers interact only with the top-level client. This made the SDK far easier to mock in unit tests and eliminated coupling to internal AWS service structures.",
+  "case_study_zh": "Java AWS SDK v2 就是考虑到 LoD 而重设计的。v1 SDK 暴露了深层嵌套的配置对象，导致如 client.getConfig().getCredentials().getAWSAccessKeyId() 的调用链。SDK v2 用不可变构建器对象和显式凭证提供者取代了这些，调用方只需与顶层客户端交互。这使 SDK 在单元测试中更易于 mock，并消除了对内部 AWS 服务结构的耦合。",
+  "case_study_company": "Amazon (AWS SDK)",
+  "when_not_to_use": "Don't apply LoD so strictly that you create 「wrapper hell」 — dozens of trivial delegate methods. In data pipeline or ETL code, chained transformations on the same object are idiomatic. Framework internals often need direct graph access for performance.",
+  "when_not_to_use_zh": "不要将 LoD 应用得如此严格以至创造「包装地狱」——数十个琐小的委托方法。在数据流水线或 ETL 代码中，对同一对象进行链式转换是惯用写法。框架内部组件出于性能考虑通常需要直接访问图结构。",
+  "primary_source": "Lieberherr, K., Holland, I., & Riel, A. (1988). 「Object-Oriented Programming: An Objective Sense of Style.」 OOPSLA '87 Proceedings.",
+  "secondary_sources": [
+    "Hunt, A. & Thomas, D. (1999). 「The Pragmatic Programmer.」 Addison-Wesley.",
+    "Martin, R.C. (2008). 「Clean Code.」 Prentice Hall."
+  ],
+  "origin_source": "Presented at OOPSLA 1987 by Lieberherr, Holland, and Riel at Northeastern University. Named 「Demeter」 after the Greek goddess of agriculture and a research project at Northeastern.",
+  "origin_source_zh": "由 Lieberherr、Holland 和 Riel 在东北大学于 1987 年 OOPSLA 上发表。名称「迪米特」源自希腊农业女神和东北大学的一个研究项目。",
+  "typed_relations": [
+    {
+      "slug": "solid-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "clean-code-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "strategy-pattern",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/law-of-demeter",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/law-of-demeter.md"
+}

@@ -1,0 +1,195 @@
+{
+  "id": 89,
+  "name": "Multi-Agent Orchestration Pattern",
+  "name_zh": "多代理编排模式",
+  "slug": "multi-agent-orchestration-pattern",
+  "category": "ai",
+  "desc": "Coordinate specialized AI agents via an orchestrator layer",
+  "desc_zh": "通过编排层协调多个专职 AI 代理协同工作",
+  "steps": [
+    "Decompose the overall task into sub-tasks with clear input/output contracts",
+    "Assign each sub-task to a specialized agent with the appropriate model and tools",
+    "Implement an orchestrator agent that routes tasks and aggregates results",
+    "Define inter-agent communication schemas (structured JSON messages or function calls)",
+    "Add circuit-breakers and fallback paths to handle agent failures gracefully"
+  ],
+  "steps_zh": [
+    "将整体任务分解为具有明确输入输出契约的子任务",
+    "为每个子任务指定配备合适模型与工具的专职代理",
+    "实现负责任务路由和结果聚合的编排代理",
+    "定义代理间通信模式（结构化 JSON 消息或函数调用）",
+    "添加熔断器与降级路径以优雅处理代理故障"
+  ],
+  "ai_relevant": true,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Orchestrator",
+    "Planner",
+    "Worker",
+    "Tool"
+  ],
+  "viz_labels_zh": [
+    "编排器",
+    "规划器",
+    "执行Agent",
+    "工具"
+  ],
+  "related": [
+    "react-framework",
+    "agent-communication-protocol",
+    "agent-oriented-design-thinking"
+  ],
+  "tags": [
+    "multi-agent",
+    "orchestration",
+    "coordination",
+    "task-decomposition"
+  ],
+  "origin_author": "Qian Chen et al. (Tsinghua / Microsoft Research), 2023",
+  "origin_source": "Communicative Agents for Software Development (ChatDev) and AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation",
+  "origin_source_zh": "面向软件开发的通信代理（ChatDev）及 AutoGen：通过多代理对话实现下一代大模型应用",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Complex tasks that require diverse expertise, e.g. a coding agent, a testing agent, and a review agent",
+    "Workflows where different sub-tasks benefit from different models or tool configurations",
+    "Research or analysis pipelines where debate or consensus among agents improves output quality",
+    "Production systems that need to scale sub-tasks independently across parallel agents"
+  ],
+  "when_to_use_zh": [
+    "需要多种专长的复杂任务——例如编码代理、测试代理和审查代理协作",
+    "不同子任务受益于不同模型或工具配置的工作流",
+    "代理间辩论或共识机制可提升输出质量的研究或分析管线",
+    "需要跨并行代理独立扩展子任务的生产系统"
+  ],
+  "core_concepts": [
+    "Orchestrator: A supervisory agent that decomposes tasks, routes them to specialists, and merges results",
+    "Specialist Agent: A purpose-built agent with a narrow tool set and system prompt optimized for one sub-task",
+    "Task Graph: The DAG of dependencies between sub-tasks that determines execution order and parallelism",
+    "Shared Memory: A common state store (blackboard) agents read from and write to for coordination",
+    "Debate Protocol: A pattern where multiple agents critique each other's outputs to improve accuracy"
+  ],
+  "core_concepts_zh": [
+    "编排器（Orchestrator）：负责任务分解、路由到专职代理并合并结果的监督代理",
+    "专职代理（Specialist Agent）：配备窄工具集和针对单一子任务优化的系统提示词的专用代理",
+    "任务图（Task Graph）：决定执行顺序和并行度的子任务依赖有向无环图",
+    "共享内存（Shared Memory）：代理间用于协调的公共状态存储（黑板机制）",
+    "辩论协议（Debate Protocol）：多个代理相互批评输出以提高准确性的模式"
+  ],
+  "timeline": [
+    [
+      "2023-07",
+      "ChatDev paper demonstrates multi-agent software development with role-playing agents"
+    ],
+    [
+      "2023-09",
+      "Microsoft releases AutoGen, the first major multi-agent conversation framework"
+    ],
+    [
+      "2023-11",
+      "CrewAI launches, popularizing role-based multi-agent orchestration for non-technical users"
+    ],
+    [
+      "2024-01",
+      "LangGraph introduces graph-based agent orchestration with cycles and persistence"
+    ],
+    [
+      "2024-08",
+      "OpenAI Swarm and Anthropic Claude multi-agent patterns push enterprise adoption"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2023-07",
+      "ChatDev 论文展示基于角色扮演代理的多代理软件开发"
+    ],
+    [
+      "2023-09",
+      "微软发布 AutoGen，首个主流多代理对话框架"
+    ],
+    [
+      "2023-11",
+      "CrewAI 发布，向非技术用户普及基于角色的多代理编排"
+    ],
+    [
+      "2024-01",
+      "LangGraph 引入支持循环和持久化的基于图的代理编排"
+    ],
+    [
+      "2024-08",
+      "OpenAI Swarm 和 Anthropic Claude 多代理模式推动企业级采用"
+    ]
+  ],
+  "dos": [
+    "Start with the simplest topology (linear handoff) and add complexity only when single-agent fails",
+    "Give each agent a clearly scoped system prompt -- blurry roles cause redundant or conflicting work",
+    "Use structured message schemas between agents to avoid natural-language parsing errors",
+    "Implement observability at the orchestrator level so you can trace the full multi-agent execution"
+  ],
+  "dos_zh": [
+    "从最简拓扑（线性交接）开始，仅在单代理无法胜任时增加复杂性",
+    "为每个代理设定清晰范围的系统提示词——模糊角色会导致重复或冲突工作",
+    "代理间使用结构化消息模式，避免自然语言解析错误",
+    "在编排器层面实现可观测性，以追踪完整的多代理执行过程"
+  ],
+  "donts": [
+    "Don't default to multi-agent when a single agent with good tools can solve the problem -- added coordination cost is real",
+    "Don't let agents communicate in unstructured free text -- it compounds errors across handoffs",
+    "Don't create circular dependencies between agents without explicit loop-breaking conditions",
+    "Don't ignore the token cost multiplier -- N agents each consuming context can be N times more expensive"
+  ],
+  "donts_zh": [
+    "当单个配备良好工具的代理能解决问题时不要默认使用多代理——协调成本是真实的",
+    "不要让代理以非结构化自由文本通信——错误会在交接中累积放大",
+    "不要在代理间创建循环依赖而不设显式中断条件",
+    "不要忽视 Token 成本倍增——N 个代理各自消耗上下文可能贵 N 倍"
+  ],
+  "case_study_company": "Microsoft",
+  "case_study": "Microsoft built AutoGen to power internal multi-agent workflows for code generation and data analysis. In production pilots, a three-agent setup (coder, critic, executor) reduced code review iteration cycles by 40% compared to single-agent generation. AutoGen's conversation-driven architecture became the reference implementation for enterprise multi-agent systems.",
+  "case_study_zh": "微软构建 AutoGen 驱动内部代码生成和数据分析的多代理工作流。在生产试点中，三代理配置（编码者、评审者、执行者）比单代理生成减少了 40% 的代码审查迭代周期。AutoGen 基于对话的架构成为企业多代理系统的参考实现。",
+  "when_not_to_use": [
+    "Simple tasks where a single well-prompted agent with tools is sufficient",
+    "Latency-critical paths where multi-agent round-trips add unacceptable delay",
+    "Early-stage prototypes where the added complexity of agent coordination hinders iteration speed",
+    "Cost-constrained scenarios where multiplying LLM calls across agents exceeds budget"
+  ],
+  "when_not_to_use_zh": [
+    "单个配备工具的良好提示代理即可胜任的简单任务",
+    "多代理往返增加不可接受延迟的延迟关键路径",
+    "代理协调的额外复杂性阻碍迭代速度的早期原型阶段",
+    "跨代理乘数式 LLM 调用超出预算的成本受限场景"
+  ],
+  "adopters": [
+    "Microsoft (AutoGen)",
+    "CrewAI",
+    "LangGraph (LangChain)",
+    "ChatDev (Tsinghua)",
+    "Camel-AI"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "scalability",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Qian Chen et al. (2023). \"Communicative Agents for Software Development (ChatDev)\". arXiv:2307.07924.",
+  "secondary_sources": [
+    "Chi Wang et al. (2023). \"AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation\". arXiv:2308.08155.",
+    "Yiran Wu et al. (2023). \"AutoGen: A Framework for Large Language Model Applications\". Microsoft Research."
+  ],
+  "typed_relations": [
+    {
+      "slug": "react-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "agent-communication-protocol",
+      "type": "complement"
+    },
+    {
+      "slug": "agent-oriented-design-thinking",
+      "type": "prerequisite"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/multi-agent-orchestration-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/multi-agent-orchestration-pattern.md"
+}

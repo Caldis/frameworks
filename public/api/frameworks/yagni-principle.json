@@ -1,0 +1,180 @@
+{
+  "id": 326,
+  "name": "YAGNI (You Aren't Gonna Need It)",
+  "name_zh": "YAGNI 原则（你不会用到它的）",
+  "slug": "yagni-principle",
+  "category": "coding",
+  "desc": "Always implement things when you actually need them, never when you just foresee that you might need them. Premature generalization is as harmful as premature optimization.",
+  "desc_zh": "只在真正需要时才实现功能，不要因为预见未来可能需要就提前实现。过早泛化与过早优化同样有害。",
+  "steps": [
+    "Identify what the current story or requirement actually specifies",
+    "Implement only that requirement — nothing more",
+    "Resist adding hooks, extension points, or config flags 「for later」",
+    "Review your PR: is every line driven by a real, current requirement?",
+    "Trust that the codebase will be refactorable when the need actually arises"
+  ],
+  "steps_zh": [
+    "确认当前用户故事或需求实际指定了什么",
+    "只实现该需求 —— 不多不少",
+    "抗拒为「日后」添加钩子、扩展点或配置开关",
+    "审查你的 PR：每一行是否都有真实的当前需求驱动？",
+    "相信当需求真正来临时代码库可以重构"
+  ],
+  "viz_type": "flow",
+  "viz_labels": [
+    "Requirement",
+    "Build Now",
+    "Defer",
+    "Avoid Waste"
+  ],
+  "viz_labels_zh": [
+    "需求",
+    "当前构建",
+    "推迟实现",
+    "避免浪费"
+  ],
+  "complexity": "beginner",
+  "origin_author": "Ron Jeffries, Extreme Programming community, late 1990s",
+  "adopters": [
+    "Basecamp / 37signals",
+    "ThoughtWorks",
+    "Pivotal Labs",
+    "Shopify",
+    "Stack Overflow"
+  ],
+  "related": [
+    "solid-principles",
+    "clean-code-principles",
+    "gof-design-patterns"
+  ],
+  "tags": [
+    "yagni",
+    "xp",
+    "agile",
+    "over-engineering",
+    "simplicity"
+  ],
+  "ai_relevant": false,
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability",
+    "performance"
+  ],
+  "maturity_ring": "foundational",
+  "when_to_use": "Apply YAGNI whenever you catch yourself adding code that is not required by the current iteration. Especially useful in agile teams where requirements are refined over time and future needs are uncertain.",
+  "when_to_use_zh": "当你发现自己正在添加当前迭代不需要的代码时应用。在需求随时间深化、未来不确定的敏捷团队中尤为适用。",
+  "core_concepts": [
+    "Incremental Development",
+    "Premature Generalization",
+    "Cost of Unused Code",
+    "Iterative Delivery",
+    "Extreme Programming (XP)"
+  ],
+  "core_concepts_zh": [
+    "增量开发",
+    "过早泛化",
+    "无用代码的成本",
+    "迭代交付",
+    "极限编程（XP）"
+  ],
+  "timeline": [
+    {
+      "year": 1999,
+      "event": "Ron Jeffries introduces YAGNI as a core Extreme Programming practice"
+    },
+    {
+      "year": 2001,
+      "event": "Agile Manifesto formally embraces incremental delivery, reinforcing YAGNI"
+    },
+    {
+      "year": 2004,
+      "event": "Basecamp / 37signals publish 「Getting Real」 — anti-over-engineering manifesto echoing YAGNI"
+    },
+    {
+      "year": 2010,
+      "event": "Lean Startup popularizes 「MVP」 — YAGNI at product level"
+    },
+    {
+      "year": 2018,
+      "event": "GitHub study on feature usage: ~64% of features in enterprise software rarely or never used"
+    }
+  ],
+  "timeline_zh": [
+    {
+      "year": 1999,
+      "event": "Ron Jeffries 将 YAGNI 作为极限编程的核心实践引入"
+    },
+    {
+      "year": 2001,
+      "event": "敏捷宣言正式拥抱增量交付，强化 YAGNI"
+    },
+    {
+      "year": 2004,
+      "event": "Basecamp / 37signals 出版《回归真实》—— 反过度工程宣言，呼应 YAGNI"
+    },
+    {
+      "year": 2010,
+      "event": "精益创业推广「MVP」—— YAGNI 在产品层面的体现"
+    },
+    {
+      "year": 2018,
+      "event": "GitHub 研究显示：企业软件中约64%的功能很少使用或从未使用"
+    }
+  ],
+  "dos": [
+    "Implement only what the current requirement demands",
+    "Delete speculative code when cleaning up branches",
+    "Use feature flags to defer decisions rather than building unused paths",
+    "Communicate trade-offs to stakeholders: 「we can add X when we need it」",
+    "Review PRs for 「just in case」 code and flag it"
+  ],
+  "dos_zh": [
+    "只实现当前需求所要求的功能",
+    "清理分支时删除投机性代码",
+    "用功能开关推迟决策，而不是构建无用路径",
+    "就权衡进行沟通：「需要时我们再加 X」",
+    "审查 PR 中的「以备不时之需」代码并指出"
+  ],
+  "donts": [
+    "Don't add plugin systems, strategy hooks, or 「extensible」 layers before they're requested",
+    "Don't write adapter code for hypothetical future data sources",
+    "Don't generalize to N cases when only 1 or 2 are needed today",
+    "Don't keep dead code paths 「in case we need them later」",
+    "Don't confuse YAGNI with avoiding good architecture — basic layering is not premature"
+  ],
+  "donts_zh": [
+    "不要在尚未请求前添加插件系统、策略钩子或「可扩展」层",
+    "不要为假设的未来数据源编写适配器代码",
+    "当只需要 1 或 2 个情况时，不要泛化为 N 种情况",
+    "不要保留死代码路径「以防后来需要」",
+    "不要把 YAGNI 与避免良好架构混淆 —— 基础分层不是过早优化"
+  ],
+  "case_study": "Basecamp (formerly 37signals) built its project management product by religiously following YAGNI. Their book 「Getting Real」 documents how features were only built when customers demanded them, not anticipated. The result was a lean product that shipped faster, had fewer bugs, and cost less to maintain. Competitor products loaded with 「maybe useful」 features were harder to learn and slower to develop.",
+  "case_study_zh": "Basecamp（前身 37signals）在构建项目管理产品时严格遵循 YAGNI。其《回归真实》记录了只有当客户明确要求时才构建功能的做法。结果是一个交付更快、缺陷更少、维护成本更低的精类产品。",
+  "case_study_company": "Basecamp (37signals)",
+  "when_not_to_use": "Security and compliance requirements must be built in from the start — YAGNI does not apply. Infrastructure choices (database engine, message queue) have high switching costs and deserve some forethought. YAGNI applies to feature code, not foundational architectural decisions.",
+  "when_not_to_use_zh": "安全合规需求必须从一开始就内置——YAGNI 不适用于此。基础设施选择（数据库引擎、消息队列）切换成本高，应有一定先见。YAGNI 针对功能代码，而非基础架构决策。",
+  "primary_source": "Jeffries, R. (1999). Extreme Programming Installed. Addison-Wesley.",
+  "secondary_sources": [
+    "Fried, J. & Heinemeier Hansson, D. (2010). 「Rework.」 Crown Business.",
+    "Beck, K. (2000). 「Extreme Programming Explained.」 Addison-Wesley."
+  ],
+  "origin_source": "Coined by Ron Jeffries as part of Extreme Programming (XP) in the late 1990s; popularized through the XP community and the Agile movement.",
+  "origin_source_zh": "由 Ron Jeffries 在 20 世纪 90 年代末作为极限编程（XP）的一部分提出，并通过 XP 社区和敏捷运动广泛传播。",
+  "typed_relations": [
+    {
+      "slug": "solid-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "clean-code-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "gof-design-patterns",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/yagni-principle",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/yagni-principle.md"
+}

@@ -1,0 +1,199 @@
+{
+  "id": 2,
+  "name": "Domain-Driven Design (DDD)",
+  "name_zh": "领域驱动设计",
+  "slug": "domain-driven-design",
+  "category": "thinking",
+  "desc": "Model software around core business domain language and logic",
+  "desc_zh": "围绕核心业务领域语言与逻辑构建软件模型",
+  "steps": [
+    "Knowledge Crunching: collaborate with domain experts to extract and refine the core domain model through iterative conversation",
+    "Define the Ubiquitous Language: establish a shared, precise vocabulary used consistently in code, docs, and team discussion",
+    "Identify Bounded Contexts: draw explicit boundaries around each subdomain where a particular model applies without ambiguity",
+    "Model the Core Domain: design entities, value objects, aggregates, and domain events that reflect real business rules",
+    "Map Context Relationships: define integration patterns (Anti-Corruption Layer, Shared Kernel, Open Host) between bounded contexts"
+  ],
+  "steps_zh": [
+    "知识提炼：与领域专家协作，通过反复对话提取并精化核心领域模型",
+    "定义统一语言：建立在代码、文档和团队讨论中统一使用的精确词汇表",
+    "识别限界上下文：为每个子领域划定明确边界，确保模型在边界内无歧义",
+    "建模核心领域：设计能够反映真实业务规则的实体、值对象、聚合与领域事件",
+    "映射上下文关系：定义限界上下文之间的集成模式（防腐层、共享内核、开放主机等）"
+  ],
+  "ai_relevant": true,
+  "viz_type": "venn",
+  "viz_labels": [
+    "Ubiquitous Language",
+    "Bounded Context",
+    "Context Map"
+  ],
+  "viz_labels_zh": [
+    "统一语言",
+    "限界上下文",
+    "上下文映射"
+  ],
+  "related": [
+    "ddd-tactical-patterns",
+    "cqrs-pattern",
+    "event-sourcing-pattern"
+  ],
+  "tags": [
+    "domain-modeling",
+    "bounded-context",
+    "ubiquitous-language",
+    "strategic-design"
+  ],
+  "origin_author": "Eric Evans, 2003",
+  "origin_source": "Domain-Driven Design: Tackling Complexity in the Heart of Software",
+  "origin_source_zh": "《领域驱动设计：软件核心复杂性应对之道》",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When your system's core complexity lies in the business rules rather than technical infrastructure",
+    "When multiple teams need to work on the same large system and you need clear ownership boundaries",
+    "When domain experts and developers consistently miscommunicate because they use different terminology",
+    "When a legacy monolith needs to be decomposed into services along meaningful business boundaries"
+  ],
+  "when_to_use_zh": [
+    "当系统的核心复杂性在于业务规则而非技术基础设施时",
+    "当多个团队需要在同一大型系统上协作，需要明确的职责边界时",
+    "当领域专家和开发者因使用不同术语而持续产生沟通障碍时",
+    "当遗留单体应用需要沿有意义的业务边界拆分为服务时"
+  ],
+  "core_concepts": [
+    "Ubiquitous Language: A shared vocabulary between developers and domain experts that is used consistently in code, conversation, and documentation to eliminate translation errors",
+    "Bounded Context: An explicit boundary within which a particular domain model is defined and applicable, preventing one team's model from corrupting another's",
+    "Aggregate: A cluster of domain objects treated as a single unit for data changes, enforcing consistency boundaries within a bounded context",
+    "Context Mapping: The practice of explicitly documenting relationships and integration patterns between bounded contexts to manage dependencies"
+  ],
+  "core_concepts_zh": [
+    "统一语言：开发者与领域专家之间的共享词汇表，在代码、对话和文档中一致使用，以消除翻译错误",
+    "限界上下文：定义特定领域模型适用范围的显式边界，防止一个团队的模型污染另一个团队的模型",
+    "聚合：作为数据变更单元处理的领域对象集群，在限界上下文内强制一致性边界",
+    "上下文映射：显式记录限界上下文之间的关系和集成模式以管理依赖的实践"
+  ],
+  "timeline": [
+    [
+      "2003",
+      "Eric Evans publishes 'Domain-Driven Design: Tackling Complexity in the Heart of Software', introducing DDD concepts"
+    ],
+    [
+      "2006",
+      "The DDD community begins forming around the Yahoo Groups mailing list and early conferences, spreading strategic design patterns"
+    ],
+    [
+      "2013",
+      "Vaughn Vernon publishes 'Implementing Domain-Driven Design', providing practical implementation guidance that accelerates adoption"
+    ],
+    [
+      "2015",
+      "Microservices architecture popularizes Bounded Context as the natural service decomposition boundary"
+    ],
+    [
+      "2019",
+      "Event Storming (by Alberto Brandolini) becomes the dominant collaborative DDD modeling technique in enterprise teams"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2003",
+      "Eric Evans出版《领域驱动设计：软件核心复杂性应对之道》，引入DDD核心概念"
+    ],
+    [
+      "2006",
+      "DDD社区围绕Yahoo Groups邮件列表和早期会议逐步形成，传播战略设计模式"
+    ],
+    [
+      "2013",
+      "Vaughn Vernon出版《实现领域驱动设计》，提供实践指导，加速了DDD的采用"
+    ],
+    [
+      "2015",
+      "微服务架构的流行使限界上下文成为服务拆分的天然边界"
+    ],
+    [
+      "2019",
+      "Alberto Brandolini提出的事件风暴成为企业团队中最主流的协作式DDD建模技术"
+    ]
+  ],
+  "dos": [
+    "Do invest heavily in conversations with domain experts before writing code, because the model quality depends on how well you understand the domain",
+    "Do name classes, methods, and variables using the Ubiquitous Language, because code that speaks the domain's language is self-documenting and catches modeling errors early",
+    "Do keep aggregates small and focused on consistency boundaries, because large aggregates create contention and scalability problems",
+    "Do draw context maps as living documents, because team and system boundaries evolve and stale maps cause integration surprises"
+  ],
+  "dos_zh": [
+    "在编写代码前大量投入与领域专家的对话，因为模型质量取决于你对领域理解的深度",
+    "使用统一语言命名类、方法和变量，因为使用领域语言的代码本身就是文档，并能尽早捕获建模错误",
+    "保持聚合小而聚焦于一致性边界，因为过大的聚合会产生竞争和可扩展性问题",
+    "将上下文映射图作为活文档维护，因为团队和系统边界会演化，过时的映射图会导致集成意外"
+  ],
+  "donts": [
+    "Don't apply DDD tactical patterns (entities, value objects, repositories) without first doing strategic design, because patterns without bounded contexts create distributed monoliths",
+    "Don't force every subdomain to use rich domain models, because supporting and generic subdomains often work fine with simpler CRUD approaches",
+    "Don't let the database schema drive your domain model, because persistence is an infrastructure concern that should adapt to the model, not the reverse",
+    "Don't create a single universal model shared across all teams, because different contexts genuinely need different representations of the same concept"
+  ],
+  "donts_zh": [
+    "不要在没有先做战略设计的情况下直接使用DDD战术模式（实体、值对象、仓储），因为没有限界上下文的模式会创建分布式单体",
+    "不要强制每个子领域都使用富领域模型，因为支撑域和通用域用简单的CRUD方式通常就能很好地工作",
+    "不要让数据库模式驱动领域模型，因为持久化是基础设施关注点，应该适配模型而非反过来",
+    "不要创建一个跨所有团队共享的单一通用模型，因为不同上下文确实需要对同一概念有不同的表示"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix applied DDD principles when decomposing their monolithic DVD rental system into microservices for streaming. They identified distinct bounded contexts such as content catalog, subscriber management, recommendation engine, and streaming delivery, each with its own ubiquitous language and team ownership. This decomposition enabled teams to deploy independently and scale each context according to its unique load patterns, supporting the company's growth from 20 million to over 200 million subscribers.",
+  "case_study_zh": "Netflix在将单体DVD租赁系统拆分为流媒体微服务时应用了DDD原则。他们识别出内容目录、订阅者管理、推荐引擎和流媒体分发等不同的限界上下文，每个上下文都有自己的统一语言和团队所有权。这种拆分使各团队能独立部署并根据各上下文独特的负载模式进行扩展，支撑了公司从2000万增长到超过2亿订阅者。",
+  "case_study_challenge": "Netflix's monolithic DVD rental system was buckling under the pivot to streaming. A single codebase owned by everyone meant that a change to the recommendation engine could break billing, and deployment cycles stretched to weeks as coordination overhead consumed the engineering organization.",
+  "case_study_challenge_zh": "Netflix的单体DVD租赁系统在向流媒体转型中不堪重负。一个所有人共有的单一代码库意味着推荐引擎的改动可能破坏计费系统，而部署周期因协调成本拉长至数周。",
+  "case_study_approach": "The team applied DDD to identify natural bounded contexts — content catalog, subscriber management, recommendation engine, streaming delivery — each with its own ubiquitous language and dedicated team ownership. Services communicated through well-defined context maps rather than shared databases.",
+  "case_study_approach_zh": "团队运用DDD识别出天然的限界上下文——内容目录、订阅者管理、推荐引擎、流媒体分发——每个上下文拥有独立的统一语言和专属团队。服务间通过定义清晰的上下文映射通信，而非共享数据库。",
+  "case_study_result": "Independent deployment and context-specific scaling enabled Netflix to grow from 20 million to over 200 million subscribers without architectural collapse. Each team could evolve its domain model at its own pace, and the bounded context boundaries proved remarkably stable even as the underlying technology changed.",
+  "case_study_result_zh": "独立部署和按上下文弹性扩展使Netflix从2000万用户增长到超过2亿，架构依然稳固。每个团队能按自己的节奏演进领域模型，限界上下文的边界即使在底层技术更迭后也保持了惊人的稳定。",
+  "case_study_quote": "The best thing we did was identify where one team's language ended and another's began. That's where the service boundaries drew themselves.",
+  "case_study_quote_zh": "我们做过最正确的事，就是找到一个团队的语言在哪里结束、另一个团队的语言从哪里开始。服务边界就在那里自然浮现。",
+  "when_not_to_use": [
+    "When building a simple CRUD application with minimal business logic where the overhead of domain modeling isn't justified",
+    "When the team has no access to domain experts and cannot establish a meaningful ubiquitous language",
+    "When working on a short-lived prototype or proof of concept where speed of delivery matters more than model accuracy",
+    "When the project is purely technical infrastructure (logging, monitoring, CI/CD) with no business domain to model"
+  ],
+  "when_not_to_use_zh": [
+    "当构建业务逻辑极简的CRUD应用，领域建模的开销不合理时",
+    "当团队无法接触领域专家，无法建立有意义的统一语言时",
+    "当开发短期原型或概念验证，交付速度比模型准确性更重要时",
+    "当项目是纯技术基础设施（日志、监控、CI/CD），没有业务领域需要建模时"
+  ],
+  "adopters": [
+    "Netflix",
+    "Spotify",
+    "Zalando",
+    "Thoughtworks",
+    "VMware (Spring Team)",
+    "Just Eat Takeaway"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Eric Evans (2003). \"Domain-Driven Design: Tackling Complexity in the Heart of Software\". Addison-Wesley.",
+  "secondary_sources": [
+    "Vaughn Vernon (2013). \"Implementing Domain-Driven Design\". Addison-Wesley.",
+    "Eric Evans (2015). \"Domain-Driven Design Reference\". Domain Language, Inc."
+  ],
+  "typed_relations": [
+    {
+      "slug": "ddd-tactical-patterns",
+      "type": "extends"
+    },
+    {
+      "slug": "cqrs-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "event-sourcing-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/domain-driven-design",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/domain-driven-design.md"
+}

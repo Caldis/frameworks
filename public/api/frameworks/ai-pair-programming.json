@@ -1,0 +1,195 @@
+{
+  "id": 92,
+  "name": "AI Pair Programming Model",
+  "name_zh": "AI 结对编程模型",
+  "slug": "ai-pair-programming",
+  "category": "ai",
+  "desc": "Structure developer and AI collaboration in the coding loop",
+  "desc_zh": "在编码循环中结构化人类开发者与 AI 的协作方式",
+  "steps": [
+    "Establish role division: human owns intent and review; AI owns synthesis and drafting",
+    "Use intent-first prompting - describe what, why, and constraints before asking for code",
+    "Review AI output for correctness, security, and style before accepting each chunk",
+    "Feed failing tests or error messages back to the AI as grounding for refinement",
+    "Reflect at session end: categorize AI contributions and identify skill gaps to address"
+  ],
+  "steps_zh": [
+    "明确角色分工：人类负责意图与审查，AI 负责合成与起草",
+    "使用意图优先提示——在请求代码前先描述目标、原因和约束",
+    "在接受每段代码前审查 AI 输出的正确性、安全性和风格",
+    "将失败测试或错误信息反馈给 AI 作为细化的依据",
+    "在会话结束时复盘：归类 AI 贡献并识别需补足的技能差距"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Write",
+    "Suggest",
+    "Accept",
+    "Iterate"
+  ],
+  "viz_labels_zh": [
+    "编写代码",
+    "AI建议",
+    "采纳",
+    "迭代"
+  ],
+  "related": [
+    "human-ai-interaction-design",
+    "ai-assisted-refactoring",
+    "conventional-comments"
+  ],
+  "tags": [
+    "pair-programming",
+    "ai-collaboration",
+    "coding",
+    "developer-tools"
+  ],
+  "origin_author": "GitHub (Oege de Moor et al.), 2021",
+  "origin_source": "GitHub Copilot Technical Preview and Evaluating Large Language Models Trained on Code (Codex, OpenAI, 2021)",
+  "origin_source_zh": "GitHub Copilot 技术预览及评估在代码上训练的大语言模型（Codex，OpenAI，2021）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Day-to-day coding tasks including boilerplate generation, test writing, and refactoring",
+    "Onboarding to unfamiliar codebases where the AI can explain patterns and suggest idioms",
+    "Prototyping and rapid iteration where speed of code generation matters more than perfection",
+    "Learning new languages or frameworks by generating examples and explaining alternatives"
+  ],
+  "when_to_use_zh": [
+    "日常编码任务，包括样板代码生成、测试编写和重构",
+    "AI 能解释模式和建议惯用写法的不熟悉代码库入门阶段",
+    "代码生成速度比完美更重要的原型构建和快速迭代",
+    "通过生成示例和解释替代方案来学习新语言或框架"
+  ],
+  "core_concepts": [
+    "Intent-First Prompting: Describing the goal and constraints before requesting code to guide generation quality",
+    "Ghost Text: Inline AI suggestions that appear as the developer types, requiring accept/reject decisions",
+    "Chat-Driven Development: Using a conversational AI sidebar to discuss, plan, and generate code interactively",
+    "Agentic Coding: AI autonomously executing multi-step coding tasks (edit, test, fix) with human approval gates",
+    "Skill Calibration: Regularly assessing which tasks the AI handles well vs. where human expertise is still critical"
+  ],
+  "core_concepts_zh": [
+    "意图优先提示（Intent-First Prompting）：在请求代码前描述目标和约束以引导生成质量",
+    "幽灵文本（Ghost Text）：开发者输入时内联出现的 AI 建议，需要接受或拒绝决策",
+    "对话驱动开发（Chat-Driven Development）：使用对话式 AI 侧边栏交互式讨论、规划和生成代码",
+    "代理式编码（Agentic Coding）：AI 自主执行多步编码任务（编辑、测试、修复），设人工审批门控",
+    "技能校准（Skill Calibration）：定期评估 AI 擅长哪些任务、哪些仍需人类专长"
+  ],
+  "timeline": [
+    [
+      "2021-06",
+      "GitHub launches Copilot technical preview, powered by OpenAI Codex"
+    ],
+    [
+      "2022-06",
+      "GitHub Copilot becomes generally available; Amazon announces CodeWhisperer"
+    ],
+    [
+      "2023-03",
+      "GPT-4 powers Copilot Chat, enabling conversational pair programming in the IDE"
+    ],
+    [
+      "2024-03",
+      "Devin (Cognition) and SWE-Agent demonstrate autonomous coding agents"
+    ],
+    [
+      "2025-02",
+      "Claude Code (Anthropic), Cursor, and Windsurf push agentic coding into mainstream developer workflows"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2021-06",
+      "GitHub 发布由 OpenAI Codex 驱动的 Copilot 技术预览"
+    ],
+    [
+      "2022-06",
+      "GitHub Copilot 正式发布；亚马逊宣布 CodeWhisperer"
+    ],
+    [
+      "2023-03",
+      "GPT-4 驱动 Copilot Chat，在 IDE 中实现对话式结对编程"
+    ],
+    [
+      "2024-03",
+      "Devin（Cognition）和 SWE-Agent 展示自主编码代理"
+    ],
+    [
+      "2025-02",
+      "Claude Code（Anthropic）、Cursor 和 Windsurf 将代理式编码推入主流开发者工作流"
+    ]
+  ],
+  "dos": [
+    "Always review AI-generated code for security vulnerabilities -- AI can confidently produce insecure patterns",
+    "Provide full context (file imports, types, test expectations) to get higher-quality suggestions",
+    "Use AI for tedious tasks (boilerplate, tests, docs) and reserve your cognitive energy for architecture decisions",
+    "Treat AI output as a first draft -- iterate and refine rather than accepting blindly"
+  ],
+  "dos_zh": [
+    "始终审查 AI 生成代码的安全漏洞——AI 可能自信地产出不安全的模式",
+    "提供完整上下文（文件导入、类型、测试期望）以获得更高质量的建议",
+    "将 AI 用于繁琐任务（样板代码、测试、文档），将认知精力留给架构决策",
+    "将 AI 输出视为初稿——迭代优化而非盲目接受"
+  ],
+  "donts": [
+    "Don't accept AI code without understanding it -- you own the code quality and technical debt",
+    "Don't rely on AI for security-critical code paths without independent review and testing",
+    "Don't stop learning fundamentals because the AI can generate code -- understanding trumps generation",
+    "Don't paste secrets or credentials into AI prompts -- they may be logged or used in training"
+  ],
+  "donts_zh": [
+    "不要在不理解的情况下接受 AI 代码——代码质量和技术债务由你负责",
+    "不要在没有独立审查和测试的情况下依赖 AI 处理安全关键代码路径",
+    "不要因为 AI 能生成代码就停止学习基础知识——理解比生成更重要",
+    "不要将密钥或凭证粘贴到 AI 提示词中——它们可能被记录或用于训练"
+  ],
+  "case_study_company": "GitHub",
+  "case_study": "GitHub reported that Copilot users accepted approximately 30% of AI code suggestions and completed tasks 55% faster in controlled studies. By 2024, over 1.8 million paying developers and 77,000 organizations used Copilot, making it the fastest-adopted developer tool in history. The key insight was that autocomplete-style ghost text minimized workflow disruption.",
+  "case_study_zh": "GitHub 报告 Copilot 用户接受了约 30% 的 AI 代码建议，在对照实验中完成任务速度提升 55%。截至 2024 年，超过 180 万付费开发者和 77,000 个组织使用 Copilot，使其成为历史上采用速度最快的开发者工具。关键洞察是自动补全式幽灵文本最小化了工作流干扰。",
+  "when_not_to_use": [
+    "Highly regulated codebases with strict IP provenance requirements that prohibit AI-generated code",
+    "Security-sensitive cryptographic implementations where subtle AI errors could be catastrophic",
+    "When the developer lacks sufficient understanding to review AI output critically",
+    "Codebases with proprietary patterns so unique that generic AI models consistently produce incorrect suggestions"
+  ],
+  "when_not_to_use_zh": [
+    "有严格知识产权溯源要求、禁止使用 AI 生成代码的高度受监管代码库",
+    "AI 细微错误可能造成灾难性后果的安全敏感密码学实现",
+    "开发者缺乏足够理解力来批判性审查 AI 输出时",
+    "拥有独特专有模式、通用 AI 模型持续产出错误建议的代码库"
+  ],
+  "adopters": [
+    "GitHub (Copilot)",
+    "Anthropic (Claude Code)",
+    "Cursor",
+    "Google (Gemini Code Assist)",
+    "Amazon (CodeWhisperer / Q Developer)"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability",
+    "usability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Mark Chen et al. (2021). \"Evaluating Large Language Models Trained on Code (Codex)\". arXiv:2107.03374.",
+  "secondary_sources": [
+    "Albert Ziegler et al. (2022). \"Productivity Assessment of Neural Code Completion\". MAPS 2022.",
+    "Sida Peng et al. (2023). \"The Impact of AI on Developer Productivity: Evidence from GitHub Copilot\". arXiv:2302.06590."
+  ],
+  "typed_relations": [
+    {
+      "slug": "human-ai-interaction-design",
+      "type": "complement"
+    },
+    {
+      "slug": "ai-assisted-refactoring",
+      "type": "complement"
+    },
+    {
+      "slug": "conventional-comments",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/ai-pair-programming",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/ai-pair-programming.md"
+}

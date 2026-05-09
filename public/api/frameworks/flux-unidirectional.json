@@ -1,0 +1,201 @@
+{
+  "id": 323,
+  "name": "Flux / Unidirectional Data Flow",
+  "name_zh": "Flux / 单向数据流",
+  "slug": "flux-unidirectional",
+  "category": "architecture",
+  "desc": "Enforces a strict one-way data cycle — Action → Dispatcher → Store → View → Action — eliminating the cascading update problems of two-way binding by making state changes predictable and traceable.",
+  "desc_zh": "强制执行严格的单向数据循环——动作→调度器→存储→视图→动作——通过使状态变更可预测和可追踪，消除双向绑定的级联更新问题。",
+  "steps": [
+    "Define Actions: plain data objects (or objects with a type string) that describe what happened in the system — user interactions, API responses, timer events",
+    "Implement a Dispatcher: a singleton registry that receives all Actions and broadcasts them sequentially to all registered Stores — no action may dispatch another action synchronously",
+    "Implement Stores: modules that hold application state and business logic; each Store registers with the Dispatcher, handles the Actions it cares about, and emits a change event when its state updates",
+    "Implement Views: React components or UI elements that subscribe to Store change events, re-render from Store state, and emit new Actions in response to user gestures",
+    "Close the loop: user interaction → View emits Action → Dispatcher broadcasts → Stores update → Views re-render; debug by inspecting the Action log for the full state history"
+  ],
+  "steps_zh": [
+    "定义动作：描述系统中发生了什么的普通数据对象（或带有类型字符串的对象）——用户交互、API响应、定时器事件",
+    "实现调度器：接收所有动作并将其顺序广播到所有注册存储的单例注册表——任何动作不得同步分发另一个动作",
+    "实现存储：持有应用程序状态和业务逻辑的模块；每个存储向调度器注册，处理其关心的动作，并在状态更新时发出变更事件",
+    "实现视图：订阅存储变更事件、从存储状态重新渲染、并响应用户手势发出新动作的React组件或UI元素",
+    "闭合循环：用户交互→视图发出动作→调度器广播→存储更新→视图重新渲染；通过检查动作日志获取完整状态历史来调试"
+  ],
+  "ai_relevant": false,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Action",
+    "Dispatcher",
+    "Store",
+    "View"
+  ],
+  "viz_labels_zh": [
+    "动作",
+    "调度器",
+    "数据仓库",
+    "视图"
+  ],
+  "related": [
+    "observer-pattern",
+    "eda",
+    "separation-of-concerns",
+    "mvc",
+    "mvvm",
+    "mvp"
+  ],
+  "tags": [
+    "state-management",
+    "unidirectional",
+    "react",
+    "frontend-architecture"
+  ],
+  "origin_author": "Facebook (Jing Chen, Bill Fisher), 2014",
+  "origin_source": "Chen, J. & Fisher, B. (2014). Flux: An Application Architecture for React. Facebook Engineering talk at F8 conference, May.",
+  "origin_source_zh": "Chen, J. & Fisher, B.（2014）。《Flux：React的应用架构》。Facebook工程师在F8大会上的演讲，5月。",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When a complex client-side application has shared state that multiple UI components read and mutate, leading to synchronization bugs with two-way binding",
+    "When debugging complex UI bugs that stem from unclear data flow — Flux's action log makes the sequence of state changes fully auditable",
+    "When using React or a similar component-based framework where unidirectional data flow is the idiomatic state management approach",
+    "When the team needs to implement time-travel debugging or undo/redo — the action log is a natural event source for replaying state"
+  ],
+  "when_to_use_zh": [
+    "复杂客户端应用程序具有多个UI组件读写的共享状态，导致双向绑定的同步错误时",
+    "调试源于不清晰数据流的复杂UI错误时——Flux的动作日志使状态变更序列完全可审计",
+    "使用React或类似基于组件的框架时，单向数据流是惯用的状态管理方法",
+    "团队需要实现时间旅行调试或撤销/重做时——动作日志是重放状态的自然事件源"
+  ],
+  "core_concepts": [
+    "Unidirectional flow: data moves in one direction only — Action → Dispatcher → Store → View → Action — eliminating the feedback loops that make bidirectional binding hard to debug",
+    "Actions: the only mechanism for changing state — explicit, serializable objects that describe what happened, never how the state should change",
+    "Dispatcher: the global event bus that serializes all Actions and broadcasts them to every registered Store — enforcing that only one Action is processed at a time",
+    "Stores: stateful modules that own specific slices of application state; they respond to Actions by computing new state and notifying Views",
+    "Single source of truth: each piece of application state lives in exactly one Store — Views derive their display state from Stores rather than maintaining their own copies"
+  ],
+  "core_concepts_zh": [
+    "单向流：数据仅在一个方向移动——动作→调度器→存储→视图→动作——消除使双向绑定难以调试的反馈循环",
+    "动作：改变状态的唯一机制——明确的、可序列化的描述发生了什么的对象，而非状态应如何改变",
+    "调度器：将所有动作序列化并广播到每个注册存储的全局事件总线——强制一次只处理一个动作",
+    "存储：拥有特定应用程序状态切片的有状态模块；通过计算新状态并通知视图来响应动作",
+    "单一数据源：每片应用程序状态恰好存在于一个存储中——视图从存储派生其显示状态而非维护自己的副本"
+  ],
+  "timeline": [
+    [
+      "2014",
+      "Facebook's Jing Chen introduces Flux at the F8 developer conference as the solution to cascading MVC update bugs in Facebook Chat"
+    ],
+    [
+      "2015",
+      "Dan Abramov releases Redux, a simplified Flux implementation with a single immutable Store and pure reducer functions, which becomes the dominant React state library"
+    ],
+    [
+      "2016",
+      "Vue.js releases Vuex, bringing Flux-inspired unidirectional state management to the Vue ecosystem"
+    ],
+    [
+      "2019",
+      "React introduces the useReducer hook and Context API, making lightweight Flux-style state management available natively without external libraries"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2014",
+      "Facebook的Jing Chen在F8开发者大会上介绍Flux，作为解决Facebook Chat中级联MVC更新错误的方案"
+    ],
+    [
+      "2015",
+      "Dan Abramov发布Redux，一个具有单一不可变存储和纯reducer函数的简化Flux实现，成为主流React状态库"
+    ],
+    [
+      "2016",
+      "Vue.js发布Vuex，为Vue生态系统带来受Flux启发的单向状态管理"
+    ],
+    [
+      "2019",
+      "React引入useReducer钩子和Context API，使轻量级Flux风格的状态管理无需外部库即可原生使用"
+    ]
+  ],
+  "dos": [
+    "Keep Actions as plain, serializable data objects with a type field — this makes them loggable, replayable, and easy to test",
+    "Make Store update logic pure and synchronous — asynchronous operations belong in Action creators or middleware, not inside Store handlers",
+    "Define all possible Actions as an explicit set (string enum or constant map) so that typos in action type strings are caught at development time",
+    "Derive computed state in Views (or selectors) rather than storing redundant derived data in Stores — storing derived data creates synchronization bugs"
+  ],
+  "dos_zh": [
+    "将动作保持为带有类型字段的普通、可序列化数据对象——这使其可记录、可重放且易于测试",
+    "使存储更新逻辑纯粹且同步——异步操作属于动作创建器或中间件，而非存储处理器内部",
+    "将所有可能的动作定义为明确集合（字符串枚举或常量映射），以便在开发时捕获动作类型字符串中的拼写错误",
+    "在视图（或选择器）中派生计算状态，而非在存储中存储冗余派生数据——存储派生数据会创建同步错误"
+  ],
+  "donts": [
+    "Don't dispatch Actions from within a Store's Action handler — the Dispatcher enforces that only one Action is in-flight at a time; nested dispatches throw errors",
+    "Don't let Views mutate Store state directly — all state changes must go through the Action → Dispatcher → Store cycle, even for local UI state",
+    "Don't create one mega-Store for all application state — split Stores by domain boundary (UserStore, CartStore, NotificationStore) to limit the scope of re-renders",
+    "Don't perform async operations (API calls, timers) inside the Dispatcher's callback chain — use Action creators with async/await or middleware for side effects"
+  ],
+  "donts_zh": [
+    "不要在存储的动作处理器内分发动作——调度器强制一次只有一个动作在处理中；嵌套分发会抛出错误",
+    "不要让视图直接修改存储状态——所有状态变更必须经过动作→调度器→存储循环，即使对于本地UI状态",
+    "不要为所有应用程序状态创建一个巨型存储——按领域边界拆分存储（UserStore、CartStore、NotificationStore）以限制重新渲染范围",
+    "不要在调度器回调链内执行异步操作（API调用、定时器）——为副作用使用带async/await的动作创建器或中间件"
+  ],
+  "case_study_company": "Facebook",
+  "case_study": "Facebook developed Flux to solve a specific, devastating bug in Facebook Chat: messages would be marked as read, but an unread count badge would persist showing incorrect counts. Root cause analysis revealed MVC's bidirectional data flow allowed controller updates to trigger cascading model updates, which triggered further controller updates — creating an unpredictable cycle of state changes. By replacing the bidirectional flow with a strict Action → Dispatcher → Store → View cycle, Facebook engineers made the data flow explicit and debuggable. After Flux adoption, the Chat unread count bug was eliminated and the team reported a significant reduction in state-synchronization bugs across the Facebook web application.",
+  "case_study_zh": "Facebook开发Flux是为了解决Facebook Chat中一个特定的严重错误：消息被标记为已读，但未读计数徽章持续显示错误计数。根因分析揭示MVC的双向数据流允许控制器更新触发级联模型更新，后者又触发进一步的控制器更新——创建不可预测的状态变更循环。通过用严格的动作→调度器→存储→视图循环替换双向流，Facebook工程师使数据流变得明确且可调试。采用Flux后，Chat未读计数错误被消除，团队报告Facebook Web应用程序中状态同步错误显著减少。",
+  "when_not_to_use": [
+    "For simple applications with local component state only — React's useState hook or Vue's reactive data handles this without the Flux overhead",
+    "When the team is not using a component-based UI framework — Flux's View layer assumes a component model; it does not translate well to server-rendered HTML",
+    "For applications with predominantly server-side state — Flux manages client-side state; server state libraries (React Query, SWR) are a better fit for data fetching"
+  ],
+  "when_not_to_use_zh": [
+    "对于仅有本地组件状态的简单应用程序——React的useState钩子或Vue的响应式数据可以处理这些而无需Flux开销",
+    "当团队不使用基于组件的UI框架时——Flux的视图层假定组件模型；它不能很好地转化为服务器渲染的HTML",
+    "对于以服务器端状态为主的应用程序——Flux管理客户端状态；服务器状态库（React Query、SWR）更适合数据获取"
+  ],
+  "adopters": [
+    "Facebook / Meta",
+    "React + Redux ecosystem",
+    "Vuex (Vue.js)",
+    "NgRx (Angular)",
+    "Elm (inspired by Flux)"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "maintainability",
+    "testability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Chen, J. & Fisher, B. (2014). Flux: An Application Architecture for React. Facebook Engineering, F8 Conference.",
+  "secondary_sources": [
+    "Abramov, D. (2015). Redux Documentation — Motivation. redux.js.org.",
+    "Facebook (2014). Flux — Application Architecture for Building User Interfaces. github.com/facebook/flux.",
+    "Abramov, D. & Clark, A. (2016). Getting Started with Redux (Egghead.io course). egghead.io."
+  ],
+  "typed_relations": [
+    {
+      "slug": "observer-pattern",
+      "type": "extends"
+    },
+    {
+      "slug": "eda",
+      "type": "related"
+    },
+    {
+      "slug": "separation-of-concerns",
+      "type": "complement"
+    },
+    {
+      "slug": "mvc",
+      "type": "alternative"
+    },
+    {
+      "slug": "mvvm",
+      "type": "alternative"
+    },
+    {
+      "slug": "mvp",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/flux-unidirectional",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/flux-unidirectional.md"
+}

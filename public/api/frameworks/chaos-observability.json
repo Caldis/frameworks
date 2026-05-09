@@ -1,0 +1,195 @@
+{
+  "id": 223,
+  "name": "Chaos Observability",
+  "name_zh": "混沌可观测性",
+  "slug": "chaos-observability",
+  "category": "observability",
+  "desc": "Observability practices specifically designed for chaos engineering experiments and resilience validation",
+  "desc_zh": "专为混沌工程实验和弹性验证设计的可观测性实践",
+  "steps": [
+    "Establish a pre-experiment observability baseline: capture screenshots or snapshots of dashboards (latency percentiles, error rates, saturation metrics) 15 minutes before the chaos experiment starts",
+    "Define the steady-state hypothesis in observable terms: 'p99 latency remains below 500ms', 'error rate stays under 0.1%', 'all health check endpoints return 200' — these are the abort conditions if violated",
+    "Instrument the chaos experiment itself with a start event and end event emitted as structured log events or trace spans with experiment_id, target, and fault_type labels so the experiment appears in dashboards",
+    "Monitor observability signals in real time during the experiment; configure an automatic abort trigger that halts the experiment if any steady-state condition is violated beyond the defined blast radius",
+    "Conduct a post-experiment analysis comparing the pre-experiment baseline to in-experiment and post-experiment metrics to validate whether the system behaved as expected and whether recovery was complete"
+  ],
+  "steps_zh": [
+    "建立实验前可观测性基线：在混沌实验开始前15分钟捕获仪表板的截图或快照（延迟百分位数、错误率、饱和度指标）",
+    "以可观测的术语定义稳态假设：「p99延迟保持在500ms以下」、「错误率保持在0.1%以下」、「所有健康检查端点返回200」——如果违反，这些是中止条件",
+    "对混沌实验本身进行仪器化，发出带有experiment_id、target和fault_type标签的结构化日志事件或追踪span作为开始事件和结束事件，使实验出现在仪表板中",
+    "在实验期间实时监控可观测性信号；配置自动中止触发器，如果任何稳态条件在定义的爆炸半径之外被违反，则停止实验",
+    "进行实验后分析，比较实验前基线与实验中和实验后指标，以验证系统是否按预期运行，以及恢复是否完整"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Baseline Snapshot",
+    "Steady-State Hypothesis",
+    "Instrument Experiment",
+    "Abort Trigger",
+    "Post-Analysis"
+  ],
+  "viz_labels_zh": [
+    "基线快照",
+    "稳态假设",
+    "实验埋点",
+    "中止触发",
+    "事后分析"
+  ],
+  "related": [
+    "slo-as-practice",
+    "opentelemetry"
+  ],
+  "tags": [
+    "chaos-engineering",
+    "resilience",
+    "fault-injection",
+    "steady-state",
+    "blast-radius"
+  ],
+  "origin_author": "Netflix Chaos Monkey (2011); chaos engineering principles formalized by Rosenthal, Casey et al. (2017, Chaos Engineering book)",
+  "origin_source": "Rosenthal, C. et al. (2017). \"Chaos Engineering\". O'Reilly Media; Basiri, A. et al. (2016). \"Chaos Engineering\". IEEE Software, 33(3).",
+  "origin_source_zh": "Rosenthal, C.等（2017）「混沌工程」，O'Reilly Media；Basiri, A.等（2016）「混沌工程」，IEEE Software，33(3)",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When the team has completed basic chaos experiments and wants to validate that observability signals faithfully reflect system behavior during failures",
+    "When conducting chaos experiments in production or staging and need safety mechanisms to automatically abort experiments that cause unexpected customer impact",
+    "When building the organizational confidence to run chaos experiments in production by demonstrating that monitoring coverage is sufficient to detect and respond to emergent failures",
+    "When testing whether the on-call alerting stack (SLO alerts, anomaly detectors) fires appropriately during a specific failure mode before that failure mode occurs organically"
+  ],
+  "when_to_use_zh": [
+    "当团队完成了基本混沌实验，并希望验证可观测性信号在故障期间是否忠实反映系统行为时",
+    "当在生产或预发布环境中进行混沌实验，需要安全机制自动中止导致意外客户影响的实验时",
+    "当通过证明监控覆盖足以检测和响应涌现故障，来建立在生产中运行混沌实验的组织信心时",
+    "当在特定故障模式有机发生之前，测试值班告警栈（SLO告警、异常检测器）是否在该故障模式期间适当触发时"
+  ],
+  "core_concepts": [
+    "Steady-State Hypothesis: A pre-defined set of observable system behaviors (SLO metrics, health checks, queue depths) that must remain within acceptable bounds throughout a chaos experiment",
+    "Blast Radius: The intentional scope limitation of a chaos experiment — restricted to a percentage of traffic, a single region, or specific pod labels — to limit customer impact if the experiment reveals unexpected behavior",
+    "Experiment Annotation: A marker injected into the metrics and logging pipeline at experiment start and end, enabling engineers to overlay experiment windows on dashboards and correlate observability signals with fault injection",
+    "Automatic Abort: A safety mechanism that monitors steady-state conditions during the experiment and terminates the experiment if conditions are violated beyond the blast radius, preventing runaway failures",
+    "Observability-First Chaos: The principle that chaos experiments should only be run in systems that already have sufficient observability coverage — you cannot validate resilience if you cannot observe what happens during the failure"
+  ],
+  "core_concepts_zh": [
+    "稳态假设：一组预定义的可观测系统行为（SLO指标、健康检查、队列深度），在整个混沌实验过程中必须保持在可接受的范围内",
+    "爆炸半径：混沌实验的故意范围限制——限制为流量的一个百分比、单个区域或特定Pod标签——以便在实验揭示意外行为时限制客户影响",
+    "实验注释：在实验开始和结束时注入指标和日志流水线的标记，使工程师能够在仪表板上叠加实验窗口并将可观测性信号与故障注入关联",
+    "自动中止：一种安全机制，在实验期间监控稳态条件，如果条件在爆炸半径之外被违反，则终止实验，防止失控故障",
+    "可观测性优先的混沌：混沌实验只应在已经具有足够可观测性覆盖的系统中运行的原则——如果你不能观察到故障期间发生的事情，你就无法验证弹性"
+  ],
+  "timeline": [
+    [
+      "2011",
+      "Netflix releases Chaos Monkey, injecting random instance terminations into production to validate auto-recovery mechanisms"
+    ],
+    [
+      "2014",
+      "Netflix expands to the Simian Army (Chaos Gorilla, Chaos Kong), testing availability zone and region-level failures with improved observability hooks"
+    ],
+    [
+      "2016",
+      "Rosenthal and Basiri publish principles of chaos engineering in IEEE Software, formalizing the steady-state hypothesis and blast radius concepts"
+    ],
+    [
+      "2017",
+      "Gremlin launches as a commercial chaos engineering platform with built-in safety halt mechanisms and observability integrations"
+    ],
+    [
+      "2022",
+      "OpenTelemetry Chaos extension proposal emerges, aiming to standardize experiment annotation as a first-class observability signal alongside traces"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2011",
+      "Netflix发布Chaos Monkey，向生产中注入随机实例终止以验证自动恢复机制"
+    ],
+    [
+      "2014",
+      "Netflix扩展到Simian Army（Chaos Gorilla、Chaos Kong），测试可用区和区域级故障，并改进了可观测性钩子"
+    ],
+    [
+      "2016",
+      "Rosenthal和Basiri在IEEE Software上发表混沌工程原则，正式化了稳态假设和爆炸半径概念"
+    ],
+    [
+      "2017",
+      "Gremlin作为商业混沌工程平台推出，内置安全停止机制和可观测性集成"
+    ],
+    [
+      "2022",
+      "OpenTelemetry混沌扩展提案出现，旨在将实验注释作为与追踪并列的一级可观测性信号标准化"
+    ]
+  ],
+  "dos": [
+    "Do define and validate the steady-state hypothesis before running the experiment because without a clear definition of 'working correctly', you cannot determine whether the chaos experiment revealed a problem",
+    "Do annotate experiment start and end events in your metrics system so that engineers can overlay the experiment window on any dashboard to correlate signals with the fault injection",
+    "Do start with the smallest possible blast radius (1% of traffic, a single instance) and expand only when you have confidence in your observability coverage and abort mechanisms",
+    "Do treat a chaos experiment that doesn't trigger an alert as valuable negative data — it either validates resilience or reveals a gap in observability coverage"
+  ],
+  "dos_zh": [
+    "在运行实验之前定义并验证稳态假设，因为如果没有「正常运行」的清晰定义，您就无法确定混沌实验是否揭示了问题",
+    "在指标系统中注释实验开始和结束事件，以便工程师可以在任何仪表板上叠加实验窗口，将信号与故障注入关联",
+    "从尽可能小的爆炸半径开始（1%的流量、单个实例），只有在对可观测性覆盖和中止机制有信心时才扩展",
+    "将不触发告警的混沌实验视为有价值的负面数据——它要么验证了弹性，要么揭示了可观测性覆盖中的差距"
+  ],
+  "donts": [
+    "Don't run chaos experiments in systems that lack basic distributed tracing and SLO alerting because you will be unable to detect the impact of fault injection or determine when recovery is complete",
+    "Don't skip the blast radius limitation in production because a full-production chaos experiment without a controlled scope is an uncontrolled incident, not an experiment",
+    "Don't run chaos experiments during high-traffic business hours or before major product launches without executive approval because the blast radius risk is higher during peak load",
+    "Don't treat chaos experiments as a one-time event because system complexity evolves continuously and resilience properties that held 6 months ago may not hold after significant architectural changes"
+  ],
+  "donts_zh": [
+    "不要在缺乏基本分布式追踪和SLO告警的系统中运行混沌实验，因为您将无法检测故障注入的影响或确定恢复何时完成",
+    "不要在生产中跳过爆炸半径限制，因为没有受控范围的完整生产混沌实验是不受控制的事故，而不是实验",
+    "不要在高流量业务时间或重大产品发布前在没有高管批准的情况下运行混沌实验，因为峰值负载期间爆炸半径风险更高",
+    "不要将混沌实验视为一次性事件，因为系统复杂性不断演进，6个月前成立的弹性属性可能在重大架构变更后不再成立"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix's Chaos Engineering team, which invented the discipline, runs thousands of automated chaos experiments per week against its production streaming infrastructure. Their Fault Injection Testing (FIT) platform integrates directly with Netflix's observability stack (Atlas metrics, Edgar tracing) so that every experiment is annotated in dashboards. Engineers can view the exact impact of a fault injection on p99 streaming start time, buffering ratio, and playback errors in real time. The FIT platform enforces automatic experiment abort if error rates exceed 0.1% above baseline, ensuring that experiments never materially impact the 220 million subscribers watching at any given moment. Netflix publishes that 99.99% of FIT experiments are halted within 30 seconds if steady-state conditions are violated.",
+  "case_study_zh": "Netflix的混沌工程团队（该学科的发明者）每周对其生产流媒体基础设施运行数千次自动化混沌实验。其故障注入测试（FIT）平台直接与Netflix的可观测性栈（Atlas指标、Edgar追踪）集成，以便每个实验都在仪表板中注释。工程师可以实时查看故障注入对p99流媒体启动时间、缓冲比率和播放错误的确切影响。如果错误率超过基线0.1%以上，FIT平台强制自动中止实验，确保实验永远不会实质性影响任何给定时刻正在观看的2.2亿订阅者。Netflix发布的数据显示，如果稳态条件被违反，99.99%的FIT实验在30秒内被停止。",
+  "when_not_to_use": [
+    "Systems without basic distributed tracing and SLO-based alerting, where chaos observability would surface a 'no signal' gap rather than meaningful resilience validation",
+    "Production systems that have never run chaos experiments in staging, where the first chaos experiment should always be in a lower environment",
+    "Regulated financial or healthcare systems where any intentional fault injection requires formal risk assessment and regulatory approval before execution",
+    "Teams in early-stage development where the cost of building chaos observability infrastructure exceeds the maturity level of the system being tested"
+  ],
+  "when_not_to_use_zh": [
+    "没有基本分布式追踪和基于SLO告警的系统，混沌可观测性会发现「无信号」差距而非有意义的弹性验证",
+    "从未在预发布环境中运行过混沌实验的生产系统，第一次混沌实验应始终在较低环境中进行",
+    "任何故意的故障注入在执行前都需要正式风险评估和监管批准的受监管金融或医疗系统",
+    "早期开发阶段的团队，构建混沌可观测性基础设施的成本超过被测系统的成熟度水平"
+  ],
+  "adopters": [
+    "Netflix",
+    "Gremlin",
+    "Amazon",
+    "LinkedIn",
+    "Microsoft Azure"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "testability",
+    "maintainability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Rosenthal, C. et al. (2017). \"Chaos Engineering: System Resiliency in Practice\". O'Reilly Media.",
+  "secondary_sources": [
+    "Basiri, A. et al. (2016). \"Chaos Engineering\". IEEE Software, 33(3), pp. 35-41.",
+    "Netflix Technology Blog (2014). \"The Netflix Simian Army\". netflixtechblog.com.",
+    "Gremlin (2020). \"Chaos Engineering: Breaking Things on Purpose\". gremlin.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "slo-as-practice",
+      "type": "complement"
+    },
+    {
+      "slug": "opentelemetry",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/chaos-observability",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/chaos-observability.md"
+}

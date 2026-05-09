@@ -1,0 +1,195 @@
+{
+  "id": 211,
+  "name": "API Pagination Patterns",
+  "name_zh": "API分页模式",
+  "slug": "api-pagination-patterns",
+  "category": "api",
+  "desc": "Cursor-based, offset-based, and keyset pagination strategies for large collection APIs",
+  "desc_zh": "针对大型集合API的游标分页、偏移分页和键集分页策略",
+  "steps": [
+    "Analyze the use case: choose offset pagination for random-access navigation (page numbers, jump to page), cursor-based for real-time feeds, and keyset for high-performance large datasets",
+    "For offset pagination, expose page and page_size (or limit/offset) query parameters and return total_count and total_pages in the response envelope",
+    "For cursor-based pagination, encode the position as an opaque cursor (base64-encoded pointer), returning next_cursor and prev_cursor in the response so clients never construct cursors manually",
+    "For keyset pagination, use the last seen value of a stable indexed column (created_at + id) as the continuation token, avoiding the performance cliff of deep OFFSET queries",
+    "Document the pagination model in the OpenAPI spec, include Link headers (RFC 5988) for discoverability, and enforce a maximum page_size limit to prevent abuse"
+  ],
+  "steps_zh": [
+    "分析用例：为随机访问导航（页码、跳转到页面）选择偏移分页，为实时信息流选择游标分页，为高性能大数据集选择键集分页",
+    "对于偏移分页，暴露page和page_size（或limit/offset）查询参数，并在响应信封中返回total_count和total_pages",
+    "对于游标分页，将位置编码为不透明游标（base64编码的指针），在响应中返回next_cursor和prev_cursor，使客户端无需手动构造游标",
+    "对于键集分页，使用稳定索引列（created_at + id）的最后可见值作为延续令牌，避免深层OFFSET查询的性能悬崖",
+    "在OpenAPI规范中记录分页模型，包含Link头（RFC 5988）以提高可发现性，并强制执行最大page_size限制以防止滥用"
+  ],
+  "ai_relevant": false,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Offset Pagination",
+    "Cursor Pagination",
+    "Keyset Pagination",
+    "Response Envelope",
+    "Spec Doc"
+  ],
+  "viz_labels_zh": [
+    "偏移分页",
+    "游标分页",
+    "键集分页",
+    "响应封装",
+    "文档规范"
+  ],
+  "related": [
+    "graphql-schema-design",
+    "openapi-specification"
+  ],
+  "tags": [
+    "pagination",
+    "cursor",
+    "offset",
+    "keyset",
+    "collections"
+  ],
+  "origin_author": "Relay Cursor Connections Specification (Facebook/Meta, 2015); keyset pagination popularized by Markus Winand (Use The Index, Luke)",
+  "origin_source": "Relay GraphQL Cursor Connections Spec (relay.dev); Winand, M. \"Pagination Done the Right Way\" (use-the-index-luke.com); API Design Patterns (JJ Geewax, 2021, Ch. 9)",
+  "origin_source_zh": "Relay GraphQL游标连接规范（relay.dev）；Winand, M.「正确实现分页」（use-the-index-luke.com）；「API设计模式」（JJ Geewax，2021，第9章）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When a collection endpoint can return thousands or millions of records and the client needs to retrieve them in batches",
+    "When building real-time or near-real-time feeds where new items are inserted at the top and offset pagination causes duplicates or skips",
+    "When performance profiling shows that deep OFFSET queries (page 500+) are scanning millions of rows and degrading database performance",
+    "When building a public API that serves many diverse clients with different pagination needs (some need page numbers, others need infinite scroll)"
+  ],
+  "when_to_use_zh": [
+    "当集合端点可能返回数千或数百万条记录，客户端需要批量检索时",
+    "当构建实时或近实时信息流时，新条目插入顶部，偏移分页会导致重复或跳过",
+    "当性能分析显示深层OFFSET查询（第500页以上）正在扫描数百万行并降低数据库性能时",
+    "当构建为具有不同分页需求的多种客户端提供服务的公共API时（有些需要页码，有些需要无限滚动）"
+  ],
+  "core_concepts": [
+    "Offset Pagination: Simple limit/offset or page/page_size model; easy to implement and supports random access but degrades at high page numbers due to full table scans",
+    "Cursor-Based Pagination: An opaque server-generated pointer encodes the position in the result set; stable across inserts/deletes but does not support random page access",
+    "Keyset Pagination: Uses the value of an indexed column as the continuation condition (WHERE created_at < :last_seen); O(log n) performance regardless of depth",
+    "Relay Connection Specification: Standardized cursor pagination for GraphQL with edges, nodes, pageInfo, and startCursor/endCursor fields enabling universal client support",
+    "Hypermedia Links: RFC 5988 Link headers (rel=next, rel=prev, rel=first, rel=last) allow clients to navigate pages without constructing URLs, supporting HATEOAS principles"
+  ],
+  "core_concepts_zh": [
+    "偏移分页：简单的limit/offset或page/page_size模型；易于实现且支持随机访问，但在高页码时因全表扫描而性能下降",
+    "游标分页：不透明的服务器生成指针编码结果集中的位置；在插入/删除操作中稳定，但不支持随机页面访问",
+    "键集分页：使用索引列的值作为延续条件（WHERE created_at < :last_seen）；无论深度如何，性能均为O(log n)",
+    "Relay连接规范：GraphQL的标准化游标分页，包含edges、nodes、pageInfo以及startCursor/endCursor字段，支持通用客户端",
+    "超媒体链接：RFC 5988 Link头（rel=next、rel=prev、rel=first、rel=last）允许客户端在不构造URL的情况下导航页面，支持HATEOAS原则"
+  ],
+  "timeline": [
+    [
+      "2005",
+      "Offset-based pagination becomes the default pattern for web APIs as SQL LIMIT/OFFSET becomes universally supported"
+    ],
+    [
+      "2012",
+      "Twitter introduces cursor-based pagination in its REST API to solve feed consistency problems with offset pagination"
+    ],
+    [
+      "2015",
+      "Facebook's Relay framework publishes the Cursor Connection Specification, standardizing cursor pagination for GraphQL"
+    ],
+    [
+      "2016",
+      "Markus Winand's 'Pagination Done the Right Way' popularizes keyset (seek method) pagination for high-performance APIs"
+    ],
+    [
+      "2021",
+      "GitHub adopts cursor-based pagination across its REST and GraphQL APIs; Stripe uses keyset pagination for its list endpoints"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2005",
+      "基于偏移的分页成为Web API的默认模式，随着SQL LIMIT/OFFSET获得普遍支持"
+    ],
+    [
+      "2012",
+      "Twitter在其REST API中引入游标分页，以解决偏移分页的信息流一致性问题"
+    ],
+    [
+      "2015",
+      "Facebook的Relay框架发布游标连接规范，为GraphQL标准化游标分页"
+    ],
+    [
+      "2016",
+      "Markus Winand的「正确实现分页」推广了键集（寻道方法）分页，用于高性能API"
+    ],
+    [
+      "2021",
+      "GitHub在其REST和GraphQL API中采用游标分页；Stripe对其列表端点使用键集分页"
+    ]
+  ],
+  "dos": [
+    "Do choose the pagination strategy based on the query pattern: offset for admin UIs with page jumps, cursor for feeds, keyset for large-scale data exports",
+    "Do return a consistent envelope with metadata (total_count, has_next_page, next_cursor) so clients can build pagination controls without extra requests",
+    "Do enforce a maximum page_size limit (e.g., 100 or 1000) because unbounded page sizes allow clients to accidentally trigger full table scans",
+    "Do make cursors opaque (base64-encoded) so that clients treat them as black boxes and you can change their internal format without a breaking change"
+  ],
+  "dos_zh": [
+    "根据查询模式选择分页策略：对有页面跳转的管理UI使用偏移，对信息流使用游标，对大规模数据导出使用键集",
+    "返回包含元数据（total_count、has_next_page、next_cursor）的一致信封，使客户端无需额外请求即可构建分页控件",
+    "强制执行最大page_size限制（如100或1000），因为无界页面大小允许客户端意外触发全表扫描",
+    "使游标不透明（base64编码），使客户端将其视为黑盒，便于在不产生破坏性变更的情况下更改其内部格式"
+  ],
+  "donts": [
+    "Don't use offset pagination for large datasets where users never access deep pages because the performance cost is paid even for unused pages",
+    "Don't expose internal database row IDs or timestamps as pagination cursors because it leaks implementation details and makes cursor format migration impossible",
+    "Don't return inconsistent total_count values when the dataset is modified concurrently because it causes client-side pagination controls to show incorrect totals",
+    "Don't skip pagination on endpoints that return collections because unbounded responses will eventually cause timeouts or memory exhaustion"
+  ],
+  "donts_zh": [
+    "对于用户从不访问深层页面的大型数据集，不要使用偏移分页，因为即使对于未使用的页面也要付出性能代价",
+    "不要将内部数据库行ID或时间戳作为分页游标暴露，因为这泄露了实现细节并使游标格式迁移变得不可能",
+    "当数据集被并发修改时不要返回不一致的total_count值，因为这会导致客户端分页控件显示不正确的总数",
+    "不要跳过返回集合的端点的分页，因为无界响应最终会导致超时或内存耗尽"
+  ],
+  "case_study_company": "Stripe",
+  "case_study": "Stripe's list APIs use cursor-based pagination with a keyset implementation under the hood. Every list endpoint (charges, customers, invoices) returns a data array, a has_more boolean, and a next page cursor encoded as the ID of the last object in the response. When fetching the next page, clients pass starting_after=<last_id>, and Stripe executes a WHERE id > :last_id query on an indexed primary key, delivering consistent sub-millisecond pagination performance regardless of whether the client is on page 1 or page 10,000. This design has scaled to handle hundreds of millions of objects per account without any degradation.",
+  "case_study_zh": "Stripe的列表API使用游标分页，底层采用键集实现。每个列表端点（charge、customer、invoice）返回一个data数组、一个has_more布尔值和编码为响应中最后一个对象ID的下一页游标。获取下一页时，客户端传递starting_after=<last_id>，Stripe在索引主键上执行WHERE id > :last_id查询，无论客户端在第1页还是第10000页，都能提供稳定的亚毫秒级分页性能。这种设计已扩展到处理每个账户数亿个对象而不会产生任何性能下降。",
+  "when_not_to_use": [
+    "Small collections of fewer than a hundred items where full-list responses are acceptable and pagination adds unnecessary complexity",
+    "Search results that require total hit counts and facet aggregations, where specialized search engines (Elasticsearch) handle pagination differently",
+    "Streaming endpoints where data is consumed as a continuous flow rather than discrete pages",
+    "Internal batch jobs that read entire tables, where streaming cursors or database-native bulk export are more appropriate"
+  ],
+  "when_not_to_use_zh": [
+    "少于一百条的小型集合，全列表响应是可接受的，分页增加了不必要的复杂性",
+    "需要总命中数和分面聚合的搜索结果，专业搜索引擎（Elasticsearch）以不同方式处理分页",
+    "数据以连续流而非离散页面消费的流式端点",
+    "读取整个表的内部批处理作业，流式游标或数据库原生批量导出更为合适"
+  ],
+  "adopters": [
+    "Stripe",
+    "GitHub",
+    "Twitter",
+    "Shopify",
+    "Salesforce"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "performance",
+    "usability",
+    "scalability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Relay Team, Facebook (2015). \"GraphQL Cursor Connections Specification\". relay.dev.",
+  "secondary_sources": [
+    "Winand, M. (2016). \"Pagination Done the Right Way\". use-the-index-luke.com.",
+    "Geewax, J.J. (2021). \"API Design Patterns\", Ch. 9. Manning Publications.",
+    "IETF (2010). \"RFC 5988: Web Linking\". tools.ietf.org."
+  ],
+  "typed_relations": [
+    {
+      "slug": "graphql-schema-design",
+      "type": "complement"
+    },
+    {
+      "slug": "openapi-specification",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/api-pagination-patterns",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/api-pagination-patterns.md"
+}

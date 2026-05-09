@@ -1,0 +1,196 @@
+{
+  "id": 258,
+  "name": "DevSecOps Pipeline",
+  "name_zh": "DevSecOps流水线",
+  "slug": "devsecops-pipeline",
+  "category": "security",
+  "desc": "The integration of security tooling and culture into every stage of a CI/CD pipeline so that security is automated, continuous, and developer-owned rather than a final gate",
+  "desc_zh": "将安全工具和文化集成到CI/CD流水线的每个阶段，使安全成为自动化、持续且由开发人员负责的工作，而非最终关卡",
+  "steps": [
+    "Shift-Left Planning: Embed security requirements in user stories, run automated dependency vulnerability scanning (SCA) on every pull request, and configure secret detection to block credentials from entering source control",
+    "Secure Build: Integrate SAST tools (Semgrep, Checkmarx, SonarQube) into the CI pipeline as blocking quality gates with developer-visible feedback within minutes of commit",
+    "Container and Infrastructure Security: Scan container images with tools like Trivy or Snyk in the registry pipeline, enforce policy-as-code (OPA, Conftest) for Kubernetes manifests and Terraform before deployment",
+    "Dynamic and Runtime Testing: Run DAST (OWASP ZAP, Burp Suite API) against staging environments in the CD pipeline, enable runtime application self-protection (RASP) and cloud workload protection in production",
+    "Continuous Feedback and Governance: Aggregate findings into a security dashboard (Defect Dojo, Veracode), route high-severity findings to developer queues, track mean time to remediation, and conduct blameless security post-mortems"
+  ],
+  "steps_zh": [
+    "左移规划：在用户故事中嵌入安全需求，在每个拉取请求上运行自动化依赖漏洞扫描（SCA），配置密钥检测以阻止凭证进入源代码管理",
+    "安全构建：将SAST工具（Semgrep、Checkmarx、SonarQube）集成到CI流水线中作为阻塞质量门控，在提交后数分钟内向开发人员提供可见反馈",
+    "容器和基础设施安全：在注册表流水线中使用Trivy或Snyk等工具扫描容器镜像，在部署前对Kubernetes清单和Terraform强制执行策略即代码（OPA、Conftest）",
+    "动态和运行时测试：在CD流水线的暂存环境中运行DAST（OWASP ZAP、Burp Suite API），在生产中启用运行时应用程序自我保护（RASP）和云工作负载保护",
+    "持续反馈和治理：将发现汇总到安全仪表板（Defect Dojo、Veracode），将高严重性发现路由到开发人员队列，跟踪平均修复时间，并进行无指责安全事后审查"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Shift-Left",
+    "Secure Build",
+    "Container Security",
+    "DAST Runtime",
+    "Feedback Loop"
+  ],
+  "viz_labels_zh": [
+    "左移安全",
+    "安全构建",
+    "容器安全",
+    "动态测试",
+    "持续反馈"
+  ],
+  "related": [
+    "security-development-lifecycle",
+    "owasp-top-10",
+    "threat-modeling-stride",
+    "defense-in-depth"
+  ],
+  "tags": [
+    "devsecops",
+    "ci-cd",
+    "shift-left",
+    "automation",
+    "sast",
+    "dast"
+  ],
+  "origin_author": "Shannon Lietz",
+  "origin_source": "Lietz, S. (2012). \"DevSecOps: The DevOps Evolution\". devopsagenda.techtarget.com; Gartner (2016). \"DevSecOps: How to Seamlessly Integrate Security Into DevOps\".",
+  "origin_source_zh": "Lietz, S.（2012）。「DevSecOps：DevOps的演进」。devopsagenda.techtarget.com；Gartner（2016）。「DevSecOps：如何将安全无缝集成到DevOps中」。",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When a team deploys multiple times per day and traditional security review gates create unacceptable bottlenecks in the delivery pipeline",
+    "After a production security incident caused by a vulnerability that existed in code for weeks or months before discovery",
+    "When building cloud-native or microservices architectures where the attack surface changes with every deployment",
+    "In organizations adopting platform engineering — security tooling becomes a product offering of the internal developer platform"
+  ],
+  "when_to_use_zh": [
+    "当团队每天部署多次，传统安全审查关卡在交付流水线中造成不可接受的瓶颈时",
+    "在生产安全事故发生后，该事故由发现前已在代码中存在数周或数月的漏洞引起",
+    "在构建云原生或微服务架构时，攻击面随每次部署而变化",
+    "在采用平台工程的组织中——安全工具成为内部开发平台的产品服务"
+  ],
+  "core_concepts": [
+    "Shift-Left Security: Moving security activities earlier in the SDLC so defects are caught at their cheapest fix point (design/code) rather than post-deployment",
+    "Security as Code: Expressing security policies, compliance rules, and infrastructure hardening as version-controlled code that is tested and deployed like any other software artifact",
+    "Continuous Compliance: Automated verification that every deployment meets defined security and regulatory requirements, producing audit trails without manual evidence collection",
+    "Developer Security Champions: Developers embedded in teams with additional security training who act as first-line security reviewers, reducing bottlenecks on central security teams",
+    "Software Composition Analysis (SCA): Automated scanning of open-source dependencies for known CVEs, license compliance issues, and transitive vulnerabilities in the dependency graph"
+  ],
+  "core_concepts_zh": [
+    "左移安全：将安全活动移至SDLC的早期阶段，以便在最便宜的修复点（设计/代码）而非部署后捕获缺陷",
+    "安全即代码：将安全策略、合规规则和基础设施加固表达为受版本控制的代码，像其他软件工件一样进行测试和部署",
+    "持续合规：自动化验证每次部署是否满足定义的安全和监管要求，无需手动收集证据即可生成审计跟踪",
+    "开发人员安全冠军：嵌入团队的具有额外安全培训的开发人员，充当一线安全审查员，减少对中央安全团队的瓶颈",
+    "软件组合分析（SCA）：自动扫描开源依赖项，检查已知CVE、许可证合规问题和依赖图中的传递性漏洞"
+  ],
+  "timeline": [
+    [
+      "2012",
+      "Shannon Lietz coins the term 「DevSecOps」 and launches the DevSecOps Manifesto to formalize security integration in DevOps"
+    ],
+    [
+      "2016",
+      "Gartner publishes「DevSecOps: How to Seamlessly Integrate Security Into DevOps」, driving enterprise adoption"
+    ],
+    [
+      "2018",
+      "GitLab launches built-in SAST/DAST/dependency scanning in its CI pipelines, making DevSecOps accessible out-of-the-box"
+    ],
+    [
+      "2021",
+      "Log4Shell vulnerability demonstrates DevSecOps SCA value as organizations with automated dependency scanning patched within hours versus weeks"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2012",
+      "Shannon Lietz创造「DevSecOps」一词并发布DevSecOps宣言，以正式化DevOps中的安全集成"
+    ],
+    [
+      "2016",
+      "Gartner发布「DevSecOps：如何将安全无缝集成到DevOps中」，推动企业采用"
+    ],
+    [
+      "2018",
+      "GitLab在其CI流水线中推出内置SAST/DAST/依赖扫描，使DevSecOps开箱即用"
+    ],
+    [
+      "2021",
+      "Log4Shell漏洞证明了DevSecOps SCA的价值，具有自动化依赖扫描的组织在数小时内完成修补，而非数周"
+    ]
+  ],
+  "dos": [
+    "Start with secret detection and dependency scanning as they deliver immediate value with near-zero false positives and prevent the most common production incidents",
+    "Tune SAST tools per-project to reduce false-positive rates below 10% before enabling them as blocking gates — high noise kills developer trust",
+    "Give developers fix guidance alongside findings because a vulnerability alert without a remediation path creates anxiety, not security improvement",
+    "Measure developer experience metrics (time to fix, false-positive rate, pipeline overhead) alongside security metrics to maintain developer buy-in"
+  ],
+  "dos_zh": [
+    "从密钥检测和依赖扫描开始，因为它们以几乎零误报提供即时价值，防止最常见的生产事故",
+    "在将SAST工具作为阻塞关卡启用之前，对每个项目进行调优以将误报率降至10%以下——高噪音会摧毁开发人员信任",
+    "在发现旁边给开发人员提供修复指导，因为没有补救路径的漏洞警报会产生焦虑，而非安全改进",
+    "与安全指标一起衡量开发人员体验指标（修复时间、误报率、流水线开销），以保持开发人员的认同"
+  ],
+  "donts": [
+    "Don't add every available security scanner at once — pipeline sprawl with conflicting tool outputs overwhelms developers and slows delivery without security benefit",
+    "Don't treat all findings as equally urgent — a CVSS 9.8 in a production API deserves different SLA treatment than a CVSS 3.2 in a development dependency",
+    "Don't skip the cultural transformation — tooling without developer security ownership reverts to a security-team-as-gatekeeper model that DevSecOps was designed to replace",
+    "Don't ignore runtime security in favor of pre-deployment scanning only because attackers exploit running systems, not source code"
+  ],
+  "donts_zh": [
+    "不要一次添加所有可用的安全扫描器——具有冲突工具输出的流水线扩张会压倒开发人员并减慢交付，而没有安全收益",
+    "不要将所有发现视为同等紧迫——生产API中的CVSS 9.8与开发依赖中的CVSS 3.2应得到不同的SLA处理",
+    "不要跳过文化转型——没有开发人员安全所有权的工具化会恢复到DevSecOps旨在替代的安全团队充当看门人模式",
+    "不要仅偏爱部署前扫描而忽视运行时安全，因为攻击者利用运行中的系统，而非源代码"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix's Security Monkey and later Repokid projects exemplify their DevSecOps philosophy of automating security at scale. With 700+ microservices deploying thousands of times weekly, manual security review is impossible. Netflix built Security Monkey to continuously audit AWS IAM policies and S3 bucket permissions, automatically flagging and eventually auto-remediating policy drift. Their Repokid tool uses machine learning on CloudTrail logs to detect and remove unused IAM permissions, enforcing least-privilege automatically over time. This automated, developer-owned approach enabled Netflix to maintain a strong security posture across millions of lines of code without a security team that scales with the engineering headcount.",
+  "case_study_zh": "Netflix的Security Monkey以及后来的Repokid项目体现了其大规模自动化安全的DevSecOps理念。每周部署数千次的700多个微服务使手动安全审查变得不可能。Netflix构建了Security Monkey来持续审计AWS IAM策略和S3存储桶权限，自动标记并最终自动修复策略漂移。他们的Repokid工具使用机器学习分析CloudTrail日志来检测和删除未使用的IAM权限，随着时间推移自动执行最小权限。这种自动化、开发人员拥有的方法使Netflix能够在数百万行代码中保持强大的安全态势，而无需随工程人员规模扩展的安全团队。",
+  "when_not_to_use": [
+    "For systems with very infrequent releases (quarterly or annual) where the overhead of pipeline security tooling exceeds the risk reduction — manual security reviews are more cost-effective",
+    "When the team lacks the DevOps maturity for CI/CD itself — implement basic pipeline practices before layering security automation on top",
+    "In air-gapped classified environments where commercial security scanning SaaS tools cannot be used and open-source alternatives require significant maintenance overhead"
+  ],
+  "when_not_to_use_zh": [
+    "对于发布非常不频繁（季度或年度）的系统，流水线安全工具的开销超过风险降低——手动安全审查更具成本效益",
+    "当团队缺乏CI/CD本身的DevOps成熟度时——在其上叠加安全自动化之前先实施基本流水线实践",
+    "在商业安全扫描SaaS工具无法使用且开源替代方案需要大量维护开销的隔离机密环境中"
+  ],
+  "adopters": [
+    "Netflix",
+    "Etsy",
+    "Capital One",
+    "Spotify",
+    "Atlassian",
+    "GitLab"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "security",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Kim, G., Humble, J., Debois, P. & Willis, J. (2016). \"The DevOps Handbook\". IT Revolution Press.",
+  "secondary_sources": [
+    "OWASP (2020). \"DevSecOps Guideline\". owasp.org/www-project-devsecops-guideline.",
+    "Gartner (2016). \"DevSecOps: How to Seamlessly Integrate Security Into DevOps\". Gartner Research.",
+    "NIST (2022). \"SP 800-218: Secure Software Development Framework\". NIST."
+  ],
+  "typed_relations": [
+    {
+      "slug": "security-development-lifecycle",
+      "type": "related"
+    },
+    {
+      "slug": "owasp-top-10",
+      "type": "complement"
+    },
+    {
+      "slug": "threat-modeling-stride",
+      "type": "complement"
+    },
+    {
+      "slug": "defense-in-depth",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/devsecops-pipeline",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/devsecops-pipeline.md"
+}

@@ -1,0 +1,180 @@
+{
+  "id": 298,
+  "name": "AI Red Teaming",
+  "name_zh": "AI 红队测试",
+  "slug": "ai-red-teaming",
+  "category": "ai",
+  "desc": "Adversarial testing methodology for AI systems that uses structured attack exercises to discover safety vulnerabilities, harmful outputs, and failure modes before deployment.",
+  "desc_zh": "AI 系统的对抗性测试方法，通过结构化攻击演练在部署前发现安全漏洞、有害输出和失效模式。",
+  "steps": [
+    "Define the threat model: identify the harms the AI system could cause (disinformation, harmful content generation, data exfiltration, bias amplification) and the adversarial actors who might exploit it",
+    "Assemble a diverse red team combining domain experts, security researchers, ethicists, and ideally members of communities that could be harmed by model failures",
+    "Conduct structured attack exercises: test prompt injection, jailbreaks, role-play exploits, indirect prompt injection, data poisoning surface areas, and edge-case inputs that probe the model's safety boundaries",
+    "Document all discovered failure modes with severity ratings, reproducible prompts, and example outputs; categorise findings by harm type (safety, fairness, privacy, security)",
+    "Triage findings with the model and product team: determine which failures require model retraining or RLHF updates, which require system-level mitigations (output filters, rate limiting), and which are acceptable residual risks with disclosure"
+  ],
+  "steps_zh": [
+    "定义威胁模型：识别 AI 系统可能造成的危害（虚假信息、有害内容生成、数据泄露、偏见放大）以及可能加以利用的对抗性行为者",
+    "组建多元化的红队，结合领域专家、安全研究人员、伦理学家，以及理想情况下可能受模型失效危害的社区成员",
+    "开展结构化攻击演练：测试提示注入、越狱、角色扮演利用、间接提示注入、数据投毒攻击面，以及探测模型安全边界的边缘案例输入",
+    "记录所有发现的失效模式，包括严重性评级、可复现的提示词和示例输出；按危害类型（安全、公平、隐私、安全性）对发现进行分类",
+    "与模型和产品团队对发现进行分类处置：确定哪些失效需要模型重新训练或 RLHF 更新，哪些需要系统级缓解措施（输出过滤、速率限制），哪些是可接受的残余风险需要披露"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Attack",
+    "Evaluate",
+    "Harden",
+    "Retest"
+  ],
+  "viz_labels_zh": [
+    "攻击尝试",
+    "评估漏洞",
+    "加固防护",
+    "回归测试"
+  ],
+  "related": [
+    "llm-evaluation-framework",
+    "ai-cost-optimization"
+  ],
+  "tags": [
+    "red-teaming",
+    "ai-safety",
+    "adversarial-testing",
+    "jailbreak",
+    "prompt-injection",
+    "responsible-ai"
+  ],
+  "origin_author": "Microsoft",
+  "origin_source": "Microsoft (2023). \"Microsoft AI Red Team building future of safer AI\". microsoft.com/security. Also: Perez, F. & Ribeiro, I. (2022). \"Ignore Previous Prompt: Attack Techniques for Language Models\". arXiv:2211.09527.",
+  "origin_source_zh": "Microsoft（2023）.「Microsoft AI Red Team building future of safer AI」. microsoft.com/security. 另见：Perez, F. & Ribeiro, I.（2022）.「Ignore Previous Prompt: Attack Techniques for Language Models」. arXiv:2211.09527.",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Before releasing any LLM-powered product to the public, especially applications in sensitive domains such as healthcare, finance, legal services, or content moderation",
+    "When integrating third-party LLMs into existing products where the model's safety boundaries and failure modes are not fully understood by the deploying team",
+    "After significant model updates, fine-tuning runs, or system prompt changes that could alter safety properties established in previous red team exercises",
+    "When regulatory or compliance requirements mandate pre-deployment adversarial safety testing, such as EU AI Act high-risk system assessments"
+  ],
+  "when_to_use_zh": [
+    "在向公众发布任何 LLM 驱动产品之前，尤其是医疗保健、金融、法律服务或内容审核等敏感领域的应用",
+    "将第三方 LLM 集成到现有产品中，而部署团队尚未完全了解该模型的安全边界和失效模式时",
+    "在模型重大更新、微调运行或系统提示词变更之后，这些变更可能会改变先前红队演练中建立的安全属性",
+    "当监管或合规要求强制进行部署前对抗性安全测试时，例如欧盟《人工智能法案》高风险系统评估"
+  ],
+  "core_concepts": [
+    "Threat Modelling for AI: unlike traditional software security, AI threat models must include harms from model outputs (disinformation, harmful content, bias) in addition to system intrusion — the attack surface includes the model itself, not just the application infrastructure",
+    "Prompt Injection: adversarial inputs that cause the model to ignore its system prompt or safety guidelines — including direct injection (user crafts malicious input) and indirect injection (malicious content in retrieved documents overrides instructions)",
+    "Jailbreaking: crafting prompts that cause a safety-trained model to violate its intended constraints, typically through role-play, hypothetical framing, or token-level manipulation",
+    "Automated Red Teaming: using one LLM to generate adversarial prompts against another LLM at scale, enabling broader coverage of the attack space than manual human red teaming alone"
+  ],
+  "core_concepts_zh": [
+    "AI 威胁建模：与传统软件安全不同，AI 威胁模型除了系统入侵外还必须包括来自模型输出的危害（虚假信息、有害内容、偏见）——攻击面包括模型本身，不仅仅是应用基础设施",
+    "提示注入：导致模型忽略其系统提示词或安全指南的对抗性输入——包括直接注入（用户构造恶意输入）和间接注入（检索文档中的恶意内容覆盖指令）",
+    "越狱：构造能使经过安全训练的模型违反其预期约束的提示词，通常通过角色扮演、假设框架或词元级操作实现",
+    "自动化红队测试：使用一个 LLM 大规模生成针对另一个 LLM 的对抗性提示词，实现比单纯人工红队测试更广泛的攻击空间覆盖"
+  ],
+  "timeline": [
+    [
+      "2018",
+      "Traditional security red teaming practices are adapted for NLP systems as early language models are deployed in consumer products; focus is on bias and toxicity detection"
+    ],
+    [
+      "2022",
+      "Widespread ChatGPT deployment prompts large-scale public jailbreaking; Microsoft and OpenAI formalise dedicated AI red team functions; Perez and Ribeiro publish the first systematic study of prompt injection attacks"
+    ],
+    [
+      "2023",
+      "Microsoft publishes their AI Red Team methodology; OpenAI publishes GPT-4 system card documenting red team findings; NIST AI Risk Management Framework includes adversarial testing requirements"
+    ],
+    [
+      "2024",
+      "EU AI Act Article 9 mandates red teaming for high-risk AI systems; automated red teaming tools (Garak, PyRIT) emerge as open-source infrastructure for scalable adversarial evaluation"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2018",
+      "传统安全红队实践被调整用于 NLP 系统，早期语言模型在消费品中部署；重点是偏见和毒性检测"
+    ],
+    [
+      "2022",
+      "ChatGPT 广泛部署引发大规模公共越狱；Microsoft 和 OpenAI 建立专门的 AI 红队职能；Perez 和 Ribeiro 发表首个提示注入攻击系统性研究"
+    ],
+    [
+      "2023",
+      "Microsoft 发布 AI 红队方法论；OpenAI 发布记录红队发现的 GPT-4 系统卡；NIST AI 风险管理框架纳入对抗性测试要求"
+    ],
+    [
+      "2024",
+      "欧盟《人工智能法案》第 9 条要求对高风险 AI 系统进行红队测试；自动化红队工具（Garak、PyRIT）作为可扩展对抗性评估的开源基础设施涌现"
+    ]
+  ],
+  "dos": [
+    "Do include diverse red teamers with different backgrounds, expertise, and lived experiences — model failures often affect specific communities disproportionately and homogeneous teams miss these failure modes",
+    "Do document all discovered failures with reproducible prompts and complete model outputs, not just summaries — detailed documentation is essential for tracking fixes and regression testing",
+    "Do run red team exercises iteratively throughout the model development lifecycle, not only as a final gate before release — early findings are cheaper to fix and prevent safety regressions during training",
+    "Do combine automated red teaming (using LLM-based attack generation tools like Garak or PyRIT) with human red teaming — automation provides scale, humans provide creativity and cultural context that automated attacks miss"
+  ],
+  "dos_zh": [
+    "纳入具有不同背景、专业知识和生活经验的多元化红队成员——模型失效往往对特定社区的影响不成比例，同质化团队会遗漏这些失效模式",
+    "用可复现的提示词和完整的模型输出（而非仅摘要）记录所有发现的失效——详细文档对于追踪修复和回归测试至关重要",
+    "在整个模型开发生命周期中迭代运行红队演练，而非仅作为发布前的最终关卡——早期发现的问题修复成本更低，并防止训练期间的安全回退",
+    "将自动化红队测试（使用 Garak 或 PyRIT 等基于 LLM 的攻击生成工具）与人工红队测试相结合——自动化提供规模，人工提供自动化攻击所缺失的创造力和文化背景"
+  ],
+  "donts": [
+    "Do not treat red teaming as a one-time checkbox exercise before launch — AI systems exhibit emergent failure modes that appear only in production contexts and require ongoing adversarial monitoring post-deployment",
+    "Do not limit red team scope to only the most obvious harm categories — novel LLM misuse scenarios (indirect prompt injection via RAG, multimodal attacks, agentic misuse) require explicit inclusion in the threat model",
+    "Do not share red team findings publicly or in full detail before mitigations are deployed — detailed jailbreak prompts and attack vectors published prematurely enable exploitation before defences are in place",
+    "Do not conflate red teaming with standard QA testing — red teaming requires adversarial mindset and creative exploration of the attack surface, not verification that features work as specified"
+  ],
+  "donts_zh": [
+    "不要将红队测试视为发布前一次性的勾选练习——AI 系统会表现出仅在生产上下文中出现的涌现失效模式，需要部署后持续的对抗性监控",
+    "不要将红队范围限制在最明显的危害类别——新型 LLM 滥用场景（通过 RAG 的间接提示注入、多模态攻击、代理滥用）需要明确纳入威胁模型",
+    "在缓解措施部署之前不要公开或完整详细地分享红队发现——过早发布的详细越狱提示词和攻击向量会在防御就位之前使利用成为可能",
+    "不要将红队测试与标准 QA 测试混为一谈——红队测试需要对抗性思维和对攻击面的创造性探索，而非验证功能是否按规格工作"
+  ],
+  "case_study_company": "Microsoft",
+  "case_study": "Microsoft established one of the first dedicated AI red teams in 2018 and has since conducted over 100 red team engagements across products including Copilot, Bing Chat, Azure OpenAI Service, and GitHub Copilot. In their published methodology, they describe a structured process of threat modelling, attack taxonomy development, and hybrid human-automated red teaming. For the Bing Chat integration (2023), the red team discovered that the model could be manipulated through indirect prompt injection via web page content retrieved by the search grounding feature — a novel attack vector not present in standard chatbot threat models. This finding led to architectural mitigations including output filtering for injected instructions and retrieval content sanitisation before inclusion in the context window. Microsoft also open-sourced PyRIT (Python Risk Identification Toolkit), their internal automated red teaming framework, enabling the broader AI safety community to scale adversarial testing.",
+  "case_study_zh": "Microsoft 于 2018 年建立了首批专门的 AI 红队之一，此后对包括 Copilot、Bing Chat、Azure OpenAI Service 和 GitHub Copilot 在内的产品开展了 100 余次红队测试。在其发布的方法论中，他们描述了威胁建模、攻击分类体系开发以及人机混合红队测试的结构化流程。在 Bing Chat 集成（2023 年）中，红队发现该模型可通过搜索基础功能检索的网页内容进行间接提示注入攻击——这是标准聊天机器人威胁模型中未出现的新型攻击向量。这一发现推动了架构缓解措施的实施，包括针对注入指令的输出过滤和将检索内容纳入上下文窗口前的清洗处理。Microsoft 还开源了内部自动化红队框架 PyRIT（Python 风险识别工具包），使更广泛的 AI 安全社区能够扩展对抗性测试。",
+  "when_not_to_use": [
+    "Purely deterministic rule-based AI systems with no generative components where traditional software security testing and input validation are more appropriate than LLM-specific red teaming",
+    "Internal-only AI tools with restricted access and no user-facing interface where the attack surface is limited to trusted internal actors with existing access controls",
+    "Very early research prototypes where the model architecture and training are still being fundamentally redesigned and red team findings will be rendered obsolete by the next training run",
+    "As a substitute for ongoing monitoring and incident response — red teaming before deployment identifies known vulnerabilities but cannot predict all emergent failure modes in production"
+  ],
+  "when_not_to_use_zh": [
+    "没有生成组件的纯确定性规则 AI 系统，传统软件安全测试和输入验证比 LLM 特定的红队测试更为合适",
+    "访问受限且无用户界面的纯内部 AI 工具，攻击面仅限于具有现有访问控制的可信内部行为者",
+    "模型架构和训练仍在进行根本性重新设计的极早期研究原型，红队发现将在下一次训练运行中变得过时",
+    "作为持续监控和事件响应的替代品——部署前的红队测试能识别已知漏洞，但无法预测生产中所有涌现的失效模式"
+  ],
+  "adopters": [
+    "Microsoft",
+    "OpenAI",
+    "Google DeepMind",
+    "Anthropic",
+    "Meta AI",
+    "Hugging Face"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "security",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Microsoft (2023). \"Microsoft AI Red Team building future of safer AI\". microsoft.com/security/blog.",
+  "secondary_sources": [
+    "Perez, F. & Ribeiro, I. (2022). \"Ignore Previous Prompt: Attack Techniques for Language Models\". arXiv:2211.09527.",
+    "NIST (2023). \"Artificial Intelligence Risk Management Framework (AI RMF 1.0)\". nist.gov/airmf.",
+    "Feffer, M. et al. (2024). \"Red-Teaming for Generative AI: Silver Bullet or Security Theater?\". arXiv:2401.15897."
+  ],
+  "typed_relations": [
+    {
+      "slug": "llm-evaluation-framework",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/ai-red-teaming",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/ai-red-teaming.md"
+}

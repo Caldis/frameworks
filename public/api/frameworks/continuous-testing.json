@@ -1,0 +1,188 @@
+{
+  "id": 269,
+  "name": "Continuous Testing",
+  "name_zh": "持续测试",
+  "slug": "continuous-testing",
+  "category": "quality",
+  "desc": "Automated testing at every pipeline stage to provide continuous feedback on software quality throughout the delivery lifecycle",
+  "desc_zh": "在每个流水线阶段自动化测试，在交付生命周期中持续提供软件质量反馈",
+  "steps": [
+    "Map tests to pipeline stages: assign unit tests to the commit stage, integration and contract tests to the integration stage, performance and security tests to the pre-production stage, and smoke tests to the production stage",
+    "Instrument every pipeline stage with quality gates: define pass/fail thresholds (coverage minimum, error rate maximum, performance budget) that must be met before progressing to the next stage",
+    "Shift tests left: run the fastest and cheapest tests as early as possible in the pipeline so developers receive feedback within minutes of committing, not hours",
+    "Parallelize test execution: split test suites across concurrent workers and use test impact analysis to run only the tests affected by each code change, reducing pipeline duration",
+    "Treat test failures as deployment blockers: configure the pipeline to fail fast on any test stage regression and enforce a team norm that no new work is started until the pipeline is green"
+  ],
+  "steps_zh": [
+    "将测试映射到流水线阶段：将单元测试分配到提交阶段，将集成和契约测试分配到集成阶段，将性能和安全测试分配到预生产阶段，将冒烟测试分配到生产阶段",
+    "在每个流水线阶段设置质量门：定义进入下一阶段前必须满足的通过/失败阈值（最低覆盖率、最大错误率、性能预算）",
+    "将测试左移：尽早在流水线中运行最快、最廉价的测试，使开发者在提交后数分钟内而非数小时后收到反馈",
+    "并行化测试执行：将测试套件分散到并发工作节点，并使用测试影响分析只运行受每次代码变更影响的测试，减少流水线持续时间",
+    "将测试失败视为部署阻止器：将流水线配置为在任何测试阶段回归时快速失败，并强制团队规范：在流水线变为绿色之前不启动新工作"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Commit",
+    "Build",
+    "Test",
+    "Report"
+  ],
+  "viz_labels_zh": [
+    "提交",
+    "构建",
+    "测试",
+    "报告"
+  ],
+  "related": [
+    "test-pyramid",
+    "tdd",
+    "chaos-engineering",
+    "load-testing-patterns"
+  ],
+  "tags": [
+    "continuous-testing",
+    "ci-cd",
+    "quality-gates",
+    "shift-left",
+    "devops"
+  ],
+  "origin_author": "Wayne Ariola",
+  "origin_source": "Ariola, W. & Cois, C. (2014). Continuous Testing for DevOps Professionals. Addison-Wesley; Humble, J. & Farley, D. (2010). Continuous Delivery. Addison-Wesley.",
+  "origin_source_zh": "Ariola与Cois（2014）《DevOps专业人员的持续测试》Addison-Wesley；Humble与Farley（2010）《持续交付》Addison-Wesley",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When a team is adopting continuous delivery or continuous deployment and needs quality signals at every pipeline stage rather than only at release time",
+    "When deployment frequency is increasing and manual testing cycles can no longer keep pace with the release cadence",
+    "When production incidents frequently originate from regressions that a faster feedback loop would have caught before deployment",
+    "When multiple teams contribute to a shared codebase and you need automated quality gates to prevent integration failures from reaching downstream stages"
+  ],
+  "when_to_use_zh": [
+    "当团队采用持续交付或持续部署，需要在每个流水线阶段而非仅在发布时获得质量信号时",
+    "当部署频率增加，手动测试周期无法跟上发布节奏时",
+    "当生产事故频繁源于更快反馈循环本可在部署前捕获的回归时",
+    "当多个团队贡献同一代码库，需要自动化质量门防止集成故障到达下游阶段时"
+  ],
+  "core_concepts": [
+    "Shift-left testing: moving test execution earlier in the pipeline so defects are detected and fixed when the cost of change is lowest — at commit time, not production time",
+    "Quality gate: a defined threshold (coverage percentage, performance benchmark, security score) that the pipeline enforces as a binary pass/fail before stage promotion",
+    "Test impact analysis: static or dynamic analysis that determines which tests are affected by a code change so only relevant tests run, reducing pipeline cycle time",
+    "Environment parity: test environments at each pipeline stage must faithfully replicate production configuration, data volumes, and infrastructure to prevent environment-specific defects from escaping",
+    "Continuous feedback loop: test results are published to developer dashboards and notification channels within minutes of commit so that the team can act on quality regressions immediately"
+  ],
+  "core_concepts_zh": [
+    "测试左移：将测试执行移至流水线更早期，使缺陷在变更成本最低时被检测和修复——在提交时而非生产时",
+    "质量门：流水线在阶段晋升前强制执行的定义阈值（覆盖率百分比、性能基准、安全评分），作为二元通过/失败判断",
+    "测试影响分析：确定哪些测试受代码变更影响的静态或动态分析，只运行相关测试，减少流水线周期时间",
+    "环境一致性：每个流水线阶段的测试环境必须忠实复制生产配置、数据量和基础设施，防止环境特定缺陷逃逸",
+    "持续反馈循环：测试结果在提交后数分钟内发布到开发者仪表板和通知渠道，使团队能立即对质量回归采取行动"
+  ],
+  "timeline": [
+    [
+      "2006",
+      "ThoughtWorks and Jez Humble begin codifying continuous delivery practices that place automated testing at every pipeline stage"
+    ],
+    [
+      "2010",
+      "Humble and Farley publish 'Continuous Delivery', establishing the deployment pipeline model with testing as a first-class concern at every stage"
+    ],
+    [
+      "2014",
+      "Wayne Ariola and Cois publish 'Continuous Testing for DevOps Professionals', coining the term and defining the practice as distinct from CI test automation"
+    ],
+    [
+      "2019",
+      "AI-assisted test generation tools emerge, enabling continuous testing to automatically expand test coverage as code changes without manual test authoring"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2006",
+      "ThoughtWorks 和 Jez Humble 开始整理持续交付实践，将自动化测试置于每个流水线阶段"
+    ],
+    [
+      "2010",
+      "Humble 和 Farley 出版《持续交付》，建立了以测试为每个阶段一级关注点的部署流水线模型"
+    ],
+    [
+      "2014",
+      "Wayne Ariola 和 Cois 出版《DevOps专业人员的持续测试》，创造了该术语并将其定义为区别于 CI 测试自动化的独立实践"
+    ],
+    [
+      "2019",
+      "AI 辅助测试生成工具出现，使持续测试能随代码变更自动扩展测试覆盖率，无需手动编写测试"
+    ]
+  ],
+  "dos": [
+    "Do define quality gates with objective, measurable thresholds rather than subjective criteria so the pipeline can enforce them automatically without human judgment",
+    "Do maintain a fast commit stage (under 10 minutes) by restricting it to unit tests and static analysis — move slower tests to later pipeline stages where they run in parallel",
+    "Do track test flakiness as a first-class metric: quarantine flaky tests immediately because they erode trust in the entire pipeline and cause teams to ignore legitimate failures",
+    "Do integrate security scanning (SAST, dependency audit) as a pipeline stage gate rather than a post-release activity so vulnerabilities are caught before they reach production"
+  ],
+  "dos_zh": [
+    "用客观、可衡量的阈值而非主观标准定义质量门，使流水线能无需人工判断地自动执行",
+    "通过将提交阶段限制为单元测试和静态分析来保持其快速执行（10 分钟以内）——将较慢的测试移至后续并行运行的流水线阶段",
+    "将测试不稳定性作为一级指标追踪：立即隔离不稳定测试，因为它们侵蚀对整个流水线的信任，导致团队忽略合理失败",
+    "将安全扫描（SAST、依赖审计）集成为流水线阶段门而非发布后活动，使漏洞在到达生产前被捕获"
+  ],
+  "donts": [
+    "Don't treat test failures as optional or allow the pipeline to continue with known failures — a broken pipeline that teams work around teaches engineers to ignore quality signals",
+    "Don't run all tests at every stage — this maximizes feedback time and pipeline cost; stage-appropriate test selection is essential for sustainable continuous testing",
+    "Don't skip environment parity for lower pipeline stages — tests that pass in an under-resourced environment and fail in production provide false confidence rather than real quality assurance",
+    "Don't conflate continuous testing with continuous integration — CI ensures code integrates cleanly; continuous testing ensures quality is validated continuously at every pipeline stage"
+  ],
+  "donts_zh": [
+    "不要将测试失败视为可选的或允许流水线在已知失败的情况下继续——让团队绕过损坏流水线会训练工程师忽略质量信号",
+    "不要在每个阶段运行所有测试——这会最大化反馈时间和流水线成本；针对阶段的测试选择对可持续持续测试至关重要",
+    "不要为较低流水线阶段跳过环境一致性——在资源不足的环境中通过但在生产中失败的测试提供虚假信心而非真实质量保证",
+    "不要将持续测试与持续集成混淆——CI 确保代码干净集成；持续测试确保质量在每个流水线阶段持续验证"
+  ],
+  "case_study_company": "Etsy",
+  "case_study": "Etsy is widely cited as an early continuous delivery pioneer deploying to production over 50 times per day. Their continuous testing practice assigns different test suites to each pipeline stage: unit tests run on every commit and must complete within 8 minutes; integration tests covering critical buyer and seller flows run in parallel on dedicated workers; and a canary stage deploys the change to 1% of traffic with automated error rate monitoring acting as a production quality gate. When error rates exceed the baseline by more than 0.1%, the canary is automatically rolled back without human intervention. This architecture allowed Etsy to maintain sub-hour time-to-production for most changes while keeping incident rates lower than competitors deploying quarterly.",
+  "case_study_zh": "Etsy 被广泛引用为早期持续交付先驱，每天向生产环境部署超过 50 次。他们的持续测试实践将不同的测试套件分配到每个流水线阶段：单元测试在每次提交时运行，必须在 8 分钟内完成；覆盖关键买家和卖家流程的集成测试在专用工作节点上并行运行；金丝雀阶段将变更部署到 1% 的流量，以自动错误率监控作为生产质量门。当错误率超过基线 0.1% 时，金丝雀会自动回滚而无需人工干预。这一架构使 Etsy 能为大多数变更保持不到一小时的生产到达时间，同时使事故率低于每季度部署的竞争对手。",
+  "when_not_to_use": [
+    "Very early prototyping phases where requirements are too unstable to justify maintaining a test suite that will be completely rewritten",
+    "One-off scripts or data migration utilities with extremely short lifespans where the investment in pipeline infrastructure exceeds the risk reduction benefit",
+    "Projects with extremely low release frequency (once a year) where the infrastructure overhead of continuous testing does not justify the cycle time reduction"
+  ],
+  "when_not_to_use_zh": [
+    "需求过于不稳定、不值得维护将被完全重写的测试套件的极早期原型阶段",
+    "寿命极短的一次性脚本或数据迁移工具，流水线基础设施投入超过风险降低收益",
+    "发布频率极低（每年一次）的项目，持续测试的基础设施开销无法证明周期时间缩短的合理性"
+  ],
+  "adopters": [
+    "Etsy",
+    "Google",
+    "Amazon",
+    "Netflix",
+    "Spotify"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "testability",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Ariola, W. & Cois, C. (2014). \"Continuous Testing for DevOps Professionals\". Addison-Wesley Professional.",
+  "secondary_sources": [
+    "Humble, J. & Farley, D. (2010). \"Continuous Delivery\". Addison-Wesley Professional.",
+    "Kim, G. et al. (2016). \"The DevOps Handbook\". IT Revolution Press.",
+    "Forsgren, N., Humble, J. & Kim, G. (2018). \"Accelerate: The Science of Lean Software and DevOps\". IT Revolution Press."
+  ],
+  "typed_relations": [
+    {
+      "slug": "test-pyramid",
+      "type": "complement"
+    },
+    {
+      "slug": "tdd",
+      "type": "complement"
+    },
+    {
+      "slug": "chaos-engineering",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/continuous-testing",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/continuous-testing.md"
+}

@@ -1,0 +1,41 @@
+{
+  "name": "sdframe-static-reference",
+  "description": "SDFrame exposes a static read API and AI skill package. This discovery document is JSON for well-known discovery; the server card documents that no live MCP JSON-RPC transport is currently operated.",
+  "version": "1.0.0",
+  "serverCardUrl": "https://sdframe.caldis.me/.well-known/mcp/server-card.json",
+  "serverUrl": "https://sdframe.caldis.me/developers/#mcp",
+  "transport": "documentation-only",
+  "tools": [
+    {
+      "name": "list_frameworks",
+      "description": "Use the static JSON API endpoint /api/frameworks.index.json to list framework summaries.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "quality": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "get_framework",
+      "description": "Use /api/frameworks/{slug}.json to retrieve one framework by slug.",
+      "inputSchema": {
+        "type": "object",
+        "required": [
+          "slug"
+        ],
+        "properties": {
+          "slug": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  ],
+  "status": "manifest-only"
+}

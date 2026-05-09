@@ -1,0 +1,195 @@
+{
+  "id": 260,
+  "name": "Incident Response Playbook",
+  "name_zh": "事件响应手册",
+  "slug": "incident-response-playbook",
+  "category": "security",
+  "desc": "SANS Institute's six-step structured process for handling cybersecurity incidents from preparation through post-incident lessons learned",
+  "desc_zh": "SANS研究所的六步结构化流程，用于处理从准备到事后经验总结的网络安全事件",
+  "steps": [
+    "Preparation: Establish incident response team (IRT) with defined roles, communication trees, and legal/HR contacts; deploy SIEM, EDR, and forensic tooling; run tabletop exercises quarterly to validate playbooks",
+    "Identification: Detect anomalous events through SIEM correlation rules, EDR alerts, threat intelligence feeds, or user reports; triage to confirm the event is a security incident and classify severity (P1-P4)",
+    "Containment: Implement short-term containment (isolate affected systems, revoke compromised credentials) followed by long-term containment (patch, rebuild, segment network) without destroying forensic evidence",
+    "Eradication: Remove the root cause — malware, backdoors, unauthorized accounts, misconfigured services — and validate that all affected systems are clean through forensic verification",
+    "Recovery: Restore services in a controlled sequence, monitor for signs of re-infection, verify business functions, and declare the incident closed only after sustained clean monitoring period"
+  ],
+  "steps_zh": [
+    "准备：建立具有明确角色、通信树和法律/HR联系人的事件响应团队（IRT）；部署SIEM、EDR和取证工具；每季度进行桌面演练以验证手册",
+    "识别：通过SIEM关联规则、EDR告警、威胁情报源或用户报告检测异常事件；分类确认该事件为安全事件并分类严重程度（P1-P4）",
+    "遏制：实施短期遏制（隔离受影响系统、撤销被入侵凭证），然后是长期遏制（修补、重建、网络分段），同时不破坏取证证据",
+    "根除：删除根本原因——恶意软件、后门、未授权账户、配置错误的服务——并通过取证验证确认所有受影响系统已清除",
+    "恢复：按受控顺序恢复服务，监控再感染迹象，验证业务功能，仅在持续干净的监控期后宣布事件关闭"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Preparation",
+    "Identification",
+    "Containment",
+    "Eradication",
+    "Recovery"
+  ],
+  "viz_labels_zh": [
+    "准备",
+    "识别",
+    "遏制",
+    "消除",
+    "恢复"
+  ],
+  "related": [
+    "nist-cybersecurity-framework",
+    "defense-in-depth",
+    "threat-modeling-stride",
+    "data-loss-prevention"
+  ],
+  "tags": [
+    "incident-response",
+    "sans",
+    "forensics",
+    "playbook",
+    "breach"
+  ],
+  "origin_author": "SANS Institute",
+  "origin_source": "SANS Institute (2004). \"Incident Handler's Handbook\". SANS Reading Room; Northcutt, S. (2003). \"Computer Security Incident Handling: Step by Step\". SANS Institute.",
+  "origin_source_zh": "SANS研究所（2004）。「事件处理人员手册」。SANS阅读室；Northcutt, S.（2003）。「计算机安全事件处理：一步一步」。SANS研究所。",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Before an incident occurs — playbooks must be built and tested in tabletop exercises before they are needed under pressure",
+    "When a security alert is confirmed as a genuine incident requiring coordinated organizational response beyond individual analyst actions",
+    "In regulated environments (finance, healthcare, critical infrastructure) where documented incident handling procedures are required for compliance",
+    "When standing up a new security operations center (SOC) that needs standardized procedures for consistent incident handling across shifts and analysts"
+  ],
+  "when_to_use_zh": [
+    "在事件发生之前——手册必须在需要在压力下使用之前建立并通过桌面演练进行测试",
+    "当安全告警被确认为需要超出单个分析师行动的协调组织响应的真实事件时",
+    "在要求记录事件处理程序以实现合规的受监管环境（金融、医疗、关键基础设施）中",
+    "在建立需要跨班次和分析师进行一致事件处理的标准化程序的新安全运营中心（SOC）时"
+  ],
+  "core_concepts": [
+    "Dwell Time: The duration between initial compromise and detection, a critical metric revealing detection capability gaps — the industry average is 21 days, top-tier SOCs achieve under 1 day",
+    "Chain of Custody: The documented, unbroken record of who accessed forensic evidence and when, required for evidence admissibility in legal proceedings",
+    "Indicators of Compromise (IoC): Artifacts of intrusion (IP addresses, file hashes, registry keys, domain names) used to detect and attribute attack activity across the environment",
+    "Tabletop Exercise: A discussion-based simulation where team members walk through an incident scenario to test plan completeness, communication paths, and decision authority without real-world system impact",
+    "RACI Matrix for IR: A responsibility assignment defining who is Responsible, Accountable, Consulted, and Informed for each step of the playbook, preventing coordination failures under pressure"
+  ],
+  "core_concepts_zh": [
+    "驻留时间：初始入侵与检测之间的时长，是揭示检测能力差距的关键指标——行业平均为21天，顶级SOC可实现1天以内",
+    "监管链：记录谁在何时访问取证证据的完整记录，是证据在法律诉讼中可采性的必要条件",
+    "入侵指标（IoC）：入侵的痕迹（IP地址、文件哈希、注册表键、域名），用于在整个环境中检测和归因攻击活动",
+    "桌面演练：基于讨论的模拟，团队成员演练事件场景以测试计划完整性、通信路径和决策权力，不影响真实系统",
+    "IR的RACI矩阵：定义手册每个步骤中谁负责（Responsible）、谁问责（Accountable）、谁咨询（Consulted）、谁知情（Informed）的责任分配，防止在压力下出现协调失败"
+  ],
+  "timeline": [
+    [
+      "1991",
+      "CERT/CC at Carnegie Mellon publishes foundational incident response guidelines following the Morris Worm incident"
+    ],
+    [
+      "2003",
+      "SANS Institute codifies the six-step incident handling process in「Computer Security Incident Handling: Step by Step」"
+    ],
+    [
+      "2012",
+      "NIST SP 800-61 Rev 2 formalizes computer security incident handling guidance, aligning with and extending the SANS model"
+    ],
+    [
+      "2020",
+      "SolarWinds supply chain attack demonstrates the need for playbooks covering nation-state threat actors and multi-tenant compromise scenarios"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1991",
+      "卡内基梅隆大学的CERT/CC在莫里斯蠕虫事件后发布基础事件响应指南"
+    ],
+    [
+      "2003",
+      "SANS研究所在「计算机安全事件处理：一步一步」中编纂六步事件处理流程"
+    ],
+    [
+      "2012",
+      "NIST SP 800-61 Rev 2正式化计算机安全事件处理指南，与SANS模型对齐并进行扩展"
+    ],
+    [
+      "2020",
+      "SolarWinds供应链攻击证明了需要涵盖国家级威胁行为者和多租户入侵场景的手册"
+    ]
+  ],
+  "dos": [
+    "Conduct tabletop exercises at least quarterly with realistic scenarios (ransomware, insider threat, supply chain compromise) and include legal, PR, and HR in the exercise — incidents are not just technical events",
+    "Pre-authorize containment actions (isolate a server, revoke a service account) to specific roles so responders don't lose hours seeking approval during an active incident",
+    "Preserve forensic evidence before containment where possible — memory dumps, network captures, and log snapshots taken before isolation are often more valuable than post-containment forensics",
+    "Maintain a war room communication channel (Slack #incident-response, Teams bridge) separate from production systems so a compromised environment doesn't impede communication"
+  ],
+  "dos_zh": [
+    "至少每季度使用现实场景（勒索软件、内部威胁、供应链入侵）进行桌面演练，并在演练中纳入法律、公关和HR——事件不仅仅是技术事件",
+    "预先授权特定角色执行遏制操作（隔离服务器、撤销服务账户），以便响应人员在活跃事件中不会浪费数小时寻求批准",
+    "在可能的情况下在遏制前保存取证证据——隔离前获取的内存转储、网络捕获和日志快照通常比遏制后取证更有价值",
+    "维护独立于生产系统的战情室通信渠道（Slack #incident-response、Teams桥接），以防受感染环境阻碍通信"
+  ],
+  "donts": [
+    "Don't skip the Preparation phase and try to build the playbook during an active incident because decisions made under pressure without pre-defined procedures are error-prone and legally risky",
+    "Don't communicate breach details over potentially compromised channels (corporate email, Slack) during containment because attackers monitoring those channels gain advance warning of response actions",
+    "Don't eradicate before completing forensic preservation because destroying the attacker's artifacts before imaging affected systems permanently loses evidence needed for root cause analysis and attribution",
+    "Don't declare incidents closed prematurely — many attackers establish persistence mechanisms that survive initial eradication; monitor for at least 30 days post-recovery for sophisticated threats"
+  ],
+  "donts_zh": [
+    "不要跳过准备阶段，试图在活跃事件中建立手册，因为在没有预定义程序的压力下做出的决策容易出错且有法律风险",
+    "在遏制期间不要通过可能受感染的渠道（公司电子邮件、Slack）传达泄漏细节，因为监控这些渠道的攻击者会提前获得响应行动的警告",
+    "不要在完成取证保存之前进行根除，因为在对受影响系统进行镜像之前销毁攻击者的痕迹会永久丢失根本原因分析和归因所需的证据",
+    "不要过早宣布事件关闭——许多攻击者建立能够在初始根除后存活的持久化机制；对复杂威胁在恢复后监控至少30天"
+  ],
+  "case_study_company": "Equifax",
+  "case_study": "The 2017 Equifax breach, which exposed 147 million individuals' data, became the canonical case study for incident response failure. Equifax's IR process failed at multiple phases: a misconfigured security scanner missed the Apache Struts vulnerability for 78 days (Identification failure); once detected, the incident was not escalated to the executive team for six days (Communication failure); and eradication was incomplete, with the attacker maintaining access during initial remediation attempts. The subsequent Congressional investigation found that Equifax lacked a formal, tested incident response playbook. Post-breach, Equifax invested $1.4B in security overhaul including a formal IR program with quarterly tabletop exercises, pre-authorized containment procedures, and an external forensics retainer.",
+  "case_study_zh": "2017年Equifax数据泄露（暴露1.47亿人数据）成为事件响应失败的典型案例。Equifax的IR流程在多个阶段失败：配置错误的安全扫描器遗漏了Apache Struts漏洞长达78天（识别失败）；一旦检测到，事件在六天内未升级到执行团队（通信失败）；根除不完整，攻击者在初始修复尝试期间维持访问。随后的国会调查发现Equifax缺乏正式的、经过测试的事件响应手册。泄露后，Equifax投资14亿美元进行安全改造，包括带季度桌面演练的正式IR计划、预先授权的遏制程序和外部取证顾问。",
+  "when_not_to_use": [
+    "A rigid six-step playbook may not fit nation-state APT scenarios where multiple simultaneous intrusion vectors require parallel workstreams rather than sequential phases — use adaptive IR frameworks for advanced threats",
+    "For low-severity events (single user phishing click, no credential compromise) — a lightweight security ticket workflow is more appropriate than full IR activation to avoid alert fatigue",
+    "Without legal counsel involvement in playbook design — incident response decisions (public disclosure, law enforcement notification, ransom consideration) carry significant legal obligations that vary by jurisdiction"
+  ],
+  "when_not_to_use_zh": [
+    "刚性的六步手册可能不适合国家级APT场景，其中多个同时入侵向量需要并行工作流而非顺序阶段——对高级威胁使用自适应IR框架",
+    "对于低严重性事件（单个用户钓鱼点击，无凭证泄露）——轻量级安全工单工作流比完整IR激活更合适，以避免告警疲劳",
+    "在没有法律顾问参与手册设计的情况下——事件响应决策（公开披露、执法通知、赎金考虑）承载着因司法管辖区而异的重大法律义务"
+  ],
+  "adopters": [
+    "US-CERT",
+    "Microsoft DART",
+    "CrowdStrike Services",
+    "Mandiant",
+    "PwC Cybersecurity",
+    "Goldman Sachs"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "security",
+    "reliability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "SANS Institute (2004). \"Incident Handler's Handbook\". SANS Reading Room. sans.org/reading-room/whitepapers/incident.",
+  "secondary_sources": [
+    "NIST (2012). \"SP 800-61 Rev 2: Computer Security Incident Handling Guide\". NIST.",
+    "Cichonski, P., Millar, T., Grance, T. & Scarfone, K. (2012). \"Computer Security Incident Handling Guide\". NIST SP 800-61.",
+    "Luttgens, J., Pepe, M. & Mandia, K. (2014). \"Incident Response & Computer Forensics\", 3rd ed. McGraw-Hill."
+  ],
+  "typed_relations": [
+    {
+      "slug": "nist-cybersecurity-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "defense-in-depth",
+      "type": "complement"
+    },
+    {
+      "slug": "data-loss-prevention",
+      "type": "related"
+    },
+    {
+      "slug": "threat-modeling-stride",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/incident-response-playbook",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/incident-response-playbook.md"
+}

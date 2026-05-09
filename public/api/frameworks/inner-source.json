@@ -1,0 +1,203 @@
+{
+  "id": 143,
+  "name": "Inner Source",
+  "name_zh": "内部开源",
+  "slug": "inner-source",
+  "category": "team",
+  "desc": "Apply open-source development practices within an organization to break down silos and improve code reuse",
+  "desc_zh": "在组织内部应用开源开发实践，打破部门壁垒，提升代码复用",
+  "steps": [
+    "Identify candidate projects with broad internal consumers and establish them as inner-source repositories",
+    "Define contribution guidelines, code review standards, and a CONTRIBUTING.md for each inner-source project",
+    "Designate trusted committers from the owning team who review and merge external contributions",
+    "Encourage teams to submit pull requests to shared codebases instead of forking or duplicating functionality",
+    "Measure adoption through contribution metrics: cross-team PRs, contributor diversity, and reuse rates"
+  ],
+  "steps_zh": [
+    "识别拥有广泛内部消费者的候选项目，将其建立为内部开源仓库",
+    "为每个内部开源项目定义贡献指南、代码评审标准和 CONTRIBUTING.md",
+    "从拥有团队中指定受信任的提交者，负责评审和合并外部贡献",
+    "鼓励团队向共享代码库提交拉取请求，而非分叉或重复实现功能",
+    "通过贡献指标衡量采纳情况：跨团队 PR 数量、贡献者多样性和复用率"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Inner Source Repo",
+    "Contribution Guide",
+    "Trusted Committer",
+    "Cross-Team PR",
+    "Metrics"
+  ],
+  "viz_labels_zh": [
+    "内部源码库",
+    "贡献指南",
+    "受信提交者",
+    "跨团队PR",
+    "度量指标"
+  ],
+  "related": [
+    "platform-engineering",
+    "conways-law",
+    "team-topologies",
+    "amazon-two-pizza-teams"
+  ],
+  "tags": [
+    "collaboration",
+    "open-source",
+    "code-reuse",
+    "inner-source",
+    "culture"
+  ],
+  "origin_author": "Tim O'Reilly, 2000; formalized by PayPal (Danese Cooper, ~2014)",
+  "origin_source": "InnerSource Commons Foundation; referenced in Accelerate (Forsgren, Humble & Kim, 2018) and Team Topologies (Skelton & Pais, 2019)",
+  "origin_source_zh": "InnerSource Commons 基金会；在《加速》（Forsgren、Humble & Kim，2018）和《团队拓扑》（Skelton & Pais，2019）中有引用",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Multiple teams duplicating similar functionality because they cannot contribute to each other's codebases",
+    "Shared libraries or platform components that evolve too slowly because only one team owns them",
+    "Organizations wanting to improve engineering culture by promoting transparency and collaboration",
+    "Large enterprises seeking to reduce bottlenecks on central platform teams via distributed contribution"
+  ],
+  "when_to_use_zh": [
+    "多个团队因无法向彼此的代码库贡献而重复实现相似功能",
+    "共享库或平台组件因仅一个团队拥有而演进过慢",
+    "希望通过推广透明和协作来改善工程文化的组织",
+    "大型企业寻求通过分布式贡献减少中央平台团队的瓶颈"
+  ],
+  "core_concepts": [
+    "Trusted Committer: A designated reviewer from the owning team who ensures external contributions meet quality standards and project direction",
+    "Contribution guidelines: Explicit documentation (CONTRIBUTING.md, coding standards, PR templates) that lowers the barrier for cross-team contributions",
+    "Transparent development: All code, issues, roadmaps, and design decisions are visible to the entire organization, mimicking open-source transparency",
+    "Guest contributors: Engineers from consuming teams who submit patches to fix bugs or add features they need, rather than waiting on the owning team",
+    "Community over hierarchy: Decisions are made through code review and technical merit rather than organizational reporting lines"
+  ],
+  "core_concepts_zh": [
+    "受信任的提交者：拥有团队中的指定评审者，确保外部贡献满足质量标准和项目方向",
+    "贡献指南：明确的文档（CONTRIBUTING.md、编码标准、PR 模板），降低跨团队贡献的门槛",
+    "透明开发：所有代码、问题、路线图和设计决策对整个组织可见，模拟开源的透明性",
+    "客座贡献者：来自消费团队的工程师提交补丁以修复 Bug 或添加其所需功能，而非等待拥有团队",
+    "社区优先于层级：通过代码评审和技术优势做出决策，而非依赖组织汇报关系"
+  ],
+  "timeline": [
+    [
+      "2000",
+      "Tim O'Reilly coins the term 'inner source' to describe applying open-source practices inside corporations"
+    ],
+    [
+      "2014",
+      "Danese Cooper formalizes inner-source practices at PayPal and begins advocating across the industry"
+    ],
+    [
+      "2015",
+      "InnerSource Commons community launches, providing patterns, maturity models, and case studies"
+    ],
+    [
+      "2018",
+      "Microsoft reports thousands of inner-source repositories across the company, crediting DevOps acceleration"
+    ],
+    [
+      "2023",
+      "AI-assisted code review tools (GitHub Copilot for PRs) lower the friction of cross-team contributions further"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2000",
+      "Tim O'Reilly 创造「内部开源」一词，描述在企业内部应用开源实践"
+    ],
+    [
+      "2014",
+      "Danese Cooper 在 PayPal 正式化内部开源实践，并开始在业界推广"
+    ],
+    [
+      "2015",
+      "InnerSource Commons 社区成立，提供模式、成熟度模型和案例研究"
+    ],
+    [
+      "2018",
+      "Microsoft 报告公司内部有数千个内部开源仓库，并归功于 DevOps 加速"
+    ],
+    [
+      "2023",
+      "AI 辅助代码评审工具（如 GitHub Copilot for PRs）进一步降低跨团队贡献的摩擦"
+    ]
+  ],
+  "dos": [
+    "Invest in excellent documentation and onboarding guides for each inner-source project to reduce contributor friction",
+    "Recognize and reward cross-team contributions in performance reviews to incentivize participation",
+    "Start with 2-3 high-visibility pilot projects before attempting organization-wide inner-source adoption",
+    "Ensure trusted committers have dedicated time for reviewing external contributions, not just their own team's work"
+  ],
+  "dos_zh": [
+    "为每个内部开源项目投资优秀的文档和上手指南，减少贡献者摩擦",
+    "在绩效评审中认可并奖励跨团队贡献，激励参与",
+    "在尝试全组织推广前，先从 2-3 个高可见度的试点项目开始",
+    "确保受信任的提交者有专门时间评审外部贡献，而非仅处理自身团队的工作"
+  ],
+  "donts": [
+    "Don't mandate inner-source without cultural readiness — forced transparency in a low-trust environment backfires",
+    "Don't neglect the trusted committer role — without timely reviews, contributors lose motivation and revert to forking",
+    "Don't assume inner-source eliminates the need for owning teams — someone must still set direction and maintain quality",
+    "Don't ignore the overhead: reviewing external PRs takes real time, and owning teams need staffing for this"
+  ],
+  "donts_zh": [
+    "不要在文化尚未准备好的情况下强制推行内部开源——在低信任环境中强制透明会适得其反",
+    "不要忽视受信任的提交者角色——没有及时的评审，贡献者会失去动力并转向分叉",
+    "不要以为内部开源可以消除拥有团队的需要——仍需有人制定方向和维持质量",
+    "不要忽略开销：评审外部 PR 需要实际时间，拥有团队需要为此配备人员"
+  ],
+  "case_study_company": "Microsoft",
+  "case_study": "Microsoft's inner-source adoption accelerated after Satya Nadella's cultural transformation beginning in 2014. By 2018, over 40,000 engineers contributed to inner-source repositories across Azure, Office, and Windows divisions. The 1ES (One Engineering System) initiative standardized tooling that made cross-team contributions frictionless. Teams reported 40% faster resolution of cross-cutting bugs because consuming teams could fix issues themselves rather than filing tickets and waiting. The shift was credited as a key enabler of Microsoft's transition from the infamous 'stack ranking' culture to a collaborative growth mindset.",
+  "case_study_zh": "Microsoft 的内部开源采纳在 Satya Nadella 于 2014 年启动的文化转型后加速推进。到 2018 年，超过 40,000 名工程师在 Azure、Office 和 Windows 部门的内部开源仓库中做出贡献。1ES（统一工程系统）计划标准化了工具链，使跨团队贡献无摩擦。团队报告跨领域 Bug 的解决速度提高了 40%，因为消费团队可以自行修复问题而非提交工单等待。这一转变被认为是 Microsoft 从臭名昭著的「末位排名」文化向协作成长思维转型的关键推动力。",
+  "when_not_to_use": [
+    "Organizations with strong intellectual property barriers between divisions that prevent code sharing",
+    "Very early-stage startups where everyone already works in the same codebase and formal contribution processes add unnecessary overhead",
+    "Teams with security-critical code that requires restricted access and cannot be opened to broad internal audiences",
+    "Environments lacking basic DevOps maturity (CI/CD, code review tooling) needed to support distributed contribution"
+  ],
+  "when_not_to_use_zh": [
+    "各部门间存在严格知识产权壁垒、阻碍代码共享的组织",
+    "非常早期的创业公司，所有人已在同一代码库中工作，正式贡献流程增加不必要的开销",
+    "拥有安全关键代码的团队，需要限制访问权限，无法对广泛的内部受众开放",
+    "缺乏支持分布式贡献所需的基础 DevOps 成熟度（CI/CD、代码评审工具）的环境"
+  ],
+  "adopters": [
+    "Microsoft",
+    "PayPal",
+    "Bloomberg",
+    "Bosch",
+    "SAP"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability",
+    "usability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Stol, K.-J. et al. (2014). \"Key Factors for Adopting Inner Source\". ACM Transactions on Software Engineering and Methodology, 23(2).",
+  "secondary_sources": [
+    "Cooper, D. & Stol, K.-J. (2015). \"Adopting InnerSource: Principles and Case Studies\". O'Reilly Media.",
+    "InnerSource Commons Foundation (2020). \"InnerSource Patterns\". innersourcecommons.org."
+  ],
+  "typed_relations": [
+    {
+      "slug": "platform-engineering",
+      "type": "complement"
+    },
+    {
+      "slug": "conways-law",
+      "type": "related"
+    },
+    {
+      "slug": "team-topologies",
+      "type": "complement"
+    },
+    {
+      "slug": "amazon-two-pizza-teams",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/inner-source",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/inner-source.md"
+}

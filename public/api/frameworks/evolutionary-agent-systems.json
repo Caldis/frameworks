@@ -1,0 +1,195 @@
+{
+  "id": 85,
+  "name": "Evolutionary Agent Systems",
+  "name_zh": "演进式智能体系统",
+  "slug": "evolutionary-agent-systems",
+  "category": "evolution",
+  "desc": "Iteratively evolve AI agent architectures using feedback, eval, and capability staging",
+  "desc_zh": "通过反馈、评估和能力分级持续迭代演进 AI 智能体架构",
+  "steps": [
+    "Define agent capability tiers and establish eval suites that benchmark each capability level",
+    "Deploy agents in a shadow or canary mode, collecting traces, errors, and human feedback",
+    "Use evals and failure analysis to identify the next highest-value capability to add or fix",
+    "Introduce new tools, memory stores, or orchestration patterns behind feature flags",
+    "Promote changes incrementally using A/B testing on agent outputs, retiring deprecated behaviors"
+  ],
+  "steps_zh": [
+    "定义智能体能力层级，并建立对每个能力层级进行基准测试的评估套件",
+    "以影子模式或金丝雀模式部署智能体，收集调用链、错误和人工反馈",
+    "使用评估结果和失败分析，确定下一个最高价值的待新增或待修复能力",
+    "在功能开关后引入新工具、记忆存储或编排模式",
+    "通过对智能体输出进行 A/B 测试，增量晋升变更，退役已弃用的行为"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Deploy",
+    "Observe",
+    "Retrain",
+    "Evolve"
+  ],
+  "viz_labels_zh": [
+    "部署",
+    "观测",
+    "重训练",
+    "演化"
+  ],
+  "related": [
+    "agent-deployment-patterns",
+    "agent-reliability-patterns",
+    "continuous-architecture"
+  ],
+  "tags": [
+    "agent-evolution",
+    "capability-staging",
+    "evaluation",
+    "ai"
+  ],
+  "origin_author": "Industry practice, 2023",
+  "origin_source": "Emerged from production AI agent deployments at Anthropic, OpenAI, Google DeepMind, and applied AI companies",
+  "origin_source_zh": "源自 Anthropic、OpenAI、Google DeepMind 及应用 AI 公司的生产 AI 智能体部署实践",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Deploying an AI coding assistant that needs to progressively gain access to more tools and repositories",
+    "Building a customer support agent that evolves from FAQ handling to complex issue resolution",
+    "Operating multi-agent systems where new agent roles must be introduced and validated incrementally",
+    "Evolving an AI data analyst from simple queries to complex multi-step reasoning workflows"
+  ],
+  "when_to_use_zh": [
+    "部署需要逐步获取更多工具和仓库访问权限的 AI 编码助手",
+    "构建从 FAQ 处理演进到复杂问题解决的客户支持智能体",
+    "运行多智能体系统，需要增量引入和验证新的智能体角色",
+    "将 AI 数据分析师从简单查询演进到复杂多步推理工作流"
+  ],
+  "core_concepts": [
+    "Capability tiers: A staged ladder of agent abilities, where each tier is unlocked after demonstrating reliability at the previous level",
+    "Eval-driven development: Agent evolution is guided by quantitative eval suites that benchmark quality, safety, and reliability",
+    "Shadow/canary deployment: New agent capabilities run alongside proven ones, with outputs compared but not exposed to users",
+    "Human feedback loop: User corrections, thumbs-up/down, and escalation patterns drive the prioritization of capability improvements",
+    "Graceful degradation: Agents must fall back to simpler, proven behaviors when newly introduced capabilities encounter edge cases"
+  ],
+  "core_concepts_zh": [
+    "能力分级：智能体能力的阶梯式分层，每个层级在证明前一层级的可靠性后解锁",
+    "评估驱动开发：智能体演进由量化评估套件引导，基准测试质量、安全性和可靠性",
+    "影子/金丝雀部署：新智能体能力与已验证能力并行运行，输出被比对但不暴露给用户",
+    "人类反馈循环：用户纠正、点赞/踩和升级模式驱动能力改进的优先排序",
+    "优雅降级：当新引入的能力遇到边缘情况时，智能体必须回退到更简单、已验证的行为"
+  ],
+  "timeline": [
+    [
+      "2022",
+      "Early LLM-based agents (AutoGPT, BabyAGI) demonstrate the need for structured agent evolution"
+    ],
+    [
+      "2023",
+      "Anthropic, OpenAI, and others publish best practices for safe, incremental AI agent deployment"
+    ],
+    [
+      "2024",
+      "Eval-driven agent development becomes standard practice with frameworks like Braintrust, Langsmith, and Weights & Biases"
+    ],
+    [
+      "2025",
+      "Multi-agent orchestration platforms mature, enabling teams to evolve complex agent systems with staged rollouts"
+    ],
+    [
+      "2025",
+      "Claude Code and similar agentic coding tools demonstrate practical evolutionary capability staging in production"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2022",
+      "早期 LLM 智能体（AutoGPT、BabyAGI）揭示了结构化智能体演进的必要性"
+    ],
+    [
+      "2023",
+      "Anthropic、OpenAI 等发布安全、增量 AI 智能体部署的最佳实践"
+    ],
+    [
+      "2024",
+      "评估驱动的智能体开发成为标准实践，出现 Braintrust、Langsmith、Weights & Biases 等框架"
+    ],
+    [
+      "2025",
+      "多智能体编排平台成熟，使团队能够通过分阶段发布演进复杂智能体系统"
+    ],
+    [
+      "2025",
+      "Claude Code 等智能体编码工具在生产中展示了实际的演进式能力分级"
+    ]
+  ],
+  "dos": [
+    "Build comprehensive eval suites before adding new capabilities — you cannot improve what you cannot measure",
+    "Deploy new capabilities in shadow mode first and compare outputs against the established baseline",
+    "Implement graceful degradation so agent failures fall back to simpler, proven behaviors",
+    "Collect structured human feedback on every agent interaction to guide capability prioritization"
+  ],
+  "dos_zh": [
+    "在添加新能力之前构建全面的评估套件——无法衡量就无法改进",
+    "先以影子模式部署新能力，将输出与已建立的基线进行比对",
+    "实现优雅降级，使智能体故障能回退到更简单、已验证的行为",
+    "在每次智能体交互中收集结构化的人类反馈，以指导能力优先级排序"
+  ],
+  "donts": [
+    "Don't grant agents full tool access from day one — stage capabilities and earn trust incrementally",
+    "Don't skip eval suites because 'the agent seems to work' — vibes-based evaluation misses critical failures",
+    "Don't evolve multiple agent capabilities simultaneously — isolate changes to understand their individual impact",
+    "Don't ignore safety boundaries — capability expansion must be accompanied by guardrails and monitoring"
+  ],
+  "donts_zh": [
+    "不要从第一天就赋予智能体完整工具访问权限——分阶段开放能力并逐步赢得信任",
+    "不要因为「智能体看起来能用」就跳过评估套件——凭感觉的评估会遗漏关键故障",
+    "不要同时演进多个智能体能力——隔离变更以理解各自的独立影响",
+    "不要忽视安全边界——能力扩展必须伴随护栏和监控"
+  ],
+  "case_study_company": "Anthropic",
+  "case_study": "Anthropic evolved Claude's agentic capabilities through a staged approach with Claude Code and the tool-use API. Initial releases supported simple single-tool calls, evaluated against safety and accuracy benchmarks. Subsequent capability tiers added multi-tool orchestration, file editing, and web browsing — each tier gated by eval suite performance. This evolutionary approach allowed Anthropic to ship agentic features to millions of developers while maintaining safety standards, with each capability tier building confidence from the reliability demonstrated at the previous level.",
+  "case_study_zh": "Anthropic 通过 Claude Code 和工具使用 API 以分阶段方式演进 Claude 的智能体能力。初始版本支持简单的单工具调用，根据安全性和准确性基准进行评估。后续能力层级增加了多工具编排、文件编辑和网页浏览——每个层级都以评估套件表现为门控。这种演进式方法使 Anthropic 能够在保持安全标准的同时向数百万开发者发布智能体功能，每个能力层级都建立在前一层级所展示的可靠性基础上。",
+  "when_not_to_use": [
+    "Simple, stateless AI completions (e.g., text summarization) that don't require agentic capabilities",
+    "Agents operating in fully sandboxed environments where safety risks are negligible",
+    "One-off demo or proof-of-concept agents that won't be deployed to production",
+    "Use cases where the full agent capability set is well-understood and thoroughly tested upfront"
+  ],
+  "when_not_to_use_zh": [
+    "简单的无状态 AI 补全（如文本摘要），不需要智能体能力",
+    "在完全沙箱化环境中运行的智能体，安全风险可忽略",
+    "不会部署到生产的一次性演示或概念验证智能体",
+    "完整智能体能力集已被充分理解并已提前彻底测试的场景"
+  ],
+  "adopters": [
+    "Anthropic",
+    "OpenAI",
+    "Google DeepMind",
+    "Microsoft",
+    "Replit"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "scalability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Anthropic (2024). \"Building Effective Agents\". anthropic.com.",
+  "secondary_sources": [
+    "Andrew Ng (2024). \"Agentic Design Patterns\". deeplearning.ai.",
+    "Harrison Chase et al. (2023). \"LangGraph: Multi-Actor Agent Framework\". langchain.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "agent-deployment-patterns",
+      "type": "complement"
+    },
+    {
+      "slug": "agent-reliability-patterns",
+      "type": "complement"
+    },
+    {
+      "slug": "continuous-architecture",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/evolutionary-agent-systems",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/evolutionary-agent-systems.md"
+}

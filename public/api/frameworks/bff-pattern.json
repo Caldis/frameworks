@@ -1,0 +1,198 @@
+{
+  "id": 134,
+  "name": "Backend for Frontend (BFF)",
+  "name_zh": "服务于前端的后端（BFF）",
+  "slug": "bff-pattern",
+  "category": "api",
+  "desc": "Dedicated backend services tailored to specific client types",
+  "desc_zh": "为特定客户端类型量身定制的专用后端服务",
+  "steps": [
+    "Identify distinct client types (web SPA, mobile iOS/Android, third-party) and document their unique data and interaction requirements",
+    "Create a dedicated BFF service for each client type that acts as an intermediary between the client and downstream microservices",
+    "Implement client-specific data aggregation, transformation, and formatting in each BFF to optimize payloads for that client's constraints",
+    "Have each client team own and maintain their respective BFF to ensure it evolves with the client's needs without cross-team coordination",
+    "Keep BFFs thin: they should orchestrate calls to downstream services and shape responses, but never own business logic or persistent state"
+  ],
+  "steps_zh": [
+    "识别不同的客户端类型（Web SPA、移动端iOS/Android、第三方），记录其独特的数据和交互需求",
+    "为每种客户端类型创建专用的BFF服务，作为客户端和下游微服务之间的中间层",
+    "在每个BFF中实现客户端特定的数据聚合、转换和格式化，优化该客户端约束条件下的负载",
+    "让每个客户端团队拥有并维护其对应的BFF，确保它随客户端需求演进而无需跨团队协调",
+    "保持BFF轻薄：它们应编排对下游服务的调用并塑造响应，但不应拥有业务逻辑或持久状态"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Client Types",
+    "BFF Service",
+    "Data Aggregate",
+    "Team Ownership",
+    "Thin Orchestrator"
+  ],
+  "viz_labels_zh": [
+    "客户端类型",
+    "BFF服务",
+    "数据聚合",
+    "团队所有权",
+    "轻量编排"
+  ],
+  "related": [
+    "api-gateway-pattern",
+    "graphql-schema-design",
+    "grpc-protocol-buffers"
+  ],
+  "tags": [
+    "bff",
+    "frontend",
+    "microservices",
+    "aggregation",
+    "client-specific"
+  ],
+  "origin_author": "Sam Newman / ThoughtWorks, 2015",
+  "origin_source": "Building Microservices (Sam Newman, 1st ed., 2015, Ch. 4; 2nd ed., 2021, Ch. 7)",
+  "origin_source_zh": "《构建微服务》（Sam Newman，第1版，2015，第4章；第2版，2021，第7章）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When mobile and web clients need fundamentally different API response shapes from the same microservices",
+    "When a single general-purpose API gateway has become bloated with client-specific logic",
+    "When different client teams want independent release cadences for their API layer",
+    "When mobile clients on constrained networks need aggressively optimized payloads compared to web clients"
+  ],
+  "when_to_use_zh": [
+    "当移动端和Web客户端需要从相同微服务获取根本不同的API响应结构时",
+    "当单一通用API网关因客户端特定逻辑而变得臃肿时",
+    "当不同客户端团队希望其API层有独立的发布节奏时",
+    "当受限网络上的移动客户端需要比Web客户端更积极的负载优化时"
+  ],
+  "core_concepts": [
+    "Client Affinity: Each BFF is purpose-built for one client type, so it can optimize data shape, payload size, and protocol for that client's specific needs",
+    "Team Ownership: The frontend team that consumes the BFF also owns it, eliminating cross-team API negotiation and enabling faster iteration",
+    "Aggregation Layer: BFFs fan out requests to multiple downstream microservices and compose responses tailored to the client's UI structure",
+    "Thin Orchestration: BFFs contain presentation logic and data shaping but delegate all business rules to downstream domain services",
+    "Independent Deployment: Each BFF can be deployed, scaled, and versioned independently without affecting other client channels"
+  ],
+  "core_concepts_zh": [
+    "客户端亲和性：每个BFF专为一种客户端类型构建，可针对该客户端的特定需求优化数据形状、负载大小和协议",
+    "团队所有权：消费BFF的前端团队同时拥有它，消除跨团队API协商并实现更快迭代",
+    "聚合层：BFF将请求扇出到多个下游微服务，并组合出适合客户端UI结构的响应",
+    "轻量编排：BFF包含展示逻辑和数据塑形，但将所有业务规则委托给下游领域服务",
+    "独立部署：每个BFF可以独立部署、扩缩和版本管理，不影响其他客户端渠道"
+  ],
+  "timeline": [
+    [
+      "2015",
+      "Sam Newman coins the BFF pattern in Building Microservices, drawing on ThoughtWorks project experience"
+    ],
+    [
+      "2016",
+      "SoundCloud publishes a detailed case study of their BFF adoption for mobile and web clients"
+    ],
+    [
+      "2018",
+      "BFF pattern combined with GraphQL emerges as a popular hybrid architecture at companies like Airbnb"
+    ],
+    [
+      "2020",
+      "Next.js API routes and Remix loaders popularize BFF-like patterns in the JavaScript full-stack ecosystem"
+    ],
+    [
+      "2023",
+      "BFF pattern adapted for AI applications, with dedicated BFFs serving chat interfaces, voice assistants, and API consumers"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2015",
+      "Sam Newman在《构建微服务》中提出BFF模式，源于ThoughtWorks项目经验"
+    ],
+    [
+      "2016",
+      "SoundCloud发布其移动端和Web客户端BFF采用的详细案例研究"
+    ],
+    [
+      "2018",
+      "BFF模式与GraphQL的结合作为流行的混合架构出现在Airbnb等公司"
+    ],
+    [
+      "2020",
+      "Next.js API路由和Remix加载器在JavaScript全栈生态中普及类BFF模式"
+    ],
+    [
+      "2023",
+      "BFF模式被改造用于AI应用，专用BFF服务于聊天界面、语音助手和API消费者"
+    ]
+  ],
+  "dos": [
+    "Do let the frontend team own the BFF because they best understand the client's data needs and can iterate without backend team dependencies",
+    "Do keep BFFs focused on data aggregation and response shaping because business logic belongs in domain services",
+    "Do share common concerns (auth, logging) via libraries rather than duplicating them across BFFs because consistency matters for cross-cutting concerns",
+    "Do monitor each BFF independently because different client patterns produce different load and error profiles"
+  ],
+  "dos_zh": [
+    "让前端团队拥有BFF，因为他们最了解客户端的数据需求，可以在不依赖后端团队的情况下迭代",
+    "保持BFF专注于数据聚合和响应塑形，因为业务逻辑属于领域服务",
+    "通过共享库而非跨BFF复制来处理通用关注点（认证、日志），因为横切关注点需要一致性",
+    "独立监控每个BFF，因为不同客户端模式产生不同的负载和错误特征"
+  ],
+  "donts": [
+    "Don't let BFFs accumulate business logic because they should remain thin orchestration layers, not become new monoliths",
+    "Don't create a BFF for every minor client variation because it leads to an explosion of services that are expensive to maintain",
+    "Don't share a BFF across fundamentally different client types because it recreates the one-size-fits-all problem the pattern was designed to solve",
+    "Don't skip shared libraries for authentication and observability because each BFF reimplementing these independently introduces security and consistency risks"
+  ],
+  "donts_zh": [
+    "不要让BFF积累业务逻辑，因为它们应保持为轻量编排层，而非演变为新的单体",
+    "不要为每个小的客户端差异都创建BFF，因为这会导致服务爆炸式增长，维护成本高昂",
+    "不要在根本不同的客户端类型之间共享BFF，因为这会重新产生该模式本要解决的一刀切问题",
+    "不要跳过认证和可观测性的共享库，因为每个BFF独立重新实现会引入安全和一致性风险"
+  ],
+  "case_study_company": "SoundCloud",
+  "case_study": "SoundCloud adopted the BFF pattern in 2016 when their single monolithic API could not satisfy the divergent needs of their iOS, Android, and web clients. Each client team built its own BFF that aggregated calls to shared microservices and shaped responses for their specific UI. This allowed the mobile team to ship optimized, smaller payloads while the web team could include richer metadata. Release velocity increased by 40% because client teams no longer blocked on backend API changes.",
+  "case_study_zh": "SoundCloud于2016年采用BFF模式，当时其单一的单体API无法满足iOS、Android和Web客户端的不同需求。每个客户端团队构建了自己的BFF，聚合对共享微服务的调用并为其特定UI塑形响应。这使移动团队能发送优化的、更小的负载，而Web团队可以包含更丰富的元数据。发布速度提升了40%，因为客户端团队不再被后端API变更阻塞。",
+  "when_not_to_use": [
+    "When all clients consume the same data shape and a single API or GraphQL layer already serves them well",
+    "When the organization is too small to staff separate teams for each BFF, leading to one team maintaining multiple BFFs",
+    "When the overhead of deploying and monitoring additional services outweighs the flexibility gained",
+    "When downstream services already provide well-designed, client-friendly APIs that need no aggregation"
+  ],
+  "when_not_to_use_zh": [
+    "当所有客户端消费相同的数据结构，单一API或GraphQL层已能良好服务时",
+    "当组织规模太小无法为每个BFF配备独立团队，导致一个团队维护多个BFF时",
+    "当部署和监控额外服务的开销超过获得的灵活性时",
+    "当下游服务已提供设计良好的、对客户端友好的API且不需要聚合时"
+  ],
+  "adopters": [
+    "SoundCloud",
+    "Airbnb",
+    "Spotify",
+    "Netflix",
+    "REA Group"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "usability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Newman, S. (2015). \"Building Microservices\", 1st ed., Ch. 4. O'Reilly Media.",
+  "secondary_sources": [
+    "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 7. O'Reilly Media.",
+    "Newman, S. (2015). \"Pattern: Backends For Frontends\". samnewman.io."
+  ],
+  "typed_relations": [
+    {
+      "slug": "api-gateway-pattern",
+      "type": "extends"
+    },
+    {
+      "slug": "graphql-schema-design",
+      "type": "complement"
+    },
+    {
+      "slug": "grpc-protocol-buffers",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/bff-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/bff-pattern.md"
+}

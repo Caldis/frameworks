@@ -1,0 +1,194 @@
+{
+  "id": 198,
+  "name": "Data Quality Framework",
+  "name_zh": "数据质量框架",
+  "slug": "data-quality-framework",
+  "category": "data",
+  "desc": "Systematic validation of data accuracy, completeness, and consistency",
+  "desc_zh": "系统性验证数据准确性、完整性和一致性的方法体系",
+  "steps": [
+    "Define data quality dimensions relevant to the business context: accuracy, completeness, consistency, timeliness, uniqueness, and validity; assign ownership and SLOs for each critical dataset",
+    "Instrument data pipelines with quality checks at ingestion, transformation, and serving layers using declarative frameworks (dbt tests, Great Expectations, Soda) that express expectations as code",
+    "Publish quality metrics to a data observability platform with alerting so that data owners are notified of SLO breaches before downstream consumers are impacted",
+    "Implement quarantine patterns: route records that fail quality checks to a quarantine table with failure annotations rather than silently dropping them, preserving auditability",
+    "Close the feedback loop by routing quality alerts to data producers and establishing data quality SLAs in data contracts, making quality a shared responsibility between producers and consumers"
+  ],
+  "steps_zh": [
+    "定义与业务背景相关的数据质量维度：准确性、完整性、一致性、及时性、唯一性和有效性；为每个关键数据集分配所有权和SLO",
+    "使用声明式框架（dbt tests、Great Expectations、Soda）在摄入、转换和服务层对数据管道进行质量检查埋点，将期望表达为代码",
+    "将质量指标发布到数据可观测性平台并设置告警，使数据所有者在下游消费者受影响前收到SLO违规通知",
+    "实施隔离模式：将未通过质量检查的记录路由到带有失败注释的隔离表，而非静默丢弃，保留可审计性",
+    "通过将质量告警路由给数据生产者并在数据契约中建立数据质量SLA来形成反馈闭环，使质量成为生产者和消费者的共同责任"
+  ],
+  "ai_relevant": true,
+  "viz_type": "radar",
+  "viz_labels": [
+    "Accuracy",
+    "Completeness",
+    "Consistency",
+    "Timeliness",
+    "Validity"
+  ],
+  "viz_labels_zh": [
+    "准确性",
+    "完整性",
+    "一致性",
+    "时效性",
+    "有效性"
+  ],
+  "related": [
+    "data-lineage",
+    "schema-registry-pattern",
+    "data-mesh",
+    "medallion-architecture"
+  ],
+  "tags": [
+    "data-quality",
+    "observability",
+    "validation",
+    "great-expectations",
+    "dbt-tests"
+  ],
+  "origin_author": "Thomas C. Redman (1992); operationalized by DAMA International DMBOK",
+  "origin_source": "DAMA International, \"DMBOK2: Data Management Body of Knowledge\" (2017); Great Expectations documentation (2019)",
+  "origin_source_zh": "DAMA International《DMBOK2：数据管理知识体系》（2017）；Great Expectations文档（2019）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When downstream business decisions, ML models, or regulatory reports depend on data that could be corrupted by upstream system defects",
+    "When data pipelines span multiple systems and teams, creating opportunities for data corruption at each handoff",
+    "When SLA breaches or model accuracy degradation are caused by silent data quality issues that are detected only after business impact",
+    "When data mesh or data product patterns require producers to publish quality guarantees to consumers as part of their data product contract"
+  ],
+  "when_to_use_zh": [
+    "当下游业务决策、ML模型或监管报告依赖可能被上游系统缺陷破坏的数据时",
+    "当数据管道跨越多个系统和团队，在每次交接处都有数据损坏的机会时",
+    "当SLA违规或模型精度下降是由仅在业务影响后才发现的静默数据质量问题引起时",
+    "当数据网格或数据产品模式要求生产者作为其数据产品契约的一部分向消费者发布质量保证时"
+  ],
+  "core_concepts": [
+    "Data quality dimensions: the measurable characteristics of data — accuracy (correct values), completeness (no missing values), consistency (no contradictions), timeliness (freshness), uniqueness (no duplicates), validity (conforms to format/range rules)",
+    "Expectations as code: expressing data quality rules as version-controlled, executable assertions that run in CI/CD and pipeline jobs rather than ad-hoc manual checks",
+    "Data observability: continuous monitoring of data health metrics (freshness, volume, distribution, schema) with anomaly detection to catch quality issues before they propagate",
+    "Shift-left quality: validating data quality at the earliest possible pipeline stage (ingestion) rather than at the consumption point to minimize the blast radius of quality failures"
+  ],
+  "core_concepts_zh": [
+    "数据质量维度：数据的可测量特征——准确性（正确的值）、完整性（无缺失值）、一致性（无矛盾）、及时性（新鲜度）、唯一性（无重复）、有效性（符合格式/范围规则）",
+    "代码化期望：将数据质量规则表达为版本控制的、可执行的断言，在CI/CD和管道作业中运行，而非临时手动检查",
+    "数据可观测性：持续监控数据健康指标（新鲜度、数量、分布、模式），通过异常检测在质量问题传播前发现",
+    "左移质量：在最早的管道阶段（摄入）而非消费点验证数据质量，以最小化质量失败的爆炸半径"
+  ],
+  "timeline": [
+    [
+      "1992",
+      "Thomas Redman publishes 'Data Quality: Management and Technology', establishing data quality as a discipline"
+    ],
+    [
+      "2017",
+      "DAMA International releases DMBOK2, providing a comprehensive data management framework including quality dimensions"
+    ],
+    [
+      "2019",
+      "Great Expectations open-sourced, introducing 'expectations as code' and making programmatic data quality accessible to data engineers"
+    ],
+    [
+      "2022",
+      "Monte Carlo, Bigeye, and Soda raise significant funding, validating data observability as a distinct commercial category"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1992",
+      "Thomas Redman出版《数据质量：管理与技术》，将数据质量确立为一门学科"
+    ],
+    [
+      "2017",
+      "DAMA International发布DMBOK2，提供包含质量维度的综合数据管理框架"
+    ],
+    [
+      "2019",
+      "Great Expectations开源，引入「代码化期望」，使数据工程师可以进行程序化数据质量管理"
+    ],
+    [
+      "2022",
+      "Monte Carlo、Bigeye和Soda获得大量融资，验证数据可观测性作为独立商业类别的价值"
+    ]
+  ],
+  "dos": [
+    "Do define quality rules in collaboration with data consumers because they know which quality failures have business impact and which are acceptable anomalies",
+    "Do run quality checks in the pipeline, not just on a schedule, because schedule-based checks detect failures hours after the bad data has already propagated",
+    "Do monitor data distributions and volumes in addition to schema checks because statistical anomalies (e.g., sudden 50% drop in row count) often signal upstream issues before column-level checks fire",
+    "Do track quality metrics over time and build quality dashboards because point-in-time pass/fail is insufficient for understanding quality trends and SLO achievement"
+  ],
+  "dos_zh": [
+    "与数据消费者协作定义质量规则，因为他们知道哪些质量失败有业务影响，哪些是可接受的异常",
+    "在管道中而非仅按计划运行质量检查，因为基于计划的检查在坏数据已传播数小时后才发现失败",
+    "除模式检查外还监控数据分布和数量，因为统计异常（如行数突然下降50%）通常在列级检查触发前就标志着上游问题",
+    "随时间追踪质量指标并建立质量仪表板，因为时间点的通过/失败不足以理解质量趋势和SLO达成情况"
+  ],
+  "donts": [
+    "Don't treat data quality as a one-time remediation project because data quality degrades continuously and requires ongoing monitoring",
+    "Don't block all pipeline progress on quality failures because blocking every issue stops data delivery entirely; use severity tiers to quarantine critical failures and warn on minor ones",
+    "Don't write quality checks only for known failure modes because unexpected quality issues are the most damaging; include statistical distribution monitoring for unknown unknowns",
+    "Don't assign data quality responsibility solely to a central data team because data producers closest to the source are best positioned to understand and fix quality issues"
+  ],
+  "donts_zh": [
+    "不要将数据质量视为一次性整治项目，因为数据质量会持续退化，需要持续监控",
+    "不要在质量失败时阻止所有管道进度，因为阻止每个问题会完全停止数据交付；使用严重性级别隔离关键失败并对次要失败发出警告",
+    "不要只为已知失败模式编写质量检查，因为意外的质量问题最具破坏性；包括统计分布监控以应对未知的未知",
+    "不要将数据质量责任完全分配给中心化数据团队，因为最接近源头的数据生产者最有能力理解和修复质量问题"
+  ],
+  "case_study_company": "Intuit",
+  "case_study": "Intuit built a company-wide data quality platform called DataQA that runs over 500,000 quality checks daily across their tax, payments, and small business data products. Using Great Expectations integrated into their Airflow pipelines, Intuit detects data quality issues before they reach the models powering TurboTax recommendations and QuickBooks insights. After implementing the framework, Intuit reduced data-quality-related model prediction errors by 35% and cut the mean time to detect a data quality incident from 4 hours to under 15 minutes.",
+  "case_study_zh": "Intuit构建了名为DataQA的全公司数据质量平台，每天在其税务、支付和小企业数据产品中运行超过50万次质量检查。使用集成到Airflow管道中的Great Expectations，Intuit在数据质量问题到达驱动TurboTax推荐和QuickBooks洞察的模型之前检测到它们。实施该框架后，Intuit将数据质量相关的模型预测错误减少了35%，并将检测数据质量事件的平均时间从4小时缩短到15分钟以内。",
+  "when_not_to_use": [
+    "Exploratory data science environments where data is inherently messy and the cost of quality enforcement exceeds the benefit",
+    "Real-time streaming pipelines where synchronous quality checks add latency that violates SLA requirements; use async anomaly detection instead",
+    "When the organization has not yet established data ownership — quality frameworks without accountable owners produce alerts that no one acts on",
+    "Throwaway prototypes and one-time data migrations where ongoing quality monitoring is unnecessary"
+  ],
+  "when_not_to_use_zh": [
+    "数据本质上杂乱且质量执行成本超过收益的探索性数据科学环境",
+    "同步质量检查增加违反SLA要求延迟的实时流管道；改用异步异常检测",
+    "当组织尚未建立数据所有权时——没有负责任所有者的质量框架会产生无人处理的告警",
+    "一次性原型和单次数据迁移，持续质量监控是不必要的"
+  ],
+  "adopters": [
+    "Intuit",
+    "Airbnb",
+    "Lyft",
+    "Shopify",
+    "Etsy"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "DAMA International (2017). \"DMBOK2: Data Management Body of Knowledge\", 2nd ed. Technics Publications.",
+  "secondary_sources": [
+    "Redman, T.C. (1992). \"Data Quality: Management and Technology\". Bantam Books.",
+    "Great Expectations (2019). \"Great Expectations Documentation\". greatexpectations.io.",
+    "Barr Moses et al. (2022). \"Data Quality Fundamentals\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "data-lineage",
+      "type": "complement"
+    },
+    {
+      "slug": "schema-registry-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "data-mesh",
+      "type": "complement"
+    },
+    {
+      "slug": "medallion-architecture",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/data-quality-framework",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/data-quality-framework.md"
+}

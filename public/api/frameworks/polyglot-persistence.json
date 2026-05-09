@@ -1,0 +1,193 @@
+{
+  "id": 109,
+  "name": "Polyglot Persistence",
+  "name_zh": "多语言持久化",
+  "slug": "polyglot-persistence",
+  "category": "data",
+  "desc": "Use purpose-fit databases for different data access patterns",
+  "desc_zh": "为不同数据访问模式使用最合适的数据库技术",
+  "steps": [
+    "Analyze each service or bounded context to understand its data access patterns: read/write ratio, query complexity, consistency requirements, and data structure",
+    "Select the optimal database technology for each pattern: relational for transactions, document stores for flexible schemas, graph databases for relationships, key-value for caching, time-series for metrics",
+    "Define clear data ownership boundaries so each service owns its database and no external service directly accesses another's datastore",
+    "Implement cross-service data synchronization using event-driven patterns (CDC, events, sagas) rather than shared databases or direct cross-service queries",
+    "Establish operational standards for each database technology including backup, monitoring, scaling, and security procedures to manage the increased operational surface area"
+  ],
+  "steps_zh": [
+    "分析每个服务或限界上下文以理解其数据访问模式：读写比、查询复杂性、一致性要求和数据结构",
+    "为每种模式选择最佳数据库技术：关系型用于事务、文档存储用于灵活模式、图数据库用于关系、键值存储用于缓存、时序数据库用于指标",
+    "定义清晰的数据所有权边界，每个服务拥有自己的数据库，外部服务不直接访问其数据存储",
+    "使用事件驱动模式（CDC、事件、Saga）而非共享数据库或直接跨服务查询来实现跨服务数据同步",
+    "为每种数据库技术建立运维标准，包括备份、监控、扩展和安全流程，以管理增加的运维面"
+  ],
+  "ai_relevant": true,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Relational DB",
+    "Document DB",
+    "Graph DB",
+    "Key-Value",
+    "Time-Series"
+  ],
+  "viz_labels_zh": [
+    "关系数据库",
+    "文档数据库",
+    "图数据库",
+    "键值存储",
+    "时序数据库"
+  ],
+  "related": [
+    "microservices-decomposition",
+    "data-mesh",
+    "cap-theorem",
+    "change-data-capture"
+  ],
+  "tags": [
+    "polyglot",
+    "database",
+    "persistence",
+    "microservices",
+    "data-access"
+  ],
+  "origin_author": "Martin Fowler / Pramod Sadalage, 2011",
+  "origin_source": "Polyglot Persistence (martinfowler.com blog, 2011); NoSQL Distilled (Addison-Wesley, 2012)",
+  "origin_source_zh": "「多语言持久化」（martinfowler.com博客，2011）；《NoSQL精粹》（Addison-Wesley，2012）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When different parts of your system have fundamentally different data access patterns that no single database optimizes well",
+    "When a microservices architecture requires each service to own its persistence independently",
+    "When performance requirements demand specialized databases (e.g., graph for social networks, time-series for IoT metrics)",
+    "When the one-size-fits-all relational database has become a bottleneck for specific workloads"
+  ],
+  "when_to_use_zh": [
+    "当系统不同部分具有根本不同的数据访问模式，没有单一数据库能良好优化时",
+    "当微服务架构要求每个服务独立拥有其持久化时",
+    "当性能要求需要专用数据库（如社交网络的图数据库、IoT指标的时序数据库）时",
+    "当一刀切的关系数据库已成为特定工作负载的瓶颈时"
+  ],
+  "core_concepts": [
+    "Purpose-fit storage: selecting database technology based on the specific data model, query patterns, and consistency needs of each bounded context",
+    "Database-per-service: each microservice owns and encapsulates its database, preventing tight coupling through shared data stores",
+    "Data synchronization: using events, CDC, or sagas to keep data eventually consistent across services that use different database technologies",
+    "Operational complexity trade-off: gaining performance and modeling advantages at the cost of managing multiple database technologies, backup strategies, and operational playbooks"
+  ],
+  "core_concepts_zh": [
+    "适配存储：基于每个限界上下文的特定数据模型、查询模式和一致性需求选择数据库技术",
+    "每服务一数据库：每个微服务拥有并封装其数据库，防止通过共享数据存储产生紧耦合",
+    "数据同步：使用事件、CDC或Saga在使用不同数据库技术的服务之间保持最终一致性",
+    "运维复杂性权衡：以管理多种数据库技术、备份策略和运维手册的成本换取性能和建模优势"
+  ],
+  "timeline": [
+    [
+      "2009",
+      "NoSQL movement gains momentum with MongoDB, Cassandra, and Redis challenging relational database hegemony"
+    ],
+    [
+      "2011",
+      "Martin Fowler coins 'Polyglot Persistence' and publishes the influential blog post on choosing databases per use case"
+    ],
+    [
+      "2012",
+      "Fowler and Sadalage publish 'NoSQL Distilled' providing a systematic framework for database technology selection"
+    ],
+    [
+      "2018",
+      "Managed cloud database services (DynamoDB, CosmosDB, Cloud Spanner) lower the operational barrier to polyglot persistence"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2009",
+      "NoSQL运动随MongoDB、Cassandra和Redis挑战关系数据库霸权而获得动力"
+    ],
+    [
+      "2011",
+      "Martin Fowler创造「多语言持久化」术语并发表按用例选择数据库的有影响力博客文章"
+    ],
+    [
+      "2012",
+      "Fowler和Sadalage出版《NoSQL精粹》，提供数据库技术选择的系统框架"
+    ],
+    [
+      "2018",
+      "托管云数据库服务（DynamoDB、CosmosDB、Cloud Spanner）降低了多语言持久化的运维门槛"
+    ]
+  ],
+  "dos": [
+    "Do choose databases based on data access patterns, not technology hype because the wrong database for a workload creates more problems than it solves",
+    "Do keep database choices encapsulated within service boundaries because leaking database specifics creates tight coupling",
+    "Do invest in team training for each database technology adopted because operational expertise is critical for production reliability",
+    "Do start with fewer databases and add specialized ones only when measured performance demands it"
+  ],
+  "dos_zh": [
+    "基于数据访问模式而非技术热潮选择数据库，因为不适合工作负载的数据库会制造更多问题",
+    "将数据库选择封装在服务边界内，因为泄露数据库细节会产生紧耦合",
+    "为每种采用的数据库技术投资团队培训，因为运维专业知识对生产可靠性至关重要",
+    "从较少的数据库开始，仅在测量的性能需求要求时才添加专用数据库"
+  ],
+  "donts": [
+    "Don't adopt a new database technology for every service because the operational overhead grows multiplicatively with each new technology",
+    "Don't share databases between services to avoid the synchronization problem because shared databases create the tightest form of coupling",
+    "Don't ignore the operational tax of running multiple database technologies because each needs its own monitoring, backup, and upgrade procedures",
+    "Don't choose a NoSQL database just to be modern when a relational database meets your needs because unnecessary complexity is the enemy of reliability"
+  ],
+  "donts_zh": [
+    "不要为每个服务采用新的数据库技术，因为运维开销随每种新技术成倍增长",
+    "不要在服务间共享数据库以规避同步问题，因为共享数据库产生最紧密的耦合形式",
+    "不要忽视运行多种数据库技术的运维税，因为每种都需要自己的监控、备份和升级流程",
+    "当关系数据库满足需求时不要为了时髦而选择NoSQL，因为不必要的复杂性是可靠性的敌人"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix employs polyglot persistence across its microservices: Cassandra for distributed session and viewing history storage, MySQL for billing and account data requiring ACID transactions, Elasticsearch for content search, EVCache (memcached) for low-latency caching, and a proprietary time-series store for real-time streaming telemetry. Each database is chosen to optimize for the specific access pattern of its owning service.",
+  "case_study_zh": "Netflix在其微服务中采用多语言持久化：Cassandra用于分布式会话和观看历史存储，MySQL用于需要ACID事务的计费和账户数据，Elasticsearch用于内容搜索，EVCache（memcached）用于低延迟缓存，以及专有时序存储用于实时流媒体遥测。每种数据库都针对其所属服务的特定访问模式进行优化。",
+  "when_not_to_use": [
+    "When a single database technology adequately serves all your data access patterns and adding complexity is not justified",
+    "When the team is small and cannot afford the operational overhead of managing multiple database technologies",
+    "When strong transactional consistency across all data is required and distributed transactions are too complex",
+    "When regulatory requirements mandate a single auditable datastore for all organizational data"
+  ],
+  "when_not_to_use_zh": [
+    "当单一数据库技术能够充分服务所有数据访问模式且增加复杂性不合理时",
+    "当团队规模较小且无法承担管理多种数据库技术的运维开销时",
+    "当需要跨所有数据的强事务一致性且分布式事务过于复杂时",
+    "当监管要求为所有组织数据使用单一可审计的数据存储时"
+  ],
+  "adopters": [
+    "Netflix",
+    "Amazon",
+    "Spotify",
+    "LinkedIn",
+    "eBay"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "performance",
+    "scalability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Sadalage, P.J. & Fowler, M. (2012). \"NoSQL Distilled: A Brief Guide to the Emerging World of Polyglot Persistence\". Addison-Wesley.",
+  "secondary_sources": [
+    "Fowler, M. (2011). \"Polyglot Persistence\". martinfowler.com.",
+    "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "microservices-decomposition",
+      "type": "complement"
+    },
+    {
+      "slug": "data-mesh",
+      "type": "complement"
+    },
+    {
+      "slug": "cap-theorem",
+      "type": "complement"
+    },
+    {
+      "slug": "change-data-capture",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/polyglot-persistence",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/polyglot-persistence.md"
+}

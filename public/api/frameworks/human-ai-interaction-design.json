@@ -1,0 +1,199 @@
+{
+  "id": 12,
+  "name": "Human-AI Interaction Design (HAI)",
+  "name_zh": "人机交互设计（AI时代）",
+  "slug": "human-ai-interaction-design",
+  "category": "thinking",
+  "desc": "Design AI-augmented workflows balancing autonomy and control",
+  "desc_zh": "设计平衡自主性与控制权的AI增强型工作流程",
+  "steps": [
+    "Define the Human-AI Task Split: identify which subtasks the AI handles autonomously, which require human oversight, and which are collaborative",
+    "Design Explainability Touchpoints: specify where and how the AI must surface its reasoning, confidence, and uncertainty to users",
+    "Model Trust Calibration: design mechanisms for users to build appropriate trust — neither over-relying on nor under-using AI output",
+    "Handle AI Failure Modes: design graceful degradation paths for hallucination, low-confidence output, and distribution shift scenarios",
+    "Iterate with Human-in-the-Loop Feedback: build feedback collection into the UX to continuously improve AI behavior from real usage"
+  ],
+  "steps_zh": [
+    "定义人机任务分工：识别哪些子任务由AI自主处理、哪些需要人类监督、哪些是协作完成",
+    "设计可解释性触点：规定AI在何处以何种方式向用户呈现其推理过程、置信度和不确定性",
+    "建模信任校准：设计帮助用户建立适度信任的机制——既不过度依赖也不低估AI输出",
+    "处理AI失效模式：为幻觉、低置信度输出和分布偏移场景设计优雅降级路径",
+    "通过人在环路反馈迭代：将反馈收集内嵌于用户体验，从真实使用中持续改善AI行为"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "User Intent",
+    "AI Output",
+    "Feedback",
+    "Trust",
+    "Control"
+  ],
+  "viz_labels_zh": [
+    "用户意图",
+    "AI输出",
+    "用户反馈",
+    "信任建立",
+    "人工控制"
+  ],
+  "related": [
+    "human-in-the-loop",
+    "ai-pair-programming",
+    "responsible-ai-design"
+  ],
+  "tags": [
+    "human-ai",
+    "trust",
+    "explainability",
+    "interaction-design",
+    "autonomy"
+  ],
+  "origin_author": "Microsoft Research / Saleema Amershi et al., 2019",
+  "origin_source": "Guidelines for Human-AI Interaction (Saleema Amershi et al., CHI 2019)",
+  "origin_source_zh": "《人机交互指南》（Saleema Amershi等，CHI 2019会议）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When building a product that uses AI/ML models and you need to design how users interact with AI-generated outputs",
+    "When users report they don't trust the AI's suggestions or, conversely, when they blindly follow AI output without verification",
+    "When designing AI-assisted workflows in high-stakes domains (healthcare, finance, legal) where human oversight is essential",
+    "When transitioning a manual workflow to an AI-augmented one and you need to decide what stays human-controlled vs. what becomes automated"
+  ],
+  "when_to_use_zh": [
+    "当构建使用AI/ML模型的产品，需要设计用户如何与AI生成的输出交互时",
+    "当用户报告不信任AI的建议，或相反当他们不加验证地盲目遵循AI输出时",
+    "当在高风险领域（医疗、金融、法律）设计AI辅助工作流，人类监督至关重要时",
+    "当将手动工作流过渡为AI增强型工作流，需要决定什么保持人工控制与什么变为自动化时"
+  ],
+  "core_concepts": [
+    "Levels of Automation: A spectrum from full human control to full AI autonomy, with the optimal level depending on task risk, AI reliability, and user expertise",
+    "Trust Calibration: Designing interactions so users develop appropriately calibrated trust — trusting AI when it's reliable and questioning it when it's uncertain",
+    "Explainability by Design: Building explanations of AI reasoning into the interface as a first-class design element, not an afterthought",
+    "Graceful Degradation: Ensuring the system remains useful and safe when the AI component fails, hallucinates, or encounters out-of-distribution inputs"
+  ],
+  "core_concepts_zh": [
+    "自动化层级：从完全人工控制到完全AI自主的光谱，最优层级取决于任务风险、AI可靠性和用户专业水平",
+    "信任校准：设计交互使用户发展出适当校准的信任——在AI可靠时信任它，在AI不确定时质疑它",
+    "设计优先的可解释性：将AI推理的解释作为一等设计元素构建到界面中，而非事后补充",
+    "优雅降级：确保当AI组件失败、产生幻觉或遇到分布外输入时，系统仍然有用且安全"
+  ],
+  "timeline": [
+    [
+      "1990",
+      "Ben Shneiderman and other HCI pioneers establish foundational principles for human-computer interaction that inform later human-AI design thinking"
+    ],
+    [
+      "2016",
+      "Google publishes the PAIR (People + AI Research) initiative guidelines for designing human-AI experiences, formalizing the field"
+    ],
+    [
+      "2019",
+      "Saleema Amershi et al. publish '18 Guidelines for Human-AI Interaction' at CHI 2019, providing the most cited practical design framework for AI products"
+    ],
+    [
+      "2020",
+      "Apple's Human Interface Guidelines and Google's Material Design add AI-specific interaction patterns, mainstreaming HAI principles in platform design systems"
+    ],
+    [
+      "2023",
+      "The explosion of LLM-based products (ChatGPT, Copilot, Midjourney) creates urgent practical demand for HAI patterns around conversational AI, code generation, and creative tools"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1990",
+      "Ben Shneiderman和其他HCI先驱建立人机交互基础原则，为后来的人机AI设计思维奠定基础"
+    ],
+    [
+      "2016",
+      "Google发布PAIR（People + AI Research）倡议指南，用于设计人机AI体验，正式化该领域"
+    ],
+    [
+      "2019",
+      "Saleema Amershi等在CHI 2019发表「人机交互的18条指南」，提供了AI产品最被广泛引用的实用设计框架"
+    ],
+    [
+      "2020",
+      "Apple的人机界面指南和Google的Material Design添加AI特定交互模式，使HAI原则在平台设计系统中主流化"
+    ],
+    [
+      "2023",
+      "基于LLM的产品爆发（ChatGPT、Copilot、Midjourney）为对话式AI、代码生成和创意工具的HAI模式创造了紧迫的实际需求"
+    ]
+  ],
+  "dos": [
+    "Do show AI confidence levels when presenting suggestions, because users need calibration signals to know when to trust vs. verify AI output",
+    "Do design clear 'escape hatches' that let users override or ignore AI suggestions easily, because user agency is essential for trust and for handling AI errors",
+    "Do design for AI failure from day one, because AI systems will hallucinate, and users need to be able to recognize, report, and recover from incorrect outputs",
+    "Do collect user feedback on AI outputs (thumbs up/down, corrections, overrides) and feed it back into model improvement, because real-world usage patterns are the best training signal",
+    "Do communicate AI limitations transparently, because users who understand what the AI can and cannot do develop more appropriate usage patterns"
+  ],
+  "dos_zh": [
+    "在呈现建议时显示AI置信度，因为用户需要校准信号来判断何时信任、何时验证AI输出",
+    "设计清晰的「逃生通道」让用户能轻松覆盖或忽略AI建议，因为用户主体性对信任和处理AI错误至关重要",
+    "从第一天起就为AI失败进行设计，因为AI系统会产生幻觉，用户需要能够识别、报告和从错误输出中恢复",
+    "收集用户对AI输出的反馈（点赞/踩、修正、覆盖）并反馈到模型改进中，因为真实使用模式是最好的训练信号",
+    "透明地传达AI的局限性，因为理解AI能做什么和不能做什么的用户会发展出更适当的使用模式"
+  ],
+  "donts": [
+    "Don't present AI output with the same visual authority as human-verified information, because users need visual cues to distinguish AI-generated content from established facts",
+    "Don't automate high-stakes decisions without a human review step, because AI errors in critical domains (healthcare, finance) can cause irreversible harm",
+    "Don't design AI interactions that anthropomorphize the system to the point of creating false trust, because users who believe they're talking to a sentient entity won't appropriately question outputs",
+    "Don't ignore the cold-start problem, because new users have no calibration for the AI's reliability and need guided onboarding to build appropriate trust"
+  ],
+  "donts_zh": [
+    "不要以与人工验证信息相同的视觉权威性呈现AI输出，因为用户需要视觉线索来区分AI生成内容和已确立的事实",
+    "不要在没有人工审核步骤的情况下自动化高风险决策，因为关键领域（医疗、金融）中的AI错误可能造成不可逆的伤害",
+    "不要设计将系统拟人化到产生虚假信任的AI交互，因为相信自己在与有感知实体对话的用户不会适当质疑输出",
+    "不要忽视冷启动问题，因为新用户对AI的可靠性没有校准，需要引导式入门来建立适当的信任"
+  ],
+  "case_study_company": "GitHub (Copilot)",
+  "case_study": "GitHub Copilot applied HAI principles to design an AI pair programming experience that developers would actually trust. Rather than autonomously writing code, Copilot presents suggestions as ghost text that developers explicitly accept, modify, or dismiss — maintaining human agency. The team designed confidence-calibrating interactions: suggestions appear inline (low friction for likely-correct completions) while more uncertain code blocks require explicit tab-acceptance. After launch, GitHub found that developers accepted about 30% of suggestions, indicating healthy trust calibration rather than blind acceptance.",
+  "case_study_zh": "GitHub Copilot应用HAI原则来设计开发者会真正信任的AI配对编程体验。Copilot不是自主编写代码，而是将建议以幽灵文本形式呈现，开发者明确接受、修改或忽略——保持了人类主体性。团队设计了信任校准交互：建议以内联方式出现（对可能正确的补全低摩擦），而更不确定的代码块需要显式的Tab接受。上线后，GitHub发现开发者接受了约30%的建议，表明健康的信任校准而非盲目接受。",
+  "when_not_to_use": [
+    "When the system has no AI/ML component and interactions are purely deterministic, making AI-specific design patterns unnecessary",
+    "When the AI operates entirely in the backend with no user-facing decisions or outputs that need trust calibration",
+    "When building an internal tool for AI/ML engineers who already understand model limitations and don't need guided trust calibration",
+    "When the AI model's accuracy is so high and consequences so low that the overhead of explainability and human review isn't justified"
+  ],
+  "when_not_to_use_zh": [
+    "当系统没有AI/ML组件，交互是纯确定性的，不需要AI特定设计模式时",
+    "当AI完全在后端运行，没有需要信任校准的面向用户的决策或输出时",
+    "当为已经理解模型局限性的AI/ML工程师构建内部工具，不需要引导式信任校准时",
+    "当AI模型精度极高且后果很低，可解释性和人工审核的开销不合理时"
+  ],
+  "adopters": [
+    "GitHub (Copilot)",
+    "Google (Search AI Overviews, Gemini)",
+    "Microsoft (Cortana, Copilot for M365)",
+    "Apple (Siri, Apple Intelligence)",
+    "Adobe (Firefly)",
+    "Notion (Notion AI)"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "usability",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Saleema Amershi et al. (2019). \"Guidelines for Human-AI Interaction\". ACM CHI 2019.",
+  "secondary_sources": [
+    "Ben Shneiderman (2022). \"Human-Centered AI\". Oxford University Press.",
+    "Google PAIR (2019). \"People + AI Guidebook\". pair.withgoogle.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "human-in-the-loop",
+      "type": "complement"
+    },
+    {
+      "slug": "ai-pair-programming",
+      "type": "related"
+    },
+    {
+      "slug": "responsible-ai-design",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/human-ai-interaction-design",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/human-ai-interaction-design.md"
+}

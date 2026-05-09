@@ -22,5 +22,6 @@ require('./generators/skill-catalog')(data, categories)
 require('./generators/skill-categories')(data, categories)
 require('./generators/skill-frameworks')(data)
 require('./generators/llms')(data, categories, schema)
+require('./generators/agent-assets')(data, categories, schema)
 
 console.log(`\n✓ All outputs generated from ${data.length} frameworks`)

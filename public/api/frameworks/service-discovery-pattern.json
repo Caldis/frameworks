@@ -1,0 +1,190 @@
+{
+  "id": 267,
+  "name": "Service Discovery Pattern",
+  "name_zh": "服务发现模式",
+  "slug": "service-discovery-pattern",
+  "category": "distributed",
+  "desc": "DNS-based and registry-based mechanisms for services to locate each other dynamically in elastic infrastructure",
+  "desc_zh": "服务在弹性基础设施中动态定位彼此的基于 DNS 和注册表的机制",
+  "steps": [
+    "Choose a discovery strategy: client-side discovery (client queries registry and load-balances itself), server-side discovery (router or load balancer queries registry on behalf of client), or DNS-based (services resolved via DNS SRV records)",
+    "Implement service registration: on startup, each service instance registers its address, port, health check endpoint, and metadata (version, region, tags) with the service registry",
+    "Configure health checking: define liveness and readiness probes that the registry polls at a configured interval; failing checks cause the registry to deregister the instance and stop routing traffic to it",
+    "Consume the registry in clients: use a discovery client library (Consul client, Eureka client, Kubernetes service DNS) to resolve logical service names to physical addresses, applying load balancing on the returned set",
+    "Handle deregistration and graceful shutdown: ensure instances deregister before terminating; implement a grace period so in-flight requests complete before the instance is removed from the registry"
+  ],
+  "steps_zh": [
+    "选择发现策略：客户端侧发现（客户端查询注册表并自行负载均衡）、服务器侧发现（路由器或负载均衡器代表客户端查询注册表），或基于 DNS（通过 DNS SRV 记录解析服务）",
+    "实现服务注册：启动时，每个服务实例将其地址、端口、健康检查端点和元数据（版本、区域、标签）注册到服务注册表",
+    "配置健康检查：定义注册表按配置间隔轮询的活性和就绪探针；检查失败会导致注册表注销实例并停止向其路由流量",
+    "在客户端消费注册表：使用发现客户端库（Consul 客户端、Eureka 客户端、Kubernetes 服务 DNS）将逻辑服务名解析为物理地址，对返回集应用负载均衡",
+    "处理注销和优雅关闭：确保实例在终止前注销；实现宽限期使进行中的请求在实例从注册表移除前完成"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Discovery Strategy",
+    "Registration",
+    "Health Check",
+    "Client Consume",
+    "Graceful Shutdown"
+  ],
+  "viz_labels_zh": [
+    "发现策略",
+    "服务注册",
+    "健康检查",
+    "客户端消费",
+    "优雅下线"
+  ],
+  "related": [
+    "service-discovery",
+    "gossip-protocol",
+    "circuit-breaker-with-retry",
+    "sidecar-pattern"
+  ],
+  "tags": [
+    "service-discovery",
+    "microservices",
+    "load-balancing",
+    "registry",
+    "cloud-native"
+  ],
+  "origin_author": "Chris Richardson",
+  "origin_source": "Richardson, C. (2018). Microservices Patterns, Ch. 11. Manning Publications; Fowler, M. & Lewis, J. (2014). Microservices. martinfowler.com.",
+  "origin_source_zh": "Richardson（2018）《微服务架构设计模式》第11章，Manning；Fowler与Lewis（2014）《微服务》martinfowler.com",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When running microservices on dynamic cloud infrastructure where instance IPs change on every restart, scaling event, or deployment",
+    "When you have multiple service instances behind a load balancer and need clients to discover healthy instances without hard-coded configuration",
+    "When deploying to container orchestration platforms (Kubernetes, Nomad, ECS) that natively provide service discovery primitives",
+    "When different versions of a service must be routed to different clients during canary or blue-green deployments"
+  ],
+  "when_to_use_zh": [
+    "在动态云基础设施上运行微服务，实例 IP 在每次重启、扩缩容或部署时都会改变时",
+    "在负载均衡器后有多个服务实例，需要客户端在没有硬编码配置的情况下发现健康实例时",
+    "部署到原生提供服务发现原语的容器编排平台（Kubernetes、Nomad、ECS）时",
+    "在金丝雀或蓝绿部署期间，不同版本的服务需要路由到不同客户端时"
+  ],
+  "core_concepts": [
+    "Service registry: a centralized or distributed database (Consul, Eureka, etcd, ZooKeeper) that stores the network locations of all available service instances with their metadata and health status",
+    "Client-side discovery: the consuming service queries the registry directly and applies its own load balancing algorithm; provides flexibility but couples every client to the registry API",
+    "Server-side discovery: a load balancer or API gateway queries the registry and routes traffic; decouples clients from the registry but adds a central routing hop",
+    "Self-registration vs. third-party registration: in self-registration, instances register on startup; in third-party registration, an orchestrator (Kubernetes, Registrator) handles registration and deregistration",
+    "DNS-SD: DNS Service Discovery uses SRV records to encode service name, protocol, port, and priority, enabling DNS resolvers to serve as the service registry without custom client libraries"
+  ],
+  "core_concepts_zh": [
+    "服务注册表：存储所有可用服务实例网络位置及其元数据和健康状态的集中式或分布式数据库（Consul、Eureka、etcd、ZooKeeper）",
+    "客户端侧发现：消费服务直接查询注册表并应用自己的负载均衡算法；灵活但将每个客户端与注册表 API 耦合",
+    "服务器侧发现：负载均衡器或 API 网关查询注册表并路由流量；将客户端与注册表解耦，但增加了中央路由跳转",
+    "自注册与第三方注册：自注册时，实例在启动时自行注册；第三方注册时，编排器（Kubernetes、Registrator）处理注册和注销",
+    "DNS-SD：DNS 服务发现使用 SRV 记录编码服务名、协议、端口和优先级，使 DNS 解析器无需自定义客户端库即可充当服务注册表"
+  ],
+  "timeline": [
+    [
+      "2012",
+      "Netflix open-sources Eureka, a REST-based service registry for their AWS-based microservices, establishing the self-registration pattern"
+    ],
+    [
+      "2013",
+      "HashiCorp releases Consul, combining service discovery with health checking, key-value storage, and multi-datacenter support"
+    ],
+    [
+      "2014",
+      "Kubernetes introduces kube-dns and Services as a first-class service discovery abstraction, making DNS-based discovery the cloud-native default"
+    ],
+    [
+      "2017",
+      "Istio service mesh shifts service discovery into the data plane via Envoy sidecar proxies, abstracting registry interaction away from application code"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2012",
+      "Netflix 开源 Eureka，一个用于其 AWS 微服务的基于 REST 的服务注册表，建立了自注册模式"
+    ],
+    [
+      "2013",
+      "HashiCorp 发布 Consul，将服务发现与健康检查、键值存储和多数据中心支持结合"
+    ],
+    [
+      "2014",
+      "Kubernetes 引入 kube-dns 和 Services 作为一级服务发现抽象，使基于 DNS 的发现成为云原生默认方案"
+    ],
+    [
+      "2017",
+      "Istio 服务网格通过 Envoy sidecar 代理将服务发现转移到数据平面，将注册表交互从应用代码中抽象出去"
+    ]
+  ],
+  "dos": [
+    "Do implement health checks at the application level, not just the process level, so the registry deregisters instances that are running but not serving traffic correctly",
+    "Do cache discovery results locally with a short TTL so that a registry outage does not immediately cascade into a full service outage",
+    "Do tag instances with version, environment, and capability metadata so consumers can implement fine-grained routing without separate configuration",
+    "Do test deregistration and failover paths in staging by deliberately crashing instances and verifying traffic shifts to healthy instances within your SLA"
+  ],
+  "dos_zh": [
+    "在应用层而非仅进程层实现健康检查，使注册表能注销正在运行但未正确提供流量的实例",
+    "使用短 TTL 在本地缓存发现结果，使注册表中断不会立即级联为完整服务中断",
+    "用版本、环境和能力元数据标记实例，使消费者无需单独配置即可实现细粒度路由",
+    "在预发布环境中通过故意崩溃实例并验证流量在 SLA 内切换到健康实例来测试注销和故障转移路径"
+  ],
+  "donts": [
+    "Don't hard-code service IP addresses or ports in configuration files — this defeats the purpose of service discovery and creates drift as instances change",
+    "Don't set health check intervals too long (more than 10 seconds) because stale registry entries cause traffic to be routed to failed instances for extended periods",
+    "Don't run a single-node service registry without HA configuration — the registry itself must be highly available or it becomes a single point of failure for the entire service mesh",
+    "Don't skip connection draining before deregistration — abrupt removal causes in-flight requests to fail with connection reset errors visible to end users"
+  ],
+  "donts_zh": [
+    "不要在配置文件中硬编码服务 IP 地址或端口——这违背了服务发现的目的，并在实例变化时造成配置漂移",
+    "不要将健康检查间隔设置过长（超过 10 秒），因为过期的注册表条目会导致流量在较长时间内路由到故障实例",
+    "不要在没有高可用配置的情况下运行单节点服务注册表——注册表本身必须高可用，否则它会成为整个服务网格的单点故障",
+    "不要在注销前跳过连接排空——突然移除会导致进行中的请求以对最终用户可见的连接重置错误失败"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix operates Eureka, their home-built service registry, across their global microservices fleet of thousands of instances. Every service registers with its regional Eureka cluster on startup and sends heartbeats every 30 seconds. Eureka's self-preservation mode is a particularly notable design: when it detects that more than 15% of expected heartbeats are missing (indicating a network partition rather than mass failure), it stops evicting instances from the registry rather than cascading into a blank slate. This design decision kept Netflix services discoverable and partially functional during several major AWS networking events where a registry that aggressively evicted instances would have caused complete service unavailability.",
+  "case_study_zh": "Netflix 在其数千个实例的全球微服务集群上运行自建的服务注册表 Eureka。每个服务在启动时向其区域 Eureka 集群注册，并每 30 秒发送一次心跳。Eureka 的自我保护模式是一个特别值得注意的设计：当它检测到超过 15% 的预期心跳缺失时（表明是网络分区而非大规模故障），它会停止从注册表中驱逐实例，而不是级联清空注册表。这一设计决策使 Netflix 服务在几次重大 AWS 网络事件中保持可发现性和部分可用性——若注册表激进驱逐实例，将导致完全不可用。",
+  "when_not_to_use": [
+    "Small-scale deployments with a fixed set of services on static infrastructure where DNS entries or configuration files are sufficient and the registry adds operational complexity without benefit",
+    "Monolithic applications where all components run in the same process and inter-component communication is in-process, not network-based",
+    "Serverless or FaaS architectures where the platform handles routing transparently and service discovery is abstracted away by the function runtime"
+  ],
+  "when_not_to_use_zh": [
+    "静态基础设施上具有固定服务集的小规模部署，DNS 条目或配置文件已足够，注册表只增加运维复杂性而无收益",
+    "所有组件在同一进程中运行、组件间通信是进程内而非基于网络的单体应用",
+    "平台透明处理路由、服务发现由函数运行时抽象的无服务器或 FaaS 架构"
+  ],
+  "adopters": [
+    "Netflix (Eureka)",
+    "HashiCorp Consul users",
+    "Kubernetes (kube-dns + Services)",
+    "Spring Cloud Gateway",
+    "Istio service mesh"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "scalability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Richardson, C. (2018). \"Microservices Patterns\", Ch. 11: Discovering services. Manning Publications.",
+  "secondary_sources": [
+    "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 10. O'Reilly Media.",
+    "Burns, B. et al. (2016). \"Borg, Omega, and Kubernetes\". ACM Queue.",
+    "Fowler, M. & Lewis, J. (2014). \"Microservices\". martinfowler.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "service-discovery",
+      "type": "alternative"
+    },
+    {
+      "slug": "circuit-breaker-with-retry",
+      "type": "complement"
+    },
+    {
+      "slug": "sidecar-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/service-discovery-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/service-discovery-pattern.md"
+}

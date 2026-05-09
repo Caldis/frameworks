@@ -1,0 +1,189 @@
+{
+  "id": 241,
+  "name": "REST Maturity Model",
+  "name_zh": "REST 成熟度模型",
+  "slug": "rest-maturity-model",
+  "category": "api",
+  "desc": "Leonard Richardson's four-level model measuring REST compliance from plain HTTP to hypermedia-driven APIs",
+  "desc_zh": "Leonard Richardson 的四级模型，衡量 API 从基础 HTTP 到超媒体驱动的 REST 合规程度",
+  "steps": [
+    "Audit your existing API against the four maturity levels: Level 0 (single URI, all verbs, RPC over HTTP), Level 1 (resource-based URIs), Level 2 (HTTP verbs and status codes), Level 3 (hypermedia/HATEOAS controls)",
+    "Advance to Level 1 by decomposing the API into resource-based URIs that reflect domain entities (/orders, /customers/{id}) rather than operation names (/getOrder, /createCustomer)",
+    "Advance to Level 2 by using HTTP verbs semantically (GET for reads, POST for create, PUT/PATCH for update, DELETE for removal) and returning appropriate HTTP status codes (201 Created, 404 Not Found, 409 Conflict)",
+    "Evaluate whether Level 3 (HATEOAS) is appropriate: add hypermedia links to responses so clients can discover available actions dynamically, reducing client-server coupling and enabling API evolution",
+    "Document the target maturity level as an API contract and establish linting rules or contract tests to prevent regression to lower levels during iterative development"
+  ],
+  "steps_zh": [
+    "对照四个成熟度级别审计现有 API：第 0 级（单一 URI、所有动词、HTTP 上的 RPC）、第 1 级（基于资源的 URI）、第 2 级（HTTP 动词和状态码）、第 3 级（超媒体/HATEOAS 控制）",
+    "通过将 API 分解为基于资源的 URI（如 /orders、/customers/{id}）而非操作名称（如 /getOrder、/createCustomer），升级到第 1 级",
+    "通过语义化使用 HTTP 动词（GET 用于读取、POST 用于创建、PUT/PATCH 用于更新、DELETE 用于删除）并返回适当的 HTTP 状态码（201 Created、404 Not Found、409 Conflict），升级到第 2 级",
+    "评估第 3 级（HATEOAS）是否合适：在响应中添加超媒体链接，让客户端动态发现可用操作，降低客户端-服务端耦合并支持 API 演进",
+    "将目标成熟度级别记录为 API 契约，并建立代码检查规则或契约测试，防止迭代开发中退回到更低级别"
+  ],
+  "ai_relevant": false,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "Level 0 RPC",
+    "Level 1 Resources",
+    "Level 2 Verbs",
+    "Level 3 HATEOAS",
+    "Target Level"
+  ],
+  "viz_labels_zh": [
+    "L0 RPC",
+    "L1 资源",
+    "L2 动词",
+    "L3 超媒体",
+    "目标级别"
+  ],
+  "related": [
+    "openapi-specification",
+    "api-versioning-strategies",
+    "api-first-design"
+  ],
+  "tags": [
+    "rest",
+    "hateoas",
+    "http",
+    "api-design",
+    "maturity-model"
+  ],
+  "origin_author": "Leonard Richardson",
+  "origin_source": "Leonard Richardson (2008). \"Justice Will Take Us Millions Of Intricate Moves\" (QCon presentation); Martin Fowler (2010). \"Richardson Maturity Model\". martinfowler.com",
+  "origin_source_zh": "Leonard Richardson（2008）。「正义将带我们走过数百万复杂步骤」（QCon 演讲）；Martin Fowler（2010）。《Richardson 成熟度模型》，martinfowler.com",
+  "complexity": "beginner",
+  "when_to_use": [
+    "When onboarding a team to REST principles and you need a structured progression framework rather than an all-or-nothing standard",
+    "When auditing an existing API to identify specific gaps and prioritize incremental improvements",
+    "When negotiating API design standards across multiple teams or squads and you need a shared vocabulary for quality levels",
+    "When evaluating third-party APIs for integration suitability based on their REST compliance and discoverability"
+  ],
+  "when_to_use_zh": [
+    "当将团队引入 REST 原则时，需要一个结构化的渐进框架，而非全有或全无的标准",
+    "当审计现有 API 以识别具体差距并确定增量改进优先级时",
+    "当在多个团队或小组之间协商 API 设计标准，需要共享质量级别词汇时",
+    "当基于 REST 合规性和可发现性评估第三方 API 的集成适用性时"
+  ],
+  "core_concepts": [
+    "Level 0 — The Swamp of POX: A single URI used for all operations, typically with XML or JSON payloads describing the operation, equivalent to SOAP or XML-RPC over HTTP",
+    "Level 1 — Resources: Multiple URIs each representing a distinct resource, but using only POST/GET regardless of the intended operation",
+    "Level 2 — HTTP Verbs: Uses the full HTTP verb set (GET, POST, PUT, PATCH, DELETE) semantically aligned to CRUD operations, and returns meaningful HTTP status codes to convey operation outcomes",
+    "Level 3 — Hypermedia Controls (HATEOAS): Responses embed links to related actions and resources, enabling clients to navigate the API entirely through hypermedia without out-of-band documentation"
+  ],
+  "core_concepts_zh": [
+    "第 0 级——POX 沼泽：所有操作使用单一 URI，通常用 XML 或 JSON 描述操作，相当于 HTTP 上的 SOAP 或 XML-RPC",
+    "第 1 级——资源：多个 URI 各代表一个独立资源，但无论意图如何都只使用 POST/GET",
+    "第 2 级——HTTP 动词：语义化使用完整的 HTTP 动词集合（GET、POST、PUT、PATCH、DELETE）对应 CRUD 操作，并返回有意义的 HTTP 状态码传达操作结果",
+    "第 3 级——超媒体控制（HATEOAS）：响应中嵌入指向相关操作和资源的链接，让客户端完全通过超媒体导航 API，无需带外文档"
+  ],
+  "timeline": [
+    [
+      "2008",
+      "Leonard Richardson presents the maturity model at QCon San Francisco, originally titled 'Justice Will Take Us Millions Of Intricate Moves'"
+    ],
+    [
+      "2010",
+      "Martin Fowler writes the definitive explanatory article on the Richardson Maturity Model on martinfowler.com, greatly popularizing it"
+    ],
+    [
+      "2014",
+      "Roy Fielding clarifies that Level 3 (HATEOAS) is the only true REST — lower levels are 'HTTP APIs', not REST APIs"
+    ],
+    [
+      "2020",
+      "Pragmatic industry consensus settles on Level 2 as the practical target; Level 3 adoption remains limited outside hypermedia specialists"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2008",
+      "Leonard Richardson 在旧金山 QCon 上发表成熟度模型，原标题为「正义将带我们走过数百万复杂步骤」"
+    ],
+    [
+      "2010",
+      "Martin Fowler 在 martinfowler.com 上撰写关于 Richardson 成熟度模型的权威解释文章，使其广为人知"
+    ],
+    [
+      "2014",
+      "Roy Fielding 澄清第 3 级（HATEOAS）才是真正的 REST——更低级别是「HTTP API」，而非 REST API"
+    ],
+    [
+      "2020",
+      "行业务实共识将第 2 级定为实际目标；第 3 级的采用在超媒体专家之外仍然有限"
+    ]
+  ],
+  "dos": [
+    "Do target Level 2 as the baseline for all new APIs — consistent HTTP verbs and status codes provide significant value with modest implementation cost",
+    "Do use HTTP status codes precisely: 201 for created resources with a Location header, 204 for successful deletes, 409 for conflicts, 422 for validation errors",
+    "Do consider Level 3 (HATEOAS) for APIs used by machine clients that need to discover available state transitions at runtime without hardcoding paths",
+    "Do use the model as a diagnostic tool when reviewing legacy APIs to identify which level they operate at and what improvements would advance them"
+  ],
+  "dos_zh": [
+    "将第 2 级作为所有新 API 的基准——一致的 HTTP 动词和状态码以适度的实现成本提供显著价值",
+    "精确使用 HTTP 状态码：201 用于已创建的资源（附带 Location 头部）、204 用于成功删除、409 用于冲突、422 用于验证错误",
+    "对于需要在运行时发现可用状态转换而无需硬编码路径的机器客户端 API，考虑第 3 级（HATEOAS）",
+    "在审查遗留 API 时将该模型作为诊断工具，识别其当前所处级别以及哪些改进能使其提升"
+  ],
+  "donts": [
+    "Don't treat the model as a mandatory progression — most production APIs correctly stop at Level 2; Level 3 adds complexity that is only justified for specific use cases",
+    "Don't conflate 'RESTful' with 'uses JSON over HTTP' — an API that ignores HTTP semantics is at Level 0 or 1 regardless of its payload format",
+    "Don't add HATEOAS links for the sake of compliance without understanding how clients will use them — unused hypermedia adds payload weight without benefit",
+    "Don't retrofit an existing Level 0 API to Level 2 without a migration plan — changing URIs and verbs is a breaking change that requires versioning"
+  ],
+  "donts_zh": [
+    "不要将该模型视为必须逐级递进的要求——大多数生产 API 停在第 2 级是完全正确的；第 3 级增加的复杂性仅在特定用例中才合理",
+    "不要将「RESTful」混同于「通过 HTTP 使用 JSON」——忽略 HTTP 语义的 API 无论载荷格式如何都处于第 0 或第 1 级",
+    "不要为了合规而添加 HATEOAS 链接，却不理解客户端如何使用它们——无人使用的超媒体只会增加载荷体积而无任何收益",
+    "不要在没有迁移计划的情况下将现有第 0 级 API 改造为第 2 级——更改 URI 和动词是破坏性变更，需要版本管理"
+  ],
+  "case_study_company": "GitHub",
+  "case_study": "GitHub's REST API v3 is a widely studied Level 2 implementation. It uses resource-based URIs (/repos/{owner}/{repo}/pulls), proper HTTP verbs, and precise status codes (201 for created PRs, 204 for deleted resources, 422 for validation errors with structured error bodies). GitHub's API documentation explicitly lists which HTTP methods each endpoint supports and what each status code means. The GitHub REST API powers tens of thousands of developer tools and CI/CD integrations, demonstrating that a well-designed Level 2 API can scale to global adoption without needing HATEOAS.",
+  "case_study_zh": "GitHub 的 REST API v3 是被广泛研究的第 2 级实现。它使用基于资源的 URI（如 /repos/{owner}/{repo}/pulls）、正确的 HTTP 动词，以及精确的状态码（201 用于已创建的 PR、204 用于已删除的资源、422 用于带结构化错误体的验证错误）。GitHub 的 API 文档明确列出每个端点支持的 HTTP 方法及每个状态码的含义。GitHub REST API 支撑着数以万计的开发者工具和 CI/CD 集成，证明了设计良好的第 2 级 API 无需 HATEOAS 即可扩展到全球规模。",
+  "when_not_to_use": [
+    "When building event-driven or streaming APIs where HTTP request-response semantics do not fit — use AsyncAPI and event schemas instead",
+    "When the team is already operating at Level 2 consistently — the model has served its purpose and further discussion of levels adds no value",
+    "When evaluating GraphQL or gRPC APIs — the model is specific to REST/HTTP APIs and does not apply to other API paradigms",
+    "When a simple CRUD API with no consumer-facing discoverability needs is being built — Level 2 is sufficient without evaluating Level 3"
+  ],
+  "when_not_to_use_zh": [
+    "当构建事件驱动或流式 API，HTTP 请求-响应语义不适用时——改用 AsyncAPI 和事件模式",
+    "当团队已一致在第 2 级运作时——该模型已完成使命，进一步讨论级别没有任何价值",
+    "当评估 GraphQL 或 gRPC API 时——该模型特定于 REST/HTTP API，不适用于其他 API 范式",
+    "当构建没有消费者可发现性需求的简单 CRUD API 时——第 2 级已经足够，无需评估第 3 级"
+  ],
+  "adopters": [
+    "GitHub",
+    "Twilio",
+    "PayPal",
+    "Amazon Web Services",
+    "Atlassian"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability",
+    "usability",
+    "reliability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Fowler, M. (2010). \"Richardson Maturity Model\". martinfowler.com.",
+  "secondary_sources": [
+    "Richardson, L. & Ruby, S. (2007). \"RESTful Web Services\". O'Reilly Media.",
+    "Fielding, R. (2000). \"Architectural Styles and the Design of Network-based Software Architectures\". UC Irvine dissertation."
+  ],
+  "typed_relations": [
+    {
+      "slug": "openapi-specification",
+      "type": "complement"
+    },
+    {
+      "slug": "api-versioning-strategies",
+      "type": "related"
+    },
+    {
+      "slug": "api-first-design",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/rest-maturity-model",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/rest-maturity-model.md"
+}

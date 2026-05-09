@@ -1,0 +1,180 @@
+{
+  "id": 325,
+  "name": "KISS (Keep It Simple, Stupid)",
+  "name_zh": "KISS 原则（保持简单，不要复杂）",
+  "slug": "kiss-principle",
+  "category": "coding",
+  "desc": "Most systems work best if they are kept simple rather than made complicated. Complexity is the enemy of reliability. Design the simplest thing that could possibly work, and resist the temptation to add cleverness.",
+  "desc_zh": "大多数系统保持简单比过度设计更有效。复杂性是可靠性的敌人。设计最简单可能工作的方案，抗拒过度巧妙的诱惑。",
+  "steps": [
+    "Define the minimum requirement: what must this actually do?",
+    "Design the simplest solution that satisfies those requirements",
+    "Remove any element that is not essential to the core requirement",
+    "Ask 「would a new team member understand this in 5 minutes?」",
+    "Prefer standard patterns over custom cleverness"
+  ],
+  "steps_zh": [
+    "定义最小需求：这个实际上需要做什么？",
+    "设计满足这些需求的最简单方案",
+    "删除不是核心需求必需的任何元素",
+    "问「新团队成员能在 5 分钟内理解这个吗？」",
+    "优先使用标准模式而非自定义巧妙设计"
+  ],
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "Complex",
+    "Simplified",
+    "Simple",
+    "Essential"
+  ],
+  "viz_labels_zh": [
+    "复杂",
+    "简化",
+    "简单",
+    "本质"
+  ],
+  "complexity": "beginner",
+  "origin_author": "Kelly Johnson, Lockheed Skunk Works, 1960s",
+  "adopters": [
+    "Google 搜索",
+    "Basecamp",
+    "Unix/Linux 生态系统",
+    "Go 编程语言",
+    "SQLite"
+  ],
+  "related": [
+    "clean-code-principles",
+    "solid-principles",
+    "functional-core-imperative-shell"
+  ],
+  "tags": [
+    "kiss",
+    "simplicity",
+    "code-quality",
+    "maintainability",
+    "design-principles"
+  ],
+  "ai_relevant": false,
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability",
+    "usability"
+  ],
+  "maturity_ring": "foundational",
+  "when_to_use": "When designing APIs, internal modules, or user interfaces where cognitive load matters. Apply KISS when you catch yourself adding layers of abstraction, configuration options, or extensibility hooks that the current use-case does not require.",
+  "when_to_use_zh": "当设计 API、内部模块或认知负荷重要的用户界面时。当你发现自己在添加当前用例不需要的抽象层、配置项或扩展性指容时应用。",
+  "core_concepts": [
+    "Simplicity",
+    "Cognitive Load",
+    "Minimal Design",
+    "Readability",
+    "Occam's Razor in Engineering"
+  ],
+  "core_concepts_zh": [
+    "简单性",
+    "认知负荷",
+    "最小化设计",
+    "可读性",
+    "工程界的奥卡姆剃刀"
+  ],
+  "timeline": [
+    {
+      "year": 1960,
+      "event": "Kelly Johnson coins 「Keep It Simple, Stupid」 as a design principle at Lockheed Skunk Works"
+    },
+    {
+      "year": 1978,
+      "event": "Unix philosophy echoes KISS: 「Do one thing and do it well」"
+    },
+    {
+      "year": 1998,
+      "event": "Google Search launches with deliberately minimal UI, defying portal-era complexity"
+    },
+    {
+      "year": 2009,
+      "event": "Go language designed with KISS in mind: no generics, no exceptions, explicit error handling"
+    },
+    {
+      "year": 2012,
+      "event": "KISS resurfaces in API design debates: REST vs SOAP simplicity argument resolved by industry"
+    }
+  ],
+  "timeline_zh": [
+    {
+      "year": 1960,
+      "event": "Kelly Johnson 在洛克希德黄色作品部提出「保持简单」设计原则"
+    },
+    {
+      "year": 1978,
+      "event": "Unix 哲学呼应 KISS：「只做一件事并做好」"
+    },
+    {
+      "year": 1998,
+      "event": "Google 搜索以故意简洁的界面上线，挑战了门户网站时代的复杂性"
+    },
+    {
+      "year": 2009,
+      "event": "Go 语言以 KISS 为理念设计：无泛型、无异常、显式错误处理"
+    },
+    {
+      "year": 2012,
+      "event": "KISS 在 API 设计论争中再度兴起：REST vs SOAP 简单性之争由行业内部定论"
+    }
+  ],
+  "dos": [
+    "Start with the simplest possible implementation",
+    "Prefer standard library solutions over custom implementations",
+    "Write code that reads like prose — minimize indirection",
+    "Limit function parameters; prefer small, focused functions",
+    "Question every layer of abstraction: does it genuinely reduce complexity?"
+  ],
+  "dos_zh": [
+    "从最简单的实现开始",
+    "优先使用标准库解决方案而非自定义实现",
+    "写出像散文一样可读的代码 —— 减少间接层",
+    "限制函数参数数量；优先小而专注的函数",
+    "质疑每一个抽象层：它真的降低了复杂性吗？"
+  ],
+  "donts": [
+    "Don't add flexibility 「just in case」 — build for now, refactor later",
+    "Don't use complex design patterns when a plain function would suffice",
+    "Don't mistake terseness for simplicity — one-liners can be hard to read",
+    "Don't build framework-like abstractions inside application code",
+    "Don't let tooling complexity (CI, Docker) negate the simplicity gains in code"
+  ],
+  "donts_zh": [
+    "不要「以防万一」为由添加灵活性 —— 先满足当前，局后再重构",
+    "当一个普通函数就能解决时，不要使用复杂的设计模式",
+    "不要把简洁和简短混淆 —— 一行式代码可能难以阅读",
+    "不要在应用程序代码内部构建类似框架的抽象",
+    "不要让工具复杂性（CI、Docker）抗消代码中的简单性收益"
+  ],
+  "case_study": "Google Search launched in 1998 with a single text box on a white page — a radical departure from Yahoo and AltaVista's crowded portal homepages. This KISS-driven design reduced cognitive load, focused user intent, and became iconic. Internally, Google's PageRank algorithm was also conceptually simple: count links as votes. The combination of simple UI and simple-to-explain algorithm built the world's dominant search engine.",
+  "case_study_zh": "Google 搜索于 1998 年以白页上一个文本框上线 —— 这与 Yahoo 和 AltaVista 拥挤的门户页形成强烈对比。这一符合 KISS 的设计降低了认知负荷，聚焦用户意图，成为标志性设计。PageRank 算法也概念简单：将链接计为投票。简单 UI 与可解释算法的结合造就了全球最强搜索引擎。",
+  "case_study_company": "Google Search",
+  "when_not_to_use": "KISS should not be used to justify under-engineering. Security, concurrency, and fault-tolerance genuinely require complexity. Don't apply KISS to dismiss necessary abstractions that protect long-term maintainability.",
+  "when_not_to_use_zh": "KISS 不应被用来为欠工进行辩护。安全性、并发和容错能力确实需要复杂性。不要用 KISS 来屈新必要的抽象。",
+  "primary_source": "Kelly Johnson's design principle documented in Lockheed Skunk Works engineering history (1960s). Popularized in software by McIlroy's Unix philosophy (1978).",
+  "secondary_sources": [
+    "Raymond, E.S. (2003). 「The Art of Unix Programming.」 Addison-Wesley.",
+    "Martin, R.C. (2008). 「Clean Code.」 Prentice Hall."
+  ],
+  "origin_source": "Coined by Kelly Johnson at Lockheed Skunk Works in the 1960s as an aerospace engineering design guideline; adapted to software through Unix philosophy.",
+  "origin_source_zh": "由 Kelly Johnson 在 20 世纪 60 年代洛克希德黄色作品部提出，最初为航空工程设计准则，后通过 Unix 哲学应用于软件领域。",
+  "typed_relations": [
+    {
+      "slug": "clean-code-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "solid-principles",
+      "type": "related"
+    },
+    {
+      "slug": "functional-core-imperative-shell",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/kiss-principle",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/kiss-principle.md"
+}

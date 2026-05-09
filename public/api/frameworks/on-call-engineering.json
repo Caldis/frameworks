@@ -1,0 +1,204 @@
+{
+  "id": 157,
+  "name": "On-Call Engineering",
+  "name_zh": "值班工程实践",
+  "slug": "on-call-engineering",
+  "category": "observability",
+  "desc": "Sustainable on-call practices, escalation paths, and human-centric incident response",
+  "desc_zh": "可持续的值班实践、升级路径和以人为中心的事故响应",
+  "steps": [
+    "Design the on-call rotation: ensure at least 8 people in the rotation for sustainable coverage, with primary and secondary responders and clear handoff procedures",
+    "Define escalation policies: establish time-based escalation (page secondary after 15min, escalate to management after 30min) and severity-based routing",
+    "Equip on-call engineers: provide runbooks for every alert, one-click access to dashboards, and pre-authorized remediation playbooks so responders can act immediately",
+    "Conduct blameless post-incident reviews: after every significant incident, hold a structured retrospective focused on systemic improvements, not individual blame",
+    "Measure and improve on-call health: track pages per shift, false positive rate, MTTR, sleep interruption frequency, and use these metrics to drive toil reduction"
+  ],
+  "steps_zh": [
+    "设计值班轮换：确保轮换中至少8人以实现可持续覆盖，设立主值和副值并明确交接流程",
+    "定义升级策略：建立基于时间的升级（15分钟后呼叫副值，30分钟后升级到管理层）和基于严重性的路由",
+    "为值班工程师提供装备：为每个告警提供运维手册、一键访问仪表盘和预授权的修复手册，使响应者能立即行动",
+    "进行无指责的事后回顾：每次重大事故后举行结构化复盘，聚焦系统性改进而非个人指责",
+    "度量并改善值班健康度：追踪每班呼叫数、误报率、MTTR、睡眠中断频率，并用这些指标驱动苦力活减少"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Rotation Design",
+    "Escalation Policy",
+    "Equip Engineers",
+    "Post-Incident Review",
+    "On-Call Health"
+  ],
+  "viz_labels_zh": [
+    "轮值设计",
+    "升级策略",
+    "工具准备",
+    "事后复盘",
+    "健康度量"
+  ],
+  "related": [
+    "runbook-automation",
+    "error-budget-policy",
+    "slo-as-practice",
+    "sli-slo-sla"
+  ],
+  "tags": [
+    "observability",
+    "on-call",
+    "incident-response",
+    "escalation",
+    "sre",
+    "toil"
+  ],
+  "origin_author": "Google SRE team; systematized by Ben Treynor Sloss, ~2003",
+  "origin_source": "Site Reliability Engineering (Beyer et al., 2016), Ch. 11 'Being On-Call'; Observability Engineering (Majors, Fong-Jones, Miranda, 2022)",
+  "origin_source_zh": "《SRE：Google运维解密》（Beyer等，2016）第11章「值班」；《可观测性工程》（Majors、Fong-Jones、Miranda，2022）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Any production system that requires human response to incidents outside business hours",
+    "Teams experiencing on-call burnout from excessive pages, unclear escalation, or insufficient support",
+    "Organizations transitioning from 'developers throw code over the wall to ops' to shared production ownership",
+    "Growing engineering teams that need to formalize ad-hoc incident response into a scalable system"
+  ],
+  "when_to_use_zh": [
+    "任何需要在工作时间之外对事故进行人工响应的生产系统",
+    "因过多呼叫、升级路径不清晰或支持不足而经历值班倦怠的团队",
+    "从「开发把代码扔给运维」转向共享生产所有权的组织",
+    "需要将临时事故响应正式化为可扩展系统的成长中工程团队"
+  ],
+  "core_concepts": [
+    "Sustainable Rotation: A minimum of 8 engineers per rotation ensures no one is on-call more than 25% of the time, preventing burnout and maintaining response quality",
+    "Escalation Policy: A time-and-severity-based decision tree that routes pages to the right responder and automatically escalates when initial response does not resolve within defined windows",
+    "Blameless Post-Incident Review: A structured analysis of incidents focused on systemic causes, timeline reconstruction, and actionable improvements -- never on assigning individual blame",
+    "On-Call Compensation: Explicit recognition that on-call work is real work deserving compensation (time off, pay), not an invisible tax on engineers' personal time",
+    "Alert Quality: Every alert must be actionable, unique, and linked to a runbook; non-actionable alerts are noise that degrades on-call health and response effectiveness"
+  ],
+  "core_concepts_zh": [
+    "可持续轮换：每个轮换至少8名工程师，确保无人值班时间超过25%，防止倦怠并维持响应质量",
+    "升级策略：基于时间和严重性的决策树，将呼叫路由到正确的响应者，并在初始响应未在定义窗口内解决时自动升级",
+    "无指责事后回顾：聚焦于系统性原因、时间线重建和可操作改进的结构化事故分析——绝不归咎于个人",
+    "值班补偿：明确承认值班工作是真正的工作，值得补偿（调休、报酬），而非对工程师个人时间的隐形征税",
+    "告警质量：每个告警必须可操作、唯一且关联运维手册；不可操作的告警是噪音，会降低值班健康度和响应效果"
+  ],
+  "timeline": [
+    [
+      "2003",
+      "Google SRE establishes formal on-call practices with the principle that SREs should spend at most 25% of time on on-call duties"
+    ],
+    [
+      "2011",
+      "PagerDuty popularizes modern on-call management with mobile alerting, escalation automation, and schedule management"
+    ],
+    [
+      "2016",
+      "Google SRE Book publishes comprehensive on-call guidelines including rotation sizing, compensation, and post-incident review"
+    ],
+    [
+      "2018",
+      "Charity Majors and the Honeycomb team advocate for 'observability-driven' on-call where high-cardinality data replaces dashboard staring"
+    ],
+    [
+      "2022",
+      "On-call equity becomes a widespread industry concern; companies formalize compensation, rotation fairness, and burnout prevention"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2003",
+      "Google SRE建立正式值班实践，确立SRE用于值班的时间最多不超过25%的原则"
+    ],
+    [
+      "2011",
+      "PagerDuty通过移动告警、升级自动化和排班管理普及了现代值班管理"
+    ],
+    [
+      "2016",
+      "Google SRE Book发布全面的值班指南，包括轮换规模、补偿和事后回顾"
+    ],
+    [
+      "2018",
+      "Charity Majors和Honeycomb团队倡导「可观测性驱动」的值班模式，用高基数数据取代盯仪表盘"
+    ],
+    [
+      "2022",
+      "值班公平性成为行业普遍关注的问题；公司正式化补偿、轮换公平性和倦怠预防"
+    ]
+  ],
+  "dos": [
+    "Do ensure every alert has a linked runbook that tells the responder exactly what to investigate and how to remediate, because alert without context wastes precious incident time",
+    "Do hold blameless post-incident reviews for every significant incident, because systemic improvements only emerge when people feel safe sharing what went wrong",
+    "Do track on-call health metrics (pages per shift, MTTR, sleep interruptions) and set improvement targets, because what you don't measure you cannot improve",
+    "Do provide explicit on-call compensation (extra pay, comp time, reduced next-week workload), because uncompensated on-call drives attrition"
+  ],
+  "dos_zh": [
+    "确保每个告警关联一份运维手册，告诉响应者确切要调查什么和如何修复，因为没有上下文的告警浪费宝贵的事故时间",
+    "为每次重大事故举行无指责事后回顾，因为只有当人们感到安全地分享出了什么问题时，系统性改进才会出现",
+    "追踪值班健康指标（每班呼叫数、MTTR、睡眠中断）并设定改进目标，因为不度量的东西无法改进",
+    "提供明确的值班补偿（额外报酬、调休、减少下周工作量），因为无补偿的值班会推动人才流失"
+  ],
+  "donts": [
+    "Don't have fewer than 8 people in a rotation, because smaller rotations lead to unsustainable on-call frequency and rapid burnout",
+    "Don't tolerate alert noise -- if an alert fires and the on-call ignores it because it is always a false positive, that alert must be fixed or deleted",
+    "Don't skip post-incident reviews for 'small' incidents, because pattern analysis across many small incidents often reveals systemic issues",
+    "Don't put junior engineers on-call without a shadow period and a senior secondary, because unsupported on-call is both ineffective and psychologically harmful"
+  ],
+  "donts_zh": [
+    "不要让轮换中少于8人，因为较小的轮换导致不可持续的值班频率和快速倦怠",
+    "不要容忍告警噪音——如果告警响了而值班人员因为它总是误报而忽略它，那个告警必须被修复或删除",
+    "不要因为是「小」事故就跳过事后回顾，因为对许多小事故的模式分析往往能揭示系统性问题",
+    "不要在没有跟随期和高级副值的情况下让初级工程师值班，因为无支持的值班既无效又对心理有害"
+  ],
+  "case_study_company": "PagerDuty",
+  "case_study": "PagerDuty practices what they preach by running their own platform with sophisticated on-call engineering practices. They maintain an 8-person primary rotation with automatic escalation after 5 minutes. Every alert links to a runbook, and non-actionable alerts are tracked as 'noise budget' similar to an error budget. After implementing their on-call health metrics program, they reduced after-hours pages by 40% over 6 months and improved MTTR from 45 minutes to 15 minutes. Their blameless post-incident review process generates an average of 3 systemic improvements per incident, fed directly into sprint planning.",
+  "case_study_zh": "PagerDuty践行自己倡导的理念，用精密的值班工程实践运行自己的平台。他们维护一个8人主值轮换，5分钟后自动升级。每个告警关联一份运维手册，不可操作的告警作为类似错误预算的「噪音预算」被追踪。实施值班健康指标计划后，他们在6个月内将工作时间外呼叫减少了40%，MTTR从45分钟改善到15分钟。他们的无指责事后回顾流程平均每次事故产生3项系统性改进，直接纳入冲刺规划。",
+  "when_not_to_use": [
+    "Internal tools that are only used during business hours and do not require 24/7 incident response",
+    "Very early-stage products with no paying customers where formal on-call adds overhead without proportional benefit",
+    "Fully serverless architectures managed by a cloud provider where the provider handles infrastructure incidents",
+    "Systems where automated remediation handles all known failure modes and human intervention is genuinely unnecessary"
+  ],
+  "when_not_to_use_zh": [
+    "仅在工作时间使用且不需要7x24事故响应的内部工具",
+    "没有付费客户的极早期产品——正式值班增加开销而无相称收益",
+    "由云提供商管理的全无服务器架构——提供商处理基础设施事故",
+    "自动修复处理所有已知故障模式且人工介入确实不必要的系统"
+  ],
+  "adopters": [
+    "Google",
+    "PagerDuty",
+    "Atlassian",
+    "Microsoft",
+    "Meta"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "reliability",
+    "observability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Beyer, B. et al. (2016). \"Site Reliability Engineering: How Google Runs Production Systems\", Ch. 11. O'Reilly Media.",
+  "secondary_sources": [
+    "Majors, C., Fong-Jones, L. & Miranda, G. (2022). \"Observability Engineering\". O'Reilly Media.",
+    "Beyer, B. et al. (2018). \"The Site Reliability Workbook\", Ch. 8. O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "runbook-automation",
+      "type": "complement"
+    },
+    {
+      "slug": "error-budget-policy",
+      "type": "complement"
+    },
+    {
+      "slug": "slo-as-practice",
+      "type": "complement"
+    },
+    {
+      "slug": "sli-slo-sla",
+      "type": "prerequisite"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/on-call-engineering",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/on-call-engineering.md"
+}

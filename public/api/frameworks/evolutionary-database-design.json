@@ -1,0 +1,198 @@
+{
+  "id": 187,
+  "name": "Evolutionary Database Design",
+  "name_zh": "演进式数据库设计",
+  "slug": "evolutionary-database-design",
+  "category": "evolution",
+  "desc": "Incremental schema changes (Sadalage & Fowler)",
+  "desc_zh": "增量式模式变更（Sadalage & Fowler）",
+  "steps": [
+    "Treat every database change as a versioned migration script stored in version control alongside application code",
+    "Use expand-contract pattern: add new columns/tables first, migrate data, then remove old structures",
+    "Automate migration execution in CI/CD pipelines with tools like Flyway, Liquibase, or Alembic",
+    "Ensure every migration is backward-compatible so the previous application version can coexist during deployment",
+    "Monitor migration performance and data integrity in production; maintain rollback scripts for every migration"
+  ],
+  "steps_zh": [
+    "将每个数据库变更视为版本化的迁移脚本，与应用代码一同存储在版本控制中",
+    "使用扩展-收缩模式：先添加新列/表，迁移数据，再移除旧结构",
+    "使用 Flyway、Liquibase 或 Alembic 等工具在 CI/CD 流水线中自动执行迁移",
+    "确保每次迁移向后兼容，使上一版本的应用在部署期间可以共存",
+    "在生产环境中监控迁移性能和数据完整性；为每次迁移维护回滚脚本"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Migration",
+    "Backward Compat",
+    "Deploy",
+    "Cleanup"
+  ],
+  "viz_labels_zh": [
+    "数据迁移",
+    "向后兼容",
+    "部署",
+    "清理旧字段"
+  ],
+  "related": [
+    "strangler-fig-pattern",
+    "branch-by-abstraction",
+    "gitops",
+    "api-versioning-strategies"
+  ],
+  "tags": [
+    "database",
+    "schema-migration",
+    "evolutionary-design",
+    "backward-compatibility"
+  ],
+  "origin_author": "Pramod Sadalage & Martin Fowler, 2002-2016",
+  "origin_source": "Refactoring Databases: Evolutionary Database Design (Pramod Sadalage & Scott Ambler, 2006); Evolutionary Database Design (martinfowler.com)",
+  "origin_source_zh": "《数据库重构：演进式数据库设计》（Pramod Sadalage & Scott Ambler，2006）；演进式数据库设计（martinfowler.com）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Applications with continuous delivery pipelines that deploy multiple times per day",
+    "Systems where database changes must not cause downtime or break running application instances",
+    "Teams migrating from manual DBA-controlled schema changes to developer-owned database evolution",
+    "Microservices architectures where each service owns its database schema independently"
+  ],
+  "when_to_use_zh": [
+    "每天部署多次的持续交付流水线应用",
+    "数据库变更不能导致停机或破坏运行中应用实例的系统",
+    "从手动 DBA 控制的模式变更迁移至开发者自主数据库演进的团队",
+    "每个服务独立拥有数据库模式的微服务架构"
+  ],
+  "core_concepts": [
+    "Migration as Code: Database changes are first-class code artifacts — versioned, reviewed, tested, and deployed through the same pipeline as application code",
+    "Expand-Contract Pattern: A two-phase approach where the schema is first expanded to support both old and new formats, then contracted to remove the old format after migration",
+    "Backward Compatibility: Every migration must allow the previous application version to function correctly, enabling zero-downtime deployments",
+    "Transition Period: The window during which both old and new schema elements coexist, requiring careful data synchronization and dual-write strategies"
+  ],
+  "core_concepts_zh": [
+    "迁移即代码：数据库变更是一等代码制品——通过与应用代码相同的流水线进行版本化、评审、测试和部署",
+    "扩展-收缩模式：两阶段方法，先扩展模式以同时支持新旧格式，迁移后再收缩以移除旧格式",
+    "向后兼容：每次迁移必须允许上一版本应用正常运行，实现零停机部署",
+    "过渡期：新旧模式元素共存的窗口期，需要仔细的数据同步和双写策略"
+  ],
+  "timeline": [
+    [
+      "2002",
+      "Pramod Sadalage pioneers evolutionary database techniques at ThoughtWorks projects"
+    ],
+    [
+      "2006",
+      "Sadalage and Ambler publish Refactoring Databases, the seminal book on evolutionary database design"
+    ],
+    [
+      "2010",
+      "Flyway 1.0 released, bringing automated versioned migrations to the Java ecosystem"
+    ],
+    [
+      "2016",
+      "Martin Fowler publishes the updated Evolutionary Database Design article on martinfowler.com"
+    ],
+    [
+      "2022",
+      "Schema-as-code tools (Atlas, PlanetScale) bring evolutionary database design to cloud-native and serverless databases"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2002",
+      "Pramod Sadalage 在 ThoughtWorks 项目中率先实践演进式数据库技术"
+    ],
+    [
+      "2006",
+      "Sadalage 和 Ambler 出版《数据库重构》，成为演进式数据库设计的开创性著作"
+    ],
+    [
+      "2010",
+      "Flyway 1.0 发布，为 Java 生态带来自动化版本迁移"
+    ],
+    [
+      "2016",
+      "Martin Fowler 在 martinfowler.com 发表更新版的演进式数据库设计文章"
+    ],
+    [
+      "2022",
+      "模式即代码工具（Atlas、PlanetScale）将演进式数据库设计带入云原生和无服务器数据库"
+    ]
+  ],
+  "dos": [
+    "Version every migration script with a sequential or timestamp-based identifier for ordering",
+    "Test migrations against a production-like dataset — empty-database tests miss performance and data-integrity issues",
+    "Use the expand-contract pattern for every breaking change to maintain backward compatibility during deployment",
+    "Include both up and down migration scripts so any change can be rolled back safely"
+  ],
+  "dos_zh": [
+    "使用顺序或时间戳标识符为每个迁移脚本进行版本编号",
+    "针对类生产数据集测试迁移——空数据库测试会遗漏性能和数据完整性问题",
+    "对每个破坏性变更使用扩展-收缩模式，在部署期间维持向后兼容",
+    "为每个变更提供正向和反向迁移脚本，确保任何变更都可以安全回滚"
+  ],
+  "donts": [
+    "Don't apply migrations manually in production — always use automated tooling through CI/CD pipelines",
+    "Don't make destructive changes (DROP COLUMN, DROP TABLE) in the same migration as constructive ones",
+    "Don't skip the transition period — removing old schema elements before all consumers have migrated causes outages",
+    "Don't store migration state outside the database — use a dedicated migrations table for single-source-of-truth tracking"
+  ],
+  "donts_zh": [
+    "不要在生产环境手动执行迁移——始终通过 CI/CD 流水线使用自动化工具",
+    "不要在同一次迁移中将破坏性变更（DROP COLUMN、DROP TABLE）与构建性变更混合",
+    "不要跳过过渡期——在所有消费者迁移完成前移除旧模式元素会导致中断",
+    "不要将迁移状态存储在数据库外——使用专用的迁移表作为唯一事实来源"
+  ],
+  "case_study_company": "ThoughtWorks",
+  "case_study": "ThoughtWorks pioneered evolutionary database design across dozens of enterprise client projects from 2002 onward. On a major retail banking transformation, the team managed over 400 incremental schema migrations across 18 months without a single deployment-related outage. By enforcing the expand-contract pattern and automated migration testing in CI, they enabled daily deployments on a database serving 12 million customer accounts.",
+  "case_study_zh": "ThoughtWorks 从 2002 年开始在数十个企业客户项目中率先实践演进式数据库设计。在一次大型零售银行转型中，团队在 18 个月内管理了 400 多次增量模式迁移，未发生过一次与部署相关的中断。通过强制执行扩展-收缩模式和 CI 中的自动化迁移测试，他们在服务 1200 万客户账户的数据库上实现了每日部署。",
+  "when_not_to_use": [
+    "Greenfield projects with no existing data where schema can be freely redesigned without migration overhead",
+    "Analytical/data warehouse schemas designed for batch ETL rather than continuous deployment",
+    "Systems using schema-less databases (document stores) where schema evolution is handled at the application layer",
+    "One-time data migrations where there is no ongoing need for incremental schema evolution"
+  ],
+  "when_not_to_use_zh": [
+    "没有现有数据的全新项目——可以自由重新设计模式而无需迁移开销",
+    "为批处理 ETL 而非持续部署设计的分析/数据仓库模式",
+    "使用无模式数据库（文档存储）、模式演进在应用层处理的系统",
+    "一次性数据迁移——不需要持续增量模式演进"
+  ],
+  "adopters": [
+    "ThoughtWorks",
+    "Spotify",
+    "Shopify",
+    "GitHub",
+    "Stripe"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "maintainability",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Pramod Sadalage and Scott Ambler (2006). \"Refactoring Databases: Evolutionary Database Design\". Addison-Wesley.",
+  "secondary_sources": [
+    "Martin Fowler and Pramod Sadalage (2003). \"Evolutionary Database Design\". martinfowler.com.",
+    "Flyway Team (2010). \"Flyway: Database Migrations Made Easy\". flywaydb.org."
+  ],
+  "typed_relations": [
+    {
+      "slug": "strangler-fig-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "branch-by-abstraction",
+      "type": "complement"
+    },
+    {
+      "slug": "gitops",
+      "type": "complement"
+    },
+    {
+      "slug": "api-versioning-strategies",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/evolutionary-database-design",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/evolutionary-database-design.md"
+}

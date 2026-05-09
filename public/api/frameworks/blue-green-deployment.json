@@ -1,0 +1,192 @@
+{
+  "id": 59,
+  "name": "Blue-Green Deployment",
+  "name_zh": "蓝绿部署",
+  "slug": "blue-green-deployment",
+  "category": "deployment",
+  "desc": "Zero-downtime releases via two identical prod environments",
+  "desc_zh": "通过两套相同生产环境实现零停机发布",
+  "steps": [
+    "Maintain two identical production environments: Blue (live) and Green (idle)",
+    "Deploy new version to the idle Green environment and run full test suite",
+    "Perform smoke tests and validation on Green without affecting live traffic",
+    "Switch router/load balancer to redirect all traffic from Blue to Green",
+    "Keep Blue on standby for instant rollback; decommission after stability confirmed"
+  ],
+  "steps_zh": [
+    "维护两套相同的生产环境：蓝（当前运行）和绿（闲置）",
+    "将新版本部署到闲置的绿色环境并执行完整测试套件",
+    "在绿色环境上执行冒烟测试和验证，不影响线上流量",
+    "切换路由器/负载均衡器，将所有流量从蓝色切换到绿色",
+    "保留蓝色环境待命以便快速回滚，稳定后再下线"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Blue Env",
+    "Switch",
+    "Green Env",
+    "Rollback"
+  ],
+  "viz_labels_zh": [
+    "蓝环境",
+    "流量切换",
+    "绿环境",
+    "快速回滚"
+  ],
+  "related": [
+    "canary-deployment",
+    "feature-flags",
+    "gitops"
+  ],
+  "tags": [
+    "deployment",
+    "zero-downtime",
+    "blue-green",
+    "rollback"
+  ],
+  "origin_author": "Daniel Quinlan / early web ops community, ~2005",
+  "origin_source": "Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation (Jez Humble & David Farley, 2010)",
+  "origin_source_zh": "《持续交付：发布可靠软件的系统方法》（Jez Humble & David Farley，2010）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Applications requiring zero-downtime deployments with instant rollback capability",
+    "Regulated environments where full pre-production validation is mandatory before traffic switch",
+    "Monolithic applications where partial rollout (canary) is impractical",
+    "Systems where database schema changes are backward-compatible"
+  ],
+  "when_to_use_zh": [
+    "需要零停机部署且具备即时回滚能力的应用",
+    "受监管环境中流量切换前需强制完成全面预生产验证的场景",
+    "单体应用中部分发布（金丝雀）不可行的场景",
+    "数据库模式变更向后兼容的系统"
+  ],
+  "core_concepts": [
+    "Environment Parity: Blue and Green environments must be identical in infrastructure, configuration, and capacity to ensure reliable switchover",
+    "Atomic Switchover: Traffic routing is changed at the load balancer level, providing an all-or-nothing cutover with no partial states",
+    "Instant Rollback: The previous environment remains intact and warm, allowing a sub-second rollback by reversing the router switch",
+    "Idle Cost Tradeoff: Maintaining two full production environments doubles infrastructure cost during deployment windows"
+  ],
+  "core_concepts_zh": [
+    "环境一致性：蓝绿两套环境在基础设施、配置和容量上必须完全相同，以确保切换可靠",
+    "原子切换：在负载均衡器层面切换流量路由，实现全有或全无的切换，不存在中间状态",
+    "即时回滚：旧环境保持完好且处于热备状态，通过反转路由即可在亚秒级完成回滚",
+    "闲置成本权衡：在部署窗口期维护两套完整生产环境，基础设施成本翻倍"
+  ],
+  "timeline": [
+    [
+      "2005",
+      "Blue-green pattern emerges in early web operations for mainframe-era batch cutover modernization"
+    ],
+    [
+      "2010",
+      "Jez Humble and David Farley formalize blue-green deployment in Continuous Delivery"
+    ],
+    [
+      "2013",
+      "AWS Elastic Beanstalk adds native blue-green deployment support via environment URL swap"
+    ],
+    [
+      "2017",
+      "Kubernetes ecosystem tooling (Argo Rollouts, Flagger) makes blue-green declarative and automated"
+    ],
+    [
+      "2022",
+      "Cloud-native platforms (AWS CodeDeploy, Azure Deployment Slots) offer managed blue-green as a first-class feature"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2005",
+      "蓝绿模式在早期Web运维中出现，用于替代大型机时代的批量切换方式"
+    ],
+    [
+      "2010",
+      "Jez Humble和David Farley在《持续交付》一书中正式定义蓝绿部署"
+    ],
+    [
+      "2013",
+      "AWS Elastic Beanstalk通过环境URL交换原生支持蓝绿部署"
+    ],
+    [
+      "2017",
+      "Kubernetes生态工具（Argo Rollouts、Flagger）使蓝绿部署实现声明式自动化"
+    ],
+    [
+      "2022",
+      "云原生平台（AWS CodeDeploy、Azure部署槽）将蓝绿部署作为一等功能提供"
+    ]
+  ],
+  "dos": [
+    "Do run comprehensive smoke tests on the Green environment before switching traffic, because post-switch failures are visible to all users instantly",
+    "Do keep database migrations backward-compatible so both Blue and Green can operate against the same schema simultaneously",
+    "Do automate the switchover and rollback process through CI/CD pipelines to eliminate human error under pressure",
+    "Do monitor the new environment closely for at least one full traffic cycle before decommissioning the old one"
+  ],
+  "dos_zh": [
+    "务必在切换流量前对绿色环境执行全面冒烟测试，因为切换后的故障会立即影响所有用户",
+    "务必保持数据库迁移向后兼容，使蓝绿两套环境能同时操作同一数据库模式",
+    "务必通过CI/CD流水线自动化切换和回滚流程，消除压力下的人为失误",
+    "务必在至少一个完整流量周期内密切监控新环境，之后再下线旧环境"
+  ],
+  "donts": [
+    "Don't allow configuration drift between Blue and Green environments, because asymmetry causes false-positive test results",
+    "Don't perform destructive database migrations during blue-green switches, because rollback becomes impossible if the schema is incompatible",
+    "Don't skip warming up the Green environment's caches and connections, because cold-start latency spikes will degrade user experience",
+    "Don't leave the idle environment running indefinitely without cost review, because it doubles your infrastructure spend"
+  ],
+  "donts_zh": [
+    "不要让蓝绿环境之间出现配置漂移，因为不对称会导致测试结果出现假阳性",
+    "不要在蓝绿切换过程中执行破坏性数据库迁移，因为模式不兼容会导致无法回滚",
+    "不要跳过绿色环境的缓存和连接预热，因为冷启动延迟峰值会降低用户体验",
+    "不要让闲置环境无限期运行而不审查成本，因为这会使基础设施开支翻倍"
+  ],
+  "case_study_company": "LinkedIn",
+  "case_study": "LinkedIn adopted blue-green deployments for its main site in 2013 to eliminate multi-hour maintenance windows during weekly releases. By maintaining two identical production tiers behind their load balancers, they reduced deployment downtime from hours to under 30 seconds per release. This pattern also allowed them to validate each release with production traffic patterns before committing to the switchover.",
+  "case_study_zh": "LinkedIn于2013年在其主站采用蓝绿部署，以消除每周发布时长达数小时的维护窗口。通过在负载均衡器后维护两套相同的生产层，他们将每次发布的部署停机时间从数小时缩短至30秒以内。该模式还允许他们在正式切换前使用生产流量模式验证每个版本。",
+  "when_not_to_use": [
+    "Microservices with independent release cadences where coordinating two full environments per service is cost-prohibitive",
+    "Applications with non-backward-compatible database migrations that prevent both environments from sharing the same data layer",
+    "Teams that need gradual percentage-based traffic shifting (use canary deployment instead)",
+    "Stateful workloads where in-memory session data cannot survive an environment switch"
+  ],
+  "when_not_to_use_zh": [
+    "拥有独立发布节奏的微服务——为每个服务维护两套完整环境在成本上不可承受",
+    "数据库迁移不向后兼容导致两套环境无法共享同一数据层的应用",
+    "需要基于百分比逐步切换流量的团队（应使用金丝雀发布替代）",
+    "内存中会话数据无法在环境切换中存活的有状态工作负载"
+  ],
+  "adopters": [
+    "LinkedIn",
+    "Amazon",
+    "Netflix",
+    "Etsy",
+    "Facebook"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Jez Humble and David Farley (2010). \"Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation\". Addison-Wesley.",
+  "secondary_sources": [
+    "Martin Fowler (2010). \"BlueGreenDeployment\". martinfowler.com.",
+    "Gene Kim et al. (2016). \"The DevOps Handbook\". IT Revolution Press."
+  ],
+  "typed_relations": [
+    {
+      "slug": "canary-deployment",
+      "type": "alternative"
+    },
+    {
+      "slug": "feature-flags",
+      "type": "complement"
+    },
+    {
+      "slug": "gitops",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/blue-green-deployment",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/blue-green-deployment.md"
+}

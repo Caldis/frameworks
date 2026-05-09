@@ -1,0 +1,190 @@
+{
+  "id": 268,
+  "name": "Sidecar Pattern",
+  "name_zh": "Sidecar 容器模式",
+  "slug": "sidecar-container-pattern",
+  "category": "distributed",
+  "desc": "Deploying helper containers alongside the primary service container to handle cross-cutting concerns without modifying application code",
+  "desc_zh": "在主服务容器旁部署辅助容器，无需修改应用代码即可处理横切关注点",
+  "steps": [
+    "Identify cross-cutting concerns to offload: select capabilities that apply to many services (TLS termination, service mesh proxying, log shipping, metrics collection, config sync) and are better handled outside application code",
+    "Package the sidecar as a separate container image: the sidecar should be independently versioned, replaceable, and maintained by a different team (e.g., platform team) than the business logic container",
+    "Co-locate in a shared Pod or task: deploy the sidecar and primary container as a unit (Kubernetes Pod, ECS task group) so they share network namespace, localhost access, and optionally volumes",
+    "Configure communication via localhost: because sidecar and primary share network namespace, the primary calls the sidecar on localhost (e.g., Envoy proxy on 127.0.0.1:15001) with zero network hop overhead",
+    "Implement lifecycle coordination: ensure the sidecar starts before or concurrently with the primary container, handles graceful shutdown in the correct order, and does not block primary container liveness checks"
+  ],
+  "steps_zh": [
+    "识别要卸载的横切关注点：选择适用于许多服务的能力（TLS 终止、服务网格代理、日志传输、指标收集、配置同步），这些能力在应用代码外处理更好",
+    "将 sidecar 打包为单独的容器镜像：sidecar 应独立版本控制、可替换，并由与业务逻辑容器不同的团队（如平台团队）维护",
+    "在共享 Pod 或任务中共同部署：将 sidecar 和主容器作为一个单元部署（Kubernetes Pod、ECS 任务组），共享网络命名空间、localhost 访问和可选的卷",
+    "通过 localhost 配置通信：因为 sidecar 和主容器共享网络命名空间，主容器通过 localhost 调用 sidecar（如 127.0.0.1:15001 上的 Envoy 代理），零网络跳转开销",
+    "实现生命周期协调：确保 sidecar 在主容器之前或同时启动，以正确顺序处理优雅关闭，且不阻塞主容器的活性检查"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Cross-Cutting",
+    "Sidecar Image",
+    "Co-locate Pod",
+    "Localhost Comm",
+    "Lifecycle Coord"
+  ],
+  "viz_labels_zh": [
+    "横切关注点",
+    "独立镜像",
+    "共同部署",
+    "本地通信",
+    "生命周期协调"
+  ],
+  "related": [
+    "sidecar-pattern",
+    "service-discovery-pattern",
+    "circuit-breaker-with-retry",
+    "twelve-factor-app"
+  ],
+  "tags": [
+    "sidecar",
+    "service-mesh",
+    "containers",
+    "kubernetes",
+    "cross-cutting-concerns"
+  ],
+  "origin_author": "Microsoft Azure",
+  "origin_source": "Microsoft Azure Architecture Center. Sidecar Pattern. docs.microsoft.com/azure/architecture/patterns/sidecar; Burns, B. (2018). Designing Distributed Systems. O'Reilly Media.",
+  "origin_source_zh": "Microsoft Azure 架构中心《Sidecar 模式》docs.microsoft.com；Burns（2018）《设计分布式系统》O'Reilly",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When multiple heterogeneous services written in different languages need the same cross-cutting capabilities (logging, tracing, mTLS) without duplicating code across each service",
+    "When you want platform teams to own and upgrade infrastructure concerns (service mesh proxy, secrets agent) independently of application release cycles",
+    "When adopting a service mesh (Istio, Linkerd) that requires an Envoy or linkerd-proxy sidecar injected into each pod",
+    "When running legacy applications that cannot be modified to add observability or security features but can be wrapped by a sidecar in a container"
+  ],
+  "when_to_use_zh": [
+    "当多个用不同语言编写的异构服务需要相同的横切能力（日志、追踪、mTLS）而不在每个服务中重复代码时",
+    "当你希望平台团队独立于应用发布周期拥有和升级基础设施关注点（服务网格代理、密钥代理）时",
+    "当采用需要向每个 Pod 注入 Envoy 或 linkerd-proxy sidecar 的服务网格（Istio、Linkerd）时",
+    "当运行无法修改以添加可观测性或安全功能但可以在容器中被 sidecar 包装的遗留应用时"
+  ],
+  "core_concepts": [
+    "Network namespace sharing: containers in the same Kubernetes Pod share a network namespace, allowing the sidecar to intercept all inbound and outbound traffic via iptables rules without application-level changes",
+    "Transparent proxy injection: service meshes like Istio inject the Envoy sidecar via a mutating admission webhook, automatically installing the proxy for every new Pod without developer action",
+    "Ambassador sub-pattern: the sidecar acts as an outbound proxy, handling retries, circuit breaking, and load balancing on behalf of the application — the application makes simple calls to localhost",
+    "Adapter sub-pattern: the sidecar transforms the primary container's output (log format, metrics format) into a standard format consumed by the platform — decoupling the app from the platform contract",
+    "Init container sequencing: Kubernetes init containers run before the main container and can pre-configure the sidecar or inject configuration secrets before the application starts receiving traffic"
+  ],
+  "core_concepts_zh": [
+    "网络命名空间共享：同一 Kubernetes Pod 中的容器共享网络命名空间，允许 sidecar 通过 iptables 规则拦截所有入站和出站流量，无需应用层变更",
+    "透明代理注入：Istio 等服务网格通过 mutating admission webhook 注入 Envoy sidecar，自动为每个新 Pod 安装代理，无需开发者操作",
+    "Ambassador 子模式：sidecar 充当出站代理，代表应用处理重试、熔断和负载均衡——应用只对 localhost 进行简单调用",
+    "Adapter 子模式：sidecar 将主容器的输出（日志格式、指标格式）转换为平台消费的标准格式——将应用与平台契约解耦",
+    "Init 容器排序：Kubernetes init 容器在主容器之前运行，可在应用开始接收流量之前预配置 sidecar 或注入配置密钥"
+  ],
+  "timeline": [
+    [
+      "2016",
+      "Lyft engineers build and deploy the first version of Envoy as a sidecar proxy for their service mesh, solving polyglot observability and resilience at scale"
+    ],
+    [
+      "2017",
+      "Microsoft publishes the Sidecar Pattern in the Azure Architecture Center, formalizing the three sub-patterns: Ambassador, Adapter, and Sidecar"
+    ],
+    [
+      "2017",
+      "Google, IBM, and Lyft release Istio 0.1, making automatic sidecar injection via Envoy the default service mesh deployment model for Kubernetes"
+    ],
+    [
+      "2019",
+      "Kubernetes introduces native sidecar container support proposals to address startup ordering and graceful shutdown race conditions in production deployments"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2016",
+      "Lyft 工程师构建并部署第一版 Envoy 作为其服务网格的 sidecar 代理，解决多语言环境下的可观测性和弹性问题"
+    ],
+    [
+      "2017",
+      "Microsoft 在 Azure 架构中心发布 Sidecar 模式，正式化三个子模式：Ambassador、Adapter 和 Sidecar"
+    ],
+    [
+      "2017",
+      "Google、IBM 和 Lyft 发布 Istio 0.1，使通过 Envoy 自动注入 sidecar 成为 Kubernetes 的默认服务网格部署模型"
+    ],
+    [
+      "2019",
+      "Kubernetes 引入原生 sidecar 容器支持提案，解决生产部署中的启动顺序和优雅关闭竞争条件"
+    ]
+  ],
+  "dos": [
+    "Do ensure the sidecar and primary container have independent resource limits so a runaway sidecar cannot starve the application of CPU or memory",
+    "Do version and release the sidecar image independently from the application image so platform teams can roll out security patches without coordinating application releases",
+    "Do handle sidecar startup order explicitly using init containers or readiness gates to prevent the primary service from accepting traffic before the proxy is ready",
+    "Do test sidecar failure modes independently: verify that the primary container behaves gracefully when the sidecar crashes, restarts, or is temporarily unavailable"
+  ],
+  "dos_zh": [
+    "确保 sidecar 和主容器有独立的资源限制，使失控的 sidecar 无法耗尽应用的 CPU 或内存",
+    "独立于应用镜像版本控制和发布 sidecar 镜像，使平台团队可以在不协调应用发布的情况下推出安全补丁",
+    "使用 init 容器或就绪门明确处理 sidecar 启动顺序，防止主服务在代理就绪前接受流量",
+    "独立测试 sidecar 故障模式：验证当 sidecar 崩溃、重启或临时不可用时主容器的优雅行为"
+  ],
+  "donts": [
+    "Don't put business logic in the sidecar — it should contain only infrastructure concerns; mixing application logic into the sidecar defeats the separation of concerns that makes the pattern valuable",
+    "Don't ignore the CPU and memory overhead of the sidecar — each Envoy proxy in a large service mesh consumes 50-100 MB and measurable CPU, which multiplies across thousands of pods",
+    "Don't couple the sidecar version lifecycle to the application lifecycle — if upgrades are coordinated, you lose the ability to patch infrastructure independently",
+    "Don't use the sidecar pattern for single-service deployments without a clear growth plan — the added complexity is only justified when the cross-cutting concern spans multiple services"
+  ],
+  "donts_zh": [
+    "不要在 sidecar 中放置业务逻辑——它应只包含基础设施关注点；将应用逻辑混入 sidecar 会破坏使该模式有价值的关注点分离",
+    "不要忽视 sidecar 的 CPU 和内存开销——大型服务网格中每个 Envoy 代理消耗 50-100 MB 和可测量的 CPU，这在数千个 Pod 中累积",
+    "不要将 sidecar 版本生命周期与应用生命周期耦合——如果升级需要协调，你就失去了独立修补基础设施的能力",
+    "不要在没有明确增长计划的单服务部署中使用 sidecar 模式——只有当横切关注点跨越多个服务时，增加的复杂性才合理"
+  ],
+  "case_study_company": "Airbnb",
+  "case_study": "Airbnb migrated their service-to-service communication to an Envoy-based sidecar mesh called SmartStack 2.0 (Synapse + Nerve replaced by Envoy). Prior to the migration, each service team had to maintain custom retry logic, timeouts, and circuit breakers in application code. After injection of Envoy sidecars across their Kubernetes fleet, these policies were centralized in xDS configuration managed by the platform team. During a 2019 incident, the platform team was able to adjust timeout policies across 200 services simultaneously by pushing a single xDS config update — a change that would have required 200 separate deployments under the previous approach.",
+  "case_study_zh": "Airbnb 将其服务间通信迁移到名为 SmartStack 2.0 的基于 Envoy 的 sidecar 网格（Synapse + Nerve 被 Envoy 取代）。迁移前，每个服务团队必须在应用代码中维护自定义的重试逻辑、超时和熔断器。在其 Kubernetes 集群中注入 Envoy sidecar 后，这些策略集中在由平台团队管理的 xDS 配置中。在 2019 年的一次事故中，平台团队能够通过推送单个 xDS 配置更新同时调整 200 个服务的超时策略——在之前的方式下，这需要 200 次独立部署。",
+  "when_not_to_use": [
+    "Single-process monoliths where all services share a process and cross-cutting concerns are better addressed by middleware or aspect-oriented programming",
+    "Serverless functions where the execution model is event-driven and ephemeral, making a long-running sidecar process impractical and cost-inefficient",
+    "Resource-constrained edge or IoT deployments where the memory and CPU overhead of running an additional proxy container is prohibitive"
+  ],
+  "when_not_to_use_zh": [
+    "所有服务共享进程的单进程单体应用，横切关注点通过中间件或面向方面编程更好地处理",
+    "执行模型是事件驱动和短暂的无服务器函数，运行长期 sidecar 进程不切实际且成本效率低下",
+    "内存和 CPU 开销使运行额外代理容器不可行的资源受限边缘或 IoT 部署"
+  ],
+  "adopters": [
+    "Airbnb (Envoy sidecar mesh)",
+    "Lyft (Envoy originator)",
+    "Google (Istio + Envoy)",
+    "Microsoft (Dapr sidecar runtime)",
+    "Uber (M3 metrics via sidecar)"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability",
+    "observability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Microsoft Azure Architecture Center. \"Sidecar Pattern\". docs.microsoft.com/azure/architecture/patterns/sidecar.",
+  "secondary_sources": [
+    "Burns, B. (2018). \"Designing Distributed Systems\". O'Reilly Media.",
+    "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 13. O'Reilly Media.",
+    "Calcote, L. & Butcher, Z. (2019). \"Istio: Up and Running\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "sidecar-pattern",
+      "type": "alternative"
+    },
+    {
+      "slug": "service-discovery-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "circuit-breaker-with-retry",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/sidecar-container-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/sidecar-container-pattern.md"
+}

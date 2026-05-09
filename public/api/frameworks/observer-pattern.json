@@ -1,0 +1,170 @@
+{
+  "id": 226,
+  "name": "Observer Pattern",
+  "name_zh": "观察者模式",
+  "slug": "observer-pattern",
+  "category": "coding",
+  "desc": "Notify dependents automatically when state changes",
+  "desc_zh": "当对象状态发生变化时自动通知所有依赖方",
+  "steps": [
+    "Define the Subject interface: expose methods to attach, detach, and notify observers, keeping the subject independent of concrete observer types",
+    "Define the Observer interface: declare an update method that subjects will call, carrying relevant state or event data",
+    "Implement the Concrete Subject: maintain a list of observers, manage state, and call notify whenever a meaningful state change occurs",
+    "Implement Concrete Observers: register with the subject and react to notifications by reading subject state or the pushed event payload",
+    "Manage subscription lifecycle: ensure observers unsubscribe when no longer needed to prevent memory leaks and stale notifications"
+  ],
+  "steps_zh": [
+    "定义主题接口：暴露注册、注销和通知观察者的方法，使主题独立于具体观察者类型",
+    "定义观察者接口：声明主题将调用的 update 方法，携带相关状态或事件数据",
+    "实现具体主题：维护观察者列表，管理状态，并在有意义的状态变更时调用通知方法",
+    "实现具体观察者：向主题注册，通过读取主题状态或推送的事件负载对通知做出响应",
+    "管理订阅生命周期：确保观察者在不再需要时取消订阅，防止内存泄漏和陈旧通知"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Subject",
+    "Observer",
+    "Notify",
+    "Subscribe"
+  ],
+  "viz_labels_zh": [
+    "主题",
+    "观察者",
+    "通知",
+    "订阅"
+  ],
+  "related": [
+    "strategy-pattern",
+    "command-pattern"
+  ],
+  "tags": [
+    "gof",
+    "behavioral",
+    "design-patterns",
+    "event",
+    "pub-sub",
+    "oop"
+  ],
+  "origin_author": "Gamma, Helm, Johnson, Vlissides, 1994",
+  "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
+  "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "One object's state change should trigger updates in an unknown or variable number of other objects",
+    "You want to decouple the producer of events from the consumers without forcing them to know about each other",
+    "Building reactive UIs, event-driven agent environments, or real-time data feeds where multiple components react to changes"
+  ],
+  "when_to_use_zh": [
+    "一个对象的状态变化需要触发数量未知或可变的其他对象的更新",
+    "希望将事件生产者与消费者解耦，无需双方互相了解",
+    "构建响应式 UI、事件驱动的智能体环境或实时数据流，多个组件对变化做出响应"
+  ],
+  "core_concepts": [
+    "Subject (Observable): maintains a list of observers and broadcasts notifications on state change",
+    "Observer: the interface or callback that subjects invoke when notifying, decoupling it from concrete implementations",
+    "Push vs Pull: subjects can push state in the notification payload (push model) or observers can query state after being pinged (pull model)"
+  ],
+  "core_concepts_zh": [
+    "主题（可观察者）：维护观察者列表，在状态变化时广播通知",
+    "观察者：主题在通知时调用的接口或回调，将其与具体实现解耦",
+    "推送 vs 拉取：主题可在通知负载中推送状态（推送模式），或观察者在收到通知后查询状态（拉取模式）"
+  ],
+  "timeline": [
+    [
+      "1994",
+      "GoF formalize Observer as one of 23 patterns; MVC's model-view notification already used the concept"
+    ],
+    [
+      "2000",
+      "Java introduces java.util.Observable and java.util.Observer in the standard library"
+    ],
+    [
+      "2012",
+      "Reactive Extensions (Rx) reframe Observer as IObservable/IObserver, adding backpressure and composition"
+    ],
+    [
+      "2019",
+      "Observer underpins modern frontend state libraries (Redux, MobX, Vue reactivity) and agent event loops"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1994",
+      "GoF 将观察者模式正式化为 23 个模式之一；MVC 的模型-视图通知机制已在使用该概念"
+    ],
+    [
+      "2000",
+      "Java 在标准库中引入 java.util.Observable 和 java.util.Observer"
+    ],
+    [
+      "2012",
+      "响应式扩展（Rx）将观察者重塑为 IObservable/IObserver，增加背压和组合能力"
+    ],
+    [
+      "2019",
+      "观察者模式支撑现代前端状态库（Redux、MobX、Vue 响应式）和智能体事件循环"
+    ]
+  ],
+  "dos": [
+    "Do use weak references or explicit unsubscribe to prevent memory leaks when observers outlive their subjects",
+    "Do keep observer update methods fast and non-blocking; offload heavy work to background threads or queues",
+    "Do consider passing event data in the notification rather than forcing observers to call back into the subject"
+  ],
+  "dos_zh": [
+    "使用弱引用或显式取消订阅，防止观察者比主题生命周期更长时造成内存泄漏",
+    "保持观察者的 update 方法快速且非阻塞；将繁重工作卸载到后台线程或队列",
+    "考虑在通知中传递事件数据，而非强制观察者回调主题"
+  ],
+  "donts": [
+    "Don't create cascading notification chains where one observer triggers another subject's notification — it causes hard-to-trace update storms",
+    "Don't notify observers in a non-deterministic order when observers depend on each other's effects",
+    "Don't use Observer for simple one-to-one callbacks; a direct method call or delegate is simpler"
+  ],
+  "donts_zh": [
+    "不要创建级联通知链，即一个观察者触发另一个主题的通知——这会导致难以追踪的更新风暴",
+    "当观察者相互依赖对方效果时，不要以不确定的顺序通知观察者",
+    "不要将观察者用于简单的一对一回调；直接方法调用或委托更简单"
+  ],
+  "case_study_company": "Vue.js",
+  "case_study": "Vue.js 3's reactivity system is a direct application of the Observer pattern. Each reactive data property is a Subject; component render functions and computed properties are Observers automatically registered via dependency tracking during a getter trap. When a property changes, only the components that actually read that property are notified and re-rendered, achieving fine-grained reactivity without manual subscription management.",
+  "case_study_zh": "Vue.js 3 的响应式系统是观察者模式的直接应用。每个响应式数据属性都是一个主题；组件渲染函数和计算属性是通过 getter 拦截期间的依赖追踪自动注册的观察者。当属性变化时，只有实际读取该属性的组件才会收到通知并重新渲染，实现细粒度响应性而无需手动管理订阅。",
+  "when_not_to_use": [
+    "Simple synchronous pipelines where direct method calls are clearer and the set of dependents is fixed",
+    "Performance-critical tight loops where notification overhead is measurable",
+    "When event ordering guarantees are critical and the broadcast model introduces non-determinism"
+  ],
+  "when_not_to_use_zh": [
+    "简单的同步流水线，直接方法调用更清晰且依赖方集合固定",
+    "性能关键的紧密循环，通知开销可被度量",
+    "事件顺序保证至关重要而广播模型引入不确定性时"
+  ],
+  "adopters": [
+    "Vue.js",
+    "Angular (EventEmitter)",
+    "RxJS",
+    "Redux"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+  "secondary_sources": [
+    "Freeman, E., Robson, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+    "Meijer, E. (2012). \"Your Mouse is a Database\". ACM Queue."
+  ],
+  "typed_relations": [
+    {
+      "slug": "strategy-pattern",
+      "type": "related"
+    },
+    {
+      "slug": "command-pattern",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/observer-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/observer-pattern.md"
+}

@@ -1,0 +1,199 @@
+{
+  "id": 160,
+  "name": "Documentation as Code",
+  "name_zh": "文档即代码",
+  "slug": "documentation-as-code",
+  "category": "observability",
+  "desc": "Treat documentation like software: version-controlled, tested, reviewed, and continuously deployed",
+  "desc_zh": "将文档视为软件对待：版本控制、测试、审查和持续部署",
+  "steps": [
+    "Store documentation alongside source code: put docs in the same repository as the code they describe, using lightweight markup (Markdown, AsciiDoc, reStructuredText)",
+    "Apply software engineering workflows to docs: require pull request reviews for doc changes, run CI checks (linting, link validation, spell check), and version docs with releases",
+    "Automate documentation generation: extract API docs from code annotations (OpenAPI, JSDoc, docstrings), generate architecture diagrams from code, and build reference docs from types",
+    "Deploy docs through CI/CD pipelines: publish documentation automatically on every merge to main, just like deploying application code, ensuring docs are always current",
+    "Test documentation accuracy: write automated tests that verify code examples compile, API endpoints return expected responses, and configuration samples are valid"
+  ],
+  "steps_zh": [
+    "将文档与源代码一起存储：将文档放在其描述代码的同一仓库中，使用轻量级标记语言（Markdown、AsciiDoc、reStructuredText）",
+    "将软件工程工作流应用于文档：要求文档变更经过Pull Request审查，运行CI检查（代码检查、链接验证、拼写检查），并随发布进行版本管理",
+    "自动化文档生成：从代码注解（OpenAPI、JSDoc、docstring）提取API文档，从代码生成架构图，从类型生成参考文档",
+    "通过CI/CD管道部署文档：每次合并到主分支时自动发布文档，就像部署应用代码一样，确保文档始终最新",
+    "测试文档准确性：编写自动化测试验证代码示例可编译、API端点返回预期响应、配置示例有效"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Docs in Repo",
+    "Engineering Workflow",
+    "Auto-Generate",
+    "CI/CD Deploy",
+    "Test Accuracy"
+  ],
+  "viz_labels_zh": [
+    "文档入仓",
+    "工程化流程",
+    "自动生成",
+    "CI/CD发布",
+    "准确性测试"
+  ],
+  "related": [
+    "developer-portal-backstage",
+    "gitops",
+    "twelve-factor-app"
+  ],
+  "tags": [
+    "observability",
+    "documentation",
+    "docs-as-code",
+    "developer-experience",
+    "technical-writing",
+    "ci-cd"
+  ],
+  "origin_author": "Anne Gentle (2012); popularized by Write the Docs community and Google technical writing team",
+  "origin_source": "Software Engineering at Google (Winters, Manshreck, Wright, 2020), Ch. 10 'Documentation'; Docs Like Code (Anne Gentle, 2017)",
+  "origin_source_zh": "《Google软件工程》（Winters、Manshreck、Wright，2020）第10章「文档」；《Docs Like Code》（Anne Gentle，2017）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Engineering organizations where documentation chronically falls out of date because it lives separately from the code",
+    "API-driven platforms where accurate, auto-generated API documentation is critical for internal and external consumers",
+    "Teams adopting DevOps or GitOps practices who want documentation to follow the same review, test, and deploy workflow as code",
+    "Open-source projects where documentation quality directly impacts contributor onboarding and community growth"
+  ],
+  "when_to_use_zh": [
+    "文档因与代码分离存储而长期过时的工程组织",
+    "准确的自动生成API文档对内外部消费者至关重要的API驱动平台",
+    "采用DevOps或GitOps实践、希望文档遵循与代码相同的审查、测试和部署工作流的团队",
+    "文档质量直接影响贡献者入职和社区增长的开源项目"
+  ],
+  "core_concepts": [
+    "Docs-in-Repo: Documentation lives in the same repository as the code it describes, ensuring it is versioned, branched, and reviewed alongside code changes",
+    "Doc Tests: Automated tests that verify documentation accuracy: code samples compile, API examples return expected responses, and configuration snippets are valid",
+    "Generated Documentation: API references, type documentation, and architecture diagrams automatically extracted from source code, eliminating manual duplication",
+    "Review Workflow: Documentation changes go through the same pull request process as code -- with designated reviewers, CI checks, and approval requirements",
+    "Continuous Deployment: Docs are built and published automatically on every merge, ensuring the published documentation always matches the latest code"
+  ],
+  "core_concepts_zh": [
+    "仓库内文档：文档与其描述的代码存放在同一仓库中，确保与代码变更一起进行版本控制、分支和审查",
+    "文档测试：验证文档准确性的自动化测试：代码示例可编译、API示例返回预期响应、配置片段有效",
+    "生成式文档：从源代码自动提取API参考、类型文档和架构图，消除手动重复",
+    "审查工作流：文档变更经过与代码相同的Pull Request流程——有指定审查者、CI检查和审批要求",
+    "持续部署：每次合并时自动构建和发布文档，确保已发布文档始终匹配最新代码"
+  ],
+  "timeline": [
+    [
+      "2012",
+      "Anne Gentle coins 'docs like code' and begins advocating for applying software workflows to technical writing"
+    ],
+    [
+      "2015",
+      "Write the Docs community grows rapidly, establishing docs-as-code as a movement with annual conferences"
+    ],
+    [
+      "2017",
+      "Anne Gentle publishes Docs Like Code, the first book dedicated to the practice"
+    ],
+    [
+      "2020",
+      "Software Engineering at Google dedicates Chapter 10 to documentation, emphasizing code-adjacent docs and automated freshness"
+    ],
+    [
+      "2023",
+      "AI-assisted documentation (Copilot for docs, auto-generated changelogs) accelerates the docs-as-code workflow"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2012",
+      "Anne Gentle提出「docs like code」概念，开始倡导将软件工作流应用于技术写作"
+    ],
+    [
+      "2015",
+      "Write the Docs社区快速壮大，通过年度会议将文档即代码确立为一场运动"
+    ],
+    [
+      "2017",
+      "Anne Gentle出版《Docs Like Code》，首本专注于该实践的书籍"
+    ],
+    [
+      "2020",
+      "《Google软件工程》第10章专门讨论文档，强调代码邻近文档和自动化新鲜度"
+    ],
+    [
+      "2023",
+      "AI辅助文档（Copilot for docs、自动生成变更日志）加速文档即代码工作流"
+    ]
+  ],
+  "dos": [
+    "Do store docs in the same repo as the code they describe, because co-located docs are far more likely to be updated when the code changes",
+    "Do add documentation CI checks (broken link detection, markdown linting, code sample compilation) to catch doc rot early",
+    "Do generate API documentation from code annotations rather than writing it manually, because generated docs cannot drift from the implementation",
+    "Do include documentation updates as a required part of the code review checklist, because docs-as-code only works when the team treats docs as first-class"
+  ],
+  "dos_zh": [
+    "将文档存储在其描述代码的同一仓库中，因为同位文档在代码变更时被更新的可能性远高于外部文档",
+    "添加文档CI检查（断链检测、Markdown检查、代码示例编译），以尽早捕获文档腐烂",
+    "从代码注解生成API文档而非手动编写，因为生成的文档不会与实现产生偏差",
+    "将文档更新作为代码审查清单的必需部分，因为文档即代码只有在团队将文档视为一等公民时才能奏效"
+  ],
+  "donts": [
+    "Don't maintain documentation in a separate wiki disconnected from the code repository, because disconnected docs become stale within weeks",
+    "Don't write documentation only at the end of a project, because retroactive documentation is always incomplete and often inaccurate",
+    "Don't generate docs without human-written conceptual guides, because auto-generated API references without context are useless to newcomers",
+    "Don't skip doc reviews in pull requests, because unreviewed documentation accumulates errors just as unreviewed code accumulates bugs"
+  ],
+  "donts_zh": [
+    "不要在与代码仓库断开的独立Wiki中维护文档，因为断开的文档几周内就会过时",
+    "不要仅在项目结束时编写文档，因为回顾性文档总是不完整且常常不准确",
+    "不要在没有人类编写的概念指南的情况下生成文档，因为没有上下文的自动生成API参考对新手毫无用处",
+    "不要在Pull Request中跳过文档审查，因为未审查的文档会积累错误，就像未审查的代码积累缺陷"
+  ],
+  "case_study_company": "Google",
+  "case_study": "Google's engineering culture treats documentation as a first-class engineering artifact. As described in Software Engineering at Google, every code change that affects behavior is expected to include documentation updates in the same changelist. Google's internal documentation platform (g3doc) renders Markdown docs stored alongside code in their monorepo, automatically checking for freshness and flagging stale pages. They found that documentation written by the same engineer who wrote the code, reviewed in the same code review, was 3x more likely to be accurate than documentation written after the fact by a separate technical writer. This practice scaled to 30,000+ engineers across the company.",
+  "case_study_zh": "Google的工程文化将文档视为一等工程制品。如《Google软件工程》所述，每个影响行为的代码变更都应在同一变更列表中包含文档更新。Google的内部文档平台（g3doc）渲染存储在单体仓库中的Markdown文档，自动检查新鲜度并标记过时页面。他们发现由编写代码的同一工程师撰写、在同一代码审查中评审的文档，其准确性比事后由独立技术作者编写的文档高3倍。这一实践扩展到公司的30000+工程师。",
+  "when_not_to_use": [
+    "Non-technical audience documentation (marketing content, user guides for non-developers) where a CMS provides a better authoring experience",
+    "Highly visual documentation (design specs, wireframes) where WYSIWYG tools are essential and Markdown is too limiting",
+    "Regulated industries requiring formal document management with approval workflows that exceed what Git provides",
+    "Small personal projects where the overhead of CI pipelines and review workflows for docs is disproportionate"
+  ],
+  "when_not_to_use_zh": [
+    "面向非技术受众的文档（营销内容、非开发者用户指南）——CMS提供更好的创作体验",
+    "高度可视化的文档（设计规范、线框图）——WYSIWYG工具不可或缺且Markdown过于受限",
+    "要求正式文档管理和超出Git能力的审批工作流的受监管行业",
+    "文档的CI管道和审查工作流开销不成比例的小型个人项目"
+  ],
+  "adopters": [
+    "Google",
+    "Stripe",
+    "GitLab",
+    "Microsoft",
+    "Cloudflare"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability",
+    "usability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Gentle, A. (2017). \"Docs Like Code\". justwriteclick.com.",
+  "secondary_sources": [
+    "Winters, T., Manshreck, T. & Wright, H. (2020). \"Software Engineering at Google\", Ch. 10. O'Reilly Media.",
+    "Eby, T. & Bhatti, Z. (2023). \"Docs-as-Code Tools and Workflows\". Write the Docs Community."
+  ],
+  "typed_relations": [
+    {
+      "slug": "developer-portal-backstage",
+      "type": "complement"
+    },
+    {
+      "slug": "gitops",
+      "type": "complement"
+    },
+    {
+      "slug": "twelve-factor-app",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/documentation-as-code",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/documentation-as-code.md"
+}

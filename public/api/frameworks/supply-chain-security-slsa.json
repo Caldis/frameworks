@@ -1,0 +1,200 @@
+{
+  "id": 119,
+  "name": "Supply Chain Security (SLSA)",
+  "name_zh": "软件供应链安全（SLSA）",
+  "slug": "supply-chain-security-slsa",
+  "category": "security",
+  "desc": "Ensure the integrity and provenance of software artifacts through verifiable supply chain levels",
+  "desc_zh": "通过可验证的供应链级别确保软件制品的完整性和来源",
+  "steps": [
+    "Establish source integrity: require code review, enforce branch protection, and sign commits in version control",
+    "Secure the build process: use hermetic, reproducible builds on isolated infrastructure with build provenance attestations",
+    "Generate and distribute SLSA provenance metadata (who built what, from which source, on which builder) as signed attestations",
+    "Verify provenance at every consumption point: package registries, container registries, and deployment pipelines must check attestations",
+    "Progress through SLSA levels (L1-L4) incrementally, adding automation and hardening at each level"
+  ],
+  "steps_zh": [
+    "建立源代码完整性：要求代码审查、强制分支保护并在版本控制中签名提交",
+    "保护构建过程：使用隔离基础设施上的封闭、可复现构建并生成构建来源证明",
+    "生成并分发 SLSA 来源元数据（谁在哪个构建器上从哪个源代码构建了什么）作为签名证明",
+    "在每个消费点验证来源：包注册中心、容器注册中心和部署管道必须检查证明",
+    "逐步提升 SLSA 级别（L1-L4），在每个级别增加自动化和加固"
+  ],
+  "ai_relevant": false,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "Source Integrity",
+    "Secure Build",
+    "Provenance",
+    "Verify Provenance",
+    "SLSA Levels"
+  ],
+  "viz_labels_zh": [
+    "源码完整性",
+    "安全构建",
+    "供应链证明",
+    "验证来源",
+    "SLSA等级"
+  ],
+  "related": [
+    "security-by-design",
+    "owasp-top-10",
+    "defense-in-depth"
+  ],
+  "tags": [
+    "supply-chain",
+    "slsa",
+    "provenance",
+    "sbom",
+    "software-integrity",
+    "sigstore"
+  ],
+  "origin_author": "Google; Linux Foundation / OpenSSF",
+  "origin_source": "SLSA specification (slsa.dev) by Google and OpenSSF (2021); US Executive Order 14028 on Improving the Nation's Cybersecurity (2021); NIST SP 800-218「Secure Software Development Framework」",
+  "origin_source_zh": "SLSA 规范（slsa.dev）由 Google 和 OpenSSF 发布 (2021)；美国第 14028 号行政令「改善国家网络安全」(2021)；NIST SP 800-218「安全软件开发框架」",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Organizations with complex dependency trees (hundreds of open-source libraries) needing to verify artifact provenance",
+    "CI/CD pipelines producing artifacts consumed by external customers or deployed to critical infrastructure",
+    "After a supply chain attack (SolarWinds, Log4Shell, xz-utils) motivates investment in provenance verification",
+    "Regulated environments requiring Software Bill of Materials (SBOM) and artifact traceability"
+  ],
+  "when_to_use_zh": [
+    "拥有复杂依赖树（数百个开源库）需要验证制品来源的组织",
+    "CI/CD 管道产出的制品供外部客户使用或部署到关键基础设施",
+    "供应链攻击（SolarWinds、Log4Shell、xz-utils）促使投资来源验证之后",
+    "要求软件物料清单（SBOM）和制品可追溯性的受监管环境"
+  ],
+  "core_concepts": [
+    "Provenance: Verifiable metadata describing who built an artifact, from what source, using which build platform, and what process was followed",
+    "SLSA Levels: A graduated maturity model (L1: documented build; L2: hosted build with signed provenance; L3: hardened build platform; L4: hermetic, reproducible, two-person review)",
+    "Software Bill of Materials (SBOM): A machine-readable inventory of all components and dependencies in a software artifact",
+    "Hermetic Build: A build process that is fully isolated from the network and external state, ensuring reproducibility",
+    "Sigstore: An open-source project providing keyless signing, transparency logs (Rekor), and certificate authority (Fulcio) for artifact attestation"
+  ],
+  "core_concepts_zh": [
+    "来源证明：描述谁构建了制品、来自什么源代码、使用哪个构建平台以及遵循什么流程的可验证元数据",
+    "SLSA 级别：渐进成熟度模型（L1：文档化构建；L2：托管构建 + 签名来源；L3：加固构建平台；L4：封闭可复现 + 双人审查）",
+    "软件物料清单（SBOM）：软件制品中所有组件和依赖的机器可读清单",
+    "封闭构建：完全与网络和外部状态隔离的构建过程，确保可复现性",
+    "Sigstore：提供无密钥签名、透明日志（Rekor）和证书颁发机构（Fulcio）的开源制品证明项目"
+  ],
+  "timeline": [
+    [
+      "2020-12",
+      "SolarWinds supply chain attack compromises 18,000 organizations, catalyzing industry focus on build integrity"
+    ],
+    [
+      "2021-05",
+      "US Executive Order 14028 mandates SBOM and secure software supply chain practices for federal suppliers"
+    ],
+    [
+      "2021-06",
+      "Google open-sources the SLSA framework (v0.1) defining four levels of supply chain integrity"
+    ],
+    [
+      "2022-10",
+      "Sigstore reaches general availability, providing free keyless signing for open-source artifacts"
+    ],
+    [
+      "2024-03",
+      "xz-utils backdoor (CVE-2024-3094) demonstrates social engineering risks in open-source supply chains; SLSA L3+ would have mitigated it"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2020-12",
+      "SolarWinds 供应链攻击危及 18,000 个组织，催化行业对构建完整性的关注"
+    ],
+    [
+      "2021-05",
+      "美国第 14028 号行政令要求联邦供应商实施 SBOM 和安全软件供应链实践"
+    ],
+    [
+      "2021-06",
+      "Google 开源 SLSA 框架（v0.1），定义四个供应链完整性级别"
+    ],
+    [
+      "2022-10",
+      "Sigstore 正式发布，为开源制品提供免费无密钥签名"
+    ],
+    [
+      "2024-03",
+      "xz-utils 后门（CVE-2024-3094）展示开源供应链中的社会工程风险；SLSA L3+ 可以缓解该攻击"
+    ]
+  ],
+  "dos": [
+    "Start with SLSA Level 1 (documented build process) and progress incrementally — perfection is not required to gain value",
+    "Generate SBOMs automatically during builds and publish them alongside release artifacts",
+    "Use Sigstore or equivalent tooling for artifact signing — keyless signing removes the key management burden",
+    "Pin dependencies by hash (not just version) and verify checksums in CI to detect tampering"
+  ],
+  "dos_zh": [
+    "从 SLSA Level 1（文档化构建流程）开始逐步推进——不需要完美即可获得价值",
+    "在构建期间自动生成 SBOM 并与发布制品一起发布",
+    "使用 Sigstore 或等效工具进行制品签名——无密钥签名消除密钥管理负担",
+    "通过哈希（不仅是版本）固定依赖并在 CI 中验证校验和以检测篡改"
+  ],
+  "donts": [
+    "Don't assume your CI/CD platform is inherently trusted — build infrastructure itself is an attack surface",
+    "Don't rely on dependency version pinning alone — versions can be republished with different content on some registries",
+    "Don't ignore transitive dependencies — most supply chain attacks target deep, overlooked dependencies",
+    "Don't treat SBOM generation as compliance theater — if no one consumes the SBOM for policy decisions, it's just a file"
+  ],
+  "donts_zh": [
+    "不要假设 CI/CD 平台天然可信——构建基础设施本身就是攻击面",
+    "不要仅依赖依赖版本固定——某些注册中心上版本可能以不同内容重新发布",
+    "不要忽略传递依赖——大多数供应链攻击针对深层、被忽视的依赖",
+    "不要将 SBOM 生成视为合规面子工程——如果无人消费 SBOM 做策略决策，它只是一个文件"
+  ],
+  "case_study_company": "Google",
+  "case_study": "Google developed SLSA from its internal Binary Authorization for Borg (BAB) system, which has protected Google's production workloads since 2013 by requiring cryptographic provenance verification before any binary can run. When open-sourced as SLSA in 2021, the framework provided the industry with a graduated path toward the same supply chain integrity guarantees. Google mandates SLSA Level 3 for all internal production software and contributed Sigstore to make artifact signing accessible to the entire open-source ecosystem.",
+  "case_study_zh": "Google 从内部的 Binary Authorization for Borg（BAB）系统发展出 SLSA，该系统自 2013 年起通过在任何二进制文件运行前要求加密来源验证来保护 Google 的生产工作负载。2021 年开源为 SLSA 后，该框架为行业提供了通向同等供应链完整性保证的渐进路径。Google 对所有内部生产软件强制要求 SLSA Level 3，并贡献了 Sigstore 使制品签名对整个开源生态可及。",
+  "when_not_to_use": [
+    "Single-developer personal projects with no external consumers of the build artifacts",
+    "Early prototyping phases where the dependency set changes daily and provenance verification adds friction without risk reduction",
+    "Environments where all software is built and consumed entirely within a physically secured enclave with no external dependencies",
+    "When the team has not yet adopted basic CI/CD — establish a consistent build pipeline first before adding supply chain verification"
+  ],
+  "when_not_to_use_zh": [
+    "无外部构建制品消费者的单人个人项目",
+    "依赖集每日变化、来源验证增加摩擦而不降低风险的早期原型阶段",
+    "所有软件完全在物理安全飞地内构建和消费、无外部依赖的环境",
+    "团队尚未采用基本 CI/CD 时——应先建立一致的构建管道再添加供应链验证"
+  ],
+  "adopters": [
+    "Google",
+    "GitHub (Artifact Attestations)",
+    "npm (provenance for packages)",
+    "Kubernetes (SLSA L3 for releases)",
+    "OpenSSF / Linux Foundation"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "security",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Google & OpenSSF (2021). \"SLSA: Supply-chain Levels for Software Artifacts\". slsa.dev.",
+  "secondary_sources": [
+    "The White House (2021). \"Executive Order 14028 on Improving the Nation's Cybersecurity\". Federal Register.",
+    "NIST (2022). \"Secure Software Development Framework (SSDF)\". NIST SP 800-218.",
+    "in-toto Project (2019). \"in-toto: Providing Farm-to-Table Guarantees for Bits and Bytes\". Proceedings of USENIX Security Symposium."
+  ],
+  "typed_relations": [
+    {
+      "slug": "security-by-design",
+      "type": "extends"
+    },
+    {
+      "slug": "owasp-top-10",
+      "type": "complement"
+    },
+    {
+      "slug": "defense-in-depth",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/supply-chain-security-slsa",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/supply-chain-security-slsa.md"
+}

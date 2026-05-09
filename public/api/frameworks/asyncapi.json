@@ -1,0 +1,198 @@
+{
+  "id": 140,
+  "name": "AsyncAPI",
+  "name_zh": "AsyncAPI异步API规范",
+  "slug": "asyncapi",
+  "category": "api",
+  "desc": "Specification standard for describing event-driven and asynchronous APIs",
+  "desc_zh": "用于描述事件驱动和异步API的规范标准",
+  "steps": [
+    "Define the AsyncAPI document with info metadata, server connections (Kafka brokers, MQTT brokers, WebSocket URLs), and protocol bindings",
+    "Describe channels (topics/queues) with their publish and subscribe operations, specifying which messages flow in each direction",
+    "Define message schemas using JSON Schema or Avro, including headers, payload structure, and correlation IDs for request-reply patterns",
+    "Add protocol-specific bindings (Kafka partition keys, AMQP routing keys, MQTT QoS levels) to each channel and operation",
+    "Generate documentation, code, and mock servers from the specification using AsyncAPI Generator, and validate the spec with AsyncAPI Studio"
+  ],
+  "steps_zh": [
+    "定义AsyncAPI文档，包含info元数据、服务器连接（Kafka代理、MQTT代理、WebSocket URL）和协议绑定",
+    "描述通道（主题/队列）及其发布和订阅操作，指定每个方向的消息流",
+    "使用JSON Schema或Avro定义消息模式，包括头部、负载结构和用于请求-回复模式的关联ID",
+    "为每个通道和操作添加协议特定绑定（Kafka分区键、AMQP路由键、MQTT QoS级别）",
+    "使用AsyncAPI Generator从规范生成文档、代码和模拟服务器，并使用AsyncAPI Studio验证规范"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Servers",
+    "Channels",
+    "Message Schema",
+    "Protocol Bindings",
+    "Generate Validate"
+  ],
+  "viz_labels_zh": [
+    "服务器",
+    "通道",
+    "消息模式",
+    "协议绑定",
+    "生成验证"
+  ],
+  "related": [
+    "webhook-pattern",
+    "openapi-specification",
+    "grpc-protocol-buffers"
+  ],
+  "tags": [
+    "asyncapi",
+    "event-driven",
+    "specification",
+    "messaging",
+    "async"
+  ],
+  "origin_author": "Fran Mendez, 2017",
+  "origin_source": "AsyncAPI Specification (asyncapi.com); conceptually extends patterns in Building Microservices (Sam Newman, 2nd ed., 2021, Ch. 4)",
+  "origin_source_zh": "AsyncAPI规范（asyncapi.com）；概念上扩展了《构建微服务》（Sam Newman，第2版，2021，第4章）中的模式",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When documenting event-driven architectures that use message brokers (Kafka, RabbitMQ, MQTT, NATS)",
+    "When multiple teams produce and consume events and need a shared contract for message schemas",
+    "When generating type-safe consumer and producer code from a specification to prevent schema drift",
+    "When building developer portals for event-driven APIs that need the same discoverability as REST APIs have with OpenAPI"
+  ],
+  "when_to_use_zh": [
+    "当文档化使用消息代理（Kafka、RabbitMQ、MQTT、NATS）的事件驱动架构时",
+    "当多个团队产生和消费事件，需要消息模式的共享契约时",
+    "当从规范生成类型安全的消费者和生产者代码以防止模式漂移时",
+    "当构建事件驱动API的开发者门户，需要与OpenAPI为REST API提供的相同可发现性时"
+  ],
+  "core_concepts": [
+    "Channels: Named communication paths (Kafka topics, AMQP queues, WebSocket paths) where messages are published and consumed",
+    "Operations: Publish and subscribe semantics defined per channel, clarifying whether an application sends or receives messages on each channel",
+    "Message Schemas: Strongly-typed message definitions using JSON Schema or Avro, with headers, payload, and optional correlation IDs for tracing",
+    "Protocol Bindings: Protocol-specific configurations (Kafka consumer groups, MQTT QoS, AMQP exchanges) that extend the generic specification with implementation details",
+    "Code Generation: AsyncAPI Generator produces documentation, client/server code, and mock brokers from the specification, similar to OpenAPI tooling for REST"
+  ],
+  "core_concepts_zh": [
+    "通道：命名的通信路径（Kafka主题、AMQP队列、WebSocket路径），消息在此发布和消费",
+    "操作：每个通道定义的发布和订阅语义，明确应用在每个通道上是发送还是接收消息",
+    "消息模式：使用JSON Schema或Avro的强类型消息定义，包含头部、负载和用于追踪的可选关联ID",
+    "协议绑定：协议特定配置（Kafka消费者组、MQTT QoS、AMQP交换器），用实现细节扩展通用规范",
+    "代码生成：AsyncAPI Generator从规范生成文档、客户端/服务端代码和模拟代理，类似于REST的OpenAPI工具"
+  ],
+  "timeline": [
+    [
+      "2017",
+      "Fran Mendez creates AsyncAPI 1.0 to fill the gap of standardized event-driven API documentation"
+    ],
+    [
+      "2019",
+      "AsyncAPI 2.0 released with protocol bindings, multiple server support, and improved message schemas"
+    ],
+    [
+      "2021",
+      "AsyncAPI Initiative joins the Linux Foundation, gaining industry-wide governance and backing"
+    ],
+    [
+      "2023",
+      "AsyncAPI 3.0 released with major redesign: operations decoupled from channels, reply patterns, and improved reusability"
+    ],
+    [
+      "2025",
+      "AsyncAPI adoption grows in AI event pipelines for documenting LLM streaming, agent communication, and model inference events"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2017",
+      "Fran Mendez创建AsyncAPI 1.0，填补标准化事件驱动API文档的空白"
+    ],
+    [
+      "2019",
+      "AsyncAPI 2.0发布，带来协议绑定、多服务器支持和改进的消息模式"
+    ],
+    [
+      "2021",
+      "AsyncAPI倡议加入Linux基金会，获得全行业治理和支持"
+    ],
+    [
+      "2023",
+      "AsyncAPI 3.0发布，进行重大重设计：操作与通道解耦、回复模式和改进的可复用性"
+    ],
+    [
+      "2025",
+      "AsyncAPI在AI事件管线中的采用增长，用于文档化LLM流式传输、代理通信和模型推理事件"
+    ]
+  ],
+  "dos": [
+    "Do adopt a spec-first approach where the AsyncAPI document is written before implementing producers and consumers because it serves as the team contract",
+    "Do define protocol bindings explicitly because generic channel descriptions lose critical details like partition strategies and QoS levels",
+    "Do version your AsyncAPI specs and use schema registries (Confluent Schema Registry, Apicurio) because event schema evolution needs the same rigor as REST API versioning",
+    "Do generate documentation alongside code because event-driven APIs are harder to discover than REST endpoints without proper documentation"
+  ],
+  "dos_zh": [
+    "采用规范优先方法，在实现生产者和消费者之前编写AsyncAPI文档，因为它作为团队契约",
+    "明确定义协议绑定，因为通用的通道描述会丢失分区策略和QoS级别等关键细节",
+    "版本化AsyncAPI规范并使用模式注册中心（Confluent Schema Registry、Apicurio），因为事件模式演进需要与REST API版本管理相同的严谨性",
+    "在代码同时生成文档，因为事件驱动API比REST端点更难发现，需要适当的文档支持"
+  ],
+  "donts": [
+    "Don't use AsyncAPI to describe synchronous request-response APIs because OpenAPI is the appropriate standard for that pattern",
+    "Don't skip message schema definitions because untyped event payloads cause silent consumer failures when producers evolve",
+    "Don't ignore channel naming conventions because inconsistent topic/queue names create confusion across teams and environments",
+    "Don't treat AsyncAPI as documentation only because its greatest value is in code generation and contract testing for event-driven systems"
+  ],
+  "donts_zh": [
+    "不要使用AsyncAPI描述同步请求-响应API，因为OpenAPI是该模式的适当标准",
+    "不要跳过消息模式定义，因为无类型的事件负载在生产者演进时会导致消费者静默失败",
+    "不要忽略通道命名约定，因为不一致的主题/队列名称会在团队和环境间造成混乱",
+    "不要仅将AsyncAPI视为文档，因为其最大价值在于事件驱动系统的代码生成和契约测试"
+  ],
+  "case_study_company": "Slack",
+  "case_study": "Slack adopted AsyncAPI to document its Events API and real-time messaging infrastructure that delivers billions of events daily. Before AsyncAPI, consumer teams relied on wiki pages and tribal knowledge to understand event schemas for workspace events (message.posted, channel.created, reaction.added). By standardizing on AsyncAPI 2.0 with JSON Schema payloads, Slack enabled automatic generation of type-safe event handlers in multiple languages and reduced event integration onboarding time for partner developers from weeks to days.",
+  "case_study_zh": "Slack采用AsyncAPI来文档化其每天投递数十亿事件的Events API和实时消息基础设施。在采用AsyncAPI之前，消费者团队依赖wiki页面和口口相传来理解工作区事件（message.posted、channel.created、reaction.added）的事件模式。通过标准化使用AsyncAPI 2.0和JSON Schema负载，Slack实现了多语言类型安全事件处理器的自动生成，并将合作伙伴开发者的事件集成上手时间从数周缩短至数天。",
+  "when_not_to_use": [
+    "Synchronous REST or GraphQL APIs where OpenAPI or the GraphQL schema already serves as the specification",
+    "Simple webhook integrations where a lightweight payload schema is sufficient without full AsyncAPI ceremony",
+    "Internal services with a single producer and consumer where direct schema sharing is simpler",
+    "Early prototyping phases where event schemas change so rapidly that maintaining the spec creates friction"
+  ],
+  "when_not_to_use_zh": [
+    "同步REST或GraphQL API，OpenAPI或GraphQL模式已作为规范",
+    "简单的webhook集成，轻量的负载模式已足够，不需要完整的AsyncAPI仪式",
+    "只有单个生产者和消费者的内部服务，直接模式共享更简单",
+    "早期原型阶段，事件模式变化太快，维护规范反而产生摩擦"
+  ],
+  "adopters": [
+    "Slack",
+    "Adidas",
+    "SAP",
+    "Salesforce",
+    "eBay"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "usability",
+    "maintainability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Mendez, F. (2017). \"AsyncAPI Specification\". asyncapi.com.",
+  "secondary_sources": [
+    "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 4. O'Reilly Media.",
+    "Hohpe, G. & Woolf, B. (2003). \"Enterprise Integration Patterns\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "webhook-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "openapi-specification",
+      "type": "complement"
+    },
+    {
+      "slug": "grpc-protocol-buffers",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/asyncapi",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/asyncapi.md"
+}

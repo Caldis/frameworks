@@ -1,0 +1,210 @@
+{
+  "id": 152,
+  "name": "Distributed Tracing",
+  "name_zh": "分布式追踪",
+  "slug": "distributed-tracing",
+  "category": "observability",
+  "desc": "Track requests across service boundaries to diagnose latency and failures in distributed systems",
+  "desc_zh": "跨服务边界追踪请求，诊断分布式系统中的延迟和故障",
+  "steps": [
+    "Generate a unique trace ID at the entry point (API gateway, load balancer) and propagate it through all downstream service calls via headers",
+    "Create spans for each meaningful operation: record service name, operation name, start time, duration, status code, and custom attributes",
+    "Propagate context across async boundaries: ensure trace context survives message queues, background jobs, and event-driven workflows",
+    "Send span data to a trace backend (Jaeger, Zipkin, Tempo) and build a service dependency graph from collected traces",
+    "Analyze trace waterfalls to identify latency bottlenecks, error propagation paths, and unexpected sequential calls that should be parallel"
+  ],
+  "steps_zh": [
+    "在入口点（API网关、负载均衡器）生成唯一Trace ID，并通过请求头将其传播到所有下游服务调用",
+    "为每个有意义的操作创建Span：记录服务名、操作名、开始时间、持续时间、状态码和自定义属性",
+    "跨异步边界传播上下文：确保追踪上下文在消息队列、后台任务和事件驱动工作流中不丢失",
+    "将Span数据发送到追踪后端（Jaeger、Zipkin、Tempo），并从收集的追踪中构建服务依赖图",
+    "分析追踪瀑布图以识别延迟瓶颈、错误传播路径和应当并行却意外串行的调用"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Trace ID",
+    "Spans",
+    "Async Context",
+    "Trace Backend",
+    "Waterfall Analysis"
+  ],
+  "viz_labels_zh": [
+    "追踪ID",
+    "Span",
+    "异步上下文",
+    "追踪后端",
+    "瀑布分析"
+  ],
+  "related": [
+    "opentelemetry",
+    "structured-logging",
+    "four-golden-signals",
+    "red-method",
+    "circuit-breaker-pattern"
+  ],
+  "tags": [
+    "observability",
+    "distributed-tracing",
+    "spans",
+    "trace-context",
+    "latency",
+    "microservices"
+  ],
+  "origin_author": "Benjamin H. Sigelman et al. (Google Dapper), 2010",
+  "origin_source": "Dapper, a Large-Scale Distributed Systems Tracing Infrastructure (Google Technical Report, 2010); Observability Engineering (Majors, Fong-Jones, Miranda, 2022)",
+  "origin_source_zh": "《Dapper：大规模分布式系统追踪基础设施》（Google技术报告，2010）；《可观测性工程》（Majors、Fong-Jones、Miranda，2022）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Microservice architectures where a single user request fans out across multiple services and databases",
+    "Diagnosing latency spikes that span multiple network hops and cannot be isolated to a single service",
+    "Understanding service dependencies and call patterns in complex distributed systems",
+    "Debugging intermittent failures that only occur under specific request paths or data combinations"
+  ],
+  "when_to_use_zh": [
+    "单个用户请求扇出到多个服务和数据库的微服务架构",
+    "诊断跨越多个网络跳数、无法隔离到单个服务的延迟峰值",
+    "理解复杂分布式系统中的服务依赖和调用模式",
+    "调试仅在特定请求路径或数据组合下出现的间歇性故障"
+  ],
+  "core_concepts": [
+    "Trace: A directed acyclic graph of spans representing the complete lifecycle of a request as it traverses multiple services",
+    "Span: A named, timed operation within a trace; each span records service, operation, duration, status, and parent span ID to form the tree structure",
+    "Context Propagation: The mechanism of passing trace ID and span ID across process boundaries via HTTP headers (W3C Trace Context, B3) or message metadata",
+    "Sampling: A strategy to reduce trace volume by collecting only a fraction of traces (head-based) or selectively retaining interesting traces (tail-based)",
+    "Trace Waterfall: A visualization showing the timeline of all spans in a trace, revealing sequential vs parallel execution, bottlenecks, and error locations"
+  ],
+  "core_concepts_zh": [
+    "Trace：由Span组成的有向无环图，代表请求在多个服务间传播的完整生命周期",
+    "Span：追踪中一个命名的、计时的操作；每个Span记录服务、操作、持续时间、状态和父Span ID以形成树形结构",
+    "上下文传播：通过HTTP头（W3C Trace Context、B3）或消息元数据在进程边界间传递Trace ID和Span ID的机制",
+    "采样：通过仅收集部分追踪（头部采样）或选择性保留有价值追踪（尾部采样）来减少追踪量的策略",
+    "追踪瀑布图：展示追踪中所有Span时间线的可视化，揭示串行与并行执行、瓶颈和错误位置"
+  ],
+  "timeline": [
+    [
+      "2010",
+      "Google publishes the Dapper paper describing their production distributed tracing system"
+    ],
+    [
+      "2012",
+      "Twitter open-sources Zipkin, the first widely adopted open-source distributed tracing system"
+    ],
+    [
+      "2015",
+      "Uber develops and open-sources Jaeger, a Dapper-inspired tracing system built for cloud-native scale"
+    ],
+    [
+      "2019",
+      "W3C Trace Context specification becomes a standard, enabling interoperable context propagation across vendors"
+    ],
+    [
+      "2022",
+      "Distributed tracing becomes table stakes in cloud-native observability; Grafana Tempo offers cost-effective trace storage"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2010",
+      "Google发表Dapper论文，描述其生产级分布式追踪系统"
+    ],
+    [
+      "2012",
+      "Twitter开源Zipkin，成为首个被广泛采用的开源分布式追踪系统"
+    ],
+    [
+      "2015",
+      "Uber开发并开源Jaeger，一个受Dapper启发、为云原生规模构建的追踪系统"
+    ],
+    [
+      "2019",
+      "W3C Trace Context规范成为标准，实现跨厂商的互操作上下文传播"
+    ],
+    [
+      "2022",
+      "分布式追踪成为云原生可观测性的标配；Grafana Tempo提供经济高效的追踪存储"
+    ]
+  ],
+  "dos": [
+    "Do propagate trace context through all communication channels including message queues, gRPC, and event buses, because broken context creates orphan spans",
+    "Do add business-relevant attributes to spans (user ID, order ID, feature flag variant) so traces become queryable by business dimensions",
+    "Do implement tail-based sampling in the collector to retain error traces and slow traces while dropping routine ones",
+    "Do set up service dependency maps derived from traces to maintain an always-current architecture diagram"
+  ],
+  "dos_zh": [
+    "务必通过所有通信通道（消息队列、gRPC、事件总线）传播追踪上下文，因为断裂的上下文会产生孤立Span",
+    "为Span添加业务相关属性（用户ID、订单ID、功能开关变体），使追踪可按业务维度查询",
+    "在采集器中实施尾部采样，保留错误追踪和慢追踪，丢弃常规追踪",
+    "基于追踪建立服务依赖图，维护始终最新的架构图"
+  ],
+  "donts": [
+    "Don't create a span for every function call, because excessive span granularity generates massive data volumes and obscures meaningful signals",
+    "Don't rely solely on head-based sampling at high rates, because it randomly discards error and slow traces that are most valuable for debugging",
+    "Don't forget to trace database queries and cache lookups, because they are often the largest contributors to request latency",
+    "Don't ignore trace data retention policies, because unbounded storage of high-cardinality trace data leads to runaway costs"
+  ],
+  "donts_zh": [
+    "不要为每个函数调用创建Span，因为过度的Span粒度会产生海量数据并淹没有意义的信号",
+    "不要仅依赖高比率的头部采样，因为它会随机丢弃对调试最有价值的错误和慢追踪",
+    "不要忘记对数据库查询和缓存查找进行追踪，因为它们往往是请求延迟的最大贡献者",
+    "不要忽视追踪数据保留策略，因为对高基数追踪数据的无限存储会导致成本失控"
+  ],
+  "case_study_company": "Uber",
+  "case_study": "Uber built Jaeger to trace requests across their 4,000+ microservices. Before Jaeger, debugging a failed ride request required manually correlating logs across dozens of services. With distributed tracing, engineers could visualize the complete request flow from the rider app through dispatch, pricing, driver matching, and payment services. Jaeger helped Uber reduce mean time to resolution (MTTR) for production incidents by over 60%, and the trace-derived service dependency graph became the single source of truth for their microservice architecture.",
+  "case_study_zh": "Uber构建了Jaeger来追踪跨4000多个微服务的请求。在Jaeger之前，调试失败的叫车请求需要手动关联数十个服务的日志。有了分布式追踪，工程师可以可视化从乘客应用到调度、定价、司机匹配和支付服务的完整请求流。Jaeger帮助Uber将生产事故的平均解决时间（MTTR）降低了60%以上，而追踪派生的服务依赖图成为其微服务架构的唯一事实来源。",
+  "when_not_to_use": [
+    "Monolithic applications where all request processing happens in a single process and a profiler provides better insight",
+    "Batch processing systems where request-oriented tracing does not align with the job-based execution model",
+    "Systems processing fewer than 100 requests per second where simple logging provides sufficient debugging context",
+    "Extremely latency-sensitive hot paths where the overhead of span creation and context propagation is unacceptable"
+  ],
+  "when_not_to_use_zh": [
+    "所有请求处理在单进程内完成的单体应用——性能分析器能提供更好的洞察",
+    "基于请求的追踪与基于任务的执行模型不匹配的批处理系统",
+    "每秒处理请求不足100个的系统——简单日志已能提供足够的调试上下文",
+    "Span创建和上下文传播开销不可接受的极端延迟敏感热路径"
+  ],
+  "adopters": [
+    "Uber",
+    "Netflix",
+    "Airbnb",
+    "Lyft",
+    "Datadog"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "observability",
+    "reliability",
+    "performance"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Sigelman, B.H. et al. (2010). \"Dapper, a Large-Scale Distributed Systems Tracing Infrastructure\". Google Technical Report.",
+  "secondary_sources": [
+    "Majors, C., Fong-Jones, L. & Miranda, G. (2022). \"Observability Engineering\". O'Reilly Media.",
+    "Shkuro, Y. (2019). \"Mastering Distributed Tracing\". Packt Publishing."
+  ],
+  "typed_relations": [
+    {
+      "slug": "opentelemetry",
+      "type": "complement"
+    },
+    {
+      "slug": "structured-logging",
+      "type": "complement"
+    },
+    {
+      "slug": "four-golden-signals",
+      "type": "complement"
+    },
+    {
+      "slug": "red-method",
+      "type": "complement"
+    },
+    {
+      "slug": "circuit-breaker-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/distributed-tracing",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/distributed-tracing.md"
+}

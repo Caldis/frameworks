@@ -1,0 +1,197 @@
+{
+  "id": 64,
+  "name": "CALMS Framework",
+  "name_zh": "CALMS框架",
+  "slug": "calms-framework",
+  "category": "deployment",
+  "desc": "Five DevOps pillars: Culture, Automation, Lean, Measurement, Sharing",
+  "desc_zh": "DevOps五大支柱：文化、自动化、精益、度量、共享",
+  "steps": [
+    "Culture: break down dev/ops silos, establish shared ownership and blameless post-mortems",
+    "Automation: automate build, test, deploy, and infrastructure provisioning pipelines",
+    "Lean: apply value-stream mapping to identify and eliminate workflow bottlenecks",
+    "Measurement: define and collect metrics across delivery, reliability, and business outcomes",
+    "Sharing: create internal knowledge bases, runbooks, and cross-team learning sessions"
+  ],
+  "steps_zh": [
+    "文化：打破开发/运维壁垒，建立共同责任制和无责任事后回顾机制",
+    "自动化：自动化构建、测试、部署及基础设施供应流水线",
+    "精益：运用价值流图识别并消除工作流程中的瓶颈",
+    "度量：定义并收集交付、可靠性和业务成果的指标",
+    "共享：建立内部知识库、运维手册，开展跨团队学习交流"
+  ],
+  "ai_relevant": false,
+  "viz_type": "radar",
+  "viz_labels": [
+    "Culture",
+    "Automation",
+    "Lean",
+    "Measurement",
+    "Sharing"
+  ],
+  "viz_labels_zh": [
+    "文化",
+    "自动化",
+    "精益",
+    "度量",
+    "分享"
+  ],
+  "related": [
+    "three-ways-devops",
+    "dora-metrics",
+    "team-topologies"
+  ],
+  "tags": [
+    "devops",
+    "culture",
+    "automation",
+    "lean",
+    "sharing"
+  ],
+  "origin_author": "Jez Humble & John Willis, 2010",
+  "origin_source": "Presented at DevOpsDays and refined in The DevOps Handbook (Gene Kim, Jez Humble, Patrick Debois, John Willis, 2016)",
+  "origin_source_zh": "在DevOpsDays上提出，后在《DevOps实践指南》（Gene Kim、Jez Humble、Patrick Debois、John Willis，2016）中完善",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Organizations beginning a DevOps adoption that need a holistic assessment framework beyond just tools",
+    "Teams evaluating their DevOps maturity across cultural, technical, and process dimensions",
+    "Change agents building a business case for DevOps transformation by identifying gaps in all five pillars",
+    "Post-incident reviews seeking root causes that span culture, process, and tooling rather than just technical failures"
+  ],
+  "when_to_use_zh": [
+    "开始DevOps采纳、需要超越工具层面进行全面评估的组织",
+    "在文化、技术和流程维度评估DevOps成熟度的团队",
+    "通过识别五大支柱差距为DevOps转型构建商业案例的变革推动者",
+    "寻求跨越文化、流程和工具层面而非仅技术故障的根因的事故后复盘"
+  ],
+  "core_concepts": [
+    "Culture: Fostering shared responsibility between development and operations through blameless post-mortems, joint on-call, and cross-functional team structures",
+    "Automation: Eliminating manual, error-prone processes in build, test, deployment, and infrastructure provisioning to increase speed and reliability",
+    "Lean: Applying lean manufacturing principles like value-stream mapping, WIP limits, and waste elimination to software delivery workflows",
+    "Measurement: Collecting and acting on metrics across delivery performance, system health, and business outcomes to enable data-driven decisions",
+    "Sharing: Breaking knowledge silos through internal tech talks, shared runbooks, post-incident reports, and cross-team collaboration tools"
+  ],
+  "core_concepts_zh": [
+    "文化：通过无责任事后复盘、联合值班和跨职能团队结构，培养开发和运维之间的共同责任意识",
+    "自动化：消除构建、测试、部署和基础设施供应中手动且容易出错的流程，以提高速度和可靠性",
+    "精益：将价值流图、在制品限制和消除浪费等精益制造原则应用于软件交付工作流",
+    "度量：收集并基于交付效能、系统健康和业务成果的指标采取行动，实现数据驱动的决策",
+    "共享：通过内部技术分享、共享运维手册、事故报告和跨团队协作工具打破知识壁垒"
+  ],
+  "timeline": [
+    [
+      "2008",
+      "Patrick Debois and Andrew Shafer discuss Agile Infrastructure at Agile 2008, planting the seeds of DevOps"
+    ],
+    [
+      "2009",
+      "First DevOpsDays conference held in Ghent, Belgium, establishing the DevOps movement"
+    ],
+    [
+      "2010",
+      "Jez Humble and John Willis articulate the CALMS acronym as a DevOps maturity assessment model"
+    ],
+    [
+      "2016",
+      "The DevOps Handbook published, formalizing CALMS alongside The Three Ways and other core practices"
+    ],
+    [
+      "2020",
+      "CALMS becomes the standard framework used by consultancies and enterprises for DevOps readiness assessments"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2008",
+      "Patrick Debois和Andrew Shafer在Agile 2008上讨论敏捷基础设施，播下DevOps的种子"
+    ],
+    [
+      "2009",
+      "首届DevOpsDays大会在比利时根特举行，确立DevOps运动"
+    ],
+    [
+      "2010",
+      "Jez Humble和John Willis提出CALMS缩写作为DevOps成熟度评估模型"
+    ],
+    [
+      "2016",
+      "《DevOps实践指南》出版，将CALMS与三步法等核心实践一同正式化"
+    ],
+    [
+      "2020",
+      "CALMS成为咨询公司和企业用于DevOps就绪评估的标准框架"
+    ]
+  ],
+  "dos": [
+    "Do start with Culture assessment before investing in tools, because automation without cultural change creates cargo-cult DevOps",
+    "Do measure both technical metrics (DORA) and cultural indicators (employee satisfaction, collaboration frequency) for a complete picture",
+    "Do treat the five pillars as interconnected rather than sequential, because weaknesses in one pillar undermine gains in others",
+    "Do use CALMS as a periodic health check rather than a one-time assessment, because organizational maturity evolves continuously"
+  ],
+  "dos_zh": [
+    "务必在投资工具前先评估文化，因为没有文化变革的自动化只会创造货物崇拜式的DevOps",
+    "务必同时衡量技术指标（DORA）和文化指标（员工满意度、协作频率）以获得完整画面",
+    "务必将五大支柱视为相互关联而非顺序执行，因为某一支柱的薄弱会削弱其他支柱的收益",
+    "务必将CALMS作为定期健康检查而非一次性评估，因为组织成熟度持续演进"
+  ],
+  "donts": [
+    "Don't reduce DevOps to just Automation while ignoring Culture and Sharing, because tools alone cannot solve collaboration problems",
+    "Don't implement blameless post-mortems in name only while still punishing engineers for incidents, because the hypocrisy destroys trust",
+    "Don't skip the Lean pillar, because without value-stream analysis you automate waste instead of eliminating it",
+    "Don't treat Sharing as optional documentation -- make it active knowledge transfer through pairing, rotations, and internal conferences"
+  ],
+  "donts_zh": [
+    "不要将DevOps简化为仅自动化而忽视文化和共享，因为工具本身无法解决协作问题",
+    "不要只在名义上实行无责任事后复盘而仍然惩罚工程师，因为这种虚伪会摧毁信任",
+    "不要跳过精益支柱，因为没有价值流分析你只会将浪费自动化而非消除它",
+    "不要将共享视为可选的文档——通过结对、轮岗和内部会议进行主动知识传递"
+  ],
+  "case_study_company": "ING Bank",
+  "case_study": "ING Bank Netherlands used the CALMS framework to guide their large-scale agile and DevOps transformation starting in 2015. They reorganized 3,500 employees into cross-functional squads and tribes (Culture), built a unified CI/CD platform (Automation), adopted Kanban boards with WIP limits (Lean), implemented DORA metrics dashboards (Measurement), and created an internal engineering blog and guild system (Sharing). Within three years, their release cycle went from quarterly to multiple times per day.",
+  "case_study_zh": "ING银行荷兰分行从2015年开始使用CALMS框架指导其大规模敏捷与DevOps转型。他们将3500名员工重组为跨职能小队和部落（文化），构建了统一的CI/CD平台（自动化），采用带在制品限制的看板（精益），实施DORA指标仪表盘（度量），并创建了内部工程博客和公会系统（共享）。在三年内，其发布周期从季度缩短到每天多次。",
+  "when_not_to_use": [
+    "Organizations looking for a purely technical deployment framework rather than an organizational change model",
+    "Teams that need specific prescriptive practices rather than a high-level assessment framework",
+    "Environments where leadership is unwilling to address cultural issues and only wants tool-level changes",
+    "Very small teams (2-3 people) where silos don't exist and formal frameworks add unnecessary overhead"
+  ],
+  "when_not_to_use_zh": [
+    "寻求纯技术部署框架而非组织变革模型的组织",
+    "需要具体规定性实践而非高级别评估框架的团队",
+    "领导层不愿解决文化问题、只想进行工具层面变更的环境",
+    "壁垒不存在、正式框架增加不必要开销的极小团队（2-3人）"
+  ],
+  "adopters": [
+    "ING Bank",
+    "Target",
+    "Ticketmaster",
+    "Nordstrom",
+    "Nationwide Insurance"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Jez Humble and John Willis (2010). \"CALMS Framework\". Presented at DevOpsDays.",
+  "secondary_sources": [
+    "Gene Kim, Jez Humble, Patrick Debois, and John Willis (2016). \"The DevOps Handbook\". IT Revolution Press.",
+    "Patrick Debois (2009). \"DevOpsDays Ghent: Agile System Administration\". devopsdays.org."
+  ],
+  "typed_relations": [
+    {
+      "slug": "three-ways-devops",
+      "type": "complement"
+    },
+    {
+      "slug": "dora-metrics",
+      "type": "complement"
+    },
+    {
+      "slug": "team-topologies",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/calms-framework",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/calms-framework.md"
+}

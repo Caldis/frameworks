@@ -1,0 +1,31 @@
+{
+  "status": "operational",
+  "service": "SDFrame static site and read API",
+  "generated_at": "2026-05-09T12:42:27.120Z",
+  "components": [
+    {
+      "name": "Homepage",
+      "status": "operational",
+      "url": "https://sdframe.caldis.me"
+    },
+    {
+      "name": "Static JSON API",
+      "status": "operational",
+      "url": "https://sdframe.caldis.me/api/frameworks.json"
+    },
+    {
+      "name": "Skill package",
+      "status": "operational",
+      "url": "https://sdframe.caldis.me/skill/SKILL.md"
+    },
+    {
+      "name": "OpenAPI description",
+      "status": "operational",
+      "url": "https://sdframe.caldis.me/openapi.json"
+    }
+  ],
+  "rate_limits": {
+    "policy": "No API key is required. The API is static and CDN-backed; clients should cache responses and avoid repeated bulk fetches.",
+    "retry": "For transient 404 or 5xx responses from the static host, retry with exponential backoff after 5 seconds, then 30 seconds, then 2 minutes."
+  }
+}

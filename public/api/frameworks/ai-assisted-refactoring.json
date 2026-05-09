@@ -1,0 +1,194 @@
+{
+  "id": 83,
+  "name": "AI-Assisted Refactoring",
+  "name_zh": "AI 辅助重构",
+  "slug": "ai-assisted-refactoring",
+  "category": "evolution",
+  "desc": "Use LLMs to identify, plan, and execute code refactoring at scale",
+  "desc_zh": "利用大语言模型规模化识别、规划和执行代码重构",
+  "steps": [
+    "Feed the target codebase to an LLM and prompt it to identify code smells, duplication, and anti-patterns",
+    "Generate a prioritized refactoring backlog with risk assessments and estimated effort from LLM output",
+    "Use LLM-generated diffs or code completions for each refactoring task, reviewed by engineers",
+    "Run the full test suite and fitness functions after each AI-generated change to catch regressions",
+    "Track refactoring velocity and code quality metrics over time to measure AI-assistance ROI"
+  ],
+  "steps_zh": [
+    "将目标代码库输入 LLM，提示其识别代码异味、重复和反模式",
+    "根据 LLM 输出，生成带有风险评估和工作量估算的优先级重构待办清单",
+    "使用 LLM 生成的差异或代码补全完成每项重构任务，并由工程师审查",
+    "每次 AI 生成变更后运行完整测试套件和适应度函数，捕捉回归问题",
+    "持续追踪重构速度和代码质量指标，量化 AI 辅助的投入产出比"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Analyze",
+    "Suggest",
+    "Apply",
+    "Verify"
+  ],
+  "viz_labels_zh": [
+    "分析代码",
+    "AI建议",
+    "应用变更",
+    "验证"
+  ],
+  "related": [
+    "mikado-method",
+    "technical-debt-quadrant",
+    "ai-pair-programming"
+  ],
+  "tags": [
+    "ai-refactoring",
+    "code-quality",
+    "llm",
+    "automation"
+  ],
+  "origin_author": "Industry practice, 2022",
+  "origin_source": "Emerged from GitHub Copilot, ChatGPT, and large-scale LLM adoption in software engineering",
+  "origin_source_zh": "源自 GitHub Copilot、ChatGPT 及大语言模型在软件工程中的大规模应用",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "A large legacy codebase with thousands of similar code smells that are tedious to fix manually",
+    "Migrating framework versions (e.g., React class components to hooks) across hundreds of files",
+    "Standardizing coding patterns across a monorepo with contributions from multiple teams",
+    "Identifying and eliminating dead code, unused imports, or deprecated API calls at scale"
+  ],
+  "when_to_use_zh": [
+    "大型遗留代码库中有数千个相似的代码异味，手动修复过于繁琐",
+    "跨数百个文件迁移框架版本（如 React 类组件迁移至 Hooks）",
+    "在多团队贡献的单仓库中标准化编码模式",
+    "规模化识别和消除死代码、未使用导入或已弃用 API 调用"
+  ],
+  "core_concepts": [
+    "LLM-driven code analysis: Using large language models to scan codebases for patterns, smells, and improvement opportunities",
+    "AI-generated diffs: LLMs produce specific code changes (diffs) that engineers review before merging",
+    "Human-in-the-loop: Every AI-generated change must be reviewed by a human engineer for correctness and intent",
+    "Test-guarded refactoring: The existing test suite and fitness functions serve as a safety net for AI-generated changes",
+    "Batch refactoring: Applying the same LLM-driven transformation across many files simultaneously for economies of scale"
+  ],
+  "core_concepts_zh": [
+    "LLM 驱动的代码分析：使用大语言模型扫描代码库，识别模式、异味和改进机会",
+    "AI 生成的差异：LLM 生成具体的代码变更（diff），由工程师审查后合并",
+    "人在回路中：每个 AI 生成的变更必须由人类工程师审查其正确性和意图",
+    "测试保障重构：现有测试套件和适应度函数作为 AI 生成变更的安全网",
+    "批量重构：将相同的 LLM 驱动转换同时应用于多个文件，实现规模效益"
+  ],
+  "timeline": [
+    [
+      "2021",
+      "GitHub Copilot technical preview launches, enabling AI-assisted code completion"
+    ],
+    [
+      "2022",
+      "ChatGPT release sparks widespread exploration of LLMs for code refactoring tasks"
+    ],
+    [
+      "2023",
+      "Tools like Sourcegraph Cody and Amazon CodeWhisperer add refactoring-specific capabilities"
+    ],
+    [
+      "2024",
+      "Large enterprises report using AI agents for automated codemod generation and tech debt reduction"
+    ],
+    [
+      "2025",
+      "Claude Code, Cursor, and similar tools enable agentic multi-file refactoring workflows"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2021",
+      "GitHub Copilot 技术预览版发布，实现 AI 辅助代码补全"
+    ],
+    [
+      "2022",
+      "ChatGPT 的发布引发了将 LLM 用于代码重构任务的广泛探索"
+    ],
+    [
+      "2023",
+      "Sourcegraph Cody 和 Amazon CodeWhisperer 等工具增加了重构专属功能"
+    ],
+    [
+      "2024",
+      "大型企业报告使用 AI 智能体进行自动化 codemod 生成和技术债务削减"
+    ],
+    [
+      "2025",
+      "Claude Code、Cursor 等工具实现了智能体式多文件重构工作流"
+    ]
+  ],
+  "dos": [
+    "Always run the full test suite after every AI-generated change — never merge untested AI output",
+    "Start with mechanical, pattern-based refactorings (renames, import updates) where LLMs are most reliable",
+    "Use AI to generate the initial diff, then have engineers refine it — not the other way around",
+    "Track before/after code quality metrics to quantify the ROI of AI-assisted refactoring"
+  ],
+  "dos_zh": [
+    "每次 AI 生成变更后始终运行完整测试套件——绝不合并未经测试的 AI 输出",
+    "从机械的、基于模式的重构（重命名、导入更新）开始，这是 LLM 最可靠的领域",
+    "用 AI 生成初始差异，再由工程师精修——而非反过来",
+    "追踪重构前后的代码质量指标，量化 AI 辅助重构的投入产出比"
+  ],
+  "donts": [
+    "Don't blindly merge AI-generated code without human review — LLMs can introduce subtle bugs",
+    "Don't use AI refactoring on code without test coverage — there's no safety net to catch regressions",
+    "Don't attempt complex architectural refactoring (e.g., extracting microservices) via AI alone",
+    "Don't ignore the context window limitation — LLMs may miss dependencies outside their visible scope"
+  ],
+  "donts_zh": [
+    "不要在没有人工审查的情况下盲目合并 AI 生成的代码——LLM 可能引入微妙的 bug",
+    "不要在没有测试覆盖的代码上使用 AI 重构——没有安全网来捕获回归",
+    "不要试图仅通过 AI 完成复杂的架构重构（如提取微服务）",
+    "不要忽视上下文窗口限制——LLM 可能遗漏其可见范围之外的依赖"
+  ],
+  "case_study_company": "Google",
+  "case_study": "Google has used large-scale automated refactoring tooling (Rosie, part of their internal code analysis system) for over a decade. With the advent of LLMs, they integrated AI-assisted code transformation into their internal toolchain to handle migrations like API deprecations and style standardizations across their multi-billion-line monorepo. AI-generated changelists are reviewed by engineers and must pass all automated tests before submission, enabling them to complete refactorings that would previously take months in a fraction of the time.",
+  "case_study_zh": "Google 十多年来一直使用大规模自动化重构工具（Rosie，其内部代码分析系统的一部分）。随着 LLM 的出现，他们将 AI 辅助代码转换集成到内部工具链中，用于处理数十亿行单仓库中的 API 弃用和风格标准化等迁移任务。AI 生成的变更列表由工程师审查，且必须通过所有自动化测试后才能提交，使他们能够在以前需要数月的时间内完成重构。",
+  "when_not_to_use": [
+    "Security-critical code where AI-introduced subtle bugs could have catastrophic consequences",
+    "Codebases with zero or near-zero test coverage — there is no safety net for AI changes",
+    "One-off refactorings that are faster to do manually than to set up an AI pipeline",
+    "Performance-critical hot paths where AI-generated code may not meet stringent optimization requirements"
+  ],
+  "when_not_to_use_zh": [
+    "安全关键代码，AI 引入的微妙 bug 可能造成灾难性后果",
+    "测试覆盖率为零或接近于零的代码库——AI 变更没有安全网",
+    "一次性的重构，手动完成比搭建 AI 管线更快",
+    "性能关键的热路径，AI 生成的代码可能无法满足严格的优化要求"
+  ],
+  "adopters": [
+    "Google",
+    "Meta",
+    "Shopify",
+    "Sourcegraph",
+    "Uber"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "GitHub (2021). \"GitHub Copilot: Your AI Pair Programmer\". github.com/features/copilot.",
+  "secondary_sources": [
+    "Mark Chen et al. (2021). \"Evaluating Large Language Models Trained on Code (Codex)\". arXiv:2107.03374.",
+    "Martin Fowler (2018). \"Refactoring: Improving the Design of Existing Code, 2nd Edition\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "mikado-method",
+      "type": "complement"
+    },
+    {
+      "slug": "technical-debt-quadrant",
+      "type": "complement"
+    },
+    {
+      "slug": "ai-pair-programming",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/ai-assisted-refactoring",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/ai-assisted-refactoring.md"
+}

@@ -1,0 +1,195 @@
+{
+  "id": 127,
+  "name": "Gossip Protocol",
+  "name_zh": "Gossip协议",
+  "slug": "gossip-protocol",
+  "category": "distributed",
+  "desc": "Epidemic-style information dissemination for decentralized cluster communication",
+  "desc_zh": "以流行病传播方式在去中心化集群中进行信息扩散",
+  "steps": [
+    "Bootstrap the protocol: each node maintains a partial membership list of known peers and seeds the list from a configuration file or DNS-based discovery",
+    "Select gossip targets: at each gossip interval (e.g., every 1 second), each node randomly selects a fixed number of peers (fanout, typically 2-3) to exchange state with",
+    "Exchange state digests: nodes send compact digests of their known state (version vectors, heartbeat counters, or Bloom filters) to detect what the peer is missing",
+    "Reconcile differences: after comparing digests, nodes exchange only the delta — new or updated entries — bringing both nodes closer to a shared view of the cluster",
+    "Detect failures: use the accumulated heartbeat information to mark nodes as suspected or confirmed down after a configurable number of missed gossip rounds"
+  ],
+  "steps_zh": [
+    "引导协议：每个节点维护已知对等节点的部分成员列表，从配置文件或基于DNS的发现初始化该列表",
+    "选择gossip目标：在每个gossip间隔（如每1秒），每个节点随机选择固定数量的对等节点（扇出，通常2-3个）进行状态交换",
+    "交换状态摘要：节点发送其已知状态的紧凑摘要（版本向量、心跳计数器或布隆过滤器）以检测对方缺少的内容",
+    "协调差异：比较摘要后，节点仅交换增量——新的或更新的条目——使两个节点更接近集群的共享视图",
+    "检测故障：使用累积的心跳信息，在可配置数量的gossip轮次未收到响应后将节点标记为疑似或确认宕机"
+  ],
+  "ai_relevant": false,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Membership List",
+    "Gossip Targets",
+    "State Digest",
+    "Delta Reconcile",
+    "Failure Detect"
+  ],
+  "viz_labels_zh": [
+    "成员列表",
+    "Gossip目标",
+    "状态摘要",
+    "差量同步",
+    "故障检测"
+  ],
+  "related": [
+    "consistent-hashing",
+    "eventual-consistency",
+    "leader-election"
+  ],
+  "tags": [
+    "membership",
+    "failure-detection",
+    "decentralized",
+    "epidemic"
+  ],
+  "origin_author": "Alan Demers, Dan Greene, Carl Hauser, et al. (Xerox PARC, 1987)",
+  "origin_source": "Epidemic Algorithms for Replicated Database Maintenance (ACM PODC 1987); Kleppmann, Designing Data-Intensive Applications, Ch. 5; van Renesse et al., Efficient Reconciliation and Flow Control for Anti-Entropy Protocols (2008)",
+  "origin_source_zh": "《复制数据库维护的流行病算法》（ACM PODC 1987）；Kleppmann《数据密集型应用系统设计》第5章；van Renesse等《反熵协议的高效协调与流控》（2008）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When cluster membership information must propagate to all nodes without a centralized membership service",
+    "When the system needs a decentralized failure detector that works without a single point of failure",
+    "When metadata (configuration, schema versions, feature flags) must eventually reach all nodes in a large cluster",
+    "When building peer-to-peer systems where no node has a privileged role and information must spread organically"
+  ],
+  "when_to_use_zh": [
+    "当集群成员信息必须在没有集中式成员服务的情况下传播到所有节点时",
+    "当系统需要无单点故障的去中心化故障检测器时",
+    "当元数据（配置、模式版本、特性开关）必须最终到达大型集群中的所有节点时",
+    "当构建没有特权角色节点、信息必须有机扩散的点对点系统时"
+  ],
+  "core_concepts": [
+    "Epidemic dissemination: Information spreads like a disease — each informed node infects a few others per round, achieving O(log N) convergence time for N nodes",
+    "Fanout: The number of random peers each node contacts per gossip round; higher fanout speeds convergence but increases network traffic",
+    "Cramer-von Mises convergence: Mathematical guarantee that all nodes receive the update with high probability after O(log N) rounds with constant fanout",
+    "SWIM protocol: Scalable Weakly-consistent Infection-style Membership protocol that combines gossip with direct and indirect probes for efficient failure detection",
+    "Anti-entropy: A complementary mechanism where nodes periodically do full state reconciliation (using Merkle trees) to repair any inconsistencies that gossip missed"
+  ],
+  "core_concepts_zh": [
+    "流行病扩散：信息像疾病一样传播——每轮中每个已知节点感染几个其他节点，对N个节点实现O(log N)的收敛时间",
+    "扇出：每轮gossip中每个节点联系的随机对等节点数量；更高的扇出加快收敛但增加网络流量",
+    "收敛保证：数学上保证在常数扇出下经过O(log N)轮后所有节点以高概率接收到更新",
+    "SWIM协议：可扩展弱一致感染式成员协议，将gossip与直接和间接探测结合以实现高效的故障检测",
+    "反熵：补充机制，节点定期进行完整的状态协调（使用Merkle树）以修复gossip遗漏的任何不一致"
+  ],
+  "timeline": [
+    [
+      "1987",
+      "Demers et al. at Xerox PARC publish Epidemic Algorithms for Replicated Database Maintenance"
+    ],
+    [
+      "2002",
+      "Das, Gupta, and Muthukrishnan introduce SWIM, a gossip-based membership protocol used in many modern systems"
+    ],
+    [
+      "2007",
+      "Amazon's Dynamo paper describes using gossip for membership and failure detection in production"
+    ],
+    [
+      "2012",
+      "HashiCorp's Serf and later Consul adopt SWIM-based gossip (memberlist library) for cluster membership"
+    ],
+    [
+      "2017",
+      "Kleppmann's DDIA contextualizes gossip protocols within the broader landscape of distributed systems primitives"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1987",
+      "Xerox PARC的Demers等人发表「复制数据库维护的流行病算法」"
+    ],
+    [
+      "2002",
+      "Das、Gupta和Muthukrishnan提出SWIM，一种被许多现代系统使用的基于gossip的成员协议"
+    ],
+    [
+      "2007",
+      "Amazon的Dynamo论文描述在生产环境中使用gossip进行成员管理和故障检测"
+    ],
+    [
+      "2012",
+      "HashiCorp的Serf和后来的Consul采用基于SWIM的gossip（memberlist库）进行集群成员管理"
+    ],
+    [
+      "2017",
+      "Kleppmann的《数据密集型应用系统设计》将gossip协议置于分布式系统原语的更广阔背景中进行介绍"
+    ]
+  ],
+  "dos": [
+    "Do tune the gossip interval and fanout based on cluster size because defaults optimized for 10 nodes may not work for 10,000 nodes",
+    "Do use compact state digests (Bloom filters, version vectors) because sending full state on every gossip round wastes bandwidth at scale",
+    "Do combine gossip with anti-entropy reconciliation because gossip alone can leave a small probability of nodes missing updates indefinitely",
+    "Do implement suspicion mechanisms (like SWIM's indirect probe) because immediately marking a node as dead on one missed heartbeat leads to flapping"
+  ],
+  "dos_zh": [
+    "根据集群大小调整gossip间隔和扇出，因为针对10个节点优化的默认值可能不适用于10000个节点",
+    "使用紧凑的状态摘要（布隆过滤器、版本向量），因为每轮gossip发送完整状态在大规模下浪费带宽",
+    "将gossip与反熵协调结合，因为仅靠gossip可能留下节点无限期遗漏更新的小概率",
+    "实现怀疑机制（如SWIM的间接探测），因为一次心跳缺失就将节点标记为宕机会导致状态抖动"
+  ],
+  "donts": [
+    "Don't use gossip for data that requires strong consistency because gossip provides only eventual convergence with no ordering guarantees",
+    "Don't set the gossip interval too aggressively in large clusters because the O(N * fanout) messages per interval can create significant network overhead",
+    "Don't assume gossip propagation is instantaneous because in a 1000-node cluster with 1-second intervals, full propagation may take 10+ seconds",
+    "Don't gossip large payloads (e.g., entire database snapshots) because gossip is designed for small metadata, not bulk data transfer"
+  ],
+  "donts_zh": [
+    "不要将gossip用于需要强一致性的数据，因为gossip仅提供最终收敛且没有排序保证",
+    "不要在大型集群中设置过于激进的gossip间隔，因为每个间隔O(N * fanout)条消息会产生显著的网络开销",
+    "不要假设gossip传播是即时的，在1000个节点1秒间隔的集群中，完全传播可能需要10秒以上",
+    "不要通过gossip传播大型负载（如完整数据库快照），因为gossip设计用于小型元数据而非批量数据传输"
+  ],
+  "case_study_company": "Apache Cassandra",
+  "case_study": "Apache Cassandra uses a gossip protocol for cluster membership, failure detection, and schema dissemination. Every second, each Cassandra node selects up to three peers to exchange gossip state, including heartbeat counters, datacenter/rack topology, schema versions, and load information. This decentralized approach means Cassandra has no single point of failure for cluster coordination — any node can serve as a contact point for clients. When a node fails, gossip-based failure detection (using a phi-accrual failure detector built on gossip heartbeats) propagates the failure information across the cluster within seconds, allowing the remaining nodes to take over the failed node's token ranges without a centralized coordinator.",
+  "case_study_zh": "Apache Cassandra使用gossip协议进行集群成员管理、故障检测和模式传播。每秒钟，每个Cassandra节点选择最多三个对等节点交换gossip状态，包括心跳计数器、数据中心/机架拓扑、模式版本和负载信息。这种去中心化方法意味着Cassandra在集群协调上没有单点故障——任何节点都可以作为客户端的联系点。当节点故障时，基于gossip的故障检测（使用构建在gossip心跳上的phi累积故障检测器）在数秒内将故障信息传播到整个集群，使剩余节点无需集中式协调器即可接管故障节点的令牌范围。",
+  "when_not_to_use": [
+    "When strong consistency and total ordering of events is required, because gossip provides only best-effort dissemination",
+    "Small clusters (under 5 nodes) where a centralized membership service is simpler and equally reliable",
+    "When propagation latency must be bounded and deterministic, because gossip convergence is probabilistic"
+  ],
+  "when_not_to_use_zh": [
+    "当需要强一致性和事件全序时，因为gossip仅提供尽力而为的信息扩散",
+    "小型集群（少于5个节点），集中式成员服务更简单且同样可靠",
+    "当传播延迟必须有界和确定性时，因为gossip的收敛是概率性的"
+  ],
+  "adopters": [
+    "Apache Cassandra",
+    "HashiCorp Consul",
+    "Amazon DynamoDB",
+    "ScyllaDB",
+    "Redis Cluster"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "scalability",
+    "reliability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Demers, A., Greene, D., Hauser, C. et al. (1987). \"Epidemic Algorithms for Replicated Database Maintenance\". Proceedings of ACM PODC.",
+  "secondary_sources": [
+    "van Renesse, R., Minsky, Y. & Hayden, M. (2008). \"Efficient Reconciliation and Flow Control for Anti-Entropy Protocols\". Cornell University.",
+    "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 5. O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "consistent-hashing",
+      "type": "complement"
+    },
+    {
+      "slug": "eventual-consistency",
+      "type": "extends"
+    },
+    {
+      "slug": "leader-election",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/gossip-protocol",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/gossip-protocol.md"
+}

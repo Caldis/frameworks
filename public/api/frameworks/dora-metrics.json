@@ -1,0 +1,195 @@
+{
+  "id": 63,
+  "name": "DORA Metrics",
+  "name_zh": "DORA指标",
+  "slug": "dora-metrics",
+  "category": "deployment",
+  "desc": "Four elite metrics measuring software delivery performance",
+  "desc_zh": "衡量软件交付效能的四项精英指标",
+  "steps": [
+    "Instrument CI/CD pipelines to capture Deployment Frequency per environment",
+    "Track Lead Time for Changes from first commit to production deployment",
+    "Measure Change Failure Rate as the percentage of deployments causing incidents",
+    "Record Mean Time to Restore (MTTR) from incident detection to full recovery",
+    "Benchmark against DORA elite/high/medium/low tiers and set quarterly improvement targets"
+  ],
+  "steps_zh": [
+    "在CI/CD流水线中埋点，采集每个环境的部署频率",
+    "跟踪从首次提交到生产部署的变更前置时间",
+    "以导致故障的部署比例衡量变更失败率",
+    "记录从故障检测到完全恢复的平均修复时间（MTTR）",
+    "对照DORA精英/高/中/低等级进行基准对比，制定季度改进目标"
+  ],
+  "ai_relevant": false,
+  "viz_type": "radar",
+  "viz_labels": [
+    "Deploy Freq",
+    "Lead Time",
+    "MTTR",
+    "Change Fail Rate"
+  ],
+  "viz_labels_zh": [
+    "部署频率",
+    "交付前置时间",
+    "故障恢复时间",
+    "变更失败率"
+  ],
+  "related": [
+    "three-ways-devops",
+    "calms-framework",
+    "sli-slo-sla"
+  ],
+  "tags": [
+    "dora",
+    "delivery-performance",
+    "metrics",
+    "devops"
+  ],
+  "origin_author": "Nicole Forsgren, Jez Humble, Gene Kim, 2018",
+  "origin_source": "Accelerate: The Science of Lean Software and DevOps (2018); State of DevOps Reports by DORA team (2014-present)",
+  "origin_source_zh": "《Accelerate：精益软件与DevOps的科学》（2018）；DORA团队的DevOps现状报告（2014年至今）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Organizations seeking data-driven insights into their software delivery performance",
+    "Teams starting a DevOps transformation that need objective baselines and measurable improvement targets",
+    "Engineering leadership communicating delivery health to business stakeholders with standardized benchmarks",
+    "Continuous improvement programs that need quantifiable evidence of process changes' impact"
+  ],
+  "when_to_use_zh": [
+    "寻求数据驱动洞察其软件交付效能的组织",
+    "启动DevOps转型、需要客观基线和可衡量改进目标的团队",
+    "工程领导层使用标准化基准向业务相关方沟通交付健康状况",
+    "需要量化证据证明流程变更影响的持续改进计划"
+  ],
+  "core_concepts": [
+    "Deployment Frequency: How often code is deployed to production, reflecting the team's ability to deliver small, frequent batches of value",
+    "Lead Time for Changes: The elapsed time from code commit to production deployment, measuring the efficiency of the delivery pipeline",
+    "Change Failure Rate: The percentage of deployments that cause a failure in production, indicating the quality and stability of releases",
+    "Mean Time to Restore (MTTR): How quickly the team can recover from a production failure, reflecting operational resilience and incident response maturity",
+    "Elite Performance: DORA research shows elite performers deploy on-demand, with lead times under one hour, change failure rates below 5%, and MTTR under one hour"
+  ],
+  "core_concepts_zh": [
+    "部署频率：代码部署到生产环境的频率，反映团队以小批量频繁交付价值的能力",
+    "变更前置时间：从代码提交到生产部署的耗时，衡量交付流水线的效率",
+    "变更失败率：导致生产故障的部署百分比，指示发布的质量和稳定性",
+    "平均恢复时间（MTTR）：团队从生产故障中恢复的速度，反映运维韧性和事故响应成熟度",
+    "精英表现：DORA研究表明精英级团队按需部署，前置时间低于一小时，变更失败率低于5%，MTTR低于一小时"
+  ],
+  "timeline": [
+    [
+      "2014",
+      "Nicole Forsgren and Jez Humble publish the first State of DevOps Report with Puppet Labs, identifying key delivery metrics"
+    ],
+    [
+      "2018",
+      "Forsgren, Humble, and Kim publish Accelerate, establishing the four key metrics with rigorous statistical research"
+    ],
+    [
+      "2019",
+      "Google acquires DORA and integrates the research program into Google Cloud"
+    ],
+    [
+      "2021",
+      "DORA adds a fifth metric, Reliability, to the annual State of DevOps Report"
+    ],
+    [
+      "2023",
+      "DORA metrics become the industry standard for DevOps maturity assessment, with tooling from Sleuth, LinearB, Jellyfish, and Faros AI"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2014",
+      "Nicole Forsgren和Jez Humble与Puppet Labs发布首份DevOps现状报告，识别关键交付指标"
+    ],
+    [
+      "2018",
+      "Forsgren、Humble和Kim出版《Accelerate》，通过严谨统计研究确立四大关键指标"
+    ],
+    [
+      "2019",
+      "Google收购DORA并将研究计划整合到Google Cloud"
+    ],
+    [
+      "2021",
+      "DORA在年度DevOps现状报告中新增第五个指标——可靠性"
+    ],
+    [
+      "2023",
+      "DORA指标成为DevOps成熟度评估的行业标准，Sleuth、LinearB、Jellyfish和Faros AI等提供配套工具"
+    ]
+  ],
+  "dos": [
+    "Do measure all four metrics together as a balanced scorecard, because optimizing one in isolation leads to dysfunction",
+    "Do automate metric collection from CI/CD systems and incident management tools to ensure accuracy and reduce manual reporting burden",
+    "Do use metrics as team-level improvement signals rather than individual performance evaluations, because punitive use destroys psychological safety",
+    "Do benchmark against your own historical trends first before comparing to industry tiers, because context matters more than absolute numbers"
+  ],
+  "dos_zh": [
+    "务必将四个指标作为平衡记分卡一起衡量，因为孤立优化某一项会导致失衡",
+    "务必从CI/CD系统和事故管理工具自动采集指标，以确保准确性并减少手动报告负担",
+    "务必将指标用作团队级改进信号而非个人绩效评估，因为惩罚性使用会摧毁心理安全感",
+    "务必先与自身历史趋势对标，再与行业等级比较，因为上下文比绝对数字更重要"
+  ],
+  "donts": [
+    "Don't use DORA metrics as a weapon to compare or rank teams competitively, because this incentivizes gaming the metrics rather than genuine improvement",
+    "Don't rely on self-reported surveys when automated instrumentation is available, because subjective estimates are consistently inaccurate",
+    "Don't set arbitrary DORA tier targets without understanding current constraints, because unrealistic goals demoralize teams",
+    "Don't ignore the correlation between metrics -- high deployment frequency with high change failure rate signals systemic quality issues"
+  ],
+  "donts_zh": [
+    "不要将DORA指标作为竞争性比较或排名团队的武器，因为这会激励注水指标而非真正改进",
+    "不要在可自动化采集时依赖自我报告的调查，因为主观估计始终不准确",
+    "不要在不了解当前约束的情况下设定任意DORA等级目标，因为不切实际的目标会打击团队士气",
+    "不要忽视指标间的关联——高部署频率加上高变更失败率意味着系统性质量问题"
+  ],
+  "case_study_company": "Spotify",
+  "case_study": "Spotify adopted DORA metrics across its 200+ autonomous squads to create a unified language for delivery performance without imposing top-down mandates. Each squad tracks their own four metrics on internal dashboards and uses them to identify bottlenecks during retrospectives. Over two years, squads that actively tracked DORA metrics improved their lead time by an average of 45% and reduced change failure rates by 30%.",
+  "case_study_zh": "Spotify在其200多个自治小队中采用DORA指标，在不施加自上而下强制要求的情况下创建统一的交付效能语言。每个小队在内部仪表盘上跟踪自己的四项指标，并在回顾中使用它们识别瓶颈。在两年内，积极跟踪DORA指标的小队平均将前置时间缩短45%，变更失败率降低30%。",
+  "when_not_to_use": [
+    "Very early-stage startups where optimizing delivery metrics is premature compared to finding product-market fit",
+    "Hardware or embedded systems with fundamentally different release cadences where daily deployment is physically impossible",
+    "Organizations that will weaponize the metrics for punitive team comparisons rather than improvement",
+    "One-time delivery projects where ongoing delivery metrics have no long-term value"
+  ],
+  "when_not_to_use_zh": [
+    "极早期创业公司——与寻找产品市场契合度相比，优化交付指标为时过早",
+    "发布节奏根本不同、每日部署在物理上不可能的硬件或嵌入式系统",
+    "会将指标武器化用于惩罚性团队比较而非改进的组织",
+    "持续交付指标没有长期价值的一次性交付项目"
+  ],
+  "adopters": [
+    "Spotify",
+    "Google",
+    "Microsoft",
+    "Capital One",
+    "Target"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "reliability",
+    "performance"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Nicole Forsgren, Jez Humble, and Gene Kim (2018). \"Accelerate: The Science of Lean Software and DevOps\". IT Revolution Press.",
+  "secondary_sources": [
+    "DORA Team (2019). \"State of DevOps Report\". cloud.google.com/devops.",
+    "Nicole Forsgren et al. (2021). \"The SPACE of Developer Productivity\". ACM Queue, 19(1)."
+  ],
+  "typed_relations": [
+    {
+      "slug": "three-ways-devops",
+      "type": "complement"
+    },
+    {
+      "slug": "calms-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "sli-slo-sla",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/dora-metrics",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/dora-metrics.md"
+}

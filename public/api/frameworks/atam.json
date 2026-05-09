@@ -1,0 +1,195 @@
+{
+  "id": 16,
+  "name": "Architecture Tradeoff Analysis Method (ATAM)",
+  "name_zh": "架构权衡分析法",
+  "slug": "atam",
+  "category": "architecture",
+  "desc": "Structured method to evaluate architecture against quality goals",
+  "desc_zh": "系统评估架构对质量目标的结构化分析方法",
+  "steps": [
+    "Present the ATAM process and collect business drivers, key architectural goals, and stakeholder concerns",
+    "Have the architect present the architecture using multiple views (module, runtime, deployment)",
+    "Identify architectural approaches and map them to quality attribute utility tree scenarios",
+    "Analyze each approach for sensitivity points, trade-off points, and risks vs. non-risks",
+    "Prioritize scenarios and risks, produce a findings report with sensitivity and trade-off point summaries"
+  ],
+  "steps_zh": [
+    "介绍ATAM流程，收集业务驱动因素、关键架构目标和利益相关者关切",
+    "由架构师使用多个视图（模块、运行时、部署）呈现架构",
+    "识别架构方法，将其映射到质量属性效用树场景",
+    "分析每种方法的敏感点、权衡点以及风险与非风险项",
+    "对场景和风险进行优先级排序，生成包含敏感点和权衡点摘要的分析报告"
+  ],
+  "ai_relevant": false,
+  "viz_type": "radar",
+  "viz_labels": [
+    "Performance",
+    "Availability",
+    "Security",
+    "Modifiability",
+    "Usability"
+  ],
+  "viz_labels_zh": [
+    "性能",
+    "可用性",
+    "安全",
+    "可修改性",
+    "易用性"
+  ],
+  "related": [
+    "qaw",
+    "trade-off-sliders",
+    "adr"
+  ],
+  "tags": [
+    "evaluation",
+    "trade-offs",
+    "quality-attributes",
+    "stakeholders"
+  ],
+  "origin_author": "Rick Kazman, Mark Klein, Paul Clements / SEI, 2000",
+  "origin_source": "ATAM: Method for Architecture Evaluation (SEI Technical Report CMU/SEI-2000-TR-004)",
+  "origin_source_zh": "《ATAM：架构评估方法》（SEI技术报告CMU/SEI-2000-TR-004）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When evaluating a critical system architecture before committing to implementation",
+    "When multiple quality attributes conflict and explicit trade-off analysis is needed",
+    "When stakeholders need confidence that the architecture meets key business requirements",
+    "When regulatory or safety-critical systems require documented architecture risk assessment"
+  ],
+  "when_to_use_zh": [
+    "在进入实现阶段之前评估关键系统架构时",
+    "当多个质量属性相互冲突，需要明确的权衡分析时",
+    "当利益相关者需要确信架构满足关键业务需求时",
+    "当法规或安全关键系统需要文档化的架构风险评估时"
+  ],
+  "core_concepts": [
+    "Utility tree: Hierarchical decomposition of quality attributes into prioritized, testable scenarios",
+    "Sensitivity point: An architectural parameter where a small change significantly affects a quality attribute",
+    "Trade-off point: An architectural decision that affects two or more quality attributes in opposing directions",
+    "Risk and non-risk: Categorization of architectural decisions based on their potential for negative outcomes",
+    "Architectural approach: A specific design strategy or pattern used to address quality requirements"
+  ],
+  "core_concepts_zh": [
+    "效用树：将质量属性层级分解为有优先级的可测试场景",
+    "敏感点：一个微小变化就能显著影响质量属性的架构参数",
+    "权衡点：同时以相反方向影响两个或多个质量属性的架构决策",
+    "风险与非风险：根据产生负面结果的可能性对架构决策进行分类",
+    "架构方法：用于满足质量需求的特定设计策略或模式"
+  ],
+  "timeline": [
+    [
+      "1998",
+      "Initial ATAM concepts developed at the Software Engineering Institute (SEI)"
+    ],
+    [
+      "2000",
+      "SEI publishes the formal ATAM technical report"
+    ],
+    [
+      "2003",
+      "Kazman, Bass, and Clements publish 'Software Architecture in Practice' covering ATAM in depth"
+    ],
+    [
+      "2005",
+      "ATAM becomes an industry standard for architecture evaluation in defense and aerospace"
+    ],
+    [
+      "2012",
+      "Lightweight variants of ATAM emerge for agile teams needing faster evaluation cycles"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1998",
+      "软件工程研究所（SEI）开发ATAM的初始概念"
+    ],
+    [
+      "2000",
+      "SEI发布ATAM正式技术报告"
+    ],
+    [
+      "2003",
+      "Kazman、Bass和Clements出版《软件架构实践》深入介绍ATAM"
+    ],
+    [
+      "2005",
+      "ATAM成为国防和航空航天领域架构评估的行业标准"
+    ],
+    [
+      "2012",
+      "针对敏捷团队需要更快评估周期的轻量级ATAM变体出现"
+    ]
+  ],
+  "dos": [
+    "Do involve a broad set of stakeholders because hidden quality concerns surface only when diverse perspectives are present",
+    "Do build the utility tree collaboratively because stakeholder buy-in on scenario priorities is critical",
+    "Do schedule ATAM early in the lifecycle because it is most cost-effective before major implementation decisions are locked in",
+    "Do document all identified risks even if they seem unlikely because they form a valuable risk registry"
+  ],
+  "dos_zh": [
+    "邀请广泛的利益相关者参与，因为隐藏的质量关切只有在多元视角汇聚时才会浮现",
+    "协作构建效用树，因为利益相关者对场景优先级的认同至关重要",
+    "在生命周期早期安排ATAM，因为在主要实现决策锁定之前最具成本效益",
+    "记录所有已识别的风险，即使看似不太可能发生，因为它们构成了有价值的风险登记册"
+  ],
+  "donts": [
+    "Don't skip stakeholder scenario brainstorming because the evaluation team cannot anticipate all quality concerns alone",
+    "Don't treat ATAM as a pass/fail audit because its purpose is to surface risks and trade-offs, not to judge",
+    "Don't run ATAM on an architecture that hasn't been documented because the method requires concrete views to analyze",
+    "Don't rush the utility tree prioritization because incorrect priorities lead to analyzing the wrong scenarios"
+  ],
+  "donts_zh": [
+    "不要跳过利益相关者的场景头脑风暴，因为评估团队无法独自预见所有质量关切",
+    "不要将ATAM视为通过/不通过的审计，其目的是揭示风险和权衡而非评判",
+    "不要对尚未文档化的架构运行ATAM，因为该方法需要具体的视图来分析",
+    "不要仓促进行效用树优先级排序，因为错误的优先级会导致分析错误的场景"
+  ],
+  "case_study_company": "NASA Jet Propulsion Laboratory",
+  "case_study": "NASA JPL used ATAM to evaluate the architecture of the Mars Rover ground control system before the Curiosity mission. The evaluation identified critical trade-offs between real-time telemetry processing performance and fault tolerance. By surfacing these risks early, JPL redesigned the data pipeline to support graceful degradation, which proved essential when communication delays exceeded expected parameters during landing.",
+  "case_study_zh": "NASA喷气推进实验室在好奇号火星车任务之前使用ATAM评估地面控制系统架构。评估识别出实时遥测处理性能与容错性之间的关键权衡。通过及早发现这些风险，JPL重新设计了数据管道以支持优雅降级，这在着陆期间通信延迟超出预期参数时证明至关重要。",
+  "when_not_to_use": [
+    "Small projects where the cost of a full ATAM evaluation exceeds the project budget",
+    "Early-stage startups where requirements change too rapidly for formal evaluation to remain relevant",
+    "Systems with a single dominant quality attribute where trade-off analysis adds little value"
+  ],
+  "when_not_to_use_zh": [
+    "小型项目中完整ATAM评估的成本超过项目预算时",
+    "需求变化过快、正式评估难以保持相关性的早期创业公司",
+    "只有单一主导质量属性、权衡分析附加价值有限的系统"
+  ],
+  "adopters": [
+    "NASA",
+    "Lockheed Martin",
+    "Philips Healthcare",
+    "Raytheon",
+    "Boeing"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "performance"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Rick Kazman, Mark Klein, and Paul Clements (2000). \"ATAM: Method for Architecture Evaluation\". SEI Technical Report CMU/SEI-2000-TR-004.",
+  "secondary_sources": [
+    "Len Bass, Paul Clements, and Rick Kazman (2003). \"Software Architecture in Practice, 2nd Edition\". Addison-Wesley.",
+    "Rick Kazman et al. (1998). \"The Architecture Tradeoff Analysis Method\". IEEE ICECCS 1998."
+  ],
+  "typed_relations": [
+    {
+      "slug": "qaw",
+      "type": "prerequisite"
+    },
+    {
+      "slug": "trade-off-sliders",
+      "type": "complement"
+    },
+    {
+      "slug": "adr",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/atam",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/atam.md"
+}

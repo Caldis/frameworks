@@ -1,0 +1,183 @@
+{
+  "id": 312,
+  "name": "Engineering Principles Framework",
+  "name_zh": "工程原则框架",
+  "slug": "engineering-principles-framework",
+  "category": "team",
+  "desc": "A structured practice of defining, publishing, and evolving explicit engineering principles that guide daily technical decisions across an organization",
+  "desc_zh": "定义、发布和演进明确工程原则的结构化实践，引导组织内日常技术决策",
+  "steps": [
+    "Gather input across seniority levels: run structured workshops where engineers at all levels articulate the implicit heuristics they already apply when making technical choices — capture these as candidate principles in raw form",
+    "Synthesize and deduplicate: group similar heuristics, identify tensions between them, and draft 8-15 concise principles with a name, one-sentence statement, rationale paragraph, and two example applications each",
+    "Ratify through deliberation: circulate the draft to all engineering teams for a 2-week review, resolve conflicts through async RFC discussion, then publish the v1 doc in a prominent location (engineering handbook, internal site)",
+    "Embed principles in decision artifacts: require ADRs, tech specs, and code review comments to cite relevant principles by name, creating a living record of how principles shape real decisions",
+    "Review and evolve annually: schedule a yearly retrospective to assess whether each principle is helping or hindering; retire stale ones, add new ones that capture emerging consensus, and publish a changelog"
+  ],
+  "steps_zh": [
+    "跨级别收集意见：开展结构化工作坊，让各级工程师阐述他们在做技术选择时已经应用的隐性启发法——以原始形式收集这些内容作为候选原则",
+    "整合与去重：对相似启发法进行分组，识别它们之间的张力，起草8-15条简洁原则，每条包含名称、单句陈述、理由段落和两个应用示例",
+    "通过审议批准：将草稿发给所有工程团队进行2周审查，通过异步RFC讨论解决冲突，然后在显著位置（工程手册、内部网站）发布v1文档",
+    "在决策产物中嵌入原则：要求ADR、技术规范和代码审查评论按名称引用相关原则，创建原则如何影响实际决策的活体记录",
+    "每年回顾和演进：安排年度回顾评估每条原则是否有助或有碍；淘汰过时的，添加体现新兴共识的新原则，并发布变更日志"
+  ],
+  "ai_relevant": false,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "Gather Input",
+    "Synthesize",
+    "Ratify",
+    "Embed in Decisions",
+    "Annual Review"
+  ],
+  "viz_labels_zh": [
+    "收集输入",
+    "综合提炼",
+    "批准发布",
+    "决策嵌入",
+    "年度评审"
+  ],
+  "related": [
+    "adr",
+    "rfc-process",
+    "engineering-ladder",
+    "decision-log-practice",
+    "architecture-review-board"
+  ],
+  "tags": [
+    "engineering-culture",
+    "principles",
+    "decision-making",
+    "team",
+    "standards"
+  ],
+  "origin_author": "Various; formalized by Stripe, Netflix, and Basecamp engineering blogs (2013-2018)",
+  "origin_year": 2013,
+  "origin_source": "Stripe Engineering (2013). \"How we think about software development\". stripe.com/blog. Netflix Technology Blog (2016). \"Netflix Engineering Values\".",
+  "origin_source_zh": "Stripe工程（2013）。《我们如何思考软件开发》。stripe.com/blog。Netflix技术博客（2016）。《Netflix工程价值观》。",
+  "complexity": "beginner",
+  "abstraction_level": "organization",
+  "maturity_ring": "foundational",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "adopters": [
+    "Stripe",
+    "Netflix",
+    "Basecamp",
+    "Spotify",
+    "Monzo"
+  ],
+  "when_to_use": [
+    "Engineering organizations scaling past 50 engineers where informal cultural transmission of technical values becomes unreliable",
+    "Post-merger or multi-office teams that need to establish shared technical norms across diverse engineering cultures",
+    "Organizations experiencing recurring architectural inconsistencies or technology sprawl that indicate absence of agreed decision criteria",
+    "Teams introducing engineering managers from non-technical backgrounds who need explicit codified guidance on what good engineering looks like"
+  ],
+  "when_to_use_zh": [
+    "工程组织规模超过50人后，非正式的技术价值文化传播变得不可靠",
+    "需要跨不同工程文化建立共同技术规范的合并后或多地团队",
+    "经历反复出现的架构不一致或技术扩散的组织，表明缺乏商定的决策标准",
+    "引入非技术背景工程经理的团队，需要明确的编码指导来说明好的工程是什么样的"
+  ],
+  "core_concepts": [
+    "Principle vs. Rule: Principles are durable heuristics that guide judgment in novel situations; rules are binary mandates. Good engineering principles leave room for context-sensitive application",
+    "Explicit Over Implicit: Writing down the values that experienced engineers already hold makes them transferable, debatable, and evolvable — rather than locked in the heads of founding engineers",
+    "Rationale as First-Class Content: Every principle must carry its 'why' — the failure mode it prevents or the value it promotes — so engineers can apply it correctly in unforeseen situations",
+    "Principle Citation in Artifacts: Engineering artifacts (ADRs, tech specs, PRs) that reference principles by name create an auditable trail of how stated values drive actual decisions",
+    "Living Document: Principles drift from reality if not revisited; an annual cadence with a public changelog signals that the organization takes the document seriously rather than treating it as shelfware"
+  ],
+  "core_concepts_zh": [
+    "原则与规则的区别：原则是指导在新情境中做判断的持久启发法；规则是二元指令。好的工程原则为情境敏感的应用留有空间",
+    "显式优于隐式：写下有经验的工程师已经持有的价值观使其可传递、可辩论和可演进——而不是锁定在创始工程师的头脑中",
+    "理由作为一等内容：每条原则必须承载其「为什么」——它防止的失败模式或它促进的价值——以便工程师在未预见的情况下正确应用它",
+    "在产物中引用原则：按名称引用原则的工程产物（ADR、技术规范、PR）创建了说明价值观如何驱动实际决策的可审计追踪",
+    "活体文档：如果不定期重新审视，原则会与现实偏离；带有公开变更日志的年度周期表明组织认真对待该文档而非将其束之高阁"
+  ],
+  "timeline": [
+    [
+      2013,
+      "Stripe publishes its first internal engineering principles doc; other fast-growing startups follow the pattern"
+    ],
+    [
+      2016,
+      "Netflix engineering blog formalizes 'Freedom and Responsibility' as codified engineering values; widely referenced"
+    ],
+    [
+      2019,
+      "Monzo publishes its engineering principles openly; the open-sourcing of principles docs becomes a recruiting signal"
+    ],
+    [
+      2022,
+      "Platform engineering movement drives renewed interest in explicit principles as governance mechanism for internal platforms"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      2013,
+      "Stripe发布其第一份内部工程原则文档；其他快速增长的初创公司跟随这一模式"
+    ],
+    [
+      2016,
+      "Netflix工程博客将「自由与责任」正式化为编码的工程价值观；被广泛参考"
+    ],
+    [
+      2019,
+      "Monzo公开发布其工程原则；开源原则文档成为招聘信号"
+    ],
+    [
+      2022,
+      "平台工程运动推动了对明确原则作为内部平台治理机制的新兴趣"
+    ]
+  ],
+  "dos": [
+    "Do involve engineers at all levels in principle authorship — principles authored exclusively by VPs will be ignored by ICs who had no voice in shaping them",
+    "Do keep the list short (under 15 principles) so the full set is memorizable and each principle carries weight",
+    "Do include concrete examples for each principle that show both correct and incorrect application in realistic scenarios",
+    "Do track which principles are most frequently cited in ADRs as a leading indicator of which ones are actually influencing decisions"
+  ],
+  "dos_zh": [
+    "让各级工程师参与原则的撰写——只由VP撰写的原则会被没有发言权的IC忽视",
+    "保持列表简短（不超过15条原则），使全套原则可记忆，且每条原则具有分量",
+    "为每条原则包含具体示例，展示在现实场景中正确和错误的应用",
+    "追踪哪些原则在ADR中被最频繁引用，作为哪些原则实际影响决策的领先指标"
+  ],
+  "donts": [
+    "Don't write principles as aspirational slogans without rationale — \"Move fast\" or \"Be excellent\" gives engineers no guidance when two values conflict",
+    "Don't treat principles as immutable — an organization that never updates its principles likely stopped believing in them long ago",
+    "Don't create principles by committee vote — authority-by-consensus produces anodyne statements that offend no one and guide no one",
+    "Don't confuse principles with coding standards — linting rules and style guides are separate artifacts that operate at a different level of abstraction"
+  ],
+  "donts_zh": [
+    "不要将原则写成没有理由的励志口号——「快速行动」或「追求卓越」在两个价值观冲突时不给工程师任何指导",
+    "不要将原则视为不可变的——一个从不更新原则的组织很可能早已停止相信它们",
+    "不要通过委员会投票制定原则——共识权威会产生不冒犯任何人也不指导任何人的平淡陈述",
+    "不要将原则与编码标准混淆——代码检查规则和风格指南是在不同抽象层次运作的独立产物"
+  ],
+  "case_study_company": "Monzo",
+  "case_study": "Monzo published their engineering principles openly on their blog in 2019 with a set of 9 principles including 'We build for reliability over convenience' and 'We default to transparency'. Each principle included explicit anti-patterns and historical examples from Monzo's own codebase. Within 18 months of publication, internal surveys showed that 78% of engineers could recall at least 5 principles unprompted, and code review culture shifted measurably toward citing principles when requesting changes rather than invoking personal preference.",
+  "case_study_zh": "Monzo于2019年在其博客上公开发布了工程原则，包含9条原则，例如「我们为可靠性而非便利性而构建」和「我们默认透明」。每条原则都包含明确的反模式和来自Monzo自身代码库的历史示例。发布后18个月内，内部调查显示78%的工程师能够在不提示的情况下回忆至少5条原则，且代码审查文化在请求更改时明显转向引用原则而非援引个人偏好。",
+  "when_not_to_use": [
+    "Startups with fewer than 20 engineers where shared context is maintained through direct communication and principles can feel bureaucratic",
+    "Crisis situations requiring immediate decisive action — consulting principles during an incident is a symptom of insufficient runbooks, not a substitute",
+    "Teams with extremely high turnover where investing in principle documentation yields diminishing returns relative to direct onboarding",
+    "Organizations where leadership regularly overrides engineering decisions regardless of stated principles — publishing principles in a low-trust environment creates cynicism"
+  ],
+  "when_not_to_use_zh": [
+    "工程师少于20人的初创公司，共同上下文通过直接沟通维护，原则可能感觉官僚",
+    "需要立即果断行动的危机情况——在事故期间查阅原则是运行手册不足的症状，而非替代品",
+    "人员流动率极高的团队，投资于原则文档相对于直接入职培训的收益递减",
+    "领导层无论声明的原则如何都定期推翻工程决策的组织——在低信任环境中发布原则会产生愤世嫉俗"
+  ],
+  "primary_source": "Stripe Engineering (2013). \"How we think about software development\". stripe.com/blog",
+  "primary_source_zh": "Stripe工程（2013）。《我们如何思考软件开发》。stripe.com/blog",
+  "secondary_sources": [
+    "Monzo Engineering (2019). \"Our Engineering Principles\". monzo.com/blog/2019/09/engineering-principles",
+    "Netflix Technology Blog (2016). \"Netflix Engineering Values\". netflixtechblog.com"
+  ],
+  "secondary_sources_zh": [
+    "Monzo工程（2019）。《我们的工程原则》。monzo.com/blog/2019/09/engineering-principles",
+    "Netflix技术博客（2016）。《Netflix工程价值观》。netflixtechblog.com"
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/engineering-principles-framework",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/engineering-principles-framework.md"
+}

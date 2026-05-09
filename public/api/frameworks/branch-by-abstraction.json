@@ -1,0 +1,194 @@
+{
+  "id": 74,
+  "name": "Branch by Abstraction",
+  "name_zh": "抽象分支法",
+  "slug": "branch-by-abstraction",
+  "category": "evolution",
+  "desc": "Replace a component in-place via an abstraction layer without feature branches",
+  "desc_zh": "通过抽象层原地替换组件，无需功能分支",
+  "steps": [
+    "Introduce an abstraction (interface or adapter) over the component to be replaced",
+    "Make all callers depend on the abstraction rather than the concrete implementation",
+    "Build the new implementation behind the same abstraction, deploying it to production dark",
+    "Toggle traffic gradually from the old implementation to the new one using feature flags",
+    "Remove the old implementation and the abstraction layer once migration is complete"
+  ],
+  "steps_zh": [
+    "在待替换组件上引入抽象层（接口或适配器）",
+    "使所有调用方依赖抽象而非具体实现",
+    "在相同抽象后构建新实现，以暗部署方式发布到生产环境",
+    "使用功能开关将流量从旧实现逐步切换至新实现",
+    "迁移完成后移除旧实现与抽象层"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Abstraction",
+    "Old Impl",
+    "New Impl",
+    "Switch"
+  ],
+  "viz_labels_zh": [
+    "抽象层",
+    "旧实现",
+    "新实现",
+    "切换"
+  ],
+  "related": [
+    "strangler-fig-pattern",
+    "feature-flags",
+    "hexagonal-architecture"
+  ],
+  "tags": [
+    "abstraction",
+    "migration",
+    "refactoring",
+    "trunk-based"
+  ],
+  "origin_author": "Paul Hammant, 2007",
+  "origin_source": "Branch by Abstraction (paulhammant.com)",
+  "origin_source_zh": "《抽象分支法》（paulhammant.com 博文）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Replacing a core library or framework dependency (e.g., ORM, logging, HTTP client) without long-lived branches",
+    "Migrating from one database vendor to another while keeping the application deployable",
+    "Swapping out a payment gateway while both old and new providers must remain operational",
+    "Trunk-based development teams that cannot afford long-running feature branches"
+  ],
+  "when_to_use_zh": [
+    "替换核心库或框架依赖（如 ORM、日志、HTTP 客户端）而无需长期分支",
+    "在保持应用可部署的同时从一个数据库供应商迁移到另一个",
+    "在新旧支付网关都必须保持运行的情况下进行切换",
+    "采用主干开发的团队无法承担长期运行的功能分支"
+  ],
+  "core_concepts": [
+    "Abstraction layer: A thin interface or adapter inserted between callers and the component being replaced",
+    "Dark deployment: The new implementation is deployed to production but not yet serving live traffic",
+    "Feature flags: Runtime toggles that control which implementation receives requests",
+    "Trunk-based development: All work happens on the main branch, avoiding merge conflicts from long-lived branches",
+    "Incremental switchover: Traffic shifts gradually, enabling safe rollback at any point"
+  ],
+  "core_concepts_zh": [
+    "抽象层：在调用方与待替换组件之间插入的薄接口或适配器",
+    "暗部署：新实现已部署至生产环境，但尚未处理线上流量",
+    "功能开关：控制哪个实现接收请求的运行时开关",
+    "主干开发：所有工作在主分支上进行，避免长期分支带来的合并冲突",
+    "增量切换：流量逐步转移，在任何时刻都可安全回滚"
+  ],
+  "timeline": [
+    [
+      "2007",
+      "Paul Hammant coins the term 'Branch by Abstraction' on his blog"
+    ],
+    [
+      "2010",
+      "Jez Humble and David Farley reference the technique in 'Continuous Delivery'"
+    ],
+    [
+      "2013",
+      "Facebook engineering adopts the pattern for their Mercurial-to-Git migration tooling"
+    ],
+    [
+      "2016",
+      "ThoughtWorks Technology Radar recommends it as a standard migration practice"
+    ],
+    [
+      "2020",
+      "Pattern becomes a staple of trunk-based development guides and CI/CD best practices"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2007",
+      "Paul Hammant 在博客上提出「抽象分支法」概念"
+    ],
+    [
+      "2010",
+      "Jez Humble 和 David Farley 在《持续交付》中引用该技术"
+    ],
+    [
+      "2013",
+      "Facebook 工程团队在 Mercurial 到 Git 的迁移工具中采用该模式"
+    ],
+    [
+      "2016",
+      "ThoughtWorks 技术雷达将其推荐为标准迁移实践"
+    ],
+    [
+      "2020",
+      "该模式成为主干开发指南和 CI/CD 最佳实践的核心内容"
+    ]
+  ],
+  "dos": [
+    "Keep the abstraction layer as thin as possible — it should only delegate, not contain logic",
+    "Write adapter tests that run against both old and new implementations to ensure behavioral parity",
+    "Use feature flags with kill-switch capability for instant rollback in production",
+    "Communicate the migration timeline clearly so the team doesn't leave both implementations running indefinitely"
+  ],
+  "dos_zh": [
+    "保持抽象层尽可能薄——它只应委派调用，不应包含逻辑",
+    "编写适配器测试，同时运行新旧实现以确保行为一致性",
+    "使用带有熔断功能的功能开关，以便在生产中即时回滚",
+    "清晰传达迁移时间线，避免团队无限期地保留两套实现"
+  ],
+  "donts": [
+    "Don't let the abstraction layer accumulate business logic — it should remain a pure delegation boundary",
+    "Don't skip the step of migrating all callers to the abstraction before building the new implementation",
+    "Don't leave the old implementation in the codebase after migration — dead code breeds confusion",
+    "Don't use this pattern for UI-layer changes where a simple feature flag would suffice"
+  ],
+  "donts_zh": [
+    "不要让抽象层积累业务逻辑——它应始终是纯粹的委派边界",
+    "在构建新实现之前，不要跳过将所有调用方迁移到抽象层的步骤",
+    "迁移完成后不要将旧实现留在代码库中——死代码会造成混乱",
+    "不要将此模式用于简单功能开关即可解决的 UI 层变更"
+  ],
+  "case_study_company": "Flickr",
+  "case_study": "Flickr used Branch by Abstraction to migrate from their original PHP-based image processing pipeline to a new Java-based service. They introduced an abstraction interface for image transformations, deployed the Java service dark alongside the existing PHP code, and gradually shifted traffic over several weeks. The migration completed with zero user-facing outages and eliminated their long-standing deployment bottleneck.",
+  "case_study_zh": "Flickr 使用抽象分支法将原始的 PHP 图像处理管线迁移至新的 Java 服务。他们引入了图像变换的抽象接口，将 Java 服务以暗部署方式与现有 PHP 代码并行部署，并在数周内逐步切换流量。迁移过程中零用户可见故障，并消除了长期存在的部署瓶颈。",
+  "when_not_to_use": [
+    "The component has no clear API boundary and is deeply entangled with other modules",
+    "The replacement will be done in a single commit with trivial scope",
+    "The team is not practicing trunk-based development and prefers long-lived feature branches",
+    "Performance-critical code paths where even a thin abstraction layer introduces unacceptable latency"
+  ],
+  "when_not_to_use_zh": [
+    "待替换组件没有清晰的 API 边界，与其他模块深度耦合",
+    "替换范围很小，可以在单次提交中完成",
+    "团队未采用主干开发，而是偏好长期功能分支",
+    "性能关键的代码路径中，即使薄抽象层也会引入不可接受的延迟"
+  ],
+  "adopters": [
+    "Flickr",
+    "Facebook",
+    "Google",
+    "ThoughtWorks",
+    "Atlassian"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Paul Hammant (2007). \"Branch by Abstraction\". paulhammant.com.",
+  "secondary_sources": [
+    "Jez Humble and David Farley (2010). \"Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation\". Addison-Wesley.",
+    "Martin Fowler (2014). \"BranchByAbstraction\". martinfowler.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "strangler-fig-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "feature-flags",
+      "type": "complement"
+    },
+    {
+      "slug": "hexagonal-architecture",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/branch-by-abstraction",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/branch-by-abstraction.md"
+}

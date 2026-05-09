@@ -1,0 +1,190 @@
+{
+  "id": 78,
+  "name": "Conway's Law",
+  "name_zh": "康威定律",
+  "slug": "conways-law",
+  "category": "evolution",
+  "desc": "Systems mirror the communication structure of the organizations that build them",
+  "desc_zh": "系统的结构反映构建它的组织的沟通结构",
+  "steps": [
+    "Map current team communication patterns and organizational boundaries explicitly",
+    "Audit the existing system architecture and identify how it mirrors team boundaries",
+    "Detect misalignments where architecture crosses team lines, causing friction and bottlenecks",
+    "Use the law prescriptively: redesign team structures to match the desired target architecture",
+    "Iterate on both org design and system design together, treating them as co-evolving artifacts"
+  ],
+  "steps_zh": [
+    "明确梳理当前团队沟通模式和组织边界",
+    "审计现有系统架构，识别其如何映射团队边界",
+    "检测架构跨越团队边界导致摩擦和瓶颈的错位之处",
+    "将该定律用于规范性指导：重新设计团队结构以匹配目标架构",
+    "将组织设计与系统设计作为协同演进的制品，一并持续迭代"
+  ],
+  "ai_relevant": false,
+  "viz_type": "venn",
+  "viz_labels": [
+    "Team Structure",
+    "System Design"
+  ],
+  "viz_labels_zh": [
+    "团队结构",
+    "系统设计"
+  ],
+  "related": [
+    "inverse-conway-maneuver",
+    "team-topologies",
+    "microservices-decomposition"
+  ],
+  "tags": [
+    "conways-law",
+    "org-structure",
+    "architecture-alignment",
+    "communication"
+  ],
+  "origin_author": "Melvin Conway, 1967",
+  "origin_source": "How Do Committees Invent? (Datamation, April 1968)",
+  "origin_source_zh": "《委员会如何发明？》（Datamation 杂志，1968年4月）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Diagnosing why a microservices architecture ended up as a distributed monolith",
+    "Planning an organizational restructuring in tandem with a system redesign",
+    "Explaining to leadership why cross-team dependencies are slowing delivery velocity",
+    "Evaluating whether to split a monolith — the answer depends on whether teams can be split too"
+  ],
+  "when_to_use_zh": [
+    "诊断为何微服务架构最终演变成分布式单体",
+    "规划与系统重设计同步进行的组织重组",
+    "向领导层解释为何跨团队依赖在拖慢交付速度",
+    "评估是否拆分单体——答案取决于团队是否也能同步拆分"
+  ],
+  "core_concepts": [
+    "Organizational isomorphism: Software architecture inevitably mirrors the organization's communication graph",
+    "Communication paths: Module boundaries form along the lines of least communication resistance between teams",
+    "Prescriptive application: Instead of observing the law passively, use it actively to shape team structures for desired architecture",
+    "Sociotechnical coupling: Technical decisions and organizational decisions are inseparable — changing one without the other creates friction",
+    "Coordination cost: Cross-team interfaces tend to become the system's most brittle integration points"
+  ],
+  "core_concepts_zh": [
+    "组织同构：软件架构不可避免地映射组织的沟通图谱",
+    "沟通路径：模块边界沿团队间沟通阻力最小的路径形成",
+    "规范性应用：不是被动观察该定律，而是主动利用它来塑造团队结构以获得期望的架构",
+    "社会技术耦合：技术决策与组织决策不可分割——只改其一而不改另一会产生摩擦",
+    "协调成本：跨团队接口往往成为系统中最脆弱的集成点"
+  ],
+  "timeline": [
+    [
+      "1967",
+      "Melvin Conway submits 'How Do Committees Invent?' (published in Datamation, 1968)"
+    ],
+    [
+      "1975",
+      "Fred Brooks references Conway's insight in 'The Mythical Man-Month'"
+    ],
+    [
+      "2010",
+      "The 'Inverse Conway Maneuver' is coined by Jonny LeRoy and Matt Simons at ThoughtWorks"
+    ],
+    [
+      "2015",
+      "Microservices movement explicitly leverages Conway's Law for service boundary design"
+    ],
+    [
+      "2019",
+      "Team Topologies codifies Conway's Law into four team types and three interaction modes"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1967",
+      "Melvin Conway 提交《委员会如何发明？》论文（1968年在 Datamation 发表）"
+    ],
+    [
+      "1975",
+      "Fred Brooks 在《人月神话》中引用康威的洞见"
+    ],
+    [
+      "2010",
+      "Jonny LeRoy 和 Matt Simons 在 ThoughtWorks 提出「逆康威策略」"
+    ],
+    [
+      "2015",
+      "微服务运动明确利用康威定律进行服务边界设计"
+    ],
+    [
+      "2019",
+      "《团队拓扑》将康威定律编纂为四种团队类型和三种交互模式"
+    ]
+  ],
+  "dos": [
+    "Map your organization chart and your system architecture side-by-side to reveal hidden coupling",
+    "Align team ownership with service/module boundaries for faster, more autonomous delivery",
+    "Use Conway's Law diagnostically first before attempting prescriptive reorganization",
+    "Educate non-engineering leadership on the law so they understand the architectural impact of org changes"
+  ],
+  "dos_zh": [
+    "将组织结构图与系统架构图并排对比，揭示隐藏的耦合",
+    "将团队所有权与服务/模块边界对齐，以实现更快更自治的交付",
+    "在尝试规范性重组之前，先诊断性地运用康威定律",
+    "向非工程领导层普及该定律，使其理解组织变动对架构的影响"
+  ],
+  "donts": [
+    "Don't reorganize teams without simultaneously considering the impact on software architecture",
+    "Don't ignore Conway's Law and assume you can build any architecture with any org structure",
+    "Don't apply it mechanically — team talent, culture, and domain complexity also matter",
+    "Don't use it to justify architectural stagnation — 'our org can't support microservices' is often a solvable problem"
+  ],
+  "donts_zh": [
+    "不要在不考虑对软件架构影响的情况下重组团队",
+    "不要无视康威定律，假设任何组织结构都能构建出任何架构",
+    "不要机械地套用——团队能力、文化和领域复杂度同样重要",
+    "不要用它来为架构停滞辩护——'我们的组织不支持微服务'往往是可以解决的问题"
+  ],
+  "case_study_company": "Microsoft",
+  "case_study": "A 2008 study by Microsoft Research (Nagappan, Murphy & Basili) empirically validated Conway's Law by analyzing Windows Vista. They found that organizational metrics — such as the number of engineers touching a module and the organizational distance between them — were stronger predictors of software defects than code metrics like complexity or coverage. Modules owned by distributed, loosely coordinated teams had significantly higher defect rates.",
+  "case_study_zh": "微软研究院在 2008 年的一项研究（Nagappan、Murphy 和 Basili）通过分析 Windows Vista 实证验证了康威定律。他们发现，组织指标——如接触某模块的工程师数量及其组织距离——比代码复杂度或覆盖率等代码指标更能预测软件缺陷。由分布式、松散协调团队拥有的模块缺陷率显著更高。",
+  "when_not_to_use": [
+    "Very small teams (fewer than 8 people) where everyone communicates with everyone directly",
+    "Temporary hackathon or prototype projects where organizational structure is intentionally fluid",
+    "Outsourced or contract development where you have no control over team organization",
+    "Highly regulated industries where architecture must follow compliance mandates regardless of org structure"
+  ],
+  "when_not_to_use_zh": [
+    "非常小的团队（少于 8 人），每个人都能直接与所有人沟通",
+    "临时的黑客马拉松或原型项目，组织结构有意保持流动",
+    "外包或合同开发，无法控制团队组织方式",
+    "高度监管的行业，架构必须遵循合规要求而非组织结构"
+  ],
+  "adopters": [
+    "Microsoft",
+    "Amazon",
+    "Spotify",
+    "Netflix",
+    "ThoughtWorks"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Melvin Conway (1968). \"How Do Committees Invent?\". Datamation, 14(4).",
+  "secondary_sources": [
+    "Fred Brooks (1975). \"The Mythical Man-Month: Essays on Software Engineering\". Addison-Wesley.",
+    "Matthew Skelton and Manuel Pais (2019). \"Team Topologies: Organizing Business and Technology Teams for Fast Flow\". IT Revolution Press."
+  ],
+  "typed_relations": [
+    {
+      "slug": "inverse-conway-maneuver",
+      "type": "complement"
+    },
+    {
+      "slug": "team-topologies",
+      "type": "complement"
+    },
+    {
+      "slug": "microservices-decomposition",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/conways-law",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/conways-law.md"
+}

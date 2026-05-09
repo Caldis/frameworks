@@ -1,0 +1,193 @@
+{
+  "id": 62,
+  "name": "GitOps",
+  "name_zh": "GitOps",
+  "slug": "gitops",
+  "category": "deployment",
+  "desc": "Use Git as the single source of truth for infra state",
+  "desc_zh": "以Git作为基础设施状态的唯一可信来源",
+  "steps": [
+    "Store all infrastructure and application configuration declaratively in a Git repository",
+    "Enforce code review and branch protection so all changes go through pull requests",
+    "Set up a GitOps operator (Argo CD, Flux) to watch the repo for changes",
+    "Operator detects drift between desired state in Git and actual cluster state",
+    "Operator automatically reconciles the cluster to match the Git-declared desired state"
+  ],
+  "steps_zh": [
+    "以声明式方式将所有基础设施和应用配置存储在Git仓库中",
+    "强制代码审查与分支保护，确保所有变更经过Pull Request流程",
+    "配置GitOps控制器（Argo CD、Flux）监听仓库变化",
+    "控制器检测Git期望状态与集群实际状态之间的偏差",
+    "控制器自动将集群协调至Git声明的期望状态"
+  ],
+  "ai_relevant": false,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Commit",
+    "Detect",
+    "Reconcile",
+    "Deploy"
+  ],
+  "viz_labels_zh": [
+    "代码提交",
+    "变更检测",
+    "状态同步",
+    "部署"
+  ],
+  "related": [
+    "infrastructure-as-code",
+    "three-ways-devops",
+    "dora-metrics"
+  ],
+  "tags": [
+    "gitops",
+    "declarative",
+    "reconciliation",
+    "kubernetes"
+  ],
+  "origin_author": "Weaveworks / Alexis Richardson, 2017",
+  "origin_source": "Weaveworks blog post GitOps - Operations by Pull Request (2017); CNCF GitOps Working Group principles (2021)",
+  "origin_source_zh": "Weaveworks博客文章《GitOps - 基于Pull Request的运维》（2017）；CNCF GitOps工作组原则（2021）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Kubernetes-native environments where declarative configuration aligns naturally with the reconciliation model",
+    "Teams that want complete audit trails of every infrastructure change through Git history",
+    "Multi-cluster or multi-environment deployments that need consistent, reproducible configuration",
+    "Organizations requiring compliance and change control via pull request approval workflows"
+  ],
+  "when_to_use_zh": [
+    "Kubernetes原生环境——声明式配置与协调模型天然契合",
+    "希望通过Git历史对每次基础设施变更保留完整审计轨迹的团队",
+    "需要一致、可复现配置的多集群或多环境部署",
+    "需要通过Pull Request审批工作流实现合规和变更控制的组织"
+  ],
+  "core_concepts": [
+    "Declarative Desired State: All system configuration is described declaratively in Git, defining what the system should look like rather than how to get there",
+    "Continuous Reconciliation: A GitOps operator continuously compares the desired state in Git with the actual state in the cluster and corrects any drift automatically",
+    "Pull-Based Deployment: Instead of CI pushing changes to the cluster, the cluster-side operator pulls desired state from Git, improving security by not exposing cluster credentials",
+    "Immutable Audit Trail: Every change to infrastructure is captured as a Git commit with author, reviewer, timestamp, and diff, providing complete traceability"
+  ],
+  "core_concepts_zh": [
+    "声明式期望状态：所有系统配置在Git中以声明式方式描述，定义系统应有的样子而非如何到达",
+    "持续协调：GitOps控制器持续对比Git中的期望状态与集群中的实际状态，自动纠正任何偏差",
+    "拉取式部署：集群侧控制器从Git拉取期望状态，而非由CI推送变更到集群，通过不暴露集群凭证提升安全性",
+    "不可变审计轨迹：每次基础设施变更都作为Git提交记录，包含作者、审查者、时间戳和差异，提供完整可追溯性"
+  ],
+  "timeline": [
+    [
+      "2017",
+      "Alexis Richardson of Weaveworks coins the term GitOps and publishes the foundational blog post"
+    ],
+    [
+      "2018",
+      "Weaveworks releases Flux v1, the first dedicated GitOps operator for Kubernetes"
+    ],
+    [
+      "2019",
+      "Argo CD reaches v1.0, becoming a widely adopted GitOps continuous delivery tool for Kubernetes"
+    ],
+    [
+      "2021",
+      "CNCF GitOps Working Group publishes formal GitOps Principles defining the four core tenets"
+    ],
+    [
+      "2023",
+      "Flux v2 and Argo CD mature into CNCF graduated/incubating projects with broad enterprise adoption"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2017",
+      "Weaveworks的Alexis Richardson创造GitOps一词并发表奠基性博客文章"
+    ],
+    [
+      "2018",
+      "Weaveworks发布Flux v1，首个专用Kubernetes GitOps控制器"
+    ],
+    [
+      "2019",
+      "Argo CD发布v1.0，成为广泛采用的Kubernetes GitOps持续交付工具"
+    ],
+    [
+      "2021",
+      "CNCF GitOps工作组发布正式GitOps原则，定义四大核心信条"
+    ],
+    [
+      "2023",
+      "Flux v2和Argo CD发展为CNCF毕业/孵化项目，获得广泛企业级采用"
+    ]
+  ],
+  "dos": [
+    "Do separate application config repositories from application source code repositories, because coupling them creates circular deployment triggers",
+    "Do implement drift detection alerts so the team knows when manual cluster changes bypass the GitOps workflow",
+    "Do use sealed secrets or external secret managers (Vault, AWS Secrets Manager) to avoid storing plaintext secrets in Git",
+    "Do structure repositories with clear environment promotion paths (dev -> staging -> production) using branches or directories"
+  ],
+  "dos_zh": [
+    "务必将应用配置仓库与应用源代码仓库分离，因为耦合会造成循环部署触发",
+    "务必实现偏差检测告警，使团队知道何时有手动集群变更绕过了GitOps工作流",
+    "务必使用密封密钥或外部密钥管理器（Vault、AWS Secrets Manager）以避免在Git中存储明文密钥",
+    "务必使用分支或目录结构构建清晰的环境晋升路径（dev -> staging -> production）"
+  ],
+  "donts": [
+    "Don't make manual kubectl changes to the cluster and expect them to persist, because the GitOps operator will revert them to match Git state",
+    "Don't store secrets in plaintext in Git repositories, because Git history is permanent and secret rotation becomes impossible",
+    "Don't use push-based CI/CD pipelines that bypass the GitOps operator, because this defeats the single-source-of-truth guarantee",
+    "Don't create monolithic config repositories for dozens of services, because merge conflicts and slow reconciliation loops will bottleneck teams"
+  ],
+  "donts_zh": [
+    "不要对集群进行手动kubectl变更并期望它们持久存在，因为GitOps控制器会将其还原为Git状态",
+    "不要在Git仓库中以明文存储密钥，因为Git历史是永久的且密钥轮换将变得不可能",
+    "不要使用绕过GitOps控制器的推送式CI/CD流水线，因为这破坏了单一可信来源的保证",
+    "不要为数十个服务创建单一的巨型配置仓库，因为合并冲突和缓慢的协调循环会成为团队瓶颈"
+  ],
+  "case_study_company": "Intuit",
+  "case_study": "Intuit adopted Argo CD as their GitOps platform to manage over 2,500 microservices across multiple Kubernetes clusters serving products like TurboTax and QuickBooks. By requiring all changes to flow through Git pull requests, they achieved full audit compliance for SOX regulations while enabling developers to self-service deployments. Their GitOps adoption reduced deployment lead time by 60% and configuration-related incidents by 40%.",
+  "case_study_zh": "Intuit采用Argo CD作为其GitOps平台，管理为TurboTax和QuickBooks等产品服务的多个Kubernetes集群上的2500多个微服务。通过要求所有变更流经Git Pull Request，他们在实现SOX法规全面审计合规的同时，使开发者能够自助部署。GitOps的采用使部署前置时间缩短60%，配置相关事故减少40%。",
+  "when_not_to_use": [
+    "Non-Kubernetes environments where declarative reconciliation operators are unavailable or immature",
+    "Teams with very infrequent infrastructure changes where GitOps tooling overhead is not justified",
+    "Imperative or procedural infrastructure changes (one-time database migrations) that do not fit the declarative model",
+    "Environments with strict air-gap requirements where the operator cannot reach a Git repository"
+  ],
+  "when_not_to_use_zh": [
+    "非Kubernetes环境——声明式协调控制器不可用或不成熟",
+    "基础设施变更频率极低、GitOps工具开销不合理的团队",
+    "不适用声明式模型的命令式或过程式基础设施变更（如一次性数据库迁移）",
+    "控制器无法访问Git仓库的严格物理隔离环境"
+  ],
+  "adopters": [
+    "Intuit",
+    "Tesla",
+    "Alibaba",
+    "Red Hat",
+    "Palo Alto Networks"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Alexis Richardson (2017). \"GitOps - Operations by Pull Request\". Weaveworks Blog.",
+  "secondary_sources": [
+    "CNCF GitOps Working Group (2021). \"GitOps Principles\". opengitops.dev.",
+    "Cornelia Davis (2019). \"Cloud Native Patterns\". Manning Publications."
+  ],
+  "typed_relations": [
+    {
+      "slug": "infrastructure-as-code",
+      "type": "complement"
+    },
+    {
+      "slug": "three-ways-devops",
+      "type": "complement"
+    },
+    {
+      "slug": "dora-metrics",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/gitops",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/gitops.md"
+}

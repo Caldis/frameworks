@@ -1,0 +1,189 @@
+{
+  "id": 293,
+  "name": "Multimodal Pipeline Design",
+  "name_zh": "多模态流水线设计",
+  "slug": "multimodal-pipeline-design",
+  "category": "ai",
+  "desc": "Architecture for processing text, image, audio, and video in unified AI pipelines",
+  "desc_zh": "在统一 AI 流水线中处理文本、图像、音频和视频的架构",
+  "steps": [
+    "Identify the modalities required by the task and select or fine-tune a backbone model capable of handling each modality",
+    "Design modality-specific preprocessing stages: tokenization for text, patch embeddings for images, spectrograms for audio",
+    "Define a fusion strategy — early fusion (concatenate inputs), late fusion (merge outputs), or cross-attention across modalities",
+    "Build a shared embedding space so representations from different modalities can be compared, retrieved, or jointly reasoned over",
+    "Evaluate pipeline output with modality-specific and cross-modal metrics; iterate on fusion strategy and preprocessing based on failure analysis"
+  ],
+  "steps_zh": [
+    "识别任务所需的模态，选择或微调能够处理每种模态的骨干模型",
+    "设计针对各模态的预处理阶段：文本的分词、图像的块嵌入、音频的频谱图",
+    "定义融合策略——早期融合（拼接输入）、晚期融合（合并输出）或跨模态注意力",
+    "构建共享嵌入空间，使不同模态的表示可以被比较、检索或联合推理",
+    "使用特定模态和跨模态指标评估流水线输出；根据失败分析迭代融合策略和预处理"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Input",
+    "Encode",
+    "Fuse",
+    "Generate"
+  ],
+  "viz_labels_zh": [
+    "多模态输入",
+    "编码",
+    "模态融合",
+    "生成输出"
+  ],
+  "related": [
+    "prompt-chaining",
+    "multi-agent-orchestration-pattern",
+    "llm-evaluation-framework"
+  ],
+  "tags": [
+    "multimodal",
+    "pipeline",
+    "vision",
+    "audio",
+    "embeddings",
+    "llm"
+  ],
+  "origin_author": "Google DeepMind",
+  "origin_source": "Google DeepMind (2023). \"Gemini: A Family of Highly Capable Multimodal Models\". arXiv:2312.11805.",
+  "origin_source_zh": "Google DeepMind（2023）。《Gemini：高能力多模态模型家族》。arXiv:2312.11805。",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Applications where the input is inherently multimodal — e.g., document understanding (PDF text + images), video captioning, or audio transcription with speaker diarization",
+    "AI assistants that need to accept arbitrary file uploads and reason over mixed content types in a single context",
+    "Retrieval systems that must index and search across modalities — finding images by text query or audio clips by semantic description",
+    "Production systems where different modality models must be orchestrated reliably with shared observability and error handling"
+  ],
+  "when_to_use_zh": [
+    "输入本质上是多模态的应用——如文档理解（PDF 文本 + 图像）、视频字幕或带说话人区分的音频转录",
+    "需要接受任意文件上传并在单一上下文中对混合内容类型进行推理的 AI 助手",
+    "必须跨模态索引和搜索的检索系统——通过文本查询查找图像或通过语义描述查找音频片段",
+    "不同模态模型必须与共享可观测性和错误处理可靠协调的生产系统"
+  ],
+  "core_concepts": [
+    "Modality Encoding: Each input type is converted to a dense vector representation using a modality-specific encoder (CLIP for images, Whisper for audio, transformer for text)",
+    "Fusion Architecture: Early fusion combines raw or encoded inputs before the reasoning model; late fusion combines independent model outputs; cross-attention enables modalities to attend to each other",
+    "Shared Embedding Space: Contrastive training (CLIP-style) aligns representations from different modalities so semantic similarity is comparable across modality boundaries",
+    "Modality Routing: A dispatcher determines which modality encoder, preprocessor, and downstream model handles each segment of a mixed input"
+  ],
+  "core_concepts_zh": [
+    "模态编码：每种输入类型使用特定模态编码器转换为密集向量表示（图像用 CLIP、音频用 Whisper、文本用 Transformer）",
+    "融合架构：早期融合在推理模型之前合并原始或编码输入；晚期融合合并独立模型输出；交叉注意力使模态之间相互关注",
+    "共享嵌入空间：对比训练（CLIP 风格）对齐不同模态的表示，使跨模态边界的语义相似性可以比较",
+    "模态路由：调度器确定哪个模态编码器、预处理器和下游模型处理混合输入的每个片段"
+  ],
+  "timeline": [
+    [
+      "2021",
+      "OpenAI releases CLIP, demonstrating that contrastive pretraining can align image and text in a shared embedding space"
+    ],
+    [
+      "2022",
+      "DeepMind's Flamingo and Google's PaLI establish large-scale vision-language models as a viable architecture for joint reasoning"
+    ],
+    [
+      "2023",
+      "GPT-4V and Gemini Ultra launch as general-purpose multimodal models capable of native image, text, and audio understanding"
+    ],
+    [
+      "2024",
+      "Multimodal models become standard in production AI applications; frameworks like LangChain and LlamaIndex add native multimodal pipeline support"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2021",
+      "OpenAI 发布 CLIP，证明对比预训练可以在共享嵌入空间中对齐图像和文本"
+    ],
+    [
+      "2022",
+      "DeepMind 的 Flamingo 和 Google 的 PaLI 确立了大规模视觉语言模型作为联合推理可行架构"
+    ],
+    [
+      "2023",
+      "GPT-4V 和 Gemini Ultra 作为具备原生图像、文本和音频理解能力的通用多模态模型发布"
+    ],
+    [
+      "2024",
+      "多模态模型成为生产 AI 应用的标准；LangChain 和 LlamaIndex 等框架添加原生多模态流水线支持"
+    ]
+  ],
+  "dos": [
+    "Do evaluate each modality encoder independently before integration so that performance regressions can be attributed to a specific pipeline stage",
+    "Do design modality preprocessing as stateless, composable functions so individual encoders can be swapped or upgraded without re-architecting the pipeline",
+    "Do include cross-modal evaluation benchmarks (e.g., VQA for vision-language, AudioCaps for audio-text) alongside single-modality metrics",
+    "Do instrument modality routing decisions in production so you can analyze which modalities are actually used and optimize pipeline cost accordingly"
+  ],
+  "dos_zh": [
+    "务必在集成前独立评估每个模态编码器，使性能回归可以归因于特定流水线阶段",
+    "务必将模态预处理设计为无状态的、可组合的函数，使单个编码器可以在不重新架构流水线的情况下替换或升级",
+    "务必在单模态指标旁边包含跨模态评估基准（如视觉语言的 VQA、音频文本的 AudioCaps）",
+    "务必在生产中记录模态路由决策，以便分析实际使用了哪些模态并相应优化流水线成本"
+  ],
+  "donts": [
+    "Don't assume a multimodal model handles all modalities equally well — benchmark each modality independently and set separate quality thresholds",
+    "Don't pass raw binary file bytes directly to an LLM API without explicit preprocessing — unstructured blobs produce unpredictable model behavior",
+    "Don't neglect per-modality latency profiling — image encoding can dominate pipeline latency and must be optimized separately from the text generation step",
+    "Don't conflate multimodal input with multimodal output — generating images, audio, or video requires separate output decoders and a distinct safety review"
+  ],
+  "donts_zh": [
+    "不要假设多模态模型在所有模态上表现同等出色——独立对每种模态进行基准测试并设置单独的质量阈值",
+    "不要在没有明确预处理的情况下直接将原始二进制文件字节传递给 LLM API——非结构化二进制块产生不可预测的模型行为",
+    "不要忽视按模态的延迟分析——图像编码可能主导流水线延迟，必须与文本生成步骤分开优化",
+    "不要混淆多模态输入与多模态输出——生成图像、音频或视频需要单独的输出解码器和独立的安全审查"
+  ],
+  "case_study_company": "Google DeepMind",
+  "case_study": "Google DeepMind's Gemini architecture demonstrated the first natively multimodal large model trained jointly across text, image, audio, and video from scratch rather than stitching together separate models. The Gemini Ultra pipeline uses a unified Transformer that accepts interleaved multimodal tokens, enabling tasks like reading a chart and answering a verbal question about it in a single forward pass. This architecture achieved state-of-the-art results on 30 of 32 multimodal benchmarks at launch, validating the joint-training approach over late-fusion ensemble alternatives.",
+  "case_study_zh": "Google DeepMind 的 Gemini 架构展示了第一个从头在文本、图像、音频和视频上联合训练的原生多模态大模型，而非拼接独立模型。Gemini Ultra 流水线使用统一的 Transformer 接受交织的多模态 Token，支持在单次前向传播中完成读取图表并回答口头问题等任务。此架构在发布时在32个多模态基准中的30个上达到了最先进的结果，验证了联合训练方法优于晚期融合集成替代方案。",
+  "when_not_to_use": [
+    "Applications that are genuinely text-only where multimodal complexity adds cost and latency without any benefit",
+    "Prototypes or MVPs where a single-modality model is sufficient to validate the core product hypothesis before investing in multimodal infrastructure",
+    "Low-latency real-time applications where the sequential preprocessing overhead of multiple modality encoders violates latency SLAs",
+    "Teams without the ML engineering expertise to debug cross-modal embedding alignment issues and modality-specific preprocessing failures"
+  ],
+  "when_not_to_use_zh": [
+    "真正纯文本的应用——多模态复杂性增加了成本和延迟而没有任何收益",
+    "单模态模型足以验证核心产品假设的原型或 MVP——在投资多模态基础设施前",
+    "多个模态编码器的顺序预处理开销违反延迟 SLA 的低延迟实时应用",
+    "缺乏调试跨模态嵌入对齐问题和特定模态预处理失败的 ML 工程专业知识的团队"
+  ],
+  "adopters": [
+    "Google DeepMind",
+    "OpenAI",
+    "Anthropic",
+    "Meta AI",
+    "Microsoft",
+    "Hugging Face"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "performance",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Google DeepMind (2023). \"Gemini: A Family of Highly Capable Multimodal Models\". arXiv:2312.11805.",
+  "secondary_sources": [
+    "Alec Radford et al. (2021). \"Learning Transferable Visual Models From Natural Language Supervision (CLIP)\". OpenAI. arXiv:2103.00020.",
+    "Jean-Baptiste Alayrac et al. (2022). \"Flamingo: a Visual Language Model for Few-Shot Learning\". DeepMind. arXiv:2204.14198.",
+    "Haotian Liu et al. (2023). \"Visual Instruction Tuning (LLaVA)\". arXiv:2304.08485."
+  ],
+  "typed_relations": [
+    {
+      "slug": "prompt-chaining",
+      "type": "complement"
+    },
+    {
+      "slug": "multi-agent-orchestration-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "llm-evaluation-framework",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/multimodal-pipeline-design",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/multimodal-pipeline-design.md"
+}

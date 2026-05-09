@@ -1,0 +1,203 @@
+{
+  "id": 150,
+  "name": "Mob/Ensemble Programming",
+  "name_zh": "群体编程 / 集合编程",
+  "slug": "mob-ensemble-programming",
+  "category": "team",
+  "desc": "The whole team works together on one task at one computer, with a rotating driver and navigators providing real-time collaboration",
+  "desc_zh": "整个团队在一台电脑上共同完成一项任务，轮换驾驶员和领航员进行实时协作",
+  "steps": [
+    "Gather the full team (3-6 people) at one workstation with a large shared display or screen-sharing tool",
+    "Designate one person as the Driver (types code) and everyone else as Navigators (direct the approach and design)",
+    "Rotate the Driver role on a fixed timer (typically every 10-15 minutes) to maintain engagement and shared ownership",
+    "Navigators discuss design, catch errors, and guide the Driver at the highest level of abstraction they can follow",
+    "Use retrospectives after each session to adjust rotation intervals, team composition, and facilitation practices"
+  ],
+  "steps_zh": [
+    "将整个团队（3-6 人）聚集在一个工作站前，使用大型共享显示器或屏幕共享工具",
+    "指定一人为驾驶员（键入代码），其他人为领航员（指导方法和设计）",
+    "按固定计时器（通常每 10-15 分钟）轮换驾驶员角色，以保持参与度和共同所有权",
+    "领航员讨论设计、发现错误，并在驾驶员能跟上的最高抽象层面进行指导",
+    "每次会议后使用回顾来调整轮换间隔、团队组成和引导实践"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Driver",
+    "Navigators",
+    "Rotation Timer",
+    "Design Discussion",
+    "Retrospective"
+  ],
+  "viz_labels_zh": [
+    "驾驶员",
+    "导航员",
+    "轮换计时",
+    "设计讨论",
+    "回顾"
+  ],
+  "related": [
+    "team-topologies",
+    "blameless-postmortems",
+    "spotify-model",
+    "engineering-ladder"
+  ],
+  "tags": [
+    "collaboration",
+    "pair-programming",
+    "mob-programming",
+    "ensemble",
+    "knowledge-sharing"
+  ],
+  "origin_author": "Woody Zuill, ~2012",
+  "origin_source": "Mob Programming: A Whole Team Approach (Woody Zuill, 2014 Agile conference); informed by The Mythical Man-Month (Brooks, 1975) communication models",
+  "origin_source_zh": "《群体编程：整个团队的方法》（Woody Zuill，2014 敏捷大会）；受《人月神话》（Brooks，1975）的沟通模型启发",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Complex, ambiguous problems where diverse perspectives significantly improve the solution quality",
+    "Onboarding new team members who need to absorb team practices, codebase knowledge, and domain context quickly",
+    "Critical path work where defects would be very costly and real-time review provides higher quality than async code review",
+    "Teams with knowledge silos where expertise is concentrated in one or two people and needs to be distributed"
+  ],
+  "when_to_use_zh": [
+    "复杂模糊的问题，多样化视角能显著提高解决方案质量",
+    "新成员入职，需要快速吸收团队实践、代码库知识和领域上下文",
+    "关键路径工作，缺陷成本极高，实时评审比异步代码评审提供更高质量",
+    "存在知识孤岛的团队，专业知识集中在一两个人身上需要分散"
+  ],
+  "core_concepts": [
+    "Driver-Navigator pattern: The Driver operates the keyboard but does not make design decisions — Navigators provide the thinking while the Driver translates it to code",
+    "Strong-style pairing: 'For an idea to go from your head into the computer, it must go through someone else's hands' — Llewellyn Falco's principle that ensures knowledge transfer",
+    "Whole-team ownership: Because everyone participates in writing every line of code, there is no individual code ownership and no knowledge silos",
+    "Continuous code review: With multiple Navigators watching every keystroke, defects are caught in real-time rather than in post-hoc reviews",
+    "Brooks's communication insight: Mob programming inverts Brooks's Law — instead of n*(n-1)/2 communication channels creating overhead, the single shared context eliminates miscommunication"
+  ],
+  "core_concepts_zh": [
+    "驾驶员-领航员模式：驾驶员操作键盘但不做设计决策——领航员提供思路，驾驶员将其转化为代码",
+    "强风格结对：「一个想法要从你的脑子进入电脑，必须经过另一个人的手」——Llewellyn Falco 的原则确保知识传递",
+    "全团队所有权：因为每个人都参与编写每一行代码，不存在个人代码所有权和知识孤岛",
+    "持续代码评审：多位领航员观察每个按键，缺陷在实时中被捕获，而非事后评审",
+    "布鲁克斯的沟通洞察：群体编程反转了布鲁克斯定律——n*(n-1)/2 条通信通道带来的开销被单一共享上下文所消除，杜绝了沟通不畅"
+  ],
+  "timeline": [
+    [
+      "1975",
+      "Fred Brooks identifies communication overhead as the dominant cost of adding people to a team in The Mythical Man-Month"
+    ],
+    [
+      "1999",
+      "Kent Beck formalizes pair programming as a core practice of Extreme Programming"
+    ],
+    [
+      "2012",
+      "Woody Zuill discovers mob programming at Hunter Industries when his team naturally starts working together at one screen"
+    ],
+    [
+      "2014",
+      "Zuill presents 'Mob Programming: A Whole Team Approach' at the Agile conference, introducing the practice to the wider community"
+    ],
+    [
+      "2020",
+      "Remote mob/ensemble programming surges during COVID-19, enabled by tools like VS Code Live Share, Tuple, and mob.sh"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1975",
+      "Fred Brooks 在《人月神话》中将沟通开销确定为向团队添加人员的主要成本"
+    ],
+    [
+      "1999",
+      "Kent Beck 将结对编程正式确立为极限编程的核心实践"
+    ],
+    [
+      "2012",
+      "Woody Zuill 在 Hunter Industries 发现群体编程，当时他的团队自然而然地开始在一个屏幕前一起工作"
+    ],
+    [
+      "2014",
+      "Zuill 在敏捷大会上发表《群体编程：整个团队的方法》，将该实践介绍给更广泛的社区"
+    ],
+    [
+      "2020",
+      "远程群体/集合编程在 COVID-19 期间激增，得益于 VS Code Live Share、Tuple 和 mob.sh 等工具"
+    ]
+  ],
+  "dos": [
+    "Keep rotation intervals short (10-15 minutes) to maintain energy and prevent the Driver from zoning out",
+    "Start with well-defined, time-boxed sessions (2-3 hours) rather than all-day mob programming to avoid fatigue",
+    "Use mob programming selectively for high-value work: complex design, critical bugs, or knowledge transfer — not routine tasks",
+    "Create psychological safety so junior team members feel comfortable navigating and voicing ideas to senior colleagues"
+  ],
+  "dos_zh": [
+    "保持短轮换间隔（10-15 分钟）以维持精力，防止驾驶员走神",
+    "从定义明确的限时会议（2-3 小时）开始，而非全天群体编程，以避免疲劳",
+    "选择性地将群体编程用于高价值工作：复杂设计、关键 Bug 或知识传递——而非日常任务",
+    "营造心理安全感，使初级团队成员在面对资深同事时也能自如地领航和表达想法"
+  ],
+  "donts": [
+    "Don't use mob programming for simple, well-understood tasks where one person would be equally effective — it is wasteful for routine work",
+    "Don't let one dominant personality monopolize navigation — the facilitator must ensure all voices are heard",
+    "Don't skip the Driver rotation — without rotation, mob programming degrades into one person coding while others watch passively",
+    "Don't force mob programming on unwilling teams — the practice requires buy-in and psychological safety to be effective"
+  ],
+  "donts_zh": [
+    "不要将群体编程用于一个人即可同样有效完成的简单、明确的任务——对日常工作来说是浪费",
+    "不要让一个强势的人垄断领航——引导者必须确保所有声音都被听到",
+    "不要跳过驾驶员轮换——没有轮换，群体编程会退化为一个人编码而其他人被动旁观",
+    "不要强迫不愿意的团队进行群体编程——该实践需要认同和心理安全感才能有效"
+  ],
+  "case_study_company": "Hunter Industries",
+  "case_study": "Hunter Industries, a mid-sized irrigation equipment manufacturer in San Marcos, California, is where mob programming originated. In 2012, Woody Zuill's development team of 7 people began working together at a single workstation after a 'code retreat' exercise. Rather than returning to individual work, they continued the practice full-time. Over the next two years, the team reported a dramatic reduction in defects (virtually zero production bugs), elimination of code review bottlenecks, and a 10x improvement in onboarding speed for new developers. Brooks's predicted communication overhead paradoxically decreased because the shared context eliminated the need for status meetings, handoff documentation, and async coordination. The practice spread industry-wide after Zuill's 2014 Agile conference presentation.",
+  "case_study_zh": "Hunter Industries 是位于加州圣马科斯的中型灌溉设备制造商，是群体编程的发源地。2012 年，Woody Zuill 的 7 人开发团队在一次「代码静修」练习后开始在一个工作站上一起工作。他们没有回到各自独立工作，而是继续全职实践。在接下来的两年中，团队报告缺陷大幅减少（生产 Bug 几乎为零）、消除了代码评审瓶颈，新开发者入职速度提高了 10 倍。布鲁克斯预测的沟通开销反而降低了，因为共享上下文消除了对状态会议、交接文档和异步协调的需要。在 Zuill 2014 年敏捷大会的演讲之后，该实践在业界广泛传播。",
+  "when_not_to_use": [
+    "Routine, well-understood tasks where individual work is more efficient and mob programming adds overhead without quality benefit",
+    "Teams larger than 6 people — beyond this size, navigators cannot all contribute meaningfully and engagement drops",
+    "Remote teams without reliable, low-latency screen-sharing tools — network lag makes the Driver experience frustrating",
+    "Highly independent tasks that do not benefit from real-time collaboration (e.g., documentation, data entry, configuration)"
+  ],
+  "when_not_to_use_zh": [
+    "日常的、明确的任务，个人工作更高效，群体编程增加开销但无质量收益",
+    "超过 6 人的团队——超过此规模，领航员无法都有意义地贡献，参与度下降",
+    "没有可靠低延迟屏幕共享工具的远程团队——网络延迟使驾驶员体验令人沮丧",
+    "不受益于实时协作的高度独立任务（如文档编写、数据录入、配置）"
+  ],
+  "adopters": [
+    "Hunter Industries",
+    "Cucumber",
+    "Shopify",
+    "Unruly Media",
+    "LEGO"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability",
+    "usability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Zuill, W. & Meadows, K. (2016). \"Mob Programming: A Whole Team Approach\". woody-zuill.com.",
+  "secondary_sources": [
+    "Zuill, W. (2014). \"Mob Programming — A Whole Team Approach\". Proceedings of Agile 2014.",
+    "Wilson, E. (2023). \"Ensemble Programming Guidebook\". ensembleprogramming.xyz."
+  ],
+  "typed_relations": [
+    {
+      "slug": "team-topologies",
+      "type": "complement"
+    },
+    {
+      "slug": "blameless-postmortems",
+      "type": "complement"
+    },
+    {
+      "slug": "spotify-model",
+      "type": "complement"
+    },
+    {
+      "slug": "engineering-ladder",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/mob-ensemble-programming",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/mob-ensemble-programming.md"
+}

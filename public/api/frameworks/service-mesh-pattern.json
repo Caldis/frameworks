@@ -1,0 +1,194 @@
+{
+  "id": 27,
+  "name": "Service Mesh Pattern",
+  "name_zh": "服务网格模式",
+  "slug": "service-mesh-pattern",
+  "category": "architecture",
+  "desc": "Dedicated infrastructure for service-to-service communication",
+  "desc_zh": "为服务间通信提供专用基础设施层的架构模式",
+  "steps": [
+    "Assess readiness: evaluate whether your microservices count, operational complexity, and team maturity justify a service mesh investment",
+    "Select a mesh implementation: compare options (Istio, Linkerd, Consul Connect) based on feature set, resource overhead, and ecosystem fit",
+    "Deploy sidecar proxies: inject a proxy (e.g., Envoy) alongside each service instance to intercept all inbound and outbound traffic transparently",
+    "Configure traffic policies: set up mutual TLS, retry budgets, circuit breaking, rate limiting, and traffic splitting rules via the mesh control plane",
+    "Establish observability: leverage the mesh's built-in distributed tracing, metrics collection, and access logging for end-to-end service visibility"
+  ],
+  "steps_zh": [
+    "评估就绪度：评估微服务数量、运维复杂度和团队成熟度是否足以证明服务网格的投入",
+    "选择网格实现：根据功能集、资源开销和生态契合度比较选项（Istio、Linkerd、Consul Connect）",
+    "部署边车代理：在每个服务实例旁注入代理（如Envoy），透明拦截所有入站和出站流量",
+    "配置流量策略：通过网格控制面设置双向TLS、重试预算、熔断、限流和流量分割规则",
+    "建立可观测性：利用网格内置的分布式追踪、指标采集和访问日志实现端到端服务可见性"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Service",
+    "Sidecar Proxy",
+    "Control Plane",
+    "Data Plane"
+  ],
+  "viz_labels_zh": [
+    "服务实例",
+    "Sidecar代理",
+    "控制平面",
+    "数据平面"
+  ],
+  "related": [
+    "microservices-decomposition",
+    "circuit-breaker-pattern",
+    "infrastructure-as-code"
+  ],
+  "tags": [
+    "service-mesh",
+    "sidecar",
+    "traffic-management",
+    "observability",
+    "mTLS"
+  ],
+  "origin_author": "William Morgan (Buoyant), 2017",
+  "origin_source": "What's a service mesh? And why do I need one? (buoyant.io blog, 2017); concept evolved from Linkerd and Envoy projects",
+  "origin_source_zh": "《什么是服务网格？为什么我需要它？》（buoyant.io博客，2017年）；概念从Linkerd和Envoy项目演化而来",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When managing dozens or hundreds of microservices and cross-cutting concerns like mTLS, retries, and observability become repetitive in application code",
+    "When zero-trust networking requires mutual TLS between all services without application code changes",
+    "When canary deployments and traffic shifting need fine-grained, infrastructure-level control",
+    "When distributed tracing and metrics need to be collected uniformly across all services"
+  ],
+  "when_to_use_zh": [
+    "管理数十或数百个微服务且mTLS、重试、可观测性等横切关注点在应用代码中重复出现时",
+    "零信任网络要求所有服务间双向TLS而不修改应用代码时",
+    "金丝雀部署和流量切换需要细粒度基础设施级别控制时",
+    "需要在所有服务中统一收集分布式追踪和指标时"
+  ],
+  "core_concepts": [
+    "Sidecar proxy: A proxy (typically Envoy) deployed alongside each service to handle all network traffic transparently",
+    "Control plane: Centralized management (Istiod, linkerd-control-plane) that configures all sidecar proxies",
+    "Data plane: The collection of sidecar proxies that actually handle request routing and policy enforcement",
+    "Mutual TLS (mTLS): Automatic encryption and identity verification between services without application changes",
+    "Traffic management: Capabilities like canary releases, circuit breaking, retries, and rate limiting managed at infrastructure level"
+  ],
+  "core_concepts_zh": [
+    "边车代理：部署在每个服务旁的代理（通常为Envoy），透明处理所有网络流量",
+    "控制面：集中管理（Istiod、linkerd-control-plane），配置所有边车代理",
+    "数据面：实际处理请求路由和策略执行的边车代理集合",
+    "双向TLS（mTLS）：无需修改应用即可在服务间自动加密和身份验证",
+    "流量管理：金丝雀发布、熔断、重试和限流等在基础设施层管理的能力"
+  ],
+  "timeline": [
+    [
+      "2016",
+      "Linkerd 1.0 released by Buoyant as the first dedicated service mesh"
+    ],
+    [
+      "2016",
+      "Lyft open-sources Envoy proxy, which becomes the standard data plane"
+    ],
+    [
+      "2017",
+      "Google, IBM, and Lyft launch Istio, the most widely adopted service mesh"
+    ],
+    [
+      "2019",
+      "Service Mesh Interface (SMI) specification proposed for mesh interoperability"
+    ],
+    [
+      "2023",
+      "Istio ambient mesh introduces sidecar-less mode, reducing resource overhead"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2016",
+      "Buoyant发布Linkerd 1.0，作为首个专用服务网格"
+    ],
+    [
+      "2016",
+      "Lyft开源Envoy代理，成为标准数据面"
+    ],
+    [
+      "2017",
+      "Google、IBM和Lyft推出Istio，成为最广泛采用的服务网格"
+    ],
+    [
+      "2019",
+      "服务网格接口（SMI）规范被提出以实现网格互操作性"
+    ],
+    [
+      "2023",
+      "Istio ambient mesh引入无边车模式，降低资源开销"
+    ]
+  ],
+  "dos": [
+    "Do start with observability features first because they provide immediate value with low risk",
+    "Do adopt incrementally by enabling the mesh for a subset of services first because big-bang rollouts are risky",
+    "Do monitor the resource overhead of sidecar proxies because they consume CPU and memory alongside each service",
+    "Do use the mesh for mTLS everywhere because it eliminates an entire class of network security vulnerabilities"
+  ],
+  "dos_zh": [
+    "优先从可观测性功能开始，因为它们以低风险提供即时价值",
+    "增量采用，先为部分服务启用网格，因为大爆炸式推出风险很高",
+    "监控边车代理的资源开销，因为它们在每个服务旁消耗CPU和内存",
+    "全面使用网格实现mTLS，因为它消除了一整类网络安全漏洞"
+  ],
+  "donts": [
+    "Don't adopt a service mesh for fewer than 10 services because the operational overhead outweighs the benefits",
+    "Don't ignore the latency added by sidecar proxies because each hop adds 1-3ms that compounds across call chains",
+    "Don't configure traffic policies without load testing because misconfigured retry budgets can cause retry storms",
+    "Don't assume the mesh replaces application-level resilience because it complements rather than substitutes business logic error handling"
+  ],
+  "donts_zh": [
+    "不要为少于10个服务采用服务网格，因为运维开销超过收益",
+    "不要忽视边车代理增加的延迟，因为每一跳增加1-3毫秒并在调用链中累积",
+    "不要未经负载测试就配置流量策略，因为错误配置的重试预算可能导致重试风暴",
+    "不要假设网格替代应用级弹性，它是业务逻辑错误处理的补充而非替代"
+  ],
+  "case_study_company": "Lyft",
+  "case_study": "Lyft built Envoy proxy to solve the challenge of managing service-to-service communication across hundreds of microservices written in multiple languages. Before Envoy, each service team implemented its own retry logic, circuit breaking, and observability, leading to inconsistent behavior. By deploying Envoy as a sidecar proxy for every service, Lyft achieved uniform mTLS, distributed tracing, and traffic management. Envoy was later donated to the CNCF and became the data plane for Istio and other service meshes.",
+  "case_study_zh": "Lyft构建Envoy代理来解决数百个以多种语言编写的微服务之间管理服务间通信的挑战。在Envoy之前，每个服务团队自行实现重试逻辑、熔断和可观测性，导致行为不一致。通过为每个服务部署Envoy作为边车代理，Lyft实现了统一的mTLS、分布式追踪和流量管理。Envoy后来捐赠给CNCF，成为Istio和其他服务网格的数据面。",
+  "when_not_to_use": [
+    "Small deployments with fewer than 10 services where a simple API gateway or load balancer suffices",
+    "Teams without Kubernetes expertise because most service meshes assume container orchestration",
+    "Latency-sensitive applications where the added sidecar proxy hop is unacceptable"
+  ],
+  "when_not_to_use_zh": [
+    "少于10个服务、简单API网关或负载均衡器即可满足需求的小型部署",
+    "缺乏Kubernetes经验的团队，因为大多数服务网格假设容器编排环境",
+    "边车代理额外跳转不可接受的延迟敏感应用"
+  ],
+  "adopters": [
+    "Lyft",
+    "Airbnb",
+    "eBay",
+    "Salesforce",
+    "T-Mobile"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "observability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "William Morgan (2017). \"What's a Service Mesh? And Why Do I Need One?\". buoyant.io.",
+  "secondary_sources": [
+    "Lee Calcote and Zack Butcher (2020). \"Istio: Up and Running\". O'Reilly Media.",
+    "Matt Klein (2017). \"The Universal Data Plane API\". Envoy Proxy Blog."
+  ],
+  "typed_relations": [
+    {
+      "slug": "microservices-decomposition",
+      "type": "complement"
+    },
+    {
+      "slug": "circuit-breaker-pattern",
+      "type": "related"
+    },
+    {
+      "slug": "infrastructure-as-code",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/service-mesh-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/service-mesh-pattern.md"
+}

@@ -1,0 +1,177 @@
+{
+  "id": 239,
+  "name": "Middleware / Pipeline Pattern",
+  "name_zh": "中间件/管道模式",
+  "slug": "middleware-pipeline-pattern",
+  "category": "coding",
+  "desc": "Chain processing steps that can inspect, transform, or short-circuit a request as it flows through a pipeline",
+  "desc_zh": "将处理步骤链接成管道，每个步骤可检查、转换请求或短路请求的流动，实现横切关注点的解耦",
+  "steps": [
+    "Define the middleware interface: establish a contract where each middleware receives the request/context and a next function to invoke the remaining pipeline",
+    "Implement individual middleware functions: each middleware performs one focused concern (authentication, logging, compression, rate limiting) and calls next() to pass control downstream",
+    "Compose the pipeline: register middleware in order using an app.use() style API, a list, or a builder; the framework or pipeline runner chains them so each wraps the next",
+    "Handle short-circuiting: allow middleware to terminate the pipeline early (e.g., return 401 without calling next()) for cross-cutting rejection or caching scenarios",
+    "Support bi-directional flow (onion model): design middleware to execute logic both before calling next() (inbound/request phase) and after it returns (outbound/response phase) for symmetric concerns like timing and error wrapping"
+  ],
+  "steps_zh": [
+    "定义中间件接口：建立每个中间件接收请求/上下文和调用剩余管道的 next 函数的契约",
+    "实现各个中间件函数：每个中间件执行一个专注的关注点（认证、日志、压缩、速率限制），并调用 next() 将控制权传递给下游",
+    "组合管道：使用 app.use() 风格 API、列表或构建器按顺序注册中间件；框架或管道运行器将它们链接起来，使每个中间件包装下一个",
+    "处理短路：允许中间件提前终止管道（如不调用 next() 直接返回 401），用于横切拒绝或缓存场景",
+    "支持双向流（洋葱模型）：设计中间件在调用 next() 之前（入站/请求阶段）和之后（出站/响应阶段）都执行逻辑，用于时间和错误包装等对称关注点"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Request",
+    "Middleware",
+    "Handler",
+    "Response"
+  ],
+  "viz_labels_zh": [
+    "请求",
+    "中间件",
+    "处理器",
+    "响应"
+  ],
+  "related": [
+    "decorator-pattern",
+    "command-pattern"
+  ],
+  "tags": [
+    "pipeline",
+    "middleware",
+    "behavioral",
+    "http",
+    "cross-cutting-concerns"
+  ],
+  "origin_author": "Community practice; popularized by TJ Holowaychuk (Express.js / Koa), 2010s",
+  "origin_source": "Express.js, Koa, ASP.NET Core, and WSGI community practice",
+  "origin_source_zh": "Express.js、Koa、ASP.NET Core 及 WSGI 社区实践",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Cross-cutting concerns (auth, logging, tracing, rate limiting, caching) need to be applied uniformly across many request handlers without polluting handler code",
+    "Request processing involves a well-defined, ordered sequence of transformations where each step is independently testable and replaceable",
+    "Building extensible frameworks or plugins systems where users can inject behavior into the processing flow without modifying core code"
+  ],
+  "when_to_use_zh": [
+    "横切关注点（认证、日志、追踪、速率限制、缓存）需要统一应用于许多请求处理程序，而不污染处理程序代码",
+    "请求处理涉及定义明确的有序转换序列，每个步骤独立可测试且可替换",
+    "构建可扩展框架或插件系统，用户可以在不修改核心代码的情况下将行为注入处理流程"
+  ],
+  "core_concepts": [
+    "Middleware function: a unit of pipeline logic that receives the context and a next() function; it can inspect or mutate context, delegate to next(), and optionally process the result on the way back",
+    "Pipeline composition: middleware functions are stacked at configuration time into a chain; at runtime each function wraps and delegates to the remaining chain, creating the onion model",
+    "Short-circuit termination: middleware can halt the pipeline by not calling next(), returning a synthetic response directly — enabling authentication guards, cache hits, and error fences without touching downstream handlers"
+  ],
+  "core_concepts_zh": [
+    "中间件函数：管道逻辑的单元，接收上下文和 next() 函数；可以检查或改变上下文，委托给 next()，并可选地在返回途中处理结果",
+    "管道组合：中间件函数在配置时堆叠成链；在运行时每个函数包装并委托给剩余链，创建洋葱模型",
+    "短路终止：中间件可以通过不调用 next() 来中止管道，直接返回合成响应——使认证守卫、缓存命中和错误隔离无需触及下游处理程序"
+  ],
+  "timeline": [
+    [
+      "2000",
+      "Python's WSGI specification defines a middleware-composable interface for web applications, predating popular Node.js frameworks"
+    ],
+    [
+      "2010",
+      "TJ Holowaychuk releases Express.js for Node.js, popularizing app.use() middleware as the dominant pattern for HTTP pipeline composition"
+    ],
+    [
+      "2013",
+      "Koa.js introduces the generator-based (later async/await) onion model, making bidirectional middleware first-class"
+    ],
+    [
+      "2016",
+      "ASP.NET Core rebuilds its HTTP pipeline around IMiddleware and app.Use(), bringing the Express idiom to the .NET ecosystem with dependency injection support"
+    ],
+    [
+      "2022",
+      "AI agent frameworks (LangChain, LlamaIndex) adopt pipeline/middleware patterns for LLM request chains, tool routing, and response post-processing"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2000",
+      "Python 的 WSGI 规范为 Web 应用定义了中间件可组合接口，早于流行的 Node.js 框架"
+    ],
+    [
+      "2010",
+      "TJ Holowaychuk 为 Node.js 发布 Express.js，推广 app.use() 中间件作为 HTTP 管道组合的主流模式"
+    ],
+    [
+      "2013",
+      "Koa.js 引入基于生成器（后来是 async/await）的洋葱模型，使双向中间件成为一等公民"
+    ],
+    [
+      "2016",
+      "ASP.NET Core 围绕 IMiddleware 和 app.Use() 重建其 HTTP 管道，将 Express 习语带入 .NET 生态系统并支持依赖注入"
+    ],
+    [
+      "2022",
+      "AI 智能体框架（LangChain、LlamaIndex）采用管道/中间件模式用于 LLM 请求链、工具路由和响应后处理"
+    ]
+  ],
+  "dos": [
+    "Do keep each middleware focused on a single concern — authentication middleware should not also perform logging; compose separate middlewares instead",
+    "Do always call next() or explicitly terminate; forgetting next() in non-terminating middleware silently hangs requests and is one of the most common pipeline bugs",
+    "Do order middleware deliberately — security and authentication checks must precede business logic; logging middleware should wrap the entire pipeline to capture timings"
+  ],
+  "dos_zh": [
+    "保持每个中间件专注于单一关注点——认证中间件不应同时执行日志记录；改为组合独立的中间件",
+    "始终调用 next() 或显式终止；在非终止中间件中忘记 next() 会静默挂起请求，是最常见的管道错误之一",
+    "刻意排序中间件——安全和认证检查必须在业务逻辑之前；日志中间件应包装整个管道以捕获时间"
+  ],
+  "donts": [
+    "Don't put significant business logic inside middleware — it makes the logic hard to test in isolation and blurs the separation between infrastructure and domain concerns",
+    "Don't swallow errors inside middleware without either handling them fully or re-throwing them — silent error absorption prevents upstream error handlers from running",
+    "Don't register too many middleware globally when only a few routes need them — route-specific middleware keeps pipelines lean and improves request tracing clarity"
+  ],
+  "donts_zh": [
+    "不要在中间件内放置重要的业务逻辑——这使逻辑难以隔离测试，并模糊了基础设施和领域关注点之间的分离",
+    "不要在中间件内静默吞噬错误而不完全处理或重新抛出——静默错误吸收会阻止上游错误处理程序运行",
+    "当只有少数路由需要时，不要全局注册太多中间件——特定路由的中间件保持管道精简并提高请求追踪清晰度"
+  ],
+  "case_study_company": "Express.js / OpenJS Foundation",
+  "case_study": "Express.js made the middleware pipeline pattern the de facto standard for Node.js web development. An Express application handling e-commerce requests chains: morgan (request logging), helmet (security headers), cors (CORS policy), express-rate-limit (abuse prevention), passport.authenticate (JWT verification), and finally the route handler itself. Each middleware is independently installable, testable with supertest, and replaceable without touching others. When Stripe integrated Express into their API development workflow, they used middleware chains to enforce API versioning, idempotency-key validation, and audit logging across all endpoints without duplicating these concerns inside individual route handlers.",
+  "case_study_zh": "Express.js 使中间件管道模式成为 Node.js Web 开发的事实标准。处理电商请求的 Express 应用链接：morgan（请求日志）、helmet（安全头部）、cors（CORS 策略）、express-rate-limit（滥用防护）、passport.authenticate（JWT 验证），最终是路由处理程序本身。每个中间件都独立可安装、可用 supertest 测试，且可替换而不触及其他中间件。当 Stripe 将 Express 集成到其 API 开发工作流时，他们使用中间件链在所有端点强制执行 API 版本控制、幂等键验证和审计日志，而无需在单个路由处理程序内重复这些关注点。",
+  "when_not_to_use": [
+    "Simple single-step transformations where a plain function call is more readable than a pipeline of one",
+    "Batch processing jobs with no need for cross-cutting HTTP concerns, where a direct sequence of function calls is easier to follow",
+    "High-throughput low-latency paths where middleware function call overhead and context allocation per request is a measurable bottleneck"
+  ],
+  "when_not_to_use_zh": [
+    "简单的单步转换，普通函数调用比只有一个中间件的管道更具可读性",
+    "无需横切 HTTP 关注点的批处理作业，直接的函数调用序列更容易理解",
+    "高吞吐量低延迟路径，每个请求的中间件函数调用开销和上下文分配是可测量的瓶颈"
+  ],
+  "adopters": [
+    "Express.js / Koa.js (Node.js)",
+    "ASP.NET Core (.NET)",
+    "Django middleware (Python)",
+    "LangChain (AI pipelines)"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Holowaychuk, T. (2010). Express.js framework documentation. expressjs.com.",
+  "secondary_sources": [
+    "Microsoft (2016). \"ASP.NET Core Middleware\". docs.microsoft.com.",
+    "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "decorator-pattern",
+      "type": "related"
+    },
+    {
+      "slug": "command-pattern",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/middleware-pipeline-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/middleware-pipeline-pattern.md"
+}

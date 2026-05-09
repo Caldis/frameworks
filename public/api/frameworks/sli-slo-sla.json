@@ -1,0 +1,194 @@
+{
+  "id": 68,
+  "name": "SLI/SLO/SLA",
+  "name_zh": "SLI/SLO/SLA",
+  "slug": "sli-slo-sla",
+  "category": "deployment",
+  "desc": "Define and measure service reliability through layered objectives",
+  "desc_zh": "通过分层目标体系定义和度量服务可靠性",
+  "steps": [
+    "Define SLIs (Service Level Indicators): choose quantitative measures like availability, latency, throughput",
+    "Set SLOs (Service Level Objectives): establish target thresholds for each SLI (e.g., 99.9% availability)",
+    "Calculate Error Budget: the allowable failure margin (1 - SLO) available for risk-taking and innovation",
+    "Monitor SLIs in real time with dashboards; burn rate alerts signal when budget depletes too fast",
+    "Formalize SLAs (Service Level Agreements) with customers; tie consequences to SLO breaches"
+  ],
+  "steps_zh": [
+    "定义SLI（服务水平指标）：选择可量化的度量指标，如可用性、延迟、吞吐量",
+    "设定SLO（服务水平目标）：为每个SLI制定目标阈值（例如99.9%可用性）",
+    "计算错误预算：可承受的失败裕量（1 - SLO），用于承担风险和推进创新",
+    "通过仪表盘实时监控SLI，燃烧率告警在预算消耗过快时发出提示",
+    "与客户签订正式SLA，明确违反SLO时的后果与处置机制"
+  ],
+  "ai_relevant": true,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "SLI",
+    "SLO",
+    "SLA"
+  ],
+  "viz_labels_zh": [
+    "服务指标",
+    "服务目标",
+    "服务协议"
+  ],
+  "related": [
+    "four-golden-signals",
+    "dora-metrics",
+    "chaos-engineering"
+  ],
+  "tags": [
+    "sli",
+    "slo",
+    "sla",
+    "reliability",
+    "error-budget"
+  ],
+  "origin_author": "Google SRE team, formalized by Ben Treynor Sloss, ~2003",
+  "origin_source": "Site Reliability Engineering: How Google Runs Production Systems (Betsy Beyer et al., 2016)",
+  "origin_source_zh": "《SRE：Google运维解密》（Betsy Beyer等，2016）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Services with external or internal customers who depend on measurable reliability guarantees",
+    "Teams that need to balance shipping new features quickly and maintaining system stability",
+    "Organizations establishing error budget policies to objectively decide when to freeze deployments",
+    "Incident response processes that need clear thresholds for escalation and severity classification"
+  ],
+  "when_to_use_zh": [
+    "拥有依赖可衡量可靠性保证的外部或内部客户的服务",
+    "需要平衡快速发布新功能与维护系统稳定性之间张力的团队",
+    "建立错误预算策略以客观决定何时冻结部署的组织",
+    "需要清晰升级和严重性分级阈值的事故响应流程"
+  ],
+  "core_concepts": [
+    "Service Level Indicator (SLI): A quantitative measure of service quality, such as request latency at the 99th percentile or availability as the ratio of successful requests",
+    "Service Level Objective (SLO): A target value or range for an SLI that the service team commits to maintaining",
+    "Error Budget: The inverse of the SLO (1 - SLO) representing the allowable amount of unreliability; teams spend it on risky changes",
+    "Burn Rate: The rate at which the error budget is being consumed; multi-window burn rate alerts detect both fast and slow exhaustion",
+    "Service Level Agreement (SLA): A formal contract with customers that includes consequences when SLOs are breached, typically set looser than internal SLOs"
+  ],
+  "core_concepts_zh": [
+    "服务水平指标（SLI）：服务质量的定量度量，如第99百分位请求延迟或成功请求比率",
+    "服务水平目标（SLO）：服务团队承诺维护的SLI目标值或范围",
+    "错误预算：SLO的反面（1 - SLO），代表允许的不可靠量；团队将其用于有风险的变更",
+    "燃烧率：错误预算被消耗的速率；多窗口燃烧率告警检测快速和缓慢的预算耗尽",
+    "服务水平协议（SLA）：与客户的正式合同，包含违反SLO时的后果，通常设置得比内部SLO更宽松"
+  ],
+  "timeline": [
+    [
+      "2003",
+      "Google's SRE team under Ben Treynor Sloss formalizes SLI/SLO/error budget practices for internal services"
+    ],
+    [
+      "2016",
+      "Site Reliability Engineering book published, making Google's SLI/SLO/SLA framework publicly accessible"
+    ],
+    [
+      "2018",
+      "The Site Reliability Workbook provides practical implementation guidance for SLOs with worked examples"
+    ],
+    [
+      "2020",
+      "OpenSLO specification launched to standardize SLO definitions as code across monitoring platforms"
+    ],
+    [
+      "2023",
+      "SLO-based alerting (burn rate alerts) becomes the recommended approach in major observability platforms"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2003",
+      "Google SRE团队在Ben Treynor Sloss领导下为内部服务正式化SLI/SLO/错误预算实践"
+    ],
+    [
+      "2016",
+      "《SRE：Google运维解密》出版，使SLI/SLO/SLA框架对外公开"
+    ],
+    [
+      "2018",
+      "《SRE工作手册》提供SLO的实践实施指导和实例"
+    ],
+    [
+      "2020",
+      "OpenSLO规范发布，标准化跨监控平台的SLO代码化定义"
+    ],
+    [
+      "2023",
+      "基于SLO的告警（燃烧率告警）成为主要可观测性平台的推荐方法"
+    ]
+  ],
+  "dos": [
+    "Do choose SLIs that reflect what users actually care about (request success rate, page load time) rather than internal system metrics",
+    "Do set SLOs based on user expectations and business impact analysis, not arbitrary five-nines targets",
+    "Do implement error budget policies that clearly define what happens when the budget is exhausted",
+    "Do use multi-window, multi-burn-rate alerting to catch both sudden outages and gradual degradation"
+  ],
+  "dos_zh": [
+    "务必选择反映用户真正关心的SLI（请求成功率、页面加载时间），而非内部系统指标",
+    "务必基于用户期望和业务影响分析设定SLO，而非任意的五个9目标",
+    "务必实施错误预算策略，明确定义预算耗尽时的措施",
+    "务必使用多窗口、多燃烧率告警来捕获突发宕机和渐进劣化"
+  ],
+  "donts": [
+    "Don't set SLOs at 100%, because it is mathematically impossible to achieve and leaves zero room for innovation",
+    "Don't confuse SLOs with SLAs -- SLOs are internal engineering targets while SLAs are customer-facing contracts",
+    "Don't create SLOs for every metric imaginable -- pick 3-5 that truly represent user happiness",
+    "Don't ignore error budget consumption trends, because running hot signals systemic reliability issues"
+  ],
+  "donts_zh": [
+    "不要将SLO设为100%，因为数学上不可能实现且不留任何创新空间",
+    "不要混淆SLO和SLA——SLO是内部工程目标，SLA是面向客户的合同",
+    "不要为每个指标创建SLO——选择3-5个真正代表用户满意度的",
+    "不要忽视错误预算消耗趋势，因为持续接近上限意味着系统性可靠性问题"
+  ],
+  "case_study_company": "Google",
+  "case_study": "Google pioneered the SLI/SLO/error budget model internally for services like Gmail, Search, and Cloud Platform. For Google Cloud, they publish external SLAs backed by financial credits. Internally, when a service exhausts its error budget, the team must shift focus from feature development to reliability improvements. This mechanism enables Google to maintain high reliability across thousands of services while still shipping features at high velocity.",
+  "case_study_zh": "Google在Gmail、搜索和Cloud Platform等服务中率先实践SLI/SLO/错误预算模型。对于Google Cloud，他们发布由财务积分支持的外部SLA。在内部，当服务耗尽错误预算时，团队必须将重心从功能开发转向可靠性改进。这一机制使Google在数千个服务上保持高可靠性的同时仍能高速发布功能。",
+  "when_not_to_use": [
+    "Internal tools with very few users where formal SLOs add overhead without meaningful reliability improvement",
+    "Batch processing systems where request-based SLIs don't apply -- use job success rate metrics instead",
+    "Very early-stage products where usage patterns are unknown and setting meaningful SLOs is premature",
+    "Systems where 100% correctness is non-negotiable (financial transactions, medical devices) and error budgets don't apply"
+  ],
+  "when_not_to_use_zh": [
+    "用户极少的内部工具——正式SLO增加开销但无有意义的可靠性提升",
+    "基于请求的SLI不适用的批处理系统——应使用作业成功率指标",
+    "使用模式未知且设定SLO为时过早的极早期产品",
+    "100%正确性不可协商且错误预算不适用的系统（金融交易、医疗设备）"
+  ],
+  "adopters": [
+    "Google",
+    "Datadog",
+    "Uber",
+    "Slack",
+    "New Relic"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "observability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Betsy Beyer, Chris Jones, Jennifer Petoff, and Niall Richard Murphy (2016). \"Site Reliability Engineering: How Google Runs Production Systems\". O'Reilly Media. Chapters 4-5.",
+  "secondary_sources": [
+    "Betsy Beyer et al. (2018). \"The Site Reliability Workbook: Practical Ways to Implement SRE\". O'Reilly Media.",
+    "Alex Hidalgo (2020). \"Implementing Service Level Objectives\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "four-golden-signals",
+      "type": "complement"
+    },
+    {
+      "slug": "dora-metrics",
+      "type": "complement"
+    },
+    {
+      "slug": "chaos-engineering",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/sli-slo-sla",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/sli-slo-sla.md"
+}

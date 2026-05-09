@@ -1,0 +1,200 @@
+{
+  "id": 213,
+  "name": "API Deprecation Lifecycle",
+  "name_zh": "API弃用生命周期",
+  "slug": "api-deprecation-lifecycle",
+  "category": "api",
+  "desc": "Sunset headers, versioned migration paths, and deprecation policies for retiring API versions",
+  "desc_zh": "用于停用API版本的日落头、版本化迁移路径和弃用策略",
+  "steps": [
+    "Announce deprecation with a minimum notice period (typically 6-12 months for public APIs) via developer portal, email, and Deprecation + Sunset HTTP headers on every response",
+    "Publish a migration guide that maps every deprecated endpoint, field, and behavior to its replacement in the new version, with code examples in all supported languages",
+    "Add Deprecation and Sunset headers (IETF RFC 8594) to all deprecated endpoints so that monitoring tools, API gateways, and SDK clients can detect and alert on deprecated usage",
+    "Track consumer adoption of the new version using API analytics; proactively reach out to consumers still on the deprecated version as the sunset date approaches",
+    "On the sunset date, return HTTP 410 Gone for deprecated endpoints with a Problem Details body linking to the migration guide, and remove the deprecated code after a final grace period"
+  ],
+  "steps_zh": [
+    "通过开发者门户、邮件以及每个响应上的Deprecation + Sunset HTTP头，以最短通知期（公共API通常为6-12个月）宣布弃用",
+    "发布迁移指南，将每个已弃用的端点、字段和行为映射到新版本中的替代品，并提供所有支持语言的代码示例",
+    "向所有已弃用端点添加Deprecation和Sunset头（IETF RFC 8594），使监控工具、API网关和SDK客户端能够检测并告警已弃用的使用",
+    "使用API分析跟踪消费者对新版本的采用；在日落日期临近时，主动联系仍在使用已弃用版本的消费者",
+    "在日落日期，对已弃用端点返回HTTP 410 Gone，并在问题详情主体中链接到迁移指南，在最终宽限期后删除已弃用代码"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Deprecation Notice",
+    "Migration Guide",
+    "Sunset Headers",
+    "Traffic Monitor",
+    "HTTP 410"
+  ],
+  "viz_labels_zh": [
+    "废弃通知",
+    "迁移指南",
+    "废弃响应头",
+    "流量监控",
+    "HTTP 410"
+  ],
+  "related": [
+    "openapi-specification",
+    "api-first-design",
+    "api-gateway-pattern"
+  ],
+  "tags": [
+    "deprecation",
+    "sunset",
+    "versioning",
+    "lifecycle",
+    "migration"
+  ],
+  "origin_author": "IETF RFC 8594 (Wilde, 2019); deprecation practices pioneered by Stripe, Twilio, and Salesforce",
+  "origin_source": "IETF RFC 8594: The Sunset HTTP Header Field (Wilde, 2019); Deprecation HTTP Header Field (Hardt & Wilde, draft-ietf-httpapi-deprecation-header)",
+  "origin_source_zh": "IETF RFC 8594：Sunset HTTP头字段（Wilde，2019）；弃用HTTP头字段（Hardt & Wilde，draft-ietf-httpapi-deprecation-header）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When introducing a new API version that breaks backward compatibility and existing consumers need time to migrate",
+    "When removing a field, endpoint, or behavior that has active consumers and cannot be removed without a coordinated migration",
+    "When the organization has a published API versioning policy that commits to minimum deprecation notice periods for external consumers",
+    "When building an API platform where consumers include third-party developers who cannot be force-upgraded on the provider's schedule"
+  ],
+  "when_to_use_zh": [
+    "当引入破坏向后兼容性的新API版本，现有消费者需要时间迁移时",
+    "当删除有活跃消费者的字段、端点或行为，无法在没有协调迁移的情况下删除时",
+    "当组织有已发布的API版本策略，承诺对外部消费者提供最短弃用通知期时",
+    "当构建API平台，消费者包括无法按提供商计划强制升级的第三方开发者时"
+  ],
+  "core_concepts": [
+    "Deprecation Header: HTTP response header (Deprecation: <timestamp>) indicating the date a resource was deprecated; clients and monitoring tools can detect it automatically",
+    "Sunset Header: RFC 8594 HTTP response header (Sunset: <HTTP-date>) announcing the date after which the resource will be unavailable, giving consumers a concrete deadline",
+    "Versioned Migration Paths: Explicit documentation mapping each deprecated element to its replacement across version boundaries, with migration scripts where applicable",
+    "Deprecation Notice Period: The minimum time between announcing deprecation and enforcing the sunset — typically 6 months for external APIs, 3 months for internal, and 2 years for major platforms",
+    "Consumer Tracking: Using API analytics to identify which consumers are still using deprecated resources so that targeted outreach can drive migration before the sunset date"
+  ],
+  "core_concepts_zh": [
+    "弃用头：HTTP响应头（Deprecation: <timestamp>），指示资源被弃用的日期；客户端和监控工具可以自动检测",
+    "日落头：RFC 8594 HTTP响应头（Sunset: <HTTP-date>），宣布资源将不可用的日期，给消费者一个具体的截止日期",
+    "版本化迁移路径：将每个已弃用元素映射到跨版本边界的替代品的明确文档，在适用的情况下提供迁移脚本",
+    "弃用通知期：宣布弃用和执行日落之间的最短时间——外部API通常为6个月，内部为3个月，主要平台为2年",
+    "消费者跟踪：使用API分析来识别哪些消费者仍在使用已弃用资源，以便在日落日期前通过针对性推广来推动迁移"
+  ],
+  "timeline": [
+    [
+      "2000",
+      "Salesforce introduces API versioning with a multi-year support window, pioneering formal API deprecation for enterprise SaaS"
+    ],
+    [
+      "2014",
+      "Stripe publishes its API versioning policy with per-account version pinning, allowing controlled migration without forced upgrades"
+    ],
+    [
+      "2019",
+      "IETF publishes RFC 8594 defining the Sunset HTTP header, providing a machine-readable deprecation signal"
+    ],
+    [
+      "2021",
+      "IETF draft for Deprecation HTTP header field (draft-ietf-httpapi-deprecation-header) advances, pairing with Sunset for complete lifecycle signaling"
+    ],
+    [
+      "2023",
+      "API governance platforms (Stoplight, Postman) integrate deprecation lifecycle management with automated consumer impact analysis"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2000",
+      "Salesforce引入具有多年支持窗口的API版本控制，为企业SaaS开创了正式的API弃用"
+    ],
+    [
+      "2014",
+      "Stripe发布其API版本策略，采用按账户版本固定，允许受控迁移而无需强制升级"
+    ],
+    [
+      "2019",
+      "IETF发布RFC 8594定义Sunset HTTP头，提供机器可读的弃用信号"
+    ],
+    [
+      "2021",
+      "弃用HTTP头字段的IETF草案（draft-ietf-httpapi-deprecation-header）推进，与Sunset配合提供完整的生命周期信号"
+    ],
+    [
+      "2023",
+      "API治理平台（Stoplight、Postman）集成弃用生命周期管理和自动化消费者影响分析"
+    ]
+  ],
+  "dos": [
+    "Do add Deprecation and Sunset headers to every deprecated endpoint response so that automated SDK clients can log warnings without any manual documentation lookup",
+    "Do give at least 6 months notice for external API deprecations because third-party developers need time to prioritize and plan migration work",
+    "Do publish a specific sunset date rather than 'eventually' because indefinite timelines are ignored and only hard deadlines motivate migration",
+    "Do track active consumers of deprecated endpoints using API analytics and send personal outreach to teams still using them 60 days before sunset"
+  ],
+  "dos_zh": [
+    "向每个已弃用端点响应添加Deprecation和Sunset头，使自动化SDK客户端无需任何手动文档查找即可记录警告",
+    "为外部API弃用提供至少6个月的通知，因为第三方开发者需要时间来优先考虑和规划迁移工作",
+    "发布具体的日落日期而不是「最终」，因为无限期的时间表会被忽视，只有硬截止日期才能推动迁移",
+    "使用API分析跟踪已弃用端点的活跃消费者，并在日落前60天向仍在使用它们的团队发送个人联系"
+  ],
+  "donts": [
+    "Don't remove a deprecated endpoint without first verifying through analytics that all consumers have migrated because silent removal causes production outages",
+    "Don't use vague deprecation notices ('will be removed in a future version') because they create no urgency and are ignored until production breaks",
+    "Don't maintain deprecated endpoints indefinitely without a sunset date because the maintenance burden accumulates and security vulnerabilities are not patched",
+    "Don't skip backward-compatible migration paths because consumers cannot migrate if the new version requires rewriting significant amounts of integration code"
+  ],
+  "donts_zh": [
+    "不要在未通过分析验证所有消费者已迁移的情况下删除已弃用端点，因为无声删除会导致生产中断",
+    "不要使用模糊的弃用通知（「将在未来版本中删除」），因为它们不产生紧迫感，在生产崩溃之前会被忽视",
+    "不要在没有日落日期的情况下无限期维护已弃用端点，因为维护负担会累积，安全漏洞无法修补",
+    "不要跳过向后兼容的迁移路径，因为如果新版本需要重写大量集成代码，消费者就无法迁移"
+  ],
+  "case_study_company": "Salesforce",
+  "case_study": "Salesforce manages one of the most complex API deprecation lifecycles in the industry, supporting hundreds of API versions simultaneously for its enterprise customers. Salesforce commits to a minimum three-version support window for its platform APIs — when a version is deprecated, it remains available for three subsequent annual releases before being retired. Every Salesforce API response includes a version header, and the developer portal prominently displays the support matrix with exact end-of-life dates. This policy allowed enterprise customers to plan multi-year migration roadmaps without the risk of unexpected API removals, and is credited with driving Salesforce's customer retention in regulated industries.",
+  "case_study_zh": "Salesforce管理着业界最复杂的API弃用生命周期之一，同时为其企业客户支持数百个API版本。Salesforce对其平台API承诺最少三个版本的支持窗口——当一个版本被弃用时，它在被停用之前仍可用于三个后续年度版本。每个Salesforce API响应都包含一个版本头，开发者门户突出显示支持矩阵及确切的生命周期结束日期。这一策略允许企业客户规划多年迁移路线图，而不必担心意外的API删除，并被认为推动了Salesforce在受监管行业的客户留存。",
+  "when_not_to_use": [
+    "Internal APIs consumed by a single team where direct code changes are faster and less risky than a formal deprecation process",
+    "Alpha or beta APIs explicitly labeled as unstable where consumers accept that breaking changes can occur without notice",
+    "APIs with no active consumers as tracked by analytics, where immediate removal is safe and more responsible than maintaining dead code",
+    "Undocumented private endpoints that were never part of the public API contract and were not intended for consumer use"
+  ],
+  "when_not_to_use_zh": [
+    "由单个团队使用的内部API，直接代码变更比正式弃用流程更快且风险更低",
+    "明确标记为不稳定的Alpha或Beta API，消费者接受可能发生无通知的破坏性变更",
+    "分析跟踪到没有活跃消费者的API，立即删除是安全且比维护死代码更负责任的",
+    "从未属于公共API契约且非供消费者使用的未记录私有端点"
+  ],
+  "adopters": [
+    "Salesforce",
+    "Stripe",
+    "Twilio",
+    "GitHub",
+    "Google Cloud"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability",
+    "usability",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Wilde, E. (2019). \"RFC 8594: The Sunset HTTP Header Field\". IETF.",
+  "secondary_sources": [
+    "Hardt, D. & Wilde, E. (2023). \"The Deprecation HTTP Header Field\". IETF draft-ietf-httpapi-deprecation-header.",
+    "Geewax, J.J. (2021). \"API Design Patterns\", Ch. 15. Manning Publications.",
+    "Sturgeon, P. (2022). \"Designing APIs with Swagger and OpenAPI\". Manning Publications."
+  ],
+  "typed_relations": [
+    {
+      "slug": "openapi-specification",
+      "type": "complement"
+    },
+    {
+      "slug": "api-first-design",
+      "type": "complement"
+    },
+    {
+      "slug": "api-gateway-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/api-deprecation-lifecycle",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/api-deprecation-lifecycle.md"
+}

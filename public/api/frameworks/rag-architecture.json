@@ -1,0 +1,198 @@
+{
+  "id": 88,
+  "name": "RAG Architecture",
+  "name_zh": "检索增强生成架构",
+  "slug": "rag-architecture",
+  "category": "ai",
+  "desc": "Ground LLM responses with retrieved external knowledge",
+  "desc_zh": "通过检索外部知识为大模型响应提供事实依据",
+  "steps": [
+    "Chunk, embed, and index domain documents into a vector store",
+    "At query time, embed the user question and retrieve top-K relevant chunks",
+    "Construct a prompt that injects retrieved context before the question",
+    "Generate the answer with the LLM, citing source chunks for traceability",
+    "Evaluate retrieval recall and generation faithfulness; iterate on chunking strategy"
+  ],
+  "steps_zh": [
+    "对领域文档进行分块、向量化并写入向量数据库",
+    "查询时将用户问题向量化，检索 Top-K 相关片段",
+    "构建提示词，将检索内容注入问题前作为上下文",
+    "由大模型生成答案并引用来源片段以确保可溯源",
+    "评估检索召回率与生成忠实度，迭代优化分块策略"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Chunk",
+    "Embed",
+    "Retrieve",
+    "Augment",
+    "Generate"
+  ],
+  "viz_labels_zh": [
+    "分块",
+    "向量化",
+    "检索",
+    "增强",
+    "生成"
+  ],
+  "related": [
+    "llm-system-design-patterns",
+    "context-window-management",
+    "ai-observability-framework"
+  ],
+  "tags": [
+    "rag",
+    "retrieval",
+    "vector-store",
+    "grounding",
+    "knowledge"
+  ],
+  "origin_author": "Patrick Lewis et al. (Meta AI / UCL), 2020",
+  "origin_source": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (NeurIPS 2020)",
+  "origin_source_zh": "面向知识密集型 NLP 任务的检索增强生成（NeurIPS 2020）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Enterprise knowledge bases where the LLM must answer from proprietary or frequently updated documents",
+    "Customer support bots that need to cite specific policy pages or product documentation",
+    "Legal or compliance use cases requiring traceable source attribution for every claim",
+    "Any domain where hallucination risk is high and factual grounding is non-negotiable"
+  ],
+  "when_to_use_zh": [
+    "企业知识库场景，大模型需基于私有或频繁更新的文档回答问题",
+    "客户支持机器人需要引用特定政策页面或产品文档",
+    "法律或合规场景，每项声明都要求可溯源的出处标注",
+    "任何幻觉风险高、事实锚定不可妥协的领域"
+  ],
+  "core_concepts": [
+    "Chunking: Splitting source documents into semantically meaningful segments for embedding and retrieval",
+    "Embedding: Converting text chunks into dense vector representations using models like OpenAI Ada or BGE",
+    "Vector Store: A specialized database (Pinecone, Weaviate, Chroma) that indexes embeddings for similarity search",
+    "Retrieval: Finding the top-K most relevant chunks to a query via approximate nearest neighbor search",
+    "Faithfulness: The degree to which the generated answer is supported by and consistent with retrieved context"
+  ],
+  "core_concepts_zh": [
+    "分块（Chunking）：将源文档拆分为语义完整的片段以进行向量化和检索",
+    "向量化（Embedding）：使用 OpenAI Ada、BGE 等模型将文本片段转为稠密向量表示",
+    "向量数据库（Vector Store）：索引向量并支持相似度搜索的专用数据库（Pinecone、Weaviate、Chroma）",
+    "检索（Retrieval）：通过近似最近邻搜索找到与查询最相关的 Top-K 片段",
+    "忠实度（Faithfulness）：生成答案被检索上下文支持和印证的程度"
+  ],
+  "timeline": [
+    [
+      "2020-05",
+      "Patrick Lewis et al. publish the RAG paper, combining DPR retriever with BART generator"
+    ],
+    [
+      "2022-12",
+      "ChatGPT launch drives massive interest in grounding LLMs with external knowledge"
+    ],
+    [
+      "2023-03",
+      "LlamaIndex (formerly GPT Index) and LangChain popularize RAG as a standard pattern"
+    ],
+    [
+      "2023-09",
+      "Advanced RAG techniques emerge: HyDE, multi-hop retrieval, re-ranking pipelines"
+    ],
+    [
+      "2024-03",
+      "GraphRAG and agentic RAG architectures push beyond simple vector similarity retrieval"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2020-05",
+      "Patrick Lewis 等人发表 RAG 论文，将 DPR 检索器与 BART 生成器结合"
+    ],
+    [
+      "2022-12",
+      "ChatGPT 发布推动大量关于用外部知识锚定大模型的研究兴趣"
+    ],
+    [
+      "2023-03",
+      "LlamaIndex（原 GPT Index）和 LangChain 将 RAG 推广为标准模式"
+    ],
+    [
+      "2023-09",
+      "高级 RAG 技术涌现：HyDE、多跳检索、重排序管线"
+    ],
+    [
+      "2024-03",
+      "GraphRAG 和代理式 RAG 架构突破简单向量相似度检索的局限"
+    ]
+  ],
+  "dos": [
+    "Experiment with chunk sizes (256-1024 tokens) and overlap -- optimal size varies by domain",
+    "Use a re-ranker (Cohere Rerank, cross-encoder) to improve precision after initial retrieval",
+    "Include metadata filters (date, source, category) to narrow retrieval scope before vector search",
+    "Evaluate with RAGAS or similar frameworks that measure both retrieval quality and answer faithfulness"
+  ],
+  "dos_zh": [
+    "实验不同分块大小（256-1024 token）和重叠度——最优大小因领域而异",
+    "使用重排序器（Cohere Rerank、交叉编码器）在初始检索后提升精确率",
+    "包含元数据过滤（日期、来源、类别）在向量搜索前缩小检索范围",
+    "使用 RAGAS 等框架评估检索质量和回答忠实度"
+  ],
+  "donts": [
+    "Don't assume bigger chunks are better -- oversized chunks dilute relevance and waste context window",
+    "Don't skip hybrid search -- combining keyword (BM25) with vector search often outperforms either alone",
+    "Don't forget to refresh embeddings when source documents are updated -- stale indexes cause drift",
+    "Don't treat RAG as a substitute for fine-tuning when the task requires deep domain reasoning"
+  ],
+  "donts_zh": [
+    "不要假设分块越大越好——过大的分块会稀释相关性并浪费上下文窗口",
+    "不要跳过混合搜索——关键词（BM25）与向量搜索结合通常优于单独使用",
+    "不要忘记在源文档更新时刷新向量——陈旧索引会导致漂移",
+    "不要将 RAG 当作微调的替代品——需要深层领域推理的任务仍需微调"
+  ],
+  "case_study_company": "Klarna",
+  "case_study": "Klarna deployed a RAG-powered customer service assistant that retrieves answers from their internal policy and product documentation. The system handles 2.3 million conversations in its first month, performing the equivalent work of 700 full-time agents with a 25% reduction in repeat inquiries, while maintaining source traceability for compliance.",
+  "case_study_zh": "Klarna 部署了基于 RAG 的客服助手，从内部政策和产品文档中检索答案。该系统在上线首月处理了 230 万次对话，相当于 700 名全职客服的工作量，重复咨询减少 25%，同时保持了合规所需的来源可追溯性。",
+  "when_not_to_use": [
+    "Tasks requiring creative generation or open-ended brainstorming where grounding constrains the output",
+    "Small-context scenarios where all necessary information fits directly in the system prompt",
+    "Real-time streaming applications where retrieval latency is unacceptable",
+    "When the knowledge base is too noisy or unstructured for meaningful similarity matching"
+  ],
+  "when_not_to_use_zh": [
+    "需要创意生成或开放头脑风暴、锚定反而限制输出的任务",
+    "所有必要信息已能直接放入系统提示词的小上下文场景",
+    "检索延迟不可接受的实时流式应用",
+    "知识库过于嘈杂或无结构、难以进行有效相似度匹配的场景"
+  ],
+  "adopters": [
+    "Klarna",
+    "Notion AI",
+    "Perplexity AI",
+    "Databricks",
+    "Elastic"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "performance"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Patrick Lewis et al. (2020). \"Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks\". NeurIPS 2020.",
+  "secondary_sources": [
+    "Vladimir Karpukhin et al. (2020). \"Dense Passage Retrieval for Open-Domain Question Answering\". EMNLP 2020.",
+    "Jerry Liu (2022). \"LlamaIndex: A Data Framework for LLM Applications\". llamaindex.ai."
+  ],
+  "typed_relations": [
+    {
+      "slug": "llm-system-design-patterns",
+      "type": "related"
+    },
+    {
+      "slug": "context-window-management",
+      "type": "complement"
+    },
+    {
+      "slug": "ai-observability-framework",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/rag-architecture",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/rag-architecture.md"
+}

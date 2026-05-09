@@ -1,0 +1,203 @@
+{
+  "id": 147,
+  "name": "Architecture Review Board (ARB)",
+  "name_zh": "架构评审委员会",
+  "slug": "architecture-review-board",
+  "category": "team",
+  "desc": "A governance body that reviews and guides significant architectural decisions to ensure consistency, quality, and strategic alignment",
+  "desc_zh": "审查和指导重大架构决策的治理机构，确保一致性、质量和战略对齐",
+  "steps": [
+    "Charter the ARB with a clear mandate: which decisions require review (e.g., new services, technology introductions, major API changes)",
+    "Compose the board with senior architects and rotating members from stream-aligned teams to avoid ivory-tower syndrome",
+    "Define a lightweight submission process (RFC or Architecture Decision Record) that teams complete before the review",
+    "Conduct reviews as collaborative design sessions, not approval gates — the ARB advises, teams decide",
+    "Publish all decisions and rationale transparently to build organizational architectural knowledge"
+  ],
+  "steps_zh": [
+    "为 ARB 制定明确的章程：哪些决策需要评审（如新服务、引入新技术、重大 API 变更）",
+    "由资深架构师和来自面向价值流团队的轮换成员组成委员会，避免象牙塔综合症",
+    "定义轻量级的提交流程（RFC 或架构决策记录），团队在评审前完成",
+    "将评审作为协作设计会议而非审批关卡——ARB 提供建议，团队做出决定",
+    "透明发布所有决策和理由，构建组织的架构知识"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Mandate",
+    "Board Composition",
+    "RFC Submission",
+    "Collaborative Review",
+    "Publish Decision"
+  ],
+  "viz_labels_zh": [
+    "职责范围",
+    "委员会组成",
+    "RFC提交",
+    "协作评审",
+    "决策发布"
+  ],
+  "related": [
+    "conways-law",
+    "technical-debt-management-framework",
+    "team-topologies",
+    "continuous-architecture"
+  ],
+  "tags": [
+    "governance",
+    "architecture",
+    "review-board",
+    "ADR",
+    "decision-making"
+  ],
+  "origin_author": "Enterprise architecture tradition; modernized by ThoughtWorks Technology Radar approach (~2010)",
+  "origin_source": "Software Architecture in Practice (Bass, Clements & Kazman, 3rd ed., 2012); referenced in Fundamentals of Software Architecture (Richards & Ford, 2020)",
+  "origin_source_zh": "《软件架构实践》（Bass、Clements & Kazman，第三版，2012）；在《软件架构基础》（Richards & Ford，2020）中有引用",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Organizations with 10+ teams where architectural consistency across services is critical",
+    "Environments where costly architectural mistakes (wrong database choice, incompatible API styles) have occurred repeatedly",
+    "Regulated industries where architectural decisions need documented rationale for compliance audits",
+    "Growing organizations transitioning from a single architect to distributed architectural decision-making"
+  ],
+  "when_to_use_zh": [
+    "拥有 10 个以上团队、跨服务架构一致性至关重要的组织",
+    "高成本架构错误（错误的数据库选择、不兼容的 API 风格）反复发生的环境",
+    "受监管行业中架构决策需要记录理由以通过合规审计",
+    "从单一架构师向分布式架构决策转型的成长型组织"
+  ],
+  "core_concepts": [
+    "Advisory not gatekeeping: Modern ARBs advise and influence rather than approve or block — they provide guardrails, not gates",
+    "Architecture Decision Records (ADRs): Lightweight documents capturing the context, decision, and consequences of each significant architectural choice",
+    "Rotating membership: Including engineers from delivery teams prevents the ARB from becoming disconnected from implementation reality",
+    "Decision scope: The ARB only reviews decisions above a defined threshold (cross-team impact, new technology, security implications), not every design choice",
+    "Organizational memory: Published ADRs create a searchable history of why architectural decisions were made, preventing repeated debates"
+  ],
+  "core_concepts_zh": [
+    "建议而非关卡：现代 ARB 提供建议和影响而非审批或阻拦——它们提供护栏而非关卡",
+    "架构决策记录（ADR）：捕获每个重大架构选择的上下文、决策和后果的轻量级文档",
+    "轮换成员制：纳入来自交付团队的工程师，防止 ARB 与实现现实脱节",
+    "决策范围：ARB 仅评审超过定义阈值的决策（跨团队影响、新技术、安全影响），而非每个设计选择",
+    "组织记忆：已发布的 ADR 创建了架构决策理由的可搜索历史，防止重复讨论"
+  ],
+  "timeline": [
+    [
+      "1995",
+      "The Zachman Framework and TOGAF establish formal enterprise architecture governance including review boards"
+    ],
+    [
+      "2010",
+      "ThoughtWorks Technology Radar introduces a lightweight, collaborative approach to architectural governance"
+    ],
+    [
+      "2011",
+      "Michael Nygard proposes Architecture Decision Records as a lightweight alternative to heavy governance documents"
+    ],
+    [
+      "2019",
+      "Team Topologies advocates for enabling teams (including architecture guidance) rather than traditional gatekeeping ARBs"
+    ],
+    [
+      "2023",
+      "Organizations adopt async ARB reviews via ADRs in GitHub/GitLab, reducing meeting overhead while maintaining governance"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1995",
+      "Zachman 框架和 TOGAF 建立正式的企业架构治理（包括评审委员会）"
+    ],
+    [
+      "2010",
+      "ThoughtWorks 技术雷达引入轻量级协作式架构治理方法"
+    ],
+    [
+      "2011",
+      "Michael Nygard 提出架构决策记录作为重量级治理文档的轻量替代"
+    ],
+    [
+      "2019",
+      "《团队拓扑》倡导赋能团队（包括架构指导）而非传统关卡式 ARB"
+    ],
+    [
+      "2023",
+      "组织通过 GitHub/GitLab 中的 ADR 进行异步 ARB 评审，减少会议开销同时保持治理"
+    ]
+  ],
+  "dos": [
+    "Keep the review process lightweight — a one-page ADR template is better than a 30-slide architecture deck",
+    "Include rotating members from delivery teams so the ARB stays grounded in real-world implementation constraints",
+    "Publish all ADRs and review outcomes transparently so the entire organization benefits from the architectural reasoning",
+    "Define clear criteria for what requires ARB review and what does not, to avoid becoming a bottleneck"
+  ],
+  "dos_zh": [
+    "保持评审流程轻量——一页 ADR 模板优于 30 页架构演示文稿",
+    "纳入来自交付团队的轮换成员，使 ARB 扎根于真实实现约束",
+    "透明发布所有 ADR 和评审结果，使整个组织受益于架构推理",
+    "明确定义哪些需要 ARB 评审、哪些不需要，避免成为瓶颈"
+  ],
+  "donts": [
+    "Don't let the ARB become an ivory tower that dictates architecture without understanding delivery realities",
+    "Don't require ARB approval for every technical decision — focus only on high-impact, cross-cutting choices",
+    "Don't staff the ARB exclusively with senior architects — include hands-on engineers who write code daily",
+    "Don't make the ARB a veto gate — if it blocks teams without offering alternatives, it destroys autonomy and trust"
+  ],
+  "donts_zh": [
+    "不要让 ARB 成为不了解交付现实却指挥架构的象牙塔",
+    "不要要求每个技术决策都经 ARB 审批——仅关注高影响力的跨领域选择",
+    "不要让 ARB 成员全部由资深架构师组成——要包含每天写代码的一线工程师",
+    "不要让 ARB 成为否决关卡——如果它阻止团队却不提供替代方案，就会摧毁自主权和信任"
+  ],
+  "case_study_company": "Spotify",
+  "case_study": "Spotify evolved its architectural governance from a traditional ARB to a more collaborative model around 2016. Instead of a central board that approved or rejected designs, they established 'System Owners' — senior engineers who owned specific architectural domains (data platform, messaging, etc.) and reviewed ADRs asynchronously via pull requests. Any engineer could propose an architectural change by opening an ADR PR and tagging relevant system owners. This approach reduced review latency from weeks to days, increased the number of architecturally significant decisions documented by 4x, and maintained consistency without creating bottlenecks — a model later reinforced by Team Topologies' concept of enabling teams.",
+  "case_study_zh": "Spotify 在 2016 年前后将其架构治理从传统 ARB 演进为更协作的模型。他们没有设立审批或拒绝设计的中央委员会，而是建立了「系统负责人」——负责特定架构领域（数据平台、消息传递等）的资深工程师，通过拉取请求异步评审 ADR。任何工程师都可以通过开启 ADR PR 并标记相关系统负责人来提出架构变更。这种方法将评审延迟从数周缩短到数天，使记录在案的架构重要决策数量增加了 4 倍，在不产生瓶颈的情况下保持了一致性——这一模型后来被《团队拓扑》中赋能团队的概念所强化。",
+  "when_not_to_use": [
+    "Small teams (under 3 teams) where informal architectural discussions in standups or Slack are sufficient",
+    "Fast-moving startups where the overhead of formal reviews would slow down critical time-to-market",
+    "Organizations with a single technology stack where architectural decisions are inherently constrained",
+    "Teams practicing extreme programming with emergent architecture that resists up-front architectural planning"
+  ],
+  "when_not_to_use_zh": [
+    "小型团队（3 个以下），站会或 Slack 中的非正式架构讨论即可满足需求",
+    "快速发展的创业公司，正式评审的开销会拖慢关键的上市时间",
+    "使用单一技术栈的组织，架构决策本身就受到固有约束",
+    "实践极限编程、采用浮现式架构的团队，不适合前置的架构规划"
+  ],
+  "adopters": [
+    "Spotify",
+    "Google",
+    "ThoughtWorks",
+    "Capital One",
+    "Zalando"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Bass, L., Clements, P. & Kazman, R. (2012). \"Software Architecture in Practice\", 3rd ed. Addison-Wesley.",
+  "secondary_sources": [
+    "Richards, M. & Ford, N. (2020). \"Fundamentals of Software Architecture\". O'Reilly Media.",
+    "Keeling, M. (2017). \"Design It! From Programmer to Software Architect\". Pragmatic Bookshelf."
+  ],
+  "typed_relations": [
+    {
+      "slug": "conways-law",
+      "type": "complement"
+    },
+    {
+      "slug": "technical-debt-management-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "team-topologies",
+      "type": "complement"
+    },
+    {
+      "slug": "continuous-architecture",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/architecture-review-board",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/architecture-review-board.md"
+}

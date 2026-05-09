@@ -1,0 +1,199 @@
+{
+  "id": 115,
+  "name": "Privacy by Design",
+  "name_zh": "隐私设计",
+  "slug": "privacy-by-design",
+  "category": "security",
+  "desc": "Embed privacy protections into the design and architecture of systems from the outset, not as an afterthought",
+  "desc_zh": "从一开始就将隐私保护嵌入系统的设计和架构中，而非事后补救",
+  "steps": [
+    "Conduct a Privacy Impact Assessment (PIA) at the design phase to identify all personal data flows and processing purposes",
+    "Apply data minimization: collect only the data strictly necessary for each stated purpose",
+    "Implement privacy-enhancing technologies (PETs): pseudonymization, encryption, differential privacy, or federated processing",
+    "Design user-facing consent and control mechanisms (granular opt-in, data portability, deletion requests)",
+    "Establish ongoing privacy governance: periodic audits, retention enforcement, breach notification procedures, and DPO oversight"
+  ],
+  "steps_zh": [
+    "在设计阶段进行隐私影响评估（PIA），识别所有个人数据流和处理目的",
+    "应用数据最小化原则：仅收集每个声明目的所严格必需的数据",
+    "实施隐私增强技术（PET）：假名化、加密、差分隐私或联邦处理",
+    "设计面向用户的同意和控制机制（细粒度选择加入、数据可携带、删除请求）",
+    "建立持续隐私治理：定期审计、保留期执行、泄露通知流程和 DPO 监督"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "PIA",
+    "Data Minimization",
+    "PETs",
+    "User Consent",
+    "Privacy Governance"
+  ],
+  "viz_labels_zh": [
+    "隐私评估",
+    "数据最小化",
+    "隐私技术",
+    "用户同意",
+    "隐私治理"
+  ],
+  "related": [
+    "security-by-design",
+    "principle-of-least-privilege",
+    "defense-in-depth"
+  ],
+  "tags": [
+    "privacy",
+    "gdpr",
+    "data-protection",
+    "pbd",
+    "data-minimization",
+    "consent"
+  ],
+  "origin_author": "Ann Cavoukian (Information and Privacy Commissioner of Ontario), 1990s; formalized 2009",
+  "origin_source": "Ann Cavoukian「Privacy by Design: The 7 Foundational Principles」(2009); GDPR Article 25「Data protection by design and by default」(2016/2018)",
+  "origin_source_zh": "Ann Cavoukian「隐私设计：七项基础原则」(2009)；GDPR 第 25 条「设计和默认的数据保护」(2016/2018)",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Any system that collects, processes, or stores personally identifiable information (PII)",
+    "Products subject to GDPR, CCPA, LGPD, or other data protection regulations",
+    "AI/ML pipelines that train on user data and risk unintentional memorization or re-identification",
+    "Healthcare, fintech, or edtech applications where data sensitivity is inherently high"
+  ],
+  "when_to_use_zh": [
+    "任何收集、处理或存储个人身份信息（PII）的系统",
+    "受 GDPR、CCPA、LGPD 或其他数据保护法规管辖的产品",
+    "在用户数据上训练且存在无意记忆或重新识别风险的 AI/ML 管道",
+    "数据敏感度固有较高的医疗、金融科技或教育科技应用"
+  ],
+  "core_concepts": [
+    "Data Minimization: Collect and retain only the personal data strictly necessary for the stated processing purpose",
+    "Purpose Limitation: Personal data must be collected for specified, explicit, and legitimate purposes and not further processed incompatibly",
+    "Privacy-Enhancing Technologies (PETs): Technical measures — pseudonymization, differential privacy, homomorphic encryption — that reduce privacy risk while preserving utility",
+    "Consent and Control: Empowering data subjects with transparent, granular, and revocable choices over their personal data",
+    "Privacy by Default: The strictest privacy settings apply automatically without requiring user action"
+  ],
+  "core_concepts_zh": [
+    "数据最小化：仅收集和保留声明处理目的所严格必需的个人数据",
+    "目的限制：个人数据必须为指定、明确和合法的目的收集，不得不兼容地进一步处理",
+    "隐私增强技术（PET）：假名化、差分隐私、同态加密等技术措施，在保持效用的同时降低隐私风险",
+    "同意与控制：赋予数据主体对其个人数据的透明、细粒度和可撤销的选择权",
+    "默认隐私：最严格的隐私设置自动生效，无需用户主动操作"
+  ],
+  "timeline": [
+    [
+      "1995",
+      "EU Data Protection Directive 95/46/EC introduces data protection by design concepts"
+    ],
+    [
+      "2009",
+      "Ann Cavoukian publishes the 7 Foundational Principles of Privacy by Design"
+    ],
+    [
+      "2010",
+      "International Conference of Data Protection Authorities unanimously adopts PbD as a global standard"
+    ],
+    [
+      "2018-05",
+      "GDPR takes effect with Article 25 making data protection by design and by default a legal requirement"
+    ],
+    [
+      "2023",
+      "Privacy-enhancing computation (federated learning, secure multi-party computation) goes mainstream in enterprise AI"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1995",
+      "欧盟数据保护指令 95/46/EC 引入设计即数据保护的概念"
+    ],
+    [
+      "2009",
+      "Ann Cavoukian 发布隐私设计的七项基础原则"
+    ],
+    [
+      "2010",
+      "国际数据保护机构大会一致通过 PbD 作为全球标准"
+    ],
+    [
+      "2018-05",
+      "GDPR 生效，第 25 条将设计和默认的数据保护作为法律要求"
+    ],
+    [
+      "2023",
+      "隐私增强计算（联邦学习、安全多方计算）在企业 AI 中成为主流"
+    ]
+  ],
+  "dos": [
+    "Conduct privacy impact assessments before collecting any new category of personal data",
+    "Implement data retention policies with automated deletion — privacy is not just about collection but also about disposal",
+    "Offer users genuine controls: export, delete, opt-out — not just a privacy policy page",
+    "Use privacy-preserving analytics (differential privacy, k-anonymity) instead of collecting raw granular data"
+  ],
+  "dos_zh": [
+    "在收集任何新类别的个人数据前进行隐私影响评估",
+    "实施带自动删除的数据保留策略——隐私不仅关乎收集，也关乎处置",
+    "向用户提供真正的控制权：导出、删除、退出——而非仅有隐私政策页面",
+    "使用隐私保护分析（差分隐私、k-匿名）替代收集原始细粒度数据"
+  ],
+  "donts": [
+    "Don't treat consent as a blanket checkbox — GDPR requires specific, informed, and granular consent per purpose",
+    "Don't collect data speculatively 'in case it's useful later' — purpose limitation forbids this",
+    "Don't confuse anonymization with pseudonymization — pseudonymized data is still personal data under GDPR",
+    "Don't defer privacy to a post-launch patch — regulatory fines and reputational damage are far more expensive than upfront design"
+  ],
+  "donts_zh": [
+    "不要将同意视为笼统的勾选框——GDPR 要求按目的进行具体、知情和细粒度的同意",
+    "不要以「可能以后有用」为由投机性收集数据——目的限制原则禁止此行为",
+    "不要混淆匿名化与假名化——假名化数据在 GDPR 下仍属个人数据",
+    "不要将隐私推迟到上线后修补——监管罚款和声誉损失远比前期设计昂贵"
+  ],
+  "case_study_company": "Apple",
+  "case_study": "Apple has embedded Privacy by Design as a core product principle, implementing on-device processing for Siri, Photos facial recognition, and Health data, along with App Tracking Transparency (ATT) requiring explicit opt-in for cross-app tracking. The introduction of ATT in iOS 14.5 (2021) caused an estimated $10 billion revenue impact on Meta's advertising business, demonstrating that privacy-by-design decisions at the platform level reshape entire industry economics.",
+  "case_study_zh": "Apple 将隐私设计作为核心产品原则，为 Siri、照片人脸识别和健康数据实施设备端处理，并推出应用跟踪透明度（ATT）要求跨应用跟踪前获取明确同意。iOS 14.5（2021）引入 ATT 对 Meta 广告业务造成约 100 亿美元收入影响，证明平台级隐私设计决策可以重塑整个行业经济格局。",
+  "when_not_to_use": [
+    "Systems that process zero personal data and have no user interaction (pure infrastructure tooling)",
+    "Open public datasets where all information is already lawfully public and no re-identification risk exists",
+    "Internal-only developer tools with no PII in any data path",
+    "When the 'system' is a purely mathematical algorithm with no data ingestion"
+  ],
+  "when_not_to_use_zh": [
+    "处理零个人数据且无用户交互的系统（纯基础设施工具）",
+    "所有信息已合法公开且无重新识别风险的开放公共数据集",
+    "任何数据路径中无 PII 的内部专用开发者工具",
+    "「系统」是无数据摄入的纯数学算法时"
+  ],
+  "adopters": [
+    "Apple",
+    "Microsoft",
+    "Google (Privacy Sandbox)",
+    "European Union (GDPR mandate)",
+    "Brave Browser"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "security",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Cavoukian, A. (2009). \"Privacy by Design: The 7 Foundational Principles\". Information and Privacy Commissioner of Ontario.",
+  "secondary_sources": [
+    "European Parliament (2016). \"General Data Protection Regulation (GDPR), Article 25: Data Protection by Design and by Default\". Official Journal of the European Union.",
+    "Hoepman, J.-H. (2014). \"Privacy Design Strategies\". Proceedings of the IFIP TC 11 International Conference (SEC 2014). Springer."
+  ],
+  "typed_relations": [
+    {
+      "slug": "security-by-design",
+      "type": "complement"
+    },
+    {
+      "slug": "principle-of-least-privilege",
+      "type": "complement"
+    },
+    {
+      "slug": "defense-in-depth",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/privacy-by-design",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/privacy-by-design.md"
+}

@@ -1,0 +1,188 @@
+{
+  "id": 270,
+  "name": "Visual Regression Testing",
+  "name_zh": "视觉回归测试",
+  "slug": "visual-regression-testing",
+  "category": "quality",
+  "desc": "Screenshot comparison between baseline and current UI to catch unintended visual changes automatically",
+  "desc_zh": "通过对比基准截图与当前 UI 截图自动捕获意外视觉变更",
+  "steps": [
+    "Capture baseline screenshots: render each component or page in a controlled environment (headless browser, Storybook) and store reference images that represent the approved visual state",
+    "Run visual comparisons on every pull request: re-render the same components after code changes and use pixel-diff or perceptual hashing algorithms to detect changes above a configured tolerance threshold",
+    "Review and triage visual diffs: present detected changes to developers as annotated diff images highlighting changed pixels; require explicit approval to update baselines for intentional changes",
+    "Integrate into CI as a blocking check: configure the visual testing job as a required status check so PRs with unapproved visual changes cannot be merged until a designated reviewer approves the diff",
+    "Maintain baseline hygiene: version-control baseline images alongside code, automate stale baseline cleanup, and re-capture baselines on dependency upgrades (browser versions, rendering libraries) that cause non-functional pixel shifts"
+  ],
+  "steps_zh": [
+    "捕获基准截图：在受控环境（无头浏览器、Storybook）中渲染每个组件或页面，存储代表已批准视觉状态的参考图像",
+    "在每个拉取请求上运行视觉比较：代码变更后重新渲染相同组件，使用像素差异或感知哈希算法检测超过配置容差阈值的变更",
+    "审查和分类视觉差异：以带注释的差异图像（高亮变更像素）形式向开发者呈现检测到的变更；要求显式批准以更新有意变更的基准",
+    "作为阻止性检查集成到 CI：将视觉测试作业配置为必需的状态检查，使带有未批准视觉变更的 PR 在指定审阅者批准差异前无法合并",
+    "维护基准卫生：将基准图像与代码一起版本控制，自动清理过期基准，并在导致非功能性像素偏移的依赖升级（浏览器版本、渲染库）时重新捕获基准"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Baseline",
+    "Capture",
+    "Diff",
+    "Approve"
+  ],
+  "viz_labels_zh": [
+    "基准截图",
+    "当前截图",
+    "差异对比",
+    "审核通过"
+  ],
+  "related": [
+    "snapshot-testing",
+    "test-pyramid",
+    "continuous-testing",
+    "bdd"
+  ],
+  "tags": [
+    "visual-testing",
+    "screenshot-comparison",
+    "ui-regression",
+    "pixel-diff",
+    "storybook"
+  ],
+  "origin_author": "Percy.io",
+  "origin_source": "Percy.io (2014, founded by Mike Fotinakis); Applitools Eyes visual AI testing platform; Perceptual Image Hash (pHash) algorithm by Zauner (2010).",
+  "origin_source_zh": "Percy.io（2014年由Mike Fotinakis创立）；Applitools Eyes 视觉 AI 测试平台；Zauner（2010）感知图像哈希（pHash）算法",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When shipping UI components that must remain visually consistent across browser updates, dependency changes, and CSS refactors",
+    "When maintaining a design system or component library where visual regressions in shared components can affect hundreds of consumer screens simultaneously",
+    "When your release process includes manual visual QA that you want to automate to reduce review time and human error",
+    "When teams work across different operating systems and browsers that can subtly affect rendering and you need cross-environment baseline comparison"
+  ],
+  "when_to_use_zh": [
+    "交付的 UI 组件必须在浏览器更新、依赖变更和 CSS 重构中保持视觉一致性时",
+    "维护设计系统或组件库，共享组件的视觉回归可能同时影响数百个消费者页面时",
+    "发布流程包含手动视觉 QA，你希望自动化以减少审查时间和人为错误时",
+    "团队跨不同操作系统和浏览器工作，这些可能微妙地影响渲染，你需要跨环境基准比较时"
+  ],
+  "core_concepts": [
+    "Pixel-level diffing: comparing rendered screenshots pixel-by-pixel and highlighting any differences; sensitive but prone to false positives from anti-aliasing, font hinting, and sub-pixel rendering variation",
+    "Perceptual hashing: converting images to compact perceptual fingerprints (pHash, dHash) that are tolerant of minor rendering variations while still detecting structural visual changes",
+    "Baseline management: the process of capturing, storing, reviewing, and updating reference screenshots that define the approved visual state of each component or page",
+    "Component-level vs. page-level testing: testing individual components in isolation (via Storybook) provides more stable baselines than full-page screenshots, which are affected by dynamic content and state",
+    "AI-powered visual matching: services like Applitools use machine learning to distinguish intentional design changes from unintentional regressions, reducing false positive rates in complex UIs"
+  ],
+  "core_concepts_zh": [
+    "像素级差异比较：逐像素比较渲染截图并高亮任何差异；灵敏但容易因抗锯齿、字体微调和次像素渲染变化产生误报",
+    "感知哈希：将图像转换为紧凑的感知指纹（pHash、dHash），对微小渲染变化容错，同时仍能检测结构性视觉变更",
+    "基准管理：捕获、存储、审查和更新定义每个组件或页面已批准视觉状态的参考截图的过程",
+    "组件级与页面级测试：在隔离环境（通过 Storybook）中测试单个组件比全页面截图提供更稳定的基准，后者受动态内容和状态影响",
+    "AI 驱动的视觉匹配：Applitools 等服务使用机器学习区分有意的设计变更和无意的回归，降低复杂 UI 中的误报率"
+  ],
+  "timeline": [
+    [
+      "2012",
+      "PhantomCSS emerges as one of the first open-source visual regression testing tools using PhantomJS for headless screenshot capture and comparison"
+    ],
+    [
+      "2014",
+      "Percy.io founded by Mike Fotinakis at Stripe, launching the first SaaS visual testing platform integrated with GitHub pull request workflows"
+    ],
+    [
+      "2017",
+      "Storybook's storyshots addon enables component-level visual testing without a full browser environment, dramatically reducing baseline stability issues"
+    ],
+    [
+      "2020",
+      "Playwright and Cypress add native screenshot comparison APIs, making visual regression testing accessible without third-party SaaS dependency"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2012",
+      "PhantomCSS 作为最早的开源视觉回归测试工具之一出现，使用 PhantomJS 进行无头截图捕获和比较"
+    ],
+    [
+      "2014",
+      "Percy.io 由 Mike Fotinakis 在 Stripe 创立，推出第一个与 GitHub 拉取请求工作流集成的 SaaS 视觉测试平台"
+    ],
+    [
+      "2017",
+      "Storybook 的 storyshots 插件实现无需完整浏览器环境的组件级视觉测试，大幅减少基准稳定性问题"
+    ],
+    [
+      "2020",
+      "Playwright 和 Cypress 添加原生截图比较 API，使视觉回归测试无需第三方 SaaS 依赖即可访问"
+    ]
+  ],
+  "dos": [
+    "Do test components in isolation via Storybook rather than full pages wherever possible — isolated components produce stable, deterministic baselines free of dynamic content noise",
+    "Do configure a pixel-difference tolerance (typically 0.1-0.5%) to account for sub-pixel rendering differences across platforms rather than requiring pixel-perfect matches",
+    "Do store baseline images in version control alongside the code they test so that baseline history is tied to code history and rollbacks are consistent",
+    "Do run visual tests in a fixed, reproducible browser environment (pinned browser version, fixed viewport, deterministic fonts) to prevent environment drift from causing false positives"
+  ],
+  "dos_zh": [
+    "尽可能通过 Storybook 在隔离环境中测试组件而非整页——隔离组件产生稳定、确定性的基准，不受动态内容噪声影响",
+    "配置像素差异容差（通常 0.1-0.5%）以适应跨平台的次像素渲染差异，而非要求像素完美匹配",
+    "将基准图像与其测试的代码一起存储在版本控制中，使基准历史与代码历史绑定，回滚保持一致",
+    "在固定、可复现的浏览器环境（固定浏览器版本、固定视口、确定性字体）中运行视觉测试，防止环境漂移导致误报"
+  ],
+  "donts": [
+    "Don't apply visual regression testing to every page without component isolation — full-page screenshots with dynamic data (dates, counts, user content) generate constant false positives",
+    "Don't auto-approve baseline updates in CI without human review — silent auto-updates are how visual regressions slip undetected into the approved baseline",
+    "Don't use visual regression as a substitute for functional testing — it catches layout and style changes but not behavioral regressions, missing logic bugs entirely",
+    "Don't neglect cross-browser baseline maintenance — Chrome and Firefox render fonts and shadows differently, requiring separate baseline sets if cross-browser fidelity is a requirement"
+  ],
+  "donts_zh": [
+    "不要在没有组件隔离的情况下将视觉回归测试应用于每个页面——包含动态数据（日期、计数、用户内容）的全页面截图会产生持续误报",
+    "不要在 CI 中不经人工审查自动批准基准更新——静默自动更新是视觉回归悄然进入已批准基准的途径",
+    "不要将视觉回归测试作为功能测试的替代——它捕获布局和样式变更而非行为回归，完全遗漏逻辑缺陷",
+    "不要忽视跨浏览器基准维护——Chrome 和 Firefox 对字体和阴影的渲染不同，若跨浏览器保真度是需求，则需要独立的基准集"
+  ],
+  "case_study_company": "Shopify",
+  "case_study": "Shopify's Polaris design system team uses visual regression testing extensively to protect the consistency of their shared component library across hundreds of Shopify products. They run Percy on every Storybook story for all 100+ Polaris components on each pull request. Before adopting visual testing, CSS refactors frequently introduced subtle regressions in border radii, spacing, or color contrast that passed code review but were only caught by QA engineers — sometimes after the regression had propagated to merchant-facing pages. After adopting Percy, the time to detect and fix visual regressions dropped from days to the same pull request cycle, and the design system team reduced their manual visual review effort by approximately 70%.",
+  "case_study_zh": "Shopify 的 Polaris 设计系统团队广泛使用视觉回归测试，保护其共享组件库在数百个 Shopify 产品中的一致性。他们在每次拉取请求时对所有 100+ Polaris 组件的每个 Storybook story 运行 Percy。采用视觉测试前，CSS 重构频繁在边框半径、间距或颜色对比度上引入细微回归，这些通过代码审查但只被 QA 工程师发现——有时在回归已传播到商家可见页面后才发现。采用 Percy 后，检测和修复视觉回归的时间从数天缩短到同一拉取请求周期，设计系统团队减少了约 70% 的手动视觉审查工作量。",
+  "when_not_to_use": [
+    "Backend services, APIs, or data processing pipelines where there is no visual output to compare",
+    "Highly dynamic UIs with real-time data, animations, or user-generated content that make stable baselines impossible without extensive mocking",
+    "Very early-stage projects with rapidly changing designs where maintaining baselines costs more than the regressions they would catch"
+  ],
+  "when_not_to_use_zh": [
+    "没有可比较视觉输出的后端服务、API 或数据处理流水线",
+    "包含实时数据、动画或用户生成内容的高度动态 UI，在没有大量 Mock 的情况下稳定基准是不可能的",
+    "设计快速变化的极早期项目，维护基准的成本超过它们能捕获的回归"
+  ],
+  "adopters": [
+    "Shopify (Polaris)",
+    "Atlassian",
+    "GitHub",
+    "Storybook community",
+    "Stripe"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "testability",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Percy.io Documentation. \"Visual Testing Handbook\". percy.io/docs.",
+  "secondary_sources": [
+    "Applitools (2020). \"Visual AI Testing Guide\". applitools.com/resources.",
+    "Playwright Documentation. \"Screenshots\". playwright.dev/docs/screenshots.",
+    "Cromwell, T. (2019). \"Visual Regression Testing in Practice\". CSS-Tricks."
+  ],
+  "typed_relations": [
+    {
+      "slug": "snapshot-testing",
+      "type": "complement"
+    },
+    {
+      "slug": "continuous-testing",
+      "type": "complement"
+    },
+    {
+      "slug": "test-pyramid",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/visual-regression-testing",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/visual-regression-testing.md"
+}

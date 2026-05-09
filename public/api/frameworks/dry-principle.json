@@ -1,0 +1,179 @@
+{
+  "id": 324,
+  "name": "DRY (Don't Repeat Yourself)",
+  "name_zh": "DRY 原则（不要重复自己）",
+  "slug": "dry-principle",
+  "category": "coding",
+  "desc": "Every piece of knowledge must have a single, unambiguous, authoritative representation within a system. When you find yourself writing the same code in two places, extract it into one canonical source.",
+  "desc_zh": "系统中的每一条知识都必须有唯一、明确、权威性的表述。当你在两个地方写相同的代码时，就应该将其提取为唯一的权威来源。",
+  "steps": [
+    "Identify duplicated logic, data, or knowledge across the codebase",
+    "Find the canonical location or create a single source of truth",
+    "Extract the duplication into a shared abstraction (function, class, constant, template)",
+    "Update all call sites to reference the single source",
+    "Verify tests still pass; ensure the abstraction is not over-generalized"
+  ],
+  "steps_zh": [
+    "识别代码库中重复的逻辑、数据或知识",
+    "找到权威位置，或创建唯一信源",
+    "将重复部分提取为共享抽象（函数、类、常量、模板）",
+    "更新所有调用处引用唯一来源",
+    "验证测试仍通过；确保抽象没有过度泛化"
+  ],
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "Duplication",
+    "Abstraction",
+    "Single Source",
+    "Reuse"
+  ],
+  "viz_labels_zh": [
+    "代码重复",
+    "抽象提取",
+    "单一来源",
+    "复用"
+  ],
+  "complexity": "beginner",
+  "origin_author": "Andy Hunt & Dave Thomas, 1999",
+  "adopters": [
+    "Ruby on Rails（核心设计哲学）",
+    "Django",
+    "Spring Boot",
+    "Terraform",
+    "GraphQL"
+  ],
+  "related": [
+    "solid-principles",
+    "clean-code-principles",
+    "functional-core-imperative-shell"
+  ],
+  "tags": [
+    "dry",
+    "code-quality",
+    "maintainability",
+    "abstraction",
+    "refactoring"
+  ],
+  "ai_relevant": false,
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "when_to_use": "When you notice the same logic appears in two or more places, or when a constant, formula, or business rule is hard-coded in multiple files. Apply DRY during refactoring sprints or when onboarding reveals confusion about which copy is canonical.",
+  "when_to_use_zh": "当相同逻辑出现在两个或更多地方时，或当常量、公式、业务规则被硬编码在多个文件中时。在重构冲刺或入职发现混乱时应用。",
+  "core_concepts": [
+    "Single Source of Truth",
+    "Abstraction",
+    "Knowledge Duplication vs Code Duplication",
+    "Canonical Representation",
+    "Rule of Three"
+  ],
+  "core_concepts_zh": [
+    "唯一信源",
+    "抽象化",
+    "知识重复 vs 代码重复",
+    "权威性表述",
+    "三次则则"
+  ],
+  "timeline": [
+    {
+      "year": 1999,
+      "event": "Andy Hunt and Dave Thomas coin the term in 「The Pragmatic Programmer」"
+    },
+    {
+      "year": 2000,
+      "event": "Ruby on Rails adopts DRY as a core design principle, popularizing it widely"
+    },
+    {
+      "year": 2005,
+      "event": "Concept expanded to infrastructure: Terraform and config-as-code embrace DRY"
+    },
+    {
+      "year": 2015,
+      "event": "GraphQL's single schema serves as the DRY contract between client and server"
+    },
+    {
+      "year": 2020,
+      "event": "DRY tension with micro-services discussed: shared libraries vs. duplication across services"
+    }
+  ],
+  "timeline_zh": [
+    {
+      "year": 1999,
+      "event": "Andy Hunt 和 Dave Thomas 在《务实的程序员》中提出该术语"
+    },
+    {
+      "year": 2000,
+      "event": "Ruby on Rails 将 DRY 作为核心设计哲学，广泛推广"
+    },
+    {
+      "year": 2005,
+      "event": "DRY 理念延伸到基础设施：Terraform 和配置即代码拥抱 DRY"
+    },
+    {
+      "year": 2015,
+      "event": "GraphQL 的单一 Schema 作为客户端与服务端间的 DRY 契约"
+    },
+    {
+      "year": 2020,
+      "event": "微服务中 DRY 的张力被讨论：共享库 vs 跨服务重复"
+    }
+  ],
+  "dos": [
+    "Extract shared logic into well-named functions or modules",
+    "Use configuration or constants for repeated values",
+    "Apply templates or code generation to eliminate structural duplication",
+    "Review for duplication at the knowledge level, not just syntactic level",
+    "Follow the Rule of Three: abstract on the third repetition"
+  ],
+  "dos_zh": [
+    "将共享逻辑提取到命名良好的函数或模块中",
+    "对重复的值使用配置或常量",
+    "应用模板或代码生成消除结构性重复",
+    "在知识层面而不仅仅是语法层面审查重复",
+    "遵循三次则则：第三次重复时再抽象"
+  ],
+  "donts": [
+    "Don't abstract too early — duplication is cheaper than the wrong abstraction",
+    "Don't merge unrelated things just because they look similar",
+    "Don't apply DRY across microservice boundaries at the cost of coupling",
+    "Don't confuse DRY with removing all redundancy — tests intentionally repeat setup",
+    "Don't DRY-up accidental duplication that may diverge in the future"
+  ],
+  "donts_zh": [
+    "不要过早抽象 —— 重复比错误的抽象代价更低",
+    "不要仅因为看起来相似就将无关的东西合并",
+    "不要以小类服务共耐为代价跨服务应用 DRY",
+    "不要把 DRY 与消除所有冗余混淆 —— 测试有意地重复设置",
+    "不要小印偶然重复的部分，它们未来可能会分岐"
+  ],
+  "case_study": "Ruby on Rails embodies DRY through its convention-over-configuration philosophy. The ActiveRecord ORM eliminates duplicated SQL and model definitions; Action Pack routes map URLs to controllers without repetitive wiring; Rails generators produce standard scaffolding so developers never manually repeat boilerplate. The result: a new Rails app has almost no duplicated setup code compared to raw PHP or early Java web apps.",
+  "case_study_zh": "Ruby on Rails 通过「约定优于配置」的哲学深刻体现了 DRY 原则。ActiveRecord ORM 消除了重复的 SQL 和模型定义；Action Pack 路由无需重复配线就能将 URL 映射到控制器；Rails 生成器自动生产标准脚手架代码。结果：一个新的 Rails 应用几乎没有重复的设置代码。",
+  "case_study_company": "Ruby on Rails",
+  "when_not_to_use": "Avoid forced DRY across microservice boundaries where coupling would be worse than duplication. Don't apply it to test setup code — explicit repetition in tests aids readability. Early-stage prototypes may be better off with duplicate code that's easier to delete.",
+  "when_not_to_use_zh": "避免在微服务边界强制应用 DRY，耦合的代价将大于重复。不要应用于测试设置代码 —— 测试中显式重复有助于可读性。早期原型可能适合保留重复代码，便于删除。",
+  "primary_source": "Hunt, A. & Thomas, D. (1999). 「The Pragmatic Programmer: From Journeyman to Master.」 Addison-Wesley.",
+  "secondary_sources": [
+    "Fowler, M. (1999). 「Refactoring: Improving the Design of Existing Code.」 Addison-Wesley.",
+    "Martin, R.C. (2008). 「Clean Code.」 Prentice Hall."
+  ],
+  "origin_source": "Coined in 「The Pragmatic Programmer」 (1999) by Andy Hunt and Dave Thomas as one of the most important principles of software development.",
+  "origin_source_zh": "来自 Andy Hunt 和 Dave Thomas《务实的程序员》（1999），被列为软件开发最重要原则之一。",
+  "typed_relations": [
+    {
+      "slug": "solid-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "clean-code-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "functional-core-imperative-shell",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/dry-principle",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/dry-principle.md"
+}

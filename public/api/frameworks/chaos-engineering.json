@@ -1,0 +1,192 @@
+{
+  "id": 49,
+  "name": "Chaos Engineering",
+  "name_zh": "混沌工程",
+  "slug": "chaos-engineering",
+  "category": "quality",
+  "desc": "Inject controlled failures to build confidence in system resilience",
+  "desc_zh": "注入受控故障以增强对系统韧性的信心",
+  "steps": [
+    "Define steady state: establish measurable indicators of normal system behavior (latency p99, error rate, throughput) as your baseline",
+    "Hypothesize impact: predict what will happen when a specific failure is injected (e.g., 'losing one AZ won't increase error rate above 0.1%')",
+    "Design the experiment: choose the failure mode (network partition, pod kill, CPU spike, dependency latency) and the blast radius",
+    "Run in production: execute the experiment during business hours with automatic abort conditions if steady state degrades beyond thresholds",
+    "Learn and harden: analyze results, fix discovered weaknesses, update runbooks, and repeat experiments to verify fixes"
+  ],
+  "steps_zh": [
+    "定义稳态：建立正常系统行为的可衡量指标（p99延迟、错误率、吞吐量）作为基线",
+    "假设影响：预测注入特定故障后的结果（如「丢失一个可用区不会使错误率超过0.1%」）",
+    "设计实验：选择故障模式（网络分区、Pod终止、CPU峰值、依赖延迟）和影响范围",
+    "在生产环境运行：在业务时间执行实验，设置稳态超出阈值时自动中止的条件",
+    "学习与加固：分析结果，修复发现的弱点，更新运维手册，重复实验验证修复效果"
+  ],
+  "ai_relevant": false,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Hypothesize",
+    "Experiment",
+    "Observe",
+    "Improve"
+  ],
+  "viz_labels_zh": [
+    "建立假设",
+    "注入故障",
+    "观测结果",
+    "持续改进"
+  ],
+  "related": [
+    "circuit-breaker-pattern",
+    "bulkhead-pattern",
+    "sli-slo-sla"
+  ],
+  "tags": [
+    "chaos-engineering",
+    "resilience",
+    "fault-injection",
+    "reliability"
+  ],
+  "origin_author": "Netflix, 2011",
+  "origin_source": "Netflix Tech Blog: The Netflix Simian Army",
+  "origin_source_zh": "Netflix技术博客：《Netflix猴子军团》",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Distributed systems where failures are inevitable and resilience must be validated proactively",
+    "After major architectural changes to verify that new fault-tolerance mechanisms actually work",
+    "Before peak traffic events (Black Friday, product launches) to uncover hidden weaknesses",
+    "Organizations transitioning from monolith to microservices where failure modes multiply"
+  ],
+  "when_to_use_zh": [
+    "故障不可避免且需要主动验证韧性的分布式系统",
+    "重大架构变更后，验证新容错机制是否真正有效",
+    "流量高峰事件（黑色星期五、产品发布）前发现隐藏弱点",
+    "从单体向微服务过渡、故障模式成倍增加的组织"
+  ],
+  "core_concepts": [
+    "Steady State Hypothesis: A measurable definition of normal system behavior used as the experiment baseline",
+    "Blast Radius: The scope of impact of a chaos experiment, starting small and gradually expanding",
+    "Abort Conditions: Automated safety mechanisms that halt experiments when impact exceeds acceptable thresholds",
+    "Game Days: Scheduled team exercises where chaos experiments are run with the whole team observing and responding",
+    "Failure Injection: Deliberately introducing faults like latency, errors, or resource constraints into a running system"
+  ],
+  "core_concepts_zh": [
+    "稳态假设：作为实验基线的正常系统行为可衡量定义",
+    "影响范围：混沌实验的影响范围，从小处开始逐步扩大",
+    "中止条件：当影响超过可接受阈值时自动停止实验的安全机制",
+    "演练日：安排的团队演练，全队观察和响应混沌实验",
+    "故障注入：在运行系统中故意引入延迟、错误或资源约束等故障"
+  ],
+  "timeline": [
+    [
+      "2010",
+      "Netflix creates Chaos Monkey to randomly terminate EC2 instances in production"
+    ],
+    [
+      "2011",
+      "Netflix publishes the Simian Army blog post, formalizing chaos engineering practices"
+    ],
+    [
+      "2014",
+      "Netflix releases Chaos Monkey as open source and formalizes the discipline internally"
+    ],
+    [
+      "2017",
+      "Casey Rosenthal and Nora Jones publish 'Chaos Engineering' (O'Reilly), establishing it as a field"
+    ],
+    [
+      "2019",
+      "Gremlin, LitmusChaos, and Chaos Mesh emerge as commercial and open-source chaos platforms"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2010",
+      "Netflix创建Chaos Monkey在生产环境中随机终止EC2实例"
+    ],
+    [
+      "2011",
+      "Netflix发表猴子军团博客文章，正式化混沌工程实践"
+    ],
+    [
+      "2014",
+      "Netflix将Chaos Monkey开源并在内部正式化该学科"
+    ],
+    [
+      "2017",
+      "Casey Rosenthal和Nora Jones出版《混沌工程》（O'Reilly），将其确立为一个领域"
+    ],
+    [
+      "2019",
+      "Gremlin、LitmusChaos和Chaos Mesh作为商业和开源混沌平台涌现"
+    ]
+  ],
+  "dos": [
+    "Do start with small blast radius experiments because production chaos must be safe and controlled",
+    "Do define abort conditions before every experiment because uncontrolled chaos is just an outage",
+    "Do run experiments during business hours because that is when real failures happen and teams are available",
+    "Do share findings widely because chaos experiments create organizational learning about system behavior"
+  ],
+  "dos_zh": [
+    "从小影响范围的实验开始，因为生产混沌必须是安全和受控的",
+    "在每次实验前定义中止条件，因为不受控的混沌只是一次故障",
+    "在业务时间运行实验，因为那是真实故障发生且团队在场的时候",
+    "广泛分享发现，因为混沌实验创造了关于系统行为的组织学习"
+  ],
+  "donts": [
+    "Don't run chaos experiments without monitoring in place because you cannot measure what you cannot observe",
+    "Don't start in production without first practicing in staging because premature production chaos risks real outages",
+    "Don't chaos-test without stakeholder buy-in because surprise outages destroy trust in the practice",
+    "Don't treat chaos engineering as one-time because systems change and new weaknesses emerge continuously"
+  ],
+  "donts_zh": [
+    "不要在没有监控的情况下运行混沌实验，因为你无法衡量无法观察的东西",
+    "不要在未先在预发布环境实践的情况下直接在生产环境实验，因为过早的生产混沌有真实宕机风险",
+    "不要在没有干系人支持的情况下进行混沌测试，因为意外宕机会摧毁对该实践的信任",
+    "不要将混沌工程视为一次性活动，因为系统不断变化且新弱点持续出现"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix pioneered chaos engineering with Chaos Monkey, which randomly terminated production EC2 instances to force engineers to build resilient services. During the 2011 AWS US-East outage that took down Reddit, Quora, and others, Netflix remained operational because their systems had been hardened through continuous chaos experiments. This event validated the approach and inspired industry-wide adoption.",
+  "case_study_zh": "Netflix以Chaos Monkey开创了混沌工程，随机终止生产EC2实例以迫使工程师构建具有韧性的服务。在2011年AWS美东区域故障导致Reddit、Quora等公司宕机时，Netflix因系统经过持续混沌实验加固而保持运营。这一事件验证了该方法并激发了全行业的采用。",
+  "when_not_to_use": [
+    "Systems without adequate monitoring and observability to measure experiment impact",
+    "Early-stage startups where uptime matters more than resilience validation",
+    "Monolithic systems with no redundancy where any failure causes total outage"
+  ],
+  "when_not_to_use_zh": [
+    "缺乏足够监控和可观测性来衡量实验影响的系统",
+    "正常运行时间比韧性验证更重要的早期创业公司",
+    "没有冗余且任何故障都会导致全面宕机的单体系统"
+  ],
+  "adopters": [
+    "Netflix",
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Slack"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Netflix Technology Blog (2011). \"The Netflix Simian Army\". netflixtechblog.com.",
+  "secondary_sources": [
+    "Casey Rosenthal and Nora Jones (2020). \"Chaos Engineering: System Resiliency in Practice\". O'Reilly Media.",
+    "Ali Basiri et al. (2016). \"Chaos Engineering\". IEEE Software, 33(3)."
+  ],
+  "typed_relations": [
+    {
+      "slug": "circuit-breaker-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "bulkhead-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "sli-slo-sla",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/chaos-engineering",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/chaos-engineering.md"
+}

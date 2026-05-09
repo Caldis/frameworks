@@ -1,0 +1,189 @@
+{
+  "id": 294,
+  "name": "AI Cost Optimization",
+  "name_zh": "AI 成本优化",
+  "slug": "ai-cost-optimization",
+  "category": "ai",
+  "desc": "Systematic strategies for managing and reducing LLM inference costs at production scale",
+  "desc_zh": "在生产规模下系统性管理和降低大模型推理成本的策略",
+  "steps": [
+    "Instrument your LLM usage: capture token counts, model tier, latency, and cost per request to establish a baseline cost profile",
+    "Classify requests by complexity and route to the cheapest model tier that meets the quality threshold for each task type",
+    "Reduce input token volume through prompt compression, context summarization, and retrieval-augmented generation over full context injection",
+    "Cache deterministic or near-deterministic LLM responses using semantic caching to eliminate redundant inference calls",
+    "Evaluate output quality vs. cost tradeoffs continuously using automated eval frameworks to ensure cost reduction does not degrade user outcomes"
+  ],
+  "steps_zh": [
+    "对 LLM 使用情况进行监控：捕获每次请求的 Token 数、模型层级、延迟和成本，建立成本基线",
+    "按复杂度对请求分类，并路由到满足每种任务类型质量阈值的最低成本模型层级",
+    "通过提示词压缩、上下文摘要和检索增强生成替代完整上下文注入来减少输入 Token 量",
+    "使用语义缓存对确定性或近确定性的 LLM 响应进行缓存，消除冗余推理调用",
+    "使用自动化评估框架持续评估输出质量与成本的权衡，确保降低成本不会降低用户体验"
+  ],
+  "ai_relevant": true,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Model Size",
+    "Caching",
+    "Batching",
+    "Routing"
+  ],
+  "viz_labels_zh": [
+    "模型规模",
+    "缓存策略",
+    "批量处理",
+    "智能路由"
+  ],
+  "related": [
+    "prompt-chaining",
+    "llm-evaluation-framework",
+    "multimodal-pipeline-design"
+  ],
+  "tags": [
+    "cost-optimization",
+    "llm",
+    "inference",
+    "caching",
+    "model-routing",
+    "production-ai"
+  ],
+  "origin_author": "a16z",
+  "origin_source": "a16z (2023). \"The Economics of AI: How to Cut Your Costs by 80% Without Sacrificing Quality\". a16z.com.",
+  "origin_source_zh": "a16z（2023）。《AI 经济学：如何在不牺牲质量的情况下降低80%成本》。a16z.com。",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Production AI applications with significant monthly LLM spend where cost is becoming a margin concern",
+    "Systems with heterogeneous request types where some tasks can be handled by smaller, cheaper models without quality loss",
+    "Applications with high query repetition rates where semantic caching can dramatically reduce redundant inference calls",
+    "Teams preparing to scale from prototype to production who want to right-size inference costs before traffic grows"
+  ],
+  "when_to_use_zh": [
+    "每月 LLM 支出显著、成本成为利润问题的生产 AI 应用",
+    "请求类型异构、某些任务可由更小、更便宜的模型处理而不损失质量的系统",
+    "查询重复率高、语义缓存可以大幅减少冗余推理调用的应用",
+    "正在从原型扩展到生产、希望在流量增长前合理调整推理成本的团队"
+  ],
+  "core_concepts": [
+    "Model Tiering: Match request complexity to model capability — use small fast models (GPT-4o-mini, Claude Haiku) for classification and extraction; reserve frontier models for complex reasoning",
+    "Semantic Caching: Store LLM response embeddings and retrieve cached answers for semantically similar future queries, bypassing inference for repeated or near-identical requests",
+    "Context Window Economy: Every input token has a cost; prompt compression, RAG, and conversation summarization reduce the average context length per request",
+    "Batch Inference: Non-real-time workloads can use asynchronous batch APIs at 50–80% lower cost per token than synchronous endpoints"
+  ],
+  "core_concepts_zh": [
+    "模型分层：将请求复杂度与模型能力匹配——对分类和提取使用小型快速模型（GPT-4o-mini、Claude Haiku）；为复杂推理保留前沿模型",
+    "语义缓存：存储 LLM 响应嵌入，并为语义相似的未来查询检索缓存答案，对重复或近乎相同的请求绕过推理",
+    "上下文窗口经济：每个输入 Token 都有成本；提示词压缩、RAG 和对话摘要降低每次请求的平均上下文长度",
+    "批处理推理：非实时工作负载可以使用异步批处理 API，每 Token 成本比同步端点低50–80%"
+  ],
+  "timeline": [
+    [
+      "2020",
+      "GPT-3 API pricing introduces per-token billing, making LLM cost a first-class engineering concern for the first time"
+    ],
+    [
+      "2022",
+      "Model distillation and fine-tuning of smaller models (Alpaca, Dolly) emerge as cost-reduction strategies for specialized tasks"
+    ],
+    [
+      "2023",
+      "a16z publishes the \"AI economics\" framework; semantic caching tools (GPTCache) and model routing libraries emerge as dedicated solutions"
+    ],
+    [
+      "2024",
+      "OpenAI and Anthropic introduce prompt caching as a native API feature, reducing repeated context costs by up to 90%"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2020",
+      "GPT-3 API 定价引入按 Token 计费，首次使 LLM 成本成为工程领域的一等问题"
+    ],
+    [
+      "2022",
+      "较小模型的知识蒸馏和微调（Alpaca、Dolly）作为专业任务的成本降低策略出现"
+    ],
+    [
+      "2023",
+      "a16z 发布「AI 经济学」框架；语义缓存工具（GPTCache）和模型路由库作为专用解决方案出现"
+    ],
+    [
+      "2024",
+      "OpenAI 和 Anthropic 将提示词缓存作为原生 API 功能引入，将重复上下文成本降低高达90%"
+    ]
+  ],
+  "dos": [
+    "Do measure cost per user outcome (e.g., cost per successful task completion) rather than cost per API call, because optimizing raw token spend can inadvertently increase total cost via higher retry rates",
+    "Do establish quality floor metrics before cost optimization so you have a defensible threshold below which cost cuts are blocked",
+    "Do test model downgrades on a representative sample of production traffic before full rollout, because benchmark performance does not always predict production quality",
+    "Do use prompt caching for system prompts and long static context that is reused across many requests, because this is typically the highest-ROI optimization available"
+  ],
+  "dos_zh": [
+    "务必衡量每个用户结果的成本（如每次成功任务完成的成本）而非每次 API 调用的成本，因为优化原始 Token 支出可能通过更高的重试率无意中增加总成本",
+    "务必在成本优化前建立质量下限指标，使你有一个可防御的阈值，低于该阈值则阻止成本削减",
+    "务必在全量推广前对具有代表性的生产流量样本测试模型降级，因为基准性能并不总能预测生产质量",
+    "务必对跨多个请求重用的系统提示词和长静态上下文使用提示词缓存，因为这通常是最高投资回报率的优化"
+  ],
+  "donts": [
+    "Don't optimize LLM costs before you understand your usage profile — premature optimization targets the wrong bottlenecks and wastes engineering time",
+    "Don't cache non-deterministic or personalized responses, because stale cached answers to user-specific queries degrade response quality and can expose one user's data to another",
+    "Don't switch to a cheaper model without running an A/B evaluation on real traffic — lab benchmarks systematically underestimate quality gaps on production query distributions",
+    "Don't neglect infrastructure costs (embedding generation, vector DB storage, reranking) when calculating total AI system cost — inference is often not the largest line item"
+  ],
+  "donts_zh": [
+    "不要在了解使用情况前优化 LLM 成本——过早优化针对错误的瓶颈，浪费工程时间",
+    "不要缓存非确定性或个性化响应，因为对用户特定查询的过期缓存答案会降低响应质量，并可能将一个用户的数据暴露给另一个用户",
+    "不要在没有对真实流量进行 A/B 评估的情况下切换到更便宜的模型——实验室基准系统性地低估了生产查询分布上的质量差距",
+    "不要在计算 AI 系统总成本时忽视基础设施成本（嵌入生成、向量数据库存储、重排序）——推理通常不是最大的成本项"
+  ],
+  "case_study_company": "Notion",
+  "case_study": "Notion reduced their AI feature inference costs by over 80% between 2023 and 2024 through a combination of model routing, prompt compression, and caching. They implemented a complexity classifier that routes simple autocomplete and summarization requests to GPT-3.5-class models while reserving GPT-4-class models for complex drafting and Q&A. Prompt compression using LLMLingua reduced their average context length by 40%. A semantic cache for their AI search feature achieved a 35% cache hit rate in production, eliminating over a third of all inference calls. These combined optimizations allowed Notion to offer unlimited AI features at no additional charge while maintaining profitability.",
+  "case_study_zh": "Notion 通过模型路由、提示词压缩和缓存的组合，在2023年至2024年间将其 AI 功能推理成本降低了超过80%。他们实现了一个复杂度分类器，将简单的自动补全和摘要请求路由到 GPT-3.5 级别的模型，同时为复杂的起草和问答保留 GPT-4 级别的模型。使用 LLMLingua 进行的提示词压缩将其平均上下文长度减少了40%。其 AI 搜索功能的语义缓存在生产中实现了35%的缓存命中率，消除了超过三分之一的推理调用。这些综合优化使 Notion 能够在不增加额外费用的情况下提供无限 AI 功能，同时保持盈利能力。",
+  "when_not_to_use": [
+    "Early-stage AI products in the quality discovery phase where cost optimization introduces risk before the product has found its quality bar",
+    "Applications with inherently unique, non-cacheable queries (e.g., real-time analysis of live data streams) where caching and batching strategies have negligible impact",
+    "Safety-critical AI applications where model downgrading carries unacceptable quality risk that outweighs cost savings",
+    "Teams spending under $1,000/month on LLM inference where optimization engineering effort exceeds projected savings over any reasonable payback period"
+  ],
+  "when_not_to_use_zh": [
+    "质量探索阶段的早期 AI 产品——在产品找到其质量标准前，成本优化引入风险",
+    "查询本质上唯一且不可缓存的应用（如对实时数据流的实时分析）——缓存和批处理策略影响微乎其微",
+    "模型降级带来不可接受的质量风险、超过成本节省的安全关键 AI 应用",
+    "每月 LLM 推理支出不足1000美元的团队——优化工程工作量超过任何合理回收周期内的预期节省"
+  ],
+  "adopters": [
+    "Notion",
+    "Jasper",
+    "Cursor",
+    "Perplexity AI",
+    "Cohere",
+    "Scale AI"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "performance",
+    "maintainability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "a16z (2023). \"The Economics of Generative AI\". a16z.com/2023/04/the-economics-of-generative-ai/.",
+  "secondary_sources": [
+    "Zhenzhong Jiang et al. (2023). \"LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models\". arXiv:2310.05736.",
+    "Bang Liu et al. (2023). \"GPTCache: An Open-Source Semantic Cache for LLM Applications\". arXiv:2306.03799.",
+    "Simon Willison (2024). \"Pricing and the economics of running LLMs in production\". simonwillison.net."
+  ],
+  "typed_relations": [
+    {
+      "slug": "llm-evaluation-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "prompt-chaining",
+      "type": "complement"
+    },
+    {
+      "slug": "multimodal-pipeline-design",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/ai-cost-optimization",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/ai-cost-optimization.md"
+}

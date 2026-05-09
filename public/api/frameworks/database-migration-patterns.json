@@ -1,0 +1,195 @@
+{
+  "id": 81,
+  "name": "Database Migration Patterns",
+  "name_zh": "数据库迁移模式",
+  "slug": "database-migration-patterns",
+  "category": "evolution",
+  "desc": "Safe techniques for evolving database schemas without downtime or data loss",
+  "desc_zh": "无停机、无数据丢失地演进数据库模式的安全技术集合",
+  "steps": [
+    "Version-control all schema changes as incremental migration scripts (Flyway, Liquibase)",
+    "Apply expand-contract: add new columns/tables first, migrate data, then remove old structures",
+    "Use backward-compatible migrations so old and new application code can run simultaneously",
+    "Test migrations in a production-equivalent staging environment before applying to production",
+    "Automate rollback scripts for every migration and validate them in CI before merging"
+  ],
+  "steps_zh": [
+    "将所有模式变更以增量迁移脚本形式纳入版本控制（Flyway、Liquibase）",
+    "应用扩展-收缩模式：先新增列/表，迁移数据，再删除旧结构",
+    "保持向后兼容的迁移，使新旧应用代码可同时运行",
+    "在等同于生产环境的预发布环境中测试迁移，再应用至生产",
+    "为每次迁移自动化回滚脚本，并在合并前通过 CI 验证"
+  ],
+  "ai_relevant": false,
+  "viz_type": "timeline",
+  "viz_labels": [
+    "Schema v1",
+    "Expand",
+    "Migrate Data",
+    "Contract"
+  ],
+  "viz_labels_zh": [
+    "初始模式",
+    "扩展字段",
+    "迁移数据",
+    "收缩旧字段"
+  ],
+  "related": [
+    "strangler-fig-pattern",
+    "branch-by-abstraction",
+    "api-versioning-strategies"
+  ],
+  "tags": [
+    "database",
+    "migration",
+    "schema-evolution",
+    "zero-downtime"
+  ],
+  "origin_author": "Pramod Sadalage & Scott Ambler, 2006",
+  "origin_source": "Refactoring Databases: Evolutionary Database Design (Addison-Wesley)",
+  "origin_source_zh": "《数据库重构：演进式数据库设计》（Addison-Wesley 出版）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Deploying schema changes in a zero-downtime production environment with rolling deployments",
+    "Splitting a shared database as part of a monolith-to-microservices decomposition",
+    "Migrating from one database vendor to another while keeping the application live",
+    "Renaming columns, changing data types, or restructuring tables in a system with multiple consuming applications"
+  ],
+  "when_to_use_zh": [
+    "在零停机的生产环境中通过滚动部署发布模式变更",
+    "作为单体到微服务拆分的一部分拆分共享数据库",
+    "在保持应用在线的同时从一个数据库供应商迁移到另一个",
+    "在有多个消费应用的系统中重命名列、更改数据类型或重构表"
+  ],
+  "core_concepts": [
+    "Expand-Contract (Parallel Change): Add new structures, migrate data, then remove old structures in separate deployments",
+    "Version-controlled migrations: Every schema change is a numbered, sequential, idempotent script stored in source control",
+    "Backward compatibility: Both old and new application code must work against the database during the migration window",
+    "Blue-green database: Maintaining two schema versions simultaneously so deployments can be rolled back safely",
+    "Data migration vs. schema migration: Separating structural changes from data transformation for clarity and safety"
+  ],
+  "core_concepts_zh": [
+    "扩展-收缩（并行变更）：先新增结构，迁移数据，再在独立部署中删除旧结构",
+    "版本控制迁移：每个模式变更都是存储在源代码控制中的编号、顺序、幂等脚本",
+    "向后兼容：在迁移窗口期间，新旧应用代码都必须能够操作数据库",
+    "蓝绿数据库：同时维护两个模式版本，以便可以安全回滚部署",
+    "数据迁移与模式迁移：将结构变更与数据转换分离，以提高清晰度和安全性"
+  ],
+  "timeline": [
+    [
+      "2003",
+      "Scott Ambler publishes early work on agile database techniques and evolutionary design"
+    ],
+    [
+      "2006",
+      "Sadalage and Ambler publish 'Refactoring Databases', codifying expand-contract and migration patterns"
+    ],
+    [
+      "2010",
+      "Flyway is released as an open-source database migration tool, popularizing version-controlled migrations"
+    ],
+    [
+      "2014",
+      "Zero-downtime migration becomes a standard requirement for cloud-native continuous deployment"
+    ],
+    [
+      "2020",
+      "Tools like gh-ost (GitHub) and pt-online-schema-change (Percona) handle large-scale online migrations at internet scale"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2003",
+      "Scott Ambler 发表关于敏捷数据库技术和演进式设计的早期作品"
+    ],
+    [
+      "2006",
+      "Sadalage 和 Ambler 出版《数据库重构》，将扩展-收缩和迁移模式编纂成书"
+    ],
+    [
+      "2010",
+      "Flyway 作为开源数据库迁移工具发布，推广了版本控制迁移"
+    ],
+    [
+      "2014",
+      "零停机迁移成为云原生持续部署的标准要求"
+    ],
+    [
+      "2020",
+      "gh-ost（GitHub）和 pt-online-schema-change（Percona）等工具在互联网规模下处理大规模在线迁移"
+    ]
+  ],
+  "dos": [
+    "Always use the expand-contract pattern for destructive changes (column drops, renames, type changes)",
+    "Test every migration on a production-sized dataset — small test databases hide performance problems",
+    "Include rollback scripts for every forward migration and test them automatically in CI",
+    "Separate data migrations from schema migrations to keep each change small and reviewable"
+  ],
+  "dos_zh": [
+    "对破坏性变更（删列、重命名、类型更改）始终使用扩展-收缩模式",
+    "在生产规模的数据集上测试每次迁移——小型测试数据库会隐藏性能问题",
+    "为每个正向迁移编写回滚脚本并在 CI 中自动测试",
+    "将数据迁移与模式迁移分离，使每个变更小巧且易于审查"
+  ],
+  "donts": [
+    "Don't apply destructive schema changes (DROP COLUMN, ALTER TYPE) in a single deployment step",
+    "Don't skip testing migrations against production-sized data — 'works on my laptop' is not enough",
+    "Don't mix application logic changes with schema migrations in the same deployment",
+    "Don't assume your ORM handles migrations safely — always review the generated SQL"
+  ],
+  "donts_zh": [
+    "不要在单次部署步骤中应用破坏性模式变更（DROP COLUMN、ALTER TYPE）",
+    "不要跳过在生产规模数据上测试迁移——「在我笔记本上能跑」远远不够",
+    "不要在同一次部署中混合应用逻辑变更和模式迁移",
+    "不要假设 ORM 能安全处理迁移——始终审查生成的 SQL"
+  ],
+  "case_study_company": "GitHub",
+  "case_study": "GitHub developed gh-ost (GitHub Online Schema Transmogrifier) to handle zero-downtime schema migrations on their massive MySQL databases. Traditional ALTER TABLE operations would lock tables for hours, causing outages. gh-ost creates a shadow table, streams changes via the binary log, and performs an atomic cutover. It has been used to migrate tables with billions of rows across GitHub's production infrastructure without any user-facing downtime.",
+  "case_study_zh": "GitHub 开发了 gh-ost（GitHub 在线模式变形器）来处理其大型 MySQL 数据库的零停机模式迁移。传统的 ALTER TABLE 操作会锁表数小时导致服务中断。gh-ost 创建影子表，通过二进制日志流式传输变更，并执行原子切换。它已被用于在 GitHub 生产基础设施中迁移拥有数十亿行的表，且无任何用户可见的停机。",
+  "when_not_to_use": [
+    "Development or test environments where downtime during migration is perfectly acceptable",
+    "Greenfield projects with no existing data — just create the schema directly",
+    "Embedded databases or single-user applications where concurrent access is not a concern",
+    "Schema changes are so trivial (e.g., adding a nullable column) that no special pattern is needed"
+  ],
+  "when_not_to_use_zh": [
+    "开发或测试环境中迁移期间停机完全可以接受",
+    "没有现有数据的全新项目——直接创建模式即可",
+    "嵌入式数据库或单用户应用，不存在并发访问问题",
+    "模式变更极其简单（如添加可空列），不需要特殊模式"
+  ],
+  "adopters": [
+    "GitHub",
+    "Shopify",
+    "Stripe",
+    "Airbnb",
+    "SoundCloud"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Pramod Sadalage and Scott Ambler (2006). \"Refactoring Databases: Evolutionary Database Design\". Addison-Wesley.",
+  "secondary_sources": [
+    "Martin Fowler and Pramod Sadalage (2003). \"Evolutionary Database Design\". martinfowler.com.",
+    "Scott Ambler and Pramod Sadalage (2006). \"Agile Database Techniques\". Wiley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "strangler-fig-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "branch-by-abstraction",
+      "type": "complement"
+    },
+    {
+      "slug": "api-versioning-strategies",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/database-migration-patterns",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/database-migration-patterns.md"
+}

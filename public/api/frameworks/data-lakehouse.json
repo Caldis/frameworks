@@ -1,0 +1,194 @@
+{
+  "id": 106,
+  "name": "Data Lakehouse",
+  "name_zh": "数据湖仓一体",
+  "slug": "data-lakehouse",
+  "category": "data",
+  "desc": "Unified architecture combining data lake flexibility with warehouse reliability",
+  "desc_zh": "结合数据湖灵活性与数据仓库可靠性的统一架构",
+  "steps": [
+    "Store all raw data in open file formats (Parquet, ORC) on cloud object storage (S3, ADLS, GCS) to maintain data lake flexibility and cost efficiency",
+    "Add a transactional metadata layer using Delta Lake, Apache Iceberg, or Apache Hudi to provide ACID transactions, schema enforcement, and time travel on lake data",
+    "Implement a unified catalog (e.g., Unity Catalog, AWS Glue, Hive Metastore) so both BI tools and ML frameworks discover and access the same governed datasets",
+    "Optimize query performance through data clustering, Z-ordering, file compaction, and partition pruning to match traditional data warehouse speed",
+    "Enforce governance policies including row-level security, column masking, lineage tracking, and audit logging directly on lakehouse tables"
+  ],
+  "steps_zh": [
+    "以开放文件格式（Parquet、ORC）将所有原始数据存储在云对象存储（S3、ADLS、GCS）上，保持数据湖的灵活性和成本效益",
+    "使用Delta Lake、Apache Iceberg或Apache Hudi添加事务元数据层，为湖上数据提供ACID事务、模式强制和时间旅行",
+    "实现统一目录（如Unity Catalog、AWS Glue、Hive Metastore），使BI工具和ML框架能发现和访问相同的治理数据集",
+    "通过数据聚类、Z-ordering、文件压缩和分区裁剪优化查询性能，以匹配传统数据仓库速度",
+    "在湖仓表上直接实施治理策略，包括行级安全、列掩码、血缘追踪和审计日志"
+  ],
+  "ai_relevant": true,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "Raw Storage",
+    "Table Format",
+    "Unified Catalog",
+    "Query Perf",
+    "Governance"
+  ],
+  "viz_labels_zh": [
+    "原始存储",
+    "表格式",
+    "统一目录",
+    "查询优化",
+    "数据治理"
+  ],
+  "related": [
+    "star-schema",
+    "data-mesh",
+    "data-vault-2",
+    "feature-store-pattern"
+  ],
+  "tags": [
+    "lakehouse",
+    "delta-lake",
+    "iceberg",
+    "unified-analytics",
+    "data-warehouse"
+  ],
+  "origin_author": "Databricks (Armbrust, Ghodsi, Zaharia et al.), 2020",
+  "origin_source": "Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics (CIDR 2021)",
+  "origin_source_zh": "《湖仓：统一数据仓库与高级分析的新一代开放平台》（CIDR 2021）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When maintaining separate data lake and data warehouse systems creates data duplication and governance gaps",
+    "When both SQL analytics and machine learning workloads need to operate on the same datasets",
+    "When you need ACID transactions and schema enforcement on cloud object storage data",
+    "When cost efficiency requires decoupling storage from compute while maintaining warehouse-grade query performance"
+  ],
+  "when_to_use_zh": [
+    "当维护独立的数据湖和数据仓库系统造成数据重复和治理缺口时",
+    "当SQL分析和机器学习工作负载需要在相同数据集上操作时",
+    "当需要在云对象存储数据上实现ACID事务和模式强制时",
+    "当成本效率要求存储与计算解耦同时保持仓库级查询性能时"
+  ],
+  "core_concepts": [
+    "Open table formats: Delta Lake, Apache Iceberg, or Apache Hudi add a transactional metadata layer atop open file formats on object storage",
+    "Storage-compute separation: data remains in cheap cloud object storage while multiple compute engines (Spark, Presto, Flink) query it independently",
+    "ACID on the lake: transaction logs enable atomicity, consistency, isolation, and durability for data lake operations including concurrent writes",
+    "Unified governance: a single catalog and permission model governs both analytical and ML access to the same physical data"
+  ],
+  "core_concepts_zh": [
+    "开放表格式：Delta Lake、Apache Iceberg或Apache Hudi在对象存储的开放文件格式之上添加事务元数据层",
+    "存储计算分离：数据保留在廉价的云对象存储中，多个计算引擎（Spark、Presto、Flink）独立查询",
+    "湖上ACID：事务日志为数据湖操作提供原子性、一致性、隔离性和持久性，包括并发写入",
+    "统一治理：单一目录和权限模型治理对相同物理数据的分析和ML访问"
+  ],
+  "timeline": [
+    [
+      "2017",
+      "Databricks releases Delta Lake as an open-source transactional storage layer on Apache Spark"
+    ],
+    [
+      "2020",
+      "Databricks publishes the 'Lakehouse' vision paper unifying lake and warehouse paradigms"
+    ],
+    [
+      "2021",
+      "Apache Iceberg gains momentum as a vendor-neutral alternative; Netflix, Apple, and LinkedIn adopt it"
+    ],
+    [
+      "2023",
+      "Major cloud vendors offer managed lakehouse services; open table format wars drive rapid innovation"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2017",
+      "Databricks在Apache Spark上发布开源事务存储层Delta Lake"
+    ],
+    [
+      "2020",
+      "Databricks发表「湖仓」愿景论文，统一数据湖和仓库范式"
+    ],
+    [
+      "2021",
+      "Apache Iceberg作为供应商中立替代方案获得动力；Netflix、Apple和LinkedIn采纳"
+    ],
+    [
+      "2023",
+      "主要云厂商提供托管湖仓服务；开放表格式竞争推动快速创新"
+    ]
+  ],
+  "dos": [
+    "Do choose an open table format (Iceberg, Delta, Hudi) to avoid vendor lock-in because the format is the foundation of your lakehouse",
+    "Do implement a unified catalog so BI and ML workloads operate on the same governed data without ETL duplication",
+    "Do tune file sizes and clustering strategies because small files on object storage severely degrade query performance",
+    "Do enable time travel and versioning because it provides rollback capability and reproducible ML training datasets"
+  ],
+  "dos_zh": [
+    "选择开放表格式（Iceberg、Delta、Hudi）以避免供应商锁定，因为格式是湖仓的基础",
+    "实现统一目录，使BI和ML工作负载在相同治理数据上操作而无需ETL重复",
+    "调优文件大小和聚类策略，因为对象存储上的小文件会严重降低查询性能",
+    "启用时间旅行和版本管理，因为它提供回滚能力和可复现的ML训练数据集"
+  ],
+  "donts": [
+    "Don't simply dump unmanaged files into a data lake and call it a lakehouse because the transactional metadata layer is what differentiates a lakehouse from a data swamp",
+    "Don't ignore file compaction and maintenance operations because without them the lakehouse degrades into a slow, fragmented mess",
+    "Don't assume all query engines perform equally on lakehouse tables because engine-format compatibility varies significantly",
+    "Don't skip governance setup because a lakehouse without access controls inherits the worst aspects of ungoverned data lakes"
+  ],
+  "donts_zh": [
+    "不要简单地将非托管文件倒入数据湖就称其为湖仓，因为事务元数据层才是湖仓与数据沼泽的区别",
+    "不要忽视文件压缩和维护操作，否则湖仓会退化为缓慢且碎片化的混乱状态",
+    "不要假设所有查询引擎在湖仓表上表现相同，因为引擎-格式兼容性差异显著",
+    "不要跳过治理设置，因为没有访问控制的湖仓会继承不受治理的数据湖的最坏方面"
+  ],
+  "case_study_company": "Databricks / CERN",
+  "case_study": "CERN adopted a Delta Lake-based lakehouse architecture to manage petabytes of particle physics data from the Large Hadron Collider. By unifying their data lake and analytical warehouse, physicists can run both SQL queries for reporting and Spark ML pipelines for anomaly detection on the same ACID-compliant datasets. This eliminated the need for costly data duplication between separate lake and warehouse systems.",
+  "case_study_zh": "CERN采用基于Delta Lake的湖仓架构来管理来自大型强子对撞机的PB级粒子物理数据。通过统一数据湖和分析仓库，物理学家可以在相同的ACID兼容数据集上运行SQL查询进行报告和Spark ML管道进行异常检测。这消除了在独立湖和仓库系统之间进行昂贵数据复制的需要。",
+  "when_not_to_use": [
+    "When a traditional data warehouse meets all your needs and the added complexity of managing open table formats is not justified",
+    "When your workloads are exclusively SQL analytics with no ML or unstructured data requirements",
+    "When real-time sub-second query latency is critical and a purpose-built OLAP database outperforms lakehouse query engines",
+    "When organizational maturity cannot support the operational overhead of managing object storage, table formats, and compute engines separately"
+  ],
+  "when_not_to_use_zh": [
+    "当传统数据仓库满足所有需求且管理开放表格式的额外复杂性不合理时",
+    "当工作负载完全是SQL分析，没有ML或非结构化数据需求时",
+    "当需要亚秒级实时查询延迟且专用OLAP数据库优于湖仓查询引擎时",
+    "当组织成熟度不足以支撑分别管理对象存储、表格式和计算引擎的运维开销时"
+  ],
+  "adopters": [
+    "Databricks",
+    "Netflix",
+    "Apple",
+    "CERN",
+    "Comcast"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "scalability",
+    "performance",
+    "maintainability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Armbrust, M., Ghodsi, A., Xin, R. & Zaharia, M. (2021). \"Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics\". Proceedings of CIDR.",
+  "secondary_sources": [
+    "Armbrust, M. et al. (2020). \"Delta Lake: High-Performance ACID Table Storage over Cloud Object Stores\". Proceedings of the VLDB Endowment, 13(12).",
+    "Databricks (2020). \"What Is a Lakehouse?\". databricks.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "star-schema",
+      "type": "complement"
+    },
+    {
+      "slug": "data-mesh",
+      "type": "complement"
+    },
+    {
+      "slug": "data-vault-2",
+      "type": "alternative"
+    },
+    {
+      "slug": "feature-store-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/data-lakehouse",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/data-lakehouse.md"
+}

@@ -1,0 +1,175 @@
+{
+  "id": 236,
+  "name": "Unit of Work Pattern",
+  "name_zh": "工作单元模式",
+  "slug": "unit-of-work-pattern",
+  "category": "coding",
+  "desc": "Track object changes during a business transaction and commit them as a single atomic batch",
+  "desc_zh": "在业务事务期间跟踪对象变更，并将其作为单一原子批次提交到数据库",
+  "steps": [
+    "Open a Unit of Work: begin a new UoW instance at the start of each business operation, representing a single logical transaction boundary",
+    "Register changes: as domain operations occur, register new, dirty (modified), and removed objects with the UoW rather than writing to the database immediately",
+    "Coordinate repositories: repositories created within the same UoW share its identity map and change tracker to ensure consistency across aggregate boundaries",
+    "Commit atomically: when the business operation completes successfully, call commit() to flush all changes in a single database transaction — insert new, update dirty, delete removed",
+    "Roll back on failure: if any step throws, call rollback() to discard all tracked changes and leave the database in its pre-operation state"
+  ],
+  "steps_zh": [
+    "打开工作单元：在每个业务操作开始时创建一个新的 UoW 实例，代表单一的逻辑事务边界",
+    "注册变更：随着领域操作的发生，将新建的、脏的（已修改的）和已删除的对象注册到 UoW，而非立即写入数据库",
+    "协调仓储：在同一 UoW 内创建的仓储共享其身份映射和变更跟踪器，确保跨聚合边界的一致性",
+    "原子提交：当业务操作成功完成时，调用 commit() 在单一数据库事务中刷新所有变更——插入新建、更新脏的、删除已删除的",
+    "失败时回滚：如果任何步骤抛出异常，调用 rollback() 丢弃所有跟踪的变更，使数据库保持操作前的状态"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Register New",
+    "Register Dirty",
+    "Register Deleted",
+    "Commit"
+  ],
+  "viz_labels_zh": [
+    "注册新增",
+    "注册修改",
+    "注册删除",
+    "提交事务"
+  ],
+  "related": [
+    "repository-pattern",
+    "data-mapper-pattern",
+    "solid-principles"
+  ],
+  "tags": [
+    "fowler",
+    "poeaa",
+    "transactions",
+    "data-access",
+    "persistence"
+  ],
+  "origin_author": "Martin Fowler, 2002",
+  "origin_source": "Patterns of Enterprise Application Architecture",
+  "origin_source_zh": "《企业应用架构模式》",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "A single business operation modifies multiple domain objects or aggregates that must all succeed or fail together",
+    "You need to batch database writes for performance, reducing round-trips from N individual inserts to one transaction",
+    "Preventing partial updates that would leave the system in an inconsistent state if an error occurs mid-operation"
+  ],
+  "when_to_use_zh": [
+    "单一业务操作修改多个领域对象或聚合，它们必须全部成功或全部失败",
+    "需要批量数据库写入以提升性能，将 N 个单独插入减少到一个事务",
+    "防止在操作中途发生错误时留下不一致状态的部分更新"
+  ],
+  "core_concepts": [
+    "Change tracking: the UoW maintains three lists — new objects (to INSERT), dirty objects (to UPDATE), and removed objects (to DELETE) — populated as domain operations mutate state",
+    "Identity map: a cache keyed by entity ID within the UoW scope ensures the same database row is loaded only once per transaction, preventing conflicting in-memory copies",
+    "Atomic commit: all registered changes are flushed inside a single database transaction; if the transaction fails the UoW discards the identity map and change lists"
+  ],
+  "core_concepts_zh": [
+    "变更跟踪：UoW 维护三个列表——新对象（需 INSERT）、脏对象（需 UPDATE）和已删除对象（需 DELETE）——在领域操作改变状态时填充",
+    "身份映射：在 UoW 范围内以实体 ID 为键的缓存确保每个事务只加载一次相同的数据库行，防止内存中的冲突副本",
+    "原子提交：所有注册的变更在单一数据库事务中刷新；如果事务失败，UoW 丢弃身份映射和变更列表"
+  ],
+  "timeline": [
+    [
+      "2002",
+      "Martin Fowler formalizes Unit of Work in PoEAA, describing it as a pattern already implemented by ORMs like TopLink"
+    ],
+    [
+      "2006",
+      "Hibernate's Session and .NET's DataContext implement UoW transparently, making the pattern invisible but ubiquitous"
+    ],
+    [
+      "2012",
+      "Entity Framework DbContext becomes the canonical .NET UoW implementation, combining repository and UoW in one object"
+    ],
+    [
+      "2018",
+      "CQRS architectures use explicit UoW for the write side while the read side bypasses it entirely for performance"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2002",
+      "Martin Fowler 在 PoEAA 中将工作单元正式化，描述它为 TopLink 等 ORM 已实现的模式"
+    ],
+    [
+      "2006",
+      "Hibernate 的 Session 和 .NET 的 DataContext 透明地实现了 UoW，使该模式不可见但无处不在"
+    ],
+    [
+      "2012",
+      "Entity Framework 的 DbContext 成为规范的 .NET UoW 实现，将仓储和 UoW 合并在一个对象中"
+    ],
+    [
+      "2018",
+      "CQRS 架构在写端使用显式 UoW，读端为了性能完全绕过它"
+    ]
+  ],
+  "dos": [
+    "Do scope each Unit of Work to a single business request or use case — long-lived UoW sessions accumulate stale state and lock database rows unnecessarily",
+    "Do let the application service control commit/rollback so that transaction boundaries align with business operation boundaries, not individual repository calls",
+    "Do combine Unit of Work with the Repository pattern so repositories share the same UoW session and changes are flushed together"
+  ],
+  "dos_zh": [
+    "将每个工作单元限定在单一业务请求或用例上——长期存活的 UoW 会话会积累过时状态并不必要地锁定数据库行",
+    "让应用服务控制提交/回滚，使事务边界与业务操作边界对齐，而非单个仓储调用",
+    "将工作单元与仓储模式结合使用，使仓储共享同一 UoW 会话，变更一起刷新"
+  ],
+  "donts": [
+    "Don't use a single UoW for an entire user session or HTTP request that spans multiple unrelated business operations — this creates large, hard-to-debug transactions",
+    "Don't call commit() multiple times within a single UoW; design the boundary so one business operation maps to one commit",
+    "Don't expose the UoW directly to domain objects — domain logic should not know or care about transaction management"
+  ],
+  "donts_zh": [
+    "不要对跨越多个不相关业务操作的整个用户会话或 HTTP 请求使用单一 UoW——这会创建大型、难以调试的事务",
+    "不要在单一 UoW 中多次调用 commit()；设计边界使一个业务操作映射到一次提交",
+    "不要将 UoW 直接暴露给领域对象——领域逻辑不应知道或关心事务管理"
+  ],
+  "case_study_company": "Entity Framework / Microsoft",
+  "case_study": "Entity Framework Core's DbContext is the most widely used Unit of Work implementation in the .NET ecosystem. When an ASP.NET controller action updates a customer's address and creates an order in the same request, both operations are performed on in-memory entity objects tracked by a single DbContext. Only when SaveChanges() is called does EF Core analyze the change tracker, generate the minimal SQL (UPDATE + INSERT), and execute both statements inside a single transaction. If the INSERT fails, the entire transaction rolls back, leaving no partial state — exactly the atomicity guarantee Unit of Work provides.",
+  "case_study_zh": "Entity Framework Core 的 DbContext 是 .NET 生态系统中使用最广泛的工作单元实现。当 ASP.NET 控制器操作在同一请求中更新客户地址并创建订单时，两个操作都在由单一 DbContext 跟踪的内存实体对象上执行。只有调用 SaveChanges() 时，EF Core 才分析变更跟踪器，生成最小 SQL（UPDATE + INSERT），并在单一事务中执行两条语句。如果 INSERT 失败，整个事务回滚，不留下任何部分状态——这正是工作单元提供的原子性保证。",
+  "when_not_to_use": [
+    "Event-sourced systems where the write model stores immutable events rather than mutable entity state, making change tracking irrelevant",
+    "Read-only query services that never modify state and have no need for transaction coordination",
+    "Simple single-entity operations where a single repository save within its own transaction is sufficient"
+  ],
+  "when_not_to_use_zh": [
+    "事件溯源系统，写模型存储不可变事件而非可变实体状态，使变更跟踪变得无关",
+    "从不修改状态且不需要事务协调的只读查询服务",
+    "简单的单实体操作，在其自身事务中单个仓储保存就足够了"
+  ],
+  "adopters": [
+    "Entity Framework Core (.NET)",
+    "Hibernate / JPA (Java)",
+    "SQLAlchemy (Python)",
+    "Doctrine ORM (PHP)"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Fowler, M. (2002). \"Patterns of Enterprise Application Architecture\". Addison-Wesley.",
+  "secondary_sources": [
+    "Evans, E. (2003). \"Domain-Driven Design: Tackling Complexity in the Heart of Software\". Addison-Wesley.",
+    "Haack, P. (2011). \"Repository and Unit of Work Pattern\". haacked.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "repository-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "data-mapper-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "solid-principles",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/unit-of-work-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/unit-of-work-pattern.md"
+}

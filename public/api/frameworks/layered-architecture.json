@@ -1,0 +1,193 @@
+{
+  "id": 167,
+  "name": "Layered Architecture",
+  "name_zh": "分层架构",
+  "slug": "layered-architecture",
+  "category": "architecture",
+  "desc": "Traditional n-tier architecture separating presentation, business logic, and data access into horizontal layers with strict dependency rules",
+  "desc_zh": "将表现层、业务逻辑层和数据访问层分离为水平层次，并设定严格依赖规则的传统N层架构",
+  "steps": [
+    "Identify the logical layers required for your system (typically presentation, business logic, persistence, and database)",
+    "Define strict dependency rules: each layer may only depend on the layer directly below it, never upward or across",
+    "Design interfaces between layers so that each layer exposes a well-defined API to the layer above",
+    "Implement each layer as an independent module with its own internal structure and responsibilities",
+    "Validate layer isolation by ensuring no circular dependencies exist and that changes in one layer do not ripple through others"
+  ],
+  "steps_zh": [
+    "识别系统所需的逻辑层（通常为表现层、业务逻辑层、持久化层和数据库层）",
+    "定义严格的依赖规则：每一层只能依赖其直接下层，不可向上或跨层依赖",
+    "设计层间接口，使每一层向上层暴露明确定义的API",
+    "将每一层实现为独立模块，拥有各自的内部结构和职责",
+    "验证层隔离性，确保不存在循环依赖，且一层的变更不会波及其他层"
+  ],
+  "ai_relevant": false,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "Presentation",
+    "Business Logic",
+    "Data Access",
+    "Database"
+  ],
+  "viz_labels_zh": [
+    "展示层",
+    "业务逻辑层",
+    "数据访问层",
+    "数据库层"
+  ],
+  "related": [
+    "modular-monolith",
+    "c4-model",
+    "hexagonal-architecture"
+  ],
+  "tags": [
+    "n-tier",
+    "separation-of-concerns",
+    "layering",
+    "monolith",
+    "dependency-rules"
+  ],
+  "origin_author": "Frank Buschmann, Regine Meunier, Hans Rohnert, Peter Sommerlad, Michael Stal, 1996",
+  "origin_source": "Pattern-Oriented Software Architecture, Volume 1: A System of Patterns (Wiley, 1996)",
+  "origin_source_zh": "《面向模式的软件架构·卷1：模式系统》（Wiley，1996年）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "When building traditional enterprise applications with clear separation between UI, business rules, and data storage",
+    "When the team is relatively small and needs a straightforward, well-understood architecture pattern",
+    "When the application has moderate complexity and does not require independent deployment of components",
+    "When regulatory or organizational standards mandate a clear separation of concerns between tiers"
+  ],
+  "when_to_use_zh": [
+    "当构建具有UI、业务规则和数据存储之间清晰分离的传统企业应用时",
+    "当团队规模较小，需要一种直观且被广泛理解的架构模式时",
+    "当应用具有中等复杂度，不需要组件独立部署时",
+    "当法规或组织标准要求各层之间具有明确的关注点分离时"
+  ],
+  "core_concepts": [
+    "Layer isolation: Each layer encapsulates a specific concern and communicates only through well-defined interfaces",
+    "Top-down dependency: Dependencies flow strictly downward from presentation to data, never upward",
+    "Closed layers: Requests must pass through each layer sequentially without skipping, enforcing separation",
+    "Open layers: Optional variant where certain layers can be bypassed for performance-critical paths",
+    "Layer cohesion: Each layer groups related functionality together, making the system easier to understand and maintain"
+  ],
+  "core_concepts_zh": [
+    "层隔离：每一层封装特定关注点，仅通过明确定义的接口进行通信",
+    "自顶向下依赖：依赖关系严格从表现层向数据层流动，不可向上",
+    "封闭层：请求必须依次通过每一层，不可跳跃，以强制分离",
+    "开放层：可选变体，允许某些层在性能关键路径中被绕过",
+    "层内聚：每一层将相关功能组合在一起，使系统更易于理解和维护"
+  ],
+  "timeline": [
+    [
+      "1968",
+      "Dijkstra introduces layered design principles in the THE multiprogramming system"
+    ],
+    [
+      "1996",
+      "Buschmann et al. formalize the Layers pattern in POSA Volume 1"
+    ],
+    [
+      "2003",
+      "Java EE popularizes the three-tier architecture (JSP/Servlet, EJB, JDBC) in enterprise development"
+    ],
+    [
+      "2014",
+      "Richards describes layered architecture as the de facto standard in Software Architecture Patterns"
+    ],
+    [
+      "2020",
+      "Richards and Ford analyze layered architecture trade-offs in Fundamentals of Software Architecture"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1968",
+      "Dijkstra在THE多道程序系统中引入分层设计原则"
+    ],
+    [
+      "1996",
+      "Buschmann等人在POSA卷1中正式定义「层」模式"
+    ],
+    [
+      "2003",
+      "Java EE以三层架构（JSP/Servlet、EJB、JDBC）在企业开发中普及"
+    ],
+    [
+      "2014",
+      "Richards在《软件架构模式》中将分层架构描述为事实标准"
+    ],
+    [
+      "2020",
+      "Richards和Ford在《软件架构基础》中分析分层架构的权衡取舍"
+    ]
+  ],
+  "dos": [
+    "Do enforce strict layer boundaries with compiler or build-tool checks because accidental cross-layer dependencies erode the architecture over time",
+    "Do use dependency inversion at layer boundaries because it allows layers to be tested and replaced independently",
+    "Do keep layers thin and focused because bloated layers become monolithic sub-systems that are hard to change",
+    "Do document which layers are open versus closed because ambiguity leads to inconsistent layer bypass decisions"
+  ],
+  "dos_zh": [
+    "使用编译器或构建工具检查强制严格的层边界，因为意外的跨层依赖会随时间侵蚀架构",
+    "在层边界使用依赖反转，因为这允许各层独立测试和替换",
+    "保持每层精简聚焦，因为臃肿的层会变成难以变更的单体子系统",
+    "记录哪些层是开放的、哪些是封闭的，因为模糊性会导致不一致的层绕过决策"
+  ],
+  "donts": [
+    "Don't create a sinkhole anti-pattern where requests pass through layers without any processing because it indicates unnecessary layering",
+    "Don't allow the presentation layer to access the database directly because it defeats the purpose of separation",
+    "Don't put business logic in the presentation or persistence layers because it creates tight coupling and duplication",
+    "Don't add layers just for symmetry because unnecessary layers add latency and complexity without value"
+  ],
+  "donts_zh": [
+    "不要形成「天坑」反模式——请求穿过各层却不做任何处理——这表明存在不必要的分层",
+    "不要让表现层直接访问数据库，因为这违背了分离的初衷",
+    "不要将业务逻辑放在表现层或持久化层中，因为这会造成紧耦合和重复",
+    "不要为了对称而添加层，不必要的层只会增加延迟和复杂度而无价值"
+  ],
+  "case_study_company": "SAP",
+  "case_study": "SAP's ERP system has historically been built on a layered architecture with a clear separation between the UI layer (SAP GUI/Fiori), the application server (ABAP business logic), and the database layer (initially Oracle/DB2, later HANA). This layered approach allowed SAP to migrate its database layer from traditional RDBMS to the in-memory HANA platform without rewriting the business logic or UI layers. The migration preserved decades of business rules while delivering 10-100x performance improvements in analytical queries.",
+  "case_study_zh": "SAP的ERP系统历来基于分层架构构建，UI层（SAP GUI/Fiori）、应用服务器（ABAP业务逻辑）和数据库层（最初为Oracle/DB2，后为HANA）之间清晰分离。这种分层方法使SAP能够将数据库层从传统RDBMS迁移到内存数据库HANA平台，而无需重写业务逻辑或UI层。此次迁移保留了数十年的业务规则，同时在分析查询中实现了10到100倍的性能提升。",
+  "when_not_to_use": [
+    "Highly distributed systems requiring independent scaling of individual components",
+    "Real-time event-driven applications where synchronous layer traversal introduces unacceptable latency",
+    "Microservices environments where teams need autonomous deployment and technology heterogeneity"
+  ],
+  "when_not_to_use_zh": [
+    "需要对各组件独立扩展的高度分布式系统",
+    "同步层遍历会引入不可接受延迟的实时事件驱动应用",
+    "团队需要自主部署和技术异构性的微服务环境"
+  ],
+  "adopters": [
+    "SAP",
+    "Oracle",
+    "IBM",
+    "Microsoft",
+    "Salesforce"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Frank Buschmann et al. (1996). \"Pattern-Oriented Software Architecture, Volume 1: A System of Patterns\". Wiley.",
+  "secondary_sources": [
+    "Mark Richards and Neal Ford (2020). \"Fundamentals of Software Architecture\". O'Reilly Media.",
+    "Martin Fowler (2002). \"Patterns of Enterprise Application Architecture\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "modular-monolith",
+      "type": "complement"
+    },
+    {
+      "slug": "c4-model",
+      "type": "related"
+    },
+    {
+      "slug": "hexagonal-architecture",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/layered-architecture",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/layered-architecture.md"
+}

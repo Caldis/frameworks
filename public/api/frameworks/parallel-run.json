@@ -1,0 +1,194 @@
+{
+  "id": 75,
+  "name": "Parallel Run",
+  "name_zh": "并行运行模式",
+  "slug": "parallel-run",
+  "category": "evolution",
+  "desc": "Run old and new implementations simultaneously and compare outputs for safety",
+  "desc_zh": "同时运行新旧实现并对比输出，确保迁移安全性",
+  "steps": [
+    "Deploy both the legacy and new implementations into the same production environment",
+    "Route all live requests to both systems simultaneously without exposing new results to users",
+    "Capture and compare outputs from both systems, logging all discrepancies",
+    "Investigate and resolve every discrepancy until the new system output matches the legacy",
+    "Decommission the legacy system and promote the new implementation as the sole handler"
+  ],
+  "steps_zh": [
+    "将遗留系统与新实现同时部署到同一生产环境",
+    "将所有线上请求同时路由至两个系统，不向用户暴露新结果",
+    "捕获并比对两系统的输出，记录所有差异",
+    "排查并修复每一处差异，直到新系统输出与遗留系统一致",
+    "下线遗留系统，将新实现晋升为唯一处理方"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Input",
+    "Old Path",
+    "New Path",
+    "Compare"
+  ],
+  "viz_labels_zh": [
+    "输入",
+    "旧路径",
+    "新路径",
+    "结果对比"
+  ],
+  "related": [
+    "strangler-fig-pattern",
+    "canary-deployment",
+    "blue-green-deployment"
+  ],
+  "tags": [
+    "parallel-run",
+    "migration",
+    "comparison",
+    "verification"
+  ],
+  "origin_author": "Michael Feathers, 2004",
+  "origin_source": "Working Effectively with Legacy Code (Prentice Hall)",
+  "origin_source_zh": "《修改代码的艺术》（Prentice Hall 出版）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Migrating a financial calculation engine where correctness must be formally verified",
+    "Replacing a fraud detection system where even small discrepancies have major consequences",
+    "Switching to an AI/ML-based recommendation engine and validating it against rule-based logic",
+    "Migrating critical data processing pipelines that must produce bit-identical results"
+  ],
+  "when_to_use_zh": [
+    "迁移金融计算引擎，必须对正确性进行形式化验证",
+    "替换欺诈检测系统，即使微小差异也会造成重大后果",
+    "切换至基于 AI/ML 的推荐引擎，并与基于规则的逻辑进行对比验证",
+    "迁移关键数据处理管线，要求产出完全一致的结果"
+  ],
+  "core_concepts": [
+    "Dual execution: Every request is processed by both old and new systems simultaneously in production",
+    "Shadow mode: The new system's output is captured but never shown to users during verification",
+    "Output comparison: Automated diff tooling detects semantic or numeric discrepancies between the two outputs",
+    "Discrepancy resolution: Every mismatch is investigated, categorized, and fixed before cutover",
+    "Confidence threshold: A quantitative bar (e.g., 99.99% match rate) that must be met before decommissioning the old system"
+  ],
+  "core_concepts_zh": [
+    "双重执行：每个请求在生产中同时由新旧两个系统处理",
+    "影子模式：在验证期间捕获新系统的输出但不展示给用户",
+    "输出比对：自动化差异工具检测两个输出之间的语义或数值差异",
+    "差异消解：每一处不匹配都经过调查、分类和修复，然后才进行切换",
+    "置信度阈值：在下线旧系统之前必须达到的量化标准（如 99.99% 匹配率）"
+  ],
+  "timeline": [
+    [
+      "2004",
+      "Michael Feathers describes parallel testing techniques in 'Working Effectively with Legacy Code'"
+    ],
+    [
+      "2013",
+      "GitHub develops the Scientist library in Ruby to formalize parallel run experiments"
+    ],
+    [
+      "2016",
+      "GitHub open-sources Scientist, popularizing the pattern across the industry"
+    ],
+    [
+      "2018",
+      "Stripe adopts parallel runs for migrating their core payment processing engine"
+    ],
+    [
+      "2023",
+      "Pattern extended to AI model validation — running legacy rules alongside new LLM-based systems"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2004",
+      "Michael Feathers 在《修改代码的艺术》中描述并行测试技术"
+    ],
+    [
+      "2013",
+      "GitHub 开发 Ruby 版 Scientist 库，将并行运行实验规范化"
+    ],
+    [
+      "2016",
+      "GitHub 开源 Scientist 库，推动该模式在行业内广泛传播"
+    ],
+    [
+      "2018",
+      "Stripe 在核心支付处理引擎迁移中采用并行运行模式"
+    ],
+    [
+      "2023",
+      "该模式扩展至 AI 模型验证——将遗留规则与新的 LLM 系统并行运行"
+    ]
+  ],
+  "dos": [
+    "Use a library like GitHub Scientist to standardize experiment setup, comparison, and reporting",
+    "Log every discrepancy with full request context so root-cause analysis is efficient",
+    "Set a clear quantitative threshold for cutover confidence before starting the parallel run",
+    "Run the parallel comparison long enough to capture edge cases across business cycles"
+  ],
+  "dos_zh": [
+    "使用 GitHub Scientist 等库来标准化实验设置、比对和报告",
+    "记录每一处差异及完整的请求上下文，以便高效进行根因分析",
+    "在开始并行运行之前，明确设定切换信心的量化阈值",
+    "运行并行比对的时间足够长，以覆盖各业务周期中的边缘情况"
+  ],
+  "donts": [
+    "Don't expose the new system's results to users until the match rate meets the confidence threshold",
+    "Don't ignore low-frequency discrepancies — they often represent critical edge cases",
+    "Don't underestimate the infrastructure cost of running two systems in parallel at production scale",
+    "Don't skip performance testing — the new system may match functionally but degrade latency"
+  ],
+  "donts_zh": [
+    "在匹配率达到置信阈值之前，不要将新系统的结果展示给用户",
+    "不要忽略低频差异——它们往往代表关键的边缘情况",
+    "不要低估在生产规模下并行运行两个系统的基础设施成本",
+    "不要跳过性能测试——新系统功能匹配但可能导致延迟恶化"
+  ],
+  "case_study_company": "GitHub",
+  "case_study": "GitHub created the Scientist library in 2013 to safely migrate their core merge algorithm. They ran the old and new merge code paths in parallel on every pull request merge, comparing results without exposing the new output to users. Over several months, they identified and fixed dozens of edge-case discrepancies, ultimately achieving a 100% match rate before switching over. The library was open-sourced in 2016 and has been adopted by hundreds of companies.",
+  "case_study_zh": "GitHub 于 2013 年创建了 Scientist 库，以安全地迁移其核心合并算法。他们在每次拉取请求合并时并行运行新旧合并代码路径，在不向用户暴露新输出的情况下比对结果。经过数月时间，他们发现并修复了数十个边缘情况差异，最终在切换前达到了 100% 匹配率。该库于 2016 年开源，已被数百家公司采用。",
+  "when_not_to_use": [
+    "The system under migration has side effects (e.g., sends emails, charges credit cards) that cannot be safely duplicated",
+    "Infrastructure budget cannot support double the compute and storage resources",
+    "Output comparison is meaningless because the new system intentionally produces different results",
+    "The migration scope is trivial and a simple A/B test or feature flag would suffice"
+  ],
+  "when_not_to_use_zh": [
+    "被迁移系统存在副作用（如发送邮件、信用卡扣款）且无法安全地重复执行",
+    "基础设施预算无法支撑双倍的计算和存储资源",
+    "输出比对无意义，因为新系统有意产出不同的结果",
+    "迁移范围很小，简单的 A/B 测试或功能开关即可满足需求"
+  ],
+  "adopters": [
+    "GitHub",
+    "Stripe",
+    "Intercom",
+    "Shopify",
+    "SoundCloud"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Michael Feathers (2004). \"Working Effectively with Legacy Code\". Prentice Hall.",
+  "secondary_sources": [
+    "Sam Newman (2019). \"Monolith to Microservices: Evolutionary Patterns to Transform Your Monolith\". O'Reilly Media.",
+    "Martin Fowler (2011). \"ParallelChange\". martinfowler.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "strangler-fig-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "canary-deployment",
+      "type": "complement"
+    },
+    {
+      "slug": "blue-green-deployment",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/parallel-run",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/parallel-run.md"
+}

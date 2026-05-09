@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Public API - SDFrame</title>
+  <meta name="description" content="Public read-only API reference for SDFrame software design framework data.">
+  <link rel="canonical" href="https://sdframe.caldis.me/api/">
+  <style>
+    :root { color-scheme: light dark; --fg: #1d1b18; --muted: #5f5a52; --line: #ddd6cb; --bg: #faf8f3; --panel: #fffdf8; --accent: #345c8c; }
+    body { margin: 0; font: 16px/1.65 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--fg); }
+    main { max-width: 900px; margin: 0 auto; padding: 40px 20px 72px; }
+    nav { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; font-size: 14px; }
+    a { color: var(--accent); }
+    h1 { font-size: clamp(2rem, 6vw, 4rem); line-height: 1.05; margin: 0 0 16px; }
+    h2 { font-size: 1.35rem; margin: 32px 0 8px; }
+    p { margin: 0 0 14px; color: var(--muted); }
+    ul, ol { color: var(--muted); padding-left: 22px; }
+    li { margin: 4px 0; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    pre { overflow: auto; padding: 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    th, td { border: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
+    .lede { font-size: 1.15rem; max-width: 760px; }
+  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Public API","description":"Public read-only API reference for SDFrame software design framework data.","url":"https://sdframe.caldis.me/api/","isPartOf":{"@type":"WebSite","name":"SDFrame","url":"https://sdframe.caldis.me"},"publisher":{"@type":"Person","name":"Caldis","url":"https://github.com/Caldis"},"dateModified":"2026-05-09"}</script>
+</head>
+<body>
+  <main>
+    <nav aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/docs/">Docs</a>
+      <a href="/developers/">Developers</a>
+      <a href="/api/">API</a>
+      <a href="/pricing/">Pricing</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/agent">Agent guide</a>
+    </nav>
+    <h1>SDFrame Public API</h1>
+    <p class="lede">Public read-only API reference for SDFrame software design framework data.</p>
+
+    <section>
+      <h2>OpenAPI</h2>
+      <p>The API contract is published at <a href="/openapi.json">/openapi.json</a> and mirrored at <a href="/api/openapi.json">/api/openapi.json</a>.</p>
+    </section>
+
+    <section>
+      <h2>Data model</h2>
+      <p>Frameworks include slug, names, bilingual descriptions, category, tags, quality concerns, complexity, abstraction level, maturity ring, origin metadata, steps, adopters, and related-framework links.</p>
+    </section>
+
+    <section>
+      <h2>Examples</h2>
+      <pre><code>fetch('https://sdframe.caldis.me/api/frameworks.index.json')
+fetch('https://sdframe.caldis.me/api/categories.json')</code></pre>
+    </section>
+  </main>
+</body>
+</html>

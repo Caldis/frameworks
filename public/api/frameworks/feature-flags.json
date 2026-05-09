@@ -1,0 +1,194 @@
+{
+  "id": 61,
+  "name": "Feature Flags",
+  "name_zh": "功能开关",
+  "slug": "feature-flags",
+  "category": "deployment",
+  "desc": "Decouple code deployment from feature release via toggles",
+  "desc_zh": "通过开关将代码部署与功能发布解耦",
+  "steps": [
+    "Identify the feature to gate and define the flag's targeting rules (user, segment, env)",
+    "Wrap new feature code behind a conditional flag check in the codebase",
+    "Deploy code to production with the flag disabled; verify no impact",
+    "Gradually enable the flag for internal users, then beta users, then general audience",
+    "Remove the flag and dead code paths once the feature is fully rolled out"
+  ],
+  "steps_zh": [
+    "确定要管控的功能，定义开关的目标规则（用户、分组、环境）",
+    "在代码库中用条件判断将新功能代码包裹在开关检查之后",
+    "以开关关闭状态部署到生产环境，验证无影响",
+    "依次为内部用户、Beta用户、全体用户逐步开启开关",
+    "功能完全上线后移除开关及已废弃的代码路径"
+  ],
+  "ai_relevant": true,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Flag Store",
+    "Targeting",
+    "Rollout",
+    "Override"
+  ],
+  "viz_labels_zh": [
+    "标志仓库",
+    "定向规则",
+    "发布比例",
+    "强制覆盖"
+  ],
+  "related": [
+    "canary-deployment",
+    "blue-green-deployment",
+    "branch-by-abstraction"
+  ],
+  "tags": [
+    "feature-flags",
+    "toggles",
+    "release-management",
+    "progressive-delivery"
+  ],
+  "origin_author": "Flickr / early continuous deployment pioneers, ~2009",
+  "origin_source": "Feature Toggles pattern described by Martin Fowler (2010); popularized by Flickr's Flipping Out deployment culture",
+  "origin_source_zh": "Martin Fowler于2010年描述的Feature Toggles模式；由Flickr的Flipping Out部署文化推广",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Trunk-based development workflows where all developers commit to the main branch and features must be hidden until ready",
+    "A/B testing and experimentation where different user segments receive different experiences",
+    "Gradual feature rollouts that need to be decoupled from code deployment cadence",
+    "Emergency kill-switch scenarios where a problematic feature must be disabled without redeploying"
+  ],
+  "when_to_use_zh": [
+    "主干开发工作流中所有开发者提交到主分支，功能需隐藏直至就绪",
+    "A/B测试和实验中不同用户群体接收不同体验的场景",
+    "需要与代码部署节奏解耦的渐进式功能发布",
+    "需要在不重新部署的情况下禁用问题功能的紧急熔断场景"
+  ],
+  "core_concepts": [
+    "Release Toggle: A short-lived flag used to hide incomplete features in production until they are ready for launch",
+    "Experiment Toggle: A flag used for A/B testing, where different user segments receive different feature variants to measure impact",
+    "Ops Toggle: A long-lived flag used as a circuit breaker to gracefully degrade features under load or during incidents",
+    "Permission Toggle: A flag that gates features based on user entitlements, subscriptions, or role-based access",
+    "Flag Debt: The technical debt accumulated when feature flags are not cleaned up after rollout, leading to dead code paths and complexity"
+  ],
+  "core_concepts_zh": [
+    "发布开关：短期标记，用于在功能准备就绪前隐藏生产中的未完成功能",
+    "实验开关：用于A/B测试的标记，不同用户群体接收不同功能变体以衡量影响",
+    "运维开关：长期标记，在负载过高或故障期间作为断路器优雅降级功能",
+    "权限开关：基于用户权限、订阅或角色的功能访问控制标记",
+    "开关债务：功能开关在发布后未及时清理而累积的技术债，导致死代码路径和复杂度增加"
+  ],
+  "timeline": [
+    [
+      "2009",
+      "Flickr engineers describe feature flippers enabling 10+ deploys per day on their photo platform"
+    ],
+    [
+      "2010",
+      "Martin Fowler publishes the canonical Feature Toggles article defining toggle categories"
+    ],
+    [
+      "2013",
+      "LaunchDarkly founded, creating the first commercial feature flag management platform"
+    ],
+    [
+      "2017",
+      "Feature flags become a core pillar of progressive delivery alongside canary deployments"
+    ],
+    [
+      "2022",
+      "OpenFeature project launches under CNCF to standardize feature flag APIs across vendors"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2009",
+      "Flickr工程师描述功能翻转器，使其照片平台实现每天10+次部署"
+    ],
+    [
+      "2010",
+      "Martin Fowler发表经典文章Feature Toggles，定义开关类别"
+    ],
+    [
+      "2013",
+      "LaunchDarkly成立，创建首个商业功能开关管理平台"
+    ],
+    [
+      "2017",
+      "功能开关与金丝雀发布一起成为渐进式交付的核心支柱"
+    ],
+    [
+      "2022",
+      "OpenFeature项目在CNCF下启动，标准化跨厂商的功能开关API"
+    ]
+  ],
+  "dos": [
+    "Do establish a flag lifecycle policy with clear ownership and expiry dates, because abandoned flags become permanent technical debt",
+    "Do use a centralized flag management system with audit logs, because scattered flags in config files are impossible to govern",
+    "Do test both flag-on and flag-off code paths in CI, because untested paths are the most common source of flag-related incidents",
+    "Do keep flag evaluation fast and cached, because flags in hot paths affect request latency for every user"
+  ],
+  "dos_zh": [
+    "务必建立功能开关生命周期策略，明确所有权和过期日期，因为被遗弃的开关会成为永久技术债",
+    "务必使用带审计日志的集中式开关管理系统，因为散落在配置文件中的开关无法治理",
+    "务必在CI中测试开关开启和关闭两条代码路径，因为未测试的路径是开关相关事故的最常见来源",
+    "务必保持开关评估快速并缓存结果，因为热路径中的开关会影响每个用户的请求延迟"
+  ],
+  "donts": [
+    "Don't create nested flag dependencies (flag A depends on flag B), because combinatorial complexity makes behavior unpredictable",
+    "Don't use feature flags as a long-term configuration mechanism, because they lack the governance and validation of proper config management",
+    "Don't skip the cleanup phase after a flag is fully rolled out, because stale flags accumulate and make the codebase harder to understand",
+    "Don't store sensitive targeting rules in client-side flag SDKs, because they are visible to end users in browser code"
+  ],
+  "donts_zh": [
+    "不要创建嵌套的开关依赖（开关A依赖开关B），因为组合复杂度使行为不可预测",
+    "不要将功能开关作为长期配置管理机制，因为它们缺乏正式配置管理的治理和验证",
+    "不要在开关全量发布后跳过清理阶段，因为陈旧开关会积累并使代码库更难理解",
+    "不要在客户端开关SDK中存储敏感定位规则，因为它们对终端用户在浏览器代码中可见"
+  ],
+  "case_study_company": "GitHub",
+  "case_study": "GitHub uses a custom feature flag system called Flipper to control the rollout of every major feature. When launching GitHub Copilot, they used feature flags to gradually enable the feature for internal staff, then waitlisted beta users, then paying customers, monitoring usage patterns and error rates at each stage. This approach allowed them to iterate on the product in production without impacting the broader user base, and to instantly disable Copilot features during early reliability issues.",
+  "case_study_zh": "GitHub使用名为Flipper的自定义功能开关系统控制每个重大功能的发布。在推出GitHub Copilot时，他们通过功能开关依次为内部员工、等待名单Beta用户、付费客户逐步启用该功能，在每个阶段监控使用模式和错误率。这种方式使他们能够在不影响更大用户群的情况下在生产中迭代产品，并在早期可靠性问题期间立即禁用Copilot功能。",
+  "when_not_to_use": [
+    "Very small teams with infrequent releases where the overhead of flag management exceeds the deployment risk",
+    "Performance-critical hot paths where even microsecond flag evaluation overhead is unacceptable",
+    "Systems with strict regulatory requirements that prohibit deploying unreleased code to production",
+    "Short-lived projects or prototypes where the lifecycle management overhead is not justified"
+  ],
+  "when_not_to_use_zh": [
+    "发布频率很低的小型团队——开关管理的开销超过部署风险",
+    "对性能极其敏感的热路径——即使微秒级的开关评估开销也不可接受",
+    "严格监管要求禁止将未发布代码部署到生产的系统",
+    "生命周期管理开销不合理的短期项目或原型"
+  ],
+  "adopters": [
+    "GitHub",
+    "Netflix",
+    "Google",
+    "LaunchDarkly",
+    "Etsy"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Martin Fowler (2010). \"FeatureToggle\". martinfowler.com.",
+  "secondary_sources": [
+    "Pete Hodgson (2017). \"Feature Toggles (aka Feature Flags)\". martinfowler.com.",
+    "Jez Humble and David Farley (2010). \"Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "canary-deployment",
+      "type": "complement"
+    },
+    {
+      "slug": "blue-green-deployment",
+      "type": "complement"
+    },
+    {
+      "slug": "branch-by-abstraction",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/feature-flags",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/feature-flags.md"
+}

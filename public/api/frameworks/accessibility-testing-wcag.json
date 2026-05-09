@@ -1,0 +1,187 @@
+{
+  "id": 302,
+  "name": "Accessibility Testing (WCAG)",
+  "name_zh": "无障碍测试（WCAG）",
+  "slug": "accessibility-testing-wcag",
+  "category": "quality",
+  "desc": "Systematic testing approach combining automated scanning and manual evaluation to verify that digital products comply with WCAG accessibility guidelines and are usable by people with disabilities.",
+  "desc_zh": "结合自动化扫描和手动评估的系统性测试方法，用于验证数字产品符合 WCAG 无障碍指南且对残障人士可用。",
+  "steps": [
+    "Run automated accessibility scanning tools (axe-core, Lighthouse, WAVE) during development and in CI to detect WCAG failures that are automatable — contrast ratios, missing ARIA labels, keyboard trap detection, and image alt text",
+    "Supplement automated scanning with manual keyboard navigation testing: verify that all interactive elements are reachable by Tab/Shift-Tab, that focus order is logical, and that no keyboard traps exist",
+    "Test with screen readers (NVDA and JAWS on Windows, VoiceOver on macOS and iOS, TalkBack on Android) to verify that page structure, headings, forms, and dynamic content updates are announced correctly",
+    "Conduct user testing with participants who have disabilities including visual, motor, cognitive, and hearing impairments — automated tools detect only 30-40% of WCAG failures; user testing discovers the remainder",
+    "Document findings against specific WCAG 2.1 success criteria, prioritise by severity (blocker versus advisory), fix and retest, and integrate automated checks as a permanent CI gate to prevent regressions"
+  ],
+  "steps_zh": [
+    "在开发期间和 CI 中运行自动化无障碍扫描工具（axe-core、Lighthouse、WAVE）以检测可自动化的 WCAG 失败——对比度比率、缺失 ARIA 标签、键盘陷阱检测和图像替代文本",
+    "用手动键盘导航测试补充自动化扫描：验证所有交互元素可通过 Tab/Shift-Tab 到达，焦点顺序合理，且不存在键盘陷阱",
+    "使用屏幕阅读器（Windows 上的 NVDA 和 JAWS、macOS 和 iOS 上的 VoiceOver、Android 上的 TalkBack）测试，验证页面结构、标题、表单和动态内容更新是否正确播报",
+    "与包括视觉、运动、认知和听觉障碍参与者进行用户测试——自动化工具仅能检测 30-40% 的 WCAG 失败；用户测试发现其余问题",
+    "对照特定的 WCAG 2.1 成功标准记录发现，按严重性（阻塞性与建议性）优先处理，修复并重新测试，并将自动化检查作为永久 CI 关卡以防止回退"
+  ],
+  "ai_relevant": false,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "A",
+    "AA",
+    "AAA"
+  ],
+  "viz_labels_zh": [
+    "A级",
+    "AA级",
+    "AAA级"
+  ],
+  "related": [
+    "continuous-testing",
+    "testing-trophy",
+    "bdd"
+  ],
+  "tags": [
+    "accessibility",
+    "wcag",
+    "a11y",
+    "screen-reader",
+    "inclusive-design",
+    "compliance"
+  ],
+  "origin_author": "W3C WAI",
+  "origin_source": "W3C Web Accessibility Initiative (1999). \"Web Content Accessibility Guidelines 1.0\". w3.org/TR/WCAG10/. Current version: WCAG 2.2 (2023). w3.org/TR/WCAG22/.",
+  "origin_source_zh": "W3C Web 无障碍倡议（1999）.「Web 内容无障碍指南 1.0」. w3.org/TR/WCAG10/. 当前版本：WCAG 2.2（2023）. w3.org/TR/WCAG22/.",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "All public-facing digital products and services, especially those subject to accessibility legislation (ADA in the US, EN 301 549 in the EU, AODA in Canada) where WCAG compliance is a legal requirement",
+    "Products serving users in sectors with higher-than-average rates of disability — government services, healthcare, education, financial services — where accessibility failures directly exclude vulnerable populations",
+    "Design system and component library development where embedding accessibility testing early prevents downstream WCAG regressions across all consuming applications",
+    "Continuous delivery pipelines where automated axe-core scanning in CI provides ongoing regression protection between manual audit cycles"
+  ],
+  "when_to_use_zh": [
+    "所有面向公众的数字产品和服务，特别是受无障碍立法约束的产品（美国 ADA、欧盟 EN 301 549、加拿大 AODA），其中 WCAG 合规性是法律要求",
+    "服务于残障率高于平均水平行业用户的产品——政府服务、医疗保健、教育、金融服务——无障碍失败直接排除弱势群体",
+    "设计系统和组件库开发，在早期嵌入无障碍测试可防止所有消费方应用出现下游 WCAG 回退",
+    "持续交付流水线，CI 中的自动化 axe-core 扫描在手动审计周期之间提供持续的回退保护"
+  ],
+  "core_concepts": [
+    "POUR Principles: WCAG 2.x is organised around four principles — Perceivable (information must be presentable in ways users can perceive), Operable (UI components must be navigable), Understandable (content and operation must be comprehensible), Robust (content must be parsable by assistive technologies)",
+    "Conformance Levels: WCAG defines three levels — Level A (minimum, most critical failures), Level AA (standard compliance target mandated by most regulations), Level AAA (enhanced, not required for full site conformance) — most legal requirements reference AA",
+    "Automated vs Manual Coverage: automated tools reliably detect approximately 30-40% of WCAG failures; the remaining 60-70% require manual testing, screen reader verification, and user testing because they involve subjective usability judgment that tools cannot make",
+    "Accessible Name and Description: the accessible name is what assistive technology announces for an interactive element — computed from label elements, aria-label, aria-labelledby, or button text; missing or incorrect accessible names are the single most common WCAG failure category"
+  ],
+  "core_concepts_zh": [
+    "POUR 原则：WCAG 2.x 围绕四个原则组织——可感知（信息必须以用户可感知的方式呈现）、可操作（UI 组件必须可导航）、可理解（内容和操作必须可理解）、健壮性（内容必须可被辅助技术解析）",
+    "合规级别：WCAG 定义了三个级别——A 级（最低要求，最关键的失败）、AA 级（大多数法规要求的标准合规目标）、AAA 级（增强级，不要求整个网站合规）——大多数法律要求参考 AA 级",
+    "自动化与手动覆盖：自动化工具可靠地检测约 30-40% 的 WCAG 失败；其余 60-70% 需要手动测试、屏幕阅读器验证和用户测试，因为它们涉及工具无法做出的主观可用性判断",
+    "可访问名称和描述：可访问名称是辅助技术为交互元素播报的内容——从 label 元素、aria-label、aria-labelledby 或按钮文本计算得出；缺失或不正确的可访问名称是最常见的 WCAG 失败类别"
+  ],
+  "timeline": [
+    [
+      "1999",
+      "W3C WAI publishes WCAG 1.0, the first international standard for web accessibility, establishing the principle that web content should be perceivable and operable by users with disabilities"
+    ],
+    [
+      "2008",
+      "WCAG 2.0 is published, replacing technology-specific guidelines with the technology-neutral POUR principles framework and three conformance levels (A, AA, AAA)"
+    ],
+    [
+      "2018",
+      "WCAG 2.1 adds 17 new success criteria targeting mobile accessibility, low vision, and cognitive disabilities; becomes the baseline for ADA lawsuits and EU EN 301 549 standard"
+    ],
+    [
+      "2023",
+      "WCAG 2.2 is published with 9 new success criteria including Focus Appearance and Accessible Authentication; axe-core, Lighthouse, and browser DevTools reach near-universal adoption for automated scanning"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1999",
+      "W3C WAI 发布 WCAG 1.0，这是首个国际 Web 无障碍标准，确立了 Web 内容应对残障用户可感知和可操作的原则"
+    ],
+    [
+      "2008",
+      "WCAG 2.0 发布，用技术中立的 POUR 原则框架和三个合规级别（A、AA、AAA）取代了技术特定的指南"
+    ],
+    [
+      "2018",
+      "WCAG 2.1 新增 17 个针对移动无障碍、低视力和认知障碍的成功标准；成为 ADA 诉讼和欧盟 EN 301 549 标准的基准"
+    ],
+    [
+      "2023",
+      "WCAG 2.2 发布，新增 9 个成功标准，包括焦点外观和无障碍身份验证；axe-core、Lighthouse 和浏览器开发工具在自动化扫描方面达到近乎普遍的采用"
+    ]
+  ],
+  "dos": [
+    "Do integrate axe-core or Lighthouse CI as a mandatory CI gate that blocks merges on WCAG AA violations — catching regressions at the PR level costs seconds, fixing them post-release costs hours",
+    "Do write automated component tests that verify accessible names for all interactive elements using testing-library queries like getByRole and getByLabelText — role-based queries that match screen reader semantics",
+    "Do test with real screen readers on real devices rather than relying solely on browser accessibility tree inspection — virtual buffer mode in JAWS and NVDA produces different reading experiences than the raw DOM accessibility tree",
+    "Do include users with disabilities in usability testing at least once per major product cycle — lived experience finds usability barriers that WCAG checklists do not capture, particularly for cognitive and motor impairments"
+  ],
+  "dos_zh": [
+    "将 axe-core 或 Lighthouse CI 集成为强制性 CI 关卡，阻止因 WCAG AA 违规的合并——在 PR 级别捕获回退只需几秒，发布后修复则需数小时",
+    "编写自动化组件测试，使用 testing-library 的 getByRole 和 getByLabelText 等查询验证所有交互元素的可访问名称——基于角色的查询与屏幕阅读器语义匹配",
+    "在真实设备上使用真实屏幕阅读器进行测试，而不仅依赖浏览器无障碍树检查——JAWS 和 NVDA 中的虚拟缓冲区模式比原始 DOM 无障碍树产生不同的阅读体验",
+    "在每个主要产品周期中至少进行一次包含残障用户的可用性测试——亲身经历发现 WCAG 清单未能捕捉的可用性障碍，尤其是认知和运动障碍"
+  ],
+  "donts": [
+    "Do not treat automated scan results as a complete accessibility audit — a clean axe-core report means approximately 30-40% of WCAG criteria are satisfied, not that the product is accessible",
+    "Do not add ARIA attributes to fix accessibility tree issues without understanding their semantics — incorrectly applied ARIA (e.g., role='button' on a div without keyboard event handling) can make accessibility worse than having no ARIA at all",
+    "Do not defer accessibility testing to a final QA phase — accessibility issues in component structure and semantic HTML are architectural decisions that are expensive to retrofit; they must be addressed in design and initial implementation",
+    "Do not assume visual design review covers accessibility — colour contrast, text sizing, and focus indicators are the subset visible to sighted reviewers; the majority of WCAG criteria relate to programmatic semantics invisible to visual inspection"
+  ],
+  "donts_zh": [
+    "不要将自动化扫描结果视为完整的无障碍审计——干净的 axe-core 报告意味着大约 30-40% 的 WCAG 标准得到满足，而不是产品完全可访问",
+    "不要在不了解语义的情况下添加 ARIA 属性来修复无障碍树问题——错误应用的 ARIA（如在没有键盘事件处理的 div 上使用 role='button'）可能使无障碍性比完全没有 ARIA 更差",
+    "不要将无障碍测试推迟到最终 QA 阶段——组件结构和语义 HTML 中的无障碍问题是架构决策，事后修复成本高昂；必须在设计和初始实现阶段解决",
+    "不要假设视觉设计审查涵盖了无障碍性——颜色对比度、文字大小和焦点指示器是视力正常的审查者可见的子集；大多数 WCAG 标准涉及视觉检查不可见的程序语义"
+  ],
+  "case_study_company": "BBC",
+  "case_study": "The BBC has one of the most mature accessibility testing programmes in the media industry, driven by a public broadcasting mandate and UK Equality Act obligations. Their accessibility approach combines automated testing (axe-core integrated into their React component library tests and Playwright E2E suite), manual screen reader testing on every major page type with JAWS, NVDA, and VoiceOver as part of their release checklist, and a dedicated accessibility team of specialists who conduct deep audits. The BBC published their Mobile Accessibility Guidelines in 2015 as an open standard extending WCAG for mobile contexts. Their BBC iPlayer video platform underwent a major accessibility overhaul in 2019, adding audio description, signed content, and subtitle customisation after user testing with deaf and visually impaired users revealed that the existing subtitle implementation failed WCAG 1.4.8 for reflow and had screen reader navigation issues in the episode selector. Post-remediation, BBC reported a measurable increase in iPlayer usage from users identifying as disabled.",
+  "case_study_zh": "BBC 在媒体行业拥有最成熟的无障碍测试项目之一，这得益于公共广播授权和英国《平等法》义务。他们的无障碍方法结合了自动化测试（axe-core 集成到其 React 组件库测试和 Playwright E2E 套件中）、对每种主要页面类型使用 JAWS、NVDA 和 VoiceOver 进行手动屏幕阅读器测试（作为发布清单的一部分），以及一个专门的无障碍专家团队进行深度审计。BBC 于 2015 年将其移动无障碍指南作为扩展 WCAG 移动场景的开放标准发布。他们的 BBC iPlayer 视频平台于 2019 年进行了重大无障碍改造，在对聋人和视障用户进行用户测试后添加了音频描述、手语内容和字幕定制功能，测试揭示现有字幕实现在回流方面未能满足 WCAG 1.4.8，且片集选择器中存在屏幕阅读器导航问题。修复后，BBC 报告了来自残障用户的 iPlayer 使用量可测量的增长。",
+  "when_not_to_use": [
+    "Internal tools with a strictly controlled user base of non-disabled employees where the cost of full WCAG AA compliance exceeds the business value — though WCAG AA is recommended as a baseline for all digital products",
+    "Proof-of-concept prototypes and throwaway code where accessibility investment would be wasted before the prototype is validated and discarded",
+    "Highly specialised technical tooling (developer IDEs, 3D modelling applications, specialised scientific visualisations) where WCAG AA compliance is aspirational but the interaction model may not fully map to current WCAG success criteria",
+    "As a one-time compliance audit substitute for ongoing testing — accessibility is not a binary achieved state; it requires continuous testing integration to prevent regressions with every UI change"
+  ],
+  "when_not_to_use_zh": [
+    "严格控制非残障员工用户群的内部工具，完整 WCAG AA 合规成本超过业务价值——尽管推荐将 WCAG AA 作为所有数字产品的基准",
+    "概念验证原型和一次性代码，在原型验证和丢弃之前无障碍投资会被浪费",
+    "高度专业化的技术工具（开发者 IDE、3D 建模应用、专业科学可视化），WCAG AA 合规是一种期望，但交互模型可能无法完全映射到当前 WCAG 成功标准",
+    "作为持续测试的一次性合规审计替代品——无障碍不是二元的已实现状态；它需要持续的测试集成以防止每次 UI 变更时出现回退"
+  ],
+  "adopters": [
+    "BBC",
+    "GOV.UK (UK Government Digital Service)",
+    "Deque Systems (axe-core)",
+    "Microsoft",
+    "Apple",
+    "Salesforce"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "usability",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "W3C WAI (2023). \"Web Content Accessibility Guidelines (WCAG) 2.2\". w3.org/TR/WCAG22/.",
+  "secondary_sources": [
+    "Deque Systems (2023). \"axe-core: Accessibility Engine for Automated Web UI Testing\". github.com/dequelabs/axe-core.",
+    "UK Government Digital Service (2020). \"Testing for accessibility\". gov.uk/service-manual/helping-people-to-use-your-service/testing-for-accessibility.",
+    "Faulkner, S. et al. (2019). \"WCAG 2.1 Understanding Docs\". w3.org/WAI/WCAG21/Understanding/."
+  ],
+  "typed_relations": [
+    {
+      "slug": "continuous-testing",
+      "type": "complement"
+    },
+    {
+      "slug": "testing-trophy",
+      "type": "complement"
+    },
+    {
+      "slug": "bdd",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/accessibility-testing-wcag",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/accessibility-testing-wcag.md"
+}

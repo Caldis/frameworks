@@ -1,0 +1,192 @@
+{
+  "id": 330,
+  "name": "Data Transfer Object (DTO)",
+  "name_zh": "数据传输对象（DTO）",
+  "slug": "data-transfer-object",
+  "category": "coding",
+  "desc": "A simple object that carries data between processes or layers, containing no business logic — its sole purpose is to reduce the number of method calls by bundling data into a single transfer unit",
+  "desc_zh": "在进程或层之间传递数据的简单对象，不包含任何业务逻辑——其唯一目的是通过将数据打包成单一传输单元来减少方法调用次数",
+  "steps": [
+    "Identify the data boundary: locate the interface between two layers or processes (controller ↔ service, service ↔ database, microservice ↔ microservice) where multiple data fields are exchanged repeatedly in a chatty interaction",
+    "Define the DTO class: create a plain object (no business logic, no database references) containing only the fields needed by the consumer of that interface; give it a name that reflects the operation context (CreateOrderRequest, ProductSummaryResponse)",
+    "Map between domain model and DTO: implement explicit mapping code (or use a mapping library such as MapStruct, AutoMapper, or class-transformer) to convert between rich domain objects and thin DTOs at the boundary — never expose domain internals directly",
+    "Validate at ingress: apply input validation to DTOs arriving from external callers (HTTP request bodies, gRPC messages) before mapping them to domain objects; use validation annotations or schema validators to enforce constraints early",
+    "Version and evolve DTOs independently: treat DTOs as a public API contract; add fields with defaults for backward compatibility, deprecate fields explicitly, and use versioned DTO classes or API versioning to prevent breaking existing consumers during evolution"
+  ],
+  "steps_zh": [
+    "识别数据边界：定位两层或两个进程之间的接口（控制器 ↔ 服务、服务 ↔ 数据库、微服务 ↔ 微服务），在那里多个数据字段在频繁的交互中被反复交换",
+    "定义 DTO 类：创建一个普通对象（无业务逻辑、无数据库引用），仅包含该接口消费者所需的字段；给它一个反映操作上下文的名称（CreateOrderRequest、ProductSummaryResponse）",
+    "在领域模型和 DTO 之间映射：实现显式映射代码（或使用 MapStruct、AutoMapper、class-transformer 等映射库）在边界处在富领域对象和精简 DTO 之间转换——永远不要直接暴露领域内部",
+    "在入口处验证：在将来自外部调用者的 DTO（HTTP 请求体、gRPC 消息）映射到领域对象之前，对其应用输入验证；使用验证注解或模式验证器尽早强制约束",
+    "独立地对 DTO 进行版本控制和演进：将 DTO 视为公共 API 契约；为向后兼容添加带默认值的字段，明确弃用字段，并使用版本化 DTO 类或 API 版本控制，以防止在演进过程中破坏现有消费者"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Source Layer",
+    "DTO",
+    "Target Layer",
+    "Serialization"
+  ],
+  "viz_labels_zh": [
+    "源层",
+    "数据传输对象",
+    "目标层",
+    "序列化"
+  ],
+  "related": [
+    "repository-pattern",
+    "data-mapper-pattern",
+    "solid-principles",
+    "clean-code-principles"
+  ],
+  "tags": [
+    "data-transfer",
+    "layered-architecture",
+    "api-design",
+    "decoupling",
+    "serialization"
+  ],
+  "origin_author": "Martin Fowler, \"Patterns of Enterprise Application Architecture\", 2002",
+  "origin_source": "Fowler, M. (2002). \"Patterns of Enterprise Application Architecture\". Addison-Wesley. Pattern: Data Transfer Object, pp. 401–415.",
+  "origin_source_zh": "Fowler（2002）《企业应用架构模式》，Addison-Wesley，模式：数据传输对象，第 401–415 页",
+  "complexity": "beginner",
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "performance",
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "when_to_use": [
+    "When calling remote services or crossing process boundaries where each method call is expensive and batching multiple fields into a single round trip reduces network overhead",
+    "When you need to expose only a subset of a domain model to an API consumer — the DTO acts as a projection that hides sensitive fields, computed properties, and ORM-managed relationships",
+    "When different consumers (mobile app, admin dashboard, public API) need different shapes of the same underlying data, requiring separate response DTOs rather than a single bloated domain object",
+    "When decoupling the public API contract from internal domain model refactoring is important — changing a domain entity should not force a breaking API change for consumers",
+    "When validating and deserializing structured input from HTTP bodies, gRPC messages, or message queue payloads before passing data into domain logic"
+  ],
+  "when_to_use_zh": [
+    "当调用远程服务或跨越进程边界时，每次方法调用都很昂贵，将多个字段打包成单一往返可减少网络开销",
+    "当你需要仅向 API 消费者暴露领域模型的子集时——DTO 充当隐藏敏感字段、计算属性和 ORM 管理关系的投影",
+    "当不同消费者（移动应用、管理仪表板、公共 API）需要相同底层数据的不同形状，需要单独的响应 DTO 而非单一膨胀的领域对象时",
+    "当将公共 API 契约与内部领域模型重构解耦很重要时——更改领域实体不应强制消费者进行破坏性 API 更改",
+    "当在将数据传入领域逻辑之前，验证和反序列化来自 HTTP 请求体、gRPC 消息或消息队列负载的结构化输入时"
+  ],
+  "core_concepts": [
+    "Anemic object: a DTO is intentionally anemic — it holds data fields and possibly simple getters/setters but contains zero business logic; this is a feature, not a violation of OOP principles, because its purpose is transport, not behaviour",
+    "Boundary mapping: explicit code that converts a rich domain object (with business rules, invariants, and ORM associations) to a flat DTO and back; the mapping layer is where field selection, renaming, and format conversion happen",
+    "Serialization contract: DTOs are the objects that get serialized to JSON, XML, Protobuf, or Avro for transmission; their structure defines the wire format and must be evolved carefully to maintain backward compatibility",
+    "Request vs. response DTO: inbound DTOs (requests/commands) carry client-supplied data into the application and are subject to validation; outbound DTOs (responses/views) carry application-computed data to clients and are shaped for consumer convenience",
+    "Projection: a DTO that represents a subset or reshaping of the domain model for a specific use case — similar to a database view but at the application layer"
+  ],
+  "core_concepts_zh": [
+    "贫血对象：DTO 是有意贫血的——它持有数据字段和可能的简单 getter/setter，但不包含任何业务逻辑；这是一个特性，而非 OOP 原则的违反，因为它的目的是传输而非行为",
+    "边界映射：将富领域对象（具有业务规则、不变量和 ORM 关联）转换为扁平 DTO 并反向转换的显式代码；映射层是字段选择、重命名和格式转换发生的地方",
+    "序列化契约：DTO 是被序列化为 JSON、XML、Protobuf 或 Avro 进行传输的对象；它们的结构定义了线格式，必须谨慎演进以保持向后兼容性",
+    "请求与响应 DTO：入站 DTO（请求/命令）将客户端提供的数据带入应用程序并需经过验证；出站 DTO（响应/视图）将应用程序计算的数据传递给客户端，并为消费者方便而塑形",
+    "投影：表示特定用例的领域模型子集或重塑的 DTO——类似于数据库视图，但在应用层"
+  ],
+  "timeline": [
+    [
+      "1998",
+      "Java EE (J2EE) 1.2 introduces Remote Method Invocation and Enterprise JavaBeans; developers discover that fine-grained RMI calls are prohibitively slow, motivating the Transfer Object (then called Value Object) pattern to batch data"
+    ],
+    [
+      "2002",
+      "Martin Fowler formalizes the Data Transfer Object pattern in \"Patterns of Enterprise Application Architecture\", distinguishing it from Value Object and documenting the mapping layer as a first-class concern"
+    ],
+    [
+      "2006",
+      "Sun Microsystems renames the J2EE pattern from 「Transfer Object」 to 「Data Transfer Object」 in the updated Java EE patterns catalog to resolve naming conflicts with Value Object"
+    ],
+    [
+      "2011",
+      "The rise of RESTful APIs and later gRPC/Protobuf cements DTOs as the universal mechanism for defining API request and response shapes across languages and frameworks"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1998",
+      "Java EE（J2EE）1.2 引入远程方法调用和企业级 JavaBeans；开发者发现细粒度 RMI 调用速度极慢，促使开发传输对象（当时称为值对象）模式来批量处理数据"
+    ],
+    [
+      "2002",
+      "Martin Fowler 在《企业应用架构模式》中正式化了数据传输对象模式，将其与值对象区分开来，并将映射层记录为一等关注点"
+    ],
+    [
+      "2006",
+      "Sun Microsystems 在更新的 Java EE 模式目录中将 J2EE 模式从「Transfer Object」重命名为「Data Transfer Object」，以解决与值对象的命名冲突"
+    ],
+    [
+      "2011",
+      "RESTful API 的兴起以及后来的 gRPC/Protobuf 使 DTO 成为跨语言和框架定义 API 请求和响应形状的通用机制"
+    ]
+  ],
+  "dos": [
+    "Do name DTOs after the operation context rather than the domain entity: use OrderCreationRequest and OrderSummaryResponse instead of OrderDTO — the operation name communicates intent and makes it obvious which direction the data flows",
+    "Do keep DTOs flat and serialization-friendly: avoid nested domain objects or lazy-loaded ORM collections; map everything to primitives, value types, or explicit nested DTO classes before the boundary",
+    "Do validate DTO input at the entry point using declarative validators (Bean Validation annotations in Java, class-validator in TypeScript, Pydantic in Python) before mapping to domain objects — fail fast with descriptive error messages",
+    "Do use a dedicated mapping layer or library: centralize all DTO ↔ domain mappings in assembler classes, mapper functions, or a mapping library rather than embedding mapping logic in controllers or service methods"
+  ],
+  "dos_zh": [
+    "以操作上下文而非领域实体命名 DTO：使用 OrderCreationRequest 和 OrderSummaryResponse 而非 OrderDTO——操作名称传达意图并明确显示数据流向",
+    "保持 DTO 扁平化且序列化友好：避免嵌套领域对象或惰性加载的 ORM 集合；在边界之前将所有内容映射为基本类型、值类型或显式嵌套 DTO 类",
+    "在入口点使用声明式验证器验证 DTO 输入（Java 中的 Bean Validation 注解、TypeScript 中的 class-validator、Python 中的 Pydantic），然后再映射到领域对象——以描述性错误消息快速失败",
+    "使用专用映射层或库：将所有 DTO ↔ 领域映射集中在组装器类、映射函数或映射库中，而不是将映射逻辑嵌入控制器或服务方法中"
+  ],
+  "donts": [
+    "Don't add business logic or validation rules to DTOs: a DTO that enforces invariants, calculates derived fields, or calls services has become a domain object in disguise — move all logic to domain entities or application services",
+    "Don't reuse the same DTO for multiple unrelated operations: a single UserDTO shared between registration, profile update, and admin audit endpoints accumulates fields from all contexts, resulting in a nullable field soup that confuses every consumer",
+    "Don't skip the mapping layer by returning domain entities or ORM models directly from APIs: this exposes internal structure, leaks ORM-managed fields (like database IDs, version columns, audit timestamps), and couples the API contract to database schema changes",
+    "Don't create DTOs for purely in-process method calls within the same layer: DTOs solve the remote call cost problem; adding them to local service-to-service calls in the same process adds boilerplate with no performance or decoupling benefit"
+  ],
+  "donts_zh": [
+    "不要向 DTO 添加业务逻辑或验证规则：强制执行不变量、计算派生字段或调用服务的 DTO 已经变成了伪装的领域对象——将所有逻辑移动到领域实体或应用服务",
+    "不要为多个不相关的操作重用同一个 DTO：在注册、个人资料更新和管理员审计端点之间共享的单个 UserDTO 会积累所有上下文的字段，导致混淆每个消费者的可空字段汤",
+    "不要通过直接从 API 返回领域实体或 ORM 模型来跳过映射层：这会暴露内部结构，泄漏 ORM 管理的字段（如数据库 ID、版本列、审计时间戳），并将 API 契约与数据库模式变更耦合",
+    "不要为同一层内的纯进程内方法调用创建 DTO：DTO 解决的是远程调用成本问题；将它们添加到同一进程内的本地服务间调用会增加样板代码，而不带来任何性能或解耦优势"
+  ],
+  "case_study_company": "Spring Framework / Java EE ecosystem",
+  "case_study": "The J2EE (Java EE) pattern catalog documented the Transfer Object (later renamed Data Transfer Object) in response to a pervasive performance problem discovered by enterprise Java developers in the late 1990s: Entity EJBs exposed fine-grained remote interfaces where fetching an Order with 10 fields required 10 separate RMI calls, each incurring network round-trip overhead. Sun Microsystems and ThoughtWorks consultants, observing this anti-pattern across dozens of projects, codified the solution — bundle all required fields into a single serializable Transfer Object returned by a coarse-grained Session Facade — and published it in the J2EE Patterns catalog (2001) and Fowler's PoEAA (2002). The pattern subsequently propagated through the Spring Framework's layered architecture recommendations, becoming the standard way to structure controller request/response objects in Spring MVC applications, NestJS decorators, and gRPC Protobuf message definitions — all of which are DTOs under different names.",
+  "case_study_zh": "J2EE（Java EE）模式目录记录了传输对象（后来重命名为数据传输对象），以回应 1990 年代末企业级 Java 开发者发现的普遍性能问题：实体 EJB 暴露了细粒度远程接口，获取一个具有 10 个字段的 Order 需要 10 次单独的 RMI 调用，每次都会产生网络往返开销。Sun Microsystems 和 ThoughtWorks 顾问在数十个项目中观察到这种反模式后，将解决方案编成规范——将所有必需字段打包到由粗粒度 Session Facade 返回的单个可序列化传输对象中——并在 J2EE 模式目录（2001）和 Fowler 的 PoEAA（2002）中发布。该模式随后通过 Spring Framework 的分层架构建议传播开来，成为在 Spring MVC 应用程序、NestJS 装饰器和 gRPC Protobuf 消息定义中构建控制器请求/响应对象的标准方式——所有这些都是不同名称下的 DTO。",
+  "when_not_to_use": [
+    "Simple CRUD endpoints in small applications where domain model and API shape are identical and are unlikely to diverge — the mapping boilerplate adds no value when the domain entity and API contract are the same object",
+    "In-process function calls within a single bounded context where both caller and callee are in the same deployment unit — DTOs solve remote call cost; using them locally adds classes without any performance or isolation benefit",
+    "Rapid prototyping and early-stage development where the domain model is changing rapidly — introducing DTO mapping before the model stabilizes creates a maintenance burden that slows down iteration without improving quality",
+    "GraphQL APIs where field selection is handled by the query itself — the GraphQL resolver can project fields directly from domain objects, making a separate DTO layer redundant in most cases"
+  ],
+  "when_not_to_use_zh": [
+    "小型应用程序中的简单 CRUD 端点，其中领域模型和 API 形状相同且不太可能分歧——当领域实体和 API 契约是同一对象时，映射样板不会增加任何价值",
+    "单个有界上下文内的进程内函数调用，调用者和被调用者都在同一部署单元中——DTO 解决远程调用成本；在本地使用它们只会增加类而不带来任何性能或隔离优势",
+    "领域模型快速变化的快速原型和早期开发阶段——在模型稳定之前引入 DTO 映射会产生维护负担，在不提高质量的情况下减缓迭代速度",
+    "GraphQL API，其中字段选择由查询本身处理——GraphQL 解析器可以直接从领域对象投影字段，在大多数情况下使单独的 DTO 层变得多余"
+  ],
+  "adopters": [
+    "Java EE / Spring Framework",
+    ".NET / ASP.NET Core (with AutoMapper)",
+    "NestJS (TypeScript class-validator DTOs)",
+    "gRPC (Protobuf message definitions)",
+    "Django REST Framework (Serializers)"
+  ],
+  "primary_source": "Fowler, M. (2002). \"Patterns of Enterprise Application Architecture\". Addison-Wesley. Chapter: Distribution Patterns — Data Transfer Object.",
+  "secondary_sources": [
+    "Alur, D., Crupi, J. & Malks, D. (2001). \"Core J2EE Patterns: Best Practices and Design Strategies\". Sun Microsystems Press. Transfer Object pattern.",
+    "Vernon, V. (2013). \"Implementing Domain-Driven Design\". Addison-Wesley. Chapter 4: Architecture.",
+    "Nygard, M. (2007). \"Release It!\". Pragmatic Programmers. Chapter on stability patterns at service boundaries."
+  ],
+  "typed_relations": [
+    {
+      "slug": "repository-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "data-mapper-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "solid-principles",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/data-transfer-object",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/data-transfer-object.md"
+}

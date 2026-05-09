@@ -1,0 +1,195 @@
+{
+  "id": 14,
+  "name": "Trade-off Sliders Model",
+  "name_zh": "权衡滑块模型",
+  "slug": "trade-off-sliders",
+  "category": "thinking",
+  "desc": "Make design trade-offs explicit by ranking competing qualities",
+  "desc_zh": "通过排列相互竞争的质量属性，将设计权衡显式化",
+  "steps": [
+    "Enumerate Quality Attributes: list all relevant system qualities (performance, security, maintainability, cost, scalability, etc.) for the project",
+    "Force-Rank the Attributes: have key stakeholders independently rank qualities from most to least critical, then consolidate into a shared ranking",
+    "Set Slider Positions: assign a relative priority score (1-5) to each attribute, explicitly acknowledging what is sacrificed at each end",
+    "Apply to Design Decisions: when facing a design choice, evaluate each option against the slider positions to find the best-fit solution",
+    "Revisit Periodically: re-run the sliders exercise at major milestones to reflect evolved business priorities and technical context"
+  ],
+  "steps_zh": [
+    "枚举质量属性：列出项目所有相关的系统质量（性能、安全、可维护性、成本、可扩展性等）",
+    "强制排序属性：让关键干系人独立排序质量属性（最重要到最次要），再整合为共识排序",
+    "设定滑块位置：为每个属性赋予相对优先级分值（1-5），明确标注每端所牺牲的内容",
+    "应用于设计决策：面对设计选择时，根据滑块位置评估每个方案以找到最优契合方案",
+    "定期重新审视：在重要里程碑重新进行滑块练习，以反映业务优先级和技术背景的演变"
+  ],
+  "ai_relevant": false,
+  "viz_type": "radar",
+  "viz_labels": [
+    "Performance",
+    "Security",
+    "Scalability",
+    "Cost",
+    "Simplicity"
+  ],
+  "viz_labels_zh": [
+    "性能",
+    "安全",
+    "可扩展",
+    "成本",
+    "简洁"
+  ],
+  "related": [
+    "atam",
+    "qaw",
+    "cynefin-framework"
+  ],
+  "tags": [
+    "trade-offs",
+    "quality-attributes",
+    "prioritization",
+    "stakeholder-alignment"
+  ],
+  "origin_author": "Kent Beck (Extreme Programming) / SEI Architecture Trade-off Analysis Method (ATAM), late 1990s",
+  "origin_source": "Extreme Programming Explained (Kent Beck, 1999) and SEI ATAM method documentation (Kazman, Klein, Clements, 2000)",
+  "origin_source_zh": "《解析极限编程》（Kent Beck，1999年）及SEI ATAM方法文档（Kazman、Klein、Clements，2000年）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "When architects and product managers keep making inconsistent decisions because there's no shared understanding of which qualities matter most",
+    "When a team faces a design choice where improving one quality attribute (e.g., performance) would degrade another (e.g., maintainability) and they need a principled tiebreaker",
+    "When onboarding new team members who need to quickly understand why past design decisions prioritized certain attributes over others",
+    "When scaling a system and the original implicit trade-offs (favoring development speed over operational reliability, for example) are no longer appropriate"
+  ],
+  "when_to_use_zh": [
+    "当架构师和产品经理持续做出不一致的决策，因为没有对哪些质量最重要的共同理解时",
+    "当团队面对改善一个质量属性（如性能）会降低另一个（如可维护性）的设计选择，需要有原则的裁决时",
+    "当入职新团队成员，他们需要快速理解为何过往设计决策优先考虑了某些属性而非其他属性时",
+    "当扩展系统而原来隐含的权衡（如偏重开发速度而非运营可靠性）不再适用时"
+  ],
+  "core_concepts": [
+    "Explicit Trade-offs: Making quality attribute priorities visible and documented, rather than leaving them as implicit assumptions that different team members interpret differently",
+    "Force-Ranking: Requiring stakeholders to rank attributes eliminates the common dysfunction of declaring everything equally important, which is the same as declaring nothing important",
+    "Slider Positions as Decision Heuristics: Once slider positions are set, they serve as fast heuristics for everyday design decisions without requiring a full stakeholder meeting each time",
+    "Temporal Validity: Trade-off positions are valid for a phase of the project, not forever — what matters in an MVP differs from what matters in a mature production system"
+  ],
+  "core_concepts_zh": [
+    "显式权衡：使质量属性优先级可见并有文档记录，而非留作不同团队成员可能有不同解读的隐含假设",
+    "强制排序：要求利益相关者排序属性，消除了声称所有事物同等重要的常见功能障碍——这等同于声称没有事物重要",
+    "滑块位置作为决策启发式：一旦设定滑块位置，它们就可以作为日常设计决策的快速启发式，无需每次都召开利益相关者会议",
+    "时间有效性：权衡位置对项目的某个阶段有效，而非永远——MVP阶段重要的事物与成熟生产系统重要的事物不同"
+  ],
+  "timeline": [
+    [
+      "1996",
+      "The Software Engineering Institute (SEI) develops the Architecture Trade-off Analysis Method (ATAM), formalizing quality attribute trade-off analysis for software architecture"
+    ],
+    [
+      "1999",
+      "Kent Beck publishes 'Extreme Programming Explained', introducing the metaphor of 'dials' that stakeholders set to express project priorities"
+    ],
+    [
+      "2003",
+      "The SEI publishes 'Evaluating Software Architectures' (Clements, Kazman, Klein), providing detailed guidance on quality attribute workshops and trade-off analysis"
+    ],
+    [
+      "2010s",
+      "Agile teams widely adopt lightweight slider exercises in sprint planning and architecture decision records (ADRs) to document trade-off reasoning"
+    ],
+    [
+      "2020s",
+      "Platform engineering teams use trade-off sliders to navigate build-vs-buy decisions for cloud infrastructure, balancing cost, control, and operational overhead"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1996",
+      "软件工程研究所（SEI）开发架构权衡分析方法（ATAM），为软件架构的质量属性权衡分析正式化"
+    ],
+    [
+      "1999",
+      "Kent Beck出版《解析极限编程》，引入利益相关者设定以表达项目优先级的「旋钮」比喻"
+    ],
+    [
+      "2003",
+      "SEI出版《评估软件架构》（Clements、Kazman、Klein），提供质量属性研讨会和权衡分析的详细指导"
+    ],
+    [
+      "2010年代",
+      "敏捷团队广泛在冲刺规划和架构决策记录（ADR）中采用轻量级滑块练习来记录权衡推理"
+    ],
+    [
+      "2020年代",
+      "平台工程团队使用权衡滑块来指导云基础设施的自建与外购决策，平衡成本、控制和运营开销"
+    ]
+  ],
+  "dos": [
+    "Do force stakeholders to rank rather than rate attributes, because ranking eliminates the 'everything is priority 1' problem that rating systems allow",
+    "Do document the reasoning behind slider positions, because future team members need to understand why security was ranked above velocity, not just that it was",
+    "Do include both technical and business stakeholders in the ranking exercise, because engineering-only rankings miss business context and business-only rankings miss technical feasibility",
+    "Do use the sliders as a living reference in architecture decision records, because linking design decisions back to slider positions makes trade-off reasoning traceable"
+  ],
+  "dos_zh": [
+    "强制利益相关者排序而非评分属性，因为排序消除了评分系统允许的「所有事物都是优先级1」的问题",
+    "记录滑块位置背后的推理，因为未来的团队成员需要理解为何安全性被排在速度之上，而不仅仅是知道它被排在上面",
+    "在排序练习中同时包含技术和商业利益相关者，因为仅工程排序缺少商业背景，仅商业排序缺少技术可行性",
+    "将滑块用作架构决策记录中的活参考，因为将设计决策链接回滑块位置使权衡推理可追溯"
+  ],
+  "donts": [
+    "Don't allow stakeholders to declare all attributes equally important, because in practice resources are finite and trade-offs are inevitable — equal ranking is an abdication of decision-making",
+    "Don't set sliders once and forget them, because as the product matures from MVP to scale-up, the relative importance of quality attributes shifts dramatically",
+    "Don't use sliders to avoid making hard decisions, because sliders inform decisions but a team still needs to commit to a specific design path based on the priorities",
+    "Don't include too many attributes (more than 7-8), because cognitive overload defeats the purpose of having clear, actionable priorities"
+  ],
+  "donts_zh": [
+    "不要允许利益相关者声称所有属性同等重要，因为在实际中资源有限、权衡不可避免——相同排序是对决策的逃避",
+    "不要设定一次滑块后就遗忘，因为随着产品从MVP成熟到规模化，质量属性的相对重要性会发生剧变",
+    "不要用滑块来逃避艰难决策，因为滑块是为决策提供信息的工具，团队仍需基于优先级承诺特定的设计路径",
+    "不要包含过多属性（超过7-8个），因为认知过载会违背拥有清晰、可操作优先级的目的"
+  ],
+  "case_study_company": "Spotify",
+  "case_study": "Spotify's engineering culture explicitly used trade-off slider thinking when building their microservices platform. Teams were given clear organizational priorities: developer velocity ranked above operational efficiency, and autonomy ranked above consistency. This explicit trade-off led to their decision to let squads choose their own technology stacks (prioritizing autonomy and velocity) even at the cost of some cross-team inconsistency. The clarity of these trade-off positions enabled over 250 independent squads to make locally optimal decisions that aligned with organizational strategy.",
+  "case_study_zh": "Spotify的工程文化在构建微服务平台时明确使用了权衡滑块思维。团队获得了清晰的组织优先级：开发者速度排在运营效率之上，自主性排在一致性之上。这种显式权衡导致了他们让小队选择自己技术栈的决策（优先考虑自主性和速度），即使以某些跨团队不一致性为代价。这些权衡位置的清晰性使超过250个独立小队能够做出与组织战略一致的局部最优决策。",
+  "when_not_to_use": [
+    "When the project has a single dominant quality requirement (e.g., regulatory compliance) that overrides all other considerations, making a ranking exercise unnecessary",
+    "When the team is so small (1-2 people) that trade-offs are managed through informal conversation and a formal exercise would be overhead",
+    "When the project is a short experiment or spike where the investment in quality attribute analysis won't pay off before the work is discarded",
+    "When stakeholders are unable or unwilling to commit to rankings and the exercise would produce a meaningless consensus of 'everything is important'"
+  ],
+  "when_not_to_use_zh": [
+    "当项目有单一主导的质量需求（如法规合规）覆盖所有其他考虑，使排序练习不必要时",
+    "当团队很小（1-2人），权衡通过非正式对话管理，正式练习是多余的开销时",
+    "当项目是短期实验或探针，质量属性分析的投入在工作被抛弃前无法回收时",
+    "当利益相关者无法或不愿承诺排序，练习只会产生「所有事物都重要」的无意义共识时"
+  ],
+  "adopters": [
+    "Spotify",
+    "Atlassian",
+    "ThoughtWorks",
+    "Pivotal (now VMware Tanzu)",
+    "Netflix",
+    "Stripe"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Kent Beck (1999). \"Extreme Programming Explained: Embrace Change\". Addison-Wesley.",
+  "secondary_sources": [
+    "Rick Kazman, Mark Klein, and Paul Clements (2000). \"ATAM: Method for Architecture Evaluation\". SEI Technical Report CMU/SEI-2000-TR-004.",
+    "Barry Boehm and Richard Turner (2003). \"Balancing Agility and Discipline: A Guide for the Perplexed\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "atam",
+      "type": "complement"
+    },
+    {
+      "slug": "qaw",
+      "type": "complement"
+    },
+    {
+      "slug": "cynefin-framework",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/trade-off-sliders",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/trade-off-sliders.md"
+}

@@ -1,0 +1,211 @@
+{
+  "id": 34,
+  "name": "Hexagonal Architecture",
+  "name_zh": "六边形架构",
+  "slug": "hexagonal-architecture",
+  "category": "coding",
+  "desc": "Isolate core logic from external concerns via ports and adapters",
+  "desc_zh": "通过端口与适配器将核心逻辑与外部关注点隔离",
+  "steps": [
+    "Define the Domain Core: implement pure business logic with no dependencies on frameworks, databases, or external services",
+    "Design Ports: create inbound ports (use case interfaces the outside world calls) and outbound ports (interfaces the domain needs from the outside)",
+    "Implement Adapters: build concrete adapters for each port — REST controllers for inbound, repository implementations for outbound",
+    "Wire at the Composition Root: connect adapters to ports via dependency injection at application startup, keeping the domain ignorant of infrastructure",
+    "Test at each layer: unit-test the domain through ports with in-memory adapters; integration-test adapters against real infrastructure"
+  ],
+  "steps_zh": [
+    "定义领域核心：实现不依赖框架、数据库或外部服务的纯业务逻辑",
+    "设计端口：创建入站端口（外部世界调用的用例接口）和出站端口（领域需要的外部接口）",
+    "实现适配器：为每个端口构建具体适配器——入站用REST控制器，出站用仓储实现",
+    "在组合根装配：在应用启动时通过依赖注入连接适配器与端口，保持领域对基础设施无感知",
+    "分层测试：通过端口使用内存适配器对领域进行单元测试；对适配器进行集成测试"
+  ],
+  "ai_relevant": true,
+  "viz_type": "venn",
+  "viz_labels": [
+    "Application Core",
+    "Driving Port",
+    "Driven Port"
+  ],
+  "viz_labels_zh": [
+    "应用核心",
+    "主动端口",
+    "被动端口"
+  ],
+  "related": [
+    "solid-principles",
+    "dependency-injection",
+    "ddd-tactical-patterns",
+    "clean-code-principles",
+    "clean-architecture",
+    "onion-architecture",
+    "n-tier-layered",
+    "ports-and-adapters"
+  ],
+  "tags": [
+    "hexagonal",
+    "ports-adapters",
+    "clean-architecture",
+    "isolation",
+    "testability"
+  ],
+  "origin_author": "Alistair Cockburn, 2005",
+  "origin_source": "Hexagonal Architecture (Ports and Adapters)",
+  "origin_source_zh": "《六边形架构（端口与适配器）》",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Building applications that need to support multiple delivery mechanisms (REST, CLI, gRPC, messaging)",
+    "Systems where infrastructure decisions (database, cloud provider) may change over time",
+    "Projects requiring high testability with fast unit tests that don't need infrastructure",
+    "Teams adopting DDD where domain isolation from infrastructure is a priority"
+  ],
+  "when_to_use_zh": [
+    "构建需要支持多种交付机制（REST、CLI、gRPC、消息队列）的应用",
+    "基础设施决策（数据库、云提供商）可能随时间变化的系统",
+    "要求高可测试性、快速单元测试不依赖基础设施的项目",
+    "采用 DDD 且领域与基础设施隔离是优先级的团队"
+  ],
+  "core_concepts": [
+    "Domain Core: the innermost layer containing pure business logic with zero external dependencies",
+    "Ports: interfaces that define how the outside world interacts with the domain (inbound) and how the domain reaches external systems (outbound)",
+    "Adapters: concrete implementations that plug into ports, translating between external technology and domain contracts",
+    "Composition Root: the single place (typically application startup) where all ports are wired to their adapters via dependency injection",
+    "Dependency Rule: dependencies always point inward — adapters depend on ports, never the reverse"
+  ],
+  "core_concepts_zh": [
+    "领域核心：最内层，包含零外部依赖的纯业务逻辑",
+    "端口：定义外部世界如何与领域交互（入站）以及领域如何访问外部系统（出站）的接口",
+    "适配器：插入端口的具体实现，在外部技术与领域契约之间进行翻译",
+    "组合根：所有端口通过依赖注入连接到适配器的唯一位置（通常是应用启动处）",
+    "依赖规则：依赖方向始终指向内部——适配器依赖端口，绝不反过来"
+  ],
+  "timeline": [
+    [
+      "2005",
+      "Alistair Cockburn publishes the Hexagonal Architecture pattern on his wiki"
+    ],
+    [
+      "2008",
+      "Jeffrey Palermo introduces Onion Architecture, a close variant with explicit layer rings"
+    ],
+    [
+      "2012",
+      "Robert C. Martin presents Clean Architecture, synthesizing hexagonal, onion, and DCI ideas"
+    ],
+    [
+      "2017",
+      "Netflix and Spotify publicly share their hexagonal architecture implementations for microservices"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2005",
+      "Alistair Cockburn 在其 wiki 上发布六边形架构模式"
+    ],
+    [
+      "2008",
+      "Jeffrey Palermo 提出洋葱架构，一种具有显式分层环的近似变体"
+    ],
+    [
+      "2012",
+      "Robert C. Martin 提出整洁架构，综合了六边形、洋葱和 DCI 的思想"
+    ],
+    [
+      "2017",
+      "Netflix 和 Spotify 公开分享了他们微服务的六边形架构实现"
+    ]
+  ],
+  "dos": [
+    "Do define ports as interfaces in the domain layer because they represent domain needs, not infrastructure capabilities",
+    "Do keep the domain core free of framework annotations because annotations create hidden dependencies",
+    "Do create separate adapter modules for each external system because it isolates change impact",
+    "Do write domain tests using in-memory adapters because they run in milliseconds and catch logic bugs"
+  ],
+  "dos_zh": [
+    "在领域层定义端口为接口，因为它们代表领域需求而非基础设施能力",
+    "保持领域核心不含框架注解，因为注解会创建隐式依赖",
+    "为每个外部系统创建独立的适配器模块，因为这隔离了变更影响",
+    "使用内存适配器编写领域测试，因为它们在毫秒内运行并能捕获逻辑缺陷"
+  ],
+  "donts": [
+    "Don't let domain objects import infrastructure packages because it violates the dependency rule",
+    "Don't create one mega-adapter that handles multiple external systems because it defeats the purpose of isolation",
+    "Don't skip the port abstraction by having domain code call adapters directly because it reintroduces coupling",
+    "Don't over-architect simple CRUD endpoints with hexagonal layers because the indirection adds no value"
+  ],
+  "donts_zh": [
+    "不要让领域对象导入基础设施包，因为这违反了依赖规则",
+    "不要创建处理多个外部系统的超级适配器，因为这违背了隔离的初衷",
+    "不要跳过端口抽象让领域代码直接调用适配器，因为这重新引入了耦合",
+    "不要对简单的 CRUD 端点过度应用六边形分层，因为间接层不带来价值"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix adopted hexagonal architecture for its content encoding pipeline. The domain core handles transcoding decisions and quality rules, while adapters connect to different cloud storage backends (S3, Google Cloud Storage) and encoding engines. When Netflix migrated parts of its infrastructure, only adapters changed — the core encoding logic remained untouched, saving months of re-testing.",
+  "case_study_zh": "Netflix 为其内容编码管道采用了六边形架构。领域核心处理转码决策和质量规则，而适配器连接不同的云存储后端（S3、Google Cloud Storage）和编码引擎。当 Netflix 迁移部分基础设施时，只有适配器发生变化——核心编码逻辑保持不变，节省了数月的重新测试时间。",
+  "when_not_to_use": [
+    "Trivial applications with a single database and one delivery mechanism",
+    "Serverless functions where each function is a single-purpose handler with minimal logic",
+    "Teams that lack experience with dependency injection and interface-based design",
+    "Performance-critical systems where the port/adapter indirection introduces unacceptable latency"
+  ],
+  "when_not_to_use_zh": [
+    "只有单个数据库和一种交付机制的简单应用",
+    "每个函数都是单用途处理程序且逻辑极少的无服务器函数",
+    "缺乏依赖注入和基于接口设计经验的团队",
+    "端口/适配器间接层引入不可接受延迟的性能关键系统"
+  ],
+  "adopters": [
+    "Netflix",
+    "Spotify",
+    "Mercado Libre",
+    "BBVA",
+    "Thoughtworks"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "testability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Alistair Cockburn (2005). \"Hexagonal Architecture (Ports and Adapters)\". alistair.cockburn.us.",
+  "secondary_sources": [
+    "Robert C. Martin (2017). \"Clean Architecture: A Craftsman's Guide to Software Structure and Design\". Prentice Hall.",
+    "Tom Hombergs (2019). \"Get Your Hands Dirty on Clean Architecture\". Packt Publishing."
+  ],
+  "typed_relations": [
+    {
+      "slug": "solid-principles",
+      "type": "prerequisite"
+    },
+    {
+      "slug": "dependency-injection",
+      "type": "complement"
+    },
+    {
+      "slug": "ddd-tactical-patterns",
+      "type": "complement"
+    },
+    {
+      "slug": "clean-code-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "clean-architecture",
+      "type": "alternative"
+    },
+    {
+      "slug": "onion-architecture",
+      "type": "alternative"
+    },
+    {
+      "slug": "n-tier-layered",
+      "type": "alternative"
+    },
+    {
+      "slug": "ports-and-adapters",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/hexagonal-architecture",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/hexagonal-architecture.md"
+}

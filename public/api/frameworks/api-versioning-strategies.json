@@ -1,0 +1,191 @@
+{
+  "id": 240,
+  "name": "API Versioning Strategies",
+  "name_zh": "API 版本管理策略",
+  "slug": "api-versioning-strategies",
+  "category": "api",
+  "desc": "URL path, header, and query parameter techniques for evolving APIs without breaking clients",
+  "desc_zh": "通过 URL 路径、请求头和查询参数等技术演进 API，同时避免破坏已有客户端",
+  "steps": [
+    "Choose a versioning scheme based on client type and change frequency: URL path (/v1/resources) for public APIs with broad client diversity, custom request headers (API-Version: 2024-01) for header-aware clients, or query parameters (?version=1) for simple integrations",
+    "Establish a version lifecycle policy specifying how long each version will be supported (e.g., two concurrent versions, 12-month deprecation notice) and communicate it clearly in API documentation",
+    "Implement version routing at the API gateway or controller layer, mapping version identifiers to the correct handler implementations, keeping business logic version-agnostic where possible",
+    "Use semantic versioning semantics to distinguish breaking changes (major version bump) from additive changes (backward-compatible additions do not require a new version) and document the change log per version",
+    "Sunset old versions using HTTP 410 Gone responses and Deprecation/Sunset headers, monitor traffic to deprecated endpoints, and notify clients in advance before retiring a version"
+  ],
+  "steps_zh": [
+    "根据客户端类型和变更频率选择版本方案：URL 路径（/v1/resources）适合客户端多样的公共 API；自定义请求头（API-Version: 2024-01）适合支持头部的客户端；查询参数（?version=1）适合简单集成场景",
+    "制定版本生命周期策略，明确每个版本的支持时长（如同时维护两个版本、12 个月废弃通知期），并在 API 文档中清晰传达",
+    "在 API 网关或控制器层实现版本路由，将版本标识符映射到对应处理实现，尽量保持业务逻辑与版本无关",
+    "用语义版本语义区分破坏性变更（主版本递增）和向后兼容的新增内容（无需新版本），并按版本维护变更日志",
+    "通过 HTTP 410 Gone 响应和 Deprecation/Sunset 头部废弃旧版本，监控废弃端点的流量，并在下线前提前通知客户端"
+  ],
+  "ai_relevant": false,
+  "viz_type": "timeline",
+  "viz_labels": [
+    "Version Scheme",
+    "Lifecycle Policy",
+    "Version Routing",
+    "Semantic Versioning",
+    "Sunset"
+  ],
+  "viz_labels_zh": [
+    "版本方案",
+    "生命周期",
+    "版本路由",
+    "语义版本",
+    "下线策略"
+  ],
+  "related": [
+    "openapi-specification",
+    "api-gateway-pattern",
+    "expansion-contraction-pattern"
+  ],
+  "tags": [
+    "versioning",
+    "backward-compatibility",
+    "api-lifecycle",
+    "deprecation"
+  ],
+  "origin_author": "Troy Hunt",
+  "origin_source": "Troy Hunt (2014). \"Your API versioning is wrong\". troyhunt.com; REST API Design Rulebook (Mark Masse, O'Reilly 2011)",
+  "origin_source_zh": "Troy Hunt（2014）。「你的 API 版本管理是错误的」，troyhunt.com；《REST API 设计规范》（Mark Masse，O'Reilly 2011）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When a public API serves third-party developers or partners who cannot be forced to upgrade in lockstep with server releases",
+    "When introducing breaking changes (renaming fields, changing response structures, removing endpoints) that would silently corrupt existing client integrations",
+    "When different client segments (mobile apps, legacy enterprise systems, new web frontends) need to migrate at different speeds",
+    "When regulatory or contractual obligations require a stable, versioned API surface for a defined period"
+  ],
+  "when_to_use_zh": [
+    "当公共 API 服务于第三方开发者或合作伙伴，无法强制其与服务端同步升级时",
+    "当引入破坏性变更（重命名字段、改变响应结构、删除端点）可能悄然破坏现有客户端集成时",
+    "当不同客户端群体（移动应用、遗留企业系统、新 Web 前端）需要以不同速度迁移时",
+    "当法规或合同义务要求在特定期限内提供稳定的、带版本号的 API 接口时"
+  ],
+  "core_concepts": [
+    "URL Path Versioning: Embedding the version in the resource path (/v1/users) makes the version explicit, cache-friendly, and easy to route at the gateway, but couples the version to the URL structure",
+    "Header Versioning: Using a custom request header (API-Version: 2024-01-15) or the Accept header (application/vnd.example.v2+json) keeps URLs clean but requires header-aware clients and CDN configurations",
+    "Query Parameter Versioning: Adding a version query parameter (?api-version=2) is simple to implement but can pollute cache keys and is less semantically clean than path versioning",
+    "Semantic Versioning Contract: Distinguishing breaking changes (require a new version) from additive/backward-compatible changes (can be added to the current version) minimizes unnecessary version proliferation",
+    "Sunset Policy: A formal lifecycle policy defining support windows, deprecation notices, and sunset dates ensures clients have predictable migration timelines and avoids surprise API removals"
+  ],
+  "core_concepts_zh": [
+    "URL 路径版本：将版本嵌入资源路径（/v1/users），版本显式可见、便于缓存和网关路由，但与 URL 结构耦合",
+    "请求头版本：使用自定义请求头（API-Version: 2024-01-15）或 Accept 头（application/vnd.example.v2+json），保持 URL 整洁，但要求客户端和 CDN 支持头部处理",
+    "查询参数版本：通过版本查询参数（?api-version=2）实现，简单直接，但可能污染缓存键，语义上不如路径版本清晰",
+    "语义版本契约：区分破坏性变更（需要新版本）与向后兼容的新增内容（可加入当前版本），最大限度减少不必要的版本扩散",
+    "废弃策略：正式的生命周期策略定义支持窗口、废弃通知和下线日期，确保客户端有可预期的迁移时间线，避免突然删除 API"
+  ],
+  "timeline": [
+    [
+      "2000",
+      "Early REST APIs use ad-hoc versioning; Roy Fielding's REST dissertation establishes the foundation for API design"
+    ],
+    [
+      "2011",
+      "Stripe launches its date-based API versioning (YYYY-MM-DD) which becomes an industry reference model for SaaS APIs"
+    ],
+    [
+      "2014",
+      "Troy Hunt's blog post 'Your API versioning is wrong' sparks widespread debate on URL path vs header versioning"
+    ],
+    [
+      "2021",
+      "IETF publishes RFC 8594 (Sunset Header) standardizing HTTP header for announcing API deprecation and retirement dates"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2000",
+      "早期 REST API 使用临时版本管理；Roy Fielding 的 REST 论文奠定了 API 设计基础"
+    ],
+    [
+      "2011",
+      "Stripe 推出基于日期的 API 版本控制（YYYY-MM-DD），成为 SaaS API 的行业参考模型"
+    ],
+    [
+      "2014",
+      "Troy Hunt 的博文「你的 API 版本管理是错误的」引发了 URL 路径与请求头版本方式的广泛讨论"
+    ],
+    [
+      "2021",
+      "IETF 发布 RFC 8594（Sunset 头部），标准化了用于宣布 API 废弃和下线日期的 HTTP 头部"
+    ]
+  ],
+  "dos": [
+    "Do publish and commit to a versioning lifecycle policy before you launch the first public version, because retrofitting deprecation timelines is much harder than establishing them upfront",
+    "Do use the HTTP Deprecation and Sunset response headers on all deprecated endpoints so client SDKs and monitoring tools can detect and surface upcoming retirements automatically",
+    "Do version the API at the coarsest granularity that avoids breaking changes — prefer additive evolution within a version over creating a new version for every non-breaking change",
+    "Do maintain a versioned changelog and migration guide so clients can understand exactly what changed and how to upgrade"
+  ],
+  "dos_zh": [
+    "在发布第一个公开版本之前制定并承诺版本生命周期策略，因为事后追加废弃时间线远比提前确立更难",
+    "在所有已废弃端点上使用 HTTP Deprecation 和 Sunset 响应头，以便客户端 SDK 和监控工具能自动检测并提醒即将到来的下线",
+    "以最粗粒度对 API 进行版本化以避免破坏性变更——在版本内优先采用向后兼容的新增演进，而非每次非破坏性变更都创建新版本",
+    "维护带版本的变更日志和迁移指南，让客户端清楚了解发生了哪些变化以及如何升级"
+  ],
+  "donts": [
+    "Don't version every minor change — additive, backward-compatible changes (new optional fields, new endpoints) should be added to the current version without bumping the version number",
+    "Don't maintain more than two or three simultaneous major versions in production because each version multiplies testing, documentation, and operational burden indefinitely",
+    "Don't silently deprecate an API version by simply stopping to maintain it — always communicate deprecation timelines and respond to requests with proper Deprecation headers",
+    "Don't mix versioning strategies (URL path in some endpoints, headers in others) within the same API surface — pick one and apply it consistently"
+  ],
+  "donts_zh": [
+    "不要对每个小变更都升版本——向后兼容的新增内容（新的可选字段、新端点）应直接加入当前版本，无需递增版本号",
+    "不要同时在生产环境维护超过两三个主版本，因为每个版本都会无限叠加测试、文档和运维负担",
+    "不要通过停止维护来悄然废弃某个 API 版本——始终传达废弃时间线，并在响应中添加 Deprecation 头部",
+    "不要在同一 API 表面混用多种版本策略（某些端点用 URL 路径，其他用请求头）——选定一种后一致应用"
+  ],
+  "case_study_company": "Stripe",
+  "case_study": "Stripe's API versioning strategy is widely cited as a gold standard. Stripe uses date-based version identifiers (e.g., 2023-10-16) and permanently pins each API key to the version current at the time of the key's creation. This means a developer's integration never breaks due to a Stripe API update — Stripe runs all versions simultaneously and uses automated changelog generation to document every change. As of 2024, Stripe maintains over 10 years of backward-compatible API versions, enabling customers with decade-old integrations to continue operating without modification.",
+  "case_study_zh": "Stripe 的 API 版本策略被广泛视为黄金标准。Stripe 采用基于日期的版本标识符（如 2023-10-16），并将每个 API 密钥永久固定到创建时的当前版本。这意味着开发者的集成永远不会因 Stripe 的 API 更新而中断——Stripe 同时运行所有版本，并用自动化变更日志生成来记录每一项变更。截至 2024 年，Stripe 维护着超过 10 年的向后兼容 API 版本，让使用十年前集成的客户无需任何修改即可继续运行。",
+  "when_not_to_use": [
+    "Internal APIs consumed only by services you own and deploy together — use consumer-driven contract tests instead of versioning to coordinate changes",
+    "APIs under active development before any external consumers exist — stabilize the design first, then introduce versioning when you publish",
+    "APIs where all consumers can be updated atomically (e.g., a single-page app and its BFF) — prefer feature flags and backward-compatible evolution",
+    "GraphQL APIs where field-level deprecation and query flexibility already provide a finer-grained compatibility mechanism than endpoint versioning"
+  ],
+  "when_not_to_use_zh": [
+    "仅由你自己拥有并一同部署的内部 API——使用消费者驱动的契约测试，而非版本管理来协调变更",
+    "在任何外部消费者存在之前仍在积极开发中的 API——先稳定设计，再在发布时引入版本管理",
+    "所有消费者可以原子性更新的 API（如单页应用及其对应的 BFF）——优先使用功能开关和向后兼容演进",
+    "GraphQL API，其字段级废弃和查询灵活性已提供比端点版本管理更细粒度的兼容性机制"
+  ],
+  "adopters": [
+    "Stripe",
+    "Twilio",
+    "GitHub",
+    "Salesforce",
+    "Microsoft Azure"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability",
+    "reliability",
+    "usability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Troy Hunt (2014). \"Your API versioning is wrong, which is why I decided to do it 3 different wrong ways\". troyhunt.com.",
+  "secondary_sources": [
+    "IETF (2021). \"RFC 8594: The Sunset HTTP Header Field\". tools.ietf.org.",
+    "Klarna (2022). \"Klarna API Versioning Strategy\". engineering.klarna.com.",
+    "Masse, M. (2011). \"REST API Design Rulebook\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "openapi-specification",
+      "type": "complement"
+    },
+    {
+      "slug": "api-gateway-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "expansion-contraction-pattern",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/api-versioning-strategies",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/api-versioning-strategies.md"
+}

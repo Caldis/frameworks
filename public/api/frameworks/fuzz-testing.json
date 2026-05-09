@@ -1,0 +1,189 @@
+{
+  "id": 301,
+  "name": "Fuzz Testing",
+  "name_zh": "模糊测试",
+  "slug": "fuzz-testing",
+  "category": "quality",
+  "desc": "Automated testing technique that feeds randomly generated, malformed, or unexpected inputs to a program to discover crashes, security vulnerabilities, and undefined behaviour.",
+  "desc_zh": "向程序输入随机生成、畸形或意外数据的自动化测试技术，用于发现崩溃、安全漏洞和未定义行为。",
+  "steps": [
+    "Define the fuzzing target: identify the parsing, deserialization, or input-processing functions that consume untrusted external input and are most likely to contain memory safety bugs or crash paths",
+    "Choose a fuzzing strategy and tool: coverage-guided fuzzers (AFL++, libFuzzer, Jazzer) are most effective for complex input formats; generation-based fuzzers (Hypothesis, Atheris) are better for structured protocols and API fuzzing",
+    "Write a fuzz harness: a small entry-point function that accepts raw bytes from the fuzzer engine and feeds them to the target function; the harness must not crash on arbitrary input — crashes indicate bugs, not expected harness behaviour",
+    "Run the fuzzer with an initial corpus of valid example inputs to seed coverage; let it run for an extended period (hours to days) to allow the feedback-driven mutation engine to explore deep code paths",
+    "Triage discovered crashes: reproduce each crash with the minimised input, identify the root cause (buffer overflow, use-after-free, integer overflow, panic), file a bug with the crash input attached, and add the crashing input to the regression corpus"
+  ],
+  "steps_zh": [
+    "定义模糊测试目标：识别消耗不可信外部输入的解析、反序列化或输入处理函数，这些函数最有可能包含内存安全漏洞或崩溃路径",
+    "选择模糊测试策略和工具：覆盖率引导的模糊器（AFL++、libFuzzer、Jazzer）对复杂输入格式最有效；基于生成的模糊器（Hypothesis、Atheris）更适合结构化协议和 API 模糊测试",
+    "编写模糊测试驱动：一个小型入口函数，接受来自模糊器引擎的原始字节并将其输入目标函数；驱动不能因任意输入而崩溃——崩溃表示存在 bug，而非预期的驱动行为",
+    "使用有效示例输入的初始语料库运行模糊器以播种覆盖率；让其运行较长时间（数小时至数天），允许反馈驱动的变异引擎探索深层代码路径",
+    "对发现的崩溃进行分类：用最小化输入复现每个崩溃，识别根本原因（缓冲区溢出、释放后使用、整数溢出、panic），提交附带崩溃输入的 bug，并将崩溃输入添加到回归语料库"
+  ],
+  "ai_relevant": false,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Seed",
+    "Mutate",
+    "Execute",
+    "Triage"
+  ],
+  "viz_labels_zh": [
+    "种子输入",
+    "变异生成",
+    "执行",
+    "问题分类"
+  ],
+  "related": [
+    "property-based-testing",
+    "continuous-testing",
+    "chaos-engineering"
+  ],
+  "tags": [
+    "fuzzing",
+    "security-testing",
+    "afl",
+    "libfuzzer",
+    "random-testing",
+    "vulnerability-discovery"
+  ],
+  "origin_author": "Barton Miller",
+  "origin_source": "Miller, B., Fredriksen, L., & So, B. (1990). \"An Empirical Study of the Reliability of UNIX Utilities\". Communications of the ACM, 33(12), 32-44.",
+  "origin_source_zh": "Miller, B., Fredriksen, L., & So, B.（1990）.「An Empirical Study of the Reliability of UNIX Utilities」. Communications of the ACM, 33(12), 32-44.",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Libraries and services that parse untrusted external data — file formats, network protocols, serialization formats, APIs — where unexpected input can trigger memory corruption, crashes, or security vulnerabilities",
+    "Security-critical codebases in C, C++, or Rust where memory safety bugs (buffer overflows, use-after-free, integer overflows) carry high severity and traditional unit testing cannot exhaustively cover the input space",
+    "Before releasing a new parser, codec, or protocol implementation to production where the cost of a post-release CVE or crash significantly exceeds the investment in pre-release fuzzing",
+    "Continuous integration pipelines for open-source projects and critical infrastructure where OSS-Fuzz integration or ClusterFuzz can run fuzzing at scale between releases"
+  ],
+  "when_to_use_zh": [
+    "解析不可信外部数据的库和服务——文件格式、网络协议、序列化格式、API——其中意外输入可能触发内存损坏、崩溃或安全漏洞",
+    "C、C++ 或 Rust 中安全关键代码库，内存安全漏洞（缓冲区溢出、释放后使用、整数溢出）严重性高，传统单元测试无法穷举输入空间",
+    "在将新解析器、编解码器或协议实现发布到生产环境之前，发布后 CVE 或崩溃的成本显著超过发布前模糊测试的投入",
+    "开源项目和关键基础设施的持续集成流水线，OSS-Fuzz 集成或 ClusterFuzz 可以在发布间隔期间大规模运行模糊测试"
+  ],
+  "core_concepts": [
+    "Coverage-Guided Fuzzing: the fuzzer instruments the binary to measure which code paths each input exercises; mutations that increase code coverage are retained in the corpus, enabling the fuzzer to progressively discover deeper and rarer code paths through feedback-driven mutation",
+    "Fuzz Harness: a thin wrapper function that translates raw fuzzer-provided bytes into a structured call to the target function; the quality of the harness determines the fuzzing depth — a poor harness limits the fuzzer to shallow input parsing",
+    "Corpus and Seed Inputs: a corpus of valid example inputs bootstraps coverage by giving the fuzzer a starting point that already exercises non-trivial code paths; seed quality directly affects time-to-first-crash on complex parsers",
+    "Sanitizers: fuzz testing is most effective when combined with AddressSanitizer (ASan), UndefinedBehaviourSanitizer (UBSan), and MemorySanitizer — these instrument the binary to detect memory safety violations that do not cause immediate crashes, dramatically increasing bug discovery rate"
+  ],
+  "core_concepts_zh": [
+    "覆盖率引导的模糊测试：模糊器对二进制文件进行插桩以测量每个输入执行了哪些代码路径；增加代码覆盖率的变异被保留在语料库中，使模糊器能够通过反馈驱动的变异逐步发现更深更罕见的代码路径",
+    "模糊测试驱动：将模糊器提供的原始字节转换为对目标函数的结构化调用的薄包装函数；驱动的质量决定了模糊测试的深度——差的驱动将模糊器限制在浅层输入解析",
+    "语料库和种子输入：有效示例输入的语料库通过给模糊器一个已经执行非平凡代码路径的起点来引导覆盖率；种子质量直接影响复杂解析器的首次崩溃时间",
+    "消毒剂：当与 AddressSanitizer（ASan）、UndefinedBehaviourSanitizer（UBSan）和 MemorySanitizer 结合使用时，模糊测试最为有效——这些工具对二进制文件进行插桩以检测不会立即导致崩溃的内存安全违规，大幅提高 bug 发现率"
+  ],
+  "timeline": [
+    [
+      "1990",
+      "Barton Miller at University of Wisconsin publishes the first fuzz testing study, randomly piping characters to UNIX utilities and finding that 25-33% crashed or hung"
+    ],
+    [
+      "2004",
+      "Michael Zalewski releases American Fuzzy Lop (AFL), a coverage-guided fuzzer that became the dominant tool for security fuzzing by dramatically outperforming random input generation"
+    ],
+    [
+      "2016",
+      "Google launches OSS-Fuzz, providing continuous free fuzzing infrastructure for critical open-source projects; libFuzzer is integrated into LLVM as the standard in-process fuzzer"
+    ],
+    [
+      "2022",
+      "Go 1.18 ships built-in fuzz testing support in the standard library; Rust cargo-fuzz and Python Atheris bring coverage-guided fuzzing to all major language ecosystems"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1990",
+      "威斯康星大学的 Barton Miller 发表了首个模糊测试研究，向 UNIX 工具随机输入字符，发现 25-33% 的工具会崩溃或挂起"
+    ],
+    [
+      "2004",
+      "Michael Zalewski 发布 American Fuzzy Lop（AFL），一个覆盖率引导的模糊器，通过显著优于随机输入生成而成为安全模糊测试的主流工具"
+    ],
+    [
+      "2016",
+      "Google 启动 OSS-Fuzz，为关键开源项目提供持续免费的模糊测试基础设施；libFuzzer 作为标准进程内模糊器集成到 LLVM"
+    ],
+    [
+      "2022",
+      "Go 1.18 在标准库中内置了模糊测试支持；Rust cargo-fuzz 和 Python Atheris 将覆盖率引导的模糊测试带到所有主要语言生态系统"
+    ]
+  ],
+  "dos": [
+    "Do always run fuzzers with memory safety sanitizers enabled (AddressSanitizer, UndefinedBehaviourSanitizer) — without sanitizers, many memory corruption bugs cause no visible crash and go undetected",
+    "Do minimise crashing inputs using the fuzzer's corpus minimisation tool before filing bugs — a 3-byte reproducer is far more useful for debugging than a 50KB input that triggers the same crash",
+    "Do maintain a seed corpus of valid, structurally diverse example inputs and commit it to source control — seed quality has the largest single impact on time-to-discover-first-unique-bug on complex parsers",
+    "Do integrate fuzzing into CI with a time-limited run (5-10 minutes) to catch regressions, supplemented by long overnight or continuous cloud-based fuzzing campaigns for deeper exploration"
+  ],
+  "dos_zh": [
+    "始终在启用内存安全消毒剂（AddressSanitizer、UndefinedBehaviourSanitizer）的情况下运行模糊器——没有消毒剂，许多内存损坏 bug 不会导致可见崩溃而被漏检",
+    "在提交 bug 之前使用模糊器的语料库最小化工具最小化崩溃输入——3 字节的复现器比触发相同崩溃的 50KB 输入对调试有用得多",
+    "维护有效的、结构多样的示例输入种子语料库并提交到源码控制——种子质量对复杂解析器首次发现唯一 bug 的时间影响最大",
+    "将模糊测试集成到 CI 中，进行时间限制的运行（5-10 分钟）以捕获回归，并辅以长时间的夜间或持续基于云的模糊测试活动进行更深入的探索"
+  ],
+  "donts": [
+    "Do not fuzz without a harness that properly initialises all global and thread-local state — uninitialised state causes false positive crashes that mislead triage and waste debugging time",
+    "Do not treat a crash as confirmed until you have reproduced it deterministically with the minimised input on a clean build — transient crashes from race conditions or heap ASLR interference require special handling",
+    "Do not limit fuzzing to only the happy-path entry points — the most security-critical bugs are found in error handling, boundary conditions, and rarely-exercised code paths that only receive malformed inputs",
+    "Do not discard crashing inputs after fixing the bug — add them to the regression corpus so future fuzzing campaigns continue from the known boundary rather than rediscovering the same fixed bug"
+  ],
+  "donts_zh": [
+    "不要在没有正确初始化所有全局和线程本地状态的驱动情况下进行模糊测试——未初始化的状态会导致假阳性崩溃，误导分类并浪费调试时间",
+    "在没有使用最小化输入在干净构建上确定性复现崩溃之前，不要将崩溃视为已确认——来自竞争条件或堆 ASLR 干扰的瞬态崩溃需要特殊处理",
+    "不要将模糊测试限制在仅正常路径的入口点——最安全关键的 bug 在错误处理、边界条件和只接收畸形输入的罕见代码路径中被发现",
+    "在修复 bug 后不要丢弃崩溃输入——将其添加到回归语料库，使未来的模糊测试活动从已知边界继续，而不是重新发现相同的已修复 bug"
+  ],
+  "case_study_company": "Google",
+  "case_study": "Google launched OSS-Fuzz in 2016 to provide continuous free fuzzing infrastructure for critical open-source projects integrated into the broader software supply chain. By 2024, OSS-Fuzz had fuzzed over 1,000 open-source projects and found over 10,000 vulnerabilities and bugs, including critical CVEs in OpenSSL, libpng, FFmpeg, FreeType, and dozens of other widely deployed libraries. Google's internal fuzzing infrastructure, ClusterFuzz, runs tens of billions of test cases per day across Chrome and Android. In Chrome specifically, fuzzing has been credited with finding approximately 25% of all security bugs before they reach users. The Chrome security team maintains over 1,500 fuzz targets covering parser, codec, and IPC code, and all new Chrome security-sensitive code is required to have an associated fuzz harness as a condition of code review approval.",
+  "case_study_zh": "Google 于 2016 年启动 OSS-Fuzz，为集成到更广泛软件供应链的关键开源项目提供持续免费的模糊测试基础设施。到 2024 年，OSS-Fuzz 已对 1000 多个开源项目进行了模糊测试，发现了 10000 多个漏洞和 bug，包括 OpenSSL、libpng、FFmpeg、FreeType 和数十个其他广泛部署库中的关键 CVE。Google 的内部模糊测试基础设施 ClusterFuzz 每天在 Chrome 和 Android 上运行数百亿个测试用例。在 Chrome 中，模糊测试被认为在漏洞到达用户之前发现了大约 25% 的所有安全 bug。Chrome 安全团队维护了 1500 多个覆盖解析器、编解码器和 IPC 代码的模糊目标，所有新的 Chrome 安全敏感代码都需要有相关的模糊驱动作为代码审查批准的条件。",
+  "when_not_to_use": [
+    "Pure business logic and domain rule validation where all inputs are structured, pre-validated, and the attack surface consists of logical correctness rather than parsing or memory safety",
+    "Systems written in memory-safe languages (Python, JavaScript, Java, Go with GC) where the primary vulnerability class being targeted is not applicable and fuzzing discovers logic bugs more slowly than directed testing",
+    "UI and end-to-end workflows where the state space is too large and input space too structured for random mutation to exercise meaningful code paths — BDD and scenario-based testing are more appropriate",
+    "Early-stage prototypes where the code structure changes frequently enough that maintaining fuzz harnesses and seed corpora represents overhead disproportionate to code stability"
+  ],
+  "when_not_to_use_zh": [
+    "纯业务逻辑和领域规则验证，其中所有输入都是结构化、预验证的，攻击面由逻辑正确性而非解析或内存安全构成",
+    "使用内存安全语言（Python、JavaScript、带 GC 的 Java、Go）编写的系统，其中针对的主要漏洞类别不适用，模糊测试发现逻辑 bug 的速度比定向测试慢",
+    "状态空间太大且输入空间太结构化，随机变异无法执行有意义代码路径的 UI 和端到端工作流——BDD 和基于场景的测试更为合适",
+    "代码结构变化频繁，维护模糊驱动和种子语料库的开销与代码稳定性不成比例的早期原型"
+  ],
+  "adopters": [
+    "Google (OSS-Fuzz, ClusterFuzz)",
+    "Microsoft (Security Risk Detection)",
+    "Apple (libFuzzer in Xcode)",
+    "Mozilla (Firefox fuzzing)",
+    "OpenSSF",
+    "LLVM/Clang project"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "security",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Miller, B., Fredriksen, L., & So, B. (1990). \"An Empirical Study of the Reliability of UNIX Utilities\". Communications of the ACM, 33(12), 32-44.",
+  "secondary_sources": [
+    "Zalewski, M. (2015). \"American Fuzzy Lop Technical Details\". lcamtuf.coredump.cx.",
+    "Serebryany, K. (2017). \"libFuzzer: A Library for Coverage-Guided Fuzz Testing\". llvm.org.",
+    "Google (2016). \"OSS-Fuzz: Continuous Fuzzing for Open Source Software\". github.com/google/oss-fuzz."
+  ],
+  "typed_relations": [
+    {
+      "slug": "continuous-testing",
+      "type": "complement"
+    },
+    {
+      "slug": "property-based-testing",
+      "type": "related"
+    },
+    {
+      "slug": "chaos-engineering",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/fuzz-testing",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/fuzz-testing.md"
+}

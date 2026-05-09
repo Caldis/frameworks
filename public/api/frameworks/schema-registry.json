@@ -1,0 +1,198 @@
+{
+  "id": 307,
+  "name": "Schema Registry",
+  "name_zh": "模式注册表",
+  "slug": "schema-registry",
+  "category": "data",
+  "desc": "Centralized service for storing, versioning, and enforcing data schemas in streaming and event-driven architectures, ensuring producer-consumer compatibility.",
+  "desc_zh": "集中式服务，用于在流式和事件驱动架构中存储、版本化和强制执行数据模式，确保生产者与消费者的兼容性。",
+  "steps": [
+    "Register canonical schemas (Avro, Protobuf, or JSON Schema) for each Kafka topic or event stream using a compatibility-checked API",
+    "Configure compatibility rules (BACKWARD, FORWARD, FULL, or NONE) per subject so the registry auto-validates new schema versions at registration time",
+    "Integrate schema serializers/deserializers (SerDes) in producers and consumers so they look up schemas by ID at runtime instead of embedding schema in every message",
+    "Version and tag schemas alongside service releases so schema evolution is traceable and rollbacks are possible",
+    "Monitor schema usage dashboards to identify stale schemas, detect consumers blocked by incompatible changes, and track adoption of new schema versions"
+  ],
+  "steps_zh": [
+    "使用兼容性检查API为每个Kafka主题或事件流注册规范模式（Avro、Protobuf或JSON Schema）",
+    "为每个主题配置兼容性规则（向后、向前、全量或无），使注册表在注册时自动验证新模式版本",
+    "在生产者和消费者中集成模式序列化/反序列化器（SerDes），使其在运行时按ID查找模式，而非在每条消息中嵌入模式",
+    "将模式与服务发布一起版本化和标记，使模式演进可追溯且回滚成为可能",
+    "监控模式使用仪表板，识别过时模式、检测被不兼容变更阻塞的消费者，并跟踪新模式版本的采用情况"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Schema Register",
+    "Compatibility",
+    "SerDes",
+    "Versioning",
+    "Usage Monitor"
+  ],
+  "viz_labels_zh": [
+    "模式注册",
+    "兼容性",
+    "序列化器",
+    "版本管理",
+    "使用监控"
+  ],
+  "related": [
+    "schema-registry-pattern",
+    "data-catalog",
+    "data-lineage",
+    "data-contract",
+    "stream-processing-patterns"
+  ],
+  "tags": [
+    "schema",
+    "kafka",
+    "avro",
+    "compatibility",
+    "confluent",
+    "streaming"
+  ],
+  "origin_author": "Confluent",
+  "origin_source": "Confluent (2015). 'Schema Registry Documentation'. docs.confluent.io; Narkhede, N. et al. (2017). Kafka: The Definitive Guide. O'Reilly.",
+  "origin_source_zh": "Confluent（2015）。「模式注册表文档」。docs.confluent.io；Narkhede, N. 等（2017）。《Kafka权威指南》。O'Reilly。",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When building Kafka-based event streaming pipelines where multiple producer and consumer teams evolve independently and schema changes must not break downstream consumers",
+    "When regulatory or audit requirements mandate that the exact schema of every event published to a data stream is recorded, versioned, and retrievable",
+    "When using Avro, Protobuf, or JSON Schema serialization formats that externalize schema from payload, making a central registry essential for deserialization",
+    "When operating a data platform with dozens of topics and teams where ad-hoc schema changes without compatibility checks are a leading cause of production incidents"
+  ],
+  "when_to_use_zh": [
+    "当构建基于Kafka的事件流管道，多个生产者和消费者团队独立演进，且模式变更不得破坏下游消费者时",
+    "当监管或审计要求要求记录、版本化和检索发布到数据流的每个事件的确切模式时",
+    "当使用Avro、Protobuf或JSON Schema序列化格式时，这些格式将模式与有效负载分离，使中央注册表成为反序列化的必要条件",
+    "当在拥有数十个主题和团队的数据平台上运营，且未经兼容性检查的临时模式变更是生产事故的主要原因时"
+  ],
+  "core_concepts": [
+    "Schema subjects: named containers (typically one per Kafka topic) that hold all versions of a schema and enforce a configured compatibility policy across those versions",
+    "Compatibility modes: BACKWARD (new schema reads old data), FORWARD (old schema reads new data), FULL (both directions), allowing teams to choose the right trade-off between producer and consumer flexibility",
+    "Schema ID wire format: producers embed only a 4-byte schema ID in each message header rather than the full schema, reducing payload size by 80–95% while enabling consumers to fetch the exact schema for deserialization",
+    "SerDes integration: Confluent's Kafka serializers and deserializers query the registry at startup and cache schemas locally, making schema resolution transparent to application code"
+  ],
+  "core_concepts_zh": [
+    "模式主题：命名容器（通常每个Kafka主题一个），保存模式的所有版本并在这些版本上强制执行配置的兼容性策略",
+    "兼容性模式：向后（新模式读取旧数据）、向前（旧模式读取新数据）、全量（双向），允许团队在生产者和消费者灵活性之间选择合适的权衡",
+    "模式ID线格式：生产者在每条消息头中仅嵌入4字节的模式ID而非完整模式，将有效负载大小减少80–95%，同时使消费者能够获取反序列化的确切模式",
+    "SerDes集成：Confluent的Kafka序列化和反序列化器在启动时查询注册表并在本地缓存模式，使模式解析对应用代码透明"
+  ],
+  "timeline": [
+    [
+      "2015",
+      "Confluent releases the Schema Registry as part of the Confluent Platform, formalizing centralized schema management for Apache Kafka ecosystems"
+    ],
+    [
+      "2017",
+      "Hortonworks Schema Registry (now Apache Atlas) adds support for Kafka Streams and Flink, extending the pattern beyond Kafka to the broader streaming ecosystem"
+    ],
+    [
+      "2020",
+      "AWS Glue Schema Registry and Azure Event Hubs Schema Registry launch, making schema governance a first-class cloud platform feature"
+    ],
+    [
+      "2023",
+      "OpenAPI-based AsyncAPI specification gains traction as a schema-registry-adjacent standard for documenting event-driven APIs across brokers"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2015",
+      "Confluent作为Confluent平台的一部分发布模式注册表，为Apache Kafka生态系统正式化集中式模式管理"
+    ],
+    [
+      "2017",
+      "Hortonworks模式注册表（现为Apache Atlas）增加对Kafka Streams和Flink的支持，将该模式从Kafka扩展到更广泛的流式生态系统"
+    ],
+    [
+      "2020",
+      "AWS Glue模式注册表和Azure事件中心模式注册表推出，使模式治理成为一流云平台功能"
+    ],
+    [
+      "2023",
+      "基于OpenAPI的AsyncAPI规范作为跨消息代理文档化事件驱动API的模式注册表相邻标准获得广泛认可"
+    ]
+  ],
+  "dos": [
+    "Do set FULL compatibility on high-traffic topics shared across many consumer teams because it is the safest policy and prevents both producer and consumer from accidentally breaking each other",
+    "Do version schemas alongside your service's release tags so you can correlate production incidents to specific schema changes in the git history",
+    "Do run schema compatibility checks in CI before merging any producer code changes so incompatible schemas never reach the deployment pipeline",
+    "Do monitor consumer lag per schema version to detect consumers pinned to old schema versions that will be affected by upcoming deprecations"
+  ],
+  "dos_zh": [
+    "对在许多消费者团队之间共享的高流量主题设置全量兼容性，因为这是最安全的策略，防止生产者和消费者意外破坏对方",
+    "将模式与服务的发布标签一起版本化，以便将生产事故与git历史中的特定模式变更关联",
+    "在合并任何生产者代码变更之前在CI中运行模式兼容性检查，确保不兼容的模式不会进入部署管道",
+    "监控每个模式版本的消费者延迟，以检测固定在旧模式版本的消费者，这些消费者将受到即将弃用的影响"
+  ],
+  "donts": [
+    "Don't use NONE compatibility mode on shared topics because it removes all guardrails and allows any schema change regardless of consumer impact",
+    "Don't hardcode schema IDs in consumer code because IDs are registry-specific and will differ across environments; always resolve IDs dynamically",
+    "Don't delete schema versions that active consumers depend on; mark them as deprecated and give consumers a migration window before deletion",
+    "Don't store large binary blobs or deeply nested schemas in the registry; extreme schema complexity should be a signal to decompose the event into smaller, focused schemas"
+  ],
+  "donts_zh": [
+    "不要在共享主题上使用无兼容性模式，因为它去除所有防护措施，允许任何模式变更而不考虑对消费者的影响",
+    "不要在消费者代码中硬编码模式ID，因为ID是特定于注册表的，在不同环境中会有所不同；始终动态解析ID",
+    "不要删除活跃消费者依赖的模式版本；将其标记为已弃用，并在删除前给消费者留出迁移窗口",
+    "不要在注册表中存储大型二进制blob或深度嵌套的模式；极端的模式复杂性应该是将事件分解为更小、更集中模式的信号"
+  ],
+  "case_study_company": "Zalando",
+  "case_study": "Zalando, Europe's largest online fashion platform, enforces schema governance across 2,000+ Kafka topics using Confluent Schema Registry with FULL compatibility mode. Every event schema is authored in Avro and peer-reviewed via pull request before registration. The schema registry is integrated into Zalando's internal developer platform Nakadi, which exposes event types as REST APIs. When a producer team proposes an incompatible schema change, Nakadi's CI pipeline automatically identifies all consumer teams and opens compatibility-blocking pull requests to coordinate migration. This process has reduced schema-induced production incidents by 90% since 2018.",
+  "case_study_zh": "欧洲最大的在线时尚平台Zalando使用Confluent模式注册表和全量兼容性模式对2000多个Kafka主题强制执行模式治理。每个事件模式在注册前以Avro编写并通过拉取请求进行同行评审。模式注册表集成到Zalando的内部开发者平台Nakadi中，该平台将事件类型作为REST API公开。当生产者团队提出不兼容的模式变更时，Nakadi的CI管道自动识别所有消费者团队并开启兼容性阻塞的拉取请求以协调迁移。自2018年以来，这一流程将模式引发的生产事故减少了90%。",
+  "when_not_to_use": [
+    "When using JSON or Avro with schemas embedded in each message payload and the team explicitly prefers schema-on-read flexibility over compatibility enforcement",
+    "Small event-driven systems with fewer than 5 topics and a single team where the overhead of a separate registry service exceeds the benefit",
+    "When all producers and consumers are tightly coupled in a monolith and deploy together; schema versioning adds process overhead without the decoupling benefit",
+    "Prototyping phases where schema stability is not yet required and frequent structural changes are expected; introduce the registry when the schema stabilizes"
+  ],
+  "when_not_to_use_zh": [
+    "当使用在每条消息有效负载中嵌入模式的JSON或Avro，且团队明确偏好读取时模式灵活性而非兼容性强制时",
+    "拥有少于5个主题和单个团队的小型事件驱动系统，单独注册表服务的开销超过了收益",
+    "当所有生产者和消费者在单体中紧密耦合并一起部署时；模式版本化增加了流程开销而没有解耦收益",
+    "模式稳定性尚不需要且预期会有频繁结构变更的原型阶段；在模式稳定后引入注册表"
+  ],
+  "adopters": [
+    "Confluent",
+    "Zalando",
+    "LinkedIn",
+    "Uber",
+    "Robinhood",
+    "Goldman Sachs"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "maintainability",
+    "scalability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Confluent (2015). 'Schema Registry Documentation'. docs.confluent.io/platform/current/schema-registry/index.html.",
+  "secondary_sources": [
+    "Narkhede, N., Shapira, G. & Palino, T. (2017). Kafka: The Definitive Guide. O'Reilly Media. Chapter 9: Building Data Pipelines.",
+    "Kreps, J. (2014). 'The Log: What every software engineer should know about real-time data's unifying abstraction'. engineering.linkedin.com.",
+    "AWS (2020). 'Getting Started with AWS Glue Schema Registry'. AWS Documentation."
+  ],
+  "typed_relations": [
+    {
+      "slug": "schema-registry-pattern",
+      "type": "related"
+    },
+    {
+      "slug": "data-contract",
+      "type": "complement"
+    },
+    {
+      "slug": "stream-processing-patterns",
+      "type": "complement"
+    },
+    {
+      "slug": "data-catalog",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/schema-registry",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/schema-registry.md"
+}

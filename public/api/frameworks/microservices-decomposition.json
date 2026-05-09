@@ -1,0 +1,198 @@
+{
+  "id": 21,
+  "name": "Microservices Decomposition Patterns",
+  "name_zh": "微服务分解模式",
+  "slug": "microservices-decomposition",
+  "category": "architecture",
+  "desc": "Strategies to split monoliths into focused, independent services",
+  "desc_zh": "将单体应用拆分为职责明确的独立服务的策略集合",
+  "steps": [
+    "Analyze the monolith using domain analysis or dependency graphs to identify natural seams and hot spots",
+    "Apply decomposition strategy: Decompose by Business Capability, Subdomain, or Strangler Fig for incremental migration",
+    "Define service APIs and contracts first (API-first), then extract service logic and its data store",
+    "Implement inter-service communication: synchronous REST/gRPC or asynchronous messaging based on coupling tolerance",
+    "Validate each extracted service with independent deployment, monitoring, and rollback before continuing extraction"
+  ],
+  "steps_zh": [
+    "使用领域分析或依赖关系图分析单体应用，识别自然接缝和热点",
+    "应用分解策略：按业务能力、子域或绞杀者模式进行增量迁移",
+    "先定义服务API和契约（API优先），再提取服务逻辑及其数据存储",
+    "根据耦合容忍度选择服务间通信方式：同步REST/gRPC或异步消息",
+    "对每个提取的服务进行独立部署、监控和回滚验证，再继续后续提取"
+  ],
+  "ai_relevant": false,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Domain Service",
+    "API Gateway",
+    "Data Store",
+    "Boundary"
+  ],
+  "viz_labels_zh": [
+    "领域服务",
+    "API网关",
+    "数据存储",
+    "服务边界"
+  ],
+  "related": [
+    "domain-driven-design",
+    "eda",
+    "service-mesh-pattern",
+    "strangler-fig-pattern"
+  ],
+  "tags": [
+    "microservices",
+    "decomposition",
+    "monolith",
+    "service-boundaries"
+  ],
+  "origin_author": "James Lewis and Martin Fowler, 2014",
+  "origin_source": "Microservices: a definition of this new architectural term (martinfowler.com, 2014)",
+  "origin_source_zh": "《微服务：这一新架构术语的定义》（martinfowler.com，2014年）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When a monolith's deployment frequency is bottlenecked by team coordination overhead",
+    "When different parts of the system have vastly different scaling requirements",
+    "When teams need to independently develop, deploy, and scale their owned services",
+    "When migrating gradually from a legacy monolith using the Strangler Fig approach"
+  ],
+  "when_to_use_zh": [
+    "单体应用的部署频率因团队协调开销而成为瓶颈时",
+    "系统不同部分具有截然不同的扩展需求时",
+    "团队需要独立开发、部署和扩展其负责的服务时",
+    "使用绞杀者模式从遗留单体逐步迁移时"
+  ],
+  "core_concepts": [
+    "Decompose by Business Capability: Align service boundaries with what the business does (e.g., payments, inventory)",
+    "Decompose by Subdomain: Use DDD bounded contexts to find natural service boundaries",
+    "Strangler Fig Pattern: Incrementally replace monolith functionality by routing traffic to new services",
+    "Database per Service: Each microservice owns its data store to ensure loose coupling",
+    "API Gateway: A single entry point that routes, aggregates, and translates client requests to internal services"
+  ],
+  "core_concepts_zh": [
+    "按业务能力分解：将服务边界与业务功能对齐（如支付、库存）",
+    "按子域分解：使用DDD限界上下文找到自然的服务边界",
+    "绞杀者模式：通过将流量路由到新服务来增量替换单体功能",
+    "服务独占数据库：每个微服务拥有自己的数据存储以确保松耦合",
+    "API网关：路由、聚合和转换客户端请求到内部服务的单一入口点"
+  ],
+  "timeline": [
+    [
+      "2011",
+      "Netflix begins its large-scale monolith-to-microservices migration"
+    ],
+    [
+      "2014",
+      "James Lewis and Martin Fowler publish the canonical microservices article"
+    ],
+    [
+      "2015",
+      "Sam Newman publishes 'Building Microservices', establishing practical patterns"
+    ],
+    [
+      "2018",
+      "Service mesh tools (Istio, Linkerd) mature, addressing microservice networking complexity"
+    ],
+    [
+      "2023",
+      "Industry recognizes 'right-sizing' services, moving beyond naive fine-grained decomposition"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2011",
+      "Netflix开始大规模从单体向微服务迁移"
+    ],
+    [
+      "2014",
+      "James Lewis和Martin Fowler发表经典微服务文章"
+    ],
+    [
+      "2015",
+      "Sam Newman出版《构建微服务》，建立实践模式"
+    ],
+    [
+      "2018",
+      "服务网格工具（Istio、Linkerd）成熟，应对微服务网络复杂性"
+    ],
+    [
+      "2023",
+      "业界认识到「合理粒度」服务的重要性，超越简单的细粒度分解"
+    ]
+  ],
+  "dos": [
+    "Do start with a well-structured modular monolith before decomposing because clear boundaries make extraction easier",
+    "Do define service boundaries using domain-driven design because business alignment prevents arbitrary splits",
+    "Do automate deployment pipelines for each service because manual deployment negates microservices benefits",
+    "Do implement contract testing between services because integration breakage is the top microservices risk"
+  ],
+  "dos_zh": [
+    "先构建结构良好的模块化单体再进行分解，因为清晰的边界使提取更容易",
+    "使用领域驱动设计定义服务边界，因为业务对齐可防止任意拆分",
+    "为每个服务自动化部署管道，因为手动部署会抵消微服务的好处",
+    "在服务间实现契约测试，因为集成破坏是微服务最大的风险"
+  ],
+  "donts": [
+    "Don't decompose a monolith you don't understand because you'll replicate its problems in distributed form",
+    "Don't create nano-services by splitting too finely because excessive network calls destroy performance",
+    "Don't share databases between services because it creates hidden coupling that defeats service independence",
+    "Don't skip investing in observability because debugging distributed systems without tracing is nearly impossible"
+  ],
+  "donts_zh": [
+    "不要分解你不理解的单体，因为你会以分布式形式复制其问题",
+    "不要通过过度细分创建纳米服务，因为过多的网络调用会摧毁性能",
+    "不要在服务间共享数据库，因为这会产生破坏服务独立性的隐性耦合",
+    "不要跳过可观测性投入，因为没有追踪的分布式系统调试几乎不可能"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix migrated from a monolithic Java application to over 700 microservices between 2011 and 2016. The migration used the Strangler Fig pattern, gradually replacing monolith endpoints with new services. Each service owned its data and communicated via REST and asynchronous messaging. This transformation enabled Netflix to deploy hundreds of times per day, scale individual services based on demand, and achieve 99.99% availability for its streaming platform serving 200+ million subscribers.",
+  "case_study_zh": "Netflix在2011至2016年间从单体Java应用迁移到超过700个微服务。迁移使用绞杀者模式，逐步用新服务替换单体端点。每个服务拥有自己的数据，通过REST和异步消息通信。这一转型使Netflix能够每天部署数百次、按需扩展单个服务，并为超过2亿订阅用户的流媒体平台实现99.99%的可用性。",
+  "when_not_to_use": [
+    "Early-stage startups where the domain model is still being discovered and boundaries will shift",
+    "Small teams (fewer than 8 developers) where microservices overhead exceeds coordination benefits",
+    "Systems with very tight latency requirements where inter-service network calls add unacceptable delay"
+  ],
+  "when_not_to_use_zh": [
+    "领域模型仍在探索中且边界会持续变化的早期创业公司",
+    "微服务开销超过协调收益的小型团队（少于8名开发者）",
+    "服务间网络调用会增加不可接受延迟的极低延迟要求系统"
+  ],
+  "adopters": [
+    "Netflix",
+    "Amazon",
+    "Uber",
+    "Spotify",
+    "SoundCloud"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "scalability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "James Lewis and Martin Fowler (2014). \"Microservices: A Definition of This New Architectural Term\". martinfowler.com.",
+  "secondary_sources": [
+    "Sam Newman (2015). \"Building Microservices: Designing Fine-Grained Systems\". O'Reilly Media.",
+    "Chris Richardson (2018). \"Microservices Patterns: With Examples in Java\". Manning Publications."
+  ],
+  "typed_relations": [
+    {
+      "slug": "domain-driven-design",
+      "type": "prerequisite"
+    },
+    {
+      "slug": "eda",
+      "type": "complement"
+    },
+    {
+      "slug": "service-mesh-pattern",
+      "type": "extends"
+    },
+    {
+      "slug": "strangler-fig-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/microservices-decomposition",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/microservices-decomposition.md"
+}

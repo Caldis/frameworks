@@ -1,0 +1,180 @@
+{
+  "id": 237,
+  "name": "Data Mapper Pattern",
+  "name_zh": "数据映射器模式",
+  "slug": "data-mapper-pattern",
+  "category": "coding",
+  "desc": "Transfer data between in-memory objects and a database while keeping them independent of each other",
+  "desc_zh": "在内存对象与数据库之间传输数据，同时保持两者相互独立，领域对象对持久化完全无知",
+  "steps": [
+    "Design persistence-ignorant domain objects: model domain classes using only business logic and in-memory state, with no database annotations, base class inheritance, or SQL awareness",
+    "Create the Mapper class: implement a dedicated class (or ORM mapping configuration) responsible for SELECT, INSERT, UPDATE, DELETE and for translating between database rows and domain objects",
+    "Map columns to fields: define explicit mappings from table columns to object properties, handling type conversions, naming differences, and value object composition",
+    "Handle identity and lazy loading: the mapper manages object identity (avoiding duplicate in-memory instances for the same row) and can support lazy-loading of associations via proxies",
+    "Integrate with Unit of Work: register loaded and mutated objects with a Unit of Work so the mapper's write operations are batched into a single transaction on commit"
+  ],
+  "steps_zh": [
+    "设计持久化无知的领域对象：使用仅包含业务逻辑和内存状态的领域类，没有数据库注解、基类继承或 SQL 意识",
+    "创建映射器类：实现专用类（或 ORM 映射配置），负责 SELECT、INSERT、UPDATE、DELETE 以及在数据库行和领域对象之间进行转换",
+    "将列映射到字段：定义从表列到对象属性的显式映射，处理类型转换、命名差异和值对象组合",
+    "处理标识和懒加载：映射器管理对象标识（避免同一行在内存中有重复实例），并可通过代理支持关联的懒加载",
+    "与工作单元集成：将加载的和变更的对象注册到工作单元，使映射器的写操作在提交时批处理到单一事务中"
+  ],
+  "ai_relevant": false,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Domain Object",
+    "Data Mapper",
+    "Database Row",
+    "Identity Map"
+  ],
+  "viz_labels_zh": [
+    "领域对象",
+    "数据映射器",
+    "数据库记录",
+    "标识映射"
+  ],
+  "related": [
+    "repository-pattern",
+    "unit-of-work-pattern",
+    "solid-principles",
+    "active-record-pattern"
+  ],
+  "tags": [
+    "fowler",
+    "poeaa",
+    "data-access",
+    "orm",
+    "persistence"
+  ],
+  "origin_author": "Martin Fowler, 2002",
+  "origin_source": "Patterns of Enterprise Application Architecture",
+  "origin_source_zh": "《企业应用架构模式》",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Domain objects are complex and their structure diverges significantly from the relational schema (impedance mismatch)",
+    "Domain objects must remain free of persistence concerns so they can be tested, serialized, or reused in non-database contexts",
+    "The database schema is legacy or independently owned and cannot be changed to match the object model"
+  ],
+  "when_to_use_zh": [
+    "领域对象很复杂，其结构与关系模式显著不同（阻抗不匹配）",
+    "领域对象必须保持对持久化关注点的自由，以便在非数据库上下文中测试、序列化或重用",
+    "数据库模式是遗留的或独立拥有的，无法更改以匹配对象模型"
+  ],
+  "core_concepts": [
+    "Persistence ignorance: domain objects know nothing about the database — no SQL, no annotations, no base ORM classes — making them pure expressions of business rules",
+    "Bidirectional translation: the mapper reads rows and constructs domain objects (hydration), and reads domain objects to produce SQL (dehydration), keeping both sides clean",
+    "Impedance mismatch resolution: the mapper bridges structural differences between the relational world (tables, joins, foreign keys) and the object world (inheritance, associations, value objects)"
+  ],
+  "core_concepts_zh": [
+    "持久化无知：领域对象对数据库一无所知——没有 SQL、没有注解、没有 ORM 基类——使其成为业务规则的纯粹表达",
+    "双向转换：映射器读取行并构造领域对象（水合），以及读取领域对象生成 SQL（脱水），保持两侧整洁",
+    "阻抗不匹配解决：映射器桥接关系世界（表、连接、外键）与对象世界（继承、关联、值对象）之间的结构差异"
+  ],
+  "timeline": [
+    [
+      "2002",
+      "Fowler formalizes Data Mapper in PoEAA, contrasting it with Active Record and noting its greater complexity but higher isolation"
+    ],
+    [
+      "2006",
+      "Hibernate becomes the dominant Java Data Mapper ORM, inspiring similar frameworks in Python (SQLAlchemy) and PHP (Doctrine)"
+    ],
+    [
+      "2010",
+      "NHibernate and then Entity Framework bring Data Mapper semantics to .NET, with EF eventually adding Code First and fluent mapping APIs"
+    ],
+    [
+      "2020",
+      "Micro-ORMs like Dapper show that hand-written SQL with explicit object mapping can outperform full ORM mappers for read-heavy workloads"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2002",
+      "Fowler 在 PoEAA 中将数据映射器正式化，将其与活动记录对比，注意到其更高的复杂性但也更高的隔离性"
+    ],
+    [
+      "2006",
+      "Hibernate 成为主流 Java 数据映射器 ORM，启发了 Python（SQLAlchemy）和 PHP（Doctrine）中的类似框架"
+    ],
+    [
+      "2010",
+      "NHibernate 以及后来的 Entity Framework 将数据映射器语义引入 .NET，EF 最终添加了 Code First 和流式映射 API"
+    ],
+    [
+      "2020",
+      "Dapper 等微型 ORM 表明，对于读密集型工作负载，手写 SQL 配合显式对象映射可以优于完整 ORM 映射器"
+    ]
+  ],
+  "dos": [
+    "Do keep domain classes free of any persistence annotations or base class requirements — pure POJOs/POCOs enable the highest degree of testability",
+    "Do version and test the mapping configurations independently to catch schema-migration regressions before they reach production",
+    "Do consider using a micro-ORM with explicit SQL for read models where the full Data Mapper overhead is unnecessary"
+  ],
+  "dos_zh": [
+    "保持领域类没有任何持久化注解或基类要求——纯 POJO/POCO 实现最高程度的可测试性",
+    "独立对映射配置进行版本控制和测试，在模式迁移回归到达生产环境之前捕获它们",
+    "考虑对读模型使用带显式 SQL 的微型 ORM，在完整数据映射器开销不必要的地方"
+  ],
+  "donts": [
+    "Don't let the mapper bleed into the domain layer — mapping concerns (RowMapper, ResultSetExtractor) belong exclusively in the infrastructure layer",
+    "Don't use Data Mapper for simple, table-per-class CRUD entities where Active Record provides the same isolation with far less ceremony",
+    "Don't hand-write mappers when a mature ORM covers your schema — manual mappers require significant effort to maintain through schema changes"
+  ],
+  "donts_zh": [
+    "不要让映射器渗入领域层——映射关注点（RowMapper、ResultSetExtractor）专属于基础设施层",
+    "不要将数据映射器用于简单的、每类一表的 CRUD 实体，活动记录以更少的繁文缛节提供相同的隔离",
+    "当成熟的 ORM 涵盖你的模式时，不要手写映射器——手动映射器需要大量精力来维护模式变更"
+  ],
+  "case_study_company": "Hibernate / Red Hat",
+  "case_study": "Hibernate is the most influential Data Mapper implementation, used by millions of Java applications. A Customer domain class has no SQL, no base class, and no Hibernate imports — it is a plain Java object. Hibernate's mapping configuration (XML or JPA annotations in a separate orm.xml) translates between the CUSTOMERS table and the Customer class, handling the one-to-many relationship to Orders, lazy-loading Address as a value object, and managing the identity map to ensure that loading Customer#42 twice in the same session returns the same Java object. This separation allowed Netflix and LinkedIn to evolve domain models and database schemas independently during rapid growth.",
+  "case_study_zh": "Hibernate 是最具影响力的数据映射器实现，被数百万 Java 应用使用。Customer 领域类没有 SQL、没有基类、没有 Hibernate 导入——它是一个普通的 Java 对象。Hibernate 的映射配置（单独的 orm.xml 中的 XML 或 JPA 注解）在 CUSTOMERS 表和 Customer 类之间进行转换，处理与 Orders 的一对多关系，将 Address 懒加载为值对象，并管理身份映射以确保在同一会话中两次加载 Customer#42 返回同一 Java 对象。这种分离使 Netflix 和 LinkedIn 能够在快速增长期间独立演进领域模型和数据库模式。",
+  "when_not_to_use": [
+    "Simple applications where domain classes map one-to-one with tables and Active Record or table gateway is significantly simpler",
+    "Read-only reporting or analytics queries where raw SQL with a thin result mapper is more performant and easier to optimize",
+    "Microservices with a single, small schema that owns fewer than a dozen entities, where the indirection of a full mapper adds little value"
+  ],
+  "when_not_to_use_zh": [
+    "领域类与表一一对应的简单应用，活动记录或表网关明显更简单",
+    "只读报告或分析查询，带薄结果映射器的原始 SQL 性能更好且更易于优化",
+    "拥有不到十几个实体的单一小型模式的微服务，完整映射器的间接层几乎没有价值"
+  ],
+  "adopters": [
+    "Hibernate (Java)",
+    "SQLAlchemy (Python)",
+    "Doctrine ORM (PHP)",
+    "Entity Framework Core (.NET)"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability",
+    "testability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Fowler, M. (2002). \"Patterns of Enterprise Application Architecture\". Addison-Wesley.",
+  "secondary_sources": [
+    "Bauer, C., King, G. (2006). \"Java Persistence with Hibernate\". Manning Publications.",
+    "Evans, E. (2003). \"Domain-Driven Design: Tackling Complexity in the Heart of Software\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "repository-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "unit-of-work-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "solid-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "active-record-pattern",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/data-mapper-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/data-mapper-pattern.md"
+}

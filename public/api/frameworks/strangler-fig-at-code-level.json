@@ -1,0 +1,187 @@
+{
+  "id": 173,
+  "name": "Strangler Fig at Code Level",
+  "name_zh": "代码级绞杀者模式",
+  "slug": "strangler-fig-at-code-level",
+  "category": "coding",
+  "desc": "Incrementally replace legacy code modules by wrapping them and redirecting calls to new implementations",
+  "desc_zh": "通过包装遗留代码模块并将调用重定向到新实现来渐进式替换旧代码",
+  "steps": [
+    "Identify the legacy module: select a specific class, function, or module whose behavior you need to replace, and write characterization tests to capture its current behavior",
+    "Create the new implementation: build the replacement module alongside the legacy one, implementing the same interface or contract with improved design",
+    "Introduce an abstraction layer: place an adapter, facade, or routing layer between callers and the legacy module so you can redirect traffic without changing call sites",
+    "Incrementally redirect: route calls from the legacy module to the new implementation one method or code path at a time, verifying behavior with tests after each switch",
+    "Remove the legacy module: once all calls are routed to the new implementation and tests pass, delete the old code and simplify the abstraction layer if it is no longer needed"
+  ],
+  "steps_zh": [
+    "识别遗留模块：选择需要替换的特定类、函数或模块，编写特征测试来捕获其当前行为",
+    "创建新实现：在遗留模块旁构建替代模块，以改进的设计实现相同的接口或契约",
+    "引入抽象层：在调用方与遗留模块之间放置适配器、外观或路由层，使你可以在不更改调用点的情况下重定向流量",
+    "渐进式重定向：逐个方法或代码路径地将调用从遗留模块路由到新实现，每次切换后用测试验证行为",
+    "移除遗留模块：一旦所有调用都已路由到新实现且测试通过，删除旧代码并在不再需要时简化抽象层"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Legacy Code",
+    "Strangler Facade",
+    "New Module",
+    "Migration"
+  ],
+  "viz_labels_zh": [
+    "遗留代码",
+    "绞杀者门面",
+    "新模块",
+    "迁移路径"
+  ],
+  "related": [
+    "strangler-fig-pattern",
+    "branch-by-abstraction",
+    "design-by-contract"
+  ],
+  "tags": [
+    "refactoring",
+    "legacy-code",
+    "incremental-replacement",
+    "strangler-fig",
+    "migration"
+  ],
+  "origin_author": "Martin Fowler, 2004; Michael Feathers, 2004",
+  "origin_source": "Refactoring (Fowler, 2018); Working Effectively with Legacy Code (Feathers, 2004)",
+  "origin_source_zh": "《重构》（Fowler，2018）；《修改代码的艺术》（Feathers，2004）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Replacing a tangled legacy module that cannot be safely rewritten all at once",
+    "Migrating from an outdated internal library to a modern replacement without halting feature development",
+    "Refactoring a critical code path where a big-bang rewrite carries too much risk",
+    "Transitioning between different design patterns within a codebase incrementally"
+  ],
+  "when_to_use_zh": [
+    "替换无法安全地一次性重写的纠缠遗留模块",
+    "从过时的内部库迁移到现代替代品，同时不中断功能开发",
+    "重构关键代码路径，整体重写风险过高时",
+    "在代码库中渐进式地在不同设计模式之间转换"
+  ],
+  "core_concepts": [
+    "Characterization Tests: tests written to document the existing behavior of legacy code, forming a safety net before any changes are made",
+    "Abstraction Layer: a facade, adapter, or interface placed between callers and the legacy module to enable transparent redirection",
+    "Incremental Replacement: replacing legacy behavior one code path at a time rather than attempting a complete rewrite",
+    "Parallel Running: keeping both old and new implementations available simultaneously so you can compare outputs and roll back if needed",
+    "Legacy Module Retirement: the final step of removing the old code once all traffic has been verified on the new implementation"
+  ],
+  "core_concepts_zh": [
+    "特征测试：编写用于记录遗留代码现有行为的测试，在做任何更改之前形成安全网",
+    "抽象层：放置在调用方与遗留模块之间的外观、适配器或接口，以实现透明重定向",
+    "渐进式替换：逐个代码路径替换遗留行为，而非尝试完全重写",
+    "并行运行：同时保持新旧实现可用，以便比较输出并在需要时回滚",
+    "遗留模块退役：在所有流量都已在新实现上验证后移除旧代码的最终步骤"
+  ],
+  "timeline": [
+    [
+      "2004",
+      "Martin Fowler publishes the Strangler Fig Application article, describing system-level incremental migration"
+    ],
+    [
+      "2004",
+      "Michael Feathers publishes 'Working Effectively with Legacy Code', providing code-level techniques for wrapping and replacing legacy modules"
+    ],
+    [
+      "2010",
+      "The technique gains traction in large-scale enterprise refactoring projects at companies like ThoughtWorks"
+    ],
+    [
+      "2018",
+      "Fowler's second edition of 'Refactoring' formalizes incremental code-level replacement patterns"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2004",
+      "Martin Fowler 发表绞杀者无花果应用文章，描述系统级渐进式迁移"
+    ],
+    [
+      "2004",
+      "Michael Feathers 出版《修改代码的艺术》，提供包装和替换遗留模块的代码级技术"
+    ],
+    [
+      "2010",
+      "该技术在 ThoughtWorks 等公司的大规模企业重构项目中获得广泛采用"
+    ],
+    [
+      "2018",
+      "Fowler 的《重构》第二版正式化了渐进式代码级替换模式"
+    ]
+  ],
+  "dos": [
+    "Do write characterization tests before touching legacy code because they are your safety net against behavioral regressions",
+    "Do keep the abstraction layer thin because a heavyweight adapter becomes its own maintenance burden",
+    "Do replace one code path at a time because small increments let you catch problems early and roll back easily",
+    "Do delete the old code promptly after migration because leaving dead code creates confusion and false dependencies"
+  ],
+  "dos_zh": [
+    "在修改遗留代码之前编写特征测试，因为它们是防止行为回归的安全网",
+    "保持抽象层轻薄，因为笨重的适配器本身会成为维护负担",
+    "一次替换一个代码路径，因为小增量让你能尽早发现问题并轻松回滚",
+    "迁移完成后及时删除旧代码，因为留下死代码会造成混淆和虚假依赖"
+  ],
+  "donts": [
+    "Don't attempt to replace the entire module in one commit because it defeats the purpose of incremental migration",
+    "Don't skip characterization tests because without them you have no way to verify behavioral equivalence",
+    "Don't let the abstraction layer become permanent middleware because it should be temporary scaffolding",
+    "Don't mix functional changes with migration changes because it makes it impossible to isolate the source of defects"
+  ],
+  "donts_zh": [
+    "不要试图在一次提交中替换整个模块，因为这违背了渐进式迁移的初衷",
+    "不要跳过特征测试，因为没有它们你无法验证行为等价性",
+    "不要让抽象层变成永久中间件，因为它应该是临时脚手架",
+    "不要将功能变更与迁移变更混在一起，因为这使得无法隔离缺陷来源"
+  ],
+  "case_study_company": "GitHub",
+  "case_study": "GitHub incrementally replaced its legacy Ruby permission system with a new authorization service over 18 months. They introduced a thin routing layer that checked a feature flag to decide whether to call the old Ruby module or the new service for each permission check. Teams migrated one resource type at a time (repositories, then organizations, then actions), running both systems in parallel and comparing results. The legacy permission code was fully retired without any user-facing disruption.",
+  "case_study_zh": "GitHub 在 18 个月内渐进式地将其遗留 Ruby 权限系统替换为新的授权服务。他们引入了一个薄路由层，通过功能标志决定每次权限检查是调用旧的 Ruby 模块还是新服务。团队逐个资源类型进行迁移（先是仓库，然后是组织，最后是操作），并行运行两个系统并比较结果。遗留权限代码被完全退役，没有任何面向用户的中断。",
+  "when_not_to_use": [
+    "Small modules that can be safely rewritten and replaced in a single commit",
+    "Code with no callers or very few call sites where a direct swap is simpler",
+    "Prototyping or throwaway code where long-term maintainability is irrelevant",
+    "Situations where the legacy module has no observable side effects and can be unit-tested in isolation"
+  ],
+  "when_not_to_use_zh": [
+    "可以在单次提交中安全重写和替换的小模块",
+    "没有调用方或调用点极少、直接替换更简单的代码",
+    "原型或一次性代码，长期可维护性无关紧要",
+    "遗留模块没有可观察的副作用且可以独立进行单元测试的情况"
+  ],
+  "adopters": [
+    "GitHub",
+    "ThoughtWorks",
+    "Shopify",
+    "Stripe",
+    "SoundCloud"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Martin Fowler (2004). \"StranglerFigApplication\". martinfowler.com.",
+  "secondary_sources": [
+    "Michael Feathers (2004). \"Working Effectively with Legacy Code\". Prentice Hall.",
+    "Martin Fowler (2018). \"Refactoring: Improving the Design of Existing Code, 2nd Edition\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "strangler-fig-pattern",
+      "type": "extends"
+    },
+    {
+      "slug": "branch-by-abstraction",
+      "type": "complement"
+    },
+    {
+      "slug": "design-by-contract",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/strangler-fig-at-code-level",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/strangler-fig-at-code-level.md"
+}

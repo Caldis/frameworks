@@ -1,0 +1,193 @@
+{
+  "id": 43,
+  "name": "Contract Testing",
+  "name_zh": "契约测试",
+  "slug": "contract-testing",
+  "category": "coding",
+  "desc": "Verify service interactions via shared consumer-provider contracts",
+  "desc_zh": "通过共享的消费者-提供者契约验证服务间交互的正确性",
+  "steps": [
+    "Define consumer expectations: in each consumer service, write contract tests that describe the exact requests it makes and responses it expects",
+    "Publish contracts to a broker: use a tool like Pact or Spring Cloud Contract to share consumer contracts with the provider team via a central broker",
+    "Verify on the provider side: run the published contracts against the actual provider implementation to confirm it satisfies all consumer expectations",
+    "Integrate into CI/CD: run contract verification on both consumer and provider pipelines; block deployment if contracts are broken",
+    "Evolve contracts safely: use the broker's compatibility matrix (can-i-deploy) to verify that all deployed versions are mutually compatible before release"
+  ],
+  "steps_zh": [
+    "定义消费者期望：在每个消费者服务中编写契约测试，描述其发出的精确请求和期望的响应",
+    "将契约发布到代理：使用Pact或Spring Cloud Contract等工具通过中央代理与提供者团队共享消费者契约",
+    "在提供者端验证：针对提供者的实际实现运行已发布的契约，确认其满足所有消费者期望",
+    "集成到CI/CD：在消费者和提供者的流水线中运行契约验证；契约被破坏时阻止部署",
+    "安全演进契约：使用代理的兼容性矩阵（can-i-deploy）在发布前验证所有已部署版本的互兼容性"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Consumer",
+    "Contract",
+    "Provider",
+    "Verification"
+  ],
+  "viz_labels_zh": [
+    "消费者",
+    "契约",
+    "提供者",
+    "验证"
+  ],
+  "related": [
+    "semantic-versioning",
+    "api-versioning-strategies",
+    "richardson-maturity-model",
+    "design-by-contract"
+  ],
+  "tags": [
+    "contract-testing",
+    "pact",
+    "consumer-driven",
+    "api-compatibility",
+    "microservices"
+  ],
+  "origin_author": "Ian Robinson, Martin Fowler, 2006",
+  "origin_source": "Consumer-Driven Contracts: A Service Evolution Pattern (Martin Fowler's blog)",
+  "origin_source_zh": "《消费者驱动的契约：一种服务演进模式》（Martin Fowler 博客）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Microservice architectures where services are deployed independently by different teams",
+    "API evolution scenarios where providers need confidence they won't break existing consumers",
+    "Replacing slow end-to-end integration tests with fast, focused contract verification",
+    "Organizations adopting consumer-driven development where consumers define the API they need"
+  ],
+  "when_to_use_zh": [
+    "不同团队独立部署服务的微服务架构",
+    "提供者需要确信不会破坏现有消费者的 API 演进场景",
+    "用快速、聚焦的契约验证替代缓慢的端到端集成测试",
+    "采用消费者驱动开发、由消费者定义所需 API 的组织"
+  ],
+  "core_concepts": [
+    "Consumer Contract: a test written by the consumer that specifies the exact request/response it expects from a provider",
+    "Provider Verification: running consumer contracts against the real provider to ensure it meets all expectations",
+    "Pact Broker: a central repository that stores contracts and tracks compatibility between consumer and provider versions",
+    "Can-I-Deploy: a pre-deployment check that verifies all interacting service versions are compatible based on verified contracts",
+    "Consumer-Driven: the philosophy that consumers define the API contract, and providers must satisfy those needs"
+  ],
+  "core_concepts_zh": [
+    "消费者契约：由消费者编写的测试，指定其期望从提供者获得的精确请求/响应",
+    "提供者验证：针对真实提供者运行消费者契约，确保其满足所有期望",
+    "Pact Broker：存储契约并追踪消费者与提供者版本间兼容性的中央仓库",
+    "Can-I-Deploy：基于已验证契约检查所有交互服务版本是否兼容的预部署检查",
+    "消费者驱动：消费者定义 API 契约，提供者必须满足这些需求的理念"
+  ],
+  "timeline": [
+    [
+      "2006",
+      "Ian Robinson publishes 'Consumer-Driven Contracts' on Martin Fowler's blog"
+    ],
+    [
+      "2013",
+      "Pact, the first consumer-driven contract testing framework, is created by REA Group in Australia"
+    ],
+    [
+      "2016",
+      "Spring Cloud Contract is released, bringing contract testing to the Spring/Java ecosystem"
+    ],
+    [
+      "2020",
+      "Pactflow (commercial Pact Broker) launches, making enterprise-grade contract testing accessible"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2006",
+      "Ian Robinson 在 Martin Fowler 博客上发表《消费者驱动的契约》"
+    ],
+    [
+      "2013",
+      "第一个消费者驱动契约测试框架 Pact 由澳大利亚 REA Group 创建"
+    ],
+    [
+      "2016",
+      "Spring Cloud Contract 发布，将契约测试带入 Spring/Java 生态系统"
+    ],
+    [
+      "2020",
+      "Pactflow（商业 Pact Broker）推出，使企业级契约测试变得易于采用"
+    ]
+  ],
+  "dos": [
+    "Do write contracts from the consumer's perspective because they define the actual usage patterns",
+    "Do run provider verification in CI because manual verification is unreliable and easy to skip",
+    "Do use the can-i-deploy check before every deployment because it prevents incompatible versions from reaching production",
+    "Do keep contracts minimal and focused because over-specified contracts become brittle"
+  ],
+  "dos_zh": [
+    "从消费者角度编写契约，因为它们定义了实际的使用模式",
+    "在 CI 中运行提供者验证，因为手动验证不可靠且容易被跳过",
+    "在每次部署前使用 can-i-deploy 检查，因为它能防止不兼容版本到达生产环境",
+    "保持契约最小化且聚焦，因为过度指定的契约会变得脆弱"
+  ],
+  "donts": [
+    "Don't test implementation details in contracts because contracts should verify behavior, not internal structure",
+    "Don't skip the Pact Broker because without it you lose version tracking and the can-i-deploy safety net",
+    "Don't treat contract tests as a replacement for all integration tests because they verify interactions, not end-to-end flows",
+    "Don't let provider teams write consumer contracts because it defeats the consumer-driven purpose"
+  ],
+  "donts_zh": [
+    "不要在契约中测试实现细节，因为契约应验证行为而非内部结构",
+    "不要跳过 Pact Broker，因为没有它你会失去版本追踪和 can-i-deploy 安全网",
+    "不要将契约测试视为所有集成测试的替代，因为它们验证交互而非端到端流程",
+    "不要让提供者团队编写消费者契约，因为这违背了消费者驱动的宗旨"
+  ],
+  "case_study_company": "Atlassian",
+  "case_study": "Atlassian adopted Pact-based contract testing across their microservice ecosystem powering Jira, Confluence, and Bitbucket. With over 800 microservices, end-to-end integration testing was too slow and flaky. Contract testing reduced their integration test suite runtime from hours to minutes and cut production API compatibility incidents by 70%. The Pact Broker's can-i-deploy feature became a mandatory gate in their deployment pipeline.",
+  "case_study_zh": "Atlassian 在其支撑 Jira、Confluence 和 Bitbucket 的微服务生态系统中采用了基于 Pact 的契约测试。拥有超过 800 个微服务，端到端集成测试太慢且不稳定。契约测试将其集成测试套件运行时间从数小时缩短到数分钟，并将生产环境 API 兼容性事故减少了 70%。Pact Broker 的 can-i-deploy 功能成为其部署管道中的强制门禁。",
+  "when_not_to_use": [
+    "Monolithic applications where all components are deployed together",
+    "Simple two-service architectures where a shared integration test is sufficient",
+    "Teams without CI/CD pipelines to automate contract verification",
+    "Prototyping phases where APIs change rapidly and contracts would be constantly broken"
+  ],
+  "when_not_to_use_zh": [
+    "所有组件一起部署的单体应用",
+    "共享集成测试已足够的简单双服务架构",
+    "没有 CI/CD 管道来自动化契约验证的团队",
+    "API 快速变化、契约会不断被破坏的原型开发阶段"
+  ],
+  "adopters": [
+    "Atlassian",
+    "REA Group",
+    "ING Bank",
+    "Booking.com",
+    "SEEK"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability",
+    "testability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Ian Robinson (2006). \"Consumer-Driven Contracts: A Service Evolution Pattern\". martinfowler.com.",
+  "secondary_sources": [
+    "Martin Fowler (2011). \"Integration Contract Test\". martinfowler.com.",
+    "Beth Skurrie et al. (2017). \"Pact: Consumer-Driven Contract Testing\". pact.io."
+  ],
+  "typed_relations": [
+    {
+      "slug": "semantic-versioning",
+      "type": "complement"
+    },
+    {
+      "slug": "api-versioning-strategies",
+      "type": "complement"
+    },
+    {
+      "slug": "richardson-maturity-model",
+      "type": "complement"
+    },
+    {
+      "slug": "design-by-contract",
+      "type": "extends"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/contract-testing",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/contract-testing.md"
+}

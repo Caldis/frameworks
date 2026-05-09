@@ -1,0 +1,189 @@
+{
+  "id": 195,
+  "name": "Slowly Changing Dimensions (SCD)",
+  "name_zh": "缓慢变化维度",
+  "slug": "slowly-changing-dimensions",
+  "category": "data",
+  "desc": "Techniques for tracking historical changes in dimension tables (Kimball, 1996)",
+  "desc_zh": "在维度表中追踪历史变更的技术体系（Kimball，1996）",
+  "steps": [
+    "Identify dimension attributes that change over time (e.g., customer address, product category) and classify each as Type 1, 2, or 3 based on historical tracking requirements",
+    "For Type 2 SCD, add surrogate key, effective_from, effective_to, and is_current columns to the dimension table to represent each historical version as a distinct row",
+    "Build ETL/ELT pipelines that detect source system changes via CDC or delta loads and apply the correct SCD strategy: overwrite for Type 1, insert new row for Type 2, add attribute column for Type 3",
+    "Link fact tables to dimension surrogate keys so that historical facts always join to the dimension version that was current at the time of the event, preserving analytical accuracy",
+    "Monitor SCD pipeline health by tracking dimension table growth rates, detecting unexpected attribute changes, and validating that no overlapping effective date ranges exist for Type 2 rows"
+  ],
+  "steps_zh": [
+    "识别随时间变化的维度属性（如客户地址、产品类别），根据历史追踪需求将每个属性分类为类型1、2或3",
+    "对于类型2 SCD，在维度表中添加代理键、effective_from、effective_to和is_current列，将每个历史版本表示为独立的行",
+    "构建ETL/ELT管道，通过CDC或增量加载检测源系统变更，应用正确的SCD策略：类型1覆盖、类型2插入新行、类型3增加属性列",
+    "将事实表关联到维度代理键，使历史事实始终关联到事件发生时当时有效的维度版本，保障分析准确性",
+    "通过追踪维度表增长率、检测意外属性变更、验证类型2行的有效日期范围无重叠来监控SCD管道健康状况"
+  ],
+  "ai_relevant": false,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Type 1 Overwrite",
+    "Type 2 History",
+    "Type 3 Add Col",
+    "Surrogate Key",
+    "SCD Pipeline"
+  ],
+  "viz_labels_zh": [
+    "类型1覆盖",
+    "类型2历史",
+    "类型3追加",
+    "代理键",
+    "SCD管道"
+  ],
+  "related": [
+    "star-schema",
+    "change-data-capture",
+    "medallion-architecture"
+  ],
+  "tags": [
+    "scd",
+    "dimensional-modeling",
+    "data-warehouse",
+    "kimball",
+    "history-tracking"
+  ],
+  "origin_author": "Ralph Kimball, 1996",
+  "origin_source": "The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling (Wiley, 1996, 3rd ed. 2013)",
+  "origin_source_zh": "《数据仓库工具包：维度建模权威指南》（Wiley，1996，第3版2013）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When dimension attributes change over time and business users need to analyze historical facts against the dimension values that existed at the time of each event",
+    "When regulatory or audit requirements mandate that historical states of master data (customer, product, employee) are preserved and queryable",
+    "When a data warehouse must support 'as-was' reporting showing what a dimension looked like at any point in the past",
+    "When source systems overwrite attribute values without preserving history and the warehouse must compensate for this loss"
+  ],
+  "when_to_use_zh": [
+    "当维度属性随时间变化，且业务用户需要按事件发生时的维度值分析历史事实时",
+    "当法规或审计要求要求保留并可查询主数据（客户、产品、员工）的历史状态时",
+    "当数据仓库必须支持展示过去任意时刻维度状态的「历史如实」报告时",
+    "当源系统覆盖属性值而不保留历史，数据仓库必须弥补这一信息损失时"
+  ],
+  "core_concepts": [
+    "Type 1 SCD: overwrite the old value with the new value; no history is preserved; used for correcting errors or attributes where history is irrelevant",
+    "Type 2 SCD: insert a new row with a new surrogate key for each change; full history is preserved via effective date ranges and is_current flags",
+    "Type 3 SCD: add a new column to store the previous value alongside the current value; supports limited one-step history",
+    "Surrogate key: a system-generated integer or hash key assigned to each dimension row, decoupling the warehouse model from source natural keys and enabling multiple historical versions"
+  ],
+  "core_concepts_zh": [
+    "类型1 SCD：用新值覆盖旧值；不保留历史；用于纠正错误或历史无关紧要的属性",
+    "类型2 SCD：每次变更插入带新代理键的新行；通过有效日期范围和is_current标志保留完整历史",
+    "类型3 SCD：增加新列在当前值旁边存储上一个值；支持有限的单步历史",
+    "代理键：分配给每个维度行的系统生成整数或哈希键，将仓库模型与源自然键解耦，支持多个历史版本"
+  ],
+  "timeline": [
+    [
+      "1996",
+      "Ralph Kimball introduces the SCD concept in 'The Data Warehouse Toolkit', defining Type 1, 2, and 3 strategies"
+    ],
+    [
+      "2002",
+      "Kimball and Ross publish expanded SCD guidance including hybrid types (Type 4, 6) in 'The Data Warehouse Lifecycle Toolkit'"
+    ],
+    [
+      "2013",
+      "The 3rd edition of 'The Data Warehouse Toolkit' remains the definitive SCD reference, adding cloud data warehouse considerations"
+    ],
+    [
+      "2020",
+      "dbt introduces incremental models and snapshot functionality, making Type 2 SCD implementable in SQL-first ELT pipelines on cloud warehouses"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1996",
+      "Ralph Kimball在《数据仓库工具包》中引入SCD概念，定义类型1、2和3策略"
+    ],
+    [
+      "2002",
+      "Kimball和Ross在《数据仓库生命周期工具包》中发布扩展SCD指南，包括混合类型（类型4、6）"
+    ],
+    [
+      "2013",
+      "《数据仓库工具包》第3版仍是SCD权威参考，新增云数据仓库注意事项"
+    ],
+    [
+      "2020",
+      "dbt引入增量模型和快照功能，使类型2 SCD可在云数据仓库上的SQL优先ELT管道中实现"
+    ]
+  ],
+  "dos": [
+    "Do choose the SCD type based on actual business reporting needs rather than technical convenience because the wrong type loses history that cannot be recovered",
+    "Do use surrogate keys for all Type 2 dimensions because natural keys cannot uniquely identify historical versions of the same entity",
+    "Do close expired Type 2 rows atomically with the insert of the new row to prevent gaps or overlaps in effective date ranges",
+    "Do document the SCD type for each dimension attribute in a data dictionary because undocumented conventions become tribal knowledge that causes reporting errors"
+  ],
+  "dos_zh": [
+    "根据实际业务报告需求而非技术便利性选择SCD类型，因为错误的类型会丢失无法恢复的历史",
+    "对所有类型2维度使用代理键，因为自然键无法唯一标识同一实体的历史版本",
+    "在插入新行时原子性地关闭过期的类型2行，以防止有效日期范围出现间隙或重叠",
+    "在数据字典中记录每个维度属性的SCD类型，因为未记录的约定会成为部落知识并导致报告错误"
+  ],
+  "donts": [
+    "Don't apply Type 2 SCD to all dimension attributes indiscriminately because dimension table explosion leads to query performance degradation and storage waste",
+    "Don't forget to update fact table foreign keys when dimension rows are closed and new versions are inserted because stale keys break historical analysis",
+    "Don't mix SCD logic with business transformation logic in the same ETL step because it makes pipelines harder to test and debug",
+    "Don't ignore late-arriving dimension changes where the source change timestamp precedes already-loaded fact records because retroactive corrections require special handling"
+  ],
+  "donts_zh": [
+    "不要不加区分地对所有维度属性应用类型2 SCD，因为维度表膨胀会导致查询性能下降和存储浪费",
+    "不要忘记在维度行关闭并插入新版本时更新事实表外键，因为过时的键会破坏历史分析",
+    "不要在同一ETL步骤中混合SCD逻辑和业务转换逻辑，因为这会使管道更难测试和调试",
+    "不要忽视迟到的维度变更（源变更时间戳早于已加载的事实记录），因为追溯更正需要特殊处理"
+  ],
+  "case_study_company": "Airbnb",
+  "case_study": "Airbnb's data warehouse uses Type 2 SCD on its host and listing dimensions to support accurate historical analysis of booking revenue. When a host changes their listing's price tier or location, a new dimension row is inserted with a new surrogate key, preserving the state that existed when each booking was made. This allows revenue reports to correctly attribute bookings to the pricing tier that was active at the time of the reservation rather than the current tier, which is essential for accurate year-over-year comparison and cohort analysis.",
+  "case_study_zh": "Airbnb的数据仓库在其房东和房源维度上使用类型2 SCD，以支持准确的历史预订收入分析。当房东更改房源的价格层级或位置时，会插入一个带新代理键的新维度行，保留每次预订时的状态。这使收入报告能够将预订正确归因于预订时有效的价格层级，而非当前层级，这对准确的年同比比较和队列分析至关重要。",
+  "when_not_to_use": [
+    "Operational OLTP systems where historical dimension versioning adds unnecessary complexity and query overhead",
+    "When the dimension attribute changes so frequently (e.g., real-time price) that Type 2 generates millions of rows and a separate temporal table or time-series store is more appropriate",
+    "When no business user has expressed a need to analyze historical facts against past dimension states and the added complexity is pure overhead",
+    "Highly agile early-stage data models where dimension schemas change frequently and SCD infrastructure would need constant rework"
+  ],
+  "when_not_to_use_zh": [
+    "历史维度版本化会增加不必要的复杂性和查询开销的OLTP操作系统",
+    "当维度属性变化过于频繁（如实时价格）导致类型2生成数百万行时，独立的时态表或时序存储更合适",
+    "当没有业务用户表达需要按过去维度状态分析历史事实，增加的复杂性纯属开销时",
+    "维度模式频繁变更的高度敏捷早期数据模型，SCD基础设施需要持续返工"
+  ],
+  "adopters": [
+    "Airbnb",
+    "Amazon",
+    "Walmart",
+    "Capital One",
+    "Snowflake (dbt snapshots)"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "maintainability",
+    "reliability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Kimball, R. & Ross, M. (2013). \"The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling\", 3rd ed. Wiley.",
+  "secondary_sources": [
+    "Kimball, R. (1996). \"Slowly Changing Dimensions\". DBMS Magazine.",
+    "dbt Labs (2022). \"dbt Snapshots: Implementing Type 2 SCDs in SQL\". docs.getdbt.com.",
+    "Inmon, W.H. (2005). \"Building the Data Warehouse\", 4th ed. Wiley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "star-schema",
+      "type": "complement"
+    },
+    {
+      "slug": "change-data-capture",
+      "type": "complement"
+    },
+    {
+      "slug": "medallion-architecture",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/slowly-changing-dimensions",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/slowly-changing-dimensions.md"
+}

@@ -1,3 +1,34 @@
 User-agent: *
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+User-agent: ChatGPT-User
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+User-agent: GPTBot
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+User-agent: ClaudeBot
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+User-agent: PerplexityBot
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+User-agent: CCBot
+Disallow: /
+Content-Signal: search=no, ai-input=no, ai-train=no
+
+User-agent: ByteSpider
+Disallow: /
+Content-Signal: search=no, ai-input=no, ai-train=no
+
+User-agent: Amazonbot
+Disallow: /
+Content-Signal: search=no, ai-input=no, ai-train=no
+
 Sitemap: https://sdframe.caldis.me/sitemap.xml
+Schemamap: https://sdframe.caldis.me/schemamap.xml

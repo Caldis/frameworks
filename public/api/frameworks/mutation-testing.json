@@ -1,0 +1,193 @@
+{
+  "id": 178,
+  "name": "Mutation Testing",
+  "name_zh": "变异测试",
+  "slug": "mutation-testing",
+  "category": "quality",
+  "desc": "Test the tests by introducing code mutations and verifying that tests catch them",
+  "desc_zh": "通过引入代码变异来测试测试本身，验证测试能否捕获这些变异",
+  "steps": [
+    "Select a mutation testing tool appropriate for your language: Stryker for JS/TS, PIT for Java, mutmut for Python, or similar",
+    "Run the mutation tool against your codebase: it generates mutants by applying small syntactic changes (flip operators, remove calls, change constants)",
+    "Analyze the mutation score: the percentage of mutants killed by your existing tests — surviving mutants indicate gaps in test quality",
+    "Strengthen tests to kill surviving mutants: write targeted assertions that cover the specific logic the mutant altered",
+    "Integrate mutation testing into CI as a quality gate: set a minimum mutation score threshold and fail builds that drop below it"
+  ],
+  "steps_zh": [
+    "选择适合你语言的变异测试工具：JS/TS用Stryker，Java用PIT，Python用mutmut等",
+    "对代码库运行变异工具：通过应用小型语法变更（翻转运算符、移除调用、更改常量）生成变异体",
+    "分析变异分数：现有测试杀死的变异体百分比——存活的变异体表明测试质量存在缺口",
+    "加强测试以杀死存活的变异体：编写针对变异体所改变的特定逻辑的定向断言",
+    "将变异测试集成到CI中作为质量门禁：设置最低变异分数阈值，低于阈值则构建失败"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Mutate",
+    "Run Tests",
+    "Detect",
+    "Score"
+  ],
+  "viz_labels_zh": [
+    "变异代码",
+    "运行测试",
+    "检测",
+    "评分"
+  ],
+  "related": [
+    "test-pyramid",
+    "tdd",
+    "property-based-testing"
+  ],
+  "tags": [
+    "testing",
+    "mutation-testing",
+    "test-quality",
+    "code-coverage",
+    "quality-gate"
+  ],
+  "origin_author": "Richard Lipton, 1971",
+  "origin_source": "Release It! Design and Deploy Production-Ready Software (Nygard, 2018)",
+  "origin_source_zh": "《发布！设计与部署生产就绪软件》（Nygard，2018）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "After achieving high code coverage but still experiencing production bugs that tests should have caught",
+    "When evaluating whether a test suite provides genuine confidence or merely exercises code paths without meaningful assertions",
+    "During quality audits to quantify the real effectiveness of existing tests beyond line coverage metrics",
+    "When building safety-critical or financial systems where test thoroughness directly impacts risk"
+  ],
+  "when_to_use_zh": [
+    "在达到高代码覆盖率但仍然遇到测试本应捕获的生产缺陷时",
+    "评估测试套件是否提供真正的信心，还是仅执行代码路径而没有有意义的断言时",
+    "在质量审计中量化现有测试超越行覆盖率指标的真实有效性时",
+    "构建安全关键或金融系统时，测试的彻底性直接影响风险"
+  ],
+  "core_concepts": [
+    "Mutant: A small syntactic change to the source code (e.g., replacing + with -, flipping a boolean, removing a method call)",
+    "Mutation Score: The ratio of killed mutants to total mutants, measuring how effectively the test suite detects faults",
+    "Killed Mutant: A mutant that causes at least one test to fail, proving the test suite detects that specific fault",
+    "Survived Mutant: A mutant that passes all tests, revealing a gap in test coverage or assertion quality",
+    "Equivalent Mutant: A mutant that produces identical behavior to the original code, which cannot be killed and must be excluded from scoring"
+  ],
+  "core_concepts_zh": [
+    "变异体：对源代码的小型语法更改（例如将+替换为-、翻转布尔值、移除方法调用）",
+    "变异分数：被杀死的变异体与总变异体的比率，衡量测试套件检测故障的有效性",
+    "被杀死的变异体：导致至少一个测试失败的变异体，证明测试套件能检测该特定故障",
+    "存活的变异体：通过所有测试的变异体，揭示测试覆盖或断言质量的缺口",
+    "等价变异体：产生与原始代码相同行为的变异体，无法被杀死，必须从评分中排除"
+  ],
+  "timeline": [
+    [
+      "1971",
+      "Richard Lipton proposes mutation analysis as a theoretical framework for evaluating test adequacy"
+    ],
+    [
+      "1980",
+      "DeMillo, Lipton, and Sayward publish foundational paper establishing mutation testing as a practical technique"
+    ],
+    [
+      "2010",
+      "PIT (Pitest) launches for Java, making mutation testing practical for real-world projects"
+    ],
+    [
+      "2017",
+      "Stryker Mutator releases for JavaScript/TypeScript, bringing mutation testing to the frontend ecosystem"
+    ],
+    [
+      "2019",
+      "Mutation testing gains mainstream attention as CI tooling matures and execution speed improves dramatically"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1971",
+      "Richard Lipton提出变异分析作为评估测试充分性的理论框架"
+    ],
+    [
+      "1980",
+      "DeMillo、Lipton和Sayward发表奠基性论文，将变异测试确立为实用技术"
+    ],
+    [
+      "2010",
+      "PIT（Pitest）为Java推出，使变异测试在实际项目中变得可行"
+    ],
+    [
+      "2017",
+      "Stryker Mutator为JavaScript/TypeScript发布，将变异测试带入前端生态"
+    ],
+    [
+      "2019",
+      "随着CI工具成熟和执行速度大幅提升，变异测试获得主流关注"
+    ]
+  ],
+  "dos": [
+    "Do start with critical business logic modules because mutation testing on the entire codebase can be prohibitively slow",
+    "Do use mutation score as a complement to coverage because high coverage with low mutation score reveals weak assertions",
+    "Do configure mutant operators relevant to your domain because not all mutation types apply equally to every codebase",
+    "Do run mutation tests incrementally on changed files because full runs are expensive and slow feedback loops"
+  ],
+  "dos_zh": [
+    "从关键业务逻辑模块开始，因为对整个代码库进行变异测试可能慢得令人望而却步",
+    "将变异分数作为覆盖率的补充，因为高覆盖率低变异分数揭示了弱断言",
+    "配置与你领域相关的变异运算符，因为不是所有变异类型都同等适用于每个代码库",
+    "对变更文件增量运行变异测试，因为完整运行代价高昂且减慢反馈循环"
+  ],
+  "donts": [
+    "Don't chase 100% mutation score because equivalent mutants and diminishing returns make it impractical and wasteful",
+    "Don't run mutation tests on generated code or boilerplate because mutations there rarely reveal meaningful test gaps",
+    "Don't treat mutation testing as a replacement for code review because it tests mechanical correctness not design quality",
+    "Don't ignore performance implications because mutation testing can multiply test execution time by 10x-100x"
+  ],
+  "donts_zh": [
+    "不要追求100%变异分数，因为等价变异体和收益递减使其不切实际且浪费资源",
+    "不要对生成的代码或样板代码运行变异测试，因为那里的变异很少揭示有意义的测试缺口",
+    "不要将变异测试视为代码审查的替代品，因为它测试的是机械正确性而非设计质量",
+    "不要忽视性能影响，因为变异测试可以将测试执行时间放大10到100倍"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix applied mutation testing to their critical payment processing and subscription management services. After achieving 90% line coverage, they discovered a mutation score of only 62%, revealing that many tests were exercising code without asserting meaningful outcomes. By systematically killing surviving mutants, they improved fault detection and reduced payment-related production incidents by 35% over two quarters.",
+  "case_study_zh": "Netflix将变异测试应用于其关键的支付处理和订阅管理服务。在达到90%的行覆盖率后，他们发现变异分数仅为62%，揭示了许多测试在执行代码时没有断言有意义的结果。通过系统性地杀死存活的变异体，他们提高了故障检测能力，在两个季度内将支付相关的生产事故减少了35%。",
+  "when_not_to_use": [
+    "Rapid prototyping phases where code changes too fast for mutation analysis to provide actionable feedback",
+    "Legacy codebases with minimal existing tests where writing basic tests should take priority over mutation analysis",
+    "Performance-sensitive CI pipelines where mutation testing overhead would unacceptably delay feedback loops"
+  ],
+  "when_not_to_use_zh": [
+    "快速原型阶段，代码变化太快，变异分析无法提供可操作的反馈",
+    "现有测试极少的遗留代码库，编写基本测试应优先于变异分析",
+    "对性能敏感的CI管道，变异测试开销会不可接受地延迟反馈循环"
+  ],
+  "adopters": [
+    "Netflix",
+    "Airbnb",
+    "ING Bank",
+    "Sky",
+    "Info Support"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "testability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Richard Lipton (1971). \"Fault Diagnosis of Computer Programs\". PhD Dissertation, Carnegie Mellon University.",
+  "secondary_sources": [
+    "Yue Jia and Mark Harman (2011). \"An Analysis and Survey of the Development of Mutation Testing\". IEEE Transactions on Software Engineering, 37(5).",
+    "Henry Coles (2010). \"PIT Mutation Testing\". pitest.org."
+  ],
+  "typed_relations": [
+    {
+      "slug": "test-pyramid",
+      "type": "complement"
+    },
+    {
+      "slug": "tdd",
+      "type": "complement"
+    },
+    {
+      "slug": "property-based-testing",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/mutation-testing",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/mutation-testing.md"
+}

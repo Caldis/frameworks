@@ -1,0 +1,196 @@
+{
+  "id": 71,
+  "name": "LLMOps",
+  "name_zh": "LLMOps",
+  "slug": "llmops",
+  "category": "deployment",
+  "desc": "Operationalize LLM-based apps with prompt, eval, and cost management",
+  "desc_zh": "通过提示、评测与成本管理将大语言模型应用投入生产运营",
+  "steps": [
+    "Version and manage prompts as first-class artifacts in a prompt registry with change history",
+    "Build automated LLM evaluation pipelines using reference datasets and judge-model scoring",
+    "Implement observability: trace every LLM call with inputs, outputs, latency, and token costs",
+    "Gate deployments with eval thresholds; use canary promotion for new model versions or prompts",
+    "Monitor production for hallucination rates, latency SLOs, cost per request, and safety violations"
+  ],
+  "steps_zh": [
+    "将提示词作为一等制品纳入提示词注册中心进行版本管理，保留变更历史",
+    "使用参考数据集和裁判模型评分，构建自动化的LLM评测流水线",
+    "实现可观测性：对每次LLM调用记录输入、输出、延迟和Token成本",
+    "以评测阈值作为部署门控，对新模型版本或提示词采用金丝雀晋升策略",
+    "在生产环境监控幻觉率、延迟SLO、单次请求成本及安全违规情况"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Prompt",
+    "Evaluate",
+    "Fine-tune",
+    "Deploy"
+  ],
+  "viz_labels_zh": [
+    "提示工程",
+    "评估",
+    "微调",
+    "部署"
+  ],
+  "related": [
+    "mlops",
+    "prompt-testing",
+    "ai-observability-framework"
+  ],
+  "tags": [
+    "llmops",
+    "prompt-management",
+    "evaluation",
+    "cost-management",
+    "ai"
+  ],
+  "origin_author": "Emerging from AI/ML ops community, ~2023; influenced by Chip Huyen, Hamel Husain, and teams at Anthropic, OpenAI, and Google",
+  "origin_source": "Chip Huyen's Building LLM Applications for Production (2023); Anthropic and OpenAI operational guidelines",
+  "origin_source_zh": "Chip Huyen的《为生产构建LLM应用》（2023）；Anthropic和OpenAI运维指南",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Production LLM applications where prompt changes are as impactful as code changes",
+    "Applications where LLM output quality must be continuously measured against regression benchmarks",
+    "Cost-sensitive deployments where token usage, model selection, and caching must be optimized",
+    "Safety-critical applications requiring continuous monitoring for hallucinations and policy violations"
+  ],
+  "when_to_use_zh": [
+    "提示词变更与代码变更同等重要的生产LLM应用",
+    "LLM输出质量须持续对照回归基准进行度量的应用",
+    "需要优化Token使用、模型选择和缓存的成本敏感型部署",
+    "需要持续监控幻觉和策略违规的安全关键型应用"
+  ],
+  "core_concepts": [
+    "Prompt Versioning: Treat prompts as first-class versioned artifacts with change history, A/B testing, and rollback capabilities",
+    "LLM Evaluation Pipelines: Automated testing using reference datasets, judge models, and human-in-the-loop scoring to validate output quality",
+    "Token Economics: Track and optimize token consumption per request, implement semantic caching, and select the smallest adequate model",
+    "Guardrails and Safety: Input/output validation layers that detect and block hallucinations, PII leakage, and jailbreak attempts in real-time",
+    "LLM Observability: End-to-end tracing of LLM calls including prompt templates, retrieved context, model responses, latency, and cost"
+  ],
+  "core_concepts_zh": [
+    "提示词版本化：将提示词作为一等版本化制品，具备变更历史、A/B测试和回滚能力",
+    "LLM评测流水线：使用参考数据集、裁判模型和人工评分的自动化测试，在部署前验证输出质量",
+    "Token经济学：跟踪和优化每次请求的Token消耗，实施语义缓存，选择最小够用模型",
+    "护栏与安全：实时检测和阻止幻觉、PII泄露和越狱尝试的输入/输出验证层",
+    "LLM可观测性：LLM调用的端到端追踪，包括提示词模板、检索上下文、模型响应、延迟和成本"
+  ],
+  "timeline": [
+    [
+      "2022",
+      "ChatGPT launch triggers massive adoption of LLMs in production, revealing need for operational practices beyond traditional MLOps"
+    ],
+    [
+      "2023",
+      "LLMOps emerges as a distinct discipline; LangSmith, Humanloop, and Braintrust launch as dedicated platforms"
+    ],
+    [
+      "2024",
+      "Prompt engineering matures with structured approaches; OpenAI, Anthropic, and Google publish production deployment guides"
+    ],
+    [
+      "2025",
+      "LLMOps tooling consolidates around evaluation-driven development, with CI/CD pipelines gating on eval scores"
+    ],
+    [
+      "2026",
+      "Agent-specific LLMOps patterns emerge, addressing multi-step reasoning traces, tool call auditing, and agentic cost management"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2022",
+      "ChatGPT发布引发LLM在生产中的大规模采用，揭示超越传统MLOps的运维实践需求"
+    ],
+    [
+      "2023",
+      "LLMOps作为独立学科出现；LangSmith、Humanloop和Braintrust作为专用平台推出"
+    ],
+    [
+      "2024",
+      "提示工程以结构化方法走向成熟；OpenAI、Anthropic和Google发布生产部署指南"
+    ],
+    [
+      "2025",
+      "LLMOps工具围绕评测驱动开发整合，CI/CD流水线以评测分数作为部署门控"
+    ],
+    [
+      "2026",
+      "Agent专用LLMOps模式出现，处理多步推理追踪、工具调用审计和Agent成本管理"
+    ]
+  ],
+  "dos": [
+    "Do version prompts in a registry with full change history, because a prompt change can alter application behavior dramatically",
+    "Do build automated eval suites that run on every prompt or model change, because manual spot-checking misses subtle regressions",
+    "Do implement semantic caching for common queries to reduce latency and token costs",
+    "Do monitor token costs per endpoint and per user segment, because LLM inference costs can scale non-linearly"
+  ],
+  "dos_zh": [
+    "务必在注册中心对提示词进行版本管理，因为提示词变更可能剧烈改变应用行为",
+    "务必构建在每次提示词或模型变更时运行的自动化评测套件，因为手动抽查无法捕获微妙回归",
+    "务必为常见查询实施语义缓存以降低延迟和Token成本",
+    "务必按端点和用户分组监控Token成本，因为LLM推理成本可能非线性增长"
+  ],
+  "donts": [
+    "Don't treat prompts as just strings that anyone can edit without review, because unreviewed prompt changes are the top cause of LLM incidents",
+    "Don't deploy a new model version without running your eval suite, because even minor version bumps can cause significant output shifts",
+    "Don't rely solely on automated metrics for LLM quality -- incorporate human evaluation for nuanced aspects",
+    "Don't ignore the latency impact of safety guardrails, because synchronous validation adds to LLM response times"
+  ],
+  "donts_zh": [
+    "不要将提示词视为任何人可以不经审查就编辑的普通字符串，因为未审查的提示词变更是LLM应用事故的头号原因",
+    "不要在未运行评测套件的情况下部署新模型版本，因为即使微小版本更新也可能导致显著输出偏移",
+    "不要仅依赖自动化指标衡量LLM质量——应纳入人工评估覆盖细微方面",
+    "不要忽视安全护栏的延迟影响，因为同步验证会增加LLM响应时间"
+  ],
+  "case_study_company": "Notion",
+  "case_study": "Notion built a comprehensive LLMOps pipeline for their Notion AI product, powering AI writing assistance, summarization, and Q&A across millions of workspaces. They implemented prompt versioning with A/B testing, automated evaluation pipelines using model-based judges and human raters, and real-time monitoring of hallucination rates. Their LLMOps practices enabled weekly prompt iterations without quality regressions, while intelligent model routing kept per-request costs within budget.",
+  "case_study_zh": "Notion为其Notion AI产品构建了全面的LLMOps流水线，为数百万工作空间提供AI写作辅助、摘要和问答。他们实施了带A/B测试的提示词版本管理、使用模型评判器和人工评分员的自动化评测流水线，以及幻觉率的实时监控。LLMOps实践使团队能够每周迭代提示词而不产生质量回归，同时智能模型路由将单次请求成本控制在预算内。",
+  "when_not_to_use": [
+    "Simple LLM integrations where eval pipelines and prompt registries overhead is unjustified",
+    "Research and experimentation phases where the application is not yet serving real users",
+    "Applications using pre-built LLM APIs with no custom prompts to version or evaluate",
+    "Batch-only LLM usage where real-time monitoring and latency SLOs are irrelevant"
+  ],
+  "when_not_to_use_zh": [
+    "评测流水线和提示词注册中心开销不合理的简单LLM集成",
+    "应用尚未服务真实用户的研究和实验阶段",
+    "使用无自定义提示词的预构建LLM API",
+    "仅批量使用LLM、实时监控和延迟SLO无关紧要的场景"
+  ],
+  "adopters": [
+    "Notion",
+    "Anthropic",
+    "OpenAI",
+    "Shopify",
+    "Stripe"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Chip Huyen (2023). \"Building LLM Applications for Production\". huyenchip.com.",
+  "secondary_sources": [
+    "Anthropic (2024). \"Building Effective Agents\". anthropic.com.",
+    "OpenAI (2023). \"Production Best Practices\". platform.openai.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "mlops",
+      "type": "extends"
+    },
+    {
+      "slug": "prompt-testing",
+      "type": "complement"
+    },
+    {
+      "slug": "ai-observability-framework",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/llmops",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/llmops.md"
+}

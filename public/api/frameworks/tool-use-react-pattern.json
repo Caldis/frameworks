@@ -1,0 +1,187 @@
+{
+  "id": 40,
+  "name": "Tool-Use / ReAct Pattern",
+  "name_zh": "工具使用 / ReAct 模式",
+  "slug": "tool-use-react-pattern",
+  "category": "coding",
+  "desc": "Enable LLM agents to call external tools in reasoning loops",
+  "desc_zh": "使大模型代理能在推理循环中调用外部工具",
+  "steps": [
+    "Define the tool inventory: catalog each available tool with a typed JSON Schema signature, description, and usage examples",
+    "Implement the reasoning loop: prompt the LLM to think about which tool to call, execute the call, observe the result, and decide next steps",
+    "Build robust tool handlers: make each tool idempotent, return structured responses with clear error messages, and enforce timeouts",
+    "Add selection guardrails: constrain which tools are available per context and validate tool-call arguments before execution",
+    "Evaluate tool-use accuracy: build a benchmark of representative tasks and measure tool selection precision, recall, and end-to-end task success"
+  ],
+  "steps_zh": [
+    "定义工具清单：编目每个可用工具及其类型化JSON Schema签名、描述和使用示例",
+    "实现推理循环：提示LLM思考调用哪个工具，执行调用，观察结果，并决定下一步",
+    "构建健壮的工具处理器：使每个工具幂等，返回结构化响应和清晰的错误信息，并强制执行超时",
+    "添加选择护栏：限制每个上下文可用的工具，在执行前验证工具调用参数",
+    "评估工具使用准确率：构建代表性任务基准，度量工具选择的精确率、召回率和端到端任务成功率"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Reason",
+    "Act",
+    "Observe",
+    "Reflect"
+  ],
+  "viz_labels_zh": [
+    "推理",
+    "行动",
+    "观察",
+    "反思"
+  ],
+  "related": [
+    "react-framework",
+    "prompt-engineering-patterns",
+    "prompt-chaining"
+  ],
+  "tags": [
+    "tool-use",
+    "react",
+    "agents",
+    "function-calling",
+    "reasoning"
+  ],
+  "origin_author": "Shunyu Yao, Jeffrey Zhao et al. (Princeton/Google Brain), 2022",
+  "origin_source": "ReAct: Synergizing Reasoning and Acting in Language Models (ICLR 2023)",
+  "origin_source_zh": "《ReAct：在语言模型中协同推理与行动》（ICLR 2023）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Building AI agents that need to interact with external APIs, databases, or file systems",
+    "Tasks that require combining LLM reasoning with real-time data retrieval",
+    "Complex multi-step workflows where the next action depends on previous tool outputs",
+    "Building coding assistants that need to read, write, and execute code"
+  ],
+  "when_to_use_zh": [
+    "构建需要与外部 API、数据库或文件系统交互的 AI 代理",
+    "需要将 LLM 推理与实时数据检索相结合的任务",
+    "下一步操作依赖于前序工具输出的复杂多步骤工作流",
+    "构建需要读写和执行代码的编程助手"
+  ],
+  "core_concepts": [
+    "Reasoning Trace: the LLM's explicit thought process about which tool to use and why, visible as intermediate text",
+    "Action: a structured tool call with a specific function name and typed arguments",
+    "Observation: the result returned from a tool execution that feeds back into the next reasoning step",
+    "Tool Schema: a JSON Schema definition of each tool's name, description, parameters, and return type",
+    "Grounding: using tool outputs to anchor LLM responses in real data, reducing hallucination"
+  ],
+  "core_concepts_zh": [
+    "推理轨迹：LLM 关于使用哪个工具及其原因的显式思考过程，作为中间文本可见",
+    "行动：具有特定函数名和类型化参数的结构化工具调用",
+    "观察：工具执行返回的结果，反馈到下一个推理步骤",
+    "工具 Schema：每个工具的名称、描述、参数和返回类型的 JSON Schema 定义",
+    "接地：使用工具输出将 LLM 响应锚定在真实数据上，减少幻觉"
+  ],
+  "timeline": [
+    [
+      "2022",
+      "Yao et al. publish the ReAct paper, formalizing the reasoning-action loop for LLMs"
+    ],
+    [
+      "2023",
+      "OpenAI launches function calling API; Anthropic introduces tool use in Claude, making ReAct mainstream"
+    ],
+    [
+      "2024",
+      "LangChain, LlamaIndex, and Anthropic's Agent SDK standardize tool-use abstractions for production agents"
+    ],
+    [
+      "2025",
+      "Multi-agent tool-use frameworks emerge with Claude Code and OpenAI Codex agents as prominent examples"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2022",
+      "Yao 等人发表 ReAct 论文，正式定义了 LLM 的推理-行动循环"
+    ],
+    [
+      "2023",
+      "OpenAI 推出函数调用 API；Anthropic 在 Claude 中引入工具使用，使 ReAct 成为主流"
+    ],
+    [
+      "2024",
+      "LangChain、LlamaIndex 和 Anthropic 的 Agent SDK 标准化了生产级代理的工具使用抽象"
+    ],
+    [
+      "2025",
+      "多代理工具使用框架涌现，Claude Code 和 OpenAI Codex 代理是突出代表"
+    ]
+  ],
+  "dos": [
+    "Do define tool schemas precisely because vague descriptions lead to incorrect tool selection",
+    "Do make tools idempotent because the LLM may retry a tool call if the observation is unclear",
+    "Do limit the number of available tools per context because too many options confuse the model",
+    "Do log the full reasoning trace because it is essential for debugging and improving agent behavior"
+  ],
+  "dos_zh": [
+    "精确定义工具 schema，因为模糊的描述会导致错误的工具选择",
+    "使工具幂等，因为如果观察结果不明确 LLM 可能重试工具调用",
+    "限制每个上下文中的可用工具数量，因为选项太多会使模型困惑",
+    "记录完整的推理轨迹，因为这对调试和改善代理行为至关重要"
+  ],
+  "donts": [
+    "Don't give tools unrestricted access to sensitive systems because the LLM may call them unexpectedly",
+    "Don't skip argument validation before tool execution because malformed inputs cause silent failures",
+    "Don't let the reasoning loop run indefinitely because infinite loops waste tokens and time — set a max iteration limit",
+    "Don't hardcode tool sequences because the power of ReAct is dynamic tool selection based on observations"
+  ],
+  "donts_zh": [
+    "不要给工具对敏感系统的不受限访问，因为 LLM 可能意外调用它们",
+    "不要在工具执行前跳过参数验证，因为格式错误的输入会导致静默失败",
+    "不要让推理循环无限运行，因为无限循环浪费 token 和时间——设定最大迭代限制",
+    "不要硬编码工具调用序列，因为 ReAct 的力量在于基于观察的动态工具选择"
+  ],
+  "case_study_company": "Anthropic",
+  "case_study": "Anthropic's Claude Code is a production implementation of the ReAct pattern. The agent reasons about which tool to use (file read, code search, bash execution, file edit), executes the tool, observes the result, and decides whether to continue or respond. This reasoning loop allows Claude Code to handle complex multi-file refactoring tasks, debug failing tests, and build features across entire codebases — all through iterative tool use grounded in real code observations.",
+  "case_study_zh": "Anthropic 的 Claude Code 是 ReAct 模式的生产级实现。代理推理应使用哪个工具（文件读取、代码搜索、bash 执行、文件编辑），执行工具，观察结果，并决定是继续还是响应。这种推理循环使 Claude Code 能够处理复杂的多文件重构任务、调试失败测试，并在整个代码库中构建功能——全部通过基于真实代码观察的迭代工具使用完成。",
+  "when_not_to_use": [
+    "Simple question-answering tasks where the LLM's parametric knowledge is sufficient",
+    "Latency-critical applications where multiple tool-call round trips are too slow",
+    "Tasks with a fixed, known sequence of steps where a traditional pipeline is more reliable",
+    "Environments where tool execution costs (API calls, compute) are prohibitively expensive"
+  ],
+  "when_not_to_use_zh": [
+    "LLM 参数知识足够的简单问答任务",
+    "多次工具调用往返过慢的延迟敏感应用",
+    "步骤序列固定已知、传统管道更可靠的任务",
+    "工具执行成本（API 调用、计算）过高的环境"
+  ],
+  "adopters": [
+    "Anthropic (Claude Code)",
+    "OpenAI (ChatGPT Plugins)",
+    "Google (Gemini)",
+    "LangChain",
+    "Microsoft (Copilot)"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Shunyu Yao et al. (2023). \"ReAct: Synergizing Reasoning and Acting in Language Models\". ICLR 2023.",
+  "secondary_sources": [
+    "Timo Schick et al. (2023). \"Toolformer: Language Models Can Teach Themselves to Use Tools\". NeurIPS 2023.",
+    "Takeshi Kojima et al. (2022). \"Large Language Models are Zero-Shot Reasoners\". NeurIPS 2022."
+  ],
+  "typed_relations": [
+    {
+      "slug": "react-framework",
+      "type": "extends"
+    },
+    {
+      "slug": "prompt-engineering-patterns",
+      "type": "complement"
+    },
+    {
+      "slug": "prompt-chaining",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/tool-use-react-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/tool-use-react-pattern.md"
+}

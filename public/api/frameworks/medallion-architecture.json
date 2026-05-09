@@ -1,0 +1,195 @@
+{
+  "id": 199,
+  "name": "Medallion Architecture",
+  "name_zh": "奖章架构",
+  "slug": "medallion-architecture",
+  "category": "data",
+  "desc": "Bronze/Silver/Gold layered data processing pattern (Databricks, 2021)",
+  "desc_zh": "铜/银/金分层数据处理模式（Databricks，2021）",
+  "steps": [
+    "Ingest raw data from source systems into the Bronze layer without transformation, preserving the exact source payload including schema, data types, and any malformed records for full auditability",
+    "Transform Bronze data into the Silver layer by applying cleaning, deduplication, schema normalization, and type casting; join related datasets and enrich records to produce a validated, integrated view",
+    "Aggregate and model Silver data into the Gold layer, producing business-level tables, star schemas, or aggregated metrics optimized for BI tools, dashboards, and ML feature consumption",
+    "Enforce data quality checks at each layer boundary: Bronze validates that data arrived; Silver validates schema and business rules; Gold validates business metrics and aggregation accuracy",
+    "Implement incremental processing using Delta Lake or Iceberg MERGE operations so that each layer is updated efficiently without full re-scans, enabling near-real-time Gold layer freshness"
+  ],
+  "steps_zh": [
+    "将来自源系统的原始数据无转换地摄入铜层，保留完整的源负载，包括模式、数据类型和任何格式错误的记录，以实现完整可审计性",
+    "通过应用清洗、去重、模式规范化和类型转换将铜层数据转换为银层；连接相关数据集并丰富记录以产生经过验证的集成视图",
+    "将银层数据聚合和建模为金层，产生为BI工具、仪表板和ML特征消费优化的业务级表、星型模式或聚合指标",
+    "在每个层边界执行数据质量检查：铜层验证数据已到达；银层验证模式和业务规则；金层验证业务指标和聚合准确性",
+    "使用Delta Lake或Iceberg MERGE操作实现增量处理，使每层能够高效更新而无需全量重扫，实现近实时金层新鲜度"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Bronze Layer",
+    "Silver Layer",
+    "Gold Layer",
+    "Quality Gates",
+    "Incremental"
+  ],
+  "viz_labels_zh": [
+    "铜层",
+    "银层",
+    "金层",
+    "质量门",
+    "增量处理"
+  ],
+  "related": [
+    "data-lakehouse",
+    "data-quality-framework",
+    "data-lineage",
+    "slowly-changing-dimensions"
+  ],
+  "tags": [
+    "medallion",
+    "lakehouse",
+    "delta-lake",
+    "data-layers",
+    "databricks"
+  ],
+  "origin_author": "Databricks (Reza Shiftehfar et al.), 2021",
+  "origin_source": "Databricks Engineering Blog: 'Building a Medallion Architecture with Delta Lake' (2021); Delta Lake documentation",
+  "origin_source_zh": "Databricks工程博客：「使用Delta Lake构建奖章架构」（2021）；Delta Lake文档",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When building a data lakehouse on Delta Lake, Apache Iceberg, or Apache Hudi that needs clear separation between raw ingestion, integration, and serving layers",
+    "When multiple downstream consumers (BI, ML, data science) have different quality and latency requirements and a single pipeline cannot serve all of them optimally",
+    "When auditability requires preserving the original raw data alongside transformed versions for regulatory or debugging purposes",
+    "When incremental data processing and data quality need to be enforced systematically across a multi-team data platform"
+  ],
+  "when_to_use_zh": [
+    "当在Delta Lake、Apache Iceberg或Apache Hudi上构建需要清晰分离原始摄入、集成和服务层的数据湖仓时",
+    "当多个下游消费者（BI、ML、数据科学）有不同的质量和延迟要求，单一管道无法最优服务所有人时",
+    "当可审计性要求为监管或调试目的在转换版本旁边保留原始数据时",
+    "当增量数据处理和数据质量需要在多团队数据平台上系统性执行时"
+  ],
+  "core_concepts": [
+    "Bronze layer: the raw landing zone that stores data exactly as received from source systems; immutable append-only storage enabling full replay and re-processing",
+    "Silver layer: the cleaned and integrated layer where business rules are applied, duplicates removed, and schemas normalized; serves as the single source of truth for analytical consumption",
+    "Gold layer: the consumption-ready layer of aggregated, business-domain-specific datasets; optimized for query performance by BI tools and ML feature pipelines",
+    "Delta Lake / table format: ACID-compliant table format (Delta, Iceberg, Hudi) that enables MERGE, schema evolution, and time travel across all three layers"
+  ],
+  "core_concepts_zh": [
+    "铜层：原始登陆区，完全按从源系统接收的方式存储数据；不可变的追加式存储支持完整重放和重新处理",
+    "银层：应用业务规则、删除重复项和规范化模式的清洗集成层；作为分析消费的单一真实数据源",
+    "金层：消费就绪的聚合业务域特定数据集层；针对BI工具和ML特征管道的查询性能进行优化",
+    "Delta Lake/表格式：支持所有三层MERGE、模式演进和时间旅行的符合ACID的表格式（Delta、Iceberg、Hudi）"
+  ],
+  "timeline": [
+    [
+      "2019",
+      "Databricks releases Delta Lake as open source, providing the ACID foundation that makes the medallion pattern practical at scale"
+    ],
+    [
+      "2021",
+      "Databricks formalizes the 'Medallion Architecture' pattern in engineering blog posts and Spark Summit talks"
+    ],
+    [
+      "2022",
+      "Microsoft adopts medallion as the recommended architecture for Azure Data Lake and Synapse Analytics, accelerating enterprise adoption"
+    ],
+    [
+      "2024",
+      "Apache Iceberg achieves feature parity with Delta Lake; medallion architecture becomes table-format-agnostic, running on any open lakehouse format"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2019",
+      "Databricks将Delta Lake作为开源发布，提供使奖章模式在规模上实用的ACID基础"
+    ],
+    [
+      "2021",
+      "Databricks在工程博客文章和Spark峰会演讲中正式化「奖章架构」模式"
+    ],
+    [
+      "2022",
+      "微软采用奖章架构作为Azure Data Lake和Synapse Analytics的推荐架构，加速企业采纳"
+    ],
+    [
+      "2024",
+      "Apache Iceberg实现与Delta Lake的功能对等；奖章架构变得与表格式无关，可在任何开放湖仓格式上运行"
+    ]
+  ],
+  "dos": [
+    "Do keep the Bronze layer truly raw and append-only because any transformation applied at ingestion time makes it impossible to re-derive the Silver layer from a different transformation logic later",
+    "Do enforce explicit schema on Silver and Gold tables because schema-on-read in Silver causes unpredictable failures in downstream Gold pipelines",
+    "Do partition Gold tables by the query predicates most common in BI tools (e.g., date, region) because partition pruning is the primary performance lever for large Gold tables",
+    "Do use incremental MERGE rather than full refresh for Silver and Gold layers because full refreshes are slow, expensive, and create latency spikes for consumers"
+  ],
+  "dos_zh": [
+    "保持铜层真正原始且只追加，因为在摄入时应用的任何转换都会使以后无法从不同的转换逻辑重新派生银层",
+    "对银层和金层表强制执行显式模式，因为银层的读取时模式会在下游金层管道中造成不可预测的失败",
+    "按BI工具中最常见的查询谓词（如日期、区域）对金层表进行分区，因为分区裁剪是大型金层表的主要性能杠杆",
+    "对银层和金层使用增量MERGE而非全量刷新，因为全量刷新速度慢、成本高，会为消费者造成延迟尖峰"
+  ],
+  "donts": [
+    "Don't skip the Bronze layer and write transformed data directly to Silver because without the raw layer you lose the ability to replay history after discovering a transformation bug",
+    "Don't build Gold tables that replicate the entire Silver layer with minor variations because this creates maintenance sprawl; Gold should aggregate and simplify",
+    "Don't mix streaming and batch processing in the same layer without explicit partition isolation because mixed write patterns cause Delta Lake file compaction issues",
+    "Don't treat the medallion architecture as strictly three layers; hybrid Silver-Gold or additional domain layers are valid when business complexity justifies them"
+  ],
+  "donts_zh": [
+    "不要跳过铜层直接将转换后的数据写入银层，因为没有原始层，在发现转换错误后就无法重放历史",
+    "不要构建以细微变化复制整个银层的金层表，因为这会产生维护蔓延；金层应聚合和简化",
+    "不要在没有显式分区隔离的情况下在同一层混合流处理和批处理，因为混合写入模式会导致Delta Lake文件压缩问题",
+    "不要将奖章架构视为严格的三层；当业务复杂性证明合理时，混合银-金层或额外的领域层是有效的"
+  ],
+  "case_study_company": "Comcast",
+  "case_study": "Comcast migrated its advertising analytics platform to a medallion architecture on Delta Lake, processing over 50 billion ad impression events per day. The Bronze layer captures raw impression, click, and conversion events from 200+ ad servers. The Silver layer joins these events with campaign metadata and applies identity resolution to deduplicate device IDs. The Gold layer produces advertiser-facing campaign performance reports and ML training datasets for bid optimization models. This architecture reduced ad reporting latency from 24 hours to under 2 hours while cutting data platform costs by 40% through Delta Lake's optimized file compaction.",
+  "case_study_zh": "Comcast将其广告分析平台迁移到Delta Lake上的奖章架构，每天处理超过500亿个广告展示事件。铜层从200多个广告服务器捕获原始展示、点击和转化事件。银层将这些事件与活动元数据连接，并应用身份解析去重设备ID。金层产生面向广告主的活动绩效报告和用于出价优化模型的ML训练数据集。这种架构将广告报告延迟从24小时减少到2小时以内，同时通过Delta Lake的优化文件压缩将数据平台成本降低了40%。",
+  "when_not_to_use": [
+    "Simple single-source ETL pipelines where a two-layer approach (raw + curated) is sufficient and the three-layer overhead is not justified",
+    "Real-time OLTP systems where sub-second query latency is required and the batch-oriented medallion processing model is incompatible with latency SLAs",
+    "When the organization lacks the engineering maturity to maintain three layers of pipelines; start with a two-layer approach and evolve",
+    "Small datasets that fit in a single database where the complexity of a distributed lakehouse is unnecessary overhead"
+  ],
+  "when_not_to_use_zh": [
+    "两层方法（原始+精制）已足够且三层开销不合理的简单单源ETL管道",
+    "需要亚秒查询延迟且面向批处理的奖章处理模型与延迟SLA不兼容的实时OLTP系统",
+    "当组织缺乏维护三层管道的工程成熟度时；从两层方法开始并逐步演进",
+    "适合单个数据库的小型数据集，分布式湖仓的复杂性是不必要的开销"
+  ],
+  "adopters": [
+    "Databricks",
+    "Comcast",
+    "Shell",
+    "H&M Group",
+    "HSBC"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "scalability",
+    "maintainability",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Databricks Engineering (2021). \"Building a Medallion Architecture with Delta Lake\". databricks.com/blog.",
+  "secondary_sources": [
+    "Armbrust, M. et al. (2020). \"Delta Lake: High-Performance ACID Table Storage over Cloud Object Stores\". Proceedings of the VLDB Endowment, 13(12).",
+    "Doan, A. et al. (2022). \"The Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics\". CIDR 2022.",
+    "Databricks (2023). \"Delta Lake: The Definitive Guide\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "data-lakehouse",
+      "type": "extends"
+    },
+    {
+      "slug": "data-quality-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "data-lineage",
+      "type": "complement"
+    },
+    {
+      "slug": "slowly-changing-dimensions",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/medallion-architecture",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/medallion-architecture.md"
+}

@@ -1,0 +1,193 @@
+{
+  "id": 172,
+  "name": "Decision Matrix (Weighted Scoring)",
+  "name_zh": "决策矩阵（加权评分法）",
+  "slug": "decision-matrix",
+  "category": "architecture",
+  "desc": "Systematic trade-off evaluation method that scores architecture alternatives against weighted criteria to make objective, transparent decisions",
+  "desc_zh": "针对加权标准对架构备选方案进行评分的系统化权衡评估方法，以做出客观透明的决策",
+  "steps": [
+    "List all candidate architecture alternatives and define the evaluation criteria (e.g., scalability, cost, team expertise, time-to-market)",
+    "Assign weights to each criterion based on business priorities, ensuring weights sum to 100% or a consistent scale",
+    "Score each alternative against every criterion using a consistent rating scale (e.g., 1-5 or 1-10)",
+    "Calculate weighted scores by multiplying each rating by its criterion weight and summing across all criteria per alternative",
+    "Analyze the results: review the rankings, perform sensitivity analysis on key weights, and document the decision rationale"
+  ],
+  "steps_zh": [
+    "列出所有候选架构方案并定义评估标准（如可扩展性、成本、团队专业知识、上市时间）",
+    "根据业务优先级为每个标准分配权重，确保权重总和为100%或一致的量表",
+    "使用一致的评分量表（如1-5或1-10）为每个方案在每个标准上评分",
+    "计算加权分数：将每个评分乘以其标准权重，并按方案汇总所有标准的分数",
+    "分析结果：审查排名，对关键权重进行敏感性分析，并记录决策理由"
+  ],
+  "ai_relevant": false,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Option",
+    "Criteria",
+    "Weight",
+    "Score"
+  ],
+  "viz_labels_zh": [
+    "方案选项",
+    "评估标准",
+    "权重",
+    "得分"
+  ],
+  "related": [
+    "atam",
+    "trade-off-sliders",
+    "adr"
+  ],
+  "tags": [
+    "decision-making",
+    "trade-offs",
+    "evaluation",
+    "scoring",
+    "prioritization"
+  ],
+  "origin_author": "Stuart Pugh, 1991; adapted for software architecture by Bass, Clements, and Kazman",
+  "origin_source": "Software Architecture in Practice, 4th Edition (Addison-Wesley, Bass, Clements & Kazman, 2021)",
+  "origin_source_zh": "《软件架构实践》第四版（Addison-Wesley，Bass、Clements和Kazman，2021年）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "When multiple architecture options exist and stakeholders need a transparent, objective comparison framework",
+    "When subjective debates about technology choices are stalling decision-making progress",
+    "When the decision involves many criteria with different levels of importance to different stakeholders",
+    "When you need an auditable record of how and why a particular architecture was chosen"
+  ],
+  "when_to_use_zh": [
+    "当存在多个架构选项，利益相关者需要透明客观的比较框架时",
+    "当关于技术选择的主观争论阻碍了决策进展时",
+    "当决策涉及对不同利益相关者具有不同重要性的多个标准时",
+    "当需要可审计的记录来说明特定架构是如何以及为何被选中时"
+  ],
+  "core_concepts": [
+    "Criteria definition: Identifying the measurable dimensions against which architecture alternatives will be evaluated",
+    "Weight assignment: Quantifying the relative importance of each criterion based on stakeholder priorities and business context",
+    "Scoring consistency: Using a uniform rating scale and clear rubrics to ensure scores are comparable across evaluators",
+    "Sensitivity analysis: Testing how changes in weights or scores affect the final ranking to identify fragile conclusions",
+    "Decision transparency: Making the entire evaluation process visible and reproducible so stakeholders trust the outcome"
+  ],
+  "core_concepts_zh": [
+    "标准定义：识别用于评估架构备选方案的可度量维度",
+    "权重分配：根据利益相关者优先级和业务背景量化每个标准的相对重要性",
+    "评分一致性：使用统一的评分量表和清晰的评判标准，确保评分在评估者间可比较",
+    "敏感性分析：测试权重或分数的变化如何影响最终排名，以识别脆弱的结论",
+    "决策透明度：使整个评估过程可见且可重现，以便利益相关者信任结果"
+  ],
+  "timeline": [
+    [
+      "1991",
+      "Stuart Pugh publishes Total Design introducing the Pugh matrix for engineering decision-making"
+    ],
+    [
+      "2003",
+      "Bass, Clements, and Kazman integrate weighted scoring into architecture evaluation in Software Architecture in Practice"
+    ],
+    [
+      "2012",
+      "Decision matrices become standard practice in enterprise architecture governance frameworks like TOGAF"
+    ],
+    [
+      "2020",
+      "Richards and Ford discuss trade-off analysis techniques including decision matrices in Fundamentals of Software Architecture"
+    ],
+    [
+      "2021",
+      "Bass, Clements, and Kazman refine the decision matrix approach in the 4th edition of Software Architecture in Practice"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1991",
+      "Stuart Pugh出版《全面设计》，引入Pugh矩阵用于工程决策"
+    ],
+    [
+      "2003",
+      "Bass、Clements和Kazman在《软件架构实践》中将加权评分集成到架构评估中"
+    ],
+    [
+      "2012",
+      "决策矩阵成为TOGAF等企业架构治理框架中的标准实践"
+    ],
+    [
+      "2020",
+      "Richards和Ford在《软件架构基础》中讨论包括决策矩阵在内的权衡分析技术"
+    ],
+    [
+      "2021",
+      "Bass、Clements和Kazman在《软件架构实践》第四版中完善决策矩阵方法"
+    ]
+  ],
+  "dos": [
+    "Do involve diverse stakeholders in weight assignment because individual bias skews the outcome toward one perspective",
+    "Do perform sensitivity analysis on the top-weighted criteria because small weight changes can flip the final ranking",
+    "Do document the rationale behind both weights and scores because the reasoning is as valuable as the numbers",
+    "Do revisit the decision matrix when major requirements change because stale evaluations lead to suboptimal choices"
+  ],
+  "dos_zh": [
+    "让多元化的利益相关者参与权重分配，因为个人偏见会使结果倾向于某一视角",
+    "对权重最高的标准进行敏感性分析，因为权重的微小变化可能翻转最终排名",
+    "记录权重和评分背后的理由，因为推理过程与数字同样有价值",
+    "当主要需求变更时重新审视决策矩阵，因为过时的评估会导致次优选择"
+  ],
+  "donts": [
+    "Don't let one person assign all weights alone because it introduces unchecked bias into the evaluation",
+    "Don't use the matrix to justify a predetermined conclusion because stakeholders will lose trust in the process",
+    "Don't over-refine scores with false precision because the difference between a 7.2 and a 7.3 is meaningless noise",
+    "Don't ignore qualitative factors that resist scoring because some critical considerations (team morale, organizational politics) are hard to quantify"
+  ],
+  "donts_zh": [
+    "不要让一个人单独分配所有权重，因为这会在评估中引入未经检验的偏见",
+    "不要用矩阵来为预设结论辩护，因为利益相关者会对流程失去信任",
+    "不要以虚假精度过度细化分数，因为7.2和7.3之间的差异是无意义的噪声",
+    "不要忽视难以评分的定性因素，因为某些关键考量（团队士气、组织政治）很难量化"
+  ],
+  "case_study_company": "Capital One",
+  "case_study": "Capital One used a weighted decision matrix when evaluating its move from on-premise data centers to cloud infrastructure, comparing AWS, Azure, and Google Cloud across 12 criteria including cost, security compliance, developer tooling, managed services breadth, and talent availability. Each criterion was weighted by a cross-functional committee of architects, security officers, and business leaders. The matrix revealed that while Azure scored highest on enterprise integration, AWS dominated on managed services and talent pool. Sensitivity analysis showed the decision was robust across reasonable weight variations. The transparent process helped Capital One justify its AWS-first strategy to regulators and internal stakeholders.",
+  "case_study_zh": "Capital One在评估从本地数据中心迁移到云基础设施时使用加权决策矩阵，在12个标准（包括成本、安全合规、开发者工具、托管服务广度和人才可用性）上比较AWS、Azure和Google Cloud。每个标准由架构师、安全官员和业务领导者组成的跨职能委员会分配权重。矩阵显示，虽然Azure在企业集成方面得分最高，但AWS在托管服务和人才储备方面占主导地位。敏感性分析表明该决策在合理的权重变化范围内是稳健的。透明的流程帮助Capital One向监管机构和内部利益相关者证明其「AWS优先」策略的合理性。",
+  "when_not_to_use": [
+    "When there are fewer than two viable alternatives, making a comparison matrix unnecessary overhead",
+    "When the decision is time-critical and the overhead of formal evaluation outweighs the risk of a quick judgment",
+    "When all options are roughly equivalent and the decision should be based on team preference or experimentation rather than analysis"
+  ],
+  "when_not_to_use_zh": [
+    "当可行方案少于两个时，比较矩阵成为不必要的开销",
+    "当决策时间紧迫，正式评估的开销超过快速判断的风险时",
+    "当所有选项大致等价，决策应基于团队偏好或实验而非分析时"
+  ],
+  "adopters": [
+    "Capital One",
+    "ThoughtWorks",
+    "McKinsey",
+    "Accenture",
+    "Deloitte"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Stuart Pugh (1991). \"Total Design: Integrated Methods for Successful Product Engineering\". Addison-Wesley.",
+  "secondary_sources": [
+    "Len Bass, Paul Clements, and Rick Kazman (2021). \"Software Architecture in Practice, 4th Edition\". Addison-Wesley.",
+    "Ralph Keeney and Howard Raiffa (1993). \"Decisions with Multiple Objectives: Preferences and Value Tradeoffs\". Cambridge University Press."
+  ],
+  "typed_relations": [
+    {
+      "slug": "atam",
+      "type": "complement"
+    },
+    {
+      "slug": "trade-off-sliders",
+      "type": "related"
+    },
+    {
+      "slug": "adr",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/decision-matrix",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/decision-matrix.md"
+}

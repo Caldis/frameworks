@@ -1,0 +1,195 @@
+{
+  "id": 129,
+  "name": "Sharding Strategies",
+  "name_zh": "分片策略",
+  "slug": "sharding-strategies",
+  "category": "distributed",
+  "desc": "Horizontal data partitioning patterns for distributing load across multiple database nodes",
+  "desc_zh": "将数据水平分区到多个数据库节点以分散负载的模式",
+  "steps": [
+    "Analyze access patterns: identify the most common queries, their selectivity, and which fields they filter on to determine the optimal shard key",
+    "Choose a sharding strategy: select hash-based sharding for uniform distribution, range-based sharding for range queries, or directory-based sharding for complex routing",
+    "Define the shard key: select a high-cardinality field (e.g., user_id, tenant_id) that distributes writes evenly and keeps related data co-located for common query patterns",
+    "Implement query routing: build a routing layer (application-level, proxy, or coordinator) that directs each query to the correct shard(s) based on the shard key",
+    "Plan for rebalancing: design the migration strategy for splitting hot shards or redistributing data when adding nodes, using techniques like consistent hashing or logical sharding"
+  ],
+  "steps_zh": [
+    "分析访问模式：识别最常见的查询、其选择性以及过滤的字段，以确定最优分片键",
+    "选择分片策略：选择基于哈希的分片实现均匀分布、基于范围的分片支持范围查询，或基于目录的分片实现复杂路由",
+    "定义分片键：选择高基数字段（如user_id、tenant_id），确保写入均匀分布且相关数据对常见查询模式保持共置",
+    "实现查询路由：构建路由层（应用级、代理或协调器），根据分片键将每个查询定向到正确的分片",
+    "规划重新平衡：设计分割热分片或在添加节点时重新分配数据的迁移策略，使用一致性哈希或逻辑分片等技术"
+  ],
+  "ai_relevant": false,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Hash Shard",
+    "Range Shard",
+    "Directory Shard",
+    "Query Router",
+    "Rebalance"
+  ],
+  "viz_labels_zh": [
+    "哈希分片",
+    "范围分片",
+    "目录分片",
+    "查询路由",
+    "再平衡"
+  ],
+  "related": [
+    "consistent-hashing",
+    "cap-theorem",
+    "eventual-consistency"
+  ],
+  "tags": [
+    "partitioning",
+    "scalability",
+    "databases",
+    "horizontal-scaling"
+  ],
+  "origin_author": "Concept from database research (1980s-1990s); formalized in modern context by Kleppmann (2017)",
+  "origin_source": "Kleppmann, Designing Data-Intensive Applications, Ch. 6; Newman, Building Microservices, Ch. 4 (2nd ed., 2021); Sadalage & Fowler, NoSQL Distilled (2012)",
+  "origin_source_zh": "Kleppmann《数据密集型应用系统设计》第6章；Newman《构建微服务》第4章（第二版，2021）；Sadalage和Fowler《NoSQL精粹》（2012）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When a single database instance cannot handle the write throughput or storage volume required by the application",
+    "When query latency is degraded by the sheer size of tables and indexes on a single node, even after vertical scaling",
+    "When multi-tenant applications need data isolation guarantees where each tenant's data resides on a dedicated shard",
+    "When geographic data locality is required to minimize latency by placing shards close to their primary user base"
+  ],
+  "when_to_use_zh": [
+    "当单个数据库实例无法处理应用所需的写入吞吐量或存储容量时",
+    "当即使垂直扩展后，单节点上表和索引的庞大规模导致查询延迟下降时",
+    "当多租户应用需要数据隔离保证，每个租户的数据驻留在专用分片上时",
+    "当需要地理数据局部性以通过将分片放置在主要用户群附近来最小化延迟时"
+  ],
+  "core_concepts": [
+    "Hash-based sharding: Apply a hash function to the shard key and assign data to shards by hash range; ensures uniform distribution but prevents efficient range queries",
+    "Range-based sharding: Assign contiguous key ranges to each shard; supports range queries but risks hot spots if access patterns cluster around certain ranges",
+    "Directory-based sharding: A lookup table maps each key to its shard; maximally flexible but introduces the directory as a single point of failure and bottleneck",
+    "Cross-shard queries: Queries that span multiple shards require scatter-gather coordination, which is significantly more expensive than single-shard queries",
+    "Shard rebalancing: The process of redistributing data across shards when adding or removing nodes, which must be done without downtime using techniques like logical sharding or dual-write migration"
+  ],
+  "core_concepts_zh": [
+    "基于哈希的分片：对分片键应用哈希函数并按哈希范围分配数据到分片；确保均匀分布但阻碍高效的范围查询",
+    "基于范围的分片：将连续的键范围分配给每个分片；支持范围查询但如果访问模式集中在某些范围则有热点风险",
+    "基于目录的分片：查找表将每个键映射到其分片；灵活性最大但引入目录作为单点故障和瓶颈",
+    "跨分片查询：跨越多个分片的查询需要分散-聚合协调，成本远高于单分片查询",
+    "分片重新平衡：在添加或移除节点时重新分配数据到分片的过程，必须使用逻辑分片或双写迁移等技术在不停机的情况下完成"
+  ],
+  "timeline": [
+    [
+      "1986",
+      "DeWitt and Gray publish papers on parallel database systems with horizontal partitioning strategies"
+    ],
+    [
+      "2007",
+      "Amazon's Dynamo and Google's Bigtable papers demonstrate sharding at web scale, influencing the NoSQL movement"
+    ],
+    [
+      "2010",
+      "MongoDB introduces auto-sharding, making hash-based and range-based sharding accessible to application developers"
+    ],
+    [
+      "2017",
+      "Kleppmann's DDIA provides the definitive practitioner guide to partitioning strategies and their trade-offs"
+    ],
+    [
+      "2020",
+      "Vitess (YouTube's MySQL sharding middleware) becomes a CNCF graduated project, proving sharding remains essential at scale"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1986",
+      "DeWitt和Gray发表关于并行数据库系统水平分区策略的论文"
+    ],
+    [
+      "2007",
+      "Amazon的Dynamo和Google的Bigtable论文展示Web级别的分片，影响了NoSQL运动"
+    ],
+    [
+      "2010",
+      "MongoDB引入自动分片，使应用开发者能够使用基于哈希和基于范围的分片"
+    ],
+    [
+      "2017",
+      "Kleppmann的《数据密集型应用系统设计》提供分区策略及其权衡的权威实践者指南"
+    ],
+    [
+      "2020",
+      "Vitess（YouTube的MySQL分片中间件）成为CNCF毕业项目，证明分片在大规模下仍然不可或缺"
+    ]
+  ],
+  "dos": [
+    "Do choose a shard key with high cardinality and uniform distribution because low-cardinality keys create unbalanceable hot shards",
+    "Do co-locate related data on the same shard whenever possible because cross-shard joins are orders of magnitude slower than local joins",
+    "Do implement logical sharding from the start (many logical shards per physical node) because it makes future physical rebalancing a matter of reassigning logical shards rather than splitting data",
+    "Do plan for the scatter-gather query pattern because some queries will inevitably span multiple shards and need a coordination layer"
+  ],
+  "dos_zh": [
+    "选择高基数且均匀分布的分片键，因为低基数键会产生无法平衡的热分片",
+    "尽可能将相关数据共置在同一分片上，因为跨分片连接比本地连接慢几个数量级",
+    "从一开始就实现逻辑分片（每个物理节点多个逻辑分片），因为这使未来的物理重新平衡变成重新分配逻辑分片而非分割数据",
+    "为分散-聚合查询模式做好规划，因为某些查询将不可避免地跨越多个分片并需要协调层"
+  ],
+  "donts": [
+    "Don't shard prematurely because sharding adds significant operational complexity; exhaust vertical scaling and read replicas first",
+    "Don't choose a shard key based on write patterns alone because read-heavy queries that span all shards will create a scatter-gather bottleneck",
+    "Don't forget about secondary indexes because global secondary indexes in a sharded system require cross-shard coordination or eventual consistency",
+    "Don't assume you can change the shard key later without a full data migration because the shard key determines the physical data layout"
+  ],
+  "donts_zh": [
+    "不要过早分片，因为分片增加了显著的运维复杂性；先用尽垂直扩展和读副本",
+    "不要仅基于写入模式选择分片键，因为跨所有分片的读密集查询会产生分散-聚合瓶颈",
+    "不要忘记二级索引，因为分片系统中的全局二级索引需要跨分片协调或最终一致性",
+    "不要假设之后可以在不全量数据迁移的情况下更改分片键，因为分片键决定了物理数据布局"
+  ],
+  "case_study_company": "Slack",
+  "case_study": "Slack shards its MySQL databases by workspace (team_id), ensuring that all messages, channels, and metadata for a single workspace reside on the same shard. This design eliminates cross-shard queries for the most common access pattern — loading messages in a channel for a specific workspace. When Slack grew from hundreds to millions of workspaces, they implemented a logical sharding layer called Bedrock that maps workspace IDs to physical shards. When a physical shard becomes too hot, Bedrock moves logical shards to a new physical node with zero-downtime migration using dual-write and cutover. This approach allowed Slack to scale from a single MySQL instance to thousands of shards while maintaining sub-100ms query latencies for workspace-scoped operations.",
+  "case_study_zh": "Slack按工作空间（team_id）对MySQL数据库进行分片，确保单个工作空间的所有消息、频道和元数据驻留在同一分片上。这种设计消除了最常见访问模式——加载特定工作空间中频道消息——的跨分片查询。当Slack从数百增长到数百万个工作空间时，他们实现了名为Bedrock的逻辑分片层，将工作空间ID映射到物理分片。当物理分片过热时，Bedrock使用双写和切换将逻辑分片零停机迁移到新的物理节点。这种方法使Slack从单个MySQL实例扩展到数千个分片，同时将工作空间范围操作的查询延迟保持在100毫秒以内。",
+  "when_not_to_use": [
+    "Datasets that fit comfortably on a single database node with acceptable query performance",
+    "Workloads dominated by cross-entity analytical queries where sharding would require constant scatter-gather operations",
+    "Early-stage products where the data model is still evolving and premature sharding would lock in a suboptimal partition scheme"
+  ],
+  "when_not_to_use_zh": [
+    "在单个数据库节点上能舒适容纳且查询性能可接受的数据集",
+    "以跨实体分析查询为主的工作负载，分片将需要持续的分散-聚合操作",
+    "数据模型仍在演进的早期产品，过早分片会锁定次优的分区方案"
+  ],
+  "adopters": [
+    "Slack",
+    "Pinterest",
+    "Vitess/YouTube",
+    "Instagram",
+    "MongoDB Atlas"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "scalability",
+    "performance"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 6: Partitioning. O'Reilly Media.",
+  "secondary_sources": [
+    "Sadalage, P.J. & Fowler, M. (2012). \"NoSQL Distilled: A Brief Guide to the Emerging World of Polyglot Persistence\". Addison-Wesley.",
+    "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 4. O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "consistent-hashing",
+      "type": "complement"
+    },
+    {
+      "slug": "cap-theorem",
+      "type": "prerequisite"
+    },
+    {
+      "slug": "eventual-consistency",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/sharding-strategies",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/sharding-strategies.md"
+}

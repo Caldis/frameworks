@@ -1,0 +1,211 @@
+{
+  "id": 319,
+  "name": "Clean Architecture",
+  "name_zh": "整洁架构",
+  "slug": "clean-architecture",
+  "category": "architecture",
+  "desc": "Organizes code into concentric dependency rings — Entities, Use Cases, Interface Adapters, Frameworks — where the Dependency Rule mandates all source-code dependencies point inward, making the system independent of UI, database, and frameworks.",
+  "desc_zh": "将代码组织为同心依赖环——实体、用例、接口适配器、框架——依赖规则规定所有源代码依赖指向内部，使系统独立于UI、数据库和框架。",
+  "steps": [
+    "Identify the core Entities: business objects and rules that exist independent of any application — these form the innermost ring and have zero external dependencies",
+    "Define Use Cases (Interactors): application-specific business rules that orchestrate Entities; each Use Case captures one piece of user-facing functionality and depends only on Entities",
+    "Define Interface Adapters: Controllers, Presenters, and Gateways that convert data between the format convenient for Use Cases and the format required by external systems (DB, web, UI)",
+    "Place all external concerns (frameworks, drivers, UI) in the outermost ring: these are implementation details that can be swapped without affecting any inner ring",
+    "Enforce the Dependency Rule mechanically: use dependency inversion (interfaces defined in inner rings, implemented in outer rings) to ensure no inner ring ever imports from an outer ring"
+  ],
+  "steps_zh": [
+    "识别核心实体：独立于任何应用程序存在的业务对象和规则——这些形成最内层环，零外部依赖",
+    "定义用例（交互器）：协调实体的应用程序特定业务规则；每个用例捕获一项面向用户的功能，仅依赖实体",
+    "定义接口适配器：控制器、呈现者和网关，在用例方便的格式和外部系统（数据库、Web、UI）所需格式之间转换数据",
+    "将所有外部关注点（框架、驱动程序、UI）放在最外层环：这些是可以在不影响任何内层环的情况下替换的实现细节",
+    "机械地强制执行依赖规则：使用依赖倒置（在内层环中定义接口，在外层环中实现）确保内层环永远不从外层环导入"
+  ],
+  "ai_relevant": false,
+  "viz_type": "concentric",
+  "viz_labels": [
+    "Entities",
+    "Use Cases",
+    "Adapters",
+    "Frameworks",
+    "Dependency Rule"
+  ],
+  "viz_labels_zh": [
+    "实体",
+    "用例",
+    "适配器",
+    "框架层",
+    "依赖规则"
+  ],
+  "related": [
+    "hexagonal-architecture",
+    "solid-principles",
+    "domain-driven-design",
+    "onion-architecture",
+    "n-tier-layered",
+    "ports-and-adapters"
+  ],
+  "tags": [
+    "dependency-inversion",
+    "testability",
+    "framework-independence",
+    "enterprise-architecture"
+  ],
+  "origin_author": "Robert C. Martin (Uncle Bob), 2012",
+  "origin_source": "Martin, R.C. (2012). The Clean Architecture. The Clean Coder Blog, August 13. blog.cleancoder.com.",
+  "origin_source_zh": "Martin, R.C.（2012）。《整洁架构》。The Clean Coder博客，8月13日。blog.cleancoder.com。",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When the application must remain testable without any external infrastructure — databases, web servers, or UI frameworks should be optional at test time",
+    "When the team anticipates replacing or upgrading the database, web framework, or UI technology during the system's lifetime",
+    "When domain rules are complex enough to justify the overhead — Clean Architecture pays dividends when business logic has many rules and variations",
+    "When building a long-lived enterprise application where multiple teams need clear, enforced boundaries between concerns"
+  ],
+  "when_to_use_zh": [
+    "应用程序必须在没有任何外部基础设施的情况下可测试时——数据库、Web服务器或UI框架在测试时应该是可选的",
+    "团队预期在系统生命周期内替换或升级数据库、Web框架或UI技术时",
+    "领域规则足够复杂以证明开销合理时——当业务逻辑有许多规则和变体时，整洁架构带来回报",
+    "构建多团队需要清晰、强制执行关注点边界的长寿命企业应用程序时"
+  ],
+  "core_concepts": [
+    "The Dependency Rule: source code dependencies must always point inward — outer rings know about inner rings, never the reverse",
+    "Entities: enterprise-wide business rules encapsulated as objects; the most stable, rarely-changing core of the system",
+    "Use Cases: application-specific business rules that define the system's behavior; they direct data flow to and from Entities",
+    "Interface Adapters: the translation layer — Controllers convert web requests to Use Case inputs; Presenters convert Use Case outputs to View models; Gateways implement Repository interfaces defined by Use Cases",
+    "Dependency Inversion at the boundary: inner rings define interfaces (Repository, Presenter interface); outer rings provide implementations — control flows inward but dependency points outward, toward the inner ring's interface"
+  ],
+  "core_concepts_zh": [
+    "依赖规则：源代码依赖必须始终指向内部——外层环了解内层环，反之则不然",
+    "实体：封装为对象的企业范围业务规则；系统中最稳定、最少变化的核心",
+    "用例：定义系统行为的应用程序特定业务规则；它们指导数据流向和来自实体",
+    "接口适配器：翻译层——控制器将Web请求转换为用例输入；呈现者将用例输出转换为视图模型；网关实现由用例定义的仓储接口",
+    "边界处的依赖倒置：内层环定义接口（仓储、呈现者接口）；外层环提供实现——控制流向内但依赖指向外部，朝向内层环的接口"
+  ],
+  "timeline": [
+    [
+      "2012",
+      "Robert C. Martin publishes the Clean Architecture blog post, synthesizing prior work on Hexagonal, Onion, and BCE architectures"
+    ],
+    [
+      "2017",
+      "Martin publishes 「Clean Architecture: A Craftsman's Guide to Software Structure and Design」, formalizing the ring diagram"
+    ],
+    [
+      "2018",
+      "The Android community adopts Clean Architecture as the de-facto standard, influencing Google's official Architecture Components guidance"
+    ],
+    [
+      "2020",
+      "Clean Architecture becomes a standard teaching pattern in Go, Kotlin, and .NET communities with framework-specific adaptations"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2012",
+      "Robert C. Martin发布整洁架构博客文章，综合了六边形、洋葱和BCE架构的先前工作"
+    ],
+    [
+      "2017",
+      "Martin出版《整洁架构：软件结构与设计匠艺指南》，正式确立环形图"
+    ],
+    [
+      "2018",
+      "Android社区将整洁架构采纳为事实标准，影响谷歌官方架构组件指南"
+    ],
+    [
+      "2020",
+      "整洁架构成为Go、Kotlin和.NET社区的标准教学模式，具有框架特定的适配"
+    ]
+  ],
+  "dos": [
+    "Define all repository and external service interfaces inside the Use Case ring — the Use Case owns the contract, the outer ring provides the implementation",
+    "Pass simple data structures (DTOs, primitives) across ring boundaries rather than rich domain objects — this prevents leaking inner-ring types into outer rings",
+    "Write Use Case unit tests that supply all dependencies as in-memory fakes — a Use Case test that touches a real database or network is not a unit test",
+    "Use package/module naming that reflects the ring — e.g., domain, application, infrastructure — so that import direction violations are immediately visible"
+  ],
+  "dos_zh": [
+    "在用例环内定义所有仓储和外部服务接口——用例拥有契约，外层环提供实现",
+    "跨环边界传递简单数据结构（DTO、基本类型）而非丰富领域对象——这防止内层环类型泄漏到外层环",
+    "编写将所有依赖项作为内存假实现提供的用例单元测试——接触真实数据库或网络的用例测试不是单元测试",
+    "使用反映环层的包/模块命名——例如domain、application、infrastructure——使导入方向违规立即可见"
+  ],
+  "donts": [
+    "Don't let framework annotations (Spring @Entity, JPA annotations) leak into the Entity ring — this couples your most stable code to your most volatile dependency",
+    "Don't create a single monolithic Use Case class that handles an entire feature area — each Use Case should do one thing and express one business intention",
+    "Don't cross ring boundaries in tests to save setup time — testing an outer ring object by letting it call into the real inner ring defeats the isolation purpose",
+    "Don't apply Clean Architecture to small scripts or microservices with trivial logic — the indirection overhead outweighs the benefits for simple CRUD operations"
+  ],
+  "donts_zh": [
+    "不要让框架注解（Spring @Entity、JPA注解）泄漏到实体环——这将最稳定的代码与最易变的依赖耦合",
+    "不要创建处理整个功能区域的单一整体用例类——每个用例应该做一件事并表达一个业务意图",
+    "不要在测试中跨越环边界以节省设置时间——通过让外层环对象调用真实内层环来测试它会破坏隔离目的",
+    "不要将整洁架构应用于具有微不足道逻辑的小型脚本或微服务——对于简单的CRUD操作，间接开销超过收益"
+  ],
+  "case_study_company": "Nubank",
+  "case_study": "Nubank, the Brazilian fintech serving over 90 million customers, adopted Clean Architecture across its Clojure and Kotlin microservices to enforce strict separation between rapidly-changing business rules and stable infrastructure choices. By placing all financial calculation and compliance rules in the innermost Entity and Use Case rings, Nubank's engineering team was able to replace their persistence layer (migrating from Datomic to PostgreSQL for specific services) without touching business logic code. Their Use Case test suites run in under 5 seconds with in-memory repositories, enabling a TDD workflow that catches business rule regressions before any infrastructure is involved.",
+  "case_study_zh": "服务超过9000万客户的巴西金融科技公司Nubank在其Clojure和Kotlin微服务中采用整洁架构，强制在快速变化的业务规则和稳定的基础设施选择之间严格分离。通过将所有财务计算和合规规则放在最内层的实体和用例环中，Nubank的工程团队能够在不接触业务逻辑代码的情况下替换其持久化层（将特定服务从Datomic迁移到PostgreSQL）。他们的用例测试套件使用内存仓储在5秒内运行，实现了在涉及任何基础设施之前捕获业务规则退化的TDD工作流。",
+  "case_study_challenge": "Nubank, serving over 90 million customers in Brazil, needed to evolve its financial calculation and compliance logic at startup speed while maintaining the regulatory rigor of a bank. Infrastructure choices made years earlier were becoming constraints, but changing them risked breaking critical business rules embedded throughout the codebase.",
+  "case_study_challenge_zh": "服务巴西超过9000万客户的Nubank，需要以创业公司的速度迭代其金融计算和合规逻辑，同时保持银行级别的监管严谨性。数年前做出的基础设施选择正在成为约束，但更换它们有可能破坏散布在代码库中的关键业务规则。",
+  "case_study_approach": "Nubank adopted Clean Architecture across its Clojure and Kotlin microservices, placing all financial calculation and compliance rules in the innermost Entity and Use Case rings. Infrastructure — databases, message queues, external APIs — lived in outer rings behind port interfaces. Business logic had zero import dependencies on any framework or database driver.",
+  "case_study_approach_zh": "Nubank在其Clojure和Kotlin微服务中采用整洁架构，将所有财务计算和合规规则放在最内层的实体和用例环中。基础设施——数据库、消息队列、外部API——位于端口接口之后的外层环中。业务逻辑对任何框架或数据库驱动都没有导入依赖。",
+  "case_study_result": "The team replaced their persistence layer — migrating specific services from Datomic to PostgreSQL — without touching a single line of business logic code. Use Case test suites run in under 5 seconds with in-memory repositories, enabling a TDD workflow that catches business rule regressions before any infrastructure is involved.",
+  "case_study_result_zh": "团队替换了持久化层——将特定服务从Datomic迁移到PostgreSQL——而未触及一行业务逻辑代码。用例测试套件使用内存仓储在5秒内运行完毕，实现了在涉及任何基础设施之前就能捕获业务规则退化的TDD工作流。",
+  "case_study_quote": "We can swap a database in a week. We cannot swap a business rule that has been tested against a million edge cases. Clean Architecture lets us protect what matters.",
+  "case_study_quote_zh": "我们可以在一周内更换数据库，但无法替换一条经过百万边界情况验证的业务规则。整洁架构让我们保护了真正重要的东西。",
+  "when_not_to_use": [
+    "For simple CRUD microservices where the business logic is thin and the value of the pattern's indirection layers is negative",
+    "For quick prototypes or MVPs where time-to-market matters more than long-term maintainability",
+    "For teams unfamiliar with dependency inversion — misapplied Clean Architecture creates complexity without the promised testability benefits"
+  ],
+  "when_not_to_use_zh": [
+    "对于业务逻辑单薄的简单CRUD微服务，该模式间接层的价值为负",
+    "对于上市时间比长期可维护性更重要的快速原型或MVP",
+    "对于不熟悉依赖倒置的团队——错误应用的整洁架构会创建复杂性而没有承诺的可测试性收益"
+  ],
+  "adopters": [
+    "Nubank",
+    "Android community (standard pattern)",
+    ".NET community (Clean Architecture template)",
+    "Go microservices community"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability",
+    "testability",
+    "portability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Martin, R.C. (2012). The Clean Architecture. blog.cleancoder.com, August 13.",
+  "secondary_sources": [
+    "Martin, R.C. (2017). Clean Architecture: A Craftsman's Guide to Software Structure and Design. Prentice Hall.",
+    "Palermo, J. (2008). The Onion Architecture. jeffreypalermo.com.",
+    "Cockburn, A. (2005). Hexagonal Architecture (Ports and Adapters). alistair.cockburn.us."
+  ],
+  "typed_relations": [
+    {
+      "slug": "hexagonal-architecture",
+      "type": "related"
+    },
+    {
+      "slug": "solid-principles",
+      "type": "prerequisite"
+    },
+    {
+      "slug": "domain-driven-design",
+      "type": "complement"
+    },
+    {
+      "slug": "onion-architecture",
+      "type": "alternative"
+    },
+    {
+      "slug": "n-tier-layered",
+      "type": "alternative"
+    },
+    {
+      "slug": "ports-and-adapters",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/clean-architecture",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/clean-architecture.md"
+}

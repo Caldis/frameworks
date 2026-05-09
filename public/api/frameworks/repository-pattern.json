@@ -1,0 +1,180 @@
+{
+  "id": 235,
+  "name": "Repository Pattern",
+  "name_zh": "仓储模式",
+  "slug": "repository-pattern",
+  "category": "coding",
+  "desc": "Mediate between domain model and data mapping layers using a collection-like interface",
+  "desc_zh": "使用类集合接口在领域模型与数据映射层之间进行中介，解耦业务逻辑与数据访问",
+  "steps": [
+    "Define the repository interface in the domain layer: express data-access needs as domain-language methods (findById, findByEmail, save, remove) without any persistence technology details",
+    "Implement a concrete repository: create an infrastructure-layer class that satisfies the interface using an ORM, query builder, or raw SQL, translating between domain objects and persistence records",
+    "Use the repository in application services: inject the repository interface into use cases or application services; never let domain logic call persistence APIs directly",
+    "Add a Unit of Work if needed: coordinate multiple repositories under a single transaction boundary so that all domain changes within a use case commit or roll back atomically",
+    "Test with in-memory fakes: implement a lightweight in-memory version of the repository interface for unit tests, exercising domain logic without database dependencies"
+  ],
+  "steps_zh": [
+    "在领域层定义仓储接口：用领域语言方法（findById、findByEmail、save、remove）表达数据访问需求，不涉及任何持久化技术细节",
+    "实现具体仓储：创建基础设施层类，使用 ORM、查询构建器或原始 SQL 满足接口，在领域对象和持久化记录之间进行转换",
+    "在应用服务中使用仓储：将仓储接口注入用例或应用服务；永远不让领域逻辑直接调用持久化 API",
+    "如需要则添加工作单元：在单一事务边界下协调多个仓储，使一个用例内的所有领域更改原子性地提交或回滚",
+    "使用内存仿冒对象进行测试：为仓储接口实现轻量级内存版本，在不依赖数据库的情况下测试领域逻辑"
+  ],
+  "ai_relevant": false,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Domain",
+    "Repository Interface",
+    "Concrete Repository",
+    "Data Source"
+  ],
+  "viz_labels_zh": [
+    "领域层",
+    "仓储接口",
+    "具体仓储",
+    "数据源"
+  ],
+  "related": [
+    "unit-of-work-pattern",
+    "data-mapper-pattern",
+    "dependency-injection",
+    "active-record-pattern"
+  ],
+  "tags": [
+    "fowler",
+    "poeaa",
+    "data-access",
+    "domain-driven-design",
+    "persistence"
+  ],
+  "origin_author": "Martin Fowler, 2002",
+  "origin_source": "Patterns of Enterprise Application Architecture",
+  "origin_source_zh": "《企业应用架构模式》",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Domain logic must be unit-tested without a real database, requiring an abstraction over persistence",
+    "The application may need to switch storage backends (SQL to NoSQL, or file to cloud) without changing domain code",
+    "Centralizing query logic prevents the same complex query from being duplicated across multiple services or controllers"
+  ],
+  "when_to_use_zh": [
+    "领域逻辑必须在没有真实数据库的情况下进行单元测试，需要对持久化进行抽象",
+    "应用可能需要切换存储后端（SQL 到 NoSQL，或文件到云），而无需更改领域代码",
+    "集中查询逻辑可防止相同的复杂查询在多个服务或控制器中重复"
+  ],
+  "core_concepts": [
+    "Collection semantics: the repository presents domain objects as if they live in an in-memory collection; callers add, remove, and query without knowing the underlying store",
+    "Domain language interface: method names reflect the ubiquitous language of the domain (findActiveCustomers, not SELECT * FROM customers WHERE active=1)",
+    "Persistence ignorance: domain objects and application services are unaware of the database schema, ORM, or storage technology — only the concrete repository implementation knows"
+  ],
+  "core_concepts_zh": [
+    "集合语义：仓储将领域对象呈现为存在于内存集合中；调用方可添加、删除和查询，而不知道底层存储",
+    "领域语言接口：方法名反映领域的通用语言（findActiveCustomers，而非 SELECT * FROM customers WHERE active=1）",
+    "持久化无知：领域对象和应用服务不知道数据库模式、ORM 或存储技术——只有具体仓储实现才知道"
+  ],
+  "timeline": [
+    [
+      "2002",
+      "Martin Fowler formalizes Repository in PoEAA as a domain-layer pattern that abstracts the data mapping layer"
+    ],
+    [
+      "2004",
+      "Eric Evans' Domain-Driven Design elevates Repository to a core DDD tactical pattern, pairing it with Aggregate roots"
+    ],
+    [
+      "2010",
+      "Spring Data auto-generates Repository implementations from interface method names, drastically reducing boilerplate"
+    ],
+    [
+      "2020",
+      "Repository becomes standard in Clean Architecture and Hexagonal Architecture as the primary persistence port/adapter boundary"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2002",
+      "Martin Fowler 在 PoEAA 中将仓储正式化为领域层模式，抽象数据映射层"
+    ],
+    [
+      "2004",
+      "Eric Evans 的《领域驱动设计》将仓储提升为核心 DDD 战术模式，与聚合根配对使用"
+    ],
+    [
+      "2010",
+      "Spring Data 从接口方法名自动生成仓储实现，大幅减少样板代码"
+    ],
+    [
+      "2020",
+      "仓储成为整洁架构和六边形架构中的标准，作为主要的持久化端口/适配器边界"
+    ]
+  ],
+  "dos": [
+    "Do define repository interfaces in the domain layer and implementations in the infrastructure layer to enforce the dependency rule",
+    "Do use repositories per Aggregate root only — querying across aggregate boundaries should go through a dedicated query service or read model",
+    "Do provide in-memory repository fakes alongside production implementations so teams can write fast, database-free unit tests"
+  ],
+  "dos_zh": [
+    "在领域层定义仓储接口，在基础设施层定义实现，以强制执行依赖规则",
+    "仅对聚合根使用仓储——跨聚合边界的查询应通过专用查询服务或读模型进行",
+    "提供内存仓储仿冒对象与生产实现并存，使团队能够编写快速、无数据库依赖的单元测试"
+  ],
+  "donts": [
+    "Don't expose IQueryable or database-specific query builders through the repository interface — it leaks the persistence abstraction into the domain",
+    "Don't create one mega-repository for the entire application; scope each repository to its aggregate root to keep responsibilities focused",
+    "Don't bypass the repository by directly calling an ORM or SQL from application services — it defeats the abstraction and couples domain logic to infrastructure"
+  ],
+  "donts_zh": [
+    "不要通过仓储接口暴露 IQueryable 或数据库特定的查询构建器——这会将持久化抽象泄漏到领域中",
+    "不要为整个应用创建一个巨型仓储；将每个仓储限定到其聚合根，保持职责专注",
+    "不要通过直接从应用服务调用 ORM 或 SQL 来绕过仓储——这会破坏抽象并将领域逻辑与基础设施耦合"
+  ],
+  "case_study_company": "Spring Data / Pivotal",
+  "case_study": "Spring Data's CrudRepository and JpaRepository interfaces are the most widely used Repository pattern implementation in the Java ecosystem. Developers declare an interface extending JpaRepository<Customer, Long>, annotate query methods with @Query or follow naming conventions like findByEmailAndActiveTrue(), and Spring Data generates the full implementation at startup. This eliminates thousands of lines of JDBC/JPA boilerplate, while the interface boundary allows teams to swap Spring Data JPA for Spring Data MongoDB or an in-memory fake without changing a single line of service code.",
+  "case_study_zh": "Spring Data 的 CrudRepository 和 JpaRepository 接口是 Java 生态系统中使用最广泛的仓储模式实现。开发者声明一个扩展 JpaRepository<Customer, Long> 的接口，用 @Query 注解查询方法或遵循 findByEmailAndActiveTrue() 等命名约定，Spring Data 在启动时生成完整实现。这消除了数千行 JDBC/JPA 样板代码，而接口边界允许团队将 Spring Data JPA 换成 Spring Data MongoDB 或内存仿冒对象，而无需更改任何服务代码。",
+  "when_not_to_use": [
+    "Simple CRUD applications with no domain logic where an Active Record pattern or direct ORM calls are simpler and equally testable",
+    "Read-heavy reporting scenarios where complex JOIN queries benefit from direct SQL or a dedicated CQRS read model rather than repository abstractions",
+    "Microservices that own a single table with trivial access patterns where the repository indirection adds no value"
+  ],
+  "when_not_to_use_zh": [
+    "没有领域逻辑的简单 CRUD 应用，活动记录模式或直接 ORM 调用更简单且同样可测试",
+    "读密集型报告场景，复杂 JOIN 查询受益于直接 SQL 或专用 CQRS 读模型，而非仓储抽象",
+    "拥有单个表且访问模式简单的微服务，仓储间接层没有带来任何价值"
+  ],
+  "adopters": [
+    "Spring Data (Java)",
+    "Entity Framework Core (.NET)",
+    "Laravel Eloquent (PHP)",
+    "TypeORM / MikroORM (Node.js)"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability",
+    "testability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Fowler, M. (2002). \"Patterns of Enterprise Application Architecture\". Addison-Wesley.",
+  "secondary_sources": [
+    "Evans, E. (2003). \"Domain-Driven Design: Tackling Complexity in the Heart of Software\". Addison-Wesley.",
+    "Vernon, V. (2013). \"Implementing Domain-Driven Design\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "unit-of-work-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "data-mapper-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "dependency-injection",
+      "type": "complement"
+    },
+    {
+      "slug": "active-record-pattern",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/repository-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/repository-pattern.md"
+}

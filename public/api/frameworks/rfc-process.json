@@ -1,0 +1,194 @@
+{
+  "id": 215,
+  "name": "RFC Process",
+  "name_zh": "RFC流程",
+  "slug": "rfc-process",
+  "category": "team",
+  "desc": "Lightweight request-for-comments process for transparent technical decision-making",
+  "desc_zh": "用于透明技术决策的轻量级意见征集流程",
+  "steps": [
+    "Author drafts an RFC document using a standard template (motivation, proposed solution, alternatives considered, drawbacks, unresolved questions) and opens it as a pull request or shared document",
+    "The RFC enters a comment period (typically 1-4 weeks) during which any stakeholder can read, comment, ask questions, or propose amendments to the draft",
+    "The author revises the RFC based on feedback, addressing objections and updating the alternatives and unresolved questions sections",
+    "A designated shepherd (tech lead, architect, or committee) evaluates the feedback and makes a final decision: accept, reject, or send back for revision with specific changes required",
+    "Accepted RFCs are merged into the RFC repository and serve as the authoritative record of the decision; rejected RFCs are closed with a documented rationale"
+  ],
+  "steps_zh": [
+    "作者使用标准模板（动机、提议的解决方案、已考虑的替代方案、缺点、未解决的问题）起草RFC文档，并作为拉取请求或共享文档打开",
+    "RFC进入评论期（通常为1-4周），在此期间任何利益相关方都可以阅读、评论、提问或提议修改草案",
+    "作者根据反馈修改RFC，解决异议并更新替代方案和未解决问题部分",
+    "指定的推进者（技术负责人、架构师或委员会）评估反馈并做出最终决定：接受、拒绝或要求特定修改后重新提交",
+    "被接受的RFC合并到RFC仓库，作为决策的权威记录；被拒绝的RFC以记录的理由关闭"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "RFC Draft",
+    "Comment Period",
+    "Author Revision",
+    "Shepherd Decision",
+    "Merge Archive"
+  ],
+  "viz_labels_zh": [
+    "RFC草稿",
+    "评论期",
+    "作者修订",
+    "决策人",
+    "归档"
+  ],
+  "related": [
+    "architecture-review-board",
+    "engineering-ladder"
+  ],
+  "tags": [
+    "rfc",
+    "decision-making",
+    "process",
+    "governance",
+    "documentation"
+  ],
+  "origin_author": "Popularized by Rust language team (2014) and React team (2017); inspired by IETF RFC process (1969)",
+  "origin_source": "Rust RFC Book (github.com/rust-lang/rfcs); React RFC process (github.com/reactjs/rfcs); Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 1.",
+  "origin_source_zh": "Rust RFC手册（github.com/rust-lang/rfcs）；React RFC流程（github.com/reactjs/rfcs）；Kleppmann, M.（2017）「数据密集型应用系统设计」，第1章",
+  "complexity": "beginner",
+  "when_to_use": [
+    "When a technical decision will affect multiple teams or cannot be easily reversed once implemented",
+    "When the team needs a structured way to gather diverse perspectives before committing to an architectural direction",
+    "When junior engineers need a safe, asynchronous way to propose improvements without requiring real-time advocacy skills",
+    "When the organization has had recurring problems with decisions made in small groups without broader input leading to downstream rework"
+  ],
+  "when_to_use_zh": [
+    "当技术决策将影响多个团队或一旦实施就难以逆转时",
+    "当团队需要一种结构化方式在承诺某个架构方向之前收集多样化观点时",
+    "当初级工程师需要一种安全、异步的方式来提议改进，而不需要实时倡导技能时",
+    "当组织在没有更广泛输入的小组决策导致后期返工方面有反复问题时"
+  ],
+  "core_concepts": [
+    "Asynchronous Decision-Making: RFC enables thoughtful deliberation across time zones and schedules without requiring synchronous meetings for every technical choice",
+    "Written Culture: Decisions are made through written argument rather than verbal persuasion, which benefits introverts, non-native speakers, and remote team members equally",
+    "Decision Record: The final RFC serves as a durable, searchable record of why a decision was made, preventing the 'why did we do it this way?' problem months later",
+    "Shepherd Model: A designated individual or small committee ensures the RFC reaches a decision rather than dying in an infinite comment cycle",
+    "Alternatives Considered: The RFC format requires documenting rejected alternatives with reasons, preventing the same rejected ideas from being re-proposed without new information"
+  ],
+  "core_concepts_zh": [
+    "异步决策制定：RFC使得跨时区和日程的深思熟虑审议成为可能，而不需要为每个技术选择举行同步会议",
+    "书面文化：决策通过书面论证而非口头说服做出，这对内向者、非母语使用者和远程团队成员同等有益",
+    "决策记录：最终的RFC作为持久、可搜索的记录，说明为什么做出某个决定，防止数月后出现「为什么我们这样做？」的问题",
+    "推进者模式：指定的个人或小型委员会确保RFC达成决定，而不是在无限评论循环中消亡",
+    "已考虑的替代方案：RFC格式要求记录被拒绝的替代方案及原因，防止相同的被拒绝想法在没有新信息的情况下被重新提议"
+  ],
+  "timeline": [
+    [
+      "1969",
+      "IETF publishes its first Request for Comments (RFC 1 by Steve Crocker), establishing the collaborative technical discussion format"
+    ],
+    [
+      "2014",
+      "Rust language team adopts a formal RFC process for all language changes, setting the template for engineering team RFCs"
+    ],
+    [
+      "2017",
+      "React team open-sources its RFC process for major API changes, popularizing lightweight RFCs in product engineering teams"
+    ],
+    [
+      "2019",
+      "Basecamp, GitHub, and Shopify publish their internal RFC/ADR templates, spurring adoption across the industry"
+    ],
+    [
+      "2022",
+      "RFC tools (Linear, Notion, Confluence RFC templates) make structured decision-making accessible to non-developer teams"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1969",
+      "IETF发布其第一个意见征集文档（Steve Crocker的RFC 1），建立了协作技术讨论格式"
+    ],
+    [
+      "2014",
+      "Rust语言团队为所有语言变更采用正式的RFC流程，为工程团队RFC设立了模板"
+    ],
+    [
+      "2017",
+      "React团队开源其重大API变更的RFC流程，使轻量级RFC在产品工程团队中流行"
+    ],
+    [
+      "2019",
+      "Basecamp、GitHub和Shopify发布其内部RFC/ADR模板，推动了整个行业的采用"
+    ],
+    [
+      "2022",
+      "RFC工具（Linear、Notion、Confluence RFC模板）使非开发者团队也能进行结构化决策"
+    ]
+  ],
+  "dos": [
+    "Do keep RFC documents short (1-3 pages) because long documents are not read; extract detail into appendices or linked documents",
+    "Do set a clear comment deadline so that stakeholders know when to engage and the RFC doesn't linger in review indefinitely",
+    "Do require authors to document rejected alternatives with specific reasons because it prevents re-hashing of already-explored options in future discussions",
+    "Do store merged RFCs in a searchable repository (Git, Confluence, Notion) so that future engineers can understand the reasoning behind current decisions"
+  ],
+  "dos_zh": [
+    "保持RFC文档简短（1-3页），因为长文档不会被阅读；将细节提取到附录或链接文档中",
+    "设置明确的评论截止日期，使利益相关方知道何时参与，RFC不会无限期停留在评审中",
+    "要求作者记录被拒绝的替代方案及具体原因，防止在未来讨论中重复已探索过的选项",
+    "将合并的RFC存储在可搜索的仓库（Git、Confluence、Notion）中，使未来的工程师能够理解当前决策背后的原因"
+  ],
+  "donts": [
+    "Don't require RFCs for every decision because the overhead will cause engineers to bypass the process for non-trivial choices to avoid bureaucracy",
+    "Don't let RFCs become approval theater where the decision is made before the RFC is written and comments are ignored",
+    "Don't allow RFC comment periods to drag on indefinitely without a shepherd closing the discussion because stalled RFCs create organizational paralysis",
+    "Don't make RFC authorship gatekept to senior engineers because it defeats the purpose of creating a democratic, inclusive decision process"
+  ],
+  "donts_zh": [
+    "不要对每个决策都要求RFC，因为开销会导致工程师为了避免官僚程序而对非平凡的选择绕过该流程",
+    "不要让RFC成为审批表演，即在编写RFC之前就已做出决定，评论被忽视",
+    "不要让RFC评论期在没有推进者结束讨论的情况下无限期拖延，因为停滞的RFC会造成组织瘫痪",
+    "不要将RFC作者资格限制给高级工程师，因为这违背了创建民主、包容决策流程的目的"
+  ],
+  "case_study_company": "Rust Language Team",
+  "case_study": "The Rust programming language team has used an RFC process since 2014 for all significant language, library, and tooling changes. Every feature in Rust — from async/await to the ownership model refinements — was first proposed, debated, and approved through a public RFC on GitHub. The process has enabled a globally distributed community of contributors to make high-quality decisions without centralized authority. As of 2024, the Rust RFC repository contains over 3,000 RFCs spanning 10 years of language evolution, serving as an unparalleled historical record of why Rust is designed the way it is.",
+  "case_study_zh": "Rust编程语言团队自2014年以来对所有重要的语言、库和工具变更使用RFC流程。Rust中的每个特性——从async/await到所有权模型改进——都首先通过GitHub上的公开RFC提议、讨论和批准。该流程使全球分布式贡献者社区能够在没有集中权威的情况下做出高质量决策。截至2024年，Rust RFC仓库包含超过3000个RFC，跨越10年的语言演进，作为Rust为何如此设计的无与伦比的历史记录。",
+  "when_not_to_use": [
+    "Urgent production incidents where decisions must be made in minutes, not weeks, and the RFC process creates dangerous delay",
+    "Small decisions (library patch version bumps, variable naming, minor refactors) where the RFC overhead exceeds the decision complexity",
+    "Exploration and research phases where the goal is to learn, not commit, and forcing premature decisions stifles experimentation",
+    "Organizations with fewer than 5 engineers where synchronous conversation is more efficient than asynchronous written deliberation"
+  ],
+  "when_not_to_use_zh": [
+    "紧急生产事故，决策必须在分钟而非数周内做出，RFC流程造成危险延迟",
+    "小型决策（库补丁版本升级、变量命名、小型重构），RFC开销超过决策复杂度",
+    "探索和研究阶段，目标是学习而非承诺，强制提前决策会扼制实验",
+    "少于5名工程师的组织，同步对话比异步书面审议更高效"
+  ],
+  "adopters": [
+    "Rust Foundation",
+    "React / Meta",
+    "Ember.js",
+    "Swift (Apple)",
+    "Shopify"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability",
+    "usability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Crocker, S. (1969). \"RFC 1: Host Software\". IETF. / Rust Team (2014). \"RFC 0002: RFC Process\". github.com/rust-lang/rfcs.",
+  "secondary_sources": [
+    "React Team (2017). \"React RFC Process\". github.com/reactjs/rfcs.",
+    "Nygard, M. (2011). \"Documenting Architecture Decisions\". cognitect.com.",
+    "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "architecture-review-board",
+      "type": "complement"
+    },
+    {
+      "slug": "engineering-ladder",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/rfc-process",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/rfc-process.md"
+}

@@ -1,0 +1,199 @@
+{
+  "id": 120,
+  "name": "Confidential Computing",
+  "name_zh": "机密计算",
+  "slug": "confidential-computing",
+  "category": "security",
+  "desc": "Protect data in use by performing computation within hardware-based trusted execution environments (TEEs)",
+  "desc_zh": "通过在基于硬件的可信执行环境（TEE）中执行计算来保护使用中的数据",
+  "steps": [
+    "Identify workloads that process sensitive data in memory and are vulnerable to privileged-attacker threats (rogue admins, compromised hypervisors)",
+    "Select a TEE platform: Intel SGX enclaves, Intel TDX, AMD SEV-SNP confidential VMs, or Arm CCA",
+    "Design the application to partition sensitive processing into the enclave/TEE and keep the trusted computing base (TCB) minimal",
+    "Implement remote attestation: cryptographically verify the TEE's identity, firmware version, and code measurements before sending sensitive data",
+    "Deploy, monitor, and maintain the confidential workload: handle attestation failures, manage sealed storage, and update enclave code with re-attestation"
+  ],
+  "steps_zh": [
+    "识别在内存中处理敏感数据且易受特权攻击者威胁（恶意管理员、被入侵的虚拟机管理程序）的工作负载",
+    "选择 TEE 平台：Intel SGX 安全飞地、Intel TDX、AMD SEV-SNP 机密虚拟机或 Arm CCA",
+    "设计应用将敏感处理分区到飞地/TEE 中，保持可信计算基（TCB）最小化",
+    "实施远程证明：在发送敏感数据前加密验证 TEE 的身份、固件版本和代码度量",
+    "部署、监控和维护机密工作负载：处理证明失败、管理密封存储并通过重新证明更新飞地代码"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Sensitive Workload",
+    "TEE Platform",
+    "Partition Design",
+    "Remote Attestation",
+    "Monitor"
+  ],
+  "viz_labels_zh": [
+    "敏感工作负载",
+    "可信执行环境",
+    "隔离设计",
+    "远程认证",
+    "部署监控"
+  ],
+  "related": [
+    "zero-trust-architecture",
+    "defense-in-depth",
+    "privacy-by-design"
+  ],
+  "tags": [
+    "confidential-computing",
+    "tee",
+    "enclave",
+    "attestation",
+    "data-in-use",
+    "hardware-security"
+  ],
+  "origin_author": "Confidential Computing Consortium (Linux Foundation); Intel, AMD, Arm",
+  "origin_source": "Confidential Computing Consortium「A Technical Analysis of Confidential Computing」(2021); Intel SGX documentation; AMD SEV-SNP whitepaper; NIST IR 8320「Hardware-Enabled Security」",
+  "origin_source_zh": "机密计算联盟「机密计算技术分析」(2021)；Intel SGX 文档；AMD SEV-SNP 白皮书；NIST IR 8320「硬件使能安全」",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Multi-party computation scenarios where mutually distrustful parties need to process shared data without revealing it to each other",
+    "Cloud workloads processing highly sensitive data where the cloud provider must be excluded from the trust boundary",
+    "AI/ML inference on private data (healthcare, finance) where model inputs must be protected even from the infrastructure operator",
+    "Key management and cryptographic operations where private keys must never exist in unencrypted memory accessible to the host OS"
+  ],
+  "when_to_use_zh": [
+    "互不信任的多方需要处理共享数据而不向对方泄露的多方计算场景",
+    "处理高度敏感数据且必须将云提供商排除在信任边界外的云工作负载",
+    "在私有数据（医疗、金融）上进行 AI/ML 推理，模型输入必须对基础设施运营者保密",
+    "密钥管理和加密操作中私钥决不能以未加密形式存在于主机 OS 可访问的内存中"
+  ],
+  "core_concepts": [
+    "Trusted Execution Environment (TEE): A hardware-isolated processing area where code and data are protected from the host OS, hypervisor, and other tenants",
+    "Remote Attestation: A cryptographic protocol that allows a remote party to verify the identity, integrity, and configuration of a TEE before entrusting it with sensitive data",
+    "Trusted Computing Base (TCB): The minimal set of hardware and software components that must be trusted — smaller TCB means smaller attack surface",
+    "Memory Encryption: Hardware-level encryption of the TEE's memory pages, preventing physical and software-based memory snooping attacks",
+    "Sealed Storage: Data encrypted to a specific TEE's identity so that only that enclave (or an authorized successor) can decrypt it"
+  ],
+  "core_concepts_zh": [
+    "可信执行环境（TEE）：硬件隔离的处理区域，其中代码和数据受保护免受主机 OS、虚拟机管理程序和其他租户的访问",
+    "远程证明：允许远程方在委托敏感数据前验证 TEE 身份、完整性和配置的加密协议",
+    "可信计算基（TCB）：必须被信任的最小硬件和软件组件集——更小的 TCB 意味着更小的攻击面",
+    "内存加密：TEE 内存页的硬件级加密，防止物理和基于软件的内存窥探攻击",
+    "密封存储：加密到特定 TEE 身份的数据，仅该飞地（或授权继任者）可解密"
+  ],
+  "timeline": [
+    [
+      "2015",
+      "Intel launches SGX (Software Guard Extensions) in 6th-gen Core processors, introducing user-space enclaves"
+    ],
+    [
+      "2019",
+      "Confidential Computing Consortium founded under the Linux Foundation by Intel, Microsoft, Google, Arm, and others"
+    ],
+    [
+      "2020",
+      "AMD SEV-SNP (Secure Nested Paging) adds strong VM-level isolation, making confidential VMs practical"
+    ],
+    [
+      "2022",
+      "Azure, GCP, and AWS launch confidential VM offerings based on AMD SEV-SNP and Intel TDX"
+    ],
+    [
+      "2024",
+      "Arm CCA (Confidential Compute Architecture) extends confidential computing to mobile and edge devices; NVIDIA H100 adds GPU TEE support"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2015",
+      "Intel 在第六代 Core 处理器中推出 SGX（软件保护扩展），引入用户态飞地"
+    ],
+    [
+      "2019",
+      "机密计算联盟在 Linux 基金会下由 Intel、Microsoft、Google、Arm 等发起成立"
+    ],
+    [
+      "2020",
+      "AMD SEV-SNP（安全嵌套分页）添加强 VM 级隔离，使机密虚拟机切实可行"
+    ],
+    [
+      "2022",
+      "Azure、GCP 和 AWS 推出基于 AMD SEV-SNP 和 Intel TDX 的机密 VM 产品"
+    ],
+    [
+      "2024",
+      "Arm CCA（机密计算架构）将机密计算扩展到移动和边缘设备；NVIDIA H100 添加 GPU TEE 支持"
+    ]
+  ],
+  "dos": [
+    "Always verify remote attestation before sending sensitive data to a TEE — attestation is the foundation of trust",
+    "Minimize the trusted computing base: smaller enclave code means fewer bugs and a smaller attack surface",
+    "Use well-audited TEE SDKs (Open Enclave, Gramine, Enarx) rather than building enclave runtimes from scratch",
+    "Plan for side-channel mitigations: constant-time algorithms, ORAM access patterns, and compiler-level defenses"
+  ],
+  "dos_zh": [
+    "在向 TEE 发送敏感数据前始终验证远程证明——证明是信任的基础",
+    "最小化可信计算基：更小的飞地代码意味着更少的缺陷和更小的攻击面",
+    "使用经过审计的 TEE SDK（Open Enclave、Gramine、Enarx）而非从零构建飞地运行时",
+    "规划侧信道缓解：常量时间算法、ORAM 访问模式和编译器级防御"
+  ],
+  "donts": [
+    "Don't assume TEEs are invulnerable — side-channel attacks (Spectre, Foreshadow, Plundervolt) have repeatedly broken SGX guarantees",
+    "Don't put the entire application inside the enclave — only the security-sensitive processing belongs there",
+    "Don't skip firmware and microcode updates — TEE security depends on patches for known hardware vulnerabilities",
+    "Don't treat attestation as a one-time check — re-attest periodically and after any TEE restart or migration"
+  ],
+  "donts_zh": [
+    "不要假设 TEE 无懈可击——侧信道攻击（Spectre、Foreshadow、Plundervolt）已多次突破 SGX 保证",
+    "不要将整个应用放入飞地——仅安全敏感处理属于其中",
+    "不要跳过固件和微码更新——TEE 安全依赖于已知硬件漏洞的补丁",
+    "不要将证明视为一次性检查——应定期重新证明，并在 TEE 重启或迁移后重新证明"
+  ],
+  "case_study_company": "Signal",
+  "case_study": "Signal implemented Secure Value Recovery (SVR) using Intel SGX enclaves to protect user PIN-derived keys on the server side. By running the PIN verification and key derivation inside an enclave, Signal ensures that even a compromised server or a rogue Signal employee cannot extract the encryption keys protecting users' message history and contacts. Remote attestation allows Signal clients to verify the enclave's integrity before submitting their PIN, achieving end-to-end security for the cloud-assisted recovery process.",
+  "case_study_zh": "Signal 使用 Intel SGX 飞地实现了安全值恢复（SVR），在服务器端保护用户 PIN 派生的密钥。通过在飞地内运行 PIN 验证和密钥派生，Signal 确保即使服务器被入侵或有内鬼员工也无法提取保护用户消息历史和联系人的加密密钥。远程证明使 Signal 客户端在提交 PIN 前可以验证飞地完整性，为云辅助恢复过程实现端到端安全。",
+  "when_not_to_use": [
+    "Workloads with no confidentiality requirements — the performance overhead of TEEs (5-30%) is unjustified",
+    "When the threat model only includes external network attackers and not privileged insiders or infrastructure compromise",
+    "On hardware that lacks TEE support — software-only emulation provides no real security guarantee",
+    "Simple data-at-rest protection needs where standard disk encryption (LUKS, BitLocker) is sufficient"
+  ],
+  "when_not_to_use_zh": [
+    "无保密需求的工作负载——TEE 的性能开销（5-30%）不合理",
+    "威胁模型仅包含外部网络攻击者而不包含特权内部人员或基础设施入侵时",
+    "缺乏 TEE 支持的硬件上——纯软件模拟不提供真正的安全保证",
+    "标准磁盘加密（LUKS、BitLocker）已足够的简单静态数据保护需求"
+  ],
+  "adopters": [
+    "Signal (Secure Value Recovery)",
+    "Microsoft (Azure Confidential Computing)",
+    "Google Cloud (Confidential VMs and GKE Nodes)",
+    "Fortanix",
+    "Anjuna Security"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "security"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Confidential Computing Consortium (2021). \"A Technical Analysis of Confidential Computing\". Linux Foundation.",
+  "secondary_sources": [
+    "Costan, V. & Devadas, S. (2016). \"Intel SGX Explained\". IACR Cryptology ePrint Archive.",
+    "NIST (2021). \"Hardware-Enabled Security: Enabling a Layered Approach to Platform Security\". NIST IR 8320.",
+    "Kaplan, D. et al. (2016). \"AMD Memory Encryption\". AMD White Paper."
+  ],
+  "typed_relations": [
+    {
+      "slug": "zero-trust-architecture",
+      "type": "complement"
+    },
+    {
+      "slug": "defense-in-depth",
+      "type": "extends"
+    },
+    {
+      "slug": "privacy-by-design",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/confidential-computing",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/confidential-computing.md"
+}

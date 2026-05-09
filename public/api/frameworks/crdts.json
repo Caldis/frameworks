@@ -1,0 +1,192 @@
+{
+  "id": 265,
+  "name": "CRDTs (Conflict-free Replicated Data Types)",
+  "name_zh": "无冲突复制数据类型（CRDT）",
+  "slug": "crdts",
+  "category": "distributed",
+  "desc": "Eventual consistency without coordination using algebraic data structures that merge automatically",
+  "desc_zh": "使用可自动合并的代数数据结构实现无需协调的最终一致性",
+  "steps": [
+    "Identify data types that require multi-writer concurrent updates: shopping carts, collaborative text, counters, presence sets, or configuration flags under concurrent modification",
+    "Choose the appropriate CRDT variant: G-Counter for monotone increments, PN-Counter for increment/decrement, OR-Set for add-wins semantics, or sequence CRDTs (RGA, LSEQ) for ordered text",
+    "Implement the merge function: define a join operation that is commutative, associative, and idempotent so any two replicas converge to the same state regardless of message order or duplicates",
+    "Propagate state or operations: use state-based CRDTs that gossip full state snapshots or operation-based CRDTs that broadcast individual ops over a reliable causal delivery channel",
+    "Monitor divergence and convergence: track vector clocks or version vectors to detect out-of-order delivery, measure replica lag, and validate that all nodes eventually reach the same state"
+  ],
+  "steps_zh": [
+    "识别需要多写入方并发更新的数据类型：购物车、协作文本、计数器、在线状态集合，或并发修改下的配置标志",
+    "选择适当的 CRDT 变体：G-Counter 用于单调递增，PN-Counter 用于增减操作，OR-Set 用于添加优先语义，序列 CRDT（RGA、LSEQ）用于有序文本",
+    "实现合并函数：定义满足交换律、结合律和幂等性的 join 操作，使任意两个副本无论消息顺序或重复如何都能收敛到相同状态",
+    "传播状态或操作：使用基于状态的 CRDT（gossip 完整状态快照）或基于操作的 CRDT（通过可靠因果传递通道广播单个操作）",
+    "监控分歧与收敛：追踪向量时钟或版本向量以检测乱序投递，衡量副本滞后，验证所有节点最终达到相同状态"
+  ],
+  "ai_relevant": false,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Concurrent Writes",
+    "CRDT Variant",
+    "Merge Function",
+    "Propagation",
+    "Divergence Monitor"
+  ],
+  "viz_labels_zh": [
+    "并发写入",
+    "CRDT变体",
+    "合并函数",
+    "状态传播",
+    "收敛监控"
+  ],
+  "related": [
+    "eventual-consistency",
+    "gossip-protocol",
+    "cap-theorem",
+    "consensus-protocols"
+  ],
+  "tags": [
+    "crdt",
+    "eventual-consistency",
+    "conflict-resolution",
+    "collaborative-editing",
+    "distributed-data"
+  ],
+  "origin_author": "Marc Shapiro",
+  "origin_source": "Shapiro, M., Preguica, N., Baquero, C. & Zawirski, M. (2011). A Comprehensive Study of Convergent and Commutative Replicated Data Types. INRIA Technical Report RR-7506.",
+  "origin_source_zh": "Shapiro等（2011）《收敛与交换复制数据类型综合研究》INRIA技术报告RR-7506",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When multiple nodes or users must write to the same data concurrently without requiring coordination or locks",
+    "When network partitions must not block writes — all nodes should accept mutations and merge later",
+    "When building collaborative real-time applications such as shared documents, multiplayer games, or distributed configuration stores",
+    "When the data type has a natural monotone lattice structure (counters, sets, maps, sequences) that maps cleanly to a CRDT variant",
+    "When you want to eliminate distributed transactions for specific data types and accept the constraints of the merge semantics"
+  ],
+  "when_to_use_zh": [
+    "当多个节点或用户必须并发写入同一数据而不需要协调或锁时",
+    "当网络分区不能阻塞写入——所有节点应接受变更并在之后合并时",
+    "构建协作实时应用（如共享文档、多人游戏或分布式配置存储）时",
+    "当数据类型具有自然单调格结构（计数器、集合、映射、序列），能干净地映射到 CRDT 变体时",
+    "当你希望为特定数据类型消除分布式事务并接受合并语义约束时"
+  ],
+  "core_concepts": [
+    "Lattice: A partially ordered set with a join (least upper bound) operation; CRDT state forms a lattice where the merge function computes the join of two states",
+    "Commutativity, associativity, idempotency (CAI): The three algebraic properties a merge function must satisfy to guarantee convergence regardless of message delivery order or duplication",
+    "State-based vs. operation-based: State-based (CvRDT) replicas exchange full snapshots and apply merge; operation-based (CmRDT) replicas broadcast operations that require exactly-once or causal delivery",
+    "Causal consistency: Operation-based CRDTs often rely on causal broadcast so that a remove operation is never applied before the add it references, preventing phantom deletions",
+    "Delta CRDTs: An optimization that propagates only the state delta since the last sync rather than the full state, dramatically reducing bandwidth for large state-based CRDTs"
+  ],
+  "core_concepts_zh": [
+    "格：具有 join（最小上界）操作的偏序集；CRDT 状态形成格，合并函数计算两个状态的 join",
+    "交换律、结合律、幂等性（CAI）：合并函数必须满足的三个代数属性，保证无论消息投递顺序或重复如何都能收敛",
+    "基于状态与基于操作：基于状态（CvRDT）副本交换完整快照并应用合并；基于操作（CmRDT）副本广播操作，需要恰好一次或因果投递",
+    "因果一致性：基于操作的 CRDT 通常依赖因果广播，确保删除操作永远不会在其引用的添加操作之前应用，防止幽灵删除",
+    "Delta CRDT：一种优化，只传播自上次同步以来的状态增量而非完整状态，大幅减少大型基于状态 CRDT 的带宽消耗"
+  ],
+  "timeline": [
+    [
+      "2007",
+      "Shapiro, Preguica, and colleagues begin formalizing the mathematical foundations of CRDTs at INRIA"
+    ],
+    [
+      "2011",
+      "Shapiro et al. publish the comprehensive CRDT survey (RR-7506), establishing the theoretical taxonomy of CvRDTs and CmRDTs"
+    ],
+    [
+      "2012",
+      "Basho adopts CRDTs in Riak 2.0 for counters, sets, and maps — the first major production database to ship built-in CRDT types"
+    ],
+    [
+      "2017",
+      "Apple's iCloud Notes, Figma's multiplayer canvas, and Notion all adopt CRDT-based synchronization for real-time collaborative editing"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2007",
+      "Shapiro、Preguica 及同事开始在 INRIA 形式化 CRDT 的数学基础"
+    ],
+    [
+      "2011",
+      "Shapiro 等发表全面的 CRDT 综述（RR-7506），建立 CvRDT 和 CmRDT 的理论分类体系"
+    ],
+    [
+      "2012",
+      "Basho 在 Riak 2.0 中为计数器、集合和映射采用 CRDT——第一个内置 CRDT 类型的主要生产数据库"
+    ],
+    [
+      "2017",
+      "Apple iCloud Notes、Figma 多人画布和 Notion 均采用基于 CRDT 的同步机制实现实时协作编辑"
+    ]
+  ],
+  "dos": [
+    "Do choose the semantics carefully before selecting a CRDT: add-wins vs. remove-wins sets have different user-visible behavior that must match your product requirements",
+    "Do use delta CRDTs for state-based designs in bandwidth-constrained environments to avoid sending full state snapshots on every sync",
+    "Do combine CRDTs with version vectors or hybrid logical clocks so you can track causality and detect stale state during reconciliation",
+    "Do test your merge function algebraically with property-based testing to verify commutativity, associativity, and idempotency for all inputs"
+  ],
+  "dos_zh": [
+    "在选择 CRDT 之前仔细选择语义：添加优先与删除优先集合有不同的用户可见行为，必须与产品需求匹配",
+    "在带宽受限环境中对基于状态的设计使用 Delta CRDT，避免每次同步都发送完整状态快照",
+    "将 CRDT 与版本向量或混合逻辑时钟结合，以便在协调期间追踪因果关系并检测过期状态",
+    "使用基于属性的测试对合并函数进行代数测试，验证所有输入的交换律、结合律和幂等性"
+  ],
+  "donts": [
+    "Don't use CRDTs for financial transactions or any domain requiring strict linearizability — CRDT semantics can silently merge conflicting writes in ways that violate business invariants",
+    "Don't ignore the garbage collection problem: OR-Sets and sequence CRDTs accumulate tombstones that must be periodically pruned to prevent unbounded memory growth",
+    "Don't assume operation-based CRDTs work correctly over unreliable transports — they require causal or exactly-once delivery; using them over UDP without ordering guarantees causes corruption",
+    "Don't hand-roll complex CRDTs in production without formal verification or an established library — subtle violations of the CAI properties cause hard-to-reproduce divergence bugs"
+  ],
+  "donts_zh": [
+    "不要将 CRDT 用于金融事务或任何需要严格线性一致性的领域——CRDT 语义可能以违反业务不变量的方式静默合并冲突写入",
+    "不要忽视垃圾回收问题：OR-Set 和序列 CRDT 会积累墓碑标记，必须定期清理以防止内存无限增长",
+    "不要假设基于操作的 CRDT 能在不可靠传输上正确工作——它们需要因果或恰好一次投递；在无序序保证的 UDP 上使用会导致数据损坏",
+    "不要在生产中手动实现复杂的 CRDT 而不进行形式化验证或使用成熟库——CAI 属性的细微违反会导致难以复现的分歧缺陷"
+  ],
+  "case_study_company": "Figma",
+  "case_study": "Figma's multiplayer editing engine uses CRDT-inspired data structures to allow dozens of designers to simultaneously edit the same file without locks or coordination. Each design object (frame, layer, property) is modeled as an independent CRDT — changes to position, color, and hierarchy are represented as operation logs that merge deterministically. When a user goes offline and edits a shared component, their changes are buffered locally and merged with the server state on reconnect without conflicts. This architecture allows Figma to support real-time collaboration across 50+ simultaneous cursors in a single file, a capability that would require complex distributed locking under traditional approaches.",
+  "case_study_zh": "Figma 的多人编辑引擎使用受 CRDT 启发的数据结构，允许数十名设计师无需锁或协调地同时编辑同一文件。每个设计对象（框架、图层、属性）被建模为独立的 CRDT——位置、颜色和层级的变更表示为可确定性合并的操作日志。用户离线编辑共享组件时，变更在本地缓冲，重新连接后与服务器状态无冲突合并。这一架构使 Figma 能在单个文件中支持 50+ 个同时在线光标的实时协作，而传统方式需要复杂的分布式锁。",
+  "when_not_to_use": [
+    "Financial systems, inventory management, or any domain where concurrent writes must respect strong business invariants that cannot be expressed as a lattice join",
+    "Simple single-writer or leader-replica architectures where coordination is cheap and CRDT complexity adds no benefit",
+    "Data with complex relational integrity constraints (foreign keys, uniqueness) that cannot be expressed as monotone lattice operations"
+  ],
+  "when_not_to_use_zh": [
+    "金融系统、库存管理或任何并发写入必须遵守无法表示为格 join 的强业务不变量的领域",
+    "简单的单写入方或领导者-副本架构，协调代价低廉且 CRDT 复杂性没有收益",
+    "具有复杂关系完整性约束（外键、唯一性）且无法表示为单调格操作的数据"
+  ],
+  "adopters": [
+    "Riak (Basho)",
+    "Figma",
+    "Apple iCloud",
+    "Redis Enterprise",
+    "SoundCloud (Roshi)"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability",
+    "scalability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Shapiro, M., Preguica, N., Baquero, C. & Zawirski, M. (2011). \"A Comprehensive Study of Convergent and Commutative Replicated Data Types\". INRIA Technical Report RR-7506.",
+  "secondary_sources": [
+    "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 5. O'Reilly Media.",
+    "Almeida, P.S., Shoker, A. & Baquero, C. (2016). \"Delta State Replicated Data Types\". Journal of Parallel and Distributed Computing, 111.",
+    "Nair, S. & Zawirski, M. (2015). \"An Introduction to Conflict-Free Replicated Data Types\". INRIA Research Report."
+  ],
+  "typed_relations": [
+    {
+      "slug": "eventual-consistency",
+      "type": "complement"
+    },
+    {
+      "slug": "gossip-protocol",
+      "type": "complement"
+    },
+    {
+      "slug": "consensus-protocols",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/crdts",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/crdts.md"
+}

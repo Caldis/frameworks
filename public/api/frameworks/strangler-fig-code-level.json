@@ -1,0 +1,192 @@
+{
+  "id": 277,
+  "name": "Strangler Fig at Code Level",
+  "name_zh": "代码层面的绞杀者模式",
+  "slug": "strangler-fig-code-level",
+  "category": "coding",
+  "desc": "Gradually replacing legacy code modules by growing new implementations alongside old ones until the legacy can be safely removed",
+  "desc_zh": "通过在旧实现旁边逐步构建新实现来替换遗留代码模块，直到遗留代码可以安全移除",
+  "steps": [
+    "Identify the legacy module boundary: find the seam — a function signature, interface, or module import — that represents the contract between the legacy code and its callers, and treat this boundary as your migration surface",
+    "Create a parallel new implementation behind the same interface: write the replacement module with the same public API but a new internal implementation, using the Adapter pattern if the legacy interface cannot be changed",
+    "Introduce a dispatch mechanism: add a feature flag, factory function, or routing layer that directs calls to either the old or new implementation based on a configuration toggle or percentage rollout",
+    "Migrate callers incrementally: move one caller at a time to the new implementation, verifying behavior equivalence through side-by-side testing, shadow mode (new runs but results are discarded), or A/B comparison of outputs",
+    "Delete the legacy code once all callers have been migrated and confidence is established: remove the dispatch mechanism, the old implementation, and all related scaffolding — the strangler fig is complete when the old tree is gone"
+  ],
+  "steps_zh": [
+    "识别遗留模块边界：找到接缝——函数签名、接口或模块导入——代表遗留代码与其调用者之间的契约，将此边界作为迁移面",
+    "在相同接口后面创建并行的新实现：用相同的公共API但全新的内部实现编写替换模块，如果无法更改遗留接口则使用适配器模式",
+    "引入调度机制：添加功能标志、工厂函数或路由层，根据配置开关或百分比推出将调用定向到旧或新实现",
+    "增量迁移调用者：每次迁移一个调用者到新实现，通过并排测试、影子模式（新实现运行但结果被丢弃）或输出的A/B比较验证行为等价性",
+    "一旦所有调用者都已迁移且建立了信心，删除遗留代码：移除调度机制、旧实现和所有相关脚手架——当旧树消失时，绞杀者模式完成"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Legacy Code",
+    "Strangler Facade",
+    "New Module",
+    "Migration"
+  ],
+  "viz_labels_zh": [
+    "遗留代码",
+    "绞杀者门面",
+    "新模块",
+    "迁移路径"
+  ],
+  "related": [
+    "strangler-fig-pattern",
+    "feature-flags",
+    "adapter-pattern",
+    "branch-by-abstraction",
+    "solid-principles"
+  ],
+  "tags": [
+    "refactoring",
+    "legacy",
+    "strangler-fig",
+    "martin-fowler",
+    "migration",
+    "incremental",
+    "code-level"
+  ],
+  "origin_author": "Martin Fowler",
+  "origin_source": "Fowler, M. (2004). \"StranglerFigApplication\". martinfowler.com.",
+  "origin_source_zh": "Fowler, M.（2004）.「StranglerFigApplication」. martinfowler.com.",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Replacing a legacy module that is deeply embedded in business-critical code where a big-bang rewrite is too risky — the strangler pattern lets you migrate with continuous verification at each step",
+    "Changing the implementation of a module without changing its interface, when downstream callers are too numerous or important to migrate all at once",
+    "Teams practicing continuous delivery who need to keep the codebase always deployable during a multi-week or multi-month migration effort",
+    "Extracting a function from a monolith into a service, where the module boundary in the monolith becomes the anti-corruption layer during the transition"
+  ],
+  "when_to_use_zh": [
+    "替换深度嵌入业务关键代码的遗留模块，全量重写风险太高——绞杀者模式让你在每个步骤持续验证的同时进行迁移",
+    "在不改变接口的情况下更改模块实现，当下游调用者太多或太重要而无法一次性全部迁移时",
+    "实践持续交付的团队，在多周或多月的迁移工作中需要保持代码库始终可部署",
+    "将函数从单体应用提取到服务中，单体应用中的模块边界在过渡期间成为防腐层"
+  ],
+  "core_concepts": [
+    "Seam Identification: finding the natural boundaries in legacy code — function signatures, interfaces, module imports — that can serve as the dispatch point between old and new implementations without requiring changes to callers",
+    "Branch by Abstraction: introducing an abstraction layer (interface, abstract class, or function type) over legacy code so that the new implementation can be developed and tested behind the same contract",
+    "Feature Flag Dispatch: using a runtime or compile-time toggle to route calls between the old and new implementation, enabling incremental rollout and instant rollback if the new implementation shows regressions",
+    "Shadow Mode: running both implementations in parallel but only returning results from the legacy, while logging new implementation outputs for comparison — eliminates risk of behavioral divergence before switching",
+    "Deletion as Completion: the migration is not done until the legacy code is actually deleted; keeping both implementations permanently creates complexity debt; the strangler pattern is complete only when the old code is gone"
+  ],
+  "core_concepts_zh": [
+    "接缝识别：在遗留代码中找到自然边界——函数签名、接口、模块导入——可以作为旧实现和新实现之间的调度点，无需更改调用者",
+    "通过抽象分支：在遗留代码上引入抽象层（接口、抽象类或函数类型），使新实现可以在相同契约下开发和测试",
+    "功能标志调度：使用运行时或编译时开关在旧实现和新实现之间路由调用，实现增量推出，如果新实现出现回归可立即回滚",
+    "影子模式：并行运行两个实现但只返回遗留实现的结果，同时记录新实现输出用于比较——在切换前消除行为分歧的风险",
+    "删除即完成：迁移在实际删除遗留代码之前尚未完成；永久保留两个实现会产生复杂度债务；绞杀者模式只有在旧代码消失时才算完成"
+  ],
+  "timeline": [
+    [
+      "2004",
+      "Martin Fowler publishes 'StranglerFigApplication' on martinfowler.com, naming the pattern after the strangler fig tree that grows around and eventually replaces its host"
+    ],
+    [
+      "2010",
+      "The pattern gains traction in enterprise Java and .NET communities as teams tackle legacy system modernization without big-bang rewrites"
+    ],
+    [
+      "2016",
+      "Sam Newman's 'Building Microservices' popularizes the Strangler Fig as the primary pattern for incrementally extracting services from monoliths"
+    ],
+    [
+      "2020",
+      "The pattern becomes central to cloud migration playbooks as organizations strangling on-premise monoliths toward cloud-native microservices architectures"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2004",
+      "Martin Fowler在martinfowler.com上发表「StranglerFigApplication」，以绞杀无花果树命名该模式，这种树会围绕并最终取代其宿主"
+    ],
+    [
+      "2010",
+      "随着团队在不进行全量重写的情况下处理遗留系统现代化，该模式在企业Java和.NET社区中获得关注"
+    ],
+    [
+      "2016",
+      "Sam Newman的《构建微服务》将绞杀者模式推广为从单体应用增量提取服务的主要模式"
+    ],
+    [
+      "2020",
+      "随着组织将本地单体应用绞杀为云原生微服务架构，该模式成为云迁移手册的核心"
+    ]
+  ],
+  "dos": [
+    "Do identify a clean seam before starting — if there is no clear interface boundary, create one first using Branch by Abstraction before implementing the new version",
+    "Do use shadow mode (dark launch) for high-risk replacements where both implementations run but only the legacy result is used, allowing silent comparison of outputs before switching",
+    "Do delete legacy code as soon as all callers are migrated — leaving both implementations alive permanently defeats the purpose and creates maintenance burden for future contributors",
+    "Do maintain comprehensive behavior tests for the legacy module before starting the strangler, so you have a regression suite to validate the new implementation against"
+  ],
+  "dos_zh": [
+    "在开始之前识别清晰的接缝——如果没有明确的接口边界，在实现新版本之前首先使用「通过抽象分支」创建一个",
+    "对高风险替换使用影子模式（暗发布），两个实现都运行但只使用遗留结果，在切换前允许静默比较输出",
+    "一旦所有调用者都迁移完毕立即删除遗留代码——永久保留两个实现会使目的落空并给未来贡献者带来维护负担",
+    "在开始绞杀之前维护遗留模块的全面行为测试，这样你就有回归测试套件来验证新实现"
+  ],
+  "donts": [
+    "Don't start a strangler migration without a clear deletion plan — migrations with no end date accumulate both implementations indefinitely, doubling the code that must be understood and maintained",
+    "Don't change the interface while strangling — the whole point of the dispatch layer is that callers don't need to change; if you change the API simultaneously you are doing a rewrite, not a strangler",
+    "Don't underestimate edge cases and implicit contracts in the legacy code — hidden coupling, undocumented side effects, and order-of-operations dependencies are the most common sources of behavioral divergence in strangler migrations",
+    "Don't run both implementations in production indefinitely without a firm migration deadline — the dispatch layer itself becomes technical debt if no team owns removing it"
+  ],
+  "donts_zh": [
+    "不要在没有明确删除计划的情况下开始绞杀迁移——没有截止日期的迁移会无限积累两个实现，使需要理解和维护的代码翻倍",
+    "不要在绞杀过程中更改接口——调度层的全部意义在于调用者不需要更改；如果同时更改API，你在做的是重写，而非绞杀",
+    "不要低估遗留代码中的边缘情况和隐式契约——隐藏的耦合、未记录的副作用和操作顺序依赖是绞杀迁移中行为分歧最常见的来源",
+    "不要在没有明确迁移截止日期的情况下无限期在生产环境中运行两个实现——如果没有团队负责移除它，调度层本身会成为技术债务"
+  ],
+  "case_study_company": "LinkedIn",
+  "case_study": "LinkedIn used the Strangler Fig pattern at code level to migrate their monolithic member-profile service from a legacy Oracle-backed Java persistence layer to a new Espresso (distributed document store) backend. Rather than rewriting the profile service in a single release, they introduced a ProfileRepository interface over both backends and a feature-flag-controlled dispatch layer. Individual profile attributes (name, headline, connections count) were migrated one field at a time, running both read paths in shadow mode to compare outputs. The full migration of the 1,400-field profile entity took 14 months and zero production incidents caused by the migration itself. The legacy Oracle profile tables were decommissioned as the last step, eliminating $4M/year in Oracle licensing costs.",
+  "case_study_zh": "LinkedIn使用代码层面的绞杀者模式将其单体成员资料服务从遗留的Oracle支持Java持久层迁移到新的Espresso（分布式文档存储）后端。他们没有在单次发布中重写资料服务，而是在两个后端上引入了ProfileRepository接口和功能标志控制的调度层。单个资料属性（姓名、标题、连接数）每次迁移一个字段，以影子模式运行两个读取路径来比较输出。包含1400个字段的资料实体的完整迁移历时14个月，迁移本身没有造成任何生产事故。最后一步废弃遗留Oracle资料表，每年节省400万美元的Oracle许可费用。",
+  "when_not_to_use": [
+    "The legacy module has no identifiable interface seam and is deeply entangled with global state, making it impossible to run old and new implementations in parallel without cross-contamination",
+    "The replacement requires a fundamentally different data model or protocol that cannot be hidden behind the existing interface without creating an awkward impedance mismatch",
+    "The module is so small and low-risk that the overhead of implementing a dispatch layer, shadow mode, and incremental migration exceeds the risk of a direct replacement"
+  ],
+  "when_not_to_use_zh": [
+    "遗留模块没有可识别的接口接缝，且与全局状态深度纠缠，使得无法在没有交叉污染的情况下并行运行旧实现和新实现",
+    "替换需要根本不同的数据模型或协议，无法在现有接口后面隐藏而不产生尴尬的阻抗不匹配",
+    "模块太小、风险太低，实现调度层、影子模式和增量迁移的开销超过直接替换的风险"
+  ],
+  "adopters": [
+    "LinkedIn",
+    "Shopify",
+    "Etsy",
+    "Booking.com",
+    "ThoughtWorks",
+    "Amazon"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Fowler, M. (2004). \"StranglerFigApplication\". martinfowler.com.",
+  "secondary_sources": [
+    "Newman, S. (2019). \"Monolith to Microservices\". O'Reilly Media.",
+    "Feathers, M. (2004). \"Working Effectively with Legacy Code\". Prentice Hall.",
+    "Humble, J. & Farley, D. (2010). \"Continuous Delivery\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "feature-flags",
+      "type": "complement"
+    },
+    {
+      "slug": "adapter-pattern",
+      "type": "related"
+    },
+    {
+      "slug": "solid-principles",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/strangler-fig-code-level",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/strangler-fig-code-level.md"
+}

@@ -1,0 +1,196 @@
+{
+  "id": 25,
+  "name": "Actor Model",
+  "name_zh": "Actor 模型",
+  "slug": "actor-model",
+  "category": "architecture",
+  "desc": "Concurrent computation using message-passing actors",
+  "desc_zh": "通过消息传递的 Actor 实现并发计算模型",
+  "steps": [
+    "Identify concurrency boundaries: map system components that need to operate independently and communicate asynchronously",
+    "Design actors: define each actor's state, behavior, and the set of messages it can receive and send",
+    "Implement message passing: use an actor framework (Akka, Orleans, Erlang/OTP) to handle mailboxes, scheduling, and delivery guarantees",
+    "Design supervision hierarchies: define parent-child relationships where supervisors decide restart, stop, or escalate strategies on child failure",
+    "Test for message ordering and deadlocks: verify that the system handles out-of-order delivery, mailbox overflow, and actor lifecycle correctly"
+  ],
+  "steps_zh": [
+    "识别并发边界：映射需要独立运行并异步通信的系统组件",
+    "设计Actor：定义每个Actor的状态、行为以及可接收和发送的消息集合",
+    "实现消息传递：使用Actor框架（Akka、Orleans、Erlang/OTP）处理邮箱、调度和投递保证",
+    "设计监督层级：定义父子关系，由监督者决定子Actor失败时的重启、停止或升级策略",
+    "测试消息顺序和死锁：验证系统正确处理乱序投递、邮箱溢出和Actor生命周期"
+  ],
+  "ai_relevant": false,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Actor",
+    "Message",
+    "Mailbox",
+    "Behavior",
+    "Spawn"
+  ],
+  "viz_labels_zh": [
+    "Actor",
+    "消息",
+    "邮箱",
+    "行为",
+    "派生"
+  ],
+  "related": [
+    "eda",
+    "reactive-extensions",
+    "agent-communication-protocol"
+  ],
+  "tags": [
+    "concurrency",
+    "message-passing",
+    "actors",
+    "fault-tolerance",
+    "distributed"
+  ],
+  "origin_author": "Carl Hewitt, Peter Bishop, Richard Steiger, 1973",
+  "origin_source": "A Universal Modular ACTOR Formalism for Artificial Intelligence (IJCAI 1973)",
+  "origin_source_zh": "《一种面向人工智能的通用模块化ACTOR形式化方法》（1973年IJCAI会议）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When building highly concurrent systems that need to manage millions of lightweight concurrent entities",
+    "When designing fault-tolerant systems that must self-heal from component failures",
+    "When shared-memory concurrency (locks, mutexes) becomes too error-prone or bottlenecked",
+    "When building distributed systems that need location-transparent communication between components"
+  ],
+  "when_to_use_zh": [
+    "构建需要管理数百万轻量级并发实体的高并发系统时",
+    "设计必须从组件故障中自我修复的容错系统时",
+    "共享内存并发（锁、互斥量）变得过于容易出错或成为瓶颈时",
+    "构建需要组件间位置透明通信的分布式系统时"
+  ],
+  "core_concepts": [
+    "Actor: A fundamental unit of computation that encapsulates state, behavior, and a mailbox for receiving messages",
+    "Message passing: Actors communicate exclusively through asynchronous, immutable messages with no shared state",
+    "Supervision tree: Hierarchical fault handling where parent actors define recovery strategies for child actor failures",
+    "Location transparency: Actors communicate through addresses that abstract away whether the target is local or remote",
+    "Let it crash: Rather than defensive error handling everywhere, let actors fail and rely on supervisors to restart them"
+  ],
+  "core_concepts_zh": [
+    "Actor：封装状态、行为和消息邮箱的基本计算单元",
+    "消息传递：Actor仅通过异步、不可变的消息通信，不共享状态",
+    "监督树：层级化的故障处理，父Actor为子Actor失败定义恢复策略",
+    "位置透明：Actor通过抽象地址通信，屏蔽目标是本地还是远程",
+    "任其崩溃：不在各处进行防御性错误处理，而是让Actor失败并依赖监督者重启"
+  ],
+  "timeline": [
+    [
+      "1973",
+      "Carl Hewitt et al. publish the foundational Actor Model paper at IJCAI"
+    ],
+    [
+      "1986",
+      "Joe Armstrong creates Erlang at Ericsson, implementing the Actor Model for telecom systems"
+    ],
+    [
+      "2006",
+      "Philipp Haller introduces Scala Actors, later evolving into the Akka framework"
+    ],
+    [
+      "2009",
+      "Lightbend (Typesafe) releases Akka, bringing the Actor Model to the JVM ecosystem"
+    ],
+    [
+      "2014",
+      "Microsoft Research releases Orleans, a virtual actor framework for .NET cloud services"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1973",
+      "Carl Hewitt等人在IJCAI发表奠基性的Actor模型论文"
+    ],
+    [
+      "1986",
+      "Joe Armstrong在爱立信创建Erlang，为电信系统实现Actor模型"
+    ],
+    [
+      "2006",
+      "Philipp Haller引入Scala Actors，后演变为Akka框架"
+    ],
+    [
+      "2009",
+      "Lightbend（Typesafe）发布Akka，将Actor模型带入JVM生态"
+    ],
+    [
+      "2014",
+      "微软研究院发布Orleans，面向.NET云服务的虚拟Actor框架"
+    ]
+  ],
+  "dos": [
+    "Do keep actor state private and communicate only through messages because shared state defeats the concurrency model",
+    "Do design fine-grained actors with single responsibilities because coarse-grained actors become concurrency bottlenecks",
+    "Do use supervision hierarchies to handle failures because actors will crash and need systematic recovery",
+    "Do make messages immutable and serializable because they may cross thread, process, or network boundaries"
+  ],
+  "dos_zh": [
+    "保持Actor状态私有，仅通过消息通信，因为共享状态会破坏并发模型",
+    "设计职责单一的细粒度Actor，因为粗粒度Actor会成为并发瓶颈",
+    "使用监督层级处理故障，因为Actor会崩溃且需要系统化恢复",
+    "使消息不可变且可序列化，因为消息可能跨线程、进程或网络边界传递"
+  ],
+  "donts": [
+    "Don't block inside actors with synchronous I/O because it defeats the asynchronous concurrency model",
+    "Don't create too few, too large actors because it reintroduces the bottleneck problems actors solve",
+    "Don't rely on message ordering between different actors because the model guarantees order only between a specific sender-receiver pair",
+    "Don't expose actor internal state through shared references because it creates race conditions"
+  ],
+  "donts_zh": [
+    "不要在Actor内部用同步I/O阻塞，因为这会破坏异步并发模型",
+    "不要创建过少或过大的Actor，因为这会重新引入Actor模型要解决的瓶颈问题",
+    "不要依赖不同Actor之间的消息顺序，因为模型仅保证特定发送者-接收者对之间的顺序",
+    "不要通过共享引用暴露Actor内部状态，因为这会产生竞态条件"
+  ],
+  "case_study_company": "Ericsson (WhatsApp)",
+  "case_study": "WhatsApp used Erlang/OTP's actor model to build its messaging backend, enabling a team of just 50 engineers to support 900 million users at the time of the Facebook acquisition. Each user connection was represented as a lightweight Erlang process (actor) consuming only about 2KB of memory. The supervision tree architecture meant that individual connection failures were isolated and automatically restarted without affecting other users, achieving 99.99% uptime.",
+  "case_study_zh": "WhatsApp使用Erlang/OTP的Actor模型构建消息后端，使仅50名工程师的团队在被Facebook收购时能支持9亿用户。每个用户连接被表示为仅消耗约2KB内存的轻量级Erlang进程（Actor）。监督树架构意味着单个连接故障被隔离并自动重启，不影响其他用户，实现了99.99%的正常运行时间。",
+  "when_not_to_use": [
+    "Simple sequential programs that don't require concurrency or distribution",
+    "CPU-bound computations that benefit more from parallel data processing than message-passing",
+    "Systems with very strict latency requirements where message routing overhead is unacceptable"
+  ],
+  "when_not_to_use_zh": [
+    "不需要并发或分布的简单顺序程序",
+    "从并行数据处理中获益更多而非消息传递的CPU密集型计算",
+    "消息路由开销不可接受的极严格延迟要求系统"
+  ],
+  "adopters": [
+    "Ericsson",
+    "WhatsApp",
+    "Discord",
+    "Microsoft (Orleans)",
+    "Lightbend (Akka)"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "scalability",
+    "reliability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Carl Hewitt, Peter Bishop, and Richard Steiger (1973). \"A Universal Modular ACTOR Formalism for Artificial Intelligence\". IJCAI 1973.",
+  "secondary_sources": [
+    "Gul Agha (1986). \"Actors: A Model of Concurrent Computation in Distributed Systems\". MIT Press.",
+    "Vernon Vaughn (2016). \"Reactive Messaging Patterns with the Actor Model\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "eda",
+      "type": "complement"
+    },
+    {
+      "slug": "reactive-extensions",
+      "type": "related"
+    },
+    {
+      "slug": "agent-communication-protocol",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/actor-model",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/actor-model.md"
+}

@@ -1,0 +1,192 @@
+{
+  "id": 51,
+  "name": "Bulkhead Pattern",
+  "name_zh": "舱壁模式",
+  "slug": "bulkhead-pattern",
+  "category": "quality",
+  "desc": "Isolate components so a failure in one doesn't sink the whole system",
+  "desc_zh": "隔离组件使某一部分的故障不会导致整个系统崩溃",
+  "steps": [
+    "Identify failure domains: map all external dependencies and internal components that could fail independently",
+    "Partition resources: allocate dedicated thread pools, connection pools, or compute instances per dependency or feature",
+    "Set limits per partition: configure max concurrent requests, queue depths, and timeouts for each bulkhead compartment",
+    "Implement rejection policies: define what happens when a bulkhead is full — reject immediately, queue with bounded wait, or shed load",
+    "Monitor compartment health: track utilization, rejection rates, and queue depth per bulkhead to detect and right-size compartments"
+  ],
+  "steps_zh": [
+    "识别故障域：映射所有可能独立失败的外部依赖和内部组件",
+    "分区资源：为每个依赖或功能分配专用的线程池、连接池或计算实例",
+    "为每个分区设限：配置每个舱壁隔间的最大并发请求数、队列深度和超时时间",
+    "实现拒绝策略：定义舱壁满时的处理方式——立即拒绝、有界等待排队或负载丢弃",
+    "监控隔间健康：追踪每个舱壁的利用率、拒绝率和队列深度以检测并调整隔间大小"
+  ],
+  "ai_relevant": false,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Service A",
+    "Service B",
+    "Service C",
+    "Isolation"
+  ],
+  "viz_labels_zh": [
+    "服务A",
+    "服务B",
+    "服务C",
+    "隔离舱"
+  ],
+  "related": [
+    "circuit-breaker-pattern",
+    "chaos-engineering",
+    "cell-based-architecture"
+  ],
+  "tags": [
+    "bulkhead",
+    "isolation",
+    "resilience",
+    "resource-partitioning"
+  ],
+  "origin_author": "Michael Nygard, 2007",
+  "origin_source": "Release It! Design and Deploy Production-Ready Software",
+  "origin_source_zh": "《发布！软件的设计与部署》",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Systems with multiple external dependencies where one slow dependency can exhaust shared resources",
+    "Multi-tenant platforms where one tenant's traffic spike must not affect others",
+    "Services with mixed workload priorities (critical vs. best-effort) requiring resource isolation",
+    "Applications experiencing thread pool starvation during dependency outages"
+  ],
+  "when_to_use_zh": [
+    "有多个外部依赖且一个慢依赖可能耗尽共享资源的系统",
+    "一个租户的流量激增不能影响其他租户的多租户平台",
+    "混合工作负载优先级（关键型与尽力型）需要资源隔离的服务",
+    "在依赖中断期间经历线程池饥饿的应用"
+  ],
+  "core_concepts": [
+    "Failure Domain Isolation: Preventing a failure in one component from consuming resources needed by others",
+    "Thread Pool Bulkhead: Dedicating separate thread pools per dependency so one cannot starve another",
+    "Semaphore Bulkhead: Using counting semaphores to limit concurrent access without dedicated thread pools",
+    "Resource Partitioning: Allocating fixed resource budgets (connections, memory, CPU) per workload or tenant",
+    "Graceful Degradation: Continuing to serve critical functions even when non-critical partitions are overwhelmed"
+  ],
+  "core_concepts_zh": [
+    "故障域隔离：防止一个组件的故障消耗其他组件所需的资源",
+    "线程池舱壁：为每个依赖分配专用线程池，使其无法饿死其他线程池",
+    "信号量舱壁：使用计数信号量限制并发访问而无需专用线程池",
+    "资源分区：为每个工作负载或租户分配固定资源预算（连接、内存、CPU）",
+    "优雅降级：即使非关键分区过载也能继续服务关键功能"
+  ],
+  "timeline": [
+    [
+      "2007",
+      "Michael Nygard introduces the Bulkhead pattern in 'Release It!' inspired by ship compartmentalization"
+    ],
+    [
+      "2012",
+      "Netflix Hystrix implements thread pool isolation as a core bulkhead mechanism"
+    ],
+    [
+      "2016",
+      "Kubernetes resource limits and requests enable infrastructure-level bulkheading"
+    ],
+    [
+      "2018",
+      "Resilience4j provides lightweight bulkhead implementations for Java microservices"
+    ],
+    [
+      "2021",
+      "AWS Cell-based Architecture formalizes bulkheading at the infrastructure level for hyperscale systems"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2007",
+      "Michael Nygard在《发布！》中受船舶隔舱启发引入舱壁模式"
+    ],
+    [
+      "2012",
+      "Netflix Hystrix实现线程池隔离作为核心舱壁机制"
+    ],
+    [
+      "2016",
+      "Kubernetes的资源限制和请求实现了基础设施级的舱壁隔离"
+    ],
+    [
+      "2018",
+      "Resilience4j为Java微服务提供轻量级舱壁实现"
+    ],
+    [
+      "2021",
+      "AWS蜂窝架构在基础设施层面正式化了超大规模系统的舱壁隔离"
+    ]
+  ],
+  "dos": [
+    "Do size bulkheads based on measured traffic patterns because under-provisioned partitions cause unnecessary rejections",
+    "Do combine bulkheads with circuit breakers because they complement each other for comprehensive fault tolerance",
+    "Do implement per-tenant bulkheads in multi-tenant systems because noisy neighbors are a top reliability risk",
+    "Do monitor bulkhead utilization because consistently full bulkheads indicate under-provisioning or dependency issues"
+  ],
+  "dos_zh": [
+    "根据实际流量模式调整舱壁大小，因为配置不足的分区会导致不必要的拒绝",
+    "将舱壁与熔断器结合使用，因为两者相互补充以实现全面容错",
+    "在多租户系统中实现每租户舱壁，因为嘈杂邻居是首要可靠性风险",
+    "监控舱壁利用率，因为持续满载的舱壁表明资源不足或依赖问题"
+  ],
+  "donts": [
+    "Don't create too many fine-grained partitions because overhead and complexity outweigh isolation benefits",
+    "Don't share thread pools across critical and non-critical paths because this defeats the isolation purpose",
+    "Don't set bulkhead limits without load testing because guessed limits are usually wrong",
+    "Don't forget to handle rejection gracefully because rejected requests should return meaningful errors, not stack traces"
+  ],
+  "donts_zh": [
+    "不要创建过多细粒度的分区，因为开销和复杂性会超过隔离收益",
+    "不要在关键路径和非关键路径之间共享线程池，因为这违背了隔离目的",
+    "不要在没有负载测试的情况下设置舱壁限制，因为猜测的限制通常是错误的",
+    "不要忘记优雅处理拒绝，因为被拒绝的请求应返回有意义的错误而非堆栈跟踪"
+  ],
+  "case_study_company": "Amazon",
+  "case_study": "Amazon uses bulkhead patterns extensively through their Cell-based Architecture, where each cell is an independent, isolated deployment serving a subset of customers. During the 2021 US-EAST-1 disruption, cells with proper bulkheading continued operating while affected cells were isolated, preventing a total service outage and limiting the blast radius of the failure.",
+  "case_study_zh": "Amazon通过其蜂窝架构广泛使用舱壁模式，每个蜂窝单元是一个独立隔离的部署，服务于客户子集。在2021年US-EAST-1中断期间，具有适当舱壁隔离的蜂窝单元继续运行，而受影响的单元被隔离，防止了全面服务中断并限制了故障影响范围。",
+  "when_not_to_use": [
+    "Simple applications with a single dependency where isolation adds complexity without benefit",
+    "Low-traffic systems where resource contention is unlikely to occur",
+    "Stateless serverless functions that inherently isolate through per-invocation containers"
+  ],
+  "when_not_to_use_zh": [
+    "只有单一依赖的简单应用，隔离增加复杂性而无收益",
+    "不太可能发生资源争用的低流量系统",
+    "通过每次调用独立容器天然隔离的无状态Serverless函数"
+  ],
+  "adopters": [
+    "Amazon",
+    "Netflix",
+    "Microsoft Azure",
+    "Alibaba Cloud",
+    "Uber"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Michael Nygard (2007). \"Release It! Design and Deploy Production-Ready Software\". Pragmatic Bookshelf.",
+  "secondary_sources": [
+    "Michael Nygard (2018). \"Release It! Design and Deploy Production-Ready Software, 2nd Edition\". Pragmatic Bookshelf.",
+    "Sam Newman (2015). \"Building Microservices: Designing Fine-Grained Systems\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "circuit-breaker-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "chaos-engineering",
+      "type": "complement"
+    },
+    {
+      "slug": "cell-based-architecture",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/bulkhead-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/bulkhead-pattern.md"
+}

@@ -1,0 +1,194 @@
+{
+  "id": 193,
+  "name": "Retrieval-Augmented Fine-Tuning (RAFT)",
+  "name_zh": "检索增强微调（RAFT）",
+  "slug": "retrieval-augmented-fine-tuning-raft",
+  "category": "ai",
+  "desc": "Combine RAG with fine-tuning for domain adaptation",
+  "desc_zh": "结合检索增强生成与微调实现领域适配",
+  "steps": [
+    "Prepare a domain-specific corpus and generate question-answer pairs with supporting and distractor documents",
+    "Fine-tune the LLM on examples that include both relevant (oracle) and irrelevant (distractor) retrieved documents",
+    "Train the model to cite chain-of-thought reasoning from the relevant documents while ignoring distractors",
+    "Evaluate the fine-tuned model on held-out domain questions, comparing against pure RAG and pure fine-tuning baselines",
+    "Deploy the RAFT model with a production RAG pipeline, benefiting from both parametric knowledge and retrieval grounding"
+  ],
+  "steps_zh": [
+    "准备领域特定语料库，生成包含支持文档和干扰文档的问答对",
+    "使用同时包含相关（正例）和不相关（干扰）检索文档的示例微调大模型",
+    "训练模型从相关文档中引用思维链推理，同时忽略干扰文档",
+    "在保留的领域问题上评估微调模型，与纯 RAG 和纯微调基线进行比较",
+    "将 RAFT 模型与生产 RAG 流水线一起部署，同时受益于参数知识和检索锚定"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Dataset",
+    "Distract Docs",
+    "Fine-tune",
+    "Evaluate"
+  ],
+  "viz_labels_zh": [
+    "训练数据",
+    "干扰文档",
+    "微调",
+    "评估"
+  ],
+  "related": [
+    "rag-architecture",
+    "prompt-chaining",
+    "llm-evaluation-framework"
+  ],
+  "tags": [
+    "raft",
+    "rag",
+    "fine-tuning",
+    "domain-adaptation",
+    "retrieval"
+  ],
+  "origin_author": "Tianjun Zhang et al. (UC Berkeley), 2024",
+  "origin_source": "RAFT: Adapting Language Model to Domain Specific RAG (Tianjun Zhang et al., arXiv 2024)",
+  "origin_source_zh": "RAFT：使语言模型适配领域特定检索增强生成（Tianjun Zhang 等，arXiv 2024）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Domain-specific applications (legal, medical, financial) where both retrieval accuracy and domain knowledge matter",
+    "Enterprise RAG systems where pure retrieval produces too many irrelevant results that confuse the LLM",
+    "Use cases requiring high factual accuracy with citation — the model must distinguish relevant from irrelevant context",
+    "Scenarios where pure fine-tuning hallucinates on recent or niche information that wasn't in training data"
+  ],
+  "when_to_use_zh": [
+    "检索准确性和领域知识都重要的领域特定应用（法律、医疗、金融）",
+    "纯检索产生过多不相关结果导致大模型混淆的企业 RAG 系统",
+    "需要带引用的高事实准确性的场景——模型必须区分相关与不相关上下文",
+    "纯微调对训练数据中不存在的最新或小众信息产生幻觉的场景"
+  ],
+  "core_concepts": [
+    "Oracle Documents: The relevant retrieved documents that contain the answer — the model must learn to identify and cite these",
+    "Distractor Documents: Irrelevant retrieved documents mixed into training examples to teach the model robustness against retrieval noise",
+    "Chain-of-Thought Citation: The model is trained to produce reasoning traces that explicitly reference relevant passages, improving verifiability",
+    "Hybrid Knowledge: RAFT combines parametric knowledge (from fine-tuning) with non-parametric knowledge (from retrieval) for superior domain performance"
+  ],
+  "core_concepts_zh": [
+    "正例文档：包含答案的相关检索文档——模型必须学会识别和引用这些文档",
+    "干扰文档：混入训练示例中的不相关检索文档，教会模型对检索噪声的鲁棒性",
+    "思维链引用：模型被训练生成明确引用相关段落的推理轨迹，提高可验证性",
+    "混合知识：RAFT 将参数知识（来自微调）与非参数知识（来自检索）结合，实现卓越的领域性能"
+  ],
+  "timeline": [
+    [
+      "2020",
+      "RAG (Lewis et al.) establishes retrieval-augmented generation as a foundational LLM pattern"
+    ],
+    [
+      "2023",
+      "Enterprise RAG deployments reveal limitations: retrieval noise, hallucination, and poor domain adaptation"
+    ],
+    [
+      "2024-03",
+      "Tianjun Zhang et al. publish RAFT, demonstrating that fine-tuning with retrieval context outperforms both pure RAG and pure fine-tuning"
+    ],
+    [
+      "2024-06",
+      "RAFT methodology adopted by enterprise AI teams for legal, medical, and financial domain adaptation"
+    ],
+    [
+      "2025",
+      "Automated RAFT dataset generation tools emerge, reducing the manual effort of creating oracle/distractor training pairs"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2020",
+      "RAG（Lewis 等）确立检索增强生成作为基础大模型模式"
+    ],
+    [
+      "2023",
+      "企业 RAG 部署暴露局限性：检索噪声、幻觉和领域适配不足"
+    ],
+    [
+      "2024-03",
+      "Tianjun Zhang 等发表 RAFT，证明使用检索上下文微调优于纯 RAG 和纯微调"
+    ],
+    [
+      "2024-06",
+      "RAFT 方法被企业 AI 团队用于法律、医疗和金融领域适配"
+    ],
+    [
+      "2025",
+      "自动化 RAFT 数据集生成工具出现，减少创建正例/干扰训练对的人工工作"
+    ]
+  ],
+  "dos": [
+    "Include a mix of oracle-only and oracle-plus-distractor examples during training to build robust retrieval discrimination",
+    "Train the model to produce explicit chain-of-thought citations that trace answers back to specific retrieved passages",
+    "Evaluate RAFT models against both pure RAG and pure fine-tuning baselines to quantify the hybrid benefit",
+    "Use domain experts to validate training QA pairs — garbage-in training data produces garbage-out RAFT models"
+  ],
+  "dos_zh": [
+    "在训练中混合仅正例和正例加干扰的示例，以建立鲁棒的检索区分能力",
+    "训练模型生成明确的思维链引用，将答案追溯至特定检索段落",
+    "将 RAFT 模型与纯 RAG 和纯微调基线进行比较评估，量化混合收益",
+    "使用领域专家验证训练问答对——垃圾训练数据产出垃圾 RAFT 模型"
+  ],
+  "donts": [
+    "Don't skip distractor documents in training — a model trained only on oracle documents fails when real retrieval returns noise",
+    "Don't use RAFT as a substitute for good retrieval — poor retrieval quality undermines even a well-fine-tuned model",
+    "Don't fine-tune on stale domain data — RAFT models inherit the biases and gaps of their training corpus",
+    "Don't ignore the cost of fine-tuning iteration — RAFT requires more compute than pure RAG, so validate the ROI first"
+  ],
+  "donts_zh": [
+    "不要在训练中跳过干扰文档——仅用正例文档训练的模型在真实检索返回噪声时会失败",
+    "不要将 RAFT 视为良好检索的替代——糟糕的检索质量会削弱即使微调良好的模型",
+    "不要使用过时的领域数据微调——RAFT 模型会继承训练语料的偏见和缺口",
+    "不要忽视微调迭代的成本——RAFT 比纯 RAG 需要更多计算资源，先验证投资回报率"
+  ],
+  "case_study_company": "UC Berkeley",
+  "case_study": "UC Berkeley researchers demonstrated RAFT on domain-specific benchmarks including PubMed (medical), HotpotQA (multi-hop reasoning), and Gorilla API documentation. The RAFT-trained Llama-7B model outperformed both standard RAG with GPT-3.5 and domain-fine-tuned models on PubMed QA by 15-20%, while maintaining the ability to cite specific passages. This proved that teaching models to read retrieval results during fine-tuning produces substantially better domain specialists than either approach alone.",
+  "case_study_zh": "加州大学伯克利分校的研究人员在领域特定基准上展示了 RAFT，包括 PubMed（医学）、HotpotQA（多跳推理）和 Gorilla API 文档。经 RAFT 训练的 Llama-7B 模型在 PubMed QA 上比标准 RAG + GPT-3.5 和领域微调模型高出 15-20%，同时保持引用特定段落的能力。这证明在微调过程中教模型阅读检索结果，比任何单一方法都能产出更好的领域专家。",
+  "when_not_to_use": [
+    "General-purpose chatbots where domain specialization is not needed and pure RAG is sufficient",
+    "Rapidly changing domains where the fine-tuning cycle cannot keep pace with data updates",
+    "Teams without the compute budget or MLOps infrastructure to manage fine-tuning pipelines",
+    "Use cases where the base model's zero-shot performance with RAG already meets quality requirements"
+  ],
+  "when_not_to_use_zh": [
+    "不需要领域专业化、纯 RAG 即可满足的通用聊天机器人",
+    "微调周期无法跟上数据更新速度的快速变化领域",
+    "没有计算预算或 MLOps 基础设施来管理微调流水线的团队",
+    "基础模型使用 RAG 的零样本表现已满足质量要求的场景"
+  ],
+  "adopters": [
+    "UC Berkeley",
+    "Microsoft Research",
+    "Anyscale",
+    "Databricks",
+    "Together AI"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "performance",
+    "reliability"
+  ],
+  "maturity_ring": "experimental",
+  "primary_source": "Tianjun Zhang et al. (2024). \"RAFT: Adapting Language Model to Domain Specific RAG\". arXiv:2403.10131.",
+  "secondary_sources": [
+    "Patrick Lewis et al. (2020). \"Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks\". NeurIPS 2020.",
+    "Edward Hu et al. (2021). \"LoRA: Low-Rank Adaptation of Large Language Models\". arXiv:2106.09685."
+  ],
+  "typed_relations": [
+    {
+      "slug": "rag-architecture",
+      "type": "extends"
+    },
+    {
+      "slug": "prompt-chaining",
+      "type": "complement"
+    },
+    {
+      "slug": "llm-evaluation-framework",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/retrieval-augmented-fine-tuning-raft",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/retrieval-augmented-fine-tuning-raft.md"
+}

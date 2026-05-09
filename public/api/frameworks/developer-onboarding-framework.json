@@ -1,0 +1,192 @@
+{
+  "id": 281,
+  "name": "Developer Onboarding Framework",
+  "name_zh": "开发者入职框架",
+  "slug": "developer-onboarding-framework",
+  "category": "team",
+  "desc": "Structured ramp-up program for new engineers combining role clarity, progressive autonomy, and embedded social integration",
+  "desc_zh": "为新工程师设计的结构化成长计划，融合角色清晰度、渐进式自主权和融入团队社交",
+  "steps": [
+    "Create a written onboarding document (30/60/90-day plan) per role before the engineer joins, specifying expected milestones, assigned buddy, first task backlog, and system access checklist — so Day 1 is productive rather than administrative",
+    "Assign a dedicated onboarding buddy (a peer, not the manager) who is available for questions without judgment for the first 30 days and whose own velocity is formally protected during this period",
+    "Structure the first week as guided exploration: new hire ships a small, real change to production (a bug fix, a doc update, a minor feature) within 5 working days to build system confidence and establish commit access",
+    "Introduce the codebase through context maps — architecture diagrams, ADRs, team-authored runbooks — before asking the engineer to read raw code, so they understand intent before implementation",
+    "Run retrospective check-ins at 30, 60, and 90 days to identify gaps in tooling, documentation, or social integration, and feed findings back into the onboarding document for the next hire"
+  ],
+  "steps_zh": [
+    "在工程师入职前，为每个角色创建书面入职文档（30/60/90 天计划），指定预期里程碑、指定伙伴、第一批任务积压和系统访问清单——确保第一天就能高效工作而非埋头行政事务",
+    "指定专属入职伙伴（同级同事而非经理），在前 30 天随时可无顾虑地提问，且其自身的工作进度在此期间受到正式保护",
+    "将第一周构建为引导式探索：新员工在入职 5 个工作日内将一个小型真实变更发布到生产环境（修复 bug、更新文档、小功能），以建立系统信心并完成提交权限配置",
+    "通过上下文地图引导熟悉代码库——架构图、ADR、团队编写的操作手册——而非直接阅读原始代码，使其在理解意图后再看实现",
+    "在 30、60 和 90 天进行回顾性检查，识别工具、文档或社交融入方面的差距，并将发现反馈回入职文档，供下一位新员工使用"
+  ],
+  "ai_relevant": false,
+  "viz_type": "timeline",
+  "viz_labels": [
+    "30/60/90 Plan",
+    "Onboarding Buddy",
+    "First Commit",
+    "Context Maps",
+    "Check-in Retro"
+  ],
+  "viz_labels_zh": [
+    "入职计划",
+    "入职伙伴",
+    "首次提交",
+    "架构地图",
+    "定期回顾"
+  ],
+  "related": [
+    "engineering-ladder",
+    "technical-mentorship-program",
+    "developer-experience-framework",
+    "rfc-process"
+  ],
+  "tags": [
+    "onboarding",
+    "new-hire",
+    "ramp-up",
+    "buddy-program",
+    "developer-experience"
+  ],
+  "origin_author": "Kate Heddleston",
+  "origin_source": "Heddleston, K. (2016). \"How to Onboard Software Engineers\". kateheddleston.com; Heddleston, K. (2018). \"Criticism and Ineffective Feedback\". kateheddleston.com.",
+  "origin_source_zh": "Heddleston, K.（2016）「如何入职软件工程师」，kateheddleston.com；Heddleston, K.（2018）「批评与低效反馈」，kateheddleston.com",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When the team is hiring more than 2-3 engineers per year and onboarding is informal, inconsistent, and dependent on whoever has bandwidth to help",
+    "When new engineers consistently take 3+ months to make independent contributions, suggesting the path to productivity is unclear or blocked",
+    "When attrition in the first 6 months is higher than expected and exit interviews reveal onboarding confusion or social isolation as contributing factors",
+    "When the team is distributed across timezones and new hires cannot rely on informal corridor conversations to fill knowledge gaps"
+  ],
+  "when_to_use_zh": [
+    "当团队每年招募 2-3 名以上工程师，而入职流程是非正式、不一致且依赖于恰好有时间的人帮助时",
+    "当新工程师持续需要 3 个月以上才能独立做出贡献，表明通往生产力的路径不清晰或受阻时",
+    "当入职前 6 个月的离职率高于预期，且离职访谈显示入职混乱或社交孤立是原因之一时",
+    "当团队跨时区分布，新员工无法依靠非正式的走廊对话来填补知识空白时"
+  ],
+  "core_concepts": [
+    "30/60/90-Day Plan: A role-specific roadmap defining what a new engineer should learn, build, and own at each milestone — transforming onboarding from a passive process into an active progression with clear success criteria",
+    "Onboarding Buddy: A dedicated peer (distinct from the manager) who provides psychological safety for 'silly questions', navigates social dynamics, and offers unfiltered context about team culture — protected time for the buddy is essential",
+    "First Contribution Fast: The practice of engineering onboarding so a new hire ships a real change to production within the first week — building system confidence, establishing toolchain access, and creating a sense of belonging",
+    "Context Before Code: Presenting architectural intent (ADRs, diagrams, runbooks) before raw implementation because understanding why a system is designed as it is dramatically accelerates reading and modifying code correctly",
+    "Onboarding as a Product: Treating the onboarding process as an internal product with owners, feedback loops, and continuous improvement cycles — the 90-day retrospective feeds directly into the next version of the onboarding doc"
+  ],
+  "core_concepts_zh": [
+    "30/60/90 天计划：针对特定角色的路线图，定义新工程师在每个里程碑应学习、构建和负责的内容——将入职从被动过程转变为有明确成功标准的主动进阶",
+    "入职伙伴：专属同级同事（有别于经理），提供提「傻问题」的心理安全感，引导社交动态，并提供关于团队文化的未过滤背景——伙伴的保护时间至关重要",
+    "快速首次贡献：工程入职实践，新员工在入职第一周内将真实变更发布到生产环境——建立系统信心、完成工具链访问权限并产生归属感",
+    "先理解背景再读代码：在阅读原始实现之前先呈现架构意图（ADR、图表、操作手册），因为理解系统如此设计的原因能显著加速正确阅读和修改代码",
+    "将入职视为产品：将入职流程作为有负责人、反馈循环和持续改进周期的内部产品——90 天回顾直接反馈到下一版入职文档中"
+  ],
+  "timeline": [
+    [
+      "2009",
+      "Google Project Oxygen research identifies manager behaviors that most correlate with team performance, including onboarding support — making structured ramp-up an evidence-backed practice"
+    ],
+    [
+      "2016",
+      "Kate Heddleston publishes influential essays on engineering onboarding, coining the 'brilliant jerk' culture problem and advocating for systematic, inclusive onboarding processes"
+    ],
+    [
+      "2020",
+      "Remote-first shift due to COVID-19 forces structured onboarding to become a written discipline as informal office-based knowledge transfer disappeared overnight"
+    ],
+    [
+      "2023",
+      "AI pair programming tools (GitHub Copilot, Cursor) begin to accelerate the 'first contribution' milestone but introduce new onboarding challenges around AI-assisted code review and quality standards"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2009",
+      "Google Project Oxygen 研究识别出与团队绩效最相关的管理者行为，包括入职支持——使结构化成长成为有证据支持的实践"
+    ],
+    [
+      "2016",
+      "Kate Heddleston 发表关于工程入职的影响力文章，提出「优秀混蛋」文化问题，倡导系统性、包容性的入职流程"
+    ],
+    [
+      "2020",
+      "COVID-19 导致的远程优先转变迫使结构化入职成为书面规范，因为基于办公室的非正式知识传递一夜之间消失"
+    ],
+    [
+      "2023",
+      "AI 配对编程工具（GitHub Copilot、Cursor）开始加速「首次贡献」里程碑，但在 AI 辅助代码审查和质量标准方面引入了新的入职挑战"
+    ]
+  ],
+  "dos": [
+    "Do create the 30/60/90-day plan before the engineer joins, not during their first week, because improvising onboarding structure in real time signals disorganization and reduces new hire confidence",
+    "Do protect the onboarding buddy's sprint capacity — if helping new hires competes with their own delivery goals, buddy relationships become resentful rather than supportive",
+    "Do ensure the new hire ships something real to production within the first week because a working deployment end-to-end is the most effective way to verify that all toolchain access and processes are correctly configured",
+    "Do treat onboarding documentation as a living product — run a retrospective after every new hire's 90 days and update the document with what was missing or confusing"
+  ],
+  "dos_zh": [
+    "在工程师入职之前而非入职第一周创建 30/60/90 天计划，因为实时即兴构建入职结构传递出无序感，降低新员工信心",
+    "保护入职伙伴的迭代容量——如果帮助新员工与其自身的交付目标相竞争，伙伴关系会变得充满怨恨而非支持性",
+    "确保新员工在第一周内将真实内容发布到生产环境，因为端到端的完整部署是验证所有工具链访问权限和流程正确配置的最有效方式",
+    "将入职文档视为活跃产品——每位新员工 90 天后进行回顾并更新缺失或令人困惑的内容"
+  ],
+  "donts": [
+    "Don't assign onboarding as a manager's responsibility alone — managers lack time for deep technical mentoring and new hires need a peer-level relationship without the power dynamic",
+    "Don't front-load the first week with presentations, company all-hands, and HR compliance training at the expense of getting the engineer into the actual development workflow",
+    "Don't skip the architectural context stage by pointing new hires directly at the codebase — reading unfamiliar code without knowing the intent leads to cargo-cult modifications and embedded misunderstandings",
+    "Don't treat onboarding as complete at 30 days — most engineers need 3-6 months to reach full independent contribution velocity, and abandoning structured support too early leaves them floundering"
+  ],
+  "donts_zh": [
+    "不要将入职仅作为经理的责任——经理没有时间进行深度技术指导，新员工需要没有权力关系的同级关系",
+    "不要用演示文稿、公司全体会议和 HR 合规培训填满第一周，以牺牲让工程师进入实际开发工作流为代价",
+    "不要跳过架构背景阶段，直接让新员工阅读代码库——在不了解意图的情况下阅读陌生代码会导致照猫画虎式的修改和根深蒂固的误解",
+    "不要在 30 天后就认为入职完成——大多数工程师需要 3-6 个月才能达到完全独立的贡献速度，过早放弃结构化支持会让他们陷入困境"
+  ],
+  "case_study_company": "Stripe",
+  "case_study": "Stripe's engineering onboarding program, described in multiple public engineering talks (2018-2022), is regarded as one of the most effective in the industry. New engineers are given a curated 'getting started' codebase path, assigned a dedicated onboarding mentor for 60 days (separate from their team lead), and are expected to close a real customer-facing bug within their first five working days. The onboarding document is version-controlled in the same monorepo as the codebase. Internal data showed that engineers who completed the full structured onboarding program reached independent review-level contributions 40% faster than those who went through ad-hoc onboarding during a period of rapid growth. Stripe credits structured onboarding as a key factor in maintaining code quality standards as headcount scaled from 200 to 4000+ engineers.",
+  "case_study_zh": "Stripe 的工程入职计划在多次公开工程演讲（2018-2022）中被描述为业内最有效的计划之一。新工程师获得精心策划的「入门」代码库路径，分配专属入职导师 60 天（独立于团队负责人），并被期望在入职后前五个工作日内解决一个真实的面向客户的 bug。入职文档与代码库一起进行版本控制，存储在同一 monorepo 中。内部数据显示，完成完整结构化入职计划的工程师，达到独立审查级别贡献的速度比经历临时入职的工程师快 40%，这一对比发生在快速增长时期。Stripe 将结构化入职列为在团队从 200 人扩展到 4000 名以上工程师时维持代码质量标准的关键因素。",
+  "when_not_to_use": [
+    "Micro-teams of fewer than 5 engineers where pair programming and direct collaboration serve as natural onboarding and formal programs add unnecessary overhead",
+    "Short-term contractors or consultants engaged for a specific, bounded task who do not need deep system context",
+    "Teams where the onboarding culture is intentionally steep as a self-selection mechanism — though this is rarely a justifiable design choice at scale",
+    "Experimental projects with a lifespan under 6 months where the onboarding investment will not be recouped"
+  ],
+  "when_not_to_use_zh": [
+    "少于 5 名工程师的微型团队，配对编程和直接协作可自然充当入职，正式项目增加了不必要的开销",
+    "参与特定、有边界任务的短期承包商或顾问，不需要深度系统背景",
+    "团队故意将入职流程设置得很陡峭以作为自我筛选机制的情况——尽管这在规模化时很少是合理的设计选择",
+    "预期寿命不足 6 个月的实验性项目，入职投资无法得到回报"
+  ],
+  "adopters": [
+    "Stripe",
+    "Airbnb",
+    "Shopify",
+    "Netlify",
+    "GitHub"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "usability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Heddleston, K. (2016). \"How to Onboard Software Engineers\". kateheddleston.com.",
+  "secondary_sources": [
+    "Klein, C. & Luciani, C. (2018). \"Onboarding at Stripe\". stripe.com/blog.",
+    "Google re:Work (2019). \"Guide: Onboard New Employees Effectively\". rework.withgoogle.com.",
+    "Larson, W. (2019). \"An Elegant Puzzle: Systems of Engineering Management\". Stripe Press."
+  ],
+  "typed_relations": [
+    {
+      "slug": "engineering-ladder",
+      "type": "complement"
+    },
+    {
+      "slug": "developer-experience-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "guilds-communities-of-practice",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/developer-onboarding-framework",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/developer-onboarding-framework.md"
+}

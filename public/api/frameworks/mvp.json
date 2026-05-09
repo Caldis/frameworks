@@ -1,0 +1,202 @@
+{
+  "id": 318,
+  "name": "MVP (Model-View-Presenter)",
+  "name_zh": "MVP（模型-视图-呈现者）",
+  "slug": "mvp",
+  "category": "architecture",
+  "desc": "Evolves MVC by replacing the Controller with a Presenter that holds all UI logic, while the View becomes a passive interface that delegates every user gesture to the Presenter.",
+  "desc_zh": "在MVC基础上演进，将控制器替换为持有全部UI逻辑的呈现者，同时视图成为被动接口，将所有用户手势委托给呈现者处理。",
+  "steps": [
+    "Define the Model: domain data, persistence, and business rules with no UI dependencies",
+    "Define a thin View interface: declare a minimal contract (interface/protocol) specifying only what the View can display and what events it can fire — no logic lives here",
+    "Implement the Presenter: a plain class that implements the full UI decision logic; it holds a reference to the View interface and the Model, and orchestrates all interactions",
+    "Implement the concrete View (Activity, Form, Widget): wire all user gestures to Presenter method calls and implement the View interface methods to update the display",
+    "Write unit tests against the Presenter using a mock View — verify that given a specific user action, the Presenter calls the correct View methods with the correct data"
+  ],
+  "steps_zh": [
+    "定义模型：领域数据、持久化和业务规则，不依赖UI",
+    "定义精简的视图接口：声明最小化契约（接口/协议），仅指定视图可以显示什么以及可以触发什么事件——这里不存放任何逻辑",
+    "实现呈现者：持有完整UI决策逻辑的普通类；持有视图接口和模型的引用，协调所有交互",
+    "实现具体视图（Activity、Form、Widget）：将所有用户手势连接到呈现者方法调用，并实现视图接口方法以更新显示",
+    "使用模拟视图对呈现者编写单元测试——验证给定特定用户操作时，呈现者用正确数据调用正确的视图方法"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Model",
+    "View",
+    "Presenter",
+    "User Event",
+    "Update"
+  ],
+  "viz_labels_zh": [
+    "模型",
+    "视图",
+    "表示器",
+    "用户事件",
+    "更新"
+  ],
+  "related": [
+    "separation-of-concerns",
+    "solid-principles",
+    "observer-pattern",
+    "mvc",
+    "mvvm",
+    "flux-unidirectional"
+  ],
+  "tags": [
+    "ui-pattern",
+    "testability",
+    "component-architecture",
+    "presentation-pattern"
+  ],
+  "origin_author": "Mike Potel / Taligent, 1996",
+  "origin_source": "Potel, M. (1996). MVP: Model-View-Presenter — The Taligent Programming Model for C++ and Java. Taligent Inc. white paper.",
+  "origin_source_zh": "Potel, M.（1996）。《MVP：模型-视图-呈现者——C++和Java的Taligent编程模型》。Taligent Inc.白皮书。",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When UI logic must be fully unit-tested without launching the actual UI — the Presenter's View interface can be mocked trivially",
+    "When working with UI frameworks (Android Activities, Windows Forms) where the View class is difficult to instantiate in tests",
+    "When multiple Views need to share identical UI logic — the same Presenter can back different platform-specific View implementations",
+    "When the team wants to enforce a strict passive-View constraint to prevent ad-hoc logic accumulating in UI components"
+  ],
+  "when_to_use_zh": [
+    "UI逻辑必须在不启动实际UI的情况下完整单元测试时——呈现者的视图接口可以轻松模拟",
+    "使用UI框架（Android Activity、Windows Forms）时，其中视图类难以在测试中实例化",
+    "多个视图需要共享相同UI逻辑时——同一呈现者可以支撑不同平台特定的视图实现",
+    "团队希望强制执行严格的被动视图约束，防止临时逻辑在UI组件中积累时"
+  ],
+  "core_concepts": [
+    "Passive View: the View implements a minimal interface and contains zero logic — it delegates every event to the Presenter and renders exactly what it is told",
+    "Presenter: the mediator between View and Model; it owns all UI decision logic and communicates with the View only through the View interface",
+    "View interface: a contract (Java interface, Swift protocol, .NET interface) that decouples the Presenter from the concrete UI framework class",
+    "Testability by mock: because the Presenter depends only on the View interface, tests replace the real View with a mock object to verify behavior",
+    "One-to-one relationship: each View typically has exactly one Presenter; the Presenter is lifecycle-aware and manages the View's full state"
+  ],
+  "core_concepts_zh": [
+    "被动视图：视图实现最小化接口且包含零逻辑——它将每个事件委托给呈现者，并精确渲染被告知的内容",
+    "呈现者：视图和模型之间的中介；拥有所有UI决策逻辑，仅通过视图接口与视图通信",
+    "视图接口：将呈现者与具体UI框架类解耦的契约（Java接口、Swift协议、.NET接口）",
+    "通过模拟实现可测试性：因为呈现者仅依赖视图接口，测试用模拟对象替换真实视图来验证行为",
+    "一对一关系：每个视图通常只有一个呈现者；呈现者感知生命周期并管理视图的完整状态"
+  ],
+  "timeline": [
+    [
+      "1996",
+      "Mike Potel at Taligent publishes the MVP white paper, positioning it as an evolution of MVC for C++ and Java applications"
+    ],
+    [
+      "2006",
+      "Martin Fowler refines and publishes the Passive View and Supervising Controller variants of MVP on martinfowler.com"
+    ],
+    [
+      "2008",
+      "Android adopts Activity-based architecture that closely resembles MVP; community gravitates toward explicit MVP frameworks"
+    ],
+    [
+      "2015",
+      "MVP becomes the dominant Android architecture pattern with frameworks like Mosby; eventually superseded by MVVM with Architecture Components in 2017"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1996",
+      "Taligent的Mike Potel发布MVP白皮书，将其定位为面向C++和Java应用的MVC演进"
+    ],
+    [
+      "2006",
+      "Martin Fowler在martinfowler.com上细化并发布MVP的被动视图和监督控制器变体"
+    ],
+    [
+      "2008",
+      "Android采用类似MVP的基于Activity的架构；社区转向明确的MVP框架"
+    ],
+    [
+      "2015",
+      "MVP成为主流Android架构模式（Mosby等框架）；2017年最终被架构组件中的MVVM取代"
+    ]
+  ],
+  "dos": [
+    "Define the View as an interface with the minimum surface area needed — every extra method on the View interface is a method you must mock in tests",
+    "Keep Presenters stateless where possible, or clearly document the state they manage, so that tests can set up known preconditions",
+    "One Presenter per View screen — splitting a large screen into sub-Views each with their own Presenter improves cohesion and makes tests focused",
+    "Inject dependencies (Model, services) into the Presenter constructor so tests can provide substitutes without service locators"
+  ],
+  "dos_zh": [
+    "将视图定义为具有最小所需接口面积的接口——视图接口上的每个额外方法都是必须在测试中模拟的方法",
+    "尽可能保持呈现者无状态，或清楚记录其管理的状态，以便测试可以设置已知前置条件",
+    "每个视图屏幕一个呈现者——将大型屏幕拆分为各自具有呈现者的子视图可以提高内聚性并使测试更聚焦",
+    "将依赖项（模型、服务）注入呈现者构造函数，以便测试可以提供替代品而无需服务定位器"
+  ],
+  "donts": [
+    "Don't let the Presenter hold a direct reference to a concrete View class — this prevents mocking and couples the Presenter to the UI framework",
+    "Don't call View methods from background threads without marshalling back to the UI thread — threading bugs create intermittent, hard-to-reproduce failures",
+    "Don't put navigation logic in the View — navigation belongs in the Presenter or a Router so the routing decision is testable",
+    "Don't skip the View interface because it seems like overhead — skipping it is the single most common mistake that makes MVP code untestable"
+  ],
+  "donts_zh": [
+    "不要让呈现者持有对具体视图类的直接引用——这会阻止模拟并将呈现者与UI框架耦合",
+    "不要从后台线程调用视图方法而不回调到UI线程——线程错误会产生间歇性、难以重现的故障",
+    "不要将导航逻辑放在视图中——导航属于呈现者或路由器，使路由决策可测试",
+    "不要因为视图接口看似额外开销就跳过它——跳过它是使MVP代码无法测试的最常见错误"
+  ],
+  "case_study_company": "Google (Android)",
+  "case_study": "Google's Android team published the Android MVP sample in 2015 as part of the android-architecture repository to demonstrate how to write testable Android applications. Prior to MVP adoption, Android code was concentrated in Activities that mixed UI, business logic, and data access — making unit testing nearly impossible without Robolectric's slow JVM-based Android simulation. By extracting all UI decisions into plain Java Presenters backed by View interfaces, teams achieved Presenter test suites that ran in under 100ms on the JVM, compared to 30+ seconds with instrumented tests on emulators.",
+  "case_study_zh": "谷歌Android团队在2015年作为android-architecture仓库的一部分发布了Android MVP示例，展示如何编写可测试的Android应用程序。在采用MVP之前，Android代码集中在混合了UI、业务逻辑和数据访问的Activity中——使得单元测试在没有Robolectric慢速JVM-based Android模拟的情况下几乎不可能。通过将所有UI决策提取到由视图接口支撑的普通Java呈现者中，团队在JVM上实现了100ms以内运行的呈现者测试套件，而在模拟器上的仪表化测试需要30秒以上。",
+  "when_not_to_use": [
+    "For simple CRUD screens where the UI logic is trivial — the View interface boilerplate adds more code than it saves in testing effort",
+    "When using reactive frameworks (RxJava, Kotlin Flow, Combine) that naturally enable MVVM with less ceremony than MVP",
+    "For highly dynamic UIs where the View must frequently update its own structure — the passive View constraint becomes a bottleneck"
+  ],
+  "when_not_to_use_zh": [
+    "对于UI逻辑微不足道的简单CRUD屏幕——视图接口样板代码增加的代码量超过了在测试工作中节省的量",
+    "使用响应式框架（RxJava、Kotlin Flow、Combine）时，这些框架自然地以比MVP更少的仪式实现MVVM",
+    "对于视图必须频繁更新自身结构的高度动态UI——被动视图约束会成为瓶颈"
+  ],
+  "adopters": [
+    "Android (early community standard)",
+    "Google Web Toolkit (GWT)",
+    "Windows Forms (.NET)",
+    "Vaadin (Java web)"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "testability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Potel, M. (1996). MVP: Model-View-Presenter. Taligent Inc. white paper.",
+  "secondary_sources": [
+    "Fowler, M. (2006). Passive View. martinfowler.com.",
+    "Fowler, M. (2006). Supervising Controller. martinfowler.com.",
+    "Google (2015). Android Architecture Blueprints — MVP sample. github.com/android/architecture-samples."
+  ],
+  "typed_relations": [
+    {
+      "slug": "separation-of-concerns",
+      "type": "extends"
+    },
+    {
+      "slug": "solid-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "observer-pattern",
+      "type": "related"
+    },
+    {
+      "slug": "mvc",
+      "type": "alternative"
+    },
+    {
+      "slug": "mvvm",
+      "type": "alternative"
+    },
+    {
+      "slug": "flux-unidirectional",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/mvp",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/mvp.md"
+}

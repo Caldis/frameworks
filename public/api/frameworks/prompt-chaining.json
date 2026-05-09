@@ -1,0 +1,195 @@
+{
+  "id": 91,
+  "name": "Prompt Chaining Pattern",
+  "name_zh": "提示词链模式",
+  "slug": "prompt-chaining",
+  "category": "ai",
+  "desc": "Decompose complex tasks into sequential prompt stages",
+  "desc_zh": "将复杂任务分解为顺序执行的提示词阶段",
+  "steps": [
+    "Break the end-to-end task into discrete, independently testable prompt stages",
+    "Define the output schema of each stage as the typed input of the next",
+    "Validate and sanitize intermediate outputs before passing them downstream",
+    "Add a gating step that checks quality criteria before continuing the chain",
+    "Log each stage's input/output pair for debugging and prompt regression testing"
+  ],
+  "steps_zh": [
+    "将端到端任务拆分为独立可测试的离散提示词阶段",
+    "将每个阶段的输出模式定义为下一阶段的类型化输入",
+    "在传递给下游前对中间输出进行验证和清洗",
+    "添加质量门控步骤，满足标准后再继续执行链路",
+    "记录每个阶段的输入输出对，用于调试与提示词回归测试"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Prompt 1",
+    "Output 1",
+    "Prompt 2",
+    "Final Output"
+  ],
+  "viz_labels_zh": [
+    "提示1",
+    "输出1",
+    "提示2",
+    "最终输出"
+  ],
+  "related": [
+    "react-framework",
+    "prompt-engineering-patterns",
+    "guardrails-framework"
+  ],
+  "tags": [
+    "prompt-chaining",
+    "pipeline",
+    "decomposition",
+    "sequential"
+  ],
+  "origin_author": "Harrison Chase (LangChain) / Wu Tongshuang et al., 2022",
+  "origin_source": "AI Chains: Transparent and Controllable Human-AI Interaction by Chaining Large Language Model Prompts (CHI 2022)",
+  "origin_source_zh": "AI Chains：通过链接大语言模型提示词实现透明可控的人机交互（CHI 2022）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Complex generation tasks that benefit from separation into planning, drafting, and refinement stages",
+    "Structured extraction pipelines where each stage narrows or enriches the data",
+    "Content workflows (translate, summarize, then format) where each step has clear quality gates",
+    "Any task where a single prompt fails to produce reliable output due to complexity"
+  ],
+  "when_to_use_zh": [
+    "受益于拆分为规划、起草和优化阶段的复杂生成任务",
+    "每个阶段逐步缩窄或丰富数据的结构化抽取管线",
+    "每步有明确质量门控的内容工作流（翻译、摘要、排版）",
+    "单一提示词因复杂度过高无法产出可靠输出的任何任务"
+  ],
+  "core_concepts": [
+    "Stage: A single prompt call with a defined input schema and output schema",
+    "Gate: A validation check between stages that decides whether to proceed, retry, or abort",
+    "Schema Contract: The typed interface between stages ensuring one stage's output matches the next stage's expected input",
+    "Chain Debugging: The practice of logging every stage's I/O to isolate where quality degrades",
+    "Prompt Regression Testing: Running a fixed set of inputs through the chain to detect quality changes after prompt edits"
+  ],
+  "core_concepts_zh": [
+    "阶段（Stage）：具有定义输入输出模式的单次提示词调用",
+    "门控（Gate）：阶段间的验证检查，决定继续、重试还是终止",
+    "模式契约（Schema Contract）：确保前一阶段输出匹配后一阶段期望输入的类型化接口",
+    "链路调试（Chain Debugging）：记录每个阶段的输入输出以定位质量退化位置",
+    "提示词回归测试：用固定输入集通过链路运行，在提示词修改后检测质量变化"
+  ],
+  "timeline": [
+    [
+      "2022-04",
+      "Wu Tongshuang et al. publish AI Chains at CHI 2022, formalizing prompt chaining for interactive systems"
+    ],
+    [
+      "2022-10",
+      "LangChain launches with SequentialChain as a core abstraction for prompt pipelines"
+    ],
+    [
+      "2023-06",
+      "OpenAI Cookbook promotes prompt chaining as a best practice for complex tasks"
+    ],
+    [
+      "2024-01",
+      "DSPy introduces optimizable prompt pipelines with automatic prompt tuning across chain stages"
+    ],
+    [
+      "2024-09",
+      "Anthropic and OpenAI both recommend multi-step prompt architectures in their official guides"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2022-04",
+      "Wu Tongshuang 等人在 CHI 2022 发表 AI Chains，正式定义交互系统的提示词链"
+    ],
+    [
+      "2022-10",
+      "LangChain 发布，以 SequentialChain 作为提示词管线的核心抽象"
+    ],
+    [
+      "2023-06",
+      "OpenAI Cookbook 将提示词链推广为复杂任务的最佳实践"
+    ],
+    [
+      "2024-01",
+      "DSPy 引入可优化的提示词管线，支持跨链路阶段的自动提示词调优"
+    ],
+    [
+      "2024-09",
+      "Anthropic 和 OpenAI 均在官方指南中推荐多步提示词架构"
+    ]
+  ],
+  "dos": [
+    "Keep each stage focused on a single transformation -- one stage, one job",
+    "Define typed output schemas (JSON Schema or Pydantic) for every stage to catch format errors early",
+    "Add retry logic with backoff at each stage rather than restarting the entire chain on failure",
+    "Test each stage independently before assembling the full chain"
+  ],
+  "dos_zh": [
+    "保持每个阶段专注于单一转换——一个阶段一个职责",
+    "为每个阶段定义类型化输出模式（JSON Schema 或 Pydantic）以尽早捕获格式错误",
+    "在每个阶段添加带退避的重试逻辑，而非失败时重启整条链路",
+    "在组装完整链路前先独立测试每个阶段"
+  ],
+  "donts": [
+    "Don't chain more than 5-7 stages -- longer chains accumulate errors and latency exponentially",
+    "Don't pass raw unvalidated output between stages -- one bad stage poisons the entire downstream",
+    "Don't ignore intermediate results -- they're your best debugging tool when the final output is wrong",
+    "Don't over-engineer chains for tasks a single well-crafted prompt can handle"
+  ],
+  "donts_zh": [
+    "不要链接超过 5-7 个阶段——更长的链路会指数级累积错误和延迟",
+    "不要在阶段间传递未验证的原始输出——一个坏阶段会污染整个下游",
+    "不要忽略中间结果——当最终输出有误时，它们是最好的调试工具",
+    "不要为单个精心设计的提示词就能处理的任务过度工程化链路"
+  ],
+  "case_study_company": "Anthropic",
+  "case_study": "Anthropic's internal content moderation pipeline uses a three-stage prompt chain: Stage 1 classifies content risk, Stage 2 extracts specific policy violations with citations, and Stage 3 generates a human-readable review summary. This chained approach improved classification accuracy by 15% over single-prompt methods and made the moderation reasoning auditable end-to-end.",
+  "case_study_zh": "Anthropic 内部内容审核管线使用三阶段提示词链：阶段 1 分类内容风险，阶段 2 提取具体政策违规并引用依据，阶段 3 生成人类可读的审核摘要。链式方法比单提示词方法提升了 15% 的分类准确率，并使审核推理过程实现了端到端可审计。",
+  "when_not_to_use": [
+    "Simple single-turn tasks (classification, short extraction) where one prompt suffices",
+    "Ultra-low-latency requirements where sequential LLM calls are too slow",
+    "Exploratory or creative tasks where rigid stage boundaries constrain the model's output",
+    "When the token cost of multiple calls significantly exceeds budget for the use case"
+  ],
+  "when_not_to_use_zh": [
+    "单次提示词即可胜任的简单单轮任务（分类、短文抽取）",
+    "顺序 LLM 调用过慢的超低延迟需求",
+    "刚性阶段边界限制模型输出的探索性或创意任务",
+    "多次调用的 Token 成本明显超出用例预算时"
+  ],
+  "adopters": [
+    "Anthropic",
+    "LangChain",
+    "DSPy (Stanford)",
+    "OpenAI",
+    "Dust.tt"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Tongshuang Wu et al. (2022). \"AI Chains: Transparent and Controllable Human-AI Interaction by Chaining Large Language Model Prompts\". ACM CHI 2022.",
+  "secondary_sources": [
+    "Harrison Chase (2022). \"LangChain: Building Applications with LLMs through Composability\". github.com/langchain-ai.",
+    "Ofir Press et al. (2022). \"Measuring and Narrowing the Compositionality Gap in Language Models\". arXiv:2210.03350."
+  ],
+  "typed_relations": [
+    {
+      "slug": "react-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "prompt-engineering-patterns",
+      "type": "complement"
+    },
+    {
+      "slug": "guardrails-framework",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/prompt-chaining",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/prompt-chaining.md"
+}

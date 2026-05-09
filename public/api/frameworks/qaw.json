@@ -1,0 +1,195 @@
+{
+  "id": 24,
+  "name": "Quality Attribute Workshop (QAW)",
+  "name_zh": "质量属性工作坊",
+  "slug": "qaw",
+  "category": "architecture",
+  "desc": "Elicit and prioritize quality attribute requirements collaboratively",
+  "desc_zh": "协作式挖掘并优先排序质量属性需求",
+  "steps": [
+    "Identify and invite key stakeholders representing business, operations, security, and development perspectives",
+    "Present the system mission and business context; allow stakeholders to brainstorm quality attribute concerns freely",
+    "Structure concerns into quality attribute scenarios using the SEI scenario template (stimulus, environment, response, measure)",
+    "Prioritize scenarios using voting or weighted ranking; group into utility tree categories (performance, security, etc.)",
+    "Produce a ranked Quality Attribute Scenario backlog to drive architecture decisions and evaluation sessions"
+  ],
+  "steps_zh": [
+    "识别并邀请代表业务、运营、安全和开发视角的关键利益相关者",
+    "介绍系统使命和业务背景；允许利益相关者自由头脑风暴质量属性关切",
+    "使用SEI场景模板（刺激、环境、响应、度量）将关切结构化为质量属性场景",
+    "使用投票或加权排名对场景进行优先级排序；按效用树分类（性能、安全等）",
+    "生成有优先级的质量属性场景待办列表，用于驱动架构决策和评估会议"
+  ],
+  "ai_relevant": false,
+  "viz_type": "radar",
+  "viz_labels": [
+    "Performance",
+    "Security",
+    "Availability",
+    "Modifiability",
+    "Testability"
+  ],
+  "viz_labels_zh": [
+    "性能",
+    "安全",
+    "可用性",
+    "可修改性",
+    "可测试性"
+  ],
+  "related": [
+    "atam",
+    "trade-off-sliders",
+    "four-golden-signals"
+  ],
+  "tags": [
+    "quality-attributes",
+    "workshop",
+    "stakeholders",
+    "requirements"
+  ],
+  "origin_author": "Mario Barbacci, Robert Ellison, et al. / SEI, 2003",
+  "origin_source": "Quality Attribute Workshop (QAWs) Third Edition (SEI Technical Report CMU/SEI-2003-TR-016)",
+  "origin_source_zh": "《质量属性工作坊（QAWs）第三版》（SEI技术报告CMU/SEI-2003-TR-016）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When starting a new project and quality requirements are unclear or unstated",
+    "When stakeholders have conflicting views on which quality attributes matter most",
+    "When feeding scenarios into an ATAM evaluation session",
+    "When transitioning from functional requirements to non-functional architecture design"
+  ],
+  "when_to_use_zh": [
+    "开始新项目且质量需求不明确或未被表述时",
+    "利益相关者对哪些质量属性最重要存在分歧时",
+    "为ATAM评估会议准备场景输入时",
+    "从功能需求过渡到非功能架构设计时"
+  ],
+  "core_concepts": [
+    "Quality attribute scenario: A structured description with stimulus, environment, response, and measurable response measure",
+    "Utility tree: A hierarchical grouping of quality attributes into categories with prioritized leaf scenarios",
+    "Stakeholder brainstorming: Open elicitation where diverse perspectives surface hidden quality concerns",
+    "Scenario prioritization: Voting or ranking to identify the most architecturally significant scenarios",
+    "Quality attribute categories: Performance, availability, security, modifiability, usability, and others from the SEI taxonomy"
+  ],
+  "core_concepts_zh": [
+    "质量属性场景：包含刺激、环境、响应和可度量响应度量的结构化描述",
+    "效用树：将质量属性按类别层级分组，叶节点为有优先级的场景",
+    "利益相关者头脑风暴：开放式挖掘，多元视角揭示隐藏的质量关切",
+    "场景优先级排序：通过投票或排名识别架构上最重要的场景",
+    "质量属性分类：SEI分类体系中的性能、可用性、安全性、可修改性、可用性等"
+  ],
+  "timeline": [
+    [
+      "2000",
+      "SEI develops the initial QAW method as a companion to ATAM"
+    ],
+    [
+      "2003",
+      "SEI publishes the third edition of the QAW technical report"
+    ],
+    [
+      "2006",
+      "QAW becomes widely used in government and defense architecture programs"
+    ],
+    [
+      "2012",
+      "Lightweight adaptations of QAW emerge for agile and lean teams"
+    ],
+    [
+      "2018",
+      "QAW principles integrated into modern architecture review practices like fitness functions"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2000",
+      "SEI开发初始QAW方法作为ATAM的配套工具"
+    ],
+    [
+      "2003",
+      "SEI发布QAW技术报告第三版"
+    ],
+    [
+      "2006",
+      "QAW在政府和国防架构项目中被广泛使用"
+    ],
+    [
+      "2012",
+      "针对敏捷和精益团队的轻量级QAW适配版出现"
+    ],
+    [
+      "2018",
+      "QAW原则被整合到适应度函数等现代架构审查实践中"
+    ]
+  ],
+  "dos": [
+    "Do invite stakeholders from diverse roles because developers, operators, and business users have different quality priorities",
+    "Do use the SEI scenario template rigorously because vague scenarios cannot drive architecture decisions",
+    "Do limit the workshop to one day because stakeholder fatigue degrades scenario quality",
+    "Do connect QAW output directly to architecture evaluation because scenarios without follow-through are wasted effort"
+  ],
+  "dos_zh": [
+    "邀请不同角色的利益相关者，因为开发者、运维和业务用户有不同的质量优先级",
+    "严格使用SEI场景模板，因为模糊的场景无法驱动架构决策",
+    "将工作坊限制在一天内，因为利益相关者的疲劳会降低场景质量",
+    "将QAW输出直接关联到架构评估，因为没有后续跟进的场景是浪费"
+  ],
+  "donts": [
+    "Don't let a single stakeholder dominate brainstorming because it suppresses important minority perspectives",
+    "Don't confuse functional requirements with quality attribute scenarios because QAW focuses on the '-ilities' not features",
+    "Don't skip the prioritization step because treating all scenarios equally makes architecture design impossible",
+    "Don't conduct QAW without a facilitator because untrained facilitation leads to unfocused and unproductive sessions"
+  ],
+  "donts_zh": [
+    "不要让单个利益相关者主导头脑风暴，因为这会压制重要的少数派视角",
+    "不要混淆功能需求与质量属性场景，因为QAW关注的是质量特性而非功能",
+    "不要跳过优先级排序步骤，因为平等对待所有场景会使架构设计无从下手",
+    "不要在没有引导者的情况下进行QAW，因为未经训练的引导会导致会议失焦且无成效"
+  ],
+  "case_study_company": "Philips Healthcare",
+  "case_study": "Philips Healthcare used QAW when designing the architecture of their patient monitoring platform that serves hospitals worldwide. The workshop surfaced critical quality attributes around real-time data latency (patient vitals must display within 2 seconds), availability (99.999% uptime for ICU monitors), and regulatory compliance (FDA Class II requirements). These prioritized scenarios directly shaped the decision to use a redundant publish-subscribe architecture with local edge processing.",
+  "case_study_zh": "飞利浦医疗在设计服务全球医院的患者监护平台架构时使用了QAW。工作坊揭示了关于实时数据延迟（患者体征必须在2秒内显示）、可用性（ICU监护仪99.999%正常运行时间）和法规合规（FDA二类要求）的关键质量属性。这些有优先级的场景直接影响了采用带有本地边缘处理的冗余发布-订阅架构的决策。",
+  "when_not_to_use": [
+    "Projects where quality requirements are already well-defined through existing SLAs and compliance frameworks",
+    "Very small teams where informal conversation achieves the same quality requirement alignment",
+    "Rapid prototyping phases where quality attributes will be revisited once the concept is validated"
+  ],
+  "when_not_to_use_zh": [
+    "通过现有SLA和合规框架已明确定义质量需求的项目",
+    "非正式对话即可实现同等质量需求对齐的极小团队",
+    "概念验证后将重新审视质量属性的快速原型阶段"
+  ],
+  "adopters": [
+    "Philips Healthcare",
+    "Lockheed Martin",
+    "Bosch",
+    "Siemens",
+    "US Department of Veterans Affairs"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "reliability",
+    "usability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Mario Barbacci, Robert Ellison et al. (2003). \"Quality Attribute Workshop (QAWs), Third Edition\". SEI Technical Report CMU/SEI-2003-TR-016.",
+  "secondary_sources": [
+    "Len Bass, Paul Clements, and Rick Kazman (2003). \"Software Architecture in Practice, 2nd Edition\". Addison-Wesley.",
+    "Rick Kazman et al. (2001). \"Quality Attribute Workshop Participants Handbook\". SEI Special Report CMU/SEI-2001-SR-001."
+  ],
+  "typed_relations": [
+    {
+      "slug": "atam",
+      "type": "extends"
+    },
+    {
+      "slug": "trade-off-sliders",
+      "type": "complement"
+    },
+    {
+      "slug": "four-golden-signals",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/qaw",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/qaw.md"
+}

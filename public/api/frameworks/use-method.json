@@ -1,0 +1,192 @@
+{
+  "id": 52,
+  "name": "USE Method",
+  "name_zh": "USE 方法",
+  "slug": "use-method",
+  "category": "quality",
+  "desc": "Check Utilization, Saturation, Errors for every resource",
+  "desc_zh": "对每项资源检查利用率、饱和度和错误率",
+  "steps": [
+    "Enumerate all resources: list every hardware and software resource (CPU, memory, disk, network, thread pools, connection pools)",
+    "For each resource, measure Utilization: the percentage of time or capacity the resource is actively busy serving work",
+    "Measure Saturation: the degree to which extra work is queued or waiting because the resource is at capacity",
+    "Measure Errors: count error events related to each resource (disk I/O errors, network timeouts, OOM kills, connection refused)",
+    "Iterate systematically: work through the full resource list using USE for each; this methodical sweep avoids overlooking bottlenecks"
+  ],
+  "steps_zh": [
+    "枚举所有资源：列出每项硬件和软件资源（CPU、内存、磁盘、网络、线程池、连接池）",
+    "对每项资源测量利用率：资源积极忙于服务工作的时间或容量百分比",
+    "测量饱和度：因资源达到容量上限而有额外工作排队或等待的程度",
+    "测量错误：统计每项资源相关的错误事件（磁盘I/O错误、网络超时、OOM终止、连接拒绝）",
+    "系统化迭代：对完整资源列表逐一使用USE方法；这种系统性扫描避免遗漏瓶颈"
+  ],
+  "ai_relevant": false,
+  "viz_type": "radar",
+  "viz_labels": [
+    "Utilization",
+    "Saturation",
+    "Errors"
+  ],
+  "viz_labels_zh": [
+    "利用率",
+    "饱和度",
+    "错误率"
+  ],
+  "related": [
+    "red-method",
+    "four-golden-signals",
+    "sli-slo-sla"
+  ],
+  "tags": [
+    "use-method",
+    "utilization",
+    "saturation",
+    "errors",
+    "performance"
+  ],
+  "origin_author": "Brendan Gregg, 2012",
+  "origin_source": "The USE Method (brendangregg.com blog post)",
+  "origin_source_zh": "《USE方法》（brendangregg.com博客文章）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Diagnosing performance problems when you do not know where the bottleneck is",
+    "Capacity planning to identify which resources are approaching saturation",
+    "Setting up monitoring dashboards for infrastructure and server resources",
+    "Post-incident analysis to systematically identify the root cause of resource-related outages"
+  ],
+  "when_to_use_zh": [
+    "诊断性能问题但不知道瓶颈在哪里时",
+    "容量规划以识别哪些资源接近饱和",
+    "为基础设施和服务器资源建立监控仪表盘",
+    "事后分析以系统化识别资源相关故障的根本原因"
+  ],
+  "core_concepts": [
+    "Utilization: The percentage of time a resource is busy or the proportion of its capacity being used",
+    "Saturation: The extent to which work is queued waiting for a resource, indicating capacity has been exceeded",
+    "Errors: Error events per resource that may indicate hardware degradation or misconfiguration",
+    "Resource List: A comprehensive enumeration of all system resources to ensure nothing is overlooked",
+    "Functional Block Diagram: A visual map of system components and their resources used to guide the USE analysis"
+  ],
+  "core_concepts_zh": [
+    "利用率：资源忙碌时间的百分比或其容量被使用的比例",
+    "饱和度：工作在资源处排队等待的程度，表明容量已被超过",
+    "错误：每个资源的错误事件，可能表明硬件退化或配置错误",
+    "资源清单：系统所有资源的全面枚举，确保没有遗漏",
+    "功能框图：系统组件及其资源的可视化映射，用于指导USE分析"
+  ],
+  "timeline": [
+    [
+      "2012",
+      "Brendan Gregg publishes 'The USE Method' blog post while working at Joyent"
+    ],
+    [
+      "2013",
+      "Gregg publishes 'Systems Performance: Enterprise and the Cloud' expanding on the method"
+    ],
+    [
+      "2014",
+      "USE Method becomes a standard troubleshooting methodology taught at performance engineering conferences"
+    ],
+    [
+      "2017",
+      "Netflix adopts USE Method as part of their standard performance analysis workflow"
+    ],
+    [
+      "2020",
+      "Gregg publishes the second edition of 'Systems Performance' with updated USE Method guidance for cloud-native systems"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2012",
+      "Brendan Gregg在Joyent工作时发表「USE方法」博客文章"
+    ],
+    [
+      "2013",
+      "Gregg出版《系统性能：企业与云》一书，扩展了该方法"
+    ],
+    [
+      "2014",
+      "USE方法成为性能工程会议上教授的标准故障排除方法论"
+    ],
+    [
+      "2017",
+      "Netflix将USE方法纳入其标准性能分析工作流"
+    ],
+    [
+      "2020",
+      "Gregg出版《系统性能》第二版，包含针对云原生系统的更新USE方法指南"
+    ]
+  ],
+  "dos": [
+    "Do create a complete resource checklist before starting because missing a resource means missing a potential bottleneck",
+    "Do check errors first for each resource because error diagnosis is often the fastest path to finding issues",
+    "Do measure saturation alongside utilization because high utilization alone does not always indicate a problem",
+    "Do use the method iteratively because new resources are added as systems evolve"
+  ],
+  "dos_zh": [
+    "开始前创建完整的资源检查清单，因为遗漏一个资源意味着遗漏潜在瓶颈",
+    "对每个资源优先检查错误，因为错误诊断通常是发现问题的最快路径",
+    "将饱和度与利用率一起测量，因为仅高利用率并不总是表明存在问题",
+    "迭代使用该方法，因为随着系统演进会添加新资源"
+  ],
+  "donts": [
+    "Don't skip resources because the bottleneck is often in the resource you least suspect",
+    "Don't confuse utilization with saturation because a resource at 90% utilization may have zero saturation",
+    "Don't only look at averages because averages hide spikes and tail latency problems",
+    "Don't apply USE to request-based workloads because the RED Method is better suited for that"
+  ],
+  "donts_zh": [
+    "不要跳过资源，因为瓶颈通常在你最不怀疑的资源上",
+    "不要混淆利用率和饱和度，因为90%利用率的资源可能饱和度为零",
+    "不要只看平均值，因为平均值隐藏了尖峰和尾延迟问题",
+    "不要将USE应用于基于请求的工作负载，因为RED方法更适合"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix's performance engineering team adopted the USE Method as their standard approach for diagnosing performance issues across their cloud infrastructure. When a streaming service experienced intermittent latency spikes, systematic USE analysis revealed that network interface saturation on specific instance types was the root cause, not the CPU or memory bottlenecks initially suspected.",
+  "case_study_zh": "Netflix的性能工程团队采用USE方法作为诊断云基础设施性能问题的标准方法。当流媒体服务出现间歇性延迟尖峰时，系统化的USE分析揭示了特定实例类型上网络接口饱和才是根本原因，而非最初怀疑的CPU或内存瓶颈。",
+  "when_not_to_use": [
+    "Application-layer request debugging where RED Method provides more relevant signals",
+    "User experience monitoring where latency and error rates matter more than resource utilization",
+    "Serverless architectures where underlying resources are abstracted away from the operator"
+  ],
+  "when_not_to_use_zh": [
+    "应用层请求调试，RED方法能提供更相关的信号",
+    "延迟和错误率比资源利用率更重要的用户体验监控",
+    "底层资源对运维人员透明的Serverless架构"
+  ],
+  "adopters": [
+    "Netflix",
+    "Facebook",
+    "LinkedIn",
+    "Joyent",
+    "Cloudflare"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "observability",
+    "performance"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Brendan Gregg (2012). \"The USE Method\". brendangregg.com.",
+  "secondary_sources": [
+    "Brendan Gregg (2013). \"Systems Performance: Enterprise and the Cloud\". Prentice Hall.",
+    "Brendan Gregg (2020). \"Systems Performance: Enterprise and the Cloud, 2nd Edition\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "red-method",
+      "type": "alternative"
+    },
+    {
+      "slug": "four-golden-signals",
+      "type": "alternative"
+    },
+    {
+      "slug": "sli-slo-sla",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/use-method",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/use-method.md"
+}

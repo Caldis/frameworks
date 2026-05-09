@@ -1,0 +1,203 @@
+{
+  "id": 142,
+  "name": "Amazon Two-Pizza Teams",
+  "name_zh": "亚马逊两个披萨团队",
+  "slug": "amazon-two-pizza-teams",
+  "category": "team",
+  "desc": "Limit team size to what two pizzas can feed (~6-10 people) to maximize ownership and minimize communication overhead",
+  "desc_zh": "将团队规模限制在两个披萨能喂饱的人数（约 6-10 人），以最大化责任归属感并最小化沟通开销",
+  "steps": [
+    "Decompose the product or platform into independently deliverable service boundaries",
+    "Assign each service boundary to a small team of 6-10 people with full-stack capability",
+    "Grant each team end-to-end ownership: build, deploy, operate, and support their service",
+    "Define a clear 'fitness function' or set of metrics each team is accountable for",
+    "Minimize inter-team dependencies by designing service APIs as team contracts"
+  ],
+  "steps_zh": [
+    "将产品或平台分解为可独立交付的服务边界",
+    "为每个服务边界分配一个 6-10 人的小型全栈团队",
+    "赋予每个团队端到端的所有权：构建、部署、运维和支持其服务",
+    "为每个团队定义明确的「适应度函数」或其负责的指标集",
+    "通过将服务 API 设计为团队契约来最小化团队间依赖"
+  ],
+  "ai_relevant": false,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Service Boundary",
+    "Small Team",
+    "End-to-End Ownership",
+    "Fitness Function",
+    "API Contract"
+  ],
+  "viz_labels_zh": [
+    "服务边界",
+    "小团队",
+    "端到端所有权",
+    "适应性函数",
+    "API契约"
+  ],
+  "related": [
+    "conways-law",
+    "team-topologies",
+    "spotify-model",
+    "inverse-conway-maneuver"
+  ],
+  "tags": [
+    "team-size",
+    "autonomy",
+    "ownership",
+    "microservices",
+    "amazon"
+  ],
+  "origin_author": "Jeff Bezos, ~2002",
+  "origin_source": "Internal Amazon mandate; described in The Everything Store (Brad Stone, 2013) and referenced in Accelerate (Forsgren, Humble & Kim, 2018)",
+  "origin_source_zh": "亚马逊内部指令；在《一网打尽》（Brad Stone，2013）中有描述，在《加速》（Forsgren、Humble & Kim，2018）中有引用",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Organizations experiencing coordination bottlenecks as teams grow beyond 10 people",
+    "Building a microservices architecture where each service needs a clear owning team",
+    "Scaling a fast-growing startup while preserving speed and accountability",
+    "Environments where 'you build it, you run it' operational ownership is desired"
+  ],
+  "when_to_use_zh": [
+    "组织在团队超过 10 人后出现协调瓶颈",
+    "构建微服务架构，每个服务需要明确的负责团队",
+    "快速成长的创业公司在扩展规模的同时保持速度和责任",
+    "期望实现「谁构建，谁运维」运营归属制的环境"
+  ],
+  "core_concepts": [
+    "Small team size: Brooks's Law shows communication overhead grows quadratically with team size — two-pizza teams stay under the threshold where coordination costs dominate",
+    "Full ownership: Each team owns the entire lifecycle of their service, from design through production operations and on-call",
+    "Service-oriented architecture: The organizational pattern is inseparable from the technical architecture — small teams map to small, decoupled services",
+    "Single-threaded leadership: Each two-pizza team has one leader whose sole focus is that team's mission, avoiding divided attention",
+    "API-as-contract: Teams communicate through well-defined service interfaces, reducing the need for face-to-face coordination"
+  ],
+  "core_concepts_zh": [
+    "小团队规模：布鲁克斯定律表明沟通开销随团队规模二次增长——两个披萨团队保持在协调成本主导的阈值之下",
+    "完全所有权：每个团队拥有其服务的完整生命周期，从设计到生产运维和值班",
+    "面向服务架构：组织模式与技术架构不可分割——小团队映射为小型解耦服务",
+    "单线程领导力：每个两个披萨团队有一位领导者，其唯一关注点是该团队的使命，避免注意力分散",
+    "API 即契约：团队通过定义明确的服务接口通信，减少面对面协调的需要"
+  ],
+  "timeline": [
+    [
+      "2002",
+      "Jeff Bezos issues the famous API mandate and two-pizza team rule at Amazon, forcing all teams to communicate only through service interfaces"
+    ],
+    [
+      "2006",
+      "Amazon Web Services launches, itself built by two-pizza teams, validating the organizational model at scale"
+    ],
+    [
+      "2013",
+      "Brad Stone documents the two-pizza rule in The Everything Store, bringing it mainstream"
+    ],
+    [
+      "2018",
+      "Forsgren, Humble and Kim cite small, autonomous teams as a key predictor of high software delivery performance in Accelerate"
+    ],
+    [
+      "2020",
+      "The pattern becomes standard practice in cloud-native organizations, reinforced by the microservices movement"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2002",
+      "Jeff Bezos 在亚马逊发布著名的 API 指令和两个披萨团队规则，强制所有团队只通过服务接口通信"
+    ],
+    [
+      "2006",
+      "AWS 发布，其自身就由两个披萨团队构建，在规模上验证了该组织模型"
+    ],
+    [
+      "2013",
+      "Brad Stone 在《一网打尽》中记录了两个披萨规则，使其进入主流视野"
+    ],
+    [
+      "2018",
+      "Forsgren、Humble 和 Kim 在《加速》中将小型自治团队列为高软件交付绩效的关键预测因子"
+    ],
+    [
+      "2020",
+      "该模式在云原生组织中成为标准实践，受微服务运动强化"
+    ]
+  ],
+  "dos": [
+    "Ensure each team has the full-stack capability to deliver independently without waiting on other teams",
+    "Define clear service boundaries and APIs before forming teams, so team structure reflects architecture (Inverse Conway)",
+    "Give teams real ownership by making them responsible for operational metrics, not just shipping features",
+    "Keep the team's mission focused — a two-pizza team with a sprawling mandate is worse than a large team"
+  ],
+  "dos_zh": [
+    "确保每个团队具备完整的全栈能力，能够独立交付而无需等待其他团队",
+    "在组建团队之前定义清晰的服务边界和 API，使团队结构反映架构（反向康威策略）",
+    "通过让团队对运营指标负责而非仅负责功能交付，赋予团队真正的所有权",
+    "保持团队使命聚焦——职责蔓延的两个披萨团队还不如一个大团队"
+  ],
+  "donts": [
+    "Don't split teams artificially just to hit the size target — the service boundary must be meaningful",
+    "Don't create two-pizza teams without supporting platform infrastructure, or each team will reinvent the wheel",
+    "Don't ignore Brooks's corollary: splitting work across too many small teams creates its own integration overhead",
+    "Don't forget that two-pizza teams still need cross-team alignment mechanisms like architecture reviews or RFCs"
+  ],
+  "donts_zh": [
+    "不要为了达到人数目标而人为拆分团队——服务边界必须有实际意义",
+    "不要在没有配套平台基础设施的情况下创建两个披萨团队，否则每个团队都会重复造轮子",
+    "不要忽视布鲁克斯定律的推论：将工作拆分到过多小团队会产生自身的集成开销",
+    "不要忘记两个披萨团队仍需要跨团队对齐机制，如架构评审或 RFC"
+  ],
+  "case_study_company": "Amazon",
+  "case_study": "Amazon's own transformation from a monolithic bookstore application to a services-based architecture in the early 2000s was driven by the two-pizza team mandate. By 2006, Amazon had decomposed into hundreds of small teams, each owning a distinct service. This organizational structure directly enabled the creation of AWS — teams that built internal infrastructure services realized they could offer them externally. The model is credited by former VP Charlie Bell as foundational to Amazon's ability to scale from $4B to $500B+ in revenue while maintaining engineering velocity.",
+  "case_study_zh": "亚马逊自身从单体书店应用向基于服务的架构转型（2000 年代初）就是由两个披萨团队指令驱动的。到 2006 年，亚马逊已分解为数百个小团队，每个团队拥有一个独立服务。这种组织结构直接催生了 AWS——构建内部基础设施服务的团队意识到可以将其对外提供。前副总裁 Charlie Bell 将此模型视为亚马逊从 40 亿美元增长至 5000 亿美元以上收入同时保持工程速度的基石。",
+  "when_not_to_use": [
+    "Tightly coupled monolithic systems where meaningful service decomposition is not yet feasible",
+    "Organizations too small to have more than 2-3 teams — the overhead of inter-team contracts exceeds the benefit",
+    "Research-heavy environments where exploratory work requires fluid, cross-cutting collaboration",
+    "Contexts where shared domain expertise is critical and splitting it across teams would dilute knowledge"
+  ],
+  "when_not_to_use_zh": [
+    "紧耦合单体系统，有意义的服务分解尚不可行",
+    "组织规模太小，不超过 2-3 个团队——团队间契约的开销超过收益",
+    "以研究为主的环境，探索性工作需要流动的跨领域协作",
+    "共享领域专业知识至关重要的场景，拆分到多个团队会稀释知识"
+  ],
+  "adopters": [
+    "Amazon",
+    "Netflix",
+    "Google",
+    "Uber",
+    "Twilio"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability",
+    "scalability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Stone, B. (2013). \"The Everything Store: Jeff Bezos and the Age of Amazon\". Little, Brown and Company.",
+  "secondary_sources": [
+    "Bryar, C. & Carr, B. (2021). \"Working Backwards: Insights, Stories, and Secrets from Inside Amazon\". St. Martin's Press.",
+    "Forsgren, N., Humble, J. & Kim, G. (2018). \"Accelerate: The Science of Lean Software and DevOps\". IT Revolution Press."
+  ],
+  "typed_relations": [
+    {
+      "slug": "conways-law",
+      "type": "prerequisite"
+    },
+    {
+      "slug": "team-topologies",
+      "type": "complement"
+    },
+    {
+      "slug": "spotify-model",
+      "type": "alternative"
+    },
+    {
+      "slug": "inverse-conway-maneuver",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/amazon-two-pizza-teams",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/amazon-two-pizza-teams.md"
+}

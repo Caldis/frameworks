@@ -1,0 +1,174 @@
+{
+  "id": 225,
+  "name": "Strategy Pattern",
+  "name_zh": "策略模式",
+  "slug": "strategy-pattern",
+  "category": "coding",
+  "desc": "Encapsulate interchangeable algorithms behind a common interface",
+  "desc_zh": "将可互换的算法封装在统一接口后，使算法可独立于使用方变化",
+  "steps": [
+    "Define the Strategy interface: declare a single method (or small set) that all algorithm variants must implement, establishing the contract",
+    "Implement Concrete Strategies: create one class per algorithm variant, each encapsulating its logic behind the shared interface",
+    "Build the Context class: hold a reference to a Strategy interface and delegate the algorithm call to it, keeping Context free of conditional logic",
+    "Inject or swap strategies at runtime: pass the desired strategy via constructor or setter so callers can change behavior without modifying Context",
+    "Test strategies independently: unit-test each concrete strategy in isolation, then test Context with mock strategies to verify delegation"
+  ],
+  "steps_zh": [
+    "定义策略接口：声明所有算法变体必须实现的单一方法（或小型方法集），建立契约",
+    "实现具体策略：为每种算法变体创建一个类，各自将逻辑封装在共享接口后",
+    "构建上下文类：持有策略接口的引用，并将算法调用委托给它，使上下文不含条件判断逻辑",
+    "在运行时注入或切换策略：通过构造函数或 setter 传入所需策略，调用方无需修改上下文即可改变行为",
+    "独立测试各策略：对每个具体策略进行单元测试，再用模拟策略测试上下文以验证委托行为"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Context",
+    "Strategy Interface",
+    "Concrete Strategy",
+    "Client"
+  ],
+  "viz_labels_zh": [
+    "上下文",
+    "策略接口",
+    "具体策略",
+    "客户端"
+  ],
+  "related": [
+    "solid-principles",
+    "command-pattern",
+    "dependency-injection"
+  ],
+  "tags": [
+    "gof",
+    "behavioral",
+    "design-patterns",
+    "algorithm",
+    "oop"
+  ],
+  "origin_author": "Gamma, Helm, Johnson, Vlissides, 1994",
+  "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
+  "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Multiple variants of an algorithm exist and you want to switch between them at runtime without conditionals",
+    "You need to isolate business rules or policies so they can be tested and replaced independently",
+    "An AI agent needs to select different planning, search, or scoring strategies dynamically"
+  ],
+  "when_to_use_zh": [
+    "存在多种算法变体，希望在运行时无需条件判断即可切换",
+    "需要将业务规则或策略隔离，以便独立测试和替换",
+    "AI 智能体需要动态选择不同的规划、搜索或评分策略"
+  ],
+  "core_concepts": [
+    "Strategy interface: the contract that all algorithm variants implement, enabling polymorphic substitution",
+    "Context: the object that holds a strategy reference and delegates the variable part of its behavior to it",
+    "Composition over inheritance: behavior varies by swapping whole objects rather than by subclassing Context"
+  ],
+  "core_concepts_zh": [
+    "策略接口：所有算法变体实现的契约，支持多态替换",
+    "上下文：持有策略引用并将可变行为委托给策略的对象",
+    "组合优于继承：通过替换整个对象而非对上下文子类化来改变行为"
+  ],
+  "timeline": [
+    [
+      "1994",
+      "GoF publish 'Design Patterns', introducing Strategy as one of 23 canonical patterns"
+    ],
+    [
+      "2000",
+      "Strategy becomes a foundation of the Policy Object pattern in enterprise Java frameworks"
+    ],
+    [
+      "2010",
+      "Functional languages popularize Strategy via first-class functions and lambdas, reducing boilerplate"
+    ],
+    [
+      "2020",
+      "Strategy widely adopted in ML pipelines to swap preprocessing, model, and evaluation components"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1994",
+      "GoF 出版《设计模式》，将策略模式作为 23 个经典模式之一引入"
+    ],
+    [
+      "2000",
+      "策略模式成为企业 Java 框架中策略对象模式的基础"
+    ],
+    [
+      "2010",
+      "函数式语言通过一等函数和 lambda 推广策略模式，减少样板代码"
+    ],
+    [
+      "2020",
+      "策略模式在 ML 流水线中广泛应用，用于替换预处理、模型和评估组件"
+    ]
+  ],
+  "dos": [
+    "Do keep the strategy interface small and focused so each variant is easy to implement and test",
+    "Do inject strategies via constructors to make dependencies explicit and enable straightforward unit testing",
+    "Do use Strategy whenever you find yourself writing if-else or switch on a type enum to pick an algorithm"
+  ],
+  "dos_zh": [
+    "保持策略接口小而专注，使每个变体易于实现和测试",
+    "通过构造函数注入策略，使依赖关系明确，便于单元测试",
+    "每当发现自己用 if-else 或 switch 枚举类型来选择算法时，就应使用策略模式"
+  ],
+  "donts": [
+    "Don't use Strategy for a single algorithm with no anticipated variation because the indirection adds complexity without benefit",
+    "Don't allow strategies to reach into the Context's internals because it creates hidden coupling between the two",
+    "Don't create a new Strategy subclass for trivial one-line variants in languages with lambdas — pass a function instead"
+  ],
+  "donts_zh": [
+    "不要对没有预期变化的单一算法使用策略模式，因为间接层只增加复杂性而无益处",
+    "不要让策略访问上下文的内部状态，因为这会在两者之间造成隐性耦合",
+    "在支持 lambda 的语言中，不要为简单的单行变体创建策略子类——直接传入函数即可"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix's streaming playback engine uses the Strategy pattern to select adaptive bitrate (ABR) algorithms. Different strategies (buffer-based, throughput-based, reinforcement-learning-based) implement a common ABR interface. The playback Context selects the appropriate strategy based on device type and network conditions at runtime, allowing Netflix to A/B test new algorithms without touching the core player code.",
+  "case_study_zh": "Netflix 的流媒体播放引擎使用策略模式来选择自适应码率（ABR）算法。不同的策略（基于缓冲区、基于吞吐量、基于强化学习）实现统一的 ABR 接口。播放上下文在运行时根据设备类型和网络条件选择合适的策略，使 Netflix 无需修改核心播放器代码即可对新算法进行 A/B 测试。",
+  "when_not_to_use": [
+    "When there is truly only one algorithm and no realistic chance of needing to swap it",
+    "Simple scripts or small utilities where the overhead of interface + multiple classes is disproportionate",
+    "When a language supports first-class functions, a plain function parameter is often cleaner than a Strategy class"
+  ],
+  "when_not_to_use_zh": [
+    "只有一种算法且没有切换需求时",
+    "简单脚本或小型工具，接口加多个类的开销不成比例",
+    "当语言支持一等函数时，普通函数参数通常比策略类更简洁"
+  ],
+  "adopters": [
+    "Netflix",
+    "Spring Framework",
+    "Java Collections (Comparator)",
+    "scikit-learn"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+  "secondary_sources": [
+    "Freeman, E., Robson, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+    "Martin, R. C. (2002). \"Agile Software Development, Principles, Patterns, and Practices\". Prentice Hall."
+  ],
+  "typed_relations": [
+    {
+      "slug": "solid-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "command-pattern",
+      "type": "related"
+    },
+    {
+      "slug": "dependency-injection",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/strategy-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/strategy-pattern.md"
+}

@@ -1,0 +1,199 @@
+{
+  "id": 190,
+  "name": "Living Documentation",
+  "name_zh": "活文档",
+  "slug": "living-documentation",
+  "category": "evolution",
+  "desc": "Generate docs from tests and code (Martraire, 2019)",
+  "desc_zh": "从测试和代码生成文档（Martraire，2019）",
+  "steps": [
+    "Write executable specifications (BDD scenarios, annotated tests) that serve as both tests and documentation",
+    "Annotate domain code with metadata (custom annotations, docstrings, tags) that documentation generators can extract",
+    "Configure automated documentation generation in the CI/CD pipeline, producing output on every commit",
+    "Publish generated documentation to a developer portal or wiki that is always in sync with the latest code",
+    "Review documentation coverage as part of code review — untested behavior is undocumented behavior"
+  ],
+  "steps_zh": [
+    "编写可执行规范（BDD 场景、带注解的测试），同时充当测试和文档",
+    "用元数据（自定义注解、文档字符串、标签）标注领域代码，供文档生成器提取",
+    "在 CI/CD 流水线中配置自动化文档生成，每次提交都产生输出",
+    "将生成的文档发布到与最新代码始终同步的开发者门户或 Wiki",
+    "将文档覆盖率作为代码评审的一部分——未测试的行为就是未记录的行为"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Code",
+    "Generate",
+    "Publish",
+    "Review"
+  ],
+  "viz_labels_zh": [
+    "代码",
+    "生成文档",
+    "发布",
+    "审阅"
+  ],
+  "related": [
+    "bdd",
+    "domain-driven-design",
+    "gitops",
+    "openapi-specification"
+  ],
+  "tags": [
+    "documentation",
+    "living-docs",
+    "bdd",
+    "executable-specs",
+    "code-as-documentation"
+  ],
+  "origin_author": "Cyrille Martraire, 2019",
+  "origin_source": "Living Documentation: Continuous Knowledge Sharing by Design (Cyrille Martraire, Addison-Wesley 2019)",
+  "origin_source_zh": "《活文档：通过设计实现持续知识共享》（Cyrille Martraire，Addison-Wesley 2019）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Projects where documentation is perpetually outdated because it is maintained separately from code",
+    "Domain-rich applications where business rules embedded in code need to be visible to non-developers",
+    "Teams practicing BDD or specification-by-example that want to maximize the value of their executable specs",
+    "APIs and libraries where consumers need always-current reference documentation"
+  ],
+  "when_to_use_zh": [
+    "文档因与代码分开维护而长期过时的项目",
+    "嵌入代码中的业务规则需要对非开发人员可见的领域丰富应用",
+    "实践 BDD 或示例规约、希望最大化可执行规范价值的团队",
+    "消费者需要始终最新参考文档的 API 和库"
+  ],
+  "core_concepts": [
+    "Executable Specification: Tests that are written in a human-readable format (Gherkin, annotated unit tests) and double as system documentation",
+    "Single Source of Truth: Documentation is generated from code and tests, eliminating the drift between what the docs say and what the code does",
+    "Knowledge Augmentation: Annotations and naming conventions in code carry domain knowledge that documentation generators can harvest automatically",
+    "Evergreen Documentation: Because docs are regenerated on every CI build, they are always current — stale documentation is structurally impossible"
+  ],
+  "core_concepts_zh": [
+    "可执行规范：以人类可读格式（Gherkin、带注解的单元测试）编写的测试，同时充当系统文档",
+    "唯一事实来源：文档从代码和测试生成，消除文档描述与代码行为之间的偏差",
+    "知识增强：代码中的注解和命名规范携带领域知识，文档生成器可以自动提取",
+    "常青文档：因为每次 CI 构建都重新生成文档，所以文档始终是最新的——结构上不可能出现过时文档"
+  ],
+  "timeline": [
+    [
+      "2011",
+      "Specification by Example (Gojko Adzic) promotes executable specs as the bridge between requirements and tests"
+    ],
+    [
+      "2015",
+      "Tools like Serenity BDD and Pickles generate living documentation from Cucumber/Gherkin scenarios"
+    ],
+    [
+      "2019",
+      "Cyrille Martraire publishes Living Documentation, the definitive book on generating docs from code and tests"
+    ],
+    [
+      "2021",
+      "OpenAPI/Swagger generators and Storybook become mainstream, making API and UI living documentation standard practice"
+    ],
+    [
+      "2024",
+      "LLM-powered documentation generators auto-summarize code changes and produce natural-language docs from test suites"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2011",
+      "《示例规约》（Gojko Adzic）推广可执行规范作为需求与测试之间的桥梁"
+    ],
+    [
+      "2015",
+      "Serenity BDD 和 Pickles 等工具从 Cucumber/Gherkin 场景生成活文档"
+    ],
+    [
+      "2019",
+      "Cyrille Martraire 出版《活文档》，成为从代码和测试生成文档的权威著作"
+    ],
+    [
+      "2021",
+      "OpenAPI/Swagger 生成器和 Storybook 成为主流，使 API 和 UI 活文档成为标准实践"
+    ],
+    [
+      "2024",
+      "LLM 驱动的文档生成器自动总结代码变更，从测试套件生成自然语言文档"
+    ]
+  ],
+  "dos": [
+    "Name tests and specifications using domain language so generated docs are meaningful to non-technical stakeholders",
+    "Integrate documentation generation into CI/CD so docs are rebuilt and published on every merge to main",
+    "Use BDD/Gherkin scenarios for business-critical flows — they serve as both acceptance tests and stakeholder-readable docs",
+    "Treat documentation coverage as a quality metric alongside test coverage"
+  ],
+  "dos_zh": [
+    "使用领域语言命名测试和规范，使生成的文档对非技术利益相关者有意义",
+    "将文档生成集成到 CI/CD 中，使文档在每次合并到主分支时重建和发布",
+    "对业务关键流程使用 BDD/Gherkin 场景——它们既是验收测试又是利益相关者可读的文档",
+    "将文档覆盖率与测试覆盖率一样作为质量指标"
+  ],
+  "donts": [
+    "Don't maintain separate documentation that duplicates what tests already describe — it will inevitably drift",
+    "Don't generate documentation that nobody reads — validate that the output format and location match how consumers access docs",
+    "Don't write tests solely for documentation purposes — every executable spec must also be a real, meaningful test",
+    "Don't ignore the readability of generated docs — invest in formatting, navigation, and search for the output"
+  ],
+  "donts_zh": [
+    "不要维护与测试描述重复的独立文档——它们必然会偏差",
+    "不要生成没人阅读的文档——验证输出格式和位置是否符合消费者访问文档的方式",
+    "不要仅为了文档目的编写测试——每个可执行规范必须同时是真正有意义的测试",
+    "不要忽略生成文档的可读性——为输出投入格式化、导航和搜索功能"
+  ],
+  "case_study_company": "Société Générale",
+  "case_study": "Société Générale's Corporate & Investment Banking division adopted living documentation for their trade processing platform, generating business-readable documentation from 3,000+ BDD scenarios. Business analysts could review the generated docs to verify that regulatory rules were correctly implemented without reading code. This approach reduced documentation maintenance effort by 60% and eliminated compliance audit findings related to documentation-code discrepancies.",
+  "case_study_zh": "法国兴业银行企业与投资银行部门为其交易处理平台采用活文档，从 3000 多个 BDD 场景生成业务可读文档。业务分析师可以审阅生成的文档来验证监管规则是否正确实现而无需阅读代码。这种方法减少了 60% 的文档维护工作量，并消除了与文档-代码不一致相关的合规审计发现。",
+  "when_not_to_use": [
+    "Projects with minimal domain complexity where simple README files are sufficient documentation",
+    "Teams without existing test automation — living documentation requires a mature test suite as its foundation",
+    "Contexts where the primary audience is end-users, not developers or analysts — user-facing docs require different formats",
+    "Codebases in rapid prototyping phases where the code itself is too volatile for generated docs to be useful"
+  ],
+  "when_not_to_use_zh": [
+    "领域复杂度极低、简单 README 文件即可满足文档需求的项目",
+    "没有现有测试自动化的团队——活文档需要成熟的测试套件作为基础",
+    "主要受众是终端用户而非开发者或分析师的场景——面向用户的文档需要不同格式",
+    "处于快速原型阶段、代码本身变化太快导致生成文档无用的代码库"
+  ],
+  "adopters": [
+    "Société Générale",
+    "Spotify",
+    "ThoughtWorks",
+    "GOV.UK",
+    "Zalando"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability",
+    "testability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Cyrille Martraire (2019). \"Living Documentation: Continuous Knowledge Sharing by Design\". Addison-Wesley.",
+  "secondary_sources": [
+    "Gojko Adzic (2011). \"Specification by Example: How Successful Teams Deliver the Right Software\". Manning Publications.",
+    "Dan North (2006). \"Introducing BDD\". dannorth.net."
+  ],
+  "typed_relations": [
+    {
+      "slug": "bdd",
+      "type": "complement"
+    },
+    {
+      "slug": "domain-driven-design",
+      "type": "complement"
+    },
+    {
+      "slug": "gitops",
+      "type": "complement"
+    },
+    {
+      "slug": "openapi-specification",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/living-documentation",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/living-documentation.md"
+}

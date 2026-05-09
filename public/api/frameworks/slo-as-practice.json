@@ -1,0 +1,209 @@
+{
+  "id": 154,
+  "name": "SLO-as-Practice",
+  "name_zh": "SLO实践方法论",
+  "slug": "slo-as-practice",
+  "category": "observability",
+  "desc": "Operationalize SLO methodology as a continuous engineering practice for reliability culture",
+  "desc_zh": "将SLO方法论运营化为持续的工程实践，构建可靠性文化",
+  "steps": [
+    "Identify user journeys and map them to measurable SLIs: choose indicators that reflect real user happiness (successful login rate, checkout latency p99, search result relevance)",
+    "Set SLO targets through stakeholder negotiation: balance user expectations, engineering cost, and business risk rather than defaulting to arbitrary nines",
+    "Implement SLO-based alerting with multi-window burn rate: alert on budget consumption rate rather than raw threshold breaches to reduce false positives",
+    "Establish error budget policies: define concrete actions at budget thresholds (50% remaining: review, 25%: freeze risky deploys, 0%: all hands on reliability)",
+    "Run SLO review meetings monthly: analyze budget burn trends, adjust targets based on user feedback, and use SLO data to prioritize reliability vs feature work"
+  ],
+  "steps_zh": [
+    "识别用户旅程并映射为可度量的SLI：选择反映真实用户满意度的指标（登录成功率、结算延迟p99、搜索结果相关性）",
+    "通过利益相关者协商设定SLO目标：平衡用户期望、工程成本和业务风险，而非默认使用任意的几个9",
+    "实施基于SLO的多窗口燃烧率告警：对预算消耗速率而非原始阈值触发告警，以减少误报",
+    "建立错误预算策略：在预算阈值处定义具体行动（剩余50%：审查，25%：冻结高风险部署，0%：全力投入可靠性）",
+    "每月召开SLO回顾会议：分析预算燃烧趋势，根据用户反馈调整目标，并使用SLO数据来确定可靠性与功能工作的优先级"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "SLI",
+    "SLO Target",
+    "Burn Rate Alert",
+    "Error Budget Policy",
+    "SLO Review"
+  ],
+  "viz_labels_zh": [
+    "SLI指标",
+    "SLO目标",
+    "燃烧率告警",
+    "错误预算策略",
+    "SLO评审"
+  ],
+  "related": [
+    "sli-slo-sla",
+    "error-budget-policy",
+    "four-golden-signals",
+    "dora-metrics",
+    "on-call-engineering"
+  ],
+  "tags": [
+    "observability",
+    "slo",
+    "reliability",
+    "error-budget",
+    "burn-rate",
+    "sre"
+  ],
+  "origin_author": "Google SRE team; codified in Implementing Service Level Objectives (Alex Hidalgo, 2020)",
+  "origin_source": "Implementing Service Level Objectives (Alex Hidalgo, O'Reilly, 2020); Site Reliability Engineering (Beyer et al., 2016)",
+  "origin_source_zh": "《实施服务水平目标》（Alex Hidalgo，O'Reilly，2020）；《SRE：Google运维解密》（Beyer等，2016）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Organizations that have defined SLIs/SLOs but struggle to operationalize them into daily engineering decisions",
+    "Teams drowning in alerts from threshold-based monitoring who need a more intelligent alerting approach",
+    "Engineering leadership that needs objective data to balance reliability investment against feature velocity",
+    "Post-incident reviews that repeatedly identify lack of reliability prioritization as a root cause"
+  ],
+  "when_to_use_zh": [
+    "已定义SLI/SLO但难以将其运营化为日常工程决策的组织",
+    "被基于阈值的监控告警淹没、需要更智能告警方法的团队",
+    "需要客观数据来平衡可靠性投入与功能开发速度的工程领导层",
+    "事后回顾反复将缺乏可靠性优先级化识别为根因的情况"
+  ],
+  "core_concepts": [
+    "SLO as a Practice: SLOs are not just numbers in a config file; they are a continuous feedback loop of measuring, alerting, reviewing, and adjusting that shapes engineering culture",
+    "Multi-Window Burn Rate Alerting: Compares error budget consumption across short (1h) and long (6h, 3d) windows to detect both sudden outages and gradual degradation with minimal false positives",
+    "Error Budget as Currency: The error budget is a finite resource that engineering teams 'spend' on risky changes; when it is depleted, the team must shift to reliability work",
+    "SLO Document: A living document per service specifying SLIs, SLO targets, error budget policies, escalation paths, and review cadence -- the contract between product and engineering",
+    "Aspirational vs Achievable SLOs: Teams maintain two tiers -- achievable SLOs that trigger alerts and aspirational SLOs that guide long-term reliability investment"
+  ],
+  "core_concepts_zh": [
+    "SLO即实践：SLO不只是配置文件中的数字；它是一个由度量、告警、回顾和调整组成的持续反馈循环，塑造工程文化",
+    "多窗口燃烧率告警：比较短窗口（1小时）和长窗口（6小时、3天）的错误预算消耗，以最少的误报检测突发故障和渐进劣化",
+    "错误预算即货币：错误预算是工程团队「花费」在有风险变更上的有限资源；耗尽时团队必须转向可靠性工作",
+    "SLO文档：每个服务的活文档，规定SLI、SLO目标、错误预算策略、升级路径和回顾节奏——产品与工程之间的契约",
+    "期望型与可达型SLO：团队维护两个层级——触发告警的可达SLO和指导长期可靠性投入的期望SLO"
+  ],
+  "timeline": [
+    [
+      "2003",
+      "Google SRE team begins using error budgets internally to balance reliability and velocity"
+    ],
+    [
+      "2016",
+      "Site Reliability Engineering book publishes Google's SLO practices, sparking industry adoption"
+    ],
+    [
+      "2018",
+      "The SRE Workbook provides step-by-step SLO implementation guidance with worked examples"
+    ],
+    [
+      "2020",
+      "Alex Hidalgo publishes Implementing Service Level Objectives, the definitive practitioner's guide to SLO-as-practice"
+    ],
+    [
+      "2023",
+      "SLO-based alerting and error budget policies become standard practice at most cloud-native organizations"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2003",
+      "Google SRE团队开始在内部使用错误预算来平衡可靠性和开发速度"
+    ],
+    [
+      "2016",
+      "《SRE：Google运维解密》发布Google的SLO实践，引发行业采用"
+    ],
+    [
+      "2018",
+      "《SRE工作手册》提供带有实例的逐步SLO实施指导"
+    ],
+    [
+      "2020",
+      "Alex Hidalgo出版《实施服务水平目标》，成为SLO实践的权威从业者指南"
+    ],
+    [
+      "2023",
+      "基于SLO的告警和错误预算策略成为大多数云原生组织的标准实践"
+    ]
+  ],
+  "dos": [
+    "Do start with 2-3 SLOs per service covering the most critical user journeys, because too many SLOs dilute attention and make budget tracking unmanageable",
+    "Do involve product managers in SLO target-setting, because reliability targets must reflect business context not just engineering preference",
+    "Do automate SLO reporting and budget dashboards, because manual tracking guarantees the practice will be abandoned within months",
+    "Do revisit SLO targets quarterly, because user expectations and system capabilities change over time"
+  ],
+  "dos_zh": [
+    "每个服务从覆盖最关键用户旅程的2-3个SLO开始，因为过多SLO会分散注意力并使预算追踪不可管理",
+    "让产品经理参与SLO目标设定，因为可靠性目标必须反映业务上下文而非仅仅工程偏好",
+    "自动化SLO报告和预算仪表盘，因为手动追踪几乎保证该实践在数月内被放弃",
+    "每季度重新审视SLO目标，因为用户期望和系统能力会随时间变化"
+  ],
+  "donts": [
+    "Don't set SLOs without error budget policies, because SLOs without consequences are just dashboards that nobody acts on",
+    "Don't alert on every SLO violation immediately, because multi-window burn rate alerting is far more actionable than raw threshold alerts",
+    "Don't use SLOs as a performance evaluation tool for individual engineers, because it creates incentives to game the metrics rather than improve reliability",
+    "Don't copy another company's SLO targets, because the right target depends on your users' expectations and your system's architecture"
+  ],
+  "donts_zh": [
+    "不要在没有错误预算策略的情况下设定SLO，因为没有后果的SLO只是无人响应的仪表盘",
+    "不要对每次SLO违反立即告警，因为多窗口燃烧率告警比原始阈值告警更可操作",
+    "不要将SLO作为评估个人工程师绩效的工具，因为这会激励操纵指标而非改善可靠性",
+    "不要复制其他公司的SLO目标，因为正确的目标取决于你的用户期望和系统架构"
+  ],
+  "case_study_company": "The Guardian",
+  "case_study": "The Guardian newspaper's engineering team adopted SLO-as-practice to manage reliability across their content delivery platform serving 150+ million monthly readers. They defined SLOs around article load time (p99 < 3s), content API availability (99.9%), and search relevance. By implementing multi-window burn rate alerts, they reduced alert volume by 90% compared to their previous threshold-based system. Monthly SLO review meetings with product and editorial stakeholders created a shared language for reliability trade-offs, enabling the team to confidently invest in a major platform migration while staying within error budget.",
+  "case_study_zh": "《卫报》的工程团队采用SLO实践方法论来管理其服务1.5亿月活读者的内容分发平台的可靠性。他们围绕文章加载时间（p99 < 3秒）、内容API可用性（99.9%）和搜索相关性定义SLO。通过实施多窗口燃烧率告警，他们将告警量比之前的阈值系统减少了90%。与产品和编辑利益相关者的月度SLO回顾会议为可靠性权衡创建了共同语言，使团队能够在保持错误预算范围内的情况下自信地进行重大平台迁移。",
+  "when_not_to_use": [
+    "Very early-stage startups where user patterns are unknown and setting meaningful SLOs is premature",
+    "Internal tools used by fewer than 10 people where informal reliability communication is more efficient",
+    "Systems where 100% correctness is legally required and error budgets are philosophically inapplicable",
+    "Organizations without basic monitoring in place -- you need metrics before you can set objectives on them"
+  ],
+  "when_not_to_use_zh": [
+    "用户模式未知且设定SLO为时过早的极早期初创公司",
+    "少于10人使用的内部工具——非正式可靠性沟通更高效",
+    "法律要求100%正确性、错误预算在哲学上不适用的系统",
+    "尚未建立基础监控的组织——需要先有指标才能为其设定目标"
+  ],
+  "adopters": [
+    "Google",
+    "The Guardian",
+    "Spotify",
+    "Atlassian",
+    "Honeycomb"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "reliability",
+    "observability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Hidalgo, A. (2020). \"Implementing Service Level Objectives\". O'Reilly Media.",
+  "secondary_sources": [
+    "Beyer, B. et al. (2016). \"Site Reliability Engineering: How Google Runs Production Systems\", Ch. 4. O'Reilly Media.",
+    "Beyer, B. et al. (2018). \"The Site Reliability Workbook\", Ch. 2. O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "sli-slo-sla",
+      "type": "extends"
+    },
+    {
+      "slug": "error-budget-policy",
+      "type": "complement"
+    },
+    {
+      "slug": "four-golden-signals",
+      "type": "prerequisite"
+    },
+    {
+      "slug": "dora-metrics",
+      "type": "complement"
+    },
+    {
+      "slug": "on-call-engineering",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/slo-as-practice",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/slo-as-practice.md"
+}

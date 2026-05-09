@@ -1,0 +1,204 @@
+{
+  "id": 144,
+  "name": "Platform Engineering",
+  "name_zh": "平台工程",
+  "slug": "platform-engineering",
+  "category": "team",
+  "desc": "Build and operate an internal developer platform as a product, enabling stream-aligned teams to self-serve infrastructure and tooling",
+  "desc_zh": "将内部开发者平台作为产品来构建和运营，使面向价值流的团队能够自助使用基础设施和工具",
+  "steps": [
+    "Identify the most common developer pain points: slow environment setup, deployment friction, observability gaps",
+    "Form a dedicated platform team that treats internal developers as their customers",
+    "Build a thin, self-service platform layer (golden paths) that abstracts infrastructure complexity",
+    "Measure platform success through adoption rates, developer satisfaction, and time-to-first-deploy for new services",
+    "Iterate on platform capabilities based on continuous user research with stream-aligned teams"
+  ],
+  "steps_zh": [
+    "识别最常见的开发者痛点：环境搭建缓慢、部署摩擦、可观测性缺口",
+    "组建专门的平台团队，将内部开发者视为客户",
+    "构建轻量、自助的平台层（黄金路径），抽象基础设施复杂性",
+    "通过采纳率、开发者满意度和新服务首次部署时间衡量平台成效",
+    "基于对面向价值流团队的持续用户调研，迭代平台能力"
+  ],
+  "ai_relevant": true,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Pain Points",
+    "Platform Team",
+    "Golden Paths",
+    "Adoption Metrics",
+    "Iteration"
+  ],
+  "viz_labels_zh": [
+    "痛点",
+    "平台团队",
+    "黄金路径",
+    "采用度",
+    "持续迭代"
+  ],
+  "related": [
+    "team-topologies",
+    "inner-source",
+    "developer-experience-framework",
+    "amazon-two-pizza-teams"
+  ],
+  "tags": [
+    "platform",
+    "developer-experience",
+    "self-service",
+    "internal-tools",
+    "golden-path"
+  ],
+  "origin_author": "Evan Bottcher (ThoughtWorks), ~2018; formalized in Team Topologies (Skelton & Pais, 2019)",
+  "origin_source": "Team Topologies (Skelton & Pais, 2019); CNCF Platform Engineering Maturity Model (2023)",
+  "origin_source_zh": "《团队拓扑》（Skelton & Pais，2019）；CNCF 平台工程成熟度模型（2023）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Organizations where each team spends significant time on undifferentiated infrastructure work",
+    "Scaling beyond 10 stream-aligned teams that all need consistent CI/CD, monitoring, and deployment",
+    "Reducing cognitive load on product teams by abstracting away Kubernetes, cloud, and networking complexity",
+    "Accelerating onboarding so new engineers can deploy to production within their first week"
+  ],
+  "when_to_use_zh": [
+    "组织中每个团队在无差别的基础设施工作上花费大量时间",
+    "扩展到 10 个以上面向价值流的团队，都需要一致的 CI/CD、监控和部署",
+    "通过抽象 Kubernetes、云和网络复杂性来减轻产品团队的认知负荷",
+    "加速新人入职，使新工程师在第一周内就能部署到生产环境"
+  ],
+  "core_concepts": [
+    "Platform as a Product: The internal platform is built with product management rigor — user research, roadmaps, SLOs, and feedback loops — not just as an infrastructure project",
+    "Golden Paths: Opinionated, well-supported default workflows that cover 80% of use cases, while still allowing teams to go off-path when needed",
+    "Self-Service: Developers provision environments, deploy services, and access logs through APIs and portals without filing tickets or waiting for ops teams",
+    "Thin Platform: The platform abstracts complexity but does not hide it entirely — developers can still inspect and understand the underlying infrastructure when debugging",
+    "Cognitive Load Reduction: The primary metric of platform success is how much mental overhead it removes from stream-aligned teams, as defined in Team Topologies"
+  ],
+  "core_concepts_zh": [
+    "平台即产品：内部平台以产品管理的严谨度来构建——用户调研、路线图、SLO 和反馈循环——而非仅作为基础设施项目",
+    "黄金路径：有主见的、充分支持的默认工作流，覆盖 80% 的用例，同时仍允许团队在需要时脱离路径",
+    "自助服务：开发者通过 API 和门户自行配置环境、部署服务和访问日志，无需提工单或等待运维团队",
+    "轻量平台：平台抽象复杂性但不完全隐藏——开发者在调试时仍可检查和理解底层基础设施",
+    "认知负荷降低：平台成功的首要衡量标准是它为面向价值流团队减少了多少心智负担，正如《团队拓扑》中所定义的"
+  ],
+  "timeline": [
+    [
+      "2018",
+      "Evan Bottcher's 'What I Talk About When I Talk About Platforms' article defines the internal platform as a product concept"
+    ],
+    [
+      "2019",
+      "Skelton and Pais formalize the platform team as one of four fundamental team types in Team Topologies"
+    ],
+    [
+      "2022",
+      "Gartner names platform engineering a top strategic technology trend, predicting 80% of organizations will adopt it by 2026"
+    ],
+    [
+      "2023",
+      "CNCF publishes the Platform Engineering Maturity Model; PlatformCon attracts 20,000+ attendees"
+    ],
+    [
+      "2024",
+      "Backstage (Spotify), Port, and Humanitec emerge as leading internal developer portal frameworks"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2018",
+      "Evan Bottcher 的文章《当我谈论平台时我在谈论什么》定义了内部平台即产品的概念"
+    ],
+    [
+      "2019",
+      "Skelton 和 Pais 在《团队拓扑》中将平台团队正式确立为四种基本团队类型之一"
+    ],
+    [
+      "2022",
+      "Gartner 将平台工程列为顶级战略技术趋势，预测到 2026 年 80% 的组织将采纳"
+    ],
+    [
+      "2023",
+      "CNCF 发布平台工程成熟度模型；PlatformCon 吸引超过 20,000 名参与者"
+    ],
+    [
+      "2024",
+      "Backstage（Spotify）、Port 和 Humanitec 成为领先的内部开发者门户框架"
+    ]
+  ],
+  "dos": [
+    "Treat internal developers as real customers: conduct user interviews, track NPS, and maintain a public roadmap",
+    "Start with the highest-friction developer workflow and build the first golden path there",
+    "Provide an escape hatch — let teams customize or bypass the platform when their use case genuinely requires it",
+    "Staff the platform team with experienced engineers who understand both infrastructure and developer workflows"
+  ],
+  "dos_zh": [
+    "将内部开发者视为真正的客户：进行用户访谈、跟踪 NPS、维护公开路线图",
+    "从摩擦最大的开发者工作流开始，在那里构建第一条黄金路径",
+    "提供逃生通道——当团队的用例确实需要时，允许其自定义或绕过平台",
+    "为平台团队配备既理解基础设施又理解开发者工作流的资深工程师"
+  ],
+  "donts": [
+    "Don't build a 'ticket ops' platform where developers still need to file requests and wait — that is not self-service",
+    "Don't mandate platform adoption through policy instead of value — teams should choose the platform because it is genuinely better",
+    "Don't over-abstract: a platform that hides too much makes debugging impossible and frustrates experienced engineers",
+    "Don't treat the platform as a one-time project — it requires continuous product investment like any customer-facing product"
+  ],
+  "donts_zh": [
+    "不要构建「工单运维」式平台，开发者仍需提交请求并等待——那不是自助服务",
+    "不要通过政策而非价值来强制采纳平台——团队应该因为平台真正更好而选择它",
+    "不要过度抽象：隐藏太多内容的平台让调试变得不可能，令资深工程师感到沮丧",
+    "不要将平台视为一次性项目——它需要像任何面向客户的产品一样持续投资"
+  ],
+  "case_study_company": "Spotify",
+  "case_study": "Spotify built Backstage, an open-source internal developer portal, starting in 2016 to solve the problem of fragmented tooling across 300+ engineering teams. Backstage provides a unified service catalog, software templates, and plugin architecture that standardizes how teams create, discover, and manage services. By 2020, Spotify reported that new engineers could deploy to production in their first week (previously it took over a month). They open-sourced Backstage in 2020, and it became a CNCF Incubating project in 2022, adopted by hundreds of organizations worldwide.",
+  "case_study_zh": "Spotify 从 2016 年开始构建 Backstage（开源内部开发者门户），以解决 300 多个工程团队工具碎片化的问题。Backstage 提供统一的服务目录、软件模板和插件架构，标准化团队创建、发现和管理服务的方式。到 2020 年，Spotify 报告新工程师可以在第一周内部署到生产环境（此前需要一个多月）。他们于 2020 年将 Backstage 开源，2022 年成为 CNCF 孵化项目，被全球数百个组织采纳。",
+  "when_not_to_use": [
+    "Organizations with fewer than 5 engineering teams — the overhead of a dedicated platform team is not justified",
+    "Early-stage startups where infrastructure needs are simple and a PaaS like Heroku or Vercel suffices",
+    "Environments where teams have radically different technology stacks that resist standardization",
+    "Organizations that lack executive support for sustained investment in internal tooling"
+  ],
+  "when_not_to_use_zh": [
+    "工程团队少于 5 个的组织——专门平台团队的开销不合理",
+    "早期创业公司，基础设施需求简单，Heroku 或 Vercel 等 PaaS 即可满足",
+    "各团队技术栈差异极大且抗拒标准化的环境",
+    "缺乏高管对内部工具持续投资支持的组织"
+  ],
+  "adopters": [
+    "Spotify",
+    "Netflix",
+    "Zalando",
+    "Mercado Libre",
+    "Deutsche Telekom"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability",
+    "usability",
+    "scalability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Skelton, M. & Pais, M. (2019). \"Team Topologies: Organizing Business and Technology Teams for Fast Flow\". IT Revolution Press.",
+  "secondary_sources": [
+    "Bottcher, E. (2018). \"What I Talk About When I Talk About Platforms\". martinfowler.com.",
+    "CNCF (2023). \"Platform Engineering Maturity Model\". tag-app-delivery.cncf.io."
+  ],
+  "typed_relations": [
+    {
+      "slug": "team-topologies",
+      "type": "complement"
+    },
+    {
+      "slug": "inner-source",
+      "type": "complement"
+    },
+    {
+      "slug": "developer-experience-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "amazon-two-pizza-teams",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/platform-engineering",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/platform-engineering.md"
+}

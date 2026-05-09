@@ -1,0 +1,188 @@
+{
+  "id": 29,
+  "name": "SOLID Principles",
+  "name_zh": "SOLID 原则",
+  "slug": "solid-principles",
+  "category": "coding",
+  "desc": "Five OOP design principles for maintainable, flexible code",
+  "desc_zh": "面向对象设计的五大原则，打造可维护、灵活的代码",
+  "steps": [
+    "Single Responsibility: ensure each class or module has exactly one reason to change by isolating concerns into separate units",
+    "Open/Closed: design modules that are open for extension (via interfaces, plugins) but closed for modification of existing code",
+    "Liskov Substitution: verify that subtypes can replace their base types without altering the correctness of the program",
+    "Interface Segregation: split large interfaces into smaller, client-specific ones so implementers are not forced to depend on unused methods",
+    "Dependency Inversion: depend on abstractions rather than concrete implementations; inject dependencies through constructors or configuration"
+  ],
+  "steps_zh": [
+    "单一职责：确保每个类或模块只有一个变更原因，将关注点隔离到独立单元中",
+    "开闭原则：设计对扩展开放（通过接口、插件）但对现有代码修改封闭的模块",
+    "里氏替换：验证子类型可以替换其基类型而不改变程序的正确性",
+    "接口隔离：将大接口拆分为更小的客户端专用接口，避免实现者依赖未使用的方法",
+    "依赖倒置：依赖抽象而非具体实现；通过构造函数或配置注入依赖"
+  ],
+  "ai_relevant": false,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "Single Responsibility",
+    "Open-Closed",
+    "Liskov Substitution",
+    "Interface Segregation",
+    "Dependency Inversion"
+  ],
+  "viz_labels_zh": [
+    "单一职责",
+    "开闭原则",
+    "里氏替换",
+    "接口隔离",
+    "依赖反转"
+  ],
+  "related": [
+    "clean-code-principles",
+    "grasp-patterns",
+    "dependency-injection"
+  ],
+  "tags": [
+    "solid",
+    "oop",
+    "design-principles",
+    "maintainability"
+  ],
+  "origin_author": "Robert C. Martin, 2000",
+  "origin_source": "Design Principles and Design Patterns",
+  "origin_source_zh": "《设计原则与设计模式》",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Designing object-oriented systems that need to evolve over time",
+    "Refactoring legacy codebases to improve modularity and testability",
+    "Establishing coding standards for a team working on shared libraries",
+    "Building plugin-based architectures that require extensibility"
+  ],
+  "when_to_use_zh": [
+    "设计需要长期演进的面向对象系统",
+    "重构遗留代码库以提升模块化和可测试性",
+    "为共同维护共享库的团队建立编码规范",
+    "构建需要可扩展性的插件式架构"
+  ],
+  "core_concepts": [
+    "Single Responsibility Principle: a class should have only one reason to change, aligning each module with a single actor or stakeholder",
+    "Open/Closed Principle: software entities should be open for extension but closed for modification, enabling new behavior without touching existing code",
+    "Liskov Substitution Principle: objects of a superclass should be replaceable with objects of a subclass without breaking program correctness",
+    "Interface Segregation Principle: clients should not be forced to depend on interfaces they do not use",
+    "Dependency Inversion Principle: high-level modules should depend on abstractions, not on low-level concrete implementations"
+  ],
+  "core_concepts_zh": [
+    "单一职责原则：一个类应当只有一个变更原因，使每个模块对应一个参与者或利益相关方",
+    "开闭原则：软件实体应对扩展开放、对修改封闭，在不触碰已有代码的前提下引入新行为",
+    "里氏替换原则：超类的对象应当可以被其子类的对象替换而不破坏程序正确性",
+    "接口隔离原则：客户端不应被迫依赖其不使用的接口",
+    "依赖倒置原则：高层模块应依赖抽象，而非低层具体实现"
+  ],
+  "timeline": [
+    [
+      "1988",
+      "Barbara Liskov formally defines the Liskov Substitution Principle"
+    ],
+    [
+      "2000",
+      "Robert C. Martin publishes 'Design Principles and Design Patterns' introducing SOLID as a set"
+    ],
+    [
+      "2003",
+      "Martin's 'Agile Software Development' book popularizes SOLID in the agile community"
+    ],
+    [
+      "2009",
+      "Michael Feathers coins the SOLID acronym, making the principles easier to remember and teach"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1988",
+      "Barbara Liskov 正式定义里氏替换原则"
+    ],
+    [
+      "2000",
+      "Robert C. Martin 发表《设计原则与设计模式》，首次将 SOLID 作为一组原则提出"
+    ],
+    [
+      "2003",
+      "Martin 的《敏捷软件开发》一书在敏捷社区中推广了 SOLID"
+    ],
+    [
+      "2009",
+      "Michael Feathers 创造了 SOLID 缩写，使这些原则更易于记忆和传授"
+    ]
+  ],
+  "dos": [
+    "Do favor composition over inheritance because it naturally aligns with SRP and reduces tight coupling",
+    "Do define interfaces from the client's perspective because this ensures ISP compliance",
+    "Do inject dependencies through constructors because it makes classes testable and explicit about their needs",
+    "Do apply SOLID incrementally during refactoring because premature abstraction adds unnecessary complexity"
+  ],
+  "dos_zh": [
+    "优先使用组合而非继承，因为组合天然符合单一职责并减少紧耦合",
+    "从客户端视角定义接口，因为这能确保符合接口隔离原则",
+    "通过构造函数注入依赖，因为这使类可测试且明确表达其需求",
+    "在重构过程中渐进式地应用 SOLID，因为过早抽象会增加不必要的复杂性"
+  ],
+  "donts": [
+    "Don't create god classes that handle multiple unrelated responsibilities because they become change magnets",
+    "Don't violate LSP by throwing unexpected exceptions in subclasses because callers rely on base type contracts",
+    "Don't build fat interfaces that force implementers to write empty stub methods because it creates confusing APIs",
+    "Don't apply SOLID dogmatically to simple scripts because the overhead outweighs the benefits in small codebases"
+  ],
+  "donts_zh": [
+    "不要创建处理多个不相关职责的上帝类，因为它们会成为变更磁铁",
+    "不要在子类中抛出意外异常来违反 LSP，因为调用方依赖基类型契约",
+    "不要构建迫使实现者编写空桩方法的臃肿接口，因为这会造成令人困惑的 API",
+    "不要对简单脚本教条式地应用 SOLID，因为在小型代码库中其开销大于收益"
+  ],
+  "case_study_company": "Spotify",
+  "case_study": "Spotify's backend squad model relies heavily on SOLID principles. Each microservice is designed with single responsibility in mind, and dependency inversion allows squads to swap out infrastructure adapters (e.g., switching message brokers) without modifying core domain logic. This architectural discipline enables over 200 squads to deploy independently multiple times per day.",
+  "case_study_zh": "Spotify 的后端小队模式深度依赖 SOLID 原则。每个微服务都以单一职责为核心设计，依赖倒置使各小队能够替换基础设施适配器（如切换消息中间件）而无需修改核心领域逻辑。这种架构纪律让超过 200 个小队能够每天独立部署多次。",
+  "when_not_to_use": [
+    "Throwaway prototypes or spike experiments where speed matters more than design quality",
+    "Very small scripts or single-file utilities with no anticipated future changes",
+    "Performance-critical inner loops where abstraction layers add unacceptable overhead",
+    "Functional programming codebases where SOLID's OOP assumptions do not apply"
+  ],
+  "when_not_to_use_zh": [
+    "一次性原型或探针实验，速度比设计质量更重要时",
+    "非常小的脚本或不预期未来变更的单文件工具",
+    "性能关键的内层循环，抽象层会带来不可接受的开销",
+    "函数式编程代码库，SOLID 的面向对象假设不适用"
+  ],
+  "adopters": [
+    "Microsoft",
+    "Google",
+    "Spotify",
+    "Thoughtworks",
+    "JetBrains"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Robert C. Martin (2000). \"Design Principles and Design Patterns\". objectmentor.com.",
+  "secondary_sources": [
+    "Robert C. Martin (2003). \"Agile Software Development, Principles, Patterns, and Practices\". Prentice Hall.",
+    "Robert C. Martin (2017). \"Clean Architecture: A Craftsman's Guide to Software Structure and Design\". Prentice Hall."
+  ],
+  "typed_relations": [
+    {
+      "slug": "clean-code-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "grasp-patterns",
+      "type": "complement"
+    },
+    {
+      "slug": "dependency-injection",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/solid-principles",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/solid-principles.md"
+}

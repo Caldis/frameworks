@@ -1,0 +1,56 @@
+{
+  "protocolVersion": "0.3.0",
+  "name": "SDFrame",
+  "description": "Software design framework reference with 317 curated frameworks and a read-only public API.",
+  "url": "https://sdframe.caldis.me",
+  "version": "1.0.0",
+  "provider": {
+    "organization": "Caldis",
+    "url": "https://github.com/Caldis/frameworks"
+  },
+  "documentationUrl": "https://sdframe.caldis.me/developers/",
+  "defaultInputModes": [
+    "text/plain",
+    "application/json"
+  ],
+  "defaultOutputModes": [
+    "text/markdown",
+    "application/json"
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "skills": [
+    {
+      "id": "framework-selection",
+      "name": "Framework selection",
+      "description": "Recommend software design frameworks for a project context.",
+      "tags": [
+        "software-design",
+        "architecture",
+        "patterns",
+        "ai-agents"
+      ],
+      "examples": [
+        "Which frameworks should I use for a high-throughput API?",
+        "Compare DDD, clean architecture, and hexagonal architecture."
+      ]
+    },
+    {
+      "id": "framework-reference",
+      "name": "Framework reference lookup",
+      "description": "Return implementation steps, when-to-use guidance, and related frameworks by slug.",
+      "tags": [
+        "reference",
+        "openapi",
+        "static-api"
+      ],
+      "examples": [
+        "Get the clean-architecture reference.",
+        "List AI collaboration frameworks."
+      ]
+    }
+  ]
+}

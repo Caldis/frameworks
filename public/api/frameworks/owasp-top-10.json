@@ -1,0 +1,197 @@
+{
+  "id": 116,
+  "name": "OWASP Top 10",
+  "name_zh": "OWASP 十大 Web 应用安全风险",
+  "slug": "owasp-top-10",
+  "category": "security",
+  "desc": "A prioritized framework of the most critical web application security risks with proven mitigation strategies",
+  "desc_zh": "最关键 Web 应用安全风险的优先级框架及经过验证的缓解策略",
+  "steps": [
+    "Familiarize the team with the current OWASP Top 10 categories (Broken Access Control, Cryptographic Failures, Injection, etc.)",
+    "Integrate OWASP checks into the secure SDLC: code reviews, SAST, DAST, and dependency scanning against each category",
+    "Implement category-specific mitigations: parameterized queries for injection, strong access control for authorization, proper TLS configuration for cryptographic failures",
+    "Add OWASP-aligned test cases to the CI/CD pipeline to catch regressions automatically",
+    "Review and update alignment annually as the OWASP Top 10 evolves with new data from the community"
+  ],
+  "steps_zh": [
+    "让团队熟悉当前 OWASP Top 10 各类别（访问控制失效、加密故障、注入等）",
+    "将 OWASP 检查集成到安全 SDLC 中：代码审查、SAST、DAST 和依赖扫描逐一对照各类别",
+    "实施针对各类别的缓解措施：参数化查询防注入、强访问控制防授权问题、正确 TLS 配置防加密故障",
+    "在 CI/CD 管道中添加 OWASP 对齐的测试用例以自动捕获回归",
+    "随 OWASP Top 10 根据社区新数据演进，每年审查并更新对齐情况"
+  ],
+  "ai_relevant": false,
+  "viz_type": "radar",
+  "viz_labels": [
+    "Broken Access",
+    "Injection",
+    "Cryptographic",
+    "Misconfiguration",
+    "Outdated Comp"
+  ],
+  "viz_labels_zh": [
+    "访问控制",
+    "注入攻击",
+    "加密缺陷",
+    "安全配置",
+    "过期组件"
+  ],
+  "related": [
+    "threat-modeling-stride",
+    "security-by-design",
+    "defense-in-depth"
+  ],
+  "tags": [
+    "owasp",
+    "web-security",
+    "application-security",
+    "vulnerabilities",
+    "appsec"
+  ],
+  "origin_author": "OWASP Foundation (community-driven, led by Andrew van der Stock et al.)",
+  "origin_source": "OWASP Top 10 — 2021 edition (owasp.org/Top10); first published 2003",
+  "origin_source_zh": "OWASP Top 10 — 2021 版（owasp.org/Top10）；首次发布于 2003 年",
+  "complexity": "beginner",
+  "when_to_use": [
+    "As a baseline security checklist for any web application or API project",
+    "When training developers on application security fundamentals",
+    "During security audits and penetration test scoping to ensure coverage of the most common risks",
+    "As a vendor assessment criterion to verify third-party application security posture"
+  ],
+  "when_to_use_zh": [
+    "作为任何 Web 应用或 API 项目的基线安全检查清单",
+    "培训开发者应用安全基础知识时",
+    "安全审计和渗透测试范围界定中确保覆盖最常见风险",
+    "作为供应商评估标准验证第三方应用安全态势"
+  ],
+  "core_concepts": [
+    "Broken Access Control: Failures that allow users to act outside their intended permissions — the #1 risk in the 2021 edition",
+    "Injection: Untrusted data sent to an interpreter as part of a command or query, including SQL, NoSQL, OS, and LDAP injection",
+    "Cryptographic Failures: Weaknesses in encryption, hashing, or key management that expose sensitive data",
+    "Security Misconfiguration: Insecure default settings, open cloud storage, missing security headers, or verbose error messages",
+    "Software and Data Integrity Failures: Code and infrastructure that don't verify integrity — including insecure CI/CD pipelines and unsigned updates"
+  ],
+  "core_concepts_zh": [
+    "访问控制失效：允许用户在预期权限之外操作的故障——2021 版排名第一的风险",
+    "注入：将不可信数据作为命令或查询的一部分发送给解释器，包括 SQL、NoSQL、OS 和 LDAP 注入",
+    "加密故障：加密、哈希或密钥管理中的弱点导致敏感数据暴露",
+    "安全配置错误：不安全的默认设置、开放的云存储、缺失的安全头或详细的错误消息",
+    "软件和数据完整性故障：不验证完整性的代码和基础设施——包括不安全的 CI/CD 管道和未签名的更新"
+  ],
+  "timeline": [
+    [
+      "2003",
+      "First OWASP Top 10 published, establishing injection and XSS as dominant web risks"
+    ],
+    [
+      "2010",
+      "OWASP Top 10 — 2010 edition adds insecure cryptographic storage and insufficient transport layer protection"
+    ],
+    [
+      "2017",
+      "OWASP Top 10 — 2017 edition introduces XML External Entities (XXE) and insecure deserialization"
+    ],
+    [
+      "2021",
+      "OWASP Top 10 — 2021 edition restructures categories: Broken Access Control rises to #1; new categories include SSRF and Software Integrity Failures"
+    ],
+    [
+      "2023",
+      "OWASP releases the Top 10 for LLM Applications, extending the framework to AI security risks"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2003",
+      "首版 OWASP Top 10 发布，将注入和 XSS 确立为主要 Web 风险"
+    ],
+    [
+      "2010",
+      "OWASP Top 10 — 2010 版新增不安全加密存储和不充分传输层保护"
+    ],
+    [
+      "2017",
+      "OWASP Top 10 — 2017 版引入 XML 外部实体（XXE）和不安全反序列化"
+    ],
+    [
+      "2021",
+      "OWASP Top 10 — 2021 版重构类别：访问控制失效升至第一；新增 SSRF 和软件完整性故障"
+    ],
+    [
+      "2023",
+      "OWASP 发布 LLM 应用 Top 10，将框架扩展到 AI 安全风险"
+    ]
+  ],
+  "dos": [
+    "Automate OWASP Top 10 checks with SAST/DAST tools integrated into CI/CD pipelines",
+    "Use the OWASP Application Security Verification Standard (ASVS) as the detailed testing counterpart to the Top 10",
+    "Train every developer on at least the Top 10 categories — security is a whole-team responsibility",
+    "Map each Top 10 category to specific coding standards and pull-request review checklists"
+  ],
+  "dos_zh": [
+    "使用集成到 CI/CD 管道的 SAST/DAST 工具自动化 OWASP Top 10 检查",
+    "使用 OWASP ASVS 作为 Top 10 的详细测试对应标准",
+    "培训每位开发者至少了解 Top 10 各类别——安全是全团队的责任",
+    "将每个 Top 10 类别映射到具体的编码标准和 PR 审查清单"
+  ],
+  "donts": [
+    "Don't treat the OWASP Top 10 as an exhaustive security program — it covers only the most common risks, not all risks",
+    "Don't rely solely on automated scanners — many OWASP categories (broken access control, business logic flaws) require manual review",
+    "Don't ignore the 'moved off the list' categories — removal from the Top 10 doesn't mean the vulnerability no longer exists",
+    "Don't use the Top 10 as a penetration test methodology — it's a risk awareness framework, not a testing guide"
+  ],
+  "donts_zh": [
+    "不要将 OWASP Top 10 视为完整的安全计划——它仅覆盖最常见的风险，而非所有风险",
+    "不要仅依赖自动扫描器——许多 OWASP 类别（访问控制失效、业务逻辑缺陷）需要人工审查",
+    "不要忽略「移出列表」的类别——从 Top 10 中移除不意味着该漏洞不再存在",
+    "不要将 Top 10 用作渗透测试方法论——它是风险意识框架，不是测试指南"
+  ],
+  "case_study_company": "Equifax",
+  "case_study": "The 2017 Equifax breach, which exposed 147 million records, was caused by an unpatched Apache Struts vulnerability (CVE-2017-5638) — a classic OWASP Top 10 injection flaw (A03:2021). The vulnerability had a known patch available for two months before exploitation. This incident became the canonical example of why organizations must systematically address OWASP Top 10 risks, leading to $700 million in settlements and sweeping changes to vulnerability management practices industry-wide.",
+  "case_study_zh": "2017 年 Equifax 数据泄露暴露了 1.47 亿条记录，原因是未修补的 Apache Struts 漏洞（CVE-2017-5638）——典型的 OWASP Top 10 注入缺陷（A03:2021）。该漏洞在被利用前两个月已有可用补丁。此事件成为组织必须系统性应对 OWASP Top 10 风险的标志性案例，导致 7 亿美元和解金并推动全行业漏洞管理实践的深刻变革。",
+  "when_not_to_use": [
+    "Non-web systems (embedded firmware, desktop-only applications) where web-specific risks don't apply",
+    "As the sole security standard — the Top 10 is a starting point, not a comprehensive security program",
+    "When the application has no external attack surface (air-gapped, no user input)",
+    "For compliance certification — use OWASP ASVS or ISO 27001 instead; the Top 10 is an awareness document"
+  ],
+  "when_not_to_use_zh": [
+    "Web 特定风险不适用的非 Web 系统（嵌入式固件、纯桌面应用）",
+    "作为唯一安全标准时——Top 10 是起点，不是完整安全计划",
+    "应用无外部攻击面时（气隙环境、无用户输入）",
+    "用于合规认证时——应使用 OWASP ASVS 或 ISO 27001；Top 10 是意识文档"
+  ],
+  "adopters": [
+    "PCI Security Standards Council (references OWASP in PCI-DSS)",
+    "NIST",
+    "US DoD",
+    "GitHub (CodeQL rules mapped to OWASP)",
+    "Snyk"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "security"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "OWASP Foundation (2021). \"OWASP Top 10 — 2021\". owasp.org/Top10.",
+  "secondary_sources": [
+    "OWASP Foundation (2003). \"OWASP Top 10 — 2003 (First Edition)\". owasp.org.",
+    "Stuttard, D. & Pinto, M. (2011). \"The Web Application Hacker's Handbook\", 2nd ed. Wiley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "threat-modeling-stride",
+      "type": "complement"
+    },
+    {
+      "slug": "security-by-design",
+      "type": "complement"
+    },
+    {
+      "slug": "defense-in-depth",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/owasp-top-10",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/owasp-top-10.md"
+}

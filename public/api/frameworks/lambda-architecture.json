@@ -1,0 +1,189 @@
+{
+  "id": 102,
+  "name": "Lambda Architecture",
+  "name_zh": "Lambda 架构",
+  "slug": "lambda-architecture",
+  "category": "data",
+  "desc": "Batch plus speed layers for scalable big data processing",
+  "desc_zh": "批处理加速度层的可扩展大数据处理架构",
+  "steps": [
+    "Ingest all raw data immutably into a master dataset that serves as the system's append-only source of truth",
+    "Build a batch layer that periodically recomputes comprehensive batch views from the entire master dataset using frameworks like Hadoop or Spark",
+    "Build a speed layer that processes only recent data in real-time using stream processors like Storm or Flink to compensate for batch layer latency",
+    "Merge batch views and real-time views at query time in a serving layer that exposes a unified interface to consumers",
+    "Continuously validate that speed layer results converge with batch layer results and that eventual consistency is maintained"
+  ],
+  "steps_zh": [
+    "将所有原始数据不可变地摄入主数据集，作为系统的追加式真实数据源",
+    "构建批处理层，使用Hadoop或Spark等框架定期从整个主数据集重新计算全量批视图",
+    "构建速度层，使用Storm或Flink等流处理器仅实时处理最近数据，以弥补批处理层的延迟",
+    "在服务层查询时合并批视图和实时视图，向消费者暴露统一接口",
+    "持续验证速度层结果与批处理层结果的收敛性，确保最终一致性"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Ingest",
+    "Batch Layer",
+    "Speed Layer",
+    "Serving Layer",
+    "Query"
+  ],
+  "viz_labels_zh": [
+    "摄入",
+    "批处理层",
+    "速度层",
+    "服务层",
+    "查询"
+  ],
+  "related": [
+    "kappa-architecture",
+    "stream-processing-patterns",
+    "cap-theorem"
+  ],
+  "tags": [
+    "big-data",
+    "batch-processing",
+    "stream-processing",
+    "lambda"
+  ],
+  "origin_author": "Nathan Marz, 2011",
+  "origin_source": "Big Data: Principles and Best Practices of Scalable Real-Time Data Systems (Manning, 2015)",
+  "origin_source_zh": "《大数据：可扩展实时数据系统的原理与最佳实践》（Manning，2015）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When you need both comprehensive historical analytics and low-latency real-time results",
+    "When data correctness requires periodic full recomputation to fix upstream errors",
+    "When existing batch infrastructure must coexist with new real-time requirements",
+    "When fault tolerance demands that real-time views can always be reconstructed from immutable raw data"
+  ],
+  "when_to_use_zh": [
+    "当需要同时具备全面历史分析和低延迟实时结果时",
+    "当数据正确性要求定期全量重算以修复上游错误时",
+    "当现有批处理基础设施必须与新的实时需求共存时",
+    "当容错要求实时视图始终可从不可变原始数据重建时"
+  ],
+  "core_concepts": [
+    "Immutable master dataset: all data is stored in raw, append-only form as the single source of truth",
+    "Batch layer: periodically reprocesses the entire dataset to produce accurate, comprehensive views",
+    "Speed layer: processes only recent data in real-time to provide low-latency approximate views",
+    "Serving layer: merges batch and speed layer outputs to answer queries with both completeness and freshness"
+  ],
+  "core_concepts_zh": [
+    "不可变主数据集：所有数据以原始追加形式存储，作为唯一真实数据源",
+    "批处理层：定期重新处理整个数据集以产生准确、全面的视图",
+    "速度层：仅实时处理最近数据以提供低延迟的近似视图",
+    "服务层：合并批处理层和速度层的输出，以兼顾完整性和时效性来响应查询"
+  ],
+  "timeline": [
+    [
+      "2011",
+      "Nathan Marz introduces the Lambda Architecture concept based on his work at Twitter with Apache Storm"
+    ],
+    [
+      "2013",
+      "Lambda Architecture gains wide adoption as Hadoop ecosystem matures and real-time needs grow"
+    ],
+    [
+      "2014",
+      "Jay Kreps publishes 'Questioning the Lambda Architecture' proposing Kappa as a simpler alternative"
+    ],
+    [
+      "2015",
+      "Marz and Warren publish 'Big Data' (Manning), the definitive reference for Lambda Architecture"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2011",
+      "Nathan Marz 基于在Twitter使用Apache Storm的经验提出Lambda架构概念"
+    ],
+    [
+      "2013",
+      "随着Hadoop生态系统成熟和实时需求增长，Lambda架构获得广泛采纳"
+    ],
+    [
+      "2014",
+      "Jay Kreps 发表「质疑Lambda架构」，提出Kappa作为更简单的替代方案"
+    ],
+    [
+      "2015",
+      "Marz和Warren出版《大数据》（Manning），成为Lambda架构的权威参考"
+    ]
+  ],
+  "dos": [
+    "Do keep the master dataset immutable and append-only because it enables full recomputation and error correction",
+    "Do design batch and speed layers to produce eventually consistent results because divergence erodes consumer trust",
+    "Do automate batch view recomputation on a regular schedule because stale batch views negate the architecture's benefits",
+    "Do monitor latency gaps between speed and batch layers because large gaps indicate system health issues"
+  ],
+  "dos_zh": [
+    "保持主数据集不可变且仅追加，因为这使全量重算和错误修正成为可能",
+    "设计批处理和速度层产生最终一致的结果，因为分歧会侵蚀消费者信任",
+    "定期自动化批视图重算，因为过时的批视图会抵消架构的优势",
+    "监控速度层和批处理层之间的延迟差距，因为大差距表明系统健康问题"
+  ],
+  "donts": [
+    "Don't maintain two completely different codebases for batch and speed logic because it doubles maintenance burden and introduces semantic drift",
+    "Don't skip the serving layer merge logic because consumers should not need to understand the dual-layer internals",
+    "Don't use Lambda when a single stream processing layer can meet your latency and correctness requirements",
+    "Don't ignore the operational complexity of running two parallel processing systems"
+  ],
+  "donts_zh": [
+    "不要为批处理和速度逻辑维护两套完全不同的代码库，因为这会使维护负担翻倍并引入语义漂移",
+    "不要跳过服务层合并逻辑，因为消费者不应需要理解双层内部细节",
+    "当单一流处理层能满足延迟和正确性要求时不要使用Lambda",
+    "不要忽视运行两个并行处理系统的运维复杂性"
+  ],
+  "case_study_company": "Twitter",
+  "case_study": "Twitter used Lambda Architecture to power its real-time analytics and trending topics. The batch layer processed the full tweet history using Hadoop for accurate aggregate metrics, while the speed layer used Apache Storm to detect trending topics within seconds. This dual approach allowed Twitter to serve both precise historical dashboards and real-time trend detection at scale.",
+  "case_study_zh": "Twitter使用Lambda架构驱动其实时分析和热门话题功能。批处理层使用Hadoop处理完整推文历史以获取准确的聚合指标，而速度层使用Apache Storm在几秒内检测热门话题。这种双层方法使Twitter能够大规模同时提供精确的历史仪表板和实时趋势检测。",
+  "when_not_to_use": [
+    "When the operational overhead of maintaining two processing systems is not justified by your scale",
+    "When stream processing alone can provide both correctness and low latency for your use case",
+    "When your team lacks the expertise to maintain synchronized batch and speed layer logic",
+    "When data volumes are small enough that a simple database with incremental updates suffices"
+  ],
+  "when_not_to_use_zh": [
+    "当维护两个处理系统的运维开销无法被规模所证明时",
+    "当单独的流处理即可为用例提供正确性和低延迟时",
+    "当团队缺乏维护同步批处理和速度层逻辑的专业知识时",
+    "当数据量足够小，简单数据库加增量更新即可满足时"
+  ],
+  "adopters": [
+    "Twitter",
+    "LinkedIn",
+    "Yahoo",
+    "Netflix",
+    "Airbnb"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "scalability",
+    "performance",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Marz, N. & Warren, J. (2015). \"Big Data: Principles and Best Practices of Scalable Real-Time Data Systems\". Manning Publications.",
+  "secondary_sources": [
+    "Marz, N. (2011). \"How to Beat the CAP Theorem\". nathanmarz.com.",
+    "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 11. O'Reilly Media.",
+    "Kreps, J. (2014). \"Questioning the Lambda Architecture\". O'Reilly Radar."
+  ],
+  "typed_relations": [
+    {
+      "slug": "kappa-architecture",
+      "type": "alternative"
+    },
+    {
+      "slug": "stream-processing-patterns",
+      "type": "complement"
+    },
+    {
+      "slug": "cap-theorem",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/lambda-architecture",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/lambda-architecture.md"
+}

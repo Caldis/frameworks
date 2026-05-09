@@ -1,0 +1,193 @@
+{
+  "id": 87,
+  "name": "ReAct Framework",
+  "name_zh": "ReAct 推理-行动框架",
+  "slug": "react-framework",
+  "category": "ai",
+  "desc": "Interleave reasoning traces and actions in LLM agents",
+  "desc_zh": "在大模型代理中交织推理轨迹与动作执行",
+  "steps": [
+    "Define the agent's task scope and available tool set (APIs, search, code exec)",
+    "Instrument the LLM prompt to emit Thought / Action / Observation traces",
+    "Execute each Action against real tools and feed Observation back into context",
+    "Repeat the Thought-Action-Observation loop until the stopping condition is met",
+    "Evaluate trace quality and prune or summarize long reasoning chains for efficiency"
+  ],
+  "steps_zh": [
+    "定义代理任务范围及可用工具集（API、搜索、代码执行等）",
+    "在提示词中要求模型输出 Thought / Action / Observation 三段式轨迹",
+    "将每个 Action 发送至真实工具并将 Observation 回写入上下文",
+    "循环执行推理-行动-观察，直至达到终止条件",
+    "评估轨迹质量，裁剪或摘要过长推理链以降低成本"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Reason",
+    "Act",
+    "Observe"
+  ],
+  "viz_labels_zh": [
+    "推理",
+    "行动",
+    "观察"
+  ],
+  "related": [
+    "tool-use-design-pattern",
+    "prompt-chaining",
+    "multi-agent-orchestration-pattern"
+  ],
+  "tags": [
+    "react",
+    "reasoning",
+    "agents",
+    "llm",
+    "tool-use"
+  ],
+  "origin_author": "Shunyu Yao et al., 2022",
+  "origin_source": "ReAct: Synergizing Reasoning and Acting in Language Models (ICLR 2023)",
+  "origin_source_zh": "ReAct：在语言模型中协同推理与行动（ICLR 2023）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Building agents that need to call external tools (search, APIs, databases) to answer questions",
+    "Tasks where pure chain-of-thought reasoning is insufficient without grounding in real data",
+    "Interactive problem-solving scenarios requiring iterative refinement based on observations",
+    "Knowledge-intensive QA where the model must decide what to look up and when to stop"
+  ],
+  "when_to_use_zh": [
+    "构建需要调用外部工具（搜索、API、数据库）回答问题的代理",
+    "纯思维链推理不够、需要真实数据锚定的任务",
+    "需要基于观察迭代优化的交互式问题求解场景",
+    "模型需自行决定检索内容和终止时机的知识密集型问答"
+  ],
+  "core_concepts": [
+    "Thought: The model's internal reasoning step that plans the next action or interprets an observation",
+    "Action: A concrete tool invocation emitted by the model (e.g., Search[query], Lookup[term])",
+    "Observation: The external environment's response returned after executing an action",
+    "Trace: The full interleaved sequence of Thought-Action-Observation steps forming the agent's trajectory",
+    "Grounding: Anchoring the model's reasoning in real-world data obtained via tool calls"
+  ],
+  "core_concepts_zh": [
+    "Thought（思考）：模型规划下一步动作或解读观察结果的内部推理步骤",
+    "Action（行动）：模型输出的具体工具调用（如 Search[query]、Lookup[term]）",
+    "Observation（观察）：执行动作后外部环境返回的响应结果",
+    "Trace（轨迹）：Thought-Action-Observation 交替步骤组成的完整代理执行路径",
+    "Grounding（锚定）：通过工具调用获取真实数据，为模型推理提供事实依据"
+  ],
+  "timeline": [
+    [
+      "2022-10",
+      "Shunyu Yao et al. release the ReAct preprint on arXiv"
+    ],
+    [
+      "2023-01",
+      "ReAct accepted at ICLR 2023; gains rapid adoption in the agent community"
+    ],
+    [
+      "2023-03",
+      "LangChain integrates ReAct as a default agent executor pattern"
+    ],
+    [
+      "2023-10",
+      "ReAct-style loops become the backbone of OpenAI's function-calling agents"
+    ],
+    [
+      "2024-06",
+      "Variants like Reflexion and LATS extend ReAct with self-reflection and tree search"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2022-10",
+      "Shunyu Yao 等人在 arXiv 发布 ReAct 预印本"
+    ],
+    [
+      "2023-01",
+      "ReAct 被 ICLR 2023 接收，在代理社区迅速获得关注"
+    ],
+    [
+      "2023-03",
+      "LangChain 将 ReAct 集成为默认代理执行模式"
+    ],
+    [
+      "2023-10",
+      "ReAct 风格循环成为 OpenAI 函数调用代理的核心骨架"
+    ],
+    [
+      "2024-06",
+      "Reflexion、LATS 等变体扩展 ReAct，加入自我反思与树搜索"
+    ]
+  ],
+  "dos": [
+    "Keep tool descriptions concise and unambiguous so the model selects the right tool reliably",
+    "Set a maximum iteration limit to prevent runaway loops that burn tokens and time",
+    "Include few-shot examples of complete Thought-Action-Observation traces in the system prompt",
+    "Log full traces for debugging -- they are the primary artifact for understanding agent behavior"
+  ],
+  "dos_zh": [
+    "保持工具描述简明无歧义，使模型能可靠选择正确工具",
+    "设置最大迭代次数上限，防止失控循环消耗过多 Token 和时间",
+    "在系统提示词中包含完整 Thought-Action-Observation 轨迹的少样本示例",
+    "记录完整轨迹用于调试——轨迹是理解代理行为的核心产物"
+  ],
+  "donts": [
+    "Don't give the model too many tools at once -- tool selection accuracy drops sharply past 15-20 tools",
+    "Don't skip observation validation -- feeding raw unstructured HTML into context wastes tokens",
+    "Don't let the agent self-terminate without a verification step -- it may stop prematurely on partial answers",
+    "Don't use ReAct for simple single-step tasks -- the overhead of the loop is unnecessary"
+  ],
+  "donts_zh": [
+    "不要一次给模型过多工具——超过 15-20 个后工具选择准确率急剧下降",
+    "不要跳过观察结果验证——将原始 HTML 直接注入上下文浪费 Token",
+    "不要让代理在没有验证步骤的情况下自行终止——可能在部分答案时过早停止",
+    "不要对简单的单步任务使用 ReAct——循环的额外开销是不必要的"
+  ],
+  "case_study_company": "LangChain",
+  "case_study": "LangChain adopted the ReAct pattern as its default AgentExecutor, enabling thousands of developers to build tool-augmented agents with minimal boilerplate. By standardizing the Thought-Action-Observation loop, LangChain reduced agent development time from weeks to hours and became the most widely used LLM orchestration framework by mid-2023.",
+  "case_study_zh": "LangChain 将 ReAct 模式作为默认的 AgentExecutor 实现，使数千名开发者能以极少的样板代码构建工具增强型代理。通过标准化 Thought-Action-Observation 循环，LangChain 将代理开发时间从数周缩短到数小时，并在 2023 年中成为使用最广泛的大模型编排框架。",
+  "when_not_to_use": [
+    "Simple classification or generation tasks that don't require external tool calls",
+    "Latency-critical applications where multi-step loops add unacceptable delay",
+    "Tasks where the full context is already available in the prompt and retrieval adds no value",
+    "Scenarios requiring deterministic output -- the non-deterministic loop may produce variable traces"
+  ],
+  "when_not_to_use_zh": [
+    "不需要外部工具调用的简单分类或生成任务",
+    "对延迟极度敏感、多步循环会带来不可接受延迟的应用",
+    "提示词已包含全部所需上下文、检索不增加价值的任务",
+    "需要确定性输出的场景——非确定性循环可能产生不同轨迹"
+  ],
+  "adopters": [
+    "LangChain",
+    "LlamaIndex",
+    "OpenAI (Assistants API)",
+    "Google DeepMind",
+    "Microsoft Semantic Kernel"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Shunyu Yao et al. (2023). \"ReAct: Synergizing Reasoning and Acting in Language Models\". ICLR 2023.",
+  "secondary_sources": [
+    "Jason Wei et al. (2022). \"Chain-of-Thought Prompting Elicits Reasoning in Large Language Models\". NeurIPS 2022.",
+    "Takeshi Kojima et al. (2022). \"Large Language Models are Zero-Shot Reasoners\". NeurIPS 2022."
+  ],
+  "typed_relations": [
+    {
+      "slug": "tool-use-design-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "prompt-chaining",
+      "type": "complement"
+    },
+    {
+      "slug": "multi-agent-orchestration-pattern",
+      "type": "extends"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/react-framework",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/react-framework.md"
+}

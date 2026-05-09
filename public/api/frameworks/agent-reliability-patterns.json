@@ -1,0 +1,193 @@
+{
+  "id": 57,
+  "name": "Agent Reliability Patterns",
+  "name_zh": "智能体可靠性模式",
+  "slug": "agent-reliability-patterns",
+  "category": "quality",
+  "desc": "Patterns ensuring AI agents behave predictably in production",
+  "desc_zh": "确保AI智能体在生产环境中行为可预测的模式集合",
+  "steps": [
+    "Implement bounded execution: set max step limits, wall-clock timeouts, and token budgets to prevent runaway agent loops",
+    "Add checkpoint and resume: persist agent state at key decision points so failed runs can be retried from the last checkpoint",
+    "Design deterministic fallbacks: when an agent step fails or times out, fall back to a simpler strategy or escalate to a human",
+    "Use idempotent tool calls: ensure all tools the agent invokes can be safely retried, with deduplication keys preventing duplicate side effects",
+    "Monitor agent behavior: track step counts, tool call success rates, loop detection, and cost per task to identify reliability regressions"
+  ],
+  "steps_zh": [
+    "实现有界执行：设置最大步数限制、挂钟超时和Token预算以防止智能体失控循环",
+    "添加检查点与恢复：在关键决策点持久化智能体状态，使失败的运行可从最后检查点重试",
+    "设计确定性降级：当智能体步骤失败或超时时，降级到更简单的策略或升级给人类处理",
+    "使用幂等工具调用：确保智能体调用的所有工具可安全重试，用去重键防止重复副作用",
+    "监控智能体行为：追踪步数、工具调用成功率、循环检测和每任务成本以识别可靠性回归"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Plan",
+    "Execute",
+    "Retry",
+    "Fallback"
+  ],
+  "viz_labels_zh": [
+    "规划",
+    "执行",
+    "重试",
+    "回退"
+  ],
+  "related": [
+    "circuit-breaker-pattern",
+    "agent-deployment-patterns",
+    "chaos-engineering"
+  ],
+  "tags": [
+    "agent-reliability",
+    "bounded-execution",
+    "idempotency",
+    "checkpointing",
+    "ai"
+  ],
+  "origin_author": "Anthropic / LangChain / OpenAI, 2023",
+  "origin_source": "Building Reliable AI Agents (industry practices from Anthropic, LangChain, and OpenAI documentation)",
+  "origin_source_zh": "《构建可靠AI智能体》（来自Anthropic、LangChain和OpenAI文档的行业实践）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Deploying autonomous AI agents that perform multi-step tasks with real-world side effects",
+    "Building agent systems that interact with external APIs, databases, or file systems",
+    "Production environments where agent failures must be contained and recovered from gracefully",
+    "Cost-sensitive deployments where runaway agent loops can generate massive API bills"
+  ],
+  "when_to_use_zh": [
+    "部署执行有真实副作用的多步任务的自主AI智能体",
+    "构建与外部API、数据库或文件系统交互的智能体系统",
+    "智能体故障必须被遏制且优雅恢复的生产环境",
+    "失控智能体循环可能产生巨额API账单的成本敏感部署"
+  ],
+  "core_concepts": [
+    "Bounded Execution: Hard limits on step count, time, and token usage to prevent infinite agent loops",
+    "Checkpointing: Persisting agent state at decision points to enable resume-from-failure without restarting",
+    "Idempotent Tool Calls: Designing tools so that retrying the same call produces the same result without duplicate side effects",
+    "Deterministic Fallbacks: Pre-defined simpler strategies activated when the primary agent path fails",
+    "Loop Detection: Monitoring for repetitive agent behaviors that indicate the agent is stuck in an unproductive cycle"
+  ],
+  "core_concepts_zh": [
+    "有界执行：对步数、时间和Token使用设置硬限制以防止无限智能体循环",
+    "检查点：在决策点持久化智能体状态以实现从故障处恢复而无需重启",
+    "幂等工具调用：设计工具使重试同一调用产生相同结果而无重复副作用",
+    "确定性降级：当主要智能体路径失败时激活的预定义更简单策略",
+    "循环检测：监控指示智能体陷入无效循环的重复行为"
+  ],
+  "timeline": [
+    [
+      "2022",
+      "Early LLM agents (AutoGPT, BabyAGI) demonstrate both potential and reliability challenges of autonomous AI"
+    ],
+    [
+      "2023",
+      "LangChain and LlamaIndex formalize agent architectures with tool use, planning, and memory patterns"
+    ],
+    [
+      "2024",
+      "Anthropic publishes best practices for building reliable Claude-based agents with bounded execution"
+    ],
+    [
+      "2024",
+      "OpenAI Assistants API and function calling introduce structured tool use with built-in safety mechanisms"
+    ],
+    [
+      "2025",
+      "Agent reliability patterns mature into production-grade frameworks with observability, cost controls, and human escalation"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2022",
+      "早期LLM智能体（AutoGPT、BabyAGI）展示了自主AI的潜力和可靠性挑战"
+    ],
+    [
+      "2023",
+      "LangChain和LlamaIndex正式化了包含工具使用、规划和记忆模式的智能体架构"
+    ],
+    [
+      "2024",
+      "Anthropic发布构建可靠Claude智能体的最佳实践，包含有界执行"
+    ],
+    [
+      "2024",
+      "OpenAI Assistants API和函数调用引入了带内置安全机制的结构化工具使用"
+    ],
+    [
+      "2025",
+      "智能体可靠性模式成熟为生产级框架，包含可观测性、成本控制和人工升级"
+    ]
+  ],
+  "dos": [
+    "Do set hard budget limits (steps, tokens, time) because unconstrained agents will eventually enter infinite loops",
+    "Do make all tool calls idempotent because agent retries are inevitable and must not cause duplicate actions",
+    "Do implement human escalation paths because agents will encounter situations beyond their reliable capability",
+    "Do log every agent decision and tool call because debugging agent failures requires full execution traces"
+  ],
+  "dos_zh": [
+    "设置硬预算限制（步数、Token、时间），因为不受约束的智能体最终会进入无限循环",
+    "使所有工具调用幂等，因为智能体重试不可避免且不能导致重复操作",
+    "实现人工升级路径，因为智能体会遇到超出其可靠能力的情况",
+    "记录每个智能体决策和工具调用，因为调试智能体故障需要完整的执行跟踪"
+  ],
+  "donts": [
+    "Don't give agents unlimited tool access because broad permissions amplify the impact of agent errors",
+    "Don't skip loop detection because a stuck agent wastes resources and may cause unintended side effects",
+    "Don't deploy agents without monitoring because silent failures accumulate cost and erode user trust",
+    "Don't assume agent behavior is deterministic because LLM-based agents can take different paths on identical inputs"
+  ],
+  "donts_zh": [
+    "不要给智能体无限制的工具访问权限，因为广泛权限会放大智能体错误的影响",
+    "不要跳过循环检测，因为陷入循环的智能体浪费资源且可能造成意外副作用",
+    "不要在没有监控的情况下部署智能体，因为静默失败会累积成本并侵蚀用户信任",
+    "不要假设智能体行为是确定性的，因为基于LLM的智能体在相同输入上可能走不同路径"
+  ],
+  "case_study_company": "Anthropic",
+  "case_study": "Anthropic developed agent reliability patterns while building Claude's tool-use capabilities, discovering that bounded execution and checkpointing were essential after observing agents entering loops during complex multi-step tasks. Their internal agent framework enforces token budgets, implements retry-with-backoff for tool calls, and includes automatic human escalation when confidence drops below thresholds.",
+  "case_study_zh": "Anthropic在构建Claude的工具使用能力时开发了智能体可靠性模式，在观察到智能体在复杂多步任务中进入循环后，发现有界执行和检查点是必要的。他们的内部智能体框架强制Token预算，为工具调用实现退避重试，并在信心低于阈值时自动升级给人类。",
+  "when_not_to_use": [
+    "Simple single-turn LLM calls that do not involve tool use or multi-step reasoning",
+    "Fully supervised human-in-the-loop workflows where every agent action requires approval",
+    "Offline batch inference where failures can be retried without real-time reliability concerns"
+  ],
+  "when_not_to_use_zh": [
+    "不涉及工具使用或多步推理的简单单轮LLM调用",
+    "每个智能体动作都需要审批的完全监督人在回路工作流",
+    "失败可重试且无实时可靠性顾虑的离线批量推理"
+  ],
+  "adopters": [
+    "Anthropic",
+    "OpenAI",
+    "Google DeepMind",
+    "LangChain",
+    "Replit"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Anthropic (2024). \"Building Effective Agents\". anthropic.com.",
+  "secondary_sources": [
+    "Harrison Chase et al. (2023). \"LangChain: Building Context-Aware Reasoning Applications\". langchain.com.",
+    "OpenAI (2023). \"GPT Best Practices: Strategy for Reliable Outputs\". platform.openai.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "circuit-breaker-pattern",
+      "type": "extends"
+    },
+    {
+      "slug": "agent-deployment-patterns",
+      "type": "complement"
+    },
+    {
+      "slug": "chaos-engineering",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/agent-reliability-patterns",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/agent-reliability-patterns.md"
+}

@@ -1,0 +1,194 @@
+{
+  "id": 168,
+  "name": "Modular Monolith",
+  "name_zh": "模块化单体",
+  "slug": "modular-monolith",
+  "category": "architecture",
+  "desc": "A single deployable unit with strictly enforced module boundaries, combining monolith simplicity with modular maintainability",
+  "desc_zh": "具有严格模块边界的单一可部署单元，结合了单体的简洁性和模块化的可维护性",
+  "steps": [
+    "Decompose the domain into bounded contexts and define each as an independent module with its own public API",
+    "Enforce module boundaries using compiler-level access controls, build tool configurations, or architecture fitness functions",
+    "Ensure each module owns its data: use separate schemas or table prefixes to prevent direct cross-module database access",
+    "Define explicit inter-module communication through public interfaces, events, or a mediator rather than shared mutable state",
+    "Continuously validate module boundaries through automated tests and dependency analysis tools to prevent erosion over time"
+  ],
+  "steps_zh": [
+    "将领域分解为限界上下文，并将每个上下文定义为拥有独立公共API的独立模块",
+    "使用编译器级别的访问控制、构建工具配置或架构适应度函数来强制模块边界",
+    "确保每个模块拥有自己的数据：使用独立schema或表前缀防止跨模块直接访问数据库",
+    "通过公共接口、事件或中介者定义明确的模块间通信——绝不通过共享可变状态",
+    "通过自动化测试和依赖分析工具持续验证模块边界，防止随时间退化"
+  ],
+  "ai_relevant": false,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Module",
+    "Boundary",
+    "Public API",
+    "Shared Kernel"
+  ],
+  "viz_labels_zh": [
+    "模块",
+    "边界",
+    "公共API",
+    "共享内核"
+  ],
+  "related": [
+    "layered-architecture",
+    "microservices-decomposition",
+    "c4-model"
+  ],
+  "tags": [
+    "modularity",
+    "monolith",
+    "bounded-context",
+    "encapsulation",
+    "decomposition"
+  ],
+  "origin_author": "Simon Brown, 2015; elaborated by Mark Richards and Neal Ford, 2020",
+  "origin_source": "Fundamentals of Software Architecture (O'Reilly, Richards & Ford, 2020)",
+  "origin_source_zh": "《软件架构基础》（O'Reilly，Richards和Ford，2020年）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When a team wants modular design benefits without the operational complexity of distributed microservices",
+    "When the application is in early stages and domain boundaries are still being discovered",
+    "When deployment simplicity is valued but long-term maintainability through clear module separation is also critical",
+    "When transitioning from a traditional monolith toward better structure as a stepping stone to potential future decomposition"
+  ],
+  "when_to_use_zh": [
+    "当团队希望获得模块化设计的好处，又不想承担分布式微服务的运维复杂性时",
+    "当应用处于早期阶段，领域边界仍在探索中时",
+    "当重视部署简洁性，但同时需要通过清晰的模块分离确保长期可维护性时",
+    "当从传统单体向更好的结构过渡，作为未来潜在拆分的过渡阶段时"
+  ],
+  "core_concepts": [
+    "Module boundary enforcement: Using technical mechanisms (access modifiers, build rules) to prevent unauthorized cross-module dependencies",
+    "Data ownership: Each module exclusively owns its data store or schema, with no shared tables between modules",
+    "Public API surface: Modules expose only intentional interfaces, hiding implementation details behind encapsulation",
+    "Internal event bus: Modules communicate asynchronously through domain events rather than direct method calls for loose coupling",
+    "Decomposability: The architecture is designed so that any module can be extracted into a separate service if needed in the future"
+  ],
+  "core_concepts_zh": [
+    "模块边界强制：使用技术机制（访问修饰符、构建规则）防止未授权的跨模块依赖",
+    "数据所有权：每个模块独占拥有自己的数据存储或schema，模块间不共享表",
+    "公共API面：模块仅暴露有意设计的接口，通过封装隐藏实现细节",
+    "内部事件总线：模块通过领域事件异步通信，而非直接方法调用，以实现松耦合",
+    "可拆分性：架构设计保证任何模块在未来需要时都能被提取为独立服务"
+  ],
+  "timeline": [
+    [
+      "2003",
+      "Eric Evans publishes Domain-Driven Design introducing bounded contexts that underpin modular monolith thinking"
+    ],
+    [
+      "2015",
+      "Simon Brown advocates for the modular monolith as a pragmatic alternative to premature microservices adoption"
+    ],
+    [
+      "2018",
+      "Shopify publicly shares its migration from a Rails monolith to a modular monolith architecture"
+    ],
+    [
+      "2020",
+      "Richards and Ford formalize modular monolith patterns in Fundamentals of Software Architecture"
+    ],
+    [
+      "2023",
+      "Growing industry backlash against microservices complexity drives renewed interest in modular monolith approaches"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2003",
+      "Eric Evans出版《领域驱动设计》，引入支撑模块化单体思想的限界上下文概念"
+    ],
+    [
+      "2015",
+      "Simon Brown倡导模块化单体作为过早采用微服务的务实替代方案"
+    ],
+    [
+      "2018",
+      "Shopify公开分享从Rails单体迁移到模块化单体架构的经验"
+    ],
+    [
+      "2020",
+      "Richards和Ford在《软件架构基础》中正式定义模块化单体模式"
+    ],
+    [
+      "2023",
+      "业界对微服务复杂性的日益反思推动了对模块化单体方法的重新关注"
+    ]
+  ],
+  "dos": [
+    "Do enforce module boundaries with automated tooling because human discipline alone is insufficient to prevent coupling over time",
+    "Do give each module its own database schema because shared tables are the fastest path to hidden coupling",
+    "Do design module APIs as if they were remote service contracts because this makes future extraction straightforward",
+    "Do use domain events for cross-module communication because it preserves loose coupling and module autonomy"
+  ],
+  "dos_zh": [
+    "使用自动化工具强制模块边界，因为仅靠人的自律不足以长期防止耦合",
+    "给每个模块独立的数据库schema，因为共享表是隐性耦合的最快路径",
+    "将模块API设计得如同远程服务契约，因为这使未来的提取变得简单",
+    "使用领域事件进行跨模块通信，因为这能保持松耦合和模块自治"
+  ],
+  "donts": [
+    "Don't allow modules to share domain models because it creates semantic coupling that is extremely hard to untangle",
+    "Don't skip module boundary tests because without automated verification boundaries erode within months",
+    "Don't create a module for every class or small concern because over-modularization adds unnecessary complexity",
+    "Don't use direct database joins across module boundaries because it tightly couples modules at the data layer"
+  ],
+  "donts_zh": [
+    "不要让模块共享领域模型，因为这会造成极难解开的语义耦合",
+    "不要跳过模块边界测试，因为没有自动化验证，边界在数月内就会退化",
+    "不要为每个类或小关注点创建模块，因为过度模块化会增加不必要的复杂度",
+    "不要跨模块边界进行直接数据库关联查询，因为这会在数据层紧密耦合模块"
+  ],
+  "case_study_company": "Shopify",
+  "case_study": "Shopify migrated its massive Ruby on Rails monolith serving millions of merchants into a modular monolith by defining clear module boundaries around domain concepts like orders, inventory, and payments. They used the Packwerk tool to enforce dependency rules at the package level, preventing unauthorized cross-module references. This approach allowed Shopify to improve developer velocity while avoiding the operational overhead of hundreds of microservices. Build times and test isolation improved significantly, and the architecture remains a single deployable unit.",
+  "case_study_zh": "Shopify将其服务数百万商家的大型Ruby on Rails单体迁移为模块化单体，围绕订单、库存和支付等领域概念定义清晰的模块边界。他们使用Packwerk工具在包级别强制依赖规则，防止未授权的跨模块引用。这种方法使Shopify提高了开发者效率，同时避免了数百个微服务的运维开销。构建时间和测试隔离性显著改善，架构仍然是单一可部署单元。",
+  "when_not_to_use": [
+    "When different modules have fundamentally different scaling requirements that demand independent horizontal scaling",
+    "When teams are geographically distributed and need fully autonomous deployment pipelines for each component",
+    "When the system requires polyglot persistence or different technology stacks for different modules"
+  ],
+  "when_not_to_use_zh": [
+    "当不同模块具有根本不同的扩展需求，需要独立的水平扩展时",
+    "当团队地理分散，需要每个组件拥有完全自主的部署管道时",
+    "当系统需要多语言持久化或不同模块使用不同的技术栈时"
+  ],
+  "adopters": [
+    "Shopify",
+    "Basecamp",
+    "Gusto",
+    "Maersk",
+    "GitHub"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "maintainability",
+    "scalability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Mark Richards and Neal Ford (2020). \"Fundamentals of Software Architecture\". O'Reilly Media.",
+  "secondary_sources": [
+    "Simon Brown (2015). \"Modular Monoliths\". conference talk, various venues.",
+    "Sam Newman (2019). \"Monolith to Microservices: Evolutionary Patterns to Transform Your Monolith\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "layered-architecture",
+      "type": "complement"
+    },
+    {
+      "slug": "microservices-decomposition",
+      "type": "related"
+    },
+    {
+      "slug": "c4-model",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/modular-monolith",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/modular-monolith.md"
+}

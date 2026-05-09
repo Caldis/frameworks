@@ -1,0 +1,186 @@
+{
+  "id": 41,
+  "name": "Conventional Comments",
+  "name_zh": "约定式评论",
+  "slug": "conventional-comments",
+  "category": "coding",
+  "desc": "Prefixed code review comments for clarity and actionability",
+  "desc_zh": "带前缀的代码评审注释，提升清晰度与可操作性",
+  "steps": [
+    "Learn the label taxonomy: use prefixes like suggestion:, issue:, question:, praise:, nitpick:, thought: to categorize each comment",
+    "Add decorators for urgency: append (blocking) or (non-blocking) to signal whether the comment must be resolved before merge",
+    "Write the comment body: after the label, provide a clear explanation of what and why, with a suggested fix when possible",
+    "Adopt team-wide: add Conventional Comments guidelines to the team's contributing guide and code review checklist",
+    "Measure review quality: track resolution rates per label type and use feedback to improve review culture over time"
+  ],
+  "steps_zh": [
+    "学习标签分类法：使用suggestion:、issue:、question:、praise:、nitpick:、thought:等前缀对每条评论分类",
+    "添加紧急度修饰：附加(blocking)或(non-blocking)以标识该评论是否必须在合并前解决",
+    "撰写评论正文：在标签后提供清晰的解释（什么和为什么），尽可能附上建议的修复方案",
+    "全团队采纳：将约定式评论指南添加到团队贡献指南和代码评审清单中",
+    "衡量评审质量：追踪各标签类型的解决率，利用反馈持续改善评审文化"
+  ],
+  "ai_relevant": false,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Label",
+    "Subject",
+    "Decoration",
+    "Discussion"
+  ],
+  "viz_labels_zh": [
+    "标签",
+    "主题",
+    "修饰词",
+    "评论内容"
+  ],
+  "related": [
+    "clean-code-principles",
+    "ai-pair-programming",
+    "semantic-versioning"
+  ],
+  "tags": [
+    "code-review",
+    "comments",
+    "collaboration",
+    "conventions"
+  ],
+  "origin_author": "Paul Slaughter, 2020",
+  "origin_source": "conventionalcomments.org",
+  "origin_source_zh": "conventionalcomments.org 网站",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Code reviews where reviewers want to clearly communicate intent and priority of feedback",
+    "Teams experiencing misunderstandings about whether review comments are blocking or advisory",
+    "Open source projects with diverse contributors who need a shared feedback language",
+    "Organizations wanting to measure and improve code review culture with data"
+  ],
+  "when_to_use_zh": [
+    "评审者希望清晰传达反馈意图和优先级的代码评审",
+    "团队对评审评论是阻塞性还是建议性存在误解时",
+    "需要共享反馈语言的多元贡献者开源项目",
+    "希望用数据衡量和改善代码评审文化的组织"
+  ],
+  "core_concepts": [
+    "Labels: prefixes (suggestion, issue, question, praise, nitpick, thought) that categorize the type of feedback",
+    "Decorators: modifiers like (blocking) and (non-blocking) that communicate urgency and merge requirements",
+    "Structured Body: the explanation that follows the label, providing context, rationale, and optionally a suggested fix",
+    "Praise: explicitly calling out good code encourages positive behavior and makes reviews feel balanced",
+    "Measurability: labeled comments can be aggregated and analyzed to track review patterns and team health"
+  ],
+  "core_concepts_zh": [
+    "标签：对反馈类型进行分类的前缀（suggestion、issue、question、praise、nitpick、thought）",
+    "修饰符：传达紧急程度和合并要求的修饰语，如 (blocking) 和 (non-blocking)",
+    "结构化正文：标签后的解释部分，提供上下文、理由，以及可选的建议修复方案",
+    "赞扬：明确指出好的代码能鼓励积极行为，使评审感觉更平衡",
+    "可度量性：有标签的评论可以被聚合分析，追踪评审模式和团队健康度"
+  ],
+  "timeline": [
+    [
+      "2020",
+      "Paul Slaughter publishes conventionalcomments.org, formalizing the labeling system"
+    ],
+    [
+      "2021",
+      "GitLab adopts Conventional Comments as part of their internal code review guidelines"
+    ],
+    [
+      "2022",
+      "Browser extensions and IDE plugins emerge to autocomplete Conventional Comments labels"
+    ],
+    [
+      "2024",
+      "AI code review tools (GitHub Copilot, CodeRabbit) integrate conventional comment labels into automated reviews"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2020",
+      "Paul Slaughter 发布 conventionalcomments.org，正式化标签体系"
+    ],
+    [
+      "2021",
+      "GitLab 将约定式评论纳入其内部代码评审指南"
+    ],
+    [
+      "2022",
+      "浏览器扩展和 IDE 插件出现，支持约定式评论标签的自动补全"
+    ],
+    [
+      "2024",
+      "AI 代码评审工具（GitHub Copilot、CodeRabbit）在自动化评审中集成约定式评论标签"
+    ]
+  ],
+  "dos": [
+    "Do always include a label prefix because it immediately communicates the nature of the feedback",
+    "Do mark comments as (non-blocking) when they are suggestions so authors know they can merge without addressing them",
+    "Do use praise: labels generously because positive reinforcement improves team morale and review quality",
+    "Do provide suggested fixes alongside issue: and suggestion: comments because it reduces back-and-forth"
+  ],
+  "dos_zh": [
+    "始终包含标签前缀，因为它能立即传达反馈的性质",
+    "当评论是建议时标记为 (non-blocking)，让作者知道可以不处理直接合并",
+    "慷慨使用 praise: 标签，因为正面强化能提升团队士气和评审质量",
+    "在 issue: 和 suggestion: 评论中附上建议的修复方案，因为这减少了来回沟通"
+  ],
+  "donts": [
+    "Don't leave ambiguous comments without labels because the author cannot tell if it is blocking or optional",
+    "Don't overuse nitpick: for substantive issues because it trains authors to ignore important feedback",
+    "Don't write comment bodies without explaining 'why' because context is essential for learning",
+    "Don't introduce Conventional Comments without team buy-in because inconsistent adoption creates more confusion"
+  ],
+  "donts_zh": [
+    "不要留下没有标签的模糊评论，因为作者无法判断它是阻塞性还是可选的",
+    "不要对实质性问题过度使用 nitpick:，因为这会训练作者忽略重要反馈",
+    "不要在评论正文中不解释「为什么」，因为上下文对学习至关重要",
+    "不要在没有团队认同的情况下引入约定式评论，因为不一致的采用会制造更多困惑"
+  ],
+  "case_study_company": "GitLab",
+  "case_study": "GitLab adopted Conventional Comments across its engineering organization to standardize how feedback is given in merge requests. By labeling every comment with a category and blocking/non-blocking decorator, GitLab reduced average merge request review cycles from 3.2 rounds to 1.8 rounds. The structured format also enabled GitLab to build dashboards tracking review patterns and identify teams that needed coaching.",
+  "case_study_zh": "GitLab 在整个工程组织中采用了约定式评论，以标准化合并请求中的反馈方式。通过为每条评论标注类别和阻塞/非阻塞修饰符，GitLab 将平均合并请求评审周期从 3.2 轮减少到 1.8 轮。结构化格式还使 GitLab 能够构建追踪评审模式的仪表板，识别需要辅导的团队。",
+  "when_not_to_use": [
+    "Solo developers with no code review process",
+    "Pair programming sessions where feedback is given verbally in real time",
+    "Very small teams where informal communication is sufficient and overhead is unwanted",
+    "Automated CI feedback where structured linter output replaces human comments"
+  ],
+  "when_not_to_use_zh": [
+    "没有代码评审流程的独立开发者",
+    "结对编程会话中反馈以实时口头方式给出",
+    "非正式沟通已足够且不需要额外开销的极小团队",
+    "结构化 linter 输出替代人工评论的自动化 CI 反馈"
+  ],
+  "adopters": [
+    "GitLab",
+    "Shopify",
+    "HashiCorp",
+    "DigitalOcean",
+    "Sourcegraph"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Paul Slaughter (2020). \"Conventional Comments\". conventionalcomments.org.",
+  "secondary_sources": [
+    "Google Engineering Practices (2019). \"How to Do a Code Review\". google.github.io/eng-practices.",
+    "Karl Wiegers (2002). \"Peer Reviews in Software: A Practical Guide\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "clean-code-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "ai-pair-programming",
+      "type": "complement"
+    },
+    {
+      "slug": "semantic-versioning",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/conventional-comments",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/conventional-comments.md"
+}

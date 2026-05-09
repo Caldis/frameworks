@@ -1,0 +1,193 @@
+{
+  "id": 181,
+  "name": "Error Handling Patterns",
+  "name_zh": "错误处理模式",
+  "slug": "error-handling-patterns",
+  "category": "quality",
+  "desc": "Fail-fast, retry, fallback, and dead letter queue patterns for resilient error management",
+  "desc_zh": "快速失败、重试、回退和死信队列模式，用于弹性错误管理",
+  "steps": [
+    "Classify errors by recoverability: distinguish transient errors (network timeouts, rate limits) from permanent errors (invalid input, missing resources) to select the right handling strategy",
+    "Implement fail-fast for unrecoverable errors: validate inputs early, throw immediately on invariant violations, and avoid wasting resources on doomed operations",
+    "Add retry with exponential backoff for transient failures: use jitter to prevent thundering herds and set maximum retry limits to avoid infinite loops",
+    "Design fallback strategies for degraded operation: serve cached data, return default values, or switch to backup services when primary paths fail",
+    "Route persistently failing messages to dead letter queues: capture unprocessable messages for investigation without blocking the main processing pipeline"
+  ],
+  "steps_zh": [
+    "按可恢复性分类错误：区分暂时性错误（网络超时、速率限制）和永久性错误（无效输入、缺失资源）以选择正确的处理策略",
+    "对不可恢复错误实施快速失败：尽早验证输入，在违反不变量时立即抛出，避免在注定失败的操作上浪费资源",
+    "为暂时性故障添加指数退避重试：使用抖动防止惊群效应，设置最大重试限制避免无限循环",
+    "设计降级操作的回退策略：当主路径失败时提供缓存数据、返回默认值或切换到备用服务",
+    "将持续失败的消息路由到死信队列：捕获无法处理的消息以供调查，同时不阻塞主处理管道"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Detect",
+    "Handle",
+    "Recover",
+    "Log"
+  ],
+  "viz_labels_zh": [
+    "检测",
+    "处理",
+    "恢复",
+    "记录"
+  ],
+  "related": [
+    "circuit-breaker-pattern",
+    "bulkhead-pattern",
+    "chaos-engineering"
+  ],
+  "tags": [
+    "resilience",
+    "error-handling",
+    "retry",
+    "fallback",
+    "dead-letter-queue"
+  ],
+  "origin_author": "Michael Nygard, 2007",
+  "origin_source": "Release It! Design and Deploy Production-Ready Software (Nygard, 2018)",
+  "origin_source_zh": "《发布！设计与部署生产就绪软件》（Nygard，2018）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Building distributed systems where network failures, timeouts, and partial outages are inevitable",
+    "Designing message processing pipelines where individual message failures should not halt the entire queue",
+    "Creating user-facing APIs that must degrade gracefully rather than return raw errors to clients",
+    "Operating services with strict SLA requirements where unhandled errors directly impact availability metrics"
+  ],
+  "when_to_use_zh": [
+    "构建分布式系统，其中网络故障、超时和部分中断是不可避免的",
+    "设计消息处理管道，其中单条消息失败不应停止整个队列",
+    "创建面向用户的API，必须优雅降级而非向客户端返回原始错误",
+    "运营有严格SLA要求的服务，未处理的错误直接影响可用性指标"
+  ],
+  "core_concepts": [
+    "Fail-Fast: Immediately reporting an error when a precondition is not met, rather than proceeding with an operation doomed to fail later",
+    "Retry with Backoff: Automatically reattempting a failed operation with increasing delays between attempts to allow transient issues to resolve",
+    "Fallback: Providing an alternative response or behavior when the primary operation fails, maintaining partial functionality",
+    "Dead Letter Queue: A separate queue where messages that cannot be processed after exhausting retries are stored for manual inspection and replay",
+    "Idempotency: Designing operations so that retrying them produces the same result, preventing duplicate side effects from retry logic"
+  ],
+  "core_concepts_zh": [
+    "快速失败：当前置条件不满足时立即报告错误，而不是继续注定在后续失败的操作",
+    "退避重试：自动重试失败操作，尝试之间的延迟递增，以允许暂时性问题解决",
+    "回退：当主操作失败时提供替代响应或行为，维持部分功能",
+    "死信队列：一个单独的队列，在重试耗尽后无法处理的消息被存储在此以供手动检查和重放",
+    "幂等性：设计操作使重试产生相同结果，防止重试逻辑产生重复副作用"
+  ],
+  "timeline": [
+    [
+      "2003",
+      "Enterprise Integration Patterns formalizes dead letter channel as a messaging pattern for undeliverable messages"
+    ],
+    [
+      "2007",
+      "Nygard's Release It! establishes fail-fast and stability patterns as essential for production systems"
+    ],
+    [
+      "2012",
+      "Netflix open-sources Hystrix, popularizing retry, fallback, and circuit breaker patterns in microservices"
+    ],
+    [
+      "2018",
+      "Nygard's Release It! second edition expands error handling patterns with cloud-native and container-era practices"
+    ],
+    [
+      "2022",
+      "Resilience libraries like Polly (.NET), Resilience4j (Java), and cockatiel (Node) become standard dependencies in production services"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2003",
+      "《企业集成模式》将死信通道正式确立为不可送达消息的消息传递模式"
+    ],
+    [
+      "2007",
+      "Nygard的《发布！》将快速失败和稳定性模式确立为生产系统的必需"
+    ],
+    [
+      "2012",
+      "Netflix开源Hystrix，在微服务中普及重试、回退和断路器模式"
+    ],
+    [
+      "2018",
+      "Nygard的《发布！》第二版扩展了错误处理模式，加入云原生和容器时代的实践"
+    ],
+    [
+      "2022",
+      "Polly（.NET）、Resilience4j（Java）和cockatiel（Node）等弹性库成为生产服务的标准依赖"
+    ]
+  ],
+  "dos": [
+    "Do classify errors as transient or permanent at the point of occurrence because the correct handling strategy depends entirely on this distinction",
+    "Do add jitter to retry delays because synchronized retries from multiple clients create thundering herd problems that worsen outages",
+    "Do make retried operations idempotent because non-idempotent retries can cause duplicate charges, messages, or state mutations",
+    "Do log every error with sufficient context because debugging production errors without request IDs, timestamps, and stack traces wastes hours"
+  ],
+  "dos_zh": [
+    "在发生时将错误分类为暂时性或永久性，因为正确的处理策略完全取决于这一区分",
+    "为重试延迟添加抖动，因为多个客户端的同步重试会产生惊群效应，加剧故障",
+    "使被重试的操作具有幂等性，因为非幂等的重试可能导致重复收费、消息或状态变更",
+    "用足够的上下文记录每个错误，因为没有请求ID、时间戳和堆栈跟踪的生产错误调试会浪费数小时"
+  ],
+  "donts": [
+    "Don't catch and swallow exceptions silently because hidden errors accumulate into mysterious system degradation",
+    "Don't retry permanent errors because retrying a 400 Bad Request or 404 Not Found wastes resources and delays actual error handling",
+    "Don't use unbounded retries because infinite retry loops can amplify failures and consume all available resources",
+    "Don't return raw internal errors to users because stack traces and internal messages expose security vulnerabilities and confuse end users"
+  ],
+  "donts_zh": [
+    "不要静默捕获并吞掉异常，因为隐藏的错误会累积成神秘的系统退化",
+    "不要重试永久性错误，因为重试400 Bad Request或404 Not Found会浪费资源并延迟实际的错误处理",
+    "不要使用无限重试，因为无限重试循环会放大故障并消耗所有可用资源",
+    "不要向用户返回原始内部错误，因为堆栈跟踪和内部消息会暴露安全漏洞并困扰终端用户"
+  ],
+  "case_study_company": "Uber",
+  "case_study": "Uber implemented a layered error handling strategy across their ride-matching pipeline after a cascading failure caused a 15-minute outage during peak hours. They introduced fail-fast validation at API gateways, retry with exponential backoff and jitter for inter-service calls, cached fallbacks for pricing estimates, and dead letter queues for failed payment events. This architecture reduced cascading failures by 80% and ensured that payment events were never lost, even during partial outages.",
+  "case_study_zh": "Uber在一次级联故障导致高峰时段15分钟中断后，在其出行匹配管道中实施了分层错误处理策略。他们在API网关引入快速失败验证，为服务间调用添加指数退避和抖动重试，为价格估算提供缓存回退，为失败的支付事件设置死信队列。这一架构将级联故障减少了80%，确保支付事件即使在部分中断期间也不会丢失。",
+  "when_not_to_use": [
+    "Simple synchronous scripts or CLI tools where errors should immediately terminate execution and print a message",
+    "Stateless pure functions where errors are return values and traditional exception handling adds unnecessary complexity",
+    "Systems in early prototype phase where resilience engineering is premature and slows iteration speed"
+  ],
+  "when_not_to_use_zh": [
+    "简单的同步脚本或CLI工具，错误应立即终止执行并打印消息",
+    "无状态纯函数，错误是返回值，传统异常处理增加不必要的复杂性",
+    "早期原型阶段的系统，弹性工程为时过早且减慢迭代速度"
+  ],
+  "adopters": [
+    "Uber",
+    "Netflix",
+    "Stripe",
+    "Amazon",
+    "LinkedIn"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Michael Nygard (2007). \"Release It! Design and Deploy Production-Ready Software\". Pragmatic Bookshelf.",
+  "secondary_sources": [
+    "Michael Nygard (2018). \"Release It! Design and Deploy Production-Ready Software, 2nd Edition\". Pragmatic Bookshelf.",
+    "Robert C. Martin (2008). \"Clean Code: A Handbook of Agile Software Craftsmanship\". Prentice Hall. Chapter 7: Error Handling."
+  ],
+  "typed_relations": [
+    {
+      "slug": "circuit-breaker-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "bulkhead-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "chaos-engineering",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/error-handling-patterns",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/error-handling-patterns.md"
+}

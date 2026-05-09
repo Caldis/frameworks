@@ -1,0 +1,185 @@
+{
+  "id": 315,
+  "name": "Runtime Application Self-Protection (RASP)",
+  "name_zh": "运行时应用自我保护（RASP）",
+  "slug": "runtime-application-self-protection",
+  "category": "security",
+  "desc": "A security technology that instruments application runtimes to detect and block attacks from within the running application context, with access to call stacks, data flows, and execution context that perimeter controls cannot see",
+  "desc_zh": "在运行中的应用程序上下文内部检测和阻止攻击的安全技术，可访问外围控制无法看到的调用栈、数据流和执行上下文",
+  "steps": [
+    "Instrument the application runtime: integrate a RASP agent (via JVM agent, .NET profiler API, native library injection, or language-specific module) that hooks into security-sensitive operations such as SQL query execution, file system access, deserialization, and OS command execution",
+    "Define detection rules for RASP sensors: configure which runtime events constitute attack indicators — SQL injection (tainted input in query string), path traversal (user-controlled file path segments), SSRF (user-controlled URL in outbound HTTP calls) — and set initial sensor mode to 'detect only'",
+    "Validate detection accuracy in staging: run the RASP agent against automated test suites and penetration test payloads in a non-production environment; tune false positive thresholds before enabling blocking mode to avoid impacting legitimate traffic",
+    "Enable blocking mode for high-confidence sensors: switch SQL injection, command injection, and deserialization sensors to block mode in production; leave lower-confidence sensors in detect-only mode and route alerts to SIEM for human triage",
+    "Integrate RASP telemetry into the security operations workflow: pipe RASP attack events into your SIEM/SOAR platform, correlate with WAF and network IDS signals, and define escalation playbooks for each attack category detected by the runtime agent"
+  ],
+  "steps_zh": [
+    "对应用运行时进行埋点：集成RASP代理（通过JVM代理、.NET分析器API、原生库注入或特定语言模块），钩入安全敏感操作，如SQL查询执行、文件系统访问、反序列化和操作系统命令执行",
+    "为RASP传感器定义检测规则：配置哪些运行时事件构成攻击指标——SQL注入（查询字符串中的污点输入）、路径遍历（用户控制的文件路径段）、SSRF（出站HTTP调用中用户控制的URL）——并将初始传感器模式设置为「仅检测」",
+    "在预发布环境验证检测准确性：在非生产环境中对自动化测试套件和渗透测试载荷运行RASP代理；在启用阻止模式以避免影响合法流量之前，调整误报阈值",
+    "对高置信度传感器启用阻止模式：在生产中将SQL注入、命令注入和反序列化传感器切换到阻止模式；将低置信度传感器保留在仅检测模式并将告警路由到SIEM进行人工分类",
+    "将RASP遥测集成到安全运营工作流：将RASP攻击事件输入SIEM/SOAR平台，与WAF和网络IDS信号关联，并为运行时代理检测到的每个攻击类别定义升级剧本"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Instrument Runtime",
+    "Detection Rules",
+    "Validate Accuracy",
+    "Block Mode",
+    "SIEM Integrate"
+  ],
+  "viz_labels_zh": [
+    "运行时埋点",
+    "检测规则",
+    "精度验证",
+    "阻断模式",
+    "SIEM集成"
+  ],
+  "related": [
+    "waf-patterns",
+    "defense-in-depth",
+    "owasp-top-10",
+    "security-by-design",
+    "threat-modeling-stride"
+  ],
+  "tags": [
+    "security",
+    "rasp",
+    "runtime-security",
+    "appsec",
+    "intrusion-detection"
+  ],
+  "origin_author": "Gartner (Joseph Feiman coined the term RASP in 2012); commercial implementations by Contrast Security, Sqreen",
+  "origin_year": 2012,
+  "origin_source": "Gartner (2012). \"Designing Application Security into Your Systems\". Feiman, J. (2012). Gartner Research Note.",
+  "origin_source_zh": "Gartner（2012）。《将应用安全设计进您的系统》。Feiman, J.（2012）。Gartner研究报告。",
+  "complexity": "intermediate",
+  "abstraction_level": "component",
+  "maturity_ring": "established",
+  "quality_concerns": [
+    "security",
+    "reliability",
+    "observability"
+  ],
+  "adopters": [
+    "Capital One",
+    "Société Générale",
+    "Cisco",
+    "Hulu",
+    "Wayfair"
+  ],
+  "when_to_use": [
+    "Applications exposed to the internet that handle sensitive data and cannot patch known vulnerabilities immediately due to release cycle constraints",
+    "Regulated industries (finance, healthcare) where compliance frameworks (PCI-DSS, HIPAA) require real-time attack detection and evidence of active controls inside the application layer",
+    "Zero-day vulnerability periods where a RASP agent can block exploitation of a newly disclosed library vulnerability before a patched version is deployed",
+    "Applications that cannot be fully covered by network-layer WAF rules due to encrypted payloads, WebSocket traffic, or complex application-specific attack surfaces"
+  ],
+  "when_to_use_zh": [
+    "暴露在互联网上且处理敏感数据的应用程序，由于发布周期限制无法立即修补已知漏洞",
+    "监管行业（金融、医疗），合规框架（PCI-DSS、HIPAA）要求应用层内的实时攻击检测和主动控制证据",
+    "零日漏洞期间，RASP代理可以在部署修补版本之前阻止对新披露库漏洞的利用",
+    "由于加密有效载荷、WebSocket流量或复杂的应用特定攻击面，无法被网络层WAF规则完全覆盖的应用程序"
+  ],
+  "core_concepts": [
+    "In-Process Instrumentation: RASP agents operate inside the application process and hook into language runtime APIs (JVMTI, .NET Profiler) to intercept security-sensitive operations at the point of execution, not at the network boundary",
+    "Taint Tracking: RASP engines mark user-supplied data as 'tainted' at entry points (HTTP parameters, headers, cookies) and detect when tainted data reaches dangerous sinks (SQL query builders, file path constructors, OS command executors) without sanitization",
+    "Context-Aware Detection: Because RASP has access to the full call stack at the point of a potential attack, it can distinguish between legitimate application behavior and injected payloads with far lower false-positive rates than pattern-matching WAFs",
+    "Blocking vs. Detection Mode: In blocking mode, the RASP agent terminates the offending request and returns an error; in detection mode, it logs the attack event and passes the request through — allowing teams to validate accuracy before enabling enforcement",
+    "Defense in Depth Position: RASP is an inner ring of defense that complements perimeter controls (WAF, API gateway), not a replacement. It is most effective when integrated into a layered security architecture"
+  ],
+  "core_concepts_zh": [
+    "进程内埋点：RASP代理在应用程序进程内部运行，钩入语言运行时API（JVMTI、.NET分析器），在执行点而非网络边界拦截安全敏感操作",
+    "污点追踪：RASP引擎在入口点（HTTP参数、头、Cookie）将用户提供的数据标记为「污点」，并检测污点数据何时在未经清理的情况下到达危险汇点（SQL查询构建器、文件路径构造器、操作系统命令执行器）",
+    "上下文感知检测：由于RASP在潜在攻击点可以访问完整调用栈，它可以区分合法应用行为和注入的有效载荷，误报率远低于模式匹配WAF",
+    "阻止与检测模式：在阻止模式下，RASP代理终止违规请求并返回错误；在检测模式下，它记录攻击事件并放行请求——允许团队在启用执行前验证准确性",
+    "纵深防御位置：RASP是补充外围控制（WAF、API网关）的内层防御，而非替代品。当集成到分层安全架构中时效果最佳"
+  ],
+  "timeline": [
+    [
+      2012,
+      "Gartner analyst Joseph Feiman coins the term 'Runtime Application Self-Protection' in a research note"
+    ],
+    [
+      2015,
+      "First commercial RASP products (Contrast Security, Prevoty) reach the market with Java and .NET support"
+    ],
+    [
+      2018,
+      "RASP adoption grows in financial services following high-profile Struts and Log4j-class vulnerabilities that RASP could have blocked"
+    ],
+    [
+      2022,
+      "Cloud-native RASP approaches emerge using eBPF for kernel-level syscall interception as an alternative to language-specific agents"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      2012,
+      "Gartner分析师Joseph Feiman在研究报告中创造了「运行时应用自我保护」这一术语"
+    ],
+    [
+      2015,
+      "首批商业RASP产品（Contrast Security、Prevoty）支持Java和.NET上市"
+    ],
+    [
+      2018,
+      "在RASP本可阻止的高调Struts和Log4j类漏洞之后，金融服务中的RASP采用率增长"
+    ],
+    [
+      2022,
+      "使用eBPF进行内核级系统调用拦截的云原生RASP方案作为特定语言代理的替代品涌现"
+    ]
+  ],
+  "dos": [
+    "Do start RASP in detection-only mode and run it through a full regression and load test before enabling blocking — a false positive in blocking mode can take down production traffic",
+    "Do correlate RASP events with WAF and SIEM data to build a complete picture of attacker behavior; RASP events that reach the runtime often indicate WAF bypasses worth investigating",
+    "Do measure the RASP agent's performance overhead in production-representative load tests; accept up to 5% overhead as reasonable, escalate to the vendor if overhead exceeds 10%",
+    "Do use RASP as a compensating control during zero-day vulnerability windows — it buys time to test and deploy patches without leaving systems fully exposed"
+  ],
+  "dos_zh": [
+    "先以仅检测模式启动RASP，并在启用阻止前通过完整的回归和负载测试——阻止模式中的误报可能中断生产流量",
+    "将RASP事件与WAF和SIEM数据关联，以建立攻击者行为的完整图像；到达运行时的RASP事件通常表明值得调查的WAF绕过",
+    "在代表性生产负载测试中测量RASP代理的性能开销；接受最高5%的开销为合理，如果开销超过10%则升级到供应商",
+    "在零日漏洞窗口期间使用RASP作为补偿控制——它争取时间测试和部署补丁，而不使系统完全暴露"
+  ],
+  "donts": [
+    "Don't treat RASP as a substitute for secure coding practices — it is a safety net for exploitation attempts, not a license to write vulnerable code",
+    "Don't enable blocking mode for all sensors simultaneously in production — start with the highest-confidence, lowest-false-positive sensors (SQL injection, command injection) and expand gradually",
+    "Don't ignore RASP agent updates — the agent's detection rules must stay current with new attack patterns; an outdated RASP agent provides a false sense of security",
+    "Don't underestimate the vendor lock-in risk — RASP agents are deeply integrated with the application runtime; migrating between vendors requires re-testing all detection and blocking rules"
+  ],
+  "donts_zh": [
+    "不要将RASP视为安全编码实践的替代品——它是利用尝试的安全网，而非编写易受攻击代码的许可证",
+    "不要在生产中同时为所有传感器启用阻止模式——从最高置信度、最低误报的传感器（SQL注入、命令注入）开始，逐步扩展",
+    "不要忽视RASP代理更新——代理的检测规则必须与新的攻击模式保持同步；过时的RASP代理会提供虚假的安全感",
+    "不要低估供应商锁定风险——RASP代理与应用运行时深度集成；在供应商之间迁移需要重新测试所有检测和阻止规则"
+  ],
+  "case_study_company": "Capital One",
+  "case_study": "Capital One deployed Contrast Security's RASP agent across their Java-based banking microservices following the 2019 Capital One breach (caused by a misconfigured WAF, not an application vulnerability). As a compensating control during the Log4Shell (CVE-2021-44228) zero-day in December 2021, their RASP agents detected and blocked JNDI lookup injection attempts in real time across their application fleet within hours of the CVE publication — before patched Log4j versions were validated and deployed. Their security team credited RASP detection telemetry with providing definitive proof that no successful exploitation occurred during the vulnerability window.",
+  "case_study_zh": "Capital One在2019年Capital One数据泄露（由错误配置的WAF而非应用漏洞引起）之后，在其基于Java的银行微服务中部署了Contrast Security的RASP代理。作为2021年12月Log4Shell（CVE-2021-44228）零日漏洞期间的补偿控制，他们的RASP代理在CVE发布后数小时内实时检测并阻止了整个应用舰队的JNDI查找注入尝试——早于修补的Log4j版本被验证和部署。他们的安全团队将RASP检测遥测归功于提供了在漏洞窗口期间没有发生成功利用的确凿证明。",
+  "when_not_to_use": [
+    "Applications with extremely tight latency SLOs (sub-millisecond P99) where even 1-2% RASP overhead is unacceptable",
+    "Languages or runtimes for which mature RASP agents do not exist (many Go, Rust, Elixir services) — immature agents introduce more risk than they mitigate",
+    "Serverless functions with very short execution durations where agent initialization overhead exceeds function execution time",
+    "Teams without a security operations capability to triage RASP alerts — deploying RASP without alert handling creates alert fatigue and eventually agent misconfiguration"
+  ],
+  "when_not_to_use_zh": [
+    "延迟SLO极严（P99亚毫秒级）的应用程序，即使1-2%的RASP开销也不可接受",
+    "不存在成熟RASP代理的语言或运行时（许多Go、Rust、Elixir服务）——不成熟的代理引入的风险超过其缓解的风险",
+    "执行时间极短的无服务器函数，代理初始化开销超过函数执行时间",
+    "没有安全运营能力来分类RASP告警的团队——在没有告警处理的情况下部署RASP会产生告警疲劳并最终导致代理配置错误"
+  ],
+  "primary_source": "Gartner (2012). \"Designing Application Security into Your Systems\". Feiman, J. Research Note G00237047.",
+  "primary_source_zh": "Gartner（2012）。《将应用安全设计进您的系统》。Feiman, J. 研究报告G00237047。",
+  "secondary_sources": [
+    "OWASP Foundation (2021). \"OWASP AppSensor Project: Runtime Application Self-Protection\". owasp.org/www-project-appsensor",
+    "Contrast Security (2022). \"State of Application Security Report\". contrastsecurity.com"
+  ],
+  "secondary_sources_zh": [
+    "OWASP基金会（2021）。《OWASP AppSensor项目：运行时应用自我保护》。owasp.org/www-project-appsensor",
+    "Contrast Security（2022）。《应用安全状态报告》。contrastsecurity.com"
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/runtime-application-self-protection",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/runtime-application-self-protection.md"
+}

@@ -1,0 +1,200 @@
+{
+  "id": 305,
+  "name": "Evaluation-Driven Development",
+  "name_zh": "评估驱动开发",
+  "slug": "evaluation-driven-development",
+  "category": "ai",
+  "desc": "Building AI applications by writing eval suites before features, using test results to guide iteration",
+  "desc_zh": "通过在编写功能前先构建评估套件来开发 AI 应用，并以测试结果驱动迭代",
+  "steps": [
+    "Define the success criteria for the AI feature in measurable terms before writing a single prompt or training a single model",
+    "Build a labelled golden dataset of input-output pairs that covers edge cases, failure modes, and distribution shift scenarios",
+    "Implement automated eval runners (LLM-as-judge, unit assertions, human spot-checks) that score every candidate prompt or model against the dataset",
+    "Only ship a new prompt version, model, or feature when it passes all eval thresholds — treat a failing eval as a failing test",
+    "Continuously expand the eval suite with production failures and edge cases discovered after deployment; re-run evals before every release"
+  ],
+  "steps_zh": [
+    "在编写任何提示词或训练任何模型之前，用可量化的标准定义 AI 功能的成功标准",
+    "构建带标注的黄金数据集，覆盖边缘情况、失败模式和分布偏移场景",
+    "实现自动化评估运行器（大模型作为评审、单元断言、人工抽查），对每个候选提示词或模型在数据集上打分",
+    "只有在通过所有评估阈值后才上线新版提示词、模型或功能——将评估失败视同测试失败处理",
+    "持续用上线后发现的生产故障和边缘情况扩充评估套件；每次发布前重新运行评估"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Define Evals",
+    "Build",
+    "Run Evals",
+    "Improve"
+  ],
+  "viz_labels_zh": [
+    "定义评估",
+    "构建",
+    "运行评估",
+    "持续改进"
+  ],
+  "related": [
+    "llm-evaluation-framework",
+    "rag-architecture",
+    "ai-observability-framework"
+  ],
+  "tags": [
+    "evals",
+    "testing",
+    "llm-ops",
+    "quality-assurance",
+    "prompt-engineering",
+    "ai-safety"
+  ],
+  "origin_author": "Hamel Husain",
+  "origin_source": "Hamel Husain — \"Your AI Product Needs Evals\" (2023); Eugene Yan — \"Patterns for Building LLM-based Systems\" (2023)",
+  "origin_source_zh": "Hamel Husain——「你的 AI 产品需要评估」（2023）；Eugene Yan——「构建大模型系统的模式」（2023）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Any AI feature that will be shipped to real users where quality regressions are costly or damaging to trust",
+    "Teams iterating on prompts or fine-tuned models where intuition-based evaluation slows down or misleads development",
+    "Regulated domains (healthcare, legal, finance) where you must demonstrate that your AI meets a defined quality threshold",
+    "Long-lived AI products where model upgrades, provider migrations, or prompt changes need safe rollout verification"
+  ],
+  "when_to_use_zh": [
+    "任何将面向真实用户发布的 AI 功能，质量回归代价高昂或会损害信任",
+    "在提示词或微调模型上迭代时，凭直觉评估会拖慢或误导开发的团队",
+    "必须证明 AI 满足特定质量阈值的受监管领域（医疗、法律、金融）",
+    "长期维护的 AI 产品，模型升级、提供商迁移或提示词变更需要安全的上线验证"
+  ],
+  "core_concepts": [
+    "Golden Dataset: A curated, human-labelled set of representative input-output pairs that defines acceptable behaviour for the AI feature",
+    "LLM-as-Judge: Using a powerful LLM (GPT-4, Claude Opus) as an automated evaluator that scores candidate outputs against a rubric",
+    "Eval Threshold: A quantitative pass/fail bar (e.g., BLEU ≥ 0.7, judge score ≥ 4/5, hallucination rate < 2%) that must be met before shipping",
+    "Regression Suite: A growing corpus of previously-failing examples added to the eval set to prevent reintroduction of known bugs",
+    "Slice Analysis: Breaking down eval scores by input category, language, topic, or user segment to surface hidden failure modes"
+  ],
+  "core_concepts_zh": [
+    "黄金数据集（Golden Dataset）：一组经过人工标注的代表性输入输出对，定义了 AI 功能的可接受行为",
+    "大模型即评审（LLM-as-Judge）：使用强大的大模型（GPT-4、Claude Opus）作为自动评估器，按评分标准对候选输出打分",
+    "评估阈值（Eval Threshold）：上线前必须达到的量化通过/失败标准（如 BLEU ≥ 0.7、评审得分 ≥ 4/5、幻觉率 < 2%）",
+    "回归测试集（Regression Suite）：将之前失败的示例持续添加到评估集，防止已知问题被重新引入",
+    "切片分析（Slice Analysis）：按输入类别、语言、主题或用户群体拆解评估分数，揭示隐藏的失效模式"
+  ],
+  "timeline": [
+    [
+      "2022-11",
+      "ChatGPT launch exposes the difficulty of evaluating open-ended LLM outputs; teams resort to ad-hoc human review"
+    ],
+    [
+      "2023-06",
+      "Hamel Husain publishes influential essays arguing evals are the highest-leverage investment in AI product development"
+    ],
+    [
+      "2023-09",
+      "OpenAI Evals framework open-sourced; Braintrust, Weights & Biases, and Confident AI release dedicated eval platforms"
+    ],
+    [
+      "2024-03",
+      "Anthropic publishes model specification and internal eval methodology; LLM-as-judge becomes the dominant automated eval pattern"
+    ],
+    [
+      "2024-12",
+      "Evaluation-Driven Development emerges as the consensus best practice for LLM product teams shipping at scale"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2022-11",
+      "ChatGPT 发布暴露了评估开放式大模型输出的困难，各团队依赖临时人工审查"
+    ],
+    [
+      "2023-06",
+      "Hamel Husain 发表颇具影响力的文章，主张评估是 AI 产品开发中杠杆最高的投资"
+    ],
+    [
+      "2023-09",
+      "OpenAI Evals 框架开源；Braintrust、Weights & Biases、Confident AI 发布专用评估平台"
+    ],
+    [
+      "2024-03",
+      "Anthropic 发布模型规范和内部评估方法论；大模型即评审成为主流自动化评估模式"
+    ],
+    [
+      "2024-12",
+      "评估驱动开发成为规模化大模型产品团队的共识最佳实践"
+    ]
+  ],
+  "dos": [
+    "Start with a small golden dataset of 50-100 examples and grow it iteratively — a small high-quality set beats a large noisy one",
+    "Combine automated evals (fast, cheap, consistent) with periodic human spot-checks (catches subtle issues automated judges miss)",
+    "Make eval runs part of your CI/CD pipeline so every pull request that changes a prompt gets automatically evaluated",
+    "Use slice analysis to audit evals across languages, user types, and edge cases — aggregate scores hide important failure clusters"
+  ],
+  "dos_zh": [
+    "从 50-100 个示例的小型黄金数据集开始，迭代扩充——小而精的集合胜过大而杂的",
+    "将自动化评估（快速、低成本、一致）与定期人工抽查（发现自动评审遗漏的细微问题）结合使用",
+    "将评估运行纳入 CI/CD 流水线，使每个修改提示词的 PR 都能自动触发评估",
+    "使用切片分析跨语言、用户类型和边缘情况审计评估结果——汇总分数会掩盖重要的失效集群"
+  ],
+  "donts": [
+    "Don't treat evals as a one-time pre-launch checklist — production failures must feed back into the eval suite continuously",
+    "Don't use LLM-as-judge as your only evaluator for your own model — the judge may share the same blind spots as the model being evaluated",
+    "Don't optimise blindly for a single metric — teams that overfit their prompts to an eval benchmark often degrade real-world quality",
+    "Don't skip writing evals because the task seems too subjective — even creative tasks can have measurable quality dimensions (coherence, factuality, tone)"
+  ],
+  "donts_zh": [
+    "不要将评估视为一次性上线前清单——生产故障必须持续反馈到评估套件中",
+    "不要仅用大模型即评审来评估自己的模型——评审模型可能与被评估模型存在相同的盲点",
+    "不要盲目优化单一指标——将提示词过度拟合到评估基准的团队往往会降低真实世界的质量",
+    "不要因任务看起来过于主观而跳过评估——即便是创意任务也可以有可量化的质量维度（连贯性、事实性、语调）"
+  ],
+  "case_study_company": "Duolingo",
+  "case_study": "Duolingo's AI team adopted Evaluation-Driven Development when building their AI-powered language tutoring features for Duolingo Max. Before shipping any new exercise type or conversation scenario, the team assembled expert linguist panels to create golden datasets of expected dialogue flows, then built automated LLM-as-judge pipelines to score candidate outputs for grammatical correctness, pedagogical appropriateness, and cultural sensitivity. This approach allowed them to iterate 10× faster than pure human review while catching critical errors — including a model that inappropriately simplified responses for advanced learners — before they reached any users. The eval infrastructure became the team's primary quality gate for all subsequent model upgrades.",
+  "case_study_zh": "Duolingo 的 AI 团队在构建 Duolingo Max 的 AI 驱动语言辅导功能时采用了评估驱动开发。在上线任何新练习类型或对话场景之前，团队组织了由专业语言学家组成的评审小组，创建了期望对话流程的黄金数据集，然后构建了自动化大模型即评审管线，对候选输出在语法正确性、教学适宜性和文化敏感性上进行评分。这一方法使团队的迭代速度比纯人工审查快 10 倍，同时在到达用户之前捕获了关键错误——包括一个不当简化高级学习者回应的模型问题。评估基础设施成为团队对所有后续模型升级的主要质量门禁。",
+  "when_not_to_use": [
+    "Pure research or exploratory prototyping where the problem definition itself is still being discovered — premature evals create false precision",
+    "Ultra-low-stakes internal tools where the cost of building and maintaining an eval suite exceeds the cost of the occasional bad output",
+    "Highly novel task domains with no existing labelled examples and no clear ground truth — invest in data collection first",
+    "As a replacement for alignment and safety work — evals measure performance on known dimensions but cannot guarantee safety against unknown failure modes"
+  ],
+  "when_not_to_use_zh": [
+    "纯研究或探索性原型阶段，问题定义本身仍在发现中——过早的评估会制造虚假的精确感",
+    "风险极低的内部工具，构建和维护评估套件的成本超过偶尔出现不良输出的代价",
+    "没有现有标注样本且缺乏明确基准答案的全新任务领域——应先投资于数据收集",
+    "作为对齐和安全工作的替代品——评估能衡量已知维度上的性能，但无法保证对未知失效模式的安全性"
+  ],
+  "adopters": [
+    "Duolingo",
+    "Anthropic",
+    "OpenAI",
+    "Weights & Biases",
+    "Braintrust",
+    "Scale AI"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "maintainability",
+    "performance"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Husain, H. (2023). \"Your AI Product Needs Evals\". hamel.dev/blog/posts/evals.",
+  "secondary_sources": [
+    "Yan, E. (2023). \"Patterns for Building LLM-based Systems & Products\". eugeneyan.com/writing/llm-patterns.",
+    "Anthropic (2024). \"Evaluating AI systems: our approach to model evaluation\". anthropic.com/research.",
+    "Shankar, S. et al. (2024). \"Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs\". arXiv:2404.12272."
+  ],
+  "typed_relations": [
+    {
+      "slug": "llm-evaluation-framework",
+      "type": "extends"
+    },
+    {
+      "slug": "rag-architecture",
+      "type": "complement"
+    },
+    {
+      "slug": "ai-observability-framework",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/evaluation-driven-development",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/evaluation-driven-development.md"
+}

@@ -1,0 +1,194 @@
+{
+  "id": 197,
+  "name": "Schema Registry Pattern",
+  "name_zh": "模式注册表模式",
+  "slug": "schema-registry-pattern",
+  "category": "data",
+  "desc": "Centralized schema management for data contracts (Confluent, 2015)",
+  "desc_zh": "用于数据契约的集中化模式管理体系（Confluent，2015）",
+  "steps": [
+    "Deploy a schema registry service (Confluent Schema Registry, AWS Glue Schema Registry, or Apicurio) that acts as the centralized repository for all schema versions across your data platform",
+    "Producers register schemas before writing data: the registry assigns a schema ID, validates compatibility with the existing version history, and rejects schemas that violate the configured compatibility mode",
+    "Serializers embed the schema ID in the message payload (e.g., Avro magic byte + schema ID prefix) so consumers can resolve the exact schema version used to encode each message without out-of-band coordination",
+    "Configure compatibility rules per subject: BACKWARD compatibility ensures new consumers can read old messages; FORWARD ensures old consumers can read new messages; FULL ensures both directions are safe",
+    "Integrate schema validation into CI/CD pipelines so that schema changes are reviewed and compatibility-checked before deployment, treating schema changes as a first-class engineering artifact"
+  ],
+  "steps_zh": [
+    "部署模式注册表服务（Confluent Schema Registry、AWS Glue Schema Registry或Apicurio），作为数据平台中所有模式版本的集中存储库",
+    "生产者在写入数据前注册模式：注册表分配模式ID，验证与现有版本历史的兼容性，并拒绝违反配置兼容性模式的模式",
+    "序列化器将模式ID嵌入消息负载（如Avro魔术字节+模式ID前缀），使消费者无需带外协调即可解析用于编码每条消息的确切模式版本",
+    "按主题配置兼容性规则：BACKWARD兼容性确保新消费者可读取旧消息；FORWARD确保旧消费者可读取新消息；FULL确保双向安全",
+    "将模式验证集成到CI/CD管道中，使模式变更在部署前经过审查和兼容性检查，将模式变更视为一等工程制品"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Producer",
+    "Schema ID",
+    "Compatibility",
+    "Consumer",
+    "CI Validation"
+  ],
+  "viz_labels_zh": [
+    "生产者",
+    "模式ID",
+    "兼容性",
+    "消费者",
+    "CI验证"
+  ],
+  "related": [
+    "change-data-capture",
+    "data-lineage",
+    "data-quality-framework",
+    "stream-processing-patterns"
+  ],
+  "tags": [
+    "schema-registry",
+    "data-contracts",
+    "avro",
+    "protobuf",
+    "compatibility"
+  ],
+  "origin_author": "Confluent (Jay Kreps et al.), 2015",
+  "origin_source": "Confluent Schema Registry documentation (confluent.io, 2015); Designing Event-Driven Systems (O'Reilly, 2018) by Ben Stopford",
+  "origin_source_zh": "Confluent模式注册表文档（confluent.io，2015）；Ben Stopford《事件驱动系统设计》（O'Reilly，2018）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When multiple producers and consumers share Kafka topics or event streams and schema evolution must not break existing consumers",
+    "When data contracts between microservices need to be enforced automatically rather than relying on developer discipline",
+    "When serialization formats like Avro or Protobuf are used and schema IDs need to be resolved at deserialization time",
+    "When compliance or data governance requires an auditable history of all schema versions ever published to production"
+  ],
+  "when_to_use_zh": [
+    "当多个生产者和消费者共享Kafka主题或事件流，模式演进不得破坏现有消费者时",
+    "当微服务之间的数据契约需要自动执行而非依赖开发者纪律时",
+    "当使用Avro或Protobuf等序列化格式且需要在反序列化时解析模式ID时",
+    "当合规或数据治理要求对所有曾发布到生产的模式版本进行可审计的历史记录时"
+  ],
+  "core_concepts": [
+    "Schema subject: a named scope (typically a Kafka topic name) under which multiple schema versions are registered and their compatibility enforced",
+    "Compatibility modes: BACKWARD (new schema can read old data), FORWARD (old schema can read new data), FULL (both), NONE (no compatibility checking)",
+    "Schema ID wire format: the compact binary prefix (magic byte + 4-byte schema ID) that Confluent serializers embed in messages, allowing consumers to fetch the schema from the registry at deserialization",
+    "Data contract: a formal agreement between producer and consumer teams about the shape, semantics, and evolution rules of a dataset, enforced by the registry"
+  ],
+  "core_concepts_zh": [
+    "模式主题：命名范围（通常是Kafka主题名称），在其下注册多个模式版本并执行兼容性",
+    "兼容性模式：BACKWARD（新模式可读取旧数据）、FORWARD（旧模式可读取新数据）、FULL（两者）、NONE（不检查兼容性）",
+    "模式ID线格式：Confluent序列化器嵌入消息中的紧凑二进制前缀（魔术字节+4字节模式ID），允许消费者在反序列化时从注册表获取模式",
+    "数据契约：生产者和消费者团队之间关于数据集形状、语义和演进规则的正式协议，由注册表执行"
+  ],
+  "timeline": [
+    [
+      "2015",
+      "Confluent open-sources the Schema Registry as part of the Confluent Platform, paired with Apache Kafka"
+    ],
+    [
+      "2018",
+      "Ben Stopford's 'Designing Event-Driven Systems' popularizes schema registry as a core data contract pattern"
+    ],
+    [
+      "2021",
+      "AWS launches Glue Schema Registry; Azure Event Hubs adds Schema Registry support, making the pattern cloud-native"
+    ],
+    [
+      "2023",
+      "Data contract movement formalizes schema registries as the enforcement mechanism for producer-consumer SLAs in data mesh architectures"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2015",
+      "Confluent将模式注册表作为Confluent平台的一部分开源，与Apache Kafka配套"
+    ],
+    [
+      "2018",
+      "Ben Stopford的《事件驱动系统设计》将模式注册表推广为核心数据契约模式"
+    ],
+    [
+      "2021",
+      "AWS推出Glue Schema Registry；Azure Event Hubs添加模式注册表支持，使该模式成为云原生"
+    ],
+    [
+      "2023",
+      "数据契约运动将模式注册表正式化为数据网格架构中生产者-消费者SLA的执行机制"
+    ]
+  ],
+  "dos": [
+    "Do set BACKWARD or FULL compatibility as the default because it prevents producers from silently breaking consumers without coordination",
+    "Do treat schema changes as part of the pull request and code review process because catching incompatibilities before deployment is far cheaper than rolling back production",
+    "Do document the semantic meaning of each field in the schema alongside its type because a field named 'amount' without currency and unit context is an incomplete contract",
+    "Do version the schema subject per Kafka topic and environment (dev, staging, prod) to prevent development schema pollution from breaking production consumers"
+  ],
+  "dos_zh": [
+    "将BACKWARD或FULL兼容性设为默认值，因为它防止生产者在未协调的情况下静默地破坏消费者",
+    "将模式变更作为拉取请求和代码审查过程的一部分，因为在部署前发现不兼容远比回滚生产便宜",
+    "在模式中记录每个字段的语义含义以及其类型，因为没有货币和单位上下文的「amount」字段是不完整的契约",
+    "按Kafka主题和环境（开发、预发、生产）对模式主题进行版本控制，防止开发模式污染破坏生产消费者"
+  ],
+  "donts": [
+    "Don't use JSON Schema without a registry because without versioning and compatibility checks any producer can silently break all consumers",
+    "Don't delete or modify registered schema versions because consumers may still rely on those versions to deserialize historical messages",
+    "Don't let producers register schemas at runtime in production without CI/CD validation because unreviewed schema changes are a common source of production incidents",
+    "Don't ignore the schema registry as an operational dependency because if it becomes unavailable all producers and consumers using it will fail to start or process messages"
+  ],
+  "donts_zh": [
+    "不要在没有注册表的情况下使用JSON Schema，因为没有版本控制和兼容性检查，任何生产者都可能静默地破坏所有消费者",
+    "不要删除或修改已注册的模式版本，因为消费者可能仍依赖这些版本来反序列化历史消息",
+    "不要在生产中不经CI/CD验证就让生产者在运行时注册模式，因为未经审查的模式变更是生产事故的常见来源",
+    "不要忽视模式注册表作为操作依赖，因为如果它不可用，所有使用它的生产者和消费者将无法启动或处理消息"
+  ],
+  "case_study_company": "Linkedin",
+  "case_study": "LinkedIn uses a schema registry (built on their internal Espresso key-value store) to manage thousands of Avro schemas across over 10,000 Kafka topics that power their feed, notifications, and analytics pipelines. The registry enforces BACKWARD compatibility so that the 300+ microservices consuming any given topic can be deployed independently without coordination windows. Schema evolution incidents dropped by over 80% after the registry was mandated company-wide, compared to the prior JSON-without-schema era.",
+  "case_study_zh": "LinkedIn使用模式注册表（基于其内部Espresso键值存储构建）管理驱动其动态、通知和分析管道的10,000多个Kafka主题中的数千个Avro模式。注册表执行BACKWARD兼容性，使消费任何给定主题的300多个微服务可以独立部署，无需协调窗口。与之前无模式JSON时代相比，模式演进事故在注册表全公司强制推行后下降了80%以上。",
+  "when_not_to_use": [
+    "Simple request-response REST APIs where OpenAPI specification and HTTP versioning provide sufficient contract management",
+    "Single-team internal pipelines where producer and consumer are the same team and informal coordination is sufficient",
+    "When message volumes are low and human-readable JSON without schema enforcement meets the team's agility needs",
+    "Throwaway event streams used only for debugging or short-lived experiments where schema evolution is not a concern"
+  ],
+  "when_not_to_use_zh": [
+    "OpenAPI规范和HTTP版本控制提供足够契约管理的简单请求-响应REST API",
+    "生产者和消费者是同一团队且非正式协调已足够的单团队内部管道",
+    "当消息量较低且没有模式强制的人类可读JSON满足团队敏捷性需求时",
+    "仅用于调试或短期实验的一次性事件流，模式演进不是关注点"
+  ],
+  "adopters": [
+    "LinkedIn",
+    "Uber",
+    "Cloudflare",
+    "Robinhood",
+    "Confluent customers (10,000+)"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "maintainability",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Confluent Inc. (2015). \"Schema Registry Documentation\". docs.confluent.io.",
+  "secondary_sources": [
+    "Stopford, B. (2018). \"Designing Event-Driven Systems\". O'Reilly Media.",
+    "Narkhede, N., Shapira, G. & Palino, T. (2017). \"Kafka: The Definitive Guide\". O'Reilly Media.",
+    "Dehghani, Z. (2022). \"Data Contracts\". martinfowler.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "change-data-capture",
+      "type": "complement"
+    },
+    {
+      "slug": "data-lineage",
+      "type": "complement"
+    },
+    {
+      "slug": "data-quality-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "stream-processing-patterns",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/schema-registry-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/schema-registry-pattern.md"
+}

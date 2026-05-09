@@ -1,0 +1,194 @@
+{
+  "id": 73,
+  "name": "Strangler Fig Pattern",
+  "name_zh": "绞杀榕模式",
+  "slug": "strangler-fig-pattern",
+  "category": "evolution",
+  "desc": "Incrementally replace a legacy system by routing traffic to new modules",
+  "desc_zh": "通过逐步将流量路由至新模块，渐进式替换遗留系统",
+  "steps": [
+    "Identify the legacy system boundary and map all entry points (APIs, events, UI routes)",
+    "Build a facade or proxy layer that intercepts all requests to the legacy system",
+    "Incrementally implement new functionality behind the facade, feature by feature",
+    "Redirect traffic from the facade to the new implementation one slice at a time",
+    "Retire legacy code once all traffic has been migrated and verified stable"
+  ],
+  "steps_zh": [
+    "识别遗留系统边界，映射所有入口点（API、事件、UI 路由）",
+    "构建外观层或代理层，拦截所有流向遗留系统的请求",
+    "在外观层后面逐项功能地增量实现新功能",
+    "逐片将流量从外观层重定向至新实现",
+    "所有流量迁移并验证稳定后，退役遗留代码"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Legacy",
+    "Facade",
+    "New Service",
+    "Decommission"
+  ],
+  "viz_labels_zh": [
+    "遗留系统",
+    "外观层",
+    "新服务",
+    "下线旧系统"
+  ],
+  "related": [
+    "branch-by-abstraction",
+    "parallel-run",
+    "microservices-decomposition"
+  ],
+  "tags": [
+    "migration",
+    "legacy",
+    "incremental",
+    "strangler-fig"
+  ],
+  "origin_author": "Martin Fowler, 2004",
+  "origin_source": "StranglerFigApplication (martinfowler.com)",
+  "origin_source_zh": "《绞杀榕应用》（martinfowler.com 博文）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Migrating a monolithic legacy system to microservices without a full rewrite",
+    "Replacing an aging e-commerce platform while keeping it live for customers",
+    "Gradually moving from an on-premises system to cloud-native services",
+    "Modernizing a mainframe backend one domain at a time"
+  ],
+  "when_to_use_zh": [
+    "将单体遗留系统迁移到微服务架构，而无需全面重写",
+    "在保持客户正常使用的同时替换老化的电商平台",
+    "从本地部署系统逐步迁移至云原生服务",
+    "按业务领域逐步现代化大型机后端"
+  ],
+  "core_concepts": [
+    "Facade/Proxy: An interception layer that sits between consumers and the legacy system, enabling transparent traffic routing",
+    "Incremental migration: Replace one vertical slice of functionality at a time rather than attempting a big-bang rewrite",
+    "Traffic routing: Gradually shift requests from old to new implementation using load balancers, API gateways, or URL rewrites",
+    "Asset capture: Each migrated slice permanently removes a piece of legacy code, like a strangler fig enveloping its host tree",
+    "Rollback safety: The facade can instantly revert traffic to the legacy path if the new implementation exhibits issues"
+  ],
+  "core_concepts_zh": [
+    "外观/代理层：位于消费者与遗留系统之间的拦截层，实现透明的流量路由",
+    "增量迁移：每次替换一个纵向功能切片，而非尝试一次性大爆炸重写",
+    "流量路由：通过负载均衡器、API 网关或 URL 重写，逐步将请求从旧实现转移至新实现",
+    "资产蚕食：每个已迁移的切片永久移除一段遗留代码，如同绞杀榕逐渐包裹宿主树",
+    "回滚安全性：当新实现出现问题时，外观层可立即将流量恢复至遗留路径"
+  ],
+  "timeline": [
+    [
+      "2004",
+      "Martin Fowler publishes the original Strangler Fig Application article"
+    ],
+    [
+      "2012",
+      "Pattern gains traction with the rise of microservices at companies like Netflix"
+    ],
+    [
+      "2015",
+      "Sam Newman highlights Strangler Fig in 'Building Microservices' as a key migration strategy"
+    ],
+    [
+      "2019",
+      "AWS and Azure publish official cloud migration guides featuring the Strangler Fig pattern"
+    ],
+    [
+      "2023",
+      "Pattern adopted for AI system migrations, replacing legacy ML pipelines with LLM-based services"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2004",
+      "Martin Fowler 发表原始的绞杀榕应用文章"
+    ],
+    [
+      "2012",
+      "随着 Netflix 等公司推行微服务，该模式获得广泛关注"
+    ],
+    [
+      "2015",
+      "Sam Newman 在《构建微服务》中将绞杀榕作为核心迁移策略加以强调"
+    ],
+    [
+      "2019",
+      "AWS 和 Azure 在官方云迁移指南中正式纳入绞杀榕模式"
+    ],
+    [
+      "2023",
+      "该模式被应用于 AI 系统迁移，用基于 LLM 的服务替换遗留 ML 管线"
+    ]
+  ],
+  "dos": [
+    "Start with the highest-value, most well-understood slice to build team confidence early",
+    "Invest in comprehensive monitoring and diff-comparison between old and new paths",
+    "Keep the facade layer thin and stateless so it does not become a bottleneck itself",
+    "Celebrate each retired legacy module to maintain team momentum"
+  ],
+  "dos_zh": [
+    "从价值最高、最易理解的切片开始，尽早建立团队信心",
+    "在新旧路径之间建立全面的监控和差异比对机制",
+    "保持外观层轻薄且无状态，避免其自身成为瓶颈",
+    "每退役一个遗留模块都值得庆祝，以维持团队动力"
+  ],
+  "donts": [
+    "Don't attempt to migrate everything at once — the whole point is incremental progress",
+    "Don't let the facade grow into a 'smart' middleware with business logic",
+    "Don't neglect the legacy system's maintenance during migration — it's still serving live traffic",
+    "Don't skip writing tests for the new implementation just because the legacy system 'already works'"
+  ],
+  "donts_zh": [
+    "不要试图一次性迁移所有内容——增量推进是该模式的核心要义",
+    "不要让外观层演变为包含业务逻辑的「智能」中间件",
+    "在迁移期间不要忽视遗留系统的维护——它仍在处理线上流量",
+    "不要因为遗留系统「已经能用」就跳过为新实现编写测试"
+  ],
+  "case_study_company": "The Guardian",
+  "case_study": "The Guardian newspaper migrated its website from a legacy Java CMS to a modern Scala/Node.js stack between 2011 and 2014 using the Strangler Fig pattern. They placed an Nginx proxy in front of the old system and routed one section at a time (sports, then news, then opinion) to the new stack. The migration was invisible to readers, and the legacy CMS was fully decommissioned without a single day of downtime.",
+  "case_study_zh": "《卫报》在 2011 年至 2014 年间使用绞杀榕模式将其网站从遗留 Java CMS 迁移至现代 Scala/Node.js 技术栈。他们在旧系统前部署 Nginx 代理，依次将各版块（先体育、再新闻、后评论）的流量切换至新系统。整个迁移对读者完全透明，遗留 CMS 在零停机的情况下被彻底退役。",
+  "when_not_to_use": [
+    "The legacy system is small enough that a clean rewrite can be completed in a single sprint",
+    "There is no clear boundary or API surface to intercept between consumers and the legacy system",
+    "The legacy system has no automated tests and its behavior cannot be reliably verified against the new system",
+    "Organizational urgency demands an immediate cutover rather than gradual migration"
+  ],
+  "when_not_to_use_zh": [
+    "遗留系统足够小，可以在单个迭代内完成干净的重写",
+    "消费者与遗留系统之间没有清晰的边界或可拦截的 API 接口",
+    "遗留系统没有自动化测试，其行为无法与新系统进行可靠比对",
+    "组织紧迫性要求立即切换，而非渐进式迁移"
+  ],
+  "adopters": [
+    "The Guardian",
+    "Netflix",
+    "Shopify",
+    "GOV.UK",
+    "Amazon"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Martin Fowler (2004). \"StranglerFigApplication\". martinfowler.com.",
+  "secondary_sources": [
+    "Sam Newman (2019). \"Monolith to Microservices: Evolutionary Patterns to Transform Your Monolith\". O'Reilly Media.",
+    "Michael Feathers (2004). \"Working Effectively with Legacy Code\". Prentice Hall."
+  ],
+  "typed_relations": [
+    {
+      "slug": "branch-by-abstraction",
+      "type": "complement"
+    },
+    {
+      "slug": "parallel-run",
+      "type": "complement"
+    },
+    {
+      "slug": "microservices-decomposition",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/strangler-fig-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/strangler-fig-pattern.md"
+}

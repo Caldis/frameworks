@@ -1,0 +1,196 @@
+{
+  "id": 124,
+  "name": "Sidecar Pattern",
+  "name_zh": "边车模式",
+  "slug": "sidecar-pattern",
+  "category": "distributed",
+  "desc": "Attach auxiliary processes alongside primary services for cross-cutting concerns",
+  "desc_zh": "在主服务旁部署辅助进程以处理横切关注点",
+  "steps": [
+    "Identify cross-cutting concerns: determine which capabilities (logging, monitoring, TLS termination, service discovery, circuit breaking) should be extracted from the application code",
+    "Design the sidecar contract: define how the primary service and sidecar communicate — shared localhost network, Unix domain sockets, or shared filesystem volumes",
+    "Deploy the sidecar as a co-located process: configure the orchestrator (e.g., Kubernetes pod) to schedule the sidecar container alongside the primary container with shared lifecycle",
+    "Route traffic through the sidecar: use iptables rules, init containers, or transparent proxying so that inbound and outbound traffic flows through the sidecar without application code changes",
+    "Manage sidecar lifecycle independently: update, configure, and version the sidecar proxy separately from the application, enabling platform-wide policy changes without redeploying services"
+  ],
+  "steps_zh": [
+    "识别横切关注点：确定哪些能力（日志、监控、TLS终止、服务发现、熔断）应从应用代码中提取",
+    "设计边车契约：定义主服务与边车的通信方式——共享localhost网络、Unix域套接字或共享文件系统卷",
+    "将边车作为共置进程部署：配置编排器（如Kubernetes Pod）将边车容器与主容器共同调度，共享生命周期",
+    "将流量路由通过边车：使用iptables规则、init容器或透明代理，使入站和出站流量在无需修改应用代码的情况下经过边车",
+    "独立管理边车生命周期：独立于应用更新、配置和版本化边车代理，实现无需重新部署服务即可进行平台级策略变更"
+  ],
+  "ai_relevant": true,
+  "viz_type": "tree",
+  "viz_labels": [
+    "App Container",
+    "Sidecar",
+    "Shared Network",
+    "Traffic Route",
+    "Lifecycle"
+  ],
+  "viz_labels_zh": [
+    "应用容器",
+    "Sidecar",
+    "共享网络",
+    "流量路由",
+    "生命周期"
+  ],
+  "related": [
+    "service-mesh-pattern",
+    "hexagonal-architecture",
+    "bulkhead-pattern"
+  ],
+  "tags": [
+    "infrastructure",
+    "proxy",
+    "microservices",
+    "cross-cutting-concerns"
+  ],
+  "origin_author": "Microsoft Azure Architecture Center (formalized 2016); popularized by Envoy/Istio (2016-2017)",
+  "origin_source": "Newman, Building Microservices, Ch. 8 (2nd ed., 2021); Nygard, Release It!, Ch. 17; Burns, Designing Distributed Systems (O'Reilly, 2018)",
+  "origin_source_zh": "Newman《构建微服务》第8章（第二版，2021）；Nygard《Release It!》第17章；Burns《设计分布式系统》（O'Reilly，2018）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When multiple services written in different languages need the same cross-cutting capabilities without duplicating libraries in each language",
+    "When platform teams want to enforce consistent networking policies (mTLS, retries, rate limiting) across all services transparently",
+    "When the application team should not need to understand or maintain infrastructure concerns like service mesh configuration",
+    "When migrating legacy applications to a service mesh where modifying application code is impractical"
+  ],
+  "when_to_use_zh": [
+    "当用不同语言编写的多个服务需要相同的横切能力而不想在每种语言中重复库时",
+    "当平台团队希望透明地在所有服务间强制一致的网络策略（mTLS、重试、速率限制）时",
+    "当应用团队不应需要理解或维护服务网格配置等基础设施关注点时",
+    "当迁移遗留应用到服务网格且修改应用代码不现实时"
+  ],
+  "core_concepts": [
+    "Co-location: The sidecar runs in the same network namespace and scheduling unit (e.g., Kubernetes pod) as the primary, sharing localhost and lifecycle",
+    "Transparent interception: Traffic is redirected through the sidecar via iptables or CNI plugins so the application communicates normally without awareness of the proxy",
+    "Polyglot support: Because the sidecar operates at the network layer, it provides uniform capabilities regardless of the primary service's programming language",
+    "Separation of concerns: Application developers focus on business logic while platform engineers manage the sidecar configuration and upgrades",
+    "Control plane / data plane split: A centralized control plane pushes configuration to distributed sidecar data planes, enabling fleet-wide policy changes"
+  ],
+  "core_concepts_zh": [
+    "共置：边车与主服务运行在同一网络命名空间和调度单元（如Kubernetes Pod）中，共享localhost和生命周期",
+    "透明拦截：流量通过iptables或CNI插件重定向到边车，应用在不感知代理的情况下正常通信",
+    "多语言支持：因为边车在网络层操作，无论主服务使用何种编程语言都能提供统一能力",
+    "关注点分离：应用开发者专注业务逻辑，平台工程师管理边车配置和升级",
+    "控制平面/数据平面分离：集中式控制平面向分布式边车数据平面推送配置，实现全舰队策略变更"
+  ],
+  "timeline": [
+    [
+      "2013",
+      "Netflix's Prana sidecar provides service discovery and health checking for non-JVM services in the Netflix OSS ecosystem"
+    ],
+    [
+      "2016",
+      "Lyft open-sources Envoy, a high-performance L7 proxy designed from the ground up as a sidecar for microservices"
+    ],
+    [
+      "2017",
+      "Istio launches using Envoy as its sidecar data plane, popularizing the sidecar pattern for service mesh architectures"
+    ],
+    [
+      "2021",
+      "Newman's Building Microservices 2nd edition dedicates coverage to the sidecar pattern as a standard microservices infrastructure approach"
+    ],
+    [
+      "2023",
+      "Ambient mesh architectures emerge (Istio ambient mode) exploring per-node proxies as an alternative to per-pod sidecars"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2013",
+      "Netflix的Prana边车为Netflix OSS生态中的非JVM服务提供服务发现和健康检查"
+    ],
+    [
+      "2016",
+      "Lyft开源Envoy，一个从零设计为微服务边车的高性能L7代理"
+    ],
+    [
+      "2017",
+      "Istio使用Envoy作为边车数据平面发布，推动边车模式在服务网格架构中的普及"
+    ],
+    [
+      "2021",
+      "Newman《构建微服务》第二版将边车模式作为标准微服务基础设施方法进行专门介绍"
+    ],
+    [
+      "2023",
+      "环境网格架构出现（Istio ambient模式），探索每节点代理作为每Pod边车的替代方案"
+    ]
+  ],
+  "dos": [
+    "Do keep the sidecar lightweight and single-purpose because a bloated sidecar adds latency and resource overhead to every pod",
+    "Do version and release the sidecar independently from the application because coupling their release cycles defeats the purpose of separation",
+    "Do provide escape hatches for bypassing the sidecar because some traffic (e.g., health probes, localhost debugging) should not be intercepted",
+    "Do monitor sidecar resource consumption separately because sidecar CPU and memory usage can be significant at scale"
+  ],
+  "dos_zh": [
+    "保持边车轻量和单一职责，因为臃肿的边车会为每个Pod增加延迟和资源开销",
+    "独立于应用对边车进行版本管理和发布，因为耦合它们的发布周期违背了分离的初衷",
+    "提供绕过边车的逃生通道，因为某些流量（如健康探针、localhost调试）不应被拦截",
+    "单独监控边车的资源消耗，因为大规模部署下边车的CPU和内存使用可能相当可观"
+  ],
+  "donts": [
+    "Don't put business logic in the sidecar because it should contain only infrastructure concerns; mixing concerns creates tight coupling",
+    "Don't assume zero-cost proxying because each sidecar adds at least one network hop of latency and consumes CPU for TLS handshakes and header parsing",
+    "Don't deploy sidecars without a control plane because managing hundreds of independently configured sidecars becomes operationally intractable",
+    "Don't ignore sidecar startup ordering because if the sidecar is not ready before the application starts, initial requests will fail"
+  ],
+  "donts_zh": [
+    "不要在边车中放置业务逻辑，它应只包含基础设施关注点；混合关注点会造成紧耦合",
+    "不要假设代理零成本，每个边车至少增加一次网络跳转延迟并消耗CPU用于TLS握手和头部解析",
+    "不要在没有控制平面的情况下部署边车，因为管理数百个独立配置的边车在运维上不可行",
+    "不要忽视边车启动顺序，如果边车在应用启动前未就绪，初始请求将失败"
+  ],
+  "case_study_company": "Lyft",
+  "case_study": "Lyft built Envoy as an internal sidecar proxy to solve the challenge of operating a polyglot microservices fleet (Python, Go, C++) with consistent observability and resilience. Before Envoy, each language ecosystem maintained its own HTTP client library with inconsistent retry logic, timeout handling, and metrics emission. By deploying Envoy as a sidecar in every pod, Lyft achieved uniform distributed tracing, automatic retries with circuit breaking, and consistent latency metrics across all services regardless of language. Envoy handles over 3 million requests per second at Lyft and was donated to the CNCF, becoming the foundation for Istio and other service mesh implementations.",
+  "case_study_zh": "Lyft构建Envoy作为内部边车代理，解决运营多语言微服务集群（Python、Go、C++）时需要一致可观测性和弹性的挑战。在Envoy之前，每种语言生态各自维护HTTP客户端库，重试逻辑、超时处理和指标收集都不一致。通过在每个Pod中部署Envoy边车，Lyft实现了统一的分布式追踪、带熔断的自动重试以及跨所有服务一致的延迟指标，无论使用何种语言。Envoy在Lyft每秒处理超过300万请求，后捐赠给CNCF，成为Istio和其他服务网格实现的基础。",
+  "when_not_to_use": [
+    "Monolithic applications where cross-cutting concerns are handled within the application framework itself",
+    "Extremely latency-sensitive paths where even the sub-millisecond overhead of a local proxy is unacceptable",
+    "Small deployments with only a few services where the operational complexity of managing sidecars outweighs the benefits"
+  ],
+  "when_not_to_use_zh": [
+    "横切关注点在应用框架内部处理的单体应用",
+    "即使本地代理的亚毫秒级开销也不可接受的极端延迟敏感路径",
+    "只有少量服务的小型部署，管理边车的运维复杂性超过其收益"
+  ],
+  "adopters": [
+    "Lyft (Envoy)",
+    "Google (Istio)",
+    "Airbnb",
+    "Stripe",
+    "Shopify"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "maintainability",
+    "scalability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Burns, B. (2018). \"Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Services\". O'Reilly Media.",
+  "secondary_sources": [
+    "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 8. O'Reilly Media.",
+    "Microsoft Azure Architecture Center (2016). \"Sidecar Pattern\". docs.microsoft.com.",
+    "Nygard, M.T. (2018). \"Release It!\", 2nd ed., Ch. 17. Pragmatic Bookshelf."
+  ],
+  "typed_relations": [
+    {
+      "slug": "service-mesh-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "hexagonal-architecture",
+      "type": "complement"
+    },
+    {
+      "slug": "bulkhead-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/sidecar-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/sidecar-pattern.md"
+}

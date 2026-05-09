@@ -1,0 +1,189 @@
+{
+  "id": 107,
+  "name": "Star Schema",
+  "name_zh": "星型模式",
+  "slug": "star-schema",
+  "category": "data",
+  "desc": "Dimensional modeling with fact and dimension tables for analytics",
+  "desc_zh": "以事实表和维度表进行维度建模的分析架构",
+  "steps": [
+    "Identify the business process to model and define the grain: the most atomic level of detail each fact table row represents",
+    "Design the central fact table containing quantitative measures (revenue, quantity, duration) and foreign keys to all relevant dimensions",
+    "Build dimension tables with descriptive attributes (customer name, product category, date hierarchy) that provide context for slicing and filtering facts",
+    "Denormalize dimension tables into flat, wide structures to optimize join performance and simplify queries for analysts and BI tools",
+    "Load the star schema using ETL/ELT pipelines with surrogate keys, slowly changing dimension handling, and incremental fact loading strategies"
+  ],
+  "steps_zh": [
+    "识别要建模的业务过程并定义粒度：每行事实表代表的最原子级别的细节",
+    "设计中心事实表，包含定量度量（收入、数量、持续时间）和所有相关维度的外键",
+    "构建维度表，包含描述性属性（客户名、产品类别、日期层次），为事实的切片和过滤提供上下文",
+    "将维度表反规范化为扁平宽结构，以优化连接性能并简化分析师和BI工具的查询",
+    "使用ETL/ELT管道加载星型模式，包括代理键、缓慢变化维度处理和增量事实加载策略"
+  ],
+  "ai_relevant": false,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Fact Table",
+    "Dimension",
+    "Grain",
+    "Surrogate Key",
+    "Star Join"
+  ],
+  "viz_labels_zh": [
+    "事实表",
+    "维度表",
+    "粒度",
+    "代理键",
+    "星型连接"
+  ],
+  "related": [
+    "data-vault-2",
+    "data-lakehouse",
+    "polyglot-persistence"
+  ],
+  "tags": [
+    "dimensional-modeling",
+    "star-schema",
+    "kimball",
+    "analytics",
+    "data-warehouse"
+  ],
+  "origin_author": "Ralph Kimball, 1996",
+  "origin_source": "The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling (Wiley, 1996; 3rd edition 2013)",
+  "origin_source_zh": "《数据仓库工具箱：维度建模权威指南》（Wiley，1996；第三版2013）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When building a data warehouse or mart for business intelligence and ad-hoc analytical queries",
+    "When query simplicity and performance for aggregate operations are more important than storage efficiency",
+    "When BI tools like Tableau, Power BI, or Looker need intuitive, join-friendly schema structures",
+    "When business users need self-service analytics with predictable, understandable data models"
+  ],
+  "when_to_use_zh": [
+    "当为商业智能和临时分析查询构建数据仓库或数据集市时",
+    "当聚合操作的查询简洁性和性能比存储效率更重要时",
+    "当Tableau、Power BI或Looker等BI工具需要直观的、连接友好的模式结构时",
+    "当业务用户需要使用可预测、可理解的数据模型进行自助分析时"
+  ],
+  "core_concepts": [
+    "Fact tables: central tables containing quantitative measures (metrics) and foreign keys referencing dimension tables, representing business events at a specific grain",
+    "Dimension tables: wide, denormalized tables containing descriptive attributes that provide the 'who, what, where, when, why' context for analyzing facts",
+    "Grain declaration: explicitly defining what each row in a fact table represents to prevent ambiguity in aggregation and drill-down queries",
+    "Slowly changing dimensions: strategies (Type 1, 2, 3) for tracking how dimension attributes change over time while preserving historical accuracy"
+  ],
+  "core_concepts_zh": [
+    "事实表：包含定量度量（指标）和引用维度表外键的中心表，以特定粒度表示业务事件",
+    "维度表：宽的反规范化表，包含描述性属性，为分析事实提供「谁、什么、哪里、何时、为什么」的上下文",
+    "粒度声明：明确定义事实表中每行代表什么，以防止聚合和下钻查询中的歧义",
+    "缓慢变化维度：追踪维度属性随时间变化的策略（类型1、2、3），同时保持历史准确性"
+  ],
+  "timeline": [
+    [
+      "1996",
+      "Ralph Kimball publishes 'The Data Warehouse Toolkit' establishing dimensional modeling as the standard approach"
+    ],
+    [
+      "2002",
+      "Kimball and Ross release 'The Data Warehouse ETL Toolkit' formalizing star schema loading patterns"
+    ],
+    [
+      "2013",
+      "Third edition of 'The Data Warehouse Toolkit' updates techniques for modern columnar databases and cloud platforms"
+    ],
+    [
+      "2020",
+      "Star schema remains the dominant BI modeling pattern even as lakehouse architectures emerge"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1996",
+      "Ralph Kimball出版《数据仓库工具箱》，确立维度建模为标准方法"
+    ],
+    [
+      "2002",
+      "Kimball和Ross发布《数据仓库ETL工具箱》，正式化星型模式加载模式"
+    ],
+    [
+      "2013",
+      "《数据仓库工具箱》第三版为现代列式数据库和云平台更新技术"
+    ],
+    [
+      "2020",
+      "即使湖仓架构兴起，星型模式仍是主导的BI建模模式"
+    ]
+  ],
+  "dos": [
+    "Do declare the grain of every fact table explicitly because ambiguous grain leads to incorrect aggregations and double-counting",
+    "Do denormalize dimension tables fully because normalized dimensions (snowflake schema) add join complexity with minimal storage savings in analytical workloads",
+    "Do use surrogate keys in dimension tables because natural keys change and cause referential integrity issues",
+    "Do design conformed dimensions shared across multiple fact tables because they enable cross-process analysis and consistent reporting"
+  ],
+  "dos_zh": [
+    "明确声明每个事实表的粒度，因为模糊的粒度会导致不正确的聚合和重复计数",
+    "完全反规范化维度表，因为规范化维度（雪花模式）在分析工作负载中增加连接复杂性而存储节省极少",
+    "在维度表中使用代理键，因为自然键会变化并导致引用完整性问题",
+    "设计跨多个事实表共享的一致维度，因为它们支持跨过程分析和一致性报告"
+  ],
+  "donts": [
+    "Don't normalize dimension tables into snowflake schema for analytical workloads because it forces multi-table joins that slow BI queries",
+    "Don't mix grain levels in a single fact table because it makes aggregation unreliable and confuses business users",
+    "Don't skip slowly changing dimension handling because losing historical dimension values makes historical analysis inaccurate",
+    "Don't create operational (OLTP-style) schemas for analytical purposes because they are optimized for transactional writes, not analytical reads"
+  ],
+  "donts_zh": [
+    "不要为分析工作负载将维度表规范化为雪花模式，因为这会强制多表连接导致BI查询变慢",
+    "不要在单个事实表中混合粒度级别，因为这使聚合不可靠并困扰业务用户",
+    "不要跳过缓慢变化维度处理，因为丢失历史维度值会使历史分析不准确",
+    "不要为分析目的创建操作型（OLTP风格）模式，因为它们为事务写入优化而非分析读取"
+  ],
+  "case_study_company": "Walmart",
+  "case_study": "Walmart's enterprise data warehouse uses Kimball-style star schemas to model its retail operations across 10,000+ stores. Fact tables capture point-of-sale transactions at the item-store-day grain, while conformed dimensions for product, store, and time enable cross-departmental analytics. This design allows supply chain, marketing, and finance teams to query the same data with consistent results using standard BI tools.",
+  "case_study_zh": "Walmart的企业数据仓库使用Kimball风格的星型模式建模其跨10,000多家门店的零售运营。事实表以商品-门店-天粒度捕获销售点交易，而产品、门店和时间的一致维度支持跨部门分析。这种设计使供应链、营销和财务团队能够使用标准BI工具以一致的结果查询相同数据。",
+  "when_not_to_use": [
+    "When the use case is primarily OLTP with heavy insert/update workloads that require normalized schemas",
+    "When data relationships are highly complex and graph-like rather than dimensional",
+    "When schema flexibility is needed and the data structure changes frequently (consider schema-on-read approaches instead)",
+    "When real-time streaming analytics are needed and pre-aggregated materialized views are more appropriate"
+  ],
+  "when_not_to_use_zh": [
+    "当用例主要是OLTP且有大量插入/更新工作负载需要规范化模式时",
+    "当数据关系高度复杂且呈图状而非维度化时",
+    "当需要模式灵活性且数据结构频繁变化时（考虑读时模式方法）",
+    "当需要实时流分析且预聚合物化视图更合适时"
+  ],
+  "adopters": [
+    "Walmart",
+    "Amazon",
+    "Target",
+    "Netflix",
+    "Airbnb"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "performance",
+    "usability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Kimball, R. & Ross, M. (2013). \"The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling\", 3rd ed. Wiley.",
+  "secondary_sources": [
+    "Kimball, R. (1996). \"The Data Warehouse Toolkit: Practical Techniques for Building Dimensional Data Warehouses\". Wiley.",
+    "Inmon, W.H. (2005). \"Building the Data Warehouse\", 4th ed. Wiley.",
+    "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 3. O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "data-vault-2",
+      "type": "alternative"
+    },
+    {
+      "slug": "data-lakehouse",
+      "type": "related"
+    },
+    {
+      "slug": "polyglot-persistence",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/star-schema",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/star-schema.md"
+}

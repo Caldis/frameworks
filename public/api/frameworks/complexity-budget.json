@@ -1,0 +1,183 @@
+{
+  "id": 161,
+  "name": "Complexity Budget",
+  "name_zh": "复杂度预算",
+  "slug": "complexity-budget",
+  "category": "thinking",
+  "desc": "Every module gets a complexity budget; exceed it and you must decompose",
+  "desc_zh": "每个模块拥有复杂度预算；超出时必须进行分解",
+  "steps": [
+    "Inventory Complexity Sources: for each module, enumerate all sources of complexity — interface size, number of special cases, hidden dependencies, and cognitive load required to understand it",
+    "Assign Budgets: establish a maximum acceptable complexity threshold for each module based on its role (leaf modules get smaller budgets, orchestration modules get slightly more)",
+    "Measure Against Budget: evaluate each module against its budget using proxies such as lines of code per method, cyclomatic complexity, number of parameters, and depth of abstraction layers",
+    "Decompose Over-Budget Modules: when a module exceeds its budget, split it by extracting cohesive sub-responsibilities into new deep modules with simple interfaces",
+    "Track Budget Over Time: integrate complexity metrics into CI/CD so that budget violations surface as warnings, preventing gradual complexity creep across releases"
+  ],
+  "steps_zh": [
+    "盘点复杂度来源：为每个模块列出所有复杂度来源——接口大小、特殊情况数量、隐藏依赖和理解所需的认知负荷",
+    "分配预算：根据模块角色为其建立最大可接受的复杂度阈值（叶子模块获得更小的预算，编排模块稍多）",
+    "对照预算衡量：使用每个方法的代码行数、圈复杂度、参数数量和抽象层深度等代理指标评估每个模块",
+    "分解超预算模块：当模块超出预算时，将内聚的子职责提取到具有简单接口的新深模块中",
+    "持续跟踪预算：将复杂度指标集成到CI/CD中，使预算违规作为警告浮现，防止跨版本的渐进式复杂度蔓延"
+  ],
+  "ai_relevant": true,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "Essential Complexity",
+    "Accidental Complexity",
+    "Budget Limit"
+  ],
+  "viz_labels_zh": [
+    "本质复杂度",
+    "偶然复杂度",
+    "复杂度预算"
+  ],
+  "related": [
+    "deep-vs-shallow-modules",
+    "separation-of-concerns",
+    "domain-driven-design"
+  ],
+  "tags": [
+    "complexity",
+    "modularity",
+    "software-design",
+    "decomposition",
+    "cognitive-load"
+  ],
+  "origin_author": "John Ousterhout, 2018",
+  "origin_source": "A Philosophy of Software Design (John Ousterhout, 2018)",
+  "origin_source_zh": "《软件设计哲学》（John Ousterhout，2018年）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When a codebase has grown organically and certain modules have become 'god classes' that no single developer can fully comprehend",
+    "When code review discussions repeatedly flag the same modules as hard to understand or risky to change",
+    "When onboarding time for new engineers is excessive because key modules require too much context to work with safely",
+    "When bug density is concentrated in a few complex modules and you need a principled strategy for simplification"
+  ],
+  "when_to_use_zh": [
+    "当代码库自然增长，某些模块已变成没有任何开发者能完全理解的「上帝类」时",
+    "当代码审查讨论反复标记相同模块难以理解或修改风险高时",
+    "当新工程师的入职时间过长，因为关键模块需要太多上下文才能安全地工作时",
+    "当缺陷密度集中在少数复杂模块中，需要一种有原则的简化策略时"
+  ],
+  "core_concepts": [
+    "Complexity as a Finite Resource: Treating complexity like a budget forces teams to make conscious allocation decisions rather than letting complexity accumulate invisibly",
+    "Cognitive Load as the True Cost: The real cost of complexity is not lines of code but the mental effort required for a developer to understand and safely modify a module",
+    "Strategic Decomposition: Splitting modules is not about making things smaller for its own sake, but about ensuring each piece can be understood independently",
+    "Incremental Complexity Creep: Without budgets, each small addition seems harmless, but the cumulative effect makes modules incomprehensible over time"
+  ],
+  "core_concepts_zh": [
+    "复杂度作为有限资源：将复杂度视为预算迫使团队做出有意识的分配决策，而非让复杂度无形积累",
+    "认知负荷作为真实成本：复杂度的真实成本不是代码行数，而是开发者理解和安全修改模块所需的心智努力",
+    "战略性分解：拆分模块不是为了缩小而缩小，而是为了确保每个部分都能被独立理解",
+    "渐进式复杂度蔓延：没有预算时，每次小改动看似无害，但累积效应会使模块随时间变得难以理解"
+  ],
+  "timeline": [
+    [
+      "2018",
+      "John Ousterhout publishes 'A Philosophy of Software Design', articulating complexity management as the central challenge of software engineering"
+    ],
+    [
+      "2019",
+      "Stanford CS 190 adopts the book as required reading, popularizing complexity-centric design thinking among new engineers"
+    ],
+    [
+      "2021",
+      "Google and Stripe engineering blogs cite complexity budgets in their module design guidelines for large-scale systems"
+    ],
+    [
+      "2023",
+      "AI-assisted code review tools begin incorporating complexity budget analysis to flag over-budget modules automatically"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2018",
+      "John Ousterhout出版《软件设计哲学》，将复杂度管理阐述为软件工程的核心挑战"
+    ],
+    [
+      "2019",
+      "斯坦福CS 190将该书列为必读教材，在新工程师中普及以复杂度为中心的设计思维"
+    ],
+    [
+      "2021",
+      "Google和Stripe工程博客在大规模系统的模块设计指南中引用复杂度预算"
+    ],
+    [
+      "2023",
+      "AI辅助代码审查工具开始集成复杂度预算分析，自动标记超预算模块"
+    ]
+  ],
+  "dos": [
+    "Do set budgets relative to the module's role, because an orchestration layer legitimately needs more complexity than a utility function",
+    "Do treat interface complexity and implementation complexity separately, because a simple interface can justifiably hide significant internal complexity",
+    "Do revisit budgets when requirements change significantly, because new features may legitimately require reallocating complexity across modules",
+    "Do use the budget as a conversation starter in code reviews, not a rigid gate, because judgment about when to decompose requires context"
+  ],
+  "dos_zh": [
+    "根据模块角色设定相对预算，因为编排层合理需要比工具函数更多的复杂度",
+    "分别对待接口复杂度和实现复杂度，因为简单接口可以合理地隐藏显著的内部复杂度",
+    "在需求显著变化时重新审视预算，因为新功能可能合理地需要在模块间重新分配复杂度",
+    "在代码审查中将预算用作对话起点而非刚性门控，因为何时分解的判断需要上下文"
+  ],
+  "donts": [
+    "Don't set a single universal budget for all modules, because different roles in the architecture have legitimately different complexity needs",
+    "Don't decompose modules purely based on size metrics, because a long but linear function may be less complex than a short function with deep nesting and hidden state",
+    "Don't ignore the complexity cost of decomposition itself, because splitting a module into too many pieces creates coordination complexity that can exceed the original problem",
+    "Don't let complexity budgets become a bureaucratic checkbox, because the goal is developer understanding, not metric compliance"
+  ],
+  "donts_zh": [
+    "不要为所有模块设定单一的通用预算，因为架构中不同角色有合理的不同复杂度需求",
+    "不要纯粹基于大小指标分解模块，因为一个长但线性的函数可能比一个带有深层嵌套和隐藏状态的短函数复杂度更低",
+    "不要忽视分解本身的复杂度成本，因为将模块拆分为过多碎片会产生超过原始问题的协调复杂度",
+    "不要让复杂度预算成为官僚化的检查框，因为目标是开发者的理解力，而非指标合规"
+  ],
+  "case_study_company": "Google",
+  "case_study": "Google's internal code health guidelines explicitly track complexity per module as part of their readability review process. When the Google Maps rendering engine grew to over 50,000 lines in a single module, the team applied complexity budgeting to decompose it into 12 focused sub-modules (tile management, label placement, route rendering, etc.), each with a clear interface contract. Post-decomposition, the time to onboard new engineers to the rendering pipeline dropped from 3 months to 6 weeks, and the bug rate in rendering-related changes fell by 40% because developers could reason about each sub-module independently.",
+  "case_study_zh": "Google的内部代码健康指南在其可读性审查流程中明确跟踪每个模块的复杂度。当Google Maps渲染引擎在单个模块中增长到超过50,000行时，团队应用复杂度预算将其分解为12个聚焦的子模块（瓦片管理、标签放置、路线渲染等），每个都有清晰的接口契约。分解后，新工程师熟悉渲染管线的时间从3个月缩短到6周，渲染相关变更的缺陷率下降了40%，因为开发者可以独立推理每个子模块。",
+  "when_not_to_use": [
+    "When the codebase is small enough that every developer can hold the entire system in their head, making formal budgets unnecessary overhead",
+    "When you are in an early prototyping phase where rapid experimentation matters more than long-term modularity",
+    "When the team is building a throwaway script or short-lived automation where maintenance costs will never materialize",
+    "When decomposition would require breaking a performance-critical hot path into multiple modules, introducing unacceptable latency"
+  ],
+  "when_not_to_use_zh": [
+    "当代码库足够小，每个开发者都能在脑中掌握整个系统，使正式预算成为不必要的开销时",
+    "当处于早期原型阶段，快速实验比长期模块化更重要时",
+    "当团队构建的是一次性脚本或短期自动化，维护成本永远不会产生时",
+    "当分解需要将性能关键的热路径拆分为多个模块，引入不可接受的延迟时"
+  ],
+  "adopters": [
+    "Google",
+    "Stripe",
+    "Stanford CS 190",
+    "JetBrains",
+    "Microsoft"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "John Ousterhout (2018). \"A Philosophy of Software Design\". Yaknyam Press.",
+  "secondary_sources": [
+    "Fred Brooks (1986). \"No Silver Bullet: Essence and Accidents of Software Engineering\". IEEE Computer, 19(4).",
+    "Rich Hickey (2012). \"Simple Made Easy\". Strange Loop Conference, 2011."
+  ],
+  "typed_relations": [
+    {
+      "slug": "deep-vs-shallow-modules",
+      "type": "complement"
+    },
+    {
+      "slug": "separation-of-concerns",
+      "type": "complement"
+    },
+    {
+      "slug": "domain-driven-design",
+      "type": "prerequisite"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/complexity-budget",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/complexity-budget.md"
+}

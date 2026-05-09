@@ -1,0 +1,189 @@
+{
+  "id": 242,
+  "name": "API Security Patterns",
+  "name_zh": "API 安全模式",
+  "slug": "api-security-patterns",
+  "category": "api",
+  "desc": "OAuth2 scopes, API keys, JWT validation, and CORS hardening to protect API surfaces from unauthorized access",
+  "desc_zh": "通过 OAuth2 范围、API 密钥、JWT 验证和 CORS 强化保护 API 表面免受未授权访问",
+  "steps": [
+    "Classify all API endpoints by sensitivity and select the appropriate authentication mechanism: API keys for server-to-server integrations, OAuth2 client credentials for machine-to-machine flows, OAuth2 authorization code + PKCE for user-delegated access, and mTLS for high-security service mesh communication",
+    "Implement fine-grained OAuth2 scopes that follow the principle of least privilege: define scopes at the resource and action level (e.g., orders:read, orders:write, payments:create) and enforce scope checks in every protected handler",
+    "Validate JWTs rigorously: verify the signature with the issuer's public key, check the exp, nbf, iss, and aud claims, reject tokens with algorithm: none, and implement token revocation via a fast-lookup denylist or short expiry windows",
+    "Harden CORS configuration: explicitly whitelist allowed origins (avoid wildcard * for credentialed requests), restrict allowed methods and headers, and set the Access-Control-Max-Age header to reduce preflight request frequency",
+    "Apply OWASP API Security Top 10 mitigations: enforce object-level authorization on every resource (BOLA), implement rate limiting and quota enforcement, validate all input payloads with strict schemas, and log all authentication events for audit and anomaly detection"
+  ],
+  "steps_zh": [
+    "按敏感程度对所有 API 端点分类，选择合适的认证机制：API 密钥用于服务间集成，OAuth2 客户端凭证用于机器对机器流程，OAuth2 授权码 + PKCE 用于用户授权访问，mTLS 用于高安全性服务网格通信",
+    "实施细粒度的 OAuth2 范围遵循最小权限原则：在资源和操作级别定义范围（如 orders:read、orders:write、payments:create），并在每个受保护的处理程序中执行范围检查",
+    "严格验证 JWT：使用颁发者的公钥验证签名，检查 exp、nbf、iss 和 aud 声明，拒绝 algorithm: none 的令牌，并通过快速查找黑名单或短过期窗口实现令牌吊销",
+    "强化 CORS 配置：明确白名单允许的来源（避免对凭证请求使用通配符 *），限制允许的方法和头部，设置 Access-Control-Max-Age 头部以减少预检请求频率",
+    "应用 OWASP API 安全 Top 10 缓解措施：对每个资源执行对象级授权（BOLA）、实施速率限制和配额执行、用严格模式验证所有输入载荷，以及记录所有认证事件用于审计和异常检测"
+  ],
+  "ai_relevant": true,
+  "viz_type": "radar",
+  "viz_labels": [
+    "Auth Mechanism",
+    "OAuth2 Scopes",
+    "JWT Validation",
+    "CORS Config",
+    "OWASP API Top 10"
+  ],
+  "viz_labels_zh": [
+    "认证机制",
+    "OAuth2范围",
+    "JWT验证",
+    "CORS配置",
+    "API Top 10"
+  ],
+  "related": [
+    "api-gateway-pattern",
+    "zero-trust-architecture"
+  ],
+  "tags": [
+    "security",
+    "oauth2",
+    "jwt",
+    "cors",
+    "owasp",
+    "authentication",
+    "authorization"
+  ],
+  "origin_author": "OWASP Foundation",
+  "origin_source": "OWASP API Security Project (owasp.org/API-Security); OAuth 2.0 Authorization Framework (RFC 6749, IETF 2012); JSON Web Token (RFC 7519, IETF 2015)",
+  "origin_source_zh": "OWASP API 安全项目（owasp.org/API-Security）；OAuth 2.0 授权框架（RFC 6749，IETF 2012）；JSON Web Token（RFC 7519，IETF 2015）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When designing any API that exposes sensitive data, financial operations, or user-delegated actions to external consumers",
+    "When a security audit or penetration test has identified authentication weaknesses (missing authorization checks, overly permissive CORS, weak token validation)",
+    "When integrating with third-party systems that require standardized token-based authentication (OAuth2/OIDC)",
+    "When compliance frameworks (PCI-DSS, HIPAA, SOC 2) mandate documented API authentication and authorization controls"
+  ],
+  "when_to_use_zh": [
+    "当设计任何向外部消费者暴露敏感数据、金融操作或用户授权行为的 API 时",
+    "当安全审计或渗透测试发现了认证弱点（缺失授权检查、过于宽松的 CORS、弱令牌验证）时",
+    "当与需要标准化令牌认证（OAuth2/OIDC）的第三方系统集成时",
+    "当合规框架（PCI-DSS、HIPAA、SOC 2）要求有文档记录的 API 认证和授权控制时"
+  ],
+  "core_concepts": [
+    "OAuth2 Scopes and Least Privilege: Defining permission scopes at the resource-action level (e.g., accounts:read) and issuing tokens with only the scopes needed for the specific client integration, minimizing blast radius if a token is compromised",
+    "JWT Validation Chain: The full validation sequence — signature verification, claim checks (exp, iss, aud), algorithm restriction — must all pass before a request is authorized; skipping any step creates exploitable vulnerabilities",
+    "BOLA (Broken Object Level Authorization): The most prevalent API vulnerability, where an API returns data for any ID in the URL without checking that the authenticated user owns or has permission to access that object",
+    "CORS Policy Hardening: Cross-Origin Resource Sharing misconfiguration (wildcard origins with credentials, overly permissive methods) allows malicious web pages to make authenticated API calls on behalf of browser users",
+    "mTLS for Service-to-Service: Mutual TLS authentication, where both client and server present certificates, provides cryptographic proof of identity for high-security internal API communication in zero-trust environments"
+  ],
+  "core_concepts_zh": [
+    "OAuth2 范围与最小权限：在资源-操作级别定义权限范围（如 accounts:read），并仅向特定客户端集成颁发所需范围的令牌，在令牌泄露时将影响范围降至最低",
+    "JWT 验证链：完整的验证序列——签名验证、声明检查（exp、iss、aud）、算法限制——所有环节必须通过才能授权请求；跳过任何一步都会产生可利用的漏洞",
+    "BOLA（对象级授权缺失）：最普遍的 API 漏洞，API 在不检查认证用户是否拥有或有权访问的情况下返回 URL 中任意 ID 的数据",
+    "CORS 策略强化：跨源资源共享错误配置（通配符来源与凭证、过度宽松的方法）允许恶意网页代表浏览器用户发起认证 API 调用",
+    "服务间 mTLS：双向 TLS 认证，客户端和服务端都出示证书，为零信任环境中高安全性内部 API 通信提供密码学身份证明"
+  ],
+  "timeline": [
+    [
+      "2007",
+      "OAuth 1.0 published as an open standard, providing the first widely adopted framework for delegated API authorization"
+    ],
+    [
+      "2012",
+      "OAuth 2.0 (RFC 6749) and Bearer Token (RFC 6750) published, becoming the dominant API authorization framework"
+    ],
+    [
+      "2015",
+      "OWASP publishes the first API Security Top 10, cataloging the most critical API vulnerabilities including broken authentication and BOLA"
+    ],
+    [
+      "2019",
+      "OWASP API Security Top 10 2019 published; PKCE extension (RFC 7636) becomes mandatory for public OAuth2 clients to prevent authorization code interception"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2007",
+      "OAuth 1.0 作为开放标准发布，提供了首个被广泛采用的委托 API 授权框架"
+    ],
+    [
+      "2012",
+      "OAuth 2.0（RFC 6749）和 Bearer Token（RFC 6750）发布，成为主导的 API 授权框架"
+    ],
+    [
+      "2015",
+      "OWASP 发布首个 API 安全 Top 10，编目包括认证缺陷和 BOLA 在内的最关键 API 漏洞"
+    ],
+    [
+      "2019",
+      "OWASP API 安全 Top 10 2019 版发布；PKCE 扩展（RFC 7636）成为公共 OAuth2 客户端防止授权码拦截的强制要求"
+    ]
+  ],
+  "dos": [
+    "Do validate the full JWT claim set — signature, expiry, issuer, and audience — on every request, using a well-maintained library rather than writing custom JWT validation code",
+    "Do implement object-level authorization checks in every API handler that returns or modifies a specific resource, not just at the route/controller level",
+    "Do rotate API keys and client secrets periodically and provide a self-service key rotation mechanism so clients can rotate without downtime",
+    "Do log every authentication failure, token validation error, and authorization rejection with structured fields (client_id, endpoint, error_code) for security monitoring and incident response"
+  ],
+  "dos_zh": [
+    "在每次请求时验证完整的 JWT 声明集——签名、过期时间、颁发者和受众——使用维护良好的库，而非编写自定义 JWT 验证代码",
+    "在每个返回或修改特定资源的 API 处理程序中实施对象级授权检查，而非仅在路由/控制器层面",
+    "定期轮换 API 密钥和客户端密钥，并提供自助密钥轮换机制，使客户端无需停机即可轮换",
+    "用结构化字段（client_id、endpoint、error_code）记录每次认证失败、令牌验证错误和授权拒绝，用于安全监控和事件响应"
+  ],
+  "donts": [
+    "Don't use HTTP Basic Auth or API keys in query parameters for anything beyond low-sensitivity internal tooling — both are easily leaked in logs, browser history, and referrer headers",
+    "Don't trust client-supplied claims (user_id, role, is_admin) in JWT payloads without verifying them against your authorization database — JWT payload data is readable by anyone with the token",
+    "Don't configure CORS with Access-Control-Allow-Origin: * combined with Access-Control-Allow-Credentials: true — browsers block this combination, and if somehow accepted it would allow any site to make credentialed requests",
+    "Don't skip rate limiting on authentication endpoints (login, token exchange) — credential stuffing and brute-force attacks specifically target unthrottled auth endpoints"
+  ],
+  "donts_zh": [
+    "不要对低敏感度内部工具以外的任何场景使用 HTTP Basic Auth 或查询参数中的 API 密钥——两者都容易在日志、浏览器历史和 Referer 头部中泄露",
+    "不要在未针对授权数据库验证的情况下信任 JWT 载荷中客户端提供的声明（user_id、role、is_admin）——任何持有令牌的人都可以读取 JWT 载荷数据",
+    "不要将 CORS 配置为 Access-Control-Allow-Origin: * 同时配合 Access-Control-Allow-Credentials: true——浏览器会阻止这种组合，如果以某种方式被接受则会允许任何站点发起凭证请求",
+    "不要对认证端点（登录、令牌交换）跳过速率限制——凭证填充和暴力破解攻击专门针对未节流的认证端点"
+  ],
+  "case_study_company": "Cloudflare",
+  "case_study": "Cloudflare's API security implementation serves as a reference for the industry. The Cloudflare API uses OAuth2 with fine-grained permission tokens that scope access to specific zones, account resources, and action types. In 2022, Cloudflare publicly documented their migration from coarse-grained API keys to token-based authentication with 180+ distinct permission scopes. After the migration, Cloudflare reported a significant reduction in over-privileged token usage and eliminated a class of account takeover incidents where a single leaked API key had provided complete account access.",
+  "case_study_zh": "Cloudflare 的 API 安全实施是行业的参考标准。Cloudflare API 使用 OAuth2 和细粒度权限令牌，将访问范围限定到特定区域、账户资源和操作类型。2022 年，Cloudflare 公开记录了其从粗粒度 API 密钥迁移到基于令牌认证（拥有 180 多个不同权限范围）的过程。迁移后，Cloudflare 报告过度特权令牌的使用显著减少，并消除了一类因单个泄露 API 密钥提供完整账户访问而导致的账户接管事件。",
+  "when_not_to_use": [
+    "Fully internal APIs within a trusted service mesh that already enforces mTLS at the infrastructure level — adding application-layer OAuth2 on top adds overhead without security benefit",
+    "Development and testing environments where the overhead of full OAuth2 flows slows iteration — use simplified API key auth with environment-specific secrets instead",
+    "Static public data APIs (public transit schedules, weather data) with no personalization or sensitive data where authentication adds friction without protecting anything",
+    "APIs in air-gapped or highly controlled internal networks where network-level controls already provide the required isolation"
+  ],
+  "when_not_to_use_zh": [
+    "在基础设施层已强制执行 mTLS 的可信服务网格内的纯内部 API——在其上叠加应用层 OAuth2 只会增加开销而无安全收益",
+    "开发和测试环境中，完整 OAuth2 流程的开销拖慢迭代速度——改用带环境特定密钥的简化 API 密钥认证",
+    "没有个性化或敏感数据的静态公开数据 API（公共交通时刻表、天气数据），认证只会增加摩擦而不保护任何东西",
+    "网络层控制已提供所需隔离的气隙或高度受控内部网络中的 API"
+  ],
+  "adopters": [
+    "Cloudflare",
+    "Okta",
+    "Auth0",
+    "Google",
+    "Microsoft"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "security",
+    "reliability",
+    "observability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "OWASP Foundation (2023). \"OWASP API Security Top 10 2023\". owasp.org/API-Security.",
+  "secondary_sources": [
+    "IETF (2012). \"RFC 6749: The OAuth 2.0 Authorization Framework\". tools.ietf.org.",
+    "IETF (2015). \"RFC 7519: JSON Web Token (JWT)\". tools.ietf.org.",
+    "Madden, N. (2020). \"API Security in Action\". Manning Publications."
+  ],
+  "typed_relations": [
+    {
+      "slug": "api-gateway-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "zero-trust-architecture",
+      "type": "extends"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/api-security-patterns",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/api-security-patterns.md"
+}

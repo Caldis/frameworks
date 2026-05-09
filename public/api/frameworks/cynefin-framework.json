@@ -1,0 +1,201 @@
+{
+  "id": 7,
+  "name": "Cynefin Framework",
+  "name_zh": "库内文框架",
+  "slug": "cynefin-framework",
+  "category": "thinking",
+  "desc": "Categorize problems into Simple, Complicated, Complex, Chaotic",
+  "desc_zh": "将问题归类为简单、繁杂、复杂、混沌四个领域以选择对策",
+  "steps": [
+    "Categorize the Problem Domain: assess whether the situation is Simple (known), Complicated (expert-solvable), Complex (emergent), or Chaotic (novel/crisis)",
+    "Select the Response Pattern: apply best practice (Simple), good practice with analysis (Complicated), or probe-sense-respond (Complex)",
+    "Handle Disorder: if the domain is unclear, break the problem into smaller parts and classify each part separately",
+    "Manage Domain Transitions: watch for situations moving between domains (e.g., a Complex system becoming Chaotic under load)",
+    "Document Domain Reasoning: record why a problem was classified in a domain to inform future architectural decisions"
+  ],
+  "steps_zh": [
+    "归类问题领域：判断当前情况属于简单（已知）、繁杂（专家可解）、复杂（涌现）还是混沌（新颖/危机）",
+    "选择响应模式：简单领域用最佳实践，繁杂领域用专家分析，复杂领域用探测-感知-响应",
+    "处理无序状态：若领域不明确，将问题拆分为更小部分并分别归类",
+    "管理领域转换：监控问题在领域间的迁移（如复杂系统在负载下转变为混沌）",
+    "记录领域推理：记录问题被归类到某领域的原因，以指导未来的架构决策"
+  ],
+  "ai_relevant": false,
+  "viz_type": "quadrant",
+  "viz_labels": [
+    "Simple",
+    "Complicated",
+    "Complex",
+    "Chaotic"
+  ],
+  "viz_labels_zh": [
+    "显然",
+    "繁杂",
+    "复杂",
+    "混沌"
+  ],
+  "related": [
+    "systems-thinking",
+    "trade-off-sliders",
+    "wardley-mapping"
+  ],
+  "tags": [
+    "decision-making",
+    "complexity",
+    "problem-classification",
+    "sense-making"
+  ],
+  "origin_author": "Dave Snowden, 1999",
+  "origin_source": "A Leader's Framework for Decision Making (Harvard Business Review, 2007)",
+  "origin_source_zh": "《领导者的决策框架》（《哈佛商业评论》，2007年）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When your team applies the same process to every problem regardless of its nature, leading to overengineering simple tasks or underestimating complex ones",
+    "When stakeholders demand a detailed upfront plan for a problem that is inherently emergent and unpredictable",
+    "When a production incident occurs and you need to quickly decide whether to apply known fixes or enter experimental investigation mode",
+    "When choosing between agile, waterfall, or hybrid methodologies and you need a principled basis for the choice"
+  ],
+  "when_to_use_zh": [
+    "当团队不论问题性质如何都使用相同流程，导致简单任务过度工程化或低估复杂任务时",
+    "当利益相关者对本质上涌现且不可预测的问题要求详细的前期计划时",
+    "当生产事故发生，需要快速决定是应用已知修复还是进入实验性调查模式时",
+    "当在敏捷、瀑布或混合方法论之间选择，需要一个有原则的选择依据时"
+  ],
+  "core_concepts": [
+    "Four Domains + Disorder: Clear (obvious cause-effect), Complicated (discoverable cause-effect requiring expertise), Complex (cause-effect only visible in retrospect), and Chaotic (no perceivable cause-effect), plus Disorder when you don't know which domain applies",
+    "Probe-Sense-Respond: The strategy for Complex domains — run safe-to-fail experiments, observe what emerges, and amplify what works rather than planning upfront",
+    "Domain Dynamics: Problems can shift between domains (e.g., complacency in the Clear domain causes a cliff-edge fall into Chaos), requiring continuous monitoring",
+    "Contextual Appropriateness: There is no single 'best' management approach — the optimal response depends entirely on which domain the problem inhabits"
+  ],
+  "core_concepts_zh": [
+    "四领域+无序：清晰（明显的因果关系）、繁杂（需要专业知识才能发现的因果关系）、复杂（因果关系只能事后可见）和混沌（无可感知的因果关系），加上不知道适用哪个领域时的无序状态",
+    "探测-感知-响应：复杂领域的策略——运行安全可失败的实验，观察涌现结果，放大有效的方法，而非提前规划",
+    "领域动态：问题可以在领域间迁移（如在清晰领域的自满导致悬崖式跌入混沌），需要持续监控",
+    "情境适当性：不存在单一「最佳」管理方法——最优响应完全取决于问题所处的领域"
+  ],
+  "timeline": [
+    [
+      "1999",
+      "Dave Snowden develops the Cynefin framework while working at IBM's Institute for Knowledge Management"
+    ],
+    [
+      "2003",
+      "Snowden and Cynthia Kurtz publish 'The New Dynamics of Strategy', the first academic paper on Cynefin"
+    ],
+    [
+      "2007",
+      "Snowden and Mary Boone publish 'A Leader's Framework for Decision Making' in Harvard Business Review, bringing Cynefin to mainstream business"
+    ],
+    [
+      "2010",
+      "The Agile community widely adopts Cynefin to explain when Scrum (Complex) vs. Kanban (Complicated) vs. defined processes (Clear) are appropriate"
+    ],
+    [
+      "2020",
+      "Snowden updates the framework, renaming 'Simple' to 'Clear' and adding 'Aporetic' (confused/unknowable) to reflect evolving understanding of complexity"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1999",
+      "Dave Snowden在IBM知识管理研究所工作期间开发了库内文框架"
+    ],
+    [
+      "2003",
+      "Snowden与Cynthia Kurtz发表「战略的新动力学」，这是关于库内文的首篇学术论文"
+    ],
+    [
+      "2007",
+      "Snowden与Mary Boone在《哈佛商业评论》发表「领导者的决策框架」，将库内文推向主流商业领域"
+    ],
+    [
+      "2010",
+      "敏捷社区广泛采用库内文来解释何时使用Scrum（复杂域）、Kanban（繁杂域）或定义流程（清晰域）"
+    ],
+    [
+      "2020",
+      "Snowden更新框架，将「简单」更名为「清晰」，并新增「迷惑」域以反映对复杂性理解的演进"
+    ]
+  ],
+  "dos": [
+    "Do use Cynefin as a sense-making tool before choosing a process methodology, because the domain should drive the approach rather than the other way around",
+    "Do design safe-to-fail experiments for Complex domain problems, because small probes with bounded downside reveal patterns that analysis cannot",
+    "Do reassess domain classification regularly, because problems move between domains as context changes and yesterday's Complex problem may be today's Complicated one",
+    "Do teach the entire team to recognize domain signals, because frontline engineers often detect domain shifts (e.g., from Complicated to Chaotic) before managers do"
+  ],
+  "dos_zh": [
+    "在选择流程方法论之前先使用库内文作为意义建构工具，因为领域应驱动方法而非反过来",
+    "为复杂领域问题设计安全可失败的实验，因为有限下行风险的小探测能揭示分析无法发现的模式",
+    "定期重新评估领域分类，因为问题会随情境变化在领域间移动，昨天的复杂问题可能是今天的繁杂问题",
+    "教会整个团队识别领域信号，因为一线工程师往往比管理者更早察觉领域转换（如从繁杂到混沌）"
+  ],
+  "donts": [
+    "Don't treat Cynefin domains as permanent labels, because a problem's domain classification can change as understanding deepens or conditions shift",
+    "Don't apply best practices to Complex domain problems, because in complexity there are no repeatable best practices — only emergent patterns to discover",
+    "Don't spend time analyzing during a Chaotic crisis, because Chaotic situations demand immediate action to stabilize before any analysis is possible",
+    "Don't dismiss the Disorder zone, because the most dangerous state is not knowing which domain you're in and defaulting to comfortable but inappropriate responses"
+  ],
+  "donts_zh": [
+    "不要将库内文领域视为永久标签，因为随着理解加深或条件变化，问题的领域分类可能改变",
+    "不要对复杂领域问题应用最佳实践，因为在复杂性中没有可重复的最佳实践——只有待发现的涌现模式",
+    "不要在混沌危机中花时间分析，因为混沌情况要求立即行动以稳定局势，在此之前任何分析都不可能",
+    "不要忽视无序区域，因为最危险的状态是不知道自己在哪个领域并默认采用舒适但不当的响应方式"
+  ],
+  "case_study_company": "Spotify",
+  "case_study": "Spotify used Cynefin thinking to shape their engineering culture and organizational model. They recognized that music recommendation algorithms operated in the Complex domain (requiring probe-sense-respond experimentation with A/B tests), while payment processing was Complicated (requiring expert analysis and good practices), and basic infrastructure provisioning was Clear (requiring standard operating procedures). This domain-aware approach led to their famous Squad/Tribe/Chapter/Guild model, where different teams used different processes matched to their problem domain.",
+  "case_study_zh": "Spotify运用库内文思维来塑造其工程文化和组织模型。他们认识到音乐推荐算法运行在复杂领域（需要通过A/B测试进行探测-感知-响应实验），支付处理属于繁杂领域（需要专家分析和良好实践），而基础设施供应属于清晰领域（需要标准操作流程）。这种领域感知的方法催生了他们著名的小队/部落/分会/公会模型，不同团队使用与其问题领域匹配的不同流程。",
+  "case_study_challenge": "Spotify's engineering organization was scaling rapidly, but a one-size-fits-all process was failing. Agile sprints worked well for infrastructure teams but stifled the exploratory experimentation that recommendation teams needed. Meanwhile, payment processing demanded rigor that felt bureaucratic to other groups.",
+  "case_study_challenge_zh": "Spotify的工程组织在快速扩张，但统一流程正在失效。敏捷冲刺对基础设施团队效果良好，却扼杀了推荐团队所需的探索性实验。与此同时，支付处理要求的严谨性在其他团队看来过于官僚。",
+  "case_study_approach": "Leadership applied Cynefin to classify each team's problem domain. Music recommendation — Complex: teams ran safe-to-fail A/B experiments with probe-sense-respond cycles. Payment processing — Complicated: expert analysis and established good practices. Infrastructure provisioning — Clear: standard operating procedures and checklists.",
+  "case_study_approach_zh": "管理层运用库内文框架对每个团队的问题领域进行分类。音乐推荐属于复杂领域：团队开展安全失败的A/B实验，采用探测-感知-响应循环。支付处理属于繁杂领域：依赖专家分析和成熟的良好实践。基础设施供应属于清晰领域：遵循标准操作流程和检查清单。",
+  "case_study_result": "This domain-aware thinking produced Spotify's celebrated Squad/Tribe/Chapter/Guild organizational model, where each team adopted processes matched to its problem complexity rather than following a company-wide mandate. Engineering autonomy and velocity improved across all domains simultaneously.",
+  "case_study_result_zh": "这种领域感知思维催生了Spotify著名的小队/部落/分会/公会组织模型，每个团队采用与其问题复杂度匹配的流程，而非遵循全公司统一的指令。各领域的工程自主性和交付速度同步提升。",
+  "case_study_quote": "The mistake is assuming all problems are the same kind. The framework gave us permission to treat different problems differently.",
+  "case_study_quote_zh": "错误在于假设所有问题都是同一类。这个框架赋予我们以不同方式对待不同问题的许可。",
+  "when_not_to_use": [
+    "When the team needs a specific actionable methodology rather than a meta-framework for choosing methodologies",
+    "When all problems in the project clearly fall within a single domain and domain classification adds no value",
+    "When stakeholders want quantitative risk analysis and the qualitative nature of Cynefin doesn't satisfy their decision-making needs",
+    "When the organization lacks psychological safety for safe-to-fail experiments, making Complex domain practices impractical"
+  ],
+  "when_not_to_use_zh": [
+    "当团队需要具体可操作的方法论而非选择方法论的元框架时",
+    "当项目中所有问题明显落在单一领域内，领域分类不增加价值时",
+    "当利益相关者需要定量风险分析，库内文的定性特征无法满足其决策需求时",
+    "当组织缺乏心理安全来进行安全可失败的实验，使复杂领域实践不可行时"
+  ],
+  "adopters": [
+    "Spotify",
+    "IBM",
+    "UK Government Digital Service",
+    "Australian Tax Office",
+    "Lego",
+    "Ericsson"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Dave Snowden and Mary Boone (2007). \"A Leader's Framework for Decision Making\". Harvard Business Review.",
+  "secondary_sources": [
+    "Dave Snowden (2000). \"Cynefin: A Sense of Time and Space\". Knowledge Management World.",
+    "Dave Snowden and Zhen Goh (2020). \"Cynefin: Weaving Sense-Making into the Fabric of Our World\". Cognitive Edge."
+  ],
+  "typed_relations": [
+    {
+      "slug": "systems-thinking",
+      "type": "complement"
+    },
+    {
+      "slug": "trade-off-sliders",
+      "type": "complement"
+    },
+    {
+      "slug": "wardley-mapping",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/cynefin-framework",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/cynefin-framework.md"
+}

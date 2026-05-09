@@ -1,0 +1,193 @@
+{
+  "id": 189,
+  "name": "Deprecation Strategy",
+  "name_zh": "弃用策略",
+  "slug": "deprecation-strategy",
+  "category": "evolution",
+  "desc": "Systematic approach to retiring old APIs/features",
+  "desc_zh": "系统性地退役旧 API 和功能的方法",
+  "steps": [
+    "Announce deprecation with a clear timeline, migration guide, and sunset date communicated through multiple channels",
+    "Provide a migration path: new API, data export tools, or replacement feature that covers existing use cases",
+    "Add runtime deprecation warnings (HTTP headers, log messages, SDK warnings) to track usage of deprecated features",
+    "Monitor deprecation metrics: track the decline in deprecated feature usage and identify blocking consumers",
+    "Remove the deprecated feature on the sunset date, with a final grace period and direct outreach to remaining consumers"
+  ],
+  "steps_zh": [
+    "通过多渠道宣布弃用，明确时间线、迁移指南和日落日期",
+    "提供迁移路径：覆盖现有用例的新 API、数据导出工具或替代功能",
+    "添加运行时弃用警告（HTTP 头、日志消息、SDK 警告）以跟踪弃用功能的使用情况",
+    "监控弃用指标：跟踪弃用功能使用量的下降并识别阻塞的消费者",
+    "在日落日期移除弃用功能，设置最终宽限期并直接联系剩余消费者"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Announce",
+    "Warn",
+    "Sunset",
+    "Remove"
+  ],
+  "viz_labels_zh": [
+    "宣告废弃",
+    "警告期",
+    "日落期",
+    "移除"
+  ],
+  "related": [
+    "api-versioning-strategies",
+    "strangler-fig-pattern",
+    "semantic-versioning"
+  ],
+  "tags": [
+    "deprecation",
+    "api-lifecycle",
+    "sunset",
+    "migration",
+    "backward-compatibility"
+  ],
+  "origin_author": "Industry practice formalized across Google, Stripe, and major API providers, ~2010s",
+  "origin_source": "API Design Patterns (JJ Geewax, Manning 2021); Google API Improvement Proposals (AIP-181: Deprecation)",
+  "origin_source_zh": "《API 设计模式》（JJ Geewax，Manning 2021）；Google API 改进提案（AIP-181：弃用）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Public APIs with external consumers who need advance notice and migration support",
+    "Internal platforms where multiple teams depend on shared services that need to evolve",
+    "SDK and library maintainers who must remove features without breaking downstream consumers",
+    "Organizations accumulating technical debt from features that should have been retired years ago"
+  ],
+  "when_to_use_zh": [
+    "拥有需要提前通知和迁移支持的外部消费者的公共 API",
+    "多个团队依赖需要演进的共享服务的内部平台",
+    "必须在不破坏下游消费者的情况下移除功能的 SDK 和库维护者",
+    "因多年未退役的功能而积累技术债的组织"
+  ],
+  "core_concepts": [
+    "Sunset Date: A published, non-negotiable date after which the deprecated feature will be removed entirely",
+    "Migration Path: A documented, tested alternative that covers all use cases of the deprecated feature",
+    "Deprecation Warning: Runtime signals (HTTP Sunset header, compiler warnings, log messages) that alert consumers to upcoming removal",
+    "Usage Tracking: Monitoring deprecated feature consumption to identify migration stragglers and measure progress toward sunset"
+  ],
+  "core_concepts_zh": [
+    "日落日期：已公布的、不可协商的日期，之后弃用功能将被完全移除",
+    "迁移路径：已记录、已测试的替代方案，覆盖弃用功能的所有用例",
+    "弃用警告：提醒消费者即将移除的运行时信号（HTTP Sunset 头、编译器警告、日志消息）",
+    "使用量跟踪：监控弃用功能的消费情况，以识别迁移滞后者并衡量日落进度"
+  ],
+  "timeline": [
+    [
+      "2011",
+      "Google establishes formal API deprecation policies with multi-year sunset timelines for Google APIs"
+    ],
+    [
+      "2015",
+      "Stripe pioneers developer-friendly deprecation with versioned API, migration guides, and dashboard warnings"
+    ],
+    [
+      "2018",
+      "HTTP Sunset header (RFC 8594) standardized, giving APIs a machine-readable deprecation signal"
+    ],
+    [
+      "2021",
+      "JJ Geewax covers deprecation patterns in API Design Patterns (Manning), formalizing industry best practices"
+    ],
+    [
+      "2024",
+      "AI-assisted migration tools emerge, using LLMs to auto-generate code changes for deprecated API consumers"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2011",
+      "Google 建立正式的 API 弃用策略，为 Google API 设定多年期日落时间线"
+    ],
+    [
+      "2015",
+      "Stripe 率先推出开发者友好的弃用方式——版本化 API、迁移指南和控制台警告"
+    ],
+    [
+      "2018",
+      "HTTP Sunset 头（RFC 8594）标准化，为 API 提供机器可读的弃用信号"
+    ],
+    [
+      "2021",
+      "JJ Geewax 在《API 设计模式》（Manning）中涵盖弃用模式，正式化行业最佳实践"
+    ],
+    [
+      "2024",
+      "AI 辅助迁移工具出现，使用大模型自动生成弃用 API 消费者的代码变更"
+    ]
+  ],
+  "dos": [
+    "Announce deprecation at least 6-12 months before sunset for public APIs — more for critical infrastructure",
+    "Provide migration tooling (codemods, scripts, SDK helpers) that automate as much of the migration as possible",
+    "Use the HTTP Sunset header (RFC 8594) to give API consumers a machine-readable deprecation signal",
+    "Track deprecated feature usage metrics on a dashboard and proactively reach out to top consumers"
+  ],
+  "dos_zh": [
+    "公共 API 至少在日落前 6-12 个月宣布弃用——关键基础设施需要更长时间",
+    "提供迁移工具（代码修改器、脚本、SDK 辅助工具）尽可能自动化迁移",
+    "使用 HTTP Sunset 头（RFC 8594）向 API 消费者提供机器可读的弃用信号",
+    "在仪表板上跟踪弃用功能使用指标并主动联系主要消费者"
+  ],
+  "donts": [
+    "Don't deprecate without providing a clear, documented migration path — deprecation without an alternative is abandonment",
+    "Don't silently remove features — always announce, warn at runtime, and give consumers time to migrate",
+    "Don't extend sunset dates repeatedly — this trains consumers to ignore deprecation notices entirely",
+    "Don't deprecate too many things at once — migration fatigue causes consumers to disengage and fall behind"
+  ],
+  "donts_zh": [
+    "不要在没有提供清晰、已记录的迁移路径的情况下弃用——没有替代方案的弃用是遗弃",
+    "不要静默移除功能——始终宣布、运行时警告并给消费者迁移时间",
+    "不要反复延长日落日期——这会训练消费者完全忽略弃用通知",
+    "不要一次弃用太多东西——迁移疲劳会导致消费者脱离并落后"
+  ],
+  "case_study_company": "Stripe",
+  "case_study": "Stripe manages one of the most developer-friendly deprecation processes in the industry. Every API version is supported for years, with clear deprecation timelines published in their API changelog. When deprecating the 2019-02-19 API version, Stripe provided per-account migration dashboards showing exactly which endpoints needed updating, automated test mode switching to the new version, and dedicated migration support for high-volume merchants. This approach achieved 98% voluntary migration before the sunset date.",
+  "case_study_zh": "Stripe 管理着业界最开发者友好的弃用流程之一。每个 API 版本支持数年，在 API 变更日志中发布清晰的弃用时间线。弃用 2019-02-19 API 版本时，Stripe 提供了每账户迁移仪表板，精确显示哪些端点需要更新，自动将测试模式切换至新版本，并为高流量商户提供专属迁移支持。这种方式在日落日期前实现了 98% 的自愿迁移。",
+  "when_not_to_use": [
+    "Internal-only APIs with a single consumer team that can coordinate changes directly without formal deprecation",
+    "Experimental or alpha APIs where consumers understand features may be removed without notice",
+    "One-time migration projects where the old system will be fully decommissioned in a single cutover",
+    "APIs with zero external consumers where the overhead of formal deprecation exceeds the coordination benefit"
+  ],
+  "when_not_to_use_zh": [
+    "只有单一消费团队的内部 API——可以直接协调变更而无需正式弃用",
+    "消费者理解功能可能不经通知即被移除的实验性或 Alpha API",
+    "旧系统将在单次切换中完全退役的一次性迁移项目",
+    "没有外部消费者、正式弃用开销超过协调收益的 API"
+  ],
+  "adopters": [
+    "Stripe",
+    "Google",
+    "Twilio",
+    "GitHub",
+    "AWS"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "JJ Geewax (2021). \"API Design Patterns\". Manning Publications.",
+  "secondary_sources": [
+    "Google (2020). \"AIP-181: Field Deprecation\". google.aip.dev.",
+    "Stripe (2017). \"API Versioning at Stripe\". stripe.com/blog."
+  ],
+  "typed_relations": [
+    {
+      "slug": "api-versioning-strategies",
+      "type": "complement"
+    },
+    {
+      "slug": "strangler-fig-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "semantic-versioning",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/deprecation-strategy",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/deprecation-strategy.md"
+}

@@ -1,0 +1,193 @@
+{
+  "id": 200,
+  "name": "Security Champions Program",
+  "name_zh": "安全冠军计划",
+  "slug": "security-champions-program",
+  "category": "security",
+  "desc": "Embedding security advocates within development teams",
+  "desc_zh": "在开发团队中嵌入安全倡导者",
+  "steps": [
+    "Identify and recruit volunteer security champions from existing engineering teams — target developers with security curiosity rather than requiring prior expertise, aiming for at least one champion per team or squad",
+    "Define the security champion role with clear expectations: attend monthly security training, perform lightweight threat modeling on their team's new features, triage security findings from SAST/DAST tools, and serve as the first point of contact for security questions",
+    "Build a security champions community with regular meetings, a dedicated communication channel, and recognition programs so champions feel supported by the central security team and incentivized to continue",
+    "Equip champions with tooling and training: access to vulnerability databases, secure coding guidelines, threat modeling templates, and a direct escalation path to the security team for complex issues",
+    "Measure program effectiveness through metrics: number of security issues caught pre-production per team, champion participation rates, training completion, and reduction in security debt over time"
+  ],
+  "steps_zh": [
+    "从现有工程团队中识别并招募自愿的安全冠军——针对有安全好奇心的开发者，而非要求具备先验专业知识，目标是每个团队或小队至少有一名冠军",
+    "以明确期望定义安全冠军角色：参加每月安全培训、对团队新功能进行轻量级威胁建模、分类SAST/DAST工具的安全发现，以及作为安全问题的第一联系人",
+    "通过定期会议、专用通信渠道和认可计划建立安全冠军社区，使冠军感受到中心安全团队的支持并有动力继续",
+    "为冠军提供工具和培训：访问漏洞数据库、安全编码指南、威胁建模模板，以及针对复杂问题直接上报安全团队的渠道",
+    "通过指标衡量计划效果：每个团队在生产前发现的安全问题数量、冠军参与率、培训完成情况以及安全债务随时间的减少"
+  ],
+  "ai_relevant": false,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Recruit",
+    "Define Role",
+    "Community",
+    "Tooling",
+    "Metrics"
+  ],
+  "viz_labels_zh": [
+    "招募成员",
+    "角色定义",
+    "安全社区",
+    "工具培训",
+    "效果度量"
+  ],
+  "related": [
+    "security-by-design",
+    "threat-modeling-stride",
+    "owasp-top-10",
+    "defense-in-depth"
+  ],
+  "tags": [
+    "security-champions",
+    "devsecops",
+    "culture",
+    "shift-left",
+    "team-security"
+  ],
+  "origin_author": "OWASP Security Champions Playbook; popularized by companies like Spotify and Nokia",
+  "origin_source": "OWASP Security Champions Guide (owasp.org); Schoenfield, B. (2015). \"Securing Systems: Applied Security Architecture and Threat Models\". CRC Press",
+  "origin_source_zh": "OWASP安全冠军指南（owasp.org）；Schoenfield, B.《系统安全：应用安全架构与威胁建模》（CRC Press，2015）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When the central security team cannot scale to review every feature and service across dozens of engineering teams",
+    "When DevSecOps adoption requires security knowledge to be distributed into engineering teams rather than bottlenecked through a security gate",
+    "When security training completion rates are low and developers lack actionable security guidance relevant to their day-to-day work",
+    "When recurring security vulnerabilities in the same categories suggest that developers lack immediate access to security expertise during development"
+  ],
+  "when_to_use_zh": [
+    "当中心安全团队无法扩展以审查数十个工程团队的每个功能和服务时",
+    "当DevSecOps采纳要求安全知识分布到工程团队，而非通过安全门被瓶颈化时",
+    "当安全培训完成率低且开发者缺乏与日常工作相关的可操作安全指导时",
+    "当同类别的重复安全漏洞表明开发者在开发过程中缺乏即时安全专业知识时"
+  ],
+  "core_concepts": [
+    "Distributed security: embedding security responsibility within each engineering team rather than centralizing it in a security silo, matching security coverage to development velocity",
+    "Security advocate: a developer who acts as a security liaison between their engineering team and the central security organization, bridging the cultural and knowledge gap",
+    "Shift-left: catching security issues during design and development rather than at a final security review gate, reducing remediation cost and time-to-fix",
+    "Community of practice: a cross-team network of security champions who share knowledge, patterns, and tooling, multiplying the impact of the central security team"
+  ],
+  "core_concepts_zh": [
+    "分布式安全：将安全责任嵌入每个工程团队，而非集中在安全孤岛中，使安全覆盖与开发速度相匹配",
+    "安全倡导者：作为工程团队和中心安全组织之间安全联络人的开发者，弥合文化和知识鸿沟",
+    "左移：在设计和开发期间而非最终安全审查门处发现安全问题，降低修复成本和修复时间",
+    "实践社区：共享知识、模式和工具的跨团队安全冠军网络，倍增中心安全团队的影响力"
+  ],
+  "timeline": [
+    [
+      "2011",
+      "OWASP begins documenting security champions as an organizational pattern for scaling security across large engineering organizations"
+    ],
+    [
+      "2015",
+      "Spotify and Nokia publish their security champions program experiences, providing concrete implementation models for the industry"
+    ],
+    [
+      "2019",
+      "OWASP Security Champions Playbook v1.0 released, providing a structured guide for program creation and measurement"
+    ],
+    [
+      "2022",
+      "Security champions programs become a standard recommendation in NIST SSDF and CISA Secure by Design guidance for enterprise DevSecOps"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2011",
+      "OWASP开始将安全冠军记录为在大型工程组织中扩展安全的组织模式"
+    ],
+    [
+      "2015",
+      "Spotify和Nokia发布其安全冠军计划经验，为行业提供具体的实施模型"
+    ],
+    [
+      "2019",
+      "OWASP安全冠军手册v1.0发布，为计划创建和衡量提供结构化指南"
+    ],
+    [
+      "2022",
+      "安全冠军计划成为NIST SSDF和CISA安全设计指南中企业DevSecOps的标准建议"
+    ]
+  ],
+  "dos": [
+    "Do make the security champion role voluntary and recognized because mandatory, unrecognized security responsibilities demotivate developers and produce nominal participation",
+    "Do give champions dedicated time (10-20% of a sprint) for security activities because security work that competes with feature delivery will always lose without protected time",
+    "Do keep champions updated on the current threat landscape because stale security knowledge leads to champions advocating for outdated controls",
+    "Do measure the program impact with concrete metrics and share them with leadership because visible ROI protects the program from cost-cutting when budgets tighten"
+  ],
+  "dos_zh": [
+    "将安全冠军角色设为自愿且获得认可，因为强制性、不被认可的安全责任会让开发者丧失积极性，导致名义上的参与",
+    "给冠军留出专用时间（每个冲刺10-20%）用于安全活动，因为与功能交付竞争的安全工作在没有受保护时间的情况下总会失败",
+    "使冠军了解当前威胁态势，因为过时的安全知识会导致冠军倡导过时的控制措施",
+    "用具体指标衡量计划影响并与领导层分享，因为可见的投资回报率在预算收紧时保护计划免受削减"
+  ],
+  "donts": [
+    "Don't treat champions as free security auditors who must review every pull request because this burns out champions and creates the same bottleneck as the central security team",
+    "Don't run the program without central security team support because champions need escalation paths, training, and recognition — an unsupported champion quickly becomes a former champion",
+    "Don't make champions responsible for fixing all security bugs in their team because ownership should be with the engineer who introduced the bug, not the security champion",
+    "Don't neglect champion turnover planning because when a champion leaves the team their security knowledge leaves with them; maintain a succession pipeline"
+  ],
+  "donts_zh": [
+    "不要将冠军视为必须审查每个拉取请求的免费安全审计员，因为这会让冠军精疲力竭，并产生与中心安全团队相同的瓶颈",
+    "不要在没有中心安全团队支持的情况下运行计划，因为冠军需要上报途径、培训和认可——不受支持的冠军很快就会成为前冠军",
+    "不要让冠军负责修复其团队中的所有安全漏洞，因为所有权应属于引入漏洞的工程师，而非安全冠军",
+    "不要忽视冠军离职规划，因为当冠军离开团队时，他们的安全知识也随之消失；维护继任管道"
+  ],
+  "case_study_company": "Spotify",
+  "case_study": "Spotify's security champions program grew to over 400 champions across 150+ engineering squads by 2020. Each chapter (domain group) has at least one champion trained in threat modeling, secure code review, and dependency vulnerability management. Champions run quarterly threat modeling sessions for new features and triage SAST findings from their automated security scanning pipeline. Spotify's security team reports that the program reduced the time from vulnerability discovery to patch from an average of 45 days to under 10 days, with champions resolving 70% of findings without central security team involvement.",
+  "case_study_zh": "Spotify的安全冠军计划到2020年已在150多个工程小队中发展到400多名冠军。每个章节（领域组）至少有一名经过威胁建模、安全代码审查和依赖漏洞管理培训的冠军。冠军为新功能运行季度威胁建模会议，并对自动化安全扫描管道中的SAST发现进行分类。Spotify安全团队报告称，该计划将从漏洞发现到修补的时间从平均45天缩短到10天以内，冠军在不涉及中心安全团队的情况下解决了70%的发现。",
+  "when_not_to_use": [
+    "Very small engineering teams (under 10 engineers) where the entire team can be trained in security and a dedicated champion role is redundant",
+    "Organizations where developers are already deeply security-aware and the central security team is well-staffed enough to review all features",
+    "When leadership will not allocate dedicated time for champion activities because an underfunded program creates false assurance without real security improvement",
+    "Crisis response situations where immediate security remediation is needed and building a long-term program is not the priority"
+  ],
+  "when_not_to_use_zh": [
+    "非常小的工程团队（少于10名工程师），整个团队都可以接受安全培训，专职冠军角色是多余的",
+    "开发者已深度安全意识且中心安全团队人员充足可审查所有功能的组织",
+    "当领导层不愿为冠军活动分配专用时间时，因为资金不足的计划会在没有真正安全改进的情况下产生虚假保证",
+    "需要立即安全整治的危机响应情况，构建长期计划不是优先事项"
+  ],
+  "adopters": [
+    "Spotify",
+    "Nokia",
+    "SAP",
+    "Etsy",
+    "ING Bank"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "security"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "OWASP (2019). \"Security Champions Playbook\". owasp.org/www-project-security-champions-guidebook.",
+  "secondary_sources": [
+    "Schoenfield, B.S.E. (2015). \"Securing Systems: Applied Security Architecture and Threat Models\". CRC Press.",
+    "Pohl, C. & Hof, H.J. (2015). \"Secure Scrum: Development of Secure Software with Scrum\". Proceedings of ICSEA 2015.",
+    "Kim, G. et al. (2016). \"The DevOps Handbook\". IT Revolution Press."
+  ],
+  "typed_relations": [
+    {
+      "slug": "security-by-design",
+      "type": "complement"
+    },
+    {
+      "slug": "threat-modeling-stride",
+      "type": "complement"
+    },
+    {
+      "slug": "owasp-top-10",
+      "type": "complement"
+    },
+    {
+      "slug": "defense-in-depth",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/security-champions-program",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/security-champions-program.md"
+}

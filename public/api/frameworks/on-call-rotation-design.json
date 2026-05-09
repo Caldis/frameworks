@@ -1,0 +1,199 @@
+{
+  "id": 217,
+  "name": "On-Call Rotation Design",
+  "name_zh": "值班轮换设计",
+  "slug": "on-call-rotation-design",
+  "category": "team",
+  "desc": "Fair, sustainable on-call schedules and escalation policies that protect engineer wellbeing",
+  "desc_zh": "保护工程师福祉的公平、可持续值班计划和升级策略",
+  "steps": [
+    "Define the service ownership scope for the on-call rotation: which services, alerts, and runbooks belong to the on-call engineer and what constitutes a page-worthy incident",
+    "Design the rotation schedule: determine the rotation length (weekly is most common), the number of engineers in the pool (minimum 4-6 to allow reasonable frequency), and whether a secondary on-call provides backup",
+    "Set escalation policies: define how long the primary on-call has to acknowledge an alert before it escalates to the secondary, and from secondary to team lead, with explicit timeouts",
+    "Establish on-call compensation and working norms: time-off in lieu (TOIL) for disturbed nights, a hard limit on night pages per on-call shift, and a mandatory rest period after a severe incident",
+    "Run a quarterly on-call retrospective reviewing alert volume, false positive rate, mean time to acknowledge (MTTA), and engineer satisfaction to drive continuous improvement"
+  ],
+  "steps_zh": [
+    "定义值班轮换的服务所有权范围：哪些服务、告警和运行手册属于值班工程师，什么构成值得呼叫的事件",
+    "设计轮换计划：确定轮换长度（每周最为常见）、轮换池中的工程师数量（至少4-6人以保证合理频率），以及是否由二线值班提供备份",
+    "设定升级策略：定义一线值班工程师在告警升级到二线之前有多长时间确认，以及从二线升级到团队负责人的时间，包含明确的超时时间",
+    "建立值班补偿和工作规范：因被打扰的夜晚给予调休（TOIL），每个值班班次的夜间呼叫硬性上限，以及严重事故后的强制休息期",
+    "运行季度值班回顾，审查告警量、误报率、平均确认时间（MTTA）和工程师满意度，以推动持续改进"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Service Scope",
+    "Rotation Schedule",
+    "Escalation Policy",
+    "Compensation Norms",
+    "Retrospective"
+  ],
+  "viz_labels_zh": [
+    "服务范围",
+    "轮值计划",
+    "升级策略",
+    "补偿规范",
+    "定期回顾"
+  ],
+  "related": [
+    "blameless-postmortems",
+    "runbook-automation",
+    "engineering-metrics-dashboard"
+  ],
+  "tags": [
+    "on-call",
+    "rotation",
+    "incident-response",
+    "escalation",
+    "sustainability"
+  ],
+  "origin_author": "SRE practices (Google, 2003); PagerDuty escalation model (2010); Charity Majors and Alice Goldfuss advocacy for sustainable on-call",
+  "origin_source": "Beyer, B. et al. (2016). \"Site Reliability Engineering\", Ch. 11. Google / O'Reilly; Majors, C. (2019). \"On-Call Shouldn't Suck\". honeycomb.io blog.",
+  "origin_source_zh": "Beyer, B.等（2016）「网站可靠性工程」，第11章，Google/O'Reilly；Majors, C.（2019）「值班不应该很糟糕」，honeycomb.io博客",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When a service has production SLOs that require human intervention within minutes and must be monitored 24/7",
+    "When the team is growing past 6-8 engineers and informal 'ping the person who built it' escalation is creating burnout for individual contributors",
+    "When incident response times are inconsistent because there is no defined first-responder and anyone might respond (or no one does)",
+    "When on-call burn rate is causing attrition and engineers cite on-call burden as a primary reason for leaving the organization"
+  ],
+  "when_to_use_zh": [
+    "当服务有需要几分钟内人工干预且必须24/7监控的生产SLO时",
+    "当团队超过6-8名工程师，非正式的「联系构建它的人」升级方式导致个人贡献者倦怠时",
+    "当事故响应时间不一致，因为没有定义的第一响应者，任何人都可能响应（或没有人响应）时",
+    "当值班消耗率导致人员流失，工程师将值班负担列为离开组织的主要原因时"
+  ],
+  "core_concepts": [
+    "Primary and Secondary On-Call: A two-tier model where primary handles the initial alert and secondary acts as backup if primary doesn't acknowledge within the timeout period",
+    "Escalation Policy: A defined sequence of contacts and timeouts that ensure an alert is never silently dropped — it always reaches a human who can act on it",
+    "MTTA and MTTR: Mean Time to Acknowledge (MTTA) measures responsiveness; Mean Time to Resolve (MTTR) measures effectiveness; both are tracked per on-call rotation",
+    "Alert Fatigue: The cumulative effect of too many low-signal alerts that trains responders to ignore pages, leading to missed critical incidents",
+    "Sustainable On-Call: The principle that on-call should consume less than 25% of an engineer's working time (SRE guideline) to allow focus on improvement work"
+  ],
+  "core_concepts_zh": [
+    "一线和二线值班：两级模型，一线处理初始告警，二线在一线未在超时期限内确认时作为备份",
+    "升级策略：定义的联系人序列和超时，确保告警永远不会被静默丢弃——它总会到达能够采取行动的人",
+    "MTTA和MTTR：平均确认时间（MTTA）衡量响应能力；平均解决时间（MTTR）衡量有效性；两者都按值班轮换跟踪",
+    "告警疲劳：过多低信号告警的累积效应，训练响应者忽略呼叫，导致错过关键事故",
+    "可持续值班：值班消耗应少于工程师工作时间25%的原则（SRE指导方针），以允许专注于改进工作"
+  ],
+  "timeline": [
+    [
+      "2003",
+      "Google SRE team formalizes on-call rotation practices including the 50% toil limit and escalation policies for production services"
+    ],
+    [
+      "2010",
+      "PagerDuty founded, providing the first SaaS platform specifically designed for on-call scheduling and alert routing"
+    ],
+    [
+      "2016",
+      "Google's SRE book (O'Reilly) publishes on-call practices as industry standard, including the rule that on-call burden must not exceed 25% of time"
+    ],
+    [
+      "2019",
+      "Charity Majors and Alice Goldfuss publish 'Database Reliability Engineering' and blog extensively on sustainable on-call culture"
+    ],
+    [
+      "2022",
+      "Incident.io, Rootly, and Opsgenie advance on-call tooling with AI-powered alert correlation and automatic runbook suggestions"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2003",
+      "Google SRE团队正式化值班轮换实践，包括50%琐事上限和生产服务的升级策略"
+    ],
+    [
+      "2010",
+      "PagerDuty成立，提供第一个专门为值班排班和告警路由设计的SaaS平台"
+    ],
+    [
+      "2016",
+      "Google的SRE书（O'Reilly）将值班实践作为行业标准发布，包括值班负担不得超过25%时间的规则"
+    ],
+    [
+      "2019",
+      "Charity Majors和Alice Goldfuss发布「数据库可靠性工程」并广泛撰写关于可持续值班文化的博客"
+    ],
+    [
+      "2022",
+      "Incident.io、Rootly和Opsgenie通过AI驱动的告警关联和自动运行手册建议推进值班工具"
+    ]
+  ],
+  "dos": [
+    "Do ensure the on-call rotation pool has at least 4-6 engineers so that no individual is on-call more than one week in four",
+    "Do compensate engineers for on-call time through explicit pay, time-off in lieu, or reduced sprint commitments because unpaid on-call creates resentment and attrition",
+    "Do conduct post-incident reviews for every severity-1 incident and track the actionable improvements through to completion to prevent recurring pages",
+    "Do set a maximum number of night pages per on-call shift (e.g., 5 per week) as a hard organizational commitment, not a guideline"
+  ],
+  "dos_zh": [
+    "确保值班轮换池至少有4-6名工程师，使任何个人的值班频率不超过每四周一次",
+    "通过明确的薪酬、调休或减少迭代承诺来补偿工程师的值班时间，因为无偿值班会产生怨恨和人员流失",
+    "对每个S1级事故进行事后审查，并跟踪可操作的改进直到完成，以防止重复告警",
+    "将每个值班班次的夜间呼叫最大数量（如每周5次）设为硬性组织承诺，而非指导方针"
+  ],
+  "donts": [
+    "Don't put engineers on-call for services they didn't build and haven't been properly trained on because it creates dangerous guesswork during incidents",
+    "Don't treat on-call as a rite of passage or proof of seniority because it normalizes unsustainable practices and drives away excellent engineers who have alternatives",
+    "Don't ignore alert volume as a metric because teams that normalize high alert volumes are training themselves for alert fatigue and missed critical incidents",
+    "Don't allow on-call engineers to stay on a page without escalation indefinitely; set hard timeouts because delayed escalation extends incident duration"
+  ],
+  "donts_zh": [
+    "不要让工程师值班他们没有构建且没有经过适当培训的服务，因为这在事故中产生危险的猜测",
+    "不要将值班视为成人礼或资历证明，因为这使不可持续的实践正常化，并驱走有其他选择的优秀工程师",
+    "不要忽视告警量作为指标，因为使高告警量正常化的团队正在训练自己产生告警疲劳并错过关键事故",
+    "不要允许值班工程师无限期停留在呼叫上而不升级；设置硬性超时，因为延迟升级会延长事故持续时间"
+  ],
+  "case_study_company": "Google SRE",
+  "case_study": "Google's Site Reliability Engineering team codified on-call best practices that became the industry standard. Their model limits on-call burden to 25% of an SRE's working time (including both the on-call shift and follow-up work), with the remainder dedicated to engineering improvements. Google's SRE book documented that when on-call load exceeded 25%, SRE teams experienced measurable increases in burnout, errors, and attrition. The escalation policy model — primary acknowledges within 5 minutes or secondary is paged, secondary within 10 minutes or management is called — has been adopted by PagerDuty, Opsgenie, and Incident.io as the default template for new customers.",
+  "case_study_zh": "Google的网站可靠性工程团队编纂了成为行业标准的值班最佳实践。他们的模型将值班负担限制在SRE工作时间的25%（包括值班班次和后续工作），其余时间专注于工程改进。Google的SRE书记录了当值班负载超过25%时，SRE团队经历了可测量的倦怠、错误和人员流失增加。升级策略模型——一线在5分钟内确认，否则呼叫二线，二线在10分钟内确认，否则通知管理层——已被PagerDuty、Opsgenie和Incident.io采用为新客户的默认模板。",
+  "when_not_to_use": [
+    "Internal tooling or development services with no user-facing SLOs where an 8x5 support model with next-business-day response is acceptable",
+    "Services in early development where stability is not yet expected and alerting produces more noise than signal",
+    "Teams of fewer than 4 engineers where sustainable rotation is impossible and alternative architectures (using managed services to reduce operational burden) should be prioritized",
+    "Non-critical internal services where the cost of a 24/7 on-call rotation exceeds the cost of occasional downtime"
+  ],
+  "when_not_to_use_zh": [
+    "没有面向用户SLO的内部工具或开发服务，8x5支持模型和下一个工作日响应是可接受的",
+    "早期开发中的服务，尚不期望稳定性，告警产生的噪音多于信号",
+    "少于4名工程师的团队，可持续轮换是不可能的，应优先考虑替代架构（使用托管服务减少运营负担）",
+    "非关键内部服务，24/7值班轮换的成本超过偶尔停机的成本"
+  ],
+  "adopters": [
+    "Google",
+    "Netflix",
+    "Stripe",
+    "Atlassian",
+    "PagerDuty"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Beyer, B., Jones, C., Petoff, J. & Murphy, N.R. (2016). \"Site Reliability Engineering\", Ch. 11. O'Reilly Media.",
+  "secondary_sources": [
+    "Majors, C. (2019). \"On-Call Shouldn't Suck: A Guide for Managers\". honeycomb.io.",
+    "PagerDuty (2023). \"Incident Response Operational Guide\". response.pagerduty.com.",
+    "Blank-Edelman, D. (2018). \"Seeking SRE\", Ch. 18-19. O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "blameless-postmortems",
+      "type": "complement"
+    },
+    {
+      "slug": "runbook-automation",
+      "type": "complement"
+    },
+    {
+      "slug": "engineering-metrics-dashboard",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/on-call-rotation-design",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/on-call-rotation-design.md"
+}

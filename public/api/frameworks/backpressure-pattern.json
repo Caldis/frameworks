@@ -1,0 +1,195 @@
+{
+  "id": 123,
+  "name": "Backpressure Pattern",
+  "name_zh": "背压模式",
+  "slug": "backpressure-pattern",
+  "category": "distributed",
+  "desc": "Flow control mechanism where downstream consumers signal upstream producers to slow down",
+  "desc_zh": "下游消费者向上游生产者发出减速信号的流量控制机制",
+  "steps": [
+    "Identify the bottleneck: profile the pipeline to find where the slowest consumer or resource constraint creates a mismatch between production and consumption rates",
+    "Instrument buffer occupancy: add metrics to every queue, channel, and buffer in the pipeline to observe fill levels and detect when capacity is approaching limits",
+    "Implement the signaling mechanism: choose between reactive pull-based demand (Reactive Streams), TCP window-based flow control, credit-based systems, or explicit NACK/pause signals",
+    "Propagate backpressure end-to-end: ensure every stage in the pipeline forwards pressure upstream rather than absorbing it locally with unbounded buffers",
+    "Define overflow strategies: decide what happens when backpressure fails to prevent overload — drop newest, drop oldest, sample, or reject with an error to the caller"
+  ],
+  "steps_zh": [
+    "识别瓶颈：对管道进行性能分析，找到最慢的消费者或资源约束导致生产与消费速率不匹配的位置",
+    "监测缓冲区占用：为管道中每个队列、通道和缓冲区添加指标，观察填充水平并检测何时接近容量限制",
+    "实现信号机制：选择响应式拉取需求（Reactive Streams）、TCP窗口流控、基于信用的系统或显式NACK/暂停信号",
+    "端到端传播背压：确保管道中每个阶段都将压力向上游传递，而非用无界缓冲区在本地吸收",
+    "定义溢出策略：决定背压无法阻止过载时的处理方式——丢弃最新、丢弃最旧、采样或向调用者返回错误"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Bottleneck",
+    "Buffer Metrics",
+    "Signal Mechanism",
+    "End-to-End",
+    "Overflow Strategy"
+  ],
+  "viz_labels_zh": [
+    "瓶颈识别",
+    "缓冲监控",
+    "背压信号",
+    "端到端传播",
+    "溢出策略"
+  ],
+  "related": [
+    "circuit-breaker-pattern",
+    "bulkhead-pattern",
+    "reactive-extensions"
+  ],
+  "tags": [
+    "flow-control",
+    "resilience",
+    "async",
+    "streaming"
+  ],
+  "origin_author": "Concept from networking (TCP flow control); formalized in Reactive Streams (2013-2015)",
+  "origin_source": "Reactive Streams Specification (2015); Nygard, Release It!, Ch. 5; Kleppmann, Designing Data-Intensive Applications, Ch. 11",
+  "origin_source_zh": "Reactive Streams规范（2015）；Nygard《Release It!》第5章；Kleppmann《数据密集型应用系统设计》第11章",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When a fast producer overwhelms a slow consumer, causing memory exhaustion or cascading failures in the pipeline",
+    "When building real-time streaming data pipelines where data loss is unacceptable but throughput varies unpredictably",
+    "When microservices have asymmetric processing speeds and unbounded message queues risk out-of-memory crashes",
+    "When designing async event-driven systems where the event rate can spike during peak traffic periods"
+  ],
+  "when_to_use_zh": [
+    "当快速生产者压垮慢速消费者，导致内存耗尽或管道级联故障时",
+    "当构建实时流数据管道，数据丢失不可接受但吞吐量不可预测地变化时",
+    "当微服务的处理速度不对称，无界消息队列有内存溢出崩溃风险时",
+    "当设计异步事件驱动系统，事件速率在流量高峰期可能突增时"
+  ],
+  "core_concepts": [
+    "Demand signaling: Consumers explicitly request a specific number of items they can handle, preventing producers from pushing more than the consumer can process",
+    "Bounded buffers: Fixed-size queues that block or reject producers when full, converting memory pressure into temporal backpressure",
+    "End-to-end propagation: Backpressure must flow from the slowest stage all the way back to the original source; a single unbounded buffer breaks the chain",
+    "Overflow policies: Strategies for when backpressure is insufficient — drop-head, drop-tail, sample, buffer-to-disk, or reject with HTTP 429/503",
+    "Reactive Streams protocol: A standard (adopted as java.util.concurrent.Flow in JDK 9) defining Publisher, Subscriber, Subscription, and Processor interfaces with non-blocking demand signaling"
+  ],
+  "core_concepts_zh": [
+    "需求信号：消费者显式请求其能处理的特定数量项目，阻止生产者推送超出消费者处理能力的数据",
+    "有界缓冲区：固定大小的队列在满时阻塞或拒绝生产者，将内存压力转换为时间维度的背压",
+    "端到端传播：背压必须从最慢的阶段一路回传到原始数据源；单个无界缓冲区就会打破链条",
+    "溢出策略：背压不足时的处理策略——丢弃队首、丢弃队尾、采样、缓冲到磁盘或以HTTP 429/503拒绝",
+    "Reactive Streams协议：定义Publisher、Subscriber、Subscription和Processor接口的标准（JDK 9中采纳为java.util.concurrent.Flow），支持非阻塞需求信号"
+  ],
+  "timeline": [
+    [
+      "1988",
+      "Van Jacobson designs TCP congestion control with window-based flow control, a foundational backpressure mechanism"
+    ],
+    [
+      "2013",
+      "Engineers from Netflix, Pivotal, Lightbend, and Red Hat begin the Reactive Streams initiative"
+    ],
+    [
+      "2015",
+      "Reactive Streams 1.0 specification published, defining the Publisher-Subscriber contract with demand signaling"
+    ],
+    [
+      "2017",
+      "JDK 9 adopts Reactive Streams as java.util.concurrent.Flow, bringing backpressure to the Java standard library"
+    ],
+    [
+      "2018",
+      "Nygard's Release It! second edition covers backpressure as a core stability pattern for production systems"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1988",
+      "Van Jacobson设计TCP拥塞控制及基于窗口的流控，奠定了背压机制的基础"
+    ],
+    [
+      "2013",
+      "Netflix、Pivotal、Lightbend和Red Hat的工程师发起Reactive Streams倡议"
+    ],
+    [
+      "2015",
+      "Reactive Streams 1.0规范发布，定义带需求信号的Publisher-Subscriber契约"
+    ],
+    [
+      "2017",
+      "JDK 9将Reactive Streams采纳为java.util.concurrent.Flow，将背压引入Java标准库"
+    ],
+    [
+      "2018",
+      "Nygard《Release It!》第二版将背压作为生产系统核心稳定性模式进行介绍"
+    ]
+  ],
+  "dos": [
+    "Do propagate backpressure end-to-end through every stage because a single unbounded buffer creates a hidden failure point",
+    "Do monitor buffer fill ratios as leading indicators because they reveal impending overload before out-of-memory errors occur",
+    "Do choose overflow strategies explicitly for each pipeline stage because the right policy depends on whether data loss is acceptable",
+    "Do test backpressure behavior under peak load conditions because backpressure bugs only manifest when the system is under stress"
+  ],
+  "dos_zh": [
+    "将背压端到端传播通过每个阶段，因为单个无界缓冲区会形成隐藏的故障点",
+    "将缓冲区填充率作为先导指标进行监控，因为它们在内存溢出错误发生之前就能揭示即将到来的过载",
+    "为每个管道阶段显式选择溢出策略，因为正确的策略取决于数据丢失是否可接受",
+    "在峰值负载条件下测试背压行为，因为背压缺陷只在系统承受压力时才会显现"
+  ],
+  "donts": [
+    "Don't use unbounded queues as a substitute for backpressure because they merely convert a throughput problem into a memory problem",
+    "Don't drop data silently without metrics because undetected data loss undermines system correctness and erodes operator trust",
+    "Don't apply backpressure only at the network edge because internal bottlenecks need their own flow control too",
+    "Don't conflate backpressure with rate limiting because backpressure is adaptive and demand-driven while rate limiting is a fixed policy"
+  ],
+  "donts_zh": [
+    "不要用无界队列替代背压，因为它们只是将吞吐问题转换为内存问题",
+    "不要在没有指标的情况下静默丢弃数据，因为未被检测到的数据丢失会损害系统正确性并侵蚀运维信任",
+    "不要仅在网络边缘应用背压，因为内部瓶颈也需要自己的流量控制",
+    "不要将背压与速率限制混为一谈，因为背压是自适应的需求驱动机制，而速率限制是固定策略"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix's streaming platform uses RxJava and Project Reactor extensively, both of which implement Reactive Streams backpressure. When Netflix's personalization service generates recommendation updates, downstream services (like the row-sorting service) can vary in processing capacity by 10x depending on the device type being served. Without backpressure, the recommendation engine would flood slower consumers, causing cascading timeouts. By implementing pull-based demand signaling, each consumer requests only what it can handle, and the recommendation engine automatically adjusts its emission rate. This pattern reduced out-of-memory incidents in the recommendation pipeline by over 90%.",
+  "case_study_zh": "Netflix的流媒体平台广泛使用RxJava和Project Reactor，两者都实现了Reactive Streams背压。当Netflix的个性化服务生成推荐更新时，下游服务（如行排序服务）的处理能力根据服务的设备类型可能相差10倍。没有背压时，推荐引擎会淹没较慢的消费者，导致级联超时。通过实现基于拉取的需求信号，每个消费者只请求其能处理的数量，推荐引擎自动调整其发射速率。该模式将推荐管道中的内存溢出事件减少了90%以上。",
+  "when_not_to_use": [
+    "Fire-and-forget telemetry where dropping some data points is preferable to slowing the producer",
+    "Simple request-response APIs where synchronous blocking naturally throttles the caller",
+    "Batch processing systems where the entire dataset is known in advance and can be partitioned statically"
+  ],
+  "when_not_to_use_zh": [
+    "丢弃部分数据点比减慢生产者更可取的即发即忘遥测场景",
+    "同步阻塞自然节流调用者的简单请求-响应API",
+    "整个数据集预先已知且可以静态分区的批处理系统"
+  ],
+  "adopters": [
+    "Netflix (RxJava)",
+    "Akka Streams (Lightbend)",
+    "Project Reactor (Spring)",
+    "Apache Flink",
+    "Apache Kafka (consumer fetch)"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability",
+    "performance"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Reactive Streams Contributors (2015). \"Reactive Streams Specification\". reactive-streams.org.",
+  "secondary_sources": [
+    "Nygard, M.T. (2018). \"Release It!\", 2nd ed., Ch. 5. Pragmatic Bookshelf.",
+    "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 11. O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "circuit-breaker-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "bulkhead-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "reactive-extensions",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/backpressure-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/backpressure-pattern.md"
+}

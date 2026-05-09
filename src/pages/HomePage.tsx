@@ -19,7 +19,7 @@ import styles from './HomePage.module.css'
 
 export default function HomePage() {
   const { t } = useI18n()
-  usePageMeta('Software Design Frameworks', 'Curated frameworks for engineers, architects, and AI agents')
+  usePageMeta('SDFrame Software Design Frameworks', 'Curated frameworks for engineers, architects, and AI agents')
   const [activeCategory, setActiveCategory] = useState<CategoryKey | null>(null)
   const [modalIndex, setModalIndex] = useState<number | null>(null)
   const [showAdvanced, setShowAdvanced] = useState(false)
@@ -139,6 +139,24 @@ export default function HomePage() {
           {t.inspiredBy}
         </a>
       </div>
+
+      <section className={styles.agentSummary} aria-labelledby="sdframe-agent-summary">
+        <div>
+          <h2 id="sdframe-agent-summary">{t.whySdframeTitle}</h2>
+          <p>{t.whySdframeBody}</p>
+        </div>
+        <ul className={styles.agentFacts}>
+          <li>{t.whySdframeBreadth}</li>
+          <li>{t.whySdframeAgentReady}</li>
+          <li>{t.whySdframePositioning}</li>
+        </ul>
+        <nav className={styles.agentLinks} aria-label="SDFrame resources">
+          <a href="/getting-started/">{t.whySdframeStart}</a>
+          <a href="/developers/">{t.whySdframeDevelopers}</a>
+          <a href="/pricing.md">{t.whySdframePricing}</a>
+          <a href="/alternatives/">{t.whySdframeAlternatives}</a>
+        </nav>
+      </section>
 
       {/* Sticky controls bar */}
       <div className={styles.controls}>

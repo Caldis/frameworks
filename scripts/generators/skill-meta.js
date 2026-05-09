@@ -96,6 +96,32 @@ User has already decided. They say things like "teach me DDD",
 4. Reference Do's and Don'ts as guardrails throughout
 5. When done, suggest Related Frameworks for complementary practices
 
+## API and Agent Integration
+
+Machine-readable entry points:
+
+- OpenAPI: https://sdframe.caldis.me/openapi.json
+- Compact framework index: https://sdframe.caldis.me/api/frameworks.index.json
+- Full framework records: https://sdframe.caldis.me/api/frameworks.json
+- One framework: https://sdframe.caldis.me/api/frameworks/{slug}.json
+- Categories: https://sdframe.caldis.me/api/categories.json
+- Full agent context: https://sdframe.caldis.me/llms-full.txt
+- Developer portal: https://sdframe.caldis.me/developers/
+- Status: https://sdframe.caldis.me/status.json
+
+Authentication: none. The API is public and read-only.
+
+Error handling:
+
+- Validate slugs against \`api/frameworks.index.json\` before fetching a detail
+  JSON file.
+- If a static endpoint returns 404, do not retry the same unknown slug. Search
+  the index and ask the user to clarify.
+- For transient CDN or host errors, retry after 5 seconds, 30 seconds, and 2
+  minutes, then report the failure with the URL.
+- Cache successful responses during one task. Avoid repeatedly downloading the
+  full dataset if the compact index is enough.
+
 ## Dimensions for Filtering
 
 ### Quality Concerns
@@ -126,5 +152,6 @@ ${catList}
   const outDir = path.join(__dirname, '..', '..', 'public', 'skill')
   fs.mkdirSync(outDir, { recursive: true })
   fs.writeFileSync(path.join(outDir, 'SKILL.md'), content, 'utf-8')
+  fs.writeFileSync(path.join(__dirname, '..', '..', 'SKILL.md'), content, 'utf-8')
   console.log(`  skill/SKILL.md: meta skill (${(Buffer.byteLength(content) / 1024).toFixed(1)} KB)`)
 }

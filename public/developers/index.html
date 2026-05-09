@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Developer Portal - SDFrame</title>
+  <meta name="description" content="Developer portal for the SDFrame public read API, OpenAPI specification, AI skill package, authentication model, rate-limit guidance, and static integration points.">
+  <link rel="canonical" href="https://sdframe.caldis.me/developers/">
+  <style>
+    :root { color-scheme: light dark; --fg: #1d1b18; --muted: #5f5a52; --line: #ddd6cb; --bg: #faf8f3; --panel: #fffdf8; --accent: #345c8c; }
+    body { margin: 0; font: 16px/1.65 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--fg); }
+    main { max-width: 900px; margin: 0 auto; padding: 40px 20px 72px; }
+    nav { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; font-size: 14px; }
+    a { color: var(--accent); }
+    h1 { font-size: clamp(2rem, 6vw, 4rem); line-height: 1.05; margin: 0 0 16px; }
+    h2 { font-size: 1.35rem; margin: 32px 0 8px; }
+    p { margin: 0 0 14px; color: var(--muted); }
+    ul, ol { color: var(--muted); padding-left: 22px; }
+    li { margin: 4px 0; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    pre { overflow: auto; padding: 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    th, td { border: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
+    .lede { font-size: 1.15rem; max-width: 760px; }
+  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","name":"SDFrame Developer Portal","description":"Read-only SDFrame API and AI agent integration documentation.","url":"https://sdframe.caldis.me/developers/","isPartOf":{"@type":"WebSite","name":"SDFrame","url":"https://sdframe.caldis.me"},"publisher":{"@type":"Person","name":"Caldis","url":"https://github.com/Caldis"},"dateModified":"2026-05-09"}</script>
+</head>
+<body>
+  <main>
+    <nav aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/docs/">Docs</a>
+      <a href="/developers/">Developers</a>
+      <a href="/api/">API</a>
+      <a href="/pricing/">Pricing</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/agent">Agent guide</a>
+    </nav>
+    <h1>SDFrame Developer Portal</h1>
+    <p class="lede">Developer portal for the SDFrame public read API, OpenAPI specification, AI skill package, authentication model, rate-limit guidance, and static integration points.</p>
+
+    <section>
+      <h2>Quickstart</h2>
+      <p>The SDFrame API is a public read-only API served as static JSON. Fetch the compact index first, then fetch an individual framework only when you need full detail.</p><pre><code>curl https://sdframe.caldis.me/api/frameworks.index.json
+curl https://sdframe.caldis.me/api/frameworks/domain-driven-design.json</code></pre>
+    </section>
+
+    <section>
+      <h2>Authentication</h2>
+      <p>No authentication is required. There are no API keys, OAuth clients, user accounts, or write endpoints. This is intentional: SDFrame is a public reference catalog, not a private data service.</p>
+    </section>
+
+    <section>
+      <h2>Endpoints</h2>
+      <table><thead><tr><th>Endpoint</th><th>Purpose</th></tr></thead><tbody><tr><td><code>/openapi.json</code></td><td>OpenAPI 3.1 description.</td></tr><tr><td><code>/api/frameworks.index.json</code></td><td>Compact searchable framework summaries.</td></tr><tr><td><code>/api/frameworks.json</code></td><td>Complete framework records.</td></tr><tr><td><code>/api/frameworks/{slug}.json</code></td><td>One framework record.</td></tr><tr><td><code>/api/categories.json</code></td><td>Category metadata and counts.</td></tr><tr><td><code>/status.json</code></td><td>Operational metadata.</td></tr></tbody></table>
+    </section>
+
+    <section>
+      <h2>Error handling and retry</h2>
+      <p>Known framework slugs return static JSON. Unknown slugs are handled by the static host and may return an HTML 404 page. Agents should validate slugs against <code>/api/frameworks.index.json</code> before requesting detail files. For transient host errors, retry after 5 seconds, 30 seconds, and 2 minutes. Cache successful responses.</p>
+    </section>
+
+    <section>
+      <h2>MCP</h2>
+      <p id="mcp">A live MCP transport is not currently operated from this static deployment. The MCP server card at <a href="/.well-known/mcp/server-card.json">/.well-known/mcp/server-card.json</a> documents the current manifest-only status. Agents should use OpenAPI, the static JSON API, and SKILL.md for now.</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,191 @@
+{
+  "id": 50,
+  "name": "Circuit Breaker Pattern",
+  "name_zh": "熔断器模式",
+  "slug": "circuit-breaker-pattern",
+  "category": "quality",
+  "desc": "Prevent cascading failures by short-circuiting failing calls",
+  "desc_zh": "通过短路失败调用防止级联故障扩散",
+  "steps": [
+    "Wrap remote calls: place a circuit breaker around each external dependency call (HTTP, database, third-party API)",
+    "Configure thresholds: set failure count or failure rate thresholds that trigger the circuit to open (e.g., 5 failures in 10 seconds)",
+    "Implement the three states: Closed (normal), Open (fail-fast with fallback), Half-Open (allow a probe request to test recovery)",
+    "Design fallback responses: return cached data, default values, or degraded functionality when the circuit is open",
+    "Monitor and alert: track circuit state transitions, open duration, and fallback invocation rates in dashboards and alerting systems"
+  ],
+  "steps_zh": [
+    "包裹远程调用：为每个外部依赖调用（HTTP、数据库、第三方API）放置熔断器",
+    "配置阈值：设置触发熔断器打开的失败计数或失败率阈值（如10秒内5次失败）",
+    "实现三种状态：关闭（正常）、打开（快速失败并降级）、半开（允许探测请求测试恢复）",
+    "设计降级响应：在熔断器打开时返回缓存数据、默认值或降级功能",
+    "监控与告警：在仪表盘和告警系统中追踪熔断器状态转换、打开持续时间和降级调用率"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Closed",
+    "Open",
+    "Half-Open"
+  ],
+  "viz_labels_zh": [
+    "关闭态",
+    "断开态",
+    "半开态"
+  ],
+  "related": [
+    "bulkhead-pattern",
+    "chaos-engineering",
+    "saga-pattern"
+  ],
+  "tags": [
+    "circuit-breaker",
+    "resilience",
+    "fault-tolerance",
+    "cascading-failure",
+    "fallback"
+  ],
+  "origin_author": "Michael Nygard, 2007",
+  "origin_source": "Release It! Design and Deploy Production-Ready Software",
+  "origin_source_zh": "《发布！软件的设计与部署》",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Microservice architectures where one slow or failing service can cascade to bring down the entire system",
+    "Applications calling external third-party APIs with unpredictable reliability",
+    "High-traffic systems where waiting on failing dependencies wastes thread pool resources",
+    "Services with defined fallback behaviors (caches, defaults) that can serve users during degradation"
+  ],
+  "when_to_use_zh": [
+    "一个慢速或故障服务可能级联导致整个系统崩溃的微服务架构",
+    "调用可靠性不可预测的外部第三方API的应用",
+    "等待故障依赖会浪费线程池资源的高流量系统",
+    "具有可在降级期间服务用户的降级行为（缓存、默认值）的服务"
+  ],
+  "core_concepts": [
+    "Closed State: Normal operation where requests pass through and failures are counted",
+    "Open State: The circuit is tripped and all requests immediately fail-fast without calling the dependency",
+    "Half-Open State: A limited number of probe requests are allowed to test whether the dependency has recovered",
+    "Fallback: An alternative response strategy used when the circuit is open (cached data, defaults, degraded features)",
+    "Failure Threshold: The number or rate of failures within a time window that triggers the circuit to open"
+  ],
+  "core_concepts_zh": [
+    "关闭状态：请求正常通过、失败被计数的正常运行状态",
+    "打开状态：熔断器跳闸，所有请求立即快速失败而不调用依赖",
+    "半开状态：允许有限数量的探测请求测试依赖是否已恢复",
+    "降级响应：熔断器打开时使用的替代响应策略（缓存数据、默认值、降级功能）",
+    "失败阈值：在时间窗口内触发熔断器打开的失败次数或失败率"
+  ],
+  "timeline": [
+    [
+      "2007",
+      "Michael Nygard describes the Circuit Breaker pattern in 'Release It!'"
+    ],
+    [
+      "2012",
+      "Netflix releases Hystrix, making circuit breakers a standard microservice pattern"
+    ],
+    [
+      "2014",
+      "Martin Fowler publishes a detailed circuit breaker blog post popularizing the pattern"
+    ],
+    [
+      "2018",
+      "Resilience4j emerges as the lightweight successor to Hystrix for Java applications"
+    ],
+    [
+      "2020",
+      "Circuit breakers become built-in features of service mesh platforms like Istio and Linkerd"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2007",
+      "Michael Nygard在《发布！》中描述了熔断器模式"
+    ],
+    [
+      "2012",
+      "Netflix发布Hystrix，使熔断器成为标准微服务模式"
+    ],
+    [
+      "2014",
+      "Martin Fowler发表详细的熔断器博客文章，普及了该模式"
+    ],
+    [
+      "2018",
+      "Resilience4j作为Hystrix的轻量级继任者出现，用于Java应用"
+    ],
+    [
+      "2020",
+      "熔断器成为Istio和Linkerd等服务网格平台的内置功能"
+    ]
+  ],
+  "dos": [
+    "Do configure different thresholds per dependency because each downstream has different failure characteristics",
+    "Do implement meaningful fallbacks because a circuit breaker without fallback just changes the error message",
+    "Do log circuit state transitions because they are critical signals for operational awareness",
+    "Do test circuit breaker behavior with chaos engineering because misconfigured breakers can mask problems"
+  ],
+  "dos_zh": [
+    "为每个依赖配置不同阈值，因为每个下游服务有不同的故障特征",
+    "实现有意义的降级响应，因为没有降级的熔断器只是改变了错误消息",
+    "记录熔断器状态转换日志，因为它们是运维感知的关键信号",
+    "用混沌工程测试熔断器行为，因为配置错误的熔断器可能掩盖问题"
+  ],
+  "donts": [
+    "Don't use a single circuit breaker for all dependencies because one failing service will trip the breaker for all",
+    "Don't set thresholds too sensitive because transient network blips will trigger unnecessary circuit opens",
+    "Don't forget the half-open state because without it the circuit never recovers automatically",
+    "Don't ignore circuit breaker metrics because a circuit that is always open indicates a deeper systemic problem"
+  ],
+  "donts_zh": [
+    "不要为所有依赖使用单一熔断器，因为一个故障服务会触发所有服务的熔断",
+    "不要设置过于敏感的阈值，因为瞬时网络抖动会触发不必要的熔断",
+    "不要忘记半开状态，因为没有它熔断器永远无法自动恢复",
+    "不要忽略熔断器指标，因为始终处于打开状态的熔断器表明存在更深层的系统问题"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix developed Hystrix as their circuit breaker library after experiencing cascading failures in their microservice architecture. When a single recommendation service slowed down, it consumed all available threads in calling services, eventually taking down the entire streaming experience. Hystrix circuit breakers resolved this by fail-fasting degraded calls and returning cached recommendations instead.",
+  "case_study_zh": "Netflix在其微服务架构中经历级联故障后开发了Hystrix熔断器库。当单个推荐服务变慢时，它消耗了调用服务的所有可用线程，最终导致整个流媒体体验崩溃。Hystrix熔断器通过快速失败降级调用并返回缓存的推荐内容来解决这一问题。",
+  "when_not_to_use": [
+    "Monolithic applications with no remote dependencies where failures are handled in-process",
+    "Fire-and-forget messaging where failures don't block the caller",
+    "Batch processing systems where retries with backoff are more appropriate than fail-fast"
+  ],
+  "when_not_to_use_zh": [
+    "没有远程依赖、故障在进程内处理的单体应用",
+    "失败不会阻塞调用者的即发即忘消息系统",
+    "使用退避重试比快速失败更合适的批处理系统"
+  ],
+  "adopters": [
+    "Netflix",
+    "Amazon",
+    "Uber",
+    "Alibaba",
+    "Capital One"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Michael Nygard (2007). \"Release It! Design and Deploy Production-Ready Software\". Pragmatic Bookshelf.",
+  "secondary_sources": [
+    "Martin Fowler (2014). \"CircuitBreaker\". martinfowler.com.",
+    "Michael Nygard (2018). \"Release It! Design and Deploy Production-Ready Software, 2nd Edition\". Pragmatic Bookshelf."
+  ],
+  "typed_relations": [
+    {
+      "slug": "bulkhead-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "chaos-engineering",
+      "type": "complement"
+    },
+    {
+      "slug": "saga-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/circuit-breaker-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/circuit-breaker-pattern.md"
+}

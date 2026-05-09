@@ -1,0 +1,195 @@
+{
+  "id": 256,
+  "name": "Security Development Lifecycle (SDL)",
+  "name_zh": "安全开发生命周期（SDL）",
+  "slug": "security-development-lifecycle",
+  "category": "security",
+  "desc": "Microsoft's structured process for integrating security and privacy practices at every phase of software development",
+  "desc_zh": "微软在软件开发每个阶段融入安全与隐私实践的结构化流程",
+  "steps": [
+    "Training: Provide all team members with core security education covering attack patterns, secure coding standards, and privacy fundamentals before development begins",
+    "Requirements: Define security and privacy requirements alongside functional requirements, establish bug bars, and identify compliance obligations (GDPR, HIPAA, PCI-DSS)",
+    "Design: Perform threat modeling using STRIDE, define the attack surface, apply security design principles (least privilege, defense in depth, secure defaults)",
+    "Implementation: Use approved tools and banned function lists, enforce static analysis (SAST) gates, conduct mandatory peer code reviews with security checklist",
+    "Verification & Release: Execute dynamic analysis (DAST) and fuzzing, conduct penetration testing, perform final security review, document incident response plan before shipping"
+  ],
+  "steps_zh": [
+    "培训：在开发开始前为所有团队成员提供核心安全教育，涵盖攻击模式、安全编码标准和隐私基础",
+    "需求：与功能需求并行定义安全和隐私需求，建立缺陷基准，识别合规义务（GDPR、HIPAA、PCI-DSS）",
+    "设计：使用STRIDE进行威胁建模，定义攻击面，应用安全设计原则（最小权限、纵深防御、安全默认值）",
+    "实现：使用经批准的工具和禁止函数列表，强制执行静态分析（SAST）门控，进行带安全检查表的强制同行代码审查",
+    "验证与发布：执行动态分析（DAST）和模糊测试，进行渗透测试，执行最终安全审查，在发布前记录事件响应计划"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Training",
+    "Requirements",
+    "Design",
+    "Implementation",
+    "Verification"
+  ],
+  "viz_labels_zh": [
+    "安全培训",
+    "安全需求",
+    "安全设计",
+    "安全实现",
+    "安全验证"
+  ],
+  "related": [
+    "threat-modeling-stride",
+    "owasp-top-10",
+    "defense-in-depth",
+    "devsecops-pipeline"
+  ],
+  "tags": [
+    "sdlc",
+    "secure-development",
+    "microsoft",
+    "shift-left",
+    "compliance"
+  ],
+  "origin_author": "Steve Lipner",
+  "origin_source": "Howard, M. & Lipner, S. (2006). \"The Security Development Lifecycle\". Microsoft Press.",
+  "origin_source_zh": "Howard, M. & Lipner, S.（2006）。「The Security Development Lifecycle」。微软出版社。",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When building software that handles sensitive user data, financial transactions, or critical infrastructure components",
+    "In regulated industries (healthcare, finance, government) where documented security processes are required for compliance audits",
+    "When onboarding a development organization to systematic security practices for the first time",
+    "Before a major product launch where a security breach would cause significant reputational or financial damage"
+  ],
+  "when_to_use_zh": [
+    "在构建处理敏感用户数据、金融交易或关键基础设施组件的软件时",
+    "在合规审计要求记录安全流程的受监管行业（医疗、金融、政府）中",
+    "首次让开发组织采用系统化安全实践时",
+    "在重大产品发布前，安全漏洞将造成重大声誉或财务损失时"
+  ],
+  "core_concepts": [
+    "Bug Bar: A minimum severity threshold that determines which security bugs must be fixed before release, providing consistent risk acceptance criteria",
+    "Attack Surface Reduction: Systematically minimizing the code and interfaces exposed to untrusted input, thereby reducing the number of pathways an attacker can exploit",
+    "Banned Functions: A list of APIs and library functions with known security weaknesses (e.g., strcpy, gets) that developers are prohibited from using",
+    "Final Security Review (FSR): A gate-based review performed by a security team before every product release to confirm all SDL requirements have been met",
+    "Trusted Computing Base (TCB): The subset of system components that must be correct for the security policy to be enforced, kept as small as possible"
+  ],
+  "core_concepts_zh": [
+    "缺陷基准：确定哪些安全缺陷必须在发布前修复的最低严重性阈值，提供一致的风险接受标准",
+    "攻击面缩减：系统性地最小化暴露给不受信任输入的代码和接口，从而减少攻击者可利用的路径数量",
+    "禁止函数：开发人员被禁止使用的具有已知安全弱点的API和库函数列表（如strcpy、gets）",
+    "最终安全审查（FSR）：每次产品发布前由安全团队执行的基于门控的审查，确认满足所有SDL要求",
+    "可信计算基（TCB）：为执行安全策略而必须正确的系统组件子集，尽可能保持最小化"
+  ],
+  "timeline": [
+    [
+      "2002",
+      "Microsoft launches Trustworthy Computing initiative following Bill Gates' famous memo, triggering SDL development"
+    ],
+    [
+      "2004",
+      "Microsoft mandates SDL across all Windows Server and developer tools product groups"
+    ],
+    [
+      "2006",
+      "Howard and Lipner publish「The Security Development Lifecycle」, making the process publicly available"
+    ],
+    [
+      "2012",
+      "Microsoft releases SDL as an Agile-compatible process and publishes SDL Threat Modeling Tool v3"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2002",
+      "微软在比尔·盖茨著名备忘录之后启动「可信计算」计划，触发SDL的开发"
+    ],
+    [
+      "2004",
+      "微软在所有Windows Server和开发者工具产品组强制推行SDL"
+    ],
+    [
+      "2006",
+      "Howard和Lipner出版「The Security Development Lifecycle」，使该流程公开可用"
+    ],
+    [
+      "2012",
+      "微软将SDL发布为敏捷兼容流程，并发布SDL威胁建模工具v3"
+    ]
+  ],
+  "dos": [
+    "Integrate SDL requirements as acceptance criteria in user stories so security is a first-class definition of done, not a separate audit",
+    "Automate as much of SDL as possible — static analysis, dependency scanning, and secret detection run every commit, making security invisible friction",
+    "Use metrics (mean time to fix security bugs, SAST false-positive rate) to continuously improve the SDL process itself",
+    "Train developers on the specific vulnerabilities most relevant to your stack rather than generic security awareness content"
+  ],
+  "dos_zh": [
+    "将SDL需求作为用户故事的验收标准，使安全成为一等完成定义，而非独立审计",
+    "尽可能自动化SDL——每次提交时运行静态分析、依赖扫描和密钥检测，使安全成为无摩擦的存在",
+    "使用指标（安全缺陷平均修复时间、SAST误报率）持续改进SDL流程本身",
+    "针对最与你的技术栈相关的特定漏洞培训开发人员，而非通用安全意识内容"
+  ],
+  "donts": [
+    "Don't treat SDL as a one-time checklist at the end of a project because late-stage security fixes cost 30x more than design-phase fixes",
+    "Don't assign SDL compliance solely to a security team because security is a shared responsibility that requires developer ownership",
+    "Don't skip threat modeling for 'small' features because attackers routinely exploit seemingly minor changes that alter trust boundaries",
+    "Don't implement SDL without executive sponsorship because security process adoption fails without organizational authority to enforce bug bars"
+  ],
+  "donts_zh": [
+    "不要将SDL视为项目结束时的一次性检查表，因为后期阶段的安全修复成本比设计阶段高30倍",
+    "不要将SDL合规工作仅分配给安全团队，因为安全是需要开发人员承担所有权的共同责任",
+    "不要跳过「小」功能的威胁建模，因为攻击者经常利用改变信任边界的看似微小的变更",
+    "不要在没有高管支持的情况下实施SDL，因为没有组织权威来执行缺陷基准，安全流程采用就会失败"
+  ],
+  "case_study_company": "Microsoft",
+  "case_study": "After the 2002 Trustworthy Computing initiative, Microsoft halted Windows Server 2003 development for 60 days to train 8,500 developers on secure coding and conduct the first company-wide SDL review. The result was a 45% reduction in security bulletins between Windows XP and Windows Vista, and a 91% reduction in critical vulnerabilities in Windows Server 2003 compared to Windows Server 2000. Microsoft later open-sourced the SDL process and tooling, enabling organizations like Adobe, Cisco, and SAP to adopt it. The SDL became the template for NIST SP 800-218 (Secure Software Development Framework) and ISO/IEC 27034.",
+  "case_study_zh": "在2002年「可信计算」计划之后，微软暂停Windows Server 2003的开发60天，对8,500名开发人员进行安全编码培训并进行首次全公司SDL审查。结果是Windows XP和Windows Vista之间安全公告减少了45%，Windows Server 2003与Windows Server 2000相比关键漏洞减少了91%。微软后来将SDL流程和工具开源，使Adobe、Cisco和SAP等组织能够采用它。SDL成为NIST SP 800-218（安全软件开发框架）和ISO/IEC 27034的模板。",
+  "when_not_to_use": [
+    "For throwaway prototypes or research spikes where the code will never reach production and security overhead would waste exploration time",
+    "In very early-stage startups (pre-product-market-fit) where the overhead of formal SDL phases would prevent shipping at all — adopt a lightweight version first",
+    "When the system handles only non-sensitive, publicly available data with no user authentication — full SDL overhead exceeds the actual risk"
+  ],
+  "when_not_to_use_zh": [
+    "对于一次性原型或研究性尝试，代码永远不会进入生产环境，安全开销会浪费探索时间",
+    "在极早期创业公司（产品市场契合前），正式SDL阶段的开销会完全妨碍发布——先采用精简版本",
+    "当系统仅处理非敏感、公开可用的数据且没有用户认证时——完整SDL开销超过实际风险"
+  ],
+  "adopters": [
+    "Microsoft",
+    "Adobe",
+    "Cisco",
+    "SAP",
+    "Siemens",
+    "US Department of Defense (DoD)"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "security",
+    "reliability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Howard, M. & Lipner, S. (2006). \"The Security Development Lifecycle\". Microsoft Press.",
+  "secondary_sources": [
+    "NIST (2022). \"SP 800-218: Secure Software Development Framework (SSDF)\". NIST.",
+    "Shostack, A. (2014). \"Threat Modeling: Designing for Security\". Wiley.",
+    "Microsoft (2012). \"SDL: Agile Development\". microsoft.com/en-us/securityengineering/sdl/agile."
+  ],
+  "typed_relations": [
+    {
+      "slug": "threat-modeling-stride",
+      "type": "complement"
+    },
+    {
+      "slug": "owasp-top-10",
+      "type": "complement"
+    },
+    {
+      "slug": "devsecops-pipeline",
+      "type": "related"
+    },
+    {
+      "slug": "defense-in-depth",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/security-development-lifecycle",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/security-development-lifecycle.md"
+}

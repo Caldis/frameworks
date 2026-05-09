@@ -1,0 +1,199 @@
+{
+  "id": 194,
+  "name": "AI Safety Layers (Defense in Depth for AI)",
+  "name_zh": "AI 安全层（AI 纵深防御）",
+  "slug": "ai-safety-layers",
+  "category": "ai",
+  "desc": "Multi-layer AI safety architecture",
+  "desc_zh": "多层 AI 安全架构",
+  "steps": [
+    "Define the threat model: prompt injection, jailbreaks, data leakage, harmful content, and unauthorized actions",
+    "Implement input guardrails: content filters, prompt validation, and injection detection before the LLM processes any request",
+    "Apply model-level safety: system prompts with safety instructions, Constitutional AI training, and output classifiers",
+    "Add output guardrails: content filtering, PII detection, hallucination checks, and citation verification on generated responses",
+    "Deploy operational safety: rate limiting, audit logging, human-in-the-loop for high-risk actions, and continuous red-teaming"
+  ],
+  "steps_zh": [
+    "定义威胁模型：提示注入、越狱攻击、数据泄露、有害内容和未授权操作",
+    "实施输入防护：内容过滤、提示验证和注入检测，在大模型处理请求之前执行",
+    "应用模型层安全：带安全指令的系统提示词、Constitutional AI 训练和输出分类器",
+    "添加输出防护：对生成响应进行内容过滤、PII 检测、幻觉检查和引用验证",
+    "部署运维安全：速率限制、审计日志、高风险操作的人机协同和持续红队测试"
+  ],
+  "ai_relevant": true,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "Model Safety",
+    "App Guard",
+    "Infra",
+    "Human"
+  ],
+  "viz_labels_zh": [
+    "模型安全",
+    "应用护栏",
+    "基础设施",
+    "人工监管"
+  ],
+  "related": [
+    "responsible-ai-design",
+    "guardrails-framework",
+    "llm-evaluation-framework",
+    "human-in-the-loop"
+  ],
+  "tags": [
+    "ai-safety",
+    "defense-in-depth",
+    "guardrails",
+    "security",
+    "responsible-ai"
+  ],
+  "origin_author": "Industry convergence: Anthropic (Constitutional AI), NIST (AI RMF), OWASP (LLM Top 10), 2023-2024",
+  "origin_source": "NIST AI Risk Management Framework (2023); OWASP Top 10 for LLM Applications (2023); Anthropic safety research (2023-2024)",
+  "origin_source_zh": "NIST AI 风险管理框架（2023）；OWASP 大模型应用十大风险（2023）；Anthropic 安全研究（2023-2024）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Any production LLM application that interacts with end users or processes sensitive data",
+    "Enterprise AI deployments subject to regulatory requirements (EU AI Act, HIPAA, SOC 2)",
+    "Agentic systems with tool access that can take real-world actions (send emails, modify data, execute code)",
+    "Customer-facing AI products where brand reputation depends on safe, reliable model behavior"
+  ],
+  "when_to_use_zh": [
+    "任何与终端用户交互或处理敏感数据的生产大模型应用",
+    "受监管要求约束（EU AI Act、HIPAA、SOC 2）的企业 AI 部署",
+    "可执行真实操作（发送邮件、修改数据、执行代码）的工具调用智能体系统",
+    "品牌声誉依赖安全可靠模型行为的面向客户的 AI 产品"
+  ],
+  "core_concepts": [
+    "Defense in Depth: No single safety layer is sufficient — multiple independent layers ensure that if one fails, others catch the threat",
+    "Input Guardrails: Pre-processing filters that detect and block prompt injection, jailbreaks, and malicious inputs before they reach the model",
+    "Output Guardrails: Post-processing checks that filter harmful content, detect PII leakage, and verify factual accuracy of generated responses",
+    "Operational Safety: Runtime controls including rate limiting, audit logging, human-in-the-loop gates, and continuous adversarial testing"
+  ],
+  "core_concepts_zh": [
+    "纵深防御：任何单一安全层都不够——多个独立层确保一层失败时其他层能捕获威胁",
+    "输入防护：在请求到达模型前检测和阻止提示注入、越狱攻击和恶意输入的预处理过滤器",
+    "输出防护：过滤有害内容、检测 PII 泄露和验证生成响应事实准确性的后处理检查",
+    "运维安全：包括速率限制、审计日志、人机协同门控和持续对抗性测试的运行时控制"
+  ],
+  "timeline": [
+    [
+      "2022-12",
+      "Anthropic publishes Constitutional AI, introducing model-level safety training via self-critique and revision"
+    ],
+    [
+      "2023-01",
+      "NIST releases the AI Risk Management Framework, establishing a structured approach to AI safety governance"
+    ],
+    [
+      "2023-08",
+      "OWASP publishes the Top 10 for LLM Applications, cataloging the most critical LLM security risks"
+    ],
+    [
+      "2024",
+      "Guardrails-as-a-service platforms (Guardrails AI, Lakera, Robust Intelligence) emerge for production LLM safety"
+    ],
+    [
+      "2025",
+      "Multi-layer safety architectures become standard in enterprise AI, with automated red-teaming integrated into CI/CD"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2022-12",
+      "Anthropic 发表 Constitutional AI，引入通过自我批评和修订的模型层安全训练"
+    ],
+    [
+      "2023-01",
+      "NIST 发布 AI 风险管理框架，建立结构化的 AI 安全治理方法"
+    ],
+    [
+      "2023-08",
+      "OWASP 发布大模型应用十大风险，编录最关键的大模型安全风险"
+    ],
+    [
+      "2024",
+      "防护栏即服务平台（Guardrails AI、Lakera、Robust Intelligence）涌现，用于生产大模型安全"
+    ],
+    [
+      "2025",
+      "多层安全架构成为企业 AI 标准，自动化红队测试集成到 CI/CD 中"
+    ]
+  ],
+  "dos": [
+    "Implement independent safety layers at input, model, output, and operational levels — defense in depth requires redundancy",
+    "Red-team your system regularly with adversarial prompts to discover bypass vectors before attackers do",
+    "Log all LLM interactions for audit and incident investigation, with appropriate data retention policies",
+    "Keep safety classifiers and guardrail rules updated as new attack techniques emerge — AI safety is an arms race"
+  ],
+  "dos_zh": [
+    "在输入、模型、输出和运维层面实施独立安全层——纵深防御需要冗余",
+    "定期使用对抗性提示对系统进行红队测试，在攻击者之前发现绕过向量",
+    "记录所有大模型交互以供审计和事件调查，并制定适当的数据保留策略",
+    "随着新攻击技术出现持续更新安全分类器和防护规则——AI 安全是一场军备竞赛"
+  ],
+  "donts": [
+    "Don't rely solely on the model's built-in safety training — it can be bypassed and must be supplemented with external guardrails",
+    "Don't treat AI safety as a one-time setup — threats evolve continuously and safety systems must be maintained actively",
+    "Don't skip output validation because the input was clean — the model can generate harmful content from benign inputs",
+    "Don't deploy agentic AI with tool access without human-in-the-loop gates for irreversible actions"
+  ],
+  "donts_zh": [
+    "不要仅依赖模型内置的安全训练——它可以被绕过，必须辅以外部防护栏",
+    "不要将 AI 安全视为一次性设置——威胁持续演化，安全系统必须主动维护",
+    "不要因为输入干净就跳过输出验证——模型可以从良性输入生成有害内容",
+    "不要在没有对不可逆操作设置人机协同门控的情况下部署带工具访问的智能体 AI"
+  ],
+  "case_study_company": "Anthropic",
+  "case_study": "Anthropic implements a comprehensive multi-layer safety architecture for Claude. The system includes input classifiers that detect prompt injection and jailbreak attempts, Constitutional AI training that teaches the model to self-critique and revise harmful outputs, output filters that catch residual harmful content, and operational controls including rate limiting and usage monitoring. This layered approach enables Claude to be deployed in high-stakes enterprise environments while maintaining strong safety properties — no single layer is trusted to be sufficient alone.",
+  "case_study_zh": "Anthropic 为 Claude 实施了全面的多层安全架构。系统包括检测提示注入和越狱尝试的输入分类器、教模型自我批评和修订有害输出的 Constitutional AI 训练、捕获残留有害内容的输出过滤器，以及包含速率限制和使用监控的运维控制。这种分层方法使 Claude 能够在高风险企业环境中部署，同时保持强大的安全属性——不信任任何单一层足以独立防护。",
+  "when_not_to_use": [
+    "Internal research and experimentation environments where safety constraints would impede model evaluation",
+    "Non-interactive batch processing where the model has no exposure to adversarial user input",
+    "Toy projects and demos where the overhead of multi-layer safety is disproportionate to the risk",
+    "Fully sandboxed environments with no access to sensitive data or external systems"
+  ],
+  "when_not_to_use_zh": [
+    "安全约束会妨碍模型评估的内部研究和实验环境",
+    "模型不暴露于对抗性用户输入的非交互式批处理",
+    "多层安全开销与风险不成比例的玩具项目和演示",
+    "无法访问敏感数据或外部系统的完全沙盒化环境"
+  ],
+  "adopters": [
+    "Anthropic",
+    "OpenAI",
+    "Google DeepMind",
+    "Microsoft",
+    "Guardrails AI"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "security",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "NIST (2023). \"AI Risk Management Framework (AI RMF 1.0)\". nist.gov.",
+  "secondary_sources": [
+    "OWASP (2023). \"OWASP Top 10 for Large Language Model Applications\". owasp.org.",
+    "Yuntao Bai et al. (2022). \"Constitutional AI: Harmlessness from AI Feedback\". arXiv:2212.08073. Anthropic."
+  ],
+  "typed_relations": [
+    {
+      "slug": "responsible-ai-design",
+      "type": "complement"
+    },
+    {
+      "slug": "guardrails-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "llm-evaluation-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "human-in-the-loop",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/ai-safety-layers",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/ai-safety-layers.md"
+}

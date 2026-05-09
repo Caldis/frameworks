@@ -1,0 +1,199 @@
+{
+  "id": 186,
+  "name": "Platform as a Product",
+  "name_zh": "平台即产品",
+  "slug": "platform-as-a-product",
+  "category": "deployment",
+  "desc": "Treat internal platforms like products with users and roadmaps",
+  "desc_zh": "将内部平台视为拥有用户和路线图的产品来运营",
+  "steps": [
+    "Identify internal developers as the platform's primary customers and conduct user research",
+    "Define a product vision and roadmap for the platform based on developer pain points and organizational goals",
+    "Build self-service capabilities with golden paths, documentation, and developer portals",
+    "Measure platform adoption, developer satisfaction (DevEx surveys), and time-to-production as key metrics",
+    "Iterate on the platform based on feedback loops, treating feature requests like a product backlog"
+  ],
+  "steps_zh": [
+    "将内部开发者视为平台的主要客户并进行用户研究",
+    "基于开发者痛点和组织目标为平台制定产品愿景和路线图",
+    "构建自助服务能力，包含最佳路径、文档和开发者门户",
+    "将平台采用率、开发者满意度（DevEx 调查）和上线时间作为关键指标",
+    "基于反馈循环迭代平台，将功能请求作为产品待办事项管理"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Discover",
+    "Build",
+    "Deliver",
+    "Measure"
+  ],
+  "viz_labels_zh": [
+    "需求发现",
+    "平台构建",
+    "交付使用",
+    "效果度量"
+  ],
+  "related": [
+    "team-topologies",
+    "developer-experience-framework",
+    "infrastructure-as-code",
+    "gitops"
+  ],
+  "tags": [
+    "platform-engineering",
+    "product-thinking",
+    "developer-experience",
+    "internal-platform",
+    "team-topologies"
+  ],
+  "origin_author": "Evan Bottcher (ThoughtWorks), 2018; expanded by Team Topologies (Skelton & Pais, 2019)",
+  "origin_source": "Team Topologies (Matthew Skelton & Manuel Pais, 2019); What I Talk About When I Talk About Platforms (Evan Bottcher, martinfowler.com, 2018)",
+  "origin_source_zh": "《团队拓扑》（Matthew Skelton & Manuel Pais，2019）；《当我谈论平台时我在谈什么》（Evan Bottcher，martinfowler.com，2018）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Organizations with more than 5-10 product teams that share common infrastructure and tooling needs",
+    "Environments where developer productivity is bottlenecked by inconsistent or manual infrastructure provisioning",
+    "Companies transitioning from project-based IT to product-based engineering teams",
+    "Enterprises where cognitive load on stream-aligned teams is unsustainably high due to infrastructure complexity"
+  ],
+  "when_to_use_zh": [
+    "拥有 5-10 个以上共享通用基础设施和工具需求的产品团队的组织",
+    "开发者生产力因基础设施供给不一致或手动操作而成为瓶颈的环境",
+    "从项目制 IT 转型为产品制工程团队的公司",
+    "由于基础设施复杂性导致流对齐团队认知负荷不可持续的企业"
+  ],
+  "core_concepts": [
+    "Thinnest Viable Platform: Build the smallest platform that accelerates teams, avoiding the trap of over-engineering a platform nobody asked for",
+    "Golden Paths: Opinionated, well-supported default workflows that handle 80% of use cases, with escape hatches for the remaining 20%",
+    "Developer as Customer: Apply product management practices — user research, satisfaction metrics, roadmapping — to internal platform development",
+    "Platform Team as Enabling Team: The platform team's success is measured by the productivity and autonomy of the teams it serves, not by its own output"
+  ],
+  "core_concepts_zh": [
+    "最薄可行平台：构建加速团队的最小平台，避免过度工程化一个没人需要的平台",
+    "最佳路径：有主见的、良好支持的默认工作流，处理 80% 的用例，为其余 20% 提供逃生通道",
+    "开发者即客户：将产品管理实践——用户研究、满意度指标、路线图——应用于内部平台开发",
+    "平台团队即赋能团队：平台团队的成功以其服务的团队的生产力和自主性来衡量，而非自身产出"
+  ],
+  "timeline": [
+    [
+      "2018",
+      "Evan Bottcher publishes 'What I Talk About When I Talk About Platforms' on martinfowler.com"
+    ],
+    [
+      "2019",
+      "Skelton and Pais formalize platform teams in Team Topologies, defining the platform as a product model"
+    ],
+    [
+      "2021",
+      "Humanitec, Backstage (Spotify), and Port emerge as developer portal and platform orchestration tools"
+    ],
+    [
+      "2023",
+      "Gartner identifies platform engineering as a top strategic technology trend"
+    ],
+    [
+      "2024",
+      "CNCF publishes Platform Engineering Maturity Model; platform-as-a-product becomes industry standard practice"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2018",
+      "Evan Bottcher 在 martinfowler.com 发表《当我谈论平台时我在谈什么》"
+    ],
+    [
+      "2019",
+      "Skelton 和 Pais 在《团队拓扑》中正式化平台团队，定义平台即产品模型"
+    ],
+    [
+      "2021",
+      "Humanitec、Backstage（Spotify）和 Port 涌现为开发者门户和平台编排工具"
+    ],
+    [
+      "2023",
+      "Gartner 将平台工程列为年度十大战略技术趋势"
+    ],
+    [
+      "2024",
+      "CNCF 发布平台工程成熟度模型；平台即产品成为行业标准实践"
+    ]
+  ],
+  "dos": [
+    "Conduct regular developer satisfaction surveys and use NPS/CSAT to track platform health",
+    "Start with a thin platform that solves one or two critical pain points and expand based on demand",
+    "Publish a public roadmap and changelog so consuming teams can plan around platform changes",
+    "Staff the platform team with product management and UX skills, not just infrastructure engineers"
+  ],
+  "dos_zh": [
+    "定期进行开发者满意度调查，使用 NPS/CSAT 跟踪平台健康状况",
+    "从解决一两个关键痛点的薄平台开始，根据需求逐步扩展",
+    "发布公开路线图和变更日志，让消费团队可以围绕平台变更进行规划",
+    "在平台团队中配备产品管理和用户体验人才，而非仅有基础设施工程师"
+  ],
+  "donts": [
+    "Don't mandate platform adoption — if the platform is good, teams will choose it; forced adoption breeds resentment",
+    "Don't build the platform in isolation from its users — co-create with embedded stream-aligned team members",
+    "Don't measure platform success by features shipped — measure it by developer productivity and satisfaction",
+    "Don't let the platform become a bottleneck — if teams have to file tickets and wait, you've built a service desk, not a platform"
+  ],
+  "donts_zh": [
+    "不要强制采用平台——如果平台足够好，团队会主动选择；强制采用会滋生抵触",
+    "不要在与用户隔离的情况下构建平台——与嵌入的流对齐团队成员共同创建",
+    "不要以交付的功能数量衡量平台成功——以开发者生产力和满意度来衡量",
+    "不要让平台成为瓶颈——如果团队必须提工单等待，你构建的是服务台而非平台"
+  ],
+  "case_study_company": "Spotify",
+  "case_study": "Spotify built Backstage as an internal developer portal to treat their platform as a product. By 2020, Backstage unified over 100 internal tools behind a single interface with a plugin architecture. Developers could provision infrastructure, view service health, and access documentation from one place. Spotify open-sourced Backstage in 2020, and it was accepted into the CNCF in 2022, becoming the de facto standard for developer portals across the industry.",
+  "case_study_zh": "Spotify 构建了 Backstage 作为内部开发者门户，将其平台视为产品来运营。到 2020 年，Backstage 通过插件架构将 100 多个内部工具统一在单一界面后。开发者可以在一个地方配置基础设施、查看服务健康状况和访问文档。Spotify 于 2020 年开源 Backstage，2022 年被 CNCF 接收，成为全行业开发者门户的事实标准。",
+  "when_not_to_use": [
+    "Small organizations with fewer than 5 teams where the overhead of a dedicated platform team is unjustified",
+    "Early-stage startups where speed of product iteration matters more than developer experience standardization",
+    "Organizations where all teams use identical, simple tech stacks that don't benefit from platform abstraction",
+    "Environments where executive sponsorship for long-term platform investment is absent"
+  ],
+  "when_not_to_use_zh": [
+    "团队少于 5 个的小型组织——专职平台团队的开销不合理",
+    "产品迭代速度比开发者体验标准化更重要的早期创业公司",
+    "所有团队使用相同且简单的技术栈、不需要平台抽象的组织",
+    "缺乏对长期平台投资的高管支持的环境"
+  ],
+  "adopters": [
+    "Spotify",
+    "Zalando",
+    "Mercedes-Benz",
+    "DoorDash",
+    "Humanitec"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "usability",
+    "maintainability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Evan Bottcher (2018). \"What I Talk About When I Talk About Platforms\". martinfowler.com.",
+  "secondary_sources": [
+    "Matthew Skelton and Manuel Pais (2019). \"Team Topologies: Organizing Business and Technology Teams for Fast Flow\". IT Revolution Press.",
+    "Gregor Hohpe (2020). \"The Software Architect Elevator\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "team-topologies",
+      "type": "complement"
+    },
+    {
+      "slug": "developer-experience-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "infrastructure-as-code",
+      "type": "complement"
+    },
+    {
+      "slug": "gitops",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/platform-as-a-product",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/platform-as-a-product.md"
+}

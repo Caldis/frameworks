@@ -1,0 +1,195 @@
+{
+  "id": 94,
+  "name": "Context Window Management Pattern",
+  "name_zh": "上下文窗口管理模式",
+  "slug": "context-window-management",
+  "category": "ai",
+  "desc": "Strategically manage LLM context to maximize coherence",
+  "desc_zh": "战略性管理大模型上下文以最大化对话连贯性",
+  "steps": [
+    "Profile token usage across system prompt, history, retrieved context, and output budget",
+    "Implement a sliding-window or summary-compression strategy for long conversation history",
+    "Assign priority tiers to context segments (system > recent turns > retrieved > background)",
+    "Prune low-priority segments first when approaching the token limit",
+    "Benchmark coherence and task performance across window sizes to calibrate the strategy"
+  ],
+  "steps_zh": [
+    "分析系统提示词、历史记录、检索上下文和输出预算各自的 Token 占用",
+    "对长对话历史实现滑动窗口或摘要压缩策略",
+    "为上下文片段分配优先级层级（系统 > 近期轮次 > 检索内容 > 背景知识）",
+    "接近 Token 上限时优先裁剪低优先级片段",
+    "在不同窗口大小下基准测试连贯性和任务性能以校准策略"
+  ],
+  "ai_relevant": true,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "System",
+    "History",
+    "Retrieved",
+    "User Input"
+  ],
+  "viz_labels_zh": [
+    "系统提示",
+    "历史对话",
+    "检索内容",
+    "用户输入"
+  ],
+  "related": [
+    "rag-architecture",
+    "prompt-chaining",
+    "llm-system-design-patterns"
+  ],
+  "tags": [
+    "context-window",
+    "token-management",
+    "compression",
+    "memory"
+  ],
+  "origin_author": "Community-evolved pattern; formalized by LangChain (ConversationBufferWindowMemory, 2022) and Anthropic (long context research, 2023)",
+  "origin_source": "Lost in the Middle: How Language Models Use Long Contexts (Nelson Liu et al., Stanford, 2023)",
+  "origin_source_zh": "迷失在中间：语言模型如何使用长上下文（Nelson Liu 等，斯坦福，2023）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Multi-turn conversational agents where history accumulates beyond the context window limit",
+    "RAG systems that must balance retrieved context against conversation history and system prompt",
+    "Complex agentic workflows where tool outputs and reasoning traces fill the context rapidly",
+    "Cost-sensitive applications where reducing token usage directly reduces API spend"
+  ],
+  "when_to_use_zh": [
+    "历史记录累积超出上下文窗口限制的多轮对话代理",
+    "需在检索上下文、对话历史和系统提示词间取得平衡的 RAG 系统",
+    "工具输出和推理轨迹快速填满上下文的复杂代理工作流",
+    "减少 Token 使用直接降低 API 费用的成本敏感应用"
+  ],
+  "core_concepts": [
+    "Token Budget: The allocation of context window capacity across system prompt, history, retrieval, and output reserve",
+    "Sliding Window: Keeping only the N most recent conversation turns and discarding older ones",
+    "Summary Compression: Using an LLM to condense older conversation history into a shorter summary",
+    "Priority Tiering: Ranking context segments by importance to decide eviction order when space runs out",
+    "Lost-in-the-Middle Effect: The empirical finding that models attend less to information placed in the middle of long contexts"
+  ],
+  "core_concepts_zh": [
+    "Token 预算（Token Budget）：在系统提示词、历史记录、检索内容和输出预留间分配上下文窗口容量",
+    "滑动窗口（Sliding Window）：仅保留最近 N 轮对话，丢弃更早的内容",
+    "摘要压缩（Summary Compression）：使用 LLM 将较早的对话历史浓缩为更短的摘要",
+    "优先级分层（Priority Tiering）：按重要性排列上下文片段以决定空间不足时的淘汰顺序",
+    "中间迷失效应（Lost-in-the-Middle）：模型对长上下文中间位置信息关注度较低的实证发现"
+  ],
+  "timeline": [
+    [
+      "2022-10",
+      "LangChain releases ConversationBufferWindowMemory and ConversationSummaryMemory abstractions"
+    ],
+    [
+      "2023-03",
+      "GPT-4 launches with 8K/32K context windows, making context management a mainstream concern"
+    ],
+    [
+      "2023-07",
+      "Nelson Liu et al. publish Lost in the Middle, revealing positional bias in long contexts"
+    ],
+    [
+      "2024-02",
+      "Google Gemini 1.5 Pro introduces 1M token context, shifting the tradeoff calculus"
+    ],
+    [
+      "2024-11",
+      "Anthropic Claude supports 200K tokens natively; context management shifts from hard limits to cost optimization"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2022-10",
+      "LangChain 发布 ConversationBufferWindowMemory 和 ConversationSummaryMemory 抽象"
+    ],
+    [
+      "2023-03",
+      "GPT-4 发布 8K/32K 上下文窗口，上下文管理成为主流关注点"
+    ],
+    [
+      "2023-07",
+      "Nelson Liu 等人发表《迷失在中间》，揭示长上下文中的位置偏差"
+    ],
+    [
+      "2024-02",
+      "Google Gemini 1.5 Pro 引入 100 万 Token 上下文，改变取舍计算逻辑"
+    ],
+    [
+      "2024-11",
+      "Anthropic Claude 原生支持 20 万 Token；上下文管理从硬限制转向成本优化"
+    ]
+  ],
+  "dos": [
+    "Always reserve output token budget -- filling 100% of context leaves no room for the response",
+    "Place the most important information at the beginning and end of the context (avoid the lost-in-the-middle zone)",
+    "Measure actual token usage in production to understand real allocation patterns before optimizing",
+    "Use structured metadata tags to mark context segments so they can be selectively pruned"
+  ],
+  "dos_zh": [
+    "始终预留输出 Token 预算——填满 100% 上下文后响应没有空间",
+    "将最重要信息放在上下文开头和末尾（避开中间迷失区域）",
+    "在优化前先测量生产环境中的实际 Token 使用量以了解真实分配模式",
+    "使用结构化元数据标签标记上下文片段以支持选择性裁剪"
+  ],
+  "donts": [
+    "Don't assume larger context windows eliminate the need for management -- cost and attention degradation still apply",
+    "Don't summarize aggressively without preserving key facts -- lossy compression can cause hallucination",
+    "Don't treat all conversation turns as equal priority -- recent turns and system prompts matter most",
+    "Don't ignore the cost implications -- 100K context calls are 10x more expensive than 10K calls"
+  ],
+  "donts_zh": [
+    "不要假设更大的上下文窗口就不需要管理——成本和注意力退化仍然存在",
+    "不要在不保留关键事实的情况下激进摘要——有损压缩可能导致幻觉",
+    "不要将所有对话轮次视为等优先级——近期轮次和系统提示词最重要",
+    "不要忽视成本影响——100K 上下文调用比 10K 调用贵 10 倍"
+  ],
+  "case_study_company": "ChatGPT (OpenAI)",
+  "case_study": "OpenAI's ChatGPT implements a sophisticated context management strategy combining sliding window history with automatic summarization. When conversations exceed the context limit, earlier turns are compressed into summaries while the system prompt and recent messages are preserved at full fidelity. This approach enabled ChatGPT to maintain coherent multi-hour conversations while keeping inference costs predictable.",
+  "case_study_zh": "OpenAI 的 ChatGPT 实现了结合滑动窗口历史和自动摘要的精密上下文管理策略。当对话超出上下文限制时，较早的轮次被压缩为摘要，同时系统提示词和近期消息以全保真度保留。该方法使 ChatGPT 能在保持推理成本可预测的同时维持数小时的连贯对话。",
+  "when_not_to_use": [
+    "Short, single-turn interactions that never approach context limits",
+    "Use cases where the entire relevant context easily fits within the window with room to spare",
+    "Offline batch processing where context can be partitioned rather than compressed",
+    "When using models with extremely large native windows (1M+ tokens) and cost is not a concern"
+  ],
+  "when_not_to_use_zh": [
+    "永远不会接近上下文限制的短单轮交互",
+    "全部相关上下文轻松放入窗口且有富余空间的用例",
+    "上下文可以分区而非压缩的离线批处理",
+    "使用超大原生窗口模型（100 万+ Token）且成本不是问题时"
+  ],
+  "adopters": [
+    "OpenAI (ChatGPT)",
+    "Anthropic (Claude)",
+    "LangChain",
+    "Google (Gemini)",
+    "Cohere"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "performance",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Nelson Liu et al. (2023). \"Lost in the Middle: How Language Models Use Long Contexts\". arXiv:2307.03172.",
+  "secondary_sources": [
+    "Anthropic (2023). \"Long Context Prompting for Claude\". docs.anthropic.com.",
+    "Iz Beltagy, Matthew E. Peters, and Arman Cohan (2020). \"Longformer: The Long-Document Transformer\". arXiv:2004.05150."
+  ],
+  "typed_relations": [
+    {
+      "slug": "rag-architecture",
+      "type": "complement"
+    },
+    {
+      "slug": "prompt-chaining",
+      "type": "complement"
+    },
+    {
+      "slug": "llm-system-design-patterns",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/context-window-management",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/context-window-management.md"
+}

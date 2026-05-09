@@ -1,0 +1,199 @@
+{
+  "id": 131,
+  "name": "GraphQL Schema Design",
+  "name_zh": "GraphQL 模式设计",
+  "slug": "graphql-schema-design",
+  "category": "api",
+  "desc": "Query language and type system for APIs enabling precise data fetching",
+  "desc_zh": "用于API的查询语言与类型系统，支持精确数据获取",
+  "steps": [
+    "Define the domain model as a strongly-typed schema using SDL (Schema Definition Language) with clear object types, enums, and interfaces",
+    "Design queries around client use-cases rather than mirroring database tables, grouping related fields into cohesive types",
+    "Implement resolvers for each field, ensuring they follow the single-responsibility principle and delegate to data sources",
+    "Add pagination (cursor-based or offset), filtering, and sorting arguments to list fields following the Relay Connection specification",
+    "Validate the schema against client requirements, document all types with descriptions, and publish the schema for frontend teams"
+  ],
+  "steps_zh": [
+    "使用SDL（模式定义语言）定义领域模型为强类型模式，包含清晰的对象类型、枚举和接口",
+    "围绕客户端用例而非数据库表镜像来设计查询，将相关字段分组为内聚的类型",
+    "为每个字段实现解析器，确保遵循单一职责原则并委托给数据源",
+    "按照Relay连接规范为列表字段添加分页（游标或偏移）、过滤和排序参数",
+    "根据客户端需求验证模式，为所有类型添加描述文档，并向前端团队发布模式"
+  ],
+  "ai_relevant": true,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Schema Types",
+    "Client Queries",
+    "Resolvers",
+    "Pagination",
+    "Documentation"
+  ],
+  "viz_labels_zh": [
+    "类型定义",
+    "客户端查询",
+    "解析器",
+    "分页",
+    "文档"
+  ],
+  "related": [
+    "bff-pattern",
+    "api-gateway-pattern",
+    "openapi-specification"
+  ],
+  "tags": [
+    "graphql",
+    "schema",
+    "type-system",
+    "query-language"
+  ],
+  "origin_author": "Lee Byron, Dan Schafer, Nick Schrock / Facebook, 2015",
+  "origin_source": "GraphQL specification (spec.graphql.org); referenced in API Design Patterns (JJ Geewax, 2021, Ch. 1)",
+  "origin_source_zh": "GraphQL规范（spec.graphql.org）；参见《API设计模式》（JJ Geewax，2021，第1章）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When multiple client types (web, mobile, IoT) need different data shapes from the same API",
+    "When frontend teams suffer from over-fetching or under-fetching with REST endpoints",
+    "When the API aggregates data from multiple microservices and clients need a unified query interface",
+    "When rapid frontend iteration requires schema evolution without coordinating backend deployments"
+  ],
+  "when_to_use_zh": [
+    "当多种客户端类型（Web、移动端、IoT）需要从同一API获取不同形状的数据时",
+    "当前端团队因REST端点的过度获取或不足获取而苦恼时",
+    "当API聚合多个微服务的数据且客户端需要统一查询接口时",
+    "当前端快速迭代需要模式演进而无需协调后端部署时"
+  ],
+  "core_concepts": [
+    "Type System: Every field and argument has a declared type, enabling compile-time validation and auto-generated documentation",
+    "Declarative Data Fetching: Clients specify exactly the fields they need in a single request, eliminating over-fetching and under-fetching",
+    "Resolver Architecture: Each field in the schema maps to a resolver function that knows how to fetch or compute its value from any data source",
+    "Introspection: The schema is self-documenting; clients can query the schema itself to discover available types, fields, and relationships",
+    "Schema-First Design: The schema serves as a contract between frontend and backend teams, enabling parallel development"
+  ],
+  "core_concepts_zh": [
+    "类型系统：每个字段和参数都有声明的类型，支持编译时验证和自动生成文档",
+    "声明式数据获取：客户端在单次请求中精确指定所需字段，消除过度获取和不足获取",
+    "解析器架构：模式中的每个字段映射到一个解析器函数，该函数知道如何从任意数据源获取或计算其值",
+    "自省能力：模式自带文档功能，客户端可查询模式本身以发现可用的类型、字段和关系",
+    "模式优先设计：模式作为前后端团队之间的契约，支持并行开发"
+  ],
+  "timeline": [
+    [
+      "2012",
+      "Facebook internally develops GraphQL to solve mobile newsfeed data fetching challenges"
+    ],
+    [
+      "2015",
+      "Facebook open-sources GraphQL specification and reference implementation (graphql-js)"
+    ],
+    [
+      "2016",
+      "GitHub launches its public GraphQL API (v4), validating GraphQL for large-scale production use"
+    ],
+    [
+      "2018",
+      "Apollo Federation introduced, enabling GraphQL composition across microservices"
+    ],
+    [
+      "2021",
+      "GraphQL becomes an industry standard; The GraphQL Foundation under Linux Foundation stewards the spec"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2012",
+      "Facebook内部开发GraphQL以解决移动端新闻流数据获取挑战"
+    ],
+    [
+      "2015",
+      "Facebook开源GraphQL规范和参考实现（graphql-js）"
+    ],
+    [
+      "2016",
+      "GitHub推出公共GraphQL API（v4），验证了GraphQL在大规模生产中的可行性"
+    ],
+    [
+      "2018",
+      "Apollo Federation发布，支持跨微服务的GraphQL组合"
+    ],
+    [
+      "2021",
+      "GraphQL成为行业标准；Linux基金会下的GraphQL基金会负责规范管理"
+    ]
+  ],
+  "dos": [
+    "Do design types around business domain concepts rather than database tables because it decouples the API from storage implementation",
+    "Do use DataLoader or equivalent batching to solve the N+1 query problem because naive resolvers will degrade performance exponentially",
+    "Do add field-level descriptions to the schema because introspection-driven tools depend on them for developer experience",
+    "Do implement query complexity analysis and depth limiting because unbounded queries can be weaponized for denial-of-service"
+  ],
+  "dos_zh": [
+    "围绕业务领域概念而非数据库表设计类型，因为这将API与存储实现解耦",
+    "使用DataLoader或等效的批处理来解决N+1查询问题，因为朴素的解析器会导致性能指数级下降",
+    "在模式中为字段添加描述，因为基于自省的工具依赖这些描述来提供开发者体验",
+    "实现查询复杂度分析和深度限制，因为无界查询可能被利用进行拒绝服务攻击"
+  ],
+  "donts": [
+    "Don't expose database IDs directly as GraphQL IDs because it leaks implementation details and makes ID migration painful",
+    "Don't create deeply nested types without pagination because clients can construct exponentially expensive queries",
+    "Don't treat GraphQL mutations as simple REST replacements because mutations should model domain actions, not CRUD operations",
+    "Don't skip schema versioning strategy because breaking changes to live schemas will disrupt all connected clients"
+  ],
+  "donts_zh": [
+    "不要将数据库ID直接暴露为GraphQL ID，因为这泄露了实现细节并使ID迁移变得困难",
+    "不要创建没有分页的深度嵌套类型，因为客户端可以构造指数级昂贵的查询",
+    "不要将GraphQL变更简单地视为REST替代品，因为变更应建模领域行为而非CRUD操作",
+    "不要忽略模式版本策略，因为对线上模式的破坏性变更将影响所有已连接的客户端"
+  ],
+  "case_study_company": "GitHub",
+  "case_study": "GitHub migrated from REST API v3 to GraphQL API v4 in 2016 to address the problem of clients needing dozens of REST calls to render a single page. With GraphQL, mobile and web clients could request exactly the data they needed in a single round-trip. GitHub reported that GraphQL reduced API response payload sizes by up to 90% for some endpoints, and the self-documenting schema eliminated the need for separate API documentation maintenance.",
+  "case_study_zh": "GitHub于2016年从REST API v3迁移到GraphQL API v4，解决了客户端渲染单个页面需要发送数十个REST请求的问题。通过GraphQL，移动端和Web客户端可以在一次往返中精确请求所需数据。GitHub报告称GraphQL将某些端点的API响应负载大小减少了高达90%，且自文档化的模式消除了单独维护API文档的需要。",
+  "when_not_to_use": [
+    "Simple CRUD APIs with a single client type where REST is sufficient and GraphQL adds unnecessary complexity",
+    "File upload or streaming scenarios where GraphQL's request-response model is a poor fit",
+    "Public APIs where caching at the HTTP layer (CDN, reverse proxy) is critical, since GraphQL POST requests bypass standard HTTP caching",
+    "Teams without frontend-backend collaboration maturity, where schema negotiation becomes a bottleneck"
+  ],
+  "when_not_to_use_zh": [
+    "单一客户端类型的简单CRUD API，REST已经足够且GraphQL增加了不必要的复杂性",
+    "文件上传或流式传输场景，GraphQL的请求-响应模型不适合",
+    "HTTP层缓存（CDN、反向代理）至关重要的公共API，因为GraphQL POST请求绕过标准HTTP缓存",
+    "前后端协作成熟度不足的团队，模式协商会成为瓶颈"
+  ],
+  "adopters": [
+    "GitHub",
+    "Shopify",
+    "Facebook",
+    "Twitter",
+    "Airbnb"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "usability",
+    "maintainability",
+    "performance"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "GraphQL Foundation (2015). \"GraphQL Specification\". spec.graphql.org.",
+  "secondary_sources": [
+    "Byron, L. (2015). \"GraphQL: A Data Query Language\". Engineering at Meta Blog.",
+    "Geewax, J.J. (2021). \"API Design Patterns\", Ch. 1. Manning Publications.",
+    "Buna, S. (2021). \"GraphQL in Action\". Manning Publications."
+  ],
+  "typed_relations": [
+    {
+      "slug": "bff-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "api-gateway-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "openapi-specification",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/graphql-schema-design",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/graphql-schema-design.md"
+}

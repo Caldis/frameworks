@@ -1,0 +1,195 @@
+{
+  "id": 126,
+  "name": "Consistent Hashing",
+  "name_zh": "一致性哈希",
+  "slug": "consistent-hashing",
+  "category": "distributed",
+  "desc": "Distribute data across nodes with minimal redistribution when the cluster changes",
+  "desc_zh": "在集群变更时以最小重新分配量将数据分布到各节点",
+  "steps": [
+    "Define the hash ring: map both data keys and node identifiers onto the same circular hash space (typically 0 to 2^32-1) using a uniform hash function",
+    "Assign keys to nodes: each key is assigned to the first node encountered when walking clockwise around the ring from the key's hash position",
+    "Add virtual nodes: map each physical node to multiple positions on the ring (e.g., 100-200 virtual nodes per physical node) to ensure uniform load distribution",
+    "Handle node addition: when a new node joins, it claims a portion of the ring; only the keys in the affected arc need to migrate from the successor node",
+    "Handle node removal: when a node leaves, its keys are redistributed to the next node clockwise on the ring, affecting only a fraction of the total keys"
+  ],
+  "steps_zh": [
+    "定义哈希环：使用均匀哈希函数将数据键和节点标识符映射到相同的环形哈希空间（通常为0到2^32-1）",
+    "将键分配给节点：每个键被分配给从该键的哈希位置沿环顺时针方向遇到的第一个节点",
+    "添加虚拟节点：将每个物理节点映射到环上的多个位置（如每个物理节点100-200个虚拟节点）以确保负载均匀分布",
+    "处理节点加入：新节点加入时声明环上的一段弧；只有受影响弧段上的键需要从后继节点迁移",
+    "处理节点移除：节点离开时其键重新分配给环上顺时针方向的下一个节点，只影响总键数的一小部分"
+  ],
+  "ai_relevant": false,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Hash Ring",
+    "Key Assign",
+    "Virtual Nodes",
+    "Node Add",
+    "Node Remove"
+  ],
+  "viz_labels_zh": [
+    "哈希环",
+    "键分配",
+    "虚拟节点",
+    "节点加入",
+    "节点移除"
+  ],
+  "related": [
+    "sharding-strategies",
+    "gossip-protocol",
+    "cap-theorem"
+  ],
+  "tags": [
+    "partitioning",
+    "load-balancing",
+    "hashing",
+    "scalability"
+  ],
+  "origin_author": "David Karger, Eric Lehman, Tom Leighton, et al., 1997",
+  "origin_source": "Consistent Hashing and Random Trees (ACM STOC 1997); Kleppmann, Designing Data-Intensive Applications, Ch. 6; Dynamo: Amazon's Highly Available Key-Value Store (SOSP 2007)",
+  "origin_source_zh": "《一致性哈希与随机树》（ACM STOC 1997）；Kleppmann《数据密集型应用系统设计》第6章；《Dynamo：Amazon高可用键值存储》（SOSP 2007）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When distributing cached data across a cluster of cache servers and nodes are frequently added or removed",
+    "When building a distributed key-value store that must rebalance data with minimal migration on cluster resize",
+    "When implementing client-side load balancing where a consistent mapping from request keys to backend servers is needed",
+    "When designing a CDN or object storage system where content must be distributed across edge nodes predictably"
+  ],
+  "when_to_use_zh": [
+    "当在缓存服务器集群间分布缓存数据且节点频繁增减时",
+    "当构建分布式键值存储，需要在集群扩缩容时以最小迁移量重新平衡数据时",
+    "当实现客户端负载均衡，需要从请求键到后端服务器的一致映射时",
+    "当设计CDN或对象存储系统，内容必须可预测地分布到边缘节点时"
+  ],
+  "core_concepts": [
+    "Hash ring: A circular hash space where the output of the hash function wraps around, so the space has no endpoints and every position has a successor",
+    "Virtual nodes (vnodes): Multiple hash positions per physical node that smooth out distribution imbalances caused by non-uniform hash clustering",
+    "Minimal disruption: When a node joins or leaves, only O(K/N) keys need to move (K total keys, N nodes), compared to O(K) with naive modular hashing",
+    "Replication via ring walking: Data is replicated by storing copies on the next R distinct physical nodes encountered clockwise, providing fault tolerance",
+    "Bounded load extension: Google's 2017 improvement that caps the maximum load on any node to (1+epsilon) times the average, preventing hot spots"
+  ],
+  "core_concepts_zh": [
+    "哈希环：环形哈希空间，哈希函数输出首尾相接，空间没有端点，每个位置都有后继",
+    "虚拟节点（vnodes）：每个物理节点在环上占据多个哈希位置，平滑非均匀哈希聚集导致的分布不均",
+    "最小扰动：节点加入或离开时只需移动O(K/N)个键（K为总键数，N为节点数），而朴素取模哈希需要O(K)",
+    "基于环遍历的复制：通过将副本存储在顺时针方向遇到的下R个不同物理节点上提供容错",
+    "有界负载扩展：Google 2017年的改进，将任意节点的最大负载限制在平均值的(1+epsilon)倍以内，防止热点"
+  ],
+  "timeline": [
+    [
+      "1997",
+      "Karger et al. publish Consistent Hashing and Random Trees at ACM STOC, originally motivated by web caching"
+    ],
+    [
+      "2007",
+      "Amazon's Dynamo paper uses consistent hashing with virtual nodes for its distributed key-value store"
+    ],
+    [
+      "2008",
+      "Apache Cassandra adopts consistent hashing as its data partitioning strategy, following the Dynamo design"
+    ],
+    [
+      "2014",
+      "Consistent hashing becomes standard in memcached clients (libmemcached, ketama) for distributed cache clusters"
+    ],
+    [
+      "2017",
+      "Google publishes Consistent Hashing with Bounded Loads, addressing the load imbalance problem in practical deployments"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1997",
+      "Karger等人在ACM STOC发表《一致性哈希与随机树》，最初动机来自Web缓存"
+    ],
+    [
+      "2007",
+      "Amazon的Dynamo论文使用带虚拟节点的一致性哈希作为分布式键值存储的分区策略"
+    ],
+    [
+      "2008",
+      "Apache Cassandra采用一致性哈希作为数据分区策略，遵循Dynamo设计"
+    ],
+    [
+      "2014",
+      "一致性哈希成为memcached客户端（libmemcached、ketama）在分布式缓存集群中的标准"
+    ],
+    [
+      "2017",
+      "Google发表「有界负载的一致性哈希」，解决实际部署中的负载不均衡问题"
+    ]
+  ],
+  "dos": [
+    "Do use a sufficient number of virtual nodes per physical node (100+) because too few virtual nodes leads to uneven key distribution",
+    "Do choose a hash function with good uniformity (like xxHash or MurmurHash) because poor distribution creates hot spots regardless of virtual nodes",
+    "Do consider heterogeneous node capacity by assigning more virtual nodes to more powerful machines to achieve proportional load distribution",
+    "Do implement gradual key migration when nodes join because migrating all affected keys at once can cause load spikes on neighboring nodes"
+  ],
+  "dos_zh": [
+    "为每个物理节点使用足够数量的虚拟节点（100+），因为虚拟节点太少会导致键分布不均",
+    "选择具有良好均匀性的哈希函数（如xxHash或MurmurHash），因为分布差的函数无论虚拟节点多少都会产生热点",
+    "考虑异构节点容量，为更强大的机器分配更多虚拟节点以实现按比例的负载分配",
+    "节点加入时实现渐进式键迁移，因为一次性迁移所有受影响的键会在相邻节点造成负载尖峰"
+  ],
+  "donts": [
+    "Don't use consistent hashing with very small clusters (2-3 nodes) because the overhead is unnecessary and simple partitioning suffices",
+    "Don't forget about replication when implementing consistent hashing because hash ring assignment alone does not provide fault tolerance",
+    "Don't assume consistent hashing eliminates all hot spots because skewed access patterns (a few very popular keys) still concentrate load on specific nodes",
+    "Don't change the hash function after deployment because it invalidates the entire key-to-node mapping and forces a full data migration"
+  ],
+  "donts_zh": [
+    "不要在非常小的集群（2-3个节点）中使用一致性哈希，因为开销不必要且简单分区即可满足",
+    "实现一致性哈希时不要忘记复制，因为仅哈希环分配不提供容错能力",
+    "不要假设一致性哈希能消除所有热点，因为倾斜的访问模式（少量非常热门的键）仍会将负载集中在特定节点",
+    "部署后不要更改哈希函数，因为这会使整个键到节点的映射失效并强制全量数据迁移"
+  ],
+  "case_study_company": "Akamai",
+  "case_study": "Consistent hashing was originally invented by Karger et al. at MIT in collaboration with Akamai Technologies to solve the web content caching problem. Akamai's CDN needed to distribute cached web objects across thousands of edge servers worldwide, and when servers were added or removed, traditional modular hashing would invalidate nearly all cache entries, causing a thundering herd of requests to origin servers. With consistent hashing, adding or removing a server affects only 1/N of the cached keys, keeping cache hit rates stable during cluster changes. This approach remains fundamental to Akamai's CDN, which serves over 30% of global web traffic.",
+  "case_study_zh": "一致性哈希最初由MIT的Karger等人与Akamai Technologies合作发明，用于解决Web内容缓存问题。Akamai的CDN需要将缓存的Web对象分布到全球数千个边缘服务器上，当服务器增减时，传统的取模哈希会使几乎所有缓存条目失效，导致对源服务器的惊群请求。使用一致性哈希后，添加或移除服务器只影响1/N的缓存键，在集群变更期间保持缓存命中率稳定。这种方法至今仍是Akamai CDN的基础，该CDN承载了全球超过30%的Web流量。",
+  "when_not_to_use": [
+    "Static clusters that never change size, where simple range or modular partitioning is sufficient and easier to reason about",
+    "Workloads requiring strict ordering or range queries, where hash-based partitioning scatters related keys across nodes",
+    "Single-node systems or systems with a dedicated partitioning coordinator that can use more sophisticated placement algorithms"
+  ],
+  "when_not_to_use_zh": [
+    "永远不会改变大小的静态集群，简单的范围或取模分区已足够且更易推理",
+    "需要严格排序或范围查询的工作负载，基于哈希的分区会将相关键分散到不同节点",
+    "单节点系统或有专用分区协调器可以使用更复杂放置算法的系统"
+  ],
+  "adopters": [
+    "Akamai",
+    "Apache Cassandra",
+    "Amazon DynamoDB",
+    "Memcached (ketama)",
+    "Riak"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "scalability",
+    "performance"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Karger, D., Lehman, E., Leighton, T. et al. (1997). \"Consistent Hashing and Random Trees: Distributed Caching Protocols for Relieving Hot Spots on the World Wide Web\". Proceedings of ACM STOC.",
+  "secondary_sources": [
+    "DeCandia, G. et al. (2007). \"Dynamo: Amazon's Highly Available Key-Value Store\". Proceedings of ACM SOSP.",
+    "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 6. O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "sharding-strategies",
+      "type": "complement"
+    },
+    {
+      "slug": "gossip-protocol",
+      "type": "complement"
+    },
+    {
+      "slug": "cap-theorem",
+      "type": "prerequisite"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/consistent-hashing",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/consistent-hashing.md"
+}

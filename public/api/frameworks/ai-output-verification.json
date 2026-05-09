@@ -1,0 +1,194 @@
+{
+  "id": 56,
+  "name": "AI Output Verification",
+  "name_zh": "AI 输出验证",
+  "slug": "ai-output-verification",
+  "category": "quality",
+  "desc": "Multi-layer checks ensuring AI-generated content is trustworthy",
+  "desc_zh": "多层检查确保AI生成内容的可信度与正确性",
+  "steps": [
+    "Schema validation: verify that AI output conforms to the expected structure (JSON schema, type checks, required fields)",
+    "Factual grounding check: cross-reference generated claims against retrieved source documents or knowledge bases",
+    "Consistency verification: compare the output against the input constraints and previously generated outputs for logical coherence",
+    "Safety and policy filtering: run the output through toxicity classifiers, PII detectors, and domain-specific policy rules",
+    "Human spot-check sampling: randomly route a percentage of outputs to human reviewers and use disagreements to improve automated checks"
+  ],
+  "steps_zh": [
+    "模式验证：验证AI输出符合预期结构（JSON Schema、类型检查、必填字段）",
+    "事实依据检查：将生成的声明与检索的源文档或知识库交叉参照",
+    "一致性验证：将输出与输入约束和先前生成的输出进行对比，检查逻辑连贯性",
+    "安全与策略过滤：通过毒性分类器、PII检测器和领域特定策略规则过滤输出",
+    "人工抽查：随机将一定比例的输出路由给人工审阅者，利用分歧改进自动化检查"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Generate",
+    "Validate",
+    "Filter",
+    "Deliver"
+  ],
+  "viz_labels_zh": [
+    "生成",
+    "验证",
+    "过滤",
+    "交付"
+  ],
+  "related": [
+    "llm-evaluation-framework",
+    "guardrails-framework",
+    "prompt-testing"
+  ],
+  "tags": [
+    "verification",
+    "hallucination-detection",
+    "safety",
+    "grounding",
+    "ai"
+  ],
+  "origin_author": "Guardrails AI / NeMo Guardrails (NVIDIA), 2023",
+  "origin_source": "Guardrails AI framework and NVIDIA NeMo Guardrails documentation",
+  "origin_source_zh": "Guardrails AI框架及NVIDIA NeMo Guardrails文档",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Production AI applications where incorrect outputs could cause financial, legal, or safety harm",
+    "Customer-facing AI features where hallucinated content damages brand trust",
+    "Regulated industries (healthcare, finance) where AI outputs must be auditable and verifiable",
+    "RAG-based systems where generated answers must be traceable to source documents"
+  ],
+  "when_to_use_zh": [
+    "错误输出可能造成财务、法律或安全损害的生产AI应用",
+    "幻觉内容会损害品牌信任的面向客户的AI功能",
+    "AI输出必须可审计和可验证的受监管行业（医疗、金融）",
+    "生成答案必须可追溯到源文档的RAG系统"
+  ],
+  "core_concepts": [
+    "Schema Validation: Structural verification ensuring AI output matches expected format, types, and required fields",
+    "Factual Grounding: Cross-referencing generated claims against authoritative source documents to detect hallucinations",
+    "Output Guardrails: Automated filters that block or modify outputs violating safety, policy, or quality rules",
+    "PII Detection: Scanning generated content for personally identifiable information that should not be exposed",
+    "Human-in-the-Loop: Routing a sample of outputs to human reviewers for quality assurance and model improvement"
+  ],
+  "core_concepts_zh": [
+    "模式验证：结构性验证确保AI输出匹配预期格式、类型和必填字段",
+    "事实依据：将生成的声明与权威源文档交叉参照以检测幻觉",
+    "输出护栏：自动过滤违反安全、策略或质量规则的输出",
+    "PII检测：扫描生成内容中不应暴露的个人身份信息",
+    "人在回路中：将输出样本路由给人工审阅者以进行质量保证和模型改进"
+  ],
+  "timeline": [
+    [
+      "2022",
+      "Hallucination detection emerges as a critical research area as LLMs deploy widely in production"
+    ],
+    [
+      "2023",
+      "Guardrails AI releases open-source framework for validating LLM outputs with programmable rules"
+    ],
+    [
+      "2023",
+      "NVIDIA releases NeMo Guardrails for controlling LLM conversational behavior and output safety"
+    ],
+    [
+      "2024",
+      "Major cloud providers (AWS Bedrock, Azure AI) build output verification into their managed LLM services"
+    ],
+    [
+      "2025",
+      "Multi-layer verification becomes standard practice with schema, grounding, safety, and human checks in pipeline"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2022",
+      "随着LLM广泛部署到生产环境，幻觉检测成为关键研究领域"
+    ],
+    [
+      "2023",
+      "Guardrails AI发布开源框架，用可编程规则验证LLM输出"
+    ],
+    [
+      "2023",
+      "NVIDIA发布NeMo Guardrails用于控制LLM对话行为和输出安全"
+    ],
+    [
+      "2024",
+      "主要云提供商（AWS Bedrock、Azure AI）将输出验证内置到其托管LLM服务中"
+    ],
+    [
+      "2025",
+      "多层验证成为标准实践，在管道中包含模式、依据、安全和人工检查"
+    ]
+  ],
+  "dos": [
+    "Do implement verification as a pipeline with multiple independent layers because no single check catches everything",
+    "Do ground-check factual claims against source documents because hallucinations are the top production risk for LLMs",
+    "Do log all verification failures for analysis because patterns in failures drive systematic improvements",
+    "Do include adversarial inputs in your test suite because users will probe boundaries in unexpected ways"
+  ],
+  "dos_zh": [
+    "将验证实现为多个独立层的管道，因为没有单一检查能捕获所有问题",
+    "将事实声明与源文档进行依据检查，因为幻觉是LLM的首要生产风险",
+    "记录所有验证失败以供分析，因为失败模式驱动系统化改进",
+    "在测试套件中包含对抗性输入，因为用户会以意想不到的方式探测边界"
+  ],
+  "donts": [
+    "Don't deploy AI features without output verification because unverified outputs will hallucinate in production",
+    "Don't rely solely on the LLM to self-verify because models are poor judges of their own hallucinations",
+    "Don't treat verification as a one-time setup because new failure modes emerge as usage patterns evolve",
+    "Don't block all outputs on strict rules because overly aggressive filtering degrades user experience"
+  ],
+  "donts_zh": [
+    "不要在没有输出验证的情况下部署AI功能，因为未验证的输出会在生产中产生幻觉",
+    "不要仅依赖LLM自我验证，因为模型不善于判断自身的幻觉",
+    "不要将验证视为一次性设置，因为随着使用模式演进会出现新的失败模式",
+    "不要用严格规则阻止所有输出，因为过于激进的过滤会降低用户体验"
+  ],
+  "case_study_company": "Bing Chat (Microsoft)",
+  "case_study": "After Microsoft launched Bing Chat (now Copilot) in early 2023, several high-profile hallucination incidents prompted them to build robust output verification layers. They implemented factual grounding checks against Bing search results, citation verification, and safety classifiers. These multi-layer checks significantly reduced hallucination rates and inappropriate responses in subsequent releases.",
+  "case_study_zh": "微软在2023年初推出Bing Chat（现为Copilot）后，几次高调的幻觉事件促使他们构建了强大的输出验证层。他们实现了基于Bing搜索结果的事实依据检查、引用验证和安全分类器。这些多层检查在后续版本中显著降低了幻觉率和不当响应。",
+  "when_not_to_use": [
+    "Creative writing or brainstorming use cases where factual grounding is not required",
+    "Internal developer tools where the cost of occasional errors is low and human review is built in",
+    "Prototype or demo environments where verification overhead is not justified"
+  ],
+  "when_not_to_use_zh": [
+    "不需要事实依据的创意写作或头脑风暴场景",
+    "偶尔出错成本低且已内置人工审查的内部开发工具",
+    "验证开销不合理的原型或演示环境"
+  ],
+  "adopters": [
+    "Microsoft",
+    "Google",
+    "Anthropic",
+    "Amazon",
+    "Salesforce"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "security"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Shreya Rajpal (2023). \"Guardrails AI: Adding Guardrails to Large Language Models\". github.com/guardrails-ai.",
+  "secondary_sources": [
+    "NVIDIA (2023). \"NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications with Programmable Rails\". arXiv:2310.10501.",
+    "Anthropic (2023). \"Constitutional AI: Harmlessness from AI Feedback\". arXiv:2212.08073."
+  ],
+  "typed_relations": [
+    {
+      "slug": "llm-evaluation-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "guardrails-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "prompt-testing",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/ai-output-verification",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/ai-output-verification.md"
+}

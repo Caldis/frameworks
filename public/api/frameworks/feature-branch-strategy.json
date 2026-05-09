@@ -1,0 +1,193 @@
+{
+  "id": 188,
+  "name": "Feature Branch Strategy",
+  "name_zh": "特性分支策略",
+  "slug": "feature-branch-strategy",
+  "category": "evolution",
+  "desc": "Git branching models (GitFlow, trunk-based)",
+  "desc_zh": "Git 分支模型（GitFlow、主干开发等）",
+  "steps": [
+    "Choose a branching model aligned with team size and release cadence (GitFlow, GitHub Flow, trunk-based)",
+    "Define branch naming conventions, lifecycle policies, and merge/rebase rules",
+    "Enforce branch protection rules: required reviews, CI pass, and no direct pushes to main/trunk",
+    "Keep feature branches short-lived (hours to days) to minimize merge conflicts and integration risk",
+    "Merge to mainline via pull request after passing automated tests, code review, and any required approvals"
+  ],
+  "steps_zh": [
+    "选择与团队规模和发布节奏匹配的分支模型（GitFlow、GitHub Flow、主干开发）",
+    "定义分支命名规范、生命周期策略和合并/变基规则",
+    "强制执行分支保护规则：必须评审、CI 通过、禁止直接推送至主分支/主干",
+    "保持特性分支短命（数小时到数天），以最小化合并冲突和集成风险",
+    "通过拉取请求合并至主线，需通过自动化测试、代码评审和所有必要审批"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Branch",
+    "Develop",
+    "Review",
+    "Merge"
+  ],
+  "viz_labels_zh": [
+    "功能分支",
+    "开发",
+    "代码审查",
+    "合并"
+  ],
+  "related": [
+    "gitops",
+    "feature-flags",
+    "branch-by-abstraction"
+  ],
+  "tags": [
+    "git",
+    "branching",
+    "gitflow",
+    "trunk-based",
+    "version-control"
+  ],
+  "origin_author": "Vincent Driessen (GitFlow, 2010); various (trunk-based development, ~2000s)",
+  "origin_source": "A Successful Git Branching Model (Vincent Driessen, 2010); trunkbaseddevelopment.com (Paul Hammant)",
+  "origin_source_zh": "《一个成功的 Git 分支模型》（Vincent Driessen，2010）；trunkbaseddevelopment.com（Paul Hammant）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Teams collaborating on a shared codebase that need a structured workflow for parallel development",
+    "Projects with formal release cycles requiring release branches and hotfix processes",
+    "Open-source projects where external contributors submit changes via pull requests from forks",
+    "Organizations enforcing code review and CI checks before any code reaches the mainline"
+  ],
+  "when_to_use_zh": [
+    "在共享代码库上协作、需要结构化并行开发工作流的团队",
+    "需要发布分支和热修复流程的正式发布周期项目",
+    "外部贡献者通过 Fork 提交拉取请求的开源项目",
+    "在代码进入主线前强制执行代码评审和 CI 检查的组织"
+  ],
+  "core_concepts": [
+    "Feature Branch: A short-lived branch created for a single feature or fix, isolated from mainline until ready to merge",
+    "Trunk-Based Development: A model where all developers commit to a single trunk (main) at least daily, using feature flags for incomplete work",
+    "GitFlow: A structured model with develop, feature, release, and hotfix branches suited to versioned software with scheduled releases",
+    "Branch Protection: Server-side rules that prevent direct pushes and enforce quality gates (reviews, CI) before merge"
+  ],
+  "core_concepts_zh": [
+    "特性分支：为单个功能或修复创建的短命分支，在准备合并前与主线隔离",
+    "主干开发：所有开发者至少每天向单一主干（main）提交，使用特性开关管理未完成工作",
+    "GitFlow：带有 develop、feature、release 和 hotfix 分支的结构化模型，适合有计划发布的版本化软件",
+    "分支保护：服务端规则，防止直接推送并在合并前强制执行质量门控（评审、CI）"
+  ],
+  "timeline": [
+    [
+      "2005",
+      "Git released by Linus Torvalds, enabling lightweight branching that makes feature branches practical"
+    ],
+    [
+      "2010",
+      "Vincent Driessen publishes 'A Successful Git Branching Model' (GitFlow), defining the most influential branching strategy"
+    ],
+    [
+      "2011",
+      "GitHub Flow emerges as a simpler alternative: branch, commit, PR, deploy, merge"
+    ],
+    [
+      "2017",
+      "Trunk-based development gains momentum as Google and Facebook advocate for short-lived branches and feature flags"
+    ],
+    [
+      "2023",
+      "DORA research confirms trunk-based development with short-lived branches correlates with elite DevOps performance"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2005",
+      "Linus Torvalds 发布 Git，轻量级分支使特性分支变得实用"
+    ],
+    [
+      "2010",
+      "Vincent Driessen 发表《一个成功的 Git 分支模型》（GitFlow），定义了最具影响力的分支策略"
+    ],
+    [
+      "2011",
+      "GitHub Flow 作为更简单的替代方案出现：分支、提交、PR、部署、合并"
+    ],
+    [
+      "2017",
+      "随着 Google 和 Facebook 倡导短命分支和特性开关，主干开发获得发展动力"
+    ],
+    [
+      "2023",
+      "DORA 研究证实主干开发配合短命分支与精英级 DevOps 表现正相关"
+    ]
+  ],
+  "dos": [
+    "Keep feature branches as short-lived as possible — ideally merging within 1-2 days to reduce integration risk",
+    "Rebase or merge mainline into feature branches daily to detect conflicts early and keep branches current",
+    "Use branch naming conventions (feature/, fix/, chore/) to communicate intent and enable automation",
+    "Delete branches immediately after merging to keep the repository clean and avoid stale branch accumulation"
+  ],
+  "dos_zh": [
+    "尽量保持特性分支短命——理想情况下在 1-2 天内合并以减少集成风险",
+    "每天将主线变基或合并到特性分支中，尽早发现冲突并保持分支最新",
+    "使用分支命名规范（feature/、fix/、chore/）传达意图并支持自动化",
+    "合并后立即删除分支以保持仓库整洁，避免陈旧分支堆积"
+  ],
+  "donts": [
+    "Don't let feature branches live for weeks — long-lived branches lead to painful merge conflicts and integration surprises",
+    "Don't use GitFlow for continuous deployment — its release branch ceremony adds overhead when you deploy multiple times daily",
+    "Don't skip CI on feature branches — bugs found after merge are much more expensive to fix than bugs caught on the branch",
+    "Don't merge without code review — even small changes benefit from a second pair of eyes for knowledge sharing and quality"
+  ],
+  "donts_zh": [
+    "不要让特性分支存活数周——长命分支导致痛苦的合并冲突和集成意外",
+    "不要在持续部署场景使用 GitFlow——当每天多次部署时，发布分支仪式会增加开销",
+    "不要跳过特性分支上的 CI——合并后发现的 Bug 修复成本远高于在分支上发现的",
+    "不要在没有代码评审的情况下合并——即使小变更也能从第二双眼睛中获益，促进知识共享和质量提升"
+  ],
+  "case_study_company": "Google",
+  "case_study": "Google operates one of the largest monorepos in the world with over 80 million commits, using a trunk-based development model. All 25,000+ engineers commit to a single trunk, with changes gated by automated testing and code review. Feature flags manage incomplete work, and short-lived branches (typically hours) ensure continuous integration. This approach enables Google to deploy thousands of changes per day while maintaining code health at scale.",
+  "case_study_zh": "Google 运营着全球最大的单体仓库之一，拥有超过 8000 万次提交，采用主干开发模型。所有 25000 多名工程师向单一主干提交，变更通过自动化测试和代码评审门控。特性开关管理未完成工作，短命分支（通常为数小时）确保持续集成。这种方法使 Google 能够每天部署数千项变更，同时大规模维护代码健康。",
+  "when_not_to_use": [
+    "Solo developers or very small teams where branching overhead exceeds its coordination benefits",
+    "Experimental or research codebases where rigid branching rules slow down exploration",
+    "Projects with no CI/CD pipeline where branch-based quality gates cannot be enforced automatically",
+    "Monorepo setups that require specialized merge strategies beyond standard Git branching"
+  ],
+  "when_not_to_use_zh": [
+    "单人开发者或极小团队——分支开销超过其协调收益",
+    "严格分支规则会减慢探索速度的实验或研究代码库",
+    "没有 CI/CD 流水线、无法自动执行分支质量门控的项目",
+    "需要超越标准 Git 分支的专用合并策略的单体仓库设置"
+  ],
+  "adopters": [
+    "Google",
+    "Facebook (Meta)",
+    "GitHub",
+    "Microsoft",
+    "Atlassian"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Vincent Driessen (2010). \"A Successful Git Branching Model\". nvie.com.",
+  "secondary_sources": [
+    "Paul Hammant (2017). \"Trunk Based Development\". trunkbaseddevelopment.com.",
+    "Jez Humble and David Farley (2010). \"Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "gitops",
+      "type": "complement"
+    },
+    {
+      "slug": "feature-flags",
+      "type": "complement"
+    },
+    {
+      "slug": "branch-by-abstraction",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/feature-branch-strategy",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/feature-branch-strategy.md"
+}

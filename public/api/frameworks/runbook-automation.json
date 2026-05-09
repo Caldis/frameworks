@@ -1,0 +1,209 @@
+{
+  "id": 156,
+  "name": "Runbook Automation",
+  "name_zh": "运维手册自动化",
+  "slug": "runbook-automation",
+  "category": "observability",
+  "desc": "Codified incident response procedures that reduce toil and human error during incidents",
+  "desc_zh": "将事故响应流程代码化，减少事故期间的重复劳动和人为失误",
+  "steps": [
+    "Audit existing manual runbooks: catalog all incident response procedures and classify them by frequency, complexity, and risk of human error",
+    "Prioritize automation candidates: start with high-frequency, low-risk procedures (restart service, clear cache, scale up) that consume the most on-call toil",
+    "Codify runbooks as executable scripts or workflows: use infrastructure automation tools (Ansible, Terraform, custom scripts) with safety guards (dry-run mode, blast radius limits, approval gates)",
+    "Integrate automated runbooks with alerting: connect alerts to auto-remediation workflows so common issues self-heal without paging humans",
+    "Continuously validate and iterate: test runbook automations regularly against staging, track mean time to remediation (MTTR), and update scripts as the system evolves"
+  ],
+  "steps_zh": [
+    "审计现有手动运维手册：编目所有事故响应流程，按频率、复杂度和人为失误风险分类",
+    "确定自动化候选者优先级：从消耗最多值班人工的高频率、低风险流程开始（重启服务、清除缓存、扩容）",
+    "将运维手册编码为可执行脚本或工作流：使用基础设施自动化工具（Ansible、Terraform、自定义脚本）并加入安全防护（试运行模式、爆炸半径限制、审批门控）",
+    "将自动化运维手册与告警集成：连接告警与自动修复工作流，使常见问题在不呼叫人员的情况下自愈",
+    "持续验证和迭代：定期在预发布环境测试运维手册自动化，追踪平均修复时间（MTTR），随系统演进更新脚本"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Audit Runbooks",
+    "Prioritize",
+    "Codify Scripts",
+    "Alert Integration",
+    "Validate Iterate"
+  ],
+  "viz_labels_zh": [
+    "审计手册",
+    "优先排序",
+    "代码化脚本",
+    "告警集成",
+    "持续验证"
+  ],
+  "related": [
+    "on-call-engineering",
+    "error-budget-policy",
+    "slo-as-practice",
+    "infrastructure-as-code",
+    "chaos-engineering"
+  ],
+  "tags": [
+    "observability",
+    "runbook",
+    "automation",
+    "incident-response",
+    "toil-reduction",
+    "sre"
+  ],
+  "origin_author": "Google SRE team; formalized in Site Reliability Engineering book (2016)",
+  "origin_source": "Site Reliability Engineering (Beyer et al., 2016); Software Engineering at Google (Winters, Manshreck, Wright, 2020)",
+  "origin_source_zh": "《SRE：Google运维解密》（Beyer等，2016）；《Google软件工程》（Winters、Manshreck、Wright，2020）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "On-call teams spending more than 50% of their time on repetitive, manual remediation tasks (toil)",
+    "Incident response procedures that are well-understood and follow a deterministic decision tree",
+    "Organizations where manual runbook execution during 3am incidents leads to high error rates",
+    "Services with recurring failure modes (disk full, certificate expiry, connection pool exhaustion) that follow the same fix pattern"
+  ],
+  "when_to_use_zh": [
+    "值班团队超过50%时间用于重复性手动修复任务（苦力活）",
+    "已被充分理解且遵循确定性决策树的事故响应流程",
+    "凌晨3点手动执行运维手册导致高错误率的组织",
+    "具有循环故障模式（磁盘满、证书过期、连接池耗尽）且修复模式相同的服务"
+  ],
+  "core_concepts": [
+    "Toil: Repetitive, manual, automatable operational work that scales linearly with service size and provides no enduring value -- the primary target for runbook automation",
+    "Auto-Remediation: Automated workflows triggered directly by alerts that execute predefined fix steps without human intervention for known failure patterns",
+    "Safety Guards: Dry-run modes, blast radius limits, rollback triggers, and human approval gates that prevent automated runbooks from making incidents worse",
+    "Runbook-as-Code: Version-controlled, tested, and reviewed automation scripts stored alongside the service code they operate on, following software engineering best practices",
+    "Escalation Ladder: When automation fails or encounters an unknown condition, it stops and escalates to a human with full context rather than retrying blindly"
+  ],
+  "core_concepts_zh": [
+    "苦力活（Toil）：随服务规模线性增长且不提供持久价值的重复性、手动、可自动化的运维工作——运维手册自动化的主要目标",
+    "自动修复：由告警直接触发的自动化工作流，无需人工介入即可对已知故障模式执行预定义修复步骤",
+    "安全防护：试运行模式、爆炸半径限制、回滚触发器和人工审批门控，防止自动化运维手册使事故恶化",
+    "运维手册即代码：版本控制、测试和审查的自动化脚本，与其操作的服务代码一起存储，遵循软件工程最佳实践",
+    "升级阶梯：当自动化失败或遇到未知情况时，携带完整上下文停止并升级给人类，而非盲目重试"
+  ],
+  "timeline": [
+    [
+      "2003",
+      "Google SRE begins systematic elimination of toil, establishing the principle that toil should not exceed 50% of an SRE's time"
+    ],
+    [
+      "2012",
+      "PagerDuty launches incident response automation, making runbook-triggered workflows accessible to smaller teams"
+    ],
+    [
+      "2016",
+      "Google SRE Book codifies toil budgets and runbook automation as core SRE practices"
+    ],
+    [
+      "2019",
+      "Shoreline.io and other platforms emerge offering auto-remediation as a service with built-in safety rails"
+    ],
+    [
+      "2023",
+      "AI-assisted runbooks emerge: LLMs help generate, validate, and execute remediation steps from incident context"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2003",
+      "Google SRE开始系统性消除苦力活，确立苦力活不应超过SRE时间50%的原则"
+    ],
+    [
+      "2012",
+      "PagerDuty推出事故响应自动化，使运维手册触发的工作流对较小团队可用"
+    ],
+    [
+      "2016",
+      "Google SRE Book将苦力活预算和运维手册自动化编纂为核心SRE实践"
+    ],
+    [
+      "2019",
+      "Shoreline.io等平台出现，提供带有内置安全护栏的自动修复即服务"
+    ],
+    [
+      "2023",
+      "AI辅助运维手册出现：LLM帮助从事故上下文中生成、验证和执行修复步骤"
+    ]
+  ],
+  "dos": [
+    "Do start by automating the simplest and most frequent runbooks first, because quick wins build organizational trust in automation",
+    "Do include blast radius limits in every automated runbook (e.g., only restart 10% of pods at a time), because unconstrained automation can amplify incidents",
+    "Do version-control runbook automation alongside the service code, because runbooks must evolve with the system they remediate",
+    "Do log every automated action with full context, because post-incident review requires a complete audit trail of what the automation did"
+  ],
+  "dos_zh": [
+    "从最简单和最频繁的运维手册开始自动化，因为快速见效能建立组织对自动化的信任",
+    "在每个自动化运维手册中包含爆炸半径限制（如一次仅重启10%的Pod），因为不受约束的自动化可能放大事故",
+    "将运维手册自动化与服务代码一起版本控制，因为运维手册必须与其修复的系统一起演进",
+    "记录每个自动化操作的完整上下文日志，因为事后回顾需要自动化行为的完整审计追踪"
+  ],
+  "donts": [
+    "Don't automate procedures that require human judgment or context-dependent decisions, because automation cannot reason about novel failure modes",
+    "Don't skip dry-run testing of automated runbooks, because an untested automation script in production is more dangerous than a manual runbook",
+    "Don't let auto-remediation mask chronic problems, because repeatedly auto-fixing the same issue hides the need for a proper root cause fix",
+    "Don't build automation without an escalation path, because automation must know when to stop and ask for help rather than retrying indefinitely"
+  ],
+  "donts_zh": [
+    "不要自动化需要人类判断或依赖上下文决策的流程，因为自动化无法对新型故障模式进行推理",
+    "不要跳过自动化运维手册的试运行测试，因为未经测试的自动化脚本在生产中比手动运维手册更危险",
+    "不要让自动修复掩盖慢性问题，因为反复自动修复相同问题会隐藏进行根因修复的需要",
+    "不要构建没有升级路径的自动化，因为自动化必须知道何时停止并请求帮助而非无限重试"
+  ],
+  "case_study_company": "Google",
+  "case_study": "Google SRE's toil budget principle mandates that SREs spend no more than 50% of their time on operational toil. When the Gmail team found that disk-related alerts accounted for 30% of on-call pages, they automated the entire remediation workflow: detect disk pressure, migrate affected shards, provision new storage, and validate service health -- all without human intervention. This single automation reduced on-call pages by 25% and freed engineers to work on proactive reliability improvements. The success pattern was replicated across Google, with automated runbooks now handling over 60% of common incident types.",
+  "case_study_zh": "Google SRE的苦力活预算原则要求SRE用于运维苦力活的时间不超过50%。当Gmail团队发现磁盘相关告警占值班呼叫的30%时，他们自动化了整个修复工作流：检测磁盘压力、迁移受影响的分片、配置新存储并验证服务健康——全程无需人工介入。这单项自动化减少了25%的值班呼叫，释放工程师投入主动可靠性改进。该成功模式在Google全公司复制，自动化运维手册现在处理超过60%的常见事故类型。",
+  "when_not_to_use": [
+    "Novel or rare failure modes that have not been seen before and lack a known remediation procedure",
+    "Procedures involving irreversible destructive actions (data deletion, key rotation) where human verification is essential",
+    "Small-scale systems where the investment in building and maintaining automation exceeds the toil it would save",
+    "Organizations without a blameless incident culture, where automation failures would be punished rather than learned from"
+  ],
+  "when_not_to_use_zh": [
+    "从未遇到过且缺乏已知修复流程的新型或罕见故障模式",
+    "涉及不可逆破坏性操作（数据删除、密钥轮换）且人工验证不可或缺的流程",
+    "构建和维护自动化的投入超过其能节省的苦力活的小规模系统",
+    "缺乏无指责事故文化的组织——自动化失败会被惩罚而非从中学习"
+  ],
+  "adopters": [
+    "Google",
+    "Amazon",
+    "PagerDuty",
+    "Shoreline.io",
+    "Datadog"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "observability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Beyer, B. et al. (2016). \"Site Reliability Engineering: How Google Runs Production Systems\", Ch. 7. O'Reilly Media.",
+  "secondary_sources": [
+    "Winters, T., Manshreck, T. & Wright, H. (2020). \"Software Engineering at Google\". O'Reilly Media.",
+    "Limoncelli, T.A., Chalup, S.R. & Hogan, C.J. (2014). \"The Practice of Cloud System Administration\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "on-call-engineering",
+      "type": "complement"
+    },
+    {
+      "slug": "error-budget-policy",
+      "type": "complement"
+    },
+    {
+      "slug": "slo-as-practice",
+      "type": "complement"
+    },
+    {
+      "slug": "infrastructure-as-code",
+      "type": "complement"
+    },
+    {
+      "slug": "chaos-engineering",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/runbook-automation",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/runbook-automation.md"
+}

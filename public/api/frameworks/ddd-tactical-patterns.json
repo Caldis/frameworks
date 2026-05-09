@@ -1,0 +1,194 @@
+{
+  "id": 33,
+  "name": "DDD Tactical Patterns",
+  "name_zh": "DDD 战术模式",
+  "slug": "ddd-tactical-patterns",
+  "category": "coding",
+  "desc": "Implementation building blocks: entities, value objects, aggregates",
+  "desc_zh": "领域驱动设计的实现构建块：实体、值对象、聚合",
+  "steps": [
+    "Define Entities: identify objects with unique identity that persists across state changes; implement equality by identity, not attributes",
+    "Design Value Objects: model concepts defined solely by their attributes (Money, Address); make them immutable and enforce equality by value",
+    "Establish Aggregates: group related entities and value objects under an aggregate root that enforces consistency boundaries and invariants",
+    "Implement Domain Events: capture meaningful state changes as event objects that can be published to other bounded contexts or projections",
+    "Use Repositories and Factories: encapsulate persistence behind repository interfaces and complex object creation behind factory methods"
+  ],
+  "steps_zh": [
+    "定义实体：识别具有跨状态变更持续存在的唯一标识的对象；按标识而非属性实现相等性",
+    "设计值对象：对仅由属性定义的概念建模（金额、地址）；使其不可变，按值实现相等性",
+    "建立聚合：将相关实体和值对象组织在聚合根下，由聚合根强制一致性边界和不变式",
+    "实现领域事件：将有意义的状态变更捕获为事件对象，可发布到其他限界上下文或投影",
+    "使用仓储与工厂：将持久化封装在仓储接口后，将复杂对象创建封装在工厂方法后"
+  ],
+  "ai_relevant": false,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Entity",
+    "Value Object",
+    "Aggregate",
+    "Repository",
+    "Domain Event"
+  ],
+  "viz_labels_zh": [
+    "实体",
+    "值对象",
+    "聚合",
+    "资源库",
+    "领域事件"
+  ],
+  "related": [
+    "domain-driven-design",
+    "event-sourcing-pattern",
+    "cqrs-pattern",
+    "hexagonal-architecture"
+  ],
+  "tags": [
+    "ddd",
+    "entities",
+    "value-objects",
+    "aggregates",
+    "domain-events"
+  ],
+  "origin_author": "Eric Evans, 2003",
+  "origin_source": "Domain-Driven Design: Tackling Complexity in the Heart of Software",
+  "origin_source_zh": "《领域驱动设计：软件核心复杂性应对之道》",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Building complex business domains with intricate rules and workflows",
+    "Systems where the domain model is the primary source of competitive advantage",
+    "Projects with domain experts actively collaborating with developers",
+    "Microservice boundaries need to enforce strong consistency within aggregates"
+  ],
+  "when_to_use_zh": [
+    "构建具有复杂规则和工作流的业务领域",
+    "领域模型是核心竞争优势来源的系统",
+    "领域专家积极与开发者协作的项目",
+    "微服务边界需要在聚合内强制严格一致性"
+  ],
+  "core_concepts": [
+    "Entity: an object defined by its identity rather than its attributes, whose lifecycle is tracked across state changes",
+    "Value Object: an immutable object defined entirely by its attributes, with no conceptual identity (e.g., Money, DateRange)",
+    "Aggregate: a cluster of entities and value objects treated as a single unit for data changes, with an Aggregate Root as the entry point",
+    "Domain Event: a record of something meaningful that happened in the domain, used to communicate between bounded contexts",
+    "Repository: an abstraction that mediates between the domain and data mapping layers, providing collection-like access to aggregates"
+  ],
+  "core_concepts_zh": [
+    "实体：由其标识而非属性定义的对象，其生命周期跨越状态变更被持续追踪",
+    "值对象：完全由属性定义的不可变对象，没有概念上的标识（如金额、日期范围）",
+    "聚合：作为数据变更单元的实体和值对象集群，以聚合根作为入口点",
+    "领域事件：领域中发生的有意义事情的记录，用于限界上下文之间的通信",
+    "仓储：在领域层和数据映射层之间的抽象中介，提供类集合式的聚合访问"
+  ],
+  "timeline": [
+    [
+      "2003",
+      "Eric Evans publishes 'Domain-Driven Design', introducing tactical and strategic patterns"
+    ],
+    [
+      "2013",
+      "Vaughn Vernon publishes 'Implementing Domain-Driven Design', providing practical implementation guidance"
+    ],
+    [
+      "2016",
+      "DDD tactical patterns gain traction in microservice architectures as natural aggregate-to-service mapping"
+    ],
+    [
+      "2019",
+      "Event-sourced aggregates become mainstream with tools like EventStoreDB and Axon Framework"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2003",
+      "Eric Evans 出版《领域驱动设计》，引入战术和战略模式"
+    ],
+    [
+      "2013",
+      "Vaughn Vernon 出版《实现领域驱动设计》，提供实践性实施指导"
+    ],
+    [
+      "2016",
+      "DDD 战术模式在微服务架构中获得广泛应用，聚合自然映射到服务"
+    ],
+    [
+      "2019",
+      "事件溯源聚合随着 EventStoreDB 和 Axon Framework 等工具成为主流"
+    ]
+  ],
+  "dos": [
+    "Do keep aggregates small because large aggregates create contention and performance problems",
+    "Do make value objects immutable because mutability introduces subtle bugs in equality and hashing",
+    "Do use ubiquitous language in code because domain experts should be able to read your class names",
+    "Do enforce invariants at the aggregate root because consistency boundaries must be explicit"
+  ],
+  "dos_zh": [
+    "保持聚合小巧，因为大聚合会造成竞争和性能问题",
+    "使值对象不可变，因为可变性会在相等性和哈希中引入微妙的缺陷",
+    "在代码中使用通用语言，因为领域专家应能读懂你的类名",
+    "在聚合根处强制不变式，因为一致性边界必须是显式的"
+  ],
+  "donts": [
+    "Don't reference other aggregates by direct object reference because it breaks consistency boundaries — use IDs instead",
+    "Don't create anemic domain models that are just data bags with external service logic because it defeats the purpose of DDD",
+    "Don't skip event modeling because domain events are the primary mechanism for cross-aggregate communication",
+    "Don't apply DDD tactical patterns to simple CRUD domains because the overhead is not justified"
+  ],
+  "donts_zh": [
+    "不要通过直接对象引用关联其他聚合，因为这破坏了一致性边界——应使用 ID",
+    "不要创建仅是数据袋配外部服务逻辑的贫血领域模型，因为这违背了 DDD 的初衷",
+    "不要跳过事件建模，因为领域事件是跨聚合通信的主要机制",
+    "不要对简单的 CRUD 领域应用 DDD 战术模式，因为其开销不值得"
+  ],
+  "case_study_company": "Zalando",
+  "case_study": "Zalando, Europe's largest online fashion platform, restructured its order management system using DDD tactical patterns. Each bounded context (inventory, payment, shipping) was modeled with distinct aggregates, and domain events enabled eventual consistency across contexts. This allowed Zalando to scale to processing over 500,000 orders per day with independent team deployments.",
+  "case_study_zh": "欧洲最大的在线时尚平台 Zalando 使用 DDD 战术模式重构了其订单管理系统。每个限界上下文（库存、支付、物流）都用独立的聚合建模，领域事件实现了跨上下文的最终一致性。这使 Zalando 能够扩展到每天处理超过 50 万笔订单，同时各团队独立部署。",
+  "when_not_to_use": [
+    "Simple CRUD applications with minimal business logic",
+    "Projects without access to domain experts for collaborative modeling",
+    "Teams unfamiliar with DDD who would misapply patterns and create accidental complexity",
+    "Read-heavy reporting systems where a query-optimized model is more appropriate"
+  ],
+  "when_not_to_use_zh": [
+    "业务逻辑极少的简单 CRUD 应用",
+    "无法接触领域专家进行协作建模的项目",
+    "不熟悉 DDD 的团队，会误用模式并造成意外复杂性",
+    "以读为主的报表系统，查询优化模型更合适"
+  ],
+  "adopters": [
+    "Zalando",
+    "SoundCloud",
+    "Klarna",
+    "Just Eat Takeaway",
+    "Vrbo"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Eric Evans (2003). \"Domain-Driven Design: Tackling Complexity in the Heart of Software\". Addison-Wesley.",
+  "secondary_sources": [
+    "Vaughn Vernon (2013). \"Implementing Domain-Driven Design\". Addison-Wesley.",
+    "Scott Millett and Nick Tune (2015). \"Patterns, Principles, and Practices of Domain-Driven Design\". Wrox."
+  ],
+  "typed_relations": [
+    {
+      "slug": "domain-driven-design",
+      "type": "extends"
+    },
+    {
+      "slug": "event-sourcing-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "cqrs-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "hexagonal-architecture",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/ddd-tactical-patterns",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/ddd-tactical-patterns.md"
+}

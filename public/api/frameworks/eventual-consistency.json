@@ -1,0 +1,201 @@
+{
+  "id": 122,
+  "name": "Eventual Consistency",
+  "name_zh": "最终一致性",
+  "slug": "eventual-consistency",
+  "category": "distributed",
+  "desc": "Embrace temporary inconsistency across replicas in exchange for higher availability",
+  "desc_zh": "以副本间的暂时不一致换取更高的可用性",
+  "steps": [
+    "Identify which data in the system can tolerate temporary inconsistency by classifying operations into strong-consistency-required vs. eventually-consistent",
+    "Choose a replication strategy: asynchronous replication with conflict detection, or anti-entropy protocols that periodically reconcile divergent replicas",
+    "Implement a conflict resolution policy: last-writer-wins (LWW), version vectors, CRDTs, or application-level merge functions depending on data semantics",
+    "Design read paths with staleness awareness: use read-your-writes consistency, monotonic reads, or causal consistency to meet user-facing expectations",
+    "Add observability for convergence lag: monitor replication delay, conflict rates, and anti-entropy cycle times to detect when the system is slow to converge"
+  ],
+  "steps_zh": [
+    "识别系统中哪些数据可以容忍暂时不一致，将操作分类为需要强一致性与可接受最终一致性",
+    "选择复制策略：带冲突检测的异步复制，或定期协调分歧副本的反熵协议",
+    "实现冲突解决策略：根据数据语义选择最后写入者获胜（LWW）、版本向量、CRDT或应用层合并函数",
+    "设计具有过期感知的读取路径：使用读自己写、单调读或因果一致性来满足面向用户的期望",
+    "为收敛延迟添加可观测性：监控复制延迟、冲突率和反熵周期时间，检测系统收敛缓慢的情况"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Classify Data",
+    "Replication",
+    "Conflict Resolution",
+    "Read Consistency",
+    "Convergence"
+  ],
+  "viz_labels_zh": [
+    "数据分类",
+    "数据复制",
+    "冲突解决",
+    "读一致性",
+    "收敛延迟"
+  ],
+  "related": [
+    "cap-theorem",
+    "consensus-protocols",
+    "cqrs-pattern",
+    "saga-pattern"
+  ],
+  "tags": [
+    "consistency",
+    "availability",
+    "replication",
+    "conflict-resolution"
+  ],
+  "origin_author": "Werner Vogels, 2008",
+  "origin_source": "Eventually Consistent (ACM Queue, 2008); Kleppmann, Designing Data-Intensive Applications, Ch. 5 & 9; Vogels, Amazon's Dynamo paper (SOSP 2007)",
+  "origin_source_zh": "《最终一致性》（ACM Queue 2008）；Kleppmann《数据密集型应用系统设计》第5章和第9章；Vogels，Amazon Dynamo论文（SOSP 2007）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When the system must remain available for writes even during network partitions or node failures",
+    "When data is replicated across geographically distant datacenters and synchronous replication would add unacceptable latency",
+    "When the business domain naturally tolerates stale reads, such as social media feeds, product catalogs, or DNS records",
+    "When write throughput requirements exceed what a single-leader or consensus-based system can handle"
+  ],
+  "when_to_use_zh": [
+    "当系统必须在网络分区或节点故障期间仍然可写时",
+    "当数据跨地理位置遥远的数据中心复制且同步复制会增加不可接受的延迟时",
+    "当业务领域天然容忍过期读取时，如社交媒体动态、产品目录或DNS记录",
+    "当写入吞吐需求超过单领导者或基于共识的系统所能承受的范围时"
+  ],
+  "core_concepts": [
+    "Convergence guarantee: All replicas will eventually reach the same state if no new updates are made, though the convergence window is unbounded",
+    "Conflict resolution: When concurrent writes occur on different replicas, the system must deterministically resolve conflicts using LWW, vector clocks, or CRDTs",
+    "Read-your-writes consistency: A session guarantee that a client always sees its own previous writes, even if other replicas are still catching up",
+    "Anti-entropy: Background processes (like Merkle tree comparison or read-repair) that detect and fix divergence between replicas",
+    "Tunable consistency: Systems like Cassandra allow per-query consistency levels (ONE, QUORUM, ALL) to balance latency and consistency on a per-operation basis"
+  ],
+  "core_concepts_zh": [
+    "收敛保证：如果没有新的更新，所有副本最终将达到相同状态，但收敛窗口是无界的",
+    "冲突解决：当不同副本上发生并发写入时，系统必须使用LWW、向量时钟或CRDT确定性地解决冲突",
+    "读自己写一致性：一种会话保证，确保客户端始终看到自己之前的写入，即使其他副本仍在追赶",
+    "反熵：检测并修复副本间分歧的后台进程（如Merkle树比较或读修复）",
+    "可调一致性：Cassandra等系统允许按查询设置一致性级别（ONE、QUORUM、ALL），逐操作平衡延迟与一致性"
+  ],
+  "timeline": [
+    [
+      "1978",
+      "Lamport defines happens-before relation, laying groundwork for reasoning about consistency in distributed systems"
+    ],
+    [
+      "2007",
+      "Amazon publishes the Dynamo paper at SOSP, demonstrating eventual consistency at massive scale with sloppy quorums"
+    ],
+    [
+      "2008",
+      "Werner Vogels publishes 'Eventually Consistent' in ACM Queue, formalizing the consistency spectrum"
+    ],
+    [
+      "2011",
+      "CRDTs (Conflict-free Replicated Data Types) formalized by Shapiro et al., enabling automatic conflict resolution"
+    ],
+    [
+      "2017",
+      "Kleppmann's DDIA provides a comprehensive synthesis of consistency models and their trade-offs for practitioners"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1978",
+      "Lamport定义先发生关系，奠定分布式系统中推理一致性的基础"
+    ],
+    [
+      "2007",
+      "Amazon在SOSP发表Dynamo论文，展示使用松散法定人数实现大规模最终一致性"
+    ],
+    [
+      "2008",
+      "Werner Vogels在ACM Queue发表「最终一致性」，形式化一致性谱系"
+    ],
+    [
+      "2011",
+      "Shapiro等人形式化CRDT（无冲突复制数据类型），实现自动冲突解决"
+    ],
+    [
+      "2017",
+      "Kleppmann的《数据密集型应用系统设计》为从业者综合介绍一致性模型及其权衡"
+    ]
+  ],
+  "dos": [
+    "Do classify each piece of data by its consistency requirements because treating all data as eventually consistent leads to subtle correctness bugs",
+    "Do implement read-your-writes guarantees at the session level because users who cannot see their own updates lose trust in the system",
+    "Do monitor replication lag continuously because high convergence delays can indicate infrastructure problems or capacity exhaustion",
+    "Do choose conflict resolution strategies that match domain semantics because generic LWW silently drops valid concurrent updates"
+  ],
+  "dos_zh": [
+    "按一致性需求对每条数据进行分类，因为将所有数据都视为最终一致会导致微妙的正确性缺陷",
+    "在会话级别实现读自己写保证，因为看不到自己更新的用户会丧失对系统的信任",
+    "持续监控复制延迟，因为高收敛延迟可能表明基础设施问题或容量耗尽",
+    "选择与领域语义匹配的冲突解决策略，因为通用的LWW会静默丢弃有效的并发更新"
+  ],
+  "donts": [
+    "Don't assume eventually consistent means 'consistent enough' for financial transactions because money transfers require strong consistency to prevent double-spending",
+    "Don't ignore the convergence window in SLA definitions because users may observe stale data during high-replication-lag periods",
+    "Don't use wall-clock timestamps for conflict resolution across nodes because clock skew between machines makes LWW unreliable",
+    "Don't forget to test failure scenarios because eventual consistency bugs typically manifest only under network partitions or high load"
+  ],
+  "donts_zh": [
+    "不要假设最终一致性对金融交易「足够一致」，因为资金转账需要强一致性来防止双重花费",
+    "不要在SLA定义中忽略收敛窗口，因为用户在高复制延迟期间可能观察到过期数据",
+    "不要使用墙钟时间戳在节点间进行冲突解决，因为机器间的时钟偏差使LWW不可靠",
+    "不要忘记测试故障场景，因为最终一致性缺陷通常只在网络分区或高负载下才会显现"
+  ],
+  "case_study_company": "Amazon (DynamoDB)",
+  "case_study": "Amazon's DynamoDB, descended from the original Dynamo paper (2007), is architected around eventual consistency as the default read mode. During Prime Day 2022, DynamoDB served over 105 million requests per second across globally distributed tables. The eventually consistent read path avoids quorum overhead, delivering single-digit millisecond latency. For the shopping cart — Dynamo's original motivation — Amazon uses a 'last-writer-wins with client-side merge' strategy where the cart is an additive set, so no item is ever silently lost even when concurrent writes conflict across regions.",
+  "case_study_zh": "Amazon的DynamoDB源自2007年的Dynamo论文，以最终一致性作为默认读取模式。在2022年Prime Day期间，DynamoDB在全球分布式表中每秒处理超过1.05亿次请求。最终一致性读取路径避免了法定人数开销，实现个位数毫秒级延迟。对于购物车——Dynamo最初的设计动机——Amazon使用「最后写入者获胜加客户端合并」策略，将购物车视为可加集合，即使跨区域的并发写入冲突也不会静默丢失任何商品。",
+  "when_not_to_use": [
+    "Financial ledger systems where double-spending or lost updates are unacceptable",
+    "Distributed locking or leader election where stale reads can cause split-brain scenarios",
+    "Systems where regulatory compliance demands strong consistency and audit trails for every state transition"
+  ],
+  "when_not_to_use_zh": [
+    "双重花费或更新丢失不可接受的金融账本系统",
+    "过期读取可能导致脑裂场景的分布式锁或领导者选举",
+    "法规合规要求强一致性且每个状态转换都需要审计记录的系统"
+  ],
+  "adopters": [
+    "Amazon DynamoDB",
+    "Apache Cassandra",
+    "Riak",
+    "CouchDB",
+    "Voldemort"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "scalability",
+    "performance",
+    "reliability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Vogels, W. (2009). \"Eventually Consistent\". Communications of the ACM, 52(1).",
+  "secondary_sources": [
+    "DeCandia, G. et al. (2007). \"Dynamo: Amazon's Highly Available Key-Value Store\". Proceedings of ACM SOSP.",
+    "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 5 & 9. O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "cap-theorem",
+      "type": "prerequisite"
+    },
+    {
+      "slug": "consensus-protocols",
+      "type": "alternative"
+    },
+    {
+      "slug": "cqrs-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "saga-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/eventual-consistency",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/eventual-consistency.md"
+}

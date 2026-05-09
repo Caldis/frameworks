@@ -1,0 +1,195 @@
+{
+  "id": 97,
+  "name": "Self-Healing Systems Pattern",
+  "name_zh": "自愈系统模式",
+  "slug": "self-healing-systems",
+  "category": "ai",
+  "desc": "Use AI agents to detect, diagnose, and remediate failures",
+  "desc_zh": "利用 AI 代理自动检测、诊断并修复系统故障",
+  "steps": [
+    "Instrument the system with rich structured logs, metrics, and health-check endpoints",
+    "Deploy a monitoring agent that correlates signals and classifies failure modes",
+    "Maintain a runbook knowledge base the agent uses to select remediation actions",
+    "Execute low-risk remediations automatically; escalate high-risk ones for human approval",
+    "Record every incident-action-outcome triple to continuously improve the runbook"
+  ],
+  "steps_zh": [
+    "为系统配备丰富的结构化日志、指标和健康检查端点",
+    "部署监控代理，关联信号并分类故障模式",
+    "维护运维手册知识库供代理选择修复动作",
+    "自动执行低风险修复操作；将高风险操作升级至人工审批",
+    "记录每次故障-动作-结果三元组，持续完善运维手册"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Monitor",
+    "Detect",
+    "Diagnose",
+    "Remediate"
+  ],
+  "viz_labels_zh": [
+    "监控",
+    "检测",
+    "诊断",
+    "自动修复"
+  ],
+  "related": [
+    "chaos-engineering",
+    "circuit-breaker-pattern",
+    "agent-reliability-patterns"
+  ],
+  "tags": [
+    "self-healing",
+    "auto-remediation",
+    "monitoring",
+    "runbook"
+  ],
+  "origin_author": "IBM (Autonomic Computing Manifesto), 2001; modern AI-ops formalized by PagerDuty and Shoreline.io, 2022",
+  "origin_source": "The Vision of Autonomic Computing (Jeffrey Kephart & David Chess, IBM, 2003) and AIOps: Real-World Challenges and Research Innovations",
+  "origin_source_zh": "自主计算愿景（Jeffrey Kephart & David Chess，IBM，2003）及 AIOps：真实世界挑战与研究创新",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Large-scale distributed systems where manual incident response cannot keep pace with failure frequency",
+    "Cloud-native environments with well-instrumented observability stacks (metrics, logs, traces)",
+    "On-call rotation optimization -- automating known, low-risk fixes to reduce alert fatigue",
+    "Infrastructure with predictable failure patterns (disk full, OOM, certificate expiry) suited to automated runbooks"
+  ],
+  "when_to_use_zh": [
+    "手动事故响应无法跟上故障频率的大规模分布式系统",
+    "具备完善可观测性技术栈（指标、日志、追踪）的云原生环境",
+    "值班轮岗优化——自动化已知低风险修复以减少告警疲劳",
+    "具有可预测故障模式（磁盘满、OOM、证书过期）、适合自动化运维手册的基础设施"
+  ],
+  "core_concepts": [
+    "Autonomic Loop: The self-healing cycle of Monitor, Analyze, Plan, Execute (MAPE-K) from IBM's autonomic computing vision",
+    "Runbook Automation: Codified operational procedures that an AI agent can execute to resolve known failure classes",
+    "Signal Correlation: Aggregating metrics, logs, and traces to identify root causes rather than reacting to individual alerts",
+    "Blast Radius Assessment: Evaluating the potential impact of an automated remediation action before executing it",
+    "Incident Triple: A (failure, action, outcome) record used to evaluate remediation effectiveness and improve the system"
+  ],
+  "core_concepts_zh": [
+    "自主循环（Autonomic Loop）：源自 IBM 自主计算愿景的自愈循环——监控、分析、规划、执行（MAPE-K）",
+    "运维手册自动化（Runbook Automation）：AI 代理可执行的编码化操作流程，用于解决已知故障类型",
+    "信号关联（Signal Correlation）：聚合指标、日志和追踪以识别根因，而非对单个告警做出反应",
+    "爆炸半径评估（Blast Radius Assessment）：在执行自动化修复操作前评估其潜在影响范围",
+    "事故三元组（Incident Triple）：（故障、操作、结果）记录，用于评估修复效果并改进系统"
+  ],
+  "timeline": [
+    [
+      "2001",
+      "IBM publishes the Autonomic Computing Manifesto, envisioning self-managing systems"
+    ],
+    [
+      "2003",
+      "Kephart & Chess formalize the MAPE-K loop in The Vision of Autonomic Computing"
+    ],
+    [
+      "2019",
+      "Moogsoft and BigPanda popularize AIOps for intelligent alert correlation and noise reduction"
+    ],
+    [
+      "2022",
+      "Shoreline.io launches AI-powered automated remediation with LLM-driven runbook execution"
+    ],
+    [
+      "2024",
+      "PagerDuty, Datadog, and New Relic integrate LLM agents for automated incident diagnosis and remediation"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2001",
+      "IBM 发布自主计算宣言，构想自管理系统"
+    ],
+    [
+      "2003",
+      "Kephart 与 Chess 在《自主计算愿景》中正式定义 MAPE-K 循环"
+    ],
+    [
+      "2019",
+      "Moogsoft 和 BigPanda 推广 AIOps 智能告警关联和噪声降低"
+    ],
+    [
+      "2022",
+      "Shoreline.io 推出 AI 驱动的自动化修复，支持 LLM 驱动的运维手册执行"
+    ],
+    [
+      "2024",
+      "PagerDuty、Datadog 和 New Relic 集成 LLM 代理用于自动化事故诊断和修复"
+    ]
+  ],
+  "dos": [
+    "Start with well-understood, low-risk remediations (restart service, scale out, clear cache) before automating complex fixes",
+    "Require human approval for destructive or high-blast-radius actions even in automated pipelines",
+    "Record all automated actions with full context for post-incident review and auditing",
+    "Continuously update runbooks based on incident-action-outcome data to improve future remediation"
+  ],
+  "dos_zh": [
+    "从已知低风险修复（重启服务、扩容、清缓存）开始，再逐步自动化复杂修复",
+    "即使在自动化管线中，对破坏性或大爆炸半径操作仍要求人工审批",
+    "记录所有自动化操作及完整上下文，用于事后复盘和审计",
+    "基于事故-操作-结果数据持续更新运维手册以改进未来修复"
+  ],
+  "donts": [
+    "Don't automate remediations you haven't manually validated -- an untested runbook can make incidents worse",
+    "Don't suppress alerts when automation kicks in -- operators need visibility into what's being auto-remediated",
+    "Don't deploy self-healing without a kill switch -- you must be able to disable automation instantly",
+    "Don't conflate symptom treatment with root cause resolution -- restarting a crashing service is a bandaid, not a fix"
+  ],
+  "donts_zh": [
+    "不要自动化未经手动验证的修复——未测试的运维手册可能加剧事故",
+    "不要在自动化启动时抑制告警——运维人员需要了解正在被自动修复的内容",
+    "不要在没有紧急停止开关的情况下部署自愈系统——必须能立即禁用自动化",
+    "不要将症状治疗与根因解决混为一谈——重启崩溃的服务是创可贴而非修复"
+  ],
+  "case_study_company": "Shoreline.io",
+  "case_study": "Shoreline.io built an AI-driven auto-remediation platform that integrates with PagerDuty and Datadog to automatically diagnose and fix infrastructure issues. When a disk-full alert fires, Shoreline's agent identifies the offending log files, archives them, and clears space -- all within 30 seconds. Customers reported an 80% reduction in mean time to remediation (MTTR) for their top 20 most frequent incident types.",
+  "case_study_zh": "Shoreline.io 构建了与 PagerDuty 和 Datadog 集成的 AI 驱动自动修复平台，自动诊断和修复基础设施问题。当磁盘满告警触发时，Shoreline 的代理识别问题日志文件、归档并清理空间——全部在 30 秒内完成。客户报告其 Top 20 最频繁事故类型的平均修复时间（MTTR）降低了 80%。",
+  "when_not_to_use": [
+    "Novel, never-before-seen failure modes where no runbook exists and human judgment is essential",
+    "Small-scale systems where manual remediation is fast enough and the automation overhead isn't justified",
+    "Environments with poor observability -- self-healing requires high-quality signals to diagnose correctly",
+    "Compliance environments where every remediation action must be pre-approved by a human"
+  ],
+  "when_not_to_use_zh": [
+    "没有运维手册、需要人类判断的全新未见故障模式",
+    "手动修复已足够快、自动化开销不值得的小规模系统",
+    "可观测性差的环境——自愈需要高质量信号才能正确诊断",
+    "每项修复操作都必须由人工预先批准的合规环境"
+  ],
+  "adopters": [
+    "Shoreline.io",
+    "PagerDuty",
+    "Datadog",
+    "Netflix (auto-remediation in Spinnaker)",
+    "Amazon (AWS Systems Manager)"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "observability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Jeffrey Kephart and David Chess (2003). \"The Vision of Autonomic Computing\". IEEE Computer, 36(1).",
+  "secondary_sources": [
+    "IBM (2001). \"Autonomic Computing: IBM's Perspective on the State of Information Technology\". IBM Research.",
+    "Pankaj Jalote (2013). \"Autonomic Computing Concepts\". Proceedings of the IEEE."
+  ],
+  "typed_relations": [
+    {
+      "slug": "chaos-engineering",
+      "type": "complement"
+    },
+    {
+      "slug": "circuit-breaker-pattern",
+      "type": "extends"
+    },
+    {
+      "slug": "agent-reliability-patterns",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/self-healing-systems",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/self-healing-systems.md"
+}

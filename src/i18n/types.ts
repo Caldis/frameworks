@@ -6,6 +6,15 @@ export interface LocaleStrings {
   siteTitleLine1: string
   siteTitleLine2: string
   siteSubtitle: string
+  whySdframeTitle: string
+  whySdframeBody: string
+  whySdframeBreadth: string
+  whySdframeAgentReady: string
+  whySdframePositioning: string
+  whySdframeStart: string
+  whySdframeDevelopers: string
+  whySdframePricing: string
+  whySdframeAlternatives: string
 
   // Navigation
   allFrameworks: string

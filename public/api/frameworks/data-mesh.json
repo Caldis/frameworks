@@ -1,0 +1,194 @@
+{
+  "id": 101,
+  "name": "Data Mesh",
+  "name_zh": "数据网格",
+  "slug": "data-mesh",
+  "category": "data",
+  "desc": "Domain-oriented decentralized data ownership and architecture",
+  "desc_zh": "面向领域的去中心化数据所有权与架构",
+  "steps": [
+    "Decompose monolithic data platforms by identifying domain boundaries and assigning data ownership to the teams closest to the business context",
+    "Treat data as a product: each domain team publishes discoverable, documented, and quality-assured data products with SLOs",
+    "Build a self-serve data infrastructure platform that abstracts away storage, processing, and governance complexity for domain teams",
+    "Implement federated computational governance by codifying global interoperability standards, security policies, and compliance rules as platform capabilities",
+    "Establish a data product catalog and mesh-wide observability so consumers can discover, trust, and compose data products across domains"
+  ],
+  "steps_zh": [
+    "通过识别领域边界将单体数据平台解耦，将数据所有权分配给最接近业务上下文的团队",
+    "将数据视为产品：每个领域团队发布可发现、有文档、有质量保障且带SLO的数据产品",
+    "构建自助式数据基础设施平台，为领域团队抽象存储、处理和治理的复杂性",
+    "实施联邦式计算治理，将全局互操作标准、安全策略和合规规则编码为平台能力",
+    "建立数据产品目录和网格范围的可观测性，使消费者能够跨领域发现、信任和组合数据产品"
+  ],
+  "ai_relevant": true,
+  "viz_type": "hexgrid",
+  "viz_labels": [
+    "Domain Ownership",
+    "Data Product",
+    "Self-Serve Infra",
+    "Federated Gov",
+    "Data Catalog"
+  ],
+  "viz_labels_zh": [
+    "域所有权",
+    "数据产品",
+    "自助基础设施",
+    "联邦治理",
+    "数据目录"
+  ],
+  "related": [
+    "domain-driven-design",
+    "microservices-decomposition",
+    "team-topologies",
+    "polyglot-persistence"
+  ],
+  "tags": [
+    "data-mesh",
+    "decentralization",
+    "data-products",
+    "domain-ownership",
+    "governance"
+  ],
+  "origin_author": "Zhamak Dehghani, 2019",
+  "origin_source": "Data Mesh: Delivering Data-Driven Value at Scale (O'Reilly, 2022)",
+  "origin_source_zh": "《数据网格：大规模交付数据驱动价值》（O'Reilly，2022）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When a centralized data team has become a bottleneck for multiple business domains",
+    "When domain teams need autonomous control over their analytical and operational data",
+    "When organizational scale demands distributed ownership matching Conway's Law",
+    "When data quality suffers because producers are disconnected from consumers"
+  ],
+  "when_to_use_zh": [
+    "当中心化数据团队成为多个业务领域的瓶颈时",
+    "当领域团队需要自主控制其分析和运营数据时",
+    "当组织规模要求分布式所有权以匹配康威定律时",
+    "当数据质量因生产者与消费者脱节而下降时"
+  ],
+  "core_concepts": [
+    "Domain ownership: data is owned and served by the domain that produces it, not by a central data team",
+    "Data as a product: each dataset is treated as a product with discoverability, quality, SLOs, and documentation",
+    "Self-serve data platform: a shared infrastructure layer that enables domain teams to build and publish data products without deep infrastructure expertise",
+    "Federated computational governance: global policies enforced through automation and platform capabilities rather than centralized gatekeepers"
+  ],
+  "core_concepts_zh": [
+    "领域所有权：数据由产生它的领域拥有和提供，而非中心化数据团队",
+    "数据即产品：每个数据集被视为产品，具备可发现性、质量保障、SLO和文档",
+    "自助式数据平台：共享基础设施层，使领域团队无需深厚基础设施专业知识即可构建和发布数据产品",
+    "联邦式计算治理：通过自动化和平台能力而非集中式守门人来执行全局策略"
+  ],
+  "timeline": [
+    [
+      "2019",
+      "Zhamak Dehghani publishes 'How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh' at ThoughtWorks"
+    ],
+    [
+      "2020",
+      "Data Mesh gains rapid industry adoption; ThoughtWorks Technology Radar features it as a key trend"
+    ],
+    [
+      "2022",
+      "Dehghani publishes the definitive O'Reilly book 'Data Mesh' formalizing the four principles"
+    ],
+    [
+      "2023",
+      "Major cloud vendors (AWS, GCP, Azure) release data mesh reference architectures and tooling"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2019",
+      "Zhamak Dehghani 在 ThoughtWorks 发表「如何从单体数据湖走向分布式数据网格」"
+    ],
+    [
+      "2020",
+      "数据网格获得行业快速采纳；ThoughtWorks 技术雷达将其列为关键趋势"
+    ],
+    [
+      "2022",
+      "Dehghani 出版 O'Reilly 权威著作《数据网格》，正式化四大原则"
+    ],
+    [
+      "2023",
+      "主要云厂商（AWS、GCP、Azure）发布数据网格参考架构和工具"
+    ]
+  ],
+  "dos": [
+    "Do align data product boundaries with business domain boundaries because misalignment creates confusion about ownership",
+    "Do invest in a self-serve platform before asking domains to own their data because without it domain teams will drown in infrastructure complexity",
+    "Do define global interoperability standards (schemas, SLOs, metadata) because mesh-wide discoverability depends on consistency",
+    "Do start with a single domain pilot before scaling because mesh adoption requires organizational learning"
+  ],
+  "dos_zh": [
+    "将数据产品边界与业务领域边界对齐，因为不对齐会导致所有权混乱",
+    "在要求领域拥有数据之前先投资自助式平台，否则领域团队会被基础设施复杂性淹没",
+    "定义全局互操作标准（模式、SLO、元数据），因为网格范围的可发现性依赖一致性",
+    "在扩展前先从单个领域试点开始，因为网格采纳需要组织学习"
+  ],
+  "donts": [
+    "Don't simply rename existing data lake tables as 'data products' because data mesh requires genuine domain ownership and product thinking",
+    "Don't skip governance because decentralization without standards leads to data chaos and duplication",
+    "Don't force every team to adopt mesh simultaneously because a phased rollout reduces organizational resistance",
+    "Don't neglect cross-domain data quality contracts because consumers need trust guarantees across boundaries"
+  ],
+  "donts_zh": [
+    "不要简单地将现有数据湖表重命名为「数据产品」，因为数据网格需要真正的领域所有权和产品思维",
+    "不要跳过治理，因为没有标准的去中心化会导致数据混乱和重复",
+    "不要强迫每个团队同时采用网格，分阶段推出可减少组织阻力",
+    "不要忽视跨领域数据质量契约，因为消费者需要跨边界的信任保障"
+  ],
+  "case_study_company": "Zalando",
+  "case_study": "Zalando adopted Data Mesh to decentralize its analytics infrastructure across 200+ autonomous product teams. Each team publishes data products through a self-serve platform built on AWS and Apache Kafka. This eliminated the central data team bottleneck and reduced the average time to deliver a new analytical dataset from weeks to days.",
+  "case_study_zh": "Zalando 采用数据网格将分析基础设施去中心化分配给200多个自治产品团队。每个团队通过基于AWS和Apache Kafka构建的自助式平台发布数据产品。这消除了中心化数据团队的瓶颈，将交付新分析数据集的平均时间从数周缩短到数天。",
+  "when_not_to_use": [
+    "Small organizations with a single domain where centralized data management is simpler and sufficient",
+    "Early-stage startups that lack the organizational maturity to sustain distributed data ownership",
+    "When data volumes and team count are small enough that a central data team is not a bottleneck",
+    "Highly regulated environments where centralized control is legally mandated"
+  ],
+  "when_not_to_use_zh": [
+    "只有单一领域的小型组织，集中式数据管理更简单且足够",
+    "缺乏组织成熟度来维持分布式数据所有权的早期创业公司",
+    "当数据量和团队数量足够小、中心化数据团队未成为瓶颈时",
+    "法律要求集中控制的高度监管环境"
+  ],
+  "adopters": [
+    "Zalando",
+    "JPMorgan Chase",
+    "Netflix",
+    "Intuit",
+    "ThoughtWorks"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "scalability",
+    "maintainability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Dehghani, Z. (2022). \"Data Mesh: Delivering Data-Driven Value at Scale\". O'Reilly Media.",
+  "secondary_sources": [
+    "Dehghani, Z. (2019). \"How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh\". ThoughtWorks.",
+    "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\". O'Reilly Media.",
+    "Machado, I., Costa, C. & Santos, M.Y. (2022). \"Data Mesh: Concepts and Principles of a Paradigm Shift in Data Architectures\". Procedia Computer Science, Vol. 196."
+  ],
+  "typed_relations": [
+    {
+      "slug": "domain-driven-design",
+      "type": "complement"
+    },
+    {
+      "slug": "microservices-decomposition",
+      "type": "complement"
+    },
+    {
+      "slug": "team-topologies",
+      "type": "complement"
+    },
+    {
+      "slug": "polyglot-persistence",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/data-mesh",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/data-mesh.md"
+}

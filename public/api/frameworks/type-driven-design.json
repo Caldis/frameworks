@@ -1,0 +1,201 @@
+{
+  "id": 177,
+  "name": "Type-Driven Design",
+  "name_zh": "类型驱动设计",
+  "slug": "type-driven-design",
+  "category": "coding",
+  "desc": "Use the type system to encode business rules and constraints, making invalid states unrepresentable at compile time",
+  "desc_zh": "利用类型系统编码业务规则和约束，使无效状态在编译时不可表示",
+  "steps": [
+    "Model the domain with types: replace primitive types (strings, integers) with domain-specific types (EmailAddress, OrderId, PositiveInt) that carry meaning and enforce constraints at construction time",
+    "Make illegal states unrepresentable: use union types, enums, or sealed classes to ensure the type system only permits valid combinations of state — for example, an Order that is either Draft, Confirmed, or Shipped, each carrying only the data relevant to that state",
+    "Encode state transitions in types: design the API so that operations are only available on the correct state — a Confirmed order has a ship() method, but a Draft order does not",
+    "Use types to enforce preconditions: replace runtime validation checks with types that guarantee validity at construction — if a function requires a NonEmptyList, callers cannot pass an empty list",
+    "Refactor toward richer types: continuously look for primitives, optionals, or stringly-typed data that could be replaced by more expressive types, narrowing the space of possible bugs"
+  ],
+  "steps_zh": [
+    "用类型建模领域：用携带含义并在构造时强制约束的领域特定类型（EmailAddress、OrderId、PositiveInt）替换原始类型（字符串、整数）",
+    "使非法状态不可表示：使用联合类型、枚举或密封类确保类型系统只允许有效的状态组合 — 例如，订单只能是草稿、已确认或已发货，每种状态只携带与该状态相关的数据",
+    "在类型中编码状态转换：设计 API 使操作仅在正确状态下可用 — 已确认的订单有 ship() 方法，但草稿订单没有",
+    "用类型强制前置条件：用在构造时保证有效性的类型替换运行时验证检查 — 如果函数需要 NonEmptyList，调用方就无法传递空列表",
+    "向更丰富的类型重构：持续寻找可以用更具表现力的类型替代的原始类型、可选值或字符串化数据，缩小可能的 bug 空间"
+  ],
+  "ai_relevant": false,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "Domain Type",
+    "Constraint",
+    "Type Safety",
+    "Compiler"
+  ],
+  "viz_labels_zh": [
+    "领域类型",
+    "类型约束",
+    "类型安全",
+    "编译器"
+  ],
+  "related": [
+    "design-by-contract",
+    "domain-driven-design",
+    "clean-code-principles",
+    "immutability-pattern"
+  ],
+  "tags": [
+    "type-system",
+    "type-safety",
+    "domain-modeling",
+    "compile-time-safety",
+    "make-illegal-states-unrepresentable"
+  ],
+  "origin_author": "John Ousterhout, 2018; Scott Wlaschin, 2018",
+  "origin_source": "A Philosophy of Software Design (Ousterhout, 2018); Refactoring (Fowler, 2018)",
+  "origin_source_zh": "《软件设计的哲学》（Ousterhout，2018）；《重构》（Fowler，2018）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Modeling complex business domains where invalid state combinations cause subtle, hard-to-detect bugs",
+    "Building safety-critical systems where runtime errors are unacceptable and correctness must be guaranteed at compile time",
+    "Working in strongly typed languages (Rust, TypeScript, Kotlin, Haskell, F#) where the type system is expressive enough to encode constraints",
+    "Refactoring primitive-obsessed codebases where strings and integers are used to represent domain concepts"
+  ],
+  "when_to_use_zh": [
+    "建模复杂业务领域，其中无效状态组合会导致微妙且难以检测的 bug",
+    "构建安全关键系统，运行时错误不可接受，正确性必须在编译时得到保证",
+    "在强类型语言（Rust、TypeScript、Kotlin、Haskell、F#）中工作，其类型系统足够表达性以编码约束",
+    "重构原始类型执念的代码库，其中字符串和整数被用来表示领域概念"
+  ],
+  "core_concepts": [
+    "Make Illegal States Unrepresentable: design types so that the compiler rejects invalid combinations of data, eliminating entire categories of runtime errors",
+    "Domain-Specific Types: replacing primitives (string, int) with named types (EmailAddress, CustomerId) that carry meaning and enforce invariants",
+    "Phantom Types: type parameters that exist only at compile time to track state or capabilities without runtime overhead",
+    "Smart Constructor: a constructor that validates input and returns the typed value only if invariants are met, ensuring all instances are valid by construction",
+    "Type-State Pattern: encoding object lifecycle states as distinct types so that operations are only available in valid states"
+  ],
+  "core_concepts_zh": [
+    "使非法状态不可表示：设计类型使编译器拒绝无效的数据组合，消除整类运行时错误",
+    "领域特定类型：用携带含义并强制不变量的命名类型（EmailAddress、CustomerId）替换原始类型（string、int）",
+    "幽灵类型：仅在编译时存在的类型参数，用于追踪状态或能力而无运行时开销",
+    "智能构造器：验证输入并仅在满足不变量时返回类型化值的构造器，确保所有实例在构造时即有效",
+    "类型状态模式：将对象生命周期状态编码为不同类型，使操作仅在有效状态下可用"
+  ],
+  "timeline": [
+    [
+      "1999",
+      "Cardelli and Wegner's type theory foundations influence the idea that types can encode semantic constraints"
+    ],
+    [
+      "2013",
+      "Yaron Minsky coins 'Make Illegal States Unrepresentable' in the OCaml community, crystallizing the philosophy"
+    ],
+    [
+      "2018",
+      "Ousterhout's 'A Philosophy of Software Design' emphasizes using deep interfaces and rich types to reduce complexity"
+    ],
+    [
+      "2021",
+      "TypeScript 4.1+ template literal types and Rust's type-state pattern bring type-driven design to mainstream languages"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1999",
+      "Cardelli 和 Wegner 的类型理论基础影响了类型可以编码语义约束的思想"
+    ],
+    [
+      "2013",
+      "Yaron Minsky 在 OCaml 社区中提出「使非法状态不可表示」，将该理念结晶化"
+    ],
+    [
+      "2018",
+      "Ousterhout 的《软件设计的哲学》强调使用深接口和丰富类型来减少复杂性"
+    ],
+    [
+      "2021",
+      "TypeScript 4.1+ 模板字面量类型和 Rust 的类型状态模式将类型驱动设计带入主流语言"
+    ]
+  ],
+  "dos": [
+    "Do wrap primitives in domain types because a CustomerId should never be accidentally used as an OrderId",
+    "Do model state machines with distinct types for each state because it makes invalid transitions a compile error",
+    "Do use smart constructors that validate on creation because all instances of the type are then guaranteed valid",
+    "Do start small by typing the most error-prone primitives first because incremental adoption is more sustainable"
+  ],
+  "dos_zh": [
+    "将原始类型包装在领域类型中，因为 CustomerId 永远不应被意外用作 OrderId",
+    "用每个状态的不同类型建模状态机，因为这使无效转换成为编译错误",
+    "使用在创建时验证的智能构造器，因为该类型的所有实例都能保证有效",
+    "从最容易出错的原始类型开始小规模推进，因为渐进式采用更可持续"
+  ],
+  "donts": [
+    "Don't over-type trivial code because wrapping every string in a newtype for a simple script adds friction with no benefit",
+    "Don't ignore ergonomics because if typed APIs are painful to use, developers will work around them",
+    "Don't rely solely on types for validation that also needs runtime enforcement because types alone cannot check external input from users or APIs",
+    "Don't introduce phantom types or advanced type-level programming in teams unfamiliar with them because it creates a steep learning curve"
+  ],
+  "donts_zh": [
+    "不要对简单代码过度类型化，因为在简单脚本中将每个字符串包装在 newtype 中只会增加摩擦而无收益",
+    "不要忽视人体工学，因为如果类型化 API 使用痛苦，开发者会绕过它们",
+    "不要仅依赖类型来进行也需要运行时强制的验证，因为类型本身无法检查来自用户或 API 的外部输入",
+    "不要在不熟悉它们的团队中引入幽灵类型或高级类型级编程，因为这会造成陡峭的学习曲线"
+  ],
+  "case_study_company": "Jane Street",
+  "case_study": "Jane Street, one of the largest quantitative trading firms, built their entire trading infrastructure in OCaml using type-driven design. Every financial instrument, currency, and quantity is wrapped in domain-specific types — a Dollar amount cannot be accidentally added to a Euro amount, and a buy order type cannot be passed where a sell order is expected. This approach has prevented costly trading errors that plague firms using stringly-typed or loosely-typed systems. Their open-source libraries (Core, Async) demonstrate this philosophy, and they credit type-driven design with enabling their small engineering team to manage billions of dollars in daily trading volume with remarkably few production bugs.",
+  "case_study_zh": "Jane Street 作为最大的量化交易公司之一，使用类型驱动设计在 OCaml 中构建了整个交易基础设施。每种金融工具、货币和数量都包装在领域特定类型中 — 美元金额不能意外地与欧元金额相加，买入订单类型不能传递到期望卖出订单的地方。这种方法防止了困扰使用字符串化或弱类型系统的公司的代价高昂的交易错误。他们的开源库（Core、Async）展示了这一理念，他们将类型驱动设计归功于使其小型工程团队能够以极少的生产 bug 管理每日数十亿美元的交易量。",
+  "case_study_challenge": "In quantitative trading, a single type confusion — adding a Dollar amount to a Euro amount, or passing a buy order where a sell order is expected — can trigger losses measured in millions before anyone notices. Firms using stringly-typed or loosely-typed systems suffered recurring costly trading errors that no amount of testing could fully prevent.",
+  "case_study_challenge_zh": "在量化交易中，一次类型混淆——将美元金额与欧元金额相加，或在期望卖单的地方传入买单——就可能在无人察觉之前触发数百万的损失。使用字符串化或弱类型系统的公司反复遭受代价高昂的交易错误，无论怎样测试都无法完全避免。",
+  "case_study_approach": "Jane Street built their entire trading infrastructure in OCaml, wrapping every financial instrument, currency, and quantity in domain-specific types. The compiler itself became the first line of defense: illegal operations simply cannot compile. Their open-source libraries Core and Async embody this philosophy, encoding business rules directly in the type system.",
+  "case_study_approach_zh": "Jane Street用OCaml构建了整个交易基础设施，将每种金融工具、货币和数量都包装在领域特定类型中。编译器本身成为第一道防线：非法操作根本无法通过编译。他们的开源库Core和Async体现了这一理念，将业务规则直接编码在类型系统中。",
+  "case_study_result": "A small engineering team manages billions of dollars in daily trading volume with remarkably few production bugs. The type system catches entire categories of errors — unit mismatches, currency confusion, order direction mistakes — at compile time, long before code reaches production.",
+  "case_study_result_zh": "一支精干的工程团队以极少的生产缺陷管理着每日数十亿美元的交易量。类型系统在编译期就能捕获整类错误——单位不匹配、货币混淆、订单方向错误——远在代码进入生产环境之前。",
+  "case_study_quote": "If it compiles, it trades correctly. We moved the cost of catching errors from runtime — where they cost millions — to compile time, where they cost seconds.",
+  "case_study_quote_zh": "如果它能编译通过，它就能正确交易。我们把捕获错误的代价从运行时——可能损失数百万——转移到了编译期，只需数秒。",
+  "when_not_to_use": [
+    "Dynamically typed languages (Python, Ruby, JavaScript) where the type system is too weak to encode meaningful constraints",
+    "Rapid prototyping phases where the domain model is still being discovered and types would need constant reshaping",
+    "Small scripts or one-off utilities where the overhead of custom types exceeds the benefit",
+    "Teams with limited experience in advanced type systems where the learning curve would slow delivery"
+  ],
+  "when_not_to_use_zh": [
+    "动态类型语言（Python、Ruby、JavaScript），其类型系统太弱无法编码有意义的约束",
+    "领域模型仍在探索中、类型需要不断重塑的快速原型阶段",
+    "自定义类型的开销超过收益的小脚本或一次性工具",
+    "高级类型系统经验有限、学习曲线会拖慢交付的团队"
+  ],
+  "adopters": [
+    "Jane Street",
+    "Meta (Flow/Hack)",
+    "Microsoft (TypeScript)",
+    "Jet.com (F#)",
+    "Mozilla (Rust)"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Scott Wlaschin (2018). \"Domain Modeling Made Functional\". Pragmatic Bookshelf.",
+  "secondary_sources": [
+    "John Ousterhout (2018). \"A Philosophy of Software Design\". Yaknyam Press.",
+    "Benjamin Pierce (2002). \"Types and Programming Languages\". MIT Press."
+  ],
+  "typed_relations": [
+    {
+      "slug": "design-by-contract",
+      "type": "complement"
+    },
+    {
+      "slug": "domain-driven-design",
+      "type": "complement"
+    },
+    {
+      "slug": "clean-code-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "immutability-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/type-driven-design",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/type-driven-design.md"
+}

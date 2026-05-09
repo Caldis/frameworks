@@ -1,0 +1,193 @@
+{
+  "id": 105,
+  "name": "Change Data Capture (CDC)",
+  "name_zh": "变更数据捕获",
+  "slug": "change-data-capture",
+  "category": "data",
+  "desc": "Track database changes as real-time event streams for downstream",
+  "desc_zh": "将数据库变更作为实时事件流捕获并传递给下游系统",
+  "steps": [
+    "Configure a CDC connector (e.g., Debezium) to read the database's transaction log (WAL, binlog, or oplog) without impacting production query performance",
+    "Publish change events to a durable message broker like Apache Kafka, preserving the original transaction order and including before/after snapshots of each row",
+    "Transform and enrich change events in a stream processing layer to match downstream consumer schemas and business rules",
+    "Route transformed events to target systems: data warehouses, search indices, caches, or other microservices that need synchronized data",
+    "Monitor CDC pipeline health including replication lag, schema drift detection, and connector failure alerting to ensure data consistency"
+  ],
+  "steps_zh": [
+    "配置CDC连接器（如Debezium）读取数据库事务日志（WAL、binlog或oplog），不影响生产查询性能",
+    "将变更事件发布到持久消息代理（如Apache Kafka），保留原始事务顺序并包含每行的变更前后快照",
+    "在流处理层转换和丰富变更事件，以匹配下游消费者的模式和业务规则",
+    "将转换后的事件路由到目标系统：数据仓库、搜索索引、缓存或需要同步数据的其他微服务",
+    "监控CDC管道健康状况，包括复制延迟、模式漂移检测和连接器故障告警，确保数据一致性"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "WAL / Binlog",
+    "Change Event",
+    "Stream Transform",
+    "Target Sync",
+    "Monitor"
+  ],
+  "viz_labels_zh": [
+    "事务日志",
+    "变更事件",
+    "流转换",
+    "目标同步",
+    "监控"
+  ],
+  "related": [
+    "kappa-architecture",
+    "stream-processing-patterns",
+    "saga-pattern",
+    "eda"
+  ],
+  "tags": [
+    "cdc",
+    "replication",
+    "event-streams",
+    "debezium",
+    "database"
+  ],
+  "origin_author": "Database community / Popularized by Debezium (Red Hat), 2015",
+  "origin_source": "Designing Data-Intensive Applications, Chapter 11: Stream Processing (O'Reilly, 2017)",
+  "origin_source_zh": "《设计数据密集型应用》第11章：流处理（O'Reilly，2017）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When microservices need to keep local read models synchronized with a source database without tight coupling",
+    "When replacing batch ETL with real-time data replication to a data warehouse or data lake",
+    "When building event-driven architectures that react to database state changes as they happen",
+    "When search indices, caches, or materialized views must stay in near-real-time sync with the primary datastore"
+  ],
+  "when_to_use_zh": [
+    "当微服务需要在不紧耦合的情况下保持本地读模型与源数据库同步时",
+    "当用实时数据复制替代批量ETL到数据仓库或数据湖时",
+    "当构建对数据库状态变更实时响应的事件驱动架构时",
+    "当搜索索引、缓存或物化视图必须与主数据存储保持近实时同步时"
+  ],
+  "core_concepts": [
+    "Log-based capture: reading the database's write-ahead log or binary log to detect changes without modifying the application or adding triggers",
+    "Event ordering: preserving the exact transaction order so downstream systems can replay changes and maintain consistency",
+    "Schema evolution: handling source schema changes gracefully so downstream consumers are not broken by column additions or type changes",
+    "Snapshot plus streaming: performing an initial full snapshot of existing data, then switching to streaming incremental changes going forward"
+  ],
+  "core_concepts_zh": [
+    "基于日志的捕获：读取数据库的预写日志或二进制日志来检测变更，无需修改应用或添加触发器",
+    "事件排序：保留精确的事务顺序，使下游系统能够重放变更并保持一致性",
+    "模式演进：优雅处理源模式变更，使下游消费者不会因列添加或类型变更而中断",
+    "快照加流式：先对现有数据执行全量快照，然后切换到流式增量变更"
+  ],
+  "timeline": [
+    [
+      "2012",
+      "LinkedIn develops Databus, one of the first open-source CDC systems for Oracle and MySQL"
+    ],
+    [
+      "2015",
+      "Debezium project launches at Red Hat, providing log-based CDC connectors for Kafka Connect"
+    ],
+    [
+      "2017",
+      "Kleppmann's 'Designing Data-Intensive Applications' establishes CDC as a core data architecture pattern"
+    ],
+    [
+      "2021",
+      "CDC becomes a standard feature in cloud databases (AWS DMS, Azure CDC, GCP Datastream)"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2012",
+      "LinkedIn开发Databus，首批支持Oracle和MySQL的开源CDC系统之一"
+    ],
+    [
+      "2015",
+      "Debezium项目在Red Hat启动，为Kafka Connect提供基于日志的CDC连接器"
+    ],
+    [
+      "2017",
+      "Kleppmann的《设计数据密集型应用》将CDC确立为核心数据架构模式"
+    ],
+    [
+      "2021",
+      "CDC成为云数据库标准特性（AWS DMS、Azure CDC、GCP Datastream）"
+    ]
+  ],
+  "dos": [
+    "Do use log-based CDC over trigger-based or polling approaches because log reading has minimal impact on source database performance",
+    "Do handle schema evolution by using a schema registry and backward-compatible serialization formats like Avro",
+    "Do monitor replication lag between the source database and downstream consumers because growing lag indicates pipeline issues",
+    "Do plan for initial snapshot strategy because CDC connectors need to bootstrap existing data before streaming incremental changes"
+  ],
+  "dos_zh": [
+    "使用基于日志的CDC而非触发器或轮询方式，因为日志读取对源数据库性能影响最小",
+    "通过使用模式注册表和Avro等向后兼容的序列化格式处理模式演进",
+    "监控源数据库和下游消费者之间的复制延迟，因为延迟增长表明管道问题",
+    "规划初始快照策略，因为CDC连接器在流式增量变更之前需要引导现有数据"
+  ],
+  "donts": [
+    "Don't use trigger-based CDC in high-throughput OLTP systems because triggers add write latency to every transaction",
+    "Don't ignore schema changes in the source database because unhandled schema drift will break downstream consumers",
+    "Don't assume CDC guarantees exactly-once delivery because at-least-once is the default for most connectors and idempotency must be handled downstream",
+    "Don't expose raw CDC events directly to business consumers because internal database schemas leak implementation details"
+  ],
+  "donts_zh": [
+    "不要在高吞吐OLTP系统中使用基于触发器的CDC，因为触发器会为每个事务增加写延迟",
+    "不要忽略源数据库中的模式变更，因为未处理的模式漂移会破坏下游消费者",
+    "不要假设CDC保证精确一次传递，因为大多数连接器默认为至少一次，幂等性必须在下游处理",
+    "不要将原始CDC事件直接暴露给业务消费者，因为内部数据库模式会泄露实现细节"
+  ],
+  "case_study_company": "Shopify",
+  "case_study": "Shopify uses Debezium-based CDC to stream changes from its MySQL databases into Apache Kafka, enabling real-time synchronization of merchant data across its microservices architecture. This replaced brittle batch ETL jobs and reduced data propagation latency from hours to seconds, enabling features like real-time inventory updates and instant order status notifications for millions of merchants.",
+  "case_study_zh": "Shopify使用基于Debezium的CDC将MySQL数据库的变更流式传输到Apache Kafka，实现微服务架构中商户数据的实时同步。这替代了脆弱的批量ETL作业，将数据传播延迟从小时级降低到秒级，为数百万商户启用了实时库存更新和即时订单状态通知等功能。",
+  "when_not_to_use": [
+    "When the source database does not expose a transaction log or the log format is proprietary and unsupported",
+    "When data freshness requirements are measured in hours or days and batch ETL is simpler and sufficient",
+    "When the target system can directly query the source database without needing a separate copy",
+    "When compliance rules prohibit reading database transaction logs due to sensitive data exposure concerns"
+  ],
+  "when_not_to_use_zh": [
+    "当源数据库不暴露事务日志或日志格式为专有且不受支持时",
+    "当数据时效性要求以小时或天计算且批量ETL更简单足够时",
+    "当目标系统可以直接查询源数据库而无需单独副本时",
+    "当合规规则因敏感数据暴露问题而禁止读取数据库事务日志时"
+  ],
+  "adopters": [
+    "Shopify",
+    "Airbnb",
+    "Zalando",
+    "WePay",
+    "Convoy"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "scalability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 11: Stream Processing. O'Reilly Media.",
+  "secondary_sources": [
+    "Kozlovski, R. (2020). \"Change Data Capture with Debezium\". Red Hat Developer Blog.",
+    "Narkhede, N., Shapira, G. & Palino, T. (2017). \"Kafka: The Definitive Guide\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "kappa-architecture",
+      "type": "complement"
+    },
+    {
+      "slug": "stream-processing-patterns",
+      "type": "complement"
+    },
+    {
+      "slug": "saga-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "eda",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/change-data-capture",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/change-data-capture.md"
+}

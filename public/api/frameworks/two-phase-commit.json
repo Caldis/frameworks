@@ -1,0 +1,195 @@
+{
+  "id": 128,
+  "name": "Two-Phase Commit (2PC)",
+  "name_zh": "两阶段提交（2PC）",
+  "slug": "two-phase-commit",
+  "category": "distributed",
+  "desc": "Atomic commit protocol ensuring all-or-nothing transaction outcomes across distributed participants",
+  "desc_zh": "确保分布式参与者之间事务要么全部提交要么全部回滚的原子提交协议",
+  "steps": [
+    "Phase 1 — Prepare: The coordinator sends a PREPARE message to all participants, asking each to vote on whether it can commit the transaction",
+    "Participant vote: Each participant performs all transaction work (writes to WAL, acquires locks) and responds with VOTE-COMMIT if ready or VOTE-ABORT if not",
+    "Coordinator decision: If all participants vote COMMIT, the coordinator writes a COMMIT decision to its own durable log; if any participant votes ABORT, the coordinator decides ABORT",
+    "Phase 2 — Commit/Abort: The coordinator sends the decision (COMMIT or ABORT) to all participants, who apply or roll back accordingly and acknowledge",
+    "Recovery: If the coordinator crashes between phases, participants that voted COMMIT remain in a blocked (in-doubt) state until the coordinator recovers and resends the decision"
+  ],
+  "steps_zh": [
+    "阶段一——准备：协调者向所有参与者发送PREPARE消息，要求每个参与者投票决定是否能提交事务",
+    "参与者投票：每个参与者执行所有事务工作（写入WAL、获取锁），如果准备好则回复VOTE-COMMIT，否则回复VOTE-ABORT",
+    "协调者决策：如果所有参与者投票COMMIT，协调者将COMMIT决定写入自己的持久化日志；如果任何参与者投票ABORT，协调者决定ABORT",
+    "阶段二——提交/回滚：协调者将决定（COMMIT或ABORT）发送给所有参与者，参与者相应地应用或回滚并确认",
+    "恢复：如果协调者在两个阶段之间崩溃，已投票COMMIT的参与者将保持阻塞（不确定）状态，直到协调者恢复并重发决定"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Prepare",
+    "Vote",
+    "Coordinator Decision",
+    "Commit / Abort",
+    "Recovery"
+  ],
+  "viz_labels_zh": [
+    "准备阶段",
+    "投票",
+    "协调者决定",
+    "提交中止",
+    "故障恢复"
+  ],
+  "related": [
+    "saga-pattern",
+    "eventual-consistency",
+    "consensus-protocols"
+  ],
+  "tags": [
+    "transactions",
+    "atomicity",
+    "coordination",
+    "distributed-databases"
+  ],
+  "origin_author": "Jim Gray, 1978",
+  "origin_source": "Notes on Data Base Operating Systems (1978); Kleppmann, Designing Data-Intensive Applications, Ch. 9; Bernstein, Hadzilacos, Goodman, Concurrency Control and Recovery in Database Systems (1987)",
+  "origin_source_zh": "《数据库操作系统笔记》（1978）；Kleppmann《数据密集型应用系统设计》第9章；Bernstein、Hadzilacos、Goodman《数据库系统中的并发控制与恢复》（1987）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When multiple databases or resource managers must commit or abort as a single atomic unit, such as in XA transactions",
+    "When financial or regulatory requirements demand that cross-system updates are either fully applied or fully rolled back",
+    "When coordinating writes across heterogeneous data stores (e.g., a relational database and a message queue) that must remain consistent",
+    "When the number of participants is small and the transaction duration is short, minimizing the window for blocking"
+  ],
+  "when_to_use_zh": [
+    "当多个数据库或资源管理器必须作为单一原子单元提交或回滚时，如XA事务",
+    "当金融或监管要求跨系统更新必须完全应用或完全回滚时",
+    "当协调必须保持一致的异构数据存储间的写入时（如关系数据库和消息队列）",
+    "当参与者数量少且事务持续时间短，最小化阻塞窗口时"
+  ],
+  "core_concepts": [
+    "Atomicity: The fundamental guarantee that either all participants commit or all abort — no partial outcomes are possible",
+    "Blocking problem: If the coordinator fails after sending PREPARE but before sending the decision, participants holding locks are blocked indefinitely until the coordinator recovers",
+    "Write-ahead logging: Both coordinator and participants durably log their decisions before sending messages, enabling recovery after crashes",
+    "Presumed abort: An optimization where the coordinator does not log ABORT decisions; if a participant asks and finds no commit record, it aborts by default",
+    "XA standard: The X/Open DTP model that defines the 2PC interface (xa_prepare, xa_commit, xa_rollback) for interoperability between transaction managers and resource managers"
+  ],
+  "core_concepts_zh": [
+    "原子性：基本保证——要么所有参与者提交，要么所有参与者回滚，不可能出现部分结果",
+    "阻塞问题：如果协调者在发送PREPARE之后、发送决定之前故障，持有锁的参与者将无限期阻塞直到协调者恢复",
+    "预写日志：协调者和参与者在发送消息之前都将其决定持久化到日志，支持崩溃后恢复",
+    "假定中止：一种优化，协调者不记录ABORT决定；如果参与者查询时未找到提交记录，则默认中止",
+    "XA标准：X/Open DTP模型，定义了2PC接口（xa_prepare、xa_commit、xa_rollback），用于事务管理器和资源管理器之间的互操作"
+  ],
+  "timeline": [
+    [
+      "1978",
+      "Jim Gray describes the two-phase commit protocol in Notes on Data Base Operating Systems"
+    ],
+    [
+      "1987",
+      "Bernstein, Hadzilacos, and Goodman formalize 2PC theory in Concurrency Control and Recovery in Database Systems"
+    ],
+    [
+      "1991",
+      "X/Open publishes the XA specification standardizing the 2PC interface for distributed transactions"
+    ],
+    [
+      "2007",
+      "Pat Helland's Life Beyond Distributed Transactions argues for moving away from 2PC toward compensating transactions"
+    ],
+    [
+      "2017",
+      "Kleppmann's DDIA critically examines 2PC's blocking nature and advocates for alternatives like sagas in most microservice architectures"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1978",
+      "Jim Gray在《数据库操作系统笔记》中描述两阶段提交协议"
+    ],
+    [
+      "1987",
+      "Bernstein、Hadzilacos和Goodman在《数据库系统中的并发控制与恢复》中形式化2PC理论"
+    ],
+    [
+      "1991",
+      "X/Open发布XA规范，标准化分布式事务的2PC接口"
+    ],
+    [
+      "2007",
+      "Pat Helland的「分布式事务之外的生活」主张从2PC转向补偿事务"
+    ],
+    [
+      "2017",
+      "Kleppmann的《数据密集型应用系统设计》批判性地审视2PC的阻塞特性，在大多数微服务架构中倡导saga等替代方案"
+    ]
+  ],
+  "dos": [
+    "Do keep the prepare-to-commit window as short as possible because participants hold locks during this entire period, blocking other transactions",
+    "Do implement robust recovery procedures for the coordinator because its failure is the most dangerous scenario in 2PC",
+    "Do use 2PC only within a single trust boundary because coordinating 2PC across organizational boundaries creates unacceptable operational coupling",
+    "Do monitor in-doubt transaction counts because even rare coordinator failures can leave orphaned locks that block entire tables"
+  ],
+  "dos_zh": [
+    "将准备到提交的窗口保持尽可能短，因为参与者在此整个期间持有锁，阻塞其他事务",
+    "为协调者实现健壮的恢复程序，因为协调者故障是2PC中最危险的场景",
+    "仅在单一信任边界内使用2PC，因为跨组织边界协调2PC会产生不可接受的运维耦合",
+    "监控不确定事务数量，因为即使罕见的协调者故障也可能留下阻塞整个表的孤立锁"
+  ],
+  "donts": [
+    "Don't use 2PC across microservice boundaries in most cases because the blocking nature and tight coupling contradicts microservice autonomy",
+    "Don't hold expensive resources (like database connections or row locks) during the prepare phase longer than necessary because it degrades overall system throughput",
+    "Don't assume 2PC provides consensus because it only guarantees atomicity; a coordinator failure still blocks the protocol unlike true consensus algorithms",
+    "Don't mix 2PC with long-running business processes because the lock duration becomes unbounded and starves concurrent operations"
+  ],
+  "donts_zh": [
+    "大多数情况下不要跨微服务边界使用2PC，因为其阻塞特性和紧耦合与微服务自治性相矛盾",
+    "不要在准备阶段持有昂贵资源（如数据库连接或行锁）超过必要时间，因为这会降低整体系统吞吐",
+    "不要假设2PC提供共识，它只保证原子性；协调者故障仍会阻塞协议，不像真正的共识算法",
+    "不要将2PC与长时间运行的业务流程混合，因为锁持续时间变得无界并饿死并发操作"
+  ],
+  "case_study_company": "Google Spanner",
+  "case_study": "Google Spanner uses a variant of 2PC combined with Paxos to achieve globally distributed ACID transactions. Each Spanner shard is a Paxos group, and cross-shard transactions use 2PC where each participant shard commits through its own Paxos group. This hybrid eliminates 2PC's blocking problem: if the coordinator fails, the Paxos group that replicated the coordinator's state elects a new coordinator and completes the protocol. Spanner's TrueTime API (GPS + atomic clocks) provides globally synchronized timestamps that order transactions without the traditional 2PC lock contention. This architecture enables Google to run globally consistent transactions with single-digit millisecond latencies for workloads like Google Ads and Google Play, something previously considered impossible for geographically distributed systems.",
+  "case_study_zh": "Google Spanner使用2PC的变体结合Paxos实现全球分布式ACID事务。每个Spanner分片是一个Paxos组，跨分片事务使用2PC，每个参与者分片通过自己的Paxos组提交。这种混合方式消除了2PC的阻塞问题：如果协调者故障，复制了协调者状态的Paxos组选出新的协调者并完成协议。Spanner的TrueTime API（GPS+原子钟）提供全球同步的时间戳来排序事务，无需传统2PC的锁竞争。这种架构使Google能够为Google Ads和Google Play等工作负载运行全球一致的事务且延迟在个位数毫秒级别，这在以前被认为对地理分布式系统是不可能的。",
+  "when_not_to_use": [
+    "Microservice architectures where service autonomy and independent deployability are more important than cross-service atomicity",
+    "High-throughput systems where lock contention from the prepare phase would create unacceptable performance bottlenecks",
+    "Systems spanning multiple organizations or trust boundaries where no single coordinator can be trusted by all parties"
+  ],
+  "when_not_to_use_zh": [
+    "服务自治和独立部署能力比跨服务原子性更重要的微服务架构",
+    "准备阶段的锁竞争会产生不可接受的性能瓶颈的高吞吐系统",
+    "跨越多个组织或信任边界、没有单一协调者能被所有方信任的系统"
+  ],
+  "adopters": [
+    "Google Spanner",
+    "PostgreSQL (prepared transactions)",
+    "Oracle Database (XA)",
+    "MySQL (XA)",
+    "Microsoft SQL Server (MSDTC)"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "scalability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Gray, J. (1978). \"Notes on Data Base Operating Systems\". In: Operating Systems, An Advanced Course. Lecture Notes in Computer Science, Vol. 60. Springer.",
+  "secondary_sources": [
+    "Bernstein, P.A., Hadzilacos, V. & Goodman, N. (1987). \"Concurrency Control and Recovery in Database Systems\". Addison-Wesley.",
+    "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 9. O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "saga-pattern",
+      "type": "alternative"
+    },
+    {
+      "slug": "eventual-consistency",
+      "type": "alternative"
+    },
+    {
+      "slug": "consensus-protocols",
+      "type": "extends"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/two-phase-commit",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/two-phase-commit.md"
+}

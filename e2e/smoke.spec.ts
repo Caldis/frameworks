@@ -36,7 +36,7 @@ test.describe('SDFrame Smoke Tests', () => {
     // Should show framework name in heading
     await expect(page.locator('h1')).toContainText(/SOLID/)
     // Should have "How It Works" section with implementation steps
-    await expect(page.locator('text=How It Works')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'How It Works' })).toBeVisible()
   })
 
   test('category page loads', async ({ page }) => {

@@ -1,0 +1,195 @@
+{
+  "id": 104,
+  "name": "Stream Processing Patterns",
+  "name_zh": "流处理模式",
+  "slug": "stream-processing-patterns",
+  "category": "data",
+  "desc": "Patterns for continuous data stream windowing, joining, and semantics",
+  "desc_zh": "连续数据流窗口化、连接和语义保证的处理模式",
+  "steps": [
+    "Define windowing strategies (tumbling, sliding, session, or global) based on the temporal semantics your analytics require",
+    "Implement stream joins by choosing the correct join type (stream-stream, stream-table, or table-table) and configuring appropriate time bounds and key partitioning",
+    "Configure exactly-once processing semantics through idempotent writes, transactional producers, or framework-level guarantees like Flink checkpoints",
+    "Handle late-arriving and out-of-order events using watermarks, allowed lateness thresholds, and side outputs for dropped events",
+    "Operationalize the pipeline with backpressure handling, state management, checkpoint tuning, and consumer lag monitoring"
+  ],
+  "steps_zh": [
+    "根据分析所需的时间语义定义窗口策略（滚动、滑动、会话或全局窗口）",
+    "通过选择正确的连接类型（流-流、流-表或表-表）并配置适当的时间边界和键分区来实现流连接",
+    "通过幂等写入、事务生产者或框架级保证（如Flink检查点）配置精确一次处理语义",
+    "使用水印、允许延迟阈值和旁路输出处理迟到和乱序事件",
+    "通过背压处理、状态管理、检查点调优和消费者滞后监控使管道运维化"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Window",
+    "Join",
+    "Exactly-Once",
+    "Watermark",
+    "Backpressure"
+  ],
+  "viz_labels_zh": [
+    "时间窗口",
+    "流连接",
+    "精确一次",
+    "水位线",
+    "背压"
+  ],
+  "related": [
+    "kappa-architecture",
+    "lambda-architecture",
+    "eda",
+    "change-data-capture"
+  ],
+  "tags": [
+    "streaming",
+    "windowing",
+    "exactly-once",
+    "joins",
+    "watermarks"
+  ],
+  "origin_author": "Jay Kreps / Martin Kleppmann, 2014-2017",
+  "origin_source": "Designing Data-Intensive Applications, Chapter 11: Stream Processing (O'Reilly, 2017)",
+  "origin_source_zh": "《设计数据密集型应用》第11章：流处理（O'Reilly，2017）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When building real-time analytics, monitoring, or alerting systems on continuous data feeds",
+    "When event-time processing is critical and events arrive out of order or with variable delay",
+    "When joining multiple data streams or enriching streams with reference data in real-time",
+    "When exactly-once processing semantics are required for financial, billing, or compliance workloads"
+  ],
+  "when_to_use_zh": [
+    "当在连续数据流上构建实时分析、监控或告警系统时",
+    "当事件时间处理至关重要且事件乱序到达或延迟不定时",
+    "当需要实时连接多个数据流或用参考数据丰富流时",
+    "当金融、计费或合规工作负载要求精确一次处理语义时"
+  ],
+  "core_concepts": [
+    "Windowing: grouping unbounded streams into finite chunks (tumbling, sliding, session windows) for aggregation and analysis",
+    "Event time vs processing time: distinguishing when an event actually occurred from when it was processed, using watermarks to track progress",
+    "Exactly-once semantics: ensuring each event is processed precisely once despite failures, through checkpointing, idempotent sinks, and transactional writes",
+    "Stream joins: combining two or more streams based on keys and time constraints, including stream-stream windowed joins and stream-table enrichment joins"
+  ],
+  "core_concepts_zh": [
+    "窗口化：将无界流分组为有限块（滚动、滑动、会话窗口）以进行聚合和分析",
+    "事件时间与处理时间：使用水印追踪进度，区分事件实际发生时间和处理时间",
+    "精确一次语义：通过检查点、幂等接收器和事务写入确保每个事件在故障情况下仅被处理一次",
+    "流连接：基于键和时间约束组合两个或多个流，包括流-流窗口连接和流-表丰富连接"
+  ],
+  "timeline": [
+    [
+      "2011",
+      "Apache Storm pioneers distributed real-time stream processing with at-least-once guarantees"
+    ],
+    [
+      "2014",
+      "Apache Flink introduces event-time processing, watermarks, and exactly-once state consistency"
+    ],
+    [
+      "2017",
+      "Kleppmann's 'Designing Data-Intensive Applications' codifies stream processing patterns as foundational knowledge"
+    ],
+    [
+      "2019",
+      "Kafka Streams and Apache Beam mature as portable stream processing APIs abstracting execution engines"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2011",
+      "Apache Storm以至少一次保证开创分布式实时流处理"
+    ],
+    [
+      "2014",
+      "Apache Flink引入事件时间处理、水印和精确一次状态一致性"
+    ],
+    [
+      "2017",
+      "Kleppmann的《设计数据密集型应用》将流处理模式编纂为基础知识"
+    ],
+    [
+      "2019",
+      "Kafka Streams和Apache Beam作为抽象执行引擎的可移植流处理API走向成熟"
+    ]
+  ],
+  "dos": [
+    "Do choose event-time semantics over processing-time when correctness matters because processing-time windows produce non-deterministic results",
+    "Do set watermarks and allowed lateness thresholds based on empirical analysis of your data's delay characteristics",
+    "Do design for idempotent sinks because even with exactly-once frameworks, sink-level idempotency provides defense in depth",
+    "Do test stream processing logic with both in-order and out-of-order event sequences because edge cases dominate production failures"
+  ],
+  "dos_zh": [
+    "当正确性重要时选择事件时间语义而非处理时间，因为处理时间窗口产生非确定性结果",
+    "基于数据延迟特征的经验分析设置水印和允许延迟阈值",
+    "设计幂等接收器，因为即使使用精确一次框架，接收端幂等性也提供纵深防御",
+    "使用有序和乱序事件序列测试流处理逻辑，因为边缘情况主导生产故障"
+  ],
+  "donts": [
+    "Don't use processing-time windows for business metrics because clock skew and variable latency produce incorrect aggregates",
+    "Don't ignore state size growth in windowed aggregations because unbounded state leads to out-of-memory failures",
+    "Don't assume exactly-once means zero duplicates end-to-end because the guarantee applies only within the processing framework boundaries",
+    "Don't skip backpressure configuration because uncontrolled producers will overwhelm slow consumers"
+  ],
+  "donts_zh": [
+    "不要对业务指标使用处理时间窗口，因为时钟偏移和可变延迟会产生不正确的聚合",
+    "不要忽视窗口聚合中的状态大小增长，因为无界状态会导致内存溢出故障",
+    "不要假设精确一次意味着端到端零重复，因为保证仅适用于处理框架边界内",
+    "不要跳过背压配置，因为不受控的生产者会压垮慢速消费者"
+  ],
+  "case_study_company": "Uber",
+  "case_study": "Uber built its real-time surge pricing and ETA computation on Apache Flink stream processing patterns. Using event-time windows and stream-table joins, Uber processes millions of trip events per second to compute supply-demand ratios per geofence. Exactly-once semantics ensure pricing accuracy, while watermark-based late event handling prevents stale data from corrupting surge multipliers.",
+  "case_study_zh": "Uber基于Apache Flink流处理模式构建了实时动态定价和预计到达时间计算。使用事件时间窗口和流-表连接，Uber每秒处理数百万行程事件以计算每个地理围栏的供需比。精确一次语义确保定价准确，基于水印的迟到事件处理防止过时数据破坏动态定价倍数。",
+  "when_not_to_use": [
+    "When batch processing with hourly or daily granularity meets your latency requirements",
+    "When data volumes are low enough that a simple poll-and-process loop is sufficient",
+    "When your team lacks expertise in distributed stream processing and the learning curve is too steep",
+    "When the data source does not provide event timestamps and event-time semantics cannot be established"
+  ],
+  "when_not_to_use_zh": [
+    "当小时级或天级粒度的批处理满足延迟要求时",
+    "当数据量足够低，简单的轮询处理循环即可满足时",
+    "当团队缺乏分布式流处理专业知识且学习曲线过陡时",
+    "当数据源不提供事件时间戳且无法建立事件时间语义时"
+  ],
+  "adopters": [
+    "Uber",
+    "Alibaba",
+    "Netflix",
+    "Spotify",
+    "ING Bank"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "performance",
+    "scalability",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 11: Stream Processing. O'Reilly Media.",
+  "secondary_sources": [
+    "Kreps, J. (2014). \"I Heart Logs: Event Data, Stream Processing, and Data Integration\". O'Reilly Media.",
+    "Akidau, T. et al. (2015). \"The Dataflow Model: A Practical Approach to Balancing Correctness, Latency, and Cost in Massive-Scale, Unbounded, Out-of-Order Data Processing\". Proceedings of the VLDB Endowment, 8(12).",
+    "Hueske, F. & Kalavri, V. (2019). \"Stream Processing with Apache Flink\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "kappa-architecture",
+      "type": "complement"
+    },
+    {
+      "slug": "lambda-architecture",
+      "type": "complement"
+    },
+    {
+      "slug": "eda",
+      "type": "complement"
+    },
+    {
+      "slug": "change-data-capture",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/stream-processing-patterns",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/stream-processing-patterns.md"
+}

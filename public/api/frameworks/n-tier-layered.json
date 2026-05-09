@@ -1,0 +1,206 @@
+{
+  "id": 321,
+  "name": "N-Tier / Layered Architecture",
+  "name_zh": "N层/分层架构",
+  "slug": "n-tier-layered",
+  "category": "architecture",
+  "desc": "Organizes software into horizontal layers — typically Presentation, Business Logic, and Data Access — where each layer depends only on the layer directly below it, establishing clear separation of concerns across the entire application.",
+  "desc_zh": "将软件组织为水平层次——通常是表示层、业务逻辑层和数据访问层——其中每层仅依赖其正下方的层，在整个应用程序中建立清晰的关注点分离。",
+  "steps": [
+    "Identify the layers appropriate to the application: minimally Presentation (UI/API), Business Logic (domain/service), and Data Access (repository/ORM); large enterprise systems may add Security, Integration, and Messaging layers",
+    "Define the contract between adjacent layers: each layer exposes a service interface to the layer above; the implementation details of each layer are hidden from higher layers",
+    "Implement each layer independently: Presentation handles HTTP requests and view rendering; Business Logic applies rules and orchestrates operations; Data Access manages persistence",
+    "Enforce the constraint that each layer may only call the layer immediately below it — Presentation must not access Data Access directly, bypassing Business Logic",
+    "Deploy and scale layers independently where needed: web tier can be scaled horizontally while the database tier uses vertical scaling"
+  ],
+  "steps_zh": [
+    "确定适合应用程序的层次：最小为表示层（UI/API）、业务逻辑层（领域/服务）和数据访问层（仓储/ORM）；大型企业系统可能添加安全、集成和消息传递层",
+    "定义相邻层之间的契约：每层向其上方的层暴露服务接口；每层的实现细节对高层隐藏",
+    "独立实现每层：表示层处理HTTP请求和视图渲染；业务逻辑层应用规则并协调操作；数据访问层管理持久化",
+    "强制执行每层只能调用其正下方层的约束——表示层不得绕过业务逻辑层直接访问数据访问层",
+    "在需要时独立部署和扩展各层：Web层可以水平扩展，而数据库层使用垂直扩展"
+  ],
+  "ai_relevant": false,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "Presentation",
+    "Application",
+    "Business",
+    "Data"
+  ],
+  "viz_labels_zh": [
+    "展示层",
+    "应用层",
+    "业务层",
+    "数据层"
+  ],
+  "related": [
+    "layered-architecture",
+    "separation-of-concerns",
+    "solid-principles",
+    "clean-architecture",
+    "hexagonal-architecture",
+    "onion-architecture",
+    "ports-and-adapters"
+  ],
+  "tags": [
+    "enterprise-architecture",
+    "separation-of-concerns",
+    "layering",
+    "scalability"
+  ],
+  "origin_author": "1990s enterprise computing; formalized by Microsoft and Sun Microsystems",
+  "origin_source": "Fowler, M. (2002). Patterns of Enterprise Application Architecture. Addison-Wesley (Layered Architecture pattern).",
+  "origin_source_zh": "Fowler, M.（2002）。《企业应用架构模式》。Addison-Wesley（分层架构模式）。",
+  "complexity": "beginner",
+  "when_to_use": [
+    "When building a standard business application — CRUD-heavy systems, content management, or transactional backends — where simplicity and team familiarity matter",
+    "When the team is new to software architecture and needs a pattern with clear, enforceable rules that are easy to communicate",
+    "When using enterprise frameworks (Java EE, Spring, ASP.NET, PHP Laravel) that are built around layered conventions",
+    "When organizational separation of concerns maps naturally to layers — e.g., separate teams own the UI, services, and database schemas"
+  ],
+  "when_to_use_zh": [
+    "构建标准业务应用程序——以CRUD为主的系统、内容管理或事务后端——简洁性和团队熟悉度很重要时",
+    "团队对软件架构陌生，需要具有清晰、可执行且易于传达规则的模式时",
+    "使用围绕分层约定构建的企业框架（Java EE、Spring、ASP.NET、PHP Laravel）时",
+    "当组织关注点分离自然映射到层次时——例如，独立团队拥有UI、服务和数据库模式"
+  ],
+  "core_concepts": [
+    "Horizontal layers: each layer groups related responsibilities — Presentation (what users see), Business Logic (what the system does), Data Access (how data is stored)",
+    "Layer contract: each layer exposes a well-defined API surface to the layer above and hides its implementation — swapping a layer should not affect layers above it",
+    "Strict vs. relaxed layering: strict layering forbids skipping layers; relaxed layering allows a layer to call any layer below it for performance reasons",
+    "Physical vs. logical tiers: layers are a logical separation; tiers are the physical deployment — a two-tier deployment can implement a three-layer logical design",
+    "Sinkholes anti-pattern: when a layer simply passes a request through to the layer below without adding value, the architecture becomes unnecessarily complex for its benefit"
+  ],
+  "core_concepts_zh": [
+    "水平层次：每层分组相关职责——表示层（用户所见）、业务逻辑层（系统所做）、数据访问层（数据存储方式）",
+    "层次契约：每层向其上方的层暴露定义良好的API接口并隐藏其实现——替换一层不应影响其上方的层",
+    "严格与宽松分层：严格分层禁止跳层；宽松分层允许一层出于性能原因调用其下方的任何层",
+    "物理层与逻辑层：层次是逻辑分离；层级是物理部署——两层部署可以实现三层逻辑设计",
+    "污水孔反模式：当一层只是将请求传递到下方层而不增加价值时，架构相对其收益变得不必要地复杂"
+  ],
+  "timeline": [
+    [
+      "1992",
+      "The three-tier client-server model emerges as a mainstream enterprise architecture pattern, separating mainframe presentation, business logic, and data"
+    ],
+    [
+      "2002",
+      "Martin Fowler codifies Layered Architecture in Patterns of Enterprise Application Architecture, providing a canonical reference"
+    ],
+    [
+      "2004",
+      "Java EE (J2EE) and Spring Framework cement layered architecture as the dominant enterprise Java pattern"
+    ],
+    [
+      "2010",
+      "N-Tier becomes the default starting architecture for ASP.NET MVC, Django, and Rails applications across the industry"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1992",
+      "三层客户端-服务器模型作为主流企业架构模式出现，分离主机表示、业务逻辑和数据"
+    ],
+    [
+      "2002",
+      "Martin Fowler在《企业应用架构模式》中编纂分层架构，提供规范参考"
+    ],
+    [
+      "2004",
+      "Java EE（J2EE）和Spring框架将分层架构确立为主流企业Java模式"
+    ],
+    [
+      "2010",
+      "N层成为行业中ASP.NET MVC、Django和Rails应用程序的默认起始架构"
+    ]
+  ],
+  "dos": [
+    "Define explicit service interfaces between layers so each layer can be tested with a mock of the layer below — this is the key to making a layered application testable",
+    "Keep each layer focused on a single concern — a Business Logic layer that also builds SQL queries or HTML is no longer a proper layer",
+    "Document which layer owns each responsibility explicitly at project start — ambiguity leads to logic leaking across layers as the team grows",
+    "Use dependency injection to supply lower-layer implementations to higher layers — avoid static method calls across layer boundaries which create untestable coupling"
+  ],
+  "dos_zh": [
+    "在层之间定义明确的服务接口，使每层可以用其下方层的模拟进行测试——这是使分层应用程序可测试的关键",
+    "保持每层专注于单一关注点——同时构建SQL查询或HTML的业务逻辑层不再是适当的层",
+    "在项目开始时明确记录每层拥有哪些职责——歧义会导致随着团队成长逻辑跨层泄漏",
+    "使用依赖注入将低层实现供应给高层——避免跨层边界的静态方法调用，这会创建无法测试的耦合"
+  ],
+  "donts": [
+    "Don't allow the Presentation layer to query the database directly — this shortcut erodes the architecture and creates security and maintainability risks",
+    "Don't create a single shared domain model that all layers reference — this shared kernel becomes a change magnet that couples all layers to each other",
+    "Don't mistake physical deployment tiers for logical layers — a monolith deployed as a single process can still have three clean logical layers",
+    "Don't keep adding layers for every new concern — excessive layering (six or more layers) creates sinkhole anti-patterns where most calls pass through unchanged"
+  ],
+  "donts_zh": [
+    "不要允许表示层直接查询数据库——这种捷径侵蚀架构并造成安全和可维护性风险",
+    "不要创建所有层都引用的单一共享领域模型——这个共享内核成为变更磁铁，将所有层相互耦合",
+    "不要将物理部署层级误认为逻辑层次——作为单个进程部署的单体系统仍然可以有三个清晰的逻辑层",
+    "不要为每个新关注点不断添加层次——过度分层（六层或更多层）会产生大多数调用不加改变地传递的污水孔反模式"
+  ],
+  "case_study_company": "Stack Overflow",
+  "case_study": "Stack Overflow famously runs on a classic three-tier layered architecture — ASP.NET MVC presentation layer, C# service layer with business logic, and a SQL Server data layer via Dapper — rather than adopting microservices. This deliberate simplicity, with strict layer discipline, allowed a team of fewer than 20 developers to serve over 100 million monthly visitors. The transparency of the layered model enabled rapid diagnosis of performance bottlenecks (which were almost always in the data layer) and simplified capacity planning. Their architecture has been cited repeatedly as evidence that layered monoliths, when carefully maintained, can dramatically outperform distributed alternatives in developer productivity.",
+  "case_study_zh": "Stack Overflow以其经典三层分层架构著称——ASP.NET MVC表示层、包含业务逻辑的C#服务层和通过Dapper的SQL Server数据层——而非采用微服务。这种有意的简洁性，配合严格的层次纪律，使少于20名开发者的团队能够为超过1亿月活访客提供服务。分层模型的透明性使性能瓶颈的快速诊断成为可能（几乎总是在数据层），并简化了容量规划。他们的架构被反复引用为证据，证明经过精心维护的分层单体系统在开发者生产力方面可以大幅超越分布式替代方案。",
+  "when_not_to_use": [
+    "When the application has fundamentally different scalability requirements per component — e.g., a read-heavy reporting service alongside a write-heavy transaction processor; microservices or CQRS fit better",
+    "When business logic is domain-rich and complex — layered architecture tends to produce anemic domain models; Clean Architecture or DDD is more appropriate",
+    "When deployment agility is critical — a layered monolith requires coordinated deployments; teams needing independent deploy cadences should consider modular or service-based decomposition"
+  ],
+  "when_not_to_use_zh": [
+    "当应用程序每个组件有根本不同的可扩展性要求时——例如，读取密集型报告服务与写入密集型事务处理器并存；微服务或CQRS更合适",
+    "当业务逻辑领域丰富且复杂时——分层架构倾向于产生贫血领域模型；整洁架构或DDD更为合适",
+    "当部署敏捷性至关重要时——分层单体需要协调部署；需要独立部署节奏的团队应考虑模块化或基于服务的分解"
+  ],
+  "adopters": [
+    "Java EE / Jakarta EE",
+    ".NET / ASP.NET MVC",
+    "PHP Laravel / Symfony",
+    "Python Django",
+    "Stack Overflow"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability",
+    "scalability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Fowler, M. (2002). Patterns of Enterprise Application Architecture, Chapter 1: Layering. Addison-Wesley.",
+  "secondary_sources": [
+    "Richards, M. (2015). Software Architecture Patterns. O'Reilly Media.",
+    "Microsoft (2010). N-Tier Application Architecture. Microsoft Developer Network (MSDN).",
+    "Gamma, E. et al. (1994). Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "layered-architecture",
+      "type": "related"
+    },
+    {
+      "slug": "separation-of-concerns",
+      "type": "extends"
+    },
+    {
+      "slug": "modular-monolith",
+      "type": "related"
+    },
+    {
+      "slug": "clean-architecture",
+      "type": "alternative"
+    },
+    {
+      "slug": "hexagonal-architecture",
+      "type": "alternative"
+    },
+    {
+      "slug": "onion-architecture",
+      "type": "alternative"
+    },
+    {
+      "slug": "ports-and-adapters",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/n-tier-layered",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/n-tier-layered.md"
+}

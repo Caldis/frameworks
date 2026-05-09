@@ -1,0 +1,189 @@
+{
+  "id": 245,
+  "name": "Fitness Function-Driven Development",
+  "name_zh": "适应度函数驱动开发",
+  "slug": "fitness-function-driven-development",
+  "category": "evolution",
+  "desc": "Automated architecture governance using executable fitness functions that continuously verify architectural characteristics are preserved during system evolution",
+  "desc_zh": "使用可执行适应度函数进行自动化架构治理，持续验证架构特性在系统演进过程中得以保留",
+  "steps": [
+    "Identify the architectural characteristics (coupling thresholds, cyclic dependency limits, performance SLOs, security compliance rules) that must be preserved as the system evolves, drawing from ADRs, architecture principles documents, and non-functional requirements",
+    "Implement each characteristic as an executable fitness function: coupling metrics as JDepend/ArchUnit rules, performance SLOs as load test assertions in CI, security posture as automated vulnerability scan thresholds, and data residency as policy-as-code rules",
+    "Classify fitness functions by execution cadence: atomic (run on every commit in the CI pipeline), triggered (run on a schedule or deployment event), and continual (run as production synthetic monitors)",
+    "Integrate fitness function results into the deployment pipeline as hard gates — failing fitness functions block promotion to the next environment, treating architectural violations as build failures",
+    "Review and evolve fitness function thresholds at each architectural review: retiring obsolete functions, tightening thresholds as the system matures, and adding new functions when new architectural risks are identified"
+  ],
+  "steps_zh": [
+    "识别系统演进中必须保留的架构特性（耦合阈值、循环依赖限制、性能 SLO、安全合规规则），从 ADR、架构原则文档和非功能性需求中提取",
+    "将每个特性实现为可执行的适应度函数：耦合指标作为 JDepend/ArchUnit 规则、性能 SLO 作为 CI 中的负载测试断言、安全态势作为自动化漏洞扫描阈值、数据驻留作为策略即代码规则",
+    "按执行频率对适应度函数分类：原子型（每次提交在 CI 流水线中运行）、触发型（按计划或部署事件运行）和持续型（作为生产合成监控运行）",
+    "将适应度函数结果作为硬性门禁集成到部署流水线中——适应度函数失败会阻止晋升到下一个环境，将架构违规视为构建失败",
+    "在每次架构审查时审视并演进适应度函数阈值：退役过时函数、随系统成熟收紧阈值，以及在识别到新架构风险时添加新函数"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Define",
+    "Automate",
+    "Measure",
+    "Evolve"
+  ],
+  "viz_labels_zh": [
+    "定义函数",
+    "自动化",
+    "度量",
+    "架构演化"
+  ],
+  "related": [
+    "adr-y-statements",
+    "living-documentation",
+    "strangler-fig-pattern"
+  ],
+  "tags": [
+    "evolutionary-architecture",
+    "fitness-functions",
+    "architecture-governance",
+    "ci-cd",
+    "architectural-testing"
+  ],
+  "origin_author": "Neal Ford",
+  "origin_source": "Ford, N., Parsons, R. & Kua, P. (2017). \"Building Evolutionary Architectures\". O'Reilly Media; ThoughtWorks Technology Radar (fitness functions entry)",
+  "origin_source_zh": "Ford, N.、Parsons, R. 与 Kua, P.（2017）。《演进式架构》，O'Reilly；ThoughtWorks 技术雷达（适应度函数条目）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When architectural drift is a recurring problem — teams unknowingly introduce circular dependencies, performance regressions, or coupling violations during feature development",
+    "When architecture principles exist in documents but are not enforced — fitness functions translate human-readable principles into machine-checkable rules",
+    "When migrating a monolith to microservices and you need guardrails to prevent the new architecture from regressing toward the same coupling patterns",
+    "When operating in regulated industries where compliance rules (data residency, encryption at rest, audit logging) must be continuously verified rather than periodically audited"
+  ],
+  "when_to_use_zh": [
+    "当架构漂移是反复出现的问题时——团队在功能开发中无意引入循环依赖、性能退化或耦合违规",
+    "当架构原则存在于文档中但未被执行时——适应度函数将人类可读的原则转化为机器可检查的规则",
+    "当将单体迁移到微服务时，需要护栏防止新架构退回到相同的耦合模式",
+    "当在受监管行业运营，合规规则（数据驻留、静态加密、审计日志）必须持续验证而非定期审计时"
+  ],
+  "core_concepts": [
+    "Fitness Function: An objective, executable function that evaluates a specific architectural characteristic — analogous to a test that targets architecture rather than behavior, running automatically in the CI/CD pipeline",
+    "Architectural Characteristics: The '-ilities' (maintainability, scalability, security, performance, deployability) that define the system's structural quality and must be preserved as the codebase evolves",
+    "Incremental Change with Feedback: Fitness functions enable teams to make small, frequent changes to the architecture while receiving immediate automated feedback when those changes violate architectural principles",
+    "Guided Evolution: The set of active fitness functions defines the 'fitness landscape' — the boundary within which the architecture is free to evolve while still meeting its non-functional requirements",
+    "Cyclic Dependency Detection: One of the most common and valuable fitness functions is automated detection of package/module cyclic dependencies (using ArchUnit, Dependency Cruiser, or NDepend), which are a leading indicator of architectural decay"
+  ],
+  "core_concepts_zh": [
+    "适应度函数：评估特定架构特性的客观可执行函数——类似于针对架构而非行为的测试，在 CI/CD 流水线中自动运行",
+    "架构特性：定义系统结构质量且必须在代码库演进中保留的各种「-ility」（可维护性、可扩展性、安全性、性能、可部署性）",
+    "带反馈的增量变更：适应度函数使团队能对架构进行小而频繁的变更，同时在违反架构原则时立即获得自动化反馈",
+    "引导式演进：活跃适应度函数的集合定义了「适应度景观」——架构在仍满足非功能性需求的前提下可自由演进的边界",
+    "循环依赖检测：最常见且最有价值的适应度函数之一是自动检测包/模块循环依赖（使用 ArchUnit、Dependency Cruiser 或 NDepend），这是架构衰退的领先指标"
+  ],
+  "timeline": [
+    [
+      "2009",
+      "Michael Feathers coins the term 'architectural fitness function' in discussions on evolutionary design at software conferences"
+    ],
+    [
+      "2017",
+      "Neal Ford, Rebecca Parsons, and Patrick Kua publish 'Building Evolutionary Architectures', formalizing fitness functions as the primary mechanism for governed architecture evolution"
+    ],
+    [
+      "2019",
+      "ArchUnit (Java), NetArchTest (.NET), and Dependency Cruiser (JS) mature into production-grade architectural testing libraries, making fitness functions accessible to mainstream teams"
+    ],
+    [
+      "2023",
+      "AI-assisted architecture analysis tools begin generating fitness function suggestions from codebase scans, lowering the barrier to adoption"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2009",
+      "Michael Feathers 在软件会议的演进式设计讨论中创造了「架构适应度函数」这一术语"
+    ],
+    [
+      "2017",
+      "Neal Ford、Rebecca Parsons 和 Patrick Kua 出版《演进式架构》，将适应度函数正式确立为受治理架构演进的主要机制"
+    ],
+    [
+      "2019",
+      "ArchUnit（Java）、NetArchTest（.NET）和 Dependency Cruiser（JS）发展为生产级架构测试库，使适应度函数可为主流团队所用"
+    ],
+    [
+      "2023",
+      "AI 辅助的架构分析工具开始从代码库扫描中生成适应度函数建议，降低了采用门槛"
+    ]
+  ],
+  "dos": [
+    "Do start with the highest-risk architectural characteristics first — coupling thresholds and dependency direction are quick wins that immediately surface structural decay",
+    "Do treat fitness function failures as build failures with the same urgency as failing unit tests — an architectural violation that is not blocked becomes a permanent regression",
+    "Do version-control fitness function rules alongside the production code so that threshold changes are reviewed and auditable in pull requests",
+    "Do run atomic fitness functions in the CI pipeline (seconds to minutes) and reserve heavier functions (load tests, full security scans) for scheduled or pre-release gates to avoid developer workflow friction"
+  ],
+  "dos_zh": [
+    "从最高风险的架构特性开始——耦合阈值和依赖方向是能立即显现结构衰退的快速收益",
+    "像对待单元测试失败一样紧急处理适应度函数失败——未被阻止的架构违规将成为永久性退化",
+    "将适应度函数规则与生产代码一起版本控制，使阈值变更在拉取请求中可审查和可追溯",
+    "在 CI 流水线中运行原子适应度函数（几秒到几分钟），将较重的函数（负载测试、完整安全扫描）保留给计划任务或发布前门禁，避免影响开发者工作流"
+  ],
+  "donts": [
+    "Don't create fitness functions for trivial or cosmetic concerns (code style, comment density) — fitness functions are for architectural invariants, not style guides, which belong in linters",
+    "Don't set thresholds so strict they fail on day one — start permissive to establish a baseline and tighten incrementally; a fitness function that always fails is ignored",
+    "Don't silently suppress fitness function failures in the pipeline without a documented exception process — unchecked suppressions accumulate into untracked architectural debt",
+    "Don't make all fitness functions atomic/blocking — over-gating the CI pipeline with slow checks destroys developer productivity; classify and run at the appropriate cadence"
+  ],
+  "donts_zh": [
+    "不要为琐碎或表面问题（代码风格、注释密度）创建适应度函数——适应度函数用于架构不变量，而非应属于代码检查工具的风格指南",
+    "不要设置一开始就会失败的过于严格的阈值——从宽松开始建立基线，然后逐步收紧；总是失败的适应度函数会被忽视",
+    "不要在没有文档化例外流程的情况下悄然在流水线中抑制适应度函数失败——未受检查的抑制会积累成未跟踪的架构债务",
+    "不要让所有适应度函数都是原子/阻塞的——用缓慢检查过度拦截 CI 流水线会破坏开发者生产力；按适当频率分类运行"
+  ],
+  "case_study_company": "ThoughtWorks",
+  "case_study": "ThoughtWorks applied fitness function-driven development on a large-scale financial services platform migration from a 10-year-old monolith to a microservices architecture. The team implemented 47 fitness functions covering coupling thresholds (maximum 5 inbound dependencies per service), performance SLOs (p95 < 200ms for payment APIs), data residency (no EU personal data in non-EU regions), and security posture (no high-severity CVEs in container images). Fitness functions caught 12 architectural violations during the 18-month migration that would have required costly rollbacks if discovered in production, including a circular dependency chain between 5 services that emerged when two squads independently refactored their service boundaries in the same sprint.",
+  "case_study_zh": "ThoughtWorks 在将一个有 10 年历史的单体应用迁移到微服务架构的大型金融服务平台项目中应用了适应度函数驱动开发。团队实施了 47 个适应度函数，涵盖耦合阈值（每个服务最多 5 个入站依赖）、性能 SLO（支付 API 的 p95 < 200ms）、数据驻留（欧盟个人数据不得存储于非欧盟地区）和安全态势（容器镜像中无高严重性 CVE）。在 18 个月的迁移过程中，适应度函数捕获了 12 个架构违规，如果在生产中才被发现将需要代价高昂的回滚，其中包括当两个小组在同一个冲刺中独立重构各自服务边界时出现的 5 个服务之间的循环依赖链。",
+  "when_not_to_use": [
+    "Early-stage startups or prototypes where the architecture is intentionally fluid and premature governance would constrain experimentation needed to find product-market fit",
+    "Small codebases with a single team where direct architectural communication and lightweight code review substitute effectively for automated governance",
+    "Systems at the end of their lifecycle where the investment in fitness function infrastructure will not be amortized before the system is replaced",
+    "Teams without CI/CD pipelines — fitness functions require automated execution infrastructure; manual checks are not a viable substitute"
+  ],
+  "when_not_to_use_zh": [
+    "早期初创公司或原型阶段，架构有意保持流动性，过早的治理会限制寻找产品市场契合所需的实验",
+    "拥有单一团队的小型代码库，直接架构沟通和轻量级代码审查能有效替代自动化治理",
+    "处于生命周期末期的系统，适应度函数基础设施的投资在系统被替换之前无法摊销",
+    "没有 CI/CD 流水线的团队——适应度函数需要自动化执行基础设施；手动检查不是可行的替代方案"
+  ],
+  "adopters": [
+    "ThoughtWorks",
+    "Netflix",
+    "Spotify",
+    "Zalando",
+    "Wealthfront"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability",
+    "reliability",
+    "testability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Ford, N., Parsons, R. & Kua, P. (2017). \"Building Evolutionary Architectures\". O'Reilly Media.",
+  "secondary_sources": [
+    "ThoughtWorks (2020). \"Fitness functions as architecture tests\". ThoughtWorks Insights.",
+    "Kua, P. (2019). \"Evolutionary Architecture\". InfoQ conference presentation."
+  ],
+  "typed_relations": [
+    {
+      "slug": "adr-y-statements",
+      "type": "complement"
+    },
+    {
+      "slug": "living-documentation",
+      "type": "complement"
+    },
+    {
+      "slug": "strangler-fig-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/fitness-function-driven-development",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/fitness-function-driven-development.md"
+}

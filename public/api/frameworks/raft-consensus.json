@@ -1,0 +1,192 @@
+{
+  "id": 264,
+  "name": "Raft Consensus Algorithm",
+  "name_zh": "Raft 共识算法",
+  "slug": "raft-consensus",
+  "category": "distributed",
+  "desc": "Understandable consensus protocol using leader election and log replication to achieve fault-tolerant distributed agreement",
+  "desc_zh": "通过领导者选举和日志复制实现容错分布式一致性的可理解共识协议",
+  "steps": [
+    "Partition time into terms: each term begins with a leader election triggered by follower timeout; terms act as logical clocks that prevent stale commands from being accepted",
+    "Elect a leader via randomized timeouts: followers wait a random interval before requesting votes; the first candidate to reach a majority quorum becomes leader for the term",
+    "Replicate log entries through AppendEntries RPCs: the leader appends a client command to its own log, then broadcasts AppendEntries to all followers and waits for majority acknowledgment",
+    "Commit entries once a quorum responds: when a majority of nodes have written the entry to stable storage, the leader marks it committed, applies it to the state machine, and responds to the client",
+    "Handle crashes and rejoin with log reconciliation: when a crashed node restarts or a new leader is elected, the leader backtracks its nextIndex for each follower until their logs align, then streams missing entries forward"
+  ],
+  "steps_zh": [
+    "将时间划分为任期：每个任期以跟随者超时触发的领导者选举开始；任期作为逻辑时钟，防止过期命令被接受",
+    "通过随机超时选举领导者：跟随者等待一个随机间隔后请求投票；第一个获得多数派的候选人成为该任期的领导者",
+    "通过 AppendEntries RPC 复制日志条目：领导者将客户端命令追加到自身日志，然后广播 AppendEntries 给所有跟随者，等待多数派确认",
+    "获得法定人数响应后提交条目：当多数节点将条目写入稳定存储后，领导者标记其为已提交，应用到状态机并响应客户端",
+    "通过日志对账处理崩溃和重新加入：当崩溃节点重启或新领导者选出时，领导者为每个跟随者回溯 nextIndex 直至日志对齐，然后向前传输缺失条目"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Terms",
+    "Leader Election",
+    "AppendEntries",
+    "Commit Quorum",
+    "Log Reconcile"
+  ],
+  "viz_labels_zh": [
+    "任期",
+    "领导选举",
+    "日志追加",
+    "多数提交",
+    "日志对齐"
+  ],
+  "related": [
+    "consensus-protocols",
+    "leader-election",
+    "two-phase-commit",
+    "eventual-consistency"
+  ],
+  "tags": [
+    "consensus",
+    "raft",
+    "leader-election",
+    "log-replication",
+    "fault-tolerance"
+  ],
+  "origin_author": "Diego Ongaro",
+  "origin_source": "Ongaro, D. & Ousterhout, J. (2014). In Search of an Understandable Consensus Algorithm. USENIX ATC 2014; Ongaro, D. (2014). Consensus: Bridging Theory and Practice. Stanford PhD dissertation.",
+  "origin_source_zh": "Ongaro与Ousterhout（2014）《寻找一种可理解的共识算法》USENIX ATC 2014；Ongaro（2014）《共识：架桥理论与实践》斯坦福博士论文",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When building a replicated state machine that must tolerate minority node failures without data loss or split-brain",
+    "When implementing a distributed coordination service such as a configuration store, distributed lock, or cluster membership registry",
+    "When you need a consensus algorithm that your team can fully understand, audit, and implement correctly",
+    "When deploying a clustered database or message broker that requires automatic leader failover without manual operator intervention",
+    "When the write path can afford quorum latency and strong linearizability guarantees outweigh throughput maximization"
+  ],
+  "when_to_use_zh": [
+    "构建必须容忍少数节点故障且不丢失数据或产生脑裂的复制状态机时",
+    "实现配置存储、分布式锁或集群成员注册表等分布式协调服务时",
+    "需要团队能够完全理解、审计和正确实现的共识算法时",
+    "部署需要自动领导者故障转移、无需人工干预的集群数据库或消息代理时",
+    "写路径可以承受法定人数延迟且强线性一致性保证优先于吞吐量最大化时"
+  ],
+  "core_concepts": [
+    "Leader supremacy: only the current-term leader accepts client writes and replicates them; followers are read-only participants that redirect writes to the leader",
+    "Term monotonicity: every RPC carries a term number; nodes reject messages from lower terms and step down if they see a higher term, preventing stale leaders from corrupting state",
+    "Log matching property: if two logs contain an entry with the same index and term, then the logs are identical in all entries up to that index, enabling safe replication",
+    "Election safety: at most one leader can be elected per term because winning requires votes from a quorum that overlaps with any other potential quorum",
+    "Log compaction via snapshots: once logs grow too large, the state machine state is snapshotted, older log entries are discarded, and lagging followers receive snapshots instead of full log replay"
+  ],
+  "core_concepts_zh": [
+    "领导者至上：只有当前任期的领导者接受客户端写入并复制它们；跟随者是只读参与者，将写入重定向到领导者",
+    "任期单调性：每个 RPC 携带任期号；节点拒绝来自更低任期的消息，若看到更高任期则降级，防止过期领导者破坏状态",
+    "日志匹配属性：若两个日志包含相同索引和任期的条目，则这两个日志在该索引之前的所有条目完全相同，保证安全复制",
+    "选举安全性：每个任期最多选出一个领导者，因为获胜需要来自法定人数的投票，该法定人数与任何其他潜在法定人数有交集",
+    "通过快照压缩日志：日志过大时，对状态机状态打快照，丢弃旧日志条目，落后的跟随者接收快照而非完整日志回放"
+  ],
+  "timeline": [
+    [
+      "2013",
+      "Diego Ongaro presents the initial Raft design at USENIX HotOS XIII as part of his Stanford PhD research"
+    ],
+    [
+      "2014",
+      "Ongaro and Ousterhout publish 'In Search of an Understandable Consensus Algorithm' at USENIX ATC, introducing Raft to the wider community"
+    ],
+    [
+      "2014",
+      "Ongaro completes his PhD dissertation 'Consensus: Bridging Theory and Practice', providing the comprehensive Raft specification"
+    ],
+    [
+      "2015",
+      "etcd, CoreOS's Raft-based key-value store, becomes the state store for Kubernetes, making Raft the de facto consensus backbone for cloud-native infrastructure"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2013",
+      "Diego Ongaro 在 USENIX HotOS XIII 上首次展示 Raft 设计，作为其斯坦福博士研究的一部分"
+    ],
+    [
+      "2014",
+      "Ongaro 与 Ousterhout 在 USENIX ATC 发表「寻找一种可理解的共识算法」，向更广泛的社区介绍 Raft"
+    ],
+    [
+      "2014",
+      "Ongaro 完成博士论文「共识：架桥理论与实践」，提供了完整的 Raft 规范"
+    ],
+    [
+      "2015",
+      "CoreOS 基于 Raft 的键值存储 etcd 成为 Kubernetes 的状态存储，使 Raft 成为云原生基础设施的事实共识骨干"
+    ]
+  ],
+  "dos": [
+    "Do use an odd number of nodes (3, 5, 7) to guarantee a clear majority quorum and avoid split-vote deadlocks",
+    "Do persist the current term, voted-for, and log entries to stable storage before responding to any RPC to ensure correct recovery after crashes",
+    "Do implement leader lease reads or linearizable read index to serve reads without additional log entries when read-heavy workloads dominate",
+    "Do monitor election frequency and leader stability because frequent elections indicate network instability or misconfigured heartbeat intervals"
+  ],
+  "dos_zh": [
+    "使用奇数个节点（3、5、7）以保证清晰的多数派法定人数，避免分裂投票死锁",
+    "在响应任何 RPC 之前将当前任期、已投票对象和日志条目持久化到稳定存储，确保崩溃后正确恢复",
+    "在读密集型工作负载为主时实现领导者租约读取或线性一致读取索引，无需额外日志条目即可服务读请求",
+    "监控选举频率和领导者稳定性，因为频繁选举表明网络不稳定或心跳间隔配置错误"
+  ],
+  "donts": [
+    "Don't run Raft clusters across wide-area networks without accounting for inter-datacenter latency because quorum writes block on the slowest acknowledgment in the majority",
+    "Don't skip log compaction implementation because unbounded log growth will exhaust disk and make follower recovery prohibitively slow",
+    "Don't assume Raft handles sharding or partitioning — it manages a single replicated log and must be combined with a shard routing layer for horizontal scale",
+    "Don't mix Raft cluster members across significantly different hardware because persistent storage speed differences create chronic follower lag"
+  ],
+  "donts_zh": [
+    "不要在不考虑数据中心间延迟的情况下跨广域网运行 Raft 集群，因为法定人数写入会阻塞在多数派中最慢的确认上",
+    "不要跳过日志压缩实现，因为无限日志增长会耗尽磁盘并使跟随者恢复变得极慢",
+    "不要假设 Raft 处理分片或分区——它管理单个复制日志，水平扩展必须结合分片路由层",
+    "不要将 Raft 集群成员混合在差异显著的硬件上，因为持久化存储速度差异会造成长期跟随者滞后"
+  ],
+  "case_study_company": "CockroachDB",
+  "case_study": "CockroachDB uses Raft at the core of its range-based replication model. Each key range (default 64 MB) is managed by a separate Raft group of three replicas. When a node fails, the Raft group for affected ranges elects a new leader and continues accepting writes within seconds, with no operator intervention. CockroachDB's engineers specifically chose Raft over Paxos because the algorithm's clean separation of leader election, log replication, and safety invariants made it tractable to implement correctly in a production database — a decision validated by successfully passing Jepsen distributed systems testing.",
+  "case_study_zh": "CockroachDB 在其基于范围的复制模型核心使用 Raft。每个键范围（默认 64 MB）由一个独立的三副本 Raft 组管理。当节点故障时，受影响范围的 Raft 组在几秒内选出新领导者并继续接受写入，无需运维干预。CockroachDB 的工程师特别选择 Raft 而非 Paxos，因为算法对领导者选举、日志复制和安全不变量的清晰分离使其在生产数据库中正确实现成为可能——这一决定通过了 Jepsen 分布式系统测试得到验证。",
+  "when_not_to_use": [
+    "High-throughput write-heavy workloads where quorum latency per write is unacceptable and eventual consistency suffices",
+    "Geographically distributed multi-region deployments where cross-region quorum writes introduce hundreds of milliseconds of latency",
+    "Single-node embedded systems or applications with no replication requirement where consensus overhead is pure waste"
+  ],
+  "when_not_to_use_zh": [
+    "每次写入的法定人数延迟不可接受且最终一致性已足够的高吞吐写密集型工作负载",
+    "跨区域法定人数写入引入数百毫秒延迟的地理分布式多区域部署",
+    "没有复制需求的单节点嵌入式系统或应用，共识开销纯属浪费"
+  ],
+  "adopters": [
+    "CockroachDB",
+    "etcd/Kubernetes",
+    "TiKV/TiDB",
+    "Consul (HashiCorp)",
+    "Dgraph"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "scalability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Ongaro, D. & Ousterhout, J. (2014). \"In Search of an Understandable Consensus Algorithm\". Proceedings of USENIX ATC 2014.",
+  "secondary_sources": [
+    "Ongaro, D. (2014). \"Consensus: Bridging Theory and Practice\". Stanford University PhD Dissertation.",
+    "Howard, H., Schwarzkopf, M., Madhavapeddy, A. & Crowcroft, J. (2016). \"Flexible Paxos: Quorum Intersection Revisited\". arXiv:1608.06696.",
+    "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 9. O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "consensus-protocols",
+      "type": "alternative"
+    },
+    {
+      "slug": "leader-election",
+      "type": "complement"
+    },
+    {
+      "slug": "two-phase-commit",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/raft-consensus",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/raft-consensus.md"
+}

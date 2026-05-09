@@ -1,0 +1,175 @@
+{
+  "id": 231,
+  "name": "Singleton Pattern",
+  "name_zh": "单例模式",
+  "slug": "singleton-pattern",
+  "category": "coding",
+  "desc": "Ensure a class has only one instance with a global access point",
+  "desc_zh": "确保一个类只有一个实例，并提供一个访问它的全局入口点",
+  "steps": [
+    "Make the constructor private: prevent external code from instantiating the class directly using the new keyword",
+    "Declare a private static instance field: hold the single instance inside the class itself",
+    "Provide a public static accessor method: implement getInstance() that creates the instance on first call and returns it on every subsequent call",
+    "Handle thread safety: in multi-threaded environments, use double-checked locking, an initialization-on-demand holder, or language-level guarantees to prevent race conditions",
+    "Consider dependency injection as an alternative: in modern applications prefer injecting a single shared instance via a DI container rather than relying on a static accessor"
+  ],
+  "steps_zh": [
+    "将构造函数设为私有：防止外部代码直接使用 new 关键字实例化类",
+    "声明私有静态实例字段：在类内部持有单一实例",
+    "提供公共静态访问方法：实现 getInstance()，在第一次调用时创建实例，后续每次调用返回该实例",
+    "处理线程安全：在多线程环境中，使用双重检查锁定、按需初始化持有者或语言级保证来防止竞态条件",
+    "考虑依赖注入作为替代方案：在现代应用中，优先通过 DI 容器注入单一共享实例，而非依赖静态访问器"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Instance Check",
+    "Single Instance",
+    "Global Access",
+    "Client"
+  ],
+  "viz_labels_zh": [
+    "实例检查",
+    "唯一实例",
+    "全局访问",
+    "客户端"
+  ],
+  "related": [
+    "solid-principles",
+    "dependency-injection",
+    "factory-method-pattern"
+  ],
+  "tags": [
+    "gof",
+    "creational",
+    "design-patterns",
+    "instance-management",
+    "oop"
+  ],
+  "origin_author": "Gamma, Helm, Johnson, Vlissides, 1994",
+  "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
+  "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Exactly one shared resource must exist — e.g., a thread pool, configuration registry, or hardware interface driver",
+    "Global coordination is required and the cost of multiple instances would cause correctness issues (e.g., duplicate caches)",
+    "A legacy codebase cannot use dependency injection and needs a controlled global access point"
+  ],
+  "when_to_use_zh": [
+    "必须存在唯一一个共享资源——如线程池、配置注册表或硬件接口驱动",
+    "需要全局协调，多个实例的代价会导致正确性问题（如重复缓存）",
+    "遗留代码库无法使用依赖注入，需要一个受控的全局访问点"
+  ],
+  "core_concepts": [
+    "Single instance guarantee: only one object of the class can exist in the process; enforced by private constructor",
+    "Global access point: the static getInstance() method provides a well-known entry to the single instance from anywhere in the codebase",
+    "Lazy vs eager initialization: the instance can be created on first access (lazy) or at class load time (eager), each with different thread-safety implications"
+  ],
+  "core_concepts_zh": [
+    "单实例保证：进程中只能存在该类的一个对象；通过私有构造函数强制实现",
+    "全局访问点：静态 getInstance() 方法提供从代码库任何地方访问单一实例的知名入口",
+    "懒加载 vs 饿加载：实例可在首次访问时创建（懒加载）或在类加载时创建（饿加载），各有不同的线程安全含义"
+  ],
+  "timeline": [
+    [
+      "1994",
+      "GoF introduce Singleton as a creational pattern; it quickly becomes one of the most recognized patterns"
+    ],
+    [
+      "2004",
+      "Singleton earns criticism as an anti-pattern due to hidden global state, testing difficulties, and tight coupling"
+    ],
+    [
+      "2009",
+      "Spring and Guice DI containers popularize singleton-scoped beans as a managed, testable alternative"
+    ],
+    [
+      "2020",
+      "Singleton remains useful for low-level infrastructure (loggers, metrics registries) but avoided in domain logic"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1994",
+      "GoF 将单例作为创建型模式引入；它迅速成为最广为人知的模式之一"
+    ],
+    [
+      "2004",
+      "由于隐藏全局状态、测试困难和紧耦合，单例因被视为反模式而受到批评"
+    ],
+    [
+      "2009",
+      "Spring 和 Guice DI 容器推广单例作用域 Bean，作为可管理、可测试的替代方案"
+    ],
+    [
+      "2020",
+      "单例对于低级基础设施（日志记录器、指标注册表）仍有用，但在领域逻辑中应避免使用"
+    ]
+  ],
+  "dos": [
+    "Do prefer DI-container-managed singletons over static getInstance() for testability and lifecycle control",
+    "Do use thread-safe initialization (enum singleton in Java, module-level object in Python) to avoid subtle concurrency bugs",
+    "Do limit Singleton to stateless or append-only resources; mutable shared state is a concurrency hazard"
+  ],
+  "dos_zh": [
+    "优先使用 DI 容器管理的单例而非静态 getInstance()，以获得可测试性和生命周期控制",
+    "使用线程安全的初始化方式（Java 中的枚举单例、Python 中的模块级对象）以避免微妙的并发缺陷",
+    "将单例限制于无状态或只追加的资源；可变共享状态是并发风险"
+  ],
+  "donts": [
+    "Don't use Singleton for domain objects — it makes them impossible to vary, test in isolation, or run concurrently",
+    "Don't store mutable business state in a Singleton because it introduces race conditions and makes tests order-dependent",
+    "Don't use Singleton as a convenient global variable bag — it is an architectural coupling that erodes maintainability over time"
+  ],
+  "donts_zh": [
+    "不要将单例用于领域对象——这使它们无法变化、无法隔离测试或并发运行",
+    "不要在单例中存储可变业务状态，因为这会引入竞态条件并使测试依赖于顺序",
+    "不要将单例用作方便的全局变量袋——它是一种随时间侵蚀可维护性的架构耦合"
+  ],
+  "case_study_company": "Log4j / SLF4J",
+  "case_study": "The logging ecosystem (Log4j, Logback, SLF4J) uses a managed Singleton approach for the LoggerFactory. The root logger and its appenders are singletons scoped to the JVM process, ensuring all threads write to the same configured output destinations without creating duplicate file handles or losing log entries. Modern logging frameworks implement this via class-loading guarantees (not double-checked locking), demonstrating the correct, thread-safe form of the pattern.",
+  "case_study_zh": "日志生态系统（Log4j、Logback、SLF4J）为 LoggerFactory 使用托管单例方式。根日志记录器及其附加器是作用于 JVM 进程的单例，确保所有线程写入相同的已配置输出目的地，而不会创建重复的文件句柄或丢失日志条目。现代日志框架通过类加载保证（而非双重检查锁定）实现这一点，展示了模式的正确、线程安全形式。",
+  "when_not_to_use": [
+    "Domain model objects that represent real-world entities with potentially multiple instances",
+    "Services that need to be substituted with test doubles in unit testing",
+    "Any case where multiple independent instances improve correctness, throughput, or testability"
+  ],
+  "when_not_to_use_zh": [
+    "代表现实世界实体、可能有多个实例的领域模型对象",
+    "需要在单元测试中用测试替身替代的服务",
+    "多个独立实例能提高正确性、吞吐量或可测试性的任何情况"
+  ],
+  "adopters": [
+    "Log4j / SLF4J",
+    "Spring (singleton scope)",
+    "Node.js module system",
+    "Android Application class"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+  "secondary_sources": [
+    "Freeman, E., Robson, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+    "Bloch, J. (2008). \"Effective Java, 2nd ed.\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "solid-principles",
+      "type": "related"
+    },
+    {
+      "slug": "dependency-injection",
+      "type": "alternative"
+    },
+    {
+      "slug": "factory-method-pattern",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/singleton-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/singleton-pattern.md"
+}

@@ -1,0 +1,186 @@
+{
+  "id": 166,
+  "name": "Worse is Better",
+  "name_zh": "更差即更好",
+  "slug": "worse-is-better",
+  "category": "thinking",
+  "desc": "Simpler, less correct implementations often win over complex, theoretically correct ones through easier adoption and faster evolution",
+  "desc_zh": "更简单但不够正确的实现往往通过更容易的采纳和更快的演进击败复杂的理论正确实现",
+  "steps": [
+    "Define 'Good Enough': for each feature, explicitly define the minimum correctness and completeness threshold that delivers real user value, distinguishing essential correctness from theoretical perfection",
+    "Prioritize Simplicity of Implementation: when facing a design choice between a complete-but-complex solution and a simple-but-limited one, default to simplicity unless the missing completeness causes real harm",
+    "Ship and Observe: release the simpler version to real users quickly, using actual usage patterns to determine which missing capabilities genuinely matter vs which were hypothetical requirements",
+    "Evolve Incrementally: add completeness and correctness incrementally based on observed need, letting real-world feedback guide investment rather than upfront architectural speculation",
+    "Resist Second-System Syndrome: when the simple system succeeds and pressure mounts for a 'proper' redesign, evaluate whether the simple system's limitations actually cause problems or merely offend engineering aesthetics"
+  ],
+  "steps_zh": [
+    "定义「足够好」：为每个功能明确定义提供真实用户价值的最低正确性和完整性阈值，区分本质正确性和理论完美",
+    "优先考虑实现简洁性：当面对完整但复杂的方案和简单但有限的方案之间的设计选择时，默认选择简洁性，除非缺失的完整性造成实际伤害",
+    "发布并观察：快速将更简单的版本发布给真实用户，用实际使用模式来确定哪些缺失能力真正重要，哪些是假设性需求",
+    "渐进式演进：基于观察到的需求逐步增加完整性和正确性，让现实世界的反馈指导投入而非前期架构推测",
+    "抵制第二系统综合征：当简单系统成功且「正式」重新设计的压力增大时，评估简单系统的局限性是否真正导致问题还是仅仅冒犯了工程美学"
+  ],
+  "ai_relevant": true,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Simplicity",
+    "Correctness",
+    "Interface",
+    "Implementation"
+  ],
+  "viz_labels_zh": [
+    "简洁性",
+    "正确性",
+    "接口设计",
+    "实现设计"
+  ],
+  "related": [
+    "first-principles-thinking",
+    "trade-off-sliders",
+    "complexity-budget"
+  ],
+  "tags": [
+    "simplicity",
+    "pragmatism",
+    "software-philosophy",
+    "adoption",
+    "evolution"
+  ],
+  "origin_author": "Richard P. Gabriel, 1989",
+  "origin_source": "Lisp: Good News, Bad News, How to Win Big (Richard P. Gabriel, 1989)",
+  "origin_source_zh": "《Lisp：好消息、坏消息、如何大赢》（Richard P. Gabriel，1989年）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When your team is debating whether to ship a pragmatic solution now or invest months in a theoretically superior architecture",
+    "When a competitor is gaining market share with an inferior-but-available product while your team perfects a better design",
+    "When designing a public API or protocol where simplicity of adoption matters more than covering every edge case in v1",
+    "When evaluating open-source tools and the simpler, less feature-complete option has a larger community and faster iteration cycle"
+  ],
+  "when_to_use_zh": [
+    "当团队在辩论是现在发布务实的方案还是投入数月在理论上更优的架构时",
+    "当竞争对手用一个劣质但可用的产品在获取市场份额，而你的团队在完善更好的设计时",
+    "当设计公共API或协议，采纳的简洁性比在v1中覆盖每个边缘情况更重要时",
+    "当评估开源工具，更简单、功能不完整的选项拥有更大的社区和更快的迭代周期时"
+  ],
+  "core_concepts": [
+    "Simplicity as Survival Advantage: Simpler systems are easier to port, easier to learn, and easier to adapt — this adaptability is a stronger evolutionary advantage than theoretical correctness",
+    "The Viral Spread of Good-Enough: A system that is 50% as capable but available today will acquire users who then contribute improvements, eventually surpassing a system that is 100% capable but still in development",
+    "Interface vs Implementation Simplicity: Gabriel distinguishes two strategies — 'the right thing' (simple interface, complex implementation) vs 'worse is better' (simple implementation, potentially rougher interface). The simpler implementation wins on adoption.",
+    "Worse is Better as Market Dynamics: The principle is not about celebrating mediocrity but about recognizing that markets select for adoption speed and iteration velocity, not architectural purity"
+  ],
+  "core_concepts_zh": [
+    "简洁性作为生存优势：更简单的系统更容易移植、学习和适应——这种适应性是比理论正确性更强的演化优势",
+    "足够好的病毒式传播：一个能力50%但今天可用的系统会获得用户，用户随后贡献改进，最终超越一个能力100%但仍在开发中的系统",
+    "接口简洁性与实现简洁性：Gabriel区分了两种策略——「正确的做法」（简单接口、复杂实现）与「更差即更好」（简单实现、可能粗糙的接口）。更简单的实现在采纳上胜出。",
+    "更差即更好作为市场动态：这个原则不是庆祝平庸，而是认识到市场选择采纳速度和迭代速度，而非架构纯洁性"
+  ],
+  "timeline": [
+    [
+      "1989",
+      "Richard Gabriel presents 'Lisp: Good News, Bad News, How to Win Big' at the European Conference on the Practical Application of Lisp, contrasting MIT/Stanford and New Jersey design philosophies"
+    ],
+    [
+      "1991",
+      "The essay circulates widely online, sparking decades of debate between 'the right thing' (Lisp/MIT approach) and 'worse is better' (Unix/C/New Jersey approach)"
+    ],
+    [
+      "2000",
+      "Gabriel revisits the concept in 'Worse Is Better Is Worse' and later 'Is Worse Really Better?', acknowledging the tension is unresolvable and context-dependent"
+    ],
+    [
+      "2010s",
+      "The lean startup movement and MVP methodology embody worse-is-better principles, validating the idea that shipping imperfect products early beats perfecting products in isolation"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1989",
+      "Richard Gabriel在欧洲Lisp实际应用会议上发表《Lisp：好消息、坏消息、如何大赢》，对比MIT/斯坦福和新泽西设计哲学"
+    ],
+    [
+      "1991",
+      "该文在网上广泛传播，引发了「正确的做法」（Lisp/MIT方法）和「更差即更好」（Unix/C/新泽西方法）之间数十年的辩论"
+    ],
+    [
+      "2000",
+      "Gabriel在《更差即更好即更差》和后来的《更差真的更好吗？》中重新审视该概念，承认这种张力是不可解的且依赖上下文"
+    ],
+    [
+      "2010年代",
+      "精益创业运动和MVP方法论体现了更差即更好的原则，验证了尽早发布不完美产品胜过在隔离中完善产品的理念"
+    ]
+  ],
+  "dos": [
+    "Do explicitly define what 'good enough' means for each release, because without a threshold, worse-is-better becomes an excuse for carelessness",
+    "Do ship the simplest version that delivers genuine value, then iterate based on real user feedback rather than hypothetical requirements",
+    "Do preserve simplicity of the core implementation even as features are added, because the simplicity is what enabled the system's success in the first place",
+    "Do study Unix, C, HTTP, and JSON as exemplars of worse-is-better systems that won through simplicity and adaptability"
+  ],
+  "dos_zh": [
+    "为每个版本明确定义「足够好」的含义，因为没有阈值，更差即更好就变成了粗心的借口",
+    "发布提供真实价值的最简版本，然后基于真实用户反馈而非假设性需求进行迭代",
+    "即使添加功能也要保持核心实现的简洁性，因为简洁性是系统首先成功的原因",
+    "研究Unix、C、HTTP和JSON作为通过简洁性和适应性获胜的更差即更好系统的范例"
+  ],
+  "donts": [
+    "Don't use worse-is-better as justification for shipping broken or harmful software, because the principle is about simplicity trade-offs, not quality abandonment",
+    "Don't apply worse-is-better to safety-critical systems (medical devices, aviation, financial infrastructure) where 'good enough' correctness can cause catastrophic harm",
+    "Don't ignore technical debt that accumulates in worse-is-better systems, because the simplicity advantage erodes if the codebase becomes unmaintainable over time",
+    "Don't conflate worse-is-better with anti-intellectualism, because the principle requires deep understanding of trade-offs to apply correctly"
+  ],
+  "donts_zh": [
+    "不要用更差即更好来为发布有缺陷或有害的软件辩护，因为这个原则是关于简洁性权衡，而非质量放弃",
+    "不要将更差即更好应用于安全关键系统（医疗设备、航空、金融基础设施），其中「足够好」的正确性可能导致灾难性伤害",
+    "不要忽视在更差即更好系统中积累的技术债务，因为如果代码库随时间变得不可维护，简洁性优势就会消失",
+    "不要将更差即更好与反智主义混为一谈，因为正确应用这个原则需要对权衡的深刻理解"
+  ],
+  "case_study_company": "Unix/C",
+  "case_study": "Unix and C are Gabriel's original examples of worse-is-better triumphing. When compared to Multics and Lisp, Unix and C were objectively less capable: C had no garbage collection, no type safety, and manual memory management; Unix had a simpler but less orthogonal design than Multics. However, C was small enough to port to new hardware in weeks rather than years, and Unix was simple enough for a single person to understand the entire kernel. This portability and comprehensibility created a viral adoption loop: Unix spread to every university and hardware platform, accumulating contributions from thousands of developers. By the time 'better' systems like Multics were ready, Unix had already won through sheer ecosystem momentum, proving that implementation simplicity and rapid portability can outweigh theoretical superiority.",
+  "case_study_zh": "Unix和C是Gabriel关于更差即更好获胜的原始范例。与Multics和Lisp相比，Unix和C在客观上能力更弱：C没有垃圾回收、没有类型安全、需要手动内存管理；Unix的设计比Multics更简单但正交性更低。然而，C小到可以在数周而非数年内移植到新硬件，Unix简单到单个人可以理解整个内核。这种可移植性和可理解性创造了病毒式采纳循环：Unix传播到每所大学和每个硬件平台，积累了数千名开发者的贡献。当Multics等「更好」的系统准备就绪时，Unix已经通过纯粹的生态系统动量获胜，证明了实现简洁性和快速可移植性可以胜过理论优越性。",
+  "when_not_to_use": [
+    "When building safety-critical systems where 'good enough' correctness has life-or-death consequences and regulatory compliance demands formal verification",
+    "When the domain requires mathematical precision (cryptography, financial settlement, scientific computing) where an incorrect implementation is worse than no implementation",
+    "When your users are technical experts who will reject a simplified system that doesn't meet their professional standards (compilers, databases, operating system kernels for specialized hardware)",
+    "When you are building infrastructure that other systems will depend on for decades, where early simplicity trade-offs compound into systemic limitations"
+  ],
+  "when_not_to_use_zh": [
+    "当构建安全关键系统，「足够好」的正确性关乎生死且法规合规要求形式化验证时",
+    "当领域需要数学精度（密码学、金融清算、科学计算），不正确的实现比没有实现更糟时",
+    "当用户是技术专家，他们会拒绝不满足其专业标准的简化系统（编译器、数据库、专用硬件的操作系统内核）时",
+    "当你在构建其他系统将依赖数十年的基础设施，早期的简洁性权衡会复合为系统性局限时"
+  ],
+  "adopters": [
+    "Unix/Linux",
+    "C Language",
+    "HTTP/HTML (early web)",
+    "JSON",
+    "Go Language"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability",
+    "portability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Richard P. Gabriel (1989). \"Lisp: Good News, Bad News, How to Win Big\". AI Expert.",
+  "secondary_sources": [
+    "Richard P. Gabriel (1996). \"Patterns of Software: Tales from the Software Community\". Oxford University Press.",
+    "Niklaus Wirth (1995). \"A Plea for Lean Software\". IEEE Computer, 28(2)."
+  ],
+  "typed_relations": [
+    {
+      "slug": "first-principles-thinking",
+      "type": "complement"
+    },
+    {
+      "slug": "trade-off-sliders",
+      "type": "related"
+    },
+    {
+      "slug": "complexity-budget",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/worse-is-better",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/worse-is-better.md"
+}

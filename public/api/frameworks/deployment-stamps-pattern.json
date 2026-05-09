@@ -1,0 +1,193 @@
+{
+  "id": 291,
+  "name": "Deployment Stamps Pattern",
+  "name_zh": "部署印章模式",
+  "slug": "deployment-stamps-pattern",
+  "category": "deployment",
+  "desc": "Scale by deploying multiple isolated copies of the application stack per tenant or region",
+  "desc_zh": "通过为每个租户或地区部署多个隔离的应用栈副本来扩展规模",
+  "steps": [
+    "Define the stamp unit — the full set of resources (compute, database, cache, networking) that constitutes one isolated deployment",
+    "Templatize the stamp using infrastructure-as-code so that each stamp is provisioned identically from the same template",
+    "Build a routing layer (geo-DNS, tenant lookup service) that maps each customer or region to their assigned stamp",
+    "Deploy new stamps for new tenants or regions; scale within a stamp until it reaches its defined capacity ceiling",
+    "Operate stamps independently — updates, incidents, and capacity changes on one stamp do not affect others"
+  ],
+  "steps_zh": [
+    "定义印章单元——构成一个隔离部署的完整资源集合（计算、数据库、缓存、网络）",
+    "使用基础设施即代码对印章进行模板化，使每个印章从相同模板以相同方式创建",
+    "构建路由层（地理 DNS、租户查找服务）将每个客户或地区映射到其分配的印章",
+    "为新租户或地区部署新印章；在印章内扩展直到达到其定义的容量上限",
+    "独立运营印章——一个印章上的更新、事故和容量变更不影响其他印章"
+  ],
+  "ai_relevant": false,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Region A",
+    "Region B",
+    "Stamp Config",
+    "Routing"
+  ],
+  "viz_labels_zh": [
+    "区域A",
+    "区域B",
+    "印模配置",
+    "路由"
+  ],
+  "related": [
+    "infrastructure-as-code",
+    "gitops",
+    "blue-green-deployment",
+    "platform-engineering"
+  ],
+  "tags": [
+    "stamps",
+    "multi-tenant",
+    "scaling",
+    "isolation",
+    "cloud-architecture"
+  ],
+  "origin_author": "Microsoft Azure",
+  "origin_source": "Microsoft Azure Architecture Center (2019). \"Deployment Stamps pattern\". learn.microsoft.com.",
+  "origin_source_zh": "微软 Azure 架构中心（2019）。《部署印章模式》。learn.microsoft.com。",
+  "complexity": "advanced",
+  "when_to_use": [
+    "SaaS applications requiring strong data isolation between enterprise customers for compliance or contractual reasons",
+    "Global services where latency requirements mandate co-locating compute and data near each customer region",
+    "Systems that must scale beyond the limits of a single database or infrastructure stack without re-architecting the application",
+    "Applications with highly variable per-tenant load profiles where noisy-neighbor effects on a shared stack would degrade SLAs"
+  ],
+  "when_to_use_zh": [
+    "出于合规或合同原因需要在企业客户之间强隔离数据的 SaaS 应用",
+    "延迟要求强制在每个客户地区附近部署计算和数据的全球服务",
+    "必须在不重新架构应用的情况下扩展超过单一数据库或基础设施栈限制的系统",
+    "每租户负载特征高度可变、共享栈上的吵闹邻居效应会降低 SLA 的应用"
+  ],
+  "core_concepts": [
+    "Stamp Unit: A stamp is the smallest independently deployable unit of the full application stack; it is self-contained and shares no mutable state with other stamps",
+    "Template Consistency: Every stamp is provisioned from the same IaC template, ensuring configuration parity and eliminating stamp-specific drift",
+    "Tenant-to-Stamp Routing: A routing layer maps each tenant or region identifier to its assigned stamp; this layer is the only shared component",
+    "Blast Radius Containment: Incidents, performance degradation, or failed deployments on one stamp are fully contained and do not propagate to other stamps"
+  ],
+  "core_concepts_zh": [
+    "印章单元：印章是完整应用栈中最小的独立可部署单元；它是自包含的，与其他印章不共享可变状态",
+    "模板一致性：每个印章从相同的 IaC 模板创建，确保配置一致性并消除印章特有漂移",
+    "租户到印章路由：路由层将每个租户或地区标识符映射到其分配的印章；该层是唯一共享的组件",
+    "爆炸半径控制：一个印章上的事故、性能降级或失败部署完全被隔离，不会传播到其他印章"
+  ],
+  "timeline": [
+    [
+      "2010",
+      "Large SaaS providers (Salesforce, Workday) use isolated tenant stacks informally to meet enterprise data isolation requirements"
+    ],
+    [
+      "2019",
+      "Microsoft Azure Architecture Center formalizes and publishes the Deployment Stamps pattern with reference implementations"
+    ],
+    [
+      "2021",
+      "Kubernetes multi-tenancy tooling (vcluster, Capsule) enables lightweight stamp-per-tenant isolation within shared clusters"
+    ],
+    [
+      "2023",
+      "Cell-based architecture (Amazon, Slack) emerges as a variant of the stamps pattern optimized for fault isolation at scale"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2010",
+      "大型 SaaS 提供商（Salesforce、Workday）非正式地使用隔离租户栈满足企业数据隔离要求"
+    ],
+    [
+      "2019",
+      "微软 Azure 架构中心正式化并发布部署印章模式及参考实现"
+    ],
+    [
+      "2021",
+      "Kubernetes 多租户工具（vcluster、Capsule）在共享集群内实现轻量级每租户印章隔离"
+    ],
+    [
+      "2023",
+      "基于单元的架构（Amazon、Slack）作为印章模式的变体出现，针对规模故障隔离进行了优化"
+    ]
+  ],
+  "dos": [
+    "Do automate stamp provisioning end-to-end from IaC templates so that a new stamp can be deployed in minutes without manual steps",
+    "Do implement a centralized stamp registry that tracks which tenant maps to which stamp, their capacity utilization, and health status",
+    "Do version stamp templates independently from application code so infrastructure changes can be applied across stamps in controlled waves",
+    "Do design stamps to be horizontally scalable within their bounds so you can right-size before provisioning a new stamp"
+  ],
+  "dos_zh": [
+    "务必从 IaC 模板端到端自动化印章配置，使新印章可以在数分钟内无需手动步骤地部署",
+    "务必实现一个集中式印章注册表，跟踪哪个租户映射到哪个印章、其容量利用率和健康状态",
+    "务必独立于应用代码对印章模板进行版本控制，使基础设施变更可以以受控方式应用于各印章",
+    "务必将印章设计为在其边界内水平可扩展，以便在创建新印章前进行适当调整"
+  ],
+  "donts": [
+    "Don't allow stamps to share mutable state (databases, caches, message queues) — shared state defeats the isolation guarantee and reintroduces noisy-neighbor risk",
+    "Don't manually configure individual stamps — every deviation from the template becomes undocumented drift that causes future incidents",
+    "Don't over-provision stamps from day one — use capacity modeling to right-size the stamp unit and grow the number of stamps rather than the size",
+    "Don't use the stamps pattern as a substitute for good application architecture — it scales isolation, not poorly-written code"
+  ],
+  "donts_zh": [
+    "不要让印章共享可变状态（数据库、缓存、消息队列）——共享状态破坏了隔离保证并重新引入吵闹邻居风险",
+    "不要手动配置单个印章——每个与模板的偏差都成为未记录的漂移，导致未来事故",
+    "不要从第一天就过度配置印章——使用容量建模适当调整印章单元大小，通过增加印章数量而非印章大小来扩展",
+    "不要将印章模式用作良好应用架构的替代品——它扩展的是隔离，而非编写糟糕的代码"
+  ],
+  "case_study_company": "GitHub",
+  "case_study": "GitHub uses a stamps-like deployment model for GitHub Enterprise Server, where each enterprise customer runs their own isolated stack — compute, storage, and networking — deployed from the same release artifact. This architecture ensures that a performance problem or infrastructure incident at one enterprise installation has zero impact on other customers. GitHub also uses this pattern internally for its own reliability zones, with independent stacks per region that can absorb a full zone failure without cross-zone blast radius.",
+  "case_study_zh": "GitHub 为 GitHub Enterprise Server 使用类印章的部署模型，每个企业客户运行自己独立的栈——计算、存储和网络——从相同的发布制品部署。此架构确保一个企业安装中的性能问题或基础设施事故对其他客户零影响。GitHub 内部也将此模式用于其自身的可靠性区域，每个地区有独立的栈，可以在无跨区域爆炸半径的情况下吸收整个区域故障。",
+  "when_not_to_use": [
+    "Consumer SaaS with millions of end-user accounts where per-user stamp isolation is economically infeasible",
+    "Applications with strong cross-tenant data sharing requirements where isolation prevents legitimate data access patterns",
+    "Small teams without the platform engineering maturity to build, operate, and version the stamp provisioning pipeline",
+    "Systems with uniform, predictable load where a single well-scaled stack is more cost-effective than many small stamps"
+  ],
+  "when_not_to_use_zh": [
+    "拥有数百万终端用户账户的消费者 SaaS——每用户印章隔离在经济上不可行",
+    "具有强跨租户数据共享需求、隔离阻止合法数据访问模式的应用",
+    "缺乏构建、运营和版本化印章配置流水线的平台工程成熟度的小团队",
+    "负载均匀可预测的系统——单一良好扩展的栈比许多小印章更具成本效益"
+  ],
+  "adopters": [
+    "Microsoft Azure",
+    "GitHub",
+    "Salesforce",
+    "SAP",
+    "Workday",
+    "Twilio"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "security"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Microsoft Azure Architecture Center (2019). \"Deployment Stamps pattern\". learn.microsoft.com/azure/architecture/patterns/deployment-stamp.",
+  "secondary_sources": [
+    "Colm MacCarthaigh (2022). \"Avoiding fallback in distributed systems\". AWS builder's library. aws.amazon.com.",
+    "Slack Engineering (2022). \"Cell-based architecture\". slack.engineering.",
+    "Gregor Hohpe (2020). \"The Software Architect Elevator\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "infrastructure-as-code",
+      "type": "complement"
+    },
+    {
+      "slug": "gitops",
+      "type": "complement"
+    },
+    {
+      "slug": "blue-green-deployment",
+      "type": "complement"
+    },
+    {
+      "slug": "platform-engineering",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/deployment-stamps-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/deployment-stamps-pattern.md"
+}

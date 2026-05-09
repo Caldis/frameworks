@@ -1,0 +1,189 @@
+{
+  "id": 30,
+  "name": "GRASP Patterns",
+  "name_zh": "GRASP 模式",
+  "slug": "grasp-patterns",
+  "category": "coding",
+  "desc": "Nine patterns for assigning responsibility to classes properly",
+  "desc_zh": "九种将职责正确分配给类的通用模式",
+  "steps": [
+    "Apply Information Expert: assign each responsibility to the class that has the information necessary to fulfill it",
+    "Use Creator pattern: give class B the responsibility to create class A if B contains, aggregates, or closely uses A",
+    "Enforce Low Coupling and High Cohesion: minimize dependencies between classes while keeping related behaviors together",
+    "Apply Controller: assign system event handling to a use-case controller or facade that delegates to domain objects",
+    "Use Polymorphism and Indirection: handle variation through polymorphic dispatch and introduce intermediary objects to reduce direct coupling"
+  ],
+  "steps_zh": [
+    "应用信息专家：将每个职责分配给拥有完成该职责所需信息的类",
+    "使用创建者模式：如果类B包含、聚合或密切使用类A，则由B负责创建A",
+    "强制低耦合与高内聚：最小化类间依赖，同时将相关行为保持在一起",
+    "应用控制器：将系统事件处理分配给用例控制器或门面，再委托给领域对象",
+    "使用多态与间接：通过多态分派处理变化，引入中介对象减少直接耦合"
+  ],
+  "ai_relevant": false,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Info Expert",
+    "Creator",
+    "Controller",
+    "Low Coupling",
+    "High Cohesion"
+  ],
+  "viz_labels_zh": [
+    "信息专家",
+    "创建者",
+    "控制器",
+    "低耦合",
+    "高内聚"
+  ],
+  "related": [
+    "solid-principles",
+    "gof-design-patterns",
+    "clean-code-principles"
+  ],
+  "tags": [
+    "grasp",
+    "responsibility-assignment",
+    "oop",
+    "coupling",
+    "cohesion"
+  ],
+  "origin_author": "Craig Larman, 2004",
+  "origin_source": "Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design and Iterative Development",
+  "origin_source_zh": "《UML和模式应用：面向对象分析与设计及迭代开发导论》",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Deciding which class should own a particular method or behavior",
+    "Teaching junior developers how to think about responsibility assignment in OOP",
+    "Reviewing domain models to identify misplaced logic or god objects",
+    "Designing new classes during iterative object-oriented analysis"
+  ],
+  "when_to_use_zh": [
+    "决定哪个类应拥有特定方法或行为时",
+    "教导初级开发者如何在面向对象编程中思考职责分配",
+    "审查领域模型以识别放置不当的逻辑或上帝对象",
+    "在迭代式面向对象分析中设计新类"
+  ],
+  "core_concepts": [
+    "Information Expert: assign responsibility to the class that has the data needed to fulfill it, reducing data transfer between objects",
+    "Creator: determine which class should create instances of another based on containment, aggregation, or close usage relationships",
+    "Low Coupling: minimize interdependencies between classes so that changes in one class have minimal ripple effects",
+    "High Cohesion: keep each class focused on a narrow, well-defined set of related responsibilities",
+    "Controller: assign the responsibility for handling system events to a non-UI object that coordinates the use case"
+  ],
+  "core_concepts_zh": [
+    "信息专家：将职责分配给拥有完成该职责所需数据的类，减少对象间的数据传递",
+    "创建者：根据包含、聚合或密切使用关系确定哪个类应负责创建另一个类的实例",
+    "低耦合：最小化类间的相互依赖，使一个类的变更对其他类的影响最小",
+    "高内聚：保持每个类专注于范围窄小、定义良好的相关职责集合",
+    "控制器：将系统事件处理职责分配给协调用例的非 UI 对象"
+  ],
+  "timeline": [
+    [
+      "2001",
+      "Craig Larman introduces GRASP in the first edition of 'Applying UML and Patterns'"
+    ],
+    [
+      "2004",
+      "Third edition of the book consolidates all nine patterns and becomes a university textbook standard"
+    ],
+    [
+      "2010",
+      "GRASP gains renewed interest as complement to SOLID in enterprise Java and C# communities"
+    ],
+    [
+      "2015",
+      "GRASP patterns are adapted for microservice responsibility assignment in distributed systems literature"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2001",
+      "Craig Larman 在《UML和模式应用》第一版中引入 GRASP"
+    ],
+    [
+      "2004",
+      "第三版整合了全部九种模式，成为高校教材标准"
+    ],
+    [
+      "2010",
+      "GRASP 在企业级 Java 和 C# 社区中作为 SOLID 的补充再次受到关注"
+    ],
+    [
+      "2015",
+      "GRASP 模式被改编用于分布式系统文献中的微服务职责分配"
+    ]
+  ],
+  "dos": [
+    "Do start with Information Expert when unsure where to place a method because it naturally reduces coupling",
+    "Do use Controller pattern to separate UI from business logic because it enables independent testing",
+    "Do evaluate cohesion when a class grows beyond five methods because low cohesion indicates mixed responsibilities",
+    "Do combine GRASP with SOLID because they are complementary and reinforce each other"
+  ],
+  "dos_zh": [
+    "当不确定方法应放在哪里时，优先用信息专家模式，因为它自然地减少耦合",
+    "使用控制器模式将 UI 与业务逻辑分离，因为这能实现独立测试",
+    "当一个类的方法超过五个时评估内聚性，因为低内聚表明职责混杂",
+    "将 GRASP 与 SOLID 结合使用，因为它们互为补充、相互强化"
+  ],
+  "donts": [
+    "Don't treat GRASP as rigid rules because they are guidelines requiring contextual judgment",
+    "Don't assign creation responsibility to a class just because it is convenient without evaluating aggregation relationships",
+    "Don't over-apply Indirection by adding unnecessary mediator classes because it increases complexity without benefit",
+    "Don't ignore GRASP when doing domain modeling because it prevents common mistakes in responsibility assignment"
+  ],
+  "donts_zh": [
+    "不要将 GRASP 视为死板的规则，因为它们是需要结合上下文判断的指导原则",
+    "不要仅因方便就将创建职责分配给某个类，而不评估聚合关系",
+    "不要通过添加不必要的中介类来过度应用间接模式，因为这会增加复杂性而无收益",
+    "不要在领域建模时忽视 GRASP，因为它能防止职责分配中的常见错误"
+  ],
+  "case_study_company": "Ericsson",
+  "case_study": "Ericsson's telecom platform team adopted GRASP patterns when restructuring their legacy billing system. By systematically applying Information Expert and Creator patterns, they reduced the number of cross-module dependencies by 40% and shortened the average time to implement new billing features from three weeks to five days.",
+  "case_study_zh": "爱立信的电信平台团队在重构遗留计费系统时采用了 GRASP 模式。通过系统性地应用信息专家和创建者模式，他们将跨模块依赖减少了 40%，新计费功能的平均实现周期从三周缩短到五天。",
+  "when_not_to_use": [
+    "Purely functional codebases where objects and classes are not the primary abstraction",
+    "Rapid prototyping where responsibility placement will be revisited soon",
+    "Data-centric CRUD applications where anemic models with service layers are the deliberate choice",
+    "Very small projects with only a handful of classes where the overhead of formal patterns is unnecessary"
+  ],
+  "when_not_to_use_zh": [
+    "纯函数式代码库，对象和类不是主要抽象手段",
+    "快速原型开发阶段，职责分配很快会被重新审视",
+    "以数据为中心的 CRUD 应用，贫血模型配合服务层是刻意的选择",
+    "仅有少数几个类的极小项目，正式模式的开销没有必要"
+  ],
+  "adopters": [
+    "Ericsson",
+    "SAP",
+    "Oracle",
+    "Siemens",
+    "IBM"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Craig Larman (2004). \"Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design and Iterative Development, 3rd Edition\". Prentice Hall.",
+  "secondary_sources": [
+    "Craig Larman (2002). \"Applying UML and Patterns, 2nd Edition\". Prentice Hall.",
+    "Rebecca Wirfs-Brock and Alan McKean (2002). \"Object Design: Roles, Responsibilities, and Collaborations\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "solid-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "gof-design-patterns",
+      "type": "complement"
+    },
+    {
+      "slug": "clean-code-principles",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/grasp-patterns",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/grasp-patterns.md"
+}

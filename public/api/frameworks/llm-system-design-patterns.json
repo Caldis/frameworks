@@ -1,0 +1,199 @@
+{
+  "id": 28,
+  "name": "LLM System Design Patterns",
+  "name_zh": "LLM系统设计模式",
+  "slug": "llm-system-design-patterns",
+  "category": "architecture",
+  "desc": "Architectural patterns for production LLM-powered applications",
+  "desc_zh": "面向生产环境的LLM驱动应用架构模式集合",
+  "steps": [
+    "Select the primary integration pattern: RAG (retrieval-augmented), fine-tuned model, prompt chaining, or tool-use agent",
+    "Design the prompt management layer: prompt templates, versioning, A/B testing infrastructure, and injection of context",
+    "Choose memory and state architecture: in-context window, external vector store, structured DB, or episodic memory",
+    "Define latency, cost, and quality trade-offs; implement routing to smaller/faster models for simpler sub-tasks",
+    "Build evaluation infrastructure: automated evals, hallucination detection, guardrails, and human feedback loops for continuous improvement"
+  ],
+  "steps_zh": [
+    "选择主要集成模式：RAG（检索增强生成）、微调模型、提示链或工具调用智能体",
+    "设计提示管理层：提示模板、版本控制、A/B测试基础设施以及上下文注入",
+    "选择记忆与状态架构：上下文窗口内、外部向量存储、结构化数据库或情节记忆",
+    "定义延迟、成本和质量权衡；实现路由机制将简单子任务转发给更小更快的模型",
+    "构建评估基础设施：自动化评测、幻觉检测、安全护栏和人类反馈循环以持续改进"
+  ],
+  "ai_relevant": true,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "RAG",
+    "Agent Loop",
+    "Tool Use",
+    "Guardrails"
+  ],
+  "viz_labels_zh": [
+    "检索增强",
+    "智能体循环",
+    "工具调用",
+    "安全护栏"
+  ],
+  "related": [
+    "rag-architecture",
+    "react-framework",
+    "prompt-chaining",
+    "guardrails-framework"
+  ],
+  "tags": [
+    "llm",
+    "ai-architecture",
+    "rag",
+    "prompt-engineering",
+    "production"
+  ],
+  "origin_author": "Community-evolved; key contributors include Harrison Chase (LangChain, 2022) and Jerry Liu (LlamaIndex, 2022)",
+  "origin_source": "Patterns of LLM Application Design (various: LangChain docs, Chip Huyen's blog, Anthropic's guides)",
+  "origin_source_zh": "《LLM应用设计模式》（多来源：LangChain文档、Chip Huyen博客、Anthropic指南）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When building production applications that integrate LLMs for generation, summarization, or reasoning tasks",
+    "When you need to ground LLM outputs in domain-specific knowledge using retrieval-augmented generation",
+    "When designing multi-step agent workflows that require tool use, planning, and iterative refinement",
+    "When cost, latency, and quality trade-offs require intelligent routing between different model sizes"
+  ],
+  "when_to_use_zh": [
+    "构建集成LLM用于生成、摘要或推理任务的生产应用时",
+    "需要使用检索增强生成将LLM输出锚定在领域特定知识中时",
+    "设计需要工具使用、规划和迭代改进的多步骤智能体工作流时",
+    "成本、延迟和质量权衡需要在不同模型大小之间智能路由时"
+  ],
+  "core_concepts": [
+    "RAG (Retrieval-Augmented Generation): Enhancing LLM responses by retrieving relevant documents from a vector store before generation",
+    "Prompt chaining: Breaking complex tasks into sequential LLM calls where each step's output feeds the next",
+    "Tool use / function calling: Enabling LLMs to invoke external APIs, databases, or code execution environments",
+    "Model routing: Directing requests to different model sizes based on task complexity to optimize cost and latency",
+    "Guardrails: Input/output validation layers that prevent harmful, off-topic, or hallucinated responses"
+  ],
+  "core_concepts_zh": [
+    "RAG（检索增强生成）：在生成前从向量存储中检索相关文档以增强LLM响应",
+    "提示链：将复杂任务分解为顺序LLM调用，每步输出作为下一步输入",
+    "工具使用/函数调用：使LLM能够调用外部API、数据库或代码执行环境",
+    "模型路由：根据任务复杂度将请求导向不同大小的模型以优化成本和延迟",
+    "安全护栏：防止有害、离题或幻觉响应的输入/输出验证层"
+  ],
+  "timeline": [
+    [
+      "2020",
+      "OpenAI releases GPT-3 API, sparking the first wave of LLM application development"
+    ],
+    [
+      "2022",
+      "LangChain and LlamaIndex frameworks launch, establishing common LLM integration patterns"
+    ],
+    [
+      "2023",
+      "RAG pattern becomes the dominant approach for grounding LLM outputs in enterprise data"
+    ],
+    [
+      "2024",
+      "Agentic architectures emerge with tool use, planning loops, and multi-agent coordination"
+    ],
+    [
+      "2025",
+      "LLM system design matures with standardized evaluation frameworks, cost optimization, and production observability"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2020",
+      "OpenAI发布GPT-3 API，引发第一波LLM应用开发浪潮"
+    ],
+    [
+      "2022",
+      "LangChain和LlamaIndex框架发布，建立通用LLM集成模式"
+    ],
+    [
+      "2023",
+      "RAG模式成为将LLM输出锚定在企业数据中的主导方法"
+    ],
+    [
+      "2024",
+      "智能体架构兴起，支持工具使用、规划循环和多智能体协调"
+    ],
+    [
+      "2025",
+      "LLM系统设计随标准化评估框架、成本优化和生产可观测性趋于成熟"
+    ]
+  ],
+  "dos": [
+    "Do implement structured evaluation pipelines because 'it looks good' is not a reliable quality measure for LLM outputs",
+    "Do version your prompts and treat them as code artifacts because prompt changes directly affect output quality",
+    "Do use RAG before fine-tuning because it is cheaper, faster to iterate, and keeps the knowledge updatable",
+    "Do add guardrails for input validation and output safety because LLMs can be manipulated through prompt injection"
+  ],
+  "dos_zh": [
+    "实现结构化评估管道，因为「看起来不错」不是LLM输出的可靠质量度量",
+    "对提示进行版本控制并将其视为代码产物，因为提示变更直接影响输出质量",
+    "在微调之前先使用RAG，因为它更便宜、迭代更快且知识可更新",
+    "添加输入验证和输出安全的护栏，因为LLM可能被提示注入攻击操纵"
+  ],
+  "donts": [
+    "Don't send raw user input directly to the LLM because it opens the door to prompt injection attacks",
+    "Don't rely solely on temperature settings for output diversity because structured sampling strategies give more control",
+    "Don't build monolithic prompt chains because a failure in one step cascades and is hard to debug",
+    "Don't skip cost monitoring because LLM API costs can grow exponentially with scale and retries"
+  ],
+  "donts_zh": [
+    "不要将原始用户输入直接发送给LLM，因为这为提示注入攻击打开了大门",
+    "不要仅依赖温度设置来控制输出多样性，因为结构化采样策略提供更多控制",
+    "不要构建单体提示链，因为一步失败会级联影响且难以调试",
+    "不要跳过成本监控，因为LLM API费用可能随规模和重试呈指数增长"
+  ],
+  "case_study_company": "Klarna",
+  "case_study": "Klarna deployed an AI assistant powered by OpenAI that handled two-thirds of all customer service chats within its first month, performing the equivalent work of 700 full-time agents. The system uses RAG to retrieve relevant order data and company policies, prompt chaining for multi-turn conversation management, and guardrails to prevent the AI from making unauthorized commitments. Klarna reported a 25% reduction in repeat inquiries and average resolution time dropping from 11 minutes to under 2 minutes.",
+  "case_study_zh": "Klarna部署了由OpenAI驱动的AI助手，在上线首月即处理了三分之二的客服聊天，相当于700名全职客服的工作量。该系统使用RAG检索相关订单数据和公司政策，使用提示链管理多轮对话，并使用护栏防止AI做出未授权的承诺。Klarna报告重复咨询减少25%，平均解决时间从11分钟降至不到2分钟。",
+  "when_not_to_use": [
+    "Deterministic computation tasks where traditional algorithms provide exact, reproducible results",
+    "Highly regulated domains where LLM non-determinism and hallucination risk are unacceptable without human oversight",
+    "Low-latency paths where LLM inference time (hundreds of milliseconds to seconds) exceeds requirements"
+  ],
+  "when_not_to_use_zh": [
+    "传统算法能提供精确可重现结果的确定性计算任务",
+    "LLM的不确定性和幻觉风险在没有人工监督的情况下不可接受的高度监管领域",
+    "LLM推理时间（数百毫秒到数秒）超出要求的低延迟路径"
+  ],
+  "adopters": [
+    "Klarna",
+    "Notion",
+    "Shopify",
+    "Stripe",
+    "Replit"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "scalability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Harrison Chase (2022). \"LangChain: Building Applications with LLMs through Composability\". github.com/langchain-ai.",
+  "secondary_sources": [
+    "Chip Huyen (2023). \"Building LLM Applications for Production\". huyenchip.com.",
+    "Anthropic (2024). \"Building Effective Agents\". anthropic.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "rag-architecture",
+      "type": "complement"
+    },
+    {
+      "slug": "react-framework",
+      "type": "related"
+    },
+    {
+      "slug": "prompt-chaining",
+      "type": "related"
+    },
+    {
+      "slug": "guardrails-framework",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/llm-system-design-patterns",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/llm-system-design-patterns.md"
+}

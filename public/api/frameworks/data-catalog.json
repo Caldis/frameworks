@@ -1,0 +1,196 @@
+{
+  "id": 306,
+  "name": "Data Catalog",
+  "name_zh": "数据目录",
+  "slug": "data-catalog",
+  "category": "data",
+  "desc": "Centralized metadata management system that enables data discovery, governance, and self-service analytics across an organization.",
+  "desc_zh": "集中式元数据管理系统，支持组织内的数据发现、治理和自助分析。",
+  "steps": [
+    "Ingest metadata from all data sources (databases, data lakes, BI tools, pipelines) through automated crawlers and manual annotations",
+    "Build a unified metadata store with technical metadata (schema, partitions, statistics), business metadata (owners, definitions, tags), and operational metadata (lineage, usage metrics)",
+    "Enable semantic search and browse so data consumers can discover datasets by keyword, domain, owner, or data classification",
+    "Implement governance workflows: ownership assignment, access requests, sensitivity tagging (PII, GDPR), and data quality certification",
+    "Continuously update metadata via change-event subscriptions so the catalog reflects the real-time state of the data landscape"
+  ],
+  "steps_zh": [
+    "通过自动爬虫和人工标注从所有数据源（数据库、数据湖、BI工具、管道）摄取元数据",
+    "构建统一元数据存储，包含技术元数据（模式、分区、统计）、业务元数据（所有者、定义、标签）和运营元数据（血缘、使用指标）",
+    "启用语义搜索和浏览，使数据消费者可以按关键词、领域、所有者或数据分类发现数据集",
+    "实施治理工作流：所有权分配、访问申请、敏感度标记（个人信息、GDPR）和数据质量认证",
+    "通过变更事件订阅持续更新元数据，使目录反映数据全景的实时状态"
+  ],
+  "ai_relevant": true,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Crawler",
+    "Metadata Store",
+    "Discovery",
+    "Governance",
+    "Change Sync"
+  ],
+  "viz_labels_zh": [
+    "元数据爬取",
+    "元数据存储",
+    "数据发现",
+    "数据治理",
+    "变更同步"
+  ],
+  "related": [
+    "data-lineage",
+    "data-mesh",
+    "data-quality-framework",
+    "data-lineage-governance"
+  ],
+  "tags": [
+    "metadata",
+    "data-discovery",
+    "governance",
+    "data-catalog",
+    "alation"
+  ],
+  "origin_author": "Alation",
+  "origin_source": "Alation (2012). 'The Collaborative Data Catalog'. alation.com; O'Neil, C. & Schutt, R. (2013). Doing Data Science. O'Reilly.",
+  "origin_source_zh": "Alation（2012）。「协作式数据目录」。alation.com；O'Neil, C. & Schutt, R.（2013）。《数据科学实战》。O'Reilly。",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When an organization has dozens or hundreds of data sources and analysts spend significant time locating trustworthy datasets rather than analyzing them",
+    "When data governance obligations (GDPR, CCPA, HIPAA) require documented data inventories, sensitivity classifications, and lineage trails",
+    "When implementing a data mesh or data platform where domain teams need to publish, discover, and subscribe to each other's data products",
+    "When onboarding new data engineers or analysts who need to understand what data exists, who owns it, and how it has been used"
+  ],
+  "when_to_use_zh": [
+    "当组织拥有数十或数百个数据源，分析师花费大量时间定位可信数据集而非分析数据时",
+    "当数据治理义务（GDPR、CCPA、HIPAA）要求有文档化的数据清单、敏感度分类和血缘记录时",
+    "当实施数据网格或数据平台，领域团队需要发布、发现和订阅彼此的数据产品时",
+    "当入职新数据工程师或分析师，需要了解存在哪些数据、谁拥有它以及如何使用时"
+  ],
+  "core_concepts": [
+    "Technical metadata: schema definitions, column types, row counts, partition keys, and storage statistics automatically harvested from source systems",
+    "Business metadata: human-authored glossary terms, dataset descriptions, ownership assignments, and domain classifications that give technical assets business context",
+    "Data lineage integration: linking catalog entries to upstream sources and downstream consumers so impact analysis and root-cause investigation are possible",
+    "Collaborative curation: crowdsourced ratings, usage-based popularity signals, and expert endorsements that surface high-quality datasets to new consumers"
+  ],
+  "core_concepts_zh": [
+    "技术元数据：从源系统自动采集的模式定义、列类型、行数、分区键和存储统计",
+    "业务元数据：人工编写的术语词汇表、数据集描述、所有权分配和领域分类，为技术资产提供业务背景",
+    "数据血缘集成：将目录条目与上游源和下游消费者关联，支持影响分析和根本原因调查",
+    "协作管理：众包评分、基于使用情况的热度信号和专家推荐，向新消费者展示高质量数据集"
+  ],
+  "timeline": [
+    [
+      "2012",
+      "Alation founded and pioneers the modern collaborative data catalog concept, combining automated metadata harvesting with human curation"
+    ],
+    [
+      "2015",
+      "Waterline Data and Collibra enter the market, establishing data catalog as a recognized product category distinct from traditional metadata repositories"
+    ],
+    [
+      "2019",
+      "Gartner identifies data catalog as a critical capability in the modern data stack; AWS Glue Data Catalog and Azure Purview accelerate cloud adoption"
+    ],
+    [
+      "2022",
+      "Open Metadata and DataHub (LinkedIn) emerge as open-source alternatives; data catalog becomes standard infrastructure in data mesh architectures"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2012",
+      "Alation成立，开创现代协作式数据目录概念，将自动元数据采集与人工管理相结合"
+    ],
+    [
+      "2015",
+      "Waterline Data和Collibra进入市场，将数据目录确立为有别于传统元数据仓库的公认产品类别"
+    ],
+    [
+      "2019",
+      "Gartner将数据目录确定为现代数据栈的关键能力；AWS Glue数据目录和Azure Purview加速云端采用"
+    ],
+    [
+      "2022",
+      "Open Metadata和DataHub（LinkedIn）作为开源替代方案出现；数据目录成为数据网格架构中的标准基础设施"
+    ]
+  ],
+  "dos": [
+    "Do automate metadata ingestion through crawlers and API integrations because manual-only catalogs quickly become stale and lose user trust",
+    "Do assign clear dataset owners and make ownership visible in the catalog because undiscoverable ownership is the primary reason data governance programs fail",
+    "Do integrate usage analytics (query frequency, most-accessed columns, last queried) so the catalog surfaces popular and recently validated datasets prominently",
+    "Do tag datasets with sensitivity classifications at ingestion time because retrofitting PII tags across thousands of existing assets is prohibitively expensive"
+  ],
+  "dos_zh": [
+    "通过爬虫和API集成自动化元数据摄取，因为仅靠人工维护的目录会迅速过时并失去用户信任",
+    "分配清晰的数据集所有者并在目录中显示所有权，因为不可发现的所有权是数据治理计划失败的主要原因",
+    "集成使用分析（查询频率、最常访问的列、最后查询时间），使目录突出显示热门和最近验证过的数据集",
+    "在摄取时为数据集标记敏感度分类，因为在数千个现有资产中追溯个人信息标签代价极高"
+  ],
+  "donts": [
+    "Don't deploy a data catalog as a purely IT-driven project without data consumer buy-in because adoption requires analysts and data scientists to actively contribute business metadata",
+    "Don't treat the catalog as a static inventory; without continuous metadata refresh the catalog drifts from reality and users stop trusting it",
+    "Don't ignore social features like comments, ratings, and endorsements because quantitative usage signals alone cannot capture domain-specific trust",
+    "Don't attempt to catalog every field in every dataset on day one; start with the highest-traffic tables and expand coverage iteratively"
+  ],
+  "donts_zh": [
+    "不要将数据目录作为纯IT驱动的项目部署，而不获得数据消费者认可，因为采用需要分析师和数据科学家积极贡献业务元数据",
+    "不要将目录视为静态清单；没有持续元数据刷新，目录会偏离现实，用户将停止信任它",
+    "不要忽视评论、评分和推荐等社交功能，因为单纯的定量使用信号无法捕捉特定领域的信任",
+    "不要在第一天就尝试对每个数据集的每个字段进行编目；从流量最高的表开始，迭代扩展覆盖范围"
+  ],
+  "case_study_company": "LinkedIn",
+  "case_study": "LinkedIn built DataHub, an open-source metadata platform that catalogs over 500,000 datasets, 300,000 pipelines, and 100,000 ML features across its data ecosystem. DataHub uses a push-based architecture where each data system (Kafka, Hadoop, Presto, Pinot) emits metadata change events to a central metadata graph. This graph-based approach enables real-time impact analysis: engineers can instantly see all downstream dashboards and ML models affected when a schema change is proposed. LinkedIn reports that DataHub reduced mean time to discover a trusted dataset from days to under 10 minutes.",
+  "case_study_zh": "LinkedIn构建了DataHub，一个开源元数据平台，对其数据生态系统中超过50万个数据集、30万个管道和10万个ML特征进行编目。DataHub使用基于推送的架构，每个数据系统（Kafka、Hadoop、Presto、Pinot）将元数据变更事件发送到中央元数据图。这种基于图的方法支持实时影响分析：当提出模式变更时，工程师可以立即看到所有受影响的下游仪表板和ML模型。LinkedIn报告DataHub将发现可信数据集的平均时间从几天缩短到10分钟以内。",
+  "when_not_to_use": [
+    "Small teams with fewer than 10 data sources where informal documentation (a shared wiki or README files) provides sufficient discoverability without catalog overhead",
+    "When data assets are entirely managed by a single team with no cross-team sharing; the catalog's collaboration features provide no value in a single-owner environment",
+    "Highly regulated environments where metadata itself (column names, schema structure) is classified; a public-facing catalog may expose sensitive system architecture",
+    "When the organization lacks the data stewardship culture to curate and maintain metadata; a poorly maintained catalog is worse than no catalog"
+  ],
+  "when_not_to_use_zh": [
+    "数据源少于10个的小团队，非正式文档（共享wiki或README文件）在不增加目录开销的情况下提供了足够的可发现性",
+    "当数据资产完全由单个团队管理，没有跨团队共享时；在单一所有者环境中，目录的协作功能没有价值",
+    "元数据本身（列名、模式结构）被分类的高度监管环境；面向公众的目录可能暴露敏感系统架构",
+    "当组织缺乏数据管理文化来管理和维护元数据时；维护不善的目录比没有目录更糟糕"
+  ],
+  "adopters": [
+    "LinkedIn",
+    "Airbnb",
+    "Shopify",
+    "ING Bank",
+    "Lyft",
+    "Netflix"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability",
+    "observability",
+    "security"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Alation (2012). 'The Collaborative Data Catalog'. alation.com. Shi, M. et al. (2016). 'Goods: Organizing Google's Datasets'. SIGMOD 2016.",
+  "secondary_sources": [
+    "Gartner (2019). 'Magic Quadrant for Metadata Management Solutions'. Gartner Research.",
+    "Shankar, S. et al. (2022). 'We're All in This Together: The Open Metadata Standard'. openmetadata.org.",
+    "Chafi, H. et al. (2021). 'DataHub: A Generalized Metadata Search & Discovery Tool'. LinkedIn Engineering Blog."
+  ],
+  "typed_relations": [
+    {
+      "slug": "data-mesh",
+      "type": "complement"
+    },
+    {
+      "slug": "data-lineage",
+      "type": "complement"
+    },
+    {
+      "slug": "data-quality-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "data-contract",
+      "type": "prerequisite"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/data-catalog",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/data-catalog.md"
+}

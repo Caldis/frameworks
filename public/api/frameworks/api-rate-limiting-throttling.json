@@ -1,0 +1,199 @@
+{
+  "id": 138,
+  "name": "API Rate Limiting & Throttling",
+  "name_zh": "API限流与节流",
+  "slug": "api-rate-limiting-throttling",
+  "category": "api",
+  "desc": "Protect APIs from overuse by controlling request rates per client",
+  "desc_zh": "通过控制每个客户端的请求速率来保护API免遭过度使用",
+  "steps": [
+    "Define rate limit policies based on business tiers: identify limits per API key, user, IP, or organization with different quotas for free and paid plans",
+    "Choose a rate limiting algorithm appropriate for your use case: token bucket for burst tolerance, sliding window for smooth enforcement, or fixed window for simplicity",
+    "Implement the rate limiter using a distributed counter store (Redis, Memcached) that tracks request counts with TTL-based expiration",
+    "Return standard HTTP 429 (Too Many Requests) responses with Retry-After, X-RateLimit-Limit, X-RateLimit-Remaining, and X-RateLimit-Reset headers",
+    "Monitor rate limit metrics, alert on unusual patterns (abuse, DDoS), and provide a self-service dashboard for consumers to track their usage"
+  ],
+  "steps_zh": [
+    "基于业务层级定义限流策略：按API密钥、用户、IP或组织识别限制，为免费和付费计划设置不同配额",
+    "选择适合用例的限流算法：令牌桶用于突发容忍、滑动窗口用于平滑执行、固定窗口用于简单场景",
+    "使用分布式计数存储（Redis、Memcached）实现限流器，通过TTL过期来跟踪请求计数",
+    "返回标准HTTP 429（请求过多）响应，包含Retry-After、X-RateLimit-Limit、X-RateLimit-Remaining和X-RateLimit-Reset头部",
+    "监控限流指标，对异常模式（滥用、DDoS）告警，并为消费者提供自助仪表板以跟踪使用量"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Rate Policy",
+    "Algorithm",
+    "Distributed Counter",
+    "429 Response",
+    "Monitor"
+  ],
+  "viz_labels_zh": [
+    "速率策略",
+    "算法",
+    "分布式计数",
+    "429响应",
+    "监控"
+  ],
+  "related": [
+    "api-gateway-pattern",
+    "webhook-pattern",
+    "openapi-specification"
+  ],
+  "tags": [
+    "rate-limiting",
+    "throttling",
+    "protection",
+    "quota",
+    "resilience"
+  ],
+  "origin_author": "Web infrastructure community; formalized in IETF RFC 6585 (2012, HTTP 429 status code)",
+  "origin_source": "API Design Patterns (JJ Geewax, 2021, Ch. 17); RESTful Web APIs (Leonard Richardson & Mike Amundsen, 2013, Ch. 11)",
+  "origin_source_zh": "《API设计模式》（JJ Geewax，2021，第17章）；《RESTful Web API》（Leonard Richardson & Mike Amundsen，2013，第11章）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When a public API must protect backend services from abuse, DDoS attacks, and runaway client scripts",
+    "When different client tiers (free, premium, enterprise) need different usage quotas to align with business models",
+    "When shared infrastructure serves multiple tenants and fair resource allocation must be enforced",
+    "When costly downstream operations (database queries, third-party API calls) need protection from traffic spikes"
+  ],
+  "when_to_use_zh": [
+    "当公共API必须保护后端服务免受滥用、DDoS攻击和失控客户端脚本的影响时",
+    "当不同客户端层级（免费、高级、企业）需要不同的使用配额以匹配业务模型时",
+    "当共享基础设施服务多个租户且必须执行公平的资源分配时",
+    "当昂贵的下游操作（数据库查询、第三方API调用）需要保护以免受流量尖峰影响时"
+  ],
+  "core_concepts": [
+    "Token Bucket Algorithm: Tokens are added at a fixed rate; each request consumes a token. Allows bursts up to bucket capacity while enforcing average rate over time",
+    "Sliding Window Log: Tracks timestamps of each request in a rolling time window, providing precise rate calculation but with higher memory usage",
+    "Fixed Window Counter: Counts requests in discrete time windows (e.g., per minute). Simple but susceptible to burst-at-boundary edge cases",
+    "Distributed Rate Limiting: Rate counters stored in Redis or similar shared stores ensure consistent enforcement across multiple API server instances",
+    "Quota Headers: X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, and Retry-After headers communicate rate limit status transparently to consumers"
+  ],
+  "core_concepts_zh": [
+    "令牌桶算法：以固定速率添加令牌，每个请求消耗一个令牌。允许突发到桶容量，同时随时间强制平均速率",
+    "滑动窗口日志：在滚动时间窗口中跟踪每个请求的时间戳，提供精确的速率计算但内存使用较高",
+    "固定窗口计数器：在离散时间窗口（如每分钟）中计数请求。简单但容易受到边界突发的边缘情况影响",
+    "分布式限流：将速率计数器存储在Redis或类似共享存储中，确保跨多个API服务器实例的一致执行",
+    "配额头部：X-RateLimit-Limit、X-RateLimit-Remaining、X-RateLimit-Reset和Retry-After头部向消费者透明传达限流状态"
+  ],
+  "timeline": [
+    [
+      "2008",
+      "Twitter API introduces rate limiting as one of the first major public APIs to enforce per-client quotas"
+    ],
+    [
+      "2012",
+      "IETF publishes RFC 6585 standardizing HTTP 429 Too Many Requests status code"
+    ],
+    [
+      "2015",
+      "API gateway products (Kong, AWS API Gateway) include built-in rate limiting as a core feature"
+    ],
+    [
+      "2019",
+      "IETF draft for RateLimit header fields standardizes X-RateLimit-* headers across implementations"
+    ],
+    [
+      "2023",
+      "AI API providers (OpenAI, Anthropic) make sophisticated rate limiting central to usage-based pricing models"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2008",
+      "Twitter API引入限流，成为最早执行每客户端配额的主要公共API之一"
+    ],
+    [
+      "2012",
+      "IETF发布RFC 6585，标准化HTTP 429请求过多状态码"
+    ],
+    [
+      "2015",
+      "API网关产品（Kong、AWS API Gateway）将内置限流作为核心功能"
+    ],
+    [
+      "2019",
+      "IETF关于RateLimit头部字段的草案在各实现间标准化X-RateLimit-*头部"
+    ],
+    [
+      "2023",
+      "AI API提供商（OpenAI、Anthropic）将精细化限流作为基于使用量定价模型的核心"
+    ]
+  ],
+  "dos": [
+    "Do return informative 429 responses with Retry-After and rate limit headers because clients need to implement backoff logic based on concrete values",
+    "Do apply rate limits at the API gateway level because it protects all downstream services uniformly without per-service implementation",
+    "Do differentiate rate limits by client tier and endpoint because not all APIs have the same cost and not all clients have the same entitlement",
+    "Do use sliding window or token bucket algorithms for production because fixed window counters allow boundary-burst abuse"
+  ],
+  "dos_zh": [
+    "返回带有Retry-After和限流头部的信息性429响应，因为客户端需要基于具体值实现退避逻辑",
+    "在API网关层应用限流，因为它能统一保护所有下游服务而无需每个服务单独实现",
+    "按客户端层级和端点区分限流，因为并非所有API成本相同，也并非所有客户端权限相同",
+    "在生产中使用滑动窗口或令牌桶算法，因为固定窗口计数器允许边界突发滥用"
+  ],
+  "donts": [
+    "Don't return generic 500 or 503 errors when rate limiting because clients cannot distinguish server errors from quota exhaustion",
+    "Don't implement rate limiting only on individual servers without a shared counter because clients will get inconsistent limits across instances",
+    "Don't set rate limits without monitoring and alerting because undetected abuse will degrade service for legitimate users",
+    "Don't apply the same rate limit to all endpoints because expensive operations (search, analytics) should have lower limits than lightweight ones (health check)"
+  ],
+  "donts_zh": [
+    "不要在限流时返回通用的500或503错误，因为客户端无法区分服务器错误和配额耗尽",
+    "不要仅在单个服务器上实现限流而不使用共享计数器，因为客户端在不同实例间会获得不一致的限制",
+    "不要设置限流而不监控和告警，因为未检测到的滥用会降低合法用户的服务质量",
+    "不要对所有端点应用相同的限流，因为昂贵操作（搜索、分析）应比轻量操作（健康检查）有更低的限制"
+  ],
+  "case_study_company": "GitHub",
+  "case_study": "GitHub's REST API enforces a rate limit of 5,000 requests per hour for authenticated users and 60 per hour for unauthenticated requests. Every response includes X-RateLimit-Limit, X-RateLimit-Remaining, and X-RateLimit-Reset headers. For their GraphQL API, GitHub uses a point-based system where each query costs points proportional to its complexity. This tiered approach protects GitHub's infrastructure while allowing legitimate automation tools to operate within generous limits, and the transparent headers enable clients to self-throttle before hitting limits.",
+  "case_study_zh": "GitHub的REST API对认证用户执行每小时5,000次请求的限制，对未认证请求为每小时60次。每个响应都包含X-RateLimit-Limit、X-RateLimit-Remaining和X-RateLimit-Reset头部。对于GraphQL API，GitHub使用基于点数的系统，每个查询的成本与其复杂度成正比。这种分层方法保护了GitHub的基础设施，同时允许合法的自动化工具在宽裕的限制内运行，透明的头部使客户端能在触达限制前自行节流。",
+  "when_not_to_use": [
+    "Internal service-to-service communication within a trusted network where circuit breakers and backpressure are more appropriate",
+    "Batch processing pipelines where requests are already controlled by the job scheduler",
+    "Real-time streaming APIs (WebSocket, SSE) where connection-based limits are more relevant than request-based limits",
+    "Early-stage internal APIs with a handful of known consumers where rate limiting adds unnecessary operational complexity"
+  ],
+  "when_not_to_use_zh": [
+    "可信网络内的内部服务间通信，熔断器和反压机制更合适",
+    "批处理管线中请求已由作业调度器控制的场景",
+    "实时流式API（WebSocket、SSE），基于连接的限制比基于请求的限制更相关",
+    "只有少量已知消费者的早期内部API，限流增加了不必要的运维复杂性"
+  ],
+  "adopters": [
+    "GitHub",
+    "Twitter",
+    "Stripe",
+    "OpenAI",
+    "Cloudflare"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability",
+    "scalability",
+    "security"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Geewax, J.J. (2021). \"API Design Patterns\", Ch. 17. Manning Publications.",
+  "secondary_sources": [
+    "Nottingham, M. & Fielding, R. (2012). \"Additional HTTP Status Codes (429 Too Many Requests)\". IETF RFC 6585.",
+    "Richardson, L. & Amundsen, M. (2013). \"RESTful Web APIs\", Ch. 11. O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "api-gateway-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "webhook-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "openapi-specification",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/api-rate-limiting-throttling",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/api-rate-limiting-throttling.md"
+}

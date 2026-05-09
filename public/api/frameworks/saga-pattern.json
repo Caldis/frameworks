@@ -1,0 +1,206 @@
+{
+  "id": 22,
+  "name": "Saga Pattern",
+  "name_zh": "Saga 模式",
+  "slug": "saga-pattern",
+  "category": "architecture",
+  "desc": "Manage distributed transactions via compensating actions",
+  "desc_zh": "通过补偿动作管理分布式事务，保障跨服务数据一致性",
+  "steps": [
+    "Identify the distributed transaction: map all services involved and the sequence of local transactions each must perform",
+    "Choose orchestration vs. choreography: use a central saga orchestrator for complex flows, or event-driven choreography for simpler chains",
+    "Define compensating actions: for each step, implement a reverse operation that undoes the effect if a later step fails",
+    "Implement idempotency: ensure each step and its compensation can be safely retried without side effects using idempotency keys",
+    "Add observability and timeout handling: track saga state transitions, set step timeouts, and alert on stuck or failed sagas for manual resolution"
+  ],
+  "steps_zh": [
+    "识别分布式事务：映射所有涉及的服务以及每个服务必须执行的本地事务序列",
+    "选择编排与协调模式：复杂流程使用中央Saga编排器，简单链路使用事件驱动的协调模式",
+    "定义补偿动作：为每个步骤实现反向操作，在后续步骤失败时撤销该步骤的效果",
+    "实现幂等性：使用幂等键确保每个步骤及其补偿操作可安全重试而无副作用",
+    "添加可观测性和超时处理：追踪Saga状态转换，设置步骤超时，对卡住或失败的Saga发出告警以便人工处理"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Step",
+    "Compensate",
+    "Choreograph",
+    "Orchestrate"
+  ],
+  "viz_labels_zh": [
+    "事务步骤",
+    "补偿操作",
+    "编排协调",
+    "集中控制"
+  ],
+  "related": [
+    "eda",
+    "cqrs-pattern",
+    "circuit-breaker-pattern",
+    "microservices-decomposition"
+  ],
+  "tags": [
+    "distributed-transactions",
+    "compensation",
+    "orchestration",
+    "choreography",
+    "consistency"
+  ],
+  "origin_author": "Hector Garcia-Molina and Kenneth Salem, 1987",
+  "origin_source": "Sagas (ACM SIGMOD Conference, 1987)",
+  "origin_source_zh": "《Sagas》（1987年ACM SIGMOD会议论文）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When a business process spans multiple microservices and requires all-or-nothing semantics",
+    "When distributed transactions (2PC) are not feasible due to latency or service autonomy requirements",
+    "When you need compensating logic to undo partial work in case of failures",
+    "When order processing, booking, or payment flows involve multiple independent services"
+  ],
+  "when_to_use_zh": [
+    "业务流程跨越多个微服务且需要全有或全无语义时",
+    "因延迟或服务自治需求导致分布式事务（2PC）不可行时",
+    "需要补偿逻辑在故障时撤销部分完成的工作时",
+    "订单处理、预订或支付流程涉及多个独立服务时"
+  ],
+  "core_concepts": [
+    "Compensating transaction: A reverse operation that semantically undoes a previously committed local transaction",
+    "Orchestration: A central saga coordinator directs each participant and handles failure routing",
+    "Choreography: Each service listens for events and decides independently whether to proceed or compensate",
+    "Semantic rollback: Unlike database rollback, compensation may not restore exact original state but achieves business equivalence",
+    "Saga execution coordinator (SEC): Tracks saga state and ensures all steps complete or all compensations execute"
+  ],
+  "core_concepts_zh": [
+    "补偿事务：在语义上撤销先前已提交的本地事务的反向操作",
+    "编排：中央Saga协调器指挥每个参与者并处理故障路由",
+    "协调：每个服务监听事件并独立决定继续执行还是进行补偿",
+    "语义回滚：与数据库回滚不同，补偿可能不恢复精确原始状态但实现业务等价",
+    "Saga执行协调器（SEC）：追踪Saga状态，确保所有步骤完成或所有补偿执行"
+  ],
+  "timeline": [
+    [
+      "1987",
+      "Garcia-Molina and Salem publish the original Sagas paper at ACM SIGMOD"
+    ],
+    [
+      "2015",
+      "Caitie McCaffrey presents on distributed sagas at Strange Loop, reviving interest"
+    ],
+    [
+      "2017",
+      "Chris Richardson popularizes sagas in microservices context via microservices.io"
+    ],
+    [
+      "2019",
+      "Temporal.io and other orchestration engines provide first-class saga support"
+    ],
+    [
+      "2021",
+      "Saga pattern becomes standard practice in event-driven microservices architectures"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1987",
+      "Garcia-Molina和Salem在ACM SIGMOD发表原始Sagas论文"
+    ],
+    [
+      "2015",
+      "Caitie McCaffrey在Strange Loop演讲分布式Sagas，重新引起关注"
+    ],
+    [
+      "2017",
+      "Chris Richardson通过microservices.io在微服务语境中推广Saga模式"
+    ],
+    [
+      "2019",
+      "Temporal.io等编排引擎提供一等Saga支持"
+    ],
+    [
+      "2021",
+      "Saga模式成为事件驱动微服务架构的标准实践"
+    ]
+  ],
+  "dos": [
+    "Do design compensating actions for every forward step before implementation because retrofitting compensations is error-prone",
+    "Do make each step and compensation idempotent because network failures will cause retries",
+    "Do use a saga state machine to track progress because it simplifies debugging and recovery",
+    "Do set timeouts on each saga step because hung steps can block the entire business process"
+  ],
+  "dos_zh": [
+    "在实现之前为每个正向步骤设计补偿动作，因为事后添加补偿容易出错",
+    "确保每个步骤及其补偿是幂等的，因为网络故障会导致重试",
+    "使用Saga状态机追踪进度，因为这简化了调试和恢复",
+    "为每个Saga步骤设置超时，因为挂起的步骤可能阻塞整个业务流程"
+  ],
+  "donts": [
+    "Don't assume compensations will always succeed because they can fail too, requiring retry queues and manual intervention plans",
+    "Don't use sagas for operations that can be done in a single database transaction because the complexity is unnecessary",
+    "Don't ignore the visibility problem because without saga-level tracing, failures are invisible to operations teams",
+    "Don't mix choreography and orchestration in the same saga because it makes the flow extremely hard to reason about"
+  ],
+  "donts_zh": [
+    "不要假设补偿总会成功，因为补偿也可能失败，需要重试队列和人工干预计划",
+    "不要对可以在单个数据库事务中完成的操作使用Saga，因为增加的复杂性没有必要",
+    "不要忽视可见性问题，因为没有Saga级别的追踪，故障对运维团队是不可见的",
+    "不要在同一个Saga中混用编排和协调，因为这会使流程极难推理"
+  ],
+  "case_study_company": "Uber",
+  "case_study": "Uber uses the saga pattern to coordinate its ride-booking flow across multiple microservices including matching, pricing, payment, and driver notification. When a ride is requested, each service executes its local transaction and emits an event. If payment fails after a driver has been matched, a compensating action releases the driver back to the available pool and notifies the rider. Uber's saga orchestrator (built on Cadence, later Temporal) processes millions of ride sagas daily with exactly-once semantics.",
+  "case_study_zh": "Uber使用Saga模式协调其跨多个微服务的叫车流程，包括匹配、定价、支付和司机通知。当请求叫车时，每个服务执行本地事务并发出事件。如果在司机匹配后支付失败，补偿动作会将司机释放回可用池并通知乘客。Uber的Saga编排器（基于Cadence构建，后演变为Temporal）每天以精确一次语义处理数百万次叫车Saga。",
+  "case_study_challenge": "A single Uber ride touches matching, pricing, payment, and driver notification — four independent microservices that must coordinate as one atomic business transaction. Traditional distributed transactions (two-phase commit) were too slow and too brittle for millions of concurrent rides.",
+  "case_study_challenge_zh": "一次Uber叫车涉及匹配、定价、支付和司机通知——四个独立微服务必须协同完成一个原子性业务事务。传统的分布式事务（两阶段提交）对于数百万并发行程而言太慢、太脆弱。",
+  "case_study_approach": "Uber implemented orchestrated sagas using Cadence (later evolved into Temporal). Each service executes its local transaction and emits an event. The saga orchestrator tracks the overall state and, when a step fails — say, payment declines after a driver is already matched — triggers compensating actions: releasing the driver back to the available pool and notifying the rider.",
+  "case_study_approach_zh": "Uber使用Cadence（后来演进为Temporal）实现了编排式Saga。每个服务执行本地事务并发出事件。Saga编排器追踪整体状态，当某步骤失败时——例如司机已匹配但支付被拒——触发补偿操作：将司机释放回可用池并通知乘客。",
+  "case_study_result": "Uber's saga orchestrator processes millions of ride sagas daily with exactly-once semantics. The compensating action pattern ensures that partial failures never leave the system in an inconsistent state — no phantom charges, no ghost rides, no stranded drivers.",
+  "case_study_result_zh": "Uber的Saga编排器每天以精确一次语义处理数百万次行程Saga。补偿操作模式确保部分失败永远不会使系统处于不一致状态——没有幽灵扣款、没有虚假行程、没有滞留的司机。",
+  "case_study_quote": "Every ride is a saga. The question is never whether something will fail — it's whether your system knows how to undo gracefully.",
+  "case_study_quote_zh": "每次行程都是一个Saga。问题从来不是是否会失败——而是你的系统是否知道如何优雅地回滚。",
+  "when_not_to_use": [
+    "Operations that can fit within a single ACID transaction boundary",
+    "Systems where the business can tolerate partial completion without compensation",
+    "Extremely low-latency paths where saga coordination overhead is unacceptable"
+  ],
+  "when_not_to_use_zh": [
+    "可以在单个ACID事务边界内完成的操作",
+    "业务可以容忍部分完成而无需补偿的系统",
+    "Saga协调开销不可接受的极低延迟路径"
+  ],
+  "adopters": [
+    "Uber",
+    "Airbnb",
+    "Stripe",
+    "Booking.com",
+    "DoorDash"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Hector Garcia-Molina and Kenneth Salem (1987). \"Sagas\". ACM SIGMOD Conference.",
+  "secondary_sources": [
+    "Chris Richardson (2018). \"Microservices Patterns: With Examples in Java\". Manning Publications. Chapter 4.",
+    "Caitie McCaffrey (2015). \"Applying the Saga Pattern\". Strange Loop Conference."
+  ],
+  "typed_relations": [
+    {
+      "slug": "eda",
+      "type": "prerequisite"
+    },
+    {
+      "slug": "cqrs-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "circuit-breaker-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "microservices-decomposition",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/saga-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/saga-pattern.md"
+}

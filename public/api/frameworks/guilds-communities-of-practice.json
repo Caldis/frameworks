@@ -1,0 +1,194 @@
+{
+  "id": 216,
+  "name": "Guilds and Communities of Practice",
+  "name_zh": "行会与实践社区",
+  "slug": "guilds-communities-of-practice",
+  "category": "team",
+  "desc": "Cross-team knowledge-sharing groups that build expertise and standards across organizational silos",
+  "desc_zh": "跨团队知识共享群体，跨组织孤岛构建专业知识和标准",
+  "steps": [
+    "Identify a technical or practice domain (frontend, security, data engineering, accessibility) that spans multiple teams and would benefit from cross-team coordination",
+    "Appoint a guild lead (voluntary or designated) who owns the meeting cadence, agenda, and communication channels; this role rotates periodically to prevent single-point-of-failure",
+    "Establish recurring touchpoints: a monthly meeting for knowledge sharing (demos, post-mortems, book clubs) and an async channel (Slack, Discord) for daily questions and resource sharing",
+    "Define the guild's output artifacts: shared coding standards, reviewed libraries, onboarding guides, and recommended tooling that teams adopt voluntarily",
+    "Measure the guild's health annually through member satisfaction surveys and track adoption of guild-produced standards to demonstrate value to leadership"
+  ],
+  "steps_zh": [
+    "识别跨多个团队的技术或实践领域（前端、安全、数据工程、可访问性），跨团队协调将带来价值",
+    "任命行会负责人（自愿或指定），负责会议节奏、议程和沟通渠道；该角色定期轮换以防止单点故障",
+    "建立定期接触点：每月知识共享会议（演示、事后分析、读书会）和异步频道（Slack、Discord）用于日常问题和资源分享",
+    "定义行会的输出产物：共享编码标准、审查的库、入职指南和推荐工具，团队自愿采用",
+    "通过成员满意度调查每年评估行会健康状况，并跟踪行会制定标准的采用情况以向领导层证明价值"
+  ],
+  "ai_relevant": false,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Domain Identify",
+    "Guild Lead",
+    "Recurring Touchpoints",
+    "Output Artifacts",
+    "Health Metrics"
+  ],
+  "viz_labels_zh": [
+    "领域识别",
+    "组长",
+    "定期活动",
+    "输出产物",
+    "健康指标"
+  ],
+  "related": [
+    "spotify-model",
+    "platform-engineering"
+  ],
+  "tags": [
+    "guild",
+    "community-of-practice",
+    "knowledge-sharing",
+    "cross-team",
+    "standards"
+  ],
+  "origin_author": "Etienne Wenger, Communities of Practice (1998); popularized in software by the Spotify Model (2012)",
+  "origin_source": "Wenger, E. (1998). \"Communities of Practice: Learning, Meaning, and Identity\". Cambridge University Press; Kniberg, H. & Ivarsson, A. (2012). \"Scaling Agile @ Spotify\".",
+  "origin_source_zh": "Wenger, E.（1998）「实践社区：学习、意义与认同」，剑桥大学出版社；Kniberg, H. & Ivarsson, A.（2012）「Spotify的规模化敏捷」",
+  "complexity": "beginner",
+  "when_to_use": [
+    "When the organization has grown beyond 3-4 teams and domain expertise is siloed within individual squads rather than shared across the organization",
+    "When the same technical problems (security vulnerabilities, performance issues, accessibility failures) are solved independently by multiple teams with inconsistent outcomes",
+    "When senior engineers are embedded in delivery teams with no mechanism to share their expertise at the organizational level",
+    "When the organization is adopting new technology (AI, observability, platform engineering) and needs a coordinated learning and adoption path across teams"
+  ],
+  "when_to_use_zh": [
+    "当组织已超过3-4个团队，领域专业知识被孤立在各个小组内而非跨组织共享时",
+    "当相同的技术问题（安全漏洞、性能问题、可访问性失败）被多个团队独立解决，结果不一致时",
+    "当高级工程师嵌入交付团队，没有在组织层面分享专业知识的机制时",
+    "当组织正在采用新技术（AI、可观测性、平台工程）并需要跨团队协调学习和采用路径时"
+  ],
+  "core_concepts": [
+    "Domain: The shared area of interest or expertise that defines the guild's scope — narrow enough to be coherent but broad enough to span multiple teams",
+    "Community: The group of practitioners who care about the domain and voluntarily participate in the guild's activities, regardless of their squad or reporting line",
+    "Practice: The shared repertoire of tools, standards, patterns, and processes that the guild develops and curates over time",
+    "Voluntary Participation: Guilds are opt-in; mandatory guilds become bureaucratic committees that produce compliance theater rather than genuine knowledge sharing",
+    "Influence Without Authority: Guild leads must influence team behavior through demonstrated expertise and useful artifacts rather than through organizational hierarchy"
+  ],
+  "core_concepts_zh": [
+    "领域：定义行会范围的共同兴趣或专业知识领域——范围足够窄以保持连贯性，但足够宽以跨越多个团队",
+    "社区：关心该领域并自愿参与行会活动的实践者群体，无论其所在小组或汇报关系",
+    "实践：行会随时间开发和策划的共享工具、标准、模式和流程库",
+    "自愿参与：行会是可选的；强制性行会变成产生合规表演而非真正知识共享的官僚委员会",
+    "无权力的影响力：行会负责人必须通过展示的专业知识和有用的产物而非通过组织层级来影响团队行为"
+  ],
+  "timeline": [
+    [
+      "1991",
+      "Jean Lave and Etienne Wenger coin 'communities of practice' studying apprenticeship learning in craft trades"
+    ],
+    [
+      "1998",
+      "Wenger's book 'Communities of Practice' formalizes the theory for organizational knowledge management"
+    ],
+    [
+      "2012",
+      "Spotify's engineering model paper introduces 'guilds' as a specific implementation for software engineering organizations"
+    ],
+    [
+      "2016",
+      "Major tech companies (Google, Amazon, Zalando, ING) adopt guilds as a formal organizational layer alongside squads and chapters"
+    ],
+    [
+      "2022",
+      "Remote-first guilds emerge as a primary mechanism for maintaining cross-team connection and knowledge sharing in distributed organizations"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1991",
+      "Jean Lave和Etienne Wenger在研究手工艺学徒制学习时创造了「实践社区」一词"
+    ],
+    [
+      "1998",
+      "Wenger的「实践社区」一书为组织知识管理正式化了该理论"
+    ],
+    [
+      "2012",
+      "Spotify工程模型论文引入「行会」作为软件工程组织的具体实现"
+    ],
+    [
+      "2016",
+      "主要科技公司（Google、Amazon、Zalando、ING）将行会作为小组和章节之外的正式组织层次采用"
+    ],
+    [
+      "2022",
+      "远程优先行会成为在分布式组织中维持跨团队联系和知识共享的主要机制"
+    ]
+  ],
+  "dos": [
+    "Do keep guild membership voluntary because mandatory guilds create attendance compliance rather than genuine engagement",
+    "Do produce concrete, usable artifacts (linting configs, Docker base images, onboarding guides) because abstract knowledge sharing without deliverables doesn't change daily practice",
+    "Do rotate guild leads every 12-18 months because static leadership creates knowledge monopolies and prevents the next generation of experts from developing",
+    "Do give guilds a dedicated time allocation (e.g., 10% of sprint capacity) so that participation doesn't exclusively happen as unpaid overtime"
+  ],
+  "dos_zh": [
+    "保持行会成员资格自愿，因为强制性行会产生出勤合规而非真正的参与",
+    "产出具体、可用的产物（代码检查配置、Docker基础镜像、入职指南），因为没有可交付成果的抽象知识共享不会改变日常实践",
+    "每12-18个月轮换行会负责人，因为静态领导层创造知识垄断并阻止下一代专家的发展",
+    "给行会分配专用时间（如迭代容量的10%），使参与不仅仅作为无偿加班发生"
+  ],
+  "donts": [
+    "Don't let guilds become toothless talking shops that meet monthly, produce slide decks, and have no impact on how teams actually work",
+    "Don't create guilds for every topic because guild proliferation causes context-switching fatigue and dilutes participation across all guilds",
+    "Don't measure guild success by attendance alone because a 50-person guild with zero adopted standards is less valuable than a 10-person guild whose patterns are used everywhere",
+    "Don't conflate guilds with chapters — chapters own career development and competency within a discipline, guilds focus on cross-team knowledge sharing"
+  ],
+  "donts_zh": [
+    "不要让行会成为每月开会、生产幻灯片、对团队实际工作方式没有影响的无实质内容的讨论场所",
+    "不要为每个主题创建行会，因为行会泛滥会导致上下文切换疲劳并稀释所有行会的参与度",
+    "不要仅通过出勤率来衡量行会成功，因为一个有50人但标准采用率为零的行会不如一个有10人但其模式被广泛使用的行会有价值",
+    "不要将行会与章节混淆——章节负责某学科内的职业发展和能力，行会专注于跨团队知识共享"
+  ],
+  "case_study_company": "ING Bank",
+  "case_study": "ING Bank adopted the Spotify model in 2015, organizing its 13,000-person IT department into squads, tribes, chapters, and guilds. The bank's Security Guild became a flagship example: a 200-engineer voluntary community that produced shared security testing frameworks, threat modeling templates, and a weekly vulnerability digest. Within 18 months of the guild's formation, security issue detection rates improved 40% and remediation time dropped from 45 days to 11 days, attributed directly to the shared knowledge and tools the guild produced. ING later expanded the model to non-engineering functions including data science, UX, and product management.",
+  "case_study_zh": "ING银行于2015年采用Spotify模型，将其13000人的IT部门组织成小组、部落、章节和行会。该银行的安全行会成为旗舰示例：一个由200名工程师组成的自愿社区，生产了共享安全测试框架、威胁建模模板和每周漏洞摘要。在行会成立后的18个月内，安全问题检测率提高了40%，修复时间从45天降至11天，这直接归功于行会产生的共享知识和工具。ING后来将该模型扩展到非工程职能，包括数据科学、UX和产品管理。",
+  "when_not_to_use": [
+    "Organizations of fewer than 20-30 engineers where everyone already knows each other and cross-team knowledge sharing happens organically",
+    "High-urgency delivery phases (pre-launch sprints, critical incident recovery) where all capacity must focus on delivery and community activities must pause",
+    "Organizations with highly contractual employment relationships where voluntary after-hours participation is inappropriate or legally ambiguous",
+    "Domains where knowledge sharing requires security clearances or confidentiality that prevents open cross-team discussion"
+  ],
+  "when_not_to_use_zh": [
+    "少于20-30名工程师的组织，每个人已经认识对方，跨团队知识共享有机发生",
+    "高紧迫度交付阶段（发布前冲刺、关键事故恢复），所有容量必须专注于交付，社区活动必须暂停",
+    "具有高度契约性雇佣关系的组织，自愿的非工时参与是不恰当的或法律上模糊的",
+    "知识共享需要安全许可或保密性的领域，这阻止了开放的跨团队讨论"
+  ],
+  "adopters": [
+    "Spotify",
+    "ING Bank",
+    "Zalando",
+    "Adidas",
+    "Google"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability",
+    "usability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Wenger, E. (1998). \"Communities of Practice: Learning, Meaning, and Identity\". Cambridge University Press.",
+  "secondary_sources": [
+    "Kniberg, H. & Ivarsson, A. (2012). \"Scaling Agile @ Spotify\". Spotify R&D whitepaper.",
+    "Wenger, E., McDermott, R. & Snyder, W.M. (2002). \"Cultivating Communities of Practice\". Harvard Business School Press.",
+    "Skelton, M. & Pais, M. (2019). \"Team Topologies\", Ch. 7. IT Revolution Press."
+  ],
+  "typed_relations": [
+    {
+      "slug": "spotify-model",
+      "type": "extends"
+    },
+    {
+      "slug": "platform-engineering",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/guilds-communities-of-practice",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/guilds-communities-of-practice.md"
+}

@@ -1,0 +1,190 @@
+{
+  "id": 266,
+  "name": "Gossip Protocol",
+  "name_zh": "Gossip 协议",
+  "slug": "gossip-epidemic-protocol",
+  "category": "distributed",
+  "desc": "Epidemic-style information dissemination achieving reliable cluster-wide propagation without central coordination",
+  "desc_zh": "无需中央协调、以流行病方式实现可靠集群范围信息传播的协议",
+  "steps": [
+    "Define the message payload and propagation goal: determine what information each node must spread (membership updates, failure detections, configuration changes) and the convergence time target",
+    "Select a gossip variant: push gossip (sender initiates and pushes state to random peers), pull gossip (receiver queries random peers for their state), or push-pull (exchange in both directions per round)",
+    "Configure fanout and interval: choose the number of peers contacted per gossip round (fanout) and the interval between rounds; fanout of log(N) provides reliable propagation in O(log N) rounds",
+    "Implement failure detection integration: combine gossip with a SWIM-style failure detector that piggybacks liveness probes on gossip messages to spread node up/down status with low overhead",
+    "Add entropy reduction: use Merkle trees or digest-based comparison so nodes only exchange differing state, preventing redundant full-state transfers as cluster size grows"
+  ],
+  "steps_zh": [
+    "定义消息载荷和传播目标：确定每个节点必须传播的信息（成员更新、故障检测、配置变更）和收敛时间目标",
+    "选择 gossip 变体：推送 gossip（发送方主动将状态推送给随机对等节点），拉取 gossip（接收方查询随机对等节点的状态），或推拉（每轮双向交换）",
+    "配置扇出和间隔：选择每轮 gossip 联系的对等节点数（扇出）和轮次间隔；log(N) 的扇出可在 O(log N) 轮内可靠传播",
+    "集成故障检测：将 gossip 与 SWIM 风格的故障检测器结合，将活性探测搭载在 gossip 消息上传播节点上线/下线状态，开销极低",
+    "添加熵减少机制：使用 Merkle 树或基于摘要的比较，使节点只交换不同的状态，防止集群规模增长时产生冗余的全状态传输"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Message Payload",
+    "Gossip Variant",
+    "Fanout Interval",
+    "Failure Detect",
+    "Entropy Reduce"
+  ],
+  "viz_labels_zh": [
+    "消息内容",
+    "Gossip变体",
+    "扇出间隔",
+    "故障检测",
+    "熵减少"
+  ],
+  "related": [
+    "eventual-consistency",
+    "crdts",
+    "service-discovery",
+    "consensus-protocols"
+  ],
+  "tags": [
+    "gossip",
+    "epidemic-protocol",
+    "decentralized",
+    "membership",
+    "failure-detection"
+  ],
+  "origin_author": "Alan Demers",
+  "origin_source": "Demers, A. et al. (1987). Epidemic Algorithms for Replicated Database Maintenance. Proceedings of PODC 1987; Das, A., Gupta, I. & Motivala, A. (2002). SWIM: Scalable Weakly-consistent Infection-style Process Group Membership Protocol. DSN 2002.",
+  "origin_source_zh": "Demers等（1987）《复制数据库维护的流行病算法》PODC 1987；Das等（2002）《SWIM：可扩展弱一致感染式进程组成员协议》DSN 2002",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When you need to propagate state or membership information across a large cluster without a central coordinator or single point of failure",
+    "When eventual consistency of metadata is acceptable and O(log N) convergence time is sufficient",
+    "When building a peer-to-peer overlay, distributed hash table, or service mesh that requires decentralized health and membership tracking",
+    "When the network topology is dynamic with frequent node joins and leaves and you need a self-healing propagation mechanism"
+  ],
+  "when_to_use_zh": [
+    "需要在大型集群中传播状态或成员信息而无需中央协调器或单点故障时",
+    "元数据的最终一致性可接受且 O(log N) 收敛时间足够时",
+    "构建需要去中心化健康和成员追踪的对等覆盖网络、分布式哈希表或服务网格时",
+    "网络拓扑动态变化、节点频繁加入和离开且需要自愈传播机制时"
+  ],
+  "core_concepts": [
+    "Epidemiological model: gossip borrows from SIR disease-spread models where nodes are Susceptible (haven't seen the message), Infected (spreading it), or Removed (stopped spreading after k rounds)",
+    "Convergence bound: with fanout f and N nodes, gossip reaches all nodes in O(log N / log f) rounds with high probability, making it highly scalable without central infrastructure",
+    "SWIM failure detector: Scalable Weakly-consistent Infection-style Membership uses gossip to disseminate node up/down events detected via direct and indirect pings, replacing expensive heartbeat floods",
+    "Anti-entropy gossip: periodic full-state comparison between random pairs to repair divergence not covered by incremental gossip, typically using Merkle trees for efficient delta detection",
+    "Rumor mongering vs. anti-entropy: rumor mongering spreads new updates quickly with low message count; anti-entropy repairs lingering divergence but requires more bandwidth per exchange"
+  ],
+  "core_concepts_zh": [
+    "流行病学模型：gossip 借鉴 SIR 疾病传播模型，节点处于易感（未见过消息）、感染（正在传播）或移除（传播 k 轮后停止）状态",
+    "收敛界：扇出 f 和 N 个节点时，gossip 以高概率在 O(log N / log f) 轮内到达所有节点，无需中央基础设施即可高度扩展",
+    "SWIM 故障检测器：可扩展弱一致感染式成员协议使用 gossip 传播通过直接和间接 ping 检测到的节点上线/下线事件，取代昂贵的心跳泛洪",
+    "反熵 gossip：随机对之间的定期全状态比较，修复增量 gossip 未覆盖的分歧，通常使用 Merkle 树进行高效增量检测",
+    "谣言传播与反熵：谣言传播以低消息数快速传播新更新；反熵修复持续存在的分歧，但每次交换需要更多带宽"
+  ],
+  "timeline": [
+    [
+      "1987",
+      "Alan Demers and colleagues at Xerox PARC publish 'Epidemic Algorithms for Replicated Database Maintenance', introducing the gossip dissemination model"
+    ],
+    [
+      "2002",
+      "Das, Gupta, and Motivala introduce SWIM at DSN 2002, combining gossip with efficient failure detection for large-scale membership protocols"
+    ],
+    [
+      "2007",
+      "Amazon Dynamo paper describes gossip-based membership and failure detection as core infrastructure for a planetary-scale key-value store"
+    ],
+    [
+      "2014",
+      "HashiCorp releases Serf, a standalone gossip-based membership and failure detection tool, making the pattern accessible as a library"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1987",
+      "Alan Demers 及 Xerox PARC 同事发表「复制数据库维护的流行病算法」，引入 gossip 传播模型"
+    ],
+    [
+      "2002",
+      "Das、Gupta 和 Motivala 在 DSN 2002 发表 SWIM，将 gossip 与高效故障检测结合用于大规模成员协议"
+    ],
+    [
+      "2007",
+      "Amazon Dynamo 论文将基于 gossip 的成员和故障检测描述为行星规模键值存储的核心基础设施"
+    ],
+    [
+      "2014",
+      "HashiCorp 发布 Serf，一个独立的基于 gossip 的成员和故障检测工具，使该模式可作为库使用"
+    ]
+  ],
+  "dos": [
+    "Do tune fanout based on cluster size: use log(N) peers per round to balance convergence speed against message overhead, and increase fanout only when you need faster convergence",
+    "Do combine gossip with a consistent hash ring or ring topology so nodes have a stable peer list to gossip with even during churn",
+    "Do piggyback metadata on gossip messages (SWIM-style) to avoid separate heartbeat floods — this dramatically reduces per-node bandwidth consumption at scale",
+    "Do implement message deduplication and seen-message filtering using bloom filters or a bounded history buffer to prevent infinite message amplification"
+  ],
+  "dos_zh": [
+    "根据集群大小调整扇出：每轮使用 log(N) 个对等节点以平衡收敛速度和消息开销，只在需要更快收敛时才增加扇出",
+    "将 gossip 与一致性哈希环或环形拓扑结合，使节点在节点流动时仍有稳定的对等列表可供 gossip",
+    "在 gossip 消息上捎带元数据（SWIM 风格）以避免单独的心跳泛洪——这在规模上大幅减少每节点带宽消耗",
+    "使用布隆过滤器或有界历史缓冲区实现消息去重和已见消息过滤，防止无限消息放大"
+  ],
+  "donts": [
+    "Don't use gossip for data that requires strong consistency — gossip provides probabilistic dissemination with no delivery guarantee or ordering, only eventual convergence",
+    "Don't gossip large payloads: gossip is designed for small state deltas and membership vectors; large messages negate the bandwidth advantage over broadcast",
+    "Don't rely solely on gossip for failure detection in latency-sensitive paths — gossip convergence time means failure information may take multiple rounds to reach all nodes",
+    "Don't neglect network partitions in gossip-based systems — a partition creates two gossip islands that diverge silently; reconciliation must be handled explicitly on partition heal"
+  ],
+  "donts_zh": [
+    "不要将 gossip 用于需要强一致性的数据——gossip 提供概率性传播，没有投递保证或顺序保证，只有最终收敛",
+    "不要 gossip 大负载：gossip 为小状态增量和成员向量设计；大消息抵消了相对广播的带宽优势",
+    "不要仅依赖 gossip 进行延迟敏感路径的故障检测——gossip 收敛时间意味着故障信息可能需要多轮才能到达所有节点",
+    "不要忽视基于 gossip 的系统中的网络分区——分区会创建两个静默分歧的 gossip 孤岛；分区修复时必须显式处理协调"
+  ],
+  "case_study_company": "Apache Cassandra",
+  "case_study": "Apache Cassandra uses gossip as its primary mechanism for cluster membership, node health monitoring, and schema propagation. Every second, each node contacts up to three random peers to exchange endpoint state — including generation number, heartbeat version, load, schema version, and rack/datacenter topology. This gossip state is then used by the token ring to route requests correctly and by the hinted handoff system to detect which nodes are unavailable. When a new node bootstraps into a 1,000-node ring, it gossips its token ranges to a seed node, and that information propagates cluster-wide in approximately log(1000) ≈ 10 rounds — roughly 10 seconds — without any central registry.",
+  "case_study_zh": "Apache Cassandra 使用 gossip 作为集群成员、节点健康监控和模式传播的主要机制。每秒，每个节点联系最多三个随机对等节点交换端点状态——包括代号、心跳版本、负载、模式版本和机架/数据中心拓扑。这些 gossip 状态被令牌环用于正确路由请求，也被提示移交系统用于检测不可用节点。当新节点引导加入 1000 节点的环时，它将令牌范围 gossip 给种子节点，该信息在大约 log(1000) ≈ 10 轮（约 10 秒）内在集群范围内传播——无需任何中央注册表。",
+  "when_not_to_use": [
+    "When strong consistency or guaranteed delivery ordering is required — use consensus protocols or message queues with ordering guarantees instead",
+    "Very small clusters (fewer than 5 nodes) where the overhead of gossip exceeds the benefit and simple broadcast or direct notification is more efficient",
+    "Latency-critical control planes where failure detection must happen in milliseconds rather than gossip convergence time"
+  ],
+  "when_not_to_use_zh": [
+    "当需要强一致性或保证投递顺序时——改用共识协议或具有顺序保证的消息队列",
+    "非常小的集群（少于 5 个节点），gossip 的开销超过收益，简单广播或直接通知更高效",
+    "故障检测必须在毫秒内完成而非 gossip 收敛时间的延迟敏感控制平面"
+  ],
+  "adopters": [
+    "Apache Cassandra",
+    "Amazon DynamoDB",
+    "HashiCorp Consul",
+    "Riak",
+    "Bitcoin / blockchain P2P networks"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "scalability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Demers, A. et al. (1987). \"Epidemic Algorithms for Replicated Database Maintenance\". Proceedings of the 6th Annual ACM Symposium on Principles of Distributed Computing (PODC).",
+  "secondary_sources": [
+    "Das, A., Gupta, I. & Motivala, A. (2002). \"SWIM: Scalable Weakly-consistent Infection-style Process Group Membership Protocol\". Proceedings of DSN 2002.",
+    "van Renesse, R. et al. (1998). \"Astrolabe: A Robust and Scalable Technology for Distributed System Monitoring\". ACM TOCS.",
+    "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 5. O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "eventual-consistency",
+      "type": "complement"
+    },
+    {
+      "slug": "crdts",
+      "type": "complement"
+    },
+    {
+      "slug": "service-discovery",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/gossip-epidemic-protocol",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/gossip-epidemic-protocol.md"
+}

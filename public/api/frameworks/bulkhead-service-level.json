@@ -1,0 +1,189 @@
+{
+  "id": 209,
+  "name": "Bulkhead at Service Level",
+  "name_zh": "服务级隔离舱",
+  "slug": "bulkhead-service-level",
+  "category": "distributed",
+  "desc": "Isolating service resources to prevent cascading failures (different from code-level bulkhead in quality.json)",
+  "desc_zh": "隔离服务资源以防止级联故障（区别于quality.json中代码级别的隔离舱）",
+  "steps": [
+    "Identify the critical resource pools in the service that can be exhausted by a single misbehaving dependency or tenant: thread pools, connection pools, memory limits, and rate-limited API quotas",
+    "Partition resource pools by consumer or dependency: assign dedicated thread pools to each downstream dependency call (Hystrix semaphore/thread isolation), or partition connection pools by calling service identity",
+    "Set capacity limits on each bulkhead partition: define the maximum concurrent requests, maximum queue depth, and timeout for each pool so that no single consumer can exceed its allocation even if it sends unlimited requests",
+    "Implement tenant-level bulkheads for multi-tenant services: allocate separate rate limits, request queues, and processing resources per tenant so that a high-volume tenant cannot starve resources for other tenants",
+    "Monitor bulkhead utilization, queue depth, and rejection rates per partition in observability tooling; tune partition sizes based on observed traffic patterns and ensure that the sum of all partition limits does not exceed total resource capacity"
+  ],
+  "steps_zh": [
+    "识别服务中可能被单个行为异常的依赖项或租户耗尽的关键资源池：线程池、连接池、内存限制和受速率限制的API配额",
+    "按消费者或依赖项划分资源池：为每个下游依赖项调用分配专用线程池（Hystrix信号量/线程隔离），或按调用服务身份划分连接池",
+    "设置每个隔离舱分区的容量限制：为每个池定义最大并发请求数、最大队列深度和超时，使任何单个消费者即使发送无限请求也无法超过其分配",
+    "为多租户服务实施租户级隔离舱：按租户分配单独的速率限制、请求队列和处理资源，使高流量租户无法使其他租户的资源饥饿",
+    "在可观测性工具中监控每个分区的隔离舱利用率、队列深度和拒绝率；根据观察到的流量模式调整分区大小，并确保所有分区限制之和不超过总资源容量"
+  ],
+  "ai_relevant": false,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Resource Pools",
+    "Partition Pools",
+    "Capacity Limits",
+    "Tenant Bulkhead",
+    "Monitor"
+  ],
+  "viz_labels_zh": [
+    "资源池",
+    "分区隔离",
+    "容量限制",
+    "租户隔离",
+    "使用监控"
+  ],
+  "related": [
+    "circuit-breaker-with-retry",
+    "service-discovery",
+    "consistent-hashing"
+  ],
+  "tags": [
+    "bulkhead",
+    "isolation",
+    "resilience",
+    "multi-tenant",
+    "resource-partitioning"
+  ],
+  "origin_author": "Michael Nygard (2007); popularized by Netflix Hystrix thread pool isolation (2012)",
+  "origin_source": "Nygard, M.T. (2018). \"Release It!\", 2nd ed., Ch. 5. Pragmatic Bookshelf; Netflix Hystrix Bulkhead documentation",
+  "origin_source_zh": "Nygard, M.T.（2018）。《Release It!》第2版第5章，Pragmatic Bookshelf；Netflix Hystrix隔离舱文档",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When a single slow or failing downstream dependency can exhaust the service's shared thread pool and make all other API endpoints unresponsive",
+    "When a multi-tenant service must guarantee fair resource allocation so that a noisy tenant does not starve resources for others",
+    "When different API endpoints have vastly different latency profiles and fast, latency-sensitive endpoints share a thread pool with slow batch endpoints",
+    "When a service has multiple integration points with third-party APIs that have independent failure modes and rate limits"
+  ],
+  "when_to_use_zh": [
+    "当单个缓慢或失败的下游依赖项可能耗尽服务的共享线程池，使所有其他API端点无响应时",
+    "当多租户服务必须保证公平的资源分配，使嘈杂的租户不会使其他租户的资源饥饿时",
+    "当不同的API端点具有截然不同的延迟特性，且快速的延迟敏感端点与慢速批处理端点共享线程池时",
+    "当服务具有多个与具有独立故障模式和速率限制的第三方API的集成点时"
+  ],
+  "core_concepts": [
+    "Resource partition: a dedicated, bounded allocation of a resource type (threads, connections, memory) assigned to a specific consumer, dependency, or tenant, preventing cross-partition interference",
+    "Thread pool isolation: assigning a dedicated thread pool to each downstream dependency call; if the dependency blocks, only its pool is exhausted, not the service's main execution pool",
+    "Semaphore isolation: limiting the number of concurrent in-flight requests to a dependency using a semaphore rather than a separate thread pool; lower overhead than thread isolation but no timeout enforcement",
+    "Shed load: when a bulkhead's queue reaches capacity, new requests are immediately rejected with an explicit error (503 or rate limit response) rather than queuing indefinitely and causing latency to grow unbounded"
+  ],
+  "core_concepts_zh": [
+    "资源分区：分配给特定消费者、依赖项或租户的专用、有界资源类型（线程、连接、内存）分配，防止跨分区干扰",
+    "线程池隔离：为每个下游依赖项调用分配专用线程池；如果依赖项阻塞，只有其池被耗尽，而不是服务的主执行池",
+    "信号量隔离：使用信号量而非单独的线程池限制对依赖项的并发进行中请求数量；比线程隔离开销更低，但无法强制超时",
+    "减负：当隔离舱的队列达到容量时，新请求立即以明确的错误（503或速率限制响应）被拒绝，而非无限排队导致延迟无限增长"
+  ],
+  "timeline": [
+    [
+      "2007",
+      "Michael Nygard introduces the Bulkhead pattern in 'Release It!', drawing the analogy to ship hull compartmentalization for software system isolation"
+    ],
+    [
+      "2012",
+      "Netflix Hystrix implements thread pool isolation as its primary bulkhead mechanism, making the pattern production-proven at massive scale"
+    ],
+    [
+      "2017",
+      "Kubernetes resource limits (CPU/memory per pod) and namespaces provide infrastructure-level bulkheads for multi-tenant clusters"
+    ],
+    [
+      "2020",
+      "Service meshes (Istio) implement connection pool settings and concurrency limits at the infrastructure layer, providing bulkhead behavior without application code changes"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2007",
+      "Michael Nygard在《Release It!》中引入隔离舱模式，将船体舱室隔离的类比用于软件系统隔离"
+    ],
+    [
+      "2012",
+      "Netflix Hystrix将线程池隔离作为其主要隔离舱机制，使该模式在大规模生产中得到验证"
+    ],
+    [
+      "2017",
+      "Kubernetes资源限制（每个Pod的CPU/内存）和命名空间为多租户集群提供基础设施级隔离舱"
+    ],
+    [
+      "2020",
+      "服务网格（Istio）在基础设施层实施连接池设置和并发限制，在不更改应用程序代码的情况下提供隔离舱行为"
+    ]
+  ],
+  "dos": [
+    "Do size bulkhead partitions based on measured traffic data rather than intuition because over-partitioning wastes resources while under-partitioning creates artificial bottlenecks",
+    "Do return meaningful rejection errors (503 Service Unavailable with Retry-After) when bulkhead capacity is exceeded so clients can implement appropriate backoff",
+    "Do combine bulkheads with circuit breakers because bulkheads limit the blast radius of a failure while circuit breakers prevent repeated attempts against a known-failed dependency",
+    "Do test bulkhead behavior with load tests that simulate tenant isolation scenarios and third-party API slowdowns to verify that partitions behave correctly under stress"
+  ],
+  "dos_zh": [
+    "根据测量的流量数据而非直觉调整隔离舱分区大小，因为过度分区浪费资源，而分区不足会造成人为瓶颈",
+    "当隔离舱容量超出时返回有意义的拒绝错误（503服务不可用 + Retry-After），以便客户端可以实施适当的退避",
+    "将隔离舱与断路器结合，因为隔离舱限制故障的爆炸半径，而断路器防止对已知失败依赖项的重复尝试",
+    "使用模拟租户隔离场景和第三方API减速的负载测试来测试隔离舱行为，以验证分区在压力下正确运行"
+  ],
+  "donts": [
+    "Don't create too many small partitions because context switching between many small thread pools introduces overhead that can degrade performance more than the isolation benefit provides",
+    "Don't set partition limits so large that they effectively share resources — a bulkhead that allows 95% of total threads defeats the isolation purpose",
+    "Don't implement bulkheads only at the thread pool level because network connection pools, database connection pools, and outbound API rate limits also need partitioning for true isolation",
+    "Don't confuse bulkhead rejection (immediate fail-fast) with throttling (delayed processing) because bulkhead rejections are intentional load shedding, not queuing — clients must retry with backoff"
+  ],
+  "donts_zh": [
+    "不要创建太多小分区，因为在许多小线程池之间切换上下文会引入开销，可能比隔离收益更大地降低性能",
+    "不要将分区限制设置得太大以至于有效共享资源——允许95%总线程的隔离舱失去了隔离目的",
+    "不要仅在线程池级别实施隔离舱，因为网络连接池、数据库连接池和出站API速率限制也需要分区才能实现真正隔离",
+    "不要将隔离舱拒绝（立即快速失败）与节流（延迟处理）混淆，因为隔离舱拒绝是有意的负载减少，而非排队——客户端必须使用退避重试"
+  ],
+  "case_study_company": "Amazon",
+  "case_study": "Amazon's retail website uses bulkhead isolation to prevent slow third-party integrations from degrading the core shopping experience. The product detail page aggregates data from dozens of internal and external services (reviews, inventory, pricing, recommendations, seller data). Each data source is assigned a dedicated connection pool and thread pool with a strict timeout. When a third-party seller data API experiences latency spikes during peak events like Prime Day, its bulkhead is exhausted and the page falls back to cached seller information, leaving all other page components (price, add-to-cart, reviews) fully functional. Amazon reports that bulkhead isolation prevents over 99% of third-party API degradations from impacting their core conversion metrics.",
+  "case_study_zh": "亚马逊零售网站使用隔离舱隔离防止慢速第三方集成降低核心购物体验。产品详情页面汇总来自数十个内部和外部服务（评论、库存、定价、推荐、卖家数据）的数据。每个数据源都分配了带有严格超时的专用连接池和线程池。当第三方卖家数据API在Prime Day等峰值事件期间遇到延迟尖峰时，其隔离舱被耗尽，页面回退到缓存的卖家信息，使所有其他页面组件（价格、加购、评论）完全正常运行。亚马逊报告称，隔离舱隔离防止了99%以上的第三方API降级影响其核心转化指标。",
+  "when_not_to_use": [
+    "Single-threaded or event-loop based services (Node.js, asyncio) where thread pool isolation is not applicable — use semaphore-based concurrency limits and async timeout instead",
+    "Monolithic applications where all components share the same process and true resource isolation requires OS-level process or container boundaries",
+    "When all downstream dependencies have identical performance characteristics and there is no differentiation needed between fast and slow paths",
+    "When the service only calls a single downstream dependency and there is no multi-tenancy to isolate — the complexity of bulkhead partitioning is not justified"
+  ],
+  "when_not_to_use_zh": [
+    "基于单线程或事件循环的服务（Node.js、asyncio），线程池隔离不适用——改用基于信号量的并发限制和异步超时",
+    "所有组件共享同一进程且真正的资源隔离需要操作系统级进程或容器边界的单体应用程序",
+    "当所有下游依赖项具有相同的性能特征，快速路径和慢速路径之间不需要差异化时",
+    "当服务只调用单个下游依赖项且没有需要隔离的多租户时——隔离舱分区的复杂性不合理"
+  ],
+  "adopters": [
+    "Amazon",
+    "Netflix",
+    "Microsoft (Azure Service Fabric)",
+    "Uber",
+    "Istio service mesh users"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability",
+    "performance"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Nygard, M.T. (2018). \"Release It!\", 2nd ed., Ch. 5: Stability Patterns — Bulkheads. Pragmatic Bookshelf.",
+  "secondary_sources": [
+    "Netflix (2012). \"Hystrix: How it Works — Thread Pool Isolation\". github.com/Netflix/Hystrix/wiki.",
+    "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 12. O'Reilly Media.",
+    "Richardson, C. (2018). \"Microservices Patterns\", Ch. 3. Manning Publications."
+  ],
+  "typed_relations": [
+    {
+      "slug": "circuit-breaker-with-retry",
+      "type": "complement"
+    },
+    {
+      "slug": "service-discovery",
+      "type": "complement"
+    },
+    {
+      "slug": "consistent-hashing",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/bulkhead-service-level",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/bulkhead-service-level.md"
+}

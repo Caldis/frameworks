@@ -1,0 +1,190 @@
+{
+  "id": 304,
+  "name": "Prompt Caching Strategies",
+  "name_zh": "提示词缓存策略",
+  "slug": "prompt-caching-strategies",
+  "category": "ai",
+  "desc": "Reducing LLM inference costs and latency by reusing KV cache from shared prompt prefixes",
+  "desc_zh": "通过复用共享提示词前缀的 KV 缓存，降低大模型推理成本与延迟",
+  "steps": [
+    "Identify the static portions of your prompt (system instructions, documents, few-shot examples) that are shared across many requests",
+    "Move all static content to the beginning of the prompt so it forms a cacheable prefix before the dynamic user turn",
+    "Enable provider-level prefix caching (Anthropic cache_control, OpenAI automatic caching) and verify cache hit metrics in API responses",
+    "Design your turn structure so the cache prefix is reused for at least 2-5 requests to recoup the cache write cost",
+    "Monitor cache hit rates and TTL behaviour per endpoint; restructure prompts where hit rates are below expectations"
+  ],
+  "steps_zh": [
+    "识别提示词中跨请求共享的静态部分（系统指令、文档、少样本示例等）",
+    "将所有静态内容移至提示词开头，使其在动态用户轮次之前构成可缓存前缀",
+    "启用提供商级前缀缓存（Anthropic cache_control、OpenAI 自动缓存），并在 API 响应中验证缓存命中指标",
+    "设计轮次结构，使缓存前缀被至少 2-5 次请求复用，以覆盖缓存写入成本",
+    "按端点监控缓存命中率和 TTL 行为，对命中率低于预期的提示词进行重构"
+  ],
+  "ai_relevant": true,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Static Cache",
+    "Dynamic Cache",
+    "Prefix",
+    "TTL"
+  ],
+  "viz_labels_zh": [
+    "静态缓存",
+    "动态缓存",
+    "前缀缓存",
+    "过期策略"
+  ],
+  "related": [
+    "ai-gateway-pattern",
+    "context-window-management",
+    "llm-system-design-patterns"
+  ],
+  "tags": [
+    "caching",
+    "cost-optimization",
+    "kv-cache",
+    "prompt-engineering",
+    "llm-ops"
+  ],
+  "origin_author": "OpenAI",
+  "origin_source": "OpenAI Platform Documentation — Prompt Caching (2024); Anthropic API Docs — Prompt Caching (2024)",
+  "origin_source_zh": "OpenAI 平台文档——提示词缓存（2024）；Anthropic API 文档——提示词缓存（2024）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Chatbot and conversational AI applications with long system prompts repeated verbatim across thousands of turns",
+    "Document Q&A systems where the same large document context is queried many times per session or across users",
+    "Few-shot prompting setups where a fixed set of examples is prepended to every single request",
+    "High-volume API integrations where token costs are a significant operational expense and latency reduction matters"
+  ],
+  "when_to_use_zh": [
+    "系统提示词较长且在数千轮对话中逐字重复的聊天机器人和对话式 AI 应用",
+    "同一大型文档上下文在一次会话或跨用户被多次查询的文档问答系统",
+    "固定少样本示例集被前置于每条请求的少样本提示场景",
+    "Token 成本是主要运营支出、且延迟优化有价值的大流量 API 集成"
+  ],
+  "core_concepts": [
+    "KV Cache: The key-value attention cache computed during LLM prefill; reusing it skips expensive recomputation of shared prefix tokens",
+    "Prefix Stability: The requirement that cached tokens occupy the exact same position in the prompt on every request — any change invalidates the cache",
+    "Cache Write vs Hit Cost: Writing a new cache entry costs slightly more than a standard token; savings accumulate only after sufficient cache hits",
+    "TTL (Time-to-Live): The duration a cached prefix remains valid; Anthropic uses a 5-minute sliding TTL, OpenAI uses 1 hour for eligible prompts",
+    "Cache Breakpoint: A marker (e.g., Anthropic's cache_control) that tells the provider exactly where the cacheable prefix ends and the dynamic content begins"
+  ],
+  "core_concepts_zh": [
+    "KV 缓存：大模型预填充阶段计算的键值注意力缓存；复用它可跳过对共享前缀 Token 的昂贵重计算",
+    "前缀稳定性：缓存 Token 在每次请求中必须占据完全相同的位置——任何变化都会使缓存失效",
+    "缓存写入与命中成本：写入新缓存条目的成本略高于标准 Token；只有在足够多次缓存命中后才能实现净节省",
+    "TTL（生存时间）：缓存前缀保持有效的时长；Anthropic 使用 5 分钟滑动 TTL，OpenAI 对符合条件的提示词使用 1 小时",
+    "缓存断点：告知提供商可缓存前缀确切结束位置的标记（如 Anthropic 的 cache_control），动态内容从此处开始"
+  ],
+  "timeline": [
+    [
+      "2024-05",
+      "Anthropic launches prompt caching beta for Claude 3 Haiku and Sonnet, offering up to 90% cost reduction on cached tokens"
+    ],
+    [
+      "2024-07",
+      "OpenAI introduces automatic prompt caching for GPT-4o and GPT-4o mini with 50% discount on cached input tokens"
+    ],
+    [
+      "2024-10",
+      "Google Gemini 1.5 adds context caching with explicit API controls and per-session TTL management"
+    ],
+    [
+      "2025-01",
+      "Prompt caching becomes a standard feature across all major LLM providers; LLM gateway products surface unified cache analytics"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2024-05",
+      "Anthropic 为 Claude 3 Haiku 和 Sonnet 推出提示词缓存测试版，缓存 Token 成本最高可降低 90%"
+    ],
+    [
+      "2024-07",
+      "OpenAI 为 GPT-4o 和 GPT-4o mini 引入自动提示词缓存，缓存输入 Token 享 50% 折扣"
+    ],
+    [
+      "2024-10",
+      "Google Gemini 1.5 新增上下文缓存功能，提供显式 API 控制和会话级 TTL 管理"
+    ],
+    [
+      "2025-01",
+      "提示词缓存成为所有主流大模型提供商的标准功能；大模型网关产品开始呈现统一缓存分析视图"
+    ]
+  ],
+  "dos": [
+    "Front-load everything static: system prompt, retrieved documents, few-shot examples, then append the user message last",
+    "Aim for a prefix length of at least 1024 tokens — shorter prefixes may not qualify for caching on some providers",
+    "Track the cache_creation_input_tokens and cache_read_input_tokens fields returned by the API to measure actual savings",
+    "Use a deterministic prompt template so that the static prefix bytes are identical across requests — even whitespace differences bust the cache"
+  ],
+  "dos_zh": [
+    "将所有静态内容前置：系统提示词、检索文档、少样本示例，最后追加用户消息",
+    "目标前缀长度至少 1024 Token——较短的前缀在部分提供商处可能不符合缓存条件",
+    "追踪 API 返回的 cache_creation_input_tokens 和 cache_read_input_tokens 字段以衡量实际节省",
+    "使用确定性提示词模板，确保静态前缀的字节内容在请求间完全一致——即便空白字符差异也会导致缓存失效"
+  ],
+  "donts": [
+    "Don't include timestamps, request IDs, or other dynamic values inside the cached prefix — they invalidate every cache entry",
+    "Don't assume cache hits are free — cache writes cost 1.25× the standard token price on Anthropic; model the break-even point for your traffic pattern",
+    "Don't cache sensitive user data inside a shared prefix — other users' requests may read from the same cache entry",
+    "Don't rely on caching to substitute for context window optimisation — high token counts still incur latency even when cached"
+  ],
+  "donts_zh": [
+    "不要在缓存前缀内包含时间戳、请求 ID 或其他动态值——它们会使每个缓存条目失效",
+    "不要以为缓存命中是免费的——在 Anthropic，缓存写入成本为标准 Token 价格的 1.25 倍；需根据流量模式建模盈亏平衡点",
+    "不要将敏感用户数据缓存在共享前缀中——其他用户的请求可能读取同一缓存条目",
+    "不要依赖缓存来替代上下文窗口优化——即使命中缓存，高 Token 数量仍会带来延迟"
+  ],
+  "case_study_company": "Notion",
+  "case_study": "Notion's AI team applied prompt caching to their document Q&A feature, where a user's full workspace context (often 50,000+ tokens of notes and pages) was being resent on every follow-up question. By restructuring prompts to place the document corpus before the conversation history and enabling Anthropic's cache_control, they reduced median input token costs for multi-turn sessions by 78% and cut time-to-first-token latency by 40%, directly improving the perceived responsiveness of the AI assistant.",
+  "case_study_zh": "Notion 的 AI 团队将提示词缓存应用于文档问答功能。此前，用户完整的工作区上下文（通常超过 5 万 Token 的笔记和页面内容）在每个追问时都会被重新发送。通过将文档语料库置于对话历史之前重构提示词，并启用 Anthropic 的 cache_control，多轮会话的中位输入 Token 成本降低了 78%，首 Token 延迟减少了 40%，直接提升了 AI 助手的感知响应速度。",
+  "when_not_to_use": [
+    "Highly personalised prompts where every request has a unique system prompt — no stable prefix exists to cache",
+    "Single-turn or very low-volume endpoints where the cache write overhead never amortises across enough hits",
+    "Prompts shorter than ~1024 tokens where provider minimum thresholds prevent caching from activating",
+    "Workflows that mutate the system prompt frequently (e.g., A/B testing prompt variations) — constant cache misses negate any benefit"
+  ],
+  "when_not_to_use_zh": [
+    "高度个性化的提示词，每次请求都有独特系统提示——不存在可缓存的稳定前缀",
+    "单轮或极低流量的端点，缓存写入开销无法在足够多次命中中摊销",
+    "提示词短于约 1024 Token、提供商最低阈值阻止缓存激活的场景",
+    "频繁修改系统提示词的工作流（如提示词变体 A/B 测试）——持续缓存未命中使一切收益归零"
+  ],
+  "adopters": [
+    "Notion",
+    "Cursor",
+    "Perplexity AI",
+    "GitHub Copilot",
+    "Anthropic (internal tooling)",
+    "OpenAI (platform)"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "performance",
+    "maintainability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Anthropic (2024). \"Prompt Caching\". docs.anthropic.com/en/docs/build-with-claude/prompt-caching.",
+  "secondary_sources": [
+    "OpenAI (2024). \"Prompt Caching\". platform.openai.com/docs/guides/prompt-caching.",
+    "Google (2024). \"Context caching overview\". ai.google.dev/gemini-api/docs/caching.",
+    "Pope, R. et al. (2023). \"Efficiently Scaling Transformer Inference\". MLSys 2023."
+  ],
+  "typed_relations": [
+    {
+      "slug": "ai-gateway-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "context-window-management",
+      "type": "complement"
+    },
+    {
+      "slug": "llm-system-design-patterns",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/prompt-caching-strategies",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/prompt-caching-strategies.md"
+}

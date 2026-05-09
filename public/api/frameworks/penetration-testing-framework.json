@@ -1,0 +1,193 @@
+{
+  "id": 204,
+  "name": "Penetration Testing Framework",
+  "name_zh": "渗透测试框架",
+  "slug": "penetration-testing-framework",
+  "category": "security",
+  "desc": "Structured offensive security testing methodology (PTES, OWASP Testing Guide)",
+  "desc_zh": "结构化攻击性安全测试方法论（PTES、OWASP测试指南）",
+  "steps": [
+    "Define scope and rules of engagement: document target systems, IP ranges, and application URLs that are in scope; establish testing windows, emergency contact procedures, and explicit out-of-scope boundaries to prevent disruption to production",
+    "Perform reconnaissance and threat intelligence: gather OSINT (open-source intelligence) about the target — exposed services, DNS records, public code repositories, employee profiles, and known CVEs in used technology versions",
+    "Enumerate attack surface: conduct port scanning, service fingerprinting, web crawling, and API discovery to map all entry points; correlate findings with the OWASP Testing Guide categories relevant to the application type",
+    "Exploit vulnerabilities: attempt to exploit identified weaknesses using controlled techniques (no destructive payloads); document proof-of-concept evidence including screenshots, request/response logs, and impact chains showing how a vulnerability leads to data exposure or privilege escalation",
+    "Report and remediate: produce a finding report with CVSS scores, business impact narratives, reproduction steps, and prioritized remediation recommendations; conduct a retest after fixes are applied to verify remediation was effective"
+  ],
+  "steps_zh": [
+    "定义范围和参与规则：记录在范围内的目标系统、IP范围和应用程序URL；建立测试窗口、紧急联系程序和明确的范围外边界以防止对生产的干扰",
+    "执行侦察和威胁情报：收集目标的OSINT（开源情报）——暴露的服务、DNS记录、公共代码存储库、员工档案和已使用技术版本中的已知CVE",
+    "枚举攻击面：进行端口扫描、服务指纹识别、Web爬取和API发现，以映射所有入口点；将发现与与应用程序类型相关的OWASP测试指南类别关联",
+    "利用漏洞：尝试使用受控技术（无破坏性载荷）利用已识别的弱点；记录概念验证证据，包括截图、请求/响应日志和显示漏洞如何导致数据泄露或权限提升的影响链",
+    "报告和修复：生成包含CVSS评分、业务影响叙述、复现步骤和优先修复建议的发现报告；在应用修复后进行复测以验证修复是否有效"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Scope",
+    "Reconnaissance",
+    "Attack Surface",
+    "Exploitation",
+    "Report"
+  ],
+  "viz_labels_zh": [
+    "测试范围",
+    "侦察",
+    "攻击面",
+    "漏洞利用",
+    "报告修复"
+  ],
+  "related": [
+    "threat-modeling-stride",
+    "owasp-top-10",
+    "defense-in-depth",
+    "waf-patterns"
+  ],
+  "tags": [
+    "penetration-testing",
+    "offensive-security",
+    "ptes",
+    "owasp",
+    "red-team"
+  ],
+  "origin_author": "PTES (Penetration Testing Execution Standard), 2009; OWASP Testing Guide v1.0, 2004",
+  "origin_source": "Penetration Testing Execution Standard (pentest-standard.org, 2012); OWASP Testing Guide v4.2 (2020); NIST SP 800-115 'Technical Guide to Information Security Testing'",
+  "origin_source_zh": "渗透测试执行标准（pentest-standard.org，2012）；OWASP测试指南v4.2（2020）；NIST SP 800-115「信息安全测试技术指南」",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Before major product launches or after significant architectural changes when threat modeling and code review alone are insufficient to validate security posture",
+    "When compliance frameworks (PCI-DSS, SOC 2 Type II, ISO 27001) require annual or continuous penetration testing as a mandatory control",
+    "After a security incident to verify that the attacker's initial access path has been fully closed and no similar vulnerabilities remain",
+    "When a new high-value attack surface is introduced (new public API, new cloud environment, new authentication system) and an adversarial perspective is needed"
+  ],
+  "when_to_use_zh": [
+    "在重大产品发布前或重大架构变更后，当威胁建模和代码审查单独不足以验证安全态势时",
+    "当合规框架（PCI-DSS、SOC 2 Type II、ISO 27001）要求年度或持续渗透测试作为强制控制时",
+    "安全事件后验证攻击者的初始访问路径已完全关闭且没有类似漏洞残留",
+    "当引入新的高价值攻击面（新公共API、新云环境、新身份验证系统）并需要对抗性视角时"
+  ],
+  "core_concepts": [
+    "Black-box testing: the tester has no prior knowledge of the target system, simulating an external attacker; provides the most realistic adversarial simulation but is the least efficient use of testing time",
+    "White-box testing: the tester has full access to source code, architecture diagrams, and credentials; maximizes coverage and depth but requires more preparation and does not simulate a realistic attacker perspective",
+    "CVSS scoring: the Common Vulnerability Scoring System provides a standardized 0-10 severity score for each finding based on exploitability, impact, and scope, enabling consistent risk prioritization",
+    "Lateral movement: demonstrating how an initial foothold in one system can be used to pivot to other systems in the environment, revealing the blast radius of a successful initial compromise"
+  ],
+  "core_concepts_zh": [
+    "黑盒测试：测试者对目标系统没有先验知识，模拟外部攻击者；提供最真实的对抗性模拟，但测试时间利用效率最低",
+    "白盒测试：测试者完全访问源代码、架构图和凭证；最大化覆盖率和深度，但需要更多准备，不模拟真实的攻击者视角",
+    "CVSS评分：通用漏洞评分系统根据可利用性、影响和范围为每个发现提供标准化的0-10严重性评分，实现一致的风险优先级排序",
+    "横向移动：展示如何使用一个系统中的初始立足点来转向环境中的其他系统，揭示成功初始入侵的爆炸半径"
+  ],
+  "timeline": [
+    [
+      "2004",
+      "OWASP publishes the first Web Application Testing Guide, formalizing a systematic methodology for web application security testing"
+    ],
+    [
+      "2009",
+      "The Penetration Testing Execution Standard (PTES) working group begins developing a vendor-neutral, comprehensive pentest methodology"
+    ],
+    [
+      "2018",
+      "Bug bounty programs (HackerOne, Bugcrowd) mature as a continuous penetration testing model, complementing periodic point-in-time assessments"
+    ],
+    [
+      "2023",
+      "CTEM (Continuous Threat Exposure Management), coined by Gartner, integrates automated pen testing with continuous exposure validation and remediation workflows"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2004",
+      "OWASP发布第一个Web应用测试指南，正式化Web应用安全测试的系统方法论"
+    ],
+    [
+      "2009",
+      "渗透测试执行标准（PTES）工作组开始开发供应商中立的综合渗透测试方法论"
+    ],
+    [
+      "2018",
+      "漏洞赏金计划（HackerOne、Bugcrowd）作为持续渗透测试模型成熟，补充定期时点评估"
+    ],
+    [
+      "2023",
+      "Gartner创造的CTEM（持续威胁暴露管理）将自动化渗透测试与持续暴露验证和修复工作流程集成"
+    ]
+  ],
+  "dos": [
+    "Do obtain written authorization before testing because unauthorized penetration testing is illegal under the Computer Fraud and Abuse Act and equivalent laws regardless of intent",
+    "Do use a gray-box testing approach where possible because it combines the efficiency of knowing the architecture with the adversarial realism of not having application credentials",
+    "Do document every finding with evidence and a reproduction case because a finding without evidence is a claim, and a finding without reproduction steps cannot be reliably remediated",
+    "Do retest all critical and high findings after remediation because verifying that the fix works is as important as finding the vulnerability in the first place"
+  ],
+  "dos_zh": [
+    "在测试前获得书面授权，因为未经授权的渗透测试根据《计算机欺诈和滥用法》及同等法律是非法的，无论意图如何",
+    "尽可能使用灰盒测试方法，因为它结合了了解架构的效率和没有应用程序凭证的对抗性真实性",
+    "用证据和复现案例记录每个发现，因为没有证据的发现是一个主张，没有复现步骤的发现无法可靠修复",
+    "在修复后对所有关键和高危发现进行复测，因为验证修复有效性与首先发现漏洞同样重要"
+  ],
+  "donts": [
+    "Don't run penetration tests in production without a change management process because even read-only testing can trigger WAF blocks, alerting fatigue, and accidental denial-of-service conditions",
+    "Don't deliver a list of CVEs without business context because security reports that do not translate technical findings into business risk are ignored by decision makers",
+    "Don't treat a clean penetration test report as proof of security because testers can only validate what they tested within their time box; absence of findings is not absence of vulnerabilities",
+    "Don't use automated scanner output as a substitute for manual penetration testing because scanners miss business logic flaws, chained vulnerabilities, and context-specific attack paths"
+  ],
+  "donts_zh": [
+    "不要在没有变更管理流程的情况下在生产中运行渗透测试，因为即使是只读测试也可能触发WAF阻止、告警疲劳和意外拒绝服务情况",
+    "不要在没有业务背景的情况下提交CVE列表，因为不将技术发现转化为业务风险的安全报告会被决策者忽视",
+    "不要将干净的渗透测试报告视为安全证明，因为测试者只能在其时间框内验证他们测试的内容；没有发现不等于没有漏洞",
+    "不要将自动化扫描器输出作为手动渗透测试的替代品，因为扫描器会遗漏业务逻辑缺陷、链式漏洞和特定上下文的攻击路径"
+  ],
+  "case_study_company": "Dropbox",
+  "case_study": "Dropbox runs a continuous penetration testing program combining an internal red team with an external bug bounty program on HackerOne. The internal red team focuses on advanced attack chains (social engineering, supply chain compromise, lateral movement from cloud infrastructure) that require deep context about Dropbox's architecture. The external bug bounty program handles the long tail of web application and API vulnerabilities with 4,000+ registered researchers. In 2022, Dropbox paid over $1M in bug bounties with 70% of critical findings coming from external researchers who identified logic flaws the internal team had missed, validating the complementary value of both approaches.",
+  "case_study_zh": "Dropbox运行一个持续渗透测试计划，将内部红队与HackerOne外部漏洞赏金计划相结合。内部红队专注于需要深入了解Dropbox架构的高级攻击链（社会工程、供应链入侵、从云基础设施横向移动）。外部漏洞赏金计划由4,000多名注册研究人员处理大量Web应用程序和API漏洞。2022年，Dropbox支付了超过100万美元的漏洞赏金，70%的关键发现来自识别出内部团队遗漏的逻辑缺陷的外部研究人员，验证了两种方法的互补价值。",
+  "when_not_to_use": [
+    "As a substitute for secure development practices because discovering vulnerabilities after they are built is far more expensive than preventing them during design",
+    "When the scope and rules of engagement cannot be clearly defined because an undefined scope leads to either incomplete testing or accidental out-of-scope impact",
+    "As the first security activity for a new product — threat modeling and secure code review during development are more cost-effective than post-launch penetration testing",
+    "When the development team has no capacity to remediate findings because unactioned penetration test findings accumulate into security debt without improving security posture"
+  ],
+  "when_not_to_use_zh": [
+    "作为安全开发实践的替代品，因为在漏洞构建后发现它们远比在设计过程中预防它们更昂贵",
+    "当无法清晰定义范围和参与规则时，因为未定义的范围会导致测试不完整或意外的范围外影响",
+    "作为新产品的第一个安全活动——开发过程中的威胁建模和安全代码审查比发布后渗透测试更具成本效益",
+    "当开发团队没有能力修复发现时，因为未采取行动的渗透测试发现会积累成安全债务而不改善安全态势"
+  ],
+  "adopters": [
+    "Dropbox",
+    "Microsoft (internal red team)",
+    "Google (Project Zero)",
+    "Facebook/Meta (Red Team)",
+    "US DoD (Hack the Pentagon)"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "security"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "OWASP (2020). \"OWASP Testing Guide v4.2\". owasp.org/www-project-web-security-testing-guide.",
+  "secondary_sources": [
+    "NIST (2008). \"SP 800-115: Technical Guide to Information Security Testing and Assessment\". NIST.",
+    "Wilhelm, T. (2013). \"Professional Penetration Testing\", 2nd ed. Syngress.",
+    "Kennedy, D., O'Gorman, J., Kearns, D. & Aharoni, M. (2011). \"Metasploit: The Penetration Tester's Guide\". No Starch Press."
+  ],
+  "typed_relations": [
+    {
+      "slug": "threat-modeling-stride",
+      "type": "complement"
+    },
+    {
+      "slug": "owasp-top-10",
+      "type": "complement"
+    },
+    {
+      "slug": "defense-in-depth",
+      "type": "complement"
+    },
+    {
+      "slug": "waf-patterns",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/penetration-testing-framework",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/penetration-testing-framework.md"
+}

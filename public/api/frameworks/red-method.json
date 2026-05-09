@@ -1,0 +1,192 @@
+{
+  "id": 53,
+  "name": "RED Method",
+  "name_zh": "RED 方法",
+  "slug": "red-method",
+  "category": "quality",
+  "desc": "Monitor Request rate, Error rate, Duration for each service",
+  "desc_zh": "对每个服务监控请求率、错误率和持续时间",
+  "steps": [
+    "Identify all services: list every microservice, API endpoint, and background worker that handles requests",
+    "Measure Rate: instrument each service to emit requests-per-second metrics broken down by endpoint and status code",
+    "Measure Errors: track the number and percentage of requests that result in errors (5xx, timeouts, business errors)",
+    "Measure Duration: capture request latency distributions (p50, p95, p99) to understand both typical and tail performance",
+    "Build dashboards and alerts: create per-service RED dashboards; set alerts on error rate spikes and latency degradation"
+  ],
+  "steps_zh": [
+    "识别所有服务：列出每个处理请求的微服务、API端点和后台工作器",
+    "测量速率：为每个服务埋点，按端点和状态码分类发出每秒请求数指标",
+    "测量错误：追踪导致错误的请求数量和百分比（5xx、超时、业务错误）",
+    "测量持续时间：捕获请求延迟分布（p50、p95、p99）以理解典型和尾部性能",
+    "构建仪表盘和告警：创建每服务RED仪表盘；对错误率飙升和延迟劣化设置告警"
+  ],
+  "ai_relevant": false,
+  "viz_type": "radar",
+  "viz_labels": [
+    "Rate",
+    "Errors",
+    "Duration"
+  ],
+  "viz_labels_zh": [
+    "请求速率",
+    "错误率",
+    "响应时延"
+  ],
+  "related": [
+    "use-method",
+    "four-golden-signals",
+    "dora-metrics"
+  ],
+  "tags": [
+    "red-method",
+    "request-rate",
+    "error-rate",
+    "duration",
+    "monitoring"
+  ],
+  "origin_author": "Tom Wilkie, 2018",
+  "origin_source": "The RED Method: How to Instrument Your Services (Grafana Labs blog/talk)",
+  "origin_source_zh": "《RED方法：如何为你的服务埋点》（Grafana Labs博客/演讲）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Monitoring microservices where request-centric metrics provide the most actionable signals",
+    "Building SRE dashboards that need to answer 'is this service healthy?' at a glance",
+    "Establishing baseline monitoring for any new service deployed to production",
+    "Debugging production issues where you need to quickly identify which service is degraded"
+  ],
+  "when_to_use_zh": [
+    "以请求为中心的指标能提供最可操作信号的微服务监控",
+    "需要一眼回答「这个服务健康吗？」的SRE仪表盘构建",
+    "为任何部署到生产的新服务建立基线监控",
+    "需要快速识别哪个服务降级的生产问题调试"
+  ],
+  "core_concepts": [
+    "Rate: The number of requests per second a service is handling, indicating demand and throughput",
+    "Errors: The count or percentage of requests that fail, indicating service correctness issues",
+    "Duration: The distribution of request latency (p50, p95, p99), indicating service performance",
+    "Service-Centric Monitoring: Focusing on the work a service does (requests) rather than the resources it uses",
+    "Percentile Latency: Using percentiles instead of averages to expose tail latency and worst-case user experience"
+  ],
+  "core_concepts_zh": [
+    "速率：服务每秒处理的请求数，表示需求和吞吐量",
+    "错误：失败请求的计数或百分比，表示服务正确性问题",
+    "持续时间：请求延迟的分布（p50、p95、p99），表示服务性能",
+    "以服务为中心的监控：关注服务所做的工作（请求）而非使用的资源",
+    "百分位延迟：使用百分位数而非平均值来暴露尾延迟和最差用户体验"
+  ],
+  "timeline": [
+    [
+      "2015",
+      "Tom Wilkie begins developing the RED Method at Weaveworks based on experience with microservices monitoring"
+    ],
+    [
+      "2018",
+      "Wilkie formally presents the RED Method at KubeCon and in the Grafana Labs blog"
+    ],
+    [
+      "2019",
+      "RED becomes a standard monitoring methodology in the Kubernetes and cloud-native community"
+    ],
+    [
+      "2020",
+      "Grafana, Datadog, and New Relic build RED-aligned dashboard templates into their platforms"
+    ],
+    [
+      "2022",
+      "RED Method is widely taught alongside USE and Golden Signals in SRE training programs"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2015",
+      "Tom Wilkie在Weaveworks根据微服务监控经验开始开发RED方法"
+    ],
+    [
+      "2018",
+      "Wilkie在KubeCon和Grafana Labs博客上正式发表RED方法"
+    ],
+    [
+      "2019",
+      "RED成为Kubernetes和云原生社区的标准监控方法论"
+    ],
+    [
+      "2020",
+      "Grafana、Datadog和New Relic将RED对齐的仪表盘模板内置于其平台"
+    ],
+    [
+      "2022",
+      "RED方法在SRE培训项目中与USE和黄金信号并列广泛教授"
+    ]
+  ],
+  "dos": [
+    "Do track latency distributions (percentiles) because averages hide tail latency affecting real users",
+    "Do separate error types (client vs server, transient vs permanent) because they require different responses",
+    "Do set up RED dashboards for every service before going to production because retroactive instrumentation is harder",
+    "Do correlate RED metrics with deployment events because many degradations are caused by code changes"
+  ],
+  "dos_zh": [
+    "追踪延迟分布（百分位数），因为平均值隐藏了影响真实用户的尾延迟",
+    "区分错误类型（客户端/服务端、瞬时/永久），因为它们需要不同的响应",
+    "在上线前为每个服务建立RED仪表盘，因为回溯性埋点更困难",
+    "将RED指标与部署事件关联，因为许多降级由代码变更导致"
+  ],
+  "donts": [
+    "Don't use only averages for duration because they conceal p99 spikes that affect user experience",
+    "Don't ignore rate changes because sudden drops in request rate often indicate upstream failures",
+    "Don't alert on every metric independently because correlated alerts (rate drops + error spikes) are more actionable",
+    "Don't apply RED to infrastructure resources because USE Method is designed for that purpose"
+  ],
+  "donts_zh": [
+    "不要只用平均值衡量持续时间，因为平均值掩盖了影响用户体验的p99尖峰",
+    "不要忽略速率变化，因为请求率的突然下降通常表示上游故障",
+    "不要对每个指标独立告警，因为相关联的告警（速率下降+错误激增）更具可操作性",
+    "不要将RED应用于基础设施资源，因为USE方法是为此目的设计的"
+  ],
+  "case_study_company": "Grafana Labs",
+  "case_study": "Grafana Labs uses the RED Method internally to monitor their own Grafana Cloud platform, which serves millions of dashboards and alerts. By standardizing on RED metrics across all microservices, their SRE team can diagnose cross-service issues in minutes. When a spike in error rates was detected in their alerting pipeline, RED dashboards immediately pinpointed the degraded service and specific endpoint.",
+  "case_study_zh": "Grafana Labs在内部使用RED方法监控其服务数百万仪表盘和告警的Grafana Cloud平台。通过在所有微服务上标准化RED指标，他们的SRE团队能在几分钟内诊断跨服务问题。当告警管道中检测到错误率尖峰时，RED仪表盘立即定位了降级的服务和具体端点。",
+  "when_not_to_use": [
+    "Infrastructure and hardware monitoring where resource utilization matters more than request metrics",
+    "Batch processing or streaming systems that do not follow a request-response pattern",
+    "Storage systems where disk and memory metrics are more relevant than request-level signals"
+  ],
+  "when_not_to_use_zh": [
+    "资源利用率比请求指标更重要的基础设施和硬件监控",
+    "不遵循请求-响应模式的批处理或流处理系统",
+    "磁盘和内存指标比请求级信号更相关的存储系统"
+  ],
+  "adopters": [
+    "Grafana Labs",
+    "Weaveworks",
+    "Google",
+    "Shopify",
+    "Cloudflare"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "observability",
+    "performance"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Tom Wilkie (2018). \"The RED Method: How to Instrument Your Services\". Grafana Labs blog / KubeCon talk.",
+  "secondary_sources": [
+    "Cindy Sridharan (2018). \"Distributed Systems Observability\". O'Reilly Media.",
+    "Brendan Gregg (2012). \"The USE Method\". brendangregg.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "use-method",
+      "type": "alternative"
+    },
+    {
+      "slug": "four-golden-signals",
+      "type": "alternative"
+    },
+    {
+      "slug": "dora-metrics",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/red-method",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/red-method.md"
+}

@@ -1,0 +1,41 @@
+{
+  "name": "sdframe-static-reference",
+  "description": "SDFrame currently provides a static read API and AI skill package. A live MCP JSON-RPC transport is not operated from this GitHub Pages deployment.",
+  "version": "1.0.0",
+  "serverUrl": "https://sdframe.caldis.me/developers/#mcp",
+  "transport": "documentation-only",
+  "tools": [
+    {
+      "name": "list_frameworks",
+      "description": "Use the static JSON API endpoint /api/frameworks.index.json to list framework summaries.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "quality": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "get_framework",
+      "description": "Use /api/frameworks/{slug}.json to retrieve one framework by slug.",
+      "inputSchema": {
+        "type": "object",
+        "required": [
+          "slug"
+        ],
+        "properties": {
+          "slug": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  ],
+  "status": "manifest-only",
+  "documentationUrl": "https://sdframe.caldis.me/developers/#mcp"
+}

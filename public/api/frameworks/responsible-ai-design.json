@@ -1,0 +1,198 @@
+{
+  "id": 99,
+  "name": "Responsible AI Design Framework",
+  "name_zh": "负责任 AI 设计框架",
+  "slug": "responsible-ai-design",
+  "category": "ai",
+  "desc": "Embed fairness, safety, and accountability in AI systems",
+  "desc_zh": "在 AI 系统中内嵌公平性、安全性与问责机制",
+  "steps": [
+    "Conduct an AI impact assessment covering bias, privacy, autonomy, and misuse vectors",
+    "Define measurable fairness metrics and test across demographic and use-case slices",
+    "Implement transparency features: model cards, decision explanations, confidence scores",
+    "Establish an accountability chain mapping each AI decision to a responsible human owner",
+    "Run red-team adversarial exercises and publish a responsible-use policy for the system"
+  ],
+  "steps_zh": [
+    "开展 AI 影响评估，覆盖偏见、隐私、自主性和滥用向量",
+    "定义可量化的公平性指标，在人群和用例切片上进行测试",
+    "实现透明度特性：模型卡、决策解释、置信度分数",
+    "建立问责链，将每项 AI 决策映射到负责任的人类负责人",
+    "开展红队对抗演练，并发布系统的负责任使用政策"
+  ],
+  "ai_relevant": true,
+  "viz_type": "radar",
+  "viz_labels": [
+    "Fairness",
+    "Transparency",
+    "Privacy",
+    "Safety",
+    "Accountability"
+  ],
+  "viz_labels_zh": [
+    "公平性",
+    "透明度",
+    "隐私",
+    "安全",
+    "问责"
+  ],
+  "related": [
+    "guardrails-framework",
+    "human-in-the-loop",
+    "human-ai-interaction-design"
+  ],
+  "tags": [
+    "responsible-ai",
+    "fairness",
+    "safety",
+    "accountability",
+    "ethics"
+  ],
+  "origin_author": "Microsoft (Responsible AI Standard, 2022); Google (AI Principles, 2018); EU AI Act (2024)",
+  "origin_source": "Microsoft Responsible AI Standard v2 (2022), Google AI Principles (2018), and EU Artificial Intelligence Act (2024)",
+  "origin_source_zh": "微软负责任 AI 标准 v2（2022）、Google AI 原则（2018）及欧盟人工智能法案（2024）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "AI systems making decisions that affect people's lives (hiring, lending, healthcare, criminal justice)",
+    "Products deployed in regulated markets subject to the EU AI Act or similar legislation",
+    "Consumer-facing AI features where bias or unfair treatment could cause reputational and legal harm",
+    "Any AI system operating at scale where undetected bias compounds into systemic discrimination"
+  ],
+  "when_to_use_zh": [
+    "影响人们生活的 AI 决策系统（招聘、贷款、医疗、刑事司法）",
+    "在受欧盟 AI 法案或类似法规监管的市场中部署的产品",
+    "偏见或不公平对待可能造成声誉和法律损害的面消费者 AI 功能",
+    "任何大规模运行、未检测偏见会累积为系统性歧视的 AI 系统"
+  ],
+  "core_concepts": [
+    "Model Card: A standardized document describing a model's intended use, performance metrics, limitations, and ethical considerations",
+    "Fairness Metric: A quantitative measure (e.g., demographic parity, equalized odds) that evaluates whether a model treats different groups equitably",
+    "Red Teaming: Adversarial testing by dedicated teams that try to elicit harmful, biased, or policy-violating outputs from the model",
+    "AI Impact Assessment: A structured review of potential harms covering bias, privacy, safety, and misuse before deployment",
+    "Constitutional AI: Anthropic's approach where AI systems are trained to follow a set of principles (a constitution) for safe and helpful behavior"
+  ],
+  "core_concepts_zh": [
+    "模型卡（Model Card）：描述模型预期用途、性能指标、局限性和伦理考量的标准化文档",
+    "公平性指标（Fairness Metric）：评估模型是否公平对待不同群体的量化度量（如人口统计均等、均等机会）",
+    "红队测试（Red Teaming）：专门团队进行的对抗性测试，尝试引导模型产出有害、偏见或违反政策的输出",
+    "AI 影响评估（AI Impact Assessment）：部署前对潜在危害（偏见、隐私、安全、滥用）的结构化审查",
+    "Constitutional AI：Anthropic 的方法，训练 AI 系统遵循一组原则（宪法）以实现安全且有帮助的行为"
+  ],
+  "timeline": [
+    [
+      "2018-06",
+      "Google publishes its AI Principles after employee protests over Project Maven"
+    ],
+    [
+      "2019-01",
+      "Margaret Mitchell & Timnit Gebru publish Model Cards for Model Reporting at FAT* 2019"
+    ],
+    [
+      "2022-06",
+      "Microsoft releases Responsible AI Standard v2, operationalizing fairness requirements"
+    ],
+    [
+      "2023-10",
+      "US Executive Order on AI Safety mandates red-teaming and impact assessments for frontier models"
+    ],
+    [
+      "2024-03",
+      "EU AI Act formally adopted, creating the world's first comprehensive AI legislation"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2018-06",
+      "Google 在员工抗议 Project Maven 后发布 AI 原则"
+    ],
+    [
+      "2019-01",
+      "Margaret Mitchell 和 Timnit Gebru 在 FAT* 2019 发表模型报告的模型卡"
+    ],
+    [
+      "2022-06",
+      "微软发布负责任 AI 标准 v2，将公平性要求操作化"
+    ],
+    [
+      "2023-10",
+      "美国 AI 安全行政令要求对前沿模型进行红队测试和影响评估"
+    ],
+    [
+      "2024-03",
+      "欧盟 AI 法案正式通过，创建全球首部综合性 AI 立法"
+    ]
+  ],
+  "dos": [
+    "Conduct fairness audits across demographic slices before deployment, not after incidents occur",
+    "Publish model cards and system documentation that honestly describe limitations and known failure modes",
+    "Involve diverse stakeholders (legal, ethics, affected communities) in AI impact assessments",
+    "Build mechanisms for affected individuals to contest AI decisions and receive human review"
+  ],
+  "dos_zh": [
+    "在部署前而非事故发生后对人口统计切片进行公平性审计",
+    "发布诚实描述局限性和已知故障模式的模型卡和系统文档",
+    "让多元利益相关者（法律、伦理、受影响社区）参与 AI 影响评估",
+    "建立受影响个人可以对 AI 决策提出异议并获得人工审查的机制"
+  ],
+  "donts": [
+    "Don't treat responsible AI as a checkbox exercise -- embed it into the development lifecycle, not just the launch review",
+    "Don't assume fairness on aggregate metrics alone -- disaggregate and test across all relevant subgroups",
+    "Don't publish AI principles without enforcement mechanisms -- principles without accountability are performative",
+    "Don't delay responsible AI practices until scale -- biases baked in early are hardest to fix later"
+  ],
+  "donts_zh": [
+    "不要将负责任 AI 视为勾选项——将其嵌入开发生命周期而非仅在发布审查时",
+    "不要仅基于聚合指标假设公平——需分解并测试所有相关子群体",
+    "不要在没有执行机制的情况下发布 AI 原则——没有问责的原则是表演性的",
+    "不要将负责任 AI 实践推迟到规模化——早期植入的偏见最难在后期修复"
+  ],
+  "case_study_company": "Microsoft",
+  "case_study": "Microsoft's Responsible AI Standard v2 requires every AI product team to complete an impact assessment, fairness evaluation, and transparency documentation before launch. After the Tay chatbot incident in 2016, Microsoft established an Office of Responsible AI and an AI Ethics & Effects in Engineering and Research (Aether) committee. This framework now governs AI features across Azure, Microsoft 365, and Bing, and has been publicly shared to influence industry practices.",
+  "case_study_zh": "微软负责任 AI 标准 v2 要求每个 AI 产品团队在发布前完成影响评估、公平性评估和透明度文档。在 2016 年 Tay 聊天机器人事件后，微软成立了负责任 AI 办公室和 AI 伦理与影响工程研究（Aether）委员会。该框架现在治理 Azure、Microsoft 365 和 Bing 中的 AI 功能，并已公开分享以影响行业实践。",
+  "when_not_to_use": [
+    "Internal research experiments with no deployment path or user-facing impact",
+    "Purely creative AI applications with no decision-making authority over people",
+    "When the overhead of formal assessments would prevent timely response to urgent needs (apply a lighter process instead)",
+    "Systems operating in domains with no disparate impact risk and no regulated data"
+  ],
+  "when_not_to_use_zh": [
+    "没有部署路径或用户影响的内部研究实验",
+    "对人不具有决策权的纯创意 AI 应用",
+    "正式评估的开销会阻碍紧急需求及时响应时（改用轻量级流程）",
+    "在没有差异化影响风险和受监管数据的领域中运行的系统"
+  ],
+  "adopters": [
+    "Microsoft",
+    "Google",
+    "Anthropic",
+    "Meta AI",
+    "IBM (AI Fairness 360)"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "security",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Microsoft (2022). \"Microsoft Responsible AI Standard, v2\". microsoft.com.",
+  "secondary_sources": [
+    "Google (2018). \"AI Principles\". ai.google/principles.",
+    "European Union (2024). \"EU Artificial Intelligence Act\". eur-lex.europa.eu."
+  ],
+  "typed_relations": [
+    {
+      "slug": "guardrails-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "human-in-the-loop",
+      "type": "complement"
+    },
+    {
+      "slug": "human-ai-interaction-design",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/responsible-ai-design",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/responsible-ai-design.md"
+}

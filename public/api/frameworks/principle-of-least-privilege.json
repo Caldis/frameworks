@@ -1,0 +1,199 @@
+{
+  "id": 117,
+  "name": "Principle of Least Privilege",
+  "name_zh": "最小权限原则",
+  "slug": "principle-of-least-privilege",
+  "category": "security",
+  "desc": "Grant each subject only the minimum permissions necessary to perform its function, nothing more",
+  "desc_zh": "仅授予每个主体执行其功能所需的最小权限，不多不少",
+  "steps": [
+    "Inventory all subjects (users, services, processes, CI/CD pipelines) and the resources they access",
+    "Define the minimum permissions each subject needs based on its actual job function or service contract",
+    "Implement role-based (RBAC) or attribute-based (ABAC) access control and assign the scoped-down roles",
+    "Remove standing privileges: use just-in-time (JIT) access elevation with time-bound approvals for sensitive operations",
+    "Audit access logs regularly, detect privilege creep, and revoke unused permissions automatically"
+  ],
+  "steps_zh": [
+    "盘点所有主体（用户、服务、进程、CI/CD 管道）及其访问的资源",
+    "根据实际工作职能或服务契约定义每个主体所需的最小权限",
+    "实施基于角色（RBAC）或基于属性（ABAC）的访问控制并分配缩减后的角色",
+    "消除常驻权限：对敏感操作使用即时（JIT）访问提升和限时审批",
+    "定期审计访问日志，检测权限蠕变，自动撤销未使用的权限"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Inventory",
+    "Min Permissions",
+    "RBAC / ABAC",
+    "JIT Access",
+    "Audit"
+  ],
+  "viz_labels_zh": [
+    "资产清单",
+    "最小权限",
+    "访问控制",
+    "即时访问",
+    "权限审计"
+  ],
+  "related": [
+    "zero-trust-architecture",
+    "oauth2-openid-connect",
+    "defense-in-depth"
+  ],
+  "tags": [
+    "least-privilege",
+    "access-control",
+    "rbac",
+    "abac",
+    "authorization",
+    "iam"
+  ],
+  "origin_author": "Jerome Saltzer and Michael Schroeder, 1975",
+  "origin_source": "Saltzer & Schroeder「The Protection of Information in Computer Systems」(Proceedings of the IEEE, 1975); NIST SP 800-53 AC-6「Least Privilege」",
+  "origin_source_zh": "Saltzer & Schroeder「计算机系统中的信息保护」(IEEE 会刊, 1975)；NIST SP 800-53 AC-6「最小权限」",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Designing IAM policies for cloud infrastructure (AWS IAM, Azure RBAC, GCP IAM)",
+    "Configuring service accounts and API keys that access shared resources",
+    "Defining database roles to restrict queries, writes, and schema changes per application tier",
+    "Setting up CI/CD pipeline permissions to limit what build agents can access in production"
+  ],
+  "when_to_use_zh": [
+    "为云基础设施设计 IAM 策略时（AWS IAM、Azure RBAC、GCP IAM）",
+    "配置访问共享资源的服务账户和 API 密钥时",
+    "定义数据库角色以按应用层限制查询、写入和模式变更时",
+    "设置 CI/CD 管道权限以限制构建代理在生产环境中的访问范围时"
+  ],
+  "core_concepts": [
+    "Need-to-Know: Access to information is restricted to subjects who require it for their current task",
+    "Role-Based Access Control (RBAC): Permissions are assigned to roles, and subjects are assigned to roles, creating an indirection layer",
+    "Just-In-Time (JIT) Access: Elevated privileges are granted temporarily and automatically revoked after a time window",
+    "Privilege Creep: The gradual accumulation of access rights over time as subjects change roles without having old permissions revoked",
+    "Blast Radius: The scope of damage a compromised subject can cause, directly proportional to its granted permissions"
+  ],
+  "core_concepts_zh": [
+    "按需知悉：信息访问仅限于当前任务需要它的主体",
+    "基于角色的访问控制（RBAC）：权限分配给角色，主体分配到角色，创建间接层",
+    "即时访问（JIT）：临时授予提升的权限，在时间窗口后自动撤销",
+    "权限蠕变：随着主体变更角色而旧权限未被撤销，访问权限逐渐积累",
+    "爆炸半径：被入侵主体可造成的损害范围，与其被授予的权限直接成正比"
+  ],
+  "timeline": [
+    [
+      "1975",
+      "Saltzer and Schroeder define the principle of least privilege in their seminal IEEE paper"
+    ],
+    [
+      "2004",
+      "Windows XP SP2 introduces User Account Control concepts, applying least privilege to desktop users"
+    ],
+    [
+      "2011",
+      "AWS IAM launches with fine-grained policy-based access control, making least privilege practical in the cloud"
+    ],
+    [
+      "2019",
+      "Cloud providers introduce IAM Access Analyzer (AWS) and similar tools to detect over-privileged identities"
+    ],
+    [
+      "2023",
+      "Just-in-time access platforms (CyberArk, BeyondTrust, HashiCorp Boundary) become standard in enterprise security stacks"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1975",
+      "Saltzer 和 Schroeder 在开创性 IEEE 论文中定义最小权限原则"
+    ],
+    [
+      "2004",
+      "Windows XP SP2 引入用户账户控制概念，将最小权限应用于桌面用户"
+    ],
+    [
+      "2011",
+      "AWS IAM 推出细粒度基于策略的访问控制，使最小权限在云端变得实用"
+    ],
+    [
+      "2019",
+      "云厂商推出 IAM Access Analyzer（AWS）等工具检测过度授权的身份"
+    ],
+    [
+      "2023",
+      "即时访问平台（CyberArk、BeyondTrust、HashiCorp Boundary）成为企业安全栈的标配"
+    ]
+  ],
+  "dos": [
+    "Default to deny-all and explicitly grant only needed permissions — whitelisting over blacklisting",
+    "Use infrastructure-as-code (Terraform, Pulumi) to codify and review IAM policies in pull requests",
+    "Implement automated permission review cycles (quarterly) to catch privilege creep",
+    "Separate duties: ensure no single identity can both deploy code and approve production access"
+  ],
+  "dos_zh": [
+    "默认拒绝全部，仅显式授予所需权限——白名单优于黑名单",
+    "使用基础设施即代码（Terraform、Pulumi）将 IAM 策略编码化并在 PR 中审查",
+    "实施自动化权限审查周期（季度），捕获权限蠕变",
+    "职责分离：确保没有单一身份既能部署代码又能批准生产访问"
+  ],
+  "donts": [
+    "Don't use wildcard permissions (e.g., '*' in AWS IAM) in production — they negate the entire principle",
+    "Don't share service accounts across multiple applications — each service needs its own scoped identity",
+    "Don't grant permanent admin access to developers — use JIT elevation with MFA for administrative tasks",
+    "Don't assume least privilege is a one-time setup — permissions must be continuously reviewed as roles evolve"
+  ],
+  "donts_zh": [
+    "不要在生产中使用通配符权限（如 AWS IAM 中的 '*'）——这会否定整个原则",
+    "不要跨多个应用共享服务账户——每个服务需要自己的限定范围身份",
+    "不要给开发者永久管理员权限——管理任务应使用带 MFA 的 JIT 提升",
+    "不要假设最小权限是一次性设置——权限必须随角色演变持续审查"
+  ],
+  "case_study_company": "Capital One",
+  "case_study": "The 2019 Capital One breach exposed 106 million customer records because a misconfigured WAF role had excessive IAM permissions, allowing the attacker to access S3 buckets containing sensitive data. The root cause was a violation of least privilege: the WAF's IAM role could list and read arbitrary S3 buckets rather than being scoped to only the resources it needed. Post-breach, Capital One invested heavily in automated IAM policy analysis and JIT access controls.",
+  "case_study_zh": "2019 年 Capital One 数据泄露暴露了 1.06 亿客户记录，原因是 WAF 角色配置错误拥有过度的 IAM 权限，允许攻击者访问包含敏感数据的 S3 存储桶。根本原因是违反最小权限原则：WAF 的 IAM 角色可以列出和读取任意 S3 存储桶，而非仅限于所需资源。事后 Capital One 大力投资于自动化 IAM 策略分析和即时访问控制。",
+  "when_not_to_use": [
+    "Personal development environments or sandboxes where broad permissions accelerate experimentation",
+    "Emergency break-glass scenarios where rapid access to all systems is required — but these should be audited and time-limited",
+    "Extremely small projects with a single administrator where role separation is impractical",
+    "When the cost of implementing fine-grained access control exceeds the value of the assets being protected"
+  ],
+  "when_not_to_use_zh": [
+    "宽泛权限可加速实验的个人开发环境或沙箱",
+    "需要快速访问所有系统的紧急破玻璃场景——但应审计且限时",
+    "角色分离不切实际的单管理员极小项目",
+    "实施细粒度访问控制的成本超过被保护资产价值时"
+  ],
+  "adopters": [
+    "AWS (IAM least privilege recommendations)",
+    "Google Cloud (IAM Recommender)",
+    "Microsoft (Azure AD PIM)",
+    "HashiCorp (Vault, Boundary)",
+    "CyberArk"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "security",
+    "reliability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Saltzer, J.H. & Schroeder, M.D. (1975). \"The Protection of Information in Computer Systems\". Proceedings of the IEEE, 63(9).",
+  "secondary_sources": [
+    "NIST (2020). \"Security and Privacy Controls for Information Systems and Organizations, AC-6: Least Privilege\". NIST SP 800-53, Rev. 5.",
+    "Anderson, R. (2020). \"Security Engineering\", 3rd ed. Wiley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "zero-trust-architecture",
+      "type": "extends"
+    },
+    {
+      "slug": "oauth2-openid-connect",
+      "type": "complement"
+    },
+    {
+      "slug": "defense-in-depth",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/principle-of-least-privilege",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/principle-of-least-privilege.md"
+}

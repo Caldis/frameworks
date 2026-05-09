@@ -1,0 +1,194 @@
+{
+  "id": 205,
+  "name": "CRDT (Conflict-free Replicated Data Types)",
+  "name_zh": "无冲突复制数据类型",
+  "slug": "crdt",
+  "category": "distributed",
+  "desc": "Data structures that auto-merge without coordination (Shapiro, 2011)",
+  "desc_zh": "无需协调即可自动合并的数据结构（Shapiro，2011）",
+  "steps": [
+    "Identify the collaborative or distributed data-sharing use case where concurrent modifications by multiple nodes or users must be merged automatically without a coordination round-trip",
+    "Select the appropriate CRDT type: G-Counter or PN-Counter for incrementing counters, G-Set or OR-Set for sets, LWW-Element-Set for last-write-wins semantics, or an RGA (Replicated Growable Array) for text collaboration",
+    "Implement the CRDT's merge function (join in lattice terms) which must be commutative, associative, and idempotent so that applying the same update multiple times or in any order produces the same result",
+    "Design the state or operation propagation strategy: state-based CRDTs (CvRDTs) gossip full state snapshots to peers; operation-based CRDTs (CmRDTs) propagate individual operations and require exactly-once delivery guarantees",
+    "Validate convergence under network partition scenarios by simulating concurrent conflicting updates across replicas and verifying that all replicas reach identical state after reconnection, regardless of the order messages were received"
+  ],
+  "steps_zh": [
+    "识别协作或分布式数据共享用例，其中多个节点或用户的并发修改必须自动合并，无需协调往返",
+    "选择适当的CRDT类型：G-Counter或PN-Counter用于递增计数器，G-Set或OR-Set用于集合，LWW-Element-Set用于最后写入胜出语义，或RGA（可复制增长数组）用于文本协作",
+    "实现CRDT的合并函数（格论中的连接），该函数必须是交换的、结合的和幂等的，使得多次或以任何顺序应用同一更新都产生相同结果",
+    "设计状态或操作传播策略：基于状态的CRDT（CvRDT）向对等节点传播完整状态快照；基于操作的CRDT（CmRDT）传播单个操作，并需要精确一次交付保证",
+    "通过模拟副本之间的并发冲突更新来验证网络分区场景下的收敛性，验证所有副本在重新连接后达到相同状态，无论消息的接收顺序如何"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Use Case",
+    "CRDT Type",
+    "Merge Function",
+    "Propagation",
+    "Convergence Test"
+  ],
+  "viz_labels_zh": [
+    "使用场景",
+    "CRDT类型",
+    "合并函数",
+    "状态传播",
+    "收敛验证"
+  ],
+  "related": [
+    "eventual-consistency",
+    "gossip-protocol",
+    "consensus-protocols",
+    "outbox-pattern"
+  ],
+  "tags": [
+    "crdt",
+    "eventual-consistency",
+    "distributed-state",
+    "conflict-resolution",
+    "collaboration"
+  ],
+  "origin_author": "Marc Shapiro, Nuno Preguiça, Carlos Baquero, Marek Zawirski, 2011",
+  "origin_source": "Shapiro, M. et al. (2011). \"Conflict-Free Replicated Data Types\". Proceedings of SSS 2011, LNCS 6976. Springer.",
+  "origin_source_zh": "Shapiro, M. 等（2011）。「无冲突复制数据类型」。SSS 2011论文集，LNCS 6976，Springer。",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When building real-time collaborative editing applications (documents, spreadsheets, whiteboards) where multiple users concurrently modify shared state",
+    "When distributed systems must remain available during network partitions and data must be automatically reconciled upon reconnection without human intervention",
+    "When a multi-region active-active database architecture requires conflict resolution that is provably correct without a centralized coordinator",
+    "When mobile or offline-capable applications need to merge local changes made during disconnection with server-side changes upon sync"
+  ],
+  "when_to_use_zh": [
+    "构建多用户并发修改共享状态的实时协作编辑应用程序（文档、电子表格、白板）时",
+    "当分布式系统在网络分区期间必须保持可用，且数据必须在重新连接时自动协调而无需人工干预时",
+    "当多区域主-主数据库架构需要无需集中协调器的可证明正确的冲突解决时",
+    "当移动或支持离线的应用程序需要在同步时将断开连接期间进行的本地更改与服务器端更改合并时"
+  ],
+  "core_concepts": [
+    "Monotonic join semi-lattice: the mathematical structure underlying CRDTs where the state space forms a lattice with a least-upper-bound merge operation that is commutative, associative, and idempotent",
+    "State-based CRDT (CvRDT): replicas periodically exchange full state; the merge function computes the join of two states; requires only eventual message delivery",
+    "Operation-based CRDT (CmRDT): replicas propagate operations that mutate state; requires exactly-once causal delivery but produces smaller network payloads",
+    "Strong Eventual Consistency (SEC): the guarantee that all replicas that have received the same set of updates will have identical state, without requiring synchronous coordination"
+  ],
+  "core_concepts_zh": [
+    "单调连接半格：CRDT底层的数学结构，状态空间形成具有最小上界合并操作的格，该操作是交换的、结合的和幂等的",
+    "基于状态的CRDT（CvRDT）：副本定期交换完整状态；合并函数计算两个状态的连接；仅需最终消息交付",
+    "基于操作的CRDT（CmRDT）：副本传播改变状态的操作；需要精确一次因果交付，但产生更小的网络负载",
+    "强最终一致性（SEC）：保证所有收到同一组更新的副本将具有相同状态，无需同步协调"
+  ],
+  "timeline": [
+    [
+      "2006",
+      "Logoot and other operational transformation (OT) approaches used in collaborative editors precede formal CRDT theory"
+    ],
+    [
+      "2011",
+      "Shapiro et al. publish the landmark 'A Comprehensive Study of Convergent and Commutative Replicated Data Types', formalizing CRDT theory"
+    ],
+    [
+      "2014",
+      "Riak 2.0 ships with production-ready CRDT support (counters, sets, maps), bringing CRDTs to mainstream distributed databases"
+    ],
+    [
+      "2017",
+      "Figma, a collaborative design tool, publicly discusses using CRDTs for multiplayer editing, driving broader awareness in the software industry"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2006",
+      "协作编辑器中使用的Logoot和其他操作转换（OT）方法早于正式CRDT理论"
+    ],
+    [
+      "2011",
+      "Shapiro等人发表里程碑式的「收敛和可交换复制数据类型综合研究」，正式化CRDT理论"
+    ],
+    [
+      "2014",
+      "Riak 2.0发布生产就绪的CRDT支持（计数器、集合、映射），将CRDT带入主流分布式数据库"
+    ],
+    [
+      "2017",
+      "协作设计工具Figma公开讨论使用CRDT进行多人编辑，推动软件行业更广泛的认知"
+    ]
+  ],
+  "dos": [
+    "Do choose the CRDT type that naturally matches the data semantics because forcing application data into a mismatched CRDT produces correct but semantically wrong results",
+    "Do use delta-CRDTs (delta state CRDTs) for large state spaces because shipping full state on every sync generates excessive network bandwidth for large CRDT instances",
+    "Do test convergence properties with property-based testing that generates arbitrary sequences of concurrent operations because CRDTs are easy to implement incorrectly in subtle ways",
+    "Do consider using established CRDT libraries (Automerge, Yjs, redis-crdt) rather than building from scratch because the theoretical simplicity of CRDTs masks substantial implementation complexity"
+  ],
+  "dos_zh": [
+    "选择与数据语义自然匹配的CRDT类型，因为将应用程序数据强制放入不匹配的CRDT会产生正确但语义错误的结果",
+    "对大状态空间使用增量CRDT（增量状态CRDT），因为每次同步都传送完整状态会为大型CRDT实例产生过多网络带宽",
+    "使用生成任意并发操作序列的基于属性的测试来测试收敛特性，因为CRDT很容易以微妙的方式实现不正确",
+    "考虑使用成熟的CRDT库（Automerge、Yjs、redis-crdt）而非从头构建，因为CRDT的理论简单性掩盖了大量的实现复杂性"
+  ],
+  "donts": [
+    "Don't use CRDTs for data that requires strict consistency (financial balances, inventory counts where overselling is unacceptable) because CRDTs guarantee eventual consistency, not strong consistency",
+    "Don't model all application state as CRDTs because not every field needs conflict-free merging and the overhead is unnecessary for state that is never concurrently modified",
+    "Don't confuse operational transformation (OT) with CRDTs because they solve the same collaboration problem with different guarantees — CRDTs are more composable but OT can produce better user intent preservation",
+    "Don't ignore tombstone growth in OR-Sets and similar CRDTs because deleted elements leave tombstones that accumulate indefinitely without periodic garbage collection"
+  ],
+  "donts_zh": [
+    "不要将CRDT用于需要强一致性的数据（财务余额、超卖不可接受的库存计数），因为CRDT保证最终一致性，而非强一致性",
+    "不要将所有应用程序状态建模为CRDT，因为并非每个字段都需要无冲突合并，对于从未被并发修改的状态，开销是不必要的",
+    "不要将操作转换（OT）与CRDT混淆，因为它们用不同的保证解决相同的协作问题——CRDT更可组合，但OT可以更好地保留用户意图",
+    "不要忽视OR-Sets和类似CRDT中的墓碑增长，因为删除的元素会留下无限期积累的墓碑，没有定期垃圾收集"
+  ],
+  "case_study_company": "Figma",
+  "case_study": "Figma uses a custom CRDT-inspired data model for its multiplayer design editor, allowing dozens of designers to simultaneously edit the same design file without merge conflicts. Each design element (frame, shape, text) is represented as a node in a document tree, with properties stored as last-write-wins registers. Operations (move, resize, recolor) are sent as small deltas to a central relay server that broadcasts them to all connected clients. Figma's multiplayer system handles over 1 million concurrent collaborative sessions daily with sub-100ms operation propagation latency, making real-time collaboration indistinguishable from working locally.",
+  "case_study_zh": "Figma为其多人设计编辑器使用自定义的CRDT启发数据模型，允许数十名设计师同时编辑同一设计文件而不产生合并冲突。每个设计元素（框架、形状、文本）表示为文档树中的节点，属性存储为最后写入胜出寄存器。操作（移动、调整大小、重新着色）作为小增量发送到中央中继服务器，该服务器将其广播给所有连接的客户端。Figma的多人系统每天处理超过100万个并发协作会话，操作传播延迟低于100毫秒，使实时协作与本地工作无异。",
+  "when_not_to_use": [
+    "Financial or inventory systems where preventing double-spending or overselling requires strong consistency guarantees that CRDTs cannot provide",
+    "Simple leader-follower replication where a single primary handles all writes and conflict-free merging is unnecessary",
+    "When the team lacks the mathematical background to correctly implement and test CRDT merge functions — incorrect implementations create subtle data loss bugs",
+    "Systems with low concurrency where optimistic locking or simple last-write-wins semantics with human conflict resolution is sufficient"
+  ],
+  "when_not_to_use_zh": [
+    "防止双重支出或超卖需要CRDT无法提供的强一致性保证的金融或库存系统",
+    "单个主节点处理所有写入且无冲突合并不必要的简单主从复制",
+    "当团队缺乏正确实现和测试CRDT合并函数的数学背景时——不正确的实现会产生微妙的数据丢失错误",
+    "并发性低的系统，乐观锁定或带有人工冲突解决的简单最后写入胜出语义已足够"
+  ],
+  "adopters": [
+    "Figma",
+    "Notion",
+    "Apple (CloudKit)",
+    "Redis (CRDT for Redis Enterprise)",
+    "Riak (Basho)"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability",
+    "scalability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Shapiro, M., Preguiça, N., Baquero, C. & Zawirski, M. (2011). \"Conflict-Free Replicated Data Types\". Proceedings of SSS 2011, LNCS 6976. Springer.",
+  "secondary_sources": [
+    "Shapiro, M. et al. (2011). \"A Comprehensive Study of Convergent and Commutative Replicated Data Types\". INRIA Research Report RR-7506.",
+    "Kleppmann, M. & Beresford, A.R. (2017). \"A Conflict-Free Replicated JSON Datatype\". IEEE Transactions on Parallel and Distributed Systems.",
+    "Kleppmann, M. (2019). \"Designing Data-Intensive Applications\", Ch. 5. O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "eventual-consistency",
+      "type": "extends"
+    },
+    {
+      "slug": "gossip-protocol",
+      "type": "complement"
+    },
+    {
+      "slug": "consensus-protocols",
+      "type": "alternative"
+    },
+    {
+      "slug": "outbox-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/crdt",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/crdt.md"
+}

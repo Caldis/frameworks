@@ -1,0 +1,194 @@
+{
+  "id": 202,
+  "name": "Web Application Firewall (WAF) Patterns",
+  "name_zh": "Web应用防火墙模式",
+  "slug": "waf-patterns",
+  "category": "security",
+  "desc": "Application-layer traffic filtering strategies that inspect, filter, and block malicious HTTP/S requests before they reach web applications",
+  "desc_zh": "在应用层检查、过滤和拦截恶意HTTP/S请求的流量防护策略，保护Web应用免受注入、跨站脚本等攻击",
+  "steps": [
+    "Deploy a WAF in front of web-facing applications by placing it between the internet edge (CDN or load balancer) and the application origin, ensuring all HTTP/HTTPS traffic passes through inspection",
+    "Configure rule sets starting with managed rule groups (OWASP Core Rule Set, AWS Managed Rules, Cloudflare OWASP) in detection-only mode to observe false positives before enabling blocking mode",
+    "Tune rules for application-specific traffic patterns: create allow-list rules for known-good paths and parameters, suppress rules that generate high false-positive rates for legitimate traffic, and add custom rules for business logic",
+    "Implement rate limiting and bot management rules to block credential stuffing, scraping, and DDoS amplification patterns based on IP reputation, request velocity, and behavioral fingerprinting",
+    "Establish WAF monitoring and alerting pipelines that feed block/allow decisions into a SIEM for correlation with application logs to detect evasion attempts and validate that the WAF is not blocking legitimate users"
+  ],
+  "steps_zh": [
+    "通过将WAF放置在互联网边缘（CDN或负载均衡器）和应用源站之间，在面向互联网的应用程序前部署WAF，确保所有HTTP/HTTPS流量通过检查",
+    "从在仅检测模式下使用托管规则组（OWASP核心规则集、AWS托管规则、Cloudflare OWASP）开始配置规则集，在启用阻止模式前观察误报",
+    "针对应用程序特定流量模式调整规则：为已知良好的路径和参数创建允许列表规则，抑制对合法流量产生高误报率的规则，并为业务逻辑添加自定义规则",
+    "实施速率限制和机器人管理规则，根据IP信誉、请求速度和行为指纹阻止凭证填充、爬取和DDoS放大模式",
+    "建立WAF监控和告警管道，将阻止/允许决策输入SIEM与应用程序日志关联，以检测规避尝试并验证WAF没有阻止合法用户"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "WAF Placement",
+    "Rule Sets",
+    "Rule Tuning",
+    "Rate Limiting",
+    "SIEM Monitor"
+  ],
+  "viz_labels_zh": [
+    "WAF部署",
+    "规则集",
+    "规则调优",
+    "速率限制",
+    "SIEM监控"
+  ],
+  "related": [
+    "defense-in-depth",
+    "zero-trust-architecture",
+    "owasp-top-10",
+    "penetration-testing-framework"
+  ],
+  "tags": [
+    "waf",
+    "application-firewall",
+    "owasp",
+    "bot-management",
+    "rate-limiting"
+  ],
+  "origin_author": "Perfecto Technologies (first commercial WAF, 1999); OWASP ModSecurity Core Rule Set",
+  "origin_source": "OWASP ModSecurity Core Rule Set (coreruleset.org); NIST SP 800-44 'Guidelines on Securing Public Web Servers'",
+  "origin_source_zh": "OWASP ModSecurity核心规则集（coreruleset.org）；NIST SP 800-44「公共Web服务器安全指南」",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When a web application must be protected against OWASP Top 10 vulnerabilities (SQLi, XSS, SSRF) as a defense-in-depth layer even if the application itself has been hardened",
+    "When a third-party or legacy application cannot be patched quickly and a virtual patch via WAF rule is needed to mitigate a known vulnerability in production",
+    "When compliance frameworks (PCI-DSS Requirement 6.6) mandate a WAF for cardholder data environment web applications",
+    "When bot traffic, credential stuffing, or scraping attacks are causing measurable business impact and application-level rate limiting is insufficient"
+  ],
+  "when_to_use_zh": [
+    "当Web应用程序必须针对OWASP十大漏洞（SQLi、XSS、SSRF）进行保护，作为纵深防御层，即使应用程序本身已经过加固",
+    "当第三方或遗留应用程序无法快速修补，需要通过WAF规则进行虚拟修补以缓解生产中已知漏洞时",
+    "当合规框架（PCI-DSS要求6.6）要求持卡人数据环境Web应用程序使用WAF时",
+    "当机器人流量、凭证填充或爬取攻击造成可测量的业务影响且应用程序级速率限制不足时"
+  ],
+  "core_concepts": [
+    "Positive security model: explicitly defining what is allowed (valid request shapes, parameter lengths, character sets) and blocking everything else; precise but high maintenance",
+    "Negative security model: defining patterns of known-bad traffic (SQL injection signatures, XSS payloads) and blocking matches; lower maintenance but blind to zero-days",
+    "Virtual patching: using WAF rules to block exploitation of a known vulnerability in the application layer without modifying the application code, buying time for proper remediation",
+    "Bot management: distinguishing between legitimate bots (search engines, monitoring), malicious bots (credential stuffers, scrapers), and human traffic using behavioral analysis and challenge mechanisms"
+  ],
+  "core_concepts_zh": [
+    "正向安全模型：明确定义允许的内容（有效请求形状、参数长度、字符集）并阻止其他所有内容；精确但维护成本高",
+    "负向安全模型：定义已知恶意流量的模式（SQL注入签名、XSS载荷）并阻止匹配；维护成本低但对零日漏洞视而不见",
+    "虚拟修补：使用WAF规则阻止利用应用程序层中已知漏洞，无需修改应用程序代码，为适当修复争取时间",
+    "机器人管理：使用行为分析和挑战机制区分合法机器人（搜索引擎、监控）、恶意机器人（凭证填充、爬虫）和人类流量"
+  ],
+  "timeline": [
+    [
+      "1999",
+      "Perfecto Technologies releases NetContinuum, one of the first commercial web application firewalls targeting application-layer attacks"
+    ],
+    [
+      "2003",
+      "ModSecurity 1.0 released as an open-source Apache module, democratizing WAF capabilities with the OWASP Core Rule Set"
+    ],
+    [
+      "2017",
+      "Cloud WAF services (AWS WAF, Cloudflare, Akamai Kona) achieve mainstream adoption, making WAF accessible without on-premises hardware"
+    ],
+    [
+      "2023",
+      "Next-generation WAFs add ML-based anomaly detection and API-aware inspection, moving beyond signature-based detection toward behavioral analysis"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1999",
+      "Perfecto Technologies发布NetContinuum，这是最早针对应用层攻击的商业Web应用防火墙之一"
+    ],
+    [
+      "2003",
+      "ModSecurity 1.0作为开源Apache模块发布，通过OWASP核心规则集使WAF能力普及化"
+    ],
+    [
+      "2017",
+      "云WAF服务（AWS WAF、Cloudflare、Akamai Kona）获得主流采纳，使WAF无需本地硬件即可访问"
+    ],
+    [
+      "2023",
+      "下一代WAF添加基于ML的异常检测和API感知检查，从基于签名的检测转向行为分析"
+    ]
+  ],
+  "dos": [
+    "Do run in detection-only mode for at least two weeks before switching to blocking mode because poorly tuned WAFs block legitimate users at a rate that can exceed the security benefit",
+    "Do establish a false-positive reporting workflow for application teams so that legitimate traffic blocked by the WAF is quickly triaged and ruled whitelisted",
+    "Do treat WAF as a defense-in-depth layer, not a substitute for secure coding because WAFs cannot protect against business logic flaws, authentication weaknesses, or vulnerabilities introduced by the application's own APIs",
+    "Do keep WAF rule sets updated because new attack techniques emerge continuously and stale rule sets miss recent vulnerability patterns"
+  ],
+  "dos_zh": [
+    "在切换到阻止模式前至少以仅检测模式运行两周，因为调整不当的WAF阻止合法用户的速率可能超过安全收益",
+    "为应用程序团队建立误报报告工作流，使WAF阻止的合法流量被快速分类并添加到白名单",
+    "将WAF视为纵深防御层，而非安全编码的替代品，因为WAF无法防护业务逻辑缺陷、身份验证弱点或应用程序自身API引入的漏洞",
+    "保持WAF规则集更新，因为新攻击技术不断涌现，过时的规则集会错过最近的漏洞模式"
+  ],
+  "donts": [
+    "Don't rely on a WAF as your only security control for web applications because sophisticated attackers study WAF rule patterns and craft payloads that evade signatures",
+    "Don't skip application-layer security testing after deploying a WAF because the WAF creates a false sense of security that defers essential secure code review and penetration testing",
+    "Don't block traffic based on geographic IP restrictions without careful analysis because VPN usage and shared IP ranges cause significant false positives",
+    "Don't set WAF rules to permissive mode in production permanently because permissive mode is a temporary diagnostic state, not a valid long-term configuration"
+  ],
+  "donts_zh": [
+    "不要将WAF作为Web应用程序的唯一安全控制，因为复杂的攻击者会研究WAF规则模式并精心设计规避签名的载荷",
+    "不要在部署WAF后跳过应用程序层安全测试，因为WAF会产生延迟必要安全代码审查和渗透测试的虚假安全感",
+    "不要在没有仔细分析的情况下基于地理IP限制阻止流量，因为VPN使用和共享IP范围会造成大量误报",
+    "不要在生产中永久将WAF规则设置为宽松模式，因为宽松模式是临时诊断状态，不是有效的长期配置"
+  ],
+  "case_study_company": "Cloudflare",
+  "case_study": "When the Log4Shell vulnerability (CVE-2021-44228) was disclosed in December 2021, Cloudflare deployed a WAF virtual patch rule within 4 hours of the CVE publication, before most organizations had even assessed their exposure. The rule blocked JNDI lookup strings in all HTTP headers and request bodies for all Cloudflare WAF customers. Within 72 hours of deployment, Cloudflare's WAF had blocked over 1 million exploitation attempts against their customers' applications, demonstrating how cloud WAF virtual patching can provide immediate protection for the long tail of organizations unable to patch Java applications quickly.",
+  "case_study_zh": "2021年12月Log4Shell漏洞（CVE-2021-44228）披露时，Cloudflare在CVE发布后4小时内部署了WAF虚拟修补规则，而此时大多数组织甚至还未评估其暴露情况。该规则为所有Cloudflare WAF客户阻止了所有HTTP头和请求体中的JNDI查找字符串。部署后72小时内，Cloudflare的WAF已阻止超过100万次针对其客户应用程序的利用尝试，展示了云WAF虚拟修补如何为无法快速修补Java应用程序的大量组织提供即时保护。",
+  "when_not_to_use": [
+    "Internal APIs accessible only from within a private network where the threat model does not include external internet attackers",
+    "When the application does not process untrusted user input and has no web-facing exposure that would benefit from application-layer filtering",
+    "As a replacement for a secure software development lifecycle — WAFs address symptoms of insecure code, not the root cause",
+    "When WAF latency overhead (typically 1-5ms) violates stringent real-time SLAs for latency-sensitive financial or gaming applications"
+  ],
+  "when_not_to_use_zh": [
+    "仅从私有网络内部访问的内部API，威胁模型不包括外部互联网攻击者",
+    "当应用程序不处理不可信用户输入且没有受益于应用层过滤的面向Web的暴露时",
+    "作为安全软件开发生命周期的替代品——WAF解决不安全代码的症状，而非根本原因",
+    "当WAF延迟开销（通常1-5毫秒）违反延迟敏感金融或游戏应用程序的严格实时SLA时"
+  ],
+  "adopters": [
+    "Cloudflare",
+    "AWS (AWS WAF)",
+    "Akamai",
+    "Fastly",
+    "Imperva"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "security",
+    "reliability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "OWASP (2023). \"ModSecurity Core Rule Set\". coreruleset.org.",
+  "secondary_sources": [
+    "NIST (2007). \"SP 800-44 Version 2: Guidelines on Securing Public Web Servers\". NIST.",
+    "Dafydd Stuttard & Marcus Pinto (2011). \"The Web Application Hacker's Handbook\", 2nd ed. Wiley.",
+    "Cloudflare (2022). \"Cloudflare WAF Documentation\". developers.cloudflare.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "defense-in-depth",
+      "type": "extends"
+    },
+    {
+      "slug": "zero-trust-architecture",
+      "type": "complement"
+    },
+    {
+      "slug": "owasp-top-10",
+      "type": "complement"
+    },
+    {
+      "slug": "penetration-testing-framework",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/waf-patterns",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/waf-patterns.md"
+}

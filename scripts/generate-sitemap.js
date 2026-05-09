@@ -6,12 +6,33 @@ const categories = ['thinking','architecture','coding','quality','deployment','e
 
 const urls = [
   '/',
+  '/docs/',
+  '/developers/',
+  '/api/',
+  '/getting-started/',
+  '/pricing/',
+  '/about/',
+  '/contact/',
+  '/privacy/',
+  '/alternatives/',
+  '/compare-framework-catalogs/',
+  '/status/',
   '/map',
   '/compare',
   '/selector',
   '/paths',
   '/insights',
   '/timeline',
+  '/agent',
+  '/index.md',
+  '/pricing.md',
+  '/AGENTS.md',
+  '/SKILL.md',
+  '/llms.txt',
+  '/llms-full.txt',
+  '/openapi.json',
+  '/api/frameworks.index.json',
+  '/api/categories.json',
 ]
 
 // Add category pages

@@ -1,0 +1,188 @@
+{
+  "id": 261,
+  "name": "Cell-Based Architecture",
+  "name_zh": "单元化架构",
+  "slug": "cell-based-architecture",
+  "category": "architecture",
+  "desc": "An architectural pattern where a system is divided into independent, self-contained cells that own their data, compute, and network resources, enabling granular scaling, fault isolation, and independent deployability",
+  "desc_zh": "将系统划分为独立、自包含的单元（cell）的架构模式，每个单元拥有自己的数据、计算和网络资源，实现细粒度扩展、故障隔离和独立部署能力",
+  "steps": [
+    "Cell Boundary Definition: Identify natural business or tenant partitions (geographic region, customer segment, product line) that can be served independently and will not share state with other cells",
+    "Cell Blueprint Design: Define the standard template for a cell — its services, databases, message queues, API gateway, and internal networking — so every cell is a consistent deployable unit",
+    "Cell Router: Build a stateless routing layer (DNS-based, API gateway, or service mesh) that maps incoming requests to the correct cell based on cell affinity (tenant ID, region, user hash)",
+    "Cell Lifecycle Automation: Implement infrastructure-as-code templates (Terraform, Helm) to provision, upgrade, scale, and decommission cells independently without coordination across the cell fleet",
+    "Observability per Cell: Deploy isolated monitoring stacks per cell (or cell-aware dashboards in a shared platform) so failures, latency spikes, and capacity issues are diagnosed at cell granularity"
+  ],
+  "steps_zh": [
+    "单元边界定义：识别可独立服务且不与其他单元共享状态的自然业务或租户分区（地理区域、客户细分、产品线）",
+    "单元蓝图设计：定义单元的标准模板——其服务、数据库、消息队列、API网关和内部网络——使每个单元成为一致的可部署单元",
+    "单元路由器：构建无状态路由层（基于DNS、API网关或服务网格），根据单元亲和性（租户ID、区域、用户哈希）将传入请求映射到正确的单元",
+    "单元生命周期自动化：实施基础设施即代码模板（Terraform、Helm）以独立地供应、升级、扩展和退役单元，无需跨单元舰队协调",
+    "每单元可观测性：为每个单元部署隔离的监控栈（或共享平台中的单元感知仪表板），以便在单元粒度诊断故障、延迟峰值和容量问题"
+  ],
+  "ai_relevant": true,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Cell",
+    "Gateway",
+    "Data Plane",
+    "Control Plane"
+  ],
+  "viz_labels_zh": [
+    "单元格",
+    "网关",
+    "数据平面",
+    "控制平面"
+  ],
+  "related": [
+    "ports-and-adapters"
+  ],
+  "tags": [
+    "cell-based",
+    "fault-isolation",
+    "multi-tenant",
+    "scalability",
+    "wso2",
+    "cloud-native"
+  ],
+  "origin_author": "WSO2",
+  "origin_source": "Siriwardena, P. & Fremantle, P. (2018). \"Cell-Based Architecture\". WSO2 White Paper. wso2.com/whitepapers/cell-based-architecture-and-reference-implementation.",
+  "origin_source_zh": "Siriwardena, P. & Fremantle, P.（2018）。「单元化架构」。WSO2白皮书。wso2.com/whitepapers/cell-based-architecture-and-reference-implementation。",
+  "complexity": "advanced",
+  "when_to_use": [
+    "In large-scale SaaS platforms serving thousands of tenants where a noisy-neighbor incident in one tenant should not degrade the experience of others",
+    "When blast-radius reduction is a primary architectural goal — large distributed systems where a single deployment or failure can cascade across the entire platform",
+    "For geographically distributed systems with data-residency requirements (GDPR, China data localization) where cells map to regions with isolated data stores",
+    "When different customer segments require different SLAs, resource quotas, or compliance profiles that cannot be enforced in a shared architecture"
+  ],
+  "when_to_use_zh": [
+    "在服务数千个租户的大型SaaS平台中，其中一个租户的嘈杂邻居事件不应降低其他租户的体验",
+    "当减小爆炸半径是主要架构目标时——单次部署或故障可能级联到整个平台的大型分布式系统",
+    "对于具有数据驻留要求（GDPR、中国数据本地化）的地理分布式系统，其中单元映射到具有隔离数据存储的区域",
+    "当不同客户细分需要无法在共享架构中强制执行的不同SLA、资源配额或合规配置文件时"
+  ],
+  "core_concepts": [
+    "Cell: The fundamental deployment unit — a self-contained cluster of services, data stores, and infrastructure that processes a defined subset of the overall traffic",
+    "Cell Router: A stateless, highly available layer that routes requests to the appropriate cell based on cell-affinity criteria without knowledge of internal cell topology",
+    "Blast Radius Containment: The property that a failure, security incident, or bad deployment within one cell cannot directly affect the operation of other cells",
+    "Cell Affinity: The binding between a user, tenant, or request and a specific cell, maintained by the router and preserved across requests to ensure consistent data locality",
+    "Cell Blueprint (Golden Path): A version-controlled infrastructure-as-code template defining the canonical structure of a cell, enabling fleet-wide upgrades through template versioning"
+  ],
+  "core_concepts_zh": [
+    "单元：基本部署单元——一个自包含的服务、数据存储和基础设施集群，处理整体流量的定义子集",
+    "单元路由器：无状态、高可用的层，根据单元亲和性标准将请求路由到适当的单元，而无需了解内部单元拓扑",
+    "爆炸半径遏制：一个单元内的故障、安全事件或错误部署不能直接影响其他单元操作的属性",
+    "单元亲和性：用户、租户或请求与特定单元之间的绑定，由路由器维护并在请求间保持，以确保一致的数据局部性",
+    "单元蓝图（黄金路径）：定义单元规范结构的版本控制基础设施即代码模板，通过模板版本控制实现整个舰队的升级"
+  ],
+  "timeline": [
+    [
+      "2018",
+      "WSO2 publishes the Cell-Based Architecture white paper, formalizing the pattern from lessons learned building large-scale API management platforms"
+    ],
+    [
+      "2019",
+      "Amazon publishes「Avoiding Fallback in Distributed Systems」, describing shuffle sharding as a blast-radius reduction technique related to cell isolation"
+    ],
+    [
+      "2021",
+      "Slack and DoorDash publish engineering blog posts describing cell-based deployments for tenant isolation at scale"
+    ],
+    [
+      "2023",
+      "AWS Well-Architected Framework formally incorporates cell-based architecture as a reliability best practice for high-scale workloads"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2018",
+      "WSO2发布单元化架构白皮书，从构建大规模API管理平台的经验教训中正式化该模式"
+    ],
+    [
+      "2019",
+      "亚马逊发布「避免分布式系统中的回退」，描述洗牌分片作为与单元隔离相关的爆炸半径缩减技术"
+    ],
+    [
+      "2021",
+      "Slack和DoorDash发布工程博客文章，描述用于大规模租户隔离的单元化部署"
+    ],
+    [
+      "2023",
+      "AWS良好架构框架正式将单元化架构纳入高规模工作负载的可靠性最佳实践"
+    ]
+  ],
+  "dos": [
+    "Design cells to be stateless at the routing layer — cell affinity state lives in the router or a shared cell-mapping service, never in cells themselves",
+    "Version your cell blueprint separately from the services running inside cells, enabling you to upgrade the cell infrastructure (k8s version, observability agent) independently of application code",
+    "Plan for cell rebalancing from the start — as tenant distribution changes over time, you need automated or semi-automated tooling to migrate tenants between cells without downtime",
+    "Treat the cell boundary as a security boundary — network policies, IAM roles, and encryption keys should be scoped to individual cells to limit lateral movement in breach scenarios"
+  ],
+  "dos_zh": [
+    "将单元设计为路由层无状态——单元亲和性状态存在于路由器或共享单元映射服务中，而非单元本身",
+    "将单元蓝图与在单元内运行的服务分开版本控制，使你能够独立于应用程序代码升级单元基础设施（k8s版本、可观测性代理）",
+    "从一开始就规划单元再平衡——随着时间推移租户分布的变化，你需要自动化或半自动化工具在不停机的情况下将租户迁移到不同单元",
+    "将单元边界视为安全边界——网络策略、IAM角色和加密密钥应限定于单个单元，以在泄露场景中限制横向移动"
+  ],
+  "donts": [
+    "Don't share databases or message queues across cells because cross-cell data dependencies break the blast-radius guarantee and create cascading failure paths",
+    "Don't start with too many small cells — the operational overhead of managing dozens of cells before traffic warrants it consumes engineering capacity better spent elsewhere",
+    "Don't build cells that communicate synchronously with each other during request processing because this reintroduces tight coupling and the distributed monolith failures cell-based architecture is designed to prevent",
+    "Don't use cell-based architecture when your product has a single tenant or very few customers — the added complexity is not justified until multi-tenancy isolation becomes a real availability or compliance requirement"
+  ],
+  "donts_zh": [
+    "不要跨单元共享数据库或消息队列，因为跨单元数据依赖会破坏爆炸半径保证并创建级联故障路径",
+    "不要从太多小单元开始——在流量证明其合理之前管理数十个单元的运营开销会消耗本可更好利用的工程能力",
+    "不要构建在请求处理期间相互同步通信的单元，因为这会重新引入紧耦合和单元化架构旨在防止的分布式单体故障",
+    "当你的产品有单个租户或极少客户时不要使用单元化架构——在多租户隔离成为真实可用性或合规需求之前，增加的复杂性是不合理的"
+  ],
+  "case_study_company": "Slack",
+  "case_study": "Slack adopted cell-based architecture (which they call \"sharding\") as their user base scaled past 10 million daily active users. Each cell (shard) contains a subset of Slack workspaces and owns all the services needed to serve those workspaces — message storage, real-time WebSocket handlers, search indexing, and notification delivery. When a viral incident caused one workspace to generate 100x normal traffic, the blast radius was limited to the cell containing that workspace, protecting the other 99% of users. Slack's engineering team reported that cell isolation enabled them to conduct disruptive infrastructure upgrades (Kubernetes migration, database engine changes) on individual cells during off-peak hours without maintenance windows affecting all users simultaneously.",
+  "case_study_zh": "Slack在日活跃用户超过1000万后采用了单元化架构（他们称之为「分片」）。每个单元（分片）包含Slack工作区的子集，并拥有服务这些工作区所需的所有服务——消息存储、实时WebSocket处理程序、搜索索引和通知传递。当一个病毒式事件导致一个工作区产生100倍正常流量时，爆炸半径仅限于包含该工作区的单元，保护了其他99%的用户。Slack的工程团队报告称，单元隔离使他们能够在非高峰时段对单个单元进行破坏性基础设施升级（Kubernetes迁移、数据库引擎更改），而不会影响所有用户同时进入维护窗口。",
+  "case_study_challenge": "As Slack scaled past 10 million daily active users, a single viral workspace could generate 100x normal traffic and threaten availability for the entire platform. Infrastructure upgrades required company-wide maintenance windows because every workspace shared the same service instances.",
+  "case_study_challenge_zh": "当Slack的日活跃用户突破1000万时，一个病毒式传播的工作区可能产生100倍的正常流量，威胁整个平台的可用性。基础设施升级需要全公司范围的维护窗口，因为所有工作区共享相同的服务实例。",
+  "case_study_approach": "Slack partitioned its infrastructure into independent cells (which they call shards), each owning a subset of workspaces and all supporting services — message storage, real-time WebSocket handlers, search indexing, and notification delivery. A routing layer maps each workspace to its cell, creating complete blast-radius isolation.",
+  "case_study_approach_zh": "Slack将基础设施划分为独立的单元（他们称之为分片），每个单元拥有一部分工作区及其全部支撑服务——消息存储、实时WebSocket处理器、搜索索引和通知推送。路由层将每个工作区映射到其所属单元，实现完整的爆炸半径隔离。",
+  "case_study_result": "When a viral incident hit one workspace, only the cell containing that workspace was affected — the other 99% of users experienced zero impact. Cell isolation also enabled rolling infrastructure upgrades (Kubernetes migration, database engine swaps) on individual cells during off-peak hours, eliminating platform-wide maintenance windows entirely.",
+  "case_study_result_zh": "当病毒式事件冲击某个工作区时，只有包含该工作区的单元受到影响——其余99%的用户完全无感。单元隔离还使团队能够在非高峰时段对单个单元滚动执行基础设施升级（Kubernetes迁移、数据库引擎更换），彻底消除了全平台维护窗口。",
+  "case_study_quote": "The moment we stopped thinking of our infrastructure as one thing and started thinking of it as many independent things, our availability story changed completely.",
+  "case_study_quote_zh": "当我们不再将基础设施视为一个整体，而是看作许多独立个体的那一刻，我们的可用性叙事彻底改变了。",
+  "when_not_to_use": [
+    "For single-tenant applications or platforms with fewer than a few hundred customers where the operational complexity of managing a cell fleet exceeds any resilience benefit",
+    "When your data model requires frequent cross-tenant joins or aggregations that cannot be pre-computed — cell isolation forces data locality that makes cross-cell queries expensive or impossible",
+    "Early-stage products where the architecture should optimize for rapid iteration speed rather than operational resilience at scale"
+  ],
+  "when_not_to_use_zh": [
+    "对于单租户应用程序或客户少于几百个的平台，管理单元舰队的运营复杂性超过任何弹性收益",
+    "当你的数据模型需要频繁跨租户联接或无法预计算的聚合时——单元隔离强制数据局部性，使跨单元查询变得昂贵或不可能",
+    "早期阶段的产品，架构应优化快速迭代速度而非大规模运营弹性"
+  ],
+  "adopters": [
+    "Slack",
+    "DoorDash",
+    "WSO2",
+    "Amazon Web Services",
+    "Zalando",
+    "Shopify"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "scalability",
+    "security"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Siriwardena, P. & Fremantle, P. (2018). \"Cell-Based Architecture\". WSO2. wso2.com/whitepapers/cell-based-architecture-and-reference-implementation.",
+  "secondary_sources": [
+    "Amazon (2019). \"Avoiding Fallback in Distributed Systems\". amazon.science.",
+    "AWS (2023). \"Cell-Based Architecture\". AWS Well-Architected Framework. docs.aws.amazon.com/wellarchitected.",
+    "Nygard, M. (2018). \"Release It! Design and Deploy Production-Ready Software\", 2nd ed. Pragmatic Bookshelf."
+  ],
+  "typed_relations": [
+    {
+      "slug": "ports-and-adapters",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/cell-based-architecture",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/cell-based-architecture.md"
+}

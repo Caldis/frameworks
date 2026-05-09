@@ -1,0 +1,197 @@
+{
+  "id": 308,
+  "name": "Data Lineage",
+  "name_zh": "数据血缘",
+  "slug": "data-lineage-governance",
+  "category": "data",
+  "desc": "Systematic tracking and visualization of data flow from origin through all transformations to final consumption, enabling impact analysis and regulatory compliance.",
+  "desc_zh": "系统地追踪和可视化数据从起源经过所有转换到最终消费的流动，支持影响分析和法规合规。",
+  "steps": [
+    "Instrument data pipelines, ETL jobs, and query engines to emit lineage events (source, transformation, destination) at execution time using open standards like OpenLineage",
+    "Collect and store lineage events in a graph database where nodes represent datasets or jobs and edges represent data flow or transformation relationships",
+    "Build column-level lineage by parsing SQL and transformation code to trace individual field derivations through multi-hop pipelines",
+    "Expose lineage graphs through a visualization layer that shows upstream dependencies and downstream impact for any selected dataset or column",
+    "Integrate lineage with data catalog entries, data quality alerts, and incident management so root-cause analysis automatically surfaces the affected lineage path"
+  ],
+  "steps_zh": [
+    "使用OpenLineage等开放标准对数据管道、ETL作业和查询引擎进行插桩，在执行时发出血缘事件（源、转换、目标）",
+    "在图数据库中收集和存储血缘事件，其中节点代表数据集或作业，边代表数据流或转换关系",
+    "通过解析SQL和转换代码构建列级血缘，以跟踪多跳管道中的各个字段派生",
+    "通过可视化层展示血缘图，显示任何选定数据集或列的上游依赖和下游影响",
+    "将血缘与数据目录条目、数据质量告警和事件管理集成，使根本原因分析自动显示受影响的血缘路径"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Lineage Events",
+    "Graph Store",
+    "Column Lineage",
+    "Visualization",
+    "Impact Alert"
+  ],
+  "viz_labels_zh": [
+    "血缘事件",
+    "图存储",
+    "列级血缘",
+    "可视化",
+    "影响告警"
+  ],
+  "related": [
+    "data-catalog",
+    "data-quality-framework",
+    "medallion-architecture",
+    "data-contract"
+  ],
+  "tags": [
+    "lineage",
+    "apache-atlas",
+    "openlineage",
+    "governance",
+    "impact-analysis",
+    "data-quality"
+  ],
+  "origin_author": "Apache Atlas",
+  "origin_source": "Apache Atlas Project (2015). 'Atlas: Data Governance and Metadata Framework for Hadoop'. atlas.apache.org; OpenLineage Specification (Astronomer, 2021).",
+  "origin_source_zh": "Apache Atlas项目（2015）。「Atlas：Hadoop的数据治理和元数据框架」。atlas.apache.org；OpenLineage规范（Astronomer，2021）。",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When GDPR, CCPA, or BCBS 239 compliance requires demonstrating exactly which source systems contributed to a regulatory report and how the data was transformed",
+    "When a data quality incident occurs and the team needs to rapidly identify all downstream dashboards, ML models, and reports consuming data from the corrupted source",
+    "When planning schema changes or decommissioning a dataset and need to assess the full blast radius before executing the change",
+    "When building a data mesh where domain teams need visibility into cross-domain data dependencies to avoid uncoordinated breaking changes"
+  ],
+  "when_to_use_zh": [
+    "当GDPR、CCPA或BCBS 239合规要求证明哪些源系统为监管报告提供了数据以及数据如何被转换时",
+    "当发生数据质量事件，团队需要快速识别所有下游仪表板、ML模型和从受损源消费数据的报告时",
+    "当计划模式变更或下线数据集时，需要在执行变更前评估完整的影响范围",
+    "当构建数据网格时，领域团队需要了解跨领域数据依赖关系以避免不协调的破坏性变更"
+  ],
+  "core_concepts": [
+    "Dataset-level lineage: a directed acyclic graph (DAG) where nodes are datasets or tables and edges represent ETL jobs or SQL queries that produced the destination from its sources",
+    "Column-level lineage: fine-grained tracking of individual column derivations through transformations, enabling precise impact analysis when a single upstream column changes",
+    "OpenLineage: an open standard (Astronomer, 2021, now Linux Foundation) that defines a vendor-neutral event spec for emitting lineage from Airflow, Spark, dbt, Flink, and other engines",
+    "Impact analysis vs. root-cause analysis: downstream traversal (what breaks if I change X) vs. upstream traversal (where did this bad data come from) — the two primary lineage use cases"
+  ],
+  "core_concepts_zh": [
+    "数据集级血缘：有向无环图（DAG），其中节点是数据集或表，边代表从源生成目标的ETL作业或SQL查询",
+    "列级血缘：通过转换对单个列派生的细粒度追踪，支持当单个上游列变更时进行精确影响分析",
+    "OpenLineage：由Astronomer于2021年创建（现为Linux基金会）的开放标准，定义了用于从Airflow、Spark、dbt、Flink和其他引擎发出血缘的厂商中立事件规范",
+    "影响分析与根本原因分析：下游遍历（如果我更改X会发生什么）与上游遍历（这些坏数据来自哪里）——两个主要的血缘用例"
+  ],
+  "timeline": [
+    [
+      "2015",
+      "Apache Atlas released as part of the Hadoop ecosystem, providing the first open-source metadata and lineage framework for Hive, HBase, and HDFS"
+    ],
+    [
+      "2018",
+      "Google Cloud Data Catalog and Collibra launch automated lineage, moving data lineage from a manual documentation practice to an automated platform feature"
+    ],
+    [
+      "2021",
+      "OpenLineage specification published by Astronomer, establishing a vendor-neutral standard for lineage event emission across Airflow, Spark, and dbt"
+    ],
+    [
+      "2023",
+      "Column-level lineage becomes table stakes in enterprise data catalogs; dbt adds native column lineage support, extending graph-level lineage to granular field derivations"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2015",
+      "Apache Atlas作为Hadoop生态系统的一部分发布，为Hive、HBase和HDFS提供第一个开源元数据和血缘框架"
+    ],
+    [
+      "2018",
+      "Google Cloud数据目录和Collibra推出自动化血缘，将数据血缘从手动文档实践转变为自动化平台功能"
+    ],
+    [
+      "2021",
+      "Astronomer发布OpenLineage规范，为Airflow、Spark和dbt的血缘事件发送建立厂商中立标准"
+    ],
+    [
+      "2023",
+      "列级血缘成为企业数据目录的标配；dbt增加原生列血缘支持，将图级血缘扩展到细粒度字段派生"
+    ]
+  ],
+  "dos": [
+    "Do adopt OpenLineage as your lineage emission standard from the start because vendor-specific lineage APIs create lock-in and prevent cross-tool lineage stitching",
+    "Do capture column-level lineage from SQL engines and dbt models because dataset-level lineage alone cannot support regulatory column-to-report tracing requirements",
+    "Do store lineage as a graph database (Neo4j, Amazon Neptune) rather than relational tables because multi-hop traversal queries are prohibitively expensive in SQL at scale",
+    "Do integrate lineage alerts into your data quality monitoring so that when an upstream dataset fails validation, all downstream consumers receive automatic impact notifications"
+  ],
+  "dos_zh": [
+    "从一开始就采用OpenLineage作为血缘发送标准，因为特定于供应商的血缘API会造成锁定并阻止跨工具血缘拼接",
+    "从SQL引擎和dbt模型捕获列级血缘，因为仅靠数据集级血缘无法支持监管列到报告的追踪要求",
+    "将血缘存储为图数据库（Neo4j、Amazon Neptune）而非关系表，因为多跳遍历查询在大规模SQL中代价极高",
+    "将血缘告警集成到数据质量监控中，当上游数据集验证失败时，所有下游消费者会自动收到影响通知"
+  ],
+  "donts": [
+    "Don't rely solely on static code parsing for lineage because dynamic SQL, stored procedures, and runtime-generated queries are invisible to static analysis",
+    "Don't attempt to capture lineage retroactively for existing pipelines by reading logs; instrument pipelines going forward and accept a lineage coverage gap for legacy systems",
+    "Don't expose raw lineage graphs to business users without abstraction because hundreds of nodes and edges overwhelm non-technical stakeholders; build purpose-specific views",
+    "Don't conflate lineage with data catalog; lineage is a dynamic, runtime-derived graph while a catalog is a curated, human-enriched metadata store — they complement each other"
+  ],
+  "donts_zh": [
+    "不要仅依赖静态代码解析进行血缘，因为动态SQL、存储过程和运行时生成的查询对静态分析不可见",
+    "不要尝试通过读取日志为现有管道追溯捕获血缘；对管道进行前向插桩，并接受遗留系统的血缘覆盖空缺",
+    "不要将原始血缘图直接暴露给业务用户而不加抽象，因为数百个节点和边会压倒非技术利益相关者；构建特定目的的视图",
+    "不要将血缘与数据目录混淆；血缘是动态的运行时派生图，而目录是精心策划的人工丰富元数据存储——它们相互补充"
+  ],
+  "case_study_company": "ING Bank",
+  "case_study": "ING Bank implemented end-to-end data lineage across 15,000 data assets to satisfy European Banking Authority (EBA) BCBS 239 data risk reporting requirements. Using Apache Atlas as the metadata backbone, ING mapped column-level lineage from operational databases through 300+ ETL pipelines to 120 regulatory reports. When the EBA requested proof of data origin for capital adequacy ratios, ING's lineage system produced a complete audit trail from source transaction records to the final reported figure in under 4 hours — a process that previously required 3 weeks of manual investigation. The lineage system now detects 85% of pipeline failures through downstream impact propagation before business users notice.",
+  "case_study_zh": "ING银行在15000个数据资产中实施端到端数据血缘，以满足欧洲银行管理局（EBA）BCBS 239数据风险报告要求。使用Apache Atlas作为元数据骨干，ING通过300多个ETL管道将列级血缘从运营数据库映射到120个监管报告。当EBA要求提供资本充足率的数据来源证明时，ING的血缘系统在4小时内从源交易记录到最终报告数字生成了完整的审计追踪——这一过程以前需要3周的人工调查。血缘系统现在通过下游影响传播在业务用户注意到之前检测到85%的管道故障。",
+  "when_not_to_use": [
+    "Small teams with fewer than 20 pipelines where a simple data flow diagram maintained in Confluence provides sufficient lineage visibility without the engineering cost",
+    "Real-time OLTP systems where data lineage tracking adds latency to transaction processing; use async audit logs instead",
+    "When all data transformations happen inside a single SQL warehouse or dbt project; native lineage tools in those platforms are sufficient without a separate lineage service",
+    "Early-stage startups where data infrastructure is volatile and lineage graphs would be outdated within weeks; invest in lineage when the data architecture stabilizes"
+  ],
+  "when_not_to_use_zh": [
+    "管道少于20个的小团队，在Confluence中维护的简单数据流图在没有工程成本的情况下提供了足够的血缘可见性",
+    "数据血缘追踪会给事务处理增加延迟的实时OLTP系统；改用异步审计日志",
+    "当所有数据转换都在单个SQL数据仓库或dbt项目内发生时；这些平台中的原生血缘工具已足够，无需单独的血缘服务",
+    "数据基础设施不稳定且血缘图会在数周内过时的早期创业公司；在数据架构稳定后再投资于血缘"
+  ],
+  "adopters": [
+    "ING Bank",
+    "Airbnb",
+    "WeWork",
+    "Spotify",
+    "Danske Bank",
+    "Astronomer"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "observability",
+    "maintainability",
+    "security"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Apache Software Foundation (2015). 'Apache Atlas: Data Governance and Metadata Framework'. atlas.apache.org.",
+  "secondary_sources": [
+    "Turki, M. et al. (2021). 'OpenLineage: An Open Standard for Metadata and Lineage Collection'. Astronomer Blog / Linux Foundation.",
+    "Collibra (2022). 'The State of Data Intelligence Report 2022'. collibra.com.",
+    "Reis, J. & Housley, M. (2022). Fundamentals of Data Engineering. O'Reilly Media. Chapter 9: Serving Data for Analytics, Machine Learning, and Reverse ETL."
+  ],
+  "typed_relations": [
+    {
+      "slug": "data-catalog",
+      "type": "complement"
+    },
+    {
+      "slug": "data-quality-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "medallion-architecture",
+      "type": "complement"
+    },
+    {
+      "slug": "data-contract",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/data-lineage-governance",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/data-lineage-governance.md"
+}

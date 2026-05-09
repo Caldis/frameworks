@@ -1,0 +1,193 @@
+{
+  "id": 176,
+  "name": "Null Object Pattern",
+  "name_zh": "空对象模式",
+  "slug": "null-object-pattern",
+  "category": "coding",
+  "desc": "Eliminate null checks by providing default-behavior objects that implement the expected interface with no-op or safe defaults",
+  "desc_zh": "通过提供实现预期接口的默认行为对象（无操作或安全默认值）来消除空值检查",
+  "steps": [
+    "Identify pervasive null checks: locate code where null or nil checks are scattered throughout to guard against missing collaborators or absent data",
+    "Define the interface or base type: ensure the object being checked for null implements a clear interface or abstract type that defines the expected behavior",
+    "Create the Null Object class: implement the interface with a class that provides safe, neutral default behavior — methods return empty collections, zero values, or simply do nothing",
+    "Replace null returns with Null Objects: modify factories, repositories, or lookup methods to return the Null Object instead of null when no real object is found",
+    "Remove the null checks: with the Null Object in place, delete the defensive null checks from calling code, simplifying control flow and reducing cyclomatic complexity"
+  ],
+  "steps_zh": [
+    "识别普遍的空值检查：定位代码中为防范缺失的协作者或数据而散布的 null 或 nil 检查",
+    "定义接口或基类型：确保被检查空值的对象实现了定义预期行为的清晰接口或抽象类型",
+    "创建空对象类：用提供安全、中性默认行为的类实现接口 — 方法返回空集合、零值或简单地什么都不做",
+    "用空对象替换空值返回：修改工厂、仓库或查找方法，在找不到真实对象时返回空对象而非 null",
+    "移除空值检查：有了空对象之后，从调用代码中删除防御性空值检查，简化控制流并降低圈复杂度"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Client",
+    "Abstract Type",
+    "Real Object",
+    "Null Object"
+  ],
+  "viz_labels_zh": [
+    "客户端",
+    "抽象类型",
+    "真实对象",
+    "空对象"
+  ],
+  "related": [
+    "design-by-contract",
+    "clean-code-principles",
+    "solid-principles",
+    "error-handling-patterns"
+  ],
+  "tags": [
+    "null-object",
+    "design-pattern",
+    "defensive-programming",
+    "null-safety",
+    "polymorphism"
+  ],
+  "origin_author": "Bobby Woolf, 1998; Martin Fowler, 2018",
+  "origin_source": "Refactoring (Fowler, 2018); Working Effectively with Legacy Code (Feathers, 2004)",
+  "origin_source_zh": "《重构》（Fowler，2018）；《修改代码的艺术》（Feathers，2004）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Code littered with repetitive null checks for the same type, reducing readability and increasing cyclomatic complexity",
+    "Providing default or guest behavior in systems with optional collaborators, such as a NullLogger or GuestUser",
+    "Legacy codebases where null returns from methods cause frequent NullPointerException or TypeError crashes",
+    "Simplifying test code by using Null Objects as safe stand-ins instead of complex mocking setups"
+  ],
+  "when_to_use_zh": [
+    "代码中充斥着对同一类型的重复空值检查，降低可读性并增加圈复杂度",
+    "在具有可选协作者的系统中提供默认或访客行为，如 NullLogger 或 GuestUser",
+    "方法返回 null 导致频繁 NullPointerException 或 TypeError 崩溃的遗留代码库",
+    "通过使用空对象作为安全替身来简化测试代码，替代复杂的 mock 设置"
+  ],
+  "core_concepts": [
+    "Null Object: a concrete implementation of an interface that provides neutral, do-nothing behavior as a stand-in for null",
+    "Polymorphic Dispatch: using the type system to route calls to the Null Object's methods instead of guarding with conditionals",
+    "Default Behavior: the safe, side-effect-free actions the Null Object performs, such as returning empty strings, empty lists, or zero",
+    "Special Case Pattern: Martin Fowler's generalization where any special condition (not just null) is handled by a dedicated object rather than conditionals",
+    "Sentinel Value Elimination: replacing magic null values with typed objects that communicate intent and prevent errors"
+  ],
+  "core_concepts_zh": [
+    "空对象：接口的具体实现，提供中性的无操作行为作为 null 的替身",
+    "多态分派：使用类型系统将调用路由到空对象的方法，而非用条件语句防护",
+    "默认行为：空对象执行的安全、无副作用的操作，如返回空字符串、空列表或零",
+    "特殊情况模式：Martin Fowler 的泛化概念，任何特殊条件（不仅是 null）都由专用对象而非条件语句处理",
+    "哨兵值消除：用传达意图并防止错误的类型化对象替换魔术空值"
+  ],
+  "timeline": [
+    [
+      "1998",
+      "Bobby Woolf presents the Null Object Pattern at PLoP (Pattern Languages of Programs) conference"
+    ],
+    [
+      "2004",
+      "Michael Feathers describes using Null Objects to break dependencies in legacy code in 'Working Effectively with Legacy Code'"
+    ],
+    [
+      "2018",
+      "Martin Fowler includes 'Introduce Special Case' (a generalization of Null Object) as a key refactoring in 'Refactoring' second edition"
+    ],
+    [
+      "2020",
+      "Modern languages like Kotlin, Swift, and Rust reduce the need for Null Object via built-in null safety (Option/Optional types)"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1998",
+      "Bobby Woolf 在 PLoP（程序模式语言）会议上提出空对象模式"
+    ],
+    [
+      "2004",
+      "Michael Feathers 在《修改代码的艺术》中描述了使用空对象来打破遗留代码中的依赖"
+    ],
+    [
+      "2018",
+      "Martin Fowler 在《重构》第二版中将「引入特殊情况」（空对象的泛化）作为关键重构手法"
+    ],
+    [
+      "2020",
+      "Kotlin、Swift 和 Rust 等现代语言通过内置空安全（Option/Optional 类型）减少了对空对象的需求"
+    ]
+  ],
+  "dos": [
+    "Do make the Null Object implement the same interface as the real object because polymorphism is what makes the pattern work",
+    "Do make the Null Object a singleton when possible because there is no reason to create multiple instances of identical default behavior",
+    "Do name Null Objects clearly (e.g., NullLogger, GuestUser, MissingCustomer) because the name should communicate its role",
+    "Do consider using language-level null safety features (Optional, Option) alongside Null Objects because they complement each other"
+  ],
+  "dos_zh": [
+    "让空对象实现与真实对象相同的接口，因为多态性是该模式生效的关键",
+    "尽可能将空对象设为单例，因为没有理由创建多个相同默认行为的实例",
+    "清晰命名空对象（如 NullLogger、GuestUser、MissingCustomer），因为名称应传达其角色",
+    "考虑将语言级空安全特性（Optional、Option）与空对象结合使用，因为它们互为补充"
+  ],
+  "donts": [
+    "Don't hide errors behind Null Objects because sometimes a null indicates a genuine bug that should fail loudly",
+    "Don't use Null Objects when the absence of a value carries important business meaning because silently swallowing it masks logic errors",
+    "Don't proliferate Null Object classes for every type in the system because it creates unnecessary boilerplate",
+    "Don't let the Null Object perform side effects because its purpose is to be inert and safe"
+  ],
+  "donts_zh": [
+    "不要将错误隐藏在空对象后面，因为有时 null 表示应该大声失败的真正 bug",
+    "当值的缺失具有重要的业务含义时不要使用空对象，因为静默吞咽会掩盖逻辑错误",
+    "不要为系统中每种类型都创建空对象类，因为这会产生不必要的样板代码",
+    "不要让空对象执行副作用，因为它的目的是惰性和安全的"
+  ],
+  "case_study_company": "JetBrains",
+  "case_study": "JetBrains uses the Null Object Pattern extensively throughout the IntelliJ IDEA codebase. For example, PsiElement (the core AST node interface) has a NullPsiElement that is returned when resolution fails, avoiding thousands of null checks in code inspections and refactoring tools. Similarly, their VirtualFile abstraction uses a NullVirtualFile to represent absent files. This pattern allowed IntelliJ's plugin ecosystem to remain stable even when plugins encounter missing elements, because the Null Objects provide safe defaults rather than throwing NullPointerExceptions.",
+  "case_study_zh": "JetBrains 在 IntelliJ IDEA 代码库中广泛使用空对象模式。例如，PsiElement（核心 AST 节点接口）有一个 NullPsiElement，在解析失败时返回，避免了代码检查和重构工具中数千处空值检查。类似地，他们的 VirtualFile 抽象使用 NullVirtualFile 来表示不存在的文件。这种模式使 IntelliJ 的插件生态系统即使在插件遇到缺失元素时也保持稳定，因为空对象提供安全默认值而非抛出 NullPointerException。",
+  "when_not_to_use": [
+    "When null genuinely indicates an error condition that should throw an exception or halt execution",
+    "Languages with robust built-in null safety (Kotlin, Rust, Swift) where Option/Optional types are more idiomatic",
+    "Simple scripts or small programs where a few null checks are clearer than introducing a new class",
+    "Cases where the absence of a value has distinct business meaning that must be explicitly handled"
+  ],
+  "when_not_to_use_zh": [
+    "当 null 真正表示应抛出异常或终止执行的错误条件时",
+    "具有健壮内置空安全的语言（Kotlin、Rust、Swift），Option/Optional 类型更符合惯用法",
+    "简单脚本或小程序，几处空值检查比引入新类更清晰",
+    "值的缺失具有必须明确处理的不同业务含义的情况"
+  ],
+  "adopters": [
+    "JetBrains",
+    "Google (Guava)",
+    "Apache Commons",
+    "Spring Framework",
+    "Eclipse Foundation"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Bobby Woolf (1998). \"Null Object\". Pattern Languages of Program Design 3. Addison-Wesley.",
+  "secondary_sources": [
+    "Martin Fowler (2018). \"Refactoring: Improving the Design of Existing Code, 2nd Edition\". Addison-Wesley.",
+    "Michael Feathers (2004). \"Working Effectively with Legacy Code\". Prentice Hall."
+  ],
+  "typed_relations": [
+    {
+      "slug": "design-by-contract",
+      "type": "complement"
+    },
+    {
+      "slug": "clean-code-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "solid-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "error-handling-patterns",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/null-object-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/null-object-pattern.md"
+}

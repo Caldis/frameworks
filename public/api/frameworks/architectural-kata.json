@@ -1,0 +1,193 @@
+{
+  "id": 254,
+  "name": "Architectural Kata",
+  "name_zh": "架构卡塔",
+  "slug": "architectural-kata",
+  "category": "thinking",
+  "desc": "Structured practice exercises where architects design systems for fictional scenarios to build architectural intuition and decision-making skills",
+  "desc_zh": "架构师为虚构场景设计系统的结构化练习，用于培养架构直觉和决策能力",
+  "steps": [
+    "Select or create a kata scenario: a concise description of a fictional business problem with users, scale requirements, and constraints — similar to a product brief but designed to make architectural trade-offs explicit and interesting",
+    "Form small groups (3-5 architects or engineers) and independently design the architecture for the given scenario within a time-boxed period (typically 45-90 minutes), documenting key decisions and their rationale",
+    "Present the architectural design to peer groups or the broader audience, explicitly defending each major decision: which architectural characteristics were prioritized, which trade-offs were made, and what alternatives were considered",
+    "Receive and give structured critique: reviewers challenge design decisions with 'what happens when X?' questions, and the presenting team must defend choices or acknowledge valid concerns they missed",
+    "Conduct a debrief comparing different groups' architectures for the same scenario, discussing which approaches addressed requirements better and what the architectural lessons are that generalize beyond the specific kata"
+  ],
+  "steps_zh": [
+    "选择或创建卡塔场景：对虚构业务问题的简明描述，包含用户、规模需求和约束条件——类似于产品简报，但旨在使架构权衡明确且有趣",
+    "组成小组（3-5名架构师或工程师），在限定时间内（通常45-90分钟）独立为给定场景设计架构，记录关键决策及其依据",
+    "向同组或更广泛的受众展示架构设计，明确捍卫每个主要决策：优先考虑了哪些架构特性、做出了哪些权衡、考虑了哪些替代方案",
+    "接受和给予结构化的批评：审查者用「如果X会怎样？」的问题挑战设计决策，展示团队必须捍卫选择或承认他们遗漏的有效关切",
+    "进行复盘，比较不同小组对同一场景的架构，讨论哪些方法更好地满足了需求，以及超越特定卡塔的可推广架构经验"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Problem",
+    "Constraints",
+    "Design",
+    "Review",
+    "Iterate"
+  ],
+  "viz_labels_zh": [
+    "问题定义",
+    "约束条件",
+    "方案设计",
+    "评审反馈",
+    "迭代改进"
+  ],
+  "related": [
+    "occams-razor-in-design",
+    "theory-of-constraints",
+    "first-principles-thinking",
+    "trade-off-sliders"
+  ],
+  "tags": [
+    "architecture",
+    "practice",
+    "learning",
+    "deliberate-practice",
+    "decision-making"
+  ],
+  "origin_author": "Ted Neward, 2009",
+  "origin_source": "Ted Neward (2009). 'Architectural Katas.' tednew ard.com; Neal Ford, Rebecca Parsons & Patrick Kua (2020). 'Building Evolutionary Architectures.' O'Reilly.",
+  "origin_source_zh": "Ted Neward（2009）《架构卡塔》tednew ard.com；Neal Ford、Rebecca Parsons & Patrick Kua（2020）《演进式架构》O'Reilly",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When onboarding engineers to architecture responsibilities and you need a low-stakes environment to practice architectural decision-making",
+    "When a team has been writing code for years but lacks experience making and defending system-level design decisions",
+    "When preparing for architecture review boards, technical interviews, or staff+ engineering promotions that require demonstrating architectural thinking",
+    "When a team is about to make a real high-stakes architectural decision and wants to warm up their thinking by practicing on a similar fictional scenario first"
+  ],
+  "when_to_use_zh": [
+    "当将工程师引入架构职责时，需要一个低风险环境来练习架构决策",
+    "当团队已编写多年代码但缺乏做出和捍卫系统级设计决策的经验时",
+    "当准备架构评审委员会、技术面试或需要展示架构思维的高级工程师晋升时",
+    "当团队即将做出真实的高风险架构决策，并希望通过先在类似虚构场景上练习来预热思维时"
+  ],
+  "core_concepts": [
+    "Deliberate practice for architecture: architectural skills are developed through repeated cycles of design, presentation, and critique on varied problem domains — the kata format structures this deliberate practice cycle",
+    "Architectural characteristics: the first step of any kata is identifying which '-ilities' (scalability, availability, security, maintainability, performance) are most important for the scenario, because these drive all subsequent trade-off decisions",
+    "Trade-off articulation: the kata format forces architects to explicitly state trade-offs rather than design by instinct; a good kata presentation names what was sacrificed to achieve each architectural goal",
+    "Safe failure environment: katas are fictional, so the cost of a wrong decision is learning, not a production incident; this psychological safety allows architects to take design risks they would avoid in high-stakes real contexts"
+  ],
+  "core_concepts_zh": [
+    "架构的刻意练习：架构技能通过在不同问题领域反复设计、展示和批评的循环来培养——卡塔格式构建了这种刻意练习循环",
+    "架构特性：任何卡塔的第一步都是识别哪些「-ility」（可扩展性、可用性、安全性、可维护性、性能）对场景最重要，因为这些驱动了所有后续的权衡决策",
+    "权衡阐明：卡塔格式迫使架构师明确陈述权衡，而非凭直觉设计；好的卡塔展示会说明为了实现每个架构目标而牺牲了什么",
+    "安全的失败环境：卡塔是虚构的，所以错误决策的代价是学习，而非生产事故；这种心理安全感使架构师能够在高风险真实环境中会回避的设计风险"
+  ],
+  "timeline": [
+    [
+      "2009",
+      "Ted Neward introduces the Architectural Kata concept at the NFJS (No Fluff Just Stuff) symposium series, borrowing the martial arts kata metaphor to describe structured architecture practice"
+    ],
+    [
+      "2012",
+      "Neward publishes a curated list of kata scenarios online; the format is adopted by coding bootcamps, university programs, and corporate architecture guilds as a training tool"
+    ],
+    [
+      "2017",
+      "Neal Ford and Rebecca Parsons incorporate architectural katas into their O'Reilly 'Fundamentals of Software Architecture' course material, significantly broadening adoption"
+    ],
+    [
+      "2020",
+      "Remote-work acceleration drives virtual kata workshops via Miro and collaborative whiteboarding tools; kata formats expand to include AI system design and cloud-native architecture scenarios"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2009",
+      "Ted Neward在NFJS（No Fluff Just Stuff）研讨会上引入架构卡塔概念，借用武术套路的比喻来描述结构化架构练习"
+    ],
+    [
+      "2012",
+      "Neward在线发布精选卡塔场景列表；该格式被编程训练营、大学项目和企业架构协会采用作为培训工具"
+    ],
+    [
+      "2017",
+      "Neal Ford和Rebecca Parsons将架构卡塔纳入其O'Reilly《软件架构基础》课程材料，显著扩大了采用范围"
+    ],
+    [
+      "2020",
+      "远程工作加速推动了通过Miro和协作白板工具进行虚拟卡塔研讨；卡塔格式扩展到包括AI系统设计和云原生架构场景"
+    ]
+  ],
+  "dos": [
+    "Do time-box the design phase strictly (45-90 minutes) because open-ended design time leads to over-engineering; the kata's value comes from making decisions under realistic constraints",
+    "Do require each group to explicitly list the architectural characteristics they prioritized before presenting the design, because prioritization is the highest-leverage architectural decision",
+    "Do ask 'what would break this architecture?' after each presentation because stress-testing designs for failure modes is more valuable than critiquing aesthetic choices",
+    "Do run the same kata scenario with multiple groups and compare approaches, because the diversity of valid solutions reveals the design space and demonstrates that architecture involves genuine trade-offs rather than single right answers"
+  ],
+  "dos_zh": [
+    "严格限制设计阶段时间（45-90分钟），因为开放式设计时间会导致过度工程化；卡塔的价值来自在现实约束下做出决策",
+    "要求每个小组在展示设计之前明确列出他们优先考虑的架构特性，因为优先级排序是最高杠杆的架构决策",
+    "在每次展示后询问「什么会破坏这个架构？」，因为对故障模式进行压力测试比批评审美选择更有价值",
+    "用多个小组运行相同的卡塔场景并比较方法，因为有效方案的多样性揭示了设计空间，并表明架构涉及真实的权衡而非单一正确答案"
+  ],
+  "donts": [
+    "Don't critique kata designs for implementation details (code style, specific library choices) because the practice targets system-level decision-making, not implementation decisions",
+    "Don't let groups spend more than 10 minutes on requirements clarification; ambiguity in kata scenarios is intentional because real architectural decisions are always made under incomplete information",
+    "Don't declare one group's design the 'winner'; the point is to learn from the diversity of approaches and understand which trade-offs different designs make",
+    "Don't use kata scenarios that are too narrowly scoped to a single domain or too abstractly philosophical; the best katas have 3-5 distinct architectural tensions that require explicit trade-off decisions"
+  ],
+  "donts_zh": [
+    "不要批评卡塔设计的实现细节（代码风格、特定库选择），因为练习针对的是系统级决策，而非实现决策",
+    "不要让小组在需求澄清上花费超过10分钟；卡塔场景中的模糊性是有意为之的，因为真实的架构决策总是在信息不完整的情况下做出的",
+    "不要宣布某个小组的设计为「赢家」；重点是从多种方法的多样性中学习，了解不同设计做出了哪些权衡",
+    "不要使用范围过于狭窄于单一领域或过于抽象哲学化的卡塔场景；最好的卡塔有3-5个需要明确权衡决策的不同架构张力"
+  ],
+  "case_study_company": "O'Reilly Media / ThoughtWorks",
+  "case_study": "O'Reilly's online learning platform runs Architectural Kata workshops as part of their 'Fundamentals of Software Architecture' course led by Neal Ford and Mark Richards. In live course sessions, hundreds of engineers are divided into groups of 4-5, given a kata scenario such as 'design a nationwide road warrior trip tracking system for 2 million users', and have 45 minutes to design and present an architecture. The format has become one of the most popular exercises in the course, with learners reporting that defending their designs under peer questioning dramatically accelerates architectural intuition compared to reading about patterns alone.",
+  "case_study_zh": "O'Reilly在线学习平台将架构卡塔研讨会作为Neal Ford和Mark Richards主讲的《软件架构基础》课程的一部分。在现场课程中，数百名工程师被分成4-5人小组，获得卡塔场景（如「为200万用户设计全国路战士行程追踪系统」），并有45分钟来设计和展示架构。这种格式已成为课程中最受欢迎的练习之一，学员反映，在同伴质疑下捍卫自己的设计比单独阅读模式更能显著加速架构直觉的培养。",
+  "when_not_to_use": [
+    "When the team is under immediate deadline pressure for a real system; kata exercises require dedicated uninterrupted time and a learning mindset, not a delivery mindset",
+    "When participants have fewer than 2 years of software engineering experience; architectural katas require enough implementation experience to reason about trade-offs between real system properties",
+    "When the organizational culture does not support open critique and intellectual disagreement; katas require psychological safety to challenge and be challenged without status games",
+    "When you need to make a real architectural decision quickly; katas are deliberate practice, not a decision-making process for real systems"
+  ],
+  "when_not_to_use_zh": [
+    "当团队面临真实系统的紧迫截止期限时；卡塔练习需要专门的不间断时间和学习心态，而非交付心态",
+    "当参与者软件工程经验不足2年时；架构卡塔需要足够的实现经验来推理真实系统属性之间的权衡",
+    "当组织文化不支持开放批评和知识分歧时；卡塔需要心理安全感来挑战和被挑战，没有地位游戏",
+    "当需要快速做出真实架构决策时；卡塔是刻意练习，而非真实系统的决策流程"
+  ],
+  "adopters": [
+    "O'Reilly Media — 'Fundamentals of Software Architecture' course by Neal Ford and Mark Richards uses katas as the primary hands-on learning mechanism",
+    "ThoughtWorks — uses architectural katas in internal architecture community of practice workshops and new hire technical onboarding",
+    "NFJS (No Fluff Just Stuff) — the conference series where Ted Neward originated the kata format; continues to feature kata workshops",
+    "Corporate architecture guilds at Netflix, Spotify, and Zalando use kata formats for quarterly architecture practice sessions",
+    "Coding bootcamps (General Assembly, Hack Reactor) adapted kata formats for senior cohorts to introduce system design thinking"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Neward, T. (2009). 'Architectural Katas.' tednew ard.com. (Original presentation at NFJS symposium.)",
+  "secondary_sources": [
+    "Ford, N. & Richards, M. (2020). Fundamentals of Software Architecture. O'Reilly Media. Chapter 19: Architecture Decisions.",
+    "Ford, N., Parsons, R. & Kua, P. (2017). Building Evolutionary Architectures. O'Reilly Media.",
+    "Rozanski, N. & Woods, E. (2011). Software Systems Architecture (2nd ed.). Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "first-principles-thinking",
+      "type": "complement"
+    },
+    {
+      "slug": "trade-off-sliders",
+      "type": "complement"
+    },
+    {
+      "slug": "occams-razor-in-design",
+      "type": "related"
+    },
+    {
+      "slug": "theory-of-constraints",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/architectural-kata",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/architectural-kata.md"
+}

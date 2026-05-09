@@ -1,0 +1,196 @@
+{
+  "id": 93,
+  "name": "Guardrails Framework",
+  "name_zh": "AI 护栏框架",
+  "slug": "guardrails-framework",
+  "category": "ai",
+  "desc": "Enforce input/output constraints on LLM-powered systems",
+  "desc_zh": "对大模型驱动系统强制执行输入输出约束",
+  "steps": [
+    "Enumerate risk categories relevant to the application (PII, toxicity, hallucination, injection)",
+    "Implement input validators that reject or rewrite unsafe or malformed prompts",
+    "Add output validators that check factual grounding, format compliance, and policy rules",
+    "Route policy violations to fallback responses or human escalation queues",
+    "Collect violation logs and retrain or tune guardrail classifiers on production data"
+  ],
+  "steps_zh": [
+    "列举应用相关的风险类别（个人信息、有害内容、幻觉、注入攻击）",
+    "实现输入验证器，拒绝或改写不安全或格式错误的提示词",
+    "添加输出验证器，检查事实依据、格式合规性和策略规则",
+    "将策略违规路由至降级响应或人工升级队列",
+    "收集违规日志并在生产数据上重新训练或调整护栏分类器"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Input Guard",
+    "LLM",
+    "Output Guard",
+    "Response"
+  ],
+  "viz_labels_zh": [
+    "输入护栏",
+    "大模型",
+    "输出护栏",
+    "响应"
+  ],
+  "related": [
+    "responsible-ai-design",
+    "ai-output-verification",
+    "human-in-the-loop"
+  ],
+  "tags": [
+    "guardrails",
+    "safety",
+    "validation",
+    "constraints",
+    "policy"
+  ],
+  "origin_author": "Shreya Rajpal (Guardrails AI), 2023; NVIDIA NeMo Guardrails team, 2023",
+  "origin_source": "Guardrails AI open-source framework and NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications",
+  "origin_source_zh": "Guardrails AI 开源框架及 NeMo Guardrails：可控安全大模型应用工具包",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Customer-facing LLM applications where brand safety and content policy compliance are critical",
+    "Systems handling sensitive data (PII, PHI, financial data) that must enforce data loss prevention",
+    "Applications vulnerable to prompt injection attacks that need input sanitization layers",
+    "Regulated deployments requiring auditable evidence that AI outputs comply with policy rules"
+  ],
+  "when_to_use_zh": [
+    "品牌安全和内容政策合规至关重要的面客大模型应用",
+    "处理敏感数据（PII、PHI、金融数据）、需要强制数据防泄露的系统",
+    "易受提示词注入攻击、需要输入清洗层的应用",
+    "需要 AI 输出符合政策规则的可审计证据的受监管部署"
+  ],
+  "core_concepts": [
+    "Input Validator: A pre-processing layer that screens prompts for injection patterns, PII, or policy violations before they reach the model",
+    "Output Validator: A post-processing layer that checks model responses for hallucination, toxicity, format errors, or off-topic content",
+    "Fallback Response: A safe, pre-defined response returned when guardrails detect a violation",
+    "Topical Rail: A constraint that keeps the model within a defined topic boundary and rejects off-topic queries",
+    "Canary Token: A synthetic marker injected into context to detect if the model leaks system prompt content"
+  ],
+  "core_concepts_zh": [
+    "输入验证器（Input Validator）：在提示词到达模型前筛查注入模式、PII 或政策违规的预处理层",
+    "输出验证器（Output Validator）：检查模型响应是否存在幻觉、有害内容、格式错误或跑题的后处理层",
+    "降级响应（Fallback Response）：护栏检测到违规时返回的安全预定义响应",
+    "话题围栏（Topical Rail）：将模型限制在定义的主题边界内、拒绝跑题查询的约束",
+    "金丝雀令牌（Canary Token）：注入上下文的合成标记，用于检测模型是否泄露系统提示词内容"
+  ],
+  "timeline": [
+    [
+      "2023-01",
+      "Guardrails AI open-source library launches, introducing validator-based output checking"
+    ],
+    [
+      "2023-04",
+      "NVIDIA releases NeMo Guardrails with Colang, a domain-specific language for defining LLM rails"
+    ],
+    [
+      "2023-07",
+      "OWASP publishes the Top 10 for LLM Applications, galvanizing guardrails adoption"
+    ],
+    [
+      "2023-11",
+      "Anthropic introduces constitutional AI safety layers, a form of built-in guardrails"
+    ],
+    [
+      "2024-06",
+      "Guardrails Hub launches as a marketplace for community-contributed validators"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2023-01",
+      "Guardrails AI 开源库发布，引入基于验证器的输出检查"
+    ],
+    [
+      "2023-04",
+      "NVIDIA 发布带 Colang 领域特定语言的 NeMo Guardrails 用于定义大模型围栏"
+    ],
+    [
+      "2023-07",
+      "OWASP 发布大模型应用十大风险，推动护栏框架广泛采用"
+    ],
+    [
+      "2023-11",
+      "Anthropic 引入 Constitutional AI 安全层——一种内置护栏形式"
+    ],
+    [
+      "2024-06",
+      "Guardrails Hub 作为社区贡献验证器的市场平台上线"
+    ]
+  ],
+  "dos": [
+    "Layer multiple guardrails (input + output + topical) -- no single check catches everything",
+    "Log all guardrail triggers with full context for auditing and classifier improvement",
+    "Test guardrails adversarially using red-team prompt injection datasets",
+    "Keep guardrail latency under 200ms to avoid degrading user experience"
+  ],
+  "dos_zh": [
+    "多层叠加护栏（输入 + 输出 + 话题）——没有单一检查能捕获所有问题",
+    "记录所有护栏触发事件及完整上下文，用于审计和分类器改进",
+    "使用红队提示词注入数据集对护栏进行对抗性测试",
+    "将护栏延迟控制在 200ms 以内，避免降低用户体验"
+  ],
+  "donts": [
+    "Don't rely solely on the LLM's own judgment for safety -- it can be jailbroken or misled",
+    "Don't hardcode guardrail rules -- policies change and guardrails need to be updatable without redeployment",
+    "Don't block legitimate queries with overly aggressive rules -- high false-positive rates erode user trust",
+    "Don't skip input validation assuming the UI already sanitizes -- APIs can be called directly"
+  ],
+  "donts_zh": [
+    "不要仅依赖大模型自身判断来保障安全——它可能被越狱或误导",
+    "不要硬编码护栏规则——政策会变，护栏需要无需重新部署即可更新",
+    "不要用过于激进的规则阻止合法查询——高误报率会侵蚀用户信任",
+    "不要因假设 UI 已经做了清洗就跳过输入验证——API 可以被直接调用"
+  ],
+  "case_study_company": "NVIDIA",
+  "case_study": "NVIDIA developed NeMo Guardrails to secure enterprise LLM deployments across its customer base. Using Colang, a purpose-built DSL, enterprises define conversational rails that prevent topic drift, data leakage, and prompt injection. Early adopters reported a 90% reduction in off-topic model responses and were able to deploy customer-facing chatbots that previously failed compliance review.",
+  "case_study_zh": "NVIDIA 开发 NeMo Guardrails 为企业客户的大模型部署提供安全保障。企业使用专门构建的 DSL Colang 定义对话围栏，防止话题偏离、数据泄露和提示词注入。早期采用者报告跑题响应减少 90%，并成功部署了此前未通过合规审查的面客聊天机器人。",
+  "when_not_to_use": [
+    "Internal research or experimentation environments where safety constraints hinder exploration",
+    "Creative writing applications where content policy guardrails may stifle legitimate artistic expression",
+    "Performance-critical streaming use cases where any added latency is unacceptable",
+    "When the LLM is operating in a fully sandboxed environment with no external-facing output"
+  ],
+  "when_not_to_use_zh": [
+    "安全约束阻碍探索的内部研究或实验环境",
+    "内容策略护栏可能抑制合法艺术表达的创意写作应用",
+    "任何额外延迟都不可接受的性能关键型流式用例",
+    "大模型在完全沙箱环境中运行且无外部可见输出时"
+  ],
+  "adopters": [
+    "NVIDIA (NeMo Guardrails)",
+    "Guardrails AI",
+    "Microsoft (Azure AI Content Safety)",
+    "Anthropic",
+    "OpenAI (Moderation API)"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "security",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Shreya Rajpal (2023). \"Guardrails AI: Adding Guardrails to Large Language Models\". github.com/guardrails-ai.",
+  "secondary_sources": [
+    "NVIDIA (2023). \"NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications with Programmable Rails\". arXiv:2310.10501.",
+    "Yuntao Bai et al. (2022). \"Constitutional AI: Harmlessness from AI Feedback\". arXiv:2212.08073. Anthropic."
+  ],
+  "typed_relations": [
+    {
+      "slug": "responsible-ai-design",
+      "type": "complement"
+    },
+    {
+      "slug": "ai-output-verification",
+      "type": "complement"
+    },
+    {
+      "slug": "human-in-the-loop",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/guardrails-framework",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/guardrails-framework.md"
+}

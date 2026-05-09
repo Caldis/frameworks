@@ -1,0 +1,203 @@
+{
+  "id": 141,
+  "name": "Spotify Model",
+  "name_zh": "Spotify 模型",
+  "slug": "spotify-model",
+  "category": "team",
+  "desc": "Organize engineering around autonomous squads grouped into tribes, with cross-cutting chapters and guilds for alignment",
+  "desc_zh": "围绕自治小队组织工程团队，小队按业务线归入部落，通过跨部门的分会与公会实现对齐",
+  "steps": [
+    "Form small cross-functional squads (6-8 people) each owning a specific mission or product area",
+    "Group related squads into tribes (≤100 people) sharing a common business domain",
+    "Establish chapters as functional groupings (e.g., backend, QA) within a tribe for skill development and line management",
+    "Create guilds as voluntary communities of interest that span the entire organization",
+    "Empower squad autonomy for decisions on tools, processes, and technical approach while aligning on tribe-level goals"
+  ],
+  "steps_zh": [
+    "组建小型跨职能小队（6-8 人），每个小队负责特定的使命或产品领域",
+    "将相关小队归入部落（≤100 人），共享相同的业务领域",
+    "在部落内建立分会，按职能分组（如后端、QA），用于技能发展和直线管理",
+    "创建公会，作为跨组织的自愿兴趣社区",
+    "赋予小队在工具、流程和技术方案上的自主决策权，同时在部落层面保持目标对齐"
+  ],
+  "ai_relevant": false,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Squad",
+    "Tribe",
+    "Chapter",
+    "Guild",
+    "Autonomy"
+  ],
+  "viz_labels_zh": [
+    "小队",
+    "部落",
+    "分会",
+    "协会",
+    "自治"
+  ],
+  "related": [
+    "team-topologies",
+    "conways-law",
+    "amazon-two-pizza-teams",
+    "inverse-conway-maneuver"
+  ],
+  "tags": [
+    "team-structure",
+    "autonomy",
+    "scaling",
+    "agile",
+    "spotify"
+  ],
+  "origin_author": "Henrik Kniberg & Anders Ivarsson, 2012",
+  "origin_source": "Scaling Agile @ Spotify (Kniberg & Ivarsson, 2012 whitepaper); referenced in Team Topologies (Skelton & Pais, 2019)",
+  "origin_source_zh": "《Spotify 的规模化敏捷》（Kniberg & Ivarsson，2012 白皮书）；在《团队拓扑》（Skelton & Pais，2019）中有引用",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Scaling an engineering organization beyond 50 engineers while preserving startup-like autonomy",
+    "Reducing cross-team dependencies that slow down delivery in a growing product company",
+    "Fostering a strong engineering culture where teams choose their own tools and practices",
+    "Organizations transitioning from rigid hierarchical structures to mission-driven teams"
+  ],
+  "when_to_use_zh": [
+    "将工程组织扩展至 50 人以上规模的同时保持创业公司般的自主性",
+    "减少成长中产品公司因跨团队依赖导致的交付速度下降",
+    "培育团队自主选择工具和实践的强工程文化",
+    "组织从刚性层级结构向使命驱动团队转型"
+  ],
+  "core_concepts": [
+    "Squad: The basic unit of delivery — a small, autonomous, cross-functional team with end-to-end ownership of a product area or mission",
+    "Tribe: A collection of squads (up to ~100 people) working in a related business area, led by a tribe lead who fosters collaboration",
+    "Chapter: A functional grouping within a tribe (e.g., all iOS developers) for skill sharing, mentoring, and line management",
+    "Guild: A lightweight, voluntary community of practice spanning the entire organization, enabling cross-pollination of knowledge",
+    "Alignment vs. Autonomy: The model explicitly balances organizational alignment (what to build) with squad autonomy (how to build it)"
+  ],
+  "core_concepts_zh": [
+    "小队：交付的基本单元——一个小型、自治、跨职能的团队，端到端负责一个产品领域或使命",
+    "部落：在相关业务领域工作的小队集合（最多约 100 人），由部落负责人引导协作",
+    "分会：部落内的职能分组（如所有 iOS 开发者），用于技能分享、导师制和直线管理",
+    "公会：跨组织的轻量级自愿实践社区，促进知识交叉传播",
+    "对齐与自主的平衡：该模型显式地平衡组织对齐（构建什么）与小队自主（如何构建）"
+  ],
+  "timeline": [
+    [
+      "2012",
+      "Henrik Kniberg and Anders Ivarsson publish the 'Scaling Agile @ Spotify' whitepaper describing squads, tribes, chapters, and guilds"
+    ],
+    [
+      "2014",
+      "Spotify releases a companion video series that popularizes the model across the industry"
+    ],
+    [
+      "2016",
+      "ING Bank publicly adopts a Spotify-inspired structure during its agile transformation, sparking enterprise adoption"
+    ],
+    [
+      "2019",
+      "Skelton and Pais critique cargo-culting of the model in Team Topologies, emphasizing that Spotify's own structure evolved beyond the original paper"
+    ],
+    [
+      "2022",
+      "Jeremiah Lee publishes 'Spotify's Failed Squad Goals', prompting reassessment of blind adoption"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2012",
+      "Henrik Kniberg 和 Anders Ivarsson 发表《Spotify 的规模化敏捷》白皮书，描述小队、部落、分会和公会结构"
+    ],
+    [
+      "2014",
+      "Spotify 发布配套视频系列，使该模型在业界广泛传播"
+    ],
+    [
+      "2016",
+      "ING 银行在敏捷转型中公开采用受 Spotify 启发的结构，引发企业级采纳浪潮"
+    ],
+    [
+      "2019",
+      "Skelton 和 Pais 在《团队拓扑》中批评对该模型的「货物崇拜」式照搬，强调 Spotify 自身结构已超越原始论文"
+    ],
+    [
+      "2022",
+      "Jeremiah Lee 发表《Spotify 失败的小队目标》，促使业界重新审视盲目采纳"
+    ]
+  ],
+  "dos": [
+    "Adapt the model to your organization's culture rather than copying it verbatim from the whitepaper",
+    "Invest in strong chapter leads who balance people management with technical excellence across squads",
+    "Define clear squad missions and measurable outcomes to prevent squads from becoming siloed feature factories",
+    "Use guilds actively to share practices, not just as inactive Slack channels"
+  ],
+  "dos_zh": [
+    "根据自身组织文化调整该模型，而非逐字照搬白皮书",
+    "投资培养强有力的分会负责人，在跨小队范围内平衡人员管理与技术卓越",
+    "为小队定义清晰的使命和可衡量的成果，防止小队沦为孤立的功能工厂",
+    "积极利用公会分享实践，而不仅仅作为不活跃的 Slack 频道"
+  ],
+  "donts": [
+    "Don't cargo-cult the Spotify model — even Spotify itself admitted the paper described an aspiration, not reality",
+    "Don't create squads without clear missions, because autonomy without purpose leads to fragmentation",
+    "Don't neglect cross-squad coordination — tribal alignment mechanisms are as important as squad autonomy",
+    "Don't assume the model works at all scales — organizations under 30 engineers rarely need this complexity"
+  ],
+  "donts_zh": [
+    "不要「货物崇拜」式地照搬 Spotify 模型——连 Spotify 自身都承认论文描述的是愿景而非现实",
+    "不要在没有清晰使命的情况下创建小队，因为没有目标的自主权会导致碎片化",
+    "不要忽视跨小队协调——部落层面的对齐机制与小队自主权同样重要",
+    "不要假设该模型在所有规模都适用——30 人以下的工程组织很少需要这种复杂度"
+  ],
+  "case_study_company": "ING Bank",
+  "case_study": "ING Bank Netherlands underwent a massive agile transformation in 2015 inspired by the Spotify model. They reorganized 3,500 employees into roughly 350 squads grouped into 13 tribes, eliminating traditional department boundaries. Within two years, ING reported a 30% improvement in time-to-market for new features, though they publicly acknowledged needing to adapt the model significantly — adding product owners per tribe and stronger cross-tribe dependency management that the original Spotify whitepaper did not address.",
+  "case_study_zh": "ING 银行荷兰分部于 2015 年受 Spotify 模型启发进行了大规模敏捷转型。他们将 3,500 名员工重组为约 350 个小队，归入 13 个部落，打破了传统部门边界。两年内，ING 报告新功能上市时间缩短了 30%，但他们公开承认需要对模型进行重大调整——增加了每个部落的产品负责人以及更强的跨部落依赖管理机制，这些都是原始 Spotify 白皮书未涉及的内容。",
+  "when_not_to_use": [
+    "Small organizations (under 30 engineers) where the overhead of tribes and chapters exceeds the coordination benefit",
+    "Highly regulated industries requiring strict hierarchical approval chains that conflict with squad autonomy",
+    "Organizations without mature engineering culture — the model assumes high trust and psychological safety",
+    "Teams with deeply coupled codebases where true squad autonomy over independent deployments is impossible"
+  ],
+  "when_not_to_use_zh": [
+    "小型组织（30 名工程师以下），部落和分会的管理开销超过协调收益",
+    "高度监管行业要求严格的层级审批链，与小队自主权相冲突",
+    "工程文化尚不成熟的组织——该模型假设存在高度信任和心理安全感",
+    "代码库深度耦合的团队，无法实现小队对独立部署的真正自主"
+  ],
+  "adopters": [
+    "Spotify",
+    "ING Bank",
+    "Zalando",
+    "Gilt",
+    "Elsevier"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability",
+    "usability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Kniberg, H. & Ivarsson, A. (2012). \"Scaling Agile @ Spotify with Tribes, Squads, Chapters & Guilds\". Spotify Labs Whitepaper.",
+  "secondary_sources": [
+    "Skelton, M. & Pais, M. (2019). \"Team Topologies: Organizing Business and Technology Teams for Fast Flow\". IT Revolution Press.",
+    "Lee, J. (2020). \"Spotify's Failed Squad Goals\". jeremiahlee.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "team-topologies",
+      "type": "alternative"
+    },
+    {
+      "slug": "conways-law",
+      "type": "prerequisite"
+    },
+    {
+      "slug": "amazon-two-pizza-teams",
+      "type": "alternative"
+    },
+    {
+      "slug": "inverse-conway-maneuver",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/spotify-model",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/spotify-model.md"
+}

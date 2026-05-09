@@ -1,0 +1,195 @@
+{
+  "id": 96,
+  "name": "AI-First API Design",
+  "name_zh": "AI 优先 API 设计",
+  "slug": "ai-first-api-design",
+  "category": "ai",
+  "desc": "Design APIs optimized for consumption by AI agents",
+  "desc_zh": "面向 AI 代理消费优化设计 API 接口",
+  "steps": [
+    "Expose semantic resource names and self-describing endpoints (OpenAPI + rich descriptions)",
+    "Return structured, schema-validated JSON responses that avoid ambiguous free-text fields",
+    "Provide bulk and idempotent operations to reduce agent round-trips and retries",
+    "Embed task-relevant metadata (next actions, related resources) in responses as hints",
+    "Publish a machine-readable capability manifest so agents can discover and compose APIs"
+  ],
+  "steps_zh": [
+    "暴露语义化资源名称和自描述端点（OpenAPI + 丰富描述）",
+    "返回模式验证的结构化 JSON，避免歧义自由文本字段",
+    "提供批量操作和幂等操作以减少代理往返请求和重试",
+    "在响应中嵌入任务相关元数据（后续动作、关联资源）作为提示",
+    "发布机器可读的能力清单，使代理能够发现和组合 API"
+  ],
+  "ai_relevant": true,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Schema",
+    "Context",
+    "Actions",
+    "Auth"
+  ],
+  "viz_labels_zh": [
+    "模式定义",
+    "上下文",
+    "可执行动作",
+    "鉴权"
+  ],
+  "related": [
+    "tool-use-design-pattern",
+    "richardson-maturity-model",
+    "agent-communication-protocol"
+  ],
+  "tags": [
+    "api-design",
+    "ai-first",
+    "machine-readable",
+    "agent-friendly"
+  ],
+  "origin_author": "Community-evolved pattern; influenced by Anthropic MCP (2024), OpenAI Plugins (2023), and Stripe API design philosophy",
+  "origin_source": "Model Context Protocol specification (Anthropic, 2024) and API design guidelines from OpenAI, Stripe, and Twilio",
+  "origin_source_zh": "模型上下文协议规范（Anthropic，2024）及 OpenAI、Stripe、Twilio 的 API 设计指南",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Building APIs that will be consumed by LLM agents via function calling or MCP",
+    "Creating internal platform APIs where AI assistants will be primary consumers alongside humans",
+    "Designing microservice interfaces in systems where AI orchestrators route between services",
+    "Migrating existing APIs to be compatible with the AI agent ecosystem"
+  ],
+  "when_to_use_zh": [
+    "构建将被大模型代理通过函数调用或 MCP 消费的 API",
+    "创建 AI 助手将与人类一起作为主要消费者的内部平台 API",
+    "在 AI 编排器在服务间路由的系统中设计微服务接口",
+    "将现有 API 迁移为与 AI 代理生态系统兼容"
+  ],
+  "core_concepts": [
+    "Self-Describing Endpoint: An API endpoint with rich OpenAPI descriptions that an agent can understand without external documentation",
+    "Capability Manifest: A machine-readable document (like MCP server config) that advertises what an API can do",
+    "Semantic Resource Naming: Using clear, descriptive resource names (/invoices, /customers) instead of opaque IDs or abbreviations",
+    "Affordance Embedding: Including next-possible-actions or HATEOAS-style links in API responses to guide agent navigation",
+    "Error Actionability: Returning structured error responses that tell the agent exactly what to fix (missing field, invalid format, etc.)"
+  ],
+  "core_concepts_zh": [
+    "自描述端点（Self-Describing Endpoint）：具有丰富 OpenAPI 描述、代理无需外部文档即可理解的 API 端点",
+    "能力清单（Capability Manifest）：广播 API 功能的机器可读文档（如 MCP 服务器配置）",
+    "语义资源命名（Semantic Resource Naming）：使用清晰描述性的资源名称（/invoices、/customers）而非不透明 ID 或缩写",
+    "功能可见性嵌入（Affordance Embedding）：在 API 响应中包含下一步可能操作或 HATEOAS 风格链接以引导代理导航",
+    "可操作错误（Error Actionability）：返回结构化错误响应，准确告知代理需要修正什么（缺失字段、无效格式等）"
+  ],
+  "timeline": [
+    [
+      "2023-03",
+      "OpenAI launches ChatGPT Plugins, requiring APIs to expose OpenAPI specs for agent consumption"
+    ],
+    [
+      "2023-06",
+      "OpenAI Function Calling formalizes JSON Schema as the interface between models and APIs"
+    ],
+    [
+      "2024-04",
+      "Anthropic publishes Model Context Protocol (MCP), an open standard for AI-consumable tool servers"
+    ],
+    [
+      "2024-09",
+      "Major SaaS platforms (Stripe, Shopify, Salesforce) begin publishing MCP-compatible API endpoints"
+    ],
+    [
+      "2025-01",
+      "AI-first API design becomes a recognized discipline as agent-to-agent API traffic grows"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2023-03",
+      "OpenAI 发布 ChatGPT 插件，要求 API 暴露 OpenAPI 规范供代理消费"
+    ],
+    [
+      "2023-06",
+      "OpenAI 函数调用将 JSON Schema 确立为模型与 API 之间的接口"
+    ],
+    [
+      "2024-04",
+      "Anthropic 发布模型上下文协议（MCP），AI 可消费工具服务器的开放标准"
+    ],
+    [
+      "2024-09",
+      "主要 SaaS 平台（Stripe、Shopify、Salesforce）开始发布 MCP 兼容的 API 端点"
+    ],
+    [
+      "2025-01",
+      "随着代理间 API 流量增长，AI 优先 API 设计成为一门公认的学科"
+    ]
+  ],
+  "dos": [
+    "Write API descriptions as if the consumer has zero prior context -- agents don't read README files",
+    "Return consistent, typed response schemas so agents can reliably parse without error handling hacks",
+    "Include pagination metadata and total counts in list responses for agents to plan their retrieval",
+    "Provide sandbox/test environments where agents can safely explore API capabilities"
+  ],
+  "dos_zh": [
+    "撰写 API 描述时假设消费者零上下文——代理不会阅读 README 文件",
+    "返回一致的类型化响应模式，使代理能可靠解析而无需错误处理补丁",
+    "在列表响应中包含分页元数据和总数，供代理规划检索策略",
+    "提供沙箱/测试环境供代理安全探索 API 能力"
+  ],
+  "donts": [
+    "Don't return HTML or unstructured text in API responses -- agents need structured JSON to act on",
+    "Don't require multi-step authentication flows that agents can't navigate programmatically",
+    "Don't use inconsistent naming conventions across endpoints -- agents rely on naming patterns for discovery",
+    "Don't embed critical information only in documentation -- put it in the OpenAPI spec where agents can see it"
+  ],
+  "donts_zh": [
+    "不要在 API 响应中返回 HTML 或非结构化文本——代理需要结构化 JSON 来操作",
+    "不要要求代理无法程序化导航的多步认证流程",
+    "不要在端点间使用不一致的命名约定——代理依赖命名模式进行发现",
+    "不要将关键信息仅放在文档中——放入 OpenAPI 规范让代理可以看到"
+  ],
+  "case_study_company": "Stripe",
+  "case_study": "Stripe's API has been widely cited as the gold standard for AI-consumable API design. Its consistent resource naming, rich error messages with fix suggestions, and comprehensive OpenAPI specification made it one of the first APIs that LLM agents could navigate effectively. When ChatGPT Plugins launched, Stripe was among the first integrations, and agents could create payment links, manage subscriptions, and issue refunds with minimal prompt engineering.",
+  "case_study_zh": "Stripe 的 API 被广泛认为是 AI 可消费 API 设计的黄金标准。其一致的资源命名、包含修复建议的丰富错误信息和全面的 OpenAPI 规范，使其成为最早能被大模型代理有效导航的 API 之一。当 ChatGPT 插件推出时，Stripe 是首批集成之一，代理能以极少的提示词工程创建支付链接、管理订阅和处理退款。",
+  "when_not_to_use": [
+    "Internal microservices that will only ever be consumed by other services, not AI agents",
+    "High-performance binary protocols (gRPC, Protocol Buffers) where human/AI readability is traded for speed",
+    "Legacy systems with no feasible path to adding rich descriptions or structured schemas",
+    "APIs that handle only human-to-human workflows with no AI agent interaction"
+  ],
+  "when_not_to_use_zh": [
+    "仅会被其他服务而非 AI 代理消费的内部微服务",
+    "以可读性换取速度的高性能二进制协议（gRPC、Protocol Buffers）",
+    "无法添加丰富描述或结构化模式的遗留系统",
+    "仅处理人与人工作流、没有 AI 代理交互的 API"
+  ],
+  "adopters": [
+    "Stripe",
+    "Shopify",
+    "Anthropic (MCP)",
+    "Twilio",
+    "Salesforce"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "usability",
+    "maintainability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Anthropic (2024). \"Model Context Protocol Specification\". modelcontextprotocol.io.",
+  "secondary_sources": [
+    "OpenAI (2023). \"ChatGPT Plugins\". openai.com/blog.",
+    "JJ Geewax (2021). \"API Design Patterns\". Manning Publications."
+  ],
+  "typed_relations": [
+    {
+      "slug": "tool-use-design-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "richardson-maturity-model",
+      "type": "extends"
+    },
+    {
+      "slug": "agent-communication-protocol",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/ai-first-api-design",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/ai-first-api-design.md"
+}

@@ -1,0 +1,194 @@
+{
+  "id": 84,
+  "name": "Continuous Architecture",
+  "name_zh": "持续架构",
+  "slug": "continuous-architecture",
+  "category": "evolution",
+  "desc": "Evolve architecture incrementally in sync with delivery rather than big up-front design",
+  "desc_zh": "与交付节奏同步地增量演进架构，取代前期大设计",
+  "steps": [
+    "Establish lightweight Architecture Decision Records (ADRs) to capture decisions as they are made",
+    "Embed architectural reviews as a routine part of sprint planning and retrospectives",
+    "Define architectural runways: maintain just-enough design ahead of the development queue",
+    "Use fitness functions to monitor whether the live system still matches architectural intent",
+    "Revisit and update ADRs when new information, scale demands, or AI capabilities shift priorities"
+  ],
+  "steps_zh": [
+    "建立轻量级架构决策记录（ADR），在决策作出时即时捕获",
+    "将架构评审作为迭代计划和回顾会议的常规环节",
+    "定义架构跑道：在开发队列前方维持恰到好处的设计储备",
+    "使用适应度函数监控线上系统是否仍与架构意图保持一致",
+    "当新信息、规模需求或 AI 能力改变优先级时，及时重审和更新 ADR"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Decide",
+    "Implement",
+    "Evaluate",
+    "Adapt"
+  ],
+  "viz_labels_zh": [
+    "架构决策",
+    "实施",
+    "评估",
+    "适应演进"
+  ],
+  "related": [
+    "adr",
+    "architectural-fitness-functions",
+    "three-ways-devops"
+  ],
+  "tags": [
+    "continuous-architecture",
+    "evolutionary",
+    "agile",
+    "incremental"
+  ],
+  "origin_author": "Murat Erder & Pierre Pureur, 2015",
+  "origin_source": "Continuous Architecture: Sustainable Architecture in an Agile and Cloud-Centric World (Morgan Kaufmann)",
+  "origin_source_zh": "《持续架构：敏捷和云中心化世界中的可持续架构》（Morgan Kaufmann 出版）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "An agile organization that needs architectural guidance without reverting to waterfall-style big design up front",
+    "A rapidly growing system where requirements change faster than a fixed architecture can accommodate",
+    "Teams adopting cloud-native infrastructure and needing architecture that evolves with cloud capabilities",
+    "Organizations integrating AI/ML components where architectural assumptions shift as models and capabilities improve"
+  ],
+  "when_to_use_zh": [
+    "敏捷组织需要架构指导，但不想回归瀑布式大前期设计",
+    "快速增长的系统，需求变化速度超出固定架构的适应能力",
+    "团队采用云原生基础设施，需要随云能力演进的架构",
+    "整合 AI/ML 组件的组织，架构假设随模型和能力提升而变化"
+  ],
+  "core_concepts": [
+    "Architecture Decision Records (ADRs): Lightweight, version-controlled documents that capture the context, decision, and consequences of each architectural choice",
+    "Architectural runway: Just enough planned architecture to support the next few sprints, not a complete blueprint",
+    "Last responsible moment: Defer architectural decisions until the cost of not deciding outweighs the benefit of waiting for more information",
+    "Fitness functions: Automated checks that continuously verify the live system conforms to architectural intent",
+    "Architecture as code: Treating architectural constraints as executable specifications embedded in CI/CD pipelines"
+  ],
+  "core_concepts_zh": [
+    "架构决策记录（ADR）：轻量级、版本控制的文档，记录每个架构选择的上下文、决策和后果",
+    "架构跑道：仅规划足够支撑未来几个迭代的架构，而非完整蓝图",
+    "最后责任时刻：将架构决策推迟到不做决策的成本超过等待更多信息的收益时",
+    "适应度函数：持续验证线上系统符合架构意图的自动化检查",
+    "架构即代码：将架构约束视为嵌入 CI/CD 流水线的可执行规格说明"
+  ],
+  "timeline": [
+    [
+      "2010",
+      "SAFe introduces the concept of Architectural Runway for agile-at-scale"
+    ],
+    [
+      "2011",
+      "Michael Nygard proposes lightweight Architecture Decision Records (ADRs)"
+    ],
+    [
+      "2015",
+      "Erder and Pureur publish 'Continuous Architecture', codifying the approach"
+    ],
+    [
+      "2017",
+      "'Building Evolutionary Architectures' by Ford, Parsons & Kua adds fitness functions to continuous architecture"
+    ],
+    [
+      "2021",
+      "Erder, Pureur & Woods publish 'Continuous Architecture in Practice', updating the approach for cloud-native and AI"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2010",
+      "SAFe 引入架构跑道概念，用于规模化敏捷"
+    ],
+    [
+      "2011",
+      "Michael Nygard 提出轻量级架构决策记录（ADR）"
+    ],
+    [
+      "2015",
+      "Erder 和 Pureur 出版《持续架构》，将该方法编纂成书"
+    ],
+    [
+      "2017",
+      "Ford、Parsons 和 Kua 的《演进式架构》为持续架构增加了适应度函数"
+    ],
+    [
+      "2021",
+      "Erder、Pureur 和 Woods 出版《持续架构实践》，针对云原生和 AI 更新方法"
+    ]
+  ],
+  "dos": [
+    "Write ADRs for every significant architectural decision — even if the decision is 'we chose not to change'",
+    "Keep the architectural runway 1-2 sprints ahead, not 6 months ahead",
+    "Embed architects in delivery teams rather than isolating them in an ivory tower review board",
+    "Use fitness functions to make architectural constraints executable and automatically enforced"
+  ],
+  "dos_zh": [
+    "为每个重要架构决策编写 ADR——即使决策是「我们选择不变更」",
+    "将架构跑道保持在 1-2 个迭代之前，而非 6 个月之前",
+    "让架构师嵌入交付团队，而非将他们隔离在象牙塔评审委员会中",
+    "使用适应度函数使架构约束可执行并自动强制执行"
+  ],
+  "donts": [
+    "Don't fall back to big up-front design disguised as 'architectural planning' — keep it lightweight",
+    "Don't skip ADRs for 'obvious' decisions — they provide invaluable context for future team members",
+    "Don't treat architecture as a one-time activity — it must continuously evolve with the system",
+    "Don't let the architectural runway grow too far ahead of delivery — unused design becomes waste"
+  ],
+  "donts_zh": [
+    "不要回退到伪装成「架构规划」的大前期设计——保持轻量",
+    "不要跳过「显而易见」决策的 ADR——它们为未来团队成员提供宝贵上下文",
+    "不要将架构视为一次性活动——它必须与系统持续共同演进",
+    "不要让架构跑道远远领先于交付——未被使用的设计就是浪费"
+  ],
+  "case_study_company": "Spotify",
+  "case_study": "Spotify adopted continuous architecture principles as part of their famous squad/tribe/chapter model. Each squad makes its own architectural decisions, documented as lightweight ADRs in their repositories. A chapter of architects across squads ensures alignment on cross-cutting concerns. This approach allowed Spotify to evolve from a monolith to hundreds of microservices without ever pausing delivery for a 'big redesign', enabling them to scale from 10 million to over 500 million users.",
+  "case_study_zh": "Spotify 将持续架构原则作为其著名的小队/部落/分会模型的一部分加以采用。每个小队自主做出架构决策，以轻量级 ADR 形式记录在各自仓库中。跨小队的架构师分会确保在横切关注点上保持一致。这种方法使 Spotify 从单体演进到数百个微服务，而无需暂停交付进行「大重设计」，支撑其从 1000 万用户扩展到超过 5 亿用户。",
+  "when_not_to_use": [
+    "Safety-critical systems (medical devices, avionics) where regulatory compliance requires extensive up-front design documentation",
+    "Fixed-scope contract projects where the architecture is contractually specified before development begins",
+    "Very short-lived projects (under 3 months) where the overhead of ADRs and fitness functions exceeds their benefit",
+    "Teams with no agile delivery practices — continuous architecture assumes iterative, incremental delivery"
+  ],
+  "when_not_to_use_zh": [
+    "安全关键系统（医疗设备、航空电子），法规合规要求大量前期设计文档",
+    "固定范围的合同项目，架构在开发开始前已在合同中明确规定",
+    "非常短期的项目（3 个月以下），ADR 和适应度函数的开销超过收益",
+    "没有敏捷交付实践的团队——持续架构假设迭代、增量式交付"
+  ],
+  "adopters": [
+    "Spotify",
+    "Capital One",
+    "Netflix",
+    "ING Bank",
+    "ThoughtWorks"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Murat Erder and Pierre Pureur (2015). \"Continuous Architecture: Sustainable Architecture in an Agile and Cloud-Centric World\". Morgan Kaufmann.",
+  "secondary_sources": [
+    "Murat Erder, Pierre Pureur, and Eoin Woods (2021). \"Continuous Architecture in Practice\". Addison-Wesley.",
+    "Neal Ford, Rebecca Parsons, and Patrick Kua (2017). \"Building Evolutionary Architectures\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "adr",
+      "type": "complement"
+    },
+    {
+      "slug": "architectural-fitness-functions",
+      "type": "complement"
+    },
+    {
+      "slug": "three-ways-devops",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/continuous-architecture",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/continuous-architecture.md"
+}

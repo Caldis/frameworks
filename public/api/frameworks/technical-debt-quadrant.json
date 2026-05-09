@@ -1,0 +1,194 @@
+{
+  "id": 76,
+  "name": "Technical Debt Quadrant",
+  "name_zh": "技术债务象限",
+  "slug": "technical-debt-quadrant",
+  "category": "evolution",
+  "desc": "Classify tech debt by deliberate/inadvertent and reckless/prudent axes",
+  "desc_zh": "按有意/无意与鲁莽/谨慎两轴对技术债务分类",
+  "steps": [
+    "Audit the codebase and collect all known shortcuts, workarounds, and design smells",
+    "Classify each item on two axes: deliberate vs. inadvertent and reckless vs. prudent",
+    "Prioritize reckless-inadvertent debt for immediate remediation as it carries highest risk",
+    "Schedule prudent-deliberate debt paydown as part of regular sprint capacity allocation",
+    "Document decisions to take on deliberate debt with explicit repayment plans and owners"
+  ],
+  "steps_zh": [
+    "审计代码库，收集所有已知的快捷方式、变通方案和设计异味",
+    "按两轴对每项进行分类：有意 vs. 无意，鲁莽 vs. 谨慎",
+    "优先修复「鲁莽-无意」象限的债务，因其风险最高",
+    "将「谨慎-有意」债务的偿还纳入常规迭代容量规划",
+    "记录主动承担技术债务的决策，明确偿还计划与负责人"
+  ],
+  "ai_relevant": false,
+  "viz_type": "quadrant",
+  "viz_labels": [
+    "Reckless",
+    "Prudent",
+    "Deliberate",
+    "Inadvertent"
+  ],
+  "viz_labels_zh": [
+    "鲁莽",
+    "谨慎",
+    "刻意",
+    "无意"
+  ],
+  "related": [
+    "mikado-method",
+    "continuous-architecture",
+    "architectural-fitness-functions"
+  ],
+  "tags": [
+    "tech-debt",
+    "classification",
+    "prioritization",
+    "risk-management"
+  ],
+  "origin_author": "Martin Fowler, 2009",
+  "origin_source": "TechnicalDebtQuadrant (martinfowler.com)",
+  "origin_source_zh": "《技术债务象限》（martinfowler.com 博文）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "A team needs a shared language to discuss and prioritize different kinds of technical debt",
+    "Sprint retrospectives keep surfacing vague complaints about code quality without actionable categories",
+    "Engineering leadership needs to communicate the business impact of technical debt to non-technical stakeholders",
+    "Deciding whether to take on tactical shortcuts during a tight product deadline"
+  ],
+  "when_to_use_zh": [
+    "团队需要统一语言来讨论和排列不同类型技术债务的优先级",
+    "迭代回顾中反复出现关于代码质量的模糊抱怨，却缺乏可操作的分类",
+    "工程领导层需要向非技术干系人阐述技术债务的业务影响",
+    "在紧迫的产品交付期限内决定是否采取战术性快捷方式"
+  ],
+  "core_concepts": [
+    "Deliberate vs. Inadvertent: Whether the team knowingly took on the debt or stumbled into it through lack of knowledge",
+    "Reckless vs. Prudent: Whether the debt was taken carelessly or as a calculated trade-off with a repayment plan",
+    "Reckless-Deliberate: 'We know this is wrong but ship it anyway' — highest urgency to fix",
+    "Prudent-Inadvertent: 'Now we know how we should have done it' — natural learning, address when revisiting that area",
+    "Interest payments: The ongoing cost of working around technical debt — slower delivery, more bugs, higher onboarding time"
+  ],
+  "core_concepts_zh": [
+    "有意与无意：团队是明知故犯地承担债务，还是因知识不足而无意间产生的",
+    "鲁莽与谨慎：债务是粗心大意造成的，还是经过权衡并附带偿还计划的",
+    "鲁莽-有意：'我们知道这样做不对但还是发布了'——修复优先级最高",
+    "谨慎-无意：'现在我们知道本应怎么做了'——自然的学习过程，在重访该区域时处理",
+    "利息支出：绕过技术债务的持续成本——交付变慢、缺陷增多、新人上手时间延长"
+  ],
+  "timeline": [
+    [
+      "1992",
+      "Ward Cunningham introduces the technical debt metaphor at OOPSLA"
+    ],
+    [
+      "2003",
+      "Martin Fowler begins writing extensively about technical debt on his blog"
+    ],
+    [
+      "2009",
+      "Fowler publishes the Technical Debt Quadrant, adding the two-axis classification"
+    ],
+    [
+      "2014",
+      "The quadrant becomes a standard tool in agile coaching and sprint planning"
+    ],
+    [
+      "2021",
+      "McKinsey and Gartner report that tech debt consumes 20-40% of IT budgets, validating the framework's relevance"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1992",
+      "Ward Cunningham 在 OOPSLA 大会上引入技术债务隐喻"
+    ],
+    [
+      "2003",
+      "Martin Fowler 开始在博客上大量撰写有关技术债务的文章"
+    ],
+    [
+      "2009",
+      "Fowler 发表技术债务象限，增加了两轴分类法"
+    ],
+    [
+      "2014",
+      "该象限成为敏捷教练和迭代规划中的标准工具"
+    ],
+    [
+      "2021",
+      "麦肯锡和 Gartner 报告技术债务消耗了 20-40% 的 IT 预算，验证了该框架的现实意义"
+    ]
+  ],
+  "dos": [
+    "Use the quadrant in sprint retros to categorize newly discovered debt and agree on priority",
+    "Track prudent-deliberate debt in a visible backlog with clear owners and target payoff dates",
+    "Allocate a fixed percentage (e.g., 15-20%) of sprint capacity to debt paydown every iteration",
+    "Connect debt items to business metrics (velocity, incident rate) to justify remediation investment"
+  ],
+  "dos_zh": [
+    "在迭代回顾中使用象限对新发现的债务进行分类并达成优先级共识",
+    "在可见的待办清单中追踪谨慎-有意债务，明确负责人和目标偿还日期",
+    "每个迭代固定分配一定比例（如 15-20%）的容量用于偿还债务",
+    "将债务项关联到业务指标（交付速度、故障率），以论证修复投入的合理性"
+  ],
+  "donts": [
+    "Don't treat all technical debt as equally urgent — the quadrant exists precisely to differentiate",
+    "Don't use 'technical debt' as a catch-all excuse without classifying the specific type and impact",
+    "Don't ignore inadvertent debt — it signals gaps in team knowledge that need coaching or training",
+    "Don't let prudent-deliberate debt accumulate without repayment — interest compounds over time"
+  ],
+  "donts_zh": [
+    "不要将所有技术债务视为同等紧迫——象限的存在正是为了区分优先级",
+    "不要将「技术债务」作为万能借口而不分类其具体类型和影响",
+    "不要忽视无意债务——它预示着团队知识的缺口，需要辅导或培训",
+    "不要让谨慎-有意债务无偿还计划地持续累积——利息会随时间复利增长"
+  ],
+  "case_study_company": "Spotify",
+  "case_study": "Spotify adopted the Technical Debt Quadrant in their squad-based engineering culture to give autonomous teams a shared vocabulary for debt prioritization. Each squad categorized their debt using the quadrant during quarterly planning, and reckless-inadvertent items were flagged for immediate attention. This approach reduced their mean incident recovery time by 30% over two years, as the most dangerous hidden debt was systematically surfaced and addressed.",
+  "case_study_zh": "Spotify 在其小队制工程文化中采用了技术债务象限，为自治团队提供统一的债务优先级词汇。每个小队在季度规划中使用象限对债务进行分类，鲁莽-无意类别的项目被标记为即刻关注。这一方法在两年内将平均故障恢复时间缩短了 30%，因为最危险的隐藏债务被系统性地识别和处理。",
+  "when_not_to_use": [
+    "The codebase is brand new with minimal accumulated shortcuts — classification overhead is unnecessary",
+    "The team is in pure prototype/exploration mode where debt is expected and intentionally disposable",
+    "A single monolithic debt item dominates everything — no need for a classification framework",
+    "Stakeholders only care about debt quantity, not debt type (though this itself is a problem to fix)"
+  ],
+  "when_not_to_use_zh": [
+    "代码库全新，几乎没有累积的快捷方式——分类开销不必要",
+    "团队处于纯原型/探索模式，债务是预期内且有意一次性使用的",
+    "单一的整体性债务项主导一切——不需要分类框架",
+    "干系人只关心债务数量而非类型（尽管这本身是需要解决的问题）"
+  ],
+  "adopters": [
+    "Spotify",
+    "ThoughtWorks",
+    "Atlassian",
+    "Pivotal Labs",
+    "Etsy"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Martin Fowler (2009). \"TechnicalDebtQuadrant\". martinfowler.com.",
+  "secondary_sources": [
+    "Ward Cunningham (1992). \"The WyCash Portfolio Management System\". OOPSLA 1992 Experience Report.",
+    "Steve McConnell (2007). \"Technical Debt\". Construx Software Blog."
+  ],
+  "typed_relations": [
+    {
+      "slug": "mikado-method",
+      "type": "complement"
+    },
+    {
+      "slug": "continuous-architecture",
+      "type": "complement"
+    },
+    {
+      "slug": "architectural-fitness-functions",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/technical-debt-quadrant",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/technical-debt-quadrant.md"
+}

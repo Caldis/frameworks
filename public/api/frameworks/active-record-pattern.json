@@ -1,0 +1,188 @@
+{
+  "id": 331,
+  "name": "Active Record Pattern",
+  "name_zh": "活动记录模式",
+  "slug": "active-record-pattern",
+  "category": "coding",
+  "desc": "Domain object that wraps a database row and encapsulates CRUD logic within itself",
+  "desc_zh": "将数据库行封装并在对象内部实现 CRUD 逻辑的领域对象模式",
+  "steps": [
+    "Map a class to a database table: each class property corresponds to a column, and each instance represents exactly one row in that table",
+    "Embed persistence methods on the object: implement save(), find(), update(), and delete() directly on the domain class so callers never touch SQL directly",
+    "Use class-level finders for queries: expose static or class methods like User.findByEmail() that translate to SQL SELECT and return hydrated objects",
+    "Leverage lifecycle callbacks: hook before_save, after_create, and similar callbacks on the class to enforce validation, timestamps, and side-effects",
+    "Migrate schema changes alongside code: keep database migrations versioned next to the model files so schema and behaviour evolve together"
+  ],
+  "steps_zh": [
+    "将类映射到数据库表：每个类属性对应一列，每个实例代表该表中的一行",
+    "在对象上内嵌持久化方法：直接在领域类上实现 save()、find()、update() 和 delete()，调用方无需直接接触 SQL",
+    "使用类级别查询方法：暴露 User.findByEmail() 等静态或类方法，将其转换为 SQL SELECT 并返回填充好的对象",
+    "利用生命周期回调：在类上挂载 before_save、after_create 等回调，以强制验证、时间戳和副作用",
+    "随代码一起迁移模式变更：将数据库迁移文件版本化并置于模型文件旁，使模式与行为同步演进"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Domain Object",
+    "Database Table",
+    "CRUD",
+    "Query"
+  ],
+  "viz_labels_zh": [
+    "领域对象",
+    "数据库表",
+    "增删改查",
+    "查询"
+  ],
+  "related": [
+    "repository-pattern",
+    "data-mapper-pattern",
+    "data-transfer-object"
+  ],
+  "tags": [
+    "active-record",
+    "orm",
+    "persistence",
+    "database"
+  ],
+  "origin_author": "Martin Fowler, 2002",
+  "origin_source": "Patterns of Enterprise Application Architecture",
+  "origin_source_zh": "《企业应用架构模式》",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Building CRUD-heavy applications where domain logic is thin and closely mirrors the database schema",
+    "Rapid prototyping or small-to-medium web applications where development speed outweighs architectural purity",
+    "Teams that want a single cohesive object to serve as both domain model and persistence layer without a separate repository layer",
+    "Applications using convention-over-configuration frameworks such as Rails or Laravel where Active Record is the idiomatic approach"
+  ],
+  "when_to_use_zh": [
+    "构建以 CRUD 为主、领域逻辑较薄且紧密映射数据库模式的应用",
+    "快速原型或中小型 Web 应用，开发速度优先于架构纯粹性",
+    "希望用单一内聚对象同时充当领域模型和持久化层、无需独立仓储层的团队",
+    "使用约定优于配置框架（如 Rails 或 Laravel）且 Active Record 是惯用方法的应用"
+  ],
+  "core_concepts": [
+    "Table-per-class mapping: each Active Record class maps directly to one database table with no intermediate mapping layer",
+    "Self-contained persistence: the domain object owns its own SQL or query-builder calls, eliminating the need for a separate DAO or repository class",
+    "Lifecycle callbacks: hooks executed automatically at create, update, and delete events allow cross-cutting concerns like validation and auditing to live on the model",
+    "Finder methods: class-level query methods return pre-hydrated objects, encapsulating SQL behind a domain-friendly API",
+    "Convention over configuration: naming conventions (plural table name, id primary key) eliminate boilerplate mapping configuration"
+  ],
+  "core_concepts_zh": [
+    "每类一表映射：每个活动记录类直接映射到一张数据库表，无需中间映射层",
+    "自包含持久化：领域对象拥有自己的 SQL 或查询构建器调用，无需独立的 DAO 或仓储类",
+    "生命周期回调：在创建、更新、删除事件时自动触发的钩子，使验证和审计等横切关注点驻留在模型上",
+    "查询方法：类级别查询方法返回预填充对象，将 SQL 封装在友好的领域 API 之后",
+    "约定优于配置：命名约定（复数表名、id 主键）消除了样板映射配置"
+  ],
+  "timeline": [
+    [
+      "2002",
+      "Martin Fowler names and documents the Active Record pattern in 'Patterns of Enterprise Application Architecture'"
+    ],
+    [
+      "2004",
+      "Ruby on Rails ships ActiveRecord as its default ORM, popularising the pattern worldwide"
+    ],
+    [
+      "2011",
+      "Laravel introduces Eloquent ORM, bringing Active Record to the PHP community with an expressive fluent API"
+    ],
+    [
+      "2016",
+      "Active Record remains dominant in web frameworks while Data Mapper alternatives gain traction for complex domains"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2002",
+      "Martin Fowler 在《企业应用架构模式》中命名并记录活动记录模式"
+    ],
+    [
+      "2004",
+      "Ruby on Rails 将 ActiveRecord 作为默认 ORM 发布，使该模式在全球流行"
+    ],
+    [
+      "2011",
+      "Laravel 引入 Eloquent ORM，以富有表现力的流式 API 将活动记录带入 PHP 社区"
+    ],
+    [
+      "2016",
+      "活动记录在 Web 框架中仍占主导地位，而数据映射器替代方案因复杂领域逐渐获得关注"
+    ]
+  ],
+  "dos": [
+    "Do use Active Record for straightforward CRUD where the domain model closely reflects the table structure",
+    "Do leverage lifecycle callbacks for validation and automatic timestamp management rather than duplicating logic in service layers",
+    "Do rely on framework-provided migration tooling to keep schema and model in sync across environments",
+    "Do add scopes or named query methods to encapsulate common filters instead of scattering raw queries across the codebase"
+  ],
+  "dos_zh": [
+    "对于领域模型与表结构高度一致的直接 CRUD，使用活动记录",
+    "利用生命周期回调进行验证和自动时间戳管理，而非在服务层重复逻辑",
+    "依赖框架提供的迁移工具跨环境保持模式与模型同步",
+    "添加作用域或命名查询方法封装常用过滤条件，而非将裸查询分散在代码库中"
+  ],
+  "donts": [
+    "Don't use Active Record for complex domains with rich business rules — the coupling between persistence and behaviour becomes a maintenance burden",
+    "Don't write business logic inside lifecycle callbacks because it becomes invisible to callers and hard to test in isolation",
+    "Don't share Active Record objects across service boundaries as DTOs because it leaks persistence details and schema changes cascade unexpectedly",
+    "Don't let models accumulate hundreds of methods — extract service objects or use Data Mapper when a model grows beyond a single responsibility"
+  ],
+  "donts_zh": [
+    "不要在具有丰富业务规则的复杂领域中使用活动记录——持久化与行为的耦合会成为维护负担",
+    "不要在生命周期回调中编写业务逻辑，因为这对调用方不可见且难以独立测试",
+    "不要将活动记录对象作为 DTO 跨服务边界共享，因为这会泄漏持久化细节，导致模式变更意外级联",
+    "不要让模型积累数百个方法——当模型超出单一职责时，改用服务对象或数据映射器"
+  ],
+  "case_study_company": "Shopify",
+  "case_study": "Shopify's core monolith is built on Ruby on Rails and uses ActiveRecord throughout. Each core entity — Order, Product, Customer, Variant — is an Active Record model mapped directly to a database table. This allowed Shopify to move extremely fast in its early years, shipping new merchant features weekly. As the platform scaled to millions of merchants, the team learned to discipline Active Record usage: models were forbidden from calling other models' persistence methods directly, and background jobs were kept out of callbacks. These constraints preserved the productivity benefits while avoiding the worst coupling pitfalls of naive Active Record usage.",
+  "case_study_zh": "Shopify 的核心单体应用基于 Ruby on Rails 构建，全面使用 ActiveRecord。每个核心实体——订单、商品、客户、变体——都是直接映射到数据库表的活动记录模型。这使 Shopify 在早期能够快速迭代，每周发布新的商家功能。随着平台扩展到数百万商家，团队学会了规范活动记录的使用：禁止模型直接调用其他模型的持久化方法，后台任务也不放入回调中。这些约束在保留生产力优势的同时，避免了朴素活动记录使用中最严重的耦合陷阱。",
+  "when_not_to_use": [
+    "Complex domains with deep business rules that do not align cleanly with a single table — Data Mapper with a dedicated domain layer is more appropriate",
+    "Microservices or shared libraries where exposing database-coupled objects across service boundaries introduces unwanted coupling",
+    "Applications requiring multiple persistence backends (e.g., storing parts of an entity in a document store and a relational DB simultaneously)",
+    "Highly concurrent write-heavy systems where fine-grained transaction control and optimistic locking need explicit, visible management"
+  ],
+  "when_not_to_use_zh": [
+    "具有深度业务规则且与单张表映射不吻合的复杂领域——带专用领域层的数据映射器更合适",
+    "微服务或共享库中，将数据库耦合的对象跨服务边界暴露会引入不必要的耦合",
+    "需要多种持久化后端的应用（如将实体的不同部分同时存储在文档存储和关系型数据库中）",
+    "高并发写入密集型系统，需要对事务控制和乐观锁进行精细、可见的管理"
+  ],
+  "adopters": [
+    "Ruby on Rails",
+    "Laravel (Eloquent)",
+    "Django ORM",
+    "Castle ActiveRecord",
+    "Sequelize"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "usability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Fowler, M. (2002). \"Patterns of Enterprise Application Architecture\". Addison-Wesley. pp. 160–164.",
+  "secondary_sources": [
+    "Hansson, D.H. (2004). \"Ruby on Rails\". rails presentation and documentation, rubyonrails.org.",
+    "Otwell, T. (2011). \"Laravel: Eloquent ORM\". laravel.com/docs/eloquent.",
+    "Fowler, M. (2014). \"ActiveRecord\". martinfowler.com/eaaCatalog/activeRecord.html."
+  ],
+  "typed_relations": [
+    {
+      "slug": "repository-pattern",
+      "type": "alternative"
+    },
+    {
+      "slug": "data-mapper-pattern",
+      "type": "alternative"
+    },
+    {
+      "slug": "data-transfer-object",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/active-record-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/active-record-pattern.md"
+}

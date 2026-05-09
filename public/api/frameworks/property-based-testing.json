@@ -1,0 +1,196 @@
+{
+  "id": 48,
+  "name": "Property-Based Testing",
+  "name_zh": "基于属性的测试",
+  "slug": "property-based-testing",
+  "category": "quality",
+  "desc": "Test invariant properties with auto-generated random inputs",
+  "desc_zh": "使用自动生成的随机输入测试不变性质",
+  "steps": [
+    "Identify properties: define universal truths about your code (e.g., encode then decode returns original, sort output is always ordered)",
+    "Write generators: create or compose data generators that produce valid random inputs covering edge cases (empty, huge, special chars)",
+    "Express the property: write a test that asserts the property holds for all generated inputs using a PBT library (fast-check, Hypothesis, QuickCheck)",
+    "Analyze shrunk failures: when a property fails, the framework automatically shrinks the input to the minimal failing case for easy debugging",
+    "Combine with example tests: use PBT for invariants and boundary exploration; keep example-based tests for specific documented behaviors"
+  ],
+  "steps_zh": [
+    "识别属性：定义代码的普遍真理（如编码后解码返回原始值，排序输出总是有序的）",
+    "编写生成器：创建或组合数据生成器，产生覆盖边界情况的有效随机输入（空值、极大值、特殊字符）",
+    "表达属性：使用PBT库（fast-check、Hypothesis、QuickCheck）编写断言属性对所有生成输入成立的测试",
+    "分析收缩的失败用例：属性失败时，框架自动将输入收缩至最小失败用例以便调试",
+    "与示例测试结合：对不变式和边界探索使用PBT；对特定文档化行为保留基于示例的测试"
+  ],
+  "ai_relevant": true,
+  "viz_type": "radar",
+  "viz_labels": [
+    "Properties",
+    "Generators",
+    "Shrinking",
+    "Coverage",
+    "Invariants"
+  ],
+  "viz_labels_zh": [
+    "属性定义",
+    "生成器",
+    "收缩",
+    "覆盖率",
+    "不变量"
+  ],
+  "related": [
+    "tdd",
+    "design-by-contract",
+    "functional-core-imperative-shell"
+  ],
+  "tags": [
+    "property-testing",
+    "fuzzing",
+    "generators",
+    "invariants",
+    "quickcheck"
+  ],
+  "origin_author": "Koen Claessen & John Hughes, 2000",
+  "origin_source": "QuickCheck: A Lightweight Tool for Random Testing of Haskell Programs (ICFP 2000)",
+  "origin_source_zh": "《QuickCheck：一种轻量级的Haskell程序随机测试工具》（ICFP 2000）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Testing serialization/deserialization round-trips where encode-decode must be lossless",
+    "Validating mathematical or algorithmic invariants (sorting, parsing, compression)",
+    "Exploring edge cases that manual test writers would never think of",
+    "Testing data pipeline transformations where properties like idempotence or commutativity must hold"
+  ],
+  "when_to_use_zh": [
+    "测试序列化/反序列化往返，编码-解码必须无损",
+    "验证数学或算法不变式（排序、解析、压缩）",
+    "探索手工测试编写者永远不会想到的边界情况",
+    "测试数据管道转换，其中幂等性或交换律等属性必须成立"
+  ],
+  "core_concepts": [
+    "Property: A universally quantified statement that must hold true for all valid inputs",
+    "Generator: A composable function that produces random values of a given type for test inputs",
+    "Shrinking: Automatic reduction of a failing input to the minimal case that still fails",
+    "Arbitrary: A typeclass or interface that combines a generator with a shrinker for a type",
+    "Counterexample: A specific input found by the framework that violates the stated property"
+  ],
+  "core_concepts_zh": [
+    "属性：对所有有效输入必须成立的全称量化陈述",
+    "生成器：产生给定类型随机值作为测试输入的可组合函数",
+    "收缩：将失败输入自动缩减为仍然失败的最小用例",
+    "Arbitrary：将生成器和收缩器组合的类型类或接口",
+    "反例：框架找到的违反所述属性的具体输入"
+  ],
+  "timeline": [
+    [
+      "1999",
+      "Koen Claessen and John Hughes develop QuickCheck at Chalmers University"
+    ],
+    [
+      "2000",
+      "QuickCheck paper published at ICFP, introducing property-based testing to the functional programming community"
+    ],
+    [
+      "2006",
+      "Quviq founded by John Hughes to commercialize QuickCheck for Erlang in industrial settings"
+    ],
+    [
+      "2016",
+      "Hypothesis for Python by David MacIver brings PBT to mainstream imperative languages"
+    ],
+    [
+      "2018",
+      "fast-check for JavaScript/TypeScript gains popularity, making PBT accessible to web developers"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1999",
+      "Koen Claessen和John Hughes在查尔姆斯理工大学开发QuickCheck"
+    ],
+    [
+      "2000",
+      "QuickCheck论文在ICFP发表，将基于属性的测试引入函数式编程社区"
+    ],
+    [
+      "2006",
+      "John Hughes创立Quviq公司，将QuickCheck商业化应用于Erlang工业场景"
+    ],
+    [
+      "2016",
+      "David MacIver开发的Python版Hypothesis将PBT带入主流命令式语言"
+    ],
+    [
+      "2018",
+      "JavaScript/TypeScript的fast-check库流行，使PBT对Web开发者可及"
+    ]
+  ],
+  "dos": [
+    "Do start with simple round-trip properties because they are easy to understand and highly effective",
+    "Do compose generators from smaller ones because complex custom generators are error-prone",
+    "Do use shrinking to find minimal failing cases because it dramatically speeds up debugging",
+    "Do combine PBT with example-based tests because each approach catches different kinds of bugs"
+  ],
+  "dos_zh": [
+    "从简单的往返属性开始，因为它们易于理解且非常有效",
+    "从较小的生成器组合构建复杂生成器，因为复杂的自定义生成器容易出错",
+    "利用收缩找到最小失败用例，因为这能显著加速调试",
+    "将PBT与基于示例的测试结合，因为两种方法捕获不同类型的缺陷"
+  ],
+  "donts": [
+    "Don't write overly complex generators because they become a source of bugs themselves",
+    "Don't ignore failing seeds because non-deterministic test failures indicate real property violations",
+    "Don't replace all example tests with PBT because specific documented behaviors need explicit examples",
+    "Don't test properties that are trivially true because they waste computation without providing confidence"
+  ],
+  "donts_zh": [
+    "不要编写过于复杂的生成器，因为它们本身会成为缺陷来源",
+    "不要忽略失败的种子值，因为非确定性测试失败表明存在真实的属性违反",
+    "不要用PBT替换所有示例测试，因为特定文档化行为需要明确的示例",
+    "不要测试平凡成立的属性，因为这浪费计算而不提供信心"
+  ],
+  "case_study_company": "Volvo",
+  "case_study": "Volvo used Quviq QuickCheck to test the AUTOSAR embedded software standard used in their vehicles. Property-based testing discovered over 200 bugs in the specification and implementations that traditional testing had missed, including critical timing and state machine issues. John Hughes presented this work as evidence of PBT's industrial effectiveness at multiple conferences.",
+  "case_study_zh": "沃尔沃使用Quviq QuickCheck测试其车辆中使用的AUTOSAR嵌入式软件标准。基于属性的测试发现了传统测试遗漏的200多个规格和实现缺陷，包括关键的时序和状态机问题。John Hughes在多个会议上展示这项工作，作为PBT工业有效性的证据。",
+  "when_not_to_use": [
+    "Simple CRUD operations where properties are trivial and example tests suffice",
+    "UI layout testing where visual correctness cannot be expressed as algebraic properties",
+    "Exploratory prototypes where the properties themselves are not yet understood"
+  ],
+  "when_not_to_use_zh": [
+    "属性平凡且示例测试足够的简单CRUD操作",
+    "视觉正确性无法用代数属性表达的UI布局测试",
+    "属性本身尚未被理解的探索性原型"
+  ],
+  "adopters": [
+    "Volvo",
+    "Ericsson",
+    "Spotify",
+    "Jet.com",
+    "Jane Street"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "testability",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Koen Claessen and John Hughes (2000). \"QuickCheck: A Lightweight Tool for Random Testing of Haskell Programs\". ACM ICFP 2000.",
+  "secondary_sources": [
+    "John Hughes (2007). \"QuickCheck Testing for Fun and Profit\". PADL 2007.",
+    "Fred Hebert (2019). \"Property-Based Testing with PropEr, Erlang, and Elixir\". Pragmatic Bookshelf."
+  ],
+  "typed_relations": [
+    {
+      "slug": "tdd",
+      "type": "complement"
+    },
+    {
+      "slug": "design-by-contract",
+      "type": "complement"
+    },
+    {
+      "slug": "functional-core-imperative-shell",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/property-based-testing",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/property-based-testing.md"
+}

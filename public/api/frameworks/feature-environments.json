@@ -1,0 +1,193 @@
+{
+  "id": 290,
+  "name": "Feature Environments",
+  "name_zh": "功能环境",
+  "slug": "feature-environments",
+  "category": "deployment",
+  "desc": "Ephemeral full-stack environments provisioned per pull request or branch",
+  "desc_zh": "为每个拉取请求或分支自动创建临时全栈环境",
+  "steps": [
+    "Configure CI/CD to automatically provision a named environment on pull request open, using the branch name as a namespace or subdomain",
+    "Deploy the full application stack (frontend, backend, database seed) into the isolated environment within the CI pipeline",
+    "Post the environment URL as a PR comment so reviewers and QA can access it without local setup",
+    "Run automated tests (smoke, E2E, visual regression) against the ephemeral environment as part of the PR checks",
+    "Automatically tear down the environment on PR close or merge to reclaim infrastructure resources"
+  ],
+  "steps_zh": [
+    "配置 CI/CD 在拉取请求打开时使用分支名作为命名空间或子域名自动创建命名环境",
+    "在 CI 流水线中将完整应用栈（前端、后端、数据库种子）部署到隔离环境",
+    "将环境 URL 作为 PR 评论发布，使审查者和 QA 无需本地设置即可访问",
+    "在 PR 检查中对临时环境执行自动化测试（冒烟测试、E2E 测试、视觉回归测试）",
+    "在 PR 关闭或合并时自动销毁环境以回收基础设施资源"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Branch",
+    "Spin Up",
+    "Test",
+    "Tear Down"
+  ],
+  "viz_labels_zh": [
+    "功能分支",
+    "环境创建",
+    "测试验证",
+    "环境销毁"
+  ],
+  "related": [
+    "gitops",
+    "progressive-delivery",
+    "blue-green-deployment",
+    "infrastructure-as-code"
+  ],
+  "tags": [
+    "ephemeral-environments",
+    "preview-environments",
+    "pull-request",
+    "ci-cd",
+    "deployment"
+  ],
+  "origin_author": "Vercel",
+  "origin_source": "Vercel (2018). \"Preview Deployments\". vercel.com/docs.",
+  "origin_source_zh": "Vercel（2018）。《预览部署》。vercel.com/docs。",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Frontend and full-stack teams that want product managers and designers to review changes without running code locally",
+    "Projects with complex integration dependencies where local development environment setup is costly and error-prone",
+    "Teams practicing trunk-based development where frequent PRs need isolated validation before merge",
+    "Organizations that want to shift QA and stakeholder review earlier in the development cycle"
+  ],
+  "when_to_use_zh": [
+    "希望产品经理和设计师无需本地运行代码即可审查变更的前端和全栈团队",
+    "本地开发环境搭建成本高且容易出错的复杂集成依赖项目",
+    "实践主干开发、频繁 PR 需要在合并前进行隔离验证的团队",
+    "希望将 QA 和利益相关者评审提前到开发周期更早阶段的组织"
+  ],
+  "core_concepts": [
+    "Ephemeral Namespace Isolation: Each PR gets a dedicated namespace, subdomain, or cluster namespace that is fully isolated from staging and production",
+    "Infrastructure-on-Demand: Environments are created and destroyed programmatically by CI events, treating compute as a disposable resource",
+    "Shift-Left Review: Product stakeholders, designers, and QA can validate running software early, catching requirement gaps before merging",
+    "Hermetic Test Execution: E2E and integration tests run against a realistic stack that mirrors production, eliminating environment parity bugs"
+  ],
+  "core_concepts_zh": [
+    "临时命名空间隔离：每个 PR 获得一个专用命名空间、子域名或集群命名空间，与暂存和生产环境完全隔离",
+    "按需基础设施：环境由 CI 事件以编程方式创建和销毁，将计算视为可丢弃资源",
+    "左移评审：产品利益相关者、设计师和 QA 可以在早期验证运行中的软件，在合并前发现需求差距",
+    "密封测试执行：E2E 和集成测试在镜像生产环境的真实栈上运行，消除环境一致性错误"
+  ],
+  "timeline": [
+    [
+      "2016",
+      "Heroku introduces Review Apps — per-PR ephemeral environments — as a first-class platform feature"
+    ],
+    [
+      "2018",
+      "Vercel launches Preview Deployments, making per-PR frontend environments the default for Jamstack projects"
+    ],
+    [
+      "2020",
+      "Netlify, Render, and Railway popularize the pattern across the full-stack ecosystem"
+    ],
+    [
+      "2023",
+      "GitHub Environments and tools like Uffizzi, Bunnyshell, and Qovery extend ephemeral environments to full Kubernetes stacks"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2016",
+      "Heroku 推出 Review Apps——每个 PR 的临时环境——作为平台一等功能"
+    ],
+    [
+      "2018",
+      "Vercel 推出预览部署，使每个 PR 的前端环境成为 Jamstack 项目的默认选项"
+    ],
+    [
+      "2020",
+      "Netlify、Render 和 Railway 在全栈生态系统中普及了这一模式"
+    ],
+    [
+      "2023",
+      "GitHub Environments 和 Uffizzi、Bunnyshell、Qovery 等工具将临时环境扩展到完整的 Kubernetes 栈"
+    ]
+  ],
+  "dos": [
+    "Do seed ephemeral databases with anonymized production snapshots or realistic fixtures so that reviewers test against representative data",
+    "Do set TTLs and maximum lifetime limits on environments to prevent zombie environments that consume resources indefinitely",
+    "Do cache container image layers and dependency installs aggressively to keep provisioning time under 2 minutes",
+    "Do post the environment URL and a teardown timestamp directly in the PR comment so reviewers know both where to test and how long they have"
+  ],
+  "dos_zh": [
+    "务必使用匿名化生产快照或真实数据填充临时数据库，使审查者在具有代表性的数据上测试",
+    "务必为环境设置 TTL 和最大生命周期限制，防止僵尸环境无限期消耗资源",
+    "务必积极缓存容器镜像层和依赖安装，使配置时间保持在2分钟以内",
+    "务必在 PR 评论中直接发布环境 URL 和销毁时间戳，使审查者知道在哪里测试以及还有多长时间"
+  ],
+  "donts": [
+    "Don't give ephemeral environments access to production databases or secrets — use isolated seed data to prevent accidental data mutation",
+    "Don't run ephemeral environments against shared staging backends, because concurrent PRs will interfere with each other's test state",
+    "Don't ignore environment provisioning failures in CI — a silent environment creation error means reviewers test against stale or nonexistent deployments",
+    "Don't skip environment teardown automation — manual cleanup creates a long tail of forgotten environments that silently inflate cloud bills"
+  ],
+  "donts_zh": [
+    "不要让临时环境访问生产数据库或机密——使用隔离的种子数据防止意外数据变更",
+    "不要在共享暂存后端上运行临时环境，因为并发 PR 会相互干扰测试状态",
+    "不要忽略 CI 中的环境创建失败——静默的环境创建错误意味着审查者在过时或不存在的部署上测试",
+    "不要跳过环境销毁自动化——手动清理会产生被遗忘的环境长尾，悄悄推高云账单"
+  ],
+  "case_study_company": "Vercel",
+  "case_study": "Vercel made feature environments a core product differentiator by giving every Git push to a non-production branch its own unique preview URL. When a PR is opened on a Next.js project hosted on Vercel, a full deployment is triggered within 30–60 seconds, the URL is posted as a GitHub status check, and the deployment is automatically cleaned up on PR merge. This workflow became so popular that it effectively set the industry standard for frontend preview environments, with Netlify, Cloudflare Pages, and AWS Amplify all shipping equivalent capabilities within two years.",
+  "case_study_zh": "Vercel 通过为每次推送到非生产分支的 Git 提交提供独特预览 URL，将功能环境打造为核心产品差异化优势。当在 Vercel 托管的 Next.js 项目上打开 PR 时，30–60 秒内触发完整部署，URL 作为 GitHub 状态检查发布，部署在 PR 合并时自动清理。这一工作流大受欢迎，有效地设定了前端预览环境的行业标准，Netlify、Cloudflare Pages 和 AWS Amplify 均在两年内推出了同等能力。",
+  "when_not_to_use": [
+    "Applications with extremely expensive infrastructure stacks where provisioning a full environment per PR is cost-prohibitive",
+    "Monoliths with long build times where environment provisioning exceeds 15 minutes, creating more friction than value",
+    "Teams with very low PR volume where the overhead of building and maintaining the ephemeral environment pipeline exceeds the review benefit",
+    "Regulated environments where ephemeral environments cannot meet compliance requirements for data residency or access control"
+  ],
+  "when_not_to_use_zh": [
+    "基础设施栈极其昂贵、为每个 PR 创建完整环境成本过高的应用",
+    "构建时间过长、环境配置超过15分钟的单体应用——产生的摩擦多于价值",
+    "PR 量极低的团队——构建和维护临时环境流水线的开销超过评审收益",
+    "临时环境无法满足数据驻留或访问控制合规要求的受监管环境"
+  ],
+  "adopters": [
+    "Vercel",
+    "Netlify",
+    "Heroku",
+    "Shopify",
+    "GitHub",
+    "Stripe"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "usability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Vercel (2018). \"Preview Deployments\". vercel.com/docs.",
+  "secondary_sources": [
+    "Heroku (2016). \"Review Apps Documentation\". devcenter.heroku.com.",
+    "Nader Dabit (2021). \"Preview Environments for Every Pull Request\". AWS Amplify blog.",
+    "Adam Zimman (2022). \"What Are Feature Environments?\". LaunchDarkly blog."
+  ],
+  "typed_relations": [
+    {
+      "slug": "gitops",
+      "type": "complement"
+    },
+    {
+      "slug": "progressive-delivery",
+      "type": "complement"
+    },
+    {
+      "slug": "infrastructure-as-code",
+      "type": "complement"
+    },
+    {
+      "slug": "blue-green-deployment",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/feature-environments",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/feature-environments.md"
+}

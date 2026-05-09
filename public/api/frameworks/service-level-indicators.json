@@ -1,0 +1,191 @@
+{
+  "id": 273,
+  "name": "Service Level Indicators (SLI)",
+  "name_zh": "服务级别指标",
+  "slug": "service-level-indicators",
+  "category": "observability",
+  "desc": "Quantitative measures of service behavior that define the precise metrics used to assess whether a service is meeting its reliability commitments",
+  "desc_zh": "服务行为的量化度量，定义用于评估服务是否满足可靠性承诺的精确指标",
+  "steps": [
+    "Identify the user-facing behaviors that matter most: for each critical user journey (checkout, login, search), define what 'working correctly' means in measurable terms — latency, availability, correctness, or throughput",
+    "Choose SLI metrics that are close to the user experience: prefer request success rates and P99 latency measured at the load balancer or client over internal system metrics like CPU utilization",
+    "Define SLI formulas precisely: an availability SLI might be 'the proportion of HTTP requests that return a 2xx or 4xx status code within 2 seconds over a rolling 28-day window'",
+    "Instrument and validate: ensure your monitoring system can actually measure the defined SLI with sufficient granularity and that the metric correlates with real user experience degradation",
+    "Attach SLIs to SLOs: every SLI must have a corresponding SLO target (e.g., SLI = request success rate, SLO = success rate ≥ 99.9%) and feed into an error budget calculation"
+  ],
+  "steps_zh": [
+    "识别最重要的面向用户的行为：对于每个关键用户旅程（结账、登录、搜索），以可衡量的术语定义「正常工作」的含义——延迟、可用性、正确性或吞吐量",
+    "选择贴近用户体验的SLI指标：优先选择在负载均衡器或客户端测量的请求成功率和P99延迟，而非CPU利用率等内部系统指标",
+    "精确定义SLI公式：可用性SLI可能是「在28天滚动窗口内，2秒内返回2xx或4xx状态码的HTTP请求比例」",
+    "埋点并验证：确保监控系统能够以足够的粒度实际测量定义的SLI，并且该指标与真实用户体验的降级相关联",
+    "将SLI与SLO关联：每个SLI必须有对应的SLO目标（例如SLI=请求成功率，SLO=成功率≥99.9%），并纳入错误预算计算"
+  ],
+  "ai_relevant": true,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "User Journey",
+    "SLI Metrics",
+    "SLO Target",
+    "Error Budget",
+    "Review"
+  ],
+  "viz_labels_zh": [
+    "用户旅程",
+    "SLI指标",
+    "SLO目标",
+    "错误预算",
+    "定期评审"
+  ],
+  "related": [
+    "sli-slo-sla",
+    "four-golden-signals",
+    "red-method",
+    "use-method",
+    "opentelemetry"
+  ],
+  "tags": [
+    "sli",
+    "slo",
+    "reliability",
+    "sre",
+    "google",
+    "metrics",
+    "observability"
+  ],
+  "origin_author": "Google SRE",
+  "origin_source": "Site Reliability Engineering (Betsy Beyer, Chris Jones, Jennifer Petoff, Niall Richard Murphy, O'Reilly, 2016)",
+  "origin_source_zh": "《网站可靠性工程》（Betsy Beyer、Chris Jones、Jennifer Petoff、Niall Richard Murphy，O'Reilly，2016）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Establishing reliability commitments with product and business stakeholders that are grounded in measurable user experience data rather than infrastructure uptime proxies",
+    "SRE teams needing a shared language with development teams for reliability trade-offs — SLIs make the cost of unreliability concrete and quantifiable",
+    "Services experiencing user complaints that do not correlate with any existing infrastructure alert, indicating that current metrics do not capture actual user experience",
+    "Before defining SLOs or error budgets, which require well-specified SLIs as their foundation"
+  ],
+  "when_to_use_zh": [
+    "与产品和业务利益相关方建立基于可测量用户体验数据而非基础设施正常运行时间代理指标的可靠性承诺",
+    "SRE团队需要与开发团队就可靠性权衡建立共同语言——SLI使不可靠性的成本具体且可量化",
+    "服务遭受用户投诉但与任何现有基础设施告警不相关，表明当前指标未能捕获实际用户体验",
+    "在定义SLO或错误预算之前，后者需要定义明确的SLI作为基础"
+  ],
+  "core_concepts": [
+    "SLI Definition: a carefully defined quantitative measure of some aspect of the level of service provided — the ratio of good events to total events over a measurement window",
+    "Request/Response SLIs: the most common category — availability (fraction of successful requests), latency (fraction of requests faster than a threshold), and error rate (fraction of failed requests)",
+    "User-Centric Measurement: SLIs must be measured as close to the user as possible; internal CPU or memory metrics are lagging indicators that often fail to capture user-perceived degradation",
+    "Measurement Windows: SLIs are typically calculated over rolling windows (28 days, 30 days) to smooth out short-term noise while still reflecting recent service health trends",
+    "SLI → SLO Pipeline: each SLI feeds exactly one SLO target; the SLO converts the SLI ratio into a commitment (99.9% of requests succeed), and the gap between actual and target becomes the error budget"
+  ],
+  "core_concepts_zh": [
+    "SLI定义：对所提供服务级别某个方面的精心定义的量化度量——在测量窗口内良好事件与总事件的比率",
+    "请求/响应SLI：最常见的类别——可用性（成功请求的比例）、延迟（快于阈值的请求比例）和错误率（失败请求的比例）",
+    "以用户为中心的测量：SLI必须尽可能贴近用户进行测量；内部CPU或内存指标是滞后指标，通常无法捕获用户感知的降级",
+    "测量窗口：SLI通常在滚动窗口（28天、30天）内计算，以平滑短期噪声，同时仍能反映近期服务健康趋势",
+    "SLI→SLO管道：每个SLI精确对应一个SLO目标；SLO将SLI比率转换为承诺（99.9%的请求成功），实际与目标之间的差距成为错误预算"
+  ],
+  "timeline": [
+    [
+      "2003",
+      "Google's SRE team begins formalizing service reliability measurement as internal practice, developing the SLI/SLO/SLA framework"
+    ],
+    [
+      "2016",
+      "O'Reilly publishes the Google SRE Book, introducing SLI/SLO concepts to the industry; SRE practices begin spreading beyond Google"
+    ],
+    [
+      "2018",
+      "The SRE Workbook published with concrete SLI implementation guidance and worked examples for different service types"
+    ],
+    [
+      "2022",
+      "Cloud providers (AWS CloudWatch, Google Cloud Monitoring, Datadog) add first-class SLI/SLO tracking as managed service features"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2003",
+      "Google SRE团队开始将服务可靠性测量正式化为内部实践，开发SLI/SLO/SLA框架"
+    ],
+    [
+      "2016",
+      "O'Reilly出版Google SRE书籍，将SLI/SLO概念引入行业；SRE实践开始在Google之外传播"
+    ],
+    [
+      "2018",
+      "《SRE工作手册》出版，为不同服务类型提供具体的SLI实施指导和实例"
+    ],
+    [
+      "2022",
+      "云提供商（AWS CloudWatch、Google Cloud Monitoring、Datadog）将SLI/SLO追踪作为托管服务功能添加"
+    ]
+  ],
+  "dos": [
+    "Do define SLIs from the user's perspective: measure what the user experiences (did their request succeed? was it fast enough?) rather than what the infrastructure experiences (is CPU below 80%?)",
+    "Do keep SLI definitions simple and unambiguous: a good SLI can be expressed as a single sentence with a clear numerator, denominator, and measurement window",
+    "Do validate that your SLI actually correlates with user-reported issues by retrospectively checking whether past incidents would have caused SLI degradation",
+    "Do limit the number of SLIs per service to 3-5 key indicators — too many SLIs dilute focus and make it unclear which metric to act on during an incident"
+  ],
+  "dos_zh": [
+    "从用户角度定义SLI：测量用户体验的内容（他们的请求是否成功？是否足够快？）而非基础设施体验的内容（CPU是否低于80%？）",
+    "保持SLI定义简单明确：好的SLI可以用一句话表达，包含清晰的分子、分母和测量窗口",
+    "通过回顾性检查过去的事故是否会导致SLI降级来验证SLI是否真正与用户报告的问题相关",
+    "将每个服务的SLI数量限制在3-5个关键指标——过多的SLI会分散注意力，使事故期间不清楚应对哪个指标采取行动"
+  ],
+  "donts": [
+    "Don't use internal system metrics (CPU, memory, disk) as SLIs — they are implementation details that don't directly measure user experience and often fail to trigger when users are actually impacted",
+    "Don't set SLI measurement points deep inside the system (database query time) without also measuring at the service entry point — internal SLIs miss the compounding effects of the full request path",
+    "Don't conflate SLI (what you measure) with SLO (what you commit to) — defining them separately allows the same SLI measurement to be used for different SLO targets across environments",
+    "Don't change SLI definitions retroactively to make historical data look better — SLI instability destroys trust in the measurement and makes error budget calculations meaningless"
+  ],
+  "donts_zh": [
+    "不要使用内部系统指标（CPU、内存、磁盘）作为SLI——它们是实现细节，不直接测量用户体验，且在用户实际受影响时往往无法触发",
+    "不要仅在系统内部深处（数据库查询时间）设置SLI测量点而不在服务入口处测量——内部SLI遗漏了完整请求路径的累积效应",
+    "不要将SLI（你测量的内容）与SLO（你承诺的内容）混淆——分别定义它们允许相同的SLI测量用于不同环境的不同SLO目标",
+    "不要为了让历史数据看起来更好而回溯修改SLI定义——SLI的不稳定性会破坏对测量的信任，使错误预算计算失去意义"
+  ],
+  "case_study_company": "Google",
+  "case_study": "Google's Search infrastructure team defined their primary SLI as the proportion of search queries that return a valid results page with at least one result in under 200ms, measured at the global load balancer — not at any individual backend component. This single SLI captured the end-to-end user experience across the entire search stack. When a backend ranking service degraded, the SLI immediately showed impact even when all individual component health checks appeared green. The SLI definition allowed Google to set a 99.99% SLO for search latency, and the corresponding error budget of 4.38 minutes/month gave the SRE team a quantitative basis for negotiating feature freeze during high-risk release windows.",
+  "case_study_zh": "Google搜索基础设施团队将其主要SLI定义为在200毫秒内返回包含至少一条结果的有效结果页面的搜索查询比例，在全球负载均衡器处测量——而非任何单个后端组件处。这单个SLI捕获了整个搜索堆栈的端到端用户体验。当后端排序服务降级时，即使所有单独组件的健康检查显示正常，SLI也立即显示出影响。SLI定义使Google能够为搜索延迟设置99.99%的SLO，相应的每月4.38分钟错误预算为SRE团队提供了在高风险发布窗口期间协商功能冻结的量化依据。",
+  "when_not_to_use": [
+    "Internal batch processing systems with no direct user interaction where response-time SLIs are meaningless and throughput or completion-rate SLIs better reflect the system's purpose",
+    "Very early-stage systems where instrumentation infrastructure does not yet exist and the cost of adding it exceeds the value of measurement at that stage",
+    "Systems with inherently variable behavior (scientific computing, ML training jobs) where SLI measurement windows and thresholds cannot be meaningfully defined"
+  ],
+  "when_not_to_use_zh": [
+    "没有直接用户交互的内部批处理系统，响应时间SLI无意义，吞吐量或完成率SLI更能反映系统目的",
+    "埋点基础设施尚不存在的极早期系统，此阶段添加埋点的成本超过测量的价值",
+    "具有固有可变行为的系统（科学计算、ML训练任务），无法有意义地定义SLI测量窗口和阈值"
+  ],
+  "adopters": [
+    "Google",
+    "Spotify",
+    "LinkedIn",
+    "Dropbox",
+    "PagerDuty",
+    "Atlassian"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "observability",
+    "performance"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Beyer, B., Jones, C., Petoff, J., Murphy, N.R. (2016). \"Site Reliability Engineering: How Google Runs Production Systems\". O'Reilly Media.",
+  "secondary_sources": [
+    "Beyer, B., Murphy, N.R., Rensin, D., Kawahara, K., Thorne, S. (2018). \"The Site Reliability Workbook\". O'Reilly Media.",
+    "Google Cloud (2023). \"SLO Monitoring and Alerting in Cloud Monitoring\". cloud.google.com.",
+    "CRE Life Lessons (2017). \"Understanding SLOs and SLAs\". Google Cloud Blog."
+  ],
+  "typed_relations": [
+    {
+      "slug": "sli-slo-sla",
+      "type": "related"
+    },
+    {
+      "slug": "four-golden-signals",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/service-level-indicators",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/service-level-indicators.md"
+}

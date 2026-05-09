@@ -1,0 +1,188 @@
+{
+  "id": 39,
+  "name": "Prompt Engineering Patterns",
+  "name_zh": "提示工程模式",
+  "slug": "prompt-engineering-patterns",
+  "category": "coding",
+  "desc": "Structured techniques for crafting effective LLM prompts",
+  "desc_zh": "构建高效大模型提示词的结构化技术模式集合",
+  "steps": [
+    "Define the persona and context: set a clear system prompt that establishes the AI's role, expertise level, and behavioral constraints",
+    "Use structured output formats: specify JSON schemas, markdown templates, or typed response formats to get parseable, consistent results",
+    "Apply few-shot examples: include 2-5 representative input-output examples that demonstrate the desired quality, style, and edge cases",
+    "Add chain-of-thought instructions: prompt the model to reason step-by-step before producing a final answer to improve accuracy on complex tasks",
+    "Iterate and evaluate: A/B test prompt variants against a golden dataset; track quality metrics and version prompts like code"
+  ],
+  "steps_zh": [
+    "定义角色与上下文：设定清晰的系统提示词，建立AI的角色、专业水平和行为约束",
+    "使用结构化输出格式：指定JSON Schema、Markdown模板或类型化响应格式以获得可解析、一致的结果",
+    "应用少样本示例：包含2-5个代表性输入输出示例，展示期望的质量、风格和边界情况",
+    "添加思维链指令：提示模型在给出最终答案前逐步推理，以提高复杂任务的准确性",
+    "迭代与评估：对比测试提示词变体与黄金数据集；追踪质量指标，像管理代码一样管理提示词版本"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "System Prompt",
+    "Context",
+    "Instruction",
+    "Output Format"
+  ],
+  "viz_labels_zh": [
+    "系统提示",
+    "上下文",
+    "指令",
+    "输出格式"
+  ],
+  "related": [
+    "prompt-chaining",
+    "tool-use-design-pattern",
+    "llm-system-design-patterns"
+  ],
+  "tags": [
+    "prompt-engineering",
+    "few-shot",
+    "chain-of-thought",
+    "llm",
+    "ai"
+  ],
+  "origin_author": "Jason Wei, Xuezhi Wang et al. (Google Brain), 2022",
+  "origin_source": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (NeurIPS 2022)",
+  "origin_source_zh": "《思维链提示激发大语言模型推理能力》（NeurIPS 2022）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Integrating LLMs into production applications that require consistent, high-quality outputs",
+    "Building AI-powered features where output format and quality need to be controllable",
+    "Reducing hallucination and improving factual accuracy in LLM-generated content",
+    "Creating reusable prompt templates that can be versioned and shared across teams"
+  ],
+  "when_to_use_zh": [
+    "将 LLM 集成到需要一致高质量输出的生产应用中",
+    "构建需要可控输出格式和质量的 AI 功能",
+    "减少 LLM 生成内容中的幻觉并提高事实准确性",
+    "创建可版本化、可跨团队共享的可复用提示模板"
+  ],
+  "core_concepts": [
+    "System Prompt: instructions that set the AI's role, constraints, and behavioral guidelines before user interaction",
+    "Few-Shot Learning: providing exemplar input-output pairs within the prompt to guide the model's response pattern",
+    "Chain-of-Thought (CoT): instructing the model to show its reasoning steps before producing a final answer",
+    "Structured Output: constraining the model to respond in a specific format (JSON, XML, markdown) for programmatic parsing",
+    "Prompt Versioning: treating prompts as code artifacts with version control, testing, and iterative improvement"
+  ],
+  "core_concepts_zh": [
+    "系统提示：在用户交互前设定 AI 角色、约束和行为准则的指令",
+    "少样本学习：在提示中提供示范性输入输出对，引导模型的响应模式",
+    "思维链（CoT）：指示模型在给出最终答案前展示推理步骤",
+    "结构化输出：约束模型以特定格式（JSON、XML、Markdown）响应，便于程序化解析",
+    "提示版本控制：将提示作为代码产物进行版本控制、测试和迭代改进"
+  ],
+  "timeline": [
+    [
+      "2020",
+      "GPT-3 release demonstrates that prompt design significantly affects output quality, launching the field"
+    ],
+    [
+      "2022",
+      "Google Brain publishes the Chain-of-Thought paper, showing step-by-step prompting improves reasoning"
+    ],
+    [
+      "2023",
+      "OpenAI introduces function calling and structured outputs, formalizing prompt-to-code integration patterns"
+    ],
+    [
+      "2024",
+      "Anthropic, Google, and OpenAI publish prompt engineering guides; the discipline becomes standard practice"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2020",
+      "GPT-3 发布证明提示设计显著影响输出质量，开创了该领域"
+    ],
+    [
+      "2022",
+      "Google Brain 发表思维链论文，证明逐步提示能改善推理能力"
+    ],
+    [
+      "2023",
+      "OpenAI 推出函数调用和结构化输出，正式化了提示到代码的集成模式"
+    ],
+    [
+      "2024",
+      "Anthropic、Google 和 OpenAI 发布提示工程指南；该学科成为标准实践"
+    ]
+  ],
+  "dos": [
+    "Do be explicit about output format and constraints because ambiguity leads to unpredictable responses",
+    "Do provide few-shot examples for complex tasks because they dramatically improve output consistency",
+    "Do use chain-of-thought for reasoning tasks because it reduces errors on multi-step problems",
+    "Do version and test prompts systematically because small wording changes can cause large behavior shifts"
+  ],
+  "dos_zh": [
+    "明确说明输出格式和约束，因为歧义会导致不可预测的响应",
+    "为复杂任务提供少样本示例，因为它们能显著提高输出一致性",
+    "对推理任务使用思维链，因为它能减少多步骤问题上的错误",
+    "系统性地对提示进行版本控制和测试，因为措辞的微小变化可能导致行为的巨大变化"
+  ],
+  "donts": [
+    "Don't write vague prompts and expect the model to guess your intent because LLMs amplify ambiguity",
+    "Don't include contradictory instructions because the model will inconsistently follow one or the other",
+    "Don't skip evaluation because a prompt that works on one example may fail on edge cases",
+    "Don't hardcode prompts in application code because they need to evolve independently of business logic"
+  ],
+  "donts_zh": [
+    "不要写模糊的提示并期望模型猜测你的意图，因为 LLM 会放大歧义",
+    "不要包含相互矛盾的指令，因为模型会不一致地遵循其中之一",
+    "不要跳过评估，因为在一个示例上有效的提示可能在边界情况下失败",
+    "不要将提示硬编码在应用代码中，因为它们需要独立于业务逻辑进行演进"
+  ],
+  "case_study_company": "Notion",
+  "case_study": "Notion's AI writing assistant uses sophisticated prompt engineering patterns to deliver context-aware writing suggestions. By combining system prompts that define the writing style, few-shot examples of high-quality rewrites, and structured output for formatting, Notion AI can generate, summarize, and translate content while maintaining the user's document context. This approach powered Notion AI's adoption by over 30 million users within its first year.",
+  "case_study_zh": "Notion 的 AI 写作助手使用精密的提示工程模式来提供上下文感知的写作建议。通过组合定义写作风格的系统提示、高质量改写的少样本示例，以及用于格式化的结构化输出，Notion AI 能够在保持用户文档上下文的同时生成、摘要和翻译内容。这种方法推动了 Notion AI 在发布第一年内被超过 3000 万用户采用。",
+  "when_not_to_use": [
+    "Tasks that require deterministic, reproducible results every time (use traditional algorithms instead)",
+    "Safety-critical systems where LLM hallucination is an unacceptable risk",
+    "Simple rule-based logic that is more reliably implemented with conventional code",
+    "Applications where latency and cost of LLM inference are prohibitive"
+  ],
+  "when_not_to_use_zh": [
+    "每次都需要确定性、可复现结果的任务（应使用传统算法）",
+    "LLM 幻觉是不可接受风险的安全关键系统",
+    "用传统代码实现更可靠的简单规则逻辑",
+    "LLM 推理的延迟和成本难以承受的应用"
+  ],
+  "adopters": [
+    "Notion",
+    "GitHub (Copilot)",
+    "Anthropic",
+    "OpenAI",
+    "Vercel (v0)"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "usability",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Jason Wei et al. (2022). \"Chain-of-Thought Prompting Elicits Reasoning in Large Language Models\". NeurIPS 2022.",
+  "secondary_sources": [
+    "Jules White et al. (2023). \"A Prompt Pattern Catalog to Enhance Prompt Engineering with ChatGPT\". arXiv:2302.11382.",
+    "Pengfei Liu et al. (2023). \"Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in NLP\". ACM Computing Surveys."
+  ],
+  "typed_relations": [
+    {
+      "slug": "prompt-chaining",
+      "type": "complement"
+    },
+    {
+      "slug": "tool-use-design-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "llm-system-design-patterns",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/prompt-engineering-patterns",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/prompt-engineering-patterns.md"
+}

@@ -1,0 +1,194 @@
+{
+  "id": 58,
+  "name": "Prompt Testing",
+  "name_zh": "提示词测试",
+  "slug": "prompt-testing",
+  "category": "quality",
+  "desc": "Automated regression testing for LLM prompt changes",
+  "desc_zh": "对大模型提示词变更进行自动化回归测试",
+  "steps": [
+    "Build a test suite: create a collection of input-expected output pairs that cover normal cases, edge cases, and known failure modes",
+    "Define assertions: use exact match, contains, regex, semantic similarity, or LLM-as-judge to verify each output meets expectations",
+    "Version prompts as code: store prompts in version control alongside their test suites so every change is tracked and reviewable",
+    "Run in CI: execute prompt tests on every PR that modifies prompts; fail the build if quality scores drop below thresholds",
+    "Track quality over time: log evaluation scores per prompt version to detect gradual drift and enable data-driven prompt optimization"
+  ],
+  "steps_zh": [
+    "构建测试套件：创建覆盖正常情况、边界情况和已知故障模式的输入-期望输出对集合",
+    "定义断言：使用精确匹配、包含、正则、语义相似度或LLM作为裁判来验证每个输出是否符合预期",
+    "将提示词作为代码版本化：将提示词及其测试套件存入版本控制，使每次变更可追踪和审查",
+    "在CI中运行：对每个修改提示词的PR执行提示词测试；质量分数低于阈值时构建失败",
+    "追踪质量趋势：记录每个提示词版本的评估分数以检测渐进漂移，实现数据驱动的提示词优化"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Write",
+    "Evaluate",
+    "Refine",
+    "Regression"
+  ],
+  "viz_labels_zh": [
+    "编写提示",
+    "评估输出",
+    "优化提示",
+    "回归测试"
+  ],
+  "related": [
+    "llm-evaluation-framework",
+    "ai-output-verification",
+    "prompt-engineering-patterns"
+  ],
+  "tags": [
+    "prompt-testing",
+    "regression",
+    "ci-cd",
+    "evaluation",
+    "ai"
+  ],
+  "origin_author": "Promptfoo (Ian Webster), 2023",
+  "origin_source": "Promptfoo: Test Your LLM App (open-source project and documentation)",
+  "origin_source_zh": "《Promptfoo：测试你的LLM应用》（开源项目及文档）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Teams iterating on prompts frequently and needing confidence that changes do not break existing behavior",
+    "Production LLM applications where prompt regressions directly impact user experience",
+    "Multi-prompt pipelines where changes to one prompt can cascade and affect downstream outputs",
+    "Organizations building prompt engineering as a disciplined, measurable practice"
+  ],
+  "when_to_use_zh": [
+    "频繁迭代提示词且需要确信变更不会破坏现有行为的团队",
+    "提示词回归直接影响用户体验的生产LLM应用",
+    "一个提示词的变更可能级联影响下游输出的多提示词管道",
+    "将提示词工程建设为有纪律、可衡量实践的组织"
+  ],
+  "core_concepts": [
+    "Prompt Versioning: Tracking prompt text in version control like code to enable diff, review, and rollback",
+    "Assertion Types: Multiple validation methods including exact match, regex, semantic similarity, and LLM-as-judge",
+    "Regression Suite: A collection of test cases that must pass before any prompt change is deployed",
+    "Quality Scores: Quantitative metrics tracking prompt performance over time across multiple dimensions",
+    "A/B Evaluation: Comparing two prompt versions against the same test cases to measure relative improvement"
+  ],
+  "core_concepts_zh": [
+    "提示词版本化：像代码一样在版本控制中跟踪提示词文本，以实现差异对比、审查和回滚",
+    "断言类型：包括精确匹配、正则、语义相似度和LLM作为裁判的多种验证方法",
+    "回归套件：在部署任何提示词变更前必须通过的测试用例集合",
+    "质量分数：跨多个维度追踪提示词性能随时间变化的定量指标",
+    "A/B评估：将两个提示词版本对同一测试用例进行比较以衡量相对改进"
+  ],
+  "timeline": [
+    [
+      "2022",
+      "Early prompt engineering practitioners begin manually testing prompts with spreadsheets and scripts"
+    ],
+    [
+      "2023",
+      "Promptfoo releases as an open-source CLI tool for systematic prompt evaluation and comparison"
+    ],
+    [
+      "2023",
+      "Langsmith and Braintrust launch cloud platforms for prompt testing with built-in analytics"
+    ],
+    [
+      "2024",
+      "Prompt testing integrates into standard CI/CD pipelines alongside traditional software tests"
+    ],
+    [
+      "2025",
+      "Prompt testing tools mature to support multi-turn agent evaluation and model-agnostic testing"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2022",
+      "早期提示词工程实践者开始用电子表格和脚本手动测试提示词"
+    ],
+    [
+      "2023",
+      "Promptfoo作为用于系统化提示词评估和比较的开源CLI工具发布"
+    ],
+    [
+      "2023",
+      "Langsmith和Braintrust推出带内置分析的提示词测试云平台"
+    ],
+    [
+      "2024",
+      "提示词测试与传统软件测试一起集成到标准CI/CD管道中"
+    ],
+    [
+      "2025",
+      "提示词测试工具成熟到支持多轮智能体评估和模型无关测试"
+    ]
+  ],
+  "dos": [
+    "Do version prompts alongside their tests because untested prompt changes are the leading cause of LLM regressions",
+    "Do use multiple assertion types because no single check captures all quality dimensions of LLM output",
+    "Do include adversarial and edge case inputs because prompts often fail on inputs the author did not consider",
+    "Do track scores over time because gradual drift is harder to notice than sudden regression"
+  ],
+  "dos_zh": [
+    "将提示词与其测试一起版本化，因为未测试的提示词变更是LLM回归的首要原因",
+    "使用多种断言类型，因为没有单一检查能捕获LLM输出的所有质量维度",
+    "包含对抗性和边界输入，因为提示词经常在作者未考虑的输入上失败",
+    "追踪分数随时间的变化，因为渐进漂移比突然回归更难察觉"
+  ],
+  "donts": [
+    "Don't change prompts in production without running regression tests because seemingly minor edits can cause major output changes",
+    "Don't test only with ideal inputs because production users will provide messy, ambiguous, and adversarial inputs",
+    "Don't ignore non-determinism because the same prompt can produce different outputs across runs",
+    "Don't rely solely on exact match assertions because LLM outputs are naturally variable and semantically equivalent answers may differ in phrasing"
+  ],
+  "donts_zh": [
+    "不要在未运行回归测试的情况下在生产中修改提示词，因为看似微小的编辑可能导致重大输出变化",
+    "不要仅用理想输入测试，因为生产用户会提供混乱、模糊和对抗性的输入",
+    "不要忽略非确定性，因为同一提示词在不同运行中可能产生不同输出",
+    "不要仅依赖精确匹配断言，因为LLM输出自然具有变异性，语义等价的答案可能措辞不同"
+  ],
+  "case_study_company": "Shopify",
+  "case_study": "Shopify implemented prompt testing for their AI-powered product description generator that serves millions of merchants. After a prompt change inadvertently degraded output quality for non-English products, they built a comprehensive regression suite with 500+ test cases across 12 languages. This caught three subsequent regressions before they reached production, saving significant merchant-facing impact.",
+  "case_study_zh": "Shopify为其服务数百万商家的AI产品描述生成器实施了提示词测试。在一次提示词变更意外降低了非英语产品的输出质量后，他们构建了一个包含12种语言500多个测试用例的综合回归套件。这在后续三次回归到达生产之前就将其捕获，避免了对商家的重大影响。",
+  "when_not_to_use": [
+    "One-off prompt usage where the prompt is not maintained or reused over time",
+    "Creative applications where output variability is desired and correctness is subjective",
+    "Very early experimentation where prompts change so rapidly that maintaining tests is counterproductive"
+  ],
+  "when_not_to_use_zh": [
+    "提示词不会长期维护或复用的一次性使用",
+    "输出变异性是期望的且正确性是主观的创意应用",
+    "提示词变化极快以至于维护测试适得其反的早期实验"
+  ],
+  "adopters": [
+    "Shopify",
+    "Vercel",
+    "Notion",
+    "Stripe",
+    "GitHub Copilot"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "testability",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Ian Webster (2023). \"Promptfoo: Test Your LLM App\". promptfoo.dev.",
+  "secondary_sources": [
+    "Braintrust (2023). \"Braintrust: Enterprise-Grade LLM Evaluation\". braintrustdata.com.",
+    "Percy Liang et al. (2022). \"Holistic Evaluation of Language Models (HELM)\". Stanford CRFM."
+  ],
+  "typed_relations": [
+    {
+      "slug": "llm-evaluation-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "ai-output-verification",
+      "type": "complement"
+    },
+    {
+      "slug": "prompt-engineering-patterns",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/prompt-testing",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/prompt-testing.md"
+}

@@ -1,0 +1,196 @@
+{
+  "id": 66,
+  "name": "Infrastructure as Code",
+  "name_zh": "基础设施即代码",
+  "slug": "infrastructure-as-code",
+  "category": "deployment",
+  "desc": "Manage and provision infrastructure through machine-readable config",
+  "desc_zh": "通过机器可读配置文件管理和供应基础设施",
+  "steps": [
+    "Choose an IaC tool (Terraform, Pulumi, CloudFormation) matching your cloud/on-prem stack",
+    "Write declarative or imperative configuration files defining all infrastructure resources",
+    "Store IaC code in version control with the same branching and review process as application code",
+    "Integrate IaC into CI/CD: run plan/diff on PRs and apply on merge to main",
+    "Use modules and remote state to promote reuse and manage environment-specific configurations"
+  ],
+  "steps_zh": [
+    "选择与云/本地环境匹配的IaC工具（Terraform、Pulumi、CloudFormation）",
+    "编写声明式或命令式配置文件，定义所有基础设施资源",
+    "将IaC代码存入版本控制系统，采用与应用代码相同的分支和审查流程",
+    "将IaC集成到CI/CD流水线：在PR时执行plan/diff，合并主干时执行apply",
+    "使用模块和远程状态（remote state）提升复用性，管理特定环境配置"
+  ],
+  "ai_relevant": false,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Code",
+    "Plan",
+    "Apply",
+    "State"
+  ],
+  "viz_labels_zh": [
+    "声明代码",
+    "变更计划",
+    "执行应用",
+    "状态管理"
+  ],
+  "related": [
+    "gitops",
+    "three-ways-devops",
+    "service-mesh-pattern"
+  ],
+  "tags": [
+    "iac",
+    "terraform",
+    "infrastructure",
+    "automation",
+    "declarative"
+  ],
+  "origin_author": "Mark Burgess (CFEngine, 1993) / Luke Kanies (Puppet, 2005) / modern era: Mitchell Hashimoto (Terraform, 2014)",
+  "origin_source": "Infrastructure as Code (Kief Morris, O'Reilly, 2016); Terraform: Up & Running (Yevgeniy Brikman, 2017)",
+  "origin_source_zh": "《基础设施即代码》（Kief Morris，O'Reilly，2016）；《Terraform：启动与运行》（Yevgeniy Brikman，2017）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Any environment with more than a handful of servers or cloud resources that need consistent, repeatable provisioning",
+    "Multi-environment setups (dev/staging/prod) where manual configuration drift causes deployment issues",
+    "Teams requiring audit trails for every infrastructure change for compliance or regulatory requirements",
+    "Disaster recovery scenarios where entire environments must be recreatable from code within predictable timeframes"
+  ],
+  "when_to_use_zh": [
+    "任何需要一致、可重复供应的、拥有多台服务器或云资源的环境",
+    "手动配置漂移导致部署问题的多环境设置（dev/staging/prod）",
+    "出于合规或监管要求需要对每次基础设施变更保留审计轨迹的团队",
+    "需要在可预测的时间框架内从代码重建整个环境的灾难恢复场景"
+  ],
+  "core_concepts": [
+    "Declarative Configuration: Define the desired end-state of infrastructure (what), and let the tool determine how to achieve it, rather than scripting step-by-step procedures",
+    "Idempotency: IaC operations can be applied multiple times and always produce the same result, making it safe to re-run after failures",
+    "State Management: Tools like Terraform maintain a state file that maps declared resources to actual cloud resources, enabling drift detection",
+    "Immutable Infrastructure: Instead of updating servers in place, destroy and recreate them from code, eliminating configuration drift",
+    "Module Reuse: Encapsulate common infrastructure patterns into reusable modules shared across teams and environments"
+  ],
+  "core_concepts_zh": [
+    "声明式配置：定义基础设施的期望终态（是什么），让工具决定如何实现，而非编写逐步执行的脚本",
+    "幂等性：IaC操作可多次应用且始终产生相同结果，使故障后重新运行是安全的",
+    "状态管理：Terraform等工具维护状态文件将声明的资源映射到实际云资源，实现偏差检测",
+    "不可变基础设施：不在原地更新服务器，而是从代码销毁并重建，消除配置漂移",
+    "模块复用：将常见基础设施模式封装为跨团队和环境共享的可复用模块"
+  ],
+  "timeline": [
+    [
+      "1993",
+      "Mark Burgess creates CFEngine, the first configuration management tool treating infrastructure as declarative policy"
+    ],
+    [
+      "2005",
+      "Luke Kanies releases Puppet, making infrastructure-as-code practical for enterprise Linux/Unix environments"
+    ],
+    [
+      "2012",
+      "Ansible released, offering agentless IaC with YAML playbooks that lower the barrier to entry"
+    ],
+    [
+      "2014",
+      "Mitchell Hashimoto releases Terraform, introducing the HCL language and multi-cloud provider model"
+    ],
+    [
+      "2020",
+      "Pulumi, CDK, and Crossplane emerge, enabling IaC in general-purpose programming languages"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1993",
+      "Mark Burgess创建CFEngine，首个将基础设施视为声明式策略的配置管理工具"
+    ],
+    [
+      "2005",
+      "Luke Kanies发布Puppet，使基础设施即代码在企业Linux/Unix环境中切实可行"
+    ],
+    [
+      "2012",
+      "Ansible发布，以无代理的YAML Playbook降低入门门槛"
+    ],
+    [
+      "2014",
+      "Mitchell Hashimoto发布Terraform，引入HCL语言和多云提供商模型"
+    ],
+    [
+      "2020",
+      "Pulumi、CDK和Crossplane出现，支持使用通用编程语言进行IaC"
+    ]
+  ],
+  "dos": [
+    "Do treat IaC code with the same rigor as application code: code review, automated testing, and CI/CD pipelines",
+    "Do use remote state backends (S3, GCS, Terraform Cloud) with state locking to prevent concurrent apply conflicts",
+    "Do modularize infrastructure code to avoid monolithic configurations that are hard to reason about",
+    "Do implement policy-as-code (OPA, Sentinel) to enforce security and compliance guardrails before infrastructure changes are applied"
+  ],
+  "dos_zh": [
+    "务必以与应用代码同等的严谨对待IaC代码：代码审查、自动化测试和CI/CD流水线",
+    "务必使用带状态锁的远程状态后端（S3、GCS、Terraform Cloud）以防止并发应用冲突",
+    "务必将基础设施代码模块化，避免难以理解的单体配置",
+    "务必实施策略即代码（OPA、Sentinel）在基础设施变更应用前强制执行安全和合规护栏"
+  ],
+  "donts": [
+    "Don't manually modify cloud resources outside of IaC, because this creates drift that the state file cannot track",
+    "Don't store Terraform state files in local filesystems or Git, because concurrent access causes corruption and secrets leak",
+    "Don't write monolithic Terraform configurations with hundreds of resources, because plan times become unacceptably long",
+    "Don't hardcode environment-specific values in modules, because this breaks reusability across environments"
+  ],
+  "donts_zh": [
+    "不要在IaC之外手动修改云资源，因为这造成状态文件无法跟踪的漂移",
+    "不要将Terraform状态文件存储在本地文件系统或Git中，因为并发访问导致损坏且密钥泄露",
+    "不要编写包含数百个资源的单体Terraform配置，因为计划时间变得不可接受",
+    "不要在模块中硬编码环境特定值，因为这破坏了跨环境的可复用性"
+  ],
+  "case_study_company": "Segment",
+  "case_study": "Segment (now part of Twilio) managed their entire AWS infrastructure across 130+ microservices using Terraform. When they migrated from a monorepo to a polyrepo Terraform structure in 2019, they created reusable modules for common patterns like ECS services, RDS databases, and VPCs. This enabled individual teams to spin up fully-compliant, production-ready infrastructure in minutes instead of days, reducing infrastructure provisioning time by 90%.",
+  "case_study_zh": "Segment（现为Twilio旗下）使用Terraform管理其130多个微服务的全部AWS基础设施。当他们在2019年从单仓库迁移到多仓库Terraform结构时，为ECS服务、RDS数据库和VPC等常见模式创建了可复用模块。这使各团队能在数分钟而非数天内创建完全合规的生产就绪基础设施，将基础设施供应时间缩短90%。",
+  "when_not_to_use": [
+    "One-off experimental environments that will be deleted within hours and don't justify the overhead of writing IaC",
+    "Legacy systems with infrastructure so complex and undocumented that the initial IaC migration cost is prohibitive",
+    "Fully managed serverless architectures where the infrastructure layer is abstracted away by the platform",
+    "Teams with zero version control or code review culture -- IaC without process rigor is worse than manual provisioning"
+  ],
+  "when_not_to_use_zh": [
+    "数小时内就会删除的一次性实验环境——编写IaC的开销不合理",
+    "基础设施过于复杂且缺乏文档、初始IaC迁移成本令人望而却步的遗留系统",
+    "基础设施层已被平台完全抽象的纯无服务器架构",
+    "完全没有版本控制或代码审查文化的团队——没有流程严谨性的IaC比手动供应更糟糕"
+  ],
+  "adopters": [
+    "Segment (Twilio)",
+    "HashiCorp",
+    "Shopify",
+    "Stripe",
+    "Cloudflare"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Kief Morris (2016). \"Infrastructure as Code: Managing Servers in the Cloud\". O'Reilly Media.",
+  "secondary_sources": [
+    "Yevgeniy Brikman (2017). \"Terraform: Up & Running\". O'Reilly Media.",
+    "Kief Morris (2020). \"Infrastructure as Code, 2nd Edition\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "gitops",
+      "type": "complement"
+    },
+    {
+      "slug": "three-ways-devops",
+      "type": "complement"
+    },
+    {
+      "slug": "service-mesh-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/infrastructure-as-code",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/infrastructure-as-code.md"
+}

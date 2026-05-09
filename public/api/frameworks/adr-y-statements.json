@@ -1,0 +1,190 @@
+{
+  "id": 247,
+  "name": "Architecture Decision Records (Y-Statements)",
+  "name_zh": "架构决策记录（Y 型陈述）",
+  "slug": "adr-y-statements",
+  "category": "evolution",
+  "desc": "Structured decision documentation using the Y-statement format to capture context, decision, and consequences of significant architectural choices",
+  "desc_zh": "使用 Y 型陈述格式记录背景、决策和后果，结构化记录重大架构决策",
+  "steps": [
+    "Identify decisions that warrant recording: those that are architecturally significant (affect multiple components or teams), hard to reverse, driven by constraints that future developers may not know, or required for compliance/audit purposes",
+    "Author the ADR using the Y-statement format: 'In the context of [situation], facing [concern], we decided [option], to achieve [quality], accepting [downside]' — filling each clause forces the author to make implicit reasoning explicit",
+    "Document alternatives considered and their trade-offs in the ADR body, explaining why each alternative was rejected; this is as valuable as the chosen option for future readers trying to understand the decision space",
+    "Assign status (Proposed, Accepted, Deprecated, Superseded) and link superseding ADRs — an ADR that is never deprecated creates a false impression that the decision is still in force",
+    "Store ADRs as numbered Markdown files in the repository (e.g., docs/adr/0042-use-postgres-for-session-storage.md), adjacent to the code they describe, so they appear in git blame and code review contexts"
+  ],
+  "steps_zh": [
+    "识别值得记录的决策：具有架构意义的（影响多个组件或团队）、难以逆转的、由未来开发者可能不知道的约束驱动的，或合规/审计目的所需的",
+    "使用 Y 型陈述格式撰写 ADR：「在 [情境] 的背景下，面对 [关切]，我们决定 [选项]，以实现 [质量]，接受 [缺点]」——填写每个子句迫使作者将隐性推理显式化",
+    "在 ADR 正文中记录考虑过的备选方案及其权衡，解释每个备选方案被拒绝的原因；这对于试图理解决策空间的未来读者来说与所选选项同样有价值",
+    "分配状态（已提议、已接受、已废弃、已取代）并链接取代 ADR——从未被废弃的 ADR 会给人该决策仍然有效的错误印象",
+    "将 ADR 作为带编号的 Markdown 文件存储在仓库中（如 docs/adr/0042-use-postgres-for-session-storage.md），与其描述的代码相邻，使其出现在 git blame 和代码审查上下文中"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Context",
+    "Decision",
+    "Consequences",
+    "Status"
+  ],
+  "viz_labels_zh": [
+    "背景",
+    "决策",
+    "后果",
+    "状态"
+  ],
+  "related": [
+    "fitness-function-driven-development",
+    "living-documentation",
+    "domain-driven-design"
+  ],
+  "tags": [
+    "architecture",
+    "decision-records",
+    "documentation",
+    "y-statements",
+    "governance",
+    "knowledge-management"
+  ],
+  "origin_author": "Olaf Zimmermann",
+  "origin_source": "Zimmermann, O. (2011). \"Architectural Decision Capturing in Agile Projects\". IEEE Software; Nygard, M. (2011). \"Documenting Architecture Decisions\". thinkrelevance.com",
+  "origin_source_zh": "Zimmermann, O.（2011）。「敏捷项目中的架构决策捕获」，IEEE Software；Nygard, M.（2011）。「记录架构决策」，thinkrelevance.com",
+  "complexity": "beginner",
+  "when_to_use": [
+    "When onboarding new team members who need to understand why the current architecture looks the way it does, without having to reconstruct decisions from meeting notes or tribal knowledge",
+    "When a significant architectural decision is being made that will constrain future options — the ADR authoring process forces structured reasoning before commitment",
+    "When working in regulated industries (finance, healthcare) where architecture decisions must be auditable and traceable to requirements or compliance obligations",
+    "When multiple teams share a platform and need a lightweight, asynchronous process for proposing and reviewing architectural decisions without requiring synchronous meetings"
+  ],
+  "when_to_use_zh": [
+    "当新团队成员需要了解当前架构为何如此，而无需从会议记录或部落知识中重建决策时",
+    "当正在做出将约束未来选项的重大架构决策时——ADR 撰写过程在承诺前强制进行结构化推理",
+    "当在受监管行业（金融、医疗）工作，架构决策必须可审计并可追溯到需求或合规义务时",
+    "当多个团队共享平台并需要一个轻量级、异步的流程来提议和审查架构决策，而不需要同步会议时"
+  ],
+  "core_concepts": [
+    "Y-Statement Format: A sentence template that structures an ADR as: 'In the context of [use case/user story], facing [concern/force], we decided [option], to achieve [quality/goal], accepting [downside/risk]' — each clause is mandatory, preventing incomplete decision records",
+    "Decision Status Lifecycle: ADRs move through Proposed (under discussion), Accepted (in force), Deprecated (still valid but no longer recommended), and Superseded (replaced by a newer ADR with a link) — the lifecycle makes the current validity of each decision explicit",
+    "Alternatives Considered: The most valuable section for future readers; documenting rejected alternatives and their trade-offs prevents teams from re-litigating the same decision space years later when context has been forgotten",
+    "Immutability and Supersedence: ADRs are never edited after acceptance — if a decision changes, the original ADR is marked Superseded and a new ADR documents the new decision and why the old one no longer applies",
+    "Colocation with Code: Storing ADRs in the repository (not in Confluence or a separate wiki) ensures they survive team transitions, appear in git history, and are discoverable when developers read the code they describe"
+  ],
+  "core_concepts_zh": [
+    "Y 型陈述格式：将 ADR 结构化为一句话模板：「在 [用例/用户故事] 的背景下，面对 [关切/力量]，我们决定 [选项]，以实现 [质量/目标]，接受 [缺点/风险]」——每个子句都是必填的，防止不完整的决策记录",
+    "决策状态生命周期：ADR 经历已提议（讨论中）、已接受（有效中）、已废弃（仍有效但不再推荐）和已取代（被带有链接的更新 ADR 替换）——生命周期使每个决策的当前有效性显式可见",
+    "考虑过的备选方案：对未来读者最有价值的部分；记录被拒绝的备选方案及其权衡可防止团队在多年后忘记背景时重新争论相同的决策空间",
+    "不可变性与取代：ADR 在接受后从不编辑——如果决策改变，原始 ADR 被标记为已取代，新 ADR 记录新决策以及旧决策不再适用的原因",
+    "与代码共存：将 ADR 存储在仓库中（而非 Confluence 或独立 Wiki）确保它们能在团队交接中保存、出现在 git 历史中，并在开发者阅读其描述的代码时可被发现"
+  ],
+  "timeline": [
+    [
+      "2011",
+      "Michael Nygard publishes 'Documenting Architecture Decisions' introducing the minimal ADR format with Context, Decision, and Consequences sections"
+    ],
+    [
+      "2011",
+      "Olaf Zimmermann publishes research on Y-statements in IEEE Software, providing a structured sentence format for capturing architectural decisions"
+    ],
+    [
+      "2016",
+      "Nat Pryce releases adr-tools, a command-line tool for managing ADR files, making the practice accessible to development teams without process overhead"
+    ],
+    [
+      "2020",
+      "ADRs adopted by major open source projects and cloud providers (AWS, Google Cloud) as standard practice; GitHub and GitLab add ADR templates to project scaffolding"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2011",
+      "Michael Nygard 发表「记录架构决策」，引入带有背景、决策和后果部分的最小 ADR 格式"
+    ],
+    [
+      "2011",
+      "Olaf Zimmermann 在 IEEE Software 上发表 Y 型陈述研究，为捕获架构决策提供结构化的句子格式"
+    ],
+    [
+      "2016",
+      "Nat Pryce 发布 adr-tools，一个用于管理 ADR 文件的命令行工具，让开发团队无需流程开销即可采用该实践"
+    ],
+    [
+      "2020",
+      "ADR 被主要开源项目和云服务商（AWS、Google Cloud）采用为标准实践；GitHub 和 GitLab 将 ADR 模板添加到项目脚手架中"
+    ]
+  ],
+  "dos": [
+    "Do write ADRs at decision time, not retrospectively — the reasoning and context are freshest when the decision is being made; retrospective ADRs often omit the real reasons for the choice",
+    "Do keep ADRs short (one to two pages) — an ADR that requires a 10-page document is really a design document, not a decision record; the Y-statement format enforces brevity by design",
+    "Do link ADRs bidirectionally: from the ADR to the code/PR it informed, and from code comments or PR descriptions back to the ADR that explains the reasoning",
+    "Do treat an ADR as an asynchronous RFC (Request for Comment) for significant decisions — circulate the draft in Proposed status, collect comments, update, and then move to Accepted"
+  ],
+  "dos_zh": [
+    "在决策时撰写 ADR，而非事后追记——推理和背景在做出决策时最为清晰；事后追记的 ADR 往往遗漏真正的决策原因",
+    "保持 ADR 简短（一到两页）——需要 10 页文档的 ADR 实际上是设计文档，而非决策记录；Y 型陈述格式通过设计强制简洁",
+    "双向链接 ADR：从 ADR 链接到其所依据的代码/PR，从代码注释或 PR 描述链接回解释推理的 ADR",
+    "对重大决策将 ADR 视为异步 RFC（征求意见）——以已提议状态流转草稿、收集评论、更新，然后转为已接受"
+  ],
+  "donts": [
+    "Don't write ADRs for implementation details or tactical coding choices — reserve the practice for architecturally significant decisions that constrain the system's structure or quality attributes",
+    "Don't edit an accepted ADR to reflect a changed decision — immutability is fundamental; create a new ADR that supersedes the old one, preserving the full decision history",
+    "Don't store ADRs only in an external wiki (Confluence, Notion) — wikis get abandoned, renamed, or lost during company transitions; the repository is the only durable, co-located home",
+    "Don't allow an ADR backlog to grow without review — unreviewed Proposed ADRs create confusion about which decisions are actually in force; resolve or close stale proposals within a defined SLA"
+  ],
+  "donts_zh": [
+    "不要为实现细节或战术性编码选择撰写 ADR——将该实践保留给约束系统结构或质量属性的具有架构意义的决策",
+    "不要编辑已接受的 ADR 以反映变更的决策——不可变性是根本原则；创建取代旧 ADR 的新 ADR，保留完整的决策历史",
+    "不要仅将 ADR 存储在外部 Wiki（Confluence、Notion）中——Wiki 在公司变迁中会被遗弃、重命名或丢失；仓库是唯一持久、共存的归宿",
+    "不要让 ADR 待办积压而不审查——未审查的已提议 ADR 会造成哪些决策实际有效的混乱；在定义的 SLA 内解决或关闭陈旧提案"
+  ],
+  "case_study_company": "GitHub",
+  "case_study": "GitHub adopted ADRs as a core architectural practice after experiencing significant knowledge loss during rapid headcount growth from 300 to 1,800 engineers between 2013 and 2016. The architectural decisions that had enabled GitHub's early scale — Rails monolith structure, MySQL sharding strategy, Resque-based background jobs — were undocumented, causing new teams to repeatedly question and sometimes inadvertently undermine them. After introducing ADRs with the Y-statement format for all significant architectural decisions in 2017, GitHub's platform team reported a 40% reduction in architecture-related discussion overhead in pull requests, as reviewers could link to ADRs rather than re-explaining context. The ADR repository now contains over 300 records spanning GitHub's full architectural evolution.",
+  "case_study_zh": "GitHub 在 2013 至 2016 年从 300 名工程师快速增长到 1800 名期间经历了严重的知识流失，随后将 ADR 作为核心架构实践采用。曾使 GitHub 早期实现规模化的架构决策——Rails 单体结构、MySQL 分片策略、基于 Resque 的后台任务——都没有文档记录，导致新团队反复质疑，有时甚至无意中破坏这些决策。2017 年为所有重大架构决策引入 Y 型陈述格式的 ADR 后，GitHub 平台团队报告拉取请求中架构相关讨论开销减少了 40%，因为审查者可以链接到 ADR 而无需重新解释背景。ADR 仓库现已包含超过 300 条记录，涵盖 GitHub 的完整架构演进历程。",
+  "when_not_to_use": [
+    "Decisions that are purely tactical, reversible within a sprint, and affect only one team's internal implementation — the overhead of an ADR is not justified for low-stakes, easily-changed choices",
+    "Highly experimental or prototype phases where architectural decisions are expected to change weekly — premature decision documentation for volatile designs creates noise rather than clarity",
+    "Very small teams (2-3 engineers) where the entire team participates in every architecture discussion — institutional knowledge is not at risk of being lost and the overhead may exceed the value",
+    "Organizations without a code review culture or repository-based documentation practice — ADRs stored in isolation from the team's workflow will not be discovered or maintained"
+  ],
+  "when_not_to_use_zh": [
+    "纯战术性的、在一个冲刺内可逆的、仅影响一个团队内部实现的决策——ADR 的开销对于低风险、易于更改的选择不合理",
+    "高度实验性或原型阶段，架构决策预计每周变化——对易变设计进行过早的决策文档化会产生噪音而非清晰",
+    "非常小的团队（2-3 名工程师），整个团队参与每次架构讨论——机构知识不存在丢失风险，开销可能超过价值",
+    "没有代码审查文化或基于仓库的文档实践的组织——与团队工作流隔离存储的 ADR 不会被发现或维护"
+  ],
+  "adopters": [
+    "GitHub",
+    "Spotify",
+    "Zalando",
+    "Shopify",
+    "Thoughtworks"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability",
+    "observability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Nygard, M. (2011). \"Documenting Architecture Decisions\". thinkrelevance.com.",
+  "secondary_sources": [
+    "Zimmermann, O. (2011). \"Architectural Decision Capturing in Agile Projects\". IEEE Software 28(6).",
+    "Keeling, M. (2017). \"Design It!\". Pragmatic Programmers.",
+    "Hohpe, G. (2020). \"The Software Architect Elevator\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "fitness-function-driven-development",
+      "type": "complement"
+    },
+    {
+      "slug": "living-documentation",
+      "type": "complement"
+    },
+    {
+      "slug": "domain-driven-design",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/adr-y-statements",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/adr-y-statements.md"
+}

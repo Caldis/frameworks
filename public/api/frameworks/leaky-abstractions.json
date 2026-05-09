@@ -1,0 +1,191 @@
+{
+  "id": 165,
+  "name": "Leaky Abstractions",
+  "name_zh": "抽象泄漏",
+  "slug": "leaky-abstractions",
+  "category": "thinking",
+  "desc": "All non-trivial abstractions leak; design systems to handle the inevitable failures of abstraction layers",
+  "desc_zh": "所有非平凡抽象都会泄漏；设计系统时应考虑抽象层不可避免的失效",
+  "steps": [
+    "Identify Abstraction Layers: catalog all major abstractions in your system — ORMs, network protocols, file systems, cloud services, frameworks — and the implementation details they claim to hide",
+    "Predict Leak Points: for each abstraction, identify the scenarios where the underlying reality will surface — network latency in RPC frameworks, SQL specifics in ORMs, file system semantics differences across OS platforms",
+    "Design Escape Hatches: provide clean mechanisms for users to bypass the abstraction when it leaks, such as raw SQL access through an ORM or custom HTTP handling in a REST framework",
+    "Document Known Leaks: explicitly document the cases where the abstraction is known to leak, so users encounter documentation rather than mysterious bugs",
+    "Monitor for New Leaks: instrument abstraction boundaries to detect unexpected leak patterns in production (unusual error types, performance anomalies, fallback activations)"
+  ],
+  "steps_zh": [
+    "识别抽象层：编目系统中所有主要抽象——ORM、网络协议、文件系统、云服务、框架——以及它们声称隐藏的实现细节",
+    "预测泄漏点：为每个抽象识别底层现实会浮现的场景——RPC框架中的网络延迟、ORM中的SQL特性、跨操作系统平台的文件系统语义差异",
+    "设计逃生口：提供清洁的机制让用户在抽象泄漏时绕过它，如通过ORM访问原始SQL或在REST框架中自定义HTTP处理",
+    "记录已知泄漏：明确记录抽象已知泄漏的情况，使用户遇到文档而非神秘的错误",
+    "监控新泄漏：在抽象边界设置检测，发现生产中意外的泄漏模式（异常错误类型、性能异常、降级激活）"
+  ],
+  "ai_relevant": true,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Abstraction Layer",
+    "Leaked Detail",
+    "Caller",
+    "Implementation"
+  ],
+  "viz_labels_zh": [
+    "抽象层",
+    "泄漏细节",
+    "调用方",
+    "实现层"
+  ],
+  "related": [
+    "deep-vs-shallow-modules",
+    "separation-of-concerns",
+    "complexity-budget",
+    "design-by-contract"
+  ],
+  "tags": [
+    "abstraction",
+    "software-engineering",
+    "debugging",
+    "system-design",
+    "failure-modes"
+  ],
+  "origin_author": "Joel Spolsky, 2002",
+  "origin_source": "The Law of Leaky Abstractions (Joel Spolsky, Joel on Software blog, 2002)",
+  "origin_source_zh": "《抽象泄漏法则》（Joel Spolsky，Joel on Software博客，2002年）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When adopting a new abstraction layer (ORM, framework, cloud service) and you need to plan for the cases where it won't perfectly hide the underlying system",
+    "When debugging production issues that trace back to abstraction layers behaving unexpectedly under edge conditions",
+    "When designing an API or framework that will be used by developers who may not understand the underlying implementation",
+    "When evaluating whether to build a custom abstraction vs using an existing one, weighing the leak surface of each option"
+  ],
+  "when_to_use_zh": [
+    "当采用新的抽象层（ORM、框架、云服务），需要为其无法完美隐藏底层系统的情况做规划时",
+    "当调试追溯到抽象层在边缘条件下行为异常的生产问题时",
+    "当设计将被可能不理解底层实现的开发者使用的API或框架时",
+    "当评估是构建自定义抽象还是使用现有抽象，权衡每个选项的泄漏面时"
+  ],
+  "core_concepts": [
+    "Law of Leaky Abstractions: All non-trivial abstractions, to some degree, are leaky — the underlying complexity they hide will eventually surface in edge cases, performance characteristics, or error modes",
+    "Abstraction Cost Awareness: Abstractions are not free; they trade one kind of complexity (implementation detail) for another (learning the abstraction's model and its failure modes)",
+    "Escape Hatch Design: Good abstractions provide clean escape hatches so that when leaks occur, users can drop to a lower level without abandoning the entire abstraction",
+    "Two-Level Understanding: Effective use of leaky abstractions requires understanding both the abstraction and the underlying system — you can work at the high level most of the time but must be prepared to reason at the low level"
+  ],
+  "core_concepts_zh": [
+    "抽象泄漏法则：所有非平凡抽象在某种程度上都是泄漏的——它们隐藏的底层复杂度最终会在边缘情况、性能特征或错误模式中浮现",
+    "抽象成本意识：抽象不是免费的；它们用一种复杂度（实现细节）换取另一种复杂度（学习抽象的模型及其失效模式）",
+    "逃生口设计：好的抽象提供清洁的逃生口，使泄漏发生时用户可以降到更低层级而无需放弃整个抽象",
+    "双层理解：有效使用泄漏抽象需要同时理解抽象和底层系统——大多数时候可以在高层工作，但必须准备好在低层推理"
+  ],
+  "timeline": [
+    [
+      "1992",
+      "Gregor Kiczales introduces the concept of 'open implementation' at Xerox PARC, recognizing that some abstractions need to expose their internals selectively"
+    ],
+    [
+      "2002",
+      "Joel Spolsky publishes 'The Law of Leaky Abstractions' on Joel on Software, naming the phenomenon and providing memorable examples (TCP over IP, SQL over disk I/O)"
+    ],
+    [
+      "2006",
+      "The rise of ORMs (Hibernate, ActiveRecord) makes leaky abstractions a daily concern for web developers encountering the N+1 query problem and impedance mismatch"
+    ],
+    [
+      "2020s",
+      "Cloud abstractions (serverless, managed databases) create new categories of leaks — cold starts, throttling limits, and regional failover behaviors that the 'serverless' abstraction cannot fully hide"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1992",
+      "Gregor Kiczales在Xerox PARC引入「开放实现」概念，认识到某些抽象需要选择性地暴露其内部"
+    ],
+    [
+      "2002",
+      "Joel Spolsky在Joel on Software上发表《抽象泄漏法则》，命名该现象并提供了令人印象深刻的示例（TCP over IP、SQL over 磁盘I/O）"
+    ],
+    [
+      "2006",
+      "ORM的兴起（Hibernate、ActiveRecord）使抽象泄漏成为Web开发者日常关注的问题，他们遇到了N+1查询问题和阻抗失配"
+    ],
+    [
+      "2020年代",
+      "云抽象（无服务器、托管数据库）创造了新的泄漏类别——冷启动、限流限制和区域故障转移行为，「无服务器」抽象无法完全隐藏"
+    ]
+  ],
+  "dos": [
+    "Do learn the layer below every abstraction you use, because when it leaks (and it will), you need mental models of both levels to debug effectively",
+    "Do provide escape hatches in abstractions you build, because users will inevitably encounter cases your abstraction doesn't cover and they need a clean way out",
+    "Do document known leak points explicitly in your API documentation, because 'here be dragons' warnings save users hours of confused debugging",
+    "Do monitor abstraction boundaries in production for anomalous error rates, because new leak patterns often emerge under load or edge conditions you didn't test"
+  ],
+  "dos_zh": [
+    "学习你使用的每个抽象下面的层，因为当它泄漏时（一定会的），你需要两个层级的心智模型来有效调试",
+    "在你构建的抽象中提供逃生口，因为用户不可避免地会遇到你的抽象未覆盖的情况，他们需要一条干净的出路",
+    "在API文档中明确记录已知泄漏点，因为「此处有龙」的警告能为用户节省数小时的困惑调试",
+    "在生产中监控抽象边界的异常错误率，因为新的泄漏模式常在负载或你未测试的边缘条件下出现"
+  ],
+  "donts": [
+    "Don't treat abstractions as airtight contracts, because the entire point of the law is that they will leak — defensive design anticipates this",
+    "Don't add more abstraction layers to fix a leaky abstraction, because stacking leaky abstractions compounds the debugging difficulty exponentially",
+    "Don't blame users for needing to understand the underlying system, because requiring two-level understanding is a consequence of abstraction physics, not user failure",
+    "Don't build abstractions that hide failure modes, because the most dangerous leaks are the ones that silently corrupt data or degrade performance without visible errors"
+  ],
+  "donts_zh": [
+    "不要将抽象视为密封的契约，因为这个法则的全部要点是它们会泄漏——防御性设计应预见到这一点",
+    "不要用更多的抽象层来修复泄漏的抽象，因为堆叠泄漏的抽象会指数级地增加调试难度",
+    "不要责怪用户需要理解底层系统，因为需要双层理解是抽象物理学的结果，而非用户的失败",
+    "不要构建隐藏失效模式的抽象，因为最危险的泄漏是那些无声地损坏数据或降低性能而没有可见错误的泄漏"
+  ],
+  "case_study_company": "Heroku",
+  "case_study": "Heroku's Platform-as-a-Service abstracted away server management, promising developers they could 'just push code.' But as applications scaled, the abstraction leaked in predictable ways: dyno cycling caused unpredictable request latency, the shared routing layer created noisy-neighbor performance issues, and the filesystem's ephemeral nature surprised developers who expected persistent local storage. Heroku responded well by documenting these leaks explicitly in their architecture documentation and providing escape hatches (dedicated dynos, external storage services, custom buildpacks). Companies that succeeded on Heroku were those whose engineers understood the underlying infrastructure model despite the abstraction, confirming Spolsky's law.",
+  "case_study_zh": "Heroku的平台即服务抽象掉了服务器管理，向开发者承诺他们可以「只管推代码」。但随着应用规模扩大，抽象以可预测的方式泄漏：dyno循环导致不可预测的请求延迟，共享路由层造成噪声邻居性能问题，文件系统的临时性质让期望本地持久存储的开发者感到意外。Heroku通过在架构文档中明确记录这些泄漏并提供逃生口（专用dyno、外部存储服务、自定义构建包）做出了良好的回应。在Heroku上成功的公司都是其工程师尽管有抽象但仍理解底层基础设施模型的公司，这证实了Spolsky的法则。",
+  "when_not_to_use": [
+    "When working with trivial abstractions (simple wrapper functions, type aliases) where the abstraction is thin enough that leaks are inconsequential",
+    "When the abstraction maps perfectly to the domain and there is no impedance mismatch (e.g., mathematical abstractions in numerical computing)",
+    "When the team controls both sides of the abstraction and can modify it freely, reducing the cost of encountered leaks to near zero",
+    "When the project is so short-lived that the probability of encountering an abstraction leak during its lifetime is negligible"
+  ],
+  "when_not_to_use_zh": [
+    "当使用平凡抽象（简单包装函数、类型别名），抽象薄到泄漏无关紧要时",
+    "当抽象完美映射到领域且没有阻抗失配时（如数值计算中的数学抽象）",
+    "当团队控制抽象的两端并可以自由修改它，将遇到泄漏的成本降低到接近零时",
+    "当项目生命周期很短，其存续期间遇到抽象泄漏的概率可以忽略不计时"
+  ],
+  "adopters": [
+    "Heroku",
+    "AWS (Lambda/Serverless)",
+    "Microsoft (Entity Framework)",
+    "Ruby on Rails (ActiveRecord)",
+    "Docker"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Joel Spolsky (2002). \"The Law of Leaky Abstractions\". Joel on Software (joelonsoftware.com).",
+  "secondary_sources": [
+    "John Ousterhout (2018). \"A Philosophy of Software Design\". Yaknyam Press.",
+    "David Parnas (1972). \"On the Criteria to Be Used in Decomposing Systems into Modules\". Communications of the ACM, 15(12)."
+  ],
+  "typed_relations": [
+    {
+      "slug": "deep-vs-shallow-modules",
+      "type": "complement"
+    },
+    {
+      "slug": "separation-of-concerns",
+      "type": "prerequisite"
+    },
+    {
+      "slug": "complexity-budget",
+      "type": "complement"
+    },
+    {
+      "slug": "design-by-contract",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/leaky-abstractions",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/leaky-abstractions.md"
+}

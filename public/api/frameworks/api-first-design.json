@@ -1,0 +1,200 @@
+{
+  "id": 210,
+  "name": "API-First Design",
+  "name_zh": "API优先设计",
+  "slug": "api-first-design",
+  "category": "api",
+  "desc": "Design the API contract before implementation using a Swagger-first workflow",
+  "desc_zh": "在实现之前先设计API契约，采用Swagger优先工作流",
+  "steps": [
+    "Define the API contract in OpenAPI (Swagger) or AsyncAPI specification before writing any implementation code, treating the spec as the single source of truth",
+    "Review and validate the contract with all stakeholders — frontend, backend, QA, and product — using mock servers generated from the spec",
+    "Generate server stubs and client SDKs from the specification so that implementation is constrained to match the agreed contract",
+    "Set up contract linting rules (Spectral, Redocly) and integrate spec validation into CI to prevent unauthorized contract drift",
+    "Publish the finalized spec to the developer portal and proceed with parallel frontend and backend implementation against the shared contract"
+  ],
+  "steps_zh": [
+    "在编写任何实现代码之前，先用OpenAPI（Swagger）或AsyncAPI规范定义API契约，将规范视为唯一真实来源",
+    "使用从规范生成的模拟服务器，与所有利益相关方——前端、后端、QA和产品——评审并验证契约",
+    "从规范生成服务端桩代码和客户端SDK，使实现受约束以符合已商定的契约",
+    "设置契约代码检查规则（Spectral、Redocly）并将规范验证集成到CI中，防止未经授权的契约偏移",
+    "将最终规范发布到开发者门户，并开始基于共享契约并行进行前端和后端实现"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "API Contract",
+    "Stakeholder Review",
+    "Generate Stubs",
+    "Contract Lint",
+    "Parallel Impl"
+  ],
+  "viz_labels_zh": [
+    "API契约",
+    "评审",
+    "生成桩代码",
+    "契约检查",
+    "并行实现"
+  ],
+  "related": [
+    "openapi-specification",
+    "consumer-driven-contracts",
+    "bff-pattern"
+  ],
+  "tags": [
+    "api-first",
+    "swagger",
+    "openapi",
+    "contract",
+    "design"
+  ],
+  "origin_author": "Kin Lane (API Evangelist), popularized by Twilio and Stripe engineering blogs, ~2012",
+  "origin_source": "API-First Design principles; OpenAPI Initiative (openapis.org); API Design Patterns (JJ Geewax, 2021, Ch. 2)",
+  "origin_source_zh": "API优先设计原则；OpenAPI倡议（openapis.org）；「API设计模式」（JJ Geewax，2021，第2章）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When multiple teams (frontend, mobile, backend) need to work in parallel and cannot afford sequential dependency",
+    "When building a public or partner API where the contract must be stable and well-documented before any consumer integrates",
+    "When the organization wants to treat APIs as products with versioned, discoverable contracts rather than implementation byproducts",
+    "When integrating with third-party systems that require a formalized API spec for compliance or procurement approval"
+  ],
+  "when_to_use_zh": [
+    "当多个团队（前端、移动端、后端）需要并行工作且无法承受顺序依赖时",
+    "当构建公共或合作伙伴API时，契约必须在任何消费者集成之前稳定且有良好文档",
+    "当组织希望将API视为具有版本化、可发现契约的产品，而不是实现的副产品时",
+    "当与需要正式API规范以满足合规或采购审批要求的第三方系统集成时"
+  ],
+  "core_concepts": [
+    "Contract as Source of Truth: The OpenAPI or AsyncAPI spec is the canonical definition; implementation must conform to the spec, not vice versa",
+    "Spec-First Workflow: The spec is authored, reviewed, and agreed upon before a single line of implementation code is written",
+    "Mock-Driven Development: Mock servers generated from the spec allow consumer teams to develop and test against a realistic API before the backend is ready",
+    "Design-Time Linting: Automated spec validators (Spectral, Redocly) enforce style guides and breaking-change rules as part of the CI pipeline",
+    "Parallel Development: Frontend and backend teams can work simultaneously once the contract is frozen, reducing end-to-end delivery time"
+  ],
+  "core_concepts_zh": [
+    "契约即真实来源：OpenAPI或AsyncAPI规范是规范性定义；实现必须符合规范，而不是反过来",
+    "规范优先工作流：在编写任何一行实现代码之前，先编写、评审并商定规范",
+    "模拟驱动开发：从规范生成的模拟服务器允许消费者团队在后端就绪之前进行开发和测试",
+    "设计时代码检查：自动规范验证器（Spectral、Redocly）作为CI流水线的一部分执行风格指南和破坏性变更规则",
+    "并行开发：一旦契约冻结，前端和后端团队可以同时工作，减少端到端交付时间"
+  ],
+  "timeline": [
+    [
+      "2011",
+      "Swagger specification created by Tony Tam at Wordnik, providing the first widely-adopted machine-readable API description format"
+    ],
+    [
+      "2015",
+      "OpenAPI Initiative formed under the Linux Foundation; Swagger 2.0 donated and renamed to OpenAPI Specification"
+    ],
+    [
+      "2017",
+      "OpenAPI 3.0 released with improved support for callbacks, links, and multiple servers, solidifying API-First tooling"
+    ],
+    [
+      "2019",
+      "Stripe and Twilio publicly champion API-First design; Stripe's API changelog becomes a model for contract governance"
+    ],
+    [
+      "2023",
+      "AI-assisted API design tools (Postman, Stoplight, Speakeasy) automate spec generation and SDK synthesis from natural language"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2011",
+      "Tony Tam在Wordnik创建Swagger规范，提供第一个被广泛采用的机器可读API描述格式"
+    ],
+    [
+      "2015",
+      "OpenAPI倡议在Linux基金会下成立；Swagger 2.0被捐赠并更名为OpenAPI规范"
+    ],
+    [
+      "2017",
+      "OpenAPI 3.0发布，改进了对回调、链接和多服务器的支持，巩固了API优先工具生态"
+    ],
+    [
+      "2019",
+      "Stripe和Twilio公开倡导API优先设计；Stripe的API变更日志成为契约治理的典范"
+    ],
+    [
+      "2023",
+      "AI辅助API设计工具（Postman、Stoplight、Speakeasy）自动从自然语言生成规范和SDK"
+    ]
+  ],
+  "dos": [
+    "Do treat the spec as a living document under version control so that changes are reviewed, approved, and tracked like code changes",
+    "Do generate mock servers automatically from the spec so that consumer teams can integrate and test without waiting for backend completion",
+    "Do enforce spec linting in CI with tools like Spectral to catch style violations and breaking changes before they merge",
+    "Do involve consumers (frontend, mobile, external partners) in spec review because they surface usability issues before implementation locks them in"
+  ],
+  "dos_zh": [
+    "将规范视为版本控制下的活文档，以便像代码变更一样对变更进行评审、审批和跟踪",
+    "从规范自动生成模拟服务器，使消费者团队无需等待后端完成即可集成和测试",
+    "在CI中使用Spectral等工具强制执行规范代码检查，在合并前捕获风格违规和破坏性变更",
+    "让消费者（前端、移动端、外部合作伙伴）参与规范评审，因为他们能在实现将问题锁定之前发现可用性问题"
+  ],
+  "donts": [
+    "Don't write the spec after the implementation because it becomes a documentation exercise that never accurately reflects the actual API behavior",
+    "Don't freeze the spec too early without consumer input because a contract that doesn't reflect actual client needs forces workarounds",
+    "Don't skip design-time validation because undocumented edge cases in the spec propagate silently into generated SDKs and client code",
+    "Don't treat API-First as a heavyweight process requiring formal approval gates for every minor change — use automated linting instead"
+  ],
+  "donts_zh": [
+    "不要在实现之后编写规范，因为这变成了一个永远无法准确反映实际API行为的文档练习",
+    "不要在没有消费者输入的情况下过早冻结规范，因为不反映实际客户端需求的契约会迫使采用变通方法",
+    "不要跳过设计时验证，因为规范中未记录的边界情况会悄悄传播到生成的SDK和客户端代码中",
+    "不要将API优先视为每次小变更都需要正式审批门控的重量级流程——改用自动化代码检查"
+  ],
+  "case_study_company": "Stripe",
+  "case_study": "Stripe built its entire developer platform around an API-First philosophy, maintaining a machine-readable OpenAPI specification as the source of truth for all its payment APIs. Every SDK (Python, Ruby, Node.js, Java, Go, .NET) is generated directly from the spec, ensuring that documentation, code samples, and client libraries are always synchronized with the live API. When Stripe introduces a new endpoint or modifies a resource shape, the change flows automatically through the spec into regenerated SDKs and the developer documentation, eliminating the documentation lag that plagues most API providers.",
+  "case_study_zh": "Stripe围绕API优先理念构建了整个开发者平台，维护机器可读的OpenAPI规范作为所有支付API的真实来源。每个SDK（Python、Ruby、Node.js、Java、Go、.NET）都直接从规范生成，确保文档、代码示例和客户端库始终与线上API同步。当Stripe引入新端点或修改资源结构时，变更会自动通过规范流入重新生成的SDK和开发者文档，消除了困扰大多数API提供商的文档滞后问题。",
+  "when_not_to_use": [
+    "Rapid internal prototyping where the API surface changes multiple times per day and maintaining a spec creates more friction than value",
+    "Small single-team projects where the frontend and backend developer are the same person and implicit coordination is sufficient",
+    "Legacy system wrapping where the API shape is dictated entirely by existing database or service contracts with no design latitude",
+    "Exploratory research APIs where the goal is to discover the right API shape through iteration rather than upfront specification"
+  ],
+  "when_not_to_use_zh": [
+    "快速内部原型设计，API接口每天变化多次，维护规范带来的摩擦大于价值",
+    "小型单团队项目，前后端开发者是同一个人且隐式协调已经足够",
+    "遗留系统包装，API形状完全由现有数据库或服务契约决定，没有设计自由度",
+    "探索性研究API，目标是通过迭代而不是预先规范来发现正确的API形状"
+  ],
+  "adopters": [
+    "Stripe",
+    "Twilio",
+    "Adyen",
+    "Shopify",
+    "Box"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "usability",
+    "maintainability",
+    "testability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "OpenAPI Initiative (2015). \"OpenAPI Specification\". openapis.org.",
+  "secondary_sources": [
+    "Geewax, J.J. (2021). \"API Design Patterns\", Ch. 2. Manning Publications.",
+    "Sturgeon, P. (2022). \"Designing APIs with Swagger and OpenAPI\". Manning Publications.",
+    "Wildermuth, S. (2020). \"API-First development with OpenAPI\". Pluralsight."
+  ],
+  "typed_relations": [
+    {
+      "slug": "openapi-specification",
+      "type": "complement"
+    },
+    {
+      "slug": "consumer-driven-contracts",
+      "type": "complement"
+    },
+    {
+      "slug": "bff-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/api-first-design",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/api-first-design.md"
+}

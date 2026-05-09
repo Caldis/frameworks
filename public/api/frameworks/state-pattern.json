@@ -1,0 +1,175 @@
+{
+  "id": 234,
+  "name": "State Pattern",
+  "name_zh": "状态模式",
+  "slug": "state-pattern",
+  "category": "coding",
+  "desc": "Allow object behavior to change automatically when its internal state changes",
+  "desc_zh": "允许对象在内部状态改变时自动改变其行为，使其看起来像改变了类",
+  "steps": [
+    "Identify the states: enumerate all distinct states the context object can be in and the transitions between them",
+    "Define the State interface: declare all context-behavior methods that vary by state; every concrete state must implement this interface",
+    "Implement Concrete State classes: one class per state, each implementing the behavior appropriate to that state and triggering transitions by calling context.setState() when conditions are met",
+    "Configure the Context class: hold a reference to the current State object, delegate behavior calls to it, and expose setState() so state objects can drive transitions",
+    "Initialize and transition: set the initial state in the Context constructor and let the state machine run by having concrete states or the context trigger transitions in response to events"
+  ],
+  "steps_zh": [
+    "识别状态：枚举上下文对象可能处于的所有不同状态及其转换关系",
+    "定义状态接口：声明所有随状态变化的上下文行为方法；每个具体状态必须实现此接口",
+    "实现具体状态类：每个状态一个类，各自实现该状态下的适当行为，并在满足条件时通过调用 context.setState() 触发转换",
+    "配置上下文类：持有对当前状态对象的引用，将行为调用委托给它，并暴露 setState() 使状态对象能驱动转换",
+    "初始化和转换：在上下文构造函数中设置初始状态，让状态机运行，由具体状态或上下文响应事件触发转换"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Context",
+    "State",
+    "Transition",
+    "Behavior"
+  ],
+  "viz_labels_zh": [
+    "上下文",
+    "状态",
+    "状态转换",
+    "行为"
+  ],
+  "related": [
+    "strategy-pattern",
+    "command-pattern",
+    "observer-pattern"
+  ],
+  "tags": [
+    "gof",
+    "behavioral",
+    "design-patterns",
+    "state-machine",
+    "oop"
+  ],
+  "origin_author": "Gamma, Helm, Johnson, Vlissides, 1994",
+  "origin_source": "Design Patterns: Elements of Reusable Object-Oriented Software",
+  "origin_source_zh": "《设计模式：可复用面向对象软件的基础》",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "An object's behavior depends heavily on its current state and must change at runtime as state transitions occur",
+    "Large switch/if-else blocks handling state-dependent logic are becoming hard to maintain and extend",
+    "Modeling workflows, protocol parsers, UI wizards, or game characters with distinct operational modes"
+  ],
+  "when_to_use_zh": [
+    "对象的行为严重依赖于当前状态，并且必须随运行时状态转换而改变",
+    "处理状态相关逻辑的大型 switch/if-else 块变得难以维护和扩展",
+    "对工作流、协议解析器、UI 向导或具有不同操作模式的游戏角色进行建模"
+  ],
+  "core_concepts": [
+    "Context: the object whose behavior varies; it delegates all state-dependent requests to the current State object and holds a reference that can be swapped at runtime",
+    "State interface: defines the contract for all behaviors that differ across states, ensuring the Context can treat all states uniformly",
+    "Concrete States: encapsulate the behavior and transition logic for one specific state, replacing large conditionals with focused, single-responsibility classes"
+  ],
+  "core_concepts_zh": [
+    "上下文：行为发生变化的对象；它将所有状态相关请求委托给当前状态对象，并持有可在运行时交换的引用",
+    "状态接口：定义跨状态不同的所有行为契约，确保上下文可以统一处理所有状态",
+    "具体状态：封装一个特定状态的行为和转换逻辑，用专注、单一职责的类替代大型条件语句"
+  ],
+  "timeline": [
+    [
+      "1994",
+      "GoF introduce State as a behavioral pattern, noting its close relationship with finite-state machines from computer science"
+    ],
+    [
+      "2000",
+      "Game development community adopts State pattern extensively for character AI, game modes, and UI screen transitions"
+    ],
+    [
+      "2010",
+      "Statecharts and tools like XState bring hierarchical and parallel state machines to frontend and Node.js applications"
+    ],
+    [
+      "2020",
+      "XState v4 gains mainstream adoption in React ecosystems, reviving interest in explicit state machine modeling for UI"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1994",
+      "GoF 引入状态作为行为型模式，注意到其与计算机科学中有限状态机的密切关系"
+    ],
+    [
+      "2000",
+      "游戏开发社区广泛采用状态模式用于角色 AI、游戏模式和 UI 屏幕转换"
+    ],
+    [
+      "2010",
+      "状态图和 XState 等工具将层次化和并行状态机引入前端和 Node.js 应用"
+    ],
+    [
+      "2020",
+      "XState v4 在 React 生态系统中获得主流采用，重新激发了对 UI 显式状态机建模的兴趣"
+    ]
+  ],
+  "dos": [
+    "Do let State objects know about each other or use named state constants on the Context to keep transitions explicit and auditable",
+    "Do keep each Concrete State class small and focused on one state's behavior to preserve single-responsibility",
+    "Do use State pattern alongside event logging to create an audit trail of every state transition for debugging and monitoring"
+  ],
+  "dos_zh": [
+    "允许状态对象相互了解，或在上下文上使用命名状态常量，使转换显式且可审计",
+    "保持每个具体状态类小巧，专注于一个状态的行为，以保持单一职责",
+    "将状态模式与事件日志记录结合使用，为每次状态转换创建审计追踪，便于调试和监控"
+  ],
+  "donts": [
+    "Don't scatter transition logic across both State classes and the Context — choose one location and keep it consistent",
+    "Don't create a new State object on every transition if State objects are stateless — share flyweight instances to avoid allocation overhead",
+    "Don't use State pattern for simple two-state toggles; a boolean field is clearer and less over-engineered"
+  ],
+  "donts_zh": [
+    "不要将转换逻辑分散在状态类和上下文两者中——选择一个位置并保持一致",
+    "如果状态对象是无状态的，不要在每次转换时创建新的状态对象——共享享元实例以避免分配开销",
+    "不要对简单的双状态切换使用状态模式；布尔字段更清晰，过度设计更少"
+  ],
+  "case_study_company": "XState / Stately",
+  "case_study": "XState, the JavaScript state machine library, applies the State pattern at scale in frontend applications. A traffic-light component modeled in XState has explicit states (red, yellow, green) with guarded transitions, entry/exit actions, and parallel states for pedestrian signals. Netflix uses XState to manage the complex state of their video player — buffering, playing, paused, error, ad-break — ensuring that user interactions like clicking play during buffering produce predictable, testable outcomes rather than ad hoc if/else chains.",
+  "case_study_zh": "XState（JavaScript 状态机库）在前端应用中大规模应用状态模式。用 XState 建模的交通灯组件具有显式状态（红、黄、绿），带守卫的转换、进入/退出动作以及行人信号的并行状态。Netflix 使用 XState 管理其视频播放器的复杂状态——缓冲、播放、暂停、错误、广告时段——确保在缓冲期间点击播放等用户交互产生可预测、可测试的结果，而非临时的 if/else 链。",
+  "when_not_to_use": [
+    "Objects with only one or two states where a simple boolean or enum is sufficient and self-documenting",
+    "When state transitions are rare and the complexity of multiple state classes outweighs the maintenance benefit",
+    "Stateless services or pure functions that have no mutable internal state to manage"
+  ],
+  "when_not_to_use_zh": [
+    "只有一两个状态的对象，简单的布尔值或枚举就足够且自文档化",
+    "当状态转换很少，多个状态类的复杂性超过维护收益时",
+    "无状态服务或纯函数，没有可变内部状态需要管理"
+  ],
+  "adopters": [
+    "XState / Stately",
+    "Unity (game AI state machines)",
+    "Apache Commons SCXML",
+    "Redux (reducer as state machine)"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability",
+    "reliability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Gamma, E., Helm, R., Johnson, R., Vlissides, J. (1994). \"Design Patterns: Elements of Reusable Object-Oriented Software\". Addison-Wesley.",
+  "secondary_sources": [
+    "Freeman, E., Robson, E. (2004). \"Head First Design Patterns\". O'Reilly Media.",
+    "Samek, M. (2008). \"Practical UML Statecharts in C/C++, 2nd ed.\". Newnes."
+  ],
+  "typed_relations": [
+    {
+      "slug": "strategy-pattern",
+      "type": "related"
+    },
+    {
+      "slug": "command-pattern",
+      "type": "related"
+    },
+    {
+      "slug": "observer-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/state-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/state-pattern.md"
+}

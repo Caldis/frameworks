@@ -1,0 +1,193 @@
+{
+  "id": 175,
+  "name": "Immutability Pattern",
+  "name_zh": "不可变性模式",
+  "slug": "immutability-pattern",
+  "category": "coding",
+  "desc": "Prefer immutable data structures to eliminate shared mutable state and improve safety, concurrency, and reasoning",
+  "desc_zh": "优先使用不可变数据结构以消除共享可变状态，提高安全性、并发性和可推理性",
+  "steps": [
+    "Default to immutable declarations: use const, final, readonly, or val by default; only use mutable bindings when mutation is explicitly required",
+    "Design immutable data types: create classes or records where all fields are set at construction time and no setters or mutating methods are exposed",
+    "Use transformation over mutation: instead of modifying an object in place, produce a new object with the desired changes using copy-on-write or builder patterns",
+    "Leverage persistent data structures: for collections that change frequently, use persistent (structural sharing) data structures to avoid the cost of full copies",
+    "Isolate mutable boundaries: when mutation is unavoidable (I/O, caches, buffers), confine it to clearly marked boundaries and keep the core logic purely immutable"
+  ],
+  "steps_zh": [
+    "默认使用不可变声明：默认使用 const、final、readonly 或 val；仅在明确需要变更时使用可变绑定",
+    "设计不可变数据类型：创建所有字段在构造时设定且不暴露 setter 或变更方法的类或记录",
+    "用转换替代变更：不要就地修改对象，而是使用写时复制或构建器模式产生包含所需更改的新对象",
+    "利用持久化数据结构：对于频繁变化的集合，使用持久化（结构共享）数据结构以避免完整复制的成本",
+    "隔离可变边界：当变更不可避免时（I/O、缓存、缓冲区），将其限制在明确标记的边界内，保持核心逻辑纯不可变"
+  ],
+  "ai_relevant": false,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "Immutable Value",
+    "Pure Function",
+    "New State",
+    "Side Effects"
+  ],
+  "viz_labels_zh": [
+    "不可变值",
+    "纯函数",
+    "新状态",
+    "副作用"
+  ],
+  "related": [
+    "functional-core-imperative-shell",
+    "solid-principles",
+    "clean-code-principles",
+    "error-handling-patterns"
+  ],
+  "tags": [
+    "immutability",
+    "functional-programming",
+    "concurrency",
+    "data-structures",
+    "thread-safety"
+  ],
+  "origin_author": "John Ousterhout, 2018; Rich Hickey, 2007",
+  "origin_source": "A Philosophy of Software Design (Ousterhout, 2018); Refactoring (Fowler, 2018)",
+  "origin_source_zh": "《软件设计的哲学》（Ousterhout，2018）；《重构》（Fowler，2018）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Building concurrent or multi-threaded systems where shared mutable state causes race conditions",
+    "Designing domain models where objects should not change after creation, such as events, transactions, or value objects",
+    "Implementing undo/redo or time-travel debugging by preserving previous states",
+    "Working in functional programming paradigms where immutability is a foundational principle"
+  ],
+  "when_to_use_zh": [
+    "构建共享可变状态导致竞态条件的并发或多线程系统",
+    "设计创建后不应更改的领域模型，如事件、事务或值对象",
+    "通过保留先前状态实现撤销/重做或时间旅行调试",
+    "在不可变性是基础原则的函数式编程范式中工作"
+  ],
+  "core_concepts": [
+    "Immutable Object: an object whose state cannot be changed after construction; any 'modification' produces a new object",
+    "Value Object: a domain concept defined by its attributes rather than identity, naturally suited to immutability",
+    "Persistent Data Structure: a data structure that preserves its previous versions when modified, using structural sharing to maintain efficiency",
+    "Copy-on-Write: a strategy where data is shared by default and only copied when a mutation is requested, balancing performance and immutability",
+    "Mutable Boundary: the thin outer layer of a system (I/O, database, UI) where mutation is contained, keeping the core logic free of side effects"
+  ],
+  "core_concepts_zh": [
+    "不可变对象：构造后状态不可更改的对象；任何'修改'都产生一个新对象",
+    "值对象：由其属性而非身份定义的领域概念，天然适合不可变性",
+    "持久化数据结构：修改时保留先前版本的数据结构，使用结构共享来保持效率",
+    "写时复制：默认共享数据，仅在请求变更时才复制的策略，平衡性能与不可变性",
+    "可变边界：系统中包含变更的薄外层（I/O、数据库、UI），保持核心逻辑无副作用"
+  ],
+  "timeline": [
+    [
+      "1966",
+      "Immutable data concepts emerge in early Lisp programming with cons cells and persistent lists"
+    ],
+    [
+      "2007",
+      "Rich Hickey creates Clojure, bringing persistent immutable data structures to the JVM mainstream"
+    ],
+    [
+      "2015",
+      "Facebook releases Immutable.js, popularizing persistent data structures in JavaScript"
+    ],
+    [
+      "2018",
+      "Ousterhout's 'A Philosophy of Software Design' advocates reducing complexity through immutability and deep modules"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1966",
+      "不可变数据概念在早期 Lisp 编程中随 cons 单元和持久列表出现"
+    ],
+    [
+      "2007",
+      "Rich Hickey 创建 Clojure，将持久不可变数据结构带入 JVM 主流"
+    ],
+    [
+      "2015",
+      "Facebook 发布 Immutable.js，在 JavaScript 中推广持久化数据结构"
+    ],
+    [
+      "2018",
+      "Ousterhout 的《软件设计的哲学》倡导通过不可变性和深模块减少复杂性"
+    ]
+  ],
+  "dos": [
+    "Do default to immutable declarations in every language you work in because mutable state should be a conscious choice, not the default",
+    "Do use builder or 'with' patterns when constructing modified copies because they keep immutable APIs ergonomic",
+    "Do leverage persistent data structures for frequently updated collections because they avoid the overhead of full copies",
+    "Do document mutable boundaries explicitly because the team needs to know where side effects live"
+  ],
+  "dos_zh": [
+    "在你使用的每种语言中默认使用不可变声明，因为可变状态应该是有意识的选择而非默认",
+    "在构造修改后的副本时使用构建器或 'with' 模式，因为它们使不可变 API 更符合人体工学",
+    "对频繁更新的集合利用持久化数据结构，因为它们避免了完整复制的开销",
+    "明确记录可变边界，因为团队需要知道副作用存在于哪里"
+  ],
+  "donts": [
+    "Don't make everything immutable blindly in performance-critical code because excessive copying can degrade throughput",
+    "Don't expose mutable internals from an otherwise immutable object because a single leaked reference breaks the guarantee",
+    "Don't ignore the cost of deep copying large object graphs because structural sharing or copy-on-write should be used instead",
+    "Don't forget to make collections immutable too because an immutable object with a mutable list field is not truly immutable"
+  ],
+  "donts_zh": [
+    "不要在性能关键代码中盲目使一切不可变，因为过度复制会降低吞吐量",
+    "不要从本应不可变的对象中暴露可变内部，因为一个泄露的引用就会打破保证",
+    "不要忽视深复制大型对象图的成本，因为应使用结构共享或写时复制替代",
+    "不要忘记也使集合不可变，因为含可变列表字段的不可变对象并非真正不可变"
+  ],
+  "case_study_company": "Walmart Labs",
+  "case_study": "Walmart Labs adopted immutability as a core principle in their React/Redux frontend architecture serving walmart.com. By treating the Redux store as an immutable state tree and using Immutable.js for all data structures, they eliminated an entire class of bugs caused by accidental state mutation in event handlers. Time-travel debugging became trivial, and their server-side rendering pipeline became thread-safe without locks. The migration reduced frontend bugs by 40% in the first quarter after adoption.",
+  "case_study_zh": "Walmart Labs 在其服务于 walmart.com 的 React/Redux 前端架构中将不可变性作为核心原则。通过将 Redux store 视为不可变状态树并对所有数据结构使用 Immutable.js，他们消除了事件处理程序中意外状态变更引起的整类 bug。时间旅行调试变得轻而易举，服务端渲染管道无需锁即可线程安全。迁移在采用后的第一季度将前端 bug 减少了 40%。",
+  "when_not_to_use": [
+    "High-performance systems processing millions of small objects per second where allocation pressure matters",
+    "Embedded or memory-constrained environments where object duplication is prohibitively expensive",
+    "Legacy codebases deeply built around mutable state where introducing immutability would require a full rewrite",
+    "Simple CRUD applications where the overhead of immutable patterns provides no meaningful benefit"
+  ],
+  "when_not_to_use_zh": [
+    "每秒处理数百万小对象且分配压力重要的高性能系统",
+    "对象复制成本过高的嵌入式或内存受限环境",
+    "深度围绕可变状态构建的遗留代码库，引入不可变性需要完全重写",
+    "不可变模式的开销不会带来有意义收益的简单 CRUD 应用"
+  ],
+  "adopters": [
+    "Walmart Labs",
+    "Facebook",
+    "Netflix",
+    "Airbnb",
+    "Nubank"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Rich Hickey (2007). \"Clojure: A Dynamic Programming Language for the JVM\". clojure.org.",
+  "secondary_sources": [
+    "John Ousterhout (2018). \"A Philosophy of Software Design\". Yaknyam Press.",
+    "Martin Fowler (2018). \"Refactoring: Improving the Design of Existing Code, 2nd Edition\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "functional-core-imperative-shell",
+      "type": "complement"
+    },
+    {
+      "slug": "solid-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "clean-code-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "error-handling-patterns",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/immutability-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/immutability-pattern.md"
+}

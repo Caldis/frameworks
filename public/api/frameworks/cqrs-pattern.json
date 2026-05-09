@@ -1,0 +1,198 @@
+{
+  "id": 19,
+  "name": "CQRS Pattern",
+  "name_zh": "命令查询职责分离模式",
+  "slug": "cqrs-pattern",
+  "category": "architecture",
+  "desc": "Separate read/write models for optimized scalability",
+  "desc_zh": "分离读写模型以实现优化的可扩展性",
+  "steps": [
+    "Identify domains where read and write workloads have fundamentally different performance, scaling, or consistency requirements",
+    "Design the Command model: create a write-optimized domain model that enforces invariants and emits domain events on state changes",
+    "Design the Query model: build read-optimized projections (denormalized views, materialized tables) tailored to specific query patterns",
+    "Connect models via events: use domain events or a message bus to asynchronously update read projections when the write model changes",
+    "Handle eventual consistency: implement strategies for stale-read tolerance in the UI, version stamps, and read-your-own-writes where needed"
+  ],
+  "steps_zh": [
+    "识别读写负载在性能、扩展或一致性需求上有本质差异的领域",
+    "设计命令模型：创建写优化的领域模型，强制执行不变式并在状态变更时发出领域事件",
+    "设计查询模型：构建针对特定查询模式优化的读视图（非规范化视图、物化表）",
+    "通过事件连接模型：使用领域事件或消息总线在写模型变更时异步更新读投影",
+    "处理最终一致性：为UI中的陈旧读取容忍度、版本戳和必要时的读己之写实现策略"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Command",
+    "Query",
+    "Write Model",
+    "Read Model"
+  ],
+  "viz_labels_zh": [
+    "命令",
+    "查询",
+    "写模型",
+    "读模型"
+  ],
+  "related": [
+    "event-sourcing-pattern",
+    "eda",
+    "domain-driven-design",
+    "saga-pattern"
+  ],
+  "tags": [
+    "cqrs",
+    "read-write-separation",
+    "scalability",
+    "event-driven"
+  ],
+  "origin_author": "Greg Young, 2010",
+  "origin_source": "CQRS Documents (Greg Young, 2010); builds on Bertrand Meyer's Command-Query Separation principle from 1988",
+  "origin_source_zh": "《CQRS文档》（Greg Young，2010）；基于Bertrand Meyer 1988年提出的命令查询分离原则",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When read and write workloads have vastly different scaling requirements",
+    "When complex domain logic on the write side doesn't align with the data shapes needed for queries",
+    "When you need highly optimized read models for dashboards, reports, or search-heavy features",
+    "When combined with Event Sourcing to build audit trails and temporal queries"
+  ],
+  "when_to_use_zh": [
+    "读写工作负载具有截然不同的扩展需求时",
+    "写侧的复杂领域逻辑与查询所需的数据形态不一致时",
+    "需要为仪表盘、报表或大量搜索功能构建高度优化的读模型时",
+    "与事件溯源结合构建审计追踪和时间查询时"
+  ],
+  "core_concepts": [
+    "Command model: Write-optimized model focused on enforcing business rules and maintaining invariants",
+    "Query model: Read-optimized projections denormalized for specific UI or API consumption patterns",
+    "Eventual consistency: Read models are asynchronously updated and may lag behind the write model",
+    "Event propagation: Domain events bridge the write and read sides, serving as the synchronization mechanism",
+    "Task-based UI: User interfaces designed around commands (actions) rather than CRUD operations"
+  ],
+  "core_concepts_zh": [
+    "命令模型：面向写优化的模型，专注于执行业务规则和维护不变式",
+    "查询模型：为特定UI或API消费模式进行非规范化的读优化投影",
+    "最终一致性：读模型异步更新，可能滞后于写模型",
+    "事件传播：领域事件连接写侧和读侧，作为同步机制",
+    "基于任务的UI：围绕命令（动作）而非CRUD操作设计的用户界面"
+  ],
+  "timeline": [
+    [
+      "1988",
+      "Bertrand Meyer introduces Command-Query Separation (CQS) in 'Object-Oriented Software Construction'"
+    ],
+    [
+      "2010",
+      "Greg Young formalizes CQRS as an architectural pattern and publishes CQRS Documents"
+    ],
+    [
+      "2011",
+      "Microsoft publishes the CQRS Journey guidance project on Azure"
+    ],
+    [
+      "2014",
+      "Axon Framework released for Java, providing first-class CQRS and Event Sourcing support"
+    ],
+    [
+      "2019",
+      "CQRS patterns become mainstream in cloud-native and event-driven microservices architectures"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1988",
+      "Bertrand Meyer在《面向对象软件构造》中引入命令查询分离（CQS）"
+    ],
+    [
+      "2010",
+      "Greg Young将CQRS形式化为架构模式并发布CQRS文档"
+    ],
+    [
+      "2011",
+      "Microsoft发布基于Azure的CQRS Journey指导项目"
+    ],
+    [
+      "2014",
+      "Axon Framework发布Java版本，提供CQRS和事件溯源一等支持"
+    ],
+    [
+      "2019",
+      "CQRS模式在云原生和事件驱动微服务架构中成为主流"
+    ]
+  ],
+  "dos": [
+    "Do start with a single database and logical separation before introducing physical read/write stores because premature splitting adds complexity",
+    "Do design read models for specific use cases because one-size-fits-all projections defeat the purpose of CQRS",
+    "Do implement idempotent event handlers because events may be delivered more than once",
+    "Do combine with Event Sourcing when you need a complete audit trail and temporal query capabilities"
+  ],
+  "dos_zh": [
+    "先从单一数据库和逻辑分离开始，再引入物理读写分离，因为过早拆分增加复杂性",
+    "为特定用例设计读模型，因为通用投影违背了CQRS的初衷",
+    "实现幂等的事件处理器，因为事件可能被多次投递",
+    "需要完整审计追踪和时间查询能力时，与事件溯源结合使用"
+  ],
+  "donts": [
+    "Don't apply CQRS to every bounded context because most CRUD-heavy modules don't benefit from the added complexity",
+    "Don't ignore eventual consistency in the UI because users will be confused if they write data and don't see it immediately",
+    "Don't build synchronous projections because it couples the write and read paths, negating CQRS benefits",
+    "Don't skip monitoring the projection lag because undetected delays can cause significant user experience issues"
+  ],
+  "donts_zh": [
+    "不要对每个限界上下文都应用CQRS，大多数以CRUD为主的模块不会从额外复杂性中获益",
+    "不要在UI中忽视最终一致性，用户写入数据后若不能立即看到会感到困惑",
+    "不要构建同步投影，因为这会耦合读写路径，抵消CQRS的好处",
+    "不要忽略投影延迟的监控，未被发现的延迟可能导致严重的用户体验问题"
+  ],
+  "case_study_company": "Microsoft Azure DevOps",
+  "case_study": "Microsoft applied CQRS in Azure DevOps (formerly VSTS) to handle the extreme asymmetry between read and write workloads in work item tracking. The write model enforces complex workflow rules and permissions, while multiple denormalized read models serve dashboards, queries, and reports. This separation allowed the read side to scale independently to handle millions of queries per minute during peak usage without impacting the consistency guarantees of the write path.",
+  "case_study_zh": "Microsoft在Azure DevOps（原VSTS）中应用CQRS来处理工作项跟踪中读写工作负载的极端不对称。写模型执行复杂的工作流规则和权限控制，而多个非规范化读模型服务于仪表盘、查询和报表。这种分离使读侧能够独立扩展，在峰值使用期间处理每分钟数百万次查询，而不影响写路径的一致性保证。",
+  "when_not_to_use": [
+    "Simple CRUD applications where read and write models are nearly identical",
+    "Small-scale systems where the operational overhead of maintaining two models exceeds the benefits",
+    "Domains where strong real-time consistency between reads and writes is a hard requirement"
+  ],
+  "when_not_to_use_zh": [
+    "读写模型几乎相同的简单CRUD应用",
+    "维护两套模型的运维开销超过收益的小规模系统",
+    "读写之间强实时一致性是硬性要求的领域"
+  ],
+  "adopters": [
+    "Microsoft",
+    "Axon",
+    "EventStore",
+    "Walmart",
+    "Booking.com"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "performance",
+    "scalability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Greg Young (2010). \"CQRS Documents\". cqrs.files.wordpress.com.",
+  "secondary_sources": [
+    "Bertrand Meyer (1988). \"Object-Oriented Software Construction\". Prentice Hall. Command-Query Separation principle.",
+    "Martin Fowler (2011). \"CQRS\". martinfowler.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "event-sourcing-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "eda",
+      "type": "prerequisite"
+    },
+    {
+      "slug": "domain-driven-design",
+      "type": "prerequisite"
+    },
+    {
+      "slug": "saga-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/cqrs-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/cqrs-pattern.md"
+}

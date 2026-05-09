@@ -1,0 +1,195 @@
+{
+  "id": 125,
+  "name": "Leader Election",
+  "name_zh": "领导者选举",
+  "slug": "leader-election",
+  "category": "distributed",
+  "desc": "Coordinate a single leader node among distributed peers to avoid conflicts",
+  "desc_zh": "在分布式对等节点中协调选出单一领导者以避免冲突",
+  "steps": [
+    "Define the leadership scope: determine what resource or responsibility the leader controls (e.g., write coordination, task scheduling, partition ownership)",
+    "Select an election mechanism: choose between consensus-based election (Raft/ZooKeeper), lease-based election (DynamoDB lock, etcd lease), or bully/ring algorithms for simpler topologies",
+    "Implement leader heartbeats: the leader periodically renews a lease or sends heartbeats so followers can detect leader failure within a bounded time",
+    "Handle leader failure: when the heartbeat or lease expires, remaining nodes initiate a new election using the chosen mechanism to converge on a single new leader",
+    "Protect against split-brain: use fencing tokens, epoch numbers, or distributed locks to ensure that a deposed leader cannot continue acting as leader after a new one is elected"
+  ],
+  "steps_zh": [
+    "定义领导权范围：确定领导者控制什么资源或职责（如写协调、任务调度、分区所有权）",
+    "选择选举机制：在基于共识的选举（Raft/ZooKeeper）、基于租约的选举（DynamoDB锁、etcd租约）或适用于简单拓扑的霸道/环形算法之间选择",
+    "实现领导者心跳：领导者定期续约租约或发送心跳，以便跟随者在有界时间内检测到领导者故障",
+    "处理领导者故障：当心跳或租约过期时，剩余节点使用所选机制发起新选举，收敛到单一新领导者",
+    "防止脑裂：使用防护令牌、纪元编号或分布式锁确保被废黜的领导者在新领导者选出后无法继续充当领导者"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Leadership Scope",
+    "Election Mechanism",
+    "Heartbeat",
+    "Failure Detect",
+    "Fencing Token"
+  ],
+  "viz_labels_zh": [
+    "领导范围",
+    "选举机制",
+    "心跳",
+    "故障检测",
+    "隔离令牌"
+  ],
+  "related": [
+    "consensus-protocols",
+    "cap-theorem",
+    "two-phase-commit"
+  ],
+  "tags": [
+    "coordination",
+    "fault-tolerance",
+    "leadership",
+    "distributed-locking"
+  ],
+  "origin_author": "Garcia-Molina (Bully algorithm, 1982); Lamport (Paxos-based election, 1998)",
+  "origin_source": "Elections in a Distributed Computing System (IEEE, 1982); Kleppmann, Designing Data-Intensive Applications, Ch. 8 & 9; Nygard, Release It!, Ch. 12",
+  "origin_source_zh": "《分布式计算系统中的选举》（IEEE，1982）；Kleppmann《数据密集型应用系统设计》第8章和第9章；Nygard《Release It!》第12章",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When exactly one node must coordinate writes or task assignment to prevent conflicts or duplicate work",
+    "When a distributed scheduler or cron-like system needs a single active instance to avoid running duplicate jobs",
+    "When implementing master-slave replication where one node must be the authoritative writer at any given time",
+    "When partitioned data processing requires a single coordinator to assign work units to workers without overlap"
+  ],
+  "when_to_use_zh": [
+    "当恰好一个节点必须协调写入或任务分配以防止冲突或重复工作时",
+    "当分布式调度器或类cron系统需要单一活跃实例以避免运行重复作业时",
+    "当实现主从复制且在任意时刻需要一个权威写入节点时",
+    "当分区数据处理需要单一协调者向工作者分配无重叠的工作单元时"
+  ],
+  "core_concepts": [
+    "Lease-based leadership: The leader holds a time-bounded lease that must be periodically renewed; if the lease expires, other nodes can claim leadership",
+    "Fencing tokens: Monotonically increasing tokens issued with each new leader that allow storage systems to reject stale writes from former leaders",
+    "Split-brain prevention: Mechanisms to ensure at most one leader is active at any time, even during network partitions, typically requiring a quorum or external lock service",
+    "Graceful handoff: The outgoing leader completes in-flight operations and releases its lease cleanly before the new leader takes over, minimizing disruption",
+    "Leader liveness detection: Heartbeat intervals and timeout thresholds that balance fast failure detection against false positives from temporary network glitches"
+  ],
+  "core_concepts_zh": [
+    "基于租约的领导权：领导者持有有时间限制的租约，必须定期续约；如果租约过期，其他节点可以竞选领导权",
+    "防护令牌：每次新领导者产生时发放的单调递增令牌，允许存储系统拒绝来自前任领导者的过期写入",
+    "脑裂防护：确保在任何时刻最多只有一个活跃领导者的机制，即使在网络分区期间也是如此，通常需要法定人数或外部锁服务",
+    "优雅交接：即将卸任的领导者完成进行中的操作并干净地释放租约，然后新领导者接管，最小化中断",
+    "领导者活性检测：心跳间隔和超时阈值，在快速故障检测与临时网络抖动引起的误报之间取得平衡"
+  ],
+  "timeline": [
+    [
+      "1982",
+      "Hector Garcia-Molina publishes the Bully algorithm and Ring algorithm for leader election in distributed systems"
+    ],
+    [
+      "1998",
+      "Lamport's Paxos provides a consensus-based foundation for leader election in asynchronous systems"
+    ],
+    [
+      "2010",
+      "Apache ZooKeeper's ephemeral nodes and sequential znodes become the de facto leader election primitive in the Hadoop ecosystem"
+    ],
+    [
+      "2014",
+      "Raft formalizes leader election as an explicit sub-protocol with randomized timeouts for simplicity"
+    ],
+    [
+      "2017",
+      "Kleppmann's DDIA warns about the dangers of leader election without fencing tokens, citing real-world split-brain incidents"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1982",
+      "Hector Garcia-Molina发表分布式系统中领导者选举的霸道算法和环形算法"
+    ],
+    [
+      "1998",
+      "Lamport的Paxos为异步系统中的领导者选举提供基于共识的基础"
+    ],
+    [
+      "2010",
+      "Apache ZooKeeper的临时节点和顺序znode成为Hadoop生态中事实上的领导者选举原语"
+    ],
+    [
+      "2014",
+      "Raft将领导者选举形式化为带随机超时的显式子协议，追求简洁性"
+    ],
+    [
+      "2017",
+      "Kleppmann的《数据密集型应用系统设计》警告不使用防护令牌进行领导者选举的危险，引用真实的脑裂事故"
+    ]
+  ],
+  "dos": [
+    "Do use fencing tokens for all leader-gated operations because a network-partitioned former leader may not know it has been replaced",
+    "Do set lease timeouts carefully: too short causes unnecessary re-elections during GC pauses, too long delays failover",
+    "Do implement graceful leader shutdown that releases the lease proactively because it enables faster handoff without waiting for lease expiry",
+    "Do test leader election under network partition scenarios because correctness bugs only surface when split-brain conditions actually occur"
+  ],
+  "dos_zh": [
+    "对所有领导者门控操作使用防护令牌，因为被网络分区隔离的前任领导者可能不知道自己已被替换",
+    "仔细设置租约超时：过短会在GC暂停期间导致不必要的重新选举，过长则延迟故障转移",
+    "实现主动释放租约的优雅领导者关闭，因为这能实现更快的交接而无需等待租约过期",
+    "在网络分区场景下测试领导者选举，因为正确性缺陷只在脑裂条件实际发生时才会浮现"
+  ],
+  "donts": [
+    "Don't rely solely on heartbeat absence to detect leader failure because network delays and GC pauses can cause false positives leading to unnecessary elections",
+    "Don't assume the leader election result is globally visible immediately because propagation delays mean some nodes may still believe the old leader is active",
+    "Don't use leader election when the workload can be partitioned among all nodes because a single leader becomes a throughput bottleneck",
+    "Don't implement your own leader election from scratch when proven implementations exist because subtle correctness bugs in election protocols are notoriously difficult to detect"
+  ],
+  "donts_zh": [
+    "不要仅依赖心跳缺失来检测领导者故障，因为网络延迟和GC暂停会导致误报从而引发不必要的选举",
+    "不要假设领导者选举结果对所有节点立即可见，因为传播延迟意味着某些节点可能仍认为旧领导者活跃",
+    "不要在工作负载可以在所有节点间分区时使用领导者选举，因为单一领导者会成为吞吐瓶颈",
+    "不要在已有经过验证的实现时从头实现领导者选举，因为选举协议中微妙的正确性缺陷出了名地难以检测"
+  ],
+  "case_study_company": "Apache Kafka",
+  "case_study": "Apache Kafka uses leader election to assign a single broker as the leader for each topic partition. Prior to KRaft (Kafka Raft), Kafka relied on Apache ZooKeeper for controller election, where one broker served as the cluster controller responsible for partition leader assignment. When a broker failed, ZooKeeper's session timeout triggered controller failover, which then reassigned partition leaders. This process could take 30+ seconds for large clusters. With the introduction of KRaft in Kafka 3.3 (2022), Kafka eliminated the ZooKeeper dependency by implementing Raft-based leader election internally, reducing controller failover time to under 10 seconds and simplifying the operational model from two distributed systems to one.",
+  "case_study_zh": "Apache Kafka使用领导者选举为每个主题分区分配单一代理作为领导者。在KRaft（Kafka Raft）之前，Kafka依赖Apache ZooKeeper进行控制器选举，一个代理充当集群控制器负责分区领导者分配。当代理故障时，ZooKeeper的会话超时触发控制器故障转移，然后重新分配分区领导者。对于大型集群此过程可能需要30秒以上。随着Kafka 3.3（2022）引入KRaft，Kafka消除了ZooKeeper依赖，通过内部实现基于Raft的领导者选举，将控制器故障转移时间缩短到10秒以内，并将运维模型从两个分布式系统简化为一个。",
+  "when_not_to_use": [
+    "Stateless services behind a load balancer where any instance can handle any request without coordination",
+    "Peer-to-peer systems designed for symmetric participation where introducing a leader adds unnecessary centralization",
+    "Systems where brief periods of duplicate processing are acceptable and cheaper than the complexity of leader election"
+  ],
+  "when_not_to_use_zh": [
+    "负载均衡器后的无状态服务，任何实例都能处理任何请求而无需协调",
+    "设计为对称参与的点对点系统，引入领导者会增加不必要的集中化",
+    "短暂的重复处理可接受且成本低于领导者选举复杂性的系统"
+  ],
+  "adopters": [
+    "Apache Kafka (KRaft)",
+    "Apache ZooKeeper",
+    "etcd",
+    "Redis Sentinel",
+    "Elasticsearch"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "scalability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Garcia-Molina, H. (1982). \"Elections in a Distributed Computing System\". IEEE Transactions on Computers, C-31(1).",
+  "secondary_sources": [
+    "Kleppmann, M. (2017). \"Designing Data-Intensive Applications\", Ch. 8 & 9. O'Reilly Media.",
+    "Lamport, L. (1998). \"The Part-Time Parliament\". ACM Transactions on Computer Systems, 16(2)."
+  ],
+  "typed_relations": [
+    {
+      "slug": "consensus-protocols",
+      "type": "extends"
+    },
+    {
+      "slug": "cap-theorem",
+      "type": "prerequisite"
+    },
+    {
+      "slug": "two-phase-commit",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/leader-election",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/leader-election.md"
+}

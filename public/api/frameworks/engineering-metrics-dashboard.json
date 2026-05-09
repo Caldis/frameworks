@@ -1,0 +1,190 @@
+{
+  "id": 218,
+  "name": "Engineering Metrics Dashboard",
+  "name_zh": "工程指标仪表板",
+  "slug": "engineering-metrics-dashboard",
+  "category": "team",
+  "desc": "DORA metrics, developer satisfaction, and quality metrics unified in the SPACE framework",
+  "desc_zh": "在SPACE框架中统一的DORA指标、开发者满意度和质量指标",
+  "steps": [
+    "Select the metric framework: DORA (Deployment Frequency, Lead Time for Changes, Change Failure Rate, Time to Restore Service) plus SPACE dimensions (Satisfaction, Performance, Activity, Communication, Efficiency)",
+    "Instrument the delivery pipeline to collect DORA metrics automatically: connect CI/CD, incident management, and version control systems to a metrics aggregation platform (LinearB, Jellyfish, Sleuth, or custom)",
+    "Survey developers quarterly using validated satisfaction instruments (Developer Experience Index, DevEx survey) to capture the subjective SPACE dimensions that pipeline data cannot measure",
+    "Build a dashboard visible to teams, managers, and leadership that shows trends over time (not just current snapshots) and highlights leading indicators like PR cycle time alongside lagging indicators like MTTR",
+    "Hold a monthly metrics review with the team to interpret trends, set improvement targets for the next quarter, and connect metric improvements to engineering investments"
+  ],
+  "steps_zh": [
+    "选择指标框架：DORA（部署频率、变更前置时间、变更失败率、服务恢复时间）加上SPACE维度（满意度、性能、活动、沟通、效率）",
+    "对交付流水线进行仪器化以自动收集DORA指标：将CI/CD、事故管理和版本控制系统连接到指标聚合平台（LinearB、Jellyfish、Sleuth或自定义）",
+    "使用经过验证的满意度工具（开发者体验指数、DevEx调查）每季度调查开发者，捕获流水线数据无法衡量的主观SPACE维度",
+    "构建对团队、管理者和领导层可见的仪表板，显示随时间的趋势（而不仅仅是当前快照），并突出显示PR周期时间等先导指标以及MTTR等滞后指标",
+    "与团队进行月度指标回顾，解读趋势，为下一季度设定改进目标，并将指标改进与工程投资联系起来"
+  ],
+  "ai_relevant": true,
+  "viz_type": "radar",
+  "viz_labels": [
+    "Deployment Freq",
+    "Lead Time",
+    "Change Failure Rate",
+    "MTTR",
+    "Satisfaction"
+  ],
+  "viz_labels_zh": [
+    "部署频率",
+    "交付周期",
+    "变更失败率",
+    "恢复时间",
+    "满意度"
+  ],
+  "related": [
+    "blameless-postmortems"
+  ],
+  "tags": [
+    "dora",
+    "space-framework",
+    "metrics",
+    "developer-experience",
+    "engineering-effectiveness"
+  ],
+  "origin_author": "DORA research (Nicole Forsgren et al., 2018); SPACE framework (Forsgren et al., 2021, ACM Queue)",
+  "origin_source": "Forsgren, N., Humble, J. & Kim, G. (2018). \"Accelerate\". IT Revolution Press; Forsgren, N. et al. (2021). \"The SPACE of Developer Productivity\". ACM Queue.",
+  "origin_source_zh": "Forsgren, N., Humble, J. & Kim, G.（2018）「加速」，IT Revolution Press；Forsgren, N.等（2021）「开发者生产力的SPACE」，ACM Queue",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When engineering leadership needs objective data to justify investments in developer tooling, platform engineering, or technical debt reduction",
+    "When the organization is scaling rapidly and delivery performance needs to be tracked across multiple teams without relying on anecdotal evidence",
+    "When there is disagreement between engineering and product/business about whether engineering capacity is being used effectively",
+    "When attrition surveys cite developer experience as a concern and leadership wants to track whether investments in DX are yielding measurable improvement"
+  ],
+  "when_to_use_zh": [
+    "当工程领导层需要客观数据来证明对开发者工具、平台工程或技术债务减少的投资合理时",
+    "当组织快速扩展，需要在不依赖轶事证据的情况下跨多个团队跟踪交付性能时",
+    "当工程团队与产品/业务之间对工程容量是否被有效使用存在分歧时",
+    "当流失率调查将开发者体验列为关注点，领导层希望跟踪DX投资是否产生可衡量的改进时"
+  ],
+  "core_concepts": [
+    "DORA Metrics: Four evidence-backed metrics from the DevOps Research and Assessment program — Deployment Frequency, Lead Time for Changes, Change Failure Rate, and Time to Restore Service — that predict organizational performance",
+    "SPACE Framework: Five dimensions of developer productivity (Satisfaction and wellbeing, Performance, Activity, Communication and collaboration, Efficiency and flow) that together provide a holistic view beyond throughput metrics",
+    "Elite Performers Benchmark: DORA research defines four performance bands; Elite teams deploy multiple times per day with <1h lead time, <15% change failure rate, and <1h MTTR — a target for continuous improvement",
+    "Leading vs Lagging Indicators: PR cycle time and build duration are leading indicators that predict future DORA metrics; MTTR and change failure rate are lagging indicators of actual production outcomes",
+    "Goodhart's Law Risk: When a measure becomes a target, it ceases to be a good measure — engineering metrics must be used for learning and improvement, not as performance evaluation for individual engineers"
+  ],
+  "core_concepts_zh": [
+    "DORA指标：来自DevOps研究与评估项目的四个有证据支持的指标——部署频率、变更前置时间、变更失败率和服务恢复时间——预测组织绩效",
+    "SPACE框架：开发者生产力的五个维度（满意度和幸福感、性能、活动、沟通与协作、效率和流状态），共同提供超越吞吐量指标的整体视图",
+    "精英表现者基准：DORA研究定义了四个绩效档次；精英团队每天部署多次，前置时间<1小时，变更失败率<15%，MTTR<1小时——这是持续改进的目标",
+    "先导指标与滞后指标：PR周期时间和构建时长是预测未来DORA指标的先导指标；MTTR和变更失败率是实际生产结果的滞后指标",
+    "古德哈特定律风险：当一个指标成为目标时，它就不再是好的指标——工程指标必须用于学习和改进，而不是作为对个别工程师的绩效评估"
+  ],
+  "timeline": [
+    [
+      "2014",
+      "DORA (DevOps Research and Assessment) founded by Nicole Forsgren, Jez Humble, and Gene Kim to study software delivery performance"
+    ],
+    [
+      "2018",
+      "Accelerate book publishes DORA research findings, establishing the four key metrics as industry standard for software delivery performance"
+    ],
+    [
+      "2019",
+      "Google acquires DORA; the annual State of DevOps Report becomes the definitive benchmark for engineering performance across industries"
+    ],
+    [
+      "2021",
+      "SPACE framework published in ACM Queue, extending productivity measurement beyond pipeline metrics to include developer satisfaction and flow"
+    ],
+    [
+      "2023",
+      "McKinsey Developer Productivity report triggers industry debate; DORA and SPACE researchers respond, reinforcing multi-dimensional measurement over simplistic metrics"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2014",
+      "DORA（DevOps研究与评估）由Nicole Forsgren、Jez Humble和Gene Kim创立，研究软件交付性能"
+    ],
+    [
+      "2018",
+      "「加速」一书发布DORA研究成果，将四个关键指标确立为软件交付性能的行业标准"
+    ],
+    [
+      "2019",
+      "Google收购DORA；年度DevOps状态报告成为跨行业工程性能的权威基准"
+    ],
+    [
+      "2021",
+      "SPACE框架发表在ACM Queue，将生产力测量从流水线指标扩展到包括开发者满意度和流状态"
+    ],
+    [
+      "2023",
+      "麦肯锡开发者生产力报告引发行业辩论；DORA和SPACE研究人员回应，强调多维度测量而非简单化指标"
+    ]
+  ],
+  "dos": [
+    "Do measure DORA metrics at the team level, not the individual level, because they are systems-level indicators of team and organizational performance",
+    "Do combine quantitative pipeline metrics with qualitative developer surveys because throughput metrics without satisfaction data miss half the picture",
+    "Do share dashboards transparently with teams rather than only with management because teams improve faster when they can see their own metrics",
+    "Do use metrics to identify systemic investment opportunities (slow CI, flaky tests, manual deployments) rather than to evaluate individual engineers"
+  ],
+  "dos_zh": [
+    "在团队层面而非个人层面测量DORA指标，因为它们是团队和组织绩效的系统级指标",
+    "将定量流水线指标与定性开发者调查结合起来，因为没有满意度数据的吞吐量指标只看到了一半情况",
+    "向团队透明地共享仪表板，而不仅仅与管理层共享，因为当团队能看到自己的指标时，他们改进更快",
+    "使用指标来识别系统性投资机会（缓慢的CI、不稳定的测试、手动部署），而不是评估个别工程师"
+  ],
+  "donts": [
+    "Don't use DORA metrics as a performance management tool for individual engineers because it drives gaming behavior and destroys the trust needed for honest reporting",
+    "Don't track activity metrics (commits per day, PRs merged) as proxies for productivity because they incentivize quantity over quality and discourage large, impactful changes",
+    "Don't compare metrics across teams without controlling for domain complexity because a team maintaining a legacy payment system will have different metrics than a team building a new microservice",
+    "Don't treat metrics as a substitute for direct conversation with engineers about what is slowing them down"
+  ],
+  "donts_zh": [
+    "不要将DORA指标用作对个别工程师的绩效管理工具，因为这会驱动博弈行为并破坏诚实报告所需的信任",
+    "不要将活动指标（每天提交次数、合并的PR）作为生产力的代理，因为它们激励数量而非质量，并阻碍大型有影响力的变更",
+    "不要在不控制领域复杂度的情况下跨团队比较指标，因为维护遗留支付系统的团队与构建新微服务的团队会有不同的指标",
+    "不要将指标视为与工程师直接对话关于什么在减慢他们速度的替代品"
+  ],
+  "case_study_company": "Puppet / DORA State of DevOps",
+  "case_study": "The DORA State of DevOps research program, spanning 2014-2023 with over 33,000 survey respondents across industries, validated that elite software delivery performance (high deployment frequency, low change failure rate, fast MTTR) is statistically correlated with better organizational outcomes — higher profitability, market share growth, and employee satisfaction. Companies that adopted DORA metrics and tracked them as team health indicators, rather than management KPIs, consistently outperformed their peers. The research also found that psychological safety — the ability for engineers to report failures without fear — was the strongest predictor of both high DORA performance and innovation outcomes.",
+  "case_study_zh": "DORA DevOps状态研究项目跨越2014-2023年，有超过33000名跨行业调查受访者，验证了精英软件交付性能（高部署频率、低变更失败率、快速MTTR）与更好的组织结果统计相关——更高的盈利能力、市场份额增长和员工满意度。将DORA指标作为团队健康指标而非管理KPI进行跟踪的公司，始终优于同行。研究还发现，心理安全——工程师在没有恐惧的情况下报告失败的能力——是高DORA绩效和创新结果的最强预测因子。",
+  "when_not_to_use": [
+    "Early-stage startups where the engineering team is fewer than 5 people and the overhead of measurement exceeds its benefit",
+    "Research and innovation teams where the goal is exploration rather than delivery throughput, and DORA metrics would incentivize the wrong behaviors",
+    "Organizations where metrics data is consistently used punitively, because introducing metrics in a low-trust environment will cause gaming rather than improvement",
+    "Short-duration project teams (under 6 months) where there is insufficient time to establish baselines and observe trend improvements"
+  ],
+  "when_not_to_use_zh": [
+    "早期创业公司，工程团队少于5人，测量开销超过其收益",
+    "研究和创新团队，目标是探索而非交付吞吐量，DORA指标会激励错误的行为",
+    "指标数据持续被用于惩罚性目的的组织，因为在低信任环境中引入指标会导致博弈而非改进",
+    "持续时间短的项目团队（少于6个月），没有足够时间建立基准和观察趋势改进"
+  ],
+  "adopters": [
+    "Google",
+    "Microsoft",
+    "Capital One",
+    "Nordstrom",
+    "ING Bank"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability",
+    "reliability",
+    "usability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Forsgren, N., Humble, J. & Kim, G. (2018). \"Accelerate: The Science of Lean Software and DevOps\". IT Revolution Press.",
+  "secondary_sources": [
+    "Forsgren, N. et al. (2021). \"The SPACE of Developer Productivity\". ACM Queue, Vol. 19.",
+    "DORA (2023). \"State of DevOps Report 2023\". dora.dev.",
+    "Greening, D. & Keane, S. (2021). \"Engineering Effectiveness at Shopify\". shopify.engineering."
+  ],
+  "typed_relations": [
+    {
+      "slug": "blameless-postmortems",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/engineering-metrics-dashboard",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/engineering-metrics-dashboard.md"
+}

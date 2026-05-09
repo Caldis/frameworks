@@ -1,0 +1,199 @@
+{
+  "id": 13,
+  "name": "Agent-Oriented Design Thinking",
+  "name_zh": "智能体导向设计思维",
+  "slug": "agent-oriented-design-thinking",
+  "category": "thinking",
+  "desc": "Design multi-agent systems around roles, goals, and environments",
+  "desc_zh": "围绕角色、目标与环境设计多智能体系统的思维框架",
+  "steps": [
+    "Define Agent Roles and Goals: specify each agent's purpose, objectives, and the scope of its autonomous decision-making authority",
+    "Model the Environment: describe the state space agents perceive, including data sources, APIs, tools, and world state representations",
+    "Design Agent Communication Protocols: define how agents share observations, delegate tasks, negotiate, and resolve conflicts",
+    "Plan for Emergent Behavior: identify potential unintended interactions between agents and design containment or correction mechanisms",
+    "Establish Evaluation Criteria: define measurable success metrics for individual agent behavior and overall system outcomes"
+  ],
+  "steps_zh": [
+    "定义智能体角色与目标：明确每个智能体的用途、目标以及其自主决策权的范围",
+    "建模环境：描述智能体感知的状态空间，包括数据源、API、工具和世界状态表示",
+    "设计智能体通信协议：定义智能体如何共享观察、委托任务、协商并解决冲突",
+    "规划涌现行为：识别智能体间潜在的非预期交互，并设计遏制或修正机制",
+    "建立评估标准：定义可量化的成功指标，覆盖个体智能体行为和整体系统结果"
+  ],
+  "ai_relevant": true,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Goal",
+    "Perception",
+    "Action",
+    "Memory",
+    "Coordination"
+  ],
+  "viz_labels_zh": [
+    "目标",
+    "感知",
+    "行动",
+    "记忆",
+    "协同"
+  ],
+  "related": [
+    "multi-agent-orchestration-pattern",
+    "agent-communication-protocol",
+    "react-framework"
+  ],
+  "tags": [
+    "agents",
+    "multi-agent",
+    "roles",
+    "goals",
+    "emergent-behavior"
+  ],
+  "origin_author": "Michael Wooldridge & Nicholas Jennings, 1995; extended by modern AI agent frameworks (LangChain, AutoGen, CrewAI), 2023",
+  "origin_source": "Intelligent Agents: Theory and Practice (Michael Wooldridge & Nicholas Jennings, The Knowledge Engineering Review, 1995)",
+  "origin_source_zh": "《智能体：理论与实践》（Michael Wooldridge和Nicholas Jennings，《知识工程评论》，1995年）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When building a system where multiple AI components need to collaborate, delegate tasks, and share state to accomplish a complex goal",
+    "When a single monolithic AI model can't handle the full scope of a task and decomposition into specialized agents improves quality",
+    "When designing autonomous workflows (customer support, code generation, research) that require different AI capabilities at different stages",
+    "When you need to add human checkpoints into an AI pipeline and must clearly define where agents hand off to humans and vice versa"
+  ],
+  "when_to_use_zh": [
+    "当构建多个AI组件需要协作、委托任务和共享状态以完成复杂目标的系统时",
+    "当单个整体式AI模型无法处理任务的全部范围，分解为专业化智能体能提高质量时",
+    "当设计需要在不同阶段使用不同AI能力的自主工作流（客户支持、代码生成、研究）时",
+    "当需要在AI管线中添加人工检查点，必须清晰定义智能体在何处移交给人类及反之时"
+  ],
+  "core_concepts": [
+    "Agent Autonomy: Each agent has defined decision-making authority within its scope, acting on goals rather than following rigid scripts, enabling adaptive behavior",
+    "Environment Modeling: Agents perceive and act within an environment (APIs, databases, tools, user interfaces) that must be explicitly modeled to define the agent's capabilities and constraints",
+    "Inter-Agent Communication: Structured protocols (message passing, shared blackboards, pub/sub) for how agents share information, request help, and resolve conflicting goals",
+    "Emergent Behavior Management: In multi-agent systems, individual agents following simple rules can produce unexpected system-level behavior that must be monitored, contained, and corrected"
+  ],
+  "core_concepts_zh": [
+    "智能体自主性：每个智能体在其范围内有定义的决策权，基于目标行动而非遵循刚性脚本，使自适应行为成为可能",
+    "环境建模：智能体在必须被显式建模的环境（API、数据库、工具、用户界面）中感知和行动，以定义智能体的能力和约束",
+    "智能体间通信：用于智能体如何共享信息、请求帮助和解决目标冲突的结构化协议（消息传递、共享黑板、发布/订阅）",
+    "涌现行为管理：在多智能体系统中，遵循简单规则的个体智能体可能产生需要监控、遏制和修正的意外系统级行为"
+  ],
+  "timeline": [
+    [
+      "1995",
+      "Wooldridge and Jennings publish 'Intelligent Agents: Theory and Practice', establishing the foundational taxonomy of agent architectures (reactive, deliberative, hybrid)"
+    ],
+    [
+      "2003",
+      "The JADE (Java Agent Development Framework) and FIPA standards formalize agent communication languages and interaction protocols for multi-agent systems"
+    ],
+    [
+      "2020",
+      "OpenAI's work on tool-using agents and Google's research on language model agents spark renewed interest in agent-oriented design for LLM-based systems"
+    ],
+    [
+      "2023",
+      "AutoGen (Microsoft), LangChain Agents, and CrewAI launch, providing practical frameworks for building multi-agent LLM systems and making agent design accessible to application developers"
+    ],
+    [
+      "2024",
+      "Anthropic (Claude), OpenAI (Assistants API), and Google (Gemini) release production-grade agent APIs, establishing agent-oriented design as a mainstream software architecture pattern"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1995",
+      "Wooldridge和Jennings发表「智能体：理论与实践」，建立智能体架构（反应式、审思式、混合式）的基础分类"
+    ],
+    [
+      "2003",
+      "JADE（Java智能体开发框架）和FIPA标准正式化了多智能体系统的智能体通信语言和交互协议"
+    ],
+    [
+      "2020",
+      "OpenAI关于工具使用型智能体的工作和Google关于语言模型智能体的研究重新激发了基于LLM系统的智能体导向设计兴趣"
+    ],
+    [
+      "2023",
+      "AutoGen（微软）、LangChain Agents和CrewAI发布，提供构建多智能体LLM系统的实用框架，使应用开发者能进行智能体设计"
+    ],
+    [
+      "2024",
+      "Anthropic（Claude）、OpenAI（Assistants API）和Google（Gemini）发布生产级智能体API，确立智能体导向设计为主流软件架构模式"
+    ]
+  ],
+  "dos": [
+    "Do define explicit boundaries for each agent's autonomy, because unbounded agents make unpredictable decisions that are difficult to debug or control",
+    "Do design agent communication to be observable and loggable, because debugging multi-agent systems requires tracing the conversation between agents",
+    "Do include kill switches and human escalation paths, because autonomous agents can enter loops or produce harmful outputs that need immediate interruption",
+    "Do test multi-agent interactions with adversarial scenarios, because agents will encounter edge cases where their goals conflict or their environment provides unexpected inputs",
+    "Do start with fewer agents and add complexity gradually, because premature decomposition into many agents creates coordination overhead that outweighs the benefits"
+  ],
+  "dos_zh": [
+    "为每个智能体的自主性定义明确边界，因为无边界的智能体会做出难以调试或控制的不可预测决策",
+    "将智能体通信设计为可观察和可日志记录的，因为调试多智能体系统需要追踪智能体之间的对话",
+    "包含紧急停止开关和人工升级路径，因为自主智能体可能进入循环或产生需要立即中断的有害输出",
+    "用对抗性场景测试多智能体交互，因为智能体会遇到其目标冲突或环境提供意外输入的边缘情况",
+    "从较少的智能体开始并逐步增加复杂性，因为过早分解为多个智能体会产生超过收益的协调开销"
+  ],
+  "donts": [
+    "Don't give agents more autonomy than the task requires, because excessive autonomy increases the blast radius of agent errors and makes the system harder to reason about",
+    "Don't design agents without clear failure modes and fallback strategies, because in production, AI agents will encounter situations outside their training distribution",
+    "Don't assume agents will cooperate perfectly, because misaligned goals, prompt injection, or unexpected inputs can cause agents to work at cross-purposes",
+    "Don't build multi-agent systems when a single well-prompted agent would suffice, because multi-agent orchestration adds latency, cost, and debugging complexity"
+  ],
+  "donts_zh": [
+    "不要给予智能体超过任务所需的自主权，因为过度自主会增加智能体错误的影响范围并使系统更难推理",
+    "不要设计没有明确失败模式和回退策略的智能体，因为在生产中AI智能体会遇到其训练分布之外的情况",
+    "不要假设智能体会完美合作，因为目标不对齐、提示注入或意外输入可能导致智能体相互矛盾地工作",
+    "不要在单个精心提示的智能体就够用时构建多智能体系统，因为多智能体编排增加延迟、成本和调试复杂性"
+  ],
+  "case_study_company": "Microsoft (AutoGen)",
+  "case_study": "Microsoft Research developed AutoGen as an open-source framework for building multi-agent LLM applications, applying agent-oriented design principles to real-world AI workflows. In internal deployments, Microsoft used AutoGen to create agent teams for complex coding tasks: a 'Coder' agent writes code, a 'Reviewer' agent critiques it, and a 'Executor' agent runs tests — mimicking a human development team. This multi-agent approach produced higher-quality code than single-agent generation because each agent's specialized role caught different categories of errors, reducing bugs by 25% compared to single-agent baselines in their benchmarks.",
+  "case_study_zh": "微软研究院开发了AutoGen作为构建多智能体LLM应用的开源框架，将智能体导向设计原则应用于实际AI工作流。在内部部署中，微软使用AutoGen为复杂编码任务创建智能体团队：「编码者」智能体编写代码，「审查者」智能体进行评审，「执行者」智能体运行测试——模拟人类开发团队。这种多智能体方法比单智能体生成产出了更高质量的代码，因为每个智能体的专业化角色捕获了不同类别的错误，在其基准测试中相比单智能体基线减少了25%的缺陷。",
+  "when_not_to_use": [
+    "When a single AI model with good prompting can handle the entire task, because unnecessary agent decomposition adds latency and cost without improving quality",
+    "When the task requires deterministic, reproducible outputs and agent autonomy introduces unacceptable variability",
+    "When the budget for LLM API calls is constrained, because multi-agent systems multiply token usage across agent conversations",
+    "When the team lacks experience operating AI systems in production and the debugging complexity of multi-agent systems would overwhelm them"
+  ],
+  "when_not_to_use_zh": [
+    "当单个AI模型配合良好的提示就能处理整个任务时，因为不必要的智能体分解增加延迟和成本而不改善质量",
+    "当任务需要确定性、可重现的输出，智能体自主性引入不可接受的可变性时",
+    "当LLM API调用预算受限时，因为多智能体系统在智能体对话中倍增令牌使用",
+    "当团队缺乏在生产中运营AI系统的经验，多智能体系统的调试复杂性会让他们不堪重负时"
+  ],
+  "adopters": [
+    "Microsoft (AutoGen, Copilot)",
+    "Anthropic (Claude Agent SDK)",
+    "OpenAI (Assistants API)",
+    "Google DeepMind (Gemini Agents)",
+    "LangChain",
+    "CrewAI"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "scalability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Michael Wooldridge and Nicholas Jennings (1995). \"Intelligent Agents: Theory and Practice\". The Knowledge Engineering Review, 10(2).",
+  "secondary_sources": [
+    "Michael Wooldridge (2009). \"An Introduction to MultiAgent Systems, 2nd Edition\". Wiley.",
+    "Stuart Russell and Peter Norvig (2020). \"Artificial Intelligence: A Modern Approach, 4th Edition\". Pearson. Chapter 2: Intelligent Agents."
+  ],
+  "typed_relations": [
+    {
+      "slug": "multi-agent-orchestration-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "agent-communication-protocol",
+      "type": "related"
+    },
+    {
+      "slug": "react-framework",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/agent-oriented-design-thinking",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/agent-oriented-design-thinking.md"
+}

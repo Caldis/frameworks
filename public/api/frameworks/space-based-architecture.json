@@ -1,0 +1,194 @@
+{
+  "id": 169,
+  "name": "Space-Based Architecture",
+  "name_zh": "基于空间的架构",
+  "slug": "space-based-architecture",
+  "category": "architecture",
+  "desc": "Distributed architecture using in-memory data grids and processing units to achieve high scalability by eliminating the central database bottleneck",
+  "desc_zh": "使用内存数据网格和处理单元消除中央数据库瓶颈，实现高可扩展性的分布式架构",
+  "steps": [
+    "Identify processing units: self-contained modules that include business logic, an in-memory data grid, and optional async persistence",
+    "Deploy a virtualized middleware layer that manages data replication, request routing, and processing unit orchestration",
+    "Configure the in-memory data grid for data replication across processing units so each unit has a local copy of shared data",
+    "Implement asynchronous data pumps to persist in-memory state to the database for durability without blocking request processing",
+    "Add elasticity by configuring the middleware to dynamically spin up or shut down processing units based on load thresholds"
+  ],
+  "steps_zh": [
+    "识别处理单元：包含业务逻辑、内存数据网格和可选异步持久化的自包含模块",
+    "部署虚拟化中间件层，管理数据复制、请求路由和处理单元编排",
+    "配置内存数据网格在处理单元间进行数据复制，使每个单元拥有共享数据的本地副本",
+    "实现异步数据泵，将内存状态持久化到数据库以确保持久性，而不阻塞请求处理",
+    "通过配置中间件根据负载阈值动态启动或关闭处理单元来增加弹性"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Processing Unit",
+    "Tuple Space",
+    "Messaging Grid",
+    "Data Grid"
+  ],
+  "viz_labels_zh": [
+    "处理单元",
+    "元组空间",
+    "消息网格",
+    "数据网格"
+  ],
+  "related": [
+    "microservices-decomposition",
+    "eda",
+    "cqrs-pattern"
+  ],
+  "tags": [
+    "scalability",
+    "in-memory",
+    "data-grid",
+    "elasticity",
+    "distributed-processing"
+  ],
+  "origin_author": "Mark Richards, 2006; formalized in Richards & Ford, 2020",
+  "origin_source": "Fundamentals of Software Architecture (O'Reilly, Richards & Ford, 2020); originally from Software Architecture Patterns (O'Reilly, 2015)",
+  "origin_source_zh": "《软件架构基础》（O'Reilly，Richards和Ford，2020年）；最初来自《软件架构模式》（O'Reilly，2015年）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When the application must handle extreme spikes in concurrent users, such as concert ticket sales or flash sales",
+    "When the central database is the primary bottleneck and traditional scaling strategies have been exhausted",
+    "When ultra-low latency is required and data can be served from in-memory grids rather than disk-based stores",
+    "When the system needs elastic scaling that responds to load changes in seconds rather than minutes"
+  ],
+  "when_to_use_zh": [
+    "当应用必须处理并发用户的极端峰值，如演唱会售票或闪购时",
+    "当中央数据库是主要瓶颈且传统扩展策略已用尽时",
+    "当需要超低延迟且数据可从内存网格而非磁盘存储中提供时",
+    "当系统需要在数秒而非数分钟内响应负载变化的弹性扩展时"
+  ],
+  "core_concepts": [
+    "Processing unit: A self-contained deployment unit with business logic, in-memory data, and optional async persistence bundled together",
+    "Virtualized middleware: The infrastructure layer that handles routing, session management, data replication, and unit orchestration",
+    "In-memory data grid: Distributed caching technology that replicates data across processing units for fast local access",
+    "Data pump: Asynchronous component that writes in-memory data changes to the persistent store without blocking user requests",
+    "Elastic scaling: The ability to add or remove processing units dynamically based on real-time load metrics"
+  ],
+  "core_concepts_zh": [
+    "处理单元：将业务逻辑、内存数据和可选异步持久化捆绑在一起的自包含部署单元",
+    "虚拟化中间件：处理路由、会话管理、数据复制和单元编排的基础设施层",
+    "内存数据网格：在处理单元间复制数据以实现快速本地访问的分布式缓存技术",
+    "数据泵：将内存数据变更异步写入持久存储而不阻塞用户请求的组件",
+    "弹性扩展：基于实时负载指标动态添加或移除处理单元的能力"
+  ],
+  "timeline": [
+    [
+      "2004",
+      "JavaSpaces and tuple space concepts inspire distributed in-memory processing patterns"
+    ],
+    [
+      "2006",
+      "Mark Richards introduces space-based architecture as a pattern for extreme scalability"
+    ],
+    [
+      "2012",
+      "GigaSpaces, Hazelcast, and Apache Ignite mature as enterprise in-memory data grid platforms"
+    ],
+    [
+      "2015",
+      "Richards publishes Software Architecture Patterns with a dedicated chapter on space-based architecture"
+    ],
+    [
+      "2020",
+      "Richards and Ford provide comprehensive analysis of space-based architecture in Fundamentals of Software Architecture"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2004",
+      "JavaSpaces和元组空间概念启发了分布式内存处理模式"
+    ],
+    [
+      "2006",
+      "Mark Richards提出基于空间的架构作为极端可扩展性的模式"
+    ],
+    [
+      "2012",
+      "GigaSpaces、Hazelcast和Apache Ignite作为企业内存数据网格平台趋于成熟"
+    ],
+    [
+      "2015",
+      "Richards出版《软件架构模式》，设专章讨论基于空间的架构"
+    ],
+    [
+      "2020",
+      "Richards和Ford在《软件架构基础》中对基于空间的架构进行全面分析"
+    ]
+  ],
+  "dos": [
+    "Do design processing units to be stateless across requests because it enables seamless horizontal scaling and failover",
+    "Do implement robust data replication monitoring because silent replication failures lead to data inconsistency",
+    "Do use asynchronous data pumps for persistence because synchronous writes to the database reintroduce the bottleneck",
+    "Do test with realistic load spikes because space-based architecture only proves its value under extreme concurrency"
+  ],
+  "dos_zh": [
+    "将处理单元设计为跨请求无状态，因为这能实现无缝的水平扩展和故障转移",
+    "实施健壮的数据复制监控，因为静默的复制失败会导致数据不一致",
+    "使用异步数据泵进行持久化，因为同步写入数据库会重新引入瓶颈",
+    "使用真实的负载峰值进行测试，因为基于空间的架构只有在极端并发下才能证明其价值"
+  ],
+  "donts": [
+    "Don't use space-based architecture for systems with low concurrency because the complexity is not justified for moderate loads",
+    "Don't assume eventual consistency is acceptable for all operations because some transactions require strong consistency guarantees",
+    "Don't neglect data collision handling because concurrent updates to the same data across processing units cause conflicts",
+    "Don't skip capacity planning for the in-memory grid because memory exhaustion causes cascading failures"
+  ],
+  "donts_zh": [
+    "不要在低并发系统中使用基于空间的架构，因为对中等负载而言复杂度不合理",
+    "不要假设最终一致性对所有操作都可接受，因为某些事务需要强一致性保证",
+    "不要忽视数据冲突处理，因为处理单元间对同一数据的并发更新会造成冲突",
+    "不要跳过内存网格的容量规划，因为内存耗尽会导致级联故障"
+  ],
+  "case_study_company": "Ticketmaster",
+  "case_study": "Ticketmaster adopted a space-based architecture to handle the extreme traffic spikes during major concert on-sales, where millions of users simultaneously compete for limited tickets. By deploying processing units with in-memory data grids, Ticketmaster eliminated the database as the bottleneck during peak demand. Each processing unit holds a replicated copy of available inventory, enabling sub-millisecond seat lookups. Asynchronous data pumps persist purchase confirmations to the database. This architecture allowed Ticketmaster to handle over 14 billion API calls per day during peak events while maintaining response times under 50 milliseconds.",
+  "case_study_zh": "Ticketmaster采用基于空间的架构来处理大型演唱会开售时的极端流量峰值，数百万用户同时竞争有限的门票。通过部署带有内存数据网格的处理单元，Ticketmaster消除了峰值需求时数据库的瓶颈。每个处理单元持有可用库存的复制副本，实现亚毫秒级的座位查询。异步数据泵将购买确认持久化到数据库。该架构使Ticketmaster在峰值事件期间每天处理超过140亿次API调用，同时保持响应时间在50毫秒以内。",
+  "when_not_to_use": [
+    "Applications with low or predictable traffic that do not justify the operational complexity of distributed in-memory grids",
+    "Systems requiring strong transactional consistency where eventual consistency is unacceptable",
+    "Budget-constrained projects where the high memory and infrastructure costs of in-memory data grids are prohibitive"
+  ],
+  "when_not_to_use_zh": [
+    "流量低或可预测的应用，不足以证明分布式内存网格的运维复杂度",
+    "需要强事务一致性、最终一致性不可接受的系统",
+    "预算有限的项目，内存数据网格的高内存和基础设施成本难以承受"
+  ],
+  "adopters": [
+    "Ticketmaster",
+    "GigaSpaces",
+    "Bloomberg",
+    "Goldman Sachs",
+    "eBay"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "scalability",
+    "performance"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Mark Richards (2015). \"Software Architecture Patterns\". O'Reilly Media.",
+  "secondary_sources": [
+    "Mark Richards and Neal Ford (2020). \"Fundamentals of Software Architecture\". O'Reilly Media.",
+    "Nati Shalom (2006). \"Space-Based Architecture and the End of Tier-Based Computing\". GigaSpaces."
+  ],
+  "typed_relations": [
+    {
+      "slug": "microservices-decomposition",
+      "type": "complement"
+    },
+    {
+      "slug": "eda",
+      "type": "related"
+    },
+    {
+      "slug": "cqrs-pattern",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/space-based-architecture",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/space-based-architecture.md"
+}

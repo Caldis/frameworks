@@ -1,0 +1,195 @@
+{
+  "id": 257,
+  "name": "NIST Cybersecurity Framework",
+  "name_zh": "NIST网络安全框架",
+  "slug": "nist-cybersecurity-framework",
+  "category": "security",
+  "desc": "A voluntary risk-based framework organizing cybersecurity activities into five concurrent functions: Identify, Protect, Detect, Respond, Recover",
+  "desc_zh": "一个基于风险的自愿性框架，将网络安全活动组织为五个并发功能：识别、保护、检测、响应、恢复",
+  "steps": [
+    "Identify: Develop organizational understanding of systems, assets, data, and capabilities; conduct risk assessments and establish a governance structure for cybersecurity",
+    "Protect: Implement safeguards for critical services — access control, awareness training, data security, maintenance, and protective technology deployment",
+    "Detect: Define activities to identify cybersecurity events through continuous monitoring, anomaly detection, and security event logging",
+    "Respond: Develop and implement response plans, coordinate communications, perform analysis, execute mitigation activities, and conduct post-incident reviews",
+    "Recover: Identify and prioritize recovery activities, implement improvements based on lessons learned, and coordinate restoration of services and communications"
+  ],
+  "steps_zh": [
+    "识别：建立对系统、资产、数据和能力的组织理解；进行风险评估并建立网络安全治理结构",
+    "保护：为关键服务实施保护措施——访问控制、意识培训、数据安全、维护和保护技术部署",
+    "检测：通过持续监控、异常检测和安全事件日志记录定义识别网络安全事件的活动",
+    "响应：制定和实施响应计划，协调沟通，执行分析，实施缓解活动，并进行事后审查",
+    "恢复：识别和优先处理恢复活动，基于经验教训实施改进，协调服务和通信的恢复"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "Identify",
+    "Protect",
+    "Detect",
+    "Respond",
+    "Recover"
+  ],
+  "viz_labels_zh": [
+    "识别",
+    "保护",
+    "检测",
+    "响应",
+    "恢复"
+  ],
+  "related": [
+    "defense-in-depth",
+    "incident-response-playbook",
+    "security-development-lifecycle",
+    "zero-trust-architecture"
+  ],
+  "tags": [
+    "nist",
+    "risk-management",
+    "governance",
+    "compliance",
+    "cybersecurity"
+  ],
+  "origin_author": "NIST",
+  "origin_source": "NIST (2014). \"Framework for Improving Critical Infrastructure Cybersecurity\". NIST, Gaithersburg, MD.",
+  "origin_source_zh": "NIST（2014）。「改善关键基础设施网络安全框架」。NIST，盖瑟斯堡，马里兰州。",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When an organization needs a common language and structure to communicate cybersecurity risk to executives, boards, and regulators",
+    "During cybersecurity program maturity assessments to identify gaps between current and target security postures",
+    "In critical infrastructure sectors (energy, finance, healthcare) where the framework was originally designed and has regulatory recognition",
+    "When integrating cybersecurity requirements across a complex supply chain with multiple vendors and partners"
+  ],
+  "when_to_use_zh": [
+    "当组织需要通用语言和结构向高管、董事会和监管机构传达网络安全风险时",
+    "在网络安全计划成熟度评估期间，识别当前和目标安全态势之间的差距",
+    "在关键基础设施领域（能源、金融、医疗），框架最初为此设计并获得监管认可",
+    "在跨多个供应商和合作伙伴的复杂供应链中整合网络安全要求时"
+  ],
+  "core_concepts": [
+    "Framework Core: Five concurrent and continuous functions (Identify, Protect, Detect, Respond, Recover) each subdivided into Categories and Subcategories with informative references",
+    "Implementation Tiers: Four tiers (Partial, Risk Informed, Repeatable, Adaptive) describing the degree to which cybersecurity risk management practices exhibit key characteristics",
+    "Framework Profile: An organization's unique alignment of requirements, objectives, and resources against the Core, representing current state or desired target state",
+    "Risk-Based Approach: Prioritization of cybersecurity investments based on business impact and likelihood of threats rather than compliance checkboxes",
+    "Informative References: Mappings to existing standards (ISO 27001, COBIT, NIST SP 800-53) enabling organizations to use the CSF as a Rosetta Stone across frameworks"
+  ],
+  "core_concepts_zh": [
+    "框架核心：五个并发持续的功能（识别、保护、检测、响应、恢复），每个功能细分为带有参考信息的类别和子类别",
+    "实施层级：四个层级（部分、风险知情、可重复、自适应），描述网络安全风险管理实践展示关键特征的程度",
+    "框架概要：组织的需求、目标和资源与核心的独特对齐，代表当前状态或期望的目标状态",
+    "基于风险的方法：根据业务影响和威胁可能性而非合规清单来优先考虑网络安全投资",
+    "参考信息：映射到现有标准（ISO 27001、COBIT、NIST SP 800-53），使组织能够将CSF用作跨框架的通用语言"
+  ],
+  "timeline": [
+    [
+      "2013",
+      "Executive Order 13636 directs NIST to develop a cybersecurity framework for critical infrastructure following major grid attacks"
+    ],
+    [
+      "2014",
+      "NIST CSF v1.0 published after extensive public-private collaboration with over 3,000 stakeholders"
+    ],
+    [
+      "2018",
+      "NIST CSF v1.1 adds supply chain risk management subcategories and clarifies authentication guidance"
+    ],
+    [
+      "2024",
+      "NIST CSF v2.0 published, adding a sixth function (Govern) and expanding scope beyond critical infrastructure to all organizations"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2013",
+      "13636号行政令指示NIST在主要电网攻击后为关键基础设施制定网络安全框架"
+    ],
+    [
+      "2014",
+      "NIST CSF v1.0在与3,000多个利益相关者广泛公私合作后发布"
+    ],
+    [
+      "2018",
+      "NIST CSF v1.1增加供应链风险管理子类别并澄清认证指南"
+    ],
+    [
+      "2024",
+      "NIST CSF v2.0发布，增加第六个功能（治理）并将范围从关键基础设施扩展到所有组织"
+    ]
+  ],
+  "dos": [
+    "Use the Framework Profile to create a gap analysis between current and target states, then roadmap investments to close prioritized gaps",
+    "Map your existing controls to CSF subcategories before buying new tools — most mature organizations already cover 60-70% of the framework",
+    "Engage executives with Tier assessments rather than technical subcategory details, as Tiers communicate maturity in business language",
+    "Revisit your Framework Profile annually or after major architecture changes to keep the risk picture current"
+  ],
+  "dos_zh": [
+    "使用框架概要在当前状态和目标状态之间创建差距分析，然后制定路线图投资以缩小优先差距",
+    "在购买新工具之前将现有控制措施映射到CSF子类别——大多数成熟组织已经覆盖框架的60-70%",
+    "用层级评估而非技术子类别细节与高管互动，因为层级以商业语言传达成熟度",
+    "每年或在重大架构变更后重新审视框架概要，以保持风险图景的时效性"
+  ],
+  "donts": [
+    "Don't treat CSF as a compliance checklist — it is a risk management tool and every organization's target profile should reflect its unique risk appetite",
+    "Don't attempt to reach Tier 4 (Adaptive) across all functions simultaneously because the resource cost is prohibitive and most organizations benefit more from closing Tier 1 gaps first",
+    "Don't use CSF in isolation from other frameworks — it is explicitly designed to coexist with ISO 27001, SOC 2, and sector-specific regulations",
+    "Don't skip the Identify function to jump to Protect — you cannot protect assets you haven't inventoried and risk-rated"
+  ],
+  "donts_zh": [
+    "不要将CSF视为合规清查清单——它是一个风险管理工具，每个组织的目标概要应反映其独特的风险偏好",
+    "不要尝试在所有功能上同时达到第4层（自适应），因为资源成本过高，大多数组织从首先弥补第1层差距中受益更多",
+    "不要单独使用CSF——它明确设计为与ISO 27001、SOC 2和特定行业法规共存",
+    "不要跳过识别功能直接跳到保护——你无法保护未清点和评级风险的资产"
+  ],
+  "case_study_company": "JPMorgan Chase",
+  "case_study": "JPMorgan Chase adopted the NIST CSF following the 2014 data breach that exposed 76 million households' data. The bank used the Framework Profile to map their existing security controls across all five functions, identifying critical gaps in the Detect and Respond categories. They created a target profile aligned with Tier 3 (Repeatable) capabilities across all functions and Tier 4 (Adaptive) for their most critical trading and customer-data systems. The CSF provided a shared language that allowed the CISO to present cybersecurity investment needs to the board as business risk rather than technical jargon. JPMC now spends over $600M annually on cybersecurity and credits the structured CSF approach with enabling board-level prioritization of that investment.",
+  "case_study_zh": "摩根大通在2014年数据泄露事件（泄露7,600万户家庭数据）后采用了NIST CSF。该银行使用框架概要映射所有五个功能中的现有安全控制措施，识别出检测和响应类别中的关键差距。他们创建了一个目标概要，在所有功能上与第3层（可重复）能力对齐，在最关键的交易和客户数据系统上与第4层（自适应）对齐。CSF提供了一种共同语言，允许CISO向董事会以业务风险而非技术术语呈现网络安全投资需求。摩根大通现在每年在网络安全上花费超过6亿美元，并将投资的董事会级优先排序归功于结构化的CSF方法。",
+  "when_not_to_use": [
+    "As a technical implementation guide — CSF describes what to do, not how; supplement it with NIST SP 800-53 or CIS Controls for prescriptive controls",
+    "For very small organizations (under 50 employees) where the overhead of formal profile creation and tier assessment exceeds their entire security budget",
+    "As a substitute for sector-specific regulations (PCI-DSS, HIPAA) — use CSF as a unifying overlay, not a replacement"
+  ],
+  "when_not_to_use_zh": [
+    "作为技术实施指南——CSF描述做什么，而非如何做；用NIST SP 800-53或CIS控制措施补充规定性控制",
+    "对于非常小的组织（50人以下），正式概要创建和层级评估的开销超过其整个安全预算",
+    "作为特定行业法规（PCI-DSS、HIPAA）的替代——将CSF用作统一覆盖层，而非替代品"
+  ],
+  "adopters": [
+    "JPMorgan Chase",
+    "Verizon",
+    "Intel",
+    "Boeing",
+    "US Department of Energy",
+    "Anthem"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "security",
+    "reliability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "NIST (2024). \"Cybersecurity Framework 2.0\". doi.org/10.6028/NIST.CSWP.29.",
+  "secondary_sources": [
+    "NIST (2018). \"Framework for Improving Critical Infrastructure Cybersecurity v1.1\". NIST.",
+    "Calder, A. (2018). \"NIST Cybersecurity Framework: A Pocket Guide\". IT Governance Publishing.",
+    "CIS (2021). \"CIS Controls v8 Mapping to NIST CSF\". cisecurity.org."
+  ],
+  "typed_relations": [
+    {
+      "slug": "defense-in-depth",
+      "type": "complement"
+    },
+    {
+      "slug": "incident-response-playbook",
+      "type": "complement"
+    },
+    {
+      "slug": "security-development-lifecycle",
+      "type": "related"
+    },
+    {
+      "slug": "threat-modeling-stride",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/nist-cybersecurity-framework",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/nist-cybersecurity-framework.md"
+}

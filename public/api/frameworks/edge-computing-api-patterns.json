@@ -1,0 +1,195 @@
+{
+  "id": 214,
+  "name": "Edge Computing API Patterns",
+  "name_zh": "边缘计算API模式",
+  "slug": "edge-computing-api-patterns",
+  "category": "api",
+  "desc": "CDN-edge function design for low-latency API responses and global distribution",
+  "desc_zh": "用于低延迟API响应和全球分发的CDN边缘函数设计",
+  "steps": [
+    "Identify which API handlers are stateless, read-heavy, or geographically latency-sensitive and are candidates for edge deployment (auth token validation, personalization headers, A/B routing, geolocation-based redirects)",
+    "Deploy edge functions on a CDN edge platform (Cloudflare Workers, AWS Lambda@Edge, Fastly Compute) that executes JavaScript or Wasm close to the user",
+    "Use edge-cacheable response patterns: set appropriate Cache-Control headers, use stale-while-revalidate for non-critical freshness, and vary the cache key on headers like Accept-Language or CF-IPCountry",
+    "For dynamic data at the edge, use edge KV stores (Cloudflare KV, Durable Objects) for low-latency reads with eventual consistency, reserving strong-consistency writes for origin servers",
+    "Implement edge observability: collect structured logs at the edge, forward traces with injected trace IDs to the origin, and monitor edge cache hit rates and p99 latencies per edge PoP"
+  ],
+  "steps_zh": [
+    "识别哪些API处理程序是无状态的、读密集型的或地理位置上对延迟敏感的，是边缘部署的候选（认证令牌验证、个性化头、A/B路由、基于地理位置的重定向）",
+    "在CDN边缘平台（Cloudflare Workers、AWS Lambda@Edge、Fastly Compute）上部署边缘函数，在靠近用户的地方执行JavaScript或Wasm",
+    "使用边缘可缓存响应模式：设置适当的Cache-Control头，为非关键新鲜度使用stale-while-revalidate，并在Accept-Language或CF-IPCountry等头上变化缓存键",
+    "对于边缘的动态数据，使用边缘KV存储（Cloudflare KV、Durable Objects）进行低延迟读取和最终一致性，将强一致性写操作保留给源服务器",
+    "实现边缘可观测性：在边缘收集结构化日志，将带有注入追踪ID的追踪转发到源，并监控每个边缘PoP的边缘缓存命中率和p99延迟"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Edge Candidates",
+    "Edge Functions",
+    "Cache Patterns",
+    "Edge KV Store",
+    "Edge Observ"
+  ],
+  "viz_labels_zh": [
+    "边缘候选",
+    "边缘函数",
+    "缓存策略",
+    "边缘KV存储",
+    "边缘可观测"
+  ],
+  "related": [
+    "api-gateway-pattern",
+    "api-first-design"
+  ],
+  "tags": [
+    "edge-computing",
+    "cdn",
+    "cloudflare-workers",
+    "low-latency",
+    "serverless"
+  ],
+  "origin_author": "Cloudflare Workers (2017), AWS Lambda@Edge (2017), Fastly Compute@Edge (2019)",
+  "origin_source": "Cloudflare Workers documentation (developers.cloudflare.com); AWS Lambda@Edge Developer Guide; The Cloud-Native Edge (InfoQ, 2022)",
+  "origin_source_zh": "Cloudflare Workers文档（developers.cloudflare.com）；AWS Lambda@Edge开发指南；「云原生边缘」（InfoQ，2022）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When global users experience high latency because all API traffic routes to a single geographic origin region",
+    "When authentication, authorization, or request transformation logic can be executed at the CDN edge to reduce load and latency on origin servers",
+    "When building personalization, geolocation routing, or A/B testing that must happen before the response is served without adding a round-trip to the origin",
+    "When AI inference at the edge (small models, embeddings) can answer requests without incurring cross-continent latency to a centralized GPU cluster"
+  ],
+  "when_to_use_zh": [
+    "当全球用户因所有API流量路由到单一地理源区域而遇到高延迟时",
+    "当认证、授权或请求转换逻辑可以在CDN边缘执行，以减少源服务器的负载和延迟时",
+    "当构建必须在响应被提供之前发生的个性化、地理位置路由或A/B测试，而不需要额外的源往返时",
+    "当边缘AI推断（小型模型、嵌入）可以在不产生到集中式GPU集群的跨大陆延迟的情况下响应请求时"
+  ],
+  "core_concepts": [
+    "Edge Functions: Lightweight serverless functions deployed to CDN Points of Presence (PoPs) that execute within single-digit milliseconds of the user, before traffic reaches the origin",
+    "Edge Caching: Storing API responses at CDN edge nodes with Cache-Control and Surrogate-Control headers to serve repeat requests from cache rather than forwarding to the origin",
+    "Edge KV Stores: Eventually-consistent key-value stores co-located with edge functions (Cloudflare KV, AWS DynamoDB Global Tables) for low-latency reads of configuration, feature flags, and session data",
+    "Request Routing at the Edge: Using edge functions to implement URL rewrites, A/B testing, geographic routing, and canary deployments without deploying changes to the origin",
+    "Cold Start Elimination: CDN edge runtimes (Cloudflare Workers, Fastly Compute) use V8 isolates or Wasm rather than containers, eliminating cold start latency that characterizes traditional serverless functions"
+  ],
+  "core_concepts_zh": [
+    "边缘函数：部署在CDN接入点（PoP）的轻量级无服务器函数，在流量到达源之前在距用户个位数毫秒内执行",
+    "边缘缓存：使用Cache-Control和Surrogate-Control头将API响应存储在CDN边缘节点，从缓存提供重复请求而不转发到源",
+    "边缘KV存储：与边缘函数共置的最终一致性键值存储（Cloudflare KV、AWS DynamoDB全局表），用于低延迟读取配置、特性标志和会话数据",
+    "边缘请求路由：使用边缘函数实现URL重写、A/B测试、地理路由和金丝雀部署，而无需将变更部署到源",
+    "消除冷启动：CDN边缘运行时（Cloudflare Workers、Fastly Compute）使用V8隔离器或Wasm而非容器，消除了传统无服务器函数特有的冷启动延迟"
+  ],
+  "timeline": [
+    [
+      "2009",
+      "Akamai EdgeSuite introduces edge-side includes and logic, pioneering programmable CDN edge for dynamic content"
+    ],
+    [
+      "2017",
+      "AWS Lambda@Edge and Cloudflare Workers launched, enabling full JavaScript execution at CDN edge nodes globally"
+    ],
+    [
+      "2019",
+      "Fastly Compute@Edge introduces WebAssembly at the edge, enabling polyglot edge functions with near-zero cold starts"
+    ],
+    [
+      "2021",
+      "Edge-native frameworks (Next.js Edge Runtime, Remix, SvelteKit) adopt edge functions as first-class deployment targets"
+    ],
+    [
+      "2024",
+      "AI inference at the edge (Cloudflare AI, AWS Bedrock at edge) enables sub-100ms LLM completions for simple queries globally"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2009",
+      "Akamai EdgeSuite引入边缘侧包含和逻辑，为动态内容开创了可编程CDN边缘"
+    ],
+    [
+      "2017",
+      "AWS Lambda@Edge和Cloudflare Workers发布，支持在全球CDN边缘节点执行完整的JavaScript"
+    ],
+    [
+      "2019",
+      "Fastly Compute@Edge在边缘引入WebAssembly，支持近零冷启动的多语言边缘函数"
+    ],
+    [
+      "2021",
+      "边缘原生框架（Next.js Edge Runtime、Remix、SvelteKit）将边缘函数作为一级部署目标"
+    ],
+    [
+      "2024",
+      "边缘AI推断（Cloudflare AI、AWS Bedrock at edge）为全球简单查询实现低于100ms的LLM响应"
+    ]
+  ],
+  "dos": [
+    "Do keep edge functions small and stateless because edge runtimes have strict CPU time, memory, and bundle size limits that don't apply to origin servers",
+    "Do use edge KV stores for read-heavy configuration data (feature flags, rate limit rules, geo-routing tables) because they provide sub-millisecond reads without origin round-trips",
+    "Do propagate trace IDs from edge to origin so that full request traces span both edge and origin processing in your distributed tracing system",
+    "Do monitor cache hit rates per edge PoP because a low cache hit rate at the edge means most traffic still reaches the origin, negating the latency benefit"
+  ],
+  "dos_zh": [
+    "保持边缘函数小型且无状态，因为边缘运行时有严格的CPU时间、内存和包大小限制，这些限制不适用于源服务器",
+    "对读密集型配置数据（特性标志、速率限制规则、地理路由表）使用边缘KV存储，因为它们提供亚毫秒级读取而无需源往返",
+    "将追踪ID从边缘传播到源，使完整的请求追踪在分布式追踪系统中跨越边缘和源处理",
+    "监控每个边缘PoP的缓存命中率，因为边缘的低缓存命中率意味着大多数流量仍然到达源，否定了延迟优势"
+  ],
+  "donts": [
+    "Don't put stateful or strongly-consistent operations (database writes, payment processing) in edge functions because edge KV stores are eventually consistent and edge-to-DB latency can exceed origin latency",
+    "Don't deploy untested logic to edge functions in production without a gradual rollout because a faulty edge function breaks every user globally, not just in one region",
+    "Don't ignore bundle size limits for edge functions because large dependency trees will exceed the edge runtime limits and fail silently at deploy time",
+    "Don't use edge functions as a shortcut to avoid fixing origin latency because edge caching only helps for cacheable responses — non-cacheable dynamic APIs still hit the origin"
+  ],
+  "donts_zh": [
+    "不要在边缘函数中放置有状态或强一致性操作（数据库写入、支付处理），因为边缘KV存储是最终一致的，边缘到数据库的延迟可能超过源延迟",
+    "不要在没有渐进式发布的情况下将未经测试的逻辑部署到生产边缘函数，因为错误的边缘函数会在全球范围内影响每个用户，而不仅仅是一个区域",
+    "不要忽视边缘函数的包大小限制，因为大型依赖树会超过边缘运行时限制，并在部署时静默失败",
+    "不要使用边缘函数作为避免修复源延迟的捷径，因为边缘缓存只对可缓存响应有帮助——不可缓存的动态API仍然访问源"
+  ],
+  "case_study_company": "Cloudflare",
+  "case_study": "Cloudflare built its own API gateway and developer platform (Cloudflare Workers, Pages, D1, KV) entirely on its edge network. Cloudflare's API itself uses edge functions for authentication, rate limiting, and routing — all executed within milliseconds of the user across 300+ PoPs worldwide. A benchmark published in 2023 showed that Cloudflare Workers API responses averaged 8ms globally vs. 120ms for equivalent AWS Lambda (us-east-1) responses for users in Asia-Pacific, demonstrating the latency advantage of edge-first API design. The platform serves over 50 million requests per second from the edge with no origin involved.",
+  "case_study_zh": "Cloudflare完全在其边缘网络上构建了自己的API网关和开发者平台（Cloudflare Workers、Pages、D1、KV）。Cloudflare自身的API使用边缘函数进行认证、速率限制和路由——所有这些都在全球300多个PoP中在用户毫秒之内执行。2023年发布的一项基准测试显示，对于亚太地区的用户，Cloudflare Workers API响应全球平均为8ms，而等效的AWS Lambda（us-east-1）响应为120ms，展示了边缘优先API设计的延迟优势。该平台每秒处理超过5000万个请求，无需访问源。",
+  "when_not_to_use": [
+    "APIs that perform complex database transactions or strong-consistency operations that cannot tolerate the eventual-consistency model of edge KV stores",
+    "Compute-intensive workloads (video transcoding, ML model training) that require more CPU and memory than edge runtime limits allow",
+    "APIs that must comply with data residency regulations requiring all data processing to occur in specific geographic regions",
+    "Internal microservice-to-microservice APIs that run within a single data center where network latency is already sub-millisecond"
+  ],
+  "when_not_to_use_zh": [
+    "执行无法容忍边缘KV存储最终一致性模型的复杂数据库事务或强一致性操作的API",
+    "需要比边缘运行时限制更多CPU和内存的计算密集型工作负载（视频转码、ML模型训练）",
+    "必须遵守数据驻留法规的API，要求所有数据处理发生在特定地理区域",
+    "在单个数据中心内运行的内部微服务间API，网络延迟已经是亚毫秒级"
+  ],
+  "adopters": [
+    "Cloudflare",
+    "Vercel",
+    "Netlify",
+    "Shopify",
+    "Discord"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "performance",
+    "scalability",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Cloudflare (2017). \"Cloudflare Workers: Serverless at the Edge\". developers.cloudflare.com.",
+  "secondary_sources": [
+    "AWS (2017). \"Lambda@Edge Developer Guide\". docs.aws.amazon.com.",
+    "Fastly (2019). \"Compute@Edge: WebAssembly at the Edge\". developer.fastly.com.",
+    "Grigorik, I. (2023). \"Edge Computing: The Next Frontier of API Design\". InfoQ."
+  ],
+  "typed_relations": [
+    {
+      "slug": "api-gateway-pattern",
+      "type": "extends"
+    },
+    {
+      "slug": "api-first-design",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/edge-computing-api-patterns",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/edge-computing-api-patterns.md"
+}

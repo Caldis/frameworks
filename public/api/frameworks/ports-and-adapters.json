@@ -1,0 +1,201 @@
+{
+  "id": 262,
+  "name": "Ports and Adapters (Hexagonal Architecture)",
+  "name_zh": "端口与适配器（六边形架构）",
+  "slug": "ports-and-adapters",
+  "category": "architecture",
+  "desc": "Alistair Cockburn's architectural pattern that isolates the application core from external technology concerns by defining explicit ports (interfaces) and adapters (technology-specific implementations)",
+  "desc_zh": "Alistair Cockburn的架构模式，通过定义明确的端口（接口）和适配器（特定技术实现），将应用核心与外部技术关注点隔离",
+  "steps": [
+    "Define the Application Core: Identify and isolate the domain logic and use cases into a technology-agnostic inner hexagon that contains no references to databases, HTTP frameworks, or external services",
+    "Define Driving Ports: Specify inbound interfaces (use case interfaces, command handlers) that represent the ways the outside world drives the application — these are the left-side ports of the hexagon",
+    "Define Driven Ports: Specify outbound interfaces (repository interfaces, notification services, messaging ports) that represent how the application drives external dependencies — right-side ports",
+    "Implement Adapters: Write concrete implementations for each port — a REST controller adapter drives via the HTTP port, a JPA repository adapter implements the persistence port — keeping adapters thin and free of business logic",
+    "Wire with Dependency Injection: Compose the application by injecting appropriate adapters into the core at startup time, enabling easy swapping of adapters for testing (in-memory adapters) or technology migration (switching databases)"
+  ],
+  "steps_zh": [
+    "定义应用核心：将领域逻辑和用例识别并隔离到一个技术无关的内部六边形中，该六边形不包含对数据库、HTTP框架或外部服务的引用",
+    "定义驱动端口：指定入站接口（用例接口、命令处理器），表示外部世界驱动应用程序的方式——这些是六边形的左侧端口",
+    "定义被驱动端口：指定出站接口（仓储接口、通知服务、消息端口），表示应用程序驱动外部依赖的方式——右侧端口",
+    "实现适配器：为每个端口编写具体实现——REST控制器适配器通过HTTP端口驱动，JPA仓储适配器实现持久化端口——保持适配器精简且不含业务逻辑",
+    "使用依赖注入连接：通过在启动时将适当的适配器注入核心来组合应用程序，实现轻松交换适配器用于测试（内存适配器）或技术迁移（更换数据库）"
+  ],
+  "ai_relevant": false,
+  "viz_type": "venn",
+  "viz_labels": [
+    "Core Domain",
+    "Port",
+    "Adapter"
+  ],
+  "viz_labels_zh": [
+    "核心领域",
+    "端口",
+    "适配器"
+  ],
+  "related": [
+    "domain-driven-design",
+    "cell-based-architecture",
+    "clean-architecture",
+    "hexagonal-architecture",
+    "onion-architecture",
+    "n-tier-layered"
+  ],
+  "tags": [
+    "hexagonal",
+    "ports-adapters",
+    "clean-architecture",
+    "testability",
+    "cockburn"
+  ],
+  "origin_author": "Alistair Cockburn",
+  "origin_source": "Cockburn, A. (2005). \"Hexagonal Architecture\". alistair.cockburn.us/hexagonal-architecture.",
+  "origin_source_zh": "Cockburn, A.（2005）。「六边形架构」。alistair.cockburn.us/hexagonal-architecture。",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When the application needs to be driven from multiple clients (HTTP API, CLI, message queue consumer, test harness) without duplicating business logic across each entry point",
+    "For applications with domain logic that must be thoroughly unit-tested in isolation from databases, external APIs, and messaging infrastructure",
+    "When the technology stack is likely to evolve (migrating from REST to gRPC, switching databases) and the business logic must remain stable during infrastructure changes",
+    "In DDD-oriented projects where protecting the domain model from infrastructure concerns is a first-class design objective"
+  ],
+  "when_to_use_zh": [
+    "当应用程序需要由多个客户端（HTTP API、CLI、消息队列消费者、测试工具）驱动而不在每个入口点重复业务逻辑时",
+    "对于必须在隔离数据库、外部API和消息基础设施的情况下彻底单元测试领域逻辑的应用程序",
+    "当技术栈可能演变（从REST迁移到gRPC、更换数据库）且业务逻辑必须在基础设施变更期间保持稳定时",
+    "在以DDD为导向的项目中，保护领域模型免受基础设施关注点的影响是一等设计目标"
+  ],
+  "core_concepts": [
+    "Port: A formally defined interface representing an interaction point between the application core and the outside world; driving ports are inbound (triggered by external actors), driven ports are outbound (triggered by the application)",
+    "Adapter: A concrete implementation of a port that translates between the application's domain language and the specific technology protocol (HTTP, SQL, AMQP, gRPC)",
+    "Application Core (Hexagon): The technology-agnostic center containing domain objects, use case orchestration, and business rules; it has zero knowledge of adapter implementations",
+    "Primary/Driving Side: Actors that initiate interactions — users, API consumers, scheduled jobs — connected to the application through driving adapters and ports",
+    "Secondary/Driven Side: Actors that the application drives — databases, external APIs, email services — connected through driven ports and adapters that the application core defines"
+  ],
+  "core_concepts_zh": [
+    "端口：代表应用核心与外部世界交互点的正式定义接口；驱动端口是入站的（由外部参与者触发），被驱动端口是出站的（由应用程序触发）",
+    "适配器：端口的具体实现，在应用程序的领域语言和特定技术协议（HTTP、SQL、AMQP、gRPC）之间进行转换",
+    "应用核心（六边形）：包含领域对象、用例编排和业务规则的技术无关中心；它对适配器实现毫不知情",
+    "主要/驱动侧：发起交互的参与者——用户、API消费者、定时任务——通过驱动适配器和端口连接到应用程序",
+    "次要/被驱动侧：应用程序驱动的参与者——数据库、外部API、电子邮件服务——通过应用核心定义的被驱动端口和适配器连接"
+  ],
+  "timeline": [
+    [
+      "2005",
+      "Alistair Cockburn publishes「Hexagonal Architecture」on his personal website, coining the term Ports and Adapters"
+    ],
+    [
+      "2008",
+      "Robert C. Martin proposes Clean Architecture, which explicitly credits Ports and Adapters as one of its foundational inspirations alongside Onion Architecture"
+    ],
+    [
+      "2013",
+      "The pattern gains wide adoption in the JVM ecosystem through frameworks like Spring Boot and Axon Framework that support hexagonal structuring"
+    ],
+    [
+      "2017",
+      "The DDD community standardizes Ports and Adapters as the canonical infrastructure boundary pattern in Domain-Driven Design implementations"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2005",
+      "Alistair Cockburn在其个人网站上发布「六边形架构」，创造了「端口与适配器」一词"
+    ],
+    [
+      "2008",
+      "Robert C. Martin提出整洁架构，明确将端口与适配器与洋葱架构一起列为其基础灵感之一"
+    ],
+    [
+      "2013",
+      "该模式通过支持六边形结构的Spring Boot和Axon Framework等框架在JVM生态系统中获得广泛采用"
+    ],
+    [
+      "2017",
+      "DDD社区将端口与适配器标准化为领域驱动设计实现中的规范基础设施边界模式"
+    ]
+  ],
+  "dos": [
+    "Define port interfaces in the domain layer (inner hexagon) and have adapters depend on those interfaces — the dependency arrow always points inward",
+    "Keep adapters thin and free of business logic — an adapter should do nothing more than translate, marshal, and delegate; all decisions live in the core",
+    "Write unit tests against the application core using in-memory adapters — this is the primary payoff of the pattern, enabling fast, reliable tests with no I/O",
+    "Name ports by their business intent (OrderRepository, PaymentGateway) rather than by technology (PostgresRepository, StripeClient) to preserve technology independence"
+  ],
+  "dos_zh": [
+    "在领域层（内部六边形）中定义端口接口，让适配器依赖这些接口——依赖箭头始终指向内部",
+    "保持适配器精简且不含业务逻辑——适配器只应进行转换、编组和委托；所有决策都在核心中",
+    "使用内存适配器对应用核心编写单元测试——这是该模式的主要回报，实现无I/O的快速可靠测试",
+    "按业务意图（OrderRepository、PaymentGateway）而非技术（PostgresRepository、StripeClient）命名端口，以保持技术独立性"
+  ],
+  "donts": [
+    "Don't let domain objects leak infrastructure types (JPA annotations, ORM entity markers) — this couples the core to specific technologies and defeats the isolation goal",
+    "Don't create one adapter per class — adapters are boundary implementations, not a one-to-one mapping with every service or repository; group by technology context",
+    "Don't over-apply the pattern to simple CRUD services where the business logic is trivial and the ceremony of ports/adapters adds structural complexity with no isolation benefit",
+    "Don't confuse Ports and Adapters with layered (n-tier) architecture — the key difference is the inversion of dependency direction; in layers, business logic depends on data access; in hexagonal, data access depends on business-defined ports"
+  ],
+  "donts_zh": [
+    "不要让领域对象泄漏基础设施类型（JPA注解、ORM实体标记）——这会将核心耦合到特定技术，破坏隔离目标",
+    "不要为每个类创建一个适配器——适配器是边界实现，而非与每个服务或仓储的一对一映射；按技术上下文分组",
+    "不要过度将该模式应用于简单CRUD服务，其中业务逻辑微不足道，端口/适配器的形式主义增加结构复杂性而无隔离收益",
+    "不要将端口与适配器与分层（n层）架构混淆——关键区别在于依赖方向的反转；在分层中，业务逻辑依赖数据访问；在六边形中，数据访问依赖业务定义的端口"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix applied Hexagonal Architecture principles to their recommendation engine infrastructure, a system that must be driven by multiple clients (A/B test harness, real-time API calls, batch precomputation jobs) and must integrate with multiple downstream systems (feature store, serving layer, experiment platform). By defining explicit driving ports (RecommendationUseCase interface) and driven ports (FeatureStore, ModelRegistry, ServingLayer), the recommendation team was able to swap the underlying ML model serving infrastructure from their own homegrown system to TorchServe without touching the core recommendation logic. The in-memory adapter pattern enabled them to run the full recommendation logic in unit tests 200x faster than integration tests against real infrastructure, accelerating their experimentation cycle.",
+  "case_study_zh": "Netflix将六边形架构原则应用于其推荐引擎基础设施，该系统必须由多个客户端（A/B测试工具、实时API调用、批量预计算作业）驱动，并必须与多个下游系统（特征存储、服务层、实验平台）集成。通过定义明确的驱动端口（RecommendationUseCase接口）和被驱动端口（FeatureStore、ModelRegistry、ServingLayer），推荐团队能够将底层ML模型服务基础设施从自研系统切换到TorchServe，而无需触及核心推荐逻辑。内存适配器模式使他们能够在单元测试中运行完整推荐逻辑，速度比针对真实基础设施的集成测试快200倍，加速了实验周期。",
+  "when_not_to_use": [
+    "For simple CRUD microservices where the domain logic is essentially the database schema — the overhead of ports, adapters, and dependency injection configuration adds friction without testability or flexibility benefit",
+    "In event-sourcing architectures where the persistence model fundamentally shapes the domain model — the forced separation can work against the grain of event-sourced design",
+    "For extremely performance-sensitive hot paths where the indirection layers of interface dispatch and adapter translation add measurable overhead in latency-critical code"
+  ],
+  "when_not_to_use_zh": [
+    "对于简单CRUD微服务，领域逻辑本质上就是数据库模式——端口、适配器和依赖注入配置的开销增加了摩擦，而没有可测试性或灵活性收益",
+    "在事件溯源架构中，持久化模型从根本上塑造领域模型——强制分离可能与事件溯源设计的自然方向相悖",
+    "对于极其性能敏感的热路径，接口分发和适配器转换的间接层在延迟关键代码中增加可测量的开销"
+  ],
+  "adopters": [
+    "Netflix",
+    "Spotify",
+    "Zalando",
+    "Sky UK",
+    "Thoughtworks",
+    "BBVA"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "maintainability",
+    "testability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Cockburn, A. (2005). \"Hexagonal Architecture\". alistair.cockburn.us/hexagonal-architecture.",
+  "secondary_sources": [
+    "Martin, R. C. (2017). \"Clean Architecture: A Craftsman's Guide to Software Structure and Design\". Prentice Hall.",
+    "Vernon, V. (2013). \"Implementing Domain-Driven Design\". Addison-Wesley.",
+    "Hombergs, T. (2019). \"Get Your Hands Dirty on Clean Architecture\". Leanpub."
+  ],
+  "typed_relations": [
+    {
+      "slug": "domain-driven-design",
+      "type": "complement"
+    },
+    {
+      "slug": "cell-based-architecture",
+      "type": "related"
+    },
+    {
+      "slug": "clean-architecture",
+      "type": "alternative"
+    },
+    {
+      "slug": "hexagonal-architecture",
+      "type": "alternative"
+    },
+    {
+      "slug": "onion-architecture",
+      "type": "alternative"
+    },
+    {
+      "slug": "n-tier-layered",
+      "type": "alternative"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/ports-and-adapters",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/ports-and-adapters.md"
+}

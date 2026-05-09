@@ -1,0 +1,194 @@
+{
+  "id": 86,
+  "name": "Mikado Method",
+  "name_zh": "米卡多方法",
+  "slug": "mikado-method",
+  "category": "evolution",
+  "desc": "Visualize and untangle large refactorings as a dependency graph of small safe steps",
+  "desc_zh": "将大型重构可视化为依赖图，分解为一系列小而安全的步骤",
+  "steps": [
+    "State the refactoring goal as a single root node and attempt it naively in the codebase",
+    "When compilation or tests break, record each blocker as a child node in the Mikado Graph",
+    "Revert all changes and recurse: attempt each leaf node (blocker) the same way",
+    "Continue building the graph until all leaves are independently achievable without breakage",
+    "Implement leaves first, working bottom-up through the graph until the root goal is achieved"
+  ],
+  "steps_zh": [
+    "将重构目标设为单一根节点，在代码库中直接尝试实现",
+    "当编译或测试失败时，将每个阻塞点记录为米卡多图中的子节点",
+    "回滚所有变更并递归：用同样方式尝试每个叶节点（阻塞项）",
+    "持续构建依赖图，直到所有叶节点均可独立完成而不引发问题",
+    "从叶节点开始实现，自底向上逐步完成，直至达成根节点目标"
+  ],
+  "ai_relevant": false,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Goal",
+    "Prerequisite",
+    "Leaf Node",
+    "Revert"
+  ],
+  "viz_labels_zh": [
+    "目标变更",
+    "前置条件",
+    "叶子节点",
+    "回滚"
+  ],
+  "related": [
+    "technical-debt-quadrant",
+    "ai-assisted-refactoring",
+    "strangler-fig-pattern"
+  ],
+  "tags": [
+    "mikado",
+    "refactoring",
+    "dependency-graph",
+    "safe-steps"
+  ],
+  "origin_author": "Ola Ellnestam & Daniel Brolund, 2014",
+  "origin_source": "The Mikado Method (Manning Publications)",
+  "origin_source_zh": "《米卡多方法》（Manning 出版）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "A large refactoring that keeps failing because hidden dependencies break things unexpectedly",
+    "Untangling a deeply coupled legacy codebase where each change triggers a cascade of compilation errors",
+    "Planning a multi-sprint refactoring effort where the team needs to see the full dependency map before starting",
+    "Teaching junior developers how to approach large-scale refactoring safely and systematically"
+  ],
+  "when_to_use_zh": [
+    "大型重构因隐藏依赖不断导致意外失败",
+    "解耦深度耦合的遗留代码库，每次变更都引发连锁编译错误",
+    "规划多迭代重构工作，团队需要在开始前看到完整的依赖图",
+    "教授初级开发者如何安全、系统地进行大规模重构"
+  ],
+  "core_concepts": [
+    "Mikado Graph: A directed acyclic graph where the root is the refactoring goal and children are prerequisites that must be satisfied first",
+    "Naive attempt: Deliberately try the change and let it fail, using the failures to discover hidden dependencies",
+    "Revert-and-recurse: After each failed attempt, revert all changes and apply the same process to each discovered prerequisite",
+    "Leaf-first implementation: Work from the bottom of the graph upward, implementing only leaves that can be done independently",
+    "Safe, small steps: Each leaf implementation is small enough to commit, test, and deploy independently without breaking the system"
+  ],
+  "core_concepts_zh": [
+    "米卡多图：有向无环图，根节点是重构目标，子节点是必须先满足的前置条件",
+    "直接尝试：有意地进行变更并让它失败，利用失败来发现隐藏的依赖",
+    "回滚并递归：每次失败尝试后，回滚所有变更并对每个发现的前置条件应用相同过程",
+    "叶节点优先实现：从图的底部向上工作，只实现可以独立完成的叶节点",
+    "小而安全的步骤：每个叶节点的实现足够小，可以独立提交、测试和部署而不破坏系统"
+  ],
+  "timeline": [
+    [
+      "2008",
+      "Ola Ellnestam and Daniel Brolund begin developing the Mikado Method at Swedish consultancy Agical"
+    ],
+    [
+      "2010",
+      "The method is presented at multiple agile and software craftsmanship conferences"
+    ],
+    [
+      "2014",
+      "Manning publishes 'The Mikado Method' book, making the technique accessible to a wider audience"
+    ],
+    [
+      "2016",
+      "The method gains traction in legacy modernization projects across European enterprises"
+    ],
+    [
+      "2023",
+      "Practitioners combine Mikado with AI-assisted refactoring, using LLMs to explore the dependency graph faster"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2008",
+      "Ola Ellnestam 和 Daniel Brolund 在瑞典咨询公司 Agical 开始开发米卡多方法"
+    ],
+    [
+      "2010",
+      "该方法在多个敏捷和软件工匠精神大会上发表"
+    ],
+    [
+      "2014",
+      "Manning 出版《米卡多方法》一书，使该技术为更广泛的受众所知"
+    ],
+    [
+      "2016",
+      "该方法在欧洲企业的遗留系统现代化项目中获得广泛采用"
+    ],
+    [
+      "2023",
+      "实践者将米卡多方法与 AI 辅助重构结合，使用 LLM 更快速地探索依赖图"
+    ]
+  ],
+  "dos": [
+    "Always revert after a failed naive attempt — the point is to discover dependencies, not to force changes through",
+    "Draw the Mikado Graph on a whiteboard or shared diagram so the whole team can see the plan",
+    "Commit each leaf-level change independently so the main branch stays green throughout the refactoring",
+    "Use the graph as a communication tool in stand-ups to track progress through the refactoring"
+  ],
+  "dos_zh": [
+    "在直接尝试失败后始终回滚——目的是发现依赖关系，而非强行推进变更",
+    "在白板或共享图表上绘制米卡多图，使整个团队都能看到计划",
+    "独立提交每个叶节点级别的变更，使主分支在整个重构过程中保持绿色",
+    "在站会中使用依赖图作为沟通工具，追踪重构进展"
+  ],
+  "donts": [
+    "Don't skip the revert step — pushing through a broken state defeats the purpose of the method",
+    "Don't try to implement non-leaf nodes before their children are complete — you'll break things again",
+    "Don't build a huge graph in one session — discover dependencies incrementally as you work",
+    "Don't use Mikado for simple, well-understood refactorings — the overhead is only justified for complex dependency tangles"
+  ],
+  "donts_zh": [
+    "不要跳过回滚步骤——在破坏状态下强行推进违背了该方法的初衷",
+    "不要在子节点完成之前尝试实现非叶节点——否则会再次破坏系统",
+    "不要试图在一次会议中构建完整的依赖图——随着工作推进增量发现依赖",
+    "不要将米卡多方法用于简单、易理解的重构——其开销只对复杂依赖纠缠才合理"
+  ],
+  "case_study_company": "Ericsson",
+  "case_study": "The Mikado Method originated from real-world work at Ericsson's telecom infrastructure division, where engineers faced massive C++ codebases with deep dependency chains. Traditional refactoring attempts caused cascading build failures across hundreds of files. By systematically using the naive-attempt-revert-graph cycle, the team mapped out the full dependency tree for a major module extraction and completed it over several weeks through safe, incremental leaf-first commits — each one passing CI independently.",
+  "case_study_zh": "米卡多方法源于爱立信电信基础设施部门的实际工作，工程师们面对具有深层依赖链的大型 C++ 代码库。传统的重构尝试会在数百个文件中引发连锁编译失败。通过系统性地使用直接尝试-回滚-建图的循环，团队为一次重大模块提取绘制出完整的依赖树，并在数周内通过安全的叶节点优先增量提交完成——每次提交都独立通过 CI。",
+  "when_not_to_use": [
+    "Small refactorings with obvious, well-known dependency chains that don't need graphing",
+    "Codebases with comprehensive test coverage where failed attempts are immediately caught and understood",
+    "Throwaway or prototype code where breaking things temporarily is acceptable",
+    "Automated migration tools (e.g., codemods) can handle the refactoring mechanically without dependency analysis"
+  ],
+  "when_not_to_use_zh": [
+    "依赖链显而易见且众所周知的小型重构，不需要绘制依赖图",
+    "测试覆盖全面的代码库，失败的尝试能立即被捕获和理解",
+    "一次性或原型代码，临时破坏是可以接受的",
+    "自动化迁移工具（如 codemod）可以机械地处理重构而无需依赖分析"
+  ],
+  "adopters": [
+    "Ericsson",
+    "Agical",
+    "Spotify",
+    "King (Candy Crush)",
+    "Klarna"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Ola Ellnestam and Daniel Brolund (2014). \"The Mikado Method\". Manning Publications.",
+  "secondary_sources": [
+    "Michael Feathers (2004). \"Working Effectively with Legacy Code\". Prentice Hall.",
+    "Martin Fowler (2018). \"Refactoring: Improving the Design of Existing Code, 2nd Edition\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "technical-debt-quadrant",
+      "type": "complement"
+    },
+    {
+      "slug": "ai-assisted-refactoring",
+      "type": "complement"
+    },
+    {
+      "slug": "strangler-fig-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/mikado-method",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/mikado-method.md"
+}

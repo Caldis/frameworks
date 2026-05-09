@@ -1,0 +1,195 @@
+{
+  "id": 6,
+  "name": "Design by Contract (DbC)",
+  "name_zh": "契约式设计",
+  "slug": "design-by-contract",
+  "category": "thinking",
+  "desc": "Define explicit preconditions, postconditions, invariants per unit",
+  "desc_zh": "为每个软件单元定义明确的前置条件、后置条件与不变式",
+  "steps": [
+    "Define Preconditions: specify what callers must guarantee to be true before invoking each function or service",
+    "Define Postconditions: specify what the function or service guarantees to be true upon successful completion",
+    "Define Class Invariants: state properties that must hold for every object or module in any observable state",
+    "Encode Contracts in Code: express contracts as assertions, type annotations, or formal specs (e.g., OpenAPI, type guards)",
+    "Enforce at Runtime and Test Time: run contract checks in development; use property-based tests to fuzz contract boundaries"
+  ],
+  "steps_zh": [
+    "定义前置条件：明确调用者在调用每个函数或服务前必须保证为真的条件",
+    "定义后置条件：明确函数或服务在成功完成后保证为真的条件",
+    "定义类不变式：声明对象或模块在任何可观测状态下都必须成立的属性",
+    "在代码中编码契约：通过断言、类型注解或形式规范（如OpenAPI、类型守卫）表达契约",
+    "在运行时和测试时强制执行：开发中运行契约检查；使用基于属性的测试对契约边界进行模糊测试"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Precondition",
+    "Body",
+    "Postcondition",
+    "Invariant"
+  ],
+  "viz_labels_zh": [
+    "前置条件",
+    "执行逻辑",
+    "后置条件",
+    "类不变量"
+  ],
+  "related": [
+    "property-based-testing",
+    "contract-testing",
+    "clean-code-principles"
+  ],
+  "tags": [
+    "contracts",
+    "preconditions",
+    "postconditions",
+    "invariants",
+    "correctness"
+  ],
+  "origin_author": "Bertrand Meyer, 1986",
+  "origin_source": "Object-Oriented Software Construction (Bertrand Meyer, 1988/1997)",
+  "origin_source_zh": "《面向对象软件构造》（Bertrand Meyer，1988/1997年）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When building mission-critical software (financial transactions, medical devices, infrastructure) where correctness is non-negotiable",
+    "When designing public APIs or libraries consumed by other teams who need clear guarantees about input/output behavior",
+    "When debugging is consuming excessive time because failure causes are far from failure symptoms in the call chain",
+    "When onboarding new developers to a codebase and you need code that explicitly documents its own usage rules"
+  ],
+  "when_to_use_zh": [
+    "当构建正确性不可妥协的关键任务软件（金融交易、医疗设备、基础设施）时",
+    "当设计供其他团队使用的公共API或库，他们需要关于输入/输出行为的清晰保证时",
+    "当调试耗费过多时间，因为故障原因与调用链中的故障症状相距甚远时",
+    "当新开发者入职代码库，需要代码明确记录自身使用规则时"
+  ],
+  "core_concepts": [
+    "Preconditions: Obligations the caller must satisfy before invoking a routine — if violated, the caller has a bug, not the routine",
+    "Postconditions: Guarantees the routine promises to deliver upon normal completion — if violated, the routine has a bug, not the caller",
+    "Class Invariants: Properties that must be true for all instances of a class between public method calls, defining what makes an object 'valid'",
+    "Blame Assignment: Contracts create clear responsibility boundaries — a violated precondition is the caller's fault, a violated postcondition is the supplier's fault, eliminating ambiguity in bug attribution"
+  ],
+  "core_concepts_zh": [
+    "前置条件：调用者在调用例程前必须满足的义务——如果违反，是调用者有缺陷，而非例程",
+    "后置条件：例程承诺在正常完成时交付的保证——如果违反，是例程有缺陷，而非调用者",
+    "类不变式：在公共方法调用之间必须为所有类实例成立的属性，定义什么使一个对象「有效」",
+    "责任归属：契约创建清晰的责任边界——违反前置条件是调用者的错，违反后置条件是提供者的错，消除缺陷归因的模糊性"
+  ],
+  "timeline": [
+    [
+      "1969",
+      "Tony Hoare introduces the concept of preconditions and postconditions in his paper on 'An Axiomatic Basis for Computer Programming'"
+    ],
+    [
+      "1986",
+      "Bertrand Meyer coins 'Design by Contract' and builds it into the Eiffel programming language as a first-class language feature"
+    ],
+    [
+      "1988",
+      "Meyer publishes 'Object-Oriented Software Construction', the comprehensive reference for DbC methodology"
+    ],
+    [
+      "2003",
+      "Java introduces assert statements; .NET adds Code Contracts library, bringing DbC concepts to mainstream languages"
+    ],
+    [
+      "2010s",
+      "Modern typed languages (TypeScript, Rust, Kotlin) embed contract-like thinking through advanced type systems, sum types, and non-nullable references"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1969",
+      "Tony Hoare在「计算机编程的公理基础」论文中引入前置条件和后置条件的概念"
+    ],
+    [
+      "1986",
+      "Bertrand Meyer提出「契约式设计」一词，并将其作为一等语言特性内建于Eiffel编程语言中"
+    ],
+    [
+      "1988",
+      "Meyer出版《面向对象软件构造》，成为DbC方法论的全面参考"
+    ],
+    [
+      "2003",
+      "Java引入assert语句；.NET添加Code Contracts库，将DbC概念带入主流语言"
+    ],
+    [
+      "2010年代",
+      "现代类型化语言（TypeScript、Rust、Kotlin）通过高级类型系统、联合类型和非空引用嵌入类似契约的思维"
+    ]
+  ],
+  "dos": [
+    "Do make contracts as precise and machine-checkable as possible, because vague contracts in comments are ignored while assertions in code are enforced",
+    "Do use contracts to clarify the boundary between caller and callee responsibility, because ambiguous boundaries are where the worst bugs hide",
+    "Do keep contracts focused on 'what' not 'how', because contracts specify observable guarantees, not implementation details",
+    "Do run contract checks in development and testing but consider disabling expensive checks in production, because contracts are primarily a design and debugging tool"
+  ],
+  "dos_zh": [
+    "尽可能使契约精确且可机器检查，因为注释中的模糊契约会被忽略，而代码中的断言能被强制执行",
+    "使用契约澄清调用者和被调用者的责任边界，因为模糊的边界是最严重缺陷的藏身之处",
+    "保持契约聚焦于「是什么」而非「怎么做」，因为契约规定的是可观察的保证而非实现细节",
+    "在开发和测试中运行契约检查，但考虑在生产环境禁用昂贵的检查，因为契约主要是设计和调试工具"
+  ],
+  "donts": [
+    "Don't use contracts as a substitute for input validation on trust boundaries, because contracts assume trusted callers while external input is inherently untrusted",
+    "Don't over-specify contracts to the point where implementation flexibility is eliminated, because overly tight contracts create brittle coupling between caller and callee",
+    "Don't silently swallow contract violations, because a violated contract indicates a program bug that should be surfaced immediately, not papered over",
+    "Don't apply DbC to trivially simple getters and setters, because the overhead of writing and maintaining contracts should be proportional to the complexity of the behavior"
+  ],
+  "donts_zh": [
+    "不要将契约用作信任边界上输入验证的替代品，因为契约假定调用者可信，而外部输入本质上不可信",
+    "不要过度指定契约到消除实现灵活性的程度，因为过紧的契约在调用者和被调用者之间创建脆弱的耦合",
+    "不要默默吞掉契约违反，因为被违反的契约表示程序缺陷，应立即暴露而非掩盖",
+    "不要对琐碎的getter和setter应用DbC，因为编写和维护契约的开销应与行为的复杂性成正比"
+  ],
+  "case_study_company": "Microsoft (Midori Project)",
+  "case_study": "Microsoft's experimental Midori operating system project (2008-2015) was built from the ground up using Design by Contract principles in a language derived from C# with first-class contract support. Every API surface had machine-checked preconditions, postconditions, and invariants. The team reported that this approach eliminated entire categories of runtime errors and dramatically reduced debugging time, with contracts catching defects at compile time that would have been expensive production bugs in a traditional system.",
+  "case_study_zh": "微软的实验性Midori操作系统项目（2008-2015）从零开始使用契约式设计原则构建，采用一种带有一等契约支持的C#衍生语言。每个API表面都有机器检查的前置条件、后置条件和不变式。团队报告该方法消除了整类运行时错误，大幅减少了调试时间，契约在编译期捕获的缺陷在传统系统中将会是昂贵的生产缺陷。",
+  "when_not_to_use": [
+    "When building a rapid prototype where design is expected to change daily and contracts would create excessive maintenance burden",
+    "When working in a dynamically typed scripting environment with no assertion infrastructure, making contracts impractical to enforce",
+    "When the performance overhead of runtime contract checking is unacceptable in the production hot path and the team lacks the discipline to separate development-time from production-time checks",
+    "When the codebase is primarily glue code or configuration with trivial logic that doesn't benefit from formal contract specification"
+  ],
+  "when_not_to_use_zh": [
+    "当构建快速原型，设计预计每天变化，契约会造成过度维护负担时",
+    "当在没有断言基础设施的动态类型脚本环境中工作，契约无法实际执行时",
+    "当运行时契约检查的性能开销在生产热路径中不可接受，且团队缺乏区分开发期和生产期检查的纪律时",
+    "当代码库主要是胶水代码或配置，逻辑琐碎，不受益于正式契约规范时"
+  ],
+  "adopters": [
+    "Eiffel Software",
+    "Microsoft Research",
+    "Bloomberg",
+    "AdaCore",
+    "JetBrains",
+    "Google (Guava Preconditions)"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "reliability",
+    "testability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Bertrand Meyer (1988). \"Object-Oriented Software Construction\". Prentice Hall.",
+  "secondary_sources": [
+    "Bertrand Meyer (1997). \"Object-Oriented Software Construction, 2nd Edition\". Prentice Hall.",
+    "Bertrand Meyer (1992). \"Applying Design by Contract\". IEEE Computer, 25(10)."
+  ],
+  "typed_relations": [
+    {
+      "slug": "property-based-testing",
+      "type": "complement"
+    },
+    {
+      "slug": "contract-testing",
+      "type": "related"
+    },
+    {
+      "slug": "clean-code-principles",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/design-by-contract",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/design-by-contract.md"
+}

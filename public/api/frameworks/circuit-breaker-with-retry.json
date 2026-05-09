@@ -1,0 +1,189 @@
+{
+  "id": 208,
+  "name": "Circuit Breaker with Retry",
+  "name_zh": "带重试的断路器",
+  "slug": "circuit-breaker-with-retry",
+  "category": "distributed",
+  "desc": "Combined retry + circuit breaker for resilient communication",
+  "desc_zh": "结合重试与断路器实现弹性通信",
+  "steps": [
+    "Instrument all inter-service calls with a retry policy: configure a maximum retry count (e.g., 3 attempts), a retry delay strategy (fixed, exponential backoff, or jitter), and the specific exception types that should trigger a retry versus those that should fail immediately",
+    "Wrap the retry-capable call with a circuit breaker: configure a failure threshold (e.g., 50% failure rate over 30 seconds) that trips the breaker to open state, a timeout for the half-open probe attempt, and the success count required to close the breaker",
+    "Ensure the circuit breaker wraps the entire retry sequence, not each individual attempt: the breaker tracks failures of the final result after all retries are exhausted, not intermediate retry failures",
+    "Implement a fallback strategy for open circuit state: return a cached value, a degraded default response, or propagate a clear error to the caller indicating the dependency is unavailable",
+    "Monitor the circuit breaker state, failure rate, and retry exhaustion metrics in a dashboard; alert when a circuit enters open state for more than a configurable threshold because open circuits indicate dependency health problems requiring investigation"
+  ],
+  "steps_zh": [
+    "用重试策略对所有服务间调用进行埋点：配置最大重试次数（如3次尝试）、重试延迟策略（固定、指数退避或抖动）以及应触发重试的特定异常类型与应立即失败的类型",
+    "用断路器包装具有重试能力的调用：配置使断路器跳闸为打开状态的失败阈值（如30秒内50%失败率）、半开探测尝试的超时和关闭断路器所需的成功次数",
+    "确保断路器包装整个重试序列，而非每次单独尝试：断路器在所有重试耗尽后追踪最终结果的失败，而非中间重试失败",
+    "为断路器打开状态实施回退策略：返回缓存值、降级默认响应，或向调用方传播明确的错误，指示依赖项不可用",
+    "在仪表板中监控断路器状态、失败率和重试耗尽指标；当断路器进入打开状态超过可配置阈值时发出告警，因为打开的断路器表明需要调查的依赖项健康问题"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Retry Policy",
+    "Circuit Breaker",
+    "Wrap Retry",
+    "Fallback",
+    "Monitor"
+  ],
+  "viz_labels_zh": [
+    "重试策略",
+    "熔断器",
+    "包装重试",
+    "降级策略",
+    "状态监控"
+  ],
+  "related": [
+    "bulkhead-service-level",
+    "service-discovery",
+    "idempotency-pattern"
+  ],
+  "tags": [
+    "circuit-breaker",
+    "retry",
+    "resilience",
+    "fault-tolerance",
+    "hystrix"
+  ],
+  "origin_author": "Michael Nygard (circuit breaker pattern, 2007); Polly (.NET) and Hystrix (Netflix, 2012) as implementations",
+  "origin_source": "Nygard, M.T. (2007/2018). \"Release It!\", 2nd ed. Pragmatic Bookshelf; Netflix Hystrix documentation (2012); Fowler, M. (2014). \"CircuitBreaker\". martinfowler.com",
+  "origin_source_zh": "Nygard, M.T.（2007/2018）。《Release It!》第2版，Pragmatic Bookshelf；Netflix Hystrix文档（2012）；Fowler, M.（2014）。「断路器」，martinfowler.com",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When a microservice makes synchronous HTTP or gRPC calls to downstream dependencies that may be temporarily unavailable, slow, or returning errors intermittently",
+    "When retry storms from many callers simultaneously retrying a failing service would overwhelm the dependency rather than allowing it to recover",
+    "When graceful degradation is required so that a failed dependency causes the calling service to return a degraded response rather than failing entirely",
+    "When a critical downstream service is known to experience periodic maintenance windows or traffic-related slowdowns that should not cascade into the calling service"
+  ],
+  "when_to_use_zh": [
+    "当微服务对可能暂时不可用、缓慢或间歇性返回错误的下游依赖项进行同步HTTP或gRPC调用时",
+    "当来自许多调用方同时重试失败服务的重试风暴会压垮依赖项而不允许其恢复时",
+    "当需要优雅降级使失败的依赖项导致调用服务返回降级响应而非完全失败时",
+    "当已知关键下游服务会经历定期维护窗口或与流量相关的减速，不应级联到调用服务时"
+  ],
+  "core_concepts": [
+    "Closed state: the circuit is functioning normally; requests flow through; failures are counted against the threshold",
+    "Open state: the failure threshold has been breached; all requests fail immediately without attempting the downstream call, preventing further load on an already-struggling dependency",
+    "Half-open state: after a configured timeout, the circuit allows a single probe request through; if it succeeds the circuit closes; if it fails the circuit reopens for another timeout period",
+    "Exponential backoff with jitter: retry delays that grow exponentially with each attempt and add random jitter to prevent thundering herd — many callers retrying simultaneously at the same interval"
+  ],
+  "core_concepts_zh": [
+    "关闭状态：断路器正常运行；请求通过；失败被计入阈值",
+    "打开状态：失败阈值已被突破；所有请求立即失败而不尝试下游调用，防止对已经困难的依赖项进一步加载",
+    "半开状态：在配置的超时后，断路器允许单个探测请求通过；如果成功则断路器关闭；如果失败则断路器重新打开另一个超时周期",
+    "带抖动的指数退避：每次尝试指数增长并添加随机抖动以防止雷鸣群——许多调用方在同一间隔同时重试"
+  ],
+  "timeline": [
+    [
+      "2007",
+      "Michael Nygard introduces the circuit breaker pattern in 'Release It!' as a stability pattern for preventing cascading failures"
+    ],
+    [
+      "2012",
+      "Netflix open-sources Hystrix, the first widely-adopted circuit breaker library for JVM services in production-scale microservices"
+    ],
+    [
+      "2016",
+      "Polly (.NET) and Resilience4j (Java) emerge as framework-agnostic circuit breaker libraries; Hystrix enters maintenance mode"
+    ],
+    [
+      "2020",
+      "Service meshes (Istio, Linkerd) implement circuit breaking at the infrastructure layer via sidecar proxies, making it available without code changes"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2007",
+      "Michael Nygard在《Release It!》中引入断路器模式，作为防止级联故障的稳定性模式"
+    ],
+    [
+      "2012",
+      "Netflix开源Hystrix，这是第一个在生产规模微服务中广泛采用的JVM服务断路器库"
+    ],
+    [
+      "2016",
+      "Polly（.NET）和Resilience4j（Java）作为框架无关的断路器库出现；Hystrix进入维护模式"
+    ],
+    [
+      "2020",
+      "服务网格（Istio、Linkerd）通过Sidecar代理在基础设施层实现断路，使其无需代码更改即可使用"
+    ]
+  ],
+  "dos": [
+    "Do configure separate circuit breakers for each downstream dependency because a shared breaker allows one failing dependency to block calls to all other healthy dependencies",
+    "Do use jitter in retry delays because without jitter all retrying clients synchronize their retry timing and create a thundering herd that can overwhelm a recovering service",
+    "Do set the circuit breaker timeout based on the dependency's expected recovery time rather than an arbitrary default because too-short timeouts cause premature circuit closure before the dependency has recovered",
+    "Do test the circuit breaker behavior under load with chaos engineering tools (Chaos Monkey, Gremlin) because untested circuit breakers fail in unexpected ways under production conditions"
+  ],
+  "dos_zh": [
+    "为每个下游依赖项配置单独的断路器，因为共享断路器允许一个失败的依赖项阻塞对所有其他健康依赖项的调用",
+    "在重试延迟中使用抖动，因为没有抖动，所有重试客户端会同步其重试时间，并创建可能压垮恢复中服务的雷鸣群",
+    "根据依赖项的预期恢复时间而非任意默认值设置断路器超时，因为过短的超时会导致在依赖项恢复前过早关闭断路器",
+    "使用混沌工程工具（Chaos Monkey、Gremlin）在负载下测试断路器行为，因为未经测试的断路器在生产条件下会以意想不到的方式失败"
+  ],
+  "donts": [
+    "Don't retry non-idempotent operations (POST, DELETE with side effects) without idempotency keys because each retry may duplicate the business action",
+    "Don't set retry counts too high because aggressive retries amplify load on a struggling service and delay the circuit breaker from tripping when a dependency is genuinely down",
+    "Don't share a circuit breaker thread pool across all callers because a slow dependency that exhausts the pool will block all other requests in the service, regardless of their target",
+    "Don't disable circuit breakers in production to 'fix' a broken integration because the circuit breaker is revealing a dependency problem — disabling it causes cascading failure instead of graceful degradation"
+  ],
+  "donts_zh": [
+    "不要在没有幂等键的情况下重试非幂等操作（带有副作用的POST、DELETE），因为每次重试都可能重复业务操作",
+    "不要将重试次数设置得太高，因为激进的重试会放大对困难服务的负载，并延迟断路器在依赖项真正宕机时跳闸",
+    "不要在所有调用方之间共享断路器线程池，因为耗尽池的慢依赖项将阻塞服务中的所有其他请求，无论其目标是什么",
+    "不要在生产中禁用断路器来「修复」损坏的集成，因为断路器揭示的是依赖项问题——禁用它会导致级联故障而非优雅降级"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix's Hystrix library powered circuit breaking across hundreds of microservices in their video streaming platform. The most famous application is their API gateway, which calls dozens of downstream services (recommendations, user profiles, billing, content catalog) to assemble the home screen. Each dependency is wrapped in its own Hystrix command with a dedicated thread pool. When the recommendations service degrades during peak traffic, Hystrix trips its circuit and the API gateway falls back to a curated editorial list instead of crashing the entire home screen. Netflix reported that during their 2012 Christmas peak, over 3.5 billion Hystrix fallback calls were executed, keeping the service available for millions of users while individual dependencies experienced failures.",
+  "case_study_zh": "Netflix的Hystrix库为其视频流平台数百个微服务提供断路支持。最著名的应用是其API网关，它调用数十个下游服务（推荐、用户资料、计费、内容目录）来组装主屏幕。每个依赖项都包装在自己的Hystrix命令中，带有专用线程池。当推荐服务在峰值流量期间降级时，Hystrix跳闸其断路器，API网关回退到精心策划的编辑列表，而不是使整个主屏幕崩溃。Netflix报告称，在2012年圣诞节峰值期间，执行了超过35亿次Hystrix回退调用，在各个依赖项遭受故障时使数百万用户的服务保持可用。",
+  "when_not_to_use": [
+    "Internal in-process method calls that do not cross network boundaries because the overhead of a circuit breaker is unnecessary for calls that cannot fail due to network issues",
+    "Asynchronous message-based communication where at-least-once delivery and consumer retries already handle transient failures at the messaging layer",
+    "Database connections within a single service where connection pooling and timeout configuration provide sufficient resilience without circuit breaker complexity",
+    "When the downstream service is the organization's own service with very high availability SLAs — invest in improving the service's reliability rather than masking its failures with a circuit breaker"
+  ],
+  "when_not_to_use_zh": [
+    "不跨越网络边界的进程内方法调用，因为对于不会因网络问题而失败的调用，断路器的开销是不必要的",
+    "至少一次交付和消费者重试已经在消息层处理瞬态故障的异步基于消息的通信",
+    "单个服务内的数据库连接，连接池和超时配置提供足够的弹性而不需要断路器复杂性",
+    "当下游服务是具有非常高可用性SLA的组织自己的服务时——投资提高服务的可靠性，而不是用断路器掩盖其故障"
+  ],
+  "adopters": [
+    "Netflix",
+    "Amazon",
+    "Alibaba (Sentinel)",
+    "Microsoft (Polly/.NET)",
+    "Spring Cloud (Resilience4j)"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability",
+    "performance"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Nygard, M.T. (2018). \"Release It!\", 2nd ed., Ch. 5: Stability Patterns. Pragmatic Bookshelf.",
+  "secondary_sources": [
+    "Fowler, M. (2014). \"CircuitBreaker\". martinfowler.com/bliki/CircuitBreaker.html.",
+    "Netflix (2012). \"Hystrix: Latency and Fault Tolerance for Distributed Systems\". github.com/Netflix/Hystrix.",
+    "Resilience4j Project (2019). \"Resilience4j Documentation\". resilience4j.readme.io."
+  ],
+  "typed_relations": [
+    {
+      "slug": "bulkhead-service-level",
+      "type": "complement"
+    },
+    {
+      "slug": "service-discovery",
+      "type": "complement"
+    },
+    {
+      "slug": "idempotency-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/circuit-breaker-with-retry",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/circuit-breaker-with-retry.md"
+}

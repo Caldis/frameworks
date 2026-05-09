@@ -1,0 +1,198 @@
+{
+  "id": 139,
+  "name": "HATEOAS",
+  "name_zh": "超媒体驱动应用状态（HATEOAS）",
+  "slug": "hateoas",
+  "category": "api",
+  "desc": "Hypermedia-driven API navigation where responses contain links to available actions",
+  "desc_zh": "超媒体驱动的API导航，响应中包含可用操作的链接",
+  "steps": [
+    "Design resource representations that include hypermedia links indicating available state transitions and related resources",
+    "Choose a hypermedia media type (HAL, JSON:API, Siren, or Collection+JSON) that provides a standard structure for embedding links",
+    "Implement link generation in API responses that dynamically reflects the current resource state and the authenticated user's permissions",
+    "Build clients that discover available actions by following links in responses rather than hardcoding URL patterns",
+    "Document the link relations (rel types) and media types so consumers understand the meaning of each link without needing to know URL structure"
+  ],
+  "steps_zh": [
+    "设计资源表示，包含指示可用状态转换和相关资源的超媒体链接",
+    "选择超媒体媒体类型（HAL、JSON:API、Siren或Collection+JSON），提供嵌入链接的标准结构",
+    "在API响应中实现链接生成，动态反映当前资源状态和认证用户的权限",
+    "构建客户端通过跟随响应中的链接发现可用操作，而非硬编码URL模式",
+    "文档化链接关系（rel类型）和媒体类型，使消费者无需了解URL结构即可理解每个链接的含义"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Resource",
+    "Media Type",
+    "Link Generation",
+    "Client Follows",
+    "Rel Types"
+  ],
+  "viz_labels_zh": [
+    "资源",
+    "媒体类型",
+    "链接生成",
+    "客户端发现",
+    "关系类型"
+  ],
+  "related": [
+    "openapi-specification",
+    "graphql-schema-design",
+    "consumer-driven-contracts"
+  ],
+  "tags": [
+    "hateoas",
+    "hypermedia",
+    "rest",
+    "links",
+    "discoverability"
+  ],
+  "origin_author": "Roy Fielding, 2000 (as a constraint of REST in his doctoral dissertation)",
+  "origin_source": "Architectural Styles and the Design of Network-based Software Architectures (Roy Fielding, 2000, Ch. 5); RESTful Web APIs (Leonard Richardson & Mike Amundsen, 2013, Ch. 4-5)",
+  "origin_source_zh": "《架构风格与基于网络的软件架构设计》（Roy Fielding，2000，第5章）；《RESTful Web API》（Leonard Richardson & Mike Amundsen，2013，第4-5章）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "When building long-lived APIs where URL structures may evolve but clients should not break",
+    "When API workflows involve complex state machines and clients need guidance on valid next actions",
+    "When reducing client-server coupling is a priority, allowing the server to change URL patterns without client updates",
+    "When building APIs for exploration and discoverability, where navigating from a single entry point should reveal all capabilities"
+  ],
+  "when_to_use_zh": [
+    "当构建长期存在的API，URL结构可能演进但客户端不应中断时",
+    "当API工作流涉及复杂状态机，客户端需要关于有效下一步操作的指导时",
+    "当降低客户端-服务器耦合是优先事项，允许服务器更改URL模式而无需客户端更新时",
+    "当构建用于探索和发现的API，从单一入口点导航应展示所有功能时"
+  ],
+  "core_concepts": [
+    "Hypermedia as the Engine: API responses embed links that tell clients what actions are available, making the API self-describing and navigable",
+    "Link Relations (rel): Standardized or custom relation types (e.g., 'self', 'next', 'payment') give semantic meaning to each link independent of its URL",
+    "Dynamic Link Availability: Links in responses change based on resource state and user permissions — a canceled order shows no 'refund' link",
+    "Media Types: Hypermedia formats like HAL (application/hal+json), JSON:API, and Siren define how links are structured within JSON responses",
+    "Maturity Level 3: In Richardson's REST Maturity Model, HATEOAS represents the highest level of REST compliance, beyond resources and HTTP verbs"
+  ],
+  "core_concepts_zh": [
+    "超媒体作为引擎：API响应嵌入链接，告知客户端可用的操作，使API自描述且可导航",
+    "链接关系（rel）：标准化或自定义的关系类型（如「self」「next」「payment」）为每个链接赋予独立于URL的语义含义",
+    "动态链接可用性：响应中的链接根据资源状态和用户权限变化——已取消的订单不显示「退款」链接",
+    "媒体类型：HAL（application/hal+json）、JSON:API和Siren等超媒体格式定义了JSON响应中链接的结构方式",
+    "成熟度第3级：在Richardson的REST成熟度模型中，HATEOAS代表REST合规的最高级别，超越资源和HTTP动词"
+  ],
+  "timeline": [
+    [
+      "2000",
+      "Roy Fielding defines HATEOAS as a core constraint of REST in his doctoral dissertation at UC Irvine"
+    ],
+    [
+      "2008",
+      "Leonard Richardson proposes the REST Maturity Model with HATEOAS as Level 3 (the highest level)"
+    ],
+    [
+      "2012",
+      "HAL (Hypertext Application Language) specification by Mike Kelly provides a practical JSON hypermedia format"
+    ],
+    [
+      "2015",
+      "JSON:API specification reaches 1.0, offering an opinionated standard for REST APIs with relationship links"
+    ],
+    [
+      "2024",
+      "HATEOAS principles influence AI agent tool discovery, where LLMs navigate APIs by following hypermedia links"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2000",
+      "Roy Fielding在其加州大学尔湾分校博士论文中定义HATEOAS为REST的核心约束"
+    ],
+    [
+      "2008",
+      "Leonard Richardson提出REST成熟度模型，HATEOAS为第3级（最高级别）"
+    ],
+    [
+      "2012",
+      "Mike Kelly的HAL（超文本应用语言）规范提供了实用的JSON超媒体格式"
+    ],
+    [
+      "2015",
+      "JSON:API规范达到1.0版本，为带关系链接的REST API提供了一种有主见的标准"
+    ],
+    [
+      "2024",
+      "HATEOAS原则影响AI代理工具发现，LLM通过跟随超媒体链接来导航API"
+    ]
+  ],
+  "dos": [
+    "Do include a 'self' link in every resource representation because it provides an unambiguous canonical URL for each resource",
+    "Do use standardized link relation types from IANA where possible because custom rel types reduce interoperability",
+    "Do make link availability conditional on resource state because it guides clients on valid transitions and prevents invalid operations",
+    "Do choose an established hypermedia format (HAL, JSON:API, Siren) rather than inventing your own because standard tooling and client libraries already exist"
+  ],
+  "dos_zh": [
+    "在每个资源表示中包含「self」链接，因为它为每个资源提供明确的规范URL",
+    "尽可能使用IANA的标准化链接关系类型，因为自定义rel类型降低互操作性",
+    "使链接可用性取决于资源状态，因为这引导客户端进行有效转换并防止无效操作",
+    "选择已建立的超媒体格式（HAL、JSON:API、Siren）而非发明自己的，因为标准工具和客户端库已经存在"
+  ],
+  "donts": [
+    "Don't include links without documenting their relation types because undocumented links are meaningless to client developers",
+    "Don't require clients to construct URLs from templates or documentation because it defeats the purpose of hypermedia-driven discovery",
+    "Don't add HATEOAS links as an afterthought to an existing API because retrofitting hypermedia requires rethinking resource design holistically",
+    "Don't expect all clients to use hypermedia navigation because many teams will hardcode URLs despite the links being available"
+  ],
+  "donts_zh": [
+    "不要包含链接而不文档化其关系类型，因为未文档化的链接对客户端开发者毫无意义",
+    "不要要求客户端从模板或文档构造URL，因为这违背了超媒体驱动发现的目的",
+    "不要将HATEOAS链接作为事后补充添加到现有API，因为改造超媒体需要从整体重新思考资源设计",
+    "不要期望所有客户端都使用超媒体导航，因为许多团队尽管链接可用仍会硬编码URL"
+  ],
+  "case_study_company": "PayPal",
+  "case_study": "PayPal's REST API is one of the most prominent real-world implementations of HATEOAS. Every API response includes a links array with HATEOAS links that guide consumers through payment workflows. For example, after creating a payment, the response includes 'approve', 'execute', and 'self' links. The client follows the 'approve' link to redirect the user, then the 'execute' link to complete the payment. This approach allows PayPal to change URL structures, add new payment steps, or modify workflows without breaking existing integrations.",
+  "case_study_zh": "PayPal的REST API是HATEOAS最著名的实际实现之一。每个API响应都包含一个links数组，其中的HATEOAS链接引导消费者完成支付工作流。例如，创建支付后，响应包含「approve」「execute」和「self」链接。客户端跟随「approve」链接重定向用户，然后跟随「execute」链接完成支付。这种方法允许PayPal更改URL结构、添加新支付步骤或修改工作流而不破坏现有集成。",
+  "when_not_to_use": [
+    "Internal microservice APIs where clients and servers are deployed together and URL coupling is acceptable",
+    "High-performance APIs where the overhead of generating and transmitting links in every response is unacceptable",
+    "Simple CRUD APIs with flat resource structures where hypermedia navigation adds no value over documented URL patterns",
+    "Mobile or bandwidth-constrained clients where the additional payload size from links degrades performance"
+  ],
+  "when_not_to_use_zh": [
+    "客户端和服务器一起部署的内部微服务API，URL耦合可以接受",
+    "高性能API，在每个响应中生成和传输链接的开销不可接受",
+    "具有扁平资源结构的简单CRUD API，超媒体导航相比文档化的URL模式不增加价值",
+    "移动端或带宽受限的客户端，链接增加的额外负载大小会降低性能"
+  ],
+  "adopters": [
+    "PayPal",
+    "Amazon",
+    "GitHub",
+    "Spring HATEOAS",
+    "FoxyCart"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "usability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Fielding, R.T. (2000). \"Architectural Styles and the Design of Network-based Software Architectures\", Ch. 5. Doctoral Dissertation, University of California, Irvine.",
+  "secondary_sources": [
+    "Richardson, L. & Amundsen, M. (2013). \"RESTful Web APIs\", Ch. 4-5. O'Reilly Media.",
+    "Fielding, R.T. (2008). \"REST APIs Must Be Hypertext-Driven\". roy.gbiv.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "openapi-specification",
+      "type": "complement"
+    },
+    {
+      "slug": "graphql-schema-design",
+      "type": "alternative"
+    },
+    {
+      "slug": "consumer-driven-contracts",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/hateoas",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/hateoas.md"
+}

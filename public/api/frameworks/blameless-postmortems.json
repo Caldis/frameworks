@@ -1,0 +1,199 @@
+{
+  "id": 146,
+  "name": "Blameless Postmortems",
+  "name_zh": "无指责事后复盘",
+  "slug": "blameless-postmortems",
+  "category": "team",
+  "desc": "Conduct structured incident reviews focused on systemic learning rather than individual blame",
+  "desc_zh": "进行结构化的事故复盘，聚焦于系统性学习而非个人指责",
+  "steps": [
+    "Document the incident timeline with objective facts: what happened, when, and what actions were taken",
+    "Gather all participants and stakeholders for a facilitated review within 48 hours of incident resolution",
+    "Analyze contributing factors using techniques like the '5 Whys' or fault tree analysis, focusing on systems not individuals",
+    "Identify actionable remediation items with clear owners and deadlines, prioritized by impact",
+    "Publish the postmortem internally for organizational learning and track remediation completion"
+  ],
+  "steps_zh": [
+    "用客观事实记录事故时间线：发生了什么、何时发生、采取了什么行动",
+    "在事故解决后 48 小时内召集所有参与者和利益相关者进行有引导的复盘",
+    "使用「5 个为什么」或故障树分析等技术分析促成因素，关注系统而非个人",
+    "识别可执行的补救项，明确负责人和截止日期，按影响优先排序",
+    "在组织内部发布事后复盘报告以促进学习，并跟踪补救完成情况"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Timeline",
+    "Facilitated Review",
+    "5 Whys Analysis",
+    "Action Items",
+    "Publish Learnings"
+  ],
+  "viz_labels_zh": [
+    "事件时间线",
+    "复盘会议",
+    "五问分析",
+    "改进项",
+    "发布学习"
+  ],
+  "related": [
+    "technical-debt-management-framework",
+    "developer-experience-framework",
+    "team-topologies"
+  ],
+  "tags": [
+    "incidents",
+    "learning",
+    "culture",
+    "postmortem",
+    "resilience",
+    "SRE"
+  ],
+  "origin_author": "John Allspaw, 2012; rooted in Sidney Dekker's Just Culture and safety science",
+  "origin_source": "Etsy's engineering blog (Allspaw, 2012); Site Reliability Engineering (Beyer et al., 2016); referenced in Accelerate (Forsgren, Humble & Kim, 2018)",
+  "origin_source_zh": "Etsy 工程博客（Allspaw，2012）；《SRE：Google 运维解密》（Beyer 等，2016）；在《加速》（Forsgren、Humble & Kim，2018）中有引用",
+  "complexity": "beginner",
+  "when_to_use": [
+    "After any production incident that caused user impact or SLA breach, regardless of severity",
+    "Organizations trying to build a learning culture where engineers feel safe to take risks and report failures",
+    "Teams experiencing repeated incidents from the same root causes, indicating failure to learn from past events",
+    "Environments transitioning from a blame-oriented culture that suppresses incident reporting"
+  ],
+  "when_to_use_zh": [
+    "任何导致用户影响或 SLA 违约的生产事故之后，不论严重程度",
+    "试图建立学习文化的组织，使工程师感到安全地承担风险和报告故障",
+    "团队因相同根因反复发生事故，表明未能从过去事件中学习",
+    "从抑制事故报告的指责文化向学习文化过渡的环境"
+  ],
+  "core_concepts": [
+    "Blamelessness: The explicit agreement that individuals will not be punished for honest mistakes — this is what makes people willing to share the full truth about what happened",
+    "Systems thinking: Incidents are caused by systemic factors (missing guardrails, poor observability, flawed processes), not individual failures",
+    "Counterfactual reasoning avoidance: Avoid 'if only X had done Y' statements — they are unfalsifiable and prevent systemic improvement",
+    "Action items over apologies: The postmortem's value is measured by the quality and completion rate of remediation items, not by who apologized",
+    "Organizational memory: Published postmortems become a searchable knowledge base that prevents institutional amnesia about past incidents"
+  ],
+  "core_concepts_zh": [
+    "无指责：明确约定不会因诚实错误而惩罚个人——这使人们愿意分享事件发生的全部真相",
+    "系统思维：事故由系统性因素导致（缺少防护栏、可观测性差、流程缺陷），而非个人失误",
+    "避免反事实推理：避免「如果 X 当时做了 Y 就好了」的陈述——这些无法证伪且阻碍系统性改进",
+    "行动项优于道歉：事后复盘的价值以补救项的质量和完成率衡量，而非谁道了歉",
+    "组织记忆：已发布的事后复盘成为可搜索的知识库，防止组织对过去事故的记忆遗失"
+  ],
+  "timeline": [
+    [
+      "2004",
+      "Sidney Dekker publishes 'Just Culture' in aviation safety, establishing the theoretical foundation for blame-free incident analysis"
+    ],
+    [
+      "2012",
+      "John Allspaw publishes 'Blameless PostMortems and a Just Culture' on the Etsy engineering blog, adapting safety science to software"
+    ],
+    [
+      "2014",
+      "PagerDuty open-sources their incident response and postmortem documentation, establishing industry templates"
+    ],
+    [
+      "2016",
+      "Google's SRE book dedicates a chapter to postmortem culture, making blamelessness a mainstream SRE practice"
+    ],
+    [
+      "2018",
+      "Forsgren, Humble and Kim identify a generative (blame-free) culture as a key predictor of high-performing teams in Accelerate"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2004",
+      "Sidney Dekker 发表航空安全领域的「公正文化」理论，为无指责事故分析奠定理论基础"
+    ],
+    [
+      "2012",
+      "John Allspaw 在 Etsy 工程博客发表《无指责事后复盘与公正文化》，将安全科学引入软件领域"
+    ],
+    [
+      "2014",
+      "PagerDuty 开源其事故响应和事后复盘文档，建立行业模板"
+    ],
+    [
+      "2016",
+      "Google 的 SRE 书籍专设一章讨论事后复盘文化，使无指责成为主流 SRE 实践"
+    ],
+    [
+      "2018",
+      "Forsgren、Humble 和 Kim 在《加速》中将生成型（无指责）文化确定为高绩效团队的关键预测因子"
+    ]
+  ],
+  "dos": [
+    "Facilitate the postmortem with a neutral party who was not directly involved in the incident",
+    "Document the timeline with precise timestamps and objective facts before the meeting to ground the discussion",
+    "Follow up rigorously on action items — a postmortem without completed remediation is organizational theater",
+    "Celebrate postmortems as learning events, not punishment rituals — some teams award 'best postmortem' recognition"
+  ],
+  "dos_zh": [
+    "由未直接参与事故的中立方主持事后复盘",
+    "在会议前用精确时间戳和客观事实记录时间线，为讨论奠定基础",
+    "严格跟进行动项——没有完成补救的事后复盘是组织表演",
+    "将事后复盘视为学习活动而非惩罚仪式——一些团队会颁发「最佳事后复盘」认可"
+  ],
+  "donts": [
+    "Don't allow the postmortem to devolve into finger-pointing — the facilitator must redirect 'who' questions to 'what' and 'why' questions",
+    "Don't skip the postmortem for 'small' incidents — small failures are the cheapest learning opportunities",
+    "Don't let action items languish in a backlog forever — set deadlines and review completion weekly",
+    "Don't confuse blameless with accountability-free — the process is blame-free, but systemic issues must still be fixed"
+  ],
+  "donts_zh": [
+    "不要让事后复盘演变为互相指责——主持人必须将「谁」的问题重新引导为「什么」和「为什么」的问题",
+    "不要因「小」事故就跳过事后复盘——小故障是成本最低的学习机会",
+    "不要让行动项永远滞留在待办事项中——设定截止日期并每周审查完成情况",
+    "不要将无指责与无责任混淆——流程是无指责的，但系统性问题仍必须修复"
+  ],
+  "case_study_company": "Etsy",
+  "case_study": "Etsy, under CTO John Allspaw (2011-2015), became the poster child for blameless postmortems in software engineering. When a database engineer accidentally dropped a production table in 2012, instead of punishment, Allspaw facilitated a blameless postmortem that revealed the deployment tooling lacked safeguards against destructive operations. The resulting action items — adding confirmation prompts, read-only replicas for queries, and automated backups — prevented similar incidents. Allspaw published the approach on Etsy's engineering blog, and it became the foundation for modern incident management practices industry-wide. Etsy reported that their incident recurrence rate dropped by over 50% within a year of adopting consistent blameless postmortems.",
+  "case_study_zh": "Etsy 在 CTO John Allspaw（2011-2015 在任）的带领下，成为软件工程领域无指责事后复盘的典范。2012 年一位数据库工程师意外删除了生产表，Allspaw 没有进行惩罚，而是主持了无指责事后复盘，揭示了部署工具缺少针对破坏性操作的防护措施。由此产生的行动项——添加确认提示、用于查询的只读副本和自动备份——防止了类似事故。Allspaw 在 Etsy 工程博客上发表了这一方法，成为全行业现代事故管理实践的基础。Etsy 报告在持续采用无指责事后复盘的一年内，事故复发率下降了 50% 以上。",
+  "when_not_to_use": [
+    "Incidents caused by deliberate malicious action (security breaches) where accountability, not blamelessness, is the appropriate response",
+    "Organizations where leadership has not genuinely committed to blame-free culture — superficial adoption breeds cynicism",
+    "Trivial issues that do not warrant the overhead of a formal postmortem process (use lightweight retros instead)",
+    "Contexts where regulatory compliance requires formal root cause attribution to specific individuals or roles"
+  ],
+  "when_not_to_use_zh": [
+    "由故意恶意行为（安全漏洞）导致的事故，此时问责而非无指责才是适当的回应",
+    "领导层未真正承诺无指责文化的组织——表面采纳会滋生犬儒主义",
+    "不值得正式事后复盘流程开销的琐碎问题（改用轻量级回顾替代）",
+    "法规合规要求将根因正式归因于特定个人或角色的场景"
+  ],
+  "adopters": [
+    "Etsy",
+    "Google",
+    "PagerDuty",
+    "Netflix",
+    "Atlassian"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "reliability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Allspaw, J. (2012). \"Blameless PostMortems and a Just Culture\". Etsy Code as Craft Blog.",
+  "secondary_sources": [
+    "Beyer, B. et al. (2016). \"Site Reliability Engineering: How Google Runs Production Systems\", Ch. 15. O'Reilly Media.",
+    "Dekker, S. (2012). \"Just Culture: Restoring Trust and Accountability in Your Organization\", 2nd ed. CRC Press."
+  ],
+  "typed_relations": [
+    {
+      "slug": "technical-debt-management-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "developer-experience-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "team-topologies",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/blameless-postmortems",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/blameless-postmortems.md"
+}

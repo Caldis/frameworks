@@ -1,0 +1,194 @@
+{
+  "id": 182,
+  "name": "Observability-Driven Development",
+  "name_zh": "可观测性驱动开发",
+  "slug": "observability-driven-development",
+  "category": "quality",
+  "desc": "Design for observability from the start, not after — build systems that explain their own behavior",
+  "desc_zh": "从一开始就为可观测性设计，而非事后补救——构建能解释自身行为的系统",
+  "steps": [
+    "Define observability requirements during design: identify what questions operators will need to answer and what signals will provide those answers",
+    "Instrument code with structured logging, metrics, and distributed traces from day one, treating observability as a first-class feature",
+    "Establish SLIs and SLOs early: define service level indicators and objectives that drive alerting, dashboards, and capacity decisions",
+    "Build dashboards and runbooks alongside features: every new feature ships with the monitoring needed to operate it in production",
+    "Practice observability in development: use the same tools locally that run in production so developers build intuition for system behavior"
+  ],
+  "steps_zh": [
+    "在设计阶段定义可观测性需求：确定运维人员需要回答的问题以及提供这些答案的信号",
+    "从第一天起用结构化日志、指标和分布式追踪检测代码，将可观测性视为一等特性",
+    "尽早建立SLI和SLO：定义驱动告警、仪表盘和容量决策的服务水平指标和目标",
+    "将仪表盘和运行手册与功能一起构建：每个新功能都附带在生产中运维所需的监控",
+    "在开发中实践可观测性：在本地使用与生产中运行的相同工具，使开发者建立对系统行为的直觉"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Instrument",
+    "Emit",
+    "Query",
+    "Act"
+  ],
+  "viz_labels_zh": [
+    "埋点",
+    "上报",
+    "查询",
+    "响应"
+  ],
+  "related": [
+    "error-budget-policy",
+    "chaos-engineering",
+    "twelve-factor-app"
+  ],
+  "tags": [
+    "observability",
+    "monitoring",
+    "logging",
+    "tracing",
+    "sre"
+  ],
+  "origin_author": "Charity Majors, 2018",
+  "origin_source": "Release It! Design and Deploy Production-Ready Software (Nygard, 2018); Continuous Delivery (Humble & Farley, 2010)",
+  "origin_source_zh": "《发布！设计与部署生产就绪软件》（Nygard，2018）；《持续交付》（Humble & Farley，2010）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Starting a new service or system where observability can be designed in from the architecture phase",
+    "Operating distributed microservices where request paths cross multiple services and debugging requires correlated traces",
+    "After experiencing production incidents where lack of telemetry made root cause analysis slow or impossible",
+    "Building platforms that other teams depend on, where SLOs and error budgets govern reliability contracts"
+  ],
+  "when_to_use_zh": [
+    "启动新服务或系统，可以从架构阶段开始设计可观测性",
+    "运营分布式微服务，请求路径跨越多个服务，调试需要关联追踪",
+    "在经历生产事故后，缺乏遥测使根因分析缓慢或不可能",
+    "构建其他团队依赖的平台，SLO和错误预算管理可靠性契约"
+  ],
+  "core_concepts": [
+    "Three Pillars: Logs (discrete events), metrics (aggregated measurements), and traces (request-scoped causal chains) as complementary observability signals",
+    "Structured Logging: Emitting log events as key-value pairs or JSON instead of unstructured text, enabling machine parsing and querying",
+    "Distributed Tracing: Propagating trace IDs across service boundaries to reconstruct the full lifecycle of a request through the system",
+    "SLI/SLO: Service Level Indicators measure what users experience; Service Level Objectives define acceptable thresholds for those indicators",
+    "High Cardinality: The ability to query telemetry by any combination of dimensions (user ID, request ID, feature flag) to debug unique issues"
+  ],
+  "core_concepts_zh": [
+    "三大支柱：日志（离散事件）、指标（聚合度量）和追踪（请求范围的因果链）作为互补的可观测性信号",
+    "结构化日志：以键值对或JSON形式发出日志事件，而非非结构化文本，支持机器解析和查询",
+    "分布式追踪：跨服务边界传播追踪ID，重建请求在系统中的完整生命周期",
+    "SLI/SLO：服务水平指标衡量用户体验；服务水平目标为这些指标定义可接受的阈值",
+    "高基数：能够按任意维度组合（用户ID、请求ID、特性标志）查询遥测数据以调试唯一问题"
+  ],
+  "timeline": [
+    [
+      "2010",
+      "Humble and Farley emphasize monitoring and feedback loops as essential to continuous delivery pipelines"
+    ],
+    [
+      "2015",
+      "Google publishes the SRE book, codifying SLIs, SLOs, and error budgets as industry standards"
+    ],
+    [
+      "2018",
+      "Charity Majors coins 'observability-driven development' and advocates designing for debuggability from the start"
+    ],
+    [
+      "2019",
+      "OpenTelemetry launches as a unified standard for traces, metrics, and logs, merging OpenTracing and OpenCensus"
+    ],
+    [
+      "2023",
+      "Observability platforms integrate AI-powered anomaly detection, reducing alert fatigue and accelerating root cause analysis"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2010",
+      "Humble和Farley强调监控和反馈循环是持续交付管道的必需"
+    ],
+    [
+      "2015",
+      "Google发布SRE书籍，将SLI、SLO和错误预算编纂为行业标准"
+    ],
+    [
+      "2018",
+      "Charity Majors提出'可观测性驱动开发'，倡导从一开始就为可调试性设计"
+    ],
+    [
+      "2019",
+      "OpenTelemetry作为追踪、指标和日志的统一标准推出，合并了OpenTracing和OpenCensus"
+    ],
+    [
+      "2023",
+      "可观测性平台集成AI驱动的异常检测，减少告警疲劳并加速根因分析"
+    ]
+  ],
+  "dos": [
+    "Do instrument code during development because retrofitting observability into running systems is 10x more expensive and error-prone",
+    "Do use structured logging everywhere because unstructured log messages cannot be efficiently queried, aggregated, or correlated",
+    "Do propagate trace context across all service boundaries because broken trace chains make distributed debugging impossible",
+    "Do define SLOs before launching because without explicit reliability targets there is no objective basis for operational decisions"
+  ],
+  "dos_zh": [
+    "在开发期间检测代码，因为对运行中的系统改造可观测性成本高10倍且容易出错",
+    "在所有地方使用结构化日志，因为非结构化日志消息无法高效查询、聚合或关联",
+    "在所有服务边界传播追踪上下文，因为断裂的追踪链使分布式调试不可能",
+    "在启动前定义SLO，因为没有明确的可靠性目标就没有运维决策的客观基础"
+  ],
+  "donts": [
+    "Don't add observability as an afterthought because post-hoc instrumentation misses critical paths and creates blind spots",
+    "Don't alert on every metric because alert fatigue causes teams to ignore real incidents hidden among noise",
+    "Don't collect telemetry without retention policies because unbounded storage costs grow exponentially and degrade query performance",
+    "Don't treat logs, metrics, and traces as independent systems because correlated signals provide 10x more diagnostic value than isolated ones"
+  ],
+  "donts_zh": [
+    "不要将可观测性作为事后想法添加，因为事后检测会遗漏关键路径并产生盲区",
+    "不要对每个指标都设置告警，因为告警疲劳会导致团队忽略隐藏在噪音中的真实事故",
+    "不要在没有保留策略的情况下收集遥测数据，因为无限的存储成本会指数增长并降低查询性能",
+    "不要将日志、指标和追踪视为独立系统，因为关联的信号比孤立的信号提供10倍以上的诊断价值"
+  ],
+  "case_study_company": "Honeycomb",
+  "case_study": "Honeycomb, founded by Charity Majors, practices observability-driven development as their core engineering philosophy. Every feature is designed with high-cardinality instrumentation from the start, enabling engineers to ask arbitrary questions about production behavior without pre-defining dashboards. When a customer reported intermittent slow queries, an engineer used trace-level analysis to identify that a specific combination of tenant size, query complexity, and time-of-day caused cache eviction storms — a root cause that traditional monitoring would have taken days to identify but was found in under 30 minutes with proper observability.",
+  "case_study_zh": "由Charity Majors创立的Honeycomb将可观测性驱动开发作为其核心工程理念。每个功能从一开始就以高基数检测设计，使工程师能够在不预定义仪表盘的情况下对生产行为提出任意问题。当一位客户报告间歇性慢查询时，工程师使用追踪级分析确定了特定的租户大小、查询复杂度和时间组合导致了缓存驱逐风暴——这一根因使用传统监控需要数天才能识别，但通过适当的可观测性在30分钟内就被发现。",
+  "when_not_to_use": [
+    "Tiny single-process applications where simple logging and error output provide sufficient operational visibility",
+    "Short-lived scripts or batch jobs where execution is deterministic and debugging relies on input-output validation",
+    "Very early prototypes where operational concerns are irrelevant and shipping speed is the only priority"
+  ],
+  "when_not_to_use_zh": [
+    "微小的单进程应用，简单的日志和错误输出提供足够的运维可见性",
+    "短期脚本或批处理作业，执行是确定性的，调试依赖输入输出验证",
+    "非常早期的原型，运维关注点不相关，交付速度是唯一优先级"
+  ],
+  "adopters": [
+    "Honeycomb",
+    "Google",
+    "Slack",
+    "GitHub",
+    "Lightstep"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "observability",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Charity Majors (2018). \"Observability: A Manifesto\". charity.wtf.",
+  "secondary_sources": [
+    "Charity Majors, Liz Fong-Jones, and George Miranda (2022). \"Observability Engineering\". O'Reilly Media.",
+    "Cindy Sridharan (2018). \"Distributed Systems Observability\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "error-budget-policy",
+      "type": "complement"
+    },
+    {
+      "slug": "chaos-engineering",
+      "type": "complement"
+    },
+    {
+      "slug": "twelve-factor-app",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/observability-driven-development",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/observability-driven-development.md"
+}

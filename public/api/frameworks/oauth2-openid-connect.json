@@ -1,0 +1,200 @@
+{
+  "id": 113,
+  "name": "OAuth 2.0 / OpenID Connect",
+  "name_zh": "OAuth 2.0 / OpenID Connect 授权与身份框架",
+  "slug": "oauth2-openid-connect",
+  "category": "security",
+  "desc": "Delegated authorization and federated identity for secure API and application access",
+  "desc_zh": "用于安全 API 和应用访问的委托授权与联合身份框架",
+  "steps": [
+    "Register the client application with the authorization server and obtain client credentials",
+    "Redirect the resource owner to the authorization endpoint with the appropriate grant type and scopes",
+    "The authorization server authenticates the user and issues an authorization code (or token directly for implicit flows)",
+    "The client exchanges the authorization code for an access token (and optionally a refresh token and ID token via OpenID Connect)",
+    "The client presents the access token to the resource server; the server validates the token and enforces scope-based access control"
+  ],
+  "steps_zh": [
+    "在授权服务器注册客户端应用并获取客户端凭据",
+    "使用适当的授权类型和作用域将资源所有者重定向到授权端点",
+    "授权服务器认证用户并颁发授权码（隐式流直接颁发令牌）",
+    "客户端用授权码换取访问令牌（可选地通过 OpenID Connect 获取刷新令牌和 ID 令牌）",
+    "客户端向资源服务器出示访问令牌；服务器验证令牌并执行基于作用域的访问控制"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Client",
+    "Auth Server",
+    "Auth Code",
+    "Access Token",
+    "Resource Server"
+  ],
+  "viz_labels_zh": [
+    "客户端",
+    "授权服务器",
+    "授权码",
+    "访问令牌",
+    "资源服务器"
+  ],
+  "related": [
+    "zero-trust-architecture",
+    "principle-of-least-privilege",
+    "security-by-design"
+  ],
+  "tags": [
+    "oauth",
+    "openid-connect",
+    "authorization",
+    "identity",
+    "tokens",
+    "api-security"
+  ],
+  "origin_author": "Eran Hammer, Dick Hardt et al. (IETF); OpenID Foundation",
+  "origin_source": "RFC 6749「The OAuth 2.0 Authorization Framework」(IETF, 2012); RFC 6750 Bearer Token Usage; OpenID Connect Core 1.0 (2014)",
+  "origin_source_zh": "RFC 6749「OAuth 2.0 授权框架」(IETF, 2012)；RFC 6750 Bearer 令牌用法；OpenID Connect Core 1.0 (2014)",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Building APIs that need delegated third-party access without sharing user credentials",
+    "Implementing single sign-on (SSO) across multiple applications or microservices",
+    "Mobile and SPA applications that require secure token-based authentication",
+    "Integrating with external identity providers (Google, Microsoft, Apple) for federated login"
+  ],
+  "when_to_use_zh": [
+    "构建需要委托第三方访问而不共享用户凭据的 API",
+    "在多个应用或微服务间实现单点登录（SSO）",
+    "需要安全的基于令牌认证的移动和单页应用",
+    "集成外部身份提供商（Google、Microsoft、Apple）实现联合登录"
+  ],
+  "core_concepts": [
+    "Authorization Grant: A credential representing the resource owner's consent, exchanged for an access token (e.g., authorization code, client credentials)",
+    "Access Token: A short-lived credential that the client presents to access protected resources on behalf of the user",
+    "Refresh Token: A long-lived credential used to obtain new access tokens without requiring the user to re-authenticate",
+    "ID Token (OIDC): A JWT containing identity claims about the authenticated user, issued alongside the access token in OpenID Connect flows",
+    "Scopes: Named permissions that limit what an access token can do, enabling the principle of least privilege at the API level"
+  ],
+  "core_concepts_zh": [
+    "授权许可：代表资源所有者同意的凭据，用于换取访问令牌（如授权码、客户端凭据）",
+    "访问令牌：客户端出示以代表用户访问受保护资源的短期凭据",
+    "刷新令牌：用于获取新访问令牌而无需用户重新认证的长期凭据",
+    "ID 令牌（OIDC）：包含已认证用户身份声明的 JWT，在 OpenID Connect 流程中与访问令牌一起颁发",
+    "作用域：限制访问令牌操作范围的命名权限，在 API 层面实现最小权限原则"
+  ],
+  "timeline": [
+    [
+      "2007",
+      "OAuth 1.0 published as an informal community specification for delegated authorization"
+    ],
+    [
+      "2012-10",
+      "OAuth 2.0 (RFC 6749) published by IETF, simplifying the protocol and supporting multiple grant types"
+    ],
+    [
+      "2014-02",
+      "OpenID Connect Core 1.0 ratified, adding an identity layer on top of OAuth 2.0"
+    ],
+    [
+      "2020",
+      "OAuth 2.1 draft consolidates best practices, deprecating implicit grant and recommending PKCE for all clients"
+    ],
+    [
+      "2023",
+      "Rich Authorization Requests (RAR, RFC 9396) extends OAuth with fine-grained, structured authorization"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2007",
+      "OAuth 1.0 作为委托授权的非正式社区规范发布"
+    ],
+    [
+      "2012-10",
+      "OAuth 2.0（RFC 6749）由 IETF 发布，简化协议并支持多种授权类型"
+    ],
+    [
+      "2014-02",
+      "OpenID Connect Core 1.0 批准，在 OAuth 2.0 之上添加身份层"
+    ],
+    [
+      "2020",
+      "OAuth 2.1 草案整合最佳实践，弃用隐式授权并建议所有客户端使用 PKCE"
+    ],
+    [
+      "2023",
+      "富授权请求（RAR, RFC 9396）扩展 OAuth，支持细粒度结构化授权"
+    ]
+  ],
+  "dos": [
+    "Always use PKCE (Proof Key for Code Exchange) for public clients — it prevents authorization code interception attacks",
+    "Validate tokens server-side using the authorization server's JWKS endpoint or introspection endpoint",
+    "Keep access token lifetimes short (minutes) and use refresh tokens for long-lived sessions",
+    "Restrict scopes to the minimum required — over-scoped tokens magnify the blast radius of a token leak"
+  ],
+  "dos_zh": [
+    "公共客户端务必使用 PKCE（授权码交换证明密钥）——防止授权码拦截攻击",
+    "使用授权服务器的 JWKS 端点或内省端点在服务端验证令牌",
+    "保持访问令牌生命周期短（分钟级）并使用刷新令牌维持长期会话",
+    "将作用域限制到最小必需——过宽的令牌作用域会放大令牌泄露的爆炸半径"
+  ],
+  "donts": [
+    "Don't use the implicit grant flow — it exposes tokens in the URL fragment and is deprecated in OAuth 2.1",
+    "Don't store tokens in localStorage — use httpOnly secure cookies or in-memory storage to limit XSS exposure",
+    "Don't treat the access token as proof of identity — use the ID token from OpenID Connect for authentication",
+    "Don't skip the state parameter — without it the flow is vulnerable to CSRF attacks"
+  ],
+  "donts_zh": [
+    "不要使用隐式授权流——它在 URL 片段中暴露令牌，已在 OAuth 2.1 中弃用",
+    "不要将令牌存储在 localStorage——使用 httpOnly 安全 Cookie 或内存存储以限制 XSS 风险",
+    "不要将访问令牌当作身份证明——使用 OpenID Connect 的 ID 令牌进行认证",
+    "不要跳过 state 参数——缺少它流程将易受 CSRF 攻击"
+  ],
+  "case_study_company": "Okta",
+  "case_study": "Okta built its entire identity platform on OAuth 2.0 and OpenID Connect, serving over 18,000 enterprise customers by 2023. By providing a standards-based authorization server with pre-built integrations for thousands of applications, Okta reduced enterprise SSO deployment time from months to days. Their acquisition of Auth0 in 2021 further cemented OAuth/OIDC as the universal developer-facing identity protocol.",
+  "case_study_zh": "Okta 在 OAuth 2.0 和 OpenID Connect 之上构建了整个身份平台，到 2023 年服务超过 18,000 家企业客户。通过提供基于标准的授权服务器和数千个应用的预构建集成，Okta 将企业 SSO 部署时间从数月缩短到数天。2021 年收购 Auth0 进一步巩固了 OAuth/OIDC 作为面向开发者的通用身份协议地位。",
+  "when_not_to_use": [
+    "Internal machine-to-machine communication where mutual TLS (mTLS) is simpler and more appropriate",
+    "Simple single-application systems with no third-party integrations where session-based auth suffices",
+    "Extremely constrained IoT devices that cannot perform HTTP redirects or handle token management",
+    "When you need transaction-level authorization — OAuth scopes are coarse; consider UMA or RAR for fine-grained control"
+  ],
+  "when_not_to_use_zh": [
+    "双向 TLS（mTLS）更简单适用的内部机器间通信",
+    "无第三方集成的简单单应用系统，会话认证已足够",
+    "无法执行 HTTP 重定向或处理令牌管理的极度受限 IoT 设备",
+    "需要事务级授权时——OAuth 作用域粒度较粗，应考虑 UMA 或 RAR 进行细粒度控制"
+  ],
+  "adopters": [
+    "Google",
+    "Microsoft (Azure AD / Entra ID)",
+    "Okta / Auth0",
+    "GitHub",
+    "Salesforce"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "security",
+    "usability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Hardt, D. (2012). \"The OAuth 2.0 Authorization Framework\". IETF RFC 6749.",
+  "secondary_sources": [
+    "Sakimura, N. et al. (2014). \"OpenID Connect Core 1.0\". OpenID Foundation.",
+    "Jones, M. & Hardt, D. (2012). \"The OAuth 2.0 Authorization Framework: Bearer Token Usage\". IETF RFC 6750.",
+    "Richer, J. & Sanso, A. (2017). \"OAuth 2 in Action\". Manning Publications."
+  ],
+  "typed_relations": [
+    {
+      "slug": "zero-trust-architecture",
+      "type": "complement"
+    },
+    {
+      "slug": "principle-of-least-privilege",
+      "type": "prerequisite"
+    },
+    {
+      "slug": "security-by-design",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/oauth2-openid-connect",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/oauth2-openid-connect.md"
+}

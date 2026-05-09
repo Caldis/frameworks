@@ -1,0 +1,194 @@
+{
+  "id": 272,
+  "name": "Observability-as-Code",
+  "name_zh": "可观测性即代码",
+  "slug": "observability-as-code",
+  "category": "observability",
+  "desc": "Defining monitoring, alerts, and dashboards as version-controlled code to ensure reproducible, auditable observability infrastructure",
+  "desc_zh": "将监控、告警和仪表盘定义为版本控制代码，确保可观测性基础设施的可复现性和可审计性",
+  "steps": [
+    "Codify dashboards and alert rules using tools like Terraform, Pulumi, or vendor-specific providers (Grafana-as-code, Datadog Terraform provider) so every observability artifact lives in source control",
+    "Establish a GitOps workflow: all changes to monitors, dashboards, and SLO definitions go through pull requests with peer review and CI validation before being applied to production",
+    "Use templating and modules to DRY up common observability patterns — a single Terraform module can generate standard latency/error/saturation dashboards for every microservice from a variables map",
+    "Integrate observability provisioning into service scaffolding so new services automatically get baseline dashboards, alert rules, and log queries without manual setup by platform teams",
+    "Apply environment promotion: observability configs progress from dev → staging → prod in lockstep with service deployments, preventing dashboards from drifting out of sync with the services they monitor"
+  ],
+  "steps_zh": [
+    "使用Terraform、Pulumi或厂商特定提供商（Grafana-as-code、Datadog Terraform提供商）将仪表盘和告警规则代码化，使所有可观测性制品都纳入源码管理",
+    "建立GitOps工作流：对监控器、仪表盘和SLO定义的所有变更都通过拉取请求经同行评审和CI验证后才应用到生产环境",
+    "使用模板化和模块化来消除常见可观测性模式的重复——单个Terraform模块可以从变量映射为每个微服务生成标准的延迟/错误/饱和度仪表盘",
+    "将可观测性配置集成到服务脚手架中，使新服务无需平台团队手动配置即可自动获得基线仪表盘、告警规则和日志查询",
+    "应用环境晋级：可观测性配置与服务部署同步从开发→预发布→生产逐级推进，防止仪表盘与其监控的服务脱节"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Codify Dashboards",
+    "GitOps Workflow",
+    "DRY Templates",
+    "Auto-Provision",
+    "Env Promotion"
+  ],
+  "viz_labels_zh": [
+    "代码化看板",
+    "GitOps流程",
+    "复用模板",
+    "自动供给",
+    "环境晋级"
+  ],
+  "related": [
+    "opentelemetry",
+    "sli-slo-sla",
+    "four-golden-signals",
+    "infrastructure-as-code",
+    "gitops"
+  ],
+  "tags": [
+    "observability",
+    "infrastructure-as-code",
+    "gitops",
+    "monitoring",
+    "dashboards",
+    "alerts",
+    "terraform"
+  ],
+  "origin_author": "Hashicorp",
+  "origin_source": "HashiCorp Terraform Grafana Provider documentation and community practice, 2019",
+  "origin_source_zh": "HashiCorp Terraform Grafana提供商文档及社区实践，2019年",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Teams managing many microservices where manual dashboard and alert creation creates inconsistency and configuration drift across services",
+    "Organizations practicing GitOps where infrastructure changes require peer review and audit trails — extending this discipline to observability configs",
+    "Platform engineering teams who need to provision standard observability for dozens or hundreds of services with minimal per-service manual effort",
+    "Post-incident reviews reveal that missing or stale alerts failed to catch issues, motivating a code-review process for alert rule changes"
+  ],
+  "when_to_use_zh": [
+    "管理众多微服务的团队，手动创建仪表盘和告警导致服务间配置不一致和漂移",
+    "实践GitOps的组织，基础设施变更需要同行评审和审计追踪——将这一规范延伸到可观测性配置",
+    "需要以最少手动工作量为数十或数百个服务配置标准可观测性的平台工程团队",
+    "事后复盘揭示缺失或过时的告警未能捕获问题，促使对告警规则变更实施代码评审流程"
+  ],
+  "core_concepts": [
+    "Infrastructure-as-Code for Observability: treating dashboards, alert rules, SLO configs, and log queries as first-class infrastructure artifacts stored in Git and applied via automated pipelines",
+    "GitOps Workflow: all observability changes go through version-controlled pull requests, enabling peer review, change history, rollback, and audit trails for every monitoring configuration change",
+    "Templated Observability: using Terraform modules, Jsonnet, or Grafonnet to generate consistent dashboards from service metadata, eliminating per-service manual dashboard creation",
+    "Environment Promotion: observability configurations follow the same promotion lifecycle as application code, ensuring dashboards and alerts are in sync with deployed service versions",
+    "Self-Service Provisioning: service teams define their observability requirements in code and the platform automatically applies them, removing bottlenecks from central platform teams"
+  ],
+  "core_concepts_zh": [
+    "可观测性基础设施即代码：将仪表盘、告警规则、SLO配置和日志查询视为一等基础设施制品，存储在Git中并通过自动化管道应用",
+    "GitOps工作流：所有可观测性变更通过版本控制的拉取请求进行，为每次监控配置变更提供同行评审、变更历史、回滚和审计追踪能力",
+    "模板化可观测性：使用Terraform模块、Jsonnet或Grafonnet从服务元数据生成一致的仪表盘，消除按服务手动创建仪表盘的工作",
+    "环境晋级：可观测性配置遵循与应用代码相同的晋级生命周期，确保仪表盘和告警与已部署的服务版本同步",
+    "自助式配置：服务团队以代码形式定义其可观测性需求，平台自动应用，消除中央平台团队的瓶颈"
+  ],
+  "timeline": [
+    [
+      "2014",
+      "Terraform released by HashiCorp, establishing infrastructure-as-code as a mainstream practice applicable to all cloud resources"
+    ],
+    [
+      "2019",
+      "Grafana and Datadog release Terraform providers, enabling dashboards and alerts to be managed as code in the same workflow as infrastructure"
+    ],
+    [
+      "2021",
+      "Grafana Labs publishes Grafonnet (Jsonnet library) and Grafana-as-code tooling, making dashboard templating first-class"
+    ],
+    [
+      "2023",
+      "Platform engineering teams adopt observability-as-code as a core Internal Developer Portal (IDP) capability alongside service scaffolding"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2014",
+      "HashiCorp发布Terraform，将基础设施即代码确立为适用于所有云资源的主流实践"
+    ],
+    [
+      "2019",
+      "Grafana和Datadog发布Terraform提供商，使仪表盘和告警能够在与基础设施相同的工作流中以代码形式管理"
+    ],
+    [
+      "2021",
+      "Grafana Labs发布Grafonnet（Jsonnet库）和Grafana-as-code工具，使仪表盘模板化成为一等公民"
+    ],
+    [
+      "2023",
+      "平台工程团队将可观测性即代码采纳为内部开发者门户（IDP）的核心能力，与服务脚手架并列"
+    ]
+  ],
+  "dos": [
+    "Do store observability configs in the same repository as the service they monitor so that dashboard changes are reviewed alongside application code changes in the same pull request",
+    "Do use modules and templates aggressively to ensure all services get the same baseline dashboards and reduce the cost of maintaining hundreds of individual dashboard files",
+    "Do validate observability configs in CI — run terraform plan or equivalent before merging to catch syntax errors and unintended resource deletions before they reach production",
+    "Do treat alert rule changes with the same rigor as production code changes, requiring at least one reviewer who understands the alert's purpose and threshold rationale"
+  ],
+  "dos_zh": [
+    "将可观测性配置与其监控的服务存储在同一仓库中，以便仪表盘变更与应用代码变更在同一拉取请求中一起评审",
+    "积极使用模块和模板确保所有服务获得相同的基线仪表盘，降低维护数百个独立仪表盘文件的成本",
+    "在CI中验证可观测性配置——在合并前运行terraform plan或等效命令，在生产前捕获语法错误和意外资源删除",
+    "以与生产代码变更相同的严格程度对待告警规则变更，要求至少有一名了解告警目的和阈值依据的评审者"
+  ],
+  "donts": [
+    "Don't allow engineers to create dashboards or alerts directly in the observability UI without committing them to code — UI-only configs are invisible to code review and will be lost in a disaster recovery scenario",
+    "Don't create a single monolithic dashboard file per service — break observability code into focused, reusable modules (latency module, error module, saturation module) that can be combined",
+    "Don't hardcode environment-specific values (thresholds, URLs, team names) in templates — parameterize them so the same module works across dev, staging, and production",
+    "Don't skip testing alert rules — write unit tests for threshold logic and integration tests that fire synthetic metrics to verify alerts trigger correctly before deploying to production"
+  ],
+  "donts_zh": [
+    "不要允许工程师直接在可观测性UI中创建仪表盘或告警而不将其提交到代码——仅限UI的配置对代码评审不可见，且在灾难恢复场景中会丢失",
+    "不要为每个服务创建单一的庞大仪表盘文件——将可观测性代码分解为专注、可复用的模块（延迟模块、错误模块、饱和度模块），可组合使用",
+    "不要在模板中硬编码特定环境的值（阈值、URL、团队名称）——将其参数化，使同一模块可在开发、预发布和生产环境中工作",
+    "不要跳过测试告警规则——为阈值逻辑编写单元测试，并编写发送合成指标的集成测试，以在部署到生产环境前验证告警正确触发"
+  ],
+  "case_study_company": "Monzo",
+  "case_study": "Monzo, the UK challenger bank, manages over 1,500 microservices and codified their entire Grafana dashboard estate using Jsonnet templates stored in a central observability repository. Every service registers its metadata (name, team, SLOs) in a service catalog, and a CI pipeline automatically generates and deploys standard RED-method dashboards for each service. When Monzo's SRE team wants to add a new panel to all service dashboards, they make a single template change that propagates to all 1,500+ dashboards in one deployment. This approach eliminated 'ghost dashboards' (UI-only configs that existed nowhere in code), reduced dashboard creation time from hours to under 5 minutes per service, and gave every on-call engineer confidence that the dashboards they see in production are current and authoritative.",
+  "case_study_zh": "英国挑战者银行Monzo管理超过1500个微服务，使用存储在中央可观测性仓库中的Jsonnet模板将其整个Grafana仪表盘资产代码化。每个服务在服务目录中注册其元数据（名称、团队、SLO），CI管道自动为每个服务生成和部署标准RED方法仪表盘。当Monzo的SRE团队想为所有服务仪表盘添加新面板时，只需进行一次模板变更，即可在一次部署中传播到所有1500多个仪表盘。这种方法消除了「幽灵仪表盘」（仅存在于UI中而在代码中不存在的配置），将每个服务的仪表盘创建时间从数小时缩短到5分钟以内，并让每位待命工程师相信他们在生产环境中看到的仪表盘是最新且权威的。",
+  "when_not_to_use": [
+    "Small teams with fewer than 5 services where the overhead of setting up Terraform providers and GitOps pipelines exceeds the benefit of version-controlled observability",
+    "Organizations in the early stages of observability maturity where establishing basic instrumentation and alerting is more urgent than codifying existing gaps",
+    "Exploratory debugging phases where engineers need to rapidly iterate on dashboard design in the UI before the visualization requirements are stable enough to codify"
+  ],
+  "when_not_to_use_zh": [
+    "拥有少于5个服务的小团队，设置Terraform提供商和GitOps管道的开销超过版本控制可观测性的收益",
+    "可观测性成熟度处于早期阶段的组织，建立基本的埋点和告警比将现有差距代码化更紧迫",
+    "探索性调试阶段，工程师需要在UI中快速迭代仪表盘设计，在可视化需求稳定到足以代码化之前"
+  ],
+  "adopters": [
+    "Monzo",
+    "Grafana Labs",
+    "Datadog",
+    "HashiCorp",
+    "Shopify",
+    "Atlassian"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability",
+    "reliability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "HashiCorp (2019). \"Terraform Grafana Provider\". registry.terraform.io/providers/grafana/grafana.",
+  "secondary_sources": [
+    "Grafana Labs (2021). \"Grafonnet: Jsonnet library for Grafana dashboards\". github.com/grafana/grafonnet.",
+    "Majors, C., Fong-Jones, L., Miranda, G. (2022). \"Observability Engineering\". O'Reilly Media.",
+    "Skelton, M. & Pais, M. (2019). \"Team Topologies\". IT Revolution Press."
+  ],
+  "typed_relations": [
+    {
+      "slug": "opentelemetry",
+      "type": "complement"
+    },
+    {
+      "slug": "sli-slo-sla",
+      "type": "complement"
+    },
+    {
+      "slug": "four-golden-signals",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/observability-as-code",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/observability-as-code.md"
+}

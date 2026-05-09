@@ -1,0 +1,199 @@
+{
+  "id": 192,
+  "name": "Model Context Protocol (MCP)",
+  "name_zh": "模型上下文协议（MCP）",
+  "slug": "model-context-protocol-mcp",
+  "category": "ai",
+  "desc": "Standardized tool integration for LLMs (Anthropic, 2024)",
+  "desc_zh": "大模型标准化工具集成协议（Anthropic，2024）",
+  "steps": [
+    "Define MCP servers that expose tools, resources, and prompts through a standardized JSON-RPC interface",
+    "Configure the MCP client (LLM host application) to discover and connect to available MCP servers",
+    "The LLM selects and invokes tools via the MCP protocol, passing structured arguments and receiving typed responses",
+    "Implement authentication, rate limiting, and access control at the MCP server level for production safety",
+    "Compose multiple MCP servers to give the LLM access to a rich, extensible ecosystem of tools and data sources"
+  ],
+  "steps_zh": [
+    "定义通过标准化 JSON-RPC 接口暴露工具、资源和提示的 MCP 服务器",
+    "配置 MCP 客户端（大模型宿主应用）以发现和连接可用的 MCP 服务器",
+    "大模型通过 MCP 协议选择和调用工具，传递结构化参数并接收类型化响应",
+    "在 MCP 服务器层面实现认证、速率限制和访问控制以确保生产安全",
+    "组合多个 MCP 服务器，为大模型提供丰富可扩展的工具和数据源生态系统"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Client",
+    "MCP Server",
+    "Resource",
+    "Tool"
+  ],
+  "viz_labels_zh": [
+    "客户端",
+    "MCP服务器",
+    "资源",
+    "工具"
+  ],
+  "related": [
+    "tool-use-design-pattern",
+    "react-framework",
+    "agentic-workflow-patterns",
+    "agent-communication-protocol"
+  ],
+  "tags": [
+    "mcp",
+    "tool-integration",
+    "protocol",
+    "llm-tools",
+    "anthropic"
+  ],
+  "origin_author": "Anthropic, 2024",
+  "origin_source": "Model Context Protocol Specification (modelcontextprotocol.io, Anthropic 2024)",
+  "origin_source_zh": "模型上下文协议规范（modelcontextprotocol.io，Anthropic 2024）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Building LLM applications that need to integrate with external tools, databases, and APIs in a standardized way",
+    "Organizations wanting to create reusable tool packages that work across different LLM providers and frameworks",
+    "Agent systems that require dynamic tool discovery and composition at runtime",
+    "Enterprise environments needing a governance layer (auth, audit, rate limiting) between LLMs and external systems"
+  ],
+  "when_to_use_zh": [
+    "构建需要以标准化方式集成外部工具、数据库和 API 的大模型应用",
+    "希望创建可在不同大模型提供商和框架间复用的工具包的组织",
+    "需要在运行时动态发现和组合工具的智能体系统",
+    "需要在大模型与外部系统之间设置治理层（认证、审计、速率限制）的企业环境"
+  ],
+  "core_concepts": [
+    "MCP Server: A lightweight service that exposes tools, resources, and prompts through a standardized JSON-RPC protocol",
+    "MCP Client: The LLM host application that discovers, connects to, and invokes tools on MCP servers on behalf of the model",
+    "Tools: Executable functions with typed input/output schemas that the LLM can invoke to perform actions in external systems",
+    "Resources: Read-only data sources (files, database queries, API responses) that provide context to the LLM without side effects"
+  ],
+  "core_concepts_zh": [
+    "MCP 服务器：通过标准化 JSON-RPC 协议暴露工具、资源和提示的轻量级服务",
+    "MCP 客户端：代表模型发现、连接和调用 MCP 服务器上工具的大模型宿主应用",
+    "工具：带有类型化输入/输出模式的可执行函数，大模型可调用以在外部系统中执行操作",
+    "资源：只读数据源（文件、数据库查询、API 响应），为大模型提供无副作用的上下文"
+  ],
+  "timeline": [
+    [
+      "2024-11",
+      "Anthropic announces the Model Context Protocol as an open standard for LLM-tool integration"
+    ],
+    [
+      "2024-12",
+      "MCP gains rapid adoption with servers for GitHub, Slack, PostgreSQL, filesystem, and dozens more"
+    ],
+    [
+      "2025-01",
+      "OpenAI, Google, and other LLM providers begin adopting MCP, establishing it as an emerging industry standard"
+    ],
+    [
+      "2025-03",
+      "Enterprise MCP gateways emerge, adding authentication, audit logging, and rate limiting to MCP server interactions"
+    ],
+    [
+      "2025",
+      "MCP ecosystem grows to hundreds of community-built servers, becoming the USB-C of LLM tool integration"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2024-11",
+      "Anthropic 宣布模型上下文协议作为大模型工具集成的开放标准"
+    ],
+    [
+      "2024-12",
+      "MCP 快速获得采用，出现 GitHub、Slack、PostgreSQL、文件系统等数十个服务器"
+    ],
+    [
+      "2025-01",
+      "OpenAI、Google 和其他大模型提供商开始采用 MCP，使其成为新兴行业标准"
+    ],
+    [
+      "2025-03",
+      "企业级 MCP 网关涌现，为 MCP 服务器交互添加认证、审计日志和速率限制"
+    ],
+    [
+      "2025",
+      "MCP 生态系统增长到数百个社区构建的服务器，成为大模型工具集成的 USB-C"
+    ]
+  ],
+  "dos": [
+    "Design MCP servers with single-responsibility — one server per domain (GitHub, database, email) for clean composition",
+    "Include comprehensive tool descriptions and parameter documentation so the LLM can select and use tools accurately",
+    "Implement proper error handling and typed responses in MCP servers to help the LLM recover gracefully from failures",
+    "Use MCP's resource primitive for read-only data to clearly separate safe reads from potentially dangerous tool actions"
+  ],
+  "dos_zh": [
+    "以单一职责原则设计 MCP 服务器——每个领域（GitHub、数据库、邮件）一个服务器以实现清晰组合",
+    "包含全面的工具描述和参数文档，使大模型能准确选择和使用工具",
+    "在 MCP 服务器中实现适当的错误处理和类型化响应，帮助大模型从故障中优雅恢复",
+    "使用 MCP 的资源原语处理只读数据，清晰分离安全读取与潜在危险的工具操作"
+  ],
+  "donts": [
+    "Don't expose destructive operations (delete, overwrite) without requiring explicit user confirmation at the client level",
+    "Don't bundle too many unrelated tools into a single MCP server — it reduces the LLM's tool selection accuracy",
+    "Don't skip authentication and access control in production MCP servers — unauthenticated tool access is a security risk",
+    "Don't assume the LLM will always use tools correctly — validate inputs server-side and return clear error messages"
+  ],
+  "donts_zh": [
+    "不要在客户端层面未要求明确用户确认的情况下暴露破坏性操作（删除、覆盖）",
+    "不要在单个 MCP 服务器中捆绑过多不相关的工具——会降低大模型的工具选择准确性",
+    "不要在生产 MCP 服务器中跳过认证和访问控制——未认证的工具访问是安全风险",
+    "不要假设大模型总会正确使用工具——在服务器端验证输入并返回清晰的错误消息"
+  ],
+  "case_study_company": "Anthropic",
+  "case_study": "Anthropic developed MCP to solve the N-by-M integration problem between LLM applications and external tools. Before MCP, every LLM app had to build custom integrations for each tool. With MCP, Anthropic's Claude Desktop and Claude Code can connect to any MCP server, giving users instant access to GitHub, databases, file systems, and more through a single protocol. The open-source specification attracted contributions from hundreds of developers within weeks of launch, creating the fastest-growing tool integration ecosystem in AI.",
+  "case_study_zh": "Anthropic 开发 MCP 以解决大模型应用与外部工具之间的 N×M 集成问题。在 MCP 之前，每个大模型应用必须为每个工具构建自定义集成。使用 MCP 后，Anthropic 的 Claude Desktop 和 Claude Code 可以连接任何 MCP 服务器，通过单一协议让用户即时访问 GitHub、数据库、文件系统等。开源规范在发布数周内就吸引了数百名开发者的贡献，创造了 AI 领域增长最快的工具集成生态系统。",
+  "when_not_to_use": [
+    "Simple applications with a single, well-defined tool integration that doesn't benefit from protocol abstraction",
+    "Environments where all tool access is internal and a direct function call is simpler than a protocol layer",
+    "Prototypes where the overhead of setting up MCP servers slows down experimentation",
+    "Systems with strict network isolation requirements where running additional server processes is not permitted"
+  ],
+  "when_not_to_use_zh": [
+    "只有单一明确定义的工具集成、不需要协议抽象的简单应用",
+    "所有工具访问都是内部的、直接函数调用比协议层更简单的环境",
+    "设置 MCP 服务器的开销会减慢实验速度的原型",
+    "不允许运行额外服务器进程的严格网络隔离要求的系统"
+  ],
+  "adopters": [
+    "Anthropic",
+    "Cursor",
+    "Sourcegraph",
+    "Replit",
+    "Zed"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "usability",
+    "maintainability"
+  ],
+  "maturity_ring": "experimental",
+  "primary_source": "Anthropic (2024). \"Model Context Protocol Specification\". modelcontextprotocol.io.",
+  "secondary_sources": [
+    "Anthropic (2024). \"Introducing the Model Context Protocol\". anthropic.com/news.",
+    "FIPA (2002). \"FIPA Agent Communication Language Specifications\". IEEE Foundation for Intelligent Physical Agents."
+  ],
+  "typed_relations": [
+    {
+      "slug": "tool-use-design-pattern",
+      "type": "extends"
+    },
+    {
+      "slug": "react-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "agentic-workflow-patterns",
+      "type": "complement"
+    },
+    {
+      "slug": "agent-communication-protocol",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/model-context-protocol-mcp",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/model-context-protocol-mcp.md"
+}

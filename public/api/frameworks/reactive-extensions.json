@@ -1,0 +1,188 @@
+{
+  "id": 36,
+  "name": "Reactive Extensions (Rx)",
+  "name_zh": "响应式扩展（Rx）",
+  "slug": "reactive-extensions",
+  "category": "coding",
+  "desc": "Compose async event streams with observable sequences and operators",
+  "desc_zh": "通过可观察序列和操作符组合异步事件流",
+  "steps": [
+    "Model data as streams: represent events, user actions, and async results as Observable sequences rather than callbacks or promises",
+    "Apply operators: use map, filter, merge, switchMap, debounce, and other operators to transform and combine streams declaratively",
+    "Manage subscriptions: subscribe to observables at the UI or service boundary and unsubscribe on component destruction to prevent memory leaks",
+    "Handle errors in the stream: use catchError, retry, and fallback operators to build resilient pipelines without try/catch nesting",
+    "Test with marble diagrams: use virtual time schedulers and marble syntax to write deterministic tests for complex async flows"
+  ],
+  "steps_zh": [
+    "将数据建模为流：将事件、用户动作和异步结果表示为Observable序列，而非回调或Promise",
+    "应用操作符：使用map、filter、merge、switchMap、debounce等操作符声明式地转换和组合流",
+    "管理订阅：在UI或服务边界订阅Observable，在组件销毁时取消订阅以防止内存泄漏",
+    "在流中处理错误：使用catchError、retry和降级操作符构建弹性管道，避免try/catch嵌套",
+    "用弹珠图测试：使用虚拟时间调度器和弹珠语法为复杂异步流编写确定性测试"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Observable",
+    "Operator",
+    "Subscriber",
+    "Scheduler"
+  ],
+  "viz_labels_zh": [
+    "可观察序列",
+    "操作符",
+    "订阅者",
+    "调度器"
+  ],
+  "related": [
+    "eda",
+    "actor-model",
+    "functional-core-imperative-shell"
+  ],
+  "tags": [
+    "reactive",
+    "observables",
+    "streams",
+    "async",
+    "operators"
+  ],
+  "origin_author": "Erik Meijer, 2009",
+  "origin_source": "Reactive Extensions for .NET (Rx.NET), Microsoft DevLabs",
+  "origin_source_zh": "《.NET 响应式扩展（Rx.NET）》，微软开发实验室",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Building real-time UIs that react to multiple asynchronous data sources (WebSocket, user input, timers)",
+    "Implementing complex event processing pipelines with backpressure and error recovery",
+    "Mobile applications where lifecycle-aware subscription management is critical",
+    "Systems that need to compose, merge, and throttle multiple event streams declaratively"
+  ],
+  "when_to_use_zh": [
+    "构建响应多个异步数据源（WebSocket、用户输入、定时器）的实时 UI",
+    "实现具有背压和错误恢复的复杂事件处理管道",
+    "生命周期感知的订阅管理至关重要的移动应用",
+    "需要声明式地组合、合并和限流多个事件流的系统"
+  ],
+  "core_concepts": [
+    "Observable: a push-based collection that emits items over time, representing an asynchronous data stream",
+    "Observer/Subscriber: a consumer that reacts to items emitted by an Observable via onNext, onError, and onComplete callbacks",
+    "Operators: composable functions (map, filter, flatMap, debounce, zip) that transform and combine Observable streams",
+    "Schedulers: control which thread or execution context an Observable emits on and an Observer subscribes on",
+    "Backpressure: a mechanism for handling situations where an Observable produces items faster than an Observer can consume them"
+  ],
+  "core_concepts_zh": [
+    "Observable：基于推送的集合，随时间发射元素，表示异步数据流",
+    "Observer/Subscriber：通过 onNext、onError 和 onComplete 回调响应 Observable 发射元素的消费者",
+    "操作符：可组合的函数（map、filter、flatMap、debounce、zip），用于转换和组合 Observable 流",
+    "调度器：控制 Observable 在哪个线程或执行上下文上发射以及 Observer 在哪里订阅",
+    "背压：处理 Observable 产生元素速度快于 Observer 消费速度的机制"
+  ],
+  "timeline": [
+    [
+      "2009",
+      "Erik Meijer and team release Rx.NET at Microsoft, introducing the Observable/Observer pattern for async streams"
+    ],
+    [
+      "2013",
+      "RxJava is released by Netflix for JVM-based reactive programming in their microservice architecture"
+    ],
+    [
+      "2015",
+      "The Reactive Streams specification is published, standardizing backpressure across libraries"
+    ],
+    [
+      "2018",
+      "RxJS becomes integral to Angular framework, bringing Rx to mainstream frontend development"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2009",
+      "Erik Meijer 团队在微软发布 Rx.NET，引入用于异步流的 Observable/Observer 模式"
+    ],
+    [
+      "2013",
+      "Netflix 发布 RxJava，用于其微服务架构中的 JVM 响应式编程"
+    ],
+    [
+      "2015",
+      "Reactive Streams 规范发布，在各库间标准化背压处理"
+    ],
+    [
+      "2018",
+      "RxJS 成为 Angular 框架的核心组件，将 Rx 带入主流前端开发"
+    ]
+  ],
+  "dos": [
+    "Do use marble diagrams for documentation and testing because they visually clarify complex timing behavior",
+    "Do unsubscribe or use takeUntil patterns because leaked subscriptions are the most common Rx bug",
+    "Do choose the right operator for the job because using flatMap when you need switchMap causes subtle bugs",
+    "Do handle errors at the stream level because an unhandled error terminates the entire Observable chain"
+  ],
+  "dos_zh": [
+    "使用弹珠图进行文档编写和测试，因为它们能直观地说明复杂的时序行为",
+    "取消订阅或使用 takeUntil 模式，因为泄漏的订阅是最常见的 Rx 缺陷",
+    "为任务选择正确的操作符，因为在需要 switchMap 时使用 flatMap 会导致微妙的缺陷",
+    "在流级别处理错误，因为未处理的错误会终止整个 Observable 链"
+  ],
+  "donts": [
+    "Don't nest subscribe calls because it defeats the purpose of declarative stream composition",
+    "Don't use Rx for simple one-shot async operations because Promises/async-await are simpler and sufficient",
+    "Don't ignore backpressure in high-throughput scenarios because uncontrolled buffering causes out-of-memory errors",
+    "Don't create hot observables without understanding multicasting because each subscription may trigger a new execution"
+  ],
+  "donts_zh": [
+    "不要嵌套 subscribe 调用，因为这违背了声明式流组合的初衷",
+    "不要对简单的一次性异步操作使用 Rx，因为 Promise/async-await 更简单且足够",
+    "不要在高吞吐场景中忽略背压，因为不受控的缓冲会导致内存溢出",
+    "不要在不理解多播的情况下创建热 Observable，因为每次订阅可能触发新的执行"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix created RxJava to manage the complexity of composing dozens of asynchronous microservice calls in their API layer. By modeling each service call as an Observable and using operators like zip and merge, they could assemble personalized page responses from parallel backend calls. This reactive approach reduced API response latency by 30% and simplified error handling across hundreds of microservices.",
+  "case_study_zh": "Netflix 创建了 RxJava 来管理其 API 层中组合数十个异步微服务调用的复杂性。通过将每个服务调用建模为 Observable 并使用 zip 和 merge 等操作符，他们能从并行的后端调用中组装个性化页面响应。这种响应式方法将 API 响应延迟降低了 30%，并简化了数百个微服务的错误处理。",
+  "when_not_to_use": [
+    "Simple request-response APIs where Promises or async/await are sufficient",
+    "Teams unfamiliar with functional reactive programming who would struggle with the learning curve",
+    "Applications with very few asynchronous operations where Rx adds unnecessary complexity",
+    "Batch processing systems where pull-based iteration is more appropriate than push-based streams"
+  ],
+  "when_not_to_use_zh": [
+    "Promise 或 async/await 已足够的简单请求-响应 API",
+    "不熟悉函数式响应式编程、难以应对学习曲线的团队",
+    "异步操作极少的应用，Rx 会增加不必要的复杂性",
+    "基于拉取的迭代比基于推送的流更合适的批处理系统"
+  ],
+  "adopters": [
+    "Netflix",
+    "Microsoft",
+    "Google (Angular)",
+    "Trello",
+    "SoundCloud"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "performance",
+    "scalability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Erik Meijer (2010). \"Reactive Extensions (Rx): Curing Your Asynchronous Programming Blues\". Microsoft DevLabs.",
+  "secondary_sources": [
+    "Jonas Boner et al. (2014). \"The Reactive Manifesto\". reactivemanifesto.org.",
+    "Tomas Petricek (2016). \"Real-World Functional Programming\". Manning Publications."
+  ],
+  "typed_relations": [
+    {
+      "slug": "eda",
+      "type": "complement"
+    },
+    {
+      "slug": "actor-model",
+      "type": "alternative"
+    },
+    {
+      "slug": "functional-core-imperative-shell",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/reactive-extensions",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/reactive-extensions.md"
+}

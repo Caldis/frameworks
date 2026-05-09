@@ -1,0 +1,198 @@
+{
+  "id": 137,
+  "name": "Webhook Pattern",
+  "name_zh": "Webhook模式",
+  "slug": "webhook-pattern",
+  "category": "api",
+  "desc": "Event-driven API integration via HTTP callbacks for real-time notifications",
+  "desc_zh": "通过HTTP回调实现事件驱动的API集成，提供实时通知",
+  "steps": [
+    "Define the webhook events your system will emit, documenting each event type's payload schema and trigger conditions",
+    "Build a subscription management API that allows consumers to register callback URLs, select event types, and configure secret tokens for verification",
+    "Implement the event dispatch system that serializes events, signs payloads with HMAC, and delivers HTTP POST requests to registered callback URLs",
+    "Add retry logic with exponential backoff for failed deliveries, and implement a dead-letter queue for persistently failing endpoints",
+    "Provide consumers with a webhook delivery log and replay capability so they can debug missed events and recover from outages"
+  ],
+  "steps_zh": [
+    "定义系统将发出的webhook事件，记录每种事件类型的负载模式和触发条件",
+    "构建订阅管理API，允许消费者注册回调URL、选择事件类型并配置用于验证的密钥令牌",
+    "实现事件分发系统，序列化事件、使用HMAC签名负载，并向注册的回调URL发送HTTP POST请求",
+    "为失败的投递添加指数退避的重试逻辑，并为持续失败的端点实现死信队列",
+    "为消费者提供webhook投递日志和重放功能，以便调试遗漏事件并从故障中恢复"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Event Types",
+    "Subscription API",
+    "Dispatch System",
+    "Retry and DLQ",
+    "Delivery Log"
+  ],
+  "viz_labels_zh": [
+    "事件类型",
+    "订阅管理",
+    "事件分发",
+    "重试队列",
+    "投递日志"
+  ],
+  "related": [
+    "asyncapi",
+    "api-rate-limiting-throttling",
+    "api-gateway-pattern"
+  ],
+  "tags": [
+    "webhook",
+    "event-driven",
+    "callback",
+    "integration",
+    "push"
+  ],
+  "origin_author": "Jeff Lindsay, 2007 (coined the term); pattern predates the name in early HTTP callback systems",
+  "origin_source": "RESTful Web APIs (Leonard Richardson & Mike Amundsen, 2013, Ch. 11); API Design Patterns (JJ Geewax, 2021, Ch. 15)",
+  "origin_source_zh": "《RESTful Web API》（Leonard Richardson & Mike Amundsen，2013，第11章）；《API设计模式》（JJ Geewax，2021，第15章）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When consumers need real-time notifications of events without continuously polling your API",
+    "When integrating with third-party systems that need to react to state changes in your platform",
+    "When building automation workflows where downstream actions should trigger immediately upon events",
+    "When reducing API load by pushing updates to interested consumers instead of serving repeated polling requests"
+  ],
+  "when_to_use_zh": [
+    "当消费者需要实时事件通知而不需持续轮询API时",
+    "当与需要对平台状态变更做出反应的第三方系统集成时",
+    "当构建自动化工作流，下游动作应在事件发生时立即触发时",
+    "当通过向感兴趣的消费者推送更新来减少API负载，而非服务重复的轮询请求时"
+  ],
+  "core_concepts": [
+    "Push-Based Delivery: The server proactively sends HTTP POST requests to consumer-registered URLs when events occur, inverting the traditional pull model",
+    "Payload Signing: HMAC signatures (using a shared secret) in request headers allow consumers to verify that webhook payloads originated from the legitimate sender",
+    "Idempotency: Consumers must handle duplicate deliveries gracefully using event IDs, because retry logic can deliver the same event multiple times",
+    "Retry with Backoff: Failed deliveries are retried with exponential backoff to handle transient consumer outages without overwhelming recovering endpoints",
+    "Subscription Management: A self-service API for registering, updating, and deactivating webhook subscriptions with event type filtering"
+  ],
+  "core_concepts_zh": [
+    "推送式投递：服务器在事件发生时主动向消费者注册的URL发送HTTP POST请求，逆转了传统的拉取模型",
+    "负载签名：请求头中的HMAC签名（使用共享密钥）允许消费者验证webhook负载来自合法发送者",
+    "幂等性：消费者必须使用事件ID优雅处理重复投递，因为重试逻辑可能多次投递同一事件",
+    "带退避的重试：对失败投递使用指数退避重试，以处理消费者的瞬时故障而不压垮恢复中的端点",
+    "订阅管理：自助服务API，用于注册、更新和停用webhook订阅，支持事件类型过滤"
+  ],
+  "timeline": [
+    [
+      "2007",
+      "Jeff Lindsay coins the term 'webhooks' and advocates for web callbacks as a lightweight integration mechanism"
+    ],
+    [
+      "2012",
+      "GitHub, Stripe, and Twilio popularize webhooks as a standard feature of developer platforms"
+    ],
+    [
+      "2018",
+      "Standard Webhooks initiative begins, proposing conventions for signatures, retries, and payload formats"
+    ],
+    [
+      "2020",
+      "Svix and other webhook-as-a-service platforms emerge, abstracting delivery infrastructure for SaaS providers"
+    ],
+    [
+      "2024",
+      "Webhooks become the primary integration mechanism for AI agent platforms, enabling tool-use callbacks and event-driven AI workflows"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2007",
+      "Jeff Lindsay创造「webhooks」一词，倡导Web回调作为轻量级集成机制"
+    ],
+    [
+      "2012",
+      "GitHub、Stripe和Twilio将webhook普及为开发者平台的标准功能"
+    ],
+    [
+      "2018",
+      "Standard Webhooks倡议启动，提出签名、重试和负载格式的约定"
+    ],
+    [
+      "2020",
+      "Svix等webhook即服务平台出现，为SaaS提供者抽象投递基础设施"
+    ],
+    [
+      "2024",
+      "Webhook成为AI代理平台的主要集成机制，支持工具使用回调和事件驱动的AI工作流"
+    ]
+  ],
+  "dos": [
+    "Do sign every webhook payload with HMAC and document the verification process because unsigned webhooks are trivially spoofable",
+    "Do include a unique event ID in every payload because consumers need it for idempotent processing and deduplication",
+    "Do implement exponential backoff with jitter for retries because synchronized retries to a recovering endpoint cause thundering herd problems",
+    "Do provide a delivery log and manual replay endpoint because consumers need to debug and recover from missed events"
+  ],
+  "dos_zh": [
+    "使用HMAC为每个webhook负载签名并文档化验证过程，因为未签名的webhook极易被伪造",
+    "在每个负载中包含唯一事件ID，因为消费者需要它来进行幂等处理和去重",
+    "为重试实现带抖动的指数退避，因为对恢复中端点的同步重试会导致惊群问题",
+    "提供投递日志和手动重放端点，因为消费者需要调试和恢复遗漏的事件"
+  ],
+  "donts": [
+    "Don't send webhook payloads without signatures because it exposes consumers to spoofing and injection attacks",
+    "Don't retry indefinitely without a maximum retry count and dead-letter mechanism because it wastes resources on permanently unreachable endpoints",
+    "Don't include sensitive data (passwords, tokens) in webhook payloads because callback URLs may traverse untrusted networks",
+    "Don't assume consumers process events in order because network conditions and retries can deliver events out of sequence"
+  ],
+  "donts_zh": [
+    "不要发送不签名的webhook负载，因为这使消费者暴露于伪造和注入攻击",
+    "不要在没有最大重试次数和死信机制的情况下无限重试，因为这会在永久不可达的端点上浪费资源",
+    "不要在webhook负载中包含敏感数据（密码、令牌），因为回调URL可能经过不可信的网络",
+    "不要假设消费者按顺序处理事件，因为网络条件和重试可能导致事件乱序投递"
+  ],
+  "case_study_company": "Stripe",
+  "case_study": "Stripe's webhook system delivers billions of events per month to merchants for payment lifecycle events (charge.succeeded, invoice.paid, dispute.created). Each event is signed with HMAC-SHA256 using per-endpoint secrets, and Stripe retries failed deliveries for up to 72 hours with exponential backoff. Their webhook dashboard provides real-time delivery logs with payload inspection and one-click replay. This push-based model eliminated the need for merchants to poll the Stripe API, reducing API call volume by an estimated 80% for event-driven workflows.",
+  "case_study_zh": "Stripe的webhook系统每月向商户投递数十亿个支付生命周期事件（charge.succeeded、invoice.paid、dispute.created）。每个事件使用每端点密钥的HMAC-SHA256签名，Stripe对失败投递以指数退避重试长达72小时。其webhook仪表板提供实时投递日志，支持负载检查和一键重放。这种推送模型消除了商户轮询Stripe API的需要，将事件驱动工作流的API调用量减少了约80%。",
+  "when_not_to_use": [
+    "When consumers cannot expose a publicly accessible HTTP endpoint (e.g., behind strict corporate firewalls)",
+    "When strict ordering guarantees are required, as webhook delivery order is inherently non-deterministic",
+    "When the event volume is extremely high and consumers cannot absorb the throughput, requiring a message queue instead",
+    "When bidirectional communication is needed, as webhooks are unidirectional push-only"
+  ],
+  "when_not_to_use_zh": [
+    "当消费者无法暴露公开可访问的HTTP端点时（如严格的企业防火墙后面）",
+    "当需要严格的顺序保证时，因为webhook投递顺序本质上是非确定性的",
+    "当事件量极高且消费者无法承受吞吐量时，需要消息队列替代",
+    "当需要双向通信时，因为webhook是单向推送"
+  ],
+  "adopters": [
+    "Stripe",
+    "GitHub",
+    "Twilio",
+    "Shopify",
+    "Slack"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "scalability",
+    "usability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Lindsay, J. (2007). \"Web Hooks to Revolutionize the Web\". progrium.com.",
+  "secondary_sources": [
+    "Richardson, L. & Amundsen, M. (2013). \"RESTful Web APIs\", Ch. 11. O'Reilly Media.",
+    "Geewax, J.J. (2021). \"API Design Patterns\", Ch. 15. Manning Publications."
+  ],
+  "typed_relations": [
+    {
+      "slug": "asyncapi",
+      "type": "complement"
+    },
+    {
+      "slug": "api-rate-limiting-throttling",
+      "type": "complement"
+    },
+    {
+      "slug": "api-gateway-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/webhook-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/webhook-pattern.md"
+}

@@ -1,0 +1,196 @@
+{
+  "id": 72,
+  "name": "Agent Deployment Patterns",
+  "name_zh": "Agent部署模式",
+  "slug": "agent-deployment-patterns",
+  "category": "deployment",
+  "desc": "Patterns for reliably deploying autonomous AI agents in production",
+  "desc_zh": "在生产环境中可靠部署自主AI Agent的架构模式",
+  "steps": [
+    "Define the agent's execution boundary: tools available, max steps, memory scope, and human-in-the-loop checkpoints",
+    "Containerize the agent runtime with pinned LLM versions and tool dependencies for reproducibility",
+    "Implement guardrails: input validation, output filtering, cost caps, and rate limiting per agent instance",
+    "Deploy with observability: trace multi-step reasoning chains, tool calls, retries, and final outputs end-to-end",
+    "Use staged rollout (shadow -> canary -> full) and maintain kill-switch capability to halt runaway agents"
+  ],
+  "steps_zh": [
+    "定义Agent的执行边界：可用工具、最大步骤数、记忆范围及人工介入检查点",
+    "将Agent运行时容器化，固定LLM版本和工具依赖以保障可复现性",
+    "实施护栏机制：输入验证、输出过滤、成本上限及每个Agent实例的速率限制",
+    "部署可观测性能力：端到端追踪多步推理链、工具调用、重试和最终输出",
+    "采用分阶段发布（影子→金丝雀→全量），并保留可立即停止失控Agent的熔断开关"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Orchestrate",
+    "Invoke",
+    "Observe",
+    "Scale"
+  ],
+  "viz_labels_zh": [
+    "编排",
+    "调用",
+    "观测",
+    "扩缩容"
+  ],
+  "related": [
+    "agent-reliability-patterns",
+    "llmops",
+    "canary-deployment"
+  ],
+  "tags": [
+    "agent-deployment",
+    "guardrails",
+    "staged-rollout",
+    "kill-switch",
+    "ai"
+  ],
+  "origin_author": "Emerging from AI engineering community, ~2024; influenced by practices at Anthropic, OpenAI, Google DeepMind, and LangChain",
+  "origin_source": "Anthropic's Building effective agents guide (2024); OpenAI production deployment documentation; LangChain/LangGraph agent architecture patterns",
+  "origin_source_zh": "Anthropic《构建有效Agent》指南（2024）；OpenAI生产部署文档；LangChain/LangGraph Agent架构模式",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Deploying autonomous AI agents that make multi-step decisions with real-world tool access",
+    "Production systems where agent failures can have financial, security, or reputational consequences",
+    "Organizations needing to audit and trace every decision an agent makes for compliance",
+    "Teams scaling from prototype agents to production-grade systems serving real users with SLOs"
+  ],
+  "when_to_use_zh": [
+    "部署具有真实世界工具访问权限的自主AI Agent进行多步决策",
+    "Agent故障可能产生财务、安全或声誉后果的生产系统",
+    "需要审计和追踪Agent每个决策以满足合规需求的组织",
+    "从原型Agent扩展到服务真实用户并带有SLO的生产级系统的团队"
+  ],
+  "core_concepts": [
+    "Execution Boundary: Define clear limits on what an agent can do -- tools, max steps, memory scope, and cost ceiling per invocation",
+    "Human-in-the-Loop Checkpoints: Critical or irreversible actions require human approval before the agent proceeds",
+    "Agent Observability: End-to-end tracing of the full reasoning chain -- each thought, tool call, tool response, retry, and final answer",
+    "Kill Switch: The ability to instantly halt a running agent across all instances when anomalous behavior is detected",
+    "Shadow Mode: Deploy new agent versions in parallel with production agents, comparing decisions without serving real users"
+  ],
+  "core_concepts_zh": [
+    "执行边界：明确定义Agent的能力范围——工具、最大步骤数、记忆范围和每次调用的成本上限",
+    "人工介入检查点：关键或不可逆操作需要人工批准后Agent才能继续",
+    "Agent可观测性：完整推理链的端到端追踪——每个思考、工具调用、工具响应、重试和最终答案",
+    "熔断开关：当检测到异常行为时，能立即停止所有实例上运行的Agent",
+    "影子模式：将新Agent版本与生产Agent并行部署，比较决策但不服务真实用户"
+  ],
+  "timeline": [
+    [
+      "2023",
+      "LangChain and AutoGPT popularize autonomous agent architectures, revealing production deployment challenges"
+    ],
+    [
+      "2024",
+      "Anthropic publishes Building effective agents guide; OpenAI releases Assistants API with built-in tool use"
+    ],
+    [
+      "2024",
+      "Agent observability platforms emerge (LangSmith, Arize Phoenix) with multi-step trace visualization"
+    ],
+    [
+      "2025",
+      "Agent deployment patterns formalize around execution boundaries, kill switches, and staged rollouts"
+    ],
+    [
+      "2026",
+      "Multi-agent orchestration deployment patterns mature, addressing inter-agent communication and cost management"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2023",
+      "LangChain和AutoGPT推广自主Agent架构，揭示生产部署挑战"
+    ],
+    [
+      "2024",
+      "Anthropic发布《构建有效Agent》指南；OpenAI发布Assistants API"
+    ],
+    [
+      "2024",
+      "Agent可观测性平台出现（LangSmith、Arize Phoenix），提供多步追踪可视化"
+    ],
+    [
+      "2025",
+      "Agent部署模式围绕执行边界、熔断开关和分阶段发布正式化"
+    ],
+    [
+      "2026",
+      "多Agent编排部署模式日趋成熟，处理Agent间通信和成本管理"
+    ]
+  ],
+  "dos": [
+    "Do set hard cost and step limits per agent invocation, because LLM-powered agents can enter infinite reasoning loops",
+    "Do implement human-in-the-loop approval for irreversible actions, because autonomous agents will eventually make mistakes",
+    "Do trace the full reasoning chain for every agent run, because debugging agent failures without traces is nearly impossible",
+    "Do deploy new agent versions in shadow mode first to compare decisions against the current production version"
+  ],
+  "dos_zh": [
+    "务必为每次Agent调用设置硬性成本和步骤限制，因为LLM驱动的Agent可能进入无限推理循环",
+    "务必为不可逆操作实施人工介入审批，因为自主Agent终将犯错",
+    "务必对每次Agent运行追踪完整推理链，因为没有追踪几乎不可能调试Agent故障",
+    "务必先以影子模式部署新Agent版本，将其决策与生产版本比较"
+  ],
+  "donts": [
+    "Don't give agents unrestricted tool access in production, because prompt injection with broad permissions can cause catastrophic damage",
+    "Don't deploy agents without a kill switch, because runaway agents can accumulate massive costs within minutes",
+    "Don't skip evaluation on edge cases and adversarial inputs, because agents are more unpredictable than traditional software",
+    "Don't treat agent deployments like stateless service deployments, because agents carry reasoning state across steps"
+  ],
+  "donts_zh": [
+    "不要在生产中给Agent不受限的工具访问权限，因为提示注入在宽泛权限下可能造成灾难性损害",
+    "不要在没有熔断开关的情况下部署Agent，因为失控Agent可能在几分钟内累积巨额成本",
+    "不要跳过对边缘情况和对抗性输入的评测，因为Agent比传统软件更不可预测",
+    "不要将Agent部署等同于无状态服务部署，因为Agent在步骤间携带推理状态"
+  ],
+  "case_study_company": "Klarna",
+  "case_study": "Klarna deployed an AI customer service agent powered by OpenAI that handles the equivalent of 700 full-time human agents, resolving two-thirds of customer support conversations in its first month of operation in 2024. They implemented strict execution boundaries, human escalation paths for complex cases, and comprehensive tracing of every conversation. The deployment followed a staged rollout: shadow mode for two months, then 5% of conversations, then gradual scaling to full production, with kill-switch capability active throughout.",
+  "case_study_zh": "Klarna部署了由OpenAI驱动的AI客服Agent，在2024年投入运营的第一个月内处理了相当于700名全职人工客服的工作量，解决了三分之二的客户支持对话。他们实施了严格的执行边界、复杂案例的人工升级路径，以及对每次对话的全面追踪。部署遵循分阶段发布：两个月影子模式，然后5%的对话，再逐步扩展到全量生产，全程保持熔断开关激活。",
+  "when_not_to_use": [
+    "Simple single-turn LLM interactions that don't involve multi-step reasoning or tool use",
+    "Environments with no tolerance for non-deterministic behavior",
+    "Internal prototypes or demos where production reliability and safety are not concerns",
+    "Use cases where a traditional deterministic workflow engine is sufficient"
+  ],
+  "when_not_to_use_zh": [
+    "不涉及多步推理或工具使用的简单单轮LLM交互",
+    "不容忍非确定性行为的环境",
+    "不关注生产可靠性和安全性的内部原型或演示",
+    "传统确定性工作流引擎已足够的场景"
+  ],
+  "adopters": [
+    "Klarna",
+    "Anthropic",
+    "OpenAI",
+    "Replit",
+    "Cognition (Devin)"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "security"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Anthropic (2024). \"Building Effective Agents\". anthropic.com.",
+  "secondary_sources": [
+    "OpenAI (2023). \"Production Deployment Best Practices\". platform.openai.com.",
+    "Harrison Chase et al. (2023). \"LangGraph: Multi-Actor Agent Framework\". langchain.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "agent-reliability-patterns",
+      "type": "complement"
+    },
+    {
+      "slug": "llmops",
+      "type": "complement"
+    },
+    {
+      "slug": "canary-deployment",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/agent-deployment-patterns",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/agent-deployment-patterns.md"
+}

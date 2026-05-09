@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Status - SDFrame</title>
+  <meta name="description" content="Operational status information for the SDFrame static website, public API, OpenAPI spec, and AI skill package.">
+  <link rel="canonical" href="https://sdframe.caldis.me/status/">
+  <style>
+    :root { color-scheme: light dark; --fg: #1d1b18; --muted: #5f5a52; --line: #ddd6cb; --bg: #faf8f3; --panel: #fffdf8; --accent: #345c8c; }
+    body { margin: 0; font: 16px/1.65 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--fg); }
+    main { max-width: 900px; margin: 0 auto; padding: 40px 20px 72px; }
+    nav { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; font-size: 14px; }
+    a { color: var(--accent); }
+    h1 { font-size: clamp(2rem, 6vw, 4rem); line-height: 1.05; margin: 0 0 16px; }
+    h2 { font-size: 1.35rem; margin: 32px 0 8px; }
+    p { margin: 0 0 14px; color: var(--muted); }
+    ul, ol { color: var(--muted); padding-left: 22px; }
+    li { margin: 4px 0; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    pre { overflow: auto; padding: 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    th, td { border: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
+    .lede { font-size: 1.15rem; max-width: 760px; }
+  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Status","description":"Operational status information for the SDFrame static website, public API, OpenAPI spec, and AI skill package.","url":"https://sdframe.caldis.me/status/","isPartOf":{"@type":"WebSite","name":"SDFrame","url":"https://sdframe.caldis.me"},"publisher":{"@type":"Person","name":"Caldis","url":"https://github.com/Caldis"},"dateModified":"2026-05-09"}</script>
+</head>
+<body>
+  <main>
+    <nav aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/docs/">Docs</a>
+      <a href="/developers/">Developers</a>
+      <a href="/api/">API</a>
+      <a href="/pricing/">Pricing</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/agent">Agent guide</a>
+    </nav>
+    <h1>SDFrame Status</h1>
+    <p class="lede">Operational status information for the SDFrame static website, public API, OpenAPI spec, and AI skill package.</p>
+
+    <section>
+      <h2>Current state</h2>
+      <p>The generated status file reports the static site, public JSON API, OpenAPI description, and AI skill package as operational at build time.</p>
+    </section>
+
+    <section>
+      <h2>Machine-readable status</h2>
+      <p>Fetch <a href="/status.json">/status.json</a> for JSON status metadata.</p>
+    </section>
+
+    <section>
+      <h2>Retry policy</h2>
+      <p>For transient static-host errors, retry after 5 seconds, 30 seconds, and 2 minutes. Cache successful responses and validate framework slugs before requesting detail JSON.</p>
+    </section>
+  </main>
+</body>
+</html>

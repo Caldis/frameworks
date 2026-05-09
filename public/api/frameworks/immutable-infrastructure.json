@@ -1,0 +1,194 @@
+{
+  "id": 184,
+  "name": "Immutable Infrastructure",
+  "name_zh": "不可变基础设施",
+  "slug": "immutable-infrastructure",
+  "category": "deployment",
+  "desc": "Never patch; replace with new images",
+  "desc_zh": "永不修补，用全新镜像替换",
+  "steps": [
+    "Build a machine or container image from a declarative specification (Dockerfile, Packer template, AMI builder)",
+    "Version-tag and store the image in an artifact registry with full provenance metadata",
+    "Deploy by replacing running instances with new image versions, never modifying live instances",
+    "Validate the new deployment through health checks and smoke tests before draining old instances",
+    "Decommission old images after a retention period; audit the registry for drift or orphaned artifacts"
+  ],
+  "steps_zh": [
+    "从声明式规范（Dockerfile、Packer 模板、AMI 构建器）构建机器或容器镜像",
+    "对镜像进行版本标记并存储在制品仓库中，附带完整的来源元数据",
+    "通过用新镜像版本替换运行中的实例进行部署，永不修改在线实例",
+    "在排空旧实例前通过健康检查和冒烟测试验证新部署",
+    "保留期后退役旧镜像；审计仓库以发现漂移或孤立制品"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Image Build",
+    "Provision",
+    "Replace",
+    "Retire"
+  ],
+  "viz_labels_zh": [
+    "镜像构建",
+    "预置",
+    "替换",
+    "下线"
+  ],
+  "related": [
+    "infrastructure-as-code",
+    "gitops",
+    "blue-green-deployment"
+  ],
+  "tags": [
+    "immutable",
+    "infrastructure",
+    "images",
+    "no-patch",
+    "deployment"
+  ],
+  "origin_author": "Chad Fowler, 2013 (blog post: 'Trash Your Servers and Burn Your Code')",
+  "origin_source": "Trash Your Servers and Burn Your Code (Chad Fowler, 2013); popularized by Docker and HashiCorp",
+  "origin_source_zh": "《扔掉你的服务器，烧掉你的代码》（Chad Fowler，2013）；由 Docker 和 HashiCorp 推广",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Environments requiring strict auditability and reproducibility (finance, healthcare, regulated industries)",
+    "Cloud-native architectures where instances are ephemeral and auto-scaled",
+    "Teams experiencing configuration drift across long-lived servers that causes production incidents",
+    "Security-sensitive systems where patching in place leaves uncertain intermediate states"
+  ],
+  "when_to_use_zh": [
+    "要求严格可审计性和可重现性的环境（金融、医疗、受监管行业）",
+    "实例短暂且自动扩缩容的云原生架构",
+    "长期运行服务器上配置漂移导致生产事故的团队",
+    "就地修补会留下不确定中间状态的安全敏感系统"
+  ],
+  "core_concepts": [
+    "No In-Place Mutation: Running instances are never modified — all changes require building and deploying a new image",
+    "Image as Artifact: The deployable unit is a versioned, tested image stored in a registry, not a set of scripts run on a live server",
+    "Reproducibility: Any deployment can be exactly recreated from the image tag, eliminating 'works on my machine' and snowflake servers",
+    "Disposability: Instances are cattle, not pets — they can be destroyed and recreated at any time without manual intervention"
+  ],
+  "core_concepts_zh": [
+    "禁止就地变更：运行中的实例永不修改——所有变更都需要构建和部署新镜像",
+    "镜像即制品：可部署单元是存储在仓库中的版本化、已测试的镜像，而非在活服务器上运行的脚本集",
+    "可重现性：任何部署都可以从镜像标签精确重建，消除「在我的机器上能跑」和雪花服务器问题",
+    "可丢弃性：实例是牲畜而非宠物——可以随时销毁和重建，无需人工干预"
+  ],
+  "timeline": [
+    [
+      "2013",
+      "Chad Fowler publishes 'Trash Your Servers and Burn Your Code', popularizing the immutable infrastructure concept"
+    ],
+    [
+      "2013",
+      "Docker launches, making immutable container images practical and ubiquitous"
+    ],
+    [
+      "2014",
+      "HashiCorp releases Packer for building machine images across providers"
+    ],
+    [
+      "2017",
+      "Kubernetes adoption normalizes immutable containers as the default deployment unit"
+    ],
+    [
+      "2022",
+      "Supply chain security (SLSA, Sigstore) adds provenance and signing to immutable image pipelines"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2013",
+      "Chad Fowler 发表《扔掉你的服务器，烧掉你的代码》，推广不可变基础设施概念"
+    ],
+    [
+      "2013",
+      "Docker 发布，使不可变容器镜像变得实用且无处不在"
+    ],
+    [
+      "2014",
+      "HashiCorp 发布 Packer，支持跨云构建机器镜像"
+    ],
+    [
+      "2017",
+      "Kubernetes 的普及使不可变容器成为默认部署单元"
+    ],
+    [
+      "2022",
+      "供应链安全（SLSA、Sigstore）为不可变镜像流水线增加溯源和签名"
+    ]
+  ],
+  "dos": [
+    "Invest in fast image build pipelines — slow builds are the #1 adoption blocker for immutable infrastructure",
+    "Tag every image with the commit SHA and build timestamp for complete traceability",
+    "Use multi-stage builds to minimize image size and reduce the attack surface",
+    "Externalize all configuration and secrets from images using environment variables or secret managers"
+  ],
+  "dos_zh": [
+    "投资快速镜像构建流水线——构建慢是不可变基础设施采用的头号障碍",
+    "为每个镜像标记提交 SHA 和构建时间戳以实现完全可追溯",
+    "使用多阶段构建最小化镜像大小并减少攻击面",
+    "使用环境变量或密钥管理器将所有配置和密钥从镜像中外部化"
+  ],
+  "donts": [
+    "Don't SSH into running containers or instances to apply hotfixes — this violates the core immutability principle",
+    "Don't bake secrets or credentials into images — they become visible in layer history and registries",
+    "Don't skip vulnerability scanning of base images — an immutable image is only as secure as its layers",
+    "Don't keep unlimited old image versions — storage costs grow quickly without a retention policy"
+  ],
+  "donts_zh": [
+    "不要 SSH 进入运行中的容器或实例来应用热修复——这违反了核心不可变原则",
+    "不要在镜像中写入密钥或凭证——它们会在层历史和仓库中可见",
+    "不要跳过基础镜像的漏洞扫描——不可变镜像的安全性取决于其所有层",
+    "不要保留无限多的旧镜像版本——没有保留策略存储成本会快速增长"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix pioneered immutable infrastructure at scale with their Bakery system, which bakes AMIs (Amazon Machine Images) for every deployment. By 2015, Netflix was deploying thousands of immutable AMIs per day across AWS, eliminating configuration drift that had previously caused unpredictable production failures. The Bakery pipeline — combined with Spinnaker for orchestration — became the gold standard for immutable deployment at cloud scale.",
+  "case_study_zh": "Netflix 通过其 Bakery 系统率先大规模实践不可变基础设施，为每次部署烘焙 AMI（Amazon 机器镜像）。到 2015 年，Netflix 每天在 AWS 上部署数千个不可变 AMI，消除了此前导致不可预测生产故障的配置漂移。Bakery 流水线与 Spinnaker 编排相结合，成为云规模不可变部署的黄金标准。",
+  "when_not_to_use": [
+    "Legacy environments where in-place patching is the only viable option due to licensing or hardware constraints",
+    "Development or debugging workflows where developers need to iterate rapidly on running instances",
+    "Stateful systems (databases, file servers) where data persistence across replacements requires special handling",
+    "Extremely resource-constrained edge devices where rebuilding and redeploying images is impractical"
+  ],
+  "when_not_to_use_zh": [
+    "由于许可或硬件限制，就地修补是唯一可行选项的遗留环境",
+    "开发者需要在运行实例上快速迭代的开发或调试工作流",
+    "需要跨替换持久化数据的有状态系统（数据库、文件服务器）需要特殊处理",
+    "重建和重新部署镜像不切实际的极端资源受限边缘设备"
+  ],
+  "adopters": [
+    "Netflix",
+    "Google",
+    "HashiCorp",
+    "Heroku",
+    "AWS (Elastic Beanstalk)"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "security"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Chad Fowler (2013). \"Trash Your Servers and Burn Your Code: Immutable Infrastructure and Disposable Components\". chadfowler.com.",
+  "secondary_sources": [
+    "Kief Morris (2016). \"Infrastructure as Code: Managing Servers in the Cloud\". O'Reilly Media.",
+    "Docker, Inc. (2013). \"Docker: An Open Platform for Distributed Applications\". docker.com."
+  ],
+  "typed_relations": [
+    {
+      "slug": "infrastructure-as-code",
+      "type": "complement"
+    },
+    {
+      "slug": "gitops",
+      "type": "complement"
+    },
+    {
+      "slug": "blue-green-deployment",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/immutable-infrastructure",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/immutable-infrastructure.md"
+}

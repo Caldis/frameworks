@@ -1,0 +1,198 @@
+{
+  "id": 183,
+  "name": "Progressive Delivery",
+  "name_zh": "渐进式交付",
+  "slug": "progressive-delivery",
+  "category": "deployment",
+  "desc": "Combine canary, feature flags, and observability for controlled rollouts",
+  "desc_zh": "结合金丝雀发布、特性开关和可观测性实现受控发布",
+  "steps": [
+    "Define the release audience using cohort selectors (percentage, region, user segment)",
+    "Deploy the new version behind feature flags with canary traffic routing enabled",
+    "Instrument automated analysis of key SLIs (latency, error rate, saturation) during rollout",
+    "Progressively widen the blast radius in stages, gating each stage on metric thresholds",
+    "Automatically promote to 100% or trigger rollback based on observability verdicts"
+  ],
+  "steps_zh": [
+    "使用群组选择器（百分比、地区、用户分群）定义发布受众",
+    "在启用金丝雀流量路由的同时，将新版本部署在特性开关后面",
+    "在发布过程中对关键 SLI（延迟、错误率、饱和度）进行自动化分析",
+    "分阶段逐步扩大影响半径，每个阶段以指标阈值为门控",
+    "基于可观测性判定自动提升到 100% 或触发回滚"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Feature Flag",
+    "Canary",
+    "A/B Test",
+    "Full Release"
+  ],
+  "viz_labels_zh": [
+    "功能标志",
+    "金丝雀",
+    "A/B测试",
+    "全量发布"
+  ],
+  "related": [
+    "canary-deployment",
+    "feature-flags",
+    "slo-as-practice",
+    "opentelemetry"
+  ],
+  "tags": [
+    "progressive-delivery",
+    "canary",
+    "feature-flags",
+    "observability",
+    "rollout"
+  ],
+  "origin_author": "James Governor (RedMonk), 2018",
+  "origin_source": "Progressive Delivery (redmonk.com, 2018); popularized by Weaveworks & Flagger",
+  "origin_source_zh": "渐进式交付（redmonk.com，2018）；由 Weaveworks 和 Flagger 推广",
+  "complexity": "advanced",
+  "when_to_use": [
+    "High-traffic services where a bad deploy can affect millions of users within minutes",
+    "Teams practicing continuous deployment that need automated safety gates between stages",
+    "Organizations combining multiple deployment strategies (canary + feature flags) under a unified workflow",
+    "Environments where business metrics (conversion, revenue) must be validated alongside technical SLIs"
+  ],
+  "when_to_use_zh": [
+    "高流量服务中，一次错误部署可能在几分钟内影响数百万用户",
+    "实践持续部署的团队需要在各阶段之间设置自动安全门控",
+    "将多种部署策略（金丝雀 + 特性开关）统一在单一工作流下的组织",
+    "需要在验证技术 SLI 的同时验证业务指标（转化率、收入）的环境"
+  ],
+  "core_concepts": [
+    "Gated Stages: Each rollout phase requires explicit pass/fail criteria before progressing to the next audience slice",
+    "Automated Analysis: Observability platforms compare canary metrics against baseline in real time to eliminate human judgment delays",
+    "Blast Radius Control: The combination of feature flags and traffic splitting limits the maximum user impact at any given stage",
+    "Unified Rollout Model: Canary deployment, feature flagging, and A/B testing are composed into a single progressive pipeline"
+  ],
+  "core_concepts_zh": [
+    "门控阶段：每个发布阶段在进入下一批受众前需满足明确的通过/失败标准",
+    "自动化分析：可观测性平台实时将金丝雀指标与基线进行比较，消除人工判断延迟",
+    "爆炸半径控制：特性开关与流量分割的组合限制了任一阶段的最大用户影响",
+    "统一发布模型：金丝雀发布、特性开关和 A/B 测试组合为单一渐进式流水线"
+  ],
+  "timeline": [
+    [
+      "2018",
+      "James Governor coins 'Progressive Delivery' at RedMonk, synthesizing canary + flags + observability"
+    ],
+    [
+      "2019",
+      "Weaveworks releases Flagger, the first Kubernetes-native progressive delivery controller"
+    ],
+    [
+      "2020",
+      "Argo Rollouts adds progressive delivery with automated analysis integration"
+    ],
+    [
+      "2022",
+      "Major cloud providers (AWS App Mesh, GCP Traffic Director) embed progressive delivery in managed services"
+    ],
+    [
+      "2024",
+      "AI-driven rollout analysis (anomaly detection on SLIs) becomes standard in enterprise progressive delivery platforms"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2018",
+      "James Governor 在 RedMonk 提出「渐进式交付」，综合金丝雀 + 特性开关 + 可观测性"
+    ],
+    [
+      "2019",
+      "Weaveworks 发布 Flagger，首个 Kubernetes 原生渐进式交付控制器"
+    ],
+    [
+      "2020",
+      "Argo Rollouts 添加带自动化分析集成的渐进式交付功能"
+    ],
+    [
+      "2022",
+      "主要云厂商（AWS App Mesh、GCP Traffic Director）在托管服务中内置渐进式交付"
+    ],
+    [
+      "2024",
+      "AI 驱动的发布分析（SLI 异常检测）成为企业级渐进式交付平台的标配"
+    ]
+  ],
+  "dos": [
+    "Define clear metric thresholds and minimum observation windows before starting any progressive rollout",
+    "Use automated canary analysis tools (Kayenta, Flagger) to remove subjective human judgment from promotion decisions",
+    "Combine technical metrics (error rate, latency) with business metrics (conversion, revenue) for holistic rollout health",
+    "Run progressive delivery in staging first to calibrate analysis sensitivity and avoid false positives in production"
+  ],
+  "dos_zh": [
+    "在启动渐进式发布前明确定义指标阈值和最短观察窗口",
+    "使用自动化金丝雀分析工具（Kayenta、Flagger）消除晋升决策中的主观人为判断",
+    "将技术指标（错误率、延迟）与业务指标（转化率、收入）结合，全面评估发布健康状况",
+    "先在预发布环境中运行渐进式交付以校准分析灵敏度，避免在生产环境中出现假阳性"
+  ],
+  "donts": [
+    "Don't skip the baseline measurement phase — without a reliable baseline, canary comparison is meaningless",
+    "Don't set observation windows too short — transient traffic patterns can mask regressions",
+    "Don't ignore the long tail of latency (p99, p999) — median-only analysis misses the most painful user experiences",
+    "Don't treat progressive delivery as a substitute for pre-production testing — it is a safety net, not a test suite"
+  ],
+  "donts_zh": [
+    "不要跳过基线测量阶段——没有可靠的基线，金丝雀比较毫无意义",
+    "不要将观察窗口设置得太短——瞬时流量模式可能掩盖回归问题",
+    "不要忽略延迟长尾（p99、p999）——仅分析中位数会遗漏最痛苦的用户体验",
+    "不要将渐进式交付视为预生产测试的替代品——它是安全网，不是测试套件"
+  ],
+  "case_study_company": "Intuit",
+  "case_study": "Intuit adopted progressive delivery for TurboTax during the 2022 tax season, combining Argo Rollouts with custom Kayenta canary analysis. Each release progressed through four stages (1%, 10%, 50%, 100%) with automated SLI checks at each gate. This approach caught a latency regression at the 10% stage that would have impacted millions of users during peak filing, enabling automatic rollback within 3 minutes of detection.",
+  "case_study_zh": "Intuit 在 2022 年报税季为 TurboTax 采用渐进式交付，将 Argo Rollouts 与自定义 Kayenta 金丝雀分析相结合。每次发布经过四个阶段（1%、10%、50%、100%），每个门控处进行自动化 SLI 检查。该方法在 10% 阶段捕获了一个延迟回归问题，否则将在高峰报税期影响数百万用户，检测到后 3 分钟内即完成自动回滚。",
+  "when_not_to_use": [
+    "Small internal tools with a handful of users where the overhead of multi-stage rollouts is unjustified",
+    "Batch processing systems that do not serve real-time traffic and cannot be canary-tested",
+    "Environments with insufficient observability infrastructure to support automated canary analysis",
+    "Deployments requiring atomic all-or-nothing cutover (use blue-green instead)"
+  ],
+  "when_not_to_use_zh": [
+    "用户极少的小型内部工具——多阶段发布的开销不合理",
+    "不提供实时流量且无法进行金丝雀测试的批处理系统",
+    "可观测性基础设施不足以支持自动化金丝雀分析的环境",
+    "需要原子性全有或全无切换的部署（应使用蓝绿部署替代）"
+  ],
+  "adopters": [
+    "Intuit",
+    "Weaveworks",
+    "Netflix",
+    "Spotify",
+    "DoorDash"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "James Governor (2018). \"Progressive Delivery\". redmonk.com.",
+  "secondary_sources": [
+    "Jez Humble and David Farley (2010). \"Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation\". Addison-Wesley.",
+    "Weaveworks (2019). \"Progressive Delivery with Flagger\". flagger.app."
+  ],
+  "typed_relations": [
+    {
+      "slug": "canary-deployment",
+      "type": "extends"
+    },
+    {
+      "slug": "feature-flags",
+      "type": "complement"
+    },
+    {
+      "slug": "slo-as-practice",
+      "type": "complement"
+    },
+    {
+      "slug": "opentelemetry",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/progressive-delivery",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/progressive-delivery.md"
+}

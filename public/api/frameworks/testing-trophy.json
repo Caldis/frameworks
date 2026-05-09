@@ -1,0 +1,193 @@
+{
+  "id": 45,
+  "name": "Testing Trophy",
+  "name_zh": "测试奖杯模型",
+  "slug": "testing-trophy",
+  "category": "quality",
+  "desc": "Emphasize integration tests as the highest-ROI testing layer",
+  "desc_zh": "强调集成测试作为投资回报率最高的测试层级",
+  "steps": [
+    "Start with static analysis: use TypeScript, ESLint, and formatters as the wide base of the trophy to catch errors before runtime",
+    "Invest heavily in integration tests: test real component interactions, API calls, and database queries — the trophy's widest bulge",
+    "Write focused unit tests: cover complex algorithms and pure utility functions, but don't unit-test simple wiring or framework glue",
+    "Add a small cap of E2E tests: cover only the most critical happy paths and smoke tests with tools like Playwright or Cypress",
+    "Optimize for confidence per test dollar: measure defect escape rate per layer and shift investment toward the layer catching the most bugs"
+  ],
+  "steps_zh": [
+    "从静态分析开始：使用TypeScript、ESLint和格式化工具作为奖杯的宽基座，在运行前捕获错误",
+    "大量投入集成测试：测试真实的组件交互、API调用和数据库查询——奖杯最宽的部分",
+    "编写聚焦的单元测试：覆盖复杂算法和纯工具函数，但不对简单装配或框架胶水做单元测试",
+    "添加少量端到端测试：仅用Playwright或Cypress覆盖最关键的正向路径和冒烟测试",
+    "优化每测试美元的置信度：衡量每层的缺陷逃逸率，将投入转向捕获最多bug的层级"
+  ],
+  "ai_relevant": false,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "Static",
+    "Unit",
+    "Integration",
+    "E2E"
+  ],
+  "viz_labels_zh": [
+    "静态分析",
+    "单元测试",
+    "集成测试",
+    "端到端"
+  ],
+  "related": [
+    "test-pyramid",
+    "tdd",
+    "contract-testing"
+  ],
+  "tags": [
+    "testing",
+    "integration-tests",
+    "static-analysis",
+    "test-strategy"
+  ],
+  "origin_author": "Kent C. Dodds, 2018",
+  "origin_source": "The Testing Trophy and Testing Classifications (blog post)",
+  "origin_source_zh": "《测试奖杯与测试分类》（博客文章）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Building modern JavaScript/TypeScript web applications with component-based frameworks",
+    "Teams already using static typing and linting who want to optimize their test investment",
+    "Projects where integration bugs cause more production incidents than unit-level logic errors",
+    "Frontend-heavy applications with significant UI interaction logic"
+  ],
+  "when_to_use_zh": [
+    "使用基于组件的框架构建现代JavaScript/TypeScript Web应用",
+    "已使用静态类型和代码检查、希望优化测试投入的团队",
+    "集成缺陷比单元级逻辑错误导致更多生产事故的项目",
+    "有大量UI交互逻辑的前端密集型应用"
+  ],
+  "core_concepts": [
+    "Static Analysis: Type checkers and linters as the zero-cost base layer catching bugs at compile time",
+    "Integration Tests: The highest-ROI layer testing real interactions between components and services",
+    "Confidence Coefficient: The idea that each test should maximize confidence per dollar of maintenance cost",
+    "Testing Classification: Distinguishing tests by the type of confidence they provide, not just scope",
+    "Write Tests Not Too Many Mostly Integration: Kent C. Dodds's guiding principle summarizing the approach"
+  ],
+  "core_concepts_zh": [
+    "静态分析：类型检查器和代码检查工具作为零成本基础层，在编译时捕获缺陷",
+    "集成测试：投资回报率最高的测试层，测试组件和服务之间的真实交互",
+    "信心系数：每个测试应最大化每单位维护成本所带来的信心",
+    "测试分类：按测试提供的信心类型区分测试，而不仅仅是范围",
+    "编写测试，不要太多，主要写集成测试：Kent C. Dodds总结该方法的指导原则"
+  ],
+  "timeline": [
+    [
+      "2017",
+      "Kent C. Dodds develops the Testing Library family (DOM Testing Library, React Testing Library)"
+    ],
+    [
+      "2018",
+      "Dodds publishes 'The Testing Trophy and Testing Classifications' blog post coining the term"
+    ],
+    [
+      "2019",
+      "React Testing Library overtakes Enzyme as the most popular React testing tool"
+    ],
+    [
+      "2020",
+      "Testing Trophy gains widespread adoption in the frontend community"
+    ],
+    [
+      "2023",
+      "The philosophy influences testing approaches across Vue, Svelte, and other framework ecosystems"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2017",
+      "Kent C. Dodds开发了Testing Library系列工具（DOM Testing Library、React Testing Library）"
+    ],
+    [
+      "2018",
+      "Dodds发表「测试奖杯与测试分类」博客文章，首创该术语"
+    ],
+    [
+      "2019",
+      "React Testing Library超越Enzyme成为最流行的React测试工具"
+    ],
+    [
+      "2020",
+      "测试奖杯模型在前端社区获得广泛采用"
+    ],
+    [
+      "2023",
+      "该理念影响了Vue、Svelte等框架生态系统的测试方法"
+    ]
+  ],
+  "dos": [
+    "Do test components the way users interact with them because implementation-detail tests break on refactors",
+    "Do invest in static analysis tooling because it catches entire categories of bugs for free",
+    "Do write integration tests that span real component boundaries because that is where most bugs live",
+    "Do use Testing Library's guiding principles to write tests that resemble how software is used"
+  ],
+  "dos_zh": [
+    "按用户交互方式测试组件，因为测试实现细节会在重构时频繁失败",
+    "投资静态分析工具，因为它能免费捕获整类缺陷",
+    "编写跨越真实组件边界的集成测试，因为大多数缺陷存在于边界处",
+    "使用Testing Library的指导原则编写模拟真实软件使用方式的测试"
+  ],
+  "donts": [
+    "Don't write excessive unit tests for simple component wiring because they add maintenance cost without proportional confidence",
+    "Don't test implementation details because such tests break on every refactor without catching real bugs",
+    "Don't skip static analysis because it is the cheapest and fastest bug-catching layer available",
+    "Don't rely solely on E2E tests because they are too slow and flaky for broad coverage"
+  ],
+  "donts_zh": [
+    "不要为简单的组件组装编写过多单元测试，因为增加了维护成本却没有相应的信心提升",
+    "不要测试实现细节，因为这类测试在每次重构时都会失败，却捕获不到真实缺陷",
+    "不要跳过静态分析，因为它是最廉价、最快速的缺陷捕获层",
+    "不要仅依赖端到端测试，因为它们太慢且不稳定，无法提供广泛覆盖"
+  ],
+  "case_study_company": "PayPal",
+  "case_study": "At PayPal, Kent C. Dodds championed the Testing Trophy approach during his tenure, shifting the frontend team from heavy Enzyme unit tests to React Testing Library integration tests. This reduced test maintenance burden by roughly 40% while improving defect detection rates, as integration tests caught more cross-component bugs that unit tests had missed.",
+  "case_study_zh": "在PayPal任职期间，Kent C. Dodds推广了测试奖杯方法，将前端团队从大量Enzyme单元测试转向React Testing Library集成测试。这将测试维护负担降低了约40%，同时提高了缺陷检测率，因为集成测试捕获了更多单元测试遗漏的跨组件缺陷。",
+  "when_not_to_use": [
+    "Backend systems with complex algorithmic logic where unit tests are more valuable than integration tests",
+    "Projects without static typing where the base layer of the trophy is effectively missing",
+    "Systems with expensive integration test environments where unit tests are more cost-effective"
+  ],
+  "when_not_to_use_zh": [
+    "拥有复杂算法逻辑的后端系统，单元测试比集成测试更有价值",
+    "没有静态类型的项目，奖杯的基础层实际上是缺失的",
+    "集成测试环境成本高昂的系统，单元测试更具成本效益"
+  ],
+  "adopters": [
+    "PayPal",
+    "Shopify",
+    "Vercel",
+    "Netflix",
+    "GitHub"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "testability",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Kent C. Dodds (2018). \"The Testing Trophy and Testing Classifications\". kentcdodds.com.",
+  "secondary_sources": [
+    "Kent C. Dodds (2019). \"Write Tests. Not Too Many. Mostly Integration.\". kentcdodds.com.",
+    "Guillermo Rauch (2016). \"Write Tests\" (original tweet inspiring the concept). Twitter."
+  ],
+  "typed_relations": [
+    {
+      "slug": "test-pyramid",
+      "type": "alternative"
+    },
+    {
+      "slug": "tdd",
+      "type": "complement"
+    },
+    {
+      "slug": "contract-testing",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/testing-trophy",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/testing-trophy.md"
+}

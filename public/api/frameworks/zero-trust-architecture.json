@@ -1,0 +1,198 @@
+{
+  "id": 112,
+  "name": "Zero Trust Architecture",
+  "name_zh": "零信任架构",
+  "slug": "zero-trust-architecture",
+  "category": "security",
+  "desc": "Never trust, always verify — eliminate implicit trust from network architecture",
+  "desc_zh": "永不信任、持续验证——消除网络架构中的隐式信任",
+  "steps": [
+    "Identify all protect surfaces: critical data, assets, applications, and services (DAAS)",
+    "Map transaction flows to understand how subjects access each protect surface",
+    "Build a Zero Trust policy engine that evaluates identity, device health, context, and behavior for every request",
+    "Enforce micro-segmentation at the network and application layer so lateral movement is blocked by default",
+    "Continuously monitor and log all access decisions; feed analytics back into adaptive policies"
+  ],
+  "steps_zh": [
+    "识别所有保护面：关键数据、资产、应用和服务（DAAS）",
+    "映射事务流以理解主体如何访问各保护面",
+    "构建零信任策略引擎，对每个请求评估身份、设备健康状态、上下文和行为",
+    "在网络层和应用层实施微分段，默认阻断横向移动",
+    "持续监控和记录所有访问决策，将分析结果反馈到自适应策略中"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Protect Surface",
+    "Transaction Flow",
+    "Policy Engine",
+    "Micro-Segment",
+    "Monitor"
+  ],
+  "viz_labels_zh": [
+    "保护面",
+    "事务流",
+    "策略引擎",
+    "微隔离",
+    "持续监控"
+  ],
+  "related": [
+    "principle-of-least-privilege",
+    "defense-in-depth",
+    "oauth2-openid-connect"
+  ],
+  "tags": [
+    "zero-trust",
+    "network-security",
+    "identity",
+    "micro-segmentation",
+    "access-control"
+  ],
+  "origin_author": "John Kindervag (Forrester Research), 2010",
+  "origin_source": "Forrester Research report「No More Chewy Centers: Introducing the Zero Trust Model」(2010); NIST SP 800-207「Zero Trust Architecture」(2020)",
+  "origin_source_zh": "Forrester 研究报告「No More Chewy Centers: Introducing the Zero Trust Model」(2010)；NIST SP 800-207「零信任架构」(2020)",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Enterprise environments with hybrid cloud and remote workforce where perimeter-based security is insufficient",
+    "Organizations handling sensitive data (financial, healthcare, government) requiring granular access control",
+    "Post-breach remediation where lateral movement was the primary attack vector",
+    "Mergers and acquisitions requiring rapid, secure integration of disparate network environments"
+  ],
+  "when_to_use_zh": [
+    "混合云和远程办公的企业环境中，边界安全已不足以防护时",
+    "处理敏感数据（金融、医疗、政府）需要细粒度访问控制的组织",
+    "横向移动是主要攻击向量的入侵后补救场景",
+    "并购场景中需要快速安全地整合不同网络环境时"
+  ],
+  "core_concepts": [
+    "Never Trust, Always Verify: Every access request must be authenticated, authorized, and encrypted regardless of network location",
+    "Micro-segmentation: Dividing the network into fine-grained zones so each workload or resource is isolated behind its own access policy",
+    "Policy Decision Point (PDP): The central engine that evaluates context signals (identity, device posture, location, risk score) to allow or deny access",
+    "Policy Enforcement Point (PEP): The gateway that enforces the PDP's decision at the network or application boundary",
+    "Continuous Verification: Ongoing assessment of trust during a session, not just at initial authentication"
+  ],
+  "core_concepts_zh": [
+    "永不信任、持续验证：无论网络位置如何，每个访问请求都必须经过认证、授权和加密",
+    "微分段：将网络划分为细粒度区域，每个工作负载或资源都在独立的访问策略后隔离",
+    "策略决策点（PDP）：评估上下文信号（身份、设备状态、位置、风险评分）以允许或拒绝访问的核心引擎",
+    "策略执行点（PEP）：在网络或应用边界执行 PDP 决策的网关",
+    "持续验证：在会话期间持续评估信任，而非仅在初始认证时验证"
+  ],
+  "timeline": [
+    [
+      "2010",
+      "John Kindervag publishes the Zero Trust model at Forrester Research"
+    ],
+    [
+      "2014",
+      "Google publishes BeyondCorp papers, validating Zero Trust at massive scale"
+    ],
+    [
+      "2020-08",
+      "NIST releases SP 800-207「Zero Trust Architecture」as the definitive reference standard"
+    ],
+    [
+      "2021-05",
+      "US Executive Order 14028 mandates federal agencies adopt Zero Trust architecture"
+    ],
+    [
+      "2023",
+      "Major cloud providers (Azure AD Conditional Access, Google BeyondCorp Enterprise, AWS Verified Access) offer native Zero Trust products"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2010",
+      "John Kindervag 在 Forrester Research 发布零信任模型"
+    ],
+    [
+      "2014",
+      "Google 发布 BeyondCorp 论文，在超大规模中验证零信任"
+    ],
+    [
+      "2020-08",
+      "NIST 发布 SP 800-207「零信任架构」作为权威参考标准"
+    ],
+    [
+      "2021-05",
+      "美国第 14028 号行政令要求联邦机构采用零信任架构"
+    ],
+    [
+      "2023",
+      "主要云厂商（Azure AD 条件访问、Google BeyondCorp Enterprise、AWS Verified Access）推出原生零信任产品"
+    ]
+  ],
+  "dos": [
+    "Start with your most critical protect surfaces rather than attempting a full network transformation at once",
+    "Integrate identity-aware proxies and device trust signals into every access decision",
+    "Invest in comprehensive logging and SIEM integration — Zero Trust is only as strong as your visibility",
+    "Treat Zero Trust as a journey with incremental maturity levels, not a single product purchase"
+  ],
+  "dos_zh": [
+    "从最关键的保护面开始，而非试图一次性转变整个网络",
+    "将身份感知代理和设备信任信号集成到每个访问决策中",
+    "投资全面的日志记录和 SIEM 集成——零信任的强度取决于可见性",
+    "将零信任视为具有渐进成熟度级别的旅程，而非一次性产品采购"
+  ],
+  "donts": [
+    "Don't assume VPN equals Zero Trust — VPN still grants broad network access once connected",
+    "Don't neglect user experience — overly aggressive verification causes friction and workaround behaviors",
+    "Don't forget east-west traffic — Zero Trust must apply inside the network, not just at the perimeter",
+    "Don't implement Zero Trust without executive sponsorship — it requires cross-team coordination and budget"
+  ],
+  "donts_zh": [
+    "不要假设 VPN 等于零信任——VPN 连接后仍授予广泛网络访问权限",
+    "不要忽视用户体验——过度激进的验证会造成摩擦和绕行行为",
+    "不要忽略东西向流量——零信任必须应用于网络内部，而非仅限边界",
+    "不要在没有高层支持的情况下实施零信任——它需要跨团队协调和预算"
+  ],
+  "case_study_company": "Google",
+  "case_study": "Google pioneered Zero Trust at enterprise scale with BeyondCorp, launched after the 2009 Operation Aurora attacks. By eliminating the privileged corporate network and requiring every request to be authenticated and authorized based on user identity and device state, Google enabled 100,000+ employees to work securely from any network without VPN. BeyondCorp became the template for the entire industry's Zero Trust adoption.",
+  "case_study_zh": "Google 在 2009 年「极光行动」攻击后率先以 BeyondCorp 在企业级大规模实施零信任。通过消除特权企业网络，要求每个请求基于用户身份和设备状态进行认证与授权，Google 使 10 万余名员工无需 VPN 即可从任何网络安全工作。BeyondCorp 成为整个行业零信任采用的模板。",
+  "when_not_to_use": [
+    "Air-gapped networks with no external connectivity where perimeter isolation is physically enforced",
+    "Very small teams (under 10) with a single flat network and no sensitive data — the overhead may exceed the risk",
+    "Legacy OT/ICS environments where devices cannot support modern authentication protocols",
+    "Short-lived experimental environments that will be destroyed before any real data flows through them"
+  ],
+  "when_not_to_use_zh": [
+    "无外部连接的气隙网络，物理隔离已强制执行",
+    "极小团队（10 人以下）单一扁平网络且无敏感数据时——开销可能超过风险",
+    "无法支持现代认证协议的传统 OT/ICS 环境",
+    "在真实数据流入之前就会销毁的短期实验环境"
+  ],
+  "adopters": [
+    "Google (BeyondCorp)",
+    "Microsoft (Azure AD Conditional Access)",
+    "Cloudflare (Cloudflare Access)",
+    "Zscaler",
+    "US Federal Government (per EO 14028)"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "security",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Rose, S. et al. (2020). \"Zero Trust Architecture\". NIST Special Publication 800-207.",
+  "secondary_sources": [
+    "Kindervag, J. (2010). \"No More Chewy Centers: Introducing the Zero Trust Model of Information Security\". Forrester Research.",
+    "Ward, R. & Beyer, B. (2014). \"BeyondCorp: A New Approach to Enterprise Security\". ;login: USENIX, 39(6)."
+  ],
+  "typed_relations": [
+    {
+      "slug": "principle-of-least-privilege",
+      "type": "prerequisite"
+    },
+    {
+      "slug": "defense-in-depth",
+      "type": "complement"
+    },
+    {
+      "slug": "oauth2-openid-connect",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/zero-trust-architecture",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/zero-trust-architecture.md"
+}

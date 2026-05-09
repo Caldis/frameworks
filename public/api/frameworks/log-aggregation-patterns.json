@@ -1,0 +1,195 @@
+{
+  "id": 275,
+  "name": "Log Aggregation Patterns",
+  "name_zh": "日志聚合模式",
+  "slug": "log-aggregation-patterns",
+  "category": "observability",
+  "desc": "Centralized collection, parsing, and querying of logs from distributed services using platforms like ELK, Loki, and Datadog",
+  "desc_zh": "使用ELK、Loki和Datadog等平台对分布式服务的日志进行集中收集、解析和查询",
+  "steps": [
+    "Standardize log format across all services: adopt structured JSON logging with consistent fields (timestamp, level, service, trace_id, request_id, user_id) so logs can be parsed and queried without custom per-service rules",
+    "Choose and deploy a log aggregation stack: ELK (Elasticsearch + Logstash + Kibana) for full-text search and analytics, Loki for label-based querying with lower storage cost, or a managed platform like Datadog Logs for operational simplicity",
+    "Configure log shippers on each host or container (Filebeat, Fluentd, Promtail, Vector) to tail log files or consume stdout and forward to the central aggregation system with service metadata enrichment",
+    "Define log retention policies by log category: security and audit logs typically require 1-7 years; application debug logs can be retained for 7-30 days; balance queryability with storage cost",
+    "Correlate logs with traces and metrics: inject trace IDs into every log line and configure your observability backend to pivot from a log entry to its associated distributed trace for rapid incident diagnosis"
+  ],
+  "steps_zh": [
+    "跨所有服务标准化日志格式：采用带有一致字段（timestamp、level、service、trace_id、request_id、user_id）的结构化JSON日志，使日志无需自定义按服务规则即可解析和查询",
+    "选择并部署日志聚合技术栈：ELK（Elasticsearch+Logstash+Kibana）用于全文搜索和分析，Loki用于基于标签的查询且存储成本更低，或使用Datadog日志等托管平台以降低运维复杂度",
+    "在每台主机或容器上配置日志采集器（Filebeat、Fluentd、Promtail、Vector），以跟踪日志文件或消费stdout，并通过服务元数据丰富后转发到中央聚合系统",
+    "按日志类别定义日志保留策略：安全和审计日志通常需要保留1-7年；应用调试日志可保留7-30天；在可查询性与存储成本之间取得平衡",
+    "将日志与追踪和指标关联：在每条日志行中注入Trace ID，并配置可观测性后端以从日志条目跳转到其关联的分布式追踪，用于快速事故诊断"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Standardize Format",
+    "Aggregation Stack",
+    "Log Shippers",
+    "Retention Policy",
+    "Trace Correlate"
+  ],
+  "viz_labels_zh": [
+    "标准格式",
+    "聚合栈",
+    "日志采集",
+    "保留策略",
+    "与追踪关联"
+  ],
+  "related": [
+    "opentelemetry",
+    "distributed-tracing",
+    "structured-logging",
+    "four-golden-signals",
+    "observability-as-code"
+  ],
+  "tags": [
+    "logging",
+    "elk",
+    "loki",
+    "datadog",
+    "observability",
+    "log-aggregation",
+    "structured-logging"
+  ],
+  "origin_author": "Jay Kreps",
+  "origin_source": "Kreps, J. (2013). \"I Heart Logs: Event Data, Stream Processing, and Data Integration\". O'Reilly Media.",
+  "origin_source_zh": "Kreps, J.（2013）.《I Heart Logs：事件数据、流处理与数据集成》. O'Reilly Media.",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Operating distributed systems with more than 3-4 services where correlating events across individual service logs becomes impractical without centralized search",
+    "Compliance and audit requirements mandate centralized, tamper-evident log storage with defined retention periods and access controls",
+    "Incident response times are slow because engineers spend hours SSH-ing into individual servers to grep through logs rather than querying a central log store",
+    "Security operations teams need to detect patterns across log sources (failed logins across multiple services, unusual API access patterns) that are impossible to see in siloed logs"
+  ],
+  "when_to_use_zh": [
+    "运营拥有超过3-4个服务的分布式系统，在没有集中搜索的情况下，关联各个服务日志中的事件变得不切实际",
+    "合规和审计要求要求集中、防篡改的日志存储，具有明确的保留期和访问控制",
+    "事故响应时间缓慢，因为工程师花费数小时SSH登录各个服务器通过grep查找日志，而非查询中央日志存储",
+    "安全运营团队需要检测跨日志源的模式（多个服务的登录失败、异常API访问模式），这在孤立日志中是不可能看到的"
+  ],
+  "core_concepts": [
+    "Log Shipper: a lightweight agent (Filebeat, Fluentd, Promtail, Vector) deployed alongside each service that tails log output, applies parsing and enrichment, and forwards logs to the central aggregation backend with minimal overhead",
+    "Index vs Label-based Storage: Elasticsearch indexes log content for full-text search (high cost, high flexibility); Loki uses label-indexed streams (low cost, queried by metadata first then content) — the choice drives cost and query patterns",
+    "Structured Logging: emitting logs as JSON objects with typed fields rather than freeform strings, enabling precise filtering (level=ERROR AND service=checkout AND user_id=12345) without fragile regex parsing",
+    "Log Correlation: embedding trace_id and span_id in every log line enables jumping from a log event to its parent distributed trace in Jaeger/Zipkin, turning logs from isolated events into a navigable signal",
+    "Retention Tiering: hot storage (7-30 days, fast query) → warm storage (30-90 days, slower) → cold/archive (compliance retention, rarely queried) — matching query frequency to storage cost"
+  ],
+  "core_concepts_zh": [
+    "日志采集器：轻量级代理（Filebeat、Fluentd、Promtail、Vector），与每个服务一起部署，跟踪日志输出，应用解析和丰富，并以最小开销将日志转发到中央聚合后端",
+    "索引型与标签型存储：Elasticsearch对日志内容建立全文搜索索引（高成本、高灵活性）；Loki使用标签索引流（低成本，先按元数据后按内容查询）——选择决定了成本和查询模式",
+    "结构化日志：以带有类型化字段的JSON对象而非自由格式字符串发出日志，支持精确过滤（level=ERROR AND service=checkout AND user_id=12345），无需脆弱的正则表达式解析",
+    "日志关联：在每条日志行中嵌入trace_id和span_id，支持从日志事件跳转到Jaeger/Zipkin中其父级分布式追踪，将日志从孤立事件转变为可导航信号",
+    "保留分层：热存储（7-30天，快速查询）→温存储（30-90天，较慢）→冷/归档存储（合规保留，很少查询）——将查询频率与存储成本匹配"
+  ],
+  "timeline": [
+    [
+      "2004",
+      "Syslog becomes the de facto standard for Unix log aggregation, but its unstructured format limits machine parsing at scale"
+    ],
+    [
+      "2010",
+      "Elasticsearch released; combined with Logstash and Kibana as the ELK stack, it becomes the dominant open-source log analytics platform"
+    ],
+    [
+      "2013",
+      "Jay Kreps publishes 'I Heart Logs', articulating logs as the universal data integration primitive and influencing stream-based log architectures"
+    ],
+    [
+      "2018",
+      "Grafana Loki announced at KubeCon NA, introducing a label-based approach inspired by Prometheus that dramatically reduces log storage cost for Kubernetes environments"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2004",
+      "Syslog成为Unix日志聚合的事实标准，但其非结构化格式限制了大规模机器解析"
+    ],
+    [
+      "2010",
+      "Elasticsearch发布；与Logstash和Kibana组合为ELK技术栈，成为主流的开源日志分析平台"
+    ],
+    [
+      "2013",
+      "Jay Kreps发布《I Heart Logs》，将日志阐述为通用数据集成原语，影响了基于流的日志架构"
+    ],
+    [
+      "2018",
+      "在KubeCon NA上宣布Grafana Loki，引入受Prometheus启发的基于标签的方法，大幅降低了Kubernetes环境的日志存储成本"
+    ]
+  ],
+  "dos": [
+    "Do enforce structured JSON logging as a service standard — require it in code review and lint for freeform log strings; unstructured logs become ungrepable liabilities at scale",
+    "Do inject a correlation ID (trace_id or request_id) at the request entry point and propagate it through all downstream service calls so any log line can be used to find all related events",
+    "Do set log levels deliberately: use DEBUG for development, INFO for significant application events, WARN for recoverable issues, ERROR for failures requiring attention — and configure production to ship only INFO and above by default",
+    "Do test your log aggregation pipeline in a staging environment that mirrors production load, as high-cardinality label explosions in Loki or large index mappings in Elasticsearch often only surface at production volume"
+  ],
+  "dos_zh": [
+    "将结构化JSON日志作为服务标准强制执行——在代码审查中要求它并对自由格式日志字符串进行lint检查；非结构化日志在规模化时成为无法grep的负担",
+    "在请求入口点注入关联ID（trace_id或request_id）并将其传播到所有下游服务调用，使任何日志行都可用于查找所有相关事件",
+    "刻意设置日志级别：开发使用DEBUG，重要应用事件使用INFO，可恢复问题使用WARN，需要关注的故障使用ERROR——默认情况下配置生产环境仅发送INFO及以上级别",
+    "在模拟生产负载的预发布环境中测试日志聚合管道，因为Loki中的高基数标签爆炸或Elasticsearch中的大型索引映射通常只在生产规模下才会出现"
+  ],
+  "donts": [
+    "Don't log sensitive data (passwords, tokens, PII, card numbers) even at DEBUG level — build automated PII detection into your log shipper pipeline as a safety net for accidental data leakage",
+    "Don't use high-cardinality values (user IDs, request IDs) as Loki labels or Elasticsearch field names that are indexed — they cause label explosion or mapping explosion that degrades query performance and increases cost",
+    "Don't treat all logs equally in retention policy — storing debug-level logs for years is expensive and rarely valuable; define tiered retention policies based on log category and compliance requirement",
+    "Don't skip centralized log sampling for very high-volume debug logging paths — 100% log capture at millions of requests per second is prohibitively expensive; sample at the shipper level for non-critical paths"
+  ],
+  "donts_zh": [
+    "不要记录敏感数据（密码、令牌、PII、卡号），即使在DEBUG级别——在日志采集器管道中构建自动化PII检测作为意外数据泄露的安全网",
+    "不要使用高基数值（用户ID、请求ID）作为Loki标签或被索引的Elasticsearch字段名——它们会导致标签爆炸或映射爆炸，降低查询性能并增加成本",
+    "不要在保留策略中平等对待所有日志——将调试级别日志存储多年既昂贵又很少有价值；根据日志类别和合规要求定义分层保留策略",
+    "不要跳过对非常高流量调试日志路径的集中日志采样——在每秒数百万请求时100%日志捕获成本高得令人望而却步；在采集器级别对非关键路径进行采样"
+  ],
+  "case_study_company": "Airbnb",
+  "case_study": "Airbnb migrated from host-based log tailing to a centralized ELK-based log aggregation platform as their microservices architecture grew to over 200 services. The migration standardized log format to structured JSON across all services and deployed Filebeat sidecars in their Kubernetes pods. The key outcome was incident response: before centralization, identifying the root cause of a checkout failure required 45-90 minutes of log correlation across 8+ services. After deploying centralized log search with trace ID correlation, the same investigation took under 10 minutes. Airbnb also implemented automated log-based anomaly detection that caught 3 silent data integrity issues in 6 months that had no corresponding metric alerts — bugs that were writing incorrect data to the database without failing loudly enough to trigger error rate SLOs.",
+  "case_study_zh": "随着Airbnb的微服务架构增长到200多个服务，他们从基于主机的日志跟踪迁移到基于ELK的集中式日志聚合平台。迁移将所有服务的日志格式标准化为结构化JSON，并在Kubernetes Pod中部署Filebeat旁路容器。关键成果在于事故响应：集中化之前，识别结账失败的根本原因需要在8个以上服务间关联日志45-90分钟。部署带Trace ID关联的集中式日志搜索后，同样的调查只需不到10分钟。Airbnb还实现了基于日志的自动异常检测，在6个月内发现了3个无对应指标告警的静默数据完整性问题——这些bug在向数据库写入错误数据时没有大声地失败到足以触发错误率SLO。",
+  "when_not_to_use": [
+    "Single-service monolithic applications where application logs are accessible on one or a few hosts and the operational overhead of a log aggregation stack outweighs the convenience benefit",
+    "Strictly air-gapped environments where regulations prohibit sending log data to any external or centralized system, requiring per-host log analysis tooling instead",
+    "Ultra-low-latency systems where the overhead of structured JSON logging and log shipper processes is a measurable performance bottleneck on the critical path"
+  ],
+  "when_not_to_use_zh": [
+    "单服务单体应用，应用日志可在一台或几台主机上访问，日志聚合技术栈的运维开销超过便利收益",
+    "严格的物理隔离环境，法规禁止将日志数据发送到任何外部或集中式系统，需要使用按主机的日志分析工具",
+    "超低延迟系统，结构化JSON日志和日志采集器进程的开销在关键路径上是可测量的性能瓶颈"
+  ],
+  "adopters": [
+    "Airbnb",
+    "Uber",
+    "Netflix",
+    "Wikimedia Foundation",
+    "Elastic (ELK Stack)",
+    "Grafana Labs (Loki)"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "observability",
+    "security",
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Kreps, J. (2013). \"I Heart Logs: Event Data, Stream Processing, and Data Integration\". O'Reilly Media.",
+  "secondary_sources": [
+    "Elastic (2023). \"Elasticsearch Guide: Log and Event Data\". elastic.co/guide.",
+    "Grafana Labs (2023). \"Loki Documentation: Log Aggregation System for Kubernetes\". grafana.com/docs/loki.",
+    "Sridharan, C. (2018). \"Distributed Systems Observability\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "opentelemetry",
+      "type": "complement"
+    },
+    {
+      "slug": "distributed-tracing",
+      "type": "complement"
+    },
+    {
+      "slug": "observability-as-code",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/log-aggregation-patterns",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/log-aggregation-patterns.md"
+}

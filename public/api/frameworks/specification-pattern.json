@@ -1,0 +1,188 @@
+{
+  "id": 279,
+  "name": "Specification Pattern",
+  "name_zh": "规格模式",
+  "slug": "specification-pattern",
+  "category": "coding",
+  "desc": "Encapsulating business rules as composable, reusable objects that can be combined with boolean logic to express complex domain predicates",
+  "desc_zh": "将业务规则封装为可组合、可复用的对象，通过布尔逻辑组合来表达复杂的领域谓词",
+  "steps": [
+    "Identify business rules that are duplicated across the codebase or mixed into query logic and UI validation — these are the candidates for extraction into explicit Specification objects",
+    "Define a Specification interface with a single IsSatisfiedBy(entity) method (or an expression property for database-pushable specs) that encapsulates one cohesive business rule",
+    "Implement concrete specifications for each atomic rule: PremiumCustomerSpec, ActiveAccountSpec, EligibleForDiscountSpec — each class encodes one well-named business concept",
+    "Implement composition operators on the Specification base class: And(), Or(), Not() — so complex rules can be expressed as new PremiumCustomerSpec().And(new ActiveAccountSpec()) rather than inline boolean logic",
+    "Apply specifications consistently: use them in domain validation, in query filters (translating specs to database predicates via expression trees), and in UI to drive conditional visibility, ensuring the rule is defined once and used everywhere"
+  ],
+  "steps_zh": [
+    "识别在代码库中重复或混入查询逻辑和UI验证的业务规则——这些是提取为显式Specification对象的候选",
+    "定义带有单一IsSatisfiedBy(entity)方法（或用于数据库可推送规格的表达式属性）的Specification接口，封装一个内聚的业务规则",
+    "为每个原子规则实现具体规格：PremiumCustomerSpec、ActiveAccountSpec、EligibleForDiscountSpec——每个类编码一个命名良好的业务概念",
+    "在Specification基类上实现组合运算符：And()、Or()、Not()——使复杂规则可以表达为new PremiumCustomerSpec().And(new ActiveAccountSpec())，而非内联布尔逻辑",
+    "一致地应用规格：在领域验证、查询过滤器（通过表达式树将规格转换为数据库谓词）和UI中使用它们来驱动条件可见性，确保规则定义一次随处使用"
+  ],
+  "ai_relevant": false,
+  "viz_type": "venn",
+  "viz_labels": [
+    "Specification",
+    "And Spec",
+    "Or Spec"
+  ],
+  "viz_labels_zh": [
+    "规格",
+    "且规格",
+    "或规格"
+  ],
+  "related": [
+    "domain-driven-design",
+    "solid-principles",
+    "repository-pattern"
+  ],
+  "tags": [
+    "specification-pattern",
+    "ddd",
+    "eric-evans",
+    "business-rules",
+    "domain-logic",
+    "composable",
+    "predicate"
+  ],
+  "origin_author": "Eric Evans",
+  "origin_source": "Evans, E. & Fowler, M. (1997). \"Specifications\". martinfowler.com. Elaborated in Domain-Driven Design (Evans, 2003).",
+  "origin_source_zh": "Evans, E. & Fowler, M.（1997）.「规格」. martinfowler.com. 在《领域驱动设计》（Evans，2003）中进一步阐述。",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Business rules that are duplicated across multiple locations (domain validation, query filters, UI conditionals) and need a single canonical definition that can be reused without copy-paste",
+    "Complex eligibility or filtering logic that is currently expressed as hard-to-read boolean chains in service methods or repository queries",
+    "Domain-rich applications where business rules should be named, documented, and discoverable as first-class domain concepts rather than anonymous lambda expressions",
+    "Systems where business rules are frequently added or changed and need to be testable in isolation without spinning up the full application or database"
+  ],
+  "when_to_use_zh": [
+    "在多个位置重复出现（领域验证、查询过滤器、UI条件）并需要单一规范定义的业务规则，可以复用而无需复制粘贴",
+    "当前在服务方法或仓储查询中表达为难以阅读的布尔链的复杂资格或过滤逻辑",
+    "业务规则应被命名、记录并作为一等领域概念可发现的领域丰富应用，而非匿名lambda表达式",
+    "业务规则频繁添加或更改，需要在不启动完整应用或数据库的情况下独立可测试的系统"
+  ],
+  "core_concepts": [
+    "Specification as Domain Object: a specification is a first-class domain concept — a named business rule (EligibleForLoyaltyReward, PastDueInvoice) that is explicit, documented, and discoverable rather than hidden in anonymous predicates",
+    "Composability: specifications support boolean composition (And, Or, Not) so complex rules are expressed by combining atomic specifications rather than writing nested boolean expressions, keeping each rule independently readable",
+    "Dual-Use Specification: a well-implemented specification can be used both for in-memory validation (IsSatisfiedBy(entity)) and for database query generation (ToExpression() → IQueryable<T>.Where(spec)) using expression trees",
+    "Rule Centralization: by encoding each business rule in exactly one specification class, changes to the rule (eligibility threshold changes, new exceptions) propagate automatically everywhere the specification is used",
+    "Separation of What from How: specifications separate what the business rule is from how it is applied — the same EligibleForDiscountSpec can drive domain validation, database filtering, and UI rendering without any of these contexts knowing about each other"
+  ],
+  "core_concepts_zh": [
+    "规格即领域对象：规格是一等领域概念——命名的业务规则（EligibleForLoyaltyReward、PastDueInvoice），明确、有文档且可发现，而非隐藏在匿名谓词中",
+    "可组合性：规格支持布尔组合（And、Or、Not），复杂规则通过组合原子规格来表达，而非编写嵌套布尔表达式，保持每条规则独立可读",
+    "双用规格：良好实现的规格既可用于内存中验证（IsSatisfiedBy(entity)），也可通过表达式树用于数据库查询生成（ToExpression() → IQueryable<T>.Where(spec)）",
+    "规则集中化：通过在恰好一个规格类中编码每条业务规则，规则的变更（资格阈值变化、新例外）自动传播到使用该规格的所有地方",
+    "将是什么与如何分离：规格将业务规则是什么与如何应用分离——相同的EligibleForDiscountSpec可以驱动领域验证、数据库过滤和UI渲染，而这些上下文之间互不了解"
+  ],
+  "timeline": [
+    [
+      "1997",
+      "Eric Evans and Martin Fowler publish 'Specifications', a technical paper introducing the Specification pattern as a way to express business rules as objects"
+    ],
+    [
+      "2003",
+      "Evans' 'Domain-Driven Design' book includes Specification as a tactical DDD pattern, establishing it as a core building block for domain modeling"
+    ],
+    [
+      "2010",
+      "Expression tree-based specifications emerge in .NET (LINQ) and Java (JPA Criteria API) enabling specifications to translate into database queries, making the pattern practical for repository filtering"
+    ],
+    [
+      "2018",
+      "Ardalis (Steve Smith) open-sources the Specification library for .NET, providing a production-ready implementation that brings the pattern to mainstream .NET development"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1997",
+      "Eric Evans和Martin Fowler发表「规格」技术论文，将规格模式作为将业务规则表达为对象的方式引入"
+    ],
+    [
+      "2003",
+      "Evans的《领域驱动设计》书籍将规格作为战术DDD模式纳入，确立其作为领域建模核心构建块的地位"
+    ],
+    [
+      "2010",
+      ".NET（LINQ）和Java（JPA Criteria API）中出现基于表达式树的规格，使规格可以转换为数据库查询，使该模式在仓储过滤中实际可用"
+    ],
+    [
+      "2018",
+      "Ardalis（Steve Smith）为.NET开源规格库，提供生产就绪的实现，将该模式带入主流.NET开发"
+    ]
+  ],
+  "dos": [
+    "Do give each specification a meaningful domain name that a business stakeholder would recognize — PremiumCustomerSpecification is better than CustomerTypeEqualsThreeSpecification",
+    "Do implement specifications as expression trees (not just in-memory predicates) when they need to be applied as database query filters — in-memory-only specs that must load all records to filter are a performance anti-pattern",
+    "Do compose specifications using And/Or/Not operators rather than creating new mega-specifications that duplicate the logic of existing specs — composition is the primary value of the pattern",
+    "Do test specifications in isolation with unit tests covering both the positive case (entities that satisfy the spec) and negative cases (entities that don't), including edge cases at boundary conditions"
+  ],
+  "dos_zh": [
+    "为每个规格取一个业务利益相关方能够识别的有意义的领域名称——PremiumCustomerSpecification比CustomerTypeEqualsThreeSpecification更好",
+    "当规格需要作为数据库查询过滤器应用时，将其实现为表达式树（不仅仅是内存中谓词）——必须加载所有记录才能过滤的纯内存规格是性能反模式",
+    "使用And/Or/Not运算符组合规格，而非创建重复现有规格逻辑的大型规格——组合是该模式的主要价值",
+    "通过单元测试独立测试规格，覆盖正向情况（满足规格的实体）和负向情况（不满足的实体），包括边界条件的边缘情况"
+  ],
+  "donts": [
+    "Don't put business logic inside specifications beyond the single rule they represent — a specification that checks 5 unrelated conditions is a rule engine, not a specification, and should be decomposed",
+    "Don't use specifications for infrastructure concerns (is the database available? is the cache warm?) — specifications are for domain business rules about domain entities, not for infrastructure state checks",
+    "Don't make specifications depend on external services, repositories, or I/O — a specification that calls a database or API to evaluate its predicate cannot be composed efficiently and makes testing require mocking infrastructure",
+    "Don't over-apply the pattern to every boolean check in the codebase — simple one-off predicates that are used in exactly one place don't benefit from being extracted into a named specification class"
+  ],
+  "donts_zh": [
+    "不要在规格中放入超出其所代表单一规则的业务逻辑——检查5个不相关条件的规格是规则引擎，而非规格，应该被分解",
+    "不要将规格用于基础设施关注点（数据库是否可用？缓存是否预热？）——规格用于领域实体的领域业务规则，而非基础设施状态检查",
+    "不要让规格依赖外部服务、仓储或I/O——调用数据库或API来评估其谓词的规格无法高效组合，使测试需要模拟基础设施",
+    "不要对代码库中的每个布尔检查过度应用该模式——在恰好一个地方使用的简单一次性谓词不会从被提取到命名规格类中受益"
+  ],
+  "case_study_company": "Ardalis / Microsoft",
+  "case_study": "Steve Smith (Ardalis), a Microsoft MVP, developed and open-sourced the Ardalis.Specification library for .NET after working on large enterprise applications where business eligibility rules were scattered as anonymous LINQ predicates across hundreds of repository methods. In one insurance application case study, the rule 'a policy is eligible for renewal' was duplicated in 14 places across the codebase — repository queries, domain services, API controllers, and Blazor component visibility conditions — with subtle variations in 3 of those locations. After extracting it into a single PolicyEligibleForRenewalSpec with expression tree support, the team eliminated all duplicates. When the business changed the eligibility criteria (adding a payment status check), the change was made in one file and propagated automatically to all 14 usage sites with zero regressions.",
+  "case_study_zh": "微软MVP Steve Smith（Ardalis）在处理大型企业应用后，开发并开源了.NET的Ardalis.Specification库。在这些应用中，业务资格规则作为匿名LINQ谓词散布在数百个仓储方法中。在一个保险应用案例研究中，「保单是否符合续保条件」规则在代码库的14个地方重复——仓储查询、领域服务、API控制器和Blazor组件可见性条件——其中3个地方存在细微差异。将其提取为带表达式树支持的单一PolicyEligibleForRenewalSpec后，团队消除了所有重复。当业务更改资格标准（添加付款状态检查）时，变更在一个文件中进行，自动传播到所有14个使用点，零回归。",
+  "when_not_to_use": [
+    "Simple CRUD applications where business rules are few, stable, and not duplicated — the overhead of the Specification pattern exceeds its organizational benefit for trivial data validation",
+    "Scripts and one-off data processing jobs where no code reuse across contexts is required and named domain concepts add no value",
+    "Performance-critical hot paths where the expression tree compilation overhead of database-translatable specifications introduces measurable latency on every request"
+  ],
+  "when_not_to_use_zh": [
+    "业务规则少、稳定且不重复的简单CRUD应用——规格模式的开销超过其对简单数据验证的组织收益",
+    "脚本和一次性数据处理作业，不需要跨上下文的代码复用，命名领域概念不增加价值",
+    "性能关键热路径，数据库可转换规格的表达式树编译开销在每次请求上引入可测量的延迟"
+  ],
+  "adopters": [
+    "Ardalis (Steve Smith)",
+    "Microsoft (internal DDD projects)",
+    "NopCommerce",
+    "eShopOnWeb (Microsoft reference)",
+    "JetBrains Rider (domain logic)",
+    "Umbraco CMS"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability",
+    "testability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Evans, E. & Fowler, M. (1997). \"Specifications\". martinfowler.com.",
+  "secondary_sources": [
+    "Evans, E. (2003). \"Domain-Driven Design: Tackling Complexity in the Heart of Software\". Addison-Wesley.",
+    "Smith, S. (2018). \"Ardalis.Specification: Specification pattern implementation for .NET\". github.com/ardalis/Specification.",
+    "Vernon, V. (2013). \"Implementing Domain-Driven Design\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "domain-driven-design",
+      "type": "complement"
+    },
+    {
+      "slug": "repository-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "solid-principles",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/specification-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/specification-pattern.md"
+}

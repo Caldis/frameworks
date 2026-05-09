@@ -1,0 +1,193 @@
+{
+  "id": 26,
+  "name": "Dependency Injection",
+  "name_zh": "依赖注入",
+  "slug": "dependency-injection",
+  "category": "architecture",
+  "desc": "Invert control flow by injecting dependencies externally",
+  "desc_zh": "通过外部注入依赖来反转控制流，降低模块耦合度",
+  "steps": [
+    "Identify tight couplings: find classes or modules that directly instantiate their dependencies, making them hard to test and swap",
+    "Extract interfaces: define abstractions (interfaces or protocols) for each dependency so consumers depend on contracts, not implementations",
+    "Configure a DI container or use constructor injection to wire dependencies at application startup or composition root",
+    "Manage object lifetimes: decide scoping for each dependency — singleton, scoped (per-request), or transient (per-use)",
+    "Validate the dependency graph: use the container's diagnostic tools or tests to detect circular dependencies, missing registrations, and captive dependencies"
+  ],
+  "steps_zh": [
+    "识别紧耦合：找到直接实例化其依赖的类或模块，这使得它们难以测试和替换",
+    "提取接口：为每个依赖定义抽象（接口或协议），使消费方依赖契约而非实现",
+    "配置DI容器或使用构造函数注入，在应用启动时或组合根处装配依赖",
+    "管理对象生命周期：为每个依赖决定作用域——单例、作用域（每请求）或瞬态（每次使用）",
+    "验证依赖图：使用容器的诊断工具或测试检测循环依赖、缺失注册和捕获依赖"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Client",
+    "Interface",
+    "Injector",
+    "Service"
+  ],
+  "viz_labels_zh": [
+    "客户端",
+    "抽象接口",
+    "注入器",
+    "服务实现"
+  ],
+  "related": [
+    "solid-principles",
+    "hexagonal-architecture",
+    "clean-code-principles"
+  ],
+  "tags": [
+    "dependency-injection",
+    "inversion-of-control",
+    "decoupling",
+    "testability"
+  ],
+  "origin_author": "Martin Fowler, 2004",
+  "origin_source": "Inversion of Control Containers and the Dependency Injection pattern (martinfowler.com, 2004)",
+  "origin_source_zh": "《控制反转容器与依赖注入模式》（martinfowler.com，2004年）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "When classes have hard-coded dependencies that make unit testing with mocks impossible",
+    "When you need to swap implementations at runtime or between environments (e.g., test vs. production)",
+    "When building modular applications where components should be independently replaceable",
+    "When applying SOLID principles, particularly the Dependency Inversion Principle"
+  ],
+  "when_to_use_zh": [
+    "类存在硬编码依赖导致无法用Mock进行单元测试时",
+    "需要在运行时或不同环境间（如测试与生产）切换实现时",
+    "构建组件应可独立替换的模块化应用时",
+    "应用SOLID原则，特别是依赖倒置原则时"
+  ],
+  "core_concepts": [
+    "Constructor injection: Dependencies are provided through the constructor, making them explicit and required",
+    "Composition root: The single place in the application where the entire dependency graph is assembled",
+    "Interface segregation: Consumers depend on narrow abstractions rather than concrete classes",
+    "Lifetime management: Controlling whether dependencies are singletons, scoped, or created fresh each time",
+    "Service locator anti-pattern: Using a global registry to look up dependencies, which hides them from the API surface"
+  ],
+  "core_concepts_zh": [
+    "构造函数注入：通过构造函数提供依赖，使依赖关系显式且必需",
+    "组合根：应用中组装整个依赖图的唯一位置",
+    "接口隔离：消费方依赖窄接口抽象而非具体类",
+    "生命周期管理：控制依赖是单例、作用域还是每次创建新实例",
+    "服务定位器反模式：使用全局注册表查找依赖，将依赖隐藏于API表面之下"
+  ],
+  "timeline": [
+    [
+      "1994",
+      "Gang of Four 'Design Patterns' book introduces Strategy and Factory patterns as precursors"
+    ],
+    [
+      "1998",
+      "Apache Avalon framework introduces early IoC container concepts in Java"
+    ],
+    [
+      "2003",
+      "Spring Framework 1.0 released, popularizing DI in the Java ecosystem"
+    ],
+    [
+      "2004",
+      "Martin Fowler coins the term 'Dependency Injection' in his influential article"
+    ],
+    [
+      "2016",
+      "ASP.NET Core ships with a built-in DI container, making DI a first-class framework feature"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1994",
+      "四人帮《设计模式》引入策略模式和工厂模式作为前身概念"
+    ],
+    [
+      "1998",
+      "Apache Avalon框架在Java中引入早期IoC容器概念"
+    ],
+    [
+      "2003",
+      "Spring Framework 1.0发布，在Java生态中推广DI"
+    ],
+    [
+      "2004",
+      "Martin Fowler在其影响深远的文章中创造「依赖注入」一词"
+    ],
+    [
+      "2016",
+      "ASP.NET Core内置DI容器发布，使DI成为框架一等特性"
+    ]
+  ],
+  "dos": [
+    "Do prefer constructor injection because it makes dependencies explicit, required, and visible in the API",
+    "Do configure the DI container at a single composition root because scattered configuration creates confusion",
+    "Do register dependencies by interface rather than concrete type because it preserves the abstraction benefit",
+    "Do validate the container at startup because failing fast on missing registrations prevents runtime surprises"
+  ],
+  "dos_zh": [
+    "优先使用构造函数注入，因为它使依赖显式、必需且在API中可见",
+    "在单一组合根配置DI容器，因为分散的配置会造成混乱",
+    "按接口而非具体类型注册依赖，因为这保留了抽象的好处",
+    "在启动时验证容器，因为对缺失注册快速失败可防止运行时意外"
+  ],
+  "donts": [
+    "Don't inject the DI container itself into classes because it creates a Service Locator anti-pattern",
+    "Don't use property injection for required dependencies because they can be left null, causing runtime failures",
+    "Don't create deep dependency chains because they make the system hard to understand and debug",
+    "Don't register everything as singleton by default because incorrect lifetime scoping causes subtle concurrency bugs"
+  ],
+  "donts_zh": [
+    "不要将DI容器本身注入到类中，因为这会产生服务定位器反模式",
+    "不要对必需的依赖使用属性注入，因为它们可能为空导致运行时失败",
+    "不要创建过深的依赖链，因为这使系统难以理解和调试",
+    "不要默认将所有依赖注册为单例，因为错误的生命周期范围会导致隐蔽的并发缺陷"
+  ],
+  "case_study_company": "Google (Angular)",
+  "case_study": "Google designed Angular's dependency injection system as a core framework feature, making it the first major frontend framework with built-in hierarchical DI. Angular's injector tree mirrors the component tree, allowing services to be scoped at module, component, or application level. This design enabled teams at Google to build large-scale web applications where components could be independently tested with mock services and swapped without modifying consuming code.",
+  "case_study_zh": "Google将Angular的依赖注入系统设计为核心框架特性，使其成为首个内置层级化DI的主流前端框架。Angular的注入器树镜像组件树，允许服务在模块、组件或应用级别限定作用域。这种设计使Google的团队能够构建大规模Web应用，组件可以用Mock服务独立测试，并在不修改消费方代码的情况下替换。",
+  "when_not_to_use": [
+    "Simple scripts or small programs where the overhead of a DI framework exceeds the coupling problem it solves",
+    "Performance-critical hot paths where the indirection of DI containers adds measurable latency",
+    "Functional programming codebases where higher-order functions and closures naturally invert dependencies"
+  ],
+  "when_not_to_use_zh": [
+    "DI框架的开销超过它所解决的耦合问题的简单脚本或小程序",
+    "DI容器的间接性增加可测量延迟的性能关键热路径",
+    "高阶函数和闭包自然反转依赖的函数式编程代码库"
+  ],
+  "adopters": [
+    "Google (Angular)",
+    "Pivotal (Spring)",
+    "Microsoft (.NET)",
+    "JetBrains (IntelliJ)",
+    "NestJS"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "testability",
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Martin Fowler (2004). \"Inversion of Control Containers and the Dependency Injection Pattern\". martinfowler.com.",
+  "secondary_sources": [
+    "Mark Seemann (2011). \"Dependency Injection in .NET\". Manning Publications.",
+    "Robert C. Martin (2017). \"Clean Architecture: A Craftsman's Guide to Software Structure and Design\". Prentice Hall."
+  ],
+  "typed_relations": [
+    {
+      "slug": "solid-principles",
+      "type": "complement"
+    },
+    {
+      "slug": "hexagonal-architecture",
+      "type": "related"
+    },
+    {
+      "slug": "clean-code-principles",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/dependency-injection",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/dependency-injection.md"
+}

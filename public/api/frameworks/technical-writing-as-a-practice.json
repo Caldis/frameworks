@@ -1,0 +1,194 @@
+{
+  "id": 219,
+  "name": "Technical Writing as a Practice",
+  "name_zh": "技术写作实践",
+  "slug": "technical-writing-as-a-practice",
+  "category": "team",
+  "desc": "Documentation standards, style guides, and docs-as-code workflows for engineering organizations",
+  "desc_zh": "工程组织的文档标准、风格指南和文档即代码工作流",
+  "steps": [
+    "Adopt a documentation taxonomy (the Divio/Diataxis framework: tutorials, how-to guides, explanations, and reference) and map existing documentation to the four quadrants to identify gaps",
+    "Establish a docs-as-code workflow: store documentation in Git alongside code, use Markdown or AsciiDoc, review documentation in PRs, and publish via static site generators (Docusaurus, MkDocs, Sphinx)",
+    "Create a style guide (or adopt an existing one: Google Developer Documentation Style Guide, Microsoft Writing Style Guide) and enforce it with automated prose linters (Vale, textlint)",
+    "Define documentation ownership: each service or API has a designated documentation owner responsible for keeping it current; documentation is tracked on the team's definition of done",
+    "Measure documentation quality quarterly through developer surveys ('Was the documentation sufficient to complete your task?') and track documentation coverage against the API/service inventory"
+  ],
+  "steps_zh": [
+    "采用文档分类法（Divio/Diataxis框架：教程、操作指南、解释和参考），将现有文档映射到四个象限以识别差距",
+    "建立文档即代码工作流：将文档与代码一起存储在Git中，使用Markdown或AsciiDoc，在PR中审查文档，并通过静态站点生成器（Docusaurus、MkDocs、Sphinx）发布",
+    "创建风格指南（或采用现有的：Google开发者文档风格指南、Microsoft写作风格指南），并使用自动化散文代码检查工具（Vale、textlint）强制执行",
+    "定义文档所有权：每个服务或API有指定的文档所有者负责保持其最新；文档在团队的完成定义中被跟踪",
+    "通过开发者调查每季度衡量文档质量（「文档是否足以完成您的任务？」），并跟踪API/服务清单中的文档覆盖率"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Tutorials",
+    "How-To Guides",
+    "Explanations",
+    "Reference",
+    "Quality Metrics"
+  ],
+  "viz_labels_zh": [
+    "教程",
+    "操作指南",
+    "解释说明",
+    "参考文档",
+    "质量度量"
+  ],
+  "related": [
+    "platform-engineering",
+    "rfc-process"
+  ],
+  "tags": [
+    "documentation",
+    "docs-as-code",
+    "divio",
+    "style-guide",
+    "technical-writing"
+  ],
+  "origin_author": "Divio documentation system (Daniele Procida, 2017); docs-as-code popularized by Anne Gentle (2015)",
+  "origin_source": "Procida, D. (2017). \"The Documentation System\". divio.com; Gentle, A. (2015). \"Docs Like Code\". lulu.com; Diataxis framework (diataxis.fr).",
+  "origin_source_zh": "Procida, D.（2017）「文档系统」，divio.com；Gentle, A.（2015）「像代码一样的文档」；Diataxis框架（diataxis.fr）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "When engineering teams spend significant time answering the same questions repeatedly because documentation is absent, outdated, or hard to find",
+    "When onboarding new engineers takes weeks longer than expected because institutional knowledge lives in people's heads rather than written documentation",
+    "When the API or platform is becoming a product used by external developers who need documentation as good as the code itself",
+    "When the team has grown past 20 engineers and informal knowledge transfer through conversation no longer scales"
+  ],
+  "when_to_use_zh": [
+    "当工程团队花费大量时间重复回答相同问题，因为文档缺失、过时或难以找到时",
+    "当新工程师入职花费比预期长数周时间，因为机构知识存在于人们的脑海中而非书面文档时",
+    "当API或平台正在成为外部开发者使用的产品，需要与代码本身一样好的文档时",
+    "当团队超过20名工程师，通过对话进行的非正式知识传递不再具有可扩展性时"
+  ],
+  "core_concepts": [
+    "Diataxis Framework: Four documentation types serving different user needs — Tutorials (learning-oriented, taking the user through a complete example), How-To Guides (task-oriented, solving a specific problem), Explanations (understanding-oriented, discussing concepts), and Reference (information-oriented, describing the system accurately)",
+    "Docs as Code: Treating documentation with the same rigor as code — stored in Git, reviewed in PRs, tested for accuracy, versioned alongside releases, and built/deployed through CI/CD pipelines",
+    "Style Guide: A shared standard for voice, tone, formatting, terminology, and code sample conventions that makes documentation feel consistent regardless of who wrote it",
+    "Documentation Debt: The accumulated deficit of missing, outdated, or inaccurate documentation that creates a hidden tax on every engineer who uses the underdocumented system",
+    "The Documentation Triangle: For every release, three artifacts must be updated — the code, the tests, and the documentation — treating all three as first-class deliverables"
+  ],
+  "core_concepts_zh": [
+    "Diataxis框架：满足不同用户需求的四种文档类型——教程（面向学习，带领用户完成完整示例）、操作指南（面向任务，解决特定问题）、解释（面向理解，讨论概念）和参考（面向信息，准确描述系统）",
+    "文档即代码：以与代码相同的严格程度对待文档——存储在Git中、在PR中审查、测试准确性、随发布版本化，并通过CI/CD流水线构建/部署",
+    "风格指南：关于语气、格式、术语和代码示例约定的共享标准，使文档无论谁写都感觉一致",
+    "文档债务：缺失、过时或不准确文档的累积赤字，对使用文档不足系统的每个工程师造成隐形税",
+    "文档三角：对于每个发布，必须更新三个产物——代码、测试和文档——将三者都视为一级可交付成果"
+  ],
+  "timeline": [
+    [
+      "2010",
+      "Write the Docs community founded, bringing together technical writers and engineers to develop documentation best practices"
+    ],
+    [
+      "2015",
+      "Anne Gentle publishes 'Docs Like Code', popularizing the docs-as-code workflow using Git, Markdown, and static site generators"
+    ],
+    [
+      "2017",
+      "Divio publishes 'The Documentation System' (later Diataxis), providing a widely-adopted taxonomy of documentation types"
+    ],
+    [
+      "2019",
+      "Google Developer Documentation Style Guide released publicly, becoming a reference standard for technical writing in engineering organizations"
+    ],
+    [
+      "2023",
+      "AI-assisted documentation tools (GitHub Copilot for docs, Mintlify Writer) automate docstring generation and keep reference documentation current"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2010",
+      "Write the Docs社区成立，汇集技术写作者和工程师开发文档最佳实践"
+    ],
+    [
+      "2015",
+      "Anne Gentle发布「像代码一样的文档」，推广使用Git、Markdown和静态站点生成器的文档即代码工作流"
+    ],
+    [
+      "2017",
+      "Divio发布「文档系统」（后来的Diataxis），提供被广泛采用的文档类型分类法"
+    ],
+    [
+      "2019",
+      "Google开发者文档风格指南公开发布，成为工程组织技术写作的参考标准"
+    ],
+    [
+      "2023",
+      "AI辅助文档工具（GitHub Copilot for docs、Mintlify Writer）自动化文档字符串生成并保持参考文档最新"
+    ]
+  ],
+  "dos": [
+    "Do use the Diataxis framework to separate tutorials from reference documentation because mixing them produces documentation that serves neither learning nor lookup well",
+    "Do enforce documentation updates in the PR review checklist so that documentation debt doesn't accumulate silently with every feature release",
+    "Do run automated link-checking and prose linting in CI because broken links and style inconsistencies are caught at merge time rather than discovered by frustrated readers",
+    "Do invest in documentation search because even the best-written documentation is useless if engineers cannot find it within 30 seconds"
+  ],
+  "dos_zh": [
+    "使用Diataxis框架将教程与参考文档分离，因为混合它们产生的文档既不适合学习也不适合查找",
+    "在PR审查清单中强制执行文档更新，使文档债务不随每个功能发布静默积累",
+    "在CI中运行自动化链接检查和散文代码检查，因为断链和风格不一致在合并时被捕获，而不是被沮丧的读者发现",
+    "投资文档搜索，因为即使是写得最好的文档，如果工程师不能在30秒内找到它，也是没用的"
+  ],
+  "donts": [
+    "Don't assign documentation as a post-release afterthought because it will never be prioritized over the next feature and the documentation debt will compound",
+    "Don't use documentation as a substitute for good API design because if the documentation for an API is long and complex, the API itself is probably too complex",
+    "Don't let documentation ownership become 'everyone's problem' because diffuse ownership is the primary cause of stale, inaccurate documentation",
+    "Don't optimize documentation for the writer's convenience (dumping raw notes, linking to internal Slack threads, assuming tribal knowledge) — optimize it for a reader encountering the topic for the first time"
+  ],
+  "donts_zh": [
+    "不要将文档视为发布后的事后想法，因为它永远不会比下一个功能优先，文档债务会复利增长",
+    "不要使用文档作为良好API设计的替代品，因为如果API的文档又长又复杂，API本身可能过于复杂",
+    "不要让文档所有权成为「所有人的问题」，因为分散的所有权是文档过时、不准确的主要原因",
+    "不要为写作者的便利优化文档（倾倒原始笔记、链接到内部Slack线程、假设部落知识）——为首次遇到该主题的读者优化"
+  ],
+  "case_study_company": "Stripe",
+  "case_study": "Stripe has consistently ranked at the top of developer experience benchmarks, with its documentation cited as a primary driver. Stripe's documentation approach embodies every docs-as-code principle: all documentation is stored in a monorepo alongside the API code, reviewed in the same PR workflow as code changes, and built through an automated publishing pipeline. Each API endpoint has dedicated tutorial content, code samples in 8 languages generated from a single source, and a reference section. Stripe employs over 20 technical writers who collaborate directly with engineers rather than receiving finished content to document. Internal research showed that new developers who could complete a working integration in under 30 minutes (possible because of documentation quality) had significantly higher activation rates.",
+  "case_study_zh": "Stripe在开发者体验基准中始终排名靠前，其文档被列为主要驱动因素。Stripe的文档方法体现了所有文档即代码原则：所有文档与API代码一起存储在单体仓库中，在与代码变更相同的PR工作流中审查，并通过自动化发布流水线构建。每个API端点都有专门的教程内容、从单一来源生成的8种语言代码示例和参考部分。Stripe雇用超过20名技术写作者，他们直接与工程师协作，而不是接收已完成的内容来记录。内部研究表明，能够在30分钟内完成工作集成（由于文档质量而成为可能）的新开发者具有显著更高的激活率。",
+  "when_not_to_use": [
+    "Internal proof-of-concept projects with a lifespan under 3 months where the documentation investment will not be recouped before the project is discarded",
+    "Highly experimental research systems where the design changes faster than documentation can be written and maintained",
+    "Proprietary code that will never be shared beyond the immediate team, where informal knowledge transfer through pair programming and code reviews is sufficient",
+    "Automated code where inline comments and self-documenting variable names serve as documentation, and separate prose documentation would be redundant"
+  ],
+  "when_not_to_use_zh": [
+    "寿命不足3个月的内部概念验证项目，文档投资在项目被丢弃之前无法得到回报",
+    "高度实验性研究系统，设计变化速度比文档可以编写和维护的速度更快",
+    "永远不会在直接团队之外共享的专有代码，通过结对编程和代码审查进行的非正式知识传递已经足够",
+    "自动化代码，其中内联注释和自文档变量名充当文档，单独的散文文档将是多余的"
+  ],
+  "adopters": [
+    "Stripe",
+    "Twilio",
+    "Cloudflare",
+    "Hashicorp",
+    "Netlify"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "usability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Procida, D. (2017). \"The Documentation System\". divio.com / diataxis.fr.",
+  "secondary_sources": [
+    "Gentle, A. (2015). \"Docs Like Code\". lulu.com.",
+    "Google (2019). \"Google Developer Documentation Style Guide\". developers.google.com/style.",
+    "Write the Docs community (2023). \"Documentation Best Practices\". writethedocs.org."
+  ],
+  "typed_relations": [
+    {
+      "slug": "platform-engineering",
+      "type": "complement"
+    },
+    {
+      "slug": "rfc-process",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/technical-writing-as-a-practice",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/technical-writing-as-a-practice.md"
+}

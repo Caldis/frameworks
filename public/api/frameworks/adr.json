@@ -1,0 +1,192 @@
+{
+  "id": 15,
+  "name": "Architecture Decision Records (ADR)",
+  "name_zh": "架构决策记录",
+  "slug": "adr",
+  "category": "architecture",
+  "desc": "Lightweight docs capturing context and rationale for decisions",
+  "desc_zh": "轻量级文档，记录架构决策的背景与理由",
+  "steps": [
+    "Identify the architectural decision that needs to be made and create a new ADR file with a sequential number and short title",
+    "Document the context: describe the forces at play, constraints, and the problem being addressed",
+    "List all options considered with their pros and cons, including the status (proposed, accepted, deprecated)",
+    "Record the decision made, the rationale behind it, and which option was chosen",
+    "Capture consequences: expected outcomes, trade-offs accepted, and follow-up actions or future ADRs triggered"
+  ],
+  "steps_zh": [
+    "确定需要记录的架构决策，创建带有序号和简短标题的新ADR文件",
+    "记录上下文：描述当前的约束条件、驱动力和需要解决的问题",
+    "列出所有考虑过的方案及各自的优缺点，标注当前状态（建议中/已接受/已废弃）",
+    "记录最终决策、决策理由以及选择该方案的依据",
+    "记录后果：预期结果、已接受的权衡取舍，以及后续行动或触发的新ADR"
+  ],
+  "ai_relevant": true,
+  "viz_type": "timeline",
+  "viz_labels": [
+    "Context",
+    "Decision",
+    "Consequences",
+    "Status"
+  ],
+  "viz_labels_zh": [
+    "背景",
+    "决策",
+    "结果影响",
+    "状态"
+  ],
+  "related": [
+    "continuous-architecture",
+    "atam",
+    "c4-model"
+  ],
+  "tags": [
+    "documentation",
+    "decisions",
+    "rationale",
+    "governance"
+  ],
+  "origin_author": "Michael Nygard, 2011",
+  "origin_source": "Documenting Architecture Decisions (blog post on Cognitect)",
+  "origin_source_zh": "《记录架构决策》（Cognitect博客文章）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "When a team needs to preserve the reasoning behind key architectural choices for future developers",
+    "When multiple stakeholders disagree and a transparent decision log is needed",
+    "When onboarding new team members who need to understand why the system is built a certain way",
+    "When working in regulated industries that require auditable decision trails"
+  ],
+  "when_to_use_zh": [
+    "当团队需要为未来开发者保留关键架构选择背后的理由时",
+    "当多个利益相关者存在分歧，需要透明的决策日志时",
+    "当新成员加入团队，需要了解系统为何如此构建时",
+    "当在受监管行业工作，需要可审计的决策记录时"
+  ],
+  "core_concepts": [
+    "Immutability: ADRs are append-only; decisions are never edited, only superseded by new ADRs",
+    "Context capture: Recording the forces, constraints, and environment that shaped the decision",
+    "Status lifecycle: Each ADR transitions through proposed, accepted, deprecated, or superseded states",
+    "Consequence tracking: Explicitly documenting both positive outcomes and accepted trade-offs",
+    "Lightweight format: Markdown files stored alongside code in version control for easy discoverability"
+  ],
+  "core_concepts_zh": [
+    "不可变性：ADR采用追加模式，决策不会被修改，只会被新的ADR取代",
+    "上下文捕获：记录影响决策的驱动力、约束条件和环境因素",
+    "状态生命周期：每条ADR经历建议中、已接受、已废弃或已取代的状态流转",
+    "后果追踪：明确记录正面结果和已接受的权衡取舍",
+    "轻量格式：以Markdown文件存储在版本控制中，与代码并置以便于发现"
+  ],
+  "timeline": [
+    [
+      "2011",
+      "Michael Nygard publishes the original blog post proposing ADRs"
+    ],
+    [
+      "2016",
+      "Nat Pryce creates the adr-tools command-line utility for managing ADRs"
+    ],
+    [
+      "2017",
+      "ThoughtWorks Technology Radar recommends ADRs as an 'Adopt' technique"
+    ],
+    [
+      "2020",
+      "ADRs become widely adopted in cloud-native and microservices communities"
+    ],
+    [
+      "2022",
+      "Log4brains and other ADR management tools emerge for team-scale usage"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2011",
+      "Michael Nygard发表原始博客文章提出ADR概念"
+    ],
+    [
+      "2016",
+      "Nat Pryce创建adr-tools命令行工具用于管理ADR"
+    ],
+    [
+      "2017",
+      "ThoughtWorks技术雷达将ADR推荐为「采纳」级别技术"
+    ],
+    [
+      "2020",
+      "ADR在云原生和微服务社区中被广泛采用"
+    ],
+    [
+      "2022",
+      "Log4brains等ADR管理工具涌现，支持团队规模使用"
+    ]
+  ],
+  "dos": [
+    "Do number ADRs sequentially and give them short descriptive titles because it aids navigation and referencing",
+    "Do store ADRs in the same repository as the code because it keeps decisions close to the artifacts they affect",
+    "Do write ADRs at the time of the decision because context and rationale fade from memory quickly",
+    "Do link related ADRs together because it creates a traceable decision graph"
+  ],
+  "dos_zh": [
+    "按顺序编号并给ADR起简短的描述性标题，便于导航和引用",
+    "将ADR存储在与代码相同的仓库中，让决策与其影响的产物保持紧密关联",
+    "在做出决策时立即编写ADR，因为上下文和理由会很快被遗忘",
+    "将相关的ADR相互链接，形成可追溯的决策图谱"
+  ],
+  "donts": [
+    "Don't edit accepted ADRs retroactively because it destroys the historical record of what was actually decided",
+    "Don't record every minor implementation detail because ADRs should focus on architecturally significant decisions",
+    "Don't skip the context section because without it the decision loses its rationale over time",
+    "Don't use ADRs as a replacement for discussion because they document outcomes, not the debate itself"
+  ],
+  "donts_zh": [
+    "不要事后修改已接受的ADR，因为这会破坏实际决策的历史记录",
+    "不要记录每个细小的实现细节，ADR应聚焦于架构层面的重要决策",
+    "不要跳过上下文部分，缺少上下文会导致决策理由随时间流失",
+    "不要用ADR替代讨论过程，ADR记录的是结论而非辩论本身"
+  ],
+  "case_study_company": "Spotify",
+  "case_study": "Spotify adopted ADRs across its autonomous squad model to solve the problem of architectural knowledge loss when engineers rotated between squads. By storing ADRs in each service repository, new squad members could quickly understand past decisions. This reduced onboarding time for new squad members by roughly 40% and prevented teams from revisiting decisions that had already been thoroughly evaluated.",
+  "case_study_zh": "Spotify在其自治小队模型中全面采用ADR，解决工程师在小队间轮换时架构知识丢失的问题。通过在每个服务仓库中存储ADR，新小队成员能快速理解过去的决策。这使新成员的上手时间缩短约40%，并避免了团队重复讨论已经充分评估过的决策。",
+  "when_not_to_use": [
+    "Trivial decisions that don't affect system architecture or are easily reversible",
+    "Solo projects where decision context exists only in one person's head and the project has no future maintainers",
+    "Extremely fast-moving prototypes where the entire architecture may be discarded within weeks"
+  ],
+  "when_not_to_use_zh": [
+    "不影响系统架构或容易撤销的琐碎决策",
+    "决策上下文仅存在于一个人头脑中且项目没有未来维护者的个人项目",
+    "整体架构可能在数周内被完全丢弃的快速原型项目"
+  ],
+  "adopters": [
+    "Spotify",
+    "GitHub",
+    "GOV.UK",
+    "Shopify",
+    "ThoughtWorks"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Michael Nygard (2011). \"Documenting Architecture Decisions\". Cognitect Blog (cognitect.com).",
+  "secondary_sources": [
+    "Len Bass, Paul Clements, and Rick Kazman (2021). \"Software Architecture in Practice, 4th Edition\". Addison-Wesley.",
+    "Joel Parker Henderson (2023). \"Architecture Decision Record (ADR)\". github.com/joelparkerhenderson/architecture-decision-record."
+  ],
+  "typed_relations": [
+    {
+      "slug": "continuous-architecture",
+      "type": "complement"
+    },
+    {
+      "slug": "atam",
+      "type": "complement"
+    },
+    {
+      "slug": "c4-model",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/adr",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/adr.md"
+}

@@ -1,0 +1,193 @@
+{
+  "id": 292,
+  "name": "Infrastructure as Code Maturity Model",
+  "name_zh": "基础设施即代码成熟度模型",
+  "slug": "iac-maturity-model",
+  "category": "deployment",
+  "desc": "Staged progression from manual infrastructure to fully automated self-service IaC",
+  "desc_zh": "从手动基础设施到完全自动化自服务 IaC 的阶段性演进",
+  "steps": [
+    "Assess current state: audit how infrastructure is provisioned today — manual console, scripts, partial IaC, or full automation",
+    "Define target maturity level and identify the gaps between current and desired state for each infrastructure domain",
+    "Introduce declarative IaC tooling (Terraform, Pulumi, CloudFormation) for net-new resources while coexisting with manual legacy",
+    "Build CI/CD pipelines that plan, validate, and apply infrastructure changes automatically on merge",
+    "Evolve toward self-service: platform teams publish reusable modules; product teams consume them without infrastructure knowledge"
+  ],
+  "steps_zh": [
+    "评估当前状态：审计当前基础设施的配置方式——手动控制台、脚本、部分 IaC 或完全自动化",
+    "定义目标成熟度级别，识别每个基础设施域当前状态与期望状态之间的差距",
+    "对净新资源引入声明式 IaC 工具（Terraform、Pulumi、CloudFormation），同时与手动遗留系统共存",
+    "构建在合并时自动计划、验证和应用基础设施变更的 CI/CD 流水线",
+    "向自服务演进：平台团队发布可复用模块；产品团队无需基础设施知识即可使用"
+  ],
+  "ai_relevant": false,
+  "viz_type": "pyramid",
+  "viz_labels": [
+    "Manual",
+    "Scripted",
+    "Automated",
+    "Policy-Driven"
+  ],
+  "viz_labels_zh": [
+    "手动操作",
+    "脚本化",
+    "自动化",
+    "策略驱动"
+  ],
+  "related": [
+    "infrastructure-as-code",
+    "gitops",
+    "platform-engineering",
+    "deployment-stamps-pattern"
+  ],
+  "tags": [
+    "iac",
+    "maturity-model",
+    "infrastructure",
+    "automation",
+    "self-service"
+  ],
+  "origin_author": "Kief Morris",
+  "origin_source": "Kief Morris (2020). \"Infrastructure as Code: Dynamic Systems for the Cloud Age\" (2nd ed.). O'Reilly Media.",
+  "origin_source_zh": "Kief Morris（2020）。《基础设施即代码：云时代的动态系统》（第2版）。O'Reilly Media。",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Organizations beginning or deepening an IaC adoption journey who need a roadmap to guide investment and measure progress",
+    "Platform engineering teams building a developer self-service layer who want to articulate the maturity levels to leadership",
+    "Engineering managers conducting infrastructure capability audits before a cloud migration or re-platforming initiative",
+    "Teams struggling with IaC drift, snowflake servers, or inconsistent environments who need a structured improvement path"
+  ],
+  "when_to_use_zh": [
+    "开始或深化 IaC 采用旅程的组织，需要指导投资和衡量进展的路线图",
+    "构建开发者自服务层的平台工程团队，希望向领导层阐明成熟度级别",
+    "在云迁移或重新平台化举措前进行基础设施能力审计的工程经理",
+    "在 IaC 漂移、雪花服务器或不一致环境方面挣扎、需要结构化改进路径的团队"
+  ],
+  "core_concepts": [
+    "Maturity Levels: Typically five stages from Level 0 (fully manual) through Level 4 (dynamic self-service), each with defined characteristics and exit criteria",
+    "Idempotency Principle: IaC at maturity means running the same script repeatedly produces the same outcome; drift is impossible by design",
+    "Module Abstraction: Higher maturity levels abstract infrastructure complexity into reusable, versioned modules that encode organizational standards",
+    "Policy as Code: Advanced maturity incorporates automated compliance validation (Open Policy Agent, Sentinel) into the IaC pipeline"
+  ],
+  "core_concepts_zh": [
+    "成熟度级别：通常从0级（完全手动）到4级（动态自服务）分五个阶段，每个阶段都有明确的特征和退出标准",
+    "幂等性原则：成熟的 IaC 意味着重复运行相同脚本产生相同结果；漂移在设计上不可能发生",
+    "模块抽象：更高成熟度级别将基础设施复杂性抽象为可复用的、版本化的模块，这些模块编码了组织标准",
+    "策略即代码：高级成熟度将自动化合规验证（Open Policy Agent、Sentinel）集成到 IaC 流水线中"
+  ],
+  "timeline": [
+    [
+      "2006",
+      "CFEngine and early configuration management tools (Puppet, Chef) establish the principle of describing desired state as code"
+    ],
+    [
+      "2014",
+      "Terraform 0.1 released by HashiCorp; declarative cloud infrastructure provisioning becomes accessible to the broader engineering community"
+    ],
+    [
+      "2016",
+      "Kief Morris publishes the first edition of Infrastructure as Code, articulating maturity stages and engineering practices"
+    ],
+    [
+      "2021",
+      "Platform engineering movement frames IaC maturity as a prerequisite for developer self-service; CNCF publishes the Platform Engineering maturity model"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2006",
+      "CFEngine 和早期配置管理工具（Puppet、Chef）确立了将期望状态描述为代码的原则"
+    ],
+    [
+      "2014",
+      "HashiCorp 发布 Terraform 0.1；声明式云基础设施配置对更广泛的工程社区变得可及"
+    ],
+    [
+      "2016",
+      "Kief Morris 出版《基础设施即代码》第一版，阐述成熟度阶段和工程实践"
+    ],
+    [
+      "2021",
+      "平台工程运动将 IaC 成熟度定位为开发者自服务的先决条件；CNCF 发布平台工程成熟度模型"
+    ]
+  ],
+  "dos": [
+    "Do start by codifying one well-understood, low-risk infrastructure domain (e.g., DNS records or S3 buckets) to prove the workflow before expanding scope",
+    "Do enforce IaC linting and static analysis (tflint, checkov) in CI to catch configuration errors and security misconfigurations before apply",
+    "Do use remote state backends with state locking to prevent concurrent apply operations from corrupting infrastructure state",
+    "Do build a module registry with versioned, documented modules so that teams consume approved patterns rather than writing ad-hoc resources"
+  ],
+  "dos_zh": [
+    "务必从编码一个易于理解、低风险的基础设施域（如 DNS 记录或 S3 存储桶）开始，在扩大范围前验证工作流",
+    "务必在 CI 中强制执行 IaC 代码检查和静态分析（tflint、checkov），在应用前捕获配置错误和安全错误配置",
+    "务必使用带状态锁定的远程状态后端，防止并发应用操作损坏基础设施状态",
+    "务必构建带有版本化、文档化模块的模块注册表，使团队使用已批准的模式而非编写临时资源"
+  ],
+  "donts": [
+    "Don't import existing manually-created resources into IaC state without first auditing and documenting their configuration, because undocumented resources become IaC liabilities",
+    "Don't apply infrastructure changes directly from developer workstations in production — all changes must flow through CI/CD with plan review",
+    "Don't treat IaC maturity as a binary milestone — incremental progress is more sustainable than attempting a big-bang migration of all infrastructure at once",
+    "Don't confuse configuration management (Ansible, Chef) with infrastructure provisioning (Terraform, Pulumi) — they solve different problems at different layers"
+  ],
+  "donts_zh": [
+    "不要在未先审计和记录配置的情况下将现有手动创建的资源导入 IaC 状态——未记录的资源成为 IaC 负担",
+    "不要在生产环境中从开发者工作站直接应用基础设施变更——所有变更必须通过带计划审查的 CI/CD",
+    "不要将 IaC 成熟度视为二元里程碑——增量进展比一次性迁移所有基础设施的大爆炸方式更可持续",
+    "不要混淆配置管理（Ansible、Chef）与基础设施配置（Terraform、Pulumi）——它们在不同层解决不同问题"
+  ],
+  "case_study_company": "Monzo",
+  "case_study": "Monzo, the UK digital bank, progressed from a manual AWS console-based setup in 2015 to a fully automated Terraform-based IaC platform by 2019. Their journey followed the maturity model closely: starting with scripts, moving to Terraform modules managed by a central platform team, and eventually enabling product engineers to self-provision infrastructure via an internal catalog. By Level 4, Monzo engineers could spin up a new microservice with a complete networking, IAM, and observability stack in under 10 minutes via a self-service portal.",
+  "case_study_zh": "英国数字银行 Monzo 从2015年基于手动 AWS 控制台的设置，到2019年发展为完全自动化的基于 Terraform 的 IaC 平台。他们的旅程紧密遵循成熟度模型：从脚本开始，转向由中央平台团队管理的 Terraform 模块，最终通过内部目录使产品工程师能够自服务配置基础设施。到达4级时，Monzo 工程师可以通过自服务门户在10分钟内创建一个具有完整网络、IAM 和可观测性栈的新微服务。",
+  "when_not_to_use": [
+    "Proof-of-concept or hackathon environments where the overhead of IaC setup outweighs the short lifecycle of the infrastructure",
+    "Organizations with a single engineer managing infrastructure where formalized maturity levels add bureaucratic overhead without team benefit",
+    "Legacy infrastructure with undocumented, bespoke configurations where a maturity model assessment is premature before a discovery audit",
+    "Environments locked to a single cloud provider's proprietary tooling where generic IaC maturity models may not map cleanly"
+  ],
+  "when_not_to_use_zh": [
+    "IaC 设置开销超过基础设施短暂生命周期的概念验证或黑客马拉松环境",
+    "只有一名工程师管理基础设施的组织——正式化成熟度级别增加官僚开销而无团队收益",
+    "在发现审计之前，成熟度模型评估为时过早的具有未记录的、定制配置的遗留基础设施",
+    "锁定于单一云提供商专有工具的环境——通用 IaC 成熟度模型可能无法干净映射"
+  ],
+  "adopters": [
+    "HashiCorp",
+    "Monzo",
+    "Spotify",
+    "Thoughtworks",
+    "Atlassian",
+    "Cloudflare"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "maintainability",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Kief Morris (2020). \"Infrastructure as Code: Dynamic Systems for the Cloud Age\" (2nd ed.). O'Reilly Media.",
+  "secondary_sources": [
+    "HashiCorp (2021). \"Infrastructure as Code Maturity Model\". hashicorp.com.",
+    "Thoughtworks Technology Radar (2021). \"Evolving Infrastructure as Code practices\". thoughtworks.com/radar.",
+    "CNCF (2022). \"Platform Engineering Maturity Model\". tag-app-delivery.cncf.io."
+  ],
+  "typed_relations": [
+    {
+      "slug": "infrastructure-as-code",
+      "type": "extends"
+    },
+    {
+      "slug": "gitops",
+      "type": "complement"
+    },
+    {
+      "slug": "platform-engineering",
+      "type": "complement"
+    },
+    {
+      "slug": "deployment-stamps-pattern",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/iac-maturity-model",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/iac-maturity-model.md"
+}

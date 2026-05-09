@@ -1,0 +1,197 @@
+{
+  "id": 77,
+  "name": "Architectural Fitness Functions",
+  "name_zh": "架构适应度函数",
+  "slug": "architectural-fitness-functions",
+  "category": "evolution",
+  "desc": "Automated tests that continuously verify architectural characteristics stay intact",
+  "desc_zh": "通过自动化测试持续验证架构特性保持完整",
+  "steps": [
+    "Identify the critical architectural characteristics to protect (coupling, latency, security)",
+    "Define measurable thresholds for each characteristic (e.g., max cyclic dependencies = 0)",
+    "Implement automated tests or tools (ArchUnit, chaos experiments, load tests) per characteristic",
+    "Integrate fitness function checks into the CI/CD pipeline as mandatory quality gates",
+    "Review and evolve the fitness function suite as architectural priorities shift over time"
+  ],
+  "steps_zh": [
+    "确定需要保护的关键架构特性（耦合度、延迟、安全性等）",
+    "为每项特性定义可量化阈值（如：最大循环依赖数 = 0）",
+    "针对每项特性实现自动化测试或工具（ArchUnit、混沌实验、负载测试）",
+    "将适应度函数检查集成到 CI/CD 流水线作为强制质量门禁",
+    "随架构优先级的变化，持续审视和演进适应度函数套件"
+  ],
+  "ai_relevant": true,
+  "viz_type": "radar",
+  "viz_labels": [
+    "Scalability",
+    "Security",
+    "Reliability",
+    "Performance",
+    "Maintainability"
+  ],
+  "viz_labels_zh": [
+    "可扩展性",
+    "安全性",
+    "可靠性",
+    "性能",
+    "可维护性"
+  ],
+  "related": [
+    "continuous-architecture",
+    "technical-debt-quadrant",
+    "test-pyramid"
+  ],
+  "tags": [
+    "fitness-functions",
+    "automated-testing",
+    "architecture-governance",
+    "ci-cd"
+  ],
+  "origin_author": "Neal Ford, Rebecca Parsons & Patrick Kua, 2017",
+  "origin_source": "Building Evolutionary Architectures (O'Reilly)",
+  "origin_source_zh": "《演进式架构》（O'Reilly 出版）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Protecting performance SLAs as a growing team continuously ships code changes",
+    "Enforcing module boundaries in a monorepo to prevent creeping coupling between domains",
+    "Validating security compliance rules (e.g., no direct DB access from the API layer) automatically in CI",
+    "Ensuring that migration to microservices doesn't inadvertently introduce circular dependencies"
+  ],
+  "when_to_use_zh": [
+    "在团队持续交付代码变更时保护性能 SLA",
+    "在单仓库中强制模块边界，防止领域间的耦合蔓延",
+    "在 CI 中自动验证安全合规规则（如禁止 API 层直接访问数据库）",
+    "确保向微服务迁移的过程中不会无意引入循环依赖"
+  ],
+  "core_concepts": [
+    "Fitness function: An objective function that assesses how well the architecture exhibits a desired characteristic",
+    "Architectural characteristic: A quality attribute (performance, modularity, security) the system must maintain",
+    "Atomic fitness function: Tests a single characteristic in isolation (e.g., no cyclic dependencies)",
+    "Holistic fitness function: Tests emergent behavior across multiple characteristics (e.g., chaos experiments)",
+    "Continuous verification: Fitness functions run automatically in CI/CD, catching architectural drift before it reaches production"
+  ],
+  "core_concepts_zh": [
+    "适应度函数：评估架构在某一期望特性上表现如何的目标函数",
+    "架构特性：系统必须维持的质量属性（性能、模块化、安全性）",
+    "原子适应度函数：独立测试单一特性（如无循环依赖）",
+    "整体适应度函数：测试跨多个特性的涌现行为（如混沌实验）",
+    "持续验证：适应度函数在 CI/CD 中自动运行，在架构漂移到达生产之前予以捕获"
+  ],
+  "timeline": [
+    [
+      "2017",
+      "Ford, Parsons & Kua introduce fitness functions in 'Building Evolutionary Architectures'"
+    ],
+    [
+      "2018",
+      "ArchUnit library gains popularity for implementing dependency fitness functions in Java"
+    ],
+    [
+      "2019",
+      "Netflix integrates fitness functions into their chaos engineering and deployment pipelines"
+    ],
+    [
+      "2021",
+      "The concept is extended to data architecture with data quality fitness functions"
+    ],
+    [
+      "2024",
+      "AI-powered fitness functions emerge, using LLMs to evaluate code quality and architectural conformance"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2017",
+      "Ford、Parsons 和 Kua 在《演进式架构》中引入适应度函数概念"
+    ],
+    [
+      "2018",
+      "ArchUnit 库在 Java 领域流行，用于实现依赖关系适应度函数"
+    ],
+    [
+      "2019",
+      "Netflix 将适应度函数集成到其混沌工程和部署流水线中"
+    ],
+    [
+      "2021",
+      "概念扩展至数据架构领域，出现数据质量适应度函数"
+    ],
+    [
+      "2024",
+      "AI 驱动的适应度函数出现，使用 LLM 评估代码质量和架构符合性"
+    ]
+  ],
+  "dos": [
+    "Start with the most critical characteristic first — typically the one causing production incidents",
+    "Make fitness functions fast enough to run on every commit, not just nightly builds",
+    "Version your fitness function thresholds alongside the code so they evolve together",
+    "Use ArchUnit or similar tools for structural checks and chaos tests for runtime characteristics"
+  ],
+  "dos_zh": [
+    "从最关键的特性开始——通常是导致生产事故的那个",
+    "确保适应度函数运行速度足够快，能在每次提交时执行，而非仅在夜间构建",
+    "将适应度函数的阈值与代码一起版本管理，使其协同演进",
+    "使用 ArchUnit 等工具进行结构检查，使用混沌测试检验运行时特性"
+  ],
+  "donts": [
+    "Don't create fitness functions for every possible characteristic — focus on the ones with real risk",
+    "Don't set thresholds too loosely or too tightly — calibrate against current baseline data",
+    "Don't treat fitness functions as static — they must evolve as the architecture's priorities change",
+    "Don't rely only on compile-time checks — runtime characteristics like latency need production-like tests"
+  ],
+  "donts_zh": [
+    "不要为每个可能的特性都创建适应度函数——聚焦于真正有风险的特性",
+    "阈值不要设得太松或太紧——根据当前基线数据进行校准",
+    "不要将适应度函数视为静态的——它们必须随着架构优先级的变化而演进",
+    "不要仅依赖编译时检查——延迟等运行时特性需要类生产环境的测试"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix integrated architectural fitness functions into their deployment pipeline to safeguard their microservices architecture. They combined ArchUnit-style dependency checks with chaos engineering experiments (Chaos Monkey, Chaos Kong) to continuously validate both structural and runtime characteristics. This approach caught architectural drift early — for example, detecting when a new service inadvertently created a synchronous dependency chain that violated their latency budget.",
+  "case_study_zh": "Netflix 将架构适应度函数集成到部署流水线中，以保护其微服务架构。他们将 ArchUnit 风格的依赖检查与混沌工程实验（Chaos Monkey、Chaos Kong）相结合，持续验证结构和运行时特性。这一方法及早捕获了架构漂移——例如，检测到某个新服务无意中创建了违反延迟预算的同步依赖链。",
+  "when_not_to_use": [
+    "A small startup with a simple codebase where manual code review is sufficient",
+    "Purely experimental or throwaway prototypes where architectural integrity is not a priority",
+    "The team lacks CI/CD infrastructure to run automated checks consistently",
+    "Architecture is frozen and no new changes are planned — fitness functions protect evolving systems"
+  ],
+  "when_not_to_use_zh": [
+    "小型初创公司代码库简单，人工代码评审即可满足需求",
+    "纯实验性或一次性原型，架构完整性不是优先事项",
+    "团队缺乏 CI/CD 基础设施来一致地运行自动化检查",
+    "架构已冻结且无新变更计划——适应度函数保护的是演进中的系统"
+  ],
+  "adopters": [
+    "Netflix",
+    "ThoughtWorks",
+    "Zalando",
+    "Intuit",
+    "N26"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Neal Ford, Rebecca Parsons, and Patrick Kua (2017). \"Building Evolutionary Architectures: Support Constant Change\". O'Reilly Media.",
+  "secondary_sources": [
+    "Neal Ford, Rebecca Parsons, and Patrick Kua (2023). \"Building Evolutionary Architectures, 2nd Edition\". O'Reilly Media.",
+    "ThoughtWorks (2017). \"Fitness Functions\". thoughtworks.com/radar/techniques."
+  ],
+  "typed_relations": [
+    {
+      "slug": "continuous-architecture",
+      "type": "complement"
+    },
+    {
+      "slug": "technical-debt-quadrant",
+      "type": "complement"
+    },
+    {
+      "slug": "test-pyramid",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/architectural-fitness-functions",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/architectural-fitness-functions.md"
+}

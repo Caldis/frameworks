@@ -1,0 +1,205 @@
+{
+  "id": 159,
+  "name": "Developer Portal (Backstage)",
+  "name_zh": "开发者门户（Backstage）",
+  "slug": "developer-portal-backstage",
+  "category": "observability",
+  "desc": "Centralized developer experience platform unifying service catalog, docs, and tooling",
+  "desc_zh": "统一服务目录、文档和工具链的集中式开发者体验平台",
+  "steps": [
+    "Deploy Backstage as the single entry point for developer tooling: set up the core platform with authentication, plugin architecture, and organizational branding",
+    "Build the software catalog: register every service, library, and data pipeline with ownership metadata, lifecycle stage, and dependency information",
+    "Integrate existing tools via plugins: connect CI/CD (GitHub Actions, Jenkins), observability (Grafana, PagerDuty), cloud resources (Kubernetes, AWS), and documentation (TechDocs)",
+    "Create software templates: build golden-path templates for new services, libraries, and pipelines that embed organizational standards from day one",
+    "Measure developer experience: track portal adoption metrics (active users, template usage, time-to-first-deploy for new services) and iterate based on developer feedback"
+  ],
+  "steps_zh": [
+    "将Backstage部署为开发者工具的单一入口：搭建核心平台，配置认证、插件架构和组织品牌",
+    "构建软件目录：注册每个服务、库和数据管道，包含所有权元数据、生命周期阶段和依赖信息",
+    "通过插件集成现有工具：连接CI/CD（GitHub Actions、Jenkins）、可观测性（Grafana、PagerDuty）、云资源（Kubernetes、AWS）和文档（TechDocs）",
+    "创建软件模板：为新服务、库和管道构建「黄金路径」模板，从第一天起嵌入组织标准",
+    "度量开发者体验：追踪门户采用指标（活跃用户、模板使用率、新服务首次部署时间），并根据开发者反馈迭代"
+  ],
+  "ai_relevant": true,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Deploy Portal",
+    "Software Catalog",
+    "Tool Plugins",
+    "Service Templates",
+    "DevEx Metrics"
+  ],
+  "viz_labels_zh": [
+    "部署门户",
+    "软件目录",
+    "工具插件",
+    "服务模板",
+    "开发体验"
+  ],
+  "related": [
+    "documentation-as-code",
+    "dora-metrics",
+    "opentelemetry",
+    "slo-as-practice"
+  ],
+  "tags": [
+    "observability",
+    "developer-experience",
+    "backstage",
+    "service-catalog",
+    "internal-developer-platform",
+    "dx"
+  ],
+  "origin_author": "Spotify (Stefan Ålund, Niklas Ek), 2020",
+  "origin_source": "Backstage.io documentation (Spotify, 2020); Software Engineering at Google (Winters, Manshreck, Wright, 2020)",
+  "origin_source_zh": "Backstage.io文档（Spotify，2020）；《Google软件工程》（Winters、Manshreck、Wright，2020）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Organizations with 50+ services where developers spend significant time finding information about other teams' services",
+    "Engineering teams where onboarding a new developer takes weeks because tooling, docs, and service ownership are scattered",
+    "Platform engineering teams building an internal developer platform and needing a unified frontend layer",
+    "Companies standardizing service creation through golden-path templates to enforce best practices without manual review"
+  ],
+  "when_to_use_zh": [
+    "拥有50+服务且开发者花大量时间查找其他团队服务信息的组织",
+    "由于工具、文档和服务所有权分散，新开发者入职需要数周的工程团队",
+    "正在构建内部开发者平台并需要统一前端层的平台工程团队",
+    "通过黄金路径模板标准化服务创建、无需手动审查即可执行最佳实践的公司"
+  ],
+  "core_concepts": [
+    "Software Catalog: A centralized registry of all software components (services, libraries, pipelines, websites) with ownership, lifecycle, and dependency metadata that answers 'who owns this and what depends on it'",
+    "Golden Path Templates: Scaffolding templates that generate new services pre-configured with CI/CD, monitoring, logging, and security best practices, reducing setup from days to minutes",
+    "Plugin Architecture: An extensible system where teams contribute plugins for their tools (Kubernetes, Grafana, PagerDuty, GitHub), creating a composable developer experience",
+    "TechDocs: Documentation-as-code rendered directly in the portal alongside the service it describes, eliminating the 'where are the docs' problem",
+    "Scorecards: Automated assessments that track each service's compliance with engineering standards (has SLOs, has runbooks, tests pass, docs updated) and surface gaps"
+  ],
+  "core_concepts_zh": [
+    "软件目录：所有软件组件（服务、库、管道、网站）的集中注册中心，包含所有权、生命周期和依赖元数据，回答「这是谁的、什么依赖它」",
+    "黄金路径模板：脚手架模板，生成预配置了CI/CD、监控、日志和安全最佳实践的新服务，将搭建时间从天缩短到分钟",
+    "插件架构：可扩展系统，团队为其工具（Kubernetes、Grafana、PagerDuty、GitHub）贡献插件，创建可组合的开发者体验",
+    "TechDocs：文档即代码，直接在门户中与其描述的服务一起渲染，消除「文档在哪里」的问题",
+    "记分卡：自动化评估，追踪每个服务对工程标准的合规性（有SLO、有运维手册、测试通过、文档已更新）并显示差距"
+  ],
+  "timeline": [
+    [
+      "2016",
+      "Spotify internally develops an internal developer portal to manage their 2,000+ microservices"
+    ],
+    [
+      "2020",
+      "Spotify open-sources Backstage and donates it to the CNCF as a sandbox project"
+    ],
+    [
+      "2022",
+      "Backstage reaches CNCF Incubating status with 100+ open-source plugins and 900+ adopting companies"
+    ],
+    [
+      "2023",
+      "Internal Developer Platform (IDP) and platform engineering become mainstream, with Backstage as the de facto frontend layer"
+    ],
+    [
+      "2025",
+      "Backstage ecosystem matures with AI-assisted service creation, automated scorecards, and deep observability integrations"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2016",
+      "Spotify在内部开发内部开发者门户以管理其2000+微服务"
+    ],
+    [
+      "2020",
+      "Spotify将Backstage开源并捐赠给CNCF作为沙箱项目"
+    ],
+    [
+      "2022",
+      "Backstage达到CNCF孵化状态，拥有100+开源插件和900+采用公司"
+    ],
+    [
+      "2023",
+      "内部开发者平台（IDP）和平台工程成为主流，Backstage作为事实标准前端层"
+    ],
+    [
+      "2025",
+      "Backstage生态成熟，具备AI辅助服务创建、自动化记分卡和深度可观测性集成"
+    ]
+  ],
+  "dos": [
+    "Do start with the software catalog as the foundation, because knowing what exists and who owns it is the prerequisite for all other developer experience improvements",
+    "Do invest in golden-path templates that embed your organization's standards, because templates scale best practices without requiring enforcement through review",
+    "Do measure developer experience quantitatively (time-to-first-deploy, onboarding time, search success rate) because feelings-based DX assessment doesn't drive improvement",
+    "Do treat the portal as a product with a dedicated team, because an unmaintained developer portal becomes another abandoned internal tool within 6 months"
+  ],
+  "dos_zh": [
+    "以软件目录为基础开始，因为了解存在什么以及谁拥有它是所有其他开发者体验改进的前提",
+    "投入黄金路径模板以嵌入组织标准，因为模板通过模板而非审查来扩展最佳实践",
+    "定量度量开发者体验（首次部署时间、入职时间、搜索成功率），因为基于感觉的DX评估无法驱动改进",
+    "将门户视为一个有专门团队的产品，因为无人维护的开发者门户在6个月内就会成为另一个被放弃的内部工具"
+  ],
+  "donts": [
+    "Don't build a portal without solving the service catalog problem first, because a pretty frontend over scattered, inaccurate data is worse than no portal",
+    "Don't mandate portal adoption without providing compelling value first, because forced migration without clear benefits breeds resentment and workarounds",
+    "Don't try to build everything custom -- start with Backstage's plugin ecosystem, because the community has already solved most common integration challenges",
+    "Don't let the software catalog become stale -- automate catalog registration from CI/CD and enforce ownership metadata as a deployment gate"
+  ],
+  "donts_zh": [
+    "不要在解决服务目录问题之前构建门户，因为在分散且不准确的数据上建造漂亮的前端比没有门户更糟",
+    "不要在提供令人信服的价值之前就强制门户采用，因为没有明确收益的强制迁移会滋生怨恨和变通方案",
+    "不要尝试全部自建——从Backstage的插件生态开始，因为社区已经解决了大多数常见的集成挑战",
+    "不要让软件目录过时——从CI/CD自动化目录注册，并将所有权元数据作为部署门控强制执行"
+  ],
+  "case_study_company": "Spotify",
+  "case_study": "Spotify built Backstage to solve their developer experience crisis: with 2,000+ microservices owned by 200+ teams, developers were spending up to 60% of their cognitive load just finding the right information, dashboards, and documentation. After deploying Backstage with a comprehensive software catalog and golden-path templates, they reduced new service setup time from 3 days to 15 minutes and cut onboarding time for new engineers by 55%. The internal TechDocs integration ensured documentation lived alongside code and stayed current. Spotify's decision to open-source Backstage in 2020 made it the de facto standard for internal developer portals across the industry.",
+  "case_study_zh": "Spotify构建Backstage以解决其开发者体验危机：拥有200+团队的2000+微服务，开发者将高达60%的认知负荷用于查找正确的信息、仪表盘和文档。部署包含完整软件目录和黄金路径模板的Backstage后，他们将新服务搭建时间从3天缩短到15分钟，新工程师入职时间缩短了55%。内部TechDocs集成确保文档与代码共存并保持最新。Spotify在2020年决定开源Backstage，使其成为行业内部开发者门户的事实标准。",
+  "when_not_to_use": [
+    "Small teams (fewer than 20 developers) where everyone already knows all the services and a portal adds unnecessary infrastructure",
+    "Organizations with fewer than 10 services where a simple wiki or README provides sufficient service documentation",
+    "Teams without dedicated platform engineering capacity to maintain and evolve the portal as a product",
+    "Companies where all development happens in a single monorepo with excellent code search (the repo itself serves as the catalog)"
+  ],
+  "when_not_to_use_zh": [
+    "每个人都已了解所有服务的小型团队（少于20名开发者）——门户增加不必要的基础设施",
+    "服务少于10个的组织——简单的Wiki或README已能提供足够的服务文档",
+    "没有专门的平台工程能力来将门户作为产品维护和演进的团队",
+    "所有开发在单一单体仓库中进行且具有优秀代码搜索的公司——仓库本身即是目录"
+  ],
+  "adopters": [
+    "Spotify",
+    "Netflix",
+    "Expedia",
+    "HP",
+    "IKEA"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "usability",
+    "observability",
+    "maintainability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Spotify (2020). \"Backstage: An Open Platform for Building Developer Portals\". backstage.io.",
+  "secondary_sources": [
+    "Winters, T., Manshreck, T. & Wright, H. (2020). \"Software Engineering at Google\". O'Reilly Media.",
+    "CNCF (2022). \"Backstage CNCF Incubation Proposal\". cncf.io."
+  ],
+  "typed_relations": [
+    {
+      "slug": "documentation-as-code",
+      "type": "complement"
+    },
+    {
+      "slug": "dora-metrics",
+      "type": "complement"
+    },
+    {
+      "slug": "opentelemetry",
+      "type": "complement"
+    },
+    {
+      "slug": "slo-as-practice",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/developer-portal-backstage",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/developer-portal-backstage.md"
+}

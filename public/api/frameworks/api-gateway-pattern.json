@@ -1,0 +1,199 @@
+{
+  "id": 133,
+  "name": "API Gateway Pattern",
+  "name_zh": "API网关模式",
+  "slug": "api-gateway-pattern",
+  "category": "api",
+  "desc": "Single entry point that routes, aggregates, and secures microservices APIs",
+  "desc_zh": "作为微服务API的单一入口点，负责路由、聚合和安全防护",
+  "steps": [
+    "Identify all client types and their API consumption patterns, then define the gateway's routing table mapping external paths to internal services",
+    "Implement cross-cutting concerns at the gateway layer: authentication, rate limiting, request/response transformation, and TLS termination",
+    "Configure request routing and load balancing rules, including path-based routing, header-based routing, and service discovery integration",
+    "Add response aggregation for composite endpoints that combine data from multiple backend services into a single client response",
+    "Set up monitoring, circuit breakers, and fallback responses at the gateway to prevent cascading failures from backend service outages"
+  ],
+  "steps_zh": [
+    "识别所有客户端类型及其API消费模式，然后定义网关的路由表，将外部路径映射到内部服务",
+    "在网关层实现横切关注点：认证、限流、请求/响应转换和TLS终止",
+    "配置请求路由和负载均衡规则，包括基于路径的路由、基于头部的路由和服务发现集成",
+    "为组合端点添加响应聚合，将多个后端服务的数据合并为单个客户端响应",
+    "在网关设置监控、熔断器和降级响应，防止后端服务故障引发级联失败"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Routing Table",
+    "Cross-Cutting",
+    "Load Balance",
+    "Aggregation",
+    "Circuit Breaker"
+  ],
+  "viz_labels_zh": [
+    "路由表",
+    "横切关注点",
+    "负载均衡",
+    "响应聚合",
+    "熔断"
+  ],
+  "related": [
+    "bff-pattern",
+    "api-rate-limiting-throttling",
+    "graphql-schema-design"
+  ],
+  "tags": [
+    "gateway",
+    "routing",
+    "aggregation",
+    "microservices",
+    "security"
+  ],
+  "origin_author": "Microservices community, formalized by Chris Richardson (~2015)",
+  "origin_source": "Building Microservices (Sam Newman, 2nd ed., 2021, Ch. 7); API Design Patterns (JJ Geewax, 2021, Ch. 2)",
+  "origin_source_zh": "《构建微服务》（Sam Newman，第2版，2021，第7章）；《API设计模式》（JJ Geewax，2021，第2章）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When a microservices architecture needs a unified entry point to decouple clients from internal service topology",
+    "When cross-cutting concerns like authentication, logging, and rate limiting should be centralized rather than duplicated in each service",
+    "When clients need aggregated responses from multiple backend services in a single API call",
+    "When internal services use different protocols (gRPC, AMQP) and clients need a consistent HTTP/REST interface"
+  ],
+  "when_to_use_zh": [
+    "当微服务架构需要统一入口点来解耦客户端与内部服务拓扑时",
+    "当认证、日志和限流等横切关注点应集中处理而非在每个服务中重复时",
+    "当客户端需要在单次API调用中获取多个后端服务的聚合响应时",
+    "当内部服务使用不同协议（gRPC、AMQP）而客户端需要一致的HTTP/REST接口时"
+  ],
+  "core_concepts": [
+    "Reverse Proxy: The gateway acts as a reverse proxy, hiding the internal service topology and providing a stable external API surface",
+    "Request Routing: Incoming requests are routed to the appropriate backend service based on URL paths, headers, or query parameters",
+    "Cross-Cutting Concerns: Authentication, authorization, rate limiting, logging, and CORS are handled once at the gateway instead of in each service",
+    "Response Aggregation: The gateway can fan out a single client request to multiple services and compose their responses into one payload",
+    "Protocol Translation: The gateway translates between external protocols (HTTP/REST) and internal protocols (gRPC, WebSocket, message queues)"
+  ],
+  "core_concepts_zh": [
+    "反向代理：网关充当反向代理，隐藏内部服务拓扑并提供稳定的外部API表面",
+    "请求路由：根据URL路径、头部或查询参数将传入请求路由到适当的后端服务",
+    "横切关注点：认证、授权、限流、日志和CORS在网关统一处理，而非在每个服务中重复",
+    "响应聚合：网关可将单个客户端请求扇出到多个服务，并将响应组合为一个负载",
+    "协议转换：网关在外部协议（HTTP/REST）和内部协议（gRPC、WebSocket、消息队列）之间进行转换"
+  ],
+  "timeline": [
+    [
+      "2013",
+      "Netflix Zuul emerges as one of the first dedicated API gateways for microservices"
+    ],
+    [
+      "2015",
+      "AWS API Gateway launches as a managed service, popularizing the gateway-as-a-service model"
+    ],
+    [
+      "2017",
+      "Kong (built on Nginx/OpenResty) becomes the dominant open-source API gateway"
+    ],
+    [
+      "2019",
+      "Envoy-based gateways (Ambassador, Gloo) bring Kubernetes-native API gateway capabilities"
+    ],
+    [
+      "2022",
+      "Gateway API specification in Kubernetes standardizes gateway configuration as a portable Kubernetes resource"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2013",
+      "Netflix Zuul作为首批专用微服务API网关之一出现"
+    ],
+    [
+      "2015",
+      "AWS API Gateway作为托管服务推出，普及了网关即服务模式"
+    ],
+    [
+      "2017",
+      "Kong（基于Nginx/OpenResty构建）成为主流开源API网关"
+    ],
+    [
+      "2019",
+      "基于Envoy的网关（Ambassador、Gloo）带来Kubernetes原生API网关能力"
+    ],
+    [
+      "2022",
+      "Kubernetes中的Gateway API规范将网关配置标准化为可移植的Kubernetes资源"
+    ]
+  ],
+  "dos": [
+    "Do keep the gateway stateless and thin because a fat gateway with business logic becomes a distributed monolith",
+    "Do implement circuit breakers at the gateway level because backend service failures should degrade gracefully rather than cascading to all clients",
+    "Do use declarative configuration for routing rules because imperative gateway logic is hard to audit, test, and version",
+    "Do deploy the gateway with high availability and auto-scaling because it is a single point of failure for all API traffic"
+  ],
+  "dos_zh": [
+    "保持网关无状态和轻薄，因为包含业务逻辑的臃肿网关会变成分布式单体",
+    "在网关层实现熔断器，因为后端服务故障应优雅降级而非级联到所有客户端",
+    "使用声明式配置定义路由规则，因为命令式网关逻辑难以审计、测试和版本管理",
+    "以高可用和自动扩缩方式部署网关，因为它是所有API流量的单点故障"
+  ],
+  "donts": [
+    "Don't put business logic in the gateway because it creates tight coupling and turns the gateway into a distributed monolith",
+    "Don't use a single gateway for all client types when they have vastly different needs — consider BFF pattern instead",
+    "Don't skip monitoring gateway latency because the gateway adds a network hop and any performance degradation affects every request",
+    "Don't hardcode service URLs in the gateway because it defeats the purpose of service discovery and dynamic routing"
+  ],
+  "donts_zh": [
+    "不要在网关中放置业务逻辑，因为这会产生紧耦合并将网关变为分布式单体",
+    "当不同客户端类型有截然不同的需求时不要使用单一网关——考虑BFF模式替代",
+    "不要忽略监控网关延迟，因为网关增加了一跳网络延迟，任何性能下降都会影响每个请求",
+    "不要在网关中硬编码服务URL，因为这违背了服务发现和动态路由的初衷"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix built Zuul as its API gateway to handle over 50 billion API requests per day across its streaming platform. Zuul provides dynamic routing, monitoring, resiliency, and security for over 1,000 backend microservices. By centralizing authentication, rate limiting, and canary routing at the gateway layer, Netflix reduced per-service boilerplate by thousands of lines of code and gained the ability to perform zero-downtime traffic shifts during deployments.",
+  "case_study_zh": "Netflix构建了Zuul作为其API网关，处理流媒体平台每天超过500亿次API请求。Zuul为超过1000个后端微服务提供动态路由、监控、弹性和安全功能。通过在网关层集中认证、限流和金丝雀路由，Netflix减少了每个服务数千行的样板代码，并获得了在部署期间执行零停机流量切换的能力。",
+  "when_not_to_use": [
+    "Monolithic applications with a single backend where a gateway adds unnecessary latency and operational overhead",
+    "Simple service-to-service communication where a service mesh (Istio, Linkerd) handles routing and resilience at the infrastructure layer",
+    "Extremely latency-sensitive paths where even a single additional network hop is unacceptable",
+    "Small teams with fewer than five services where the operational cost of maintaining a gateway exceeds its benefits"
+  ],
+  "when_not_to_use_zh": [
+    "只有单个后端的单体应用，网关增加了不必要的延迟和运维开销",
+    "简单的服务间通信，服务网格（Istio、Linkerd）已在基础设施层处理路由和弹性",
+    "对延迟极度敏感的路径，即使多一跳网络延迟也不可接受",
+    "服务数少于五个的小团队，维护网关的运维成本超过其收益"
+  ],
+  "adopters": [
+    "Netflix",
+    "Amazon",
+    "Uber",
+    "Alibaba",
+    "Stripe"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "scalability",
+    "security",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Richardson, C. (2018). \"Microservices Patterns: With Examples in Java\", Ch. 8. Manning Publications.",
+  "secondary_sources": [
+    "Newman, S. (2021). \"Building Microservices\", 2nd ed., Ch. 7. O'Reilly Media.",
+    "Geewax, J.J. (2021). \"API Design Patterns\", Ch. 2. Manning Publications."
+  ],
+  "typed_relations": [
+    {
+      "slug": "bff-pattern",
+      "type": "complement"
+    },
+    {
+      "slug": "api-rate-limiting-throttling",
+      "type": "complement"
+    },
+    {
+      "slug": "graphql-schema-design",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/api-gateway-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/api-gateway-pattern.md"
+}

@@ -1,0 +1,184 @@
+{
+  "id": 203,
+  "name": "Identity Federation",
+  "name_zh": "身份联合",
+  "slug": "identity-federation",
+  "category": "security",
+  "desc": "Cross-domain identity and SSO patterns (SAML, OIDC federation)",
+  "desc_zh": "跨域身份和单点登录模式（SAML、OIDC联合）",
+  "steps": [
+    "Define the trust relationship between Identity Providers (IdP) and Service Providers (SP): the IdP authenticates the user and asserts their identity; the SP trusts the IdP's assertion and grants access based on the claimed attributes",
+    "Select the federation protocol based on the integration scenario: SAML 2.0 for enterprise SSO with legacy applications, OpenID Connect (OIDC) for modern web and mobile apps, and OAuth 2.0 for delegated API authorization",
+    "Establish the trust anchor by exchanging metadata: for SAML, exchange XML metadata containing signing certificates and endpoint URLs; for OIDC, register the client application with the IdP and configure the discovery endpoint",
+    "Map IdP attributes to application roles and permissions: define attribute mappings that translate IdP claims (groups, email, department) to the application's authorization model, applying least-privilege principles",
+    "Test federation flows end-to-end including SSO initiation, attribute assertion validation, session management, and Single Logout (SLO) to ensure that user sessions are cleanly terminated across all federated services when logging out"
+  ],
+  "steps_zh": [
+    "定义身份提供者（IdP）和服务提供者（SP）之间的信任关系：IdP对用户进行身份验证并断言其身份；SP信任IdP的断言并根据声明的属性授予访问权限",
+    "根据集成场景选择联合协议：SAML 2.0用于遗留应用程序的企业SSO，OpenID Connect（OIDC）用于现代Web和移动应用程序，OAuth 2.0用于委托API授权",
+    "通过交换元数据建立信任锚：对于SAML，交换包含签名证书和端点URL的XML元数据；对于OIDC，向IdP注册客户端应用程序并配置发现端点",
+    "将IdP属性映射到应用程序角色和权限：定义将IdP声明（组、电子邮件、部门）转换为应用程序授权模型的属性映射，应用最小权限原则",
+    "端到端测试联合流程，包括SSO启动、属性断言验证、会话管理和单点注销（SLO），确保注销时所有联合服务的用户会话被干净终止"
+  ],
+  "ai_relevant": false,
+  "viz_type": "flow",
+  "viz_labels": [
+    "IdP",
+    "Federation Protocol",
+    "Metadata Exchange",
+    "Attribute Mapping",
+    "SSO Test"
+  ],
+  "viz_labels_zh": [
+    "身份提供者",
+    "联邦协议",
+    "元数据交换",
+    "属性映射",
+    "SSO测试"
+  ],
+  "related": [
+    "zero-trust-architecture",
+    "secrets-management"
+  ],
+  "tags": [
+    "identity-federation",
+    "sso",
+    "saml",
+    "oidc",
+    "zero-trust"
+  ],
+  "origin_author": "OASIS (SAML 2.0, 2005); OpenID Foundation (OIDC, 2014)",
+  "origin_source": "OASIS SAML 2.0 Specification (2005); OpenID Connect Core 1.0 Specification (2014); RFC 6749 OAuth 2.0",
+  "origin_source_zh": "OASIS SAML 2.0规范（2005）；OpenID Connect Core 1.0规范（2014）；RFC 6749 OAuth 2.0",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When employees need seamless access to dozens of SaaS applications using their corporate identity without separate passwords for each service",
+    "When B2B integrations require partner organizations to authenticate their users using the partner's own IdP without creating accounts in your system",
+    "When regulatory compliance requires centralized identity governance with unified access logging, provisioning, and deprovisioning across all applications",
+    "When a microservices architecture needs a consistent identity layer so services can verify the identity and claims of callers from any trusted IdP"
+  ],
+  "when_to_use_zh": [
+    "当员工需要使用其企业身份无缝访问数十个SaaS应用程序，无需为每个服务单独设置密码时",
+    "当B2B集成要求合作伙伴组织使用合作伙伴自己的IdP对其用户进行身份验证，而无需在您的系统中创建账户时",
+    "当合规要求需要集中身份治理，在所有应用程序中统一访问记录、预配和取消预配时",
+    "当微服务架构需要一致的身份层，使服务能够验证来自任何受信任IdP的调用方身份和声明时"
+  ],
+  "core_concepts": [
+    "Identity Provider (IdP): the authoritative system that authenticates users and issues identity assertions (Okta, Azure AD, Google Workspace, Auth0)",
+    "Service Provider (SP): the application that relies on the IdP for authentication and consumes identity assertions to authorize access",
+    "SAML assertion: a signed XML document issued by the IdP containing user identity attributes, authentication method, and validity timestamps",
+    "JWT / ID token: a signed JSON Web Token issued by an OIDC-compatible IdP containing claims about the authenticated user, used by modern applications as the identity assertion"
+  ],
+  "core_concepts_zh": [
+    "身份提供者（IdP）：对用户进行身份验证并发出身份断言的权威系统（Okta、Azure AD、Google Workspace、Auth0）",
+    "服务提供者（SP）：依赖IdP进行身份验证并使用身份断言来授权访问的应用程序",
+    "SAML断言：IdP发出的包含用户身份属性、身份验证方法和有效期时间戳的签名XML文档",
+    "JWT/ID令牌：OIDC兼容IdP发出的包含已认证用户声明的签名JSON Web令牌，被现代应用程序用作身份断言"
+  ],
+  "timeline": [
+    [
+      "2005",
+      "OASIS ratifies SAML 2.0, establishing the dominant enterprise SSO standard for web applications and replacing vendor-specific proprietary protocols"
+    ],
+    [
+      "2012",
+      "OAuth 2.0 (RFC 6749) standardizes delegated authorization for APIs, separating authorization from identity"
+    ],
+    [
+      "2014",
+      "OpenID Connect 1.0 builds an identity layer on top of OAuth 2.0, providing a modern, JSON/JWT-based alternative to SAML for web and mobile applications"
+    ],
+    [
+      "2022",
+      "CISA Zero Trust Architecture guidance mandates identity federation as the foundation of zero trust access for federal agencies"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2005",
+      "OASIS批准SAML 2.0，建立Web应用程序的主流企业SSO标准，取代供应商专有协议"
+    ],
+    [
+      "2012",
+      "OAuth 2.0（RFC 6749）标准化API的委托授权，将授权与身份分离"
+    ],
+    [
+      "2014",
+      "OpenID Connect 1.0在OAuth 2.0之上构建身份层，为Web和移动应用程序提供基于JSON/JWT的现代SAML替代方案"
+    ],
+    [
+      "2022",
+      "CISA零信任架构指南将身份联合定为联邦机构零信任访问的基础"
+    ]
+  ],
+  "dos": [
+    "Do validate SAML assertion signatures and OIDC token signatures using the IdP's published public keys because unsigned or improperly validated assertions are trivially forgeable",
+    "Do enforce attribute-based access control by mapping IdP group claims to application roles because authentication proves identity, not authorization, and the mapping is the application's responsibility",
+    "Do implement Single Logout (SLO) correctly because failing to propagate logouts means a user's session persists in every federated SP after they log out of the IdP",
+    "Do set short token validity periods and implement token refresh flows because long-lived tokens increase the window of exposure if an ID token is compromised"
+  ],
+  "dos_zh": [
+    "使用IdP发布的公钥验证SAML断言签名和OIDC令牌签名，因为未签名或验证不当的断言可以被轻易伪造",
+    "通过将IdP组声明映射到应用程序角色来执行基于属性的访问控制，因为身份验证证明身份，而非授权，映射是应用程序的责任",
+    "正确实施单点注销（SLO），因为未能传播注销意味着用户从IdP注销后其会话在每个联合SP中仍然存在",
+    "设置短令牌有效期并实施令牌刷新流程，因为长效令牌在ID令牌被泄露时会增加暴露窗口"
+  ],
+  "donts": [
+    "Don't trust SAML assertions without verifying the InResponseTo field against the AuthnRequest ID because this allows replay attacks that reuse valid assertions from previous sessions",
+    "Don't store IdP session cookies or OIDC tokens in localStorage because they are accessible to JavaScript and vulnerable to XSS-based token theft",
+    "Don't implement custom federation code when production-hardened libraries (passport.js, Spring Security SAML, Keycloak) exist because protocol implementation errors are a common source of identity vulnerabilities",
+    "Don't grant excessive claims in the IdP group-to-role mapping because over-privileged federated identities undermine the least-privilege principle"
+  ],
+  "donts_zh": [
+    "不要在不验证InResponseTo字段与AuthnRequest ID匹配的情况下信任SAML断言，因为这允许重放已使用有效断言的前会话攻击",
+    "不要将IdP会话Cookie或OIDC令牌存储在localStorage中，因为它们可被JavaScript访问且容易受到基于XSS的令牌盗取",
+    "不要在生产经过加固的库（passport.js、Spring Security SAML、Keycloak）存在时实现自定义联合代码，因为协议实现错误是身份漏洞的常见来源",
+    "不要在IdP组到角色映射中授予过多声明，因为过度特权的联合身份会破坏最小权限原则"
+  ],
+  "case_study_company": "Salesforce",
+  "case_study": "Salesforce deployed SAML 2.0 identity federation across its enterprise SaaS platform in the late 2000s, allowing corporate customers to use their existing Active Directory identities to access Salesforce without creating separate accounts. The integration uses customer-controlled SAML IdPs (Okta, Azure AD, Ping) to authenticate users, with Salesforce acting as the SP and mapping SAML attributes to Salesforce profiles and permission sets. This eliminated over 95% of Salesforce-specific password reset requests at large enterprise customers, while providing centralized audit logs for compliance. The pattern has since been extended to Salesforce's full portfolio including Marketing Cloud, MuleSoft, and Tableau using OIDC.",
+  "case_study_zh": "Salesforce在2000年代后期在其企业SaaS平台中部署了SAML 2.0身份联合，允许企业客户使用其现有的Active Directory身份访问Salesforce，无需创建单独账户。集成使用客户控制的SAML IdP（Okta、Azure AD、Ping）对用户进行身份验证，Salesforce充当SP并将SAML属性映射到Salesforce配置文件和权限集。这消除了大型企业客户95%以上的Salesforce特定密码重置请求，同时为合规提供集中审计日志。该模式此后已使用OIDC扩展到Salesforce完整产品组合，包括Marketing Cloud、MuleSoft和Tableau。",
+  "when_not_to_use": [
+    "Consumer-facing applications where social login (Google, Apple, Facebook OAuth) covers the use case and enterprise SAML federation is unnecessary complexity",
+    "Very small organizations with only 2-3 applications where per-application credentials and a password manager are sufficient",
+    "When the integration target only supports proprietary authentication mechanisms that do not implement SAML or OIDC",
+    "Applications with stringent latency requirements where the additional SSO redirect round-trip is unacceptable for the user experience"
+  ],
+  "when_not_to_use_zh": [
+    "社交登录（Google、Apple、Facebook OAuth）涵盖用例且企业SAML联合是不必要复杂性的面向消费者的应用程序",
+    "只有2-3个应用程序的非常小的组织，每个应用程序的凭证和密码管理器已足够",
+    "当集成目标仅支持不实现SAML或OIDC的专有身份验证机制时",
+    "具有严格延迟要求的应用程序，额外的SSO重定向往返对用户体验不可接受"
+  ],
+  "adopters": [
+    "Salesforce",
+    "Microsoft (Azure AD)",
+    "Google (Google Workspace)",
+    "Okta",
+    "AWS IAM Identity Center"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "security",
+    "reliability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "OASIS (2005). \"Security Assertion Markup Language (SAML) 2.0\". OASIS Standard.",
+  "secondary_sources": [
+    "OpenID Foundation (2014). \"OpenID Connect Core 1.0\". openid.net.",
+    "Hardt, D. (2012). \"RFC 6749: The OAuth 2.0 Authorization Framework\". IETF.",
+    "Windley, P.J. (2005). \"Digital Identity\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "zero-trust-architecture",
+      "type": "complement"
+    },
+    {
+      "slug": "secrets-management",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/identity-federation",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/identity-federation.md"
+}

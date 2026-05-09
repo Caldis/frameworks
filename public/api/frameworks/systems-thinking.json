@@ -1,0 +1,196 @@
+{
+  "id": 3,
+  "name": "Systems Thinking",
+  "name_zh": "系统思维",
+  "slug": "systems-thinking",
+  "category": "thinking",
+  "desc": "Analyze software as interconnected feedback loops, not parts",
+  "desc_zh": "将软件视为相互关联的反馈回路而非孤立部件进行分析",
+  "steps": [
+    "Identify the System Boundary: define what is inside vs. outside the system and where key interfaces lie",
+    "Map Stocks and Flows: identify accumulations (data stores, queues, state) and the flows that increase or decrease them",
+    "Trace Feedback Loops: find reinforcing loops (growth/decay) and balancing loops (stabilization) within the system",
+    "Identify Leverage Points: locate places in the system where small changes produce large, lasting effects",
+    "Simulate and Validate: build causal loop diagrams or simple simulations to test mental models against observed behavior"
+  ],
+  "steps_zh": [
+    "界定系统边界：明确系统内外的范围以及关键接口所在位置",
+    "绘制存量与流量：识别系统中的积累要素（数据存储、队列、状态）及其增减流量",
+    "追踪反馈回路：发现系统内的增强回路（增长/衰减）和调节回路（稳定化）",
+    "识别杠杆点：找到系统中以小改动产生持久大影响的关键位置",
+    "模拟与验证：构建因果回路图或简单仿真，对照观察行为检验心智模型"
+  ],
+  "ai_relevant": true,
+  "viz_type": "cycle",
+  "viz_labels": [
+    "System",
+    "Feedback Loop",
+    "Emergence",
+    "Leverage Point",
+    "Delay"
+  ],
+  "viz_labels_zh": [
+    "系统",
+    "反馈回路",
+    "涌现",
+    "杠杆点",
+    "滞后效应"
+  ],
+  "related": [
+    "cynefin-framework",
+    "wardley-mapping",
+    "conways-law"
+  ],
+  "tags": [
+    "systems",
+    "feedback-loops",
+    "leverage-points",
+    "holistic-analysis"
+  ],
+  "origin_author": "Donella Meadows / Jay Forrester (MIT), 1950s-1990s",
+  "origin_source": "Thinking in Systems: A Primer (Donella Meadows, 2008)",
+  "origin_source_zh": "《系统之美：决策者的系统思考》（多内拉·梅多斯，2008年）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When a production system exhibits surprising emergent behavior that can't be explained by looking at individual components",
+    "When fixing one problem in your architecture keeps creating new problems elsewhere (whack-a-mole symptoms)",
+    "When scaling decisions have second-order effects on team structure, deployment, and operational costs",
+    "When planning a platform migration and you need to understand cascading dependencies across services"
+  ],
+  "when_to_use_zh": [
+    "当生产系统表现出无法通过审视单个组件来解释的意外涌现行为时",
+    "当修复架构中的一个问题总是在别处引发新问题（打地鼠式症状）时",
+    "当扩展决策对团队结构、部署和运营成本产生二阶效应时",
+    "当规划平台迁移并需要理解跨服务的级联依赖时"
+  ],
+  "core_concepts": [
+    "Feedback Loops: Reinforcing loops amplify change (growth or collapse) while balancing loops resist change (stabilization), and most system behavior emerges from their interaction",
+    "Stocks and Flows: Stocks are accumulations (queues, caches, data stores) that change over time through inflows and outflows, and their delays often cause counterintuitive behavior",
+    "Leverage Points: Places in the system where a small intervention produces disproportionately large effects, ranked from shallow (parameter tweaks) to deep (paradigm shifts)",
+    "Emergence: System-level properties that arise from component interactions but cannot be predicted from studying components in isolation"
+  ],
+  "core_concepts_zh": [
+    "反馈回路：增强回路放大变化（增长或崩溃），调节回路抵抗变化（稳定化），大多数系统行为源自二者的交互",
+    "存量与流量：存量是随时间通过流入和流出而变化的积累（队列、缓存、数据存储），其延迟往往导致反直觉的行为",
+    "杠杆点：系统中小干预能产生不成比例大效果的位置，从浅层（参数调整）到深层（范式转换）排列",
+    "涌现：从组件交互中产生的系统级属性，无法通过孤立研究组件来预测"
+  ],
+  "timeline": [
+    [
+      "1956",
+      "Jay Forrester at MIT develops System Dynamics, creating the mathematical foundation for modeling complex systems with feedback"
+    ],
+    [
+      "1972",
+      "The Club of Rome publishes 'The Limits to Growth', using systems dynamics models to analyze global resource constraints, bringing systems thinking to public awareness"
+    ],
+    [
+      "1990",
+      "Peter Senge publishes 'The Fifth Discipline', introducing systems thinking as a core management practice for learning organizations"
+    ],
+    [
+      "1997",
+      "Donella Meadows publishes 'Leverage Points: Places to Intervene in a System', providing the influential 12-point hierarchy of system interventions"
+    ],
+    [
+      "2008",
+      "Meadows' posthumous book 'Thinking in Systems: A Primer' is published, becoming the most accessible introduction to systems thinking"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1956",
+      "MIT的Jay Forrester开发系统动力学，为带反馈的复杂系统建模奠定数学基础"
+    ],
+    [
+      "1972",
+      "罗马俱乐部发表《增长的极限》，用系统动力学模型分析全球资源约束，将系统思维带入公众视野"
+    ],
+    [
+      "1990",
+      "Peter Senge出版《第五项修炼》，将系统思维引入为学习型组织的核心管理实践"
+    ],
+    [
+      "1997",
+      "Donella Meadows发表「杠杆点：系统中的干预位置」，提出影响深远的12级系统干预层次"
+    ],
+    [
+      "2008",
+      "Meadows遗作《系统之美》出版，成为系统思维最易读的入门书籍"
+    ]
+  ],
+  "dos": [
+    "Do draw causal loop diagrams before proposing solutions, because visualizing feedback structures reveals non-obvious dynamics",
+    "Do look for delays in the system (queue backlogs, cache staleness, deployment pipelines), because delays are the most common source of system oscillation",
+    "Do identify which loops are dominant under different conditions, because the same system behaves differently at different scales or loads",
+    "Do consider the system boundary carefully, because drawing it too narrow misses critical external feedback and drawing it too wide makes analysis intractable"
+  ],
+  "dos_zh": [
+    "在提出解决方案前先画因果回路图，因为可视化反馈结构能揭示不明显的动态特性",
+    "寻找系统中的延迟（队列积压、缓存陈旧、部署管线），因为延迟是系统振荡最常见的根源",
+    "识别在不同条件下哪些回路占主导，因为同一系统在不同规模或负载下表现不同",
+    "仔细考虑系统边界，因为边界画得太窄会遗漏关键的外部反馈，太宽则使分析无法进行"
+  ],
+  "donts": [
+    "Don't assume linear cause-and-effect in complex systems, because feedback loops create non-linear dynamics where effects can amplify or counteract their causes",
+    "Don't optimize a single component without considering system-wide effects, because local optimization often degrades global performance",
+    "Don't ignore time delays between actions and consequences, because delayed feedback is the primary reason well-intentioned changes produce opposite results",
+    "Don't treat the system model as complete truth, because all models are simplifications and must be validated against observed behavior"
+  ],
+  "donts_zh": [
+    "不要在复杂系统中假设线性因果关系，因为反馈回路会产生非线性动态，效果可能放大或抵消其原因",
+    "不要在不考虑系统范围影响的情况下优化单个组件，因为局部优化常常降低全局性能",
+    "不要忽略行动与结果之间的时间延迟，因为延迟反馈是善意变更产生相反结果的主要原因",
+    "不要将系统模型视为完整的真相，因为所有模型都是简化，必须对照观测行为进行验证"
+  ],
+  "case_study_company": "Amazon",
+  "case_study": "Amazon applied systems thinking to understand and amplify its marketplace flywheel: more sellers lead to more selection, which attracts more customers, which attracts more sellers (a reinforcing loop), while higher volume drives lower costs, enabling lower prices (a second reinforcing loop). By identifying these feedback loops, Amazon strategically invested in fulfillment infrastructure as the leverage point that accelerated both loops simultaneously, fueling decades of compounding growth.",
+  "case_study_zh": "Amazon运用系统思维理解并放大其市场飞轮效应：更多卖家带来更多商品选择，吸引更多客户，继而吸引更多卖家（增强回路），同时更高的交易量降低成本，使价格更低（第二个增强回路）。通过识别这些反馈回路，Amazon战略性地投资履约基础设施作为杠杆点，同时加速两个回路，推动了数十年的复合增长。",
+  "when_not_to_use": [
+    "When the problem is genuinely linear and isolated with no significant feedback effects or cross-component dependencies",
+    "When you need an immediate tactical fix and the system analysis would take longer than the fix itself",
+    "When the team lacks the time or expertise to build and validate system models, risking analysis paralysis",
+    "When the scope is a single well-bounded function or algorithm with no external interactions to model"
+  ],
+  "when_not_to_use_zh": [
+    "当问题确实是线性且孤立的，没有显著的反馈效应或跨组件依赖时",
+    "当需要即时战术修复，而系统分析所需时间比修复本身更长时",
+    "当团队缺乏构建和验证系统模型的时间或专业能力，存在分析瘫痪风险时",
+    "当范围是单个有明确边界的函数或算法，没有需要建模的外部交互时"
+  ],
+  "adopters": [
+    "Amazon",
+    "Toyota",
+    "World Bank",
+    "NASA",
+    "Shell",
+    "Intel"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability",
+    "reliability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Donella Meadows (2008). \"Thinking in Systems: A Primer\". Chelsea Green Publishing.",
+  "secondary_sources": [
+    "Jay W. Forrester (1961). \"Industrial Dynamics\". MIT Press.",
+    "Peter Senge (1990). \"The Fifth Discipline: The Art & Practice of the Learning Organization\". Doubleday."
+  ],
+  "typed_relations": [
+    {
+      "slug": "cynefin-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "wardley-mapping",
+      "type": "complement"
+    },
+    {
+      "slug": "conways-law",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/systems-thinking",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/systems-thinking.md"
+}

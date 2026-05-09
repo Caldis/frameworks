@@ -1,0 +1,188 @@
+{
+  "id": 42,
+  "name": "Semantic Versioning (SemVer)",
+  "name_zh": "语义化版本控制",
+  "slug": "semantic-versioning",
+  "category": "coding",
+  "desc": "Version APIs and libraries with MAJOR.MINOR.PATCH semantics",
+  "desc_zh": "使用主版本.次版本.补丁版本语义对API和库进行版本控制",
+  "steps": [
+    "Understand the contract: MAJOR for breaking changes, MINOR for backward-compatible features, PATCH for backward-compatible bug fixes",
+    "Define your public API surface: explicitly document which interfaces, endpoints, or exports constitute the versioned contract",
+    "Automate version bumps: use commit message conventions (Conventional Commits) and tools (semantic-release) to compute the next version",
+    "Communicate changes: maintain a CHANGELOG that maps each version to its features, fixes, and breaking changes with migration guides",
+    "Enforce in CI: validate that breaking changes trigger MAJOR bumps; use contract tests to detect unintentional API surface changes"
+  ],
+  "steps_zh": [
+    "理解契约：MAJOR用于破坏性变更，MINOR用于向后兼容的新功能，PATCH用于向后兼容的缺陷修复",
+    "定义公共API面：明确记录哪些接口、端点或导出构成版本化契约",
+    "自动化版本升级：使用提交消息约定（Conventional Commits）和工具（semantic-release）计算下一个版本",
+    "传达变更：维护CHANGELOG，将每个版本映射到其功能、修复和破坏性变更，附带迁移指南",
+    "在CI中强制执行：验证破坏性变更触发MAJOR升级；使用契约测试检测非预期的API面变更"
+  ],
+  "ai_relevant": false,
+  "viz_type": "timeline",
+  "viz_labels": [
+    "Major",
+    "Minor",
+    "Patch",
+    "Pre-release"
+  ],
+  "viz_labels_zh": [
+    "主版本",
+    "次版本",
+    "修订版本",
+    "预发布"
+  ],
+  "related": [
+    "api-versioning-strategies",
+    "contract-testing",
+    "conventional-comments"
+  ],
+  "tags": [
+    "versioning",
+    "semver",
+    "api",
+    "changelog",
+    "release-management"
+  ],
+  "origin_author": "Tom Preston-Werner, 2011",
+  "origin_source": "Semantic Versioning 2.0.0 (semver.org)",
+  "origin_source_zh": "《语义化版本 2.0.0》（semver.org）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Publishing libraries or SDKs consumed by external developers who need dependency stability",
+    "Managing API versions for public or partner-facing services",
+    "Automating release pipelines where version numbers drive deployment decisions",
+    "Any shared package in a monorepo or package registry where consumers need predictable upgrade paths"
+  ],
+  "when_to_use_zh": [
+    "发布供外部开发者使用且需要依赖稳定性的库或 SDK",
+    "管理面向公众或合作伙伴服务的 API 版本",
+    "自动化发布管道中版本号驱动部署决策的场景",
+    "monorepo 或包注册表中消费者需要可预测升级路径的共享包"
+  ],
+  "core_concepts": [
+    "MAJOR version: incremented for incompatible API changes that require consumers to modify their code",
+    "MINOR version: incremented for new functionality added in a backward-compatible manner",
+    "PATCH version: incremented for backward-compatible bug fixes that do not add new features",
+    "Pre-release identifiers: suffixes like -alpha.1, -beta.2, -rc.1 that indicate unstable versions",
+    "Public API contract: the explicitly defined surface (functions, types, endpoints) that the version number protects"
+  ],
+  "core_concepts_zh": [
+    "MAJOR 版本：不兼容的 API 变更，需要消费者修改代码时递增",
+    "MINOR 版本：以向后兼容方式添加新功能时递增",
+    "PATCH 版本：不添加新功能的向后兼容缺陷修复时递增",
+    "预发布标识：如 -alpha.1、-beta.2、-rc.1 等后缀，表示不稳定版本",
+    "公共 API 契约：版本号所保护的显式定义的表面（函数、类型、端点）"
+  ],
+  "timeline": [
+    [
+      "2009",
+      "Tom Preston-Werner drafts the first version of the SemVer specification"
+    ],
+    [
+      "2011",
+      "Semantic Versioning 2.0.0 is published at semver.org, becoming the widely adopted standard"
+    ],
+    [
+      "2015",
+      "Conventional Commits specification emerges, enabling automated SemVer bumps from commit messages"
+    ],
+    [
+      "2017",
+      "semantic-release and similar tools automate the entire version-bump-publish pipeline in CI/CD"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2009",
+      "Tom Preston-Werner 起草了 SemVer 规范的第一个版本"
+    ],
+    [
+      "2011",
+      "语义化版本 2.0.0 在 semver.org 发布，成为被广泛采用的标准"
+    ],
+    [
+      "2015",
+      "Conventional Commits 规范出现，使从提交消息自动化 SemVer 版本升级成为可能"
+    ],
+    [
+      "2017",
+      "semantic-release 等工具在 CI/CD 中自动化了整个版本升级-发布管道"
+    ]
+  ],
+  "dos": [
+    "Do define your public API explicitly because unclear API boundaries lead to accidental breaking changes",
+    "Do use Conventional Commits to automate version bumps because manual versioning is error-prone",
+    "Do maintain a CHANGELOG because consumers need to understand what changed before upgrading",
+    "Do start at 0.y.z during initial development because the 0.x convention signals instability"
+  ],
+  "dos_zh": [
+    "明确定义公共 API，因为不清晰的 API 边界会导致意外的破坏性变更",
+    "使用 Conventional Commits 自动化版本升级，因为手动版本控制容易出错",
+    "维护 CHANGELOG，因为消费者在升级前需要了解发生了什么变化",
+    "在初始开发期间从 0.y.z 开始，因为 0.x 约定表示不稳定"
+  ],
+  "donts": [
+    "Don't bump MAJOR for internal changes that don't affect the public API because it creates unnecessary upgrade friction",
+    "Don't release breaking changes as MINOR or PATCH because it silently breaks consumer builds",
+    "Don't use SemVer for artifacts without a defined public API (like applications) because the contract is meaningless",
+    "Don't skip version numbers because gaps confuse consumers and suggest missing releases"
+  ],
+  "donts_zh": [
+    "不要为不影响公共 API 的内部变更升级 MAJOR，因为这造成不必要的升级阻力",
+    "不要将破坏性变更作为 MINOR 或 PATCH 发布，因为这会悄悄破坏消费者的构建",
+    "不要对没有定义公共 API 的产物（如应用程序）使用 SemVer，因为契约没有意义",
+    "不要跳过版本号，因为间隔会让消费者困惑并暗示有遗漏的发布"
+  ],
+  "case_study_company": "npm (Node.js)",
+  "case_study": "npm, the Node.js package registry, adopted Semantic Versioning as the standard for all published packages. The package.json dependency resolution system (^, ~, ranges) is built directly on SemVer semantics. This enabled npm to support over 2 million packages with automated dependency updates via tools like Dependabot and Renovate, while giving developers confidence that PATCH and MINOR updates won't break their builds.",
+  "case_study_zh": "Node.js 包注册表 npm 将语义化版本控制采纳为所有发布包的标准。package.json 的依赖解析系统（^、~、范围）直接构建在 SemVer 语义之上。这使 npm 能够支持超过 200 万个包，通过 Dependabot 和 Renovate 等工具实现自动化依赖更新，同时让开发者有信心 PATCH 和 MINOR 更新不会破坏其构建。",
+  "when_not_to_use": [
+    "Internal applications or services that are not consumed as versioned dependencies",
+    "Continuously deployed services where every commit is a release and version numbers are timestamps or commit hashes",
+    "Monorepo packages that are always released together and share a single version number",
+    "Marketing or product version numbers that serve branding rather than technical compatibility purposes"
+  ],
+  "when_not_to_use_zh": [
+    "不作为版本化依赖被消费的内部应用或服务",
+    "每次提交即发布、版本号为时间戳或提交哈希的持续部署服务",
+    "总是一起发布且共享单一版本号的 monorepo 包",
+    "用于品牌而非技术兼容性目的的市场营销或产品版本号"
+  ],
+  "adopters": [
+    "npm",
+    "Rust (Cargo)",
+    "Go modules",
+    "Maven Central",
+    "PyPI"
+  ],
+  "abstraction_level": "code",
+  "quality_concerns": [
+    "maintainability",
+    "reliability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Tom Preston-Werner (2011). \"Semantic Versioning 2.0.0\". semver.org.",
+  "secondary_sources": [
+    "Russ Cox (2019). \"Semantic Import Versioning\". research.swtch.com.",
+    "IETF RFC 2119, Scott Bradner (1997). \"Key words for use in RFCs to Indicate Requirement Levels\". IETF."
+  ],
+  "typed_relations": [
+    {
+      "slug": "api-versioning-strategies",
+      "type": "complement"
+    },
+    {
+      "slug": "contract-testing",
+      "type": "complement"
+    },
+    {
+      "slug": "conventional-comments",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/semantic-versioning",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/semantic-versioning.md"
+}

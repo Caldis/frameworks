@@ -1,0 +1,204 @@
+{
+  "id": 153,
+  "name": "Structured Logging",
+  "name_zh": "结构化日志",
+  "slug": "structured-logging",
+  "category": "observability",
+  "desc": "Machine-parseable log format patterns that enable reliable querying and correlation at scale",
+  "desc_zh": "可机器解析的日志格式模式，支持大规模下的可靠查询和关联分析",
+  "steps": [
+    "Replace unstructured log strings with structured key-value pairs: emit logs as JSON objects with consistent field names (timestamp, level, service, message, trace_id)",
+    "Define a logging schema: standardize field names, types, and required fields across all services in a shared logging library or convention document",
+    "Enrich logs with contextual metadata: attach request ID, user ID, trace ID, deployment version, and environment to every log entry automatically",
+    "Ship structured logs to a centralized log aggregation platform (ELK, Loki, CloudWatch Logs) via a unified agent or sidecar",
+    "Build queryable dashboards and alerts: use structured fields to filter, group, and aggregate logs without relying on fragile regex patterns"
+  ],
+  "steps_zh": [
+    "将非结构化日志字符串替换为结构化键值对：以JSON对象形式输出日志，使用一致的字段名（timestamp、level、service、message、trace_id）",
+    "定义日志模式：在共享日志库或约定文档中跨所有服务标准化字段名、类型和必需字段",
+    "用上下文元数据丰富日志：自动为每条日志附加请求ID、用户ID、Trace ID、部署版本和环境信息",
+    "通过统一代理或Sidecar将结构化日志传送到集中式日志聚合平台（ELK、Loki、CloudWatch Logs）",
+    "构建可查询的仪表盘和告警：使用结构化字段过滤、分组和聚合日志，无需依赖脆弱的正则表达式"
+  ],
+  "ai_relevant": true,
+  "viz_type": "matrix",
+  "viz_labels": [
+    "JSON Fields",
+    "Log Schema",
+    "Context Enrich",
+    "Log Aggregation",
+    "Queryable Dashboards"
+  ],
+  "viz_labels_zh": [
+    "JSON字段",
+    "日志模式",
+    "上下文丰富",
+    "日志聚合",
+    "可查询看板"
+  ],
+  "related": [
+    "opentelemetry",
+    "distributed-tracing",
+    "four-golden-signals",
+    "slo-as-practice"
+  ],
+  "tags": [
+    "observability",
+    "logging",
+    "structured-logging",
+    "json-logs",
+    "log-aggregation",
+    "elk"
+  ],
+  "origin_author": "Industry evolution from syslog; formalized by observability community, ~2013",
+  "origin_source": "Observability Engineering (Majors, Fong-Jones, Miranda, 2022); Software Engineering at Google (Winters, Manshreck, Wright, 2020)",
+  "origin_source_zh": "《可观测性工程》（Majors、Fong-Jones、Miranda，2022）；《Google软件工程》（Winters、Manshreck、Wright，2020）",
+  "complexity": "beginner",
+  "when_to_use": [
+    "Any system producing logs that need to be queried, filtered, or correlated across services",
+    "Microservice architectures where unstructured logs from dozens of services become impossible to search manually",
+    "Compliance environments requiring auditable, machine-parseable log records with consistent schemas",
+    "Teams adopting observability practices who need logs to correlate with traces and metrics via shared identifiers"
+  ],
+  "when_to_use_zh": [
+    "任何需要查询、过滤或跨服务关联日志的系统",
+    "数十个服务的非结构化日志变得无法手动搜索的微服务架构",
+    "要求可审计、机器可解析且具有一致模式的日志记录的合规环境",
+    "采用可观测性实践、需要日志通过共享标识符与追踪和指标关联的团队"
+  ],
+  "core_concepts": [
+    "Key-Value Logging: Every log entry is a set of typed key-value pairs (JSON, logfmt) rather than a freeform string, enabling precise field-level queries",
+    "Canonical Log Lines: A pattern where a single summary log line per request captures all important dimensions, reducing log volume while maximizing queryability",
+    "Log Levels as Contracts: Structured severity levels (DEBUG, INFO, WARN, ERROR) are enforced consistently and used for alerting thresholds and retention policies",
+    "Contextual Enrichment: Middleware or interceptors automatically inject request-scoped metadata (trace ID, user ID, request path) into every log entry",
+    "Schema Evolution: Structured log schemas must be versioned and backward-compatible, just like API contracts, to prevent downstream parsing failures"
+  ],
+  "core_concepts_zh": [
+    "键值日志：每条日志是一组类型化的键值对（JSON、logfmt）而非自由格式字符串，支持精确的字段级查询",
+    "规范日志行：每个请求生成一条汇总日志行以捕获所有重要维度的模式，减少日志量同时最大化可查询性",
+    "日志级别即契约：一致地强制执行结构化严重性级别（DEBUG、INFO、WARN、ERROR），用于告警阈值和保留策略",
+    "上下文丰富：中间件或拦截器自动将请求范围的元数据（Trace ID、用户ID、请求路径）注入每条日志",
+    "模式演进：结构化日志模式必须版本化且向后兼容，就像API契约一样，以防止下游解析失败"
+  ],
+  "timeline": [
+    [
+      "2001",
+      "RFC 3164 defines the BSD syslog protocol, establishing early semi-structured log conventions"
+    ],
+    [
+      "2013",
+      "JSON logging becomes mainstream as ELK stack (Elasticsearch, Logstash, Kibana) gains widespread adoption"
+    ],
+    [
+      "2015",
+      "Stripe popularizes the canonical log lines pattern for high-cardinality event analysis"
+    ],
+    [
+      "2019",
+      "Cloud-native logging standards emerge with Fluentd and Fluent Bit as CNCF graduated projects"
+    ],
+    [
+      "2022",
+      "Observability Engineering book codifies structured logging as a core pillar alongside traces and metrics"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2001",
+      "RFC 3164定义BSD syslog协议，建立早期半结构化日志约定"
+    ],
+    [
+      "2013",
+      "随着ELK栈（Elasticsearch、Logstash、Kibana）的广泛采用，JSON日志成为主流"
+    ],
+    [
+      "2015",
+      "Stripe推广规范日志行模式，用于高基数事件分析"
+    ],
+    [
+      "2019",
+      "云原生日志标准随Fluentd和Fluent Bit成为CNCF毕业项目而出现"
+    ],
+    [
+      "2022",
+      "《可观测性工程》将结构化日志编纂为与追踪和指标并列的核心支柱"
+    ]
+  ],
+  "dos": [
+    "Do use a shared logging library that enforces schema consistency across all services, because ad-hoc JSON formatting leads to field name drift",
+    "Do include trace ID and span ID in every log entry, because this enables direct navigation from a log line to its parent trace",
+    "Do adopt the canonical log lines pattern for high-throughput services, because one rich line per request is cheaper and more useful than scattered verbose logs",
+    "Do set per-field retention policies, because debug-level logs and high-cardinality fields should expire faster than error logs"
+  ],
+  "dos_zh": [
+    "使用共享日志库在所有服务间强制模式一致性，因为临时的JSON格式化会导致字段名漂移",
+    "在每条日志中包含Trace ID和Span ID，因为这使得从日志行直接导航到其父追踪成为可能",
+    "为高吞吐量服务采用规范日志行模式，因为每个请求一条丰富的日志行比分散的冗长日志更经济且更有用",
+    "设置按字段的保留策略，因为调试级别日志和高基数字段应比错误日志更快过期"
+  ],
+  "donts": [
+    "Don't log sensitive data (passwords, tokens, PII) in structured fields, because centralized log systems make data leaks searchable at scale",
+    "Don't use string interpolation for log messages in hot paths, because constructing unused log strings wastes CPU even when the log level is disabled",
+    "Don't embed stack traces as a single giant string field, because it prevents structured parsing of exception class, message, and frame data",
+    "Don't allow unbounded log field cardinality (e.g., logging full request bodies), because it explodes index size and query costs in the aggregation backend"
+  ],
+  "donts_zh": [
+    "不要在结构化字段中记录敏感数据（密码、令牌、PII），因为集中式日志系统使数据泄露可被大规模搜索",
+    "不要在热路径中使用字符串插值构建日志消息，因为即使日志级别被禁用，构建未使用的日志字符串也会浪费CPU",
+    "不要将堆栈追踪作为单个巨大字符串字段嵌入，因为这会阻止对异常类、消息和帧数据的结构化解析",
+    "不要允许无界的日志字段基数（如记录完整请求体），因为它会使聚合后端的索引大小和查询成本爆炸"
+  ],
+  "case_study_company": "Stripe",
+  "case_study": "Stripe pioneered the canonical log lines pattern where every API request produces exactly one structured log line containing all relevant dimensions: merchant ID, API version, endpoint, latency, response code, and feature flags active. This approach reduced their log volume by 10x compared to scattered multi-line logging while dramatically improving debugging speed. Engineers can query any combination of dimensions without writing regex, and the pattern became foundational to Stripe's high-cardinality observability strategy described by their engineering blog.",
+  "case_study_zh": "Stripe率先实践了规范日志行模式，每个API请求恰好生成一条包含所有相关维度的结构化日志行：商户ID、API版本、端点、延迟、响应码和激活的功能开关。与分散的多行日志相比，这种方法将日志量减少了10倍，同时显著提高了调试速度。工程师无需编写正则表达式即可查询任意维度组合，该模式成为Stripe在其工程博客中描述的高基数可观测性策略的基础。",
+  "when_not_to_use": [
+    "Embedded systems with extreme memory constraints where JSON serialization overhead is prohibitive",
+    "Local development debugging where human-readable plaintext logs are faster to scan visually",
+    "Legacy systems where retrofitting structured logging across the entire codebase is cost-prohibitive and the remaining lifespan is short",
+    "Ultra-high-throughput data pipelines where even minimal logging adds unacceptable latency"
+  ],
+  "when_not_to_use_zh": [
+    "JSON序列化开销不可承受的极端内存受限嵌入式系统",
+    "本地开发调试中人类可读的纯文本日志更便于视觉扫描",
+    "在整个代码库中改造结构化日志成本过高且剩余生命周期较短的遗留系统",
+    "即使最小日志开销也会增加不可接受延迟的超高吞吐量数据管道"
+  ],
+  "adopters": [
+    "Stripe",
+    "Datadog",
+    "Cloudflare",
+    "Honeycomb",
+    "Grafana Labs"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "observability",
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Majors, C., Fong-Jones, L. & Miranda, G. (2022). \"Observability Engineering\". O'Reilly Media.",
+  "secondary_sources": [
+    "Winters, T., Manshreck, T. & Wright, H. (2020). \"Software Engineering at Google\", Ch. 16. O'Reilly Media.",
+    "Beyer, B. et al. (2016). \"Site Reliability Engineering: How Google Runs Production Systems\". O'Reilly Media."
+  ],
+  "typed_relations": [
+    {
+      "slug": "opentelemetry",
+      "type": "complement"
+    },
+    {
+      "slug": "distributed-tracing",
+      "type": "complement"
+    },
+    {
+      "slug": "four-golden-signals",
+      "type": "complement"
+    },
+    {
+      "slug": "slo-as-practice",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/structured-logging",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/structured-logging.md"
+}

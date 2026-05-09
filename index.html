@@ -3,19 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SDFrame — Software Design Frameworks</title>
-  <meta name="description" content="239 curated software design frameworks for engineers, architects, and AI agents. Bilingual (EN/ZH), searchable, with relationship map and comparison tools." />
-  <meta name="keywords" content="software design, design patterns, architecture, frameworks, DDD, SOLID, microservices, system design, 软件设计, 设计模式, 架构" />
-  <meta property="og:title" content="SDFrame — 239 Software Design Frameworks" />
-  <meta property="og:description" content="A curated, bilingual knowledge base of software design frameworks — from design thinking to AI collaboration." />
+  <title>SDFrame — Software Design Frameworks for Engineers and AI Agents</title>
+  <meta name="description" content="SDFrame is a software design frameworks reference guide for engineers and AI agents: 317 curated frameworks, bilingual EN/ZH content, filters, comparison tools, Markdown docs, OpenAPI, and a public read-only API." />
+  <meta name="keywords" content="SDFrame, software design frameworks reference guide for engineers, software architecture frameworks, design patterns, system design, DDD, SOLID, microservices, API design, AI agent framework selection, 软件设计, 设计模式, 架构" />
+  <meta property="og:title" content="SDFrame — 317 Software Design Frameworks" />
+  <meta property="og:description" content="A curated, bilingual software design framework reference for engineers, architects, and AI agents." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sdframe.caldis.me/" />
   <meta property="og:image" content="https://sdframe.caldis.me/og-image.svg" />
   <meta property="og:site_name" content="SDFrame" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://sdframe.caldis.me/og-image.svg" />
-  <meta name="twitter:title" content="SDFrame — 239 Software Design Frameworks" />
-  <meta name="twitter:description" content="Curated bilingual knowledge base for engineers, architects, and AI agents" />
+  <meta name="twitter:title" content="SDFrame — 317 Software Design Frameworks" />
+  <meta name="twitter:description" content="Curated bilingual software design framework reference for engineers, architects, and AI agents" />
+  <link rel="alternate" type="text/markdown" href="/index.md" title="SDFrame Markdown homepage" />
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="SDFrame llms.txt" />
+  <link rel="alternate" type="text/plain" href="/llms-full.txt" title="SDFrame full AI context" />
+  <link rel="service-desc" type="application/vnd.oai.openapi+json" href="/openapi.json" title="SDFrame OpenAPI" />
+  <link rel="service-meta" type="application/linkset+json" href="/.well-known/api-catalog" title="SDFrame API catalog" />
+  <link rel="service-meta" type="application/json" href="/.well-known/agent.json" title="SDFrame agent discovery" />
+  <link rel="service-meta" type="application/json" href="/.well-known/agent-card.json" title="SDFrame A2A agent card" />
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('mode') !== 'agent') return;
+      window.__SDFRAME_AGENT_MODE__ = true;
+      document.documentElement.setAttribute('data-agent-mode', 'true');
+      document.addEventListener('DOMContentLoaded', function () {
+        document.title = 'SDFrame Agent Mode — Machine-readable Integration';
+        document.body.innerHTML = [
+          '<main id="agent-mode" style="max-width:900px;margin:0 auto;padding:40px 20px;font:16px/1.6 system-ui,sans-serif">',
+          '<h1>SDFrame Agent Mode</h1>',
+          '<p>SDFrame is a public software design framework reference for engineers, architects, and AI agents. It contains 317 curated frameworks across 13 categories with bilingual descriptions, implementation steps, quality concerns, source metadata, relationships, Markdown references, and a public read-only JSON API.</p>',
+          '<h2>Machine-readable endpoints</h2>',
+          '<ul>',
+          '<li>OpenAPI: <a href="/openapi.json">/openapi.json</a></li>',
+          '<li>Framework index: <a href="/api/frameworks.index.json">/api/frameworks.index.json</a></li>',
+          '<li>Full framework records: <a href="/api/frameworks.json">/api/frameworks.json</a></li>',
+          '<li>One framework: /api/frameworks/{slug}.json</li>',
+          '<li>Categories: <a href="/api/categories.json">/api/categories.json</a></li>',
+          '<li>Skill entry point: <a href="/skill/SKILL.md">/skill/SKILL.md</a></li>',
+          '<li>Full agent context: <a href="/llms-full.txt">/llms-full.txt</a></li>',
+          '<li>Pricing: <a href="/pricing.md">/pricing.md</a></li>',
+          '<li>Status: <a href="/status.json">/status.json</a></li>',
+          '</ul>',
+          '<h2>Access model</h2>',
+          '<p>No authentication is required. The API is public, static, read-only, and does not provide write operations, private accounts, OAuth, or paid plans.</p>',
+          '<h2>Recommended agent workflow</h2>',
+          '<ol><li>Read /skill/SKILL.md.</li><li>Use /api/frameworks.index.json or /skill/references/catalog.md to find candidates.</li><li>Fetch individual framework Markdown or JSON records for the top candidates.</li><li>Compare when-to-use and when-not-to-use guidance before recommending a framework.</li></ol>',
+          '</main>'
+        ].join('');
+      });
+    })();
+  </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-X92K1JE8XZ"></script>
   <script>
@@ -29,17 +69,121 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "SDFrame",
-    "alternateName": "Software Design Frameworks",
-    "url": "https://sdframe.caldis.me/",
-    "description": "A curated, bilingual knowledge base of 239 software design frameworks for engineers, architects, and AI agents.",
-    "inLanguage": ["en", "zh"],
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://sdframe.caldis.me/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://sdframe.caldis.me/#maintainer",
+        "name": "Caldis",
+        "url": "https://github.com/Caldis",
+        "email": "mail@caldis.me"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://sdframe.caldis.me/#organization",
+        "name": "SDFrame",
+        "url": "https://sdframe.caldis.me/",
+        "email": "mail@caldis.me",
+        "sameAs": [
+          "https://github.com/Caldis/frameworks",
+          "https://github.com/Caldis"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "mail@caldis.me",
+          "contactType": "maintainer",
+          "availableLanguage": ["en", "zh"]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://sdframe.caldis.me/#website",
+        "name": "SDFrame",
+        "alternateName": "Software Design Frameworks",
+        "url": "https://sdframe.caldis.me/",
+        "description": "A curated, bilingual knowledge base of 317 software design frameworks for engineers, architects, and AI agents.",
+        "inLanguage": ["en", "zh"],
+        "publisher": { "@id": "https://sdframe.caldis.me/#organization" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://sdframe.caldis.me/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": ["SoftwareApplication", "Product"],
+        "@id": "https://sdframe.caldis.me/#product",
+        "name": "SDFrame",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Web",
+        "url": "https://sdframe.caldis.me/",
+        "description": "Software design framework reference guide with 317 curated frameworks, bilingual content, comparison tools, Markdown docs, OpenAPI, and a public read-only API.",
+        "softwareVersion": "2.1.0",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://sdframe.caldis.me/pricing/"
+        },
+        "sameAs": [
+          "https://github.com/Caldis/frameworks"
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://sdframe.caldis.me/#service",
+        "name": "SDFrame Public Framework Reference",
+        "serviceType": "Software design framework reference and read-only API",
+        "provider": { "@id": "https://sdframe.caldis.me/#organization" },
+        "areaServed": "Worldwide",
+        "url": "https://sdframe.caldis.me/",
+        "description": "Free public reference service for finding, comparing, and applying software design frameworks."
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://sdframe.caldis.me/#homepage",
+        "name": "SDFrame — Software Design Frameworks",
+        "url": "https://sdframe.caldis.me/",
+        "description": "Homepage for SDFrame, a curated software design framework reference for engineers and AI agents.",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": ["#agent-readable-summary h1", "#agent-readable-summary .summary", "#agent-readable-summary .use-cases"]
+        },
+        "isPartOf": { "@id": "https://sdframe.caldis.me/#website" },
+        "about": { "@id": "https://sdframe.caldis.me/#product" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://sdframe.caldis.me/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is SDFrame?",
+            "acceptedAnswer": { "@type": "Answer", "text": "SDFrame is a curated software design framework reference for engineers, architects, and AI agents." }
+          },
+          {
+            "@type": "Question",
+            "name": "Does SDFrame require authentication?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. The public SDFrame API is read-only and does not require authentication." }
+          },
+          {
+            "@type": "Question",
+            "name": "How should AI agents use SDFrame?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Agents should read /skill/SKILL.md, use /api/frameworks.index.json or /skill/references/catalog.md to find candidates, then fetch individual framework records for detailed guidance." }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://sdframe.caldis.me/#breadcrumbs",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sdframe.caldis.me/" },
+          { "@type": "ListItem", "position": 2, "name": "Docs", "item": "https://sdframe.caldis.me/docs/" },
+          { "@type": "ListItem", "position": 3, "name": "Developers", "item": "https://sdframe.caldis.me/developers/" }
+        ]
+      }
+    ]
   }
   </script>
   <link rel="manifest" href="/manifest.json">
@@ -52,7 +196,103 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;700&family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <main id="agent-readable-summary">
+      <h1>SDFrame — Software Design Frameworks for Engineers and AI Agents</h1>
+      <p class="summary">
+        SDFrame is a software design frameworks reference guide for engineers, architects, and AI agents.
+        It provides 317 curated frameworks across 13 categories, including design thinking, architecture
+        decisions, coding practices, quality engineering, deployment, software evolution, AI collaboration,
+        data architecture, security, distributed systems, API design, team organization, and observability.
+      </p>
+      <section>
+        <h2>What SDFrame Helps With</h2>
+        <ul class="use-cases">
+          <li>Search and compare software design frameworks by category, quality concern, abstraction level, complexity, and maturity.</li>
+          <li>Help AI coding agents choose frameworks such as Domain-Driven Design, Clean Architecture, CQRS, API versioning, threat modeling, OpenTelemetry, and Team Topologies.</li>
+          <li>Read bilingual English and Chinese summaries, implementation steps, source metadata, adopters, related frameworks, and when-to-use guidance.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Framework Categories</h2>
+        <p>
+          The catalog covers 13 engineering categories: design thinking, architecture decisions, coding
+          practices, quality engineering, deployment and operations, software evolution, AI collaboration,
+          data architecture, security and privacy, distributed systems, API design and integration, team
+          organization, and observability. These categories help agents narrow a broad design question into
+          a smaller set of candidate frameworks before reading details.
+        </p>
+      </section>
+      <section>
+        <h2>How Agents Should Use SDFrame</h2>
+        <ol>
+          <li>Read the skill protocol at <a href="/SKILL.md">/SKILL.md</a> or <a href="/skill/SKILL.md">/skill/SKILL.md</a>.</li>
+          <li>Use <a href="/api/frameworks.index.json">/api/frameworks.index.json</a> for search and filtering instead of scraping rendered cards.</li>
+          <li>Fetch one framework JSON or Markdown detail file for each final candidate.</li>
+          <li>Compare when-to-use and when-not-to-use sections before recommending a framework.</li>
+          <li>Use <a href="/AGENTS.md">/AGENTS.md</a> for coding-agent guidance on this public repository.</li>
+        </ol>
+      </section>
+      <section>
+        <h2>SDFrame vs Alternative Sources</h2>
+        <p>
+          SDFrame is different from a single pattern book, a generic search result, or an ad-hoc AI answer.
+          Traditional books and original papers are often more authoritative for one framework, but they are
+          slower to compare across categories. General web search is broad, but it requires repeated source
+          checking and deduplication. SDFrame focuses on breadth, consistent metadata, bilingual descriptions,
+          typed relationships, and agent-readable files. See <a href="/alternatives/">SDFrame vs alternatives</a>
+          and <a href="/compare-framework-catalogs/">SDFrame vs framework catalogs</a>.
+        </p>
+      </section>
+      <section>
+        <h2>Getting Started</h2>
+        <p>
+          Human users can start with search, category filters, the framework selector, the relationship map,
+          or comparison pages. AI agents should start with the compact API index and only load details for the
+          few frameworks they need. A practical onboarding guide is available at
+          <a href="/getting-started/">/getting-started/</a>, and the pricing model is documented at
+          <a href="/pricing.md">/pricing.md</a>. SDFrame is currently free, public, and read-only.
+        </p>
+      </section>
+      <section>
+        <h2>Trust and Editorial Signals</h2>
+        <p>
+          SDFrame is maintained by Caldis as an open-source reference project. Source code is available on
+          GitHub, contact information is published at <a href="/contact/">/contact/</a>, and project scope is
+          described at <a href="/about/">/about/</a>. Framework entries are educational references with source
+          metadata and adoption examples where available. They are not legal, compliance, or security
+          certification advice, and agents should verify primary sources for high-risk decisions.
+        </p>
+      </section>
+      <section>
+        <h2>Developer and Agent Resources</h2>
+        <table>
+          <thead><tr><th>Resource</th><th>URL</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>OpenAPI</td><td><a href="/openapi.json">/openapi.json</a></td><td>Public read-only API contract.</td></tr>
+            <tr><td>Framework index</td><td><a href="/api/frameworks.index.json">/api/frameworks.index.json</a></td><td>Compact searchable framework summaries.</td></tr>
+            <tr><td>Full agent context</td><td><a href="/llms-full.txt">/llms-full.txt</a></td><td>Single-file AI context.</td></tr>
+            <tr><td>Root skill</td><td><a href="/SKILL.md">/SKILL.md</a></td><td>Agent skill file for skills directories and registries.</td></tr>
+            <tr><td>Skill package</td><td><a href="/skill/SKILL.md">/skill/SKILL.md</a></td><td>Agent interaction protocol.</td></tr>
+            <tr><td>Agent rules</td><td><a href="/AGENTS.md">/AGENTS.md</a></td><td>Instructions for AI coding agents working in the repository.</td></tr>
+            <tr><td>Agent discovery</td><td><a href="/.well-known/agent.json">/.well-known/agent.json</a></td><td>Machine-readable discovery manifest.</td></tr>
+            <tr><td>MCP card</td><td><a href="/.well-known/mcp/server-card.json">/.well-known/mcp/server-card.json</a></td><td>Manifest-only MCP server card. No live MCP transport is currently operated.</td></tr>
+            <tr><td>Pricing</td><td><a href="/pricing.md">/pricing.md</a></td><td>Machine-readable pricing; currently free.</td></tr>
+            <tr><td>Developer portal</td><td><a href="/developers/">/developers/</a></td><td>API quickstart, auth model, error handling, and retry guidance.</td></tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <h2>Access and Limits</h2>
+        <p>
+          The public SDFrame API is static, read-only, and does not require authentication. There are no
+          private accounts, write endpoints, OAuth flows, paid plans, official SDK packages, or live MCP
+          transport at this time. Agents should cache responses, validate framework slugs against the index,
+          and use original sources when a decision requires legal, compliance, or security certification accuracy.
+        </p>
+      </section>
+    </main>
+  </div>
   <script>
     // Handle GitHub Pages SPA redirect
     (function(){

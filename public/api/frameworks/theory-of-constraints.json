@@ -1,0 +1,184 @@
+{
+  "id": 255,
+  "name": "Theory of Constraints (TOC)",
+  "name_zh": "约束理论（TOC）",
+  "slug": "theory-of-constraints",
+  "category": "thinking",
+  "desc": "Identify and systematically exploit the binding constraint in a system to maximize throughput, then elevate or break it",
+  "desc_zh": "识别并系统性地利用系统中的制约因素以最大化吞吐量，然后提升或打破它",
+  "steps": [
+    "Identify the constraint: find the single resource, process step, or policy that limits the system's throughput most — the constraint is the step where work piles up, has the longest queue, or determines the overall system capacity",
+    "Exploit the constraint: maximize the output of the constraint using existing resources before spending on additional capacity — eliminate waste, reduce downtime, and ensure the constraint is never starved by upstream steps",
+    "Subordinate everything else: adjust all non-constraint steps and policies to support the constraint's maximum output; if upstream processes are faster than the constraint, slow them to prevent WIP buildup that overwhelms the constraint",
+    "Elevate the constraint: if exploiting and subordinating are insufficient, invest in additional capacity (people, machines, process redesign) specifically targeted at the constraint — not distributed across all steps",
+    "Prevent inertia: after the constraint is broken and moves to a new location in the system, return to step 1 and identify the new constraint; do not let previous solutions become new constraints through outdated policies or local optimization"
+  ],
+  "steps_zh": [
+    "识别约束：找到限制系统吞吐量最多的单一资源、流程步骤或政策——约束是工作积压、队列最长或决定整体系统产能的步骤",
+    "充分利用约束：在增加额外产能之前，使用现有资源最大化约束的产出——消除浪费、减少停机时间，确保约束永远不会被上游步骤饿死",
+    "将其他一切从属于约束：调整所有非约束步骤和政策以支持约束的最大产出；如果上游流程比约束快，就放慢它们以防止WIP积累压垮约束",
+    "提升约束：如果充分利用和从属化仍然不足，专门针对约束投资额外产能（人员、机器、流程重设计）——而非分散在所有步骤",
+    "防止惰性：约束被打破并转移到系统新位置后，返回步骤1识别新约束；不要因过时的政策或局部优化让以前的解决方案成为新约束"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Identify",
+    "Exploit",
+    "Subordinate",
+    "Elevate",
+    "Repeat"
+  ],
+  "viz_labels_zh": [
+    "识别瓶颈",
+    "充分利用",
+    "从属调整",
+    "提升瓶颈",
+    "持续迭代"
+  ],
+  "related": [
+    "architectural-kata",
+    "trade-off-sliders"
+  ],
+  "tags": [
+    "constraints",
+    "throughput",
+    "bottleneck",
+    "systems-thinking",
+    "goldratt"
+  ],
+  "origin_author": "Eliyahu M. Goldratt, 1984",
+  "origin_source": "The Goal: A Process of Ongoing Improvement (Eliyahu M. Goldratt & Jeff Cox, North River Press, 1984); Theory of Constraints (Goldratt, 1990)",
+  "origin_source_zh": "《目标：持续改善的过程》（Eliyahu M. Goldratt & Jeff Cox，North River Press，1984）；《约束理论》（Goldratt，1990）",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "When a system or workflow has a known bottleneck and you want a principled method to decide where to invest improvement effort rather than distributing it evenly across all steps",
+    "When a software delivery process has a persistent wait state (code review backlog, deployment queue, QA handoff delay) that limits overall feature throughput",
+    "When performance optimization efforts have been spread across many services and individual improvements have not produced system-level throughput gains",
+    "When stakeholders are requesting parallel investments to improve multiple steps simultaneously and you need a framework to argue for focused investment on the constraint"
+  ],
+  "when_to_use_zh": [
+    "当系统或工作流存在已知瓶颈，需要有原则的方法来决定在哪里投入改进精力，而非将其平均分配到所有步骤时",
+    "当软件交付过程存在持续的等待状态（代码审查积压、部署队列、QA交接延迟），限制了整体功能吞吐量时",
+    "当性能优化工作分散在许多服务中，单独的改进没有产生系统级吞吐量提升时",
+    "当利益相关者要求并行投资同时改进多个步骤，需要一个框架来论证对约束进行集中投资时"
+  ],
+  "core_concepts": [
+    "Throughput: the rate at which the system generates value (revenue, features shipped, requests served); TOC optimizes for system throughput, not local efficiency — improving a non-constraint step cannot increase system throughput if the constraint is unchanged",
+    "Constraint (bottleneck): the single step that limits overall throughput; every system has exactly one binding constraint at any given time; all other steps have excess capacity relative to the constraint's output rate",
+    "Inventory and WIP: work-in-progress that accumulates upstream of the constraint is 'inventory' in TOC; excess WIP adds cost, complexity, and lead time without increasing throughput",
+    "The five focusing steps: Identify → Exploit → Subordinate → Elevate → Repeat; this cycle is continuous because breaking one constraint reveals the next one, and the system always has a constraint somewhere"
+  ],
+  "core_concepts_zh": [
+    "吞吐量：系统产生价值的速率（收入、已交付功能、已服务请求）；TOC优化系统吞吐量而非局部效率——如果约束不变，改进非约束步骤无法提升系统吞吐量",
+    "约束（瓶颈）：限制整体吞吐量的单一步骤；在任何给定时间，每个系统都恰好有一个绑定约束；相对于约束的产出率，所有其他步骤都有过剩产能",
+    "库存和WIP：在约束上游积累的在制品在TOC中被称为「库存」；过多的WIP会增加成本、复杂性和前置时间，而不会增加吞吐量",
+    "五个聚焦步骤：识别→利用→从属→提升→重复；这个循环是持续的，因为打破一个约束会揭示下一个约束，系统总是在某处存在约束"
+  ],
+  "timeline": [
+    [
+      "1984",
+      "Eliyahu Goldratt and Jeff Cox publish 'The Goal' as a business novel set in a manufacturing plant, making TOC principles accessible to non-academic audiences; the book sells over 7 million copies"
+    ],
+    [
+      "1990",
+      "Goldratt publishes 'Theory of Constraints' as a formal management book, extending the five focusing steps from manufacturing to project management, supply chain, and distribution"
+    ],
+    [
+      "1997",
+      "Goldratt publishes 'Critical Chain', applying TOC to project management scheduling through buffer management and dependency-awareness, influencing agile and lean project methods"
+    ],
+    [
+      "2004",
+      "Mike Rother and John Shook's 'Learning to See' and Lean thinking integrate TOC bottleneck analysis with value stream mapping; TOC becomes foundational to DevOps and software delivery optimization"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "1984",
+      "Eliyahu Goldratt和Jeff Cox将《目标》作为以制造工厂为背景的商业小说出版，使TOC原则面向非学术受众；该书销量超过700万册"
+    ],
+    [
+      "1990",
+      "Goldratt出版《约束理论》作为正式管理书籍，将五个聚焦步骤从制造业扩展到项目管理、供应链和分销"
+    ],
+    [
+      "1997",
+      "Goldratt出版《关键链》，通过缓冲区管理和依赖关系意识将TOC应用于项目管理调度，影响了敏捷和精益项目方法"
+    ],
+    [
+      "2004",
+      "Mike Rother和John Shook的《精益思想》以及精益思维将TOC瓶颈分析与价值流图相结合；TOC成为DevOps和软件交付优化的基础"
+    ]
+  ],
+  "dos": [
+    "Do measure throughput at the system level (features delivered per sprint, deployments per day) before and after improvements, because local efficiency gains only matter if they improve system-level throughput",
+    "Do protect the constraint from starvation by ensuring it always has work ready to process; idle constraint time is the most expensive form of waste in a TOC system",
+    "Do reduce WIP limits upstream of the constraint using Kanban-style WIP caps, because accumulating work-in-progress upstream increases context switching, lead time, and coordination cost without increasing output",
+    "Do use buffer management at the constraint: maintain a small upstream buffer to absorb variability in upstream step throughput, preventing constraint idle time from statistical randomness"
+  ],
+  "dos_zh": [
+    "在改进前后在系统层面衡量吞吐量（每个冲刺交付的功能、每天的部署次数），因为局部效率提升只有在改善系统级吞吐量时才重要",
+    "通过确保约束始终有待处理的工作来防止约束被饿死；约束空闲时间是TOC系统中最昂贵的浪费形式",
+    "使用看板式WIP上限减少约束上游的WIP限制，因为在上游积累在制品会增加上下文切换、前置时间和协调成本，而不会增加产出",
+    "在约束处使用缓冲区管理：维持小型上游缓冲区以吸收上游步骤吞吐量的变异性，防止约束因统计随机性而空闲"
+  ],
+  "donts": [
+    "Don't optimize non-constraints independently of the constraint; improving the throughput of a non-constraint step cannot increase system throughput if the constraint remains unchanged, and may increase WIP and cost",
+    "Don't add resources uniformly across all steps when capacity is needed; investment must be targeted specifically at the constraint to improve system throughput",
+    "Don't treat the constraint as permanent; the five-step cycle must continue after breaking a constraint because the constraint moves to a new location and a new improvement cycle begins",
+    "Don't measure success by local efficiency metrics (individual utilization rates, step-level cycle times) because 100% utilization of non-constraints is a sign of over-production, not efficiency"
+  ],
+  "donts_zh": [
+    "不要独立于约束优化非约束步骤；如果约束保持不变，提高非约束步骤的吞吐量无法提升系统吞吐量，反而可能增加WIP和成本",
+    "当需要产能时，不要在所有步骤上均匀增加资源；必须专门针对约束进行投资才能提升系统吞吐量",
+    "不要将约束视为永久性的；打破约束后必须继续五步循环，因为约束会移动到新位置，新的改进周期开始",
+    "不要用局部效率指标（个人利用率、步骤级周期时间）来衡量成功，因为非约束步骤100%的利用率是过度生产的迹象，而非效率"
+  ],
+  "case_study_company": "Gene Kim / Phoenix Project (DevOps)",
+  "case_study": "Gene Kim, Kevin Behr, and George Spafford's 'The Phoenix Project' (2013) is explicitly modeled on Goldratt's 'The Goal', applying TOC to an IT organization's software delivery value stream. In the narrative, the constraint is identified as Brent, a single expert engineer who is the bottleneck for every critical deployment and incident resolution. The TOC solution is to identify Brent as the constraint, exploit him by documenting his knowledge (so others can absorb non-critical work), subordinate all other teams to protect Brent's time for constraint work, and elevate by cross-training. This framing directly influenced the DevOps movement's focus on deployment pipeline constraints and DORA metrics.",
+  "case_study_zh": "Gene Kim、Kevin Behr和George Spafford的《凤凰项目》（2013）明确以Goldratt的《目标》为模型，将TOC应用于IT组织的软件交付价值流。在叙述中，约束被识别为Brent——一个在每次关键部署和事故解决中都是瓶颈的单一专家工程师。TOC解决方案是将Brent识别为约束，通过记录他的知识（使他人能够承担非关键工作）来充分利用他，将所有其他团队从属化以保护Brent的时间用于约束工作，并通过交叉培训来提升。这一框架直接影响了DevOps运动对部署管道约束和DORA指标的关注。",
+  "when_not_to_use": [
+    "When the system has no measurable throughput metric and optimization goals are ambiguous; TOC requires a clear definition of what throughput means for the system being optimized",
+    "When the system is creative or knowledge work where the 'constraint' is not a process step but a quality of thinking that cannot be accelerated by adding more resources",
+    "When the organization optimizes for resource utilization rather than throughput; TOC deliberately leaves non-constraints with idle capacity, which conflicts with utilization-focused management cultures",
+    "When multiple simultaneous constraints exist (a system near capacity on several steps), because TOC's five-step cycle assumes a single binding constraint that can be isolated and improved"
+  ],
+  "when_not_to_use_zh": [
+    "当系统没有可衡量的吞吐量指标且优化目标模糊时；TOC需要对被优化系统的吞吐量含义有清晰定义",
+    "当系统是创意或知识工作，其中「约束」不是流程步骤而是无法通过增加资源来加速的思考质量时",
+    "当组织优化资源利用率而非吞吐量时；TOC刻意让非约束步骤拥有空闲产能，这与以利用率为导向的管理文化相冲突",
+    "当存在多个同时约束（系统在多个步骤上接近产能）时，因为TOC的五步循环假设存在可以被隔离和改进的单一绑定约束"
+  ],
+  "adopters": [
+    "Intel — applied TOC to semiconductor manufacturing scheduling to reduce cycle times and increase fab throughput in the 1990s",
+    "Boeing — used TOC in aircraft manufacturing assembly lines to identify and break constraints in component delivery sequencing",
+    "Amazon — applies throughput optimization principles from TOC in their fulfillment center operations and software deployment pipelines",
+    "DevOps community — 'The Phoenix Project' and 'The DevOps Handbook' apply TOC to software delivery, making constraint identification central to engineering team improvement",
+    "Atlassian — Jira's WIP limits feature in Jira Software and Kanban boards are directly influenced by TOC's subordination principle"
+  ],
+  "abstraction_level": "organization",
+  "quality_concerns": [
+    "performance",
+    "maintainability"
+  ],
+  "maturity_ring": "foundational",
+  "primary_source": "Goldratt, E. M. & Cox, J. (1984). The Goal: A Process of Ongoing Improvement. North River Press.",
+  "secondary_sources": [
+    "Goldratt, E. M. (1990). Theory of Constraints. North River Press.",
+    "Kim, G., Behr, K. & Spafford, G. (2013). The Phoenix Project: A Novel About IT, DevOps, and Helping Your Business Win. IT Revolution Press.",
+    "Rother, M. & Shook, J. (2003). Learning to See: Value Stream Mapping to Create Value and Eliminate Muda. Lean Enterprise Institute."
+  ],
+  "typed_relations": [
+    {
+      "slug": "trade-off-sliders",
+      "type": "complement"
+    },
+    {
+      "slug": "architectural-kata",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/theory-of-constraints",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/theory-of-constraints.md"
+}

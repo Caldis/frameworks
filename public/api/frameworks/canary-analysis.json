@@ -1,0 +1,196 @@
+{
+  "id": 276,
+  "name": "Canary Analysis",
+  "name_zh": "金丝雀分析",
+  "slug": "canary-analysis",
+  "category": "observability",
+  "desc": "Automated comparison of canary vs baseline metrics to quantitatively validate deployments before full rollout",
+  "desc_zh": "自动比较金丝雀与基线指标，在全量发布前定量验证部署",
+  "steps": [
+    "Deploy the canary version to a small percentage of traffic (1-5%) alongside the current baseline, using feature flags, traffic splitting, or a canary deployment controller to ensure both receive comparable request distributions",
+    "Define the metrics to compare: select SLIs that directly reflect user experience (request success rate, P99 latency, error rate by type) and business metrics (conversion rate, checkout completion) for the service under analysis",
+    "Run automated canary analysis using a tool like Spinnaker's Kayenta or Argo Rollouts to statistically compare canary vs baseline metric distributions over a defined bake time (typically 30-60 minutes)",
+    "Apply a scoring model: each metric comparison produces a pass/fail/warn result; a weighted aggregate score determines whether the canary is promoted, paused, or automatically rolled back",
+    "Act on the analysis result: automatically promote healthy canaries (score above threshold) to 100% of traffic, pause inconclusive canaries for human review, and automatically roll back canaries that score below the failure threshold"
+  ],
+  "steps_zh": [
+    "将金丝雀版本部署到一小部分流量（1-5%），与当前基线并行运行，使用功能标志、流量分割或金丝雀部署控制器确保两者接收可比的请求分布",
+    "定义要比较的指标：选择直接反映用户体验（请求成功率、P99延迟、按类型的错误率）和业务指标（转化率、结账完成率）的SLI用于分析",
+    "使用Spinnaker的Kayenta或Argo Rollouts等工具运行自动化金丝雀分析，在定义的烘焙时间（通常30-60分钟）内对金丝雀与基线指标分布进行统计比较",
+    "应用评分模型：每次指标比较产生通过/失败/警告结果；加权综合得分决定金丝雀是晋级、暂停还是自动回滚",
+    "根据分析结果采取行动：自动将健康金丝雀（得分高于阈值）晋级到100%流量，暂停不确定的金丝雀供人工审查，自动回滚得分低于失败阈值的金丝雀"
+  ],
+  "ai_relevant": true,
+  "viz_type": "flow",
+  "viz_labels": [
+    "Canary Deploy",
+    "Metric Compare",
+    "Auto Analysis",
+    "Scoring Model",
+    "Promote / Rollback"
+  ],
+  "viz_labels_zh": [
+    "金丝雀部署",
+    "指标对比",
+    "自动分析",
+    "评分模型",
+    "晋级回滚"
+  ],
+  "related": [
+    "feature-flags",
+    "blue-green-deployment",
+    "sli-slo-sla",
+    "service-level-indicators",
+    "chaos-engineering",
+    "progressive-delivery"
+  ],
+  "tags": [
+    "canary",
+    "deployment",
+    "progressive-delivery",
+    "netflix",
+    "spinnaker",
+    "kayenta",
+    "rollout",
+    "observability"
+  ],
+  "origin_author": "Netflix",
+  "origin_source": "Netflix Tech Blog: Automated Canary Analysis at Netflix with Kayenta (2018)",
+  "origin_source_zh": "Netflix技术博客：使用Kayenta在Netflix进行自动化金丝雀分析（2018）",
+  "complexity": "advanced",
+  "when_to_use": [
+    "Deploying changes to high-traffic, revenue-critical services where the blast radius of a bad deployment justifies the additional deployment complexity of traffic splitting and automated analysis",
+    "Teams that have experienced production incidents caused by deployments that passed all pre-production tests but introduced subtle regressions only visible at production traffic patterns",
+    "Organizations practicing continuous deployment where human approval of every deployment is a bottleneck — canary analysis automates the go/no-go decision with statistical rigor",
+    "Services with clear, stable SLIs where the baseline metric distributions are well-understood and anomalies are distinguishable from normal variance"
+  ],
+  "when_to_use_zh": [
+    "为高流量、对收入至关重要的服务部署变更，其中不良部署的影响范围足以证明流量分割和自动化分析的额外部署复杂度是合理的",
+    "曾经历因部署导致生产事故的团队，这些部署通过了所有预生产测试，但引入了只在生产流量模式下才可见的细微回归",
+    "实践持续部署的组织，每次部署的人工审批是瓶颈——金丝雀分析以统计严谨性自动化去/不去决策",
+    "具有清晰、稳定SLI的服务，基线指标分布已充分理解，异常可与正常方差区分"
+  ],
+  "core_concepts": [
+    "Traffic Splitting: routing a configurable percentage (1-10%) of production traffic to the canary version while the remainder continues to the stable baseline, enabling real-production comparison without full rollout risk",
+    "Statistical Comparison: using Mann-Whitney U tests, effect size analysis, or Bayesian methods to determine whether observed metric differences between canary and baseline are statistically significant or within normal variance",
+    "Bake Time: the duration the canary receives production traffic before analysis is finalized — long enough to collect statistically significant samples across different traffic conditions, typically 30 minutes to 2 hours",
+    "Scoring Model: a weighted formula that aggregates individual metric comparisons into an overall canary health score; critical metrics (error rate) have higher weights than informational metrics",
+    "Automated Rollback: when canary score falls below a configured failure threshold, the deployment system automatically shifts 100% of traffic back to the stable baseline without human intervention, minimizing mean time to recover (MTTR)"
+  ],
+  "core_concepts_zh": [
+    "流量分割：将可配置比例（1-10%）的生产流量路由到金丝雀版本，其余流量继续流向稳定基线，实现真实生产比较而不承担全量发布风险",
+    "统计比较：使用Mann-Whitney U检验、效应量分析或贝叶斯方法确定金丝雀与基线之间观察到的指标差异是否具有统计显著性，或是否在正常方差范围内",
+    "烘焙时间：金丝雀接收生产流量直到分析完成的持续时间——足够长以在不同流量条件下收集统计显著的样本，通常为30分钟到2小时",
+    "评分模型：将各个指标比较汇总为整体金丝雀健康得分的加权公式；关键指标（错误率）的权重高于信息性指标",
+    "自动回滚：当金丝雀得分低于配置的失败阈值时，部署系统自动将100%流量切回稳定基线，无需人工干预，最小化平均恢复时间（MTTR）"
+  ],
+  "timeline": [
+    [
+      "2009",
+      "Netflix begins manually reviewing canary deployments as part of their continuous delivery practice, routing small traffic percentages to new builds before full rollout"
+    ],
+    [
+      "2016",
+      "Netflix develops Kayenta internally as an automated canary analysis service integrated with Spinnaker, formalizing statistical comparison of canary vs baseline metrics"
+    ],
+    [
+      "2018",
+      "Netflix open-sources Kayenta; Google partners with Netflix to release it as part of Spinnaker, making automated canary analysis accessible to the broader industry"
+    ],
+    [
+      "2021",
+      "Argo Rollouts adds canary analysis with Kayenta and Prometheus integration, bringing automated canary analysis natively into Kubernetes GitOps workflows"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2009",
+      "Netflix开始在持续交付实践中手动审查金丝雀部署，在全量发布前将小比例流量路由到新构建版本"
+    ],
+    [
+      "2016",
+      "Netflix内部开发Kayenta作为与Spinnaker集成的自动化金丝雀分析服务，将金丝雀与基线指标的统计比较正式化"
+    ],
+    [
+      "2018",
+      "Netflix开源Kayenta；Google与Netflix合作将其作为Spinnaker的一部分发布，使自动化金丝雀分析对更广泛的行业可用"
+    ],
+    [
+      "2021",
+      "Argo Rollouts添加具有Kayenta和Prometheus集成的金丝雀分析，将自动化金丝雀分析原生引入Kubernetes GitOps工作流"
+    ]
+  ],
+  "dos": [
+    "Do ensure canary and baseline receive statistically comparable traffic: both should see similar request distributions (same user segments, same API endpoint mix) to avoid comparison bias",
+    "Do set canary traffic percentage high enough to collect meaningful samples within your bake time, but low enough to limit blast radius — 1-5% is typical for high-traffic services",
+    "Do define your canary scoring thresholds based on historical baseline metric variance, not arbitrary percentages — a 5% increase in error rate may be noise for one service and critical for another",
+    "Do automate the rollback decision: the primary value of canary analysis is speed of automated rollback — requiring human approval for rollback defeats the purpose for high-velocity deployment pipelines"
+  ],
+  "dos_zh": [
+    "确保金丝雀和基线接收统计上可比的流量：两者应看到类似的请求分布（相同用户群、相同API端点混合），以避免比较偏差",
+    "将金丝雀流量百分比设置得足够高以在烘焙时间内收集有意义的样本，但足够低以限制影响范围——1-5%对高流量服务是典型的",
+    "根据历史基线指标方差而非任意百分比定义金丝雀评分阈值——5%的错误率增加对某个服务可能是噪音，对另一个服务可能是关键",
+    "自动化回滚决策：金丝雀分析的主要价值在于自动化回滚的速度——对高速部署管道来说，要求人工审批回滚会使目的落空"
+  ],
+  "donts": [
+    "Don't use canary analysis as a substitute for pre-production testing — canary analysis catches regressions that only appear at production scale and traffic mix, not issues that should have been caught by unit or integration tests",
+    "Don't compare canary against a single baseline instance — compare against the aggregate of all stable instances to account for instance-level variance and avoid false positives from individual instance noise",
+    "Don't run canary analysis during atypical traffic periods (scheduled maintenance windows, major events, traffic spikes) when baseline metrics are themselves abnormal",
+    "Don't set bake times so short that the canary hasn't experienced enough traffic across different time-of-day patterns to produce statistically valid comparisons"
+  ],
+  "donts_zh": [
+    "不要将金丝雀分析作为预生产测试的替代——金丝雀分析捕获仅在生产规模和流量混合下出现的回归，而非应该被单元或集成测试捕获的问题",
+    "不要将金丝雀与单个基线实例比较——与所有稳定实例的聚合进行比较，以考虑实例级方差并避免来自单个实例噪声的误报",
+    "不要在非典型流量期间（计划维护窗口、重大事件、流量峰值）运行金丝雀分析，此时基线指标本身就是异常的",
+    "不要将烘焙时间设置得太短，使金丝雀没有在足够多的不同时段流量模式下经历足够的流量，从而无法产生统计上有效的比较"
+  ],
+  "case_study_company": "Netflix",
+  "case_study": "Netflix's deployment pipeline uses Kayenta to automatically analyze every production deployment before full rollout. When a Netflix recommendation service deployed a change to its ranking algorithm, Kayenta compared 14 metrics (request latency percentiles, error rates, recommendation click-through rate, stream start failures) between the canary (3% of traffic) and the stable baseline over a 60-minute bake window. The canary scored 94/100 (above the 75/100 promotion threshold), and Spinnaker automatically promoted it to 100% without human intervention. In a separate deployment 2 weeks later, a seemingly minor configuration change caused the P99 latency to increase by 340ms in the canary. Kayenta scored this deployment 23/100, triggering automatic rollback within 8 minutes of the degradation starting — before any users filed complaints and before the on-call team had been paged.",
+  "case_study_zh": "Netflix的部署管道使用Kayenta在全量发布前自动分析每次生产部署。当Netflix推荐服务对其排名算法部署变更时，Kayenta在60分钟烘焙窗口内比较了金丝雀（3%流量）与稳定基线之间的14个指标（请求延迟百分位数、错误率、推荐点击率、流媒体启动失败）。金丝雀得分94/100（高于75/100的晋级阈值），Spinnaker自动将其晋级到100%，无需人工干预。两周后的另一次部署中，一个看似微小的配置变更导致金丝雀中P99延迟增加了340ms。Kayenta将该部署评分为23/100，在降级开始后8分钟内触发自动回滚——在任何用户提交投诉之前，也在待命团队被呼叫之前。",
+  "when_not_to_use": [
+    "Low-traffic services where the canary cannot accumulate enough samples during the bake window to produce statistically valid comparisons — shadow testing or A/B testing with replay traffic may be better alternatives",
+    "Services with highly irregular or bursty traffic patterns where baseline metrics have very high natural variance, making it impossible to distinguish canary regressions from normal fluctuation",
+    "Deployments with strict data migration dependencies where traffic splitting would cause some requests to hit new code with old data schema and others to hit old code — this requires a coordinated migration strategy, not canary analysis"
+  ],
+  "when_not_to_use_zh": [
+    "低流量服务，金丝雀在烘焙窗口内无法积累足够的样本以产生统计上有效的比较——影子测试或使用回放流量的A/B测试可能是更好的替代方案",
+    "流量模式高度不规则或突发的服务，基线指标具有非常高的自然方差，使得无法将金丝雀回归与正常波动区分开",
+    "具有严格数据迁移依赖关系的部署，流量分割会导致一些请求使用新代码但旧数据模式，其他请求使用旧代码——这需要协调迁移策略，而非金丝雀分析"
+  ],
+  "adopters": [
+    "Netflix",
+    "Google",
+    "LinkedIn",
+    "Intuit",
+    "Pinterest",
+    "Waze"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "reliability",
+    "performance"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Netflix Tech Blog (2018). \"Automated Canary Analysis at Netflix with Kayenta\". netflixtechblog.com.",
+  "secondary_sources": [
+    "Google / Netflix (2018). \"Kayenta: An Open Automated Canary Analysis Tool from Google and Netflix\". Spinnaker.io.",
+    "Sato, S. (2014). \"Canary Release\". martinfowler.com.",
+    "Humble, J. & Farley, D. (2010). \"Continuous Delivery\". Addison-Wesley."
+  ],
+  "typed_relations": [
+    {
+      "slug": "service-level-indicators",
+      "type": "complement"
+    },
+    {
+      "slug": "feature-flags",
+      "type": "related"
+    },
+    {
+      "slug": "blue-green-deployment",
+      "type": "related"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/canary-analysis",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/canary-analysis.md"
+}

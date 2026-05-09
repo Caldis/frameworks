@@ -1,0 +1,195 @@
+{
+  "id": 95,
+  "name": "Tool-Use Design Pattern",
+  "name_zh": "工具使用设计模式",
+  "slug": "tool-use-design-pattern",
+  "category": "ai",
+  "desc": "Design agent-callable tools with reliable interfaces",
+  "desc_zh": "为 AI 代理设计可靠可调用的工具接口",
+  "steps": [
+    "Define each tool as a typed function with a machine-readable JSON Schema description",
+    "Write tool descriptions from the model's perspective - emphasize when to use and not use",
+    "Implement idempotent tool handlers with deterministic error messages the model can act on",
+    "Add a tool-selection evaluation harness to measure call accuracy on representative queries",
+    "Version and deprecate tools explicitly, updating descriptions to guide migration"
+  ],
+  "steps_zh": [
+    "将每个工具定义为带有机器可读 JSON Schema 描述的类型化函数",
+    "从模型视角撰写工具描述——强调何时使用以及何时不应使用",
+    "实现幂等的工具处理器，返回模型可据此行动的确定性错误信息",
+    "构建工具选择评估框架，在代表性查询上度量调用准确率",
+    "显式对工具进行版本管理和废弃标注，更新描述以引导迁移"
+  ],
+  "ai_relevant": true,
+  "viz_type": "tree",
+  "viz_labels": [
+    "Agent",
+    "Tool Router",
+    "Tool A",
+    "Tool B"
+  ],
+  "viz_labels_zh": [
+    "Agent",
+    "工具路由",
+    "工具A",
+    "工具B"
+  ],
+  "related": [
+    "react-framework",
+    "ai-first-api-design",
+    "tool-use-react-pattern"
+  ],
+  "tags": [
+    "tool-use",
+    "function-calling",
+    "api-design",
+    "agent-tools"
+  ],
+  "origin_author": "Timo Schick et al. (Meta AI), 2023; OpenAI Function Calling team, 2023",
+  "origin_source": "Toolformer: Language Models Can Teach Themselves to Use Tools (NeurIPS 2023) and OpenAI Function Calling API",
+  "origin_source_zh": "Toolformer：语言模型可以自学使用工具（NeurIPS 2023）及 OpenAI 函数调用 API",
+  "complexity": "intermediate",
+  "when_to_use": [
+    "Building agents that interact with external systems (databases, APIs, file systems, browsers)",
+    "Tasks requiring capabilities the LLM doesn't have natively (math computation, code execution, web search)",
+    "Production systems where tool invocations must be reliable, logged, and auditable",
+    "Platforms exposing a growing catalog of capabilities to AI agents (plugin systems, MCP servers)"
+  ],
+  "when_to_use_zh": [
+    "构建与外部系统（数据库、API、文件系统、浏览器）交互的代理",
+    "需要大模型原生不具备能力的任务（数学计算、代码执行、网页搜索）",
+    "工具调用必须可靠、可记录和可审计的生产系统",
+    "向 AI 代理暴露不断增长能力目录的平台（插件系统、MCP 服务器）"
+  ],
+  "core_concepts": [
+    "Function Schema: A JSON Schema definition describing a tool's name, parameters, types, and purpose for the model to parse",
+    "Tool Description: The natural-language explanation of when and why to use a tool, written from the model's perspective",
+    "Idempotency: Designing tool handlers so repeated calls with the same parameters produce the same result without side effects",
+    "Parallel Tool Calling: The ability for models to emit multiple tool calls in a single turn to reduce round-trips",
+    "Model Context Protocol (MCP): An emerging standard for exposing tools to AI agents via a unified server interface"
+  ],
+  "core_concepts_zh": [
+    "函数模式（Function Schema）：描述工具名称、参数、类型和用途的 JSON Schema 定义，供模型解析",
+    "工具描述（Tool Description）：从模型视角撰写的关于何时及为何使用工具的自然语言说明",
+    "幂等性（Idempotency）：设计工具处理器使相同参数的重复调用产生相同结果且无副作用",
+    "并行工具调用（Parallel Tool Calling）：模型在单轮中发出多个工具调用以减少往返次数的能力",
+    "模型上下文协议（MCP）：通过统一服务器接口向 AI 代理暴露工具的新兴标准"
+  ],
+  "timeline": [
+    [
+      "2023-02",
+      "Timo Schick et al. publish Toolformer, showing LLMs can self-learn tool usage"
+    ],
+    [
+      "2023-06",
+      "OpenAI launches Function Calling API, making structured tool use mainstream"
+    ],
+    [
+      "2023-11",
+      "Anthropic introduces tool use (function calling) for Claude models"
+    ],
+    [
+      "2024-04",
+      "Anthropic publishes the Model Context Protocol (MCP), an open standard for tool servers"
+    ],
+    [
+      "2024-12",
+      "MCP gains wide adoption; major IDEs and agent frameworks integrate MCP tool servers"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2023-02",
+      "Timo Schick 等人发表 Toolformer，展示大模型可自学工具使用"
+    ],
+    [
+      "2023-06",
+      "OpenAI 发布函数调用 API，使结构化工具使用成为主流"
+    ],
+    [
+      "2023-11",
+      "Anthropic 为 Claude 模型引入工具使用（函数调用）功能"
+    ],
+    [
+      "2024-04",
+      "Anthropic 发布模型上下文协议（MCP），工具服务器的开放标准"
+    ],
+    [
+      "2024-12",
+      "MCP 获得广泛采用；主要 IDE 和代理框架集成 MCP 工具服务器"
+    ]
+  ],
+  "dos": [
+    "Write tool descriptions that include both when-to-use and when-NOT-to-use guidance for the model",
+    "Return structured error messages that tell the model what went wrong and how to fix the call",
+    "Keep the tool catalog focused -- fewer, well-described tools outperform many vaguely described ones",
+    "Test tool selection accuracy separately from tool execution -- they are distinct failure modes"
+  ],
+  "dos_zh": [
+    "工具描述中同时包含何时使用和何时不应使用的指导",
+    "返回结构化错误信息，告诉模型出了什么问题以及如何修正调用",
+    "保持工具目录精简——少量描述清晰的工具优于大量描述模糊的工具",
+    "将工具选择准确率与工具执行分开测试——它们是不同的故障模式"
+  ],
+  "donts": [
+    "Don't use ambiguous parameter names like 'data' or 'input' -- use semantically clear names like 'search_query'",
+    "Don't expose destructive operations (delete, overwrite) without confirmation mechanisms",
+    "Don't return large unstructured blobs from tools -- the model wastes context parsing irrelevant output",
+    "Don't assume the model will always call tools correctly -- validate parameters server-side"
+  ],
+  "donts_zh": [
+    "不要使用模糊参数名如 data 或 input——使用语义清晰的名称如 search_query",
+    "不要在没有确认机制的情况下暴露破坏性操作（删除、覆写）",
+    "不要从工具返回大型非结构化数据——模型会浪费上下文解析无关输出",
+    "不要假设模型总能正确调用工具——在服务端验证参数"
+  ],
+  "case_study_company": "OpenAI",
+  "case_study": "OpenAI's Function Calling API transformed how developers build tool-using agents. By standardizing the JSON Schema format for tool definitions, OpenAI enabled a plugin ecosystem where thousands of third-party tools could be exposed to GPT models. The ChatGPT plugin store (later replaced by GPTs) demonstrated that well-designed tool schemas could enable models to orchestrate complex workflows spanning search, computation, and external APIs.",
+  "case_study_zh": "OpenAI 的函数调用 API 变革了开发者构建工具使用代理的方式。通过标准化工具定义的 JSON Schema 格式，OpenAI 构建了一个插件生态系统，使数千个第三方工具能被 GPT 模型调用。ChatGPT 插件商店（后被 GPTs 取代）证明了精心设计的工具模式能使模型编排涵盖搜索、计算和外部 API 的复杂工作流。",
+  "when_not_to_use": [
+    "Tasks the model can complete entirely from its training knowledge without external data",
+    "When tool invocation adds latency that degrades the user experience for simple queries",
+    "Environments where external API calls are blocked by network security policies",
+    "Prototypes where hardcoded responses are sufficient and tool infrastructure is overhead"
+  ],
+  "when_not_to_use_zh": [
+    "模型完全可以从训练知识中完成、不需要外部数据的任务",
+    "工具调用增加的延迟会降低简单查询用户体验时",
+    "网络安全策略阻止外部 API 调用的环境",
+    "硬编码响应即可满足需求、工具基础设施是额外负担的原型阶段"
+  ],
+  "adopters": [
+    "OpenAI",
+    "Anthropic (Claude / MCP)",
+    "Google (Gemini Function Calling)",
+    "LangChain",
+    "Vercel AI SDK"
+  ],
+  "abstraction_level": "component",
+  "quality_concerns": [
+    "reliability",
+    "usability"
+  ],
+  "maturity_ring": "emerging",
+  "primary_source": "Timo Schick et al. (2023). \"Toolformer: Language Models Can Teach Themselves to Use Tools\". NeurIPS 2023.",
+  "secondary_sources": [
+    "OpenAI (2023). \"Function Calling and Other API Updates\". openai.com/blog.",
+    "Yujia Qin et al. (2023). \"Tool Learning with Foundation Models\". arXiv:2304.08354."
+  ],
+  "typed_relations": [
+    {
+      "slug": "react-framework",
+      "type": "complement"
+    },
+    {
+      "slug": "ai-first-api-design",
+      "type": "complement"
+    },
+    {
+      "slug": "tool-use-react-pattern",
+      "type": "extends"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/tool-use-design-pattern",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/tool-use-design-pattern.md"
+}

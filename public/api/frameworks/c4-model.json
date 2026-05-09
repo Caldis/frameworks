@@ -1,0 +1,192 @@
+{
+  "id": 18,
+  "name": "C4 Model",
+  "name_zh": "C4模型",
+  "slug": "c4-model",
+  "category": "architecture",
+  "desc": "Four-level hierarchy for visualizing software architecture",
+  "desc_zh": "用于可视化软件架构的四层次模型",
+  "steps": [
+    "Draw a Context diagram: show the system as a box, its users, and external systems it interacts with",
+    "Drill into a Container diagram: decompose the system into containers (apps, services, databases) with technology choices",
+    "Create Component diagrams for key containers: show the internal components and how they collaborate",
+    "Optionally add Code-level diagrams (UML class diagrams) for the most critical components",
+    "Embed diagrams in documentation and ADRs; keep them as living artifacts updated with each architecture change"
+  ],
+  "steps_zh": [
+    "绘制上下文图：将系统表示为方框，展示其用户和交互的外部系统",
+    "深入绘制容器图：将系统分解为容器（应用、服务、数据库）并标注技术选型",
+    "为关键容器创建组件图：展示内部组件及其协作关系",
+    "可选地为最关键组件添加代码层级图（UML类图）",
+    "将图表嵌入文档和ADR，作为随每次架构变更持续更新的活文档"
+  ],
+  "ai_relevant": true,
+  "viz_type": "tree",
+  "viz_labels": [
+    "System Context",
+    "Container",
+    "Component",
+    "Code"
+  ],
+  "viz_labels_zh": [
+    "系统上下文",
+    "容器",
+    "组件",
+    "代码"
+  ],
+  "related": [
+    "adr",
+    "togaf-adm",
+    "microservices-decomposition"
+  ],
+  "tags": [
+    "visualization",
+    "diagrams",
+    "architecture-views",
+    "documentation"
+  ],
+  "origin_author": "Simon Brown, 2011",
+  "origin_source": "Software Architecture for Developers (Leanpub book) and c4model.com",
+  "origin_source_zh": "《面向开发者的软件架构》（Leanpub书籍）及c4model.com",
+  "complexity": "beginner",
+  "when_to_use": [
+    "When communicating software architecture to both technical and non-technical stakeholders",
+    "When onboarding new developers who need to understand system structure at multiple levels",
+    "When creating architecture documentation that stays maintainable and up-to-date",
+    "When replacing ad-hoc whiteboard diagrams with a consistent, hierarchical visualization approach"
+  ],
+  "when_to_use_zh": [
+    "向技术和非技术利益相关者传达软件架构时",
+    "新开发者入职需要在多个层次理解系统结构时",
+    "创建可维护且保持最新的架构文档时",
+    "用一致的层级化可视化方法替代随意的白板图时"
+  ],
+  "core_concepts": [
+    "Context diagram: The highest level showing the system boundary, users, and external dependencies",
+    "Container diagram: Major runtime units (applications, databases, message queues) with technology labels",
+    "Component diagram: Internal building blocks within a container showing responsibilities and relationships",
+    "Code diagram: Lowest level showing classes or modules, typically auto-generated from code",
+    "Abstraction hierarchy: Each level zooms into the previous one, like a map with increasing detail"
+  ],
+  "core_concepts_zh": [
+    "上下文图：最高层级，展示系统边界、用户和外部依赖",
+    "容器图：主要的运行时单元（应用、数据库、消息队列），标注技术选型",
+    "组件图：容器内部的构建模块，展示职责和关系",
+    "代码图：最低层级，展示类或模块，通常从代码自动生成",
+    "抽象层级：每个层级放大前一个层级的细节，类似不同比例的地图"
+  ],
+  "timeline": [
+    [
+      "2006",
+      "Simon Brown begins developing the C4 approach while consulting at various organizations"
+    ],
+    [
+      "2011",
+      "C4 Model formally published as part of 'Software Architecture for Developers'"
+    ],
+    [
+      "2018",
+      "Structurizr tooling released for diagram-as-code C4 modeling"
+    ],
+    [
+      "2020",
+      "C4-PlantUML integration brings C4 to the PlantUML ecosystem"
+    ],
+    [
+      "2023",
+      "C4 Model becomes the de facto standard for software architecture diagramming in many organizations"
+    ]
+  ],
+  "timeline_zh": [
+    [
+      "2006",
+      "Simon Brown在多个组织咨询期间开始开发C4方法"
+    ],
+    [
+      "2011",
+      "C4模型作为《面向开发者的软件架构》的一部分正式发布"
+    ],
+    [
+      "2018",
+      "Structurizr工具发布，支持以代码方式创建C4模型图"
+    ],
+    [
+      "2020",
+      "C4-PlantUML集成将C4引入PlantUML生态系统"
+    ],
+    [
+      "2023",
+      "C4模型成为众多组织中软件架构图绘制的事实标准"
+    ]
+  ],
+  "dos": [
+    "Do start with Context diagrams because they provide the broadest overview and are accessible to all audiences",
+    "Do add a legend and clear labels to every diagram because C4 relies on explicitness over convention",
+    "Do keep diagrams up to date as architecture evolves because stale diagrams erode trust in documentation",
+    "Do use diagram-as-code tools like Structurizr because they integrate with version control and CI pipelines"
+  ],
+  "dos_zh": [
+    "从上下文图开始，因为它提供最广泛的概览，所有受众都能理解",
+    "为每张图添加图例和清晰标注，因为C4依赖明确性而非惯例",
+    "随架构演进保持图表更新，因为过时的图表会削弱对文档的信任",
+    "使用Structurizr等图表即代码工具，因为它们可与版本控制和CI管道集成"
+  ],
+  "donts": [
+    "Don't create Code-level diagrams for every component because they become stale quickly and add maintenance burden",
+    "Don't mix abstraction levels in a single diagram because it confuses the audience about scope",
+    "Don't use C4 as a replacement for UML in all cases because some domains need more formal behavioral diagrams",
+    "Don't overload diagrams with too many elements because readability drops sharply beyond 15-20 elements per diagram"
+  ],
+  "donts_zh": [
+    "不要为每个组件都创建代码级图表，因为它们很快会过时并增加维护负担",
+    "不要在单张图中混合不同抽象层级，因为这会混淆受众对范围的理解",
+    "不要在所有情况下都用C4替代UML，某些领域需要更正式的行为图",
+    "不要在图表中放入过多元素，超过15-20个元素时可读性会急剧下降"
+  ],
+  "case_study_company": "ING Bank",
+  "case_study": "ING Bank adopted the C4 Model to standardize architecture documentation across hundreds of development teams during their large-scale agile transformation. By mandating Context and Container diagrams for every service, they created a navigable catalog of their entire technology landscape. This enabled cross-team dependency analysis and reduced integration issues by giving teams a shared vocabulary for discussing system boundaries.",
+  "case_study_zh": "ING银行在大规模敏捷转型中采用C4模型，标准化数百个开发团队的架构文档。通过要求每个服务都提供上下文图和容器图，他们创建了整个技术全景的可导航目录。这使跨团队依赖分析成为可能，并通过为团队提供讨论系统边界的共享词汇来减少集成问题。",
+  "when_not_to_use": [
+    "Hardware-centric systems that need electrical or physical architecture diagrams rather than software views",
+    "Formal model-driven development where UML with code generation is required",
+    "Very small projects where a single whiteboard sketch suffices and maintaining multiple diagram levels is overhead"
+  ],
+  "when_not_to_use_zh": [
+    "需要电气或物理架构图而非软件视图的硬件中心系统",
+    "需要UML配合代码生成的正式模型驱动开发",
+    "单张白板草图即可满足需求、维护多层图表反而增加开销的极小项目"
+  ],
+  "adopters": [
+    "ING Bank",
+    "Zalando",
+    "Elastic",
+    "Swiss Re",
+    "Structurizr"
+  ],
+  "abstraction_level": "system",
+  "quality_concerns": [
+    "maintainability"
+  ],
+  "maturity_ring": "established",
+  "primary_source": "Simon Brown (2018). \"The C4 Model for Visualising Software Architecture\". c4model.com.",
+  "secondary_sources": [
+    "Simon Brown (2018). \"Software Architecture for Developers, Volume 2\". Leanpub.",
+    "Simon Brown (2011). \"Software Architecture for Developers\". Leanpub."
+  ],
+  "typed_relations": [
+    {
+      "slug": "adr",
+      "type": "complement"
+    },
+    {
+      "slug": "togaf-adm",
+      "type": "alternative"
+    },
+    {
+      "slug": "microservices-decomposition",
+      "type": "complement"
+    }
+  ],
+  "url": "https://sdframe.caldis.me/frameworks/c4-model",
+  "markdown_url": "https://sdframe.caldis.me/skill/references/frameworks/c4-model.md"
+}
